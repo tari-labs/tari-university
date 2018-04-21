@@ -45,6 +45,8 @@ Here's the basic transaction:
 
 Assume the fee is zero for now; it doesn't change anything.
 
++++
+
 Now multiply both sides by the generator _G_ on the EC:
 
 $$ 3.G = 2.G + 1.G + f.G $$
@@ -81,12 +83,16 @@ This is where Bob's private key `$k_1$` comes in. Each in- or output needs a sec
 1. Alice knows the private key, `$k_2$` corresponding to the 3 Tari she is spending
 1. Alice knows the private key `$k_3$` for the 1 Tari change she's sending herself.
 
++++
+
 So what if we rewrite the inputs and outputs as follows:
 
 $$ C_{ni} = n.G + k_i.H $$
 
 this completely _blinds_ the in- and outputs so that no pre-image attack is possible.
 This is called a _Pederson commitment_.
+
++++
 
 But now the equation doesn't necessarily balance:
 
