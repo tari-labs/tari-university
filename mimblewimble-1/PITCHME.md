@@ -2,7 +2,6 @@
 ## A high-level overview
 
 ---
-
 # Key features
 
 * No addresses
@@ -12,8 +11,7 @@
 ---
 
 # MW transactions (1)
-
-Alice wants to send Bob 2 Tari:
+@fa[user green](Alice) @fa[long-arrow-alt-right](2 Tari) @fa[user blue](Bob):
 
 * Bob chooses a secret, private key, `$k_1$`.
 * He derives a public key $$P_1 = k.G$$ and sends `$P_1$` to Alice.

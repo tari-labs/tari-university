@@ -1,0 +1,48 @@
+/*
+ Override the font size to get more info on each slide
+*/
+.reveal {
+  font-size: 32px;
+}
+
+.reveal h1 {
+  font-size: 2em;
+  color: #fff
+}
+
+.reveal h2 {
+  font-size: 1.5em;
+  color: #ddd
+}
+
+.reveal h3 {
+  font-size: 1.2em;
+  color: #bbb
+}
+
+.reveal h4 {
+  font-size: 1.1em;
+  color: #aaa
+}
+
+.reveal pre {
+  font-size: 0.5em;
+  line-height: 1.1em;
+}
+
+.reveal small {
+  font-size: 0.4em;
+  line-height: 1.1em;
+}
+
+.red {
+  color: #f00
+}
+
+.green {
+  color: #0f0
+}
+
+.blue {
+  color: #00f
+}
