@@ -15,9 +15,9 @@
 
 Alice wants to send Bob 2 Tari:
 
-* Bob chooses a secret, private key, $$k_1$$.
-* He derives a public key $$P_1 = k.G$$ and sends $$P_1$$ to Alice.
-* Alice has a UTXO of 3 and knows the private key $$k_2$$ that allows her to spend that coin,
+* Bob chooses a secret, private key, `$k_1$`.
+* He derives a public key $$P_1 = k.G$$ and sends `$P_1$` to Alice.
+* Alice has a UTXO of 3 and knows the private key `$k_2$` that allows her to spend that coin,
   so she can structure a transaction sending 2 Tari to Bob and receiving 1 Tari in change.
 
 +++
@@ -26,7 +26,7 @@ Alice wants to send Bob 2 Tari:
 
 Basic transaction:
 
-$$ 3 = 2 + 1 &&
+$$ 3 = 2 + 1 $$
 
 Masked by EC cryptography on curve H:
 
@@ -39,15 +39,15 @@ for all reasonable values of coin and scan the blockchain for those public keys?
 
 Short answer: YES!
 
-+++
+---
 
 # Blinding factors
 
-This is where Bob's private key $$k_1$$ comes in. Each in- or output needs a second private key:
+This is where Bob's private key `$k_1$` comes in. Each in- or output needs a second private key:
 
-1. Bob's 2 Tari output corresponds to $$k_1$$, which only Bob knows (but he's sent the public key to Alice)
-1. Alice knows the private key, $$k_2$$ corresponding to the 3 Tari she is spending
-1. Alice needs to create another private key $$k_3$$ for the 1 Tari change she's creating.
+1. Bob's 2 Tari output corresponds to `$k_1$`, which only Bob knows (but he's sent the public key to Alice)
+1. Alice knows the private key, `$k_2$` corresponding to the 3 Tari she is spending
+1. Alice needs to create another private key `$k_3$` for the 1 Tari change she's creating.
 
 So now we can write
 
