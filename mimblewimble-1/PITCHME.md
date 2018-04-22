@@ -136,7 +136,7 @@ More generally, `$k_1$` is the sum of all the blinding factors.
 
 * Alice knows all the values in the transaction.
 * Bob only knows the shared private key `$k_1$`, his blinding factor, `$r_1$` and subsequently the amount he's receiving.
-* Bob can validate that the transaction amounts sum to zero, but don't know the other values.
+* Bob can validate that the transaction amounts sum to zero, but doesn't know the other values.
 * Alice knows the private key, `$k_1$`, but not `$r_1$`, so can't spend Bob's Tari, since she can't derive the
   private key sum from this information.
 
@@ -145,7 +145,7 @@ More generally, `$k_1$` is the sum of all the blinding factors.
 ### Proof of ownership
 
 Bob signs an empty string with `$r_1$` which proves that he knows `$r_1$`.This
-signature is send to the blockchain along with the transaction details.
+signature is submitted for inclusion to the blockchain along with the transaction details.
 
 A validator / node then only has to check that
 
