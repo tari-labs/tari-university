@@ -12,7 +12,7 @@
 
 # Transactions
 
-![MimbleWimble Transactions](./mw_txns.png)
+![MimbleWimble Transactions](mw_txs.png)
 
 ---
 
@@ -30,13 +30,12 @@ The recipient must be available to create a transaction, but he needn't be onlin
 
 Here's the basic transaction:
 
-`\begin{align}
-  3 &= 2 &+ 1 &+ f\\
-  \text{(UTXO)} &= \text{(Bob)} &+ \text{(change)} &+ \text{(fee)}
-  \end{align}
-`
+| Inputs | Outputs |||
+|--------|---------|--|--|
+| 3      | 2 | 1 | f |
+| Alice's UTXO | To Bob | Change | fee |
 
-Assume the fee is zero for now; it doesn't change anything.
+_Assume the fee is zero for now; it doesn't change anything._
 
 +++
 
@@ -70,7 +69,9 @@ Basically, **YES!**, so we're not done yet.
 
 ## Blinding factors
 
-This is where Bob's private key `$k_1$` comes in. Each in- or output needs a second private key:
+This is where Bob's private key `$k_1$` comes in. Each output needs a second private key:
+
+<small>@fa[comment] Input were given their private keys when they were outputs in a previous transaction.</small>
 
 1. Bob's 2 Tari output corresponds to `$k_1$`, which only Bob knows
 1. Alice knows the private key, `$k_2$` corresponding to the 3 Tari she is spending
@@ -91,7 +92,7 @@ Alice now builds a transaction like this:
 
 `\begin{align}
   \text{3T input} &- \text{2T to Bob} &- \text{1T change} &- \text{fee} &= 0 \\
-  (3.G + k_2.H) &- (2.G + k_1.H) &- (1.G + k_3.H) &- f.G &= 0 \tag(T1)
+  (3.G + k_2.H) &- (2.G + k_1.H) &- (1.G + k_3.H) &- f.G &= 0 \tag{T1}
   \end{align}`
 
 Since in an honest transaction<sup>\*</sup>
@@ -100,7 +101,7 @@ $$3.G - 2.G - 1.G - f.G = E = 0$$
 
 this becomes
 
-$$ k_2.H - k_1.H - k_3.H &= E = 0 $$
+$$ k_2.H - k_1.H - k_3.H = E = 0 $$
 
 <small>\* We'll examine the case where someone is cheating and `$E \ne 0$` shortly.</small>
 
@@ -117,7 +118,7 @@ Alice sends Bob this transaction information (T1) and lets Bob know that his pri
 key must be `$k_1$`. To prevent Alice from spending Bob's newly earned Tari, he
 can choose a new blinding factor `$r_1$` and rewrites the transaction as
 
-$$ (3.G + k_2.H) - (2.G + (k_1 - r_1).H) - (1.G + k_3.H) - f.G &= r_1.H + E $$
+$$ (3.G + k_2.H) - (2.G + (k_1 - r_1).H) - (1.G + k_3.H) - f.G = r_1.H + E $$
 
 Notice that the RHS is `$r_1.H + y.G$` where _E_ is the sum of the transaction values.
 The RHS is a valid key on _H_ if and only if `$y=0$`<sup>\*</sup>, i.e. Alice has constructed
@@ -126,7 +127,8 @@ the transaction without cheating.
 More generally, `$k_1$` is the sum of all the blinding factors.
 
 <small>\* This is a consequence of how the curves _H_ and _G_ were selected initially.</small>
- +++
+
++++
 
 ### Where we are so far:
 
@@ -154,6 +156,10 @@ There's still a flaw in this procedure though.
 
 Alice could have spent a 1 Tari output, giving 2 to Bob, and -1 in change to herself,
 thus creating 1 Tari out of thin air.
+
++++
+
+### Range proofs
 
 To prevent, this, Alice needs to provide a set of _range proofs_ for each amount
 she receives, proving that the (masked) values lie between 0 and `$2^{64}`.
