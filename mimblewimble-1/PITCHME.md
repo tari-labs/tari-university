@@ -12,7 +12,7 @@
 
 # Transactions
 
-![MimbleWimble Transactions](mw_txs.png)
+![MimbleWimble Transactions](https://github.com/tari-labs/tari-university/raw/master/mimblewimble-1/mw_txs.png)
 
 ---
 
