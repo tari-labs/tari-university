@@ -90,12 +90,12 @@ This completely _blinds_ the in- and outputs so that no pre-image attack is poss
 
 Alice now builds a transaction like this:
 
-$$
+`$$
   \underbrace{(3.G + k_2.H)}_\text{3T UTXO}
   - \underbrace{(2.G + k_1.H)}_\text{2T to Bob}
   - \underbrace{(1.G + k_3.H)}_\text{1T change}
   - \underbrace{f.G}_\text{fee} = 0 \tag{T1}
-$$
+$$`
 
 Since in an honest transaction<sup>\*</sup>
 
@@ -120,10 +120,10 @@ Alice sends Bob this transaction information (T1) and lets Bob know that his pri
 key must be `$k_1$`. To prevent Alice from spending Bob's newly earned Tari, he
 can choose a new blinding factor `$r_1$` and rewrites the transaction as
 
-`\begin{multline}
-     (3.G + k_2.H) - (2.G + (k_1 - r_1).H) - (1.G + k_3.H) - f.G \\
+`$$
+     (3.G + k_2.H) - (2.G + (k_1 - r_1).H) - (1.G + k_3.H) - f.G
      = r_1.H + E
-\end{multline}`
+$$`
 
 Notice that the RHS is `$r_1.H + y.G$` where _E_ is the sum of the transaction values.
 The RHS is a valid key on _H_ if and only if `$y=0$`<sup>\*</sup>, i.e. Alice has constructed
@@ -135,7 +135,7 @@ More generally, `$k_1$` is the sum of all the blinding factors.
 
 +++
 
-### Where we are so far:
+## Where we are so far:
 
 * Alice knows all the values in the transaction.
 * Bob only knows the shared private key `$k_1$`, his blinding factor, `$r_1$` and subsequently the amount he's receiving.
@@ -145,6 +145,8 @@ More generally, `$k_1$` is the sum of all the blinding factors.
 
 +++
 
+### Proof of ownership
+ 
 Bob signs an empty string with `$r_1$` which proves that he knows `$r_1$`.This
 signature is send to the blockchain along with the transaction details.
 
