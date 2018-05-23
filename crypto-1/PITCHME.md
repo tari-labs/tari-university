@@ -20,7 +20,7 @@ $$ y^2 = x^3 + ax + b \mod p$$
 * But _x, y_ are integers
 * And _x, y_ are between 0 and some prime number _p_
 
-![http://andrea.corbellini.name/images/curves.png]
+![Some elliptic curves](http://andrea.corbellini.name/images/curves.png)
 
 Note: You can forget about all this technical detail. It's just included here for completeness.
 
@@ -35,7 +35,7 @@ Note: You can forget about all this technical detail. It's just included here fo
 
 # Addition
 
-![http://andrea.corbellini.name/images/point-addition.png]
+![Addition](http://andrea.corbellini.name/images/point-addition.png)
 
 * Geometrically, $ P + Q + R = 0 $ if _P, Q, R_ all lie on the same "line" (mod _p_).
 * Thus addition looks like: $ P + Q = -R $.
@@ -49,7 +49,7 @@ Note: You can forget about all this technical detail. It's just included here fo
 
 Define scalar multiplication as 
 
-$$ nP = \shortstack{\underbrace{P + P + ... + P}}{n\text{ times}} $$
+$$ nP = \underbrace{P + P + ... + P}_{n\text{ times}} $$
 
 This can be calculated in $O(\log n)$ time, using the [double and add](http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/#double-and-add)
 algorithm. 
@@ -132,7 +132,22 @@ note:
 
 # Signing with Elliptic Curve Digital Signature Algorithm
 
+Alice wants to **sign** a message, _m_ with her private key that Bob can verify with her public key, $P_a$.
 
+* The length of _m_ must be less than the order of the subgroup.
+* In practice, we _hash_ an arbitrary message to get the desired length, and sign the hash
+* For some messages, you should _salt_ the message with a random string (_m || s_) so that you are not exposed to a [pre-image attack](https://en.wikipedia.org/wiki/Preimage_attack).
+
++++
+
+# ECDSA algorithm
+
+1. Alice has her public and private keys $ P_a = k_aG $
+1. Calculate a temporary key from random nonce _j_: $ P_j = jG $ 
+1. Calc $ r = x_P \mod n $ where $x_P$ is the x-coord of $P_j$
+1. Calc $ s = k^{-1}(z + rk_A) \mod n $
+
+  
 
 
 
