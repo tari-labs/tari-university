@@ -20,6 +20,8 @@ $$ y^2 = x^3 + ax + b \mod p$$
 * But _x, y_ are integers
 * And _x, y_ are between 0 and some prime number _p_
 
+![http://andrea.corbellini.name/images/curves.png]
+
 Note: You can forget about all this technical detail. It's just included here for completeness.
 
 ---
@@ -33,11 +35,13 @@ Note: You can forget about all this technical detail. It's just included here fo
 
 # Addition
 
-* Geometrically, $$ P + Q + R = 0 $$ if _P, Q, R_ all lie on the same line (mod _p_).
-* Thus addition looks like: $$ P + Q = -R $$.
-* _-R_ is R reflected around the line $$ y = p / 2 $$
+![http://andrea.corbellini.name/images/point-addition.png]
 
-* $$ P + P $$ has no geometric construction, but is analogous to tangent on the continuous curve (and the math works out the same - mod _p_)
+* Geometrically, $ P + Q + R = 0 $ if _P, Q, R_ all lie on the same "line" (mod _p_).
+* Thus addition looks like: $ P + Q = -R $.
+* _-R_ is R reflected around the line $ y = p / 2 $
+
+* $ P + P $ has no geometric construction, but is analogous to tangent on the continuous curve (and the math works out the same - mod _p_)
 
 ---
 
@@ -45,9 +49,9 @@ Note: You can forget about all this technical detail. It's just included here fo
 
 Define scalar multiplication as 
 
-$$ nP = \underbrace{P + P + ... + P}{n\text{ times}} $$
+$$ nP = \shortstack{\underbrace{P + P + ... + P}}{n\text{ times}} $$
 
-This can be calculated in $$O(\log n)$$ time, using the [double and add](http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/#double-and-add)
+This can be calculated in $O(\log n)$ time, using the [double and add](http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/#double-and-add)
 algorithm. 
 
 ---
@@ -70,9 +74,9 @@ $$ kP = (k \mod n)P $$
 
 # Discrete logarithm problem
 
-If we know _P_ and _Q_, and $$ Q = kP \mod p $$, can we easily find _k_?
+If we know _P_ and _Q_, and $ Q = kP \mod p $, can we easily find _k_?
 
-i.e. $$ k = Q/P $$ 
+i.e. $ k = Q/P $ 
 
 * No known 'easy' algorithm (i.e. runs in polynomial time)
 * need to do divide by trial and error (choose _k_, check, repeat)
@@ -80,13 +84,12 @@ i.e. $$ k = Q/P $$
 
 ### This is the basis of all ECC cryptography
 
+note: Now that the abstract algebra stuff is largely out of the way, we can do some cryptography!
+
 ---
 
-# Elliptic curve parameters
+# Rules of cryptography (mod 3)
 
-Note: Now that the abstract algebra stuff is largely out of the way, we can do some cryptography!
-
-## Rules of cryptography (mod 3)
 1. Never roll your own crypto
 1. Never roll your own crypto
 1. Don't. Roll. Your. Own. Crypto.
@@ -101,8 +104,8 @@ Note: Now that the abstract algebra stuff is largely out of the way, we can do s
 
 # Elliptic Curve Cryptography (ECC)
 
-* *Private key* a random integer $$ d \in [1, n-1] $$ with _n_ the order of the sub-group.
-* *Public key* $$ P = kG $$, where _G_ is base point, or generator of the group
+* *Private key* a random integer $ d \in [1, n-1] $ with _n_ the order of the sub-group.
+* *Public key* $ P = kG $, where _G_ is base point, or generator of the group
 
 note: This should make sense now based on all the preliminary discussion. _k_ is kept secret, _kG_ is relatively 
 easy to calculate, giving you a public key, but finding _k_ from _kG_ involves solving the discrete logarithm problem.
@@ -115,11 +118,11 @@ DH is a method for two parties to _securely exchange keys_.
 
 | Alice              | Bob             
 ---------------------|------------------
-| Create key pair $$ P_a = k_a.G $$     | Create key pair $$ P_b = k_b.G $$
-| Sends Bob $$ P_a $$                   | Sends Alice $$ P_b $$
-| Calc $$ P_s = k_a.H_b = k_a.k_b.G  $$ | Calc $$ P_s = k_b.H_a = k_a.k_b.G $$ 
+| Create key pair $P_a = k_a.G$     | Create key pair $P_b = k_b.G$
+| Sends Bob $P_a$                   | Sends Alice $P_b$
+| Calc $P_s = k_a.H_b = k_a.k_b.G $ | Calc $ P_s = k_b.H_a = k_a.k_b.G $ 
 
-$$ P_s $$ is a shared secret than an eavesdropper has no practical hope of figuring out.
+$P_s$ is a shared secret than an eavesdropper has no practical hope of figuring out.
 
 note: 
 * When creating their keys, Alice and Bob use the same curve parameters: same curve, _G_ etc.
