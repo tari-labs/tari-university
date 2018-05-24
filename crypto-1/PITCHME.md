@@ -4,6 +4,7 @@ This is very brief overview. There are better, and more complete introductions o
 
 * [ECC - a gentle introduction](http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/)
 * [Digital Signatures](http://blog.oleganza.com/post/162861219668/eli5-how-digital-signatures-actually-work)
+* [EdDSA standard](https://tools.ietf.org/html/rfc8032)
 
 Note: Disclaimer. This is a rough guide for engineers wanting to get their hands wet with the nuts and bolts
 of the cryptographic math behind blockchain security. Therefore I may be loosy goosy with some terminology 
@@ -136,16 +137,45 @@ Alice wants to **sign** a message, _m_ with her private key that Bob can verify 
 
 * The length of _m_ must be less than the order of the subgroup.
 * In practice, we _hash_ an arbitrary message to get the desired length, and sign the hash
-* For some messages, you should _salt_ the message with a random string (_m || s_) so that you are not exposed to a [pre-image attack](https://en.wikipedia.org/wiki/Preimage_attack).
+* This also adds some randomness that prevents Alice from cheating.
 
 +++
 
 # ECDSA algorithm
 
+## Signing
+
 1. Alice has her public and private keys $ P_a = k_aG $
-1. Calculate a temporary key from random nonce _j_: $ P_j = jG $ 
-1. Calc $ r = x_P \mod n $ where $x_P$ is the x-coord of $P_j$
-1. Calc $ s = k^{-1}(z + rk_A) \mod n $
+1. Calculate a temporary key from random nonce _j_: $ R = rG $ 
+1. Calc $ e = \text{Hash}(R || m)$
+1. Calc $ s = r + ek_a $
+
+Send _m_, _R_ and _s_ to Bob
+
+note: This is a simplified algorithm. There are a few details ommitted, 
+like always using modular arithmetic at limits on the choice of nonce.
+
++++
+
+# ECDSA Verification
+
+Bob has _s_, _R_, _m_, and $P_a$.
+
+He doesn't know _k_a_ or _r_.
+
+$$ \begin{align}
+  s.G &= (r + ek_a)G \\
+      &= rG + ek_aG \\
+      &= R + eP_a
+   \end{align}
+$$
+
+So Bob calculates _s.G_ and e, and compares it to $ R+ eP_a $.
+If they match, he knows that Alice signed the message.
+
+
+
+
 
   
 
