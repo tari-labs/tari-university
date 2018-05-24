@@ -131,17 +131,13 @@ note:
 
 ---
 
-# Signing with Elliptic Curve Digital Signature Algorithm
+# Signing and verifying messages
 
-Alice wants to **sign** a message, _m_ with her private key that Bob can verify with her public key, $P_a$.
-
-* The length of _m_ must be less than the order of the subgroup.
-* In practice, we _hash_ an arbitrary message to get the desired length, and sign the hash
-* This also adds some randomness that prevents Alice from cheating.
+Alice wants to **sign** a message, _m_, that Bob (or anyone else) can verify with her public key, $P_a$.
 
 +++
 
-# ECDSA algorithm
+# EdDSA algorithm
 
 ## Signing
 
@@ -157,17 +153,15 @@ like always using modular arithmetic at limits on the choice of nonce.
 
 +++
 
-# ECDSA Verification
+# EdDSA Verification
 
 Bob has _s_, _R_, _m_, and $P_a$.
 
 He doesn't know _k_a_ or _r_.
 
-$$ \begin{align}
-  s.G &= (r + ek_a)G \\
-      &= rG + ek_aG \\
-      &= R + eP_a
-   \end{align}
+$$ s.G = (r + ek_a)G
+       = rG + ek_aG
+       = R + eP_a
 $$
 
 So Bob calculates _s.G_ and e, and compares it to $ R+ eP_a $.
