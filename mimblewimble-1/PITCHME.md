@@ -90,9 +90,7 @@ This completely _blinds_ the in- and outputs so that no pre-image attack is poss
 
 Alice now builds a transaction like this:
 
-`$$
-  \underbrace{(3.G + k_2.H)}_{\text{3T UTXO}} - \underbrace{(2.G + k_1.H)}_{\text{2T to Bob}} - \underbrace{(1.G + k_3.H)}_{\text{1T change}} - \underbrace{f.G}_{\text{fee}} = 0 \tag{T1}
-$$`
+`$$ \underbrace{(3.G + k_2.H)}_{\text{3T UTXO}} - \underbrace{(2.G + k_1.H)}_{\text{2T to Bob}} - \underbrace{(1.G + k_3.H)}_{\text{1T change}} - \underbrace{f.G}_{\text{fee}} = 0 $$`
 
 Since in an honest transaction<sup>\*</sup>
 
