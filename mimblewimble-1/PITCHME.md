@@ -46,17 +46,16 @@ $$ 3.G = 2.G + 1.G + f.G $$
 Since _G_ is a constant, the math above still holds, so we can validate that Alice is not
 stealing by checking that
 
-$$(3.G) - (2.G) - (1.G) - (f.G) === 0$$
+$$(3.G) - (2.G) - (1.G) - (f.G) \equiv 0$$
 
 but note that we _only see public keys_ and thus the values are hidden!
 
 Cool!
 
-note: Technically only scalar integer values are valid for
-elliptic curve multiplication. In practice, we'll be using MinoTaris so that the
+Note: Technically only scalar integer values are valid for
+elliptic curve multiplication. In practice, we'll be using MinoTaris (name TBD) so that the
 amounts are always integers. 
-
-note: The transactions aren't sent as an equation like this, but as a list of inputs, outputs and the fee. The fee
+The transactions aren't sent as an equation like this, but as a list of inputs, outputs and the fee. The fee
 is in cleartext, but you still need to blind it to check the maths.
 
 +++
@@ -72,19 +71,15 @@ Basically, **YES!**, so we're not done yet.
 
 ## Blinding factors
 
-This is where Bob's private key `$k_1$` comes in. Each output needs a second private key:
+We need to add randomness to each in/output to prevent a pre-image attack. The basic idea is to do this by adding a second private key to each output.
 
 <small>@fa[comment] Input were given their private keys when they were outputs in a previous transaction.</small>
-
-1. Bob's 2 Tari output corresponds to `$k_1$`, which only Bob knows
-1. Alice knows the private key, `$k_2$` corresponding to the 3 Tari she is spending
-1. Alice knows a new private key `$k_3$` for the 1 Tari change she's sending herself.
-
-+++
 
 So what if we rewrite the inputs and outputs as follows:
 
 $$ C_{ni} = n.G + k_i.H $$
+
+where _H_ is a generator on another (specially selected) EC.
 
 This completely _blinds_ the in- and outputs so that no pre-image attack is possible.
 (And is called a _Pederson commitment_).
@@ -93,7 +88,9 @@ This completely _blinds_ the in- and outputs so that no pre-image attack is poss
 
 Alice now builds a transaction like this:
 
-$$ \underbrace{(3.G + k_2.H)}_{\text{3T UTXO}} - \underbrace{(2.G + k_1.H)}_{\text{2T to Bob}} - \underbrace{(1.G + k_3.H)}_{\text{1T change}} - \underbrace{f.G}_{\text{fee}} = 0 $$
+`$$ 
+   \underbrace{(3.G + k_2.H)}_{\text{3T UTXO}} - \underbrace{(2.G + k_1.H)}_{\text{2T to Bob}} - \underbrace{(1.G + k_3.H)}_{\text{1T change}}   = \underbrace{f.G}_{\text{fee}}
+$$`
 
 Since in an honest transaction<sup>\*</sup>
 
@@ -111,7 +108,7 @@ and so we require
 
 `\begin{align}
   k_2 - k_1 - k_3 &= 0 \\
-  \therefore k_1 = k_2 - k_3
+  \therefore k_1 &= k_2 - k_3
 \end{align}
 `
 Alice sends Bob this transaction information (T1) and lets Bob know that his private
@@ -123,8 +120,8 @@ can choose a new blinding factor `$r_1$` and rewrites the transaction as
      = r_1.H + E
 $$`
 
-Notice that the RHS is `$r_1.H + y.G$` where _E_ is the sum of the transaction values.
-The RHS is a valid key on _H_ if and only if `$y=0$`<sup>\*</sup>, i.e. Alice has constructed
+Notice that the RHS is `$r_1.H + E$` where _E_ is the sum of the transaction values.
+The RHS is a valid key on _H_ if and only if `$E=0$`<sup>\*</sup>, i.e. Alice has constructed
 the transaction without cheating.
 
 More generally, `$k_1$` is the sum of all the blinding factors.
@@ -167,7 +164,7 @@ thus creating 1 Tari out of thin air.
 ### Range proofs
 
 To prevent, this, Alice needs to provide a set of _range proofs_ for each amount
-she receives, proving that the (masked) values lie between 0 and `$2^{64}$`.
+she receives, proving that the (masked) values lie between 0 and `$2^{64}$` (exclusive).
 
 Similarly, Bob provides range proofs for the value he is receiving.
 
