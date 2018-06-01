@@ -68,9 +68,9 @@ The merge miner builds a block for both hash chains in such a way that the same 
 
 - Some solved multi-POW block examples below:
 
-  - ![Myriad-1](./intro-20180601/Myriad-1.png)
-  - ![Myriad-2](./intro-20180601/Myriad-2.png)
-  - ![Myriad-3](./intro-20180601/Myriad-3.png)
+  - ![Myriad-1](./Myriad-1.png)
+  - ![Myriad-2](./Myriad-2.png)
+  - ![Myriad-3](./Myriad-3.png)
 
 ### Monero (#12) / DigitalNote (#166) + FantomCoin (#1068)
 
@@ -127,7 +127,7 @@ The merge miner builds a block for both hash chains in such a way that the same 
   - Tari tokens are envisaged to be merged mined with Monero [13], as such the Monero block chain security is important to the Tari block chain. 
   - Monero recently (2018-04-06) introduced a hard fork with upgraded POW algorithm CryptoNight v7 at block height 1546000 to maintain their Application Specific Integrated Circuit (ASIC) resistance and hence guard aginst 51% attacks. The Monero team proposes changes to their POW every scheduled fork (i.e. every 6 months) going forward. ([14], [15])
   - An interesting queston arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediatly prior it was ~1,000 MH/s [20]. Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
-  - ![MoneroHashRate](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/MoneroHashRate.png)
+  - ![MoneroHashRate](./MoneroHashRate.png)
   - Nicehash statistics for CryptoNight v7 [21] shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
   - ![CryptoNight-v7](./CryptoNight-v7.png) 
   - The Tari block chain will have to fork together with or just after a scheduled Monero fork. The Tari block chain will be vulnerable to ASIC miners until it has been forked.
@@ -146,7 +146,7 @@ The merge miner builds a block for both hash chains in such a way that the same 
   -  Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
   -  Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per POW algorithm, in comparison to the respective parent blockchain.
   - Distribution of overall percentage of days below/above the centralization indicator thresholds:
-    ![MergedMiningStats-2](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/MergedMiningStats-2.png)
+    ![MergedMiningStats-2](./MergedMiningStats-2.png)
 
 - ### Introduction of New Attack Vectors [24]
 
