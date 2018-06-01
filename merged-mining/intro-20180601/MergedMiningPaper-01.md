@@ -68,9 +68,9 @@ The merge miner builds a block for both hash chains in such a way that the same 
 
 - Some solved multi-POW block examples below:
 
-  - ![Myriad-1](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/Myriad-1.png)
-  - ![Myriad-2](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/Myriad-2.png)
-  - ![Myriad-3](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/Myriad-3.png)
+  - ![Myriad-1](./intro-20180601/Myriad-1.png)
+  - ![Myriad-2](./intro-20180601/Myriad-2.png)
+  - ![Myriad-3](./intro-20180601/Myriad-3.png)
 
 ### Monero (#12) / DigitalNote (#166) + FantomCoin (#1068)
 
@@ -108,7 +108,7 @@ The merge miner builds a block for both hash chains in such a way that the same 
 
 - Merge-mined blocks in some cryptocurrencies at 2017/06/18 [24]:
 
-  ![MergedMiningStats-1](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/MergedMiningStats-1.png)
+  ![MergedMiningStats-1](./MergedMiningStats-1.png)
 
 ### Observations
 
