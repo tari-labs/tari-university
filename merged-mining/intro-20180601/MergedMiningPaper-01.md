@@ -129,7 +129,7 @@ The merge miner builds a block for both hash chains in such a way that the same 
   - An interesting queston arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediatly prior it was ~1,000 MH/s [20]. Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
   - ![MoneroHashRate](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/MoneroHashRate.png)
   - Nicehash statistics for CryptoNight v7 [21] shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
-  - ![CryptoNight-v7](/Users/hansie.odendaal/tari-university/merged-mining/intro-20180601/CryptoNight-v7.png) 
+  - ![CryptoNight-v7](./CryptoNight-v7.png) 
   - The Tari block chain will have to fork together with or just after a scheduled Monero fork. The Tari block chain will be vulnerable to ASIC miners until it has been forked.
 
 - ### Double proof
