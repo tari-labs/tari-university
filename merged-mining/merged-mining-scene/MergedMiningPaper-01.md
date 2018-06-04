@@ -42,7 +42,7 @@ The merge miner builds a block for both hash chains in such a way that the same 
 
 - Huntercoin was released as a live experimental test to see how blockchain technology could handle full on game worlds. [22]
 - Huntercoin was originally designed to be supported for only 1 year, but development and support will continue. [22]
-- Players are awarded coins for gaiming, thus world's first human hineable cryptocurrency.
+- Players are awarded coins for gaming, thus world's first human mineable cryptocurrency.
 - Coin distribution: 10 coins per block, 9 for the game world and 1 for the miners. [22]
 
 | @ 2018-06-01                      | Huntercoin     |
@@ -125,10 +125,10 @@ The merge miner builds a block for both hash chains in such a way that the same 
   - 51% attacks are real and relevant today. Bitcoin Gold (rank #28 @ 2018/05/29) and Verge (rank #33 @ 2018/05/29) suffered recent attacks with double spend transactions following. ([11], [12])
   - In a conservative analysis, successful attacks on POW cryptocurrencies are more likely when dishonest entities control more than 25% of the total mining power. [24]
   - Tari tokens are envisaged to be merged mined with Monero [13], as such the Monero block chain security is important to the Tari block chain. 
-  - Monero recently (2018-04-06) introduced a hard fork with upgraded POW algorithm CryptoNight v7 at block height 1546000 to maintain their Application Specific Integrated Circuit (ASIC) resistance and hence guard aginst 51% attacks. The Monero team proposes changes to their POW every scheduled fork (i.e. every 6 months) going forward. ([14], [15])
-  - An interesting queston arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediatly prior it was ~1,000 MH/s [20]. Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
+  - Monero recently (2018-04-06) introduced a hard fork with upgraded POW algorithm CryptoNight v7 at block height 1546000 to maintain their Application Specific Integrated Circuit (ASIC) resistance and hence guard against 51% attacks. The Monero team proposes changes to their POW every scheduled fork (i.e. every 6 months) going forward. ([14], [15])
+  - An interesting question arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediately prior it was ~1,000 MH/s [20]. Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
   - ![MoneroHashRate](./MoneroHashRate.png)
-  - Nicehash statistics for CryptoNight v7 [21] shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
+  - NiceHash statistics for CryptoNight v7 [21] shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
   - ![CryptoNight-v7](./CryptoNight-v7.png) 
   - The Tari block chain will have to fork together with or just after a scheduled Monero fork. The Tari block chain will be vulnerable to ASIC miners until it has been forked.
 
@@ -138,11 +138,11 @@ The merge miner builds a block for both hash chains in such a way that the same 
   - Multiple Auxiliary blocks can be competing for the same POW, and could subject your Auxiliary block chain to nothing-at-stake attacks. [7]
   - More than one Auxiliary block chain will be merged mined with Monero.
 
-- ### Analysis of Mining Power Centralization Issues [24]
+- ### Analysis of Mining Power Centralisation Issues [24]
 
   -  In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
-  -  Litecoin has experienced slight centralization since mid-2014, among others caused by Clevermining and F2Pool.
-  -  In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significan periods, even exceeding the 50% threshold around the end of 2016.
+  -  Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
+  -  In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
   -  Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
   -  Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per POW algorithm, in comparison to the respective parent blockchain.
   - Distribution of overall percentage of days below/above the centralization indicator thresholds:
