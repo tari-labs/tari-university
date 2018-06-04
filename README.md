@@ -14,7 +14,7 @@ We want this collection of educational presentations and videos to be collaborat
 
 This extends to our presentations; we are learning along with you: our content may not be perfect first time around- so we invite you to alert us to errors and issues, or better yet, if you know how to make a pull request to contribute a fix, write the correction and use a pull request.
  
-As much as this learning platform is called Tari Labs University and will see input from many internal contributors and external experts, we would like you to contribute to new material [(Contact)](learning@tari.com), be it in the form of a suggestion of topics, varying the skill levels of presentations, or posting presentations that you may feel will benefit us as a growing community. In the words of Yoda, “Always pass on what you have learned”.  
+As much as this learning platform is called Tari Labs University and will see input from many internal contributors and external experts, we would like you to contribute to new material, be it in the form of a suggestion of topics, varying the skill levels of presentations, or posting presentations that you may feel will benefit us as a growing community. In the words of Yoda, “Always pass on what you have learned”.  
 
 ## Current Streams 
 
