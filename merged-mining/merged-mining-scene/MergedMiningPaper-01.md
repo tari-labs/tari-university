@@ -97,7 +97,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
   - Default block size - 100Kb
   
   DigitalNote Release notes 4.0.0-beta
-  - Empowering XDN network security with merged mining with any CryptoNote 
+  - EmPoWering XDN network security with merged mining with any CryptoNote 
     cryptocurrency
   - Second step to the PoA with the new type of PoW merged mining blocks
   ```
@@ -153,11 +153,11 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 - ### Analysis of Mining Power Centralisation Issues ([24], [25])
 
-  -  In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
-  -  Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
-  -  In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
-  -  Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
-  -  Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
+  - In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
+  - Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
+  - In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
+  - Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
+  - Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
   - Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
     ![MergedMiningStats-2](./MergedMiningStats-2.png)
 
