@@ -64,7 +64,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 | Block chain size (GB)             | 17             |
 | Pruned block chain size (GB)      | 0.5            |
 | Blocks count                      | 2291060        |
-| POW Algorithm (for merged mining) | SHA256, Scrypt |
+| PoW Algorithm (for merged mining) | SHA256, Scrypt |
 
 ### Myriad (#510) with Bitcoin (#1) or Litecoin (#6)
 
@@ -76,8 +76,8 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 | Block time target (s)             | 60                           |
 | Block chain size (GB)             | 2.095                        |
 | Blocks count                      | 2442829                      |
-| POW Algorithm (for merged mining) | SHA256d, Scrypt              |
-| POW Algorithm (others)            | Myr-Groestl, Skein, Yescrypt |
+| PoW Algorithm (for merged mining) | SHA256d, Scrypt              |
+| PoW Algorithm (others)            | Myr-Groestl, Skein, Yescrypt |
 
 - Some solved multi-PoW block examples below:
 
@@ -136,28 +136,28 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 - ### 51% attacks
 
   - 51% attacks are real and relevant today. Bitcoin Gold (rank #28 @ 2018/05/29) and Verge (rank #33 @ 2018/05/29) suffered recent attacks with double spend transactions following. ([11], [12])
-  - In a conservative analysis, successful attacks on PoW cryptocurrencies are more likely when dishonest entities control more than 25% of the total mining PoWer. [24]
+  - In a conservative analysis, successful attacks on PoW cryptocurrencies are more likely when dishonest entities control more than 25% of the total mining power. [24]
   - Tari tokens are envisaged to be merged mined with Monero [13], as such the Monero block chain security is important to the Tari block chain. 
   - Monero recently (2018-04-06) introduced a hard fork with upgraded PoW algorithm CryptoNight v7 at block height 1546000 to maintain their Application Specific Integrated Circuit (ASIC) resistance and hence guard against 51% attacks. The Monero team proposes changes to their PoW every scheduled fork (i.e. every 6 months) going forward. ([14], [15])
-  - An interesting question arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediately prior it was ~1,000 MH/s [20]. Thus 50% of the hash PoWer can be ascribed to ASICS and botnet miners.
+  - An interesting question arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediately prior it was ~1,000 MH/s [20]. Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
   - ![MoneroHashRate](./MoneroHashRate.png)
-  - NiceHash statistics for CryptoNight v7 [21] shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing PoWer after the Monero hard fork.
+  - NiceHash statistics for CryptoNight v7 [21] shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
   - ![CryptoNight-v7](./CryptoNight-v7.png) 
   - The Tari block chain will have to fork together with or just after a scheduled Monero fork. The Tari block chain will be vulnerable to ASIC miners until it has been forked.
 
 - ### Double proof
 
   - A miner could cheat the PoW system by putting more than one Auxiliary block header into one Parent block [7]. 
-  - Multiple Auxiliary blocks can be competing for the same PoW, and could subject your Auxiliary block chain to nothing-at-stake attacks if the chain is forked, maliciously or by accident, with consequent attempts to reverse transactions. [7]
+  - Multiple Auxiliary blocks can be competing for the same PoW, and could subject your Auxiliary block chain to nothing-at-stake attacks if the chain is forked, maliciously or by accident, with consequent attempts to reverse transactions. ([7], [26])
   - More than one Auxiliary block chain will be merged mined with Monero.
 
 - ### Analysis of Mining Power Centralisation Issues ([24], [25])
 
-  -  In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
-  -  Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
-  -  In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
-  -  Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
-  -  Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
+  - In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
+  - Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
+  - In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
+  - Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
+  - Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
   - Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
     ![MergedMiningStats-2](./MergedMiningStats-2.png)
 
@@ -198,7 +198,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 [14] Monero Hard Forks to Maintain ASIC Resistance, But ‘Classic’ Hopes to Spoil the Party, https://www.ccn.com/monero-hard-forks-to-maintain-asic-resistance-but-classic-hopes-to-spoil-the-party/ Accessed: 2018-05-29.
 
-[15] PoW change and key reuse, https://getmonero.org/2018/02/11/PoW-change-and-key-reuse.html, Accessed: 2018-05-29.
+[15] PoW change and key reuse, https://getmonero.org/2018/02/11/pow-change-and-key-reuse.html, Accessed: 2018-05-29.
 
 [16] BitInfoCharts, https://bitinfocharts.com, Accessed: 2018-05-30.
 
@@ -218,4 +218,6 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 [24] Merged Mining: Curse or Cure?,  https://eprint.iacr.org/2017/791.pdf, Judmayer et. al., Data Privacy Management, Cryptocurrencies and block chain Technology: ESORICS 2017 International Workshops, DPM 2017 and CBT 2017, Oslo, Norway, September 14-15, 2017, Proceedings (pp.316-333).
 
-[25] Merged Mining: Analysis of Effects and Implications,  http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652, Zamyatin Alexei, MSc Thesis, Faculty of Informatics at the Technische Universitat Wien.
+[25] Merged Mining: Analysis of Effects and Implications,  http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652, Zamyatin Alexei, MSc Thesis, Faculty of Informatics at the Technische Universität Wien.
+
+[26] Problems - Consensus - 8. Proof of Stake, https://github.com/ethereum/wiki/wiki/Problems, Accessed: 2018-06-05.
