@@ -3,7 +3,7 @@
 ## What is merged mining? 
 
 Merged mining is the act of using work done on another block chain (the Parent) on one or more Auxiliary block chains and to accept it as valid on its own chain, using Auxiliary Proof-of-Work (AuxPoW), which is the relationship between two block chains for one to trust the other's work as their own. The Parent block chain does not need to be aware of the AuxPoW logic as blocks submitted to it are still valid blocks. [1]
-
+As per [[1]][ref_1], see explanation.
 As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [25]
 
 ![MergedMiningIntro01](./MergedMiningIntro01.png)
@@ -220,4 +220,5 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 [25] Merged Mining: Analysis of Effects and Implications,  http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652, Zamyatin Alexei, MSc Thesis, Faculty of Informatics at the Technische Universitat Wien.
 
-[ref_1]: 
+
+[ref_1]: https://www.nicehash.com/algorithm/cryptonightv7  "Nicehash statistics for CryptoNight v7"
