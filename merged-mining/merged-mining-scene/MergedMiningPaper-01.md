@@ -2,13 +2,17 @@
 
 ## What is merged mining? 
 
-Merged mining is the act of using work done on one block chain on more than one chain, using Auxiliary Proof-of-Work (AuxPOW), which is the relationship between two block chains for one to trust the other's work as their own and accept AuxPOW blocks. [1]
+Merged mining is the act of using work done on another block chain (the Parent) on one or more Auxiliary block chains and to accept it as valid on its own chain, using Auxiliary Proof-of-Work (AuxPoW), which is the relationship between two block chains for one to trust the other's work as their own. The Parent block chain does not need to be aware of the AuxPoW logic as blocks submitted to it are still valid blocks. [1]
 
-The Auxiliary block chain is accepting work done on the Parent block chain as valid on its own chain, while the Parent block chain does not need to be aware of the AuxPOW logic as AuxPOW blocks submitted to it are still valid blocks. [1]
+As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [25]
 
-The header of the Parent block is part of the AuxPOW block in the Auxiliary block chain. The hash of the AuxPOW block header does not meet the difficulty level of the Parent block chain, but it has additional data elements that show that the miner who created the block actually did mining activity (hashing) on the Parent block chain that meets the difficulty level of the Auxiliary block chain. [1]
+![MergedMiningIntro01](/Users/hansie.odendaal/Code/tari-university/merged-mining/merged-mining-scene/MergedMiningIntro01.png)
 
-The merge miner builds a block for both hash chains in such a way that the same hash calculation secures both blocks. A transaction set for both block chains are assembled. The Auxiliary block is hashed first and inserted in the Parent transaction set at the tip of the tree. Finally the Parent block header is assembled containing the Auxiliary block's transaction hash and submitted to the Parent block chain system's Proof of Work (POW). If the merge miner solves the block at the difficulty level of either or both block chains the respective block(s) are re-assembled with the completed POW and submitted to the correct block chain. In case of the Auxiliary block chain system, the solution is accepted as POW because it contains work that must have been done after the block header and transaction set was built. [2]
+A transaction set for both block chains are assembled. The hash of the AuxPOW block header is then inserted in the 'free' bytes region of the coinbase transaction and submitted to the Parent block chain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both block chains the respective block(s) are re-assembled with the completed PoW and submitted to the correct block chain. In case of the Auxiliary block chain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent block chain that meets the difficulty level of the Auxiliary block chain. ([1], [2], [25])
+
+The propagation of Parent and Auxiliary blocks are totally independent and only governed by each chain's difficulty level. As an example the diagram below shows how this can play out in practice when the Parent difficulty (D~BTC~) is larger than the Auxiliary difficulty (D~NMC~) .
+
+![MergedMiningIntro02](/Users/hansie.odendaal/Code/tari-university/merged-mining/merged-mining-scene/MergedMiningIntro02.png)
 
 
 
@@ -145,7 +149,7 @@ The merge miner builds a block for both hash chains in such a way that the same 
   -  In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
   -  Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
   -  Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per POW algorithm, in comparison to the respective parent blockchain.
-  - Distribution of overall percentage of days below/above the centralization indicator thresholds:
+  - Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
     ![MergedMiningStats-2](./MergedMiningStats-2.png)
 
 - ### Introduction of New Attack Vectors [24]
@@ -205,3 +209,4 @@ The merge miner builds a block for both hash chains in such a way that the same 
 
 [24] Merged Mining: Curse or Cure?,  https://eprint.iacr.org/2017/791.pdf, Judmayer et. al., Data Privacy Management, Cryptocurrencies and block chain Technology: ESORICS 2017 International Workshops, DPM 2017 and CBT 2017, Oslo, Norway, September 14-15, 2017, Proceedings (pp.316-333).
 
+[25] Merged Mining: Analysis of Effects and Implications,  http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652, Zamyatin Alexei, MSc Thesis, Faculty of Informatics at the Technische Universitat Wien.
