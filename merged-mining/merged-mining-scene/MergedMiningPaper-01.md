@@ -10,7 +10,7 @@ As an example the structure of merged mined blocks in Namecoin and Bitcoin is sh
 
 A transaction set for both block chains are assembled. The hash of the AuxPOW block header is then inserted in the 'free' bytes region of the coinbase transaction and submitted to the Parent block chain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both block chains the respective block(s) are re-assembled with the completed PoW and submitted to the correct block chain. In case of the Auxiliary block chain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent block chain that meets the difficulty level of the Auxiliary block chain. ([1], [2], [25])
 
-The propagation of Parent and Auxiliary blocks are totally independent and only governed by each chain's difficulty level. As an example the diagram below shows how this can play out in practice when the Parent difficulty (D<sub>BTC</sub>) is larger than the Auxiliary difficulty ($$D_{NMC}$$) .
+The propagation of Parent and Auxiliary blocks are totally independent and only governed by each chain's difficulty level. As an example the diagram below shows how this can play out in practice when the Parent difficulty (D<sub>BTC</sub>) is larger than the Auxiliary difficulty (D<sub>NMC</sub>) .
 
 ![MergedMiningIntro02](./MergedMiningIntro02.png)
 
