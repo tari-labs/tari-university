@@ -32,7 +32,7 @@ Cryptography | Crypto101 | An intro to elliptic curve math and digital signature
 General | Non-Fungible Tokens | An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereuem standards, and players in the Blockchain-based ticketing industry | 1 | Anyone interested in NFTs | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=nft-landscape-1#/) 
 Off-chain Scaling | Lightning Network and some concerns | | | | 8 June 2018
 Protocol | MimbleWimble | An intro to MimbleWimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=mimblewimble-1#/) 
-Technical | Merge Mining  | Presents a fundamental undersatnding to the concept of merge mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningPaper-01.md) 
+Technical | Merge Mining  | Presents a fundamental undersatnding to the concept of merge mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
  
 
 ## Future Streams and Topics 
