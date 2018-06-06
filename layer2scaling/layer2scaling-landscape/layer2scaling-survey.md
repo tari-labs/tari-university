@@ -1,24 +1,142 @@
 # Layer 2 Scaling Survey
 ## What is layer 2 scaling?
 
+???
 
 ## How will this be applibale to Tari?
 
-
- ## Layer 2 scaling current initiatives
- ### The Lightning Network
+???
 
 
- ### Proof of Stake
+## Layer 2 scaling current initiatives
+### #1 The Lightning Network
+#### What is it?
+
+???
+
+#### Who does it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
 
 
- ### Masternodes
+### #2 Proof of Stake
+#### What is it?
+
+???
+
+#### Who does it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #3 Masternodes
+#### What is it?
+
+???
+
+#### Who does it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #4 Loom Network
+#### What is it?
+
+???
+
+#### Who does it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #5 What else?
+#### What is it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+## Observations
+
+???
+
+## References
+
+[1] title, www.????.???, Date accessed: 2018-mm-dd.
 
 
- ### ???
-
-
- ## Observations
-
-
- 
