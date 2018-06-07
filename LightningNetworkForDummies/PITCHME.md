@@ -33,8 +33,9 @@ Note: If scaling takes place now, Bitcoin risks technical issues and centralizat
 
 ---
 
-# Problematic Implications of the Lightning Network 
-[Lightning](lightning.png)
+## Problematic Implications of the Lightning Network 
+
+![Lightningnetworknodes](lightningnetworknodes.png)
 
 ---
 
