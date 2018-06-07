@@ -47,6 +47,7 @@ Note: Essentially, you fund the network with a transaction on the Bitcoin Mainne
 
 ---
 
+![Lightningnetworktransactions](LNTXS.png)
 
 ---
 
