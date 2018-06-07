@@ -30,14 +30,34 @@ Note: If scaling takes place now, Bitcoin risks technical issues and centralizat
 ---
 
 ## Introducing Lightning
+![Lightningnetworknodes](lightningnetworknodes.png)
+
+---
+
+From the whitepaper, in order to use the LN, a common-user needs to : 
+1. Create the parent (funding transaction)
+2. Create the children (commitment transitions and all spends from the commitment transactions)
+3. Sign the children 
+4. Exchange the signatures for the children 
+5. Sign the parent 
+6. Exchange the signatures for the parent 
+7. Broadcast the parent on the blockchain 
+
+Note: Essentially, you fund the network with a transaction on the Bitcoin Mainnet and commitment transactions re-shift the original balances. To sign the funding transaction, they need to exchange their parent signatures and broadcast them back on the mainnet. 
+
+---
+
 
 ---
 
 ## Problematic Implications of the Lightning Network 
 
-![Lightningnetworknodes](lightningnetworknodes.png)
+There are issues with the implentation of this type of network:
+
+* It may not be particularly user friendly 
 
 ---
+
 
 
 
