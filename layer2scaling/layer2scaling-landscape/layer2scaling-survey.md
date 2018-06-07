@@ -3,7 +3,7 @@
 
 ???
 
-## How will this be applibale to Tari?
+## How will this be applicable to Tari?
 
 ???
 
