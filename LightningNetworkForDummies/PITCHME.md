@@ -57,7 +57,19 @@ There are issues with the implentation of this type of network:
 
 * It may not be particularly user friendly 
 
+Note: As innovative as this idea is, questions have been raised as to how intuitive it will be for a common consumer. An overly complex user-engagement will lead users to remaining on the mainnet, bogging down the network, keeping fees high and transactions backlogged.
+
 ---
+
+* Economics leads to centralisation 
+
+In order to use the lightning network, and then use your Bitcoin again onchain, it requires a funding transaction, and a broadcast (or closing) transaction. Each transaction requires a fee. Unless  fees are greatly reduced, users will not be blindly opening up channels with one another.
+
+Note: If I wanted to purchase a coffee from my local coffee shop, I might open up a payment channel with them, as I visit them often. Opening a channel with a funding transaction could potentially make economic sense if I frequently visit the coffee shop and make multiple purchases within a given period of time. However, I would still have to consider that the amount funded in the Funding Transaction will not be available to me on the Bitcoin mainnet. 
+
+---
+
+YOU DON’T NECESSARILY NEED TO HAVE AN OPEN CHANNEL WITH EVERYONE, IF THERE’S A ROUTE ON THE NETWORK TO THAT MERCHANT
 
 
 
