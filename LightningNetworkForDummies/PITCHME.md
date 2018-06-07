@@ -91,9 +91,11 @@ If Alice and Bob do not have an open channels and Alice wants to send Bob 0.5 BT
 What if a well-funded third party exists...
 
 
-![Centraliseddecentraliseddistribution](
+![Centraliseddecentraliseddistribution](Centraliseddecentraliseddistributed.png)
 
 Note: What if Alice, Bob, Charles, Danny, Eddy, Francis and Gina are all connected to that third party? Not only will each route always possess the necessary capital, it will also be the shorted route. There will be no economic incentive for each user to open up new channels with each other. So, in practice, Lightning is more likely to look like this:
+
+---
 
 
 
