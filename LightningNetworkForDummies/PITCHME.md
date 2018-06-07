@@ -1,1 +1,5 @@
-# Where I will be working 
+# Lightning Network for Dummies 
+
+![Lightning](lightning.jpg)
+
+# 
