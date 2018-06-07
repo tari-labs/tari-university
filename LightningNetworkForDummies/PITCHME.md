@@ -71,6 +71,29 @@ Note: If I wanted to purchase a coffee from my local coffee shop, I might open u
 
 YOU DON’T NECESSARILY NEED TO HAVE AN OPEN CHANNEL WITH EVERYONE, IF THERE’S A ROUTE ON THE NETWORK TO THAT MERCHANT
 
+![Distributednetwork](distributednetwork.png)
+
+A well-distributed Lightning Network will require substantial cooperation from the network users. 
+
+---
+
+Important to note:
+* Lightning Network will be an open market
+* A third party will be able to set their fee structure to connect end-users who wish to transact with one another
+* The third party needs to possess the necessary capital to process the transaction. 
+
+---
+
+If Alice and Bob do not have an open channels and Alice wants to send Bob 0.5 BTC, they’ll both need to be connected to a third party (or a series of 3rd parties). Say if Charles (the third party) only possesses 0.4 BTC in his respective channels with other users, the transaction will not be able to go through that route.
+
+---
+
+What if a well-funded third party exists...
+
+
+![Centraliseddecentraliseddistribution](
+
+Note: What if Alice, Bob, Charles, Danny, Eddy, Francis and Gina are all connected to that third party? Not only will each route always possess the necessary capital, it will also be the shorted route. There will be no economic incentive for each user to open up new channels with each other. So, in practice, Lightning is more likely to look like this:
 
 
 
