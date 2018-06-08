@@ -71,10 +71,6 @@ Note: Essentially, you fund the network with a transaction on the Bitcoin Mainne
 
 ---
 
-![Lightningnetworktransactions](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/LNTXS.png|width=100)
-
----
-
 * Economics leads to centralisation 
 
 In order to use the lightning network, and then use your Bitcoin again onchain, it requires a funding transaction, and a broadcast (or closing) transaction. Each transaction requires a fee. Unless fees are greatly reduced, users will not be blindly opening up channels with one another.
