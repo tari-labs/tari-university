@@ -267,18 +267,17 @@ An offline stance could also bring down the network.
 ## Concluding Notes
 
 1. On-boarding fees will be too expensive. Further, people will not be able to redeem their money by closing the channel if someone tries to steal it due to high fees.  
-2. If fees are low, there is no reason to use LN in the first place. Obvious flaw.  
-3. The above assumes that the LN routing is hard to attack.
+2. If fees are low, there is no reason to use LN in the first place 
 
 +++
 
 4. It is assumed that LN will be decentralized. It's highly likely that hub operators will be required to keep track of everyone using their hub and report to governments. This defeats the point of Bitcoin and disqualifies this approach as a legitimate scaling option.  
-5. Nobody wants to lock up all of their Bitcoins inside of a channel for years, which is how the LN authors envision it will be used.  
+5. Nobody wants to lock up all of their Bitcoins inside of a channel for a prolonged period
 
 +++
 
-6. This essentially steals fees from the miners who actually support the network. It makes the network unhealthy. Any LN hub is a big fat middleman that Bitcoin was meant to prevent. Users will not use it for this reason
-7. Complexity. Bitcoin is complex enough for new users. Adding another layer isn't something they will understand and be willing to use.  
+6. The LN hub is a middleman
+7. Complexity: Bitcoin is complex enough for new users. Adding another layer isn't something they will understand and be willing to use.  
 8. Off line payments are not supported: clients have to be talking to each other in realtime (money is stuck at the current state of the channel, if partner has not signed- you have to constantly monitor the status of the bitcoin blockchain, to ensure private transactions are not being broadcast back to bitcoin network)
 
 +++
