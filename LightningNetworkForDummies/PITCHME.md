@@ -10,9 +10,9 @@ In order for Bitcoin, or any other cryptocurrency to hold its value- **It needs 
 However, currently Bitcoin  is too slow and too expensive to be a viable method of payment for everyday use. 
 
 * Visa- The payment network Visa achieved 47 000 peak transactions per second (tps) on its network during the 2013 holidays- currently averaging hundreds of millions per day. 
-* Bitcoin- Bitcoin supports less than 7 transactions per second with a 1 megabyte lock limit 
+* Bitcoin- Bitcoin supports less than 7 transactions per second with a 1 megabyte block limit 
 
-Note: It needs value proposition. In saying that, as a cryptocurrency, it still possess the most important feature: decentralisation. For bitcoin to succeed, the benefits of using it to buy a cup of coffee needs to outweigh those fusing status-quo payments, like cash or credit. At this point in time, bitcoin’s benefits do not outweigh cash or credit. It’s slow and more importantly, too expensive. Although decentralisation is imperative- nobody wants to wait a minimum of 10 minutes to receive 2 confirmation and pay multi dollar fees just to buy a cup of coffee. That’s why solutions to this problem have been debated for the las several years. 
+Note: It needs value proposition. In saying that, as a cryptocurrency, it still possess the most important feature: decentralisation. For bitcoin to succeed, the benefits of using it to buy a cup of coffee needs to outweigh those status-quo payments, like cash or credit. At this point in time, bitcoin’s benefits do not outweigh cash or credit. It’s slow and more importantly, too expensive. Although decentralisation is imperative- nobody wants to wait a minimum of 10 minutes to receive  confirmation and pay multi dollar fees just to buy a cup of coffee. That’s why solutions to this problem have been debated for the last years. 
 
 ---
 
