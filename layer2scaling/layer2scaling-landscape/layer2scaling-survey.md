@@ -1,11 +1,11 @@
 # Layer 2 Scaling Survey
 ## What is Layer 2 scaling?
 
-In the 7 layers of the Open Systems Interconnection (OSI) model regarding communication functions of a computing system, Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions delivered by Layer 2 and up, it just delivers transmission and reception of raw data. In turn Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [1]
-
 In the block chain and cryptocurrency world, transaction processing scaling is a tough problem to solve. This is limited by the average block creation time, the block size limit and number of newer blocks needed to confirm a transaction (confirmation time). These factors make '*over the counter*' type transactions nearly impossible if done on the main block chain (on-chain).
 
-Decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions that run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. Instead of each transactions only the resultant of a number of transactions will be embedded on-chain. [2]
+The Open Systems Interconnection (OSI) model defines 7 layers for communication functions of a computing system. Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions of Layer 2 and up, it just delivers transmission and reception of raw data. In turn Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [1]
+
+Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. Instead of each transaction only the resultant of a number of transactions will be embedded on-chain. [2]
 
 ## How will this be applicable to Tari?
 
@@ -114,8 +114,91 @@ Decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, r
 
 ???
 
-### #5 What else?
+### #5 Trinity Protocol
+
 #### What is it?
+
+Trinity is an open-source network protocol that functions as NEO’s answer to the Bitcoin Lightning Network in order to achieve real-time payments, low transaction fees, scalability, microtransactions, and privacy protection for all NEO (NEP-5) assets. 
+
+#### Who does it?
+
+NEO
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #? What else?
+
+#### What is it?
+
+???
+
+#### Who does it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #? What else?
+
+#### What is it?
+
+???
+
+#### Who does it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #? What else?
+
+#### What is it?
+
+???
+
+#### Who does it?
 
 ???
 
@@ -145,7 +228,7 @@ Decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, r
 
 [2] Decentralized Digital Identities and Blockchain – The Future as We See It, https://cloudblogs.microsoft.com/enterprisemobility/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it, Date accessed: 2018-06-07.
 
-[3] , , Date accessed: 2018-06-??.
+[3] Trinity Protocol: The Scaling Solution of the Future? ,https://www.investinblockchain.com/trinity-protocol, Date accessed: 2018-06-08.
 
 [4] , , Date accessed: 2018-06-??.
 
