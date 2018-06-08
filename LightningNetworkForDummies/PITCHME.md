@@ -107,7 +107,7 @@ Note: What if Alice, Bob, Charles, Danny, Eddy, Francis and Gina are all connect
 
 ---
 
-* Such hits are likely to always be the shortest route- they can raise fees because longer routes will results in incrementally larger fees
+* Such hubs are likely to always be the shortest route- they can raise fees because longer routes will results in incrementally larger fees
 * The lightning network will be a hub and spoke network of bi-directional payment channels
 
 
@@ -119,17 +119,11 @@ Note: If a route has three intermediary nodes, each intermediary requires a fee.
 
 **Whoever runs and operates the centralised hubs**
 
-*Thus, it seems that the Lightning Network is nothing more than shifting fees away from miners and the mainnet and- in effect centralising the network, by creating Visa and MasterCard like companies which operate Lightning hubs. Further, it is still not fully understood how ‘trustless’ these companies will be.*  
+Note: It has been said that the Lightning Network is nothing more than shifting fees away from miners and the mainnet and- in effect centralising the network, by creating Visa and MasterCard like companies which operate Lightning hubs. Further, it is still not fully understood how ‘trustless’ these companies will be.  
 
 ---
 
 ## Problematic Implications of the Lightning Network 
-
-There are issues with the implentation of this type of network:
-
-* It may not be particularly user friendly 
-
-Note: As innovative as this idea is, questions have been raised as to how intuitive it will be for a common consumer. An overly complex user-engagement will lead users to remaining on the mainnet, bogging down the network, keeping fees high and transactions backlogged.
 
 ---
 
@@ -147,7 +141,7 @@ Note: Lightning network is often touted as a solution to the problem of bitcoin�
 
 * High onchain fees will lead to LN centralisation 
 
-*Why should user open 10 channels for $500, when he can just open one channel with a big hit for $50 or even for ‘free’ and route all payments with 1-2 hops?*
+*Why should user open 10 channels for five hundred dollars when he can just open one channel with a big hit for fifty dollar or even for ‘free’ and route all payments with 1-2 hops?*
 
 The solution may be Channel Factories - but the final implementation is not clear and system will probably stop being ‘trustless’
 
@@ -171,13 +165,13 @@ Note: Lightning Network supporters like the idea of channel factories, and LN te
 
 On the other hand, if BTC onchain fees will somehow stay low or suddenly decrease, then it will also decrease LN adoption, because users will be less incentivised to open channels with each other, which will put the LN system in danger. 
 
-Note: So LN might become a complex system with a few beneficiaries, which will require high onchain fees to exist. That will financially incentivise big hits, watchtowers and other centralised LN services to lobby high fees by riding community influentials and using sock puppets, thus achieving even more centralisation and higher revenues. 
+Note: So LN might become a complex system with a few beneficiaries, which will require high onchain fees to exist. That will financially incentivise big hubs, watchtowers and other centralised LN services to lobby high fees by riding community influentials and using sock puppets, thus achieving even more centralisation and higher revenues. 
 
 ---
 
 The concept of so-called ‘free’ wi-fi/trial will be used in LN as well. After implementing dual funded channels, big merchants  may offer to pay ‘opening’ TX fees for a user if they buy something worth of $N. This will lead to more centralisation and less anonymity. 
 
-Note: Why bother creating a channel with a ‘small’ node, pay high unchain fees and later pay more off chain fees for routing, when you can just open one channel with a big hit for ‘free’ and route most payments with 1 hop?- most people will always choose the most convent option. 
+Note: Why bother creating a channel with a ‘small’ node, pay high onchain fees and later pay more off chain fees for routing, when you can just open one channel with a big hub for ‘free’ and route most payments with 1 hop?- most people will always choose the most convent option. 
 
 ---
 
@@ -232,7 +226,7 @@ Now Alice can try to cheat Bob by broadcasting on the blockchain an old state, w
 ## Minimum collateral 
 
 * Setting a minimum collateral value to prevent exhaustion might create problems when other nodes will check for an available channel capacity for routing
-* Setting fixed minimum collateral value during channel creation, but it will again introduce several issues, because a system will be less flexible to changes
+* Setting fixed minimum collateral value during channel creation can be considered but it will again introduce several issues, because a system will be less flexible to changes
 
 ---
 
@@ -243,6 +237,8 @@ Going offline creates its own set of problems on the Lightning Network.
 It is possible for one of the two parties from a payment channel to close the channel and pocket funds while the other is away.  This is known as Fraudulent Channel Close.  
 
 An offline stance could also bring down the network. 
+
+Solution: is watchtowers but is this a 'trustless'system 
 
 ---
 
@@ -259,6 +255,8 @@ An offline stance could also bring down the network.
 
 * DASH has agreed to incrementally test and increase the block she from 2MB blocks through 400MB blocks
 * It is also funding research for dedicated hardware for miners and nodes to process increased volume. 
+
+---
 
 ## Concluding Notes
 
