@@ -114,15 +114,21 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 
 ???
 
-### #5 Trinity Protocol
+### #5 State Channels
 
 #### What is it?
 
-Trinity is an open-source network protocol that functions as NEO’s answer to the Bitcoin Lightning Network in order to achieve real-time payments, low transaction fees, scalability, microtransactions, and privacy protection for all NEO (NEP-5) assets. 
+State channels allow multiple transactions to be made within off-chain agreements with very fast processing and the final settlement on-chain. It keeps the operation mode of block chain protocol but changes the way it is used so as to deal with the challenge of scalability.
+
+Trinity is an open-source network protocol  
+
+
 
 #### Who does it?
 
-NEO
+NEO (via Trinity). Trinity is an open-source network protocol .
+
+NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. [3]
 
 #### Strengths
 
