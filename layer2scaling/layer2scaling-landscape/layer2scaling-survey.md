@@ -5,9 +5,7 @@ In the 7 layers of the Open Systems Interconnection (OSI) model regarding commun
 
 In the block chain and cryptocurrency world, transaction processing scaling is a tough problem to solve. This is limited by the average block creation time, the block size limit and number of newer blocks needed to confirm a transaction (confirmation time). These factors make '*over the counter*' type transactions nearly impossible if done on the main block chain (on-chain).
 
-Decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions that run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. [2]
-
-but still be linked to it with the resultant transactions embedded on-chain.
+Decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions that run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. Instead of each transactions only the resultant of a number of transactions will be embedded on-chain. [2]
 
 ## How will this be applicable to Tari?
 
