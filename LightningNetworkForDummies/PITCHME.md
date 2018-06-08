@@ -113,8 +113,7 @@ Note: What if Alice, Bob, Charles, Danny, Eddy, Francis and Gina are all connect
 
 * Such hits are likely to always be the shortest route- they can raise fees because longer routes will results in incrementally larger fees
 * The lightning network will be a hub and spoke network of bi-directional payment channels
-* Channels are connections between two nodes on the network, and a single transaction may travel through several channels
-* Nodes will charge you to use their channels, so you end up paying fees to multiple nodes
+
 
 Note: If a route has three intermediary nodes, each intermediary requires a fee. If each fee is 0.5 satoshis (totalling 1.5 satoshis), the large hop can just set their fees at 1.4999 satoshis to compete. Also, they can provide further incentive to create the scenario described, by covering mainnet funding transaction fees for all users. 
 
