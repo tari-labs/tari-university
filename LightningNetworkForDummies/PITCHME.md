@@ -9,6 +9,9 @@ In order for Bitcoin, or any other cryptocurrency to hold its value- **It needs 
 
 However, currently Bitcoin  is too slow and too expensive to be a viable method of payment for everyday use. 
 
+* Visa- The payment network Visa achieved 47 000 peak transactions per second (tps) on its network during the 2013 holidays- currently averaging hundreds of millions per day. 
+* Bitcoin- Bitcoin supports less than 7 transactions per second with a 1 megabyte lock limit 
+
 Note: It needs value proposition. In saying that, as a cryptocurrency, it still possess the most important feature: decentralisation. For bitcoin to succeed, the benefits of using it to buy a cup of coffee needs to outweigh those fusing status-quo payments, like cash or credit. At this point in time, bitcoin’s benefits do not outweigh cash or credit. It’s slow and more importantly, too expensive. Although decentralisation is imperative- nobody wants to wait a minimum of 10 minutes to receive 2 confirmation and pay multi dollar fees just to buy a cup of coffee. That’s why solutions to this problem have been debated for the las several years. 
 
 ---
@@ -23,7 +26,7 @@ Note: On its face- increasing the block size seems like the logical solution. It
 
 However, the argument is: 
 * Big blocks increase the cost of running full-node 
-* Big blocks will lead to a centralisation in mining 
+* Big blocks will lead to a centralisation in mining (only a few parties would be able to do block validation)
 
 Note: If scaling takes place now, Bitcoin risks technical issues and centralization
 
@@ -36,6 +39,7 @@ Note: If scaling takes place now, Bitcoin risks technical issues and centralizat
 
 * Lightning is a decentralised network of bilateral bitcoin payment channels off the bitcoin blockchain 
 * Lightning transactions are typically small, and most are not broadcast to the blockchain
+* With LN you need to pay onchain transaction fee only 2 times: to open and to close the channel. Users can also create many channels and route their payments via other people’s channels
 * It is expected to be a game changer in the cryptocurrency’s evolution
 * The Aim: The Network will speed up transaction processing and decrease associated costs on bitcoin’s blockchain
 
@@ -83,13 +87,49 @@ Note: As innovative as this idea is, questions have been raised as to how intuit
 
 * Fees 
 
-But bitcoin’s congestion is one among several factors the influence its transaction fees. Besides, the cryptocurrency’s fee itself is a large component of LN’s overall costs. 
+Bitcoin’s congestion is one among several factors the influence its transaction fees. The fee itself is a large component of LN’s overall costs. 
 
-There are two parts to its cost
-1. The fee equivalent to bitcoin’s transaction charges in order to open and close channels between parties.
+There are two parts to LN's overall cost
+1. The fee equivalent to bitcoin’s transaction charges in order to open and close channels between parties
 2. Separate routing fee for transfer payments between channels. 
 
-Note: Lightning network is often touted as a solution to the problem of bitcoin’s rising transaction fees. Is proponents claim that transaction fees, which is one of the direct consequences of bitcoin’s clogged netwrok, will come down after the technology takes transactions off the main blockchain-- 2. Currently, the latter fee is set to zero because there are very few nodes using lightning. Dryja anticipates LN’s routing fee to remain low for a long time because the network is “quite scalable” But he admits that bitcoin’s transaction fees may increase due to reasons behind LN. “Bitcoin’s transaction fees could go up again and hinder (lightning network ) adoption (among merchants)
+Note: Lightning network is often touted as a solution to the problem of bitcoin’s rising transaction fees. Is proponents claim that transaction fees, which is one of the direct consequences of bitcoin’s clogged network, will come down after the technology takes transactions off the main blockchain-- 2. Currently, the latter fee is set to zero because there are very few nodes using lightning. Dryja anticipates LN’s routing fee to remain low for a long time because the network is “quite scalable” But he admits that bitcoin’s transaction fees may increase due to reasons behind LN. “Bitcoin’s transaction fees could go up again and hinder (lightning network ) adoption (among merchants)
+
+---
+
+* High onchain fees will lead to LN centralisation 
+
+*Why should user open 10 channels for $500, when he can just open one channel with a big hit for $50 or even for ‘free’ and route all payments with 1-2 hops?*
+
+The solution may be Channel Factories - but the final implementation is not clear and system will probably stop being ‘trustless’
+
+Note: Towards the end of 2017, we saw a $50 fee for 1-input-transaction due to the cryptocurrency mania spike. 
+
++++
+
+## What are Channel Factories?
+
+From the paper: Scalable Funding of Bitcoin Micropayment Channel Networks
+* The concept proposes to create a ‘Masterchannel’ which in turn allows LN users to open subchannels in between
+* Users sub-channels can be opened and closed while the ‘masterchannel or factory’ remains open. 
+
+In short, channel factories are payment channels that can be used to create more payment channels
+
+Note: Lightning Network supporters like the idea of channel factories, and LN technology has been researched and developed heavily over the past few months. Those who dislike the purpose of this particular second layer concept believe that this latest idea pushes the LN technology even further behind because it’s essentially pushing the protocol to a third layer solution. 
+
+---
+
+* Low onchain fees will decrease LN adoption 
+
+On the other hand, if BTC onchain fees will somehow stay low or suddenly decrease, then it will also decrease LN adoption, because users will be less incentivised to open channels with each other, which will put a while LN system in danger. 
+
+Note: So LN might become a complex system with a few beneficiaries, which will require high onchain fees to exist. That will financially incentivise big hits, watchtowers and other centralised LN services to lobby high fees by riding community influentials and using sock puppets, thus achieving even more centralisation and higher revenues. 
+
+---
+
+The concept of so-called ‘free’ wi-fi/trial will be used in LN as well. After implementing dual funded channels, big merchants  may offer to pay ‘opening’ TX fees for a user if they buy something worth of $N. This will lead to more centralisation and less anonymity. 
+
+Note: Why bother creating a channel with a ‘small’ node, pay high unchain fees and later pay more off chain fees for routing, when you can just open one channel with a big hit for ‘free’ and route most payments with 1 hop?- most people will always choose the most convent option. 
 
 ---
 
@@ -99,11 +139,60 @@ Lightning’s pre-funded channels tie up funds that could be used for other purp
 
 ---
 
-* Remaining online at all times makes nodes susceptible
+However, since onchain fees will be high, it makes sense to deposit lots of money to a new LN channel, and spend funds over the next few weeks with lower off chain fees. 
+
+Recharging a channel (e,g. Submarine Swaps or splicing) won’t help, because user still needs to pay onchain fees and thus he should ‘deposit’ a bid sum upfront again, to save on fees in the future. 
+
+Note: Why bother depositing lots of funds upfront to save on future fees, if user can keep using Visa or other alt coins with low transaction fees? Solution: this won’t be a problem if everybody uses LN, because all payments would be done off chain, but this is unlikely to happen soon 
+
+---
+
+* Closing channels uncooperatively 
+
+In order to prevent cheating by broadcasting an older state of LN channel, there is CSV (CheckSequenceVerify) time-lock
+
+The most common delay will probably be around 144 blocks (~1 day), but it might vary a lot- If we decrease a time-lock value, so user can get money onchain much faster, but that has its tradeoffs.  
+
+Note: The CSV  will literally lock the funds for certain amount of time, giving a counterparty a chance to punish a cheater by broadcasting a transaction that contains a ‘secret key’ from that old state.-- There is no perfect solution with a current logic, because time-locks will always balance between safety and liquidity, but Submarine Swaps might help to get money onchain faster, if they will be widely adopted. 3rd party LN Watchtowers might also decrease a common delay time without a big safety trade-off 
+
++++
+
+## What are Submarine Swaps 
+
+Submarine Swaps essentially let users send Lightning payments to a middleman on the Lightning Network; that middleman will send a corresponding amount of bitcoin to a regular (on-chain) Bitcoin address. It also works the other way around: users can send regular on-chain payments to the middleman; that middleman will then send a corresponding amount of bitcoin to a receiving Lightning node on the Lightning Network.
+
+---
+
+* Exhausted Channels  
+
+This can occur when all or most money is on one side. It will be very dangerous if a counterparty has an older state, where all or most money on his side, because it becomes very lucrative to cheat (risk almost nothing for a chance to get all channel’s funds) 
+
++++
+
+For example:
+
+Alice opens a channel with Bob and funded it for 1 BTC. After a few transactions, all 1 BTC moved to Bob’s side. 
+
+Alice  (1BTC)---(0BTC) Bob <--Old state
+
+Alice  (0BTC)---(1BTC) Bob <--Latest state
+
+Now Alice can try to cheat Bob by broadcasting on the blockchain an old state, where she had all the funds. If Bob punished her, Alice will lose nothing, but onchain fees for a cheating transaction. If Alice succeeds, she will get 1 BTC. 
+
++++
+
+## Minimum collateral 
+
+* Setting a minimum collateral value to prevent exhaustion might create problems when other nodes will check for an available channel capacity for routing
+* Setting fixed minimum collateral value during channel creation, but it will again introduce several issues, because a system will be less flexible to changes
+
+---
+
+* Remaining online at all times
 
 Nodes on bitcoin’s lightning network are required to be online at all times in order to send and receive payments. 
 Going offline creates its own set of problems on the Lightning Network.
-It is possible for one of the two parties from a payment channel to close the channel and pocket funds while the other is away.  This is known as Fraudulent Channel Close. There is a time period to contest the closing of a channel, but a prolonged absence by one of the parties could result in expiry of that period. 
+It is possible for one of the two parties from a payment channel to close the channel and pocket funds while the other is away.  This is known as Fraudulent Channel Close.  
 
 An offline stance could also bring down the network. 
 
@@ -111,7 +200,7 @@ An offline stance could also bring down the network.
 
 * Economics leads to centralisation 
 
-In order to use the lightning network, and then use your Bitcoin again onchain, it requires a funding transaction, and a broadcast (or closing) transaction. Each transaction requires a fee. Unless  fees are greatly reduced, users will not be blindly opening up channels with one another.
+In order to use the lightning network, and then use your Bitcoin again onchain, it requires a funding transaction, and a broadcast (or closing) transaction. Each transaction requires a fee. Unless fees are greatly reduced, users will not be blindly opening up channels with one another.
 
 Note: If I wanted to purchase a coffee from my local coffee shop, I might open up a payment channel with them, as I visit them often. Opening a channel with a funding transaction could potentially make economic sense if I frequently visit the coffee shop and make multiple purchases within a given period of time. However, I would still have to consider that the amount funded in the Funding Transaction will not be available to me on the Bitcoin mainnet. 
 
@@ -151,18 +240,6 @@ Note: What if Alice, Bob, Charles, Danny, Eddy, Francis and Gina are all connect
 * Nodes will charge you to use their channels, so you end up paying fees to multiple nodes
 
 Note: If a route has three intermediary nodes, each intermediary requires a fee. If each fee is 0.5 satoshis (totalling 1.5 satoshis), the large hop can just set their fees at 1.4999 satoshis to compete. Also, they can provide further incentive to create the scenario described, by covering mainnet funding transaction fees for all users. 
-
----
-
-* Illiquidity 
-
-Typically, people would fund their channel, then pay the balance down gradually. Soon after funding, there could be quite a large balance, but only a few days later, the balance might have diminished considerably.  
-
----
-
-If a lot of people fund their channels at around the same time-for example, if people fund their channels on payday, then pay them down over the next month- liquidity across the network could vary considerably. This would mean that, at times, particularly for larger payments, it could be difficult or even impossible to find a payment route. As it stands, therefore, Lightning could prove as illiquid as bitcoin. 
-
-Note: Ligntning’s illiquidity problem could be solved by creating large payment channels kept open and fully funded at all times, so that they were always available for payment routing. But this would mean Lightning was not fully decentralised. Taylor from Dash said the biggest issue with Lightning Network is “increased centralisation” by concentrating funds in certain nodes within its network. In practical terms, this translates to a lock-up of user funds if one of Lightning Network’s nodes goes offline. “one server outage could feasibly cause disruption across the entire network, and it could cause a large number of users to have their funds frozen for days. 
 
 ---
 
