@@ -6,14 +6,14 @@ Merged mining is the act of using work done on another block chain (the Parent) 
 
 As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [25]
 
-![MergedMiningIntro01](./MergedMiningIntro01.png)
+![MergedMiningIntro01](./sources/MergedMiningIntro01.png)
 
 A transaction set for both block chains are assembled. The hash of the AuxPoW block header is then inserted in the 'free' bytes region (coinbase field) of the coinbase transaction and submitted to the Parent block chain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both block chains the respective block(s) are re-assembled with the completed PoW and submitted to the correct block chain. In case of the Auxiliary block chain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent block chain that meets the difficulty level of the Auxiliary block chain. ([1], [2], [25])
 
 The propagation of Parent and Auxiliary blocks are totally independent and only governed by each chain's difficulty level. As an example the diagram below shows how this can play out in practice with Namecoin and Bitcoin when the Parent difficulty (D<sub>BTC</sub>) is larger than the Auxiliary difficulty (D<sub>NMC</sub>) . Note that *BTC block 2'* did not become part of the Parent block chain propagation.
 
 
-![MergedMiningIntro02](./MergedMiningIntro02.png)
+![MergedMiningIntro02](./sources/MergedMiningIntro02.png)
 
 
 
@@ -21,7 +21,7 @@ The propagation of Parent and Auxiliary blocks are totally independent and only 
 
 A miner can use a single Parent to perform merged mining on multiple Auxiliary block chains. The Merkle tree root of a Merkle tree that contains the block hashes of the Auxiliary blocks as leaves must then be inserted in the Parent's coinbase field as shown below. To prevent double spending attacks each Auxiliary block chain must specify a unique ID that can be used to derive the leave of the Merkle tree where the respective block hash must be located. [25]
 
-![MergedMiningIntro03](./MergedMiningIntro03.png)
+![MergedMiningIntro03](./sources/MergedMiningIntro03.png)
 
 
 
@@ -81,9 +81,9 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 - Some solved multi-PoW block examples below:
 
-  - ![Myriad-1](./Myriad-1.png)
-  - ![Myriad-2](./Myriad-2.png)
-  - ![Myriad-3](./Myriad-3.png)
+  - ![Myriad-1](./sources/Myriad-1.png)
+  - ![Myriad-2](./sources/Myriad-2.png)
+  - ![Myriad-3](./sources/Myriad-3.png)
 
 ### Monero (#12) / DigitalNote (#166) + FantomCoin (#1068)
 
@@ -121,7 +121,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 - Merge-mined blocks in some cryptocurrencies at 2017/06/18 [24]:
 
-  ![MergedMiningStats-1](./MergedMiningStats-1.png)
+  ![MergedMiningStats-1](./sources/MergedMiningStats-1.png)
 
 ### Observations
 
@@ -140,9 +140,9 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
   - Tari tokens are envisaged to be merged mined with Monero [13], as such the Monero block chain security is important to the Tari block chain. 
   - Monero recently (2018-04-06) introduced a hard fork with upgraded PoW algorithm CryptoNight v7 at block height 1546000 to maintain their Application Specific Integrated Circuit (ASIC) resistance and hence guard against 51% attacks. The Monero team proposes changes to their PoW every scheduled fork (i.e. every 6 months) going forward. ([14], [15])
   - An interesting question arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediately prior it was ~1,000 MH/s [20]. Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
-  - ![MoneroHashRate](./MoneroHashRate.png)
+  - ![MoneroHashRate](./sources/MoneroHashRate.png)
   - NiceHash statistics for CryptoNight v7 [21] shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
-  - ![CryptoNight-v7](./CryptoNight-v7.png) 
+  - ![CryptoNight-v7](./sources/CryptoNight-v7.png) 
   - The Tari block chain will have to fork together with or just after a scheduled Monero fork. The Tari block chain will be vulnerable to ASIC miners until it has been forked.
 
 - ### Double proof
@@ -159,7 +159,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
   - Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
   - Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
   - Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
-    ![MergedMiningStats-2](./MergedMiningStats-2.png)
+    ![MergedMiningStats-2](./sources/MergedMiningStats-2.png)
 
 - ### Introduction of New Attack Vectors ([24], [25])
 
