@@ -34,6 +34,19 @@ Note: If scaling takes place now, Bitcoin risks technical issues and centralizat
 
 ---
 
+* Lightning is a decentralised network of bilateral bitcoin payment channels off the bitcoin blockchain 
+* Lightning transactions are typically small, and most are not broadcast to the blockchain
+* It is expected to be a game changer in the cryptocurrency’s evolution
+* The Aim: The Network will speed up transaction processing and decrease associated costs on bitcoin’s blockchain
+
+---
+
+**Assuming enough people open Lightning payment channels, there will eventually be a sizeable bitcoin liquidity pool distributed across the network. This question is, how to enable it to be shared.**
+
+Note: Lightning developers are designing a routing facility that identifies which network nodes have sufficient funds to make a payment, calculates the shortest viable route to the payment destination across those nodes, and sends the payment. If this works, it would resolve the bitcoin dilemma. 
+
+---
+
 * The Lightning Network (LN) mainnet reached over 1 000 active nodes for the first time in its short history
 * There are currently just over 11 000 active nodes on the main Bitcoin blockchain 
 
@@ -65,6 +78,34 @@ There are issues with the implentation of this type of network:
 * It may not be particularly user friendly 
 
 Note: As innovative as this idea is, questions have been raised as to how intuitive it will be for a common consumer. An overly complex user-engagement will lead users to remaining on the mainnet, bogging down the network, keeping fees high and transactions backlogged.
+
+---
+
+* Fees 
+
+But bitcoin’s congestion is one among several factors the influence its transaction fees. Besides, the cryptocurrency’s fee itself is a large component of LN’s overall costs. 
+
+There are two parts to its cost
+1. The fee equivalent to bitcoin’s transaction charges in order to open and close channels between parties.
+2. Separate routing fee for transfer payments between channels. 
+
+Note: Lightning network is often touted as a solution to the problem of bitcoin’s rising transaction fees. Is proponents claim that transaction fees, which is one of the direct consequences of bitcoin’s clogged netwrok, will come down after the technology takes transactions off the main blockchain-- 2. Currently, the latter fee is set to zero because there are very few nodes using lightning. Dryja anticipates LN’s routing fee to remain low for a long time because the network is “quite scalable” But he admits that bitcoin’s transaction fees may increase due to reasons behind LN. “Bitcoin’s transaction fees could go up again and hinder (lightning network ) adoption (among merchants)
+
+---
+
+* Pre-funded 
+
+Lightning’s pre-funded channels tie up funds that could be used for other purposes. Because of this, people may choose to keep very low balances in their Lightning channels, topping them up frequently rather than making infrequent balance adjustments.
+
+---
+
+* Remaining online at all times makes nodes susceptible
+
+Nodes on bitcoin’s lightning network are required to be online at all times in order to send and receive payments. 
+Going offline creates its own set of problems on the Lightning Network.
+It is possible for one of the two parties from a payment channel to close the channel and pocket funds while the other is away.  This is known as Fraudulent Channel Close. There is a time period to contest the closing of a channel, but a prolonged absence by one of the parties could result in expiry of that period. 
+
+An offline stance could also bring down the network. 
 
 ---
 
@@ -110,6 +151,18 @@ Note: What if Alice, Bob, Charles, Danny, Eddy, Francis and Gina are all connect
 * Nodes will charge you to use their channels, so you end up paying fees to multiple nodes
 
 Note: If a route has three intermediary nodes, each intermediary requires a fee. If each fee is 0.5 satoshis (totalling 1.5 satoshis), the large hop can just set their fees at 1.4999 satoshis to compete. Also, they can provide further incentive to create the scenario described, by covering mainnet funding transaction fees for all users. 
+
+---
+
+* Illiquidity 
+
+Typically, people would fund their channel, then pay the balance down gradually. Soon after funding, there could be quite a large balance, but only a few days later, the balance might have diminished considerably.  
+
+---
+
+If a lot of people fund their channels at around the same time-for example, if people fund their channels on payday, then pay them down over the next month- liquidity across the network could vary considerably. This would mean that, at times, particularly for larger payments, it could be difficult or even impossible to find a payment route. As it stands, therefore, Lightning could prove as illiquid as bitcoin. 
+
+Note: Ligntning’s illiquidity problem could be solved by creating large payment channels kept open and fully funded at all times, so that they were always available for payment routing. But this would mean Lightning was not fully decentralised. Taylor from Dash said the biggest issue with Lightning Network is “increased centralisation” by concentrating funds in certain nodes within its network. In practical terms, this translates to a lock-up of user funds if one of Lightning Network’s nodes goes offline. “one server outage could feasibly cause disruption across the entire network, and it could cause a large number of users to have their funds frozen for days. 
 
 ---
 
