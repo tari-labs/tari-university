@@ -71,7 +71,7 @@ Note: Essentially, you fund the network with a transaction on the Bitcoin Mainne
 
 ---
 
-![Lightningnetworktransactions](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/LNTXS.png)
+![Lightningnetworktransactions](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/LNTXS.png|width=100)
 
 ---
 
@@ -85,7 +85,7 @@ Note: If I wanted to purchase a coffee from my local coffee shop, I might open u
 
 YOU DON’T NECESSARILY NEED TO HAVE AN OPEN CHANNEL WITH EVERYONE, IF THERE’S A ROUTE ON THE NETWORK TO THAT MERCHANT
 
-![Distributednetwork](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/lightning.distributednetwork.png)
+![Distributednetwork](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/distributednetwork.png)
 
 A well-distributed Lightning Network will require substantial cooperation from the network users. 
 
