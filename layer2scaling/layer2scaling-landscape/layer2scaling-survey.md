@@ -48,8 +48,6 @@ Bitcoin (via The Lightning Network)
 
 #### Who does it?
 
-Ethereum (via Raiden network)
-
 ???
 
 #### Strengths
@@ -76,7 +74,11 @@ State channels allow multiple transactions to be made within off-chain agreement
 
 #### Who does it?
 
+Ethereum (via Raiden network)
+
 Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. [3]
+
+
 
 #### Strengths
 
@@ -104,27 +106,36 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 #### Who does it?
 
-Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will run first on NEO, before later expanding to support exchange on Ethereum and other blockchains. [5]
-
-???
+Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run on NEO, before later expanding to support exchange on Ethereum and other blockchains. [5]
 
 #### Strengths
 
-Cross-chain transfers promises to be much faster and less complex than atomic swaps or via traditional exchanges.
+- Flexibility:
+  - Cross-chain transfers;
+  - Support of national currencies;
+  - Smart contracts with reward to mitigate unfair exchange;
+  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens.
+- Performance:
+  - Off-chain matching;
+  - Batched on-chain commits.
+- Development environment: **Elixir on top of Erlang** to enable scalable, distributed, and fault-tolerant matching engine;
+- Cure53 full security audit on web extension;
+- NEX tokens will be regulated as registered European securities.
 
 #### Weaknesses
 
-A certain level of trust is required, similar to a traditional exchange.
+- A certain level of trust is required, similar to a traditional exchange.
 
-Security model not robust yet.
+- Still in development.
+
 
 #### Opportunities
 
-???
+- Has alignment with Tari's base requirements.
 
 #### Threats
 
-???
+- None.
 
 ### #3 Masternodes
 #### What is it?
