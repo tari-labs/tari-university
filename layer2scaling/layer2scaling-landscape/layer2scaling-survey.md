@@ -16,7 +16,7 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 ### #1 ???? (What technology? The Lightning Network)
 #### What is it?
 
-???
+Lightning is a decentralised network of bilateral bitcoin payment channels off the bitcoin blockchain. Lightning transactions are typically small, and most are not broadcast to the blockchain. The Lightning Network will enable transactions to be  be faster and cheaper than on-chain bitcoin transactions. 
 
 #### Who does it?
 
