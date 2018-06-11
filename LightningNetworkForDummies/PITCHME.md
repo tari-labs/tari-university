@@ -51,7 +51,7 @@ Note: Lightning developers are designing a routing facility that identifies whic
 
 ---
 
-* The Lightning Network (LN) mainnet reached over 1 000 active nodes in its short history
+* The Lightning Network (LN) mainnet reached over [1 000 active nodes](https://www.ccn.com/lightning-strikes-ln-mainnet-reaches-1000-nodes/) in its short history
 * There are currently just over 11 000 active nodes on the main Bitcoin blockchain 
 
 Note: It remarkable is how quickly users have flocked to the LN mainnet, a clear indication that enthusiasm for this scaling technology remains high. 
@@ -123,7 +123,7 @@ Note: It has been said that the Lightning Network is nothing more than shifting 
 
 ---
 
-## Problematic Implications of the Lightning Network 
+## [Problematic Implications of the Lightning Network](https://medium.com/crypto-punks/lightning-network-ux-centralization-b517037b92ec) 
 
 ---
 
@@ -149,9 +149,9 @@ Note: Towards the end of 2017, we saw a $50 fee for 1-input-transaction due to t
 
 +++
 
-## What are Channel Factories?
+## What are [Channel Factories](https://news.bitcoin.com/a-new-second-layer-channel-factories/)?
 
-From the paper: Scalable Funding of Bitcoin Micropayment Channel Networks
+From the [paper](https://www.tik.ee.ethz.ch/file/a20a865ce40d40c8f942cf206a7cba96/Scalable_Funding_Of_Blockchain_Micropayment_Networks%20(1).pdf) : Scalable Funding of Bitcoin Micropayment Channel Networks
 * The concept proposes to create a ‘Masterchannel’ which in turn allows LN users to open subchannels in between
 * Users sub-channels can be opened and closed while the ‘masterchannel or factory’ remains open. 
 
