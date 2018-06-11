@@ -13,14 +13,16 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 
 
 ## Layer 2 scaling current initiatives
-### #1 The Lightning Network
+### #1 ???? (What technology? The Lightning Network)
 #### What is it?
 
 ???
 
 #### Who does it?
 
-???xxx
+Bitcoin (via The Lightning Network)
+
+???
 
 #### Strengths
 
@@ -46,7 +48,41 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 
 #### Who does it?
 
+Ethereum (via Raiden network)
+
 ???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #3 State Channels
+
+#### What is it?
+
+State channels allow multiple transactions to be made within off-chain agreements with very fast processing and the final settlement on-chain. It keeps the operation mode of block chain protocol but changes the way it is used so as to deal with the challenge of scalability.
+
+Trinity is an open-source network protocol  
+
+
+
+#### Who does it?
+
+NEO (via Trinity). Trinity is an open-source network protocol based on NEP-5 smart contracts.
+
+NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. [3]
 
 #### Strengths
 
@@ -97,38 +133,6 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 #### Who does it?
 
 ???
-
-#### Strengths
-
-???
-
-#### Weaknesses
-
-???
-
-#### Opportunities
-
-???
-
-#### Threats
-
-???
-
-### #5 State Channels
-
-#### What is it?
-
-State channels allow multiple transactions to be made within off-chain agreements with very fast processing and the final settlement on-chain. It keeps the operation mode of block chain protocol but changes the way it is used so as to deal with the challenge of scalability.
-
-Trinity is an open-source network protocol  
-
-
-
-#### Who does it?
-
-NEO (via Trinity). Trinity is an open-source network protocol .
-
-NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. [3]
 
 #### Strengths
 
@@ -234,7 +238,7 @@ NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achi
 
 [2] Decentralized Digital Identities and Blockchain – The Future as We See It, https://cloudblogs.microsoft.com/enterprisemobility/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it, Date accessed: 2018-06-07.
 
-[3] Trinity Protocol: The Scaling Solution of the Future? ,https://www.investinblockchain.com/trinity-protocol, Date accessed: 2018-06-08.
+[3] Trinity Protocol: The Scaling Solution of the Future?, https://www.investinblockchain.com/trinity-protocol, Date accessed: 2018-06-08.
 
 [4] , , Date accessed: 2018-06-??.
 
