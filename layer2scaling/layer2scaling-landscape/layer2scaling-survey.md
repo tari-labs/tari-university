@@ -74,15 +74,9 @@ Ethereum (via Raiden network)
 
 State channels allow multiple transactions to be made within off-chain agreements with very fast processing and the final settlement on-chain. It keeps the operation mode of block chain protocol but changes the way it is used so as to deal with the challenge of scalability.
 
-Trinity is an open-source network protocol  
-
-
-
 #### Who does it?
 
-NEO (via Trinity). Trinity is an open-source network protocol based on NEP-5 smart contracts.
-
-NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. [3]
+Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. [3]
 
 #### Strengths
 
@@ -91,6 +85,36 @@ NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achi
 #### Weaknesses
 
 ???
+
+#### Opportunities
+
+???
+
+#### Threats
+
+???
+
+### #4 Trusted, off-chain matching engines
+
+#### What is it?
+
+Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers (starting with NEO and Ethereum), maintains public record of orders and a deterministic specification of behaviour. Initially focussed on NEO, GAS and NEP-5 token transactions. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa. [5]
+
+![NEX-matching-engine](./sources/NEX-matching-engine.png)
+
+#### Who does it?
+
+Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will run first on NEO, before later expanding to support exchange on Ethereum and other blockchains. [5]
+
+???
+
+#### Strengths
+
+Cross-chain transfers promises to be much faster and less complex than atomic swaps or via traditional exchanges.
+
+#### Weaknesses
+
+A certain level of trust is required, similar to a traditional exchange.
 
 #### Opportunities
 
@@ -202,32 +226,6 @@ NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achi
 
 ???
 
-### #? What else?
-
-#### What is it?
-
-???
-
-#### Who does it?
-
-???
-
-#### Strengths
-
-???
-
-#### Weaknesses
-
-???
-
-#### Opportunities
-
-???
-
-#### Threats
-
-???
-
 ## Observations
 
 ???
@@ -242,7 +240,7 @@ NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achi
 
 [4] , , Date accessed: 2018-06-??.
 
-[5] , , Date accessed: 2018-06-??.
+[5] NEX: A High Performance Decentralized Trade and Payment Platform, https://neonexchange.org/pdfs/whitepaper_v2.pdf, Date accessed: 2018-06-11.
 
 [6] , , Date accessed: 2018-06-??.
 
