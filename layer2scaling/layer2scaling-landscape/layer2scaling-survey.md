@@ -116,6 +116,8 @@ Cross-chain transfers promises to be much faster and less complex than atomic sw
 
 A certain level of trust is required, similar to a traditional exchange.
 
+Security model not robust yet.
+
 #### Opportunities
 
 ???
