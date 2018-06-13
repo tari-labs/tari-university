@@ -1,11 +1,15 @@
 # Layer 2 Scaling Survey
 ## What is Layer 2 scaling?
 
-In the block chain and cryptocurrency world, transaction processing scaling is a tough problem to solve. This is limited by the average block creation time, the block size limit and number of newer blocks needed to confirm a transaction (confirmation time). These factors make '*over the counter*' type transactions nearly impossible if done on the main block chain (on-chain).
+In the block chain and cryptocurrency world, transaction processing scaling is a tough problem to solve. This is limited by the average block creation time, the block size limit and number of newer blocks needed to confirm a transaction (confirmation time). These factors make '*over the counter*' type transactions similar to Master Card or Visa nearly impossible if done on the main block chain (on-chain).
+
+**ToDo - need picture**
 
 The Open Systems Interconnection (OSI) model defines 7 layers for communication functions of a computing system. Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions of Layer 2 and up, it just delivers transmission and reception of raw data. In turn Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [1]
 
-Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. Instead of each transaction only the resultant of a number of transactions will be embedded on-chain. [2]
+Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [2]
+
+**ToDo - need picture**
 
 ## How will this be applicable to Tari?
 
@@ -118,7 +122,7 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 - Performance:
   - Off-chain matching;
   - Batched on-chain commits.
-- Development environment: **Elixir on top of Erlang** to enable scalable, distributed, and fault-tolerant matching engine;
+- Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine;
 - Cure53 full security audit on web extension;
 - NEX tokens will be regulated as registered European securities.
 
