@@ -144,19 +144,36 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 ### #3 Masternodes
 #### What is it?
 
-???
+A masternode is a server on a dencentralised network. It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant
+
+Masternodes are a type of full node that offers various services to a network and are compensated by the network for these functions. Like all full nodes, masternodes host an entore copy of the Blockchain. However, masternodes differ from ordinary full nodes in a few important ways.
+
+Masternodes perform specialied transactions like InstantSend and PrivateSend
+
+In Dash, the masternodes represent the layer that is responsible for caring, cultivating and expanding the Dash digital currency as a whole. It is also the layer that makes the governance and tresury decisions. 
+
+Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. 
 
 #### Who does it?
 
-???
+- Dash 
+- PIVX
+- Crown 
+- ExclusiveCoin 
+- Helium 
 
 #### Strengths
 
-???
+- Sustain and care of the ecosystem 
+- 
+
 
 #### Weaknesses
 
-???
+- In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network. 
+
+
+
 
 #### Opportunities
 
