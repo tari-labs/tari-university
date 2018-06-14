@@ -44,33 +44,7 @@ Bitcoin (via The Lightning Network)
 
 ???
 
-
-### #2 Proof of Stake
-#### What is it?
-
-???
-
-#### Who does it?
-
-???
-
-#### Strengths
-
-???
-
-#### Weaknesses
-
-???
-
-#### Opportunities
-
-???
-
-#### Threats
-
-???
-
-### #3 State Channels
+### #2 State Channels
 
 #### What is it?
 
@@ -100,17 +74,17 @@ Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol 
 
 ???
 
-### #4 Trusted, off-chain matching engines
+### #3 Trusted, off-chain matching engines
 
 #### What is it?
 
-Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers (starting with NEO and Ethereum), maintains public record of orders and a deterministic specification of behaviour. Initially focussed on NEO, GAS and NEP-5 token transactions. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa. [5]
+Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers, maintains public record of orders and a deterministic specification of behaviour. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa. [5]
 
 ![NEX-matching-engine](./sources/NEX-matching-engine.png)
 
 #### Who does it?
 
-Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run on NEO, before later expanding to support exchange on Ethereum and other blockchains. [5]
+Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run on NEO, before later expanding to support exchange on Ethereum and other blockchains. Initially focussed on NEO, GAS and NEP-5 token transactions. [5]
 
 #### Strengths
 
@@ -141,7 +115,7 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 
 - None.
 
-### #3 Masternodes
+### #4 Masternodes
 #### What is it?
 
 A masternode is a server on a dencentralised network. It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant
@@ -183,12 +157,16 @@ Masternodes will get the standard return on their stakes. But will also be entit
 
 ???
 
-### #4 Loom Network
+### #5 Plasma
 #### What is it?
 
-???
+??? 
 
 #### Who does it?
+
+Loom Network
+
+OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain running on top of Ethereum.
 
 ???
 
