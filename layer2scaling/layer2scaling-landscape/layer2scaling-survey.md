@@ -9,11 +9,13 @@ The Open Systems Interconnection (OSI) model defines 7 layers for communication 
 
 Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [2]
 
+![layer2scaling](./sources/layer2scaling.png)
+
 **ToDo - need picture**
 
 ## How will this be applicable to Tari?
 
-???
+The initial business application to be built on top of the Tari block chain, Big Neon, requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. This will be impossible to do with parent block chain scaling solutions.
 
 
 ## Layer 2 scaling current initiatives
