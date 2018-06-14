@@ -20,7 +20,7 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 ### #1 Micropayment Channels 
 #### What is it?
 
-A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transations without commiting all of the transactiosn to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.
+A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transations without commiting all of the transactiosn to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.[11]
 
 Several channel designs have been proposed or implemented over the years- these include:
 - Nakamoto high-frequency transactions 
@@ -34,28 +34,30 @@ Several channel designs have been proposed or implemented over the years- these 
 With specific focus on Hashed Time-Locked Contracts:
 A technique that can allow payments to be secrurely routed across multiple payment channels. HTlCs are integral to the design of more advanced payment channels such as those used by the Lightning Network. 
 
-The Lightning Network is a second layer payment protocol that operates on top of a block chain. It enables instant transactions between participating nodes. It features a peer-to-peer system for making micropayments of digital cryptocurrency through a network of bidirectional payment channels without delegrating custody of funds and minimizing trust of third parties. 
+The Lightning Network is a second layer payment protocol that operates on top of a block chain. It enables instant transactions between participating nodes. It features a peer-to-peer system for making micropayments of digital cryptocurrency through a network of bidirectional payment channels without delegrating custody of funds and minimizing trust of third parties.[12] 
 
 Normal use of the Lightning Network consists of opening a payment channel by commiting a funding transaction to the relevant block chain, followed by making any number of Lightning transactions that update the tentative distribution of the channel's funds wihtout broadcasting to the block chain, optionallu followed by closing the payment channel by broadcasting the final version of the transaction to distribute the channel's funds. 
 
 #### Who does it?
-
-
+Lightning is spreading across the crytocurrency landscape. It was orginally designed for Bitcoin, however litecoin, zcash, ethereum and ripple and just a few of the many cryptocurrencies planning to implement or test some form of the network.[13]
 
 #### Strengths
 
-- It is one of the leading solutions that has been presented to scale Bitcoin, which does not require a change to the underlying protocol
-
+- It is one of the leading solutions that has been presented to scale Bitcoin, which does not require a change to the underlying protocol;
+- Transactions are processed instantly, the account balances of the nodes are updated and the money is immediately accesible to the new owner;
+- Transaction fees are a fraction of the transaction cost.[14] 
 
 #### Weaknesses
 
-- The Lightning Network implementation written in C, runs intp segmentation faults frequently 
+- It is not suitable for making bulk payment, asthe intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along; 
+- Recipients cannot recieve money unless their node is connected and online at the time of the transaction;
+- The Lightning Network implementation written in C, runs into segmentation faults frequently.[14]
 
-#### Opportunities
+#### Opportunities for Tari 
 
 ???
 
-#### Threats
+#### Threats to Tari 
 
 ???
 
@@ -163,22 +165,23 @@ Masternodes will get the standard return on their stakes. But will also be entit
   * InstantSend (instant transactions- in contrast, Bitcoin takes about 10 minutes to confirm a payment);  
   * PrivateSend (anonymous transactions- in contrast, Bitcoin transactions are totally public and traceable. Only the identity of the addresses is anonymous);
   * Decentralised Governance (masternodes govern, while the block chain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests).[7]
+- Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions;
+- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout.[7]
 
 #### Weaknesses
 
 - In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network; 
 - The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
 - ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid).[7]
-
-#### Opportunities (for Tari)
-
-- Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions;
-- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout.[7]
-
-#### Threats
-
 - Masternodes are put forth with very little to no utility (only the promise of a Whitepaper);
 - By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen.[7]
+
+#### Opportunities for Tari
+
+
+#### Threats to Tari
+
+
 
 ### #5 Plasma
 #### What is it?
@@ -287,13 +290,13 @@ OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Pl
 
 [10] What the Heck is a DASH Masternode and How Do I get One, https://medium.com/dash-for-newbies/what-the-heck-is-a-dash-masternode-and-how-do-i-get-one-56e24121417e, Date accessed: 2018-06-14.
 
-[11] , , Date accessed: 2018-06-??.
+[11] Payment channels, https://en.bitcoin.it/wiki/Payment_channels , Date accessed: 2018-06-14.
 
-[12] , , Date accessed: 2018-06-??.
+[12] Lightning Network ,https://en.wikipedia.org/wiki/Lightning_Network, Date accessed: 2018-06-14.
 
-[13] , , Date accessed: 2018-06-??.
+[13] Bitcoin Isn't the Only Crypto Adding Lightning Tech Now, https://www.coindesk.com/bitcoin-isnt-crypto-adding-lightning-tech-now/, Date accessed: 2018-06-14.
 
-[14] , , Date accessed: 2018-06-??.
+[14] What is Bitcoin Lighning Network? And How Does it Work?, https://cryptoverze.com/what-is-bitcoin-lightning-network/ , Date accessed: 2018-06-14.
 
 [15] , , Date accessed: 2018-06-??.
 
