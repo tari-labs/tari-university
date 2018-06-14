@@ -186,13 +186,44 @@ Masternodes will get the standard return on their stakes. But will also be entit
 ### #5 Plasma
 #### What is it?
 
-??? 
+Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format. [4]
+
+Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. [4]
+
+![Plasma example](./sources/Plasma-example.png)
 
 #### Who does it?
 
-Loom Network
+Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [16]
 
-OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain running on top of Ethereum.
+OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [15])
+
+#### Strengths
+
+- Not all participants need to be online to update state;
+- Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain;
+- Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
+- Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
+
+#### Weaknesses
+
+Must still be proven on other networks apart from Ethereum.
+
+#### Opportunities for Tari
+
+Has alignment with Tari's base requirements. Possibility to create a Tari ticketing Plasma dAppChain running of Monero?
+
+#### Threats for Tari
+
+The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. The next one can easily be for ticket sales.
+
+### #? What else?
+
+#### What is it?
+
+???
+
+#### Who does it?
 
 ???
 
@@ -204,11 +235,11 @@ OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Pl
 
 ???
 
-#### Opportunities
+#### Opportunities for Tari
 
 ???
 
-#### Threats
+#### Threats for Tari
 
 ???
 
@@ -230,37 +261,11 @@ OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Pl
 
 ???
 
-#### Opportunities
+#### Opportunities for Tari
 
 ???
 
-#### Threats
-
-???
-
-### #? What else?
-
-#### What is it?
-
-???
-
-#### Who does it?
-
-???
-
-#### Strengths
-
-???
-
-#### Weaknesses
-
-???
-
-#### Opportunities
-
-???
-
-#### Threats
+#### Threats for Tari
 
 ???
 
@@ -276,11 +281,11 @@ OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Pl
 
 [3] Trinity Protocol: The Scaling Solution of the Future?, https://www.investinblockchain.com/trinity-protocol, Date accessed: 2018-06-08.
 
-[4] , , Date accessed: 2018-06-??.
+[4] Plasma: Scalable Autonomous Smart Contracts, Poon J and Buterin V, http://plasma.io/plasma.pdf, Date accessed: 2018-06-14.
 
 [5] NEX: A High Performance Decentralized Trade and Payment Platform, https://neonexchange.org/pdfs/whitepaper_v2.pdf, Date accessed: 2018-06-11.
 
-[6] , , Date accessed: 2018-06-??.
+[6] OmiseGO: Decentralized Exchange and Payments Platform, Poon J et. al., https://cdn.omise.co/omg/whitepaper.pdf, Date accessed: 2018-06-14.
 
 [7] Masternodes- Risk vs. Reward, https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08 , Date accessed: 2018-06-13.
 
@@ -298,9 +303,9 @@ OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Pl
 
 [14] What is Bitcoin Lighning Network? And How Does it Work?, https://cryptoverze.com/what-is-bitcoin-lightning-network/ , Date accessed: 2018-06-14.
 
-[15] , , Date accessed: 2018-06-??.
+[15] OmiseGO, https://omisego.network/, Date accessed: 2018-06-14.
 
-[16] , , Date accessed: 2018-06-??.
+[16] Everything You Need to Know About Loom Network, All In One Place (Updated Regularly), https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe, Date accessed: 2018-06-14.
 
 [17] , , Date accessed: 2018-06-??.
 
