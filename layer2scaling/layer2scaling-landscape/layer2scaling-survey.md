@@ -118,44 +118,52 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 ### #4 Masternodes
 #### What is it?
 
-A masternode is a server on a dencentralised network. It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant
+A masternode is a server on a dencentralised network. It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions. 
+
+Because of their increased capabilities, masternodes typically require a sizable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. 
 
 Masternodes are a type of full node that offers various services to a network and are compensated by the network for these functions. Like all full nodes, masternodes host an entore copy of the Blockchain. However, masternodes differ from ordinary full nodes in a few important ways.
-
-Masternodes perform specialied transactions like InstantSend and PrivateSend
-
-In Dash, the masternodes represent the layer that is responsible for caring, cultivating and expanding the Dash digital currency as a whole. It is also the layer that makes the governance and tresury decisions. 
 
 Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. 
 
 #### Who does it?
 
-- Dash 
-- PIVX
+- Block 
+- Bata
 - Crown 
-- ExclusiveCoin 
-- Helium 
+- Chaincoin 
+- Dash 
+- Diamond 
+- ION 
+- Monetary Unit
+- Neutron 
+- PIVX
+- Vcash 
+- XtraBytes 
 
 #### Strengths
 
 - Sustain and care of the ecosystem 
-- 
-
+- Masternodes perform specialised services
+  * InstantSend (instant transactions- in contrast, Bitcoin takes about 10 minutes to confirm a payment) 
+  * PrivateSend (anonymous transactions- in contrast, Bitcoin transactions are totally public and traceable. Only the identity of the addresses is anonymous)
+  * Decentralised Governance (masternodes govern, while the blockchain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests)
 
 #### Weaknesses
 
 - In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network. 
-
-
-
+- The maintaining of masternodes can be a long and arduous task- malfunctions are common 
+- ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid)
 
 #### Opportunities
 
-???
+- Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions. 
+- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout
 
 #### Threats
 
-???
+- Masternodes are put forth with very little to no utility (only the promise of a Whitepaper)
+- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen
 
 ### #5 Plasma
 #### What is it?
