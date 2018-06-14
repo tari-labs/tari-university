@@ -17,30 +17,45 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 
 
 ## Layer 2 scaling current initiatives
-### #1 ???? (What technology? The Lightning Network)
+### #1 Micropayment Channels 
 #### What is it?
 
-Lightning is a decentralised network of bilateral bitcoin payment channels off the bitcoin blockchain. Lightning transactions are typically small, and most are not broadcast to the blockchain. The Lightning Network will enable transactions to be  be faster and cheaper than on-chain bitcoin transactions. 
+A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transations without commiting all of the transactiosn to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.
+
+Several channel designs have been proposed or implemented over the years- these include:
+- Nakamoto high-frequency transactions 
+- Spillman-style payment channels 
+- CLTV-style payment channels 
+- Poon-Dryja payment channels 
+- Decker-Wattenhofer duplex payment channels 
+- Decker-Russell-Osuntokun eltoo Channels 
+- Hashed Time-Locked Contracts (HTLCs)
+
+With specific focus on Hashed Time-Locked Contracts:
+A technique that can allow payments to be secrurely routed across multiple payment channels. HTlCs are integral to the design of more advanced payment channels such as those used by the Lightning Network. 
+
+The Lightning Network is a second layer payment protocol that operates on top of a block chain. It enables instant transactions between participating nodes. It features a peer-to-peer system for making micropayments of digital cryptocurrency through a network of bidirectional payment channels without delegrating custody of funds and minimizing trust of third parties. 
+
+Normal use of the Lightning Network consists of opening a payment channel by commiting a funding transaction to the relevant block chain, followed by making any number of Lightning transactions that update the tentative distribution of the channel's funds wihtout broadcasting to the block chain, optionallu followed by closing the payment channel by broadcasting the final version of the transaction to distribute the channel's funds. 
 
 #### Who does it?
 
-Bitcoin (via The Lightning Network)
 
-???
 
 #### Strengths
 
-???
+- It is one of the leading solutions that has been presented to scale Bitcoin, which does not require a change to the underlying protocol
+
 
 #### Weaknesses
 
+- The Lightning Network implementation written in C, runs intp segmentation faults frequently 
+
+#### Opportunities
+
 ???
 
-#### Opportunities for Tari
-
-???
-
-#### Threats for Tari
+#### Threats
 
 ???
 
@@ -66,11 +81,11 @@ Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol 
 
 ???
 
-#### Opportunities for Tari
+#### Opportunities
 
 ???
 
-#### Threats for Tari
+#### Threats
 
 ???
 
@@ -107,26 +122,26 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 - Still in development.
 
 
-#### Opportunities for Tari
+#### Opportunities
 
 - Has alignment with Tari's base requirements.
 
-#### Threats for Tari
+#### Threats
 
 - None.
 
 ### #4 Masternodes
 #### What is it?
 
-A masternode is a server on a dencentralised network. It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions. 
+A masternode is a server on a dencentralised network.[7] It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions.[8] 
 
-Because of their increased capabilities, masternodes typically require a sizable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. 
+Because of their increased capabilities, masternodes typically require a sizable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating.[8] 
 
-Masternodes are a type of full node that offers various services to a network and are compensated by the network for these functions. Like all full nodes, masternodes host an entore copy of the Blockchain. However, masternodes differ from ordinary full nodes in a few important ways.
+Masternodes are a type of full node that offers various services to a network and are compensated by the network for these functions. Like all full nodes, masternodes host an entire copy of the block chain. However, masternodes differ from ordinary full nodes in a few important ways.[9]
 
-Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. 
+Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI.[10] 
 
-#### Who does it?
+#### Who does it?[9]
 
 - Block 
 - Bata
@@ -143,69 +158,38 @@ Masternodes will get the standard return on their stakes. But will also be entit
 
 #### Strengths
 
-- Sustain and care of the ecosystem 
-- Masternodes perform specialised services
-  * InstantSend (instant transactions- in contrast, Bitcoin takes about 10 minutes to confirm a payment) 
-  * PrivateSend (anonymous transactions- in contrast, Bitcoin transactions are totally public and traceable. Only the identity of the addresses is anonymous)
-  * Decentralised Governance (masternodes govern, while the blockchain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests)
+- Sustain and care of the ecosystem;  
+- Masternodes perform specialised services: 
+  * InstantSend (instant transactions- in contrast, Bitcoin takes about 10 minutes to confirm a payment);  
+  * PrivateSend (anonymous transactions- in contrast, Bitcoin transactions are totally public and traceable. Only the identity of the addresses is anonymous);
+  * Decentralised Governance (masternodes govern, while the block chain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests).[7]
 
 #### Weaknesses
 
-- In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network. 
-- The maintaining of masternodes can be a long and arduous task- malfunctions are common 
-- ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid)
+- In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network; 
+- The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
+- ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid).[7]
 
-#### Opportunities
+#### Opportunities (for Tari)
 
-- Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions. 
-- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout
+- Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions;
+- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout.[7]
 
 #### Threats
 
-- Masternodes are put forth with very little to no utility (only the promise of a Whitepaper)
-- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen
+- Masternodes are put forth with very little to no utility (only the promise of a Whitepaper);
+- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen.[7]
 
 ### #5 Plasma
 #### What is it?
 
-Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format. [4]
-
-Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. [4]
-
-![Plasma example](./sources/Plasma-example.png)
+??? 
 
 #### Who does it?
 
-Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [12]
+Loom Network
 
-OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [11])
-
-#### Strengths
-
-- Not all participants need to be online to update state;
-- Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain;
-- Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
-- Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
-
-#### Weaknesses
-
-Must still be proven on other networks apart from Ethereum.
-
-#### Opportunities for Tari
-
-Has alignment with Tari's base requirements. Possibility to create a Tari ticketing Plasma dAppChain running of Monero?
-
-#### Threats for Tari
-
-The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. The next one can easily be for ticket sales.
-
-### #? What else?
-
-#### What is it?
-
-???
-
-#### Who does it?
+OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain running on top of Ethereum.
 
 ???
 
@@ -217,11 +201,11 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 
 ???
 
-#### Opportunities for Tari
+#### Opportunities
 
 ???
 
-#### Threats for Tari
+#### Threats
 
 ???
 
@@ -243,11 +227,37 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 
 ???
 
-#### Opportunities for Tari
+#### Opportunities
 
 ???
 
-#### Threats for Tari
+#### Threats
+
+???
+
+### #? What else?
+
+#### What is it?
+
+???
+
+#### Who does it?
+
+???
+
+#### Strengths
+
+???
+
+#### Weaknesses
+
+???
+
+#### Opportunities
+
+???
+
+#### Threats
 
 ???
 
@@ -263,23 +273,23 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 
 [3] Trinity Protocol: The Scaling Solution of the Future?, https://www.investinblockchain.com/trinity-protocol, Date accessed: 2018-06-08.
 
-[4] Plasma: Scalable Autonomous Smart Contracts, Poon J and Buterin V, http://plasma.io/plasma.pdf, Date accessed: 2018-06-14.
+[4] , , Date accessed: 2018-06-??.
 
 [5] NEX: A High Performance Decentralized Trade and Payment Platform, https://neonexchange.org/pdfs/whitepaper_v2.pdf, Date accessed: 2018-06-11.
 
-[6] OmiseGO: Decentralized Exchange and Payments Platform, Poon J et. al., https://cdn.omise.co/omg/whitepaper.pdf, Date accessed: 2018-06-14.
+[6] , , Date accessed: 2018-06-??.
 
-[7] , , Date accessed: 2018-06-??.
+[7] Masternodes- Risk vs. Reward, https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08 , Date accessed: 2018-06-13.
 
-[8] , , Date accessed: 2018-06-??.
+[8] The Rise of Masternodes Might Soon be Followed by the Creation of Servicenodes, https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes, Date accessed: 2018-06-13.
 
-[9] , , Date accessed: 2018-06-??.
+[9] What are Masternodes?- Beginner's Guide, https://blockonomi.com/masternode-guide/, Date accessed: 2018-06-14.
 
-[10] , , Date accessed: 2018-06-??.
+[10] What the Heck is a DASH Masternode and How Do I get One, https://medium.com/dash-for-newbies/what-the-heck-is-a-dash-masternode-and-how-do-i-get-one-56e24121417e, Date accessed: 2018-06-14.
 
-[11] OmiseGO, https://omisego.network/, Date accessed: 2018-06-14.
+[11] , , Date accessed: 2018-06-??.
 
-[12] Everything You Need to Know About Loom Network, All In One Place (Updated Regularly), https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe, Date accessed: 2018-06-14.
+[12] , , Date accessed: 2018-06-??.
 
 [13] , , Date accessed: 2018-06-??.
 
