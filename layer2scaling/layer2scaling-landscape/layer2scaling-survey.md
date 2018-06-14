@@ -172,7 +172,7 @@ Plasma is a framework for incentivised and enforced execution of smart contracts
 
 Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. [4]
 
-![Plasma example](./sources/Plasma example.png)
+![Plasma example](./sources/Plasma-example.png)
 
 #### Who does it?
 
