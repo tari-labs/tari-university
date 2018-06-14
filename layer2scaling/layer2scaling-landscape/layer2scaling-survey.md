@@ -178,10 +178,11 @@ Masternodes will get the standard return on their stakes. But will also be entit
 
 #### Opportunities for Tari
 
+A new token, such as a Tari token, by itself might not be worth very much except for speculative interest on its value proposition: what project it proposes to underlie. So it may not start with very much demand. However, if a token has MNs in its codebase, it proposes to offer additional benefits to holders of a fixed amount of tokens who run a MN. These benefits start with an extra share of all new tokens created in the regularly released blocks on the blockchain. The promise of this passive income increases demand, which increases price.
 
 #### Threats to Tari
 
-
+None
 
 ### #5 Plasma
 #### What is it?
