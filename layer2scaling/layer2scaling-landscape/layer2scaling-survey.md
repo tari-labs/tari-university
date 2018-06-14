@@ -174,22 +174,22 @@ Masternodes will get the standard return on their stakes. But will also be entit
   * InstantSend (instant transactions- in contrast, Bitcoin takes about 10 minutes to confirm a payment) 
   * PrivateSend (anonymous transactions- in contrast, Bitcoin transactions are totally public and traceable. Only the identity of the addresses is anonymous)
   * Decentralised Governance (masternodes govern, while the blockchain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests)
-  *
 
 #### Weaknesses
 
 - In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network. 
-
-
-
+- The maintaining of masternodes can be a long and arduous task- malfunctions are common 
+- ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid)
 
 #### Opportunities
 
 - Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions. 
+- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout
 
 #### Threats
 
-???
+- Masternodes are put forth with very little to no utility (only the promise of a Whitepaper)
+- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen
 
 ### #4 Loom Network
 #### What is it?
