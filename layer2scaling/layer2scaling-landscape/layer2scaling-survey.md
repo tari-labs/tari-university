@@ -26,7 +26,7 @@ The initial business application to be built on top of the Tari block chain, Big
 ### #1 Micropayment Channels 
 #### What is it?
 
-A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transations without commiting all of the transactiosn to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.[11]
+A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transations without commiting all of the transactions to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.[11]
 
 Several channel designs have been proposed or implemented over the years- these include:
 - Nakamoto high-frequency transactions 
@@ -57,7 +57,7 @@ Lightning is spreading across the crytocurrency landscape. It was orginally desi
 
 #### Weaknesses
 
-- It is not suitable for making bulk payment, asthe intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along; 
+- It is not suitable for making bulk payment, as the intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along; 
 - Recipients cannot recieve money unless their node is connected and online at the time of the transaction;
 - The Lightning Network implementation written in C, runs into segmentation faults frequently.[14]
 
