@@ -1,12 +1,13 @@
-- ## Layer 2 Scaling Survey
+## Layer 2 Scaling Survey
 
 - #### What is Layer 2 scaling?
 
+
 - #### How will this be applicable to Tari?
+
 
 - #### Layer 2 scaling current initiatives
   - What is it?, Who does it?
-
   - Strengths, Weaknesses
   - Opportunities for Tari, Threats for Tari
 
@@ -17,13 +18,14 @@
 
 ## What is Layer 2 scaling?
 
-<u>Problem to solve:</u> 
-
-- average block creation time
-- the block size limit
-- number of newer blocks needed to confirm a transaction 
+- <u>Problem to solve:</u> 
+  - average block creation time
+  - block size limit
+  - number of newer blocks needed to confirm a transaction 
 
 ![waiting](./sources/waiting.png)
+
+![waiting](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
 
 ---
 
@@ -33,12 +35,16 @@
 
 ![OSI_Model](./sources/OSI_Model.png)
 
+![OSI_Model](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
+
 ---
 
 - In block chain, decentralised Layer 2 protocols (i.e. referred to as Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
 
 ![layer2scaling](./sources/layer2scaling.png)
+
+![layer2scaling](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
 
 ---
 
@@ -61,6 +67,8 @@ Hashed Time-Locked Contracts (HTLC) allow payments to be securely routed across 
 <u>Example:</u> The Lightning Network
 
 ![lightningnetwork](./sources/bitcoin-lightning-network-basic.png)
+
+![lightningnetwork](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
 
 ---
 
@@ -136,6 +144,8 @@ On NEO:
 Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers, maintains public record of orders and a deterministic specification of behaviour. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa.
 
 ![NEX-matching-engine](./sources/NEX-matching-engine.png)
+
+![NEX-matching-engine](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
 
 ##### Who?
 
@@ -216,9 +226,11 @@ None
 
 Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format.
 
-Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior.
+Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour.
 
 ![Plasma example](./sources/Plasma-example.png)
+
+![Plasma example](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
 
 ##### Who?
 
