@@ -65,7 +65,7 @@ Presents itself as a scaling solution, allowing for fast transactions.
 
 #### Threats to Tari 
 
-???
+None
 
 ### #2 State Channels
 
@@ -77,25 +77,49 @@ State channels allow multiple transactions to be made within off-chain agreement
 
 #### Who does it?
 
-Ethereum (via Raiden network)
+On Ethereum:
 
-Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to Bitcoin's Lightning Network in order to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. [3]
+- Raiden ([21], [22])
+  - Research state channel technology, define protocols and develop reference implementations;
+  - Works with any ERC20 compatible token.
+- Counterfactual [20]
+  - A generalised framework for native state channels integration in Ethereum-based decentralized applications;
+  - A generalised state channel generalised framework is one where state is  deposited once and then be used by any application or set of  applications afterwards.
+- Funfair
+  - Decentralized gambling platform
+- SpankChain
+  - Adult performers
+- Horizon Blockchain Games
+  - Ethereum-based game
+
+Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. ([3], [19]).
+
+![trinity01](./sources/trinity01.png)
 
 
+
+![trinity02](./sources/trinity02.png)
+
+
+
+![trinity03](./sources/trinity03.png)
 
 #### Strengths
 
-???
+- Allows payments and changes to smart contracts;
+- State channels have strong privacy properties, everything is happening “inside” a channel between participants;
+- State channels have instant finality, as soon as both parties sign a state update, it can be considered final.
 
 #### Weaknesses
 
+- State channels rely on availability, both parties must be on-line
+
+
+#### Opportunities for Tari
+
 ???
 
-#### Opportunities
-
-???
-
-#### Threats
+#### Threats for Tari
 
 ???
 
@@ -132,11 +156,11 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 - Still in development.
 
 
-#### Opportunities
+#### Opportunities for Tari
 
 - Has alignment with Tari's base requirements.
 
-#### Threats
+#### Threats for Tari
 
 - None.
 
@@ -320,11 +344,21 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 
 [18] Trinity: Universal Off-chain Scaling Solution, https://trinity.tech, Date accessed: 2018-06-14.
 
-[19] , https://trinity.tech/file/WhitePaperDraft1.pdf, Date accessed: 2018-06-??.
+[19] Trinity White Paper: An Off--chain Scaling Solution for Neo, https://trinity.tech/file/WhitePaperDraft1.pdf, Date accessed: 2018-06-14.
 
-[20] , , Date accessed: 2018-06-??.
+[20] Counterfactual: Generalized State Channels, Coleman J et. al., https://counterfactual.com/statechannels & https://l4.ventures/papers/statechannels.pdf, Date accessed: 2018-06-15.
 
-[21] , , Date accessed: 2018-06-??.
+[21] The Raiden Network, https://raiden.network/, Date accessed: 2018-06-15.
+
+[22] What is the Raiden Network?, https://raiden.network/101.html, Date accessed: 2018-06-15.
+
+[22] , , Date accessed: 2018-06-??.
+
+[22] , , Date accessed: 2018-06-??.
+
+[22] , , Date accessed: 2018-06-??.
+
+[22] , , Date accessed: 2018-06-??.
 
 [22] , , Date accessed: 2018-06-??.
 
