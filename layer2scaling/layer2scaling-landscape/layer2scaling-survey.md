@@ -11,7 +11,7 @@ The Open Systems Interconnection (OSI) model defines 7 layers for communication 
 
 ![OSI_Model](./sources/OSI_Model.png)
 
-Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain. Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [2]
+Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus). Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [2]
 
 ![layer2scaling](./sources/layer2scaling.png)
 
@@ -70,6 +70,8 @@ Lightning is spreading across the crytocurrency landscape. It was orginally desi
 ### #2 State Channels
 
 #### What is it?
+
+State channels are the more general form of micropayment channels — they can be used not only for payments, but for any arbitrary “state update” on a block chain — like changes inside a smart contract. [17]
 
 State channels allow multiple transactions to be made within off-chain agreements with very fast processing and the final settlement on-chain. It keeps the operation mode of block chain protocol but changes the way it is used so as to deal with the challenge of scalability.
 
@@ -314,11 +316,11 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 
 [16] Everything You Need to Know About Loom Network, All In One Place (Updated Regularly), https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe, Date accessed: 2018-06-14.
 
-[17] , , Date accessed: 2018-06-??.
+[17] Making Sense of Ethereum’s Layer 2 Scaling Solutions: State Channels, Plasma, and Truebit, https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4, Date accessed: 2018-06-14.
 
-[18] , , Date accessed: 2018-06-??.
+[18] Trinity: Universal Off-chain Scaling Solution, https://trinity.tech, Date accessed: 2018-06-14.
 
-[19] , , Date accessed: 2018-06-??.
+[19] , https://trinity.tech/file/WhitePaperDraft1.pdf, Date accessed: 2018-06-??.
 
 [20] , , Date accessed: 2018-06-??.
 
