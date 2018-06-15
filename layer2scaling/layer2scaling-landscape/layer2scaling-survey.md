@@ -44,6 +44,8 @@ The Lightning Network is a second layer payment protocol that operates on top of
 
 Normal use of the Lightning Network consists of opening a payment channel by commiting a funding transaction to the relevant block chain, followed by making any number of Lightning transactions that update the tentative distribution of the channel's funds wihtout broadcasting to the block chain, optionallu followed by closing the payment channel by broadcasting the final version of the transaction to distribute the channel's funds. 
 
+![lightningnetwork](./sources/bitcoin-lightning-network-basic.png)
+
 #### Who does it?
 Lightning is spreading across the crytocurrency landscape. It was orginally designed for Bitcoin, however litecoin, zcash, ethereum and ripple and just a few of the many cryptocurrencies planning to implement or test some form of the network.[13]
 
