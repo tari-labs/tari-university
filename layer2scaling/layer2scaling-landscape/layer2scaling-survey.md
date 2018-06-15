@@ -61,7 +61,7 @@ Lightning is spreading across the crytocurrency landscape. It was orginally desi
 
 #### Opportunities for Tari 
 
-???
+Presents itself as a scaling solution, allowing for fast transactions. 
 
 #### Threats to Tari 
 
