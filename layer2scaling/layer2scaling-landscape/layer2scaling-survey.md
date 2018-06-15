@@ -81,17 +81,17 @@ State channels allow multiple transactions to be made within off-chain agreement
 
 On Ethereum:
 
-- Raiden ([21], [22])
+- Raiden ([17], [21], [22])
   - Research state channel technology, define protocols and develop reference implementations;
   - Works with any ERC20 compatible token.
-- Counterfactual [20]
+- Counterfactual ([17], [20])
   - A generalised framework for native state channels integration in Ethereum-based decentralized applications;
   - A generalised state channel generalised framework is one where state is  deposited once and then be used by any application or set of  applications afterwards.
-- Funfair
+- Funfair ([17], [24])
   - Decentralized gambling platform
-- SpankChain
+- SpankChain [17]
   - Adult performers
-- Horizon Blockchain Games
+- Horizon Blockchain Games [17]
   - Ethereum-based game
 
 Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. ([3], [19]).
@@ -319,4 +319,6 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 
 [22] What is the Raiden Network?, https://raiden.network/101.html, Date accessed: 2018-06-15.
 
-[23] What are Masternodes?  An Introduction and Guide, https://coincentral.com/what-are-masternodes-an-introduction-and-guide/, 2018-06-15.
+[23] What are Masternodes?  An Introduction and Guide, https://coincentral.com/what-are-masternodes-an-introduction-and-guide/, Date accessed: 2018-06-15.
+
+[24] State Channels in disguise?, https://funfair.io/state-channels-in-disguise, Date accessed: 2018-06-15.
