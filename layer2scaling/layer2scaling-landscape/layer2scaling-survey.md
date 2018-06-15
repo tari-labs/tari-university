@@ -63,11 +63,11 @@ Lightning is spreading across the crytocurrency landscape. It was orginally desi
 
 #### Opportunities for Tari 
 
-Presents itself as a scaling solution, allowing for fast transactions. 
+Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
 
 #### Threats to Tari 
 
-None
+None.
 
 ### #2 State Channels
 
@@ -119,11 +119,11 @@ Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol 
 
 #### Opportunities for Tari
 
-???
+Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
 
 #### Threats for Tari
 
-???
+None.
 
 ### #3 Trusted, off-chain matching engines
 
@@ -246,67 +246,16 @@ Must still be proven on other networks apart from Ethereum.
 
 #### Opportunities for Tari
 
-Has alignment with Tari's base requirements. Possibility to create a Tari ticketing Plasma dAppChain running of Monero?
+- Has alignment with Tari's base requirements.
+- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero?*
 
 #### Threats for Tari
 
-The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. The next one can easily be for ticket sales.
-
-### #? What else?
-
-#### What is it?
-
-???
-
-#### Who does it?
-
-???
-
-#### Strengths
-
-???
-
-#### Weaknesses
-
-???
-
-#### Opportunities for Tari
-
-???
-
-#### Threats for Tari
-
-???
-
-### #? What else?
-
-#### What is it?
-
-???
-
-#### Who does it?
-
-???
-
-#### Strengths
-
-???
-
-#### Weaknesses
-
-???
-
-#### Opportunities for Tari
-
-???
-
-#### Threats for Tari
-
-???
+The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
 
 ## Observations
 
-???
+Further investigation into the more promising layer 2 scaling solutions and technologies is required to verify alignment, applicability and use-ability.
 
 ## References
 
@@ -353,15 +302,5 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 [21] The Raiden Network, https://raiden.network/, Date accessed: 2018-06-15.
 
 [22] What is the Raiden Network?, https://raiden.network/101.html, Date accessed: 2018-06-15.
-
-[22] , , Date accessed: 2018-06-??.
-
-[22] , , Date accessed: 2018-06-??.
-
-[22] , , Date accessed: 2018-06-??.
-
-[22] , , Date accessed: 2018-06-??.
-
-[22] , , Date accessed: 2018-06-??.
 
 
