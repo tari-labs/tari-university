@@ -169,13 +169,21 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 ### #4 Masternodes
 #### What is it?
 
-A masternode is a server on a dencentralised network.[7] It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions.[8] 
+A masternode (MN) is a server on a dencentralised network.[7] It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions.[8] 
 
 Because of their increased capabilities, masternodes typically require a sizable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating.[8] 
 
-Masternodes are a type of full node that offers various services to a network and are compensated by the network for these functions. Like all full nodes, masternodes host an entire copy of the block chain. However, masternodes differ from ordinary full nodes in a few important ways.[9]
-
 Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI.[10] 
+
+**Dash Example**
+Dash was the first cryptocurrency to implement the masternode model into its protocol.  Under what Dash calls its proof of service algorithm, a second tier network of masternodes exists alongside a first tier network of miners to achieve distributed consensus on the blockchain.  This two tiered system ensures that proof of service and proof of work preform symbiotic maintenance of Dash’s network. A masternode for Dash, for example, requires 1,000 DASH.
+
+To set up a Masternode, you start by downloading your currency’s core wallet and use it to create a masternode.  After you set up your computer as a server, the core wallet integrates your computer as one of many nodes that supports the blockchain.  Operators can also contract a third party to run the server for them.
+
+Once a masternode is live, it accommodates  a unique series of functions, such as instant and/or anonymous payments.  They also enable a decentralized governance system that allows node operators to vote on important developments within the blockchain.  
+
+As compensation for their troubles, masternodes typically share an equally 45% of block rewards with the blockchain’s miners.  The other 10% goes to the blockchain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
+
 
 #### Who does it?[9]
 
@@ -201,6 +209,14 @@ Masternodes will get the standard return on their stakes. But will also be entit
   * Decentralised Governance (masternodes govern, while the block chain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests).[7]
 - Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions;
 - Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout.[7]
+
+- Cryptoassets like Block Net and Exscudo will use masternodes to support their decentralized exchanges: Masternodes will oversee exchange transactions to facilitate cryptocurrency trading and offer fiat currency gateways.
+- BOScoin integrates masternodes for its smart contracts and adopts the masternode governing system for its Congress Network.  
+- Syscoin applies masternode functionality to its decentralized marketplace.  With Syscoin, users can access the blockchain equivalent of peer-run commerce sites like eBay.  Masternodes will be responsible for facilitating anonymous and instant payments on the marketplace.  
+
+Masternode application is quite flexible.  It compensates for proof of work’s limitations and behaves almost like a buffed-up version proof of stake systems.
+Like proof of stake, it avoids the de-facto centralization mining pools bring to proof of work networks, and it consumes less energy than the proof of work model.  Masternodes may promise enhanced stability and network loyalty, as larger dividends and high initial investment costs make it less likely that operators will abandon their position in the network.
+They can even be used to keep miners from stepping out of line.  Under Dash’s model, masternodes on the second tier network monitor the first tier proof of work network.  This gives masternodes full reign to reject or orphan blocks if their miner uses and outdated version of Dash or tries to manipulate block rewards.[23]
 
 #### Weaknesses
 
@@ -303,4 +319,4 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 
 [22] What is the Raiden Network?, https://raiden.network/101.html, Date accessed: 2018-06-15.
 
-
+[23] What are Masternodes?  An Introduction and Guide, https://coincentral.com/what-are-masternodes-an-introduction-and-guide/, 2018-06-15.
