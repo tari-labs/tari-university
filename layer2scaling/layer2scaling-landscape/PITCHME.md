@@ -1,17 +1,17 @@
-## Layer 2 Scaling Survey
+- ## Layer 2 Scaling Survey
 
-#### What is Layer 2 scaling?
+- #### What is Layer 2 scaling?
 
-#### How will this be applicable to Tari?
+- #### How will this be applicable to Tari?
 
-#### Layer 2 scaling current initiatives
+- #### Layer 2 scaling current initiatives
+  - What is it?, Who does it?
 
-- What is it?, Who does it?
+  - Strengths, Weaknesses
+  - Opportunities for Tari, Threats for Tari
 
-- Strengths, Weaknesses
-- Opportunities for Tari, Threats for Tari
+- #### Observations
 
-#### Observations
 
 ---
 
