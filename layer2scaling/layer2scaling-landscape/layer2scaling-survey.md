@@ -26,7 +26,7 @@ The initial business application to be built on top of the Tari block chain, Big
 ### #1 Micropayment Channels 
 #### What is it?
 
-A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transations without commiting all of the transactions to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.[11]
+A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.[11]
 
 Several channel designs have been proposed or implemented over the years- these include:
 - Nakamoto high-frequency transactions 
@@ -38,7 +38,7 @@ Several channel designs have been proposed or implemented over the years- these 
 - Hashed Time-Locked Contracts (HTLCs)
 
 With specific focus on Hashed Time-Locked Contracts:
-A technique that can allow payments to be secrurely routed across multiple payment channels. HTlCs are integral to the design of more advanced payment channels such as those used by the Lightning Network. 
+A technique that can allow payments to be securely routed across multiple payment channels. HTlCs are integral to the design of more advanced payment channels such as those used by the Lightning Network. 
 
 The Lightning Network is a second layer payment protocol that operates on top of a block chain. It enables instant transactions between participating nodes. It features a peer-to-peer system for making micropayments of digital cryptocurrency through a network of bidirectional payment channels without delegrating custody of funds and minimizing trust of third parties.[12] 
 
@@ -47,19 +47,19 @@ Normal use of the Lightning Network consists of opening a payment channel by com
 ![lightningnetwork](./sources/bitcoin-lightning-network-basic.png)
 
 #### Who does it?
-Lightning is spreading across the crytocurrency landscape. It was orginally designed for Bitcoin, however litecoin, zcash, ethereum and ripple and just a few of the many cryptocurrencies planning to implement or test some form of the network.[13]
+Lightning is spreading across the crytocurrency landscape. It was originally designed for Bitcoin, however Litecoin, Zcash, Ethereum and Ripple are just a few of the many cryptocurrencies planning to implement or test some form of the network.[13]
 
 #### Strengths
 
 - It is one of the leading solutions that has been presented to scale Bitcoin, which does not require a change to the underlying protocol;
-- Transactions are processed instantly, the account balances of the nodes are updated and the money is immediately accesible to the new owner;
+- Transactions are processed instantly, the account balances of the nodes are updated and the money is immediately accessible to the new owner;
 - Transaction fees are a fraction of the transaction cost.[14] 
 
 #### Weaknesses
 
 - It is not suitable for making bulk payment, as the intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along; 
-- Recipients cannot recieve money unless their node is connected and online at the time of the transaction;
-- The Lightning Network implementation written in C, runs into segmentation faults frequently.[14]
+- Recipients cannot receive money unless their node is connected and online at the time of the transaction;
+- One of The Lightning Network implementations, written in C, runs into segmentation faults frequently.[14]
 
 #### Opportunities for Tari 
 
@@ -79,7 +79,7 @@ State channels allow multiple transactions to be made within off-chain agreement
 
 #### Who does it?
 
-On Ethereum:
+<u>On Ethereum:</u>
 
 - Raiden ([17], [21], [22])
   - Research state channel technology, define protocols and develop reference implementations;
@@ -94,7 +94,7 @@ On Ethereum:
 - Horizon Blockchain Games [17]
   - Ethereum-based game
 
-Trinity, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. ([3], [19]).
+<u>Trinity</u>, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. ([3], [19]).
 
 ![trinity01](./sources/trinity01.png)
 
@@ -169,11 +169,11 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 ### #4 Masternodes
 #### What is it?
 
-A masternode (MN) is a server on a dencentralised network.[7] It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions.[8] 
+A masternode (MN) is a server on a dencentralised network [7]. It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions [8].
 
-Because of their increased capabilities, masternodes typically require a sizable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating.[8] 
+Because of their increased capabilities, masternodes typically require a sizable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. [8] 
 
-Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI.[10] 
+Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. [10] 
 
 **Dash Example**
 Dash was the first cryptocurrency to implement the masternode model into its protocol.  Under what Dash calls its proof of service algorithm, a second tier network of masternodes exists alongside a first tier network of miners to achieve distributed consensus on the blockchain.  This two tiered system ensures that proof of service and proof of work preform symbiotic maintenance of Dash’s network. A masternode for Dash, for example, requires 1,000 DASH.
@@ -185,7 +185,7 @@ Once a masternode is live, it accommodates  a unique series of functions, such a
 As compensation for their troubles, masternodes typically share an equally 45% of block rewards with the blockchain’s miners.  The other 10% goes to the blockchain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
 
 
-#### Who does it?[9]
+#### Who does it? [9]
 
 - Block 
 - Bata
@@ -206,9 +206,9 @@ As compensation for their troubles, masternodes typically share an equally 45% o
 - Masternodes perform specialised services: 
   * InstantSend (instant transactions- in contrast, Bitcoin takes about 10 minutes to confirm a payment);  
   * PrivateSend (anonymous transactions- in contrast, Bitcoin transactions are totally public and traceable. Only the identity of the addresses is anonymous);
-  * Decentralised Governance (masternodes govern, while the block chain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests).[7]
+  * Decentralised Governance (masternodes govern, while the block chain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests). [7]
 - Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions;
-- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout.[7]
+- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout. [7]
 
 - Cryptoassets like Block Net and Exscudo will use masternodes to support their decentralized exchanges: Masternodes will oversee exchange transactions to facilitate cryptocurrency trading and offer fiat currency gateways.
 - BOScoin integrates masternodes for its smart contracts and adopts the masternode governing system for its Congress Network.  
