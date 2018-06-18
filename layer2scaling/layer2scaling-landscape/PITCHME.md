@@ -102,7 +102,7 @@ None
 
 #### #2 State Channels
 
-State channels are the more general form of micropayment channels — they can be used not only for payments, but for any arbitrary “state update” on a block chain — like changes inside a smart contract.
+State channels are the more general form of micropayment channels  (they can be used not only for payments, but for any arbitrary “state update” on a block chain)  like changes inside a smart contract.
 
 
 ##### Who?
@@ -123,12 +123,12 @@ State channels are the more general form of micropayment channels — they c
 - Funfair (*<u>On Ethereum</u>*)
   - Decentralized gambling platform
 
-- SpankChain (*<u>On Ethereum</u>*)
-  - Adult performers
-
 +++
 
 #### #2 State Channels (cont'd)
+
+- SpankChain (*<u>On Ethereum</u>*)
+  - Adult performers
 
 - Horizon Blockchain Games (*<u>On Ethereum</u>*)
   - Ethereum-based game
@@ -136,16 +136,19 @@ State channels are the more general form of micropayment channels — they c
 - Trinity  (*<u>On NEO</u>*)
   - Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets.
 
++++
+
+#### #2 State Channels (cont'd)
 
 ##### Strengths
 
 - Allows payments and changes to smart contracts
-- As for Micropayment Channels
+- Same as for Micropayment Channels
 
 
 ##### Weaknesses, Opportunities for Tari, Threats for Tari
 
-- As for Micropayment Channels
+- Same as for Micropayment Channels
 
 ---
 
@@ -171,18 +174,22 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
   - Smart contracts with reward to mitigate unfair exchange;
   - Public JSON API & web extension API for third-party applications to trade tokens.
 
-- Performance:
-  - Off-chain matching;
-  - Batched on-chain commits.
-
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
+
+- Performance:
+  - Off-chain matching;
+  - Batched on-chain commits.
 
 - Development environment: ***Elixir on top of Erlang*** for scalable, distributed, fault-tolerant matching engine;
 
 - Cure53 full security audit on web extension;
 - NEX tokens will be regulated as registered European securities.
+
++++
+
+#### #3 Trusted, off-chain matching engines (cont'd)
 
 ##### Weaknesses
 
@@ -209,13 +216,13 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 
 Dash - masternodes for proof of service and miners for proof of work, achieve distributed consensus on the blockchain. Masternodes share an equal block rewards with miners. 
 
-##### Who?
-
-Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, XtraBytes 
-
 +++
 
 #### #4 Masternodes (cont'd)
+
+##### Who?
+
+Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, XtraBytes 
 
 ##### Strengths
 
@@ -224,6 +231,9 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 - Decentralised Governance 
 - It compensates for proof of work’s limitations and behaves almost like a buffed-up version proof of stake systems.
 
++++
+
+#### #4 Masternodes (cont'd)
 
 ##### Weaknesses
 
@@ -232,13 +242,11 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 - ROI is not guaranteed and inconsistent;
 - Location of your masternode is known, node can be stolen.
 
-+++
-
-#### #4 Masternodes (cont'd)
 
 ##### Opportunities for Tari
 
 Increases incentives
+
 
 ##### Threats to Tari
 
@@ -270,6 +278,9 @@ None
 
 - OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [15])
 
++++
+
+#### #5 Plasma (cont'd)
 
 ##### Strengths
 
@@ -278,22 +289,25 @@ None
 - Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
 - Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
 
-+++
-
-#### #5 Plasma (cont'd)
 
 ##### Weaknesses
 
 Must still be proven on other networks apart from Ethereum.
+
++++
+
+#### #5 Plasma (cont'd)
+
 
 ##### Opportunities for Tari
 
 - Has alignment with Tari's base requirements.
 - *Possibility to create a Tari ticketing Plasma dAppChain running of Monero?*
 
+
 ##### Threats for Tari
 
-The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...
+The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
 
 ---
 
