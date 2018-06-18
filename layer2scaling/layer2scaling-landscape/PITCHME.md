@@ -18,7 +18,7 @@
 - number of newer blocks needed to confirm a transaction 
 
 
-![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
+![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png&position=center)
 ---
 
 <u>Open Systems Interconnection (OSI) model</u> 
