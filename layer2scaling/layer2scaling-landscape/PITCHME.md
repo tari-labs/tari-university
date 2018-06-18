@@ -3,11 +3,9 @@
 #### What is Layer 2 scaling?
 #### How will this be applicable to Tari?
 #### Layer 2 scaling current initiatives
-What is it and who does it?
-
-What are its strengths and weaknesses?
-
-Opportunities and Threats for Tari?
+- What is it and who does it?
+- What are its strengths and weaknesses?
+- Opportunities and Threats for Tari?
 
 #### Observations
 ---
@@ -15,12 +13,9 @@ Opportunities and Threats for Tari?
 
 <u>Problem to solve:</u> 
 
-
-@ul
 - average block creation time
 - block size limit
 - number of newer blocks needed to confirm a transaction 
-@ulend
 
 
 ![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
@@ -28,7 +23,7 @@ Opportunities and Threats for Tari?
 
 <u>Open Systems Interconnection (OSI) model</u> 
 
-- This is where the term 'Layer 2' is borrowed from
+This is where the term 'Layer 2' is borrowed from
 
 ![OSI_Model](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
 
@@ -53,9 +48,8 @@ This will be impossible to do with parent block chain scaling solutions.
 
 #### #1 Micropayment Channels
 
-Users can make multiple transactions without committing all to the block chain
-
-Hashed Time-Locked Contracts (HTLC) allow payments to be securely routed across multiple payment channels
+- Users can make multiple transactions without committing all to the block chain
+- Hashed Time-Locked Contracts (HTLC) allow payments to be securely routed across multiple payment channels
 
 <u>Example:</u> The Lightning Network
 
@@ -65,7 +59,8 @@ Hashed Time-Locked Contracts (HTLC) allow payments to be securely routed across 
 
 ##### Who ?
 
-Bitcoin, Litecoin, Zcash, Ripple. Ethereum also interested. 
+- Bitcoin, Litecoin, Zcash, Ripple. 
+- Ethereum also interested. 
 
 ##### Strengths
 
@@ -73,13 +68,13 @@ Bitcoin, Litecoin, Zcash, Ripple. Ethereum also interested.
 - Speed
 - Low transaction fees
 
+---
+
 ##### Weaknesses
 
-It is not suitable for making bulk payment
-
-Must be connected and online at the time of the transaction
-
-Lightning Network implementation written in C, runs into segmentation faults frequently
+- It is not suitable for making bulk payment
+- Must be connected and online at the time of the transaction
+- Lightning Network implementation written in C, runs into segmentation faults frequently
 
 ##### Opportunities for Tari
 
@@ -102,13 +97,20 @@ On Ethereum:
 - Raiden
   - Research state channel technology, define protocols and develop reference implementations;
   - Works with any ERC20 compatible token.
+
+---
+
 - Counterfactual
+
   - A generalised framework for native state channels integration in Ethereum-based dApps;
   - A generalised state channel generalised framework is one where state is deposited once and then be used by any application or set of applications afterwards.
+
 - Funfair
   - Decentralized gambling platform
+
 - SpankChain 
   - Adult performers
+
 - Horizon Blockchain Games
   - Ethereum-based game
 
@@ -136,11 +138,11 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 ![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
 
+---
+
 ##### Who?
 
 Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token transactions. Exchange on Ethereum and other blockchains planned.
-
----
 
 ##### Strengths
 
@@ -149,11 +151,18 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
   - Support of national currencies;
   - Smart contracts with reward to mitigate unfair exchange;
   - Public JSON API & web extension API for third-party applications to trade tokens.
+
 - Performance:
   - Off-chain matching;
+
   - Batched on-chain commits.
+
+---
+
 - Development environment: ***Elixir on top of Erlang*** for scalable, distributed, fault-tolerant matching engine;
+
 - Cure53 full security audit on web extension;
+
 - NEX tokens will be regulated as registered European securities.
 
 ##### Weaknesses
