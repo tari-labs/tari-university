@@ -1,13 +1,15 @@
 /*
 Left-Align Slide Content
 */
+/*
 .reveal .slides {
-    text-align: center;
+    text-align: left;
   }
   .reveal .slides section>* {
     margin-left: 0;
     margin-right: 0;
   }
+/*
   
   /*
    Override the font size to get more info on each slide
