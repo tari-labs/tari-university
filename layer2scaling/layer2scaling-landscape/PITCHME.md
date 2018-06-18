@@ -1,14 +1,16 @@
 ## Layer 2 Scaling Survey
 
-#### What is Layer 2 scaling?
-#### How will this be applicable to Tari?
-#### Layer 2 scaling current initiatives
-- What is it and who does it?
-- What are its strengths and weaknesses?
-- Opportunities and Threats for Tari?
+- What is Layer 2 scaling?
+- How will this be applicable to Tari?
+- Layer 2 scaling current initiatives
+  - What is it and who does it?
+  - What are its strengths and weaknesses?
+  - Opportunities and Threats for Tari?
 
-#### Observations
+- Observations
+
 ---
+
 ## What is Layer 2 scaling?
 
 <u>Problem to solve:</u> 
@@ -17,8 +19,8 @@
 - block size limit
 - number of newer blocks needed to confirm a transaction 
 
-
 ![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
+
 ---
 
 <u>Open Systems Interconnection (OSI) model</u> 
@@ -28,6 +30,8 @@ This is where the term 'Layer 2' is borrowed from
 ![OSI_Model](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
 
 ---
+
+<u>Layer 2 scaling</u>
 
 - In block chain, decentralised Layer 2 protocols (i.e. referred to as Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
@@ -55,7 +59,9 @@ This will be impossible to do with parent block chain scaling solutions.
 
 ![lightningnetwork](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
 
----
++++
+
+#### #1 Micropayment Channels (cont'd)
 
 ##### Who ?
 
@@ -68,7 +74,9 @@ This will be impossible to do with parent block chain scaling solutions.
 - Speed
 - Low transaction fees
 
----
++++
+
+#### #1 Micropayment Channels (cont'd)
 
 ##### Weaknesses
 
@@ -92,33 +100,33 @@ State channels are the more general form of micropayment channels — they c
 
 ##### Who?
 
-On Ethereum:
-
-- Raiden
+- Raiden (*<u>On Ethereum</u>*)
   - Research state channel technology, define protocols and develop reference implementations;
   - Works with any ERC20 compatible token.
 
----
++++
 
-- Counterfactual
+#### #2 State Channels (cont'd)
+
+- Counterfactual (*<u>On Ethereum</u>*)
 
   - A generalised framework for native state channels integration in Ethereum-based dApps;
   - A generalised state channel generalised framework is one where state is deposited once and then be used by any application or set of applications afterwards.
 
-- Funfair
+- Funfair (*<u>On Ethereum</u>*)
   - Decentralized gambling platform
 
-- SpankChain 
+- SpankChain (*<u>On Ethereum</u>*)
   - Adult performers
 
-- Horizon Blockchain Games
+- Horizon Blockchain Games (*<u>On Ethereum</u>*)
   - Ethereum-based game
 
----
++++
 
-On NEO:
+#### #2 State Channels (cont'd)
 
-- Trinity
+- Trinity  (*<u>On NEO)
   - Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets.
 
 ##### Strengths
@@ -138,7 +146,9 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 ![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
 
----
++++
+
+#### #3 Trusted, off-chain matching engines (cont'd)
 
 ##### Who?
 
@@ -154,15 +164,15 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 
 - Performance:
   - Off-chain matching;
-
   - Batched on-chain commits.
 
----
++++
+
+#### #3 Trusted, off-chain matching engines (cont'd)
 
 - Development environment: ***Elixir on top of Erlang*** for scalable, distributed, fault-tolerant matching engine;
 
 - Cure53 full security audit on web extension;
-
 - NEX tokens will be regulated as registered European securities.
 
 ##### Weaknesses
@@ -182,9 +192,9 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 
 #### #4 Masternodes
 
-A masternode is a server on a decentralised network, can be used for features like direct send/instant transactions or private transactions.
+- A masternode is a server on a decentralised network, can be used for features like direct send/instant transactions or private transactions.
 
-Masternode operators are rewarded by earning portions of block rewards, standard return on their stakes, portion of the transaction fees. Allowing for a greater ROI.
+- Masternode operators are rewarded by earning portions of block rewards, standard return on their stakes, portion of the transaction fees. Allowing for a greater ROI.
 
 ##### **Dash Example**
 
@@ -192,7 +202,11 @@ Dash - masternodes for proof of service and miners for proof of work, achieve di
 
 ##### Who?
 
-- Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, XtraBytes 
+Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, XtraBytes 
+
++++
+
+#### #4 Masternodes (cont'd)
 
 ##### Strengths
 
@@ -208,6 +222,10 @@ Dash - masternodes for proof of service and miners for proof of work, achieve di
 - ROI is not guaranteed and inconsistent;
 - Location of your masternode is known, node can be stolen.
 
++++
+
+#### #4 Masternodes (cont'd)
+
 ##### Opportunities for Tari
 
 Increases incentives
@@ -222,19 +240,25 @@ None
 
 ##### What is it?
 
-Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format.
+- Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format.
 
-Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour.
+- Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour.
+
++++
+
+#### #5 Plasma (cont'd)
 
 ![Plasma example](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
 
++++
+
+#### #5 Plasma (cont'd)
+
 ##### Who?
 
-Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [16]
+- Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [16]
 
-OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [15])
-
----
+- OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [15])
 
 ##### Strengths
 
@@ -242,6 +266,10 @@ OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Pl
 - Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain;
 - Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
 - Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
+
++++
+
+#### #5 Plasma (cont'd)
 
 ##### Weaknesses
 
@@ -255,6 +283,8 @@ Must still be proven on other networks apart from Ethereum.
 ##### Threats for Tari
 
 The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...
+
+---
 
 ## Observations
 
