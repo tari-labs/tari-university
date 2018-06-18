@@ -38,12 +38,12 @@ Left-Align Slide Content
     
     .reveal pre {
       font-size: 0.5em;
-      line-height: 1.1em;
+      line-height: 0.9em;
     }
     
     .reveal small {
       font-size: 0.4em;
-      line-height: 1.1em;
+      line-height: 0.9em;
     }
     
     .red {
