@@ -69,7 +69,7 @@ This will be impossible to do with parent block chain scaling solutions.
 
 - Bitcoin, Litecoin, Zcash, Ripple. 
 - Ethereum also interested. 
-    
+  
 
 ##### Strengths
 
@@ -86,7 +86,7 @@ This will be impossible to do with parent block chain scaling solutions.
 - It is not suitable for making bulk payment
 - Must be connected and online at the time of the transaction
 - Lightning Network implementation written in C, runs into segmentation faults frequently
-    
+  
 
 ##### Opportunities for Tari
 
@@ -143,7 +143,7 @@ State channels are the more general form of micropayment channels  (they can b
 
 - Allows payments and changes to smart contracts
 - Same as for Micropayment Channels
-    
+  
 
 ##### Weaknesses, Opportunities for Tari, Threats for Tari
 
@@ -195,13 +195,13 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 
 - A certain level of trust is required, similar to a traditional exchange.
 - Still in development.
-    
 
+#####  
 ##### Opportunities for Tari
 
 - Has alignment with Tari's base requirements.
-    
 
+#####  
 ##### Threats for Tari
 
 - None
@@ -213,7 +213,7 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 - A masternode is a server on a decentralised network, can be used for features like direct send/instant transactions or private transactions.
 
 - Masternode operators are rewarded by earning portions of block rewards, standard return on their stakes, portion of the transaction fees. Allowing for a greater ROI.
-    
+  
 
 ##### **Dash Example**
 
@@ -245,7 +245,7 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 - The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
 - ROI is not guaranteed and inconsistent;
 - Location of your masternode is known, node can be stolen.
-    
+  
 
 ##### Opportunities for Tari
 
@@ -292,7 +292,7 @@ None
 - Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain;
 - Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
 - Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
-    
+  
 
 ##### Weaknesses
 
@@ -306,7 +306,7 @@ Must still be proven on other networks apart from Ethereum.
 
 - Has alignment with Tari's base requirements.
 - *Possibility to create a Tari ticketing Plasma dAppChain running of Monero?*
-    
+  
 
 ##### Threats for Tari
 
