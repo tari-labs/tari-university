@@ -1,5 +1,5 @@
-theme: 
+theme: black
 footnote: © Tari Labs, 2018. Distributed under the Apache 2 license
 mathjax: TeX-AMS_SVG
-theme-override : layer2scaling/layer2scaling/layer2scaling-landscape/sources/this.css
+theme-override : assets/tari-b.css
 logo: assets/logo/tari_vertical.png
