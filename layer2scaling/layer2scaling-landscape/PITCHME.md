@@ -18,7 +18,7 @@
 - number of newer blocks needed to confirm a transaction 
 
 
-![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png&position=center)
+---?image=![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png&position=center)
 ---
 
 <u>Open Systems Interconnection (OSI) model</u> 
@@ -32,7 +32,7 @@ This is where the term 'Layer 2' is borrowed from
 - In block chain, decentralised Layer 2 protocols (i.e. referred to as Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
 
----?image=![layer2scaling](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
+![layer2scaling](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
 
 ---
 
