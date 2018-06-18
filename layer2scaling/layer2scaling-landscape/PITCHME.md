@@ -15,17 +15,13 @@ Opportunities and Threats for Tari?
 
 <u>Problem to solve:</u> 
 
-```
-@ul
-```
 
+@ul
 - average block creation time
 - block size limit
 - number of newer blocks needed to confirm a transaction 
-
-```
 @ulend
-```
+
 
 ![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
 ---
