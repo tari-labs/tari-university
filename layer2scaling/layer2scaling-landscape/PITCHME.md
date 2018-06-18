@@ -4,8 +4,11 @@
 #### How will this be applicable to Tari?
 #### Layer 2 scaling current initiatives
 What is it and who does it?
+
 What are its strengths and weaknesses?
+
 Opportunities and Threats for Tari?
+
 #### Observations
 ---
 ## What is Layer 2 scaling?
