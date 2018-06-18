@@ -292,8 +292,9 @@ None
 - Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain;
 - Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
 - Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
-  
 
+#####  
+#####  
 ##### Weaknesses
 
 Must still be proven on other networks apart from Ethereum.
