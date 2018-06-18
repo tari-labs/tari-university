@@ -69,8 +69,8 @@ This will be impossible to do with parent block chain scaling solutions.
 
 - Bitcoin, Litecoin, Zcash, Ripple. 
 - Ethereum also interested. 
-  
 
+#####  
 ##### Strengths
 
 - A leading solution presented to scale Bitcoin
@@ -86,13 +86,13 @@ This will be impossible to do with parent block chain scaling solutions.
 - It is not suitable for making bulk payment
 - Must be connected and online at the time of the transaction
 - Lightning Network implementation written in C, runs into segmentation faults frequently
-  
 
+#####  
 ##### Opportunities for Tari
 
 Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
-    
 
+#####  
 ##### Threats to The ari
 
 None
@@ -102,8 +102,8 @@ None
 #### #2 State Channels
 
 State channels are the more general form of micropayment channels  (they can be used not only for payments, but for any arbitrary “state update” on a block chain)  like changes inside a smart contract.
-    
 
+#####  
 ##### Who?
 
 - Raiden (*<u>On Ethereum</u>*)
@@ -143,8 +143,8 @@ State channels are the more general form of micropayment channels  (they can b
 
 - Allows payments and changes to smart contracts
 - Same as for Micropayment Channels
-  
 
+#####  
 ##### Weaknesses, Opportunities for Tari, Threats for Tari
 
 - Same as for Micropayment Channels
@@ -164,8 +164,8 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 ##### Who?
 
 Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token transactions. Exchange on Ethereum and other blockchains planned.
-    
 
+#####  
 ##### Strengths
 
 - Flexibility:
@@ -213,8 +213,8 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 - A masternode is a server on a decentralised network, can be used for features like direct send/instant transactions or private transactions.
 
 - Masternode operators are rewarded by earning portions of block rewards, standard return on their stakes, portion of the transaction fees. Allowing for a greater ROI.
-  
 
+#####  
 ##### **Dash Example**
 
 Dash - masternodes for proof of service and miners for proof of work, achieve distributed consensus on the blockchain. Masternodes share an equal block rewards with miners. 
@@ -226,8 +226,8 @@ Dash - masternodes for proof of service and miners for proof of work, achieve di
 ##### Who?
 
 Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, XtraBytes 
-    
 
+#####  
 ##### Strengths
 
 - InstantSend (Dash)
@@ -245,13 +245,13 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 - The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
 - ROI is not guaranteed and inconsistent;
 - Location of your masternode is known, node can be stolen.
-  
 
+#####  
 ##### Opportunities for Tari
 
 Increases incentives
-    
 
+#####  
 ##### Threats to Tari
 
 None
@@ -306,8 +306,8 @@ Must still be proven on other networks apart from Ethereum.
 
 - Has alignment with Tari's base requirements.
 - *Possibility to create a Tari ticketing Plasma dAppChain running of Monero?*
-  
 
+#####  
 ##### Threats for Tari
 
 The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
