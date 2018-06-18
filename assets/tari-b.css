@@ -2,7 +2,7 @@
 Left-Align Slide Content
 */
 .reveal .slides {
-    text-align: left;
+    text-align: center;
   }
   .reveal .slides section>* {
     margin-left: 0;
