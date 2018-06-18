@@ -25,7 +25,7 @@
 
 ![waiting](./sources/waiting.png)
 
-![waiting](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
+![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
 
 ---
 
@@ -35,7 +35,7 @@
 
 ![OSI_Model](./sources/OSI_Model.png)
 
-![OSI_Model](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
+![OSI_Model](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
 
 ---
 
@@ -44,7 +44,7 @@
 
 ![layer2scaling](./sources/layer2scaling.png)
 
-![layer2scaling](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
+![layer2scaling](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
 
 ---
 
@@ -68,7 +68,7 @@ Hashed Time-Locked Contracts (HTLC) allow payments to be securely routed across 
 
 ![lightningnetwork](./sources/bitcoin-lightning-network-basic.png)
 
-![lightningnetwork](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
+![lightningnetwork](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
 
 ---
 
@@ -145,7 +145,7 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 ![NEX-matching-engine](./sources/NEX-matching-engine.png)
 
-![NEX-matching-engine](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
+![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
 
 ##### Who?
 
@@ -230,7 +230,7 @@ Plasma relies on two key parts, namely reframing all block chain computations in
 
 ![Plasma example](./sources/Plasma-example.png)
 
-![Plasma example](https://github.com/tari-labs/tari-university/blob/layer2scaling/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
+![Plasma example](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
 
 ##### Who?
 
