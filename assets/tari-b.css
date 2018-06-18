@@ -1,6 +1,7 @@
 /*
 Left-Align Slide Content
 */
+/*
 .reveal .slides {
     text-align: left;
   }
@@ -8,6 +9,7 @@ Left-Align Slide Content
     margin-left: 0;
     margin-right: 0;
   }
+/*
   
   /*
    Override the font size to get more info on each slide
