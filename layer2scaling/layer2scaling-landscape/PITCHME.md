@@ -1,7 +1,9 @@
 ## Layer 2 Scaling Survey
 
 - What is Layer 2 scaling?
+
 - How will this be applicable to Tari?
+
 - Layer 2 scaling current initiatives
   - What is it and who does it?
   - What are its strengths and weaknesses?
@@ -63,10 +65,12 @@ This will be impossible to do with parent block chain scaling solutions.
 
 #### #1 Micropayment Channels (cont'd)
 
+
 ##### Who ?
 
 - Bitcoin, Litecoin, Zcash, Ripple. 
 - Ethereum also interested. 
+
 
 ##### Strengths
 
@@ -78,11 +82,13 @@ This will be impossible to do with parent block chain scaling solutions.
 
 #### #1 Micropayment Channels (cont'd)
 
+
 ##### Weaknesses
 
 - It is not suitable for making bulk payment
 - Must be connected and online at the time of the transaction
 - Lightning Network implementation written in C, runs into segmentation faults frequently
+
 
 ##### Opportunities for Tari
 
@@ -97,6 +103,7 @@ None
 #### #2 State Channels
 
 State channels are the more general form of micropayment channels — they can be used not only for payments, but for any arbitrary “state update” on a block chain — like changes inside a smart contract.
+
 
 ##### Who?
 
@@ -119,20 +126,22 @@ State channels are the more general form of micropayment channels — they c
 - SpankChain (*<u>On Ethereum</u>*)
   - Adult performers
 
-- Horizon Blockchain Games (*<u>On Ethereum</u>*)
-  - Ethereum-based game
-
 +++
 
 #### #2 State Channels (cont'd)
 
-- Trinity  (*<u>On NEO)
+- Horizon Blockchain Games (*<u>On Ethereum</u>*)
+  - Ethereum-based game
+
+- Trinity  (*<u>On NEO</u>*)
   - Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets.
+
 
 ##### Strengths
 
 - Allows payments and changes to smart contracts
 - As for Micropayment Channels
+
 
 ##### Weaknesses, Opportunities for Tari, Threats for Tari
 
@@ -215,6 +224,7 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 - Decentralised Governance 
 - It compensates for proof of work’s limitations and behaves almost like a buffed-up version proof of stake systems.
 
+
 ##### Weaknesses
 
 - In order to be a masternode, you have to invest first;
@@ -259,6 +269,7 @@ None
 - Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [16]
 
 - OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [15])
+
 
 ##### Strengths
 
