@@ -13,7 +13,7 @@ Left-Align Slide Content
    Override the font size to get more info on each slide
   */
   .reveal {
-      font-size: 32px;
+      font-size: 28px;
     }
     
     .reveal h1 {
@@ -38,12 +38,12 @@ Left-Align Slide Content
     
     .reveal pre {
       font-size: 0.5em;
-      line-height: 0.9em;
+      line-height: 1.1em;
     }
     
     .reveal small {
       font-size: 0.4em;
-      line-height: 0.9em;
+      line-height: 1.1em;
     }
     
     .red {
