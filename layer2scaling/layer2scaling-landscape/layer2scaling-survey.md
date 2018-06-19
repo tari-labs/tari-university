@@ -5,7 +5,7 @@ In the block chain and cryptocurrency world, transaction processing scaling is a
 
 ![waiting](./sources/waiting.png)
 
-
+ToDo: Add 'back-of-envelope calc'
 
 The Open Systems Interconnection (OSI) model defines 7 layers for communication functions of a computing system. Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions of Layer 2 and up, it just delivers transmission and reception of raw data. In turn Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [1]
 
