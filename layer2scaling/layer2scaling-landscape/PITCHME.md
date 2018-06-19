@@ -21,7 +21,7 @@
 - block size limit
 - number of newer blocks needed to confirm a transaction 
 
-![waiting](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/waiting.png)
+![waiting](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/waiting.png)
 
 ---
 
@@ -29,7 +29,7 @@
 
 This is where the term 'Layer 2' is borrowed from
 
-![OSI_Model](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
+![OSI_Model](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
 
 ---
 
@@ -38,7 +38,7 @@ This is where the term 'Layer 2' is borrowed from
 - In block chain, decentralised Layer 2 protocols (i.e. referred to as Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
 
-![layer2scaling](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
+![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
 
 ---
 
@@ -59,7 +59,7 @@ This will be impossible to do with parent block chain scaling solutions.
 
 <u>Example:</u> The Lightning Network
 
-![lightningnetwork](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
+![lightningnetwork](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
 
 +++
 
@@ -70,6 +70,7 @@ This will be impossible to do with parent block chain scaling solutions.
 - Bitcoin, Litecoin, Zcash, Ripple. 
 - Ethereum also interested. 
 
+#####  
 #####  
 ##### Strengths
 
@@ -88,10 +89,12 @@ This will be impossible to do with parent block chain scaling solutions.
 - Lightning Network implementation written in C, runs into segmentation faults frequently
 
 #####  
+#####  
 ##### Opportunities for Tari
 
 Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
 
+#####  
 #####  
 ##### Threats to The ari
 
@@ -103,6 +106,7 @@ None
 
 State channels are the more general form of micropayment channels  (they can be used not only for payments, but for any arbitrary “state update” on a block chain)  like changes inside a smart contract.
 
+#####  
 #####  
 ##### Who?
 
@@ -145,6 +149,7 @@ State channels are the more general form of micropayment channels  (they can b
 - Same as for Micropayment Channels
 
 #####  
+#####  
 ##### Weaknesses, Opportunities for Tari, Threats for Tari
 
 - Same as for Micropayment Channels
@@ -155,7 +160,7 @@ State channels are the more general form of micropayment channels  (they can b
 
 Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers, maintains public record of orders and a deterministic specification of behaviour. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa.
 
-![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
+![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
 
 +++
 
@@ -165,6 +170,7 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token transactions. Exchange on Ethereum and other blockchains planned.
 
+#####  
 #####  
 ##### Strengths
 
@@ -197,10 +203,12 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 - Still in development.
 
 #####  
+#####  
 ##### Opportunities for Tari
 
 - Has alignment with Tari's base requirements.
 
+#####  
 #####  
 ##### Threats for Tari
 
@@ -215,6 +223,7 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 - Masternode operators are rewarded by earning portions of block rewards, standard return on their stakes, portion of the transaction fees. Allowing for a greater ROI.
 
 #####  
+#####  
 ##### **Dash Example**
 
 Dash - masternodes for proof of service and miners for proof of work, achieve distributed consensus on the blockchain. Masternodes share an equal block rewards with miners. 
@@ -227,6 +236,7 @@ Dash - masternodes for proof of service and miners for proof of work, achieve di
 
 Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, XtraBytes 
 
+#####  
 #####  
 ##### Strengths
 
@@ -247,10 +257,12 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 - Location of your masternode is known, node can be stolen.
 
 #####  
+#####  
 ##### Opportunities for Tari
 
 Increases incentives
 
+#####  
 #####  
 ##### Threats to Tari
 
@@ -270,7 +282,7 @@ None
 
 #### #5 Plasma (cont'd)
 
-![Plasma example](https://github.com/tari-labs/tari-university/raw/layer2scaling/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
+![Plasma example](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
 
 +++
 
@@ -308,6 +320,7 @@ Must still be proven on other networks apart from Ethereum.
 - Has alignment with Tari's base requirements.
 - *Possibility to create a Tari ticketing Plasma dAppChain running of Monero?*
 
+#####  
 #####  
 ##### Threats for Tari
 
