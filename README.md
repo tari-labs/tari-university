@@ -13,7 +13,7 @@ We would like this platform to be a place of learning- accessible to anyone, irr
 We want this collection of educational presentations and videos to be collaborative affair.
 
 This extends to our presentations; we are learning along with you: our content may not be perfect first time around- so we invite you to alert us to errors and issues, or better yet, if you know how to make a pull request to contribute a fix, write the correction and use a pull request.
- 
+
 As much as this learning platform is called Tari Labs University and will see input from many internal contributors and external experts, we would like you to contribute to new material, be it in the form of a suggestion of topics, varying the skill levels of presentations, or posting presentations that you may feel will benefit us as a growing community. In the words of Yoda, “Always pass on what you have learned”.  
 
 ## Current Streams 
@@ -32,8 +32,9 @@ Cryptography | Crypto101 | An intro to elliptic curve math and digital signature
 General | Non-Fungible Tokens | An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereuem standards, and players in the Blockchain-based ticketing industry | 1 | Anyone interested in NFTs | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=nft-landscape-1#/) 
 Off-chain Scaling | Lightning Network for Dummies | An intro to the Lightning Network, including examples of its workings, pros and cons | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=LightningNetworkForDummies#/)
 Protocol | MimbleWimble | An intro to MimbleWimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=mimblewimble-1#/) 
-Technical | Merge Mining  | Presents a fundamental undersatnding to the concept of merge mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
- 
+Technical | Merged Mining | Presents a fundamental understanding to the concept of merged mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
+ Technical | Layer 2 Scaling Survey | Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each. | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/) 
+
 
 ## Future Streams and Topics 
 
