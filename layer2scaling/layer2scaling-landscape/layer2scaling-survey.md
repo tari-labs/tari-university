@@ -217,7 +217,7 @@ As compensation for their troubles, masternodes typically share an equally 45% o
 
 - Sustain and care of the ecosystem;  
 - Dash Masternodes perform specialised services [[31]](http://dashmasternode.org/what-is-a-masternode): 
-  * InstantSend (instant transactions)t;  
+  * InstantSend (instant transactions);  
   * PrivateSend (anonymous transactions);
   * Decentralised Governance (masternodes govern, while the block chain funds development);
   * Dash Evolution (a decentralized payment processor).
