@@ -5,6 +5,14 @@ In the block chain and cryptocurrency world, transaction processing scaling is a
 
 ![waiting](./sources/waiting.png)
 
+Let's postulate that block chain and cryptocurrency "takes over the world" and are responsible for all global non-cash transactions performed, i.e. 433.1 billion in 2014-2015 [25]. This means 13,734 transactions per second (tx/s) on average! *(To put this into perspective, VisaNet currently processes 160 billion transactions per year [26] and is capable of handling more than 65,000 transaction messages per second [27].)* This means that if all of those were simple single-input-single-output non-cash transactions and performed on...
+
+- Segwit enabled Bitcoin 'like' block chains that can theoretically handle ~21.31 tx/s, we would need ~644 parallel versions and with a segwit transaction size of 190 bytes [28] the combined block chain growth would be *~210 GB per day*! 
+
+- Ethereum 'like' block chains, and taking current gas prices into account Ethereum can theoretically process ~25.4 tx/s, then ~541 parallel versions would be needed and with a transaction size of 109 bytes ([29] , [30]) the combined block chain growth would be *~120 GB per day*!
+
+This is why we need a proper scaling solution that would not bloat the block chain.
+
 The Open Systems Interconnection (OSI) model defines 7 layers for communication functions of a computing system. Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions of Layer 2 and up, it just delivers transmission and reception of raw data. In turn Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [1]
 
 ![OSI_Model](./sources/OSI_Model.png)
@@ -14,6 +22,13 @@ Analogous to the OSI layers for communication, in block chain technology decentr
 ![layer2scaling](./sources/layer2scaling.png)
 
 
+
+Also:
+
+- Does every transaction need every parent block chain node in the world to verify it?
+- Would I be willing to have (temporary) lower security guarantees for most of my day-to-day transactions if I could get them validated (whatever we take that to mean) near-instantly?
+
+If you can answer 'no' and 'yes', then you're looking for a Layer 2 scaling solution.
 
 ## How will this be applicable to Tari?
 
@@ -320,3 +335,15 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 [23] What are Masternodes?  An Introduction and Guide, https://coincentral.com/what-are-masternodes-an-introduction-and-guide/, Date accessed: 2018-06-15.
 
 [24] State Channels in disguise?, https://funfair.io/state-channels-in-disguise, Date accessed: 2018-06-15.
+
+[25] World Payments Report 2017, © 2017 Capgemini and BNP Paribas, https://www.worldpaymentsreport.com/download, Date accessed: 2018-06-20.
+
+[26] VISA, https://usa.visa.com/visa-everywhere/innovation/contactless-payments-around-the-globe.html, Date accessed: 2018-06-20.
+
+[27] VisaNet Fact Sheet 2017 Q4, https://usa.visa.com/dam/VCOM/download/corporate/media/visanet-technology/visa-net-fact-sheet.pdf, Date accessed: 2018-06-20.
+
+[28] With 100% segwit transactions, what would be the max number of transaction confirmation possible on a block?, https://bitcoin.stackexchange.com/questions/59408/with-100-segwit-transactions-what-would-be-the-max-number-of-transaction-confi, Date accessed: 2018-06-21.
+
+[29] A gentle introduction to Ethereum, https://bitsonblocks.net/2016/10/02/a-gentle-introduction-to-ethereum/, Date accessed: 2018-06-21.
+
+[30] What is the size (bytes) of a simple Ethereum transaction versus a Bitcoin transaction?, https://ethereum.stackexchange.com/questions/30175/what-is-the-size-bytes-of-a-simple-ethereum-transaction-versus-a-bitcoin-trans?rq=1, Date accessed: 2018-06-21.
