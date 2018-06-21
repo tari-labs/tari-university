@@ -5,19 +5,19 @@ In the block chain and cryptocurrency world, transaction processing scaling is a
 
 ![waiting](./sources/waiting.png)
 
-Let's postulate that block chain and cryptocurrency "takes over the world" and are responsible for all global non-cash transactions performed, i.e. 433.1 billion in 2014-2015 [25]. This means 13,734 transactions per second (tx/s) on average! *(To put this into perspective, VisaNet currently processes 160 billion transactions per year [26] and is capable of handling more than 65,000 transaction messages per second [27].)* This means that if all of those were simple single-input-single-output non-cash transactions and performed on...
+Let's postulate that block chain and cryptocurrency "takes over the world" and are responsible for all global non-cash transactions performed, i.e. 433.1 billion in 2014-2015 [[25]](https://www.worldpaymentsreport.com/download). This means 13,734 transactions per second (tx/s) on average! *(To put this into perspective, VisaNet currently processes 160 billion transactions per year [[26]](https://usa.visa.com/visa-everywhere/innovation/contactless-payments-around-the-globe.html) and is capable of handling more than 65,000 transaction messages per second [[27]](https://usa.visa.com/dam/VCOM/download/corporate/media/visanet-technology/visa-net-fact-sheet.pdf).)* This means that if all of those were simple single-input-single-output non-cash transactions and performed on...
 
-- Segwit enabled Bitcoin 'like' block chains that can theoretically handle ~21.31 tx/s, we would need ~644 parallel versions and with a segwit transaction size of 190 bytes [28] the combined block chain growth would be *~210 GB per day*! 
+- Segwit enabled Bitcoin 'like' block chains that can theoretically handle ~21.31 tx/s, we would need ~644 parallel versions and with a segwit transaction size of 190 bytes [[28]](https://bitcoin.stackexchange.com/questions/59408/with-100-segwit-transactions-what-would-be-the-max-number-of-transaction-confi) the combined block chain growth would be *~210 GB per day*! 
 
-- Ethereum 'like' block chains, and taking current gas prices into account Ethereum can theoretically process ~25.4 tx/s, then ~541 parallel versions would be needed and with a transaction size of 109 bytes ([29] , [30]) the combined block chain growth would be *~120 GB per day*!
+- Ethereum 'like' block chains, and taking current gas prices into account Ethereum can theoretically process ~25.4 tx/s, then ~541 parallel versions would be needed and with a transaction size of 109 bytes ([[29]](https://bitsonblocks.net/2016/10/02/a-gentle-introduction-to-ethereum/), [[30]](https://ethereum.stackexchange.com/questions/30175/what-is-the-size-bytes-of-a-simple-ethereum-transaction-versus-a-bitcoin-trans?rq=1)) the combined block chain growth would be *~120 GB per day*!
 
 This is why we need a proper scaling solution that would not bloat the block chain.
 
-The Open Systems Interconnection (OSI) model defines 7 layers for communication functions of a computing system. Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions of Layer 2 and up, it just delivers transmission and reception of raw data. In turn Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [1]
+The Open Systems Interconnection (OSI) model defines 7 layers for communication functions of a computing system. Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions of Layer 2 and up, it just delivers transmission and reception of raw data. In turn Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [[1]](https://en.wikipedia.org/wiki/OSI_model/)
 
 ![OSI_Model](./sources/OSI_Model.png)
 
-Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus). Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [2]
+Analogous to the OSI layers for communication, in block chain technology decentralised Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralised Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus). Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [[2]](https://cloudblogs.microsoft.com/enterprisemobility/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it)
 
 ![layer2scaling](./sources/layer2scaling.png)
 
@@ -32,14 +32,14 @@ If you can answer 'no' and 'yes', then you're looking for a Layer 2 scaling solu
 
 ## How will this be applicable to Tari?
 
-The initial business application to be built on top of the Tari block chain, Big Neon, requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. This will be impossible to do with parent block chain scaling solutions.
+Tari is a high-throughput protocol that will need to handle tens of thousands of transactions per second. For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. This will be impossible to do with parent block chain scaling solutions.
 
 
 ## Layer 2 scaling current initiatives
 ### #1 Micropayment Channels 
 #### What is it?
 
-A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants.[11]
+A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants. [[11]](https://en.bitcoin.it/wiki/Payment_channels)
 
 Several channel designs have been proposed or implemented over the years- these include:
 - Nakamoto high-frequency transactions 
@@ -51,28 +51,28 @@ Several channel designs have been proposed or implemented over the years- these 
 - Hashed Time-Locked Contracts (HTLCs)
 
 With specific focus on Hashed Time-Locked Contracts:
-A technique that can allow payments to be securely routed across multiple payment channels. HTlCs are integral to the design of more advanced payment channels such as those used by the Lightning Network. 
+A technique that can allow payments to be securely routed across multiple payment channels. HTlCs are integral to the design of more advanced payment channels such as those used by the [Lightning Network](https://gitpitch.com/tari-labs/tari-university/master?p=LightningNetworkForDummies#/). 
 
-The Lightning Network is a second layer payment protocol that operates on top of a block chain. It enables instant transactions between participating nodes. It features a peer-to-peer system for making micropayments of digital cryptocurrency through a network of bidirectional payment channels without delegrating custody of funds and minimizing trust of third parties.[12] 
+The Lightning Network is a second layer payment protocol that operates on top of a block chain. It enables instant transactions between participating nodes. It features a peer-to-peer system for making micro payments of digital cryptocurrency through a network of bidirectional payment channels without delegating custody of funds and minimising trust of third parties. [[12]](https://en.wikipedia.org/wiki/Lightning_Network) 
 
-Normal use of the Lightning Network consists of opening a payment channel by commiting a funding transaction to the relevant block chain, followed by making any number of Lightning transactions that update the tentative distribution of the channel's funds wihtout broadcasting to the block chain, optionallu followed by closing the payment channel by broadcasting the final version of the transaction to distribute the channel's funds. 
+Normal use of the Lightning Network consists of opening a payment channel by committing a funding transaction to the relevant block chain, followed by making any number of Lightning transactions that update the tentative distribution of the channel's funds without broadcasting to the block chain, optionally followed by closing the payment channel by broadcasting the final version of the transaction to distribute the channel's funds. 
 
 ![lightningnetwork](./sources/bitcoin-lightning-network-basic.png)
 
 #### Who does it?
-Lightning is spreading across the crytocurrency landscape. It was originally designed for Bitcoin, however Litecoin, Zcash, Ethereum and Ripple are just a few of the many cryptocurrencies planning to implement or test some form of the network.[13]
+Lightning is spreading across the cryptocurrency landscape. It was originally designed for Bitcoin, however Litecoin, Zcash, Ethereum and Ripple are just a few of the many cryptocurrencies planning to implement or test some form of the network. [[13]](https://www.coindesk.com/bitcoin-isnt-crypto-adding-lightning-tech-now/)
 
 #### Strengths
 
 - It is one of the leading solutions that has been presented to scale Bitcoin, which does not require a change to the underlying protocol;
 - Transactions are processed instantly, the account balances of the nodes are updated and the money is immediately accessible to the new owner;
-- Transaction fees are a fraction of the transaction cost.[14] 
+- Transaction fees are a fraction of the transaction cost. [[14]](https://cryptoverze.com/what-is-bitcoin-lightning-network/) 
 
 #### Weaknesses
 
 - It is not suitable for making bulk payment, as the intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along; 
 - Recipients cannot receive money unless their node is connected and online at the time of the transaction;
-- One of The Lightning Network implementations, written in C, runs into segmentation faults frequently.[14]
+- One of The Lightning Network implementations, written in C, runs into segmentation faults frequently. [[14]](https://cryptoverze.com/what-is-bitcoin-lightning-network/)
 
 #### Opportunities for Tari 
 
@@ -86,7 +86,7 @@ None.
 
 #### What is it?
 
-State channels are the more general form of micropayment channels — they can be used not only for payments, but for any arbitrary “state update” on a block chain — like changes inside a smart contract. [17]
+State channels are the more general form of micropayment channels — they can be used not only for payments, but for any arbitrary “state update” on a block chain — like changes inside a smart contract. [[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4)
 
 State channels allow multiple transactions to be made within off-chain agreements with very fast processing and the final settlement on-chain. It keeps the operation mode of block chain protocol but changes the way it is used so as to deal with the challenge of scalability.
 
@@ -94,20 +94,20 @@ State channels allow multiple transactions to be made within off-chain agreement
 
 <u>On Ethereum:</u>
 
-- Raiden ([17], [21], [22])
+- Raiden ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[21]](https://raiden.network/), [[22]](https://raiden.network/101.html))
   - Research state channel technology, define protocols and develop reference implementations;
   - Works with any ERC20 compatible token.
-- Counterfactual ([17], [20])
+- Counterfactual ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[20]](https://counterfactual.com/statechannels))
   - A generalised framework for native state channels integration in Ethereum-based decentralized applications;
   - A generalised state channel generalised framework is one where state is  deposited once and then be used by any application or set of  applications afterwards.
-- Funfair ([17], [24])
+- Funfair ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[24]](https://funfair.io/state-channels-in-disguise))
   - Decentralized gambling platform
-- SpankChain [17]
+- SpankChain [[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4)
   - Adult performers
-- Horizon Blockchain Games [17]
+- Horizon Blockchain Games [[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4)
   - Ethereum-based game
 
-<u>Trinity</u>, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. ([3], [19]).
+<u>Trinity</u>, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. ([[3]](https://www.investinblockchain.com/trinity-protocol), [[18]](https://trinity.tech), [[19]](https://trinity.tech/file/WhitePaperDraft1.pdf)).
 
 ![trinity01](./sources/trinity01.png)
 
@@ -142,13 +142,13 @@ None.
 
 #### What is it?
 
-Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers, maintains public record of orders and a deterministic specification of behaviour. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa. [5]
+Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers, maintains public record of orders and a deterministic specification of behaviour. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa. [[5]](https://neonexchange.org/pdfs/whitepaper_v2.pdf)
 
 ![NEX-matching-engine](./sources/NEX-matching-engine.png)
 
 #### Who does it?
 
-Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run on NEO, before later expanding to support exchange on Ethereum and other blockchains. Initially focussed on NEO, GAS and NEP-5 token transactions. [5]
+Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run on NEO, before later expanding to support exchange on Ethereum and other blockchains. Initially focussed on NEO, GAS and NEP-5 token transactions. [[5]](https://neonexchange.org/pdfs/whitepaper_v2.pdf)
 
 #### Strengths
 
@@ -182,11 +182,11 @@ Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run 
 ### #4 Masternodes
 #### What is it?
 
-A masternode (MN) is a server on a dencentralised network [7]. It is utilized to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions [8].
+A masternode (MN) is a server on a decentralised network [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08). It is utilised to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions [[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes).
 
-Because of their increased capabilities, masternodes typically require a sizable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. [8] 
+Because of their increased capabilities, masternodes typically require a sizeable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. [[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes)
 
-Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. [10] 
+Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. [[10]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes)
 
 **Dash Example**
 Dash was the first cryptocurrency to implement the masternode model into its protocol.  Under what Dash calls its proof of service algorithm, a second tier network of masternodes exists alongside a first tier network of miners to achieve distributed consensus on the blockchain.  This two tiered system ensures that proof of service and proof of work preform symbiotic maintenance of Dash’s network. A masternode for Dash, for example, requires 1,000 DASH.
@@ -198,7 +198,7 @@ Once a masternode is live, it accommodates  a unique series of functions, such a
 As compensation for their troubles, masternodes typically share an equally 45% of block rewards with the blockchain’s miners.  The other 10% goes to the blockchain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
 
 
-#### Who does it? [9]
+#### Who does it? [[9]](https://blockonomi.com/masternode-guide/)
 
 - Block 
 - Bata
@@ -216,12 +216,13 @@ As compensation for their troubles, masternodes typically share an equally 45% o
 #### Strengths
 
 - Sustain and care of the ecosystem;  
-- Masternodes perform specialised services: 
-  * InstantSend (instant transactions- in contrast, Bitcoin takes about 10 minutes to confirm a payment);  
-  * PrivateSend (anonymous transactions- in contrast, Bitcoin transactions are totally public and traceable. Only the identity of the addresses is anonymous);
-  * Decentralised Governance (masternodes govern, while the block chain funds development- in contrast, Bitcoin is controlled by few big miners and funded by 3rd party centralised institutions with self interests). [7]
-- Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions;
-- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout. [7]
+- Dash Masternodes perform specialised services [[31]](http://dashmasternode.org/what-is-a-masternode): 
+  * InstantSend (instant transactions)t;  
+  * PrivateSend (anonymous transactions);
+  * Decentralised Governance (masternodes govern, while the block chain funds development);
+  * Dash Evolution (a decentralized payment processor).
+- Dash Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions [[31]](http://dashmasternode.org/what-is-a-masternode);
+- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout. [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
 
 - Cryptoassets like Block Net and Exscudo will use masternodes to support their decentralized exchanges: Masternodes will oversee exchange transactions to facilitate cryptocurrency trading and offer fiat currency gateways.
 - BOScoin integrates masternodes for its smart contracts and adopts the masternode governing system for its Congress Network.  
@@ -229,15 +230,15 @@ As compensation for their troubles, masternodes typically share an equally 45% o
 
 Masternode application is quite flexible.  It compensates for proof of work’s limitations and behaves almost like a buffed-up version proof of stake systems.
 Like proof of stake, it avoids the de-facto centralization mining pools bring to proof of work networks, and it consumes less energy than the proof of work model.  Masternodes may promise enhanced stability and network loyalty, as larger dividends and high initial investment costs make it less likely that operators will abandon their position in the network.
-They can even be used to keep miners from stepping out of line.  Under Dash’s model, masternodes on the second tier network monitor the first tier proof of work network.  This gives masternodes full reign to reject or orphan blocks if their miner uses and outdated version of Dash or tries to manipulate block rewards.[23]
+They can even be used to keep miners from stepping out of line.  Under Dash’s model, masternodes on the second tier network monitor the first tier proof of work network.  This gives masternodes full reign to reject or orphan blocks if their miner uses and outdated version of Dash or tries to manipulate block rewards. [[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/)
 
 #### Weaknesses
 
 - In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network; 
 - The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
-- ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid).[7]
+- ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid). [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
 - Masternodes are put forth with very little to no utility (only the promise of a Whitepaper);
-- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen.[7]
+- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen. [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
 
 #### Opportunities for Tari
 
@@ -250,17 +251,17 @@ None
 ### #5 Plasma
 #### What is it?
 
-Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format. [4]
+Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format. [[4]](http://plasma.io/plasma.pdf)
 
-Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. [4]
+Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. [[4]](http://plasma.io/plasma.pdf)
 
 ![Plasma example](./sources/Plasma-example.png)
 
 #### Who does it?
 
-Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [16]
+Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [[16]](https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe)
 
-OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [15])
+OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([[6]](https://cdn.omise.co/omg/whitepaper.pdf), [[15]](https://omisego.network/))
 
 #### Strengths
 
@@ -300,7 +301,7 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 
 [6] OmiseGO: Decentralized Exchange and Payments Platform, Poon J et. al., https://cdn.omise.co/omg/whitepaper.pdf, Date accessed: 2018-06-14.
 
-[7] Masternodes- Risk vs. Reward, https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08 , Date accessed: 2018-06-13.
+[7] Masternodes- Risk vs. Reward, https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08, Date accessed: 2018-06-13.
 
 [8] The Rise of Masternodes Might Soon be Followed by the Creation of Servicenodes, https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes, Date accessed: 2018-06-13.
 
@@ -310,11 +311,11 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 
 [11] Payment channels, https://en.bitcoin.it/wiki/Payment_channels , Date accessed: 2018-06-14.
 
-[12] Lightning Network ,https://en.wikipedia.org/wiki/Lightning_Network, Date accessed: 2018-06-14.
+[12] Lightning Network, https://en.wikipedia.org/wiki/Lightning_Network, Date accessed: 2018-06-14.
 
 [13] Bitcoin Isn't the Only Crypto Adding Lightning Tech Now, https://www.coindesk.com/bitcoin-isnt-crypto-adding-lightning-tech-now/, Date accessed: 2018-06-14.
 
-[14] What is Bitcoin Lighning Network? And How Does it Work?, https://cryptoverze.com/what-is-bitcoin-lightning-network/ , Date accessed: 2018-06-14.
+[14] What is Bitcoin Lighning Network? And How Does it Work?, https://cryptoverze.com/what-is-bitcoin-lightning-network/, Date accessed: 2018-06-14.
 
 [15] OmiseGO, https://omisego.network/, Date accessed: 2018-06-14.
 
@@ -347,3 +348,5 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 [29] A gentle introduction to Ethereum, https://bitsonblocks.net/2016/10/02/a-gentle-introduction-to-ethereum/, Date accessed: 2018-06-21.
 
 [30] What is the size (bytes) of a simple Ethereum transaction versus a Bitcoin transaction?, https://ethereum.stackexchange.com/questions/30175/what-is-the-size-bytes-of-a-simple-ethereum-transaction-versus-a-bitcoin-trans?rq=1, Date accessed: 2018-06-21.
+
+[31] WHAT IS A MASTERNODE?, http://dashmasternode.org/what-is-a-masternode, Date accessed: 2018-06-14.
