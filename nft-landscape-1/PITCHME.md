@@ -10,9 +10,9 @@
 
 ---
 
-When a token is fungible is usually means two things:
+When a token is fungible it usually means two things:
 1. Only the quantity matters
-2. Any amount of it can be merged into a larger amount of it- making it undistinguishable from the rest 
+2. Any amount of it can be merged into a larger amount - making it undistinguishable from the rest 
 
 ---
 
@@ -24,7 +24,7 @@ When a token is fungible is usually means two things:
 
 ## Function of NFTs
 
-Non-fungible tokens create digital scarcity that can be verified without the need for a centralising organisation of confirm authenticity. 
+Non-fungible tokens create digital scarcity that can be verified without the need for a centralised organisation to confirm authenticity. 
 
 *Blockchain technology is significant because it enables a decentralised way to maintain distinct, digitally scarce items*
 
@@ -45,7 +45,7 @@ Example of NFT | Mode of Implementation
 Rare Pepe | Counterparty 
 CryptoKitties |  ERC721
 Decentraland | ERC721
-CrytoPunks | ERC20
+CrytoPunks | ERC721 with partial ERC20 compatability
 CryptoCelebrities | ERC721
 
 +++
@@ -87,7 +87,9 @@ CryptoCelebrities | ERC721
 * The CyptoPunks are 24x24 pixel art images, generated algorithmically
 * There are 10 000 unique collectible charaters with proof of owership stored on the Ethereum blockchain   
 * Cryptopunks uses a similar system to ERC20 tokens-  the official webiste descibes them as "almost an ERC20 token"
+* Cryptopunks are ERC721 tokens that have partial ERC20 compatability.
 
+<https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md#backwards-compatibility>
 <https://www.larvalabs.com/cryptopunks>
 
 +++
@@ -165,7 +167,7 @@ CryptoCelebrities | ERC721
 
 ## **Ticketing**
 
-The main objective of using non-fungible tokens in the event ticketing industry is to a decentralise the industry, allowing ticketing applications and promoters to automatically sell tickets for other events and gain commission for doing so. This enables event organisers to reach a wider audience. 
+The main objective of using non-fungible tokens in the event ticketing industry is to decentralise the industry, allowing ticketing applications and promoters to automatically sell tickets for other events and gain commission for doing so. This enables event organisers to reach a wider audience. 
 
 ---
 
