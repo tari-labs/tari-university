@@ -269,6 +269,31 @@ Must still be proven on other networks apart from Ethereum.
 
 The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
 
+### #6 Truebit
+### what is it?
+Truebit is a protocol that provides security and scalability by enabling trustless smart contracts to perform and offloading complex computation[27]. This makes it different from state channels and Plasma, which are more useful for increasing the total transaction throughput of the ethereum blockchain [25].
+Truebit relies on solvers (akin to miners), who have to stake their deposits in a smart contract, solve computation and if correct get their deposit back. If the computation is incorrect, the solver looses their deposit. Truebit uses an economic mechanism called the “verification game”. Essentially, we create an incentive for other parties called challengers to check the solvers’ work [25].
+
+### who does it?
+Golem cites TrueBit as a verification mechanism for their forthcoming outsourced computation
+network[26]
+LivePeer, a video streaming platform.[28]
+
+### Strengths
+- Outsourced computation - anyone in the world can post a computational task,and anyone else can receive a reward for completing it[27]
+- Scalable -by decoupling verification for miners into a separate protocol, Truebit can achieve high transaction throughput without facing a Verifier’s Dilemma[27]
+
+### Weaknesses
+It is yet to be fully tested.
+
+### Opportunities for Tari
+
+Don't currently see anything in this regard as Tari woulnd't be doing heavy/complex computation, at least in the short term.
+
+### Threats to Tari
+
+None
+
 ## Observations
 
 Further investigation into the more promising layer 2 scaling solutions and technologies is required to verify alignment, applicability and use-ability.
@@ -322,3 +347,11 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 [23] What are Masternodes?  An Introduction and Guide, https://coincentral.com/what-are-masternodes-an-introduction-and-guide/, Date accessed: 2018-06-15.
 
 [24] State Channels in disguise?, https://funfair.io/state-channels-in-disguise, Date accessed: 2018-06-15.
+
+[25] Making Sense of Ethereum’s Layer 2 Scaling Solutions: State Channels, Plasma, and Truebit,https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4
+
+[26] Golem WhitePaper(Future integrations),https://golem.network/crowdfunding/Golemwhitepaper.pdf
+
+[27]A scalable verification solution for blockchains,http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf
+
+[28]Livepeer’s Path To Decentralization,https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532
