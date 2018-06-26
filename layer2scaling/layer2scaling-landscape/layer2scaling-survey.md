@@ -94,9 +94,10 @@ State channels allow multiple transactions to be made within off-chain agreement
 
 <u>On Ethereum:</u>
 
-- Raiden ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[21]](https://raiden.network/), [[22]](https://raiden.network/101.html))
+- Raiden Network ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[21]](https://raiden.network/), [[22]](https://raiden.network/101.html))
   - Research state channel technology, define protocols and develop reference implementations;
   - Works with any ERC20 compatible token.
+  - State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out. These can be settled on the Ethereum block chain at any time. Raiden Network uses HTLCs in exactly the same manner as the Lightning Network. 
 - Counterfactual ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[20]](https://counterfactual.com/statechannels))
   - A generalised framework for native state channels integration in Ethereum-based decentralized applications;
   - A generalised state channel generalised framework is one where state is  deposited once and then be used by any application or set of  applications afterwards.
