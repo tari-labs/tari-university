@@ -90,6 +90,8 @@ State channels are the more general form of micropayment channels — they c
 
 State channels allow multiple transactions to be made within off-chain agreements with very fast processing and the final settlement on-chain. It keeps the operation mode of block chain protocol but changes the way it is used so as to deal with the challenge of scalability.
 
+Any change of state within a state channel requires explicit cryptographic consent from all parties designated as “interested” in that part of the state. [[20]](https://l4.ventures/papers/statechannels.pdf)
+
 #### Who does it?
 
 <u>On Ethereum:</u>
@@ -98,9 +100,12 @@ State channels allow multiple transactions to be made within off-chain agreement
   - Research state channel technology, define protocols and develop reference implementations;
   - Works with any ERC20 compatible token.
   - State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out. These can be settled on the Ethereum block chain at any time. Raiden Network uses HTLCs in exactly the same manner as the Lightning Network. 
-- Counterfactual ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[20]](https://counterfactual.com/statechannels))
-  - A generalised framework for native state channels integration in Ethereum-based decentralized applications;
-  - A generalised state channel generalised framework is one where state is  deposited once and then be used by any application or set of  applications afterwards.
+- Counterfactual ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[20]](https://l4.ventures/papers/statechannels.pdf), [[32]](https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6))
+  - A generalized framework for native state channels integration in Ethereum-based decentralized applications;
+  - A generalized state channel generalized framework is one where state is deposited once and then be used by any application or set of applications afterwards;
+  - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain and is achieved by making users sign and share commitments to the multisig wallet;
+  - When a contract is counterfactually instantiated, all parties in the channel act as though it has been deployed, even though it has not;
+  - A global registry is introduced, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses. The hashing function used to produce the deterministic address can be any function that takes into account the bytecode, its owner (i.e. the multi-signature wallet address), and a unique identifier.
 - Funfair ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[24]](https://funfair.io/state-channels-in-disguise))
   - Decentralized gambling platform
 - SpankChain [[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4)
@@ -351,3 +356,5 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 [30] What is the size (bytes) of a simple Ethereum transaction versus a Bitcoin transaction?, https://ethereum.stackexchange.com/questions/30175/what-is-the-size-bytes-of-a-simple-ethereum-transaction-versus-a-bitcoin-trans?rq=1, Date accessed: 2018-06-21.
 
 [31] WHAT IS A MASTERNODE?, http://dashmasternode.org/what-is-a-masternode, Date accessed: 2018-06-14.
+
+[32] Counterfactual: Generalized State Channels on Ethereum, https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6, Date accessed: 2018-06-26.
