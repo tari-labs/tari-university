@@ -100,30 +100,30 @@ Any change of state within a state channel requires explicit cryptographic conse
   - Research state channel technology, define protocols and develop reference implementations;
   - Works with any ERC20 compatible token.
   - State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out. These can be settled on the Ethereum block chain at any time. Raiden Network uses HTLCs in exactly the same manner as the Lightning Network. 
+
+![Raiden](./sources/Raiden.PNG)
+
 - Counterfactual ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[20]](https://l4.ventures/papers/statechannels.pdf), [[32]](https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6))
   - A generalized framework for native state channels integration in Ethereum-based decentralized applications;
   - A generalized state channel generalized framework is one where state is deposited once and then be used by any application or set of applications afterwards;
   - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain and is achieved by making users sign and share commitments to the multisig wallet;
   - When a contract is counterfactually instantiated, all parties in the channel act as though it has been deployed, even though it has not;
   - A global registry is introduced, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses. The hashing function used to produce the deterministic address can be any function that takes into account the bytecode, its owner (i.e. the multi-signature wallet address), and a unique identifier.
-- Funfair ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[24]](https://funfair.io/state-channels-in-disguise))
-  - Decentralized gambling platform
-- SpankChain [[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4)
-  - Adult performers
-- Horizon Blockchain Games [[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4)
-  - Ethereum-based game
 
-<u>Trinity</u>, a NEO NEP-5 implementation. Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets. ([[3]](https://www.investinblockchain.com/trinity-protocol), [[18]](https://trinity.tech), [[19]](https://trinity.tech/file/WhitePaperDraft1.pdf)).
+![Counterfactual](./sources/Counterfactual.PNG)
 
-![trinity01](./sources/trinity01.png)
+- Funfair ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[24]](https://funfair.io/state-channels-in-disguise), [[33]](https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf))
+  - Decentralized slot machine gambling platform, but still using centralized server based random number generation;
+  - Instantiates normal 'Raiden like' state channel (called *fate channel*) between the player and the casino, final states submitted to block chain after betting game is concluded;
+  - Investigating use of threshold cryptography like Boneh–Lynn–Shacham (BLS) signature schemes to enable truly secure random number generation by a group of participants.
 
+<u>On NEO:</u>
 
-
-![trinity02](./sources/trinity02.png)
-
-
-
-![trinity03](./sources/trinity03.png)
+- Trinity ([[3]](https://www.investinblockchain.com/trinity-protocol), [[18]](https://trinity.tech), [[19]](https://trinity.tech/file/WhitePaperDraft1.pdf))
+  - Trinity is an open-source network protocol based on NEP-5 smart contracts;
+  - Trinity for NEO is the same as the Raiden Network for Ethereum;
+  - Trinity uses the same consensus mechanism as the Raiden network;
+  - A new token, TNC, is introduced to fund the Trinity network, but NEO, NEP-5 and TNC tokens are supported.
 
 #### Strengths
 
@@ -358,3 +358,5 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 [31] WHAT IS A MASTERNODE?, http://dashmasternode.org/what-is-a-masternode, Date accessed: 2018-06-14.
 
 [32] Counterfactual: Generalized State Channels on Ethereum, https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6, Date accessed: 2018-06-26.
+
+[33] FunFair Technology Roadmap and Discussion, Longley J et. al., https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf, Date accessed: 2018-06-27.
