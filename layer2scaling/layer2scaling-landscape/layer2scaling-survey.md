@@ -144,7 +144,7 @@ Less than expected as Tari's ticketing use case requires many fast transactions 
 
 None.
 
-### #3 Trusted, off-chain matching engines
+### #3 Off-chain matching engines
 
 #### What is it?
 
@@ -154,27 +154,35 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 #### Who does it?
 
-Neon Exchange (NEX), a NEO decentralized application (dApp). NEX will first run on NEO, before later expanding to support exchange on Ethereum and other blockchains. Initially focussed on NEO, GAS and NEP-5 token transactions. [[5]](https://neonexchange.org/pdfs/whitepaper_v2.pdf)
+- Neon Exchange (NEX) ( [[5]](https://neonexchange.org/pdfs/whitepaper_v2.pdf), [[36]](https://neonexchange.org/))
+  - A NEO decentralized application (dApp) with tokens;
+  - Initial support planned for NEO, ETH, NEP5, and ERC20 tokens;
+  - Cross-chain support planned for trading BTC, LTC, and RPX on NEX;
+  - Consensus is achieved using cryptographically signed requests, publicly specified deterministic off-chain matching engine algorithm, public ledgers of transactions and reward for foul play. The trade method of the exchange smart contract will only accept orders signed by a private key held by the matching engine;
+  - The engine matches the orders and submits them to the respective block chain smart contract for execution.
+- 0x ([[34]](https://0xproject.com/), [[35]](https://0xproject.com/pdfs/0x_white_paper.pdf))
+  - An Ethereum ERC20 based smart contract token (ZRX)
+  - Provides an open source protocol to exchange ERC20 compliant tokens on the Ethereum block chain using off-chain matching engines in the form of dApps (*relayers*), facilitating transactions between *makers* and *takers*;
+  - Off-chain order relay + on-chain settlement.
 
 #### Strengths
 
-- Flexibility:
-  - Cross-chain transfers;
-  - Support of national currencies;
-  - Smart contracts with reward to mitigate unfair exchange;
-  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens.
+- Flexibility: 
+  - Cross-chain transfers {*NEX*};
+  - Support of national currencies {*NEX*};
+  - Smart contracts with reward to mitigate unfair exchange {*NEX*};
+  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens {*NEX*}.
 - Performance:
-  - Off-chain matching;
-  - Batched on-chain commits.
-- Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine;
-- Cure53 full security audit on web extension;
-- NEX tokens will be regulated as registered European securities.
+  - Off-chain matching {*NEX*, *0x*};
+  - Batched on-chain commits {*NEX*, *0x*}.
+- Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine {*NEX*};
+- Cure53 full security audit on web extension, NEX tokens will be regulated as registered European securities {*NEX*}.
 
 #### Weaknesses
 
-- A certain level of trust is required, similar to a traditional exchange.
-
-- Still in development.
+- A certain level of trust is required, similar to a traditional exchange {*NEX*}.
+- Still in development {*NEX*};
+- A trusted Token Registry will be required to verify ERC20 token addresses and exchange rates {*0x*}.
 
 
 #### Opportunities for Tari
@@ -360,3 +368,9 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 [32] Counterfactual: Generalized State Channels on Ethereum, https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6, Date accessed: 2018-06-26.
 
 [33] FunFair Technology Roadmap and Discussion, Longley J et. al., https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf, Date accessed: 2018-06-27.
+
+[34] 0x protocol website, https://0xproject.com/, Date accessed: 2018-06-28.
+
+[35] 0x:  An open protocol for decentralized exchange on the Ethereum block chain, https://0xproject.com/pdfs/0x_white_paper.pdf, Date accessed: 2018-06-28.
+
+[36] NEX website, https://neonexchange.org/, Date accessed: 2018-06-28.
