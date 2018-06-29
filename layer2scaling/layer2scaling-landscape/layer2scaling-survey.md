@@ -157,34 +157,48 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
   - Initial support planned for NEO, ETH, NEP5, and ERC20 tokens;
   - Cross-chain support planned for trading BTC, LTC, and RPX on NEX;
   - Consensus is achieved using cryptographically signed requests, publicly specified deterministic off-chain matching engine algorithm, public ledgers of transactions and reward for foul play. The trade method of the exchange smart contract will only accept orders signed by a private key held by the matching engine;
-  - The engine matches the orders and submits them to the respective block chain smart contract for execution.
+  - The engine matches the orders and submits them to the respective block chain smart contract for execution;
+  - A single invocation transaction on NEO can contain many smart contract calls; batch commit of matched orders in one on-chain transaction possible. 
 
   ![NEX-matching-engine](./sources/NEX-matching-engine.png)
 - 0x ([[34]](https://0xproject.com/), [[35]](https://0xproject.com/pdfs/0x_white_paper.pdf))
   - An Ethereum ERC20 based smart contract token (ZRX)
-  - Provides an open source protocol to exchange ERC20 compliant tokens on the Ethereum block chain using off-chain matching engines in the form of dApps (*relayers*), facilitating transactions between *makers* and *takers*;
-  - Off-chain order relay + on-chain settlement.
+  - Provides an open source protocol to exchange ERC20 compliant tokens on the Ethereum block chain using off-chain matching engines in the form of dApps (*Relayers*) that facilitate transactions between *Makers* and *Takers*;
+  - Off-chain order relay + on-chain settlement;
+  - *Maker* chooses *Relayer*, specifies token exchange rate, expiration time, fees to satisfy *Relayer’s* fee schedule and signs order with private key;
+  - Consensus are governed with the publically available DEX smart contract; addresses, token balances, token exchange, fees, signatures, order status and final transfer.
 
   ![0xSequence](./sources/0xSequence.png)
 
 #### Strengths
 
-- Flexibility: 
-  - Cross-chain transfers {*NEX*};
-  - Support of national currencies {*NEX*};
-  - Smart contracts with reward to mitigate unfair exchange {*NEX*};
-  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens {*NEX*}.
-- Performance:
-  - Off-chain matching {*NEX*, *0x*};
-  - Batched on-chain commits {*NEX*, *0x*}.
-- Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine {*NEX*};
-- Cure53 full security audit on web extension, NEX tokens will be regulated as registered European securities {*NEX*}.
+- Performance {*NEX*, *0x*}:
+  - Off-chain request/order;
+  - Off-chain matching.
+- NEX specific:
+  - Batched on-chain commits;
+  - Cross-chain transfers;
+  - Support of national currencies;
+  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens;
+  - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine;
+  - Cure53 full security audit on web extension, NEX tokens will be regulated as registered European securities.
+- 0x specific:
+  - Open source protocol to enable creation of independent off-chain dApp matching engines (*Relayers*);
+  - Totally transparent matching of orders with no single point of control:
+    - Maker's order only enters a Relayer's order book if fee schedule is adhered to;
+    - exchange can only happen if a Taker is willing to accept.
+  - Consensus and settlement governed by the publically available DEX smart contract.
 
 #### Weaknesses
 
-- A certain level of trust is required, similar to a traditional exchange {*NEX*}.
-- Still in development {*NEX*};
-- A trusted Token Registry will be required to verify ERC20 token addresses and exchange rates {*0x*}.
+- Still in development.
+- NEX specific:
+  - A certain level of trust is required, similar to a traditional exchange;
+  - Closed liquidity pool.
+- 0x specific:
+  - A trusted Token Registry will be required to verify ERC20 token addresses and exchange rates;
+  - Front running transactions and transaction collisions possible, more development needed ([[37]](https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-1-8554ab283e97),  [[38]](https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21));
+  - Batch processing ability unknown.
 
 
 #### Opportunities for Tari
@@ -376,3 +390,8 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 [35] 0x:  An open protocol for decentralized exchange on the Ethereum block chain, https://0xproject.com/pdfs/0x_white_paper.pdf, Date accessed: 2018-06-28.
 
 [36] NEX website, https://neonexchange.org/, Date accessed: 2018-06-28.
+
+[37] Front-running, Griefing and the Perils of Virtual Settlement (Part 1), https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-1-8554ab283e97, Date accessed: 2018-06-29.
+
+[38] Front-running, Griefing and the Perils of Virtual Settlement (Part 2), https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21 ,Date accessed: 2018-06-29.
+
