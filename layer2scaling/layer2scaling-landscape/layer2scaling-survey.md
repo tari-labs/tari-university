@@ -150,8 +150,6 @@ None.
 
 Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers, maintains public record of orders and a deterministic specification of behaviour. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa. [[5]](https://neonexchange.org/pdfs/whitepaper_v2.pdf)
 
-![NEX-matching-engine](./sources/NEX-matching-engine.png)
-
 #### Who does it?
 
 - Neon Exchange (NEX) ( [[5]](https://neonexchange.org/pdfs/whitepaper_v2.pdf), [[36]](https://neonexchange.org/))
@@ -160,10 +158,14 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
   - Cross-chain support planned for trading BTC, LTC, and RPX on NEX;
   - Consensus is achieved using cryptographically signed requests, publicly specified deterministic off-chain matching engine algorithm, public ledgers of transactions and reward for foul play. The trade method of the exchange smart contract will only accept orders signed by a private key held by the matching engine;
   - The engine matches the orders and submits them to the respective block chain smart contract for execution.
+
+  ![NEX-matching-engine](./sources/NEX-matching-engine.png)
 - 0x ([[34]](https://0xproject.com/), [[35]](https://0xproject.com/pdfs/0x_white_paper.pdf))
   - An Ethereum ERC20 based smart contract token (ZRX)
   - Provides an open source protocol to exchange ERC20 compliant tokens on the Ethereum block chain using off-chain matching engines in the form of dApps (*relayers*), facilitating transactions between *makers* and *takers*;
   - Off-chain order relay + on-chain settlement.
+
+  ![0xSequence](./sources/0xSequence.png)
 
 #### Strengths
 
