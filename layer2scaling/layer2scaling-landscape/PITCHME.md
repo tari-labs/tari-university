@@ -226,37 +226,44 @@ State updates between two parties are done via digitally signed and hash-locked 
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-#####  
-#####  
-##### Strengths
+#####  Strengths
 
-- Flexibility:
+- Performance {*NEX*, *0x*}:
+  - Off-chain request/order;
+  - Off-chain matching.
+- NEX specific:
+  - Batched on-chain commits;
   - Cross-chain transfers;
   - Support of national currencies;
-  - Smart contracts with reward to mitigate unfair exchange;
-  - Public JSON API & web extension API for third-party applications to trade tokens.
+  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens;
 
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-- Performance:
-  - Off-chain matching;
-  - Batched on-chain commits.
-
-- Development environment: ***Elixir on top of Erlang*** for scalable, distributed, fault-tolerant matching engine;
-
-- Cure53 full security audit on web extension;
-- NEX tokens will be regulated as registered European securities.
+- - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine;
+  - Cure53 full security audit on web extension, NEX tokens will be regulated as registered European securities.
+- 0x specific:
+  - Open source protocol to enable creation of independent off-chain dApp matching engines (*Relayers*);
+  - Totally transparent matching of orders with no single point of control:
+    - Maker's order only enters a Relayer's order book if fee schedule is adhered to;
+    - exchange can only happen if a Taker is willing to accept.
+  - Consensus and settlement governed by the publically available DEX smart contract.
 
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-##### Weaknesses
+#### Weaknesses
 
-- A certain level of trust is required, similar to a traditional exchange.
 - Still in development.
+- NEX specific:
+  - A certain level of trust is required, similar to a traditional exchange;
+  - Closed liquidity pool.
+- 0x specific:
+  - A trusted Token Registry will be required to verify ERC20 token addresses and exchange rates;
+  - Front running transactions and transaction collisions possible, more development needed
+  - Batch processing ability unknown.
 
 #####  
 #####  
