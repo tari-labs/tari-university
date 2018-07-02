@@ -114,7 +114,7 @@ Less than expected as Tari's ticketing use case requires many fast transactions 
 
 #####  
 #####  
-##### Threats to The ari
+##### Threats to Tari
 
 None
 
@@ -243,9 +243,10 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 #####  
 ##### **Dash Example**
 
-- Proof of service algorithm -> 2nd tier network of masternodes exists alongside a 1st tier network of miners to achieve distributed consensus on the block chain. 
+- 2nd tier network of masternodes exists alongside a 1st tier network of miners to achieve distributed consensus on the block chain
 - A special deterministic algorithm is used to create a pseudo-random ordering of the Masternodes 
--  N pseudo random Masternodes perform the same task, act as an oracle 
+- N pseudo random Masternodes perform the same task, act as an oracle 
+- Proof of service algorithm: Masternodes check the rest of the network to ensure they remain active, ~1% checked each block, entire network checked ab~6 six times per day (trustless, randomly via the Quorum system)
 
 +++
 
@@ -259,10 +260,11 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 #####  
 ##### Strengths
 
-- InstantSend (Dash)
-- PrivateSend (Dash)
-- Decentralised Governance 
-- It compensates for proof of work’s limitations and behaves almost like a buffed-up version proof of stake systems.
+- Dash: InstantSend, PrivateSend, Decentralised Governance, Decentralized payment processor 
+- BOScoin: integrates masternodes for its smart contracts, masternode governing system 
+- Syscoin: decentralized marketplace, facilitate anonymous and instant payments 
+- Masternodes are flexible: Compensates for proof of work’s limitations, behaves like beefed-up version proof of stake systems
+- Masternodes may promise enhanced stability 
 
 +++
 
