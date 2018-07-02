@@ -272,10 +272,9 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 
 ##### Weaknesses
 
-- In order to be a masternode, you have to invest first;
-- The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
-- ROI is not guaranteed and inconsistent;
-- Location of your masternode is known, node can be stolen.
+- Maintaining of masternodes can be long and arduous task, malfunctions are common
+- ROI is not guaranteed and inconsistent
+- Location of your masternode is known, node can physically be stolen
 
 #####  
 #####  
