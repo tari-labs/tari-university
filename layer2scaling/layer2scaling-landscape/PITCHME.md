@@ -65,7 +65,6 @@ This is where the term 'Layer 2' is borrowed from
 - For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. 
 - This will be impossible to do with parent block chain scaling solutions.
 
-
 ---
 
 ## Layer 2 scaling current initiatives
@@ -105,7 +104,7 @@ This is where the term 'Layer 2' is borrowed from
 
 - It is not suitable for making bulk payment
 - Must be connected and online at the time of the transaction
-- Lightning Network implementation written in C, runs into segmentation faults frequently
+- Currently channels are only bilateral
 
 #####  
 #####  
@@ -238,14 +237,15 @@ Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token 
 #### #4 Masternodes
 
 - A masternode is a server on a decentralised network, can be used for features like direct send/instant transactions or private transactions.
-
 - Masternode operators are rewarded by earning portions of block rewards, standard return on their stakes, portion of the transaction fees. Allowing for a greater ROI.
 
 #####  
 #####  
 ##### **Dash Example**
 
-Dash - masternodes for proof of service and miners for proof of work, achieve distributed consensus on the blockchain. Masternodes share an equal block rewards with miners. 
+- Proof of service algorithm -> 2nd tier network of masternodes exists alongside a 1st tier network of miners to achieve distributed consensus on the block chain. 
+- A special deterministic algorithm is used to create a pseudo-random ordering of the Masternodes 
+-  N pseudo random Masternodes perform the same task, act as an oracle 
 
 +++
 
