@@ -72,7 +72,7 @@ Lightning is spreading across the cryptocurrency landscape. It was originally de
 
 - It is not suitable for making bulk payment, as the intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along; 
 - Recipients cannot receive money unless their node is connected and online at the time of the transaction;
-- One of The Lightning Network implementations, written in C, runs into segmentation faults frequently. [[14]](https://cryptoverze.com/what-is-bitcoin-lightning-network/)
+- Currently channels are only bilaternal 
 
 #### Opportunities for Tari 
 
@@ -215,7 +215,7 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 A masternode (MN) is a server on a decentralised network [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08). It is utilised to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions [[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes).
 
-Because of their increased capabilities, masternodes typically require a sizeable investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. [[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes)
+Because of their increased capabilities, masternodes typically require an investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. [[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes)
 
 Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. [[10]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes)
 
@@ -281,10 +281,8 @@ They can even be used to keep miners from stepping out of line.  Under Dash’s
 
 #### Weaknesses
 
-- In order to get a masternode,you have to invest 1000 Dash into it- and not touch that money (if balance drops below 1000 Dash, one can lose voting rights and effectively be blocked from the Dash masternode network; 
 - The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
 - ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid). [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
-- Masternodes are put forth with very little to no utility (only the promise of a Whitepaper);
 - By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be physically stolen. [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
 
 #### Opportunities for Tari
