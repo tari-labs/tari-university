@@ -15,7 +15,7 @@
 
 ## What is Layer 2 scaling?
 
-<u>Problem to solve:</u> 
+<u>Block chain problem to solve:</u> 
 
 - average block creation time
 - block size limit
@@ -23,7 +23,22 @@
 
 ![waiting](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/waiting.png)
 
----
++++
+
+## What is Layer 2 scaling? (cont'd)
+
+Let's postulate block chain and cryptocurrency "takes over the world", ~433.1 billion non-cash transactions per year...
+
+- 13,734 transactions per second (tx/s) on average!
+
+- Segwit enabled Bitcoin 'like' block chains, need ~644 parallel versions, combined growth ~210 GB per day! 
+- Ethereum 'like' block chains, need ~541 parallel versions, combined growth  ~120 GB per day!
+
+This is why we need a proper scaling solution that would not bloat the block chain.
+
++++
+
+## What is Layer 2 scaling? (cont'd)
 
 <u>Open Systems Interconnection (OSI) model</u> 
 
@@ -31,11 +46,13 @@ This is where the term 'Layer 2' is borrowed from
 
 ![OSI_Model](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
 
----
++++
+
+## What is Layer 2 scaling? (cont'd)
 
 <u>Layer 2 scaling</u>
 
-- In block chain, decentralised Layer 2 protocols (i.e. referred to as Layer 2 scaling) refers to transaction throughput scaling solutions
+- In block chain, decentralized Layer 2 protocols (i.e. referred to as Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
 
 ![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
