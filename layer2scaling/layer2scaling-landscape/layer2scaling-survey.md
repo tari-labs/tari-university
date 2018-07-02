@@ -156,9 +156,10 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
   - A NEO decentralized application (dApp) with tokens;
   - Initial support planned for NEO, ETH, NEP5, and ERC20 tokens;
   - Cross-chain support planned for trading BTC, LTC, and RPX on NEX;
+  - The NEX off-chain matching engine will be scalable, distributed, fault-tolerant, function continuously and without downtime;
   - Consensus is achieved using cryptographically signed requests, publicly specified deterministic off-chain matching engine algorithm, public ledgers of transactions and reward for foul play. The trade method of the exchange smart contract will only accept orders signed by a private key held by the matching engine;
-  - The engine matches the orders and submits them to the respective block chain smart contract for execution;
-  - A single invocation transaction on NEO can contain many smart contract calls; batch commit of matched orders in one on-chain transaction possible. 
+  - The matching engine matches the orders and submits them to the respective block chain smart contract for execution;
+  - A single invocation transaction on NEO can contain many smart contract calls; batch commit of matched orders in one on-chain transaction possible.
 
   ![NEX-matching-engine](./sources/NEX-matching-engine.png)
 - 0x ([[34]](https://0xproject.com/), [[35]](https://0xproject.com/pdfs/0x_white_paper.pdf))
@@ -297,15 +298,21 @@ None
 ### #5 Plasma
 #### What is it?
 
-Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format. [[4]](http://plasma.io/plasma.pdf)
+Plasma block chains are a chain within a block chain, with state transitions enforced by bonded (time to exit) fraud proofs (block header hashes) submitted on the root chain. It enables management of a tiered block chain without a full persistent record of the ledger on the root block chain and without giving custodial trust to any 3rd party. The fraud proofs enforce an interactive protocol of rapid fund withdrawals in case of foul play like block withholding, in cases where bad actors in a lower level tier want to commit blocks to the root chain without broadcasting it to the higher level tiers. [[4]](http://plasma.io/plasma.pdf)
 
-Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. [[4]](http://plasma.io/plasma.pdf)
+![Plasma-example-01](./sources/Plasma-example-01.png)
+
+Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format. [[4]](http://plasma.io/plasma.pdf)
+
+Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains (enforced in an on-chain smart contract). Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. If a chain is Byzantine, it has the option of going to any of its parents (including the root block chain) to continue operation or exit with the current committed state. [[4]](http://plasma.io/plasma.pdf)
 
 ![Plasma example](./sources/Plasma-example.png)
 
+MapReduce is a programming model and an associated implementation for processing and generating large data sets. Users specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce function that merges all intermediate values associated with the same intermediate key. [[39]](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf) The Plasma MapReduce  includes commitments on data to computation as input in the map phase and includes a merkleized proof of state transition in the reduce step when returning the result.  [[4]](http://plasma.io/plasma.pdf)
+
 #### Who does it?
 
-Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [[16]](https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe)
+Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. ([[4]](http://plasma.io/plasma.pdf), [[16]](https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe))
 
 OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([[6]](https://cdn.omise.co/omg/whitepaper.pdf), [[15]](https://omisego.network/))
 
@@ -314,7 +321,8 @@ OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Pl
 - Not all participants need to be online to update state;
 - Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain;
 - Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
-- Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
+- Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain;
+- Rapid exit strategies in case of foul play.
 
 #### Weaknesses
 
@@ -409,5 +417,7 @@ Further investigation into the more promising layer 2 scaling solutions and tech
 
 [37] Front-running, Griefing and the Perils of Virtual Settlement (Part 1), https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-1-8554ab283e97, Date accessed: 2018-06-29.
 
-[38] Front-running, Griefing and the Perils of Virtual Settlement (Part 2), https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21 ,Date accessed: 2018-06-29.
+[38] Front-running, Griefing and the Perils of Virtual Settlement (Part 2), https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21, Date accessed: 2018-06-29.
+
+[39] MapReduce: Simplied Data Processing on Large Clusters, https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf, Date accessed: 2018-07-02.
 
