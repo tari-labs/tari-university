@@ -124,6 +124,8 @@ None
 
 State channels are the more general form of micropayment channels  (they can be used not only for payments, but for any arbitrary “state update” on a block chain)  like changes inside a smart contract.
 
+Any change of state within a state channel requires explicit cryptographic consent.
+
 #####  
 #####  
 ##### Who?
@@ -136,26 +138,37 @@ State channels are the more general form of micropayment channels  (they can b
 
 #### #2 State Channels (cont'd)
 
-- Counterfactual (*<u>On Ethereum</u>*)
+<u>Consensus</u>
 
-  - A generalised framework for native state channels integration in Ethereum-based dApps;
-  - A generalised state channel generalised framework is one where state is deposited once and then be used by any application or set of applications afterwards.
+State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out. 
 
-- Funfair (*<u>On Ethereum</u>*)
-  - Decentralized gambling platform
+![Raiden](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
 +++
 
 #### #2 State Channels (cont'd)
 
-- SpankChain (*<u>On Ethereum</u>*)
-  - Adult performers
+- Counterfactual (*<u>On Ethereum</u>*)
 
-- Horizon Blockchain Games (*<u>On Ethereum</u>*)
-  - Ethereum-based game
+  - A generalised framework for native state channels integration in Ethereum-based dApps;
+  - State is deposited once and then used by any application or set of applications afterwards.
+  - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain, users sign and share commitments to the multisig wallet 
+  -  All parties in the channel act as though it has been deployed, even though it has not 
+  - Use global registry, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses 
+
++++
+
+#### #2 State Channels (cont'd)
+
+- Funfair (*<u>On Ethereum</u>*)
+  - Decentralized gambling platform, centralized server based random number generation 
+  - Investigating threshold cryptography like Boneh–Lynn–Shacham (BLS) signature schemes to enable secure random number generation by a group of participants 
 
 - Trinity  (*<u>On NEO</u>*)
-  - Trinity is an open-source network protocol based on NEP-5 smart contracts. NEO sees Trinity as their answer to achieve real-time payments, low transaction fees, scalability, micro transactions, and privacy protection for all NEO (NEP-5) assets.
+  - Trinity is an open-source network protocol based on NEP-5 smart contracts;
+  - Trinity for NEO is the same as the Raiden Network for Ethereum;
+  - Trinity uses the same consensus mechanism as the Raiden network;
+  - New token TNC to fund the Trinity network, but NEO, NEP-5 and TNC tokens are supported.
 
 +++
 
@@ -174,11 +187,13 @@ State channels are the more general form of micropayment channels  (they can b
 
 ---
 
-#### #3 Trusted, off-chain matching engines
+#### #3 Off-chain matching engines
 
-Orders are matched off-chain in matching engine and fulfilled on-chain, allows complex orders, support cross-chain transfers, maintains public record of orders and a deterministic specification of behaviour. Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa.
-
-![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
+- Orders are matched off-chain in matching engine and fulfilled on-chain
+- Allows complex orders
+- Support cross-chain transfers
+- Maintains public record of orders and a deterministic specification of behaviour
+- Makes use of token representation smart contract, that converts global assets into smart contract tokens and vice versa
 
 +++
 
@@ -186,7 +201,30 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 ##### Who?
 
-Neon Exchange (NEX), a NEO dApp. Initially focussed on NEO, GAS and NEP-5 token transactions. Exchange on Ethereum and other blockchains planned.
+<u>Neon Exchange (NEX)</u> a NEO dApp.
+
+- Initially focussed on NEO, GAS and NEP-5 token transactions. Exchange on Ethereum and other blockchains planned
+- off-chain matching engine will be scalable, distributed, fault-tolerant, function continuously and without downtime; 
+- Consensus is achieved using cryptographically signed requests, public ledgers of transactions 
+
+<u>0x</u> An Ethereum ERC20 based smart contract token (ZRX)
+
+- Open source protocol to exchange ERC20 compliant tokens, matching engines in the form of dApps (*Relayers*), facilitate transactions between *Makers* and *Takers* 
+- Consensus are governed with the publically available DEX smart contract 
+
+
+
++++
+
+#### #3 Trusted, off-chain matching engines (cont'd)
+
+![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
+
+![0xSequence](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/0xSequence.png)
+
++++
+
+#### #3 Trusted, off-chain matching engines (cont'd)
 
 #####  
 #####  
