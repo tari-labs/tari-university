@@ -331,7 +331,7 @@ Must still be proven on other networks apart from Ethereum.
 #### Opportunities for Tari
 
 - Has alignment with Tari's base requirements.
-- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero?*
+- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari specific root block chain?*
 
 #### Threats for Tari
 
