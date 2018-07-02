@@ -227,6 +227,22 @@ Once a masternode is live, it accommodates  a unique series of functions, such a
 
 As compensation for their troubles, masternodes typically share an equally 45% of block rewards with the blockchain’s miners.  The other 10% goes to the blockchain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
 
+*_Deterministic Ordering of DASH_*
+
+A special deterministic algorithm is used to create a pseudo-random ordering of the Masternodes. By using the hash from the proof-of-work for each block, security of this functionality will be provided by the mining network. [[31]](https://res.tuoluocaijing.cn/20180517155941-ojog.pdf)
+
+*_Trustless Quorums_*
+
+According to DASH, the secondary network can be used to perform highly sensitive tasks in a trustless way, where no single entity can control the outcome: N pseudo random Masternodes are selected from the total pool to perform the same task, these nodes then can act as an oracle, without having the whole network do the task. 
+
+
+*_Proof of Service_*
+
+Bad actors could also run Masternodes, but not provide any of the quality service that is required of the rest of the network. To reduce the possibility of people using the system to their advantage nodes must ping the rest of the network to ensure they remain active. 
+
+This work is done by the Masternode network by selecting 2 quorums per block. Quorum A checks the service of Quorum B each block. Quorum A are the closest nodes to the current block hash, while Quorum B are the furtherest nodes from said hash.
+
+All work done to check the network to prove that nodes are active is done by the Masternode network itself. Approximately 1% of the network will be checked each block. This results in the entire network being check about six times per day. In order to keep this system trustless, nodes are selected randomly via the Quorum system- a minimum of six consecutive violations result in the deactivation of a node. [[31]](https://res.tuoluocaijing.cn/20180517155941-ojog.pdf) 
 
 #### Who does it? [[9]](https://blockonomi.com/masternode-guide/)
 
@@ -256,7 +272,7 @@ As compensation for their troubles, masternodes typically share an equally 45% o
 
 - Cryptoassets like Block Net and Exscudo will use masternodes to support their decentralized exchanges: Masternodes will oversee exchange transactions to facilitate cryptocurrency trading and offer fiat currency gateways.
 - BOScoin integrates masternodes for its smart contracts and adopts the masternode governing system for its Congress Network.  
-- Syscoin applies masternode functionality to its decentralized marketplace.  With Syscoin, users can access the blockchain equivalent of peer-run commerce sites like eBay.  Masternodes will be responsible for facilitating anonymous and instant payments on the marketplace.  
+- Syscoin applies masternode functionality to its decentralized marketplace.  With Syscoin, users can access the blockchain equivalent of peer-run commerce sites like eBay.  Masternodes will be responsible for facilitating anonymous and instant payments on the marketplace. [[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/)   
 
 Masternode application is quite flexible.  It compensates for proof of work’s limitations and behaves almost like a buffed-up version proof of stake systems.
 Like proof of stake, it avoids the de-facto centralization mining pools bring to proof of work networks, and it consumes less energy than the proof of work model.  Masternodes may promise enhanced stability and network loyalty, as larger dividends and high initial investment costs make it less likely that operators will abandon their position in the network.
@@ -268,7 +284,7 @@ They can even be used to keep miners from stepping out of line.  Under Dash’s
 - The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
 - ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid). [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
 - Masternodes are put forth with very little to no utility (only the promise of a Whitepaper);
-- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be stolen. [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
+- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be physically stolen. [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
 
 #### Opportunities for Tari
 
