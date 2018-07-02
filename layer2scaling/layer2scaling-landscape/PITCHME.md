@@ -34,7 +34,7 @@ Let's postulate block chain and cryptocurrency "takes over the world", ~433.1 bi
 - Segwit enabled Bitcoin 'like' block chains, need ~644 parallel versions, combined growth ~210 GB per day! 
 - Ethereum 'like' block chains, need ~541 parallel versions, combined growth  ~120 GB per day!
 
-This is why we need a proper scaling solution that would not bloat the block chain.
+This is why we need a proper scaling solution.
 
 +++
 
@@ -61,9 +61,10 @@ This is where the term 'Layer 2' is borrowed from
 
 ## How will this be applicable to Tari?
 
-The initial business application to be built on top of the Tari block chain, Big Neon, requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event.
+- Tari is a high-throughput protocol that will need to handle tens of thousands of transactions per second.
+- For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. 
+- This will be impossible to do with parent block chain scaling solutions.
 
-This will be impossible to do with parent block chain scaling solutions.
 
 ---
 
@@ -73,6 +74,7 @@ This will be impossible to do with parent block chain scaling solutions.
 
 - Users can make multiple transactions without committing all to the block chain
 - Hashed Time-Locked Contracts (HTLC) allow payments to be securely routed across multiple payment channels
+- It is a second layer payment protocol that operates on top of a block chain
 
 <u>Example:</u> The Lightning Network
 
@@ -91,8 +93,8 @@ This will be impossible to do with parent block chain scaling solutions.
 #####  
 ##### Strengths
 
-- A leading solution presented to scale Bitcoin
-- Speed
+- A leading solution presented to scale Bitcoin and Litecoin
+- Speed of confirmed transactions
 - Low transaction fees
 
 +++
