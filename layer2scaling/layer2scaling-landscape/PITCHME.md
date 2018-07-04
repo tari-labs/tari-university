@@ -348,15 +348,18 @@ None
 ##### What is it?
 
 - Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format
-- Plasma relies on two key parts: reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour
 
 ![Plasma-example-01](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Plasma-example-01.png)
 
-- MapReduce: commitments on data to computation as input in map phase, merkleized proof of state transition in reduce step when returning the result
+- Plasma relies on two key parts: MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains
 
 +++
 
 #### #5 Plasma (cont'd)
+
+- Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour
+
+- MapReduce: commitments on block chain computations as input in map phase, merkleized proof of state transition in reduce step when returning the result
 
 ![Plasma example](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
 
