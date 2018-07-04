@@ -338,8 +338,8 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 
 ## Observations
 
-- An overview of Counterparty, Rootstock, Drivechains and Scriptless scripts must still be added.
 - Further investigation into the more promising layer 2 scaling solutions and technologies is required to verify alignment, applicability and use-ability.
+- An overview of Counterparty, Rootstock, Drivechains and Scriptless scripts must still be added.
 
 ## References
 

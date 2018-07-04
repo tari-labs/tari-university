@@ -348,9 +348,11 @@ None
 ##### What is it?
 
 - Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format
-- Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour
+- Plasma relies on two key parts: reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour
 
 ![Plasma-example-01](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Plasma-example-01.png)
+
+- MapReduce: commitments on data to computation as input in map phase, merkleized proof of state transition in reduce step when returning the result
 
 +++
 
@@ -364,9 +366,9 @@ None
 
 ##### Who?
 
-- Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. [16]
+- *Loom Network*, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum
 
-- OMG Network (OmiseGO), using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([6], [15])
+- *OMG Network (OmiseGO)*, using Proof of Stake (PoS) consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum
 
 +++
 
@@ -374,16 +376,16 @@ None
 
 ##### Strengths
 
-- Not all participants need to be online to update state;
-- Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain;
-- Minimal data needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format;
-- Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
+- Not all participants need to be online to update state
+- Participants do not need record of entry on parent block chain to enable their participation in a Plasma block chain
+- Minimal data needed on parent block chain to confirm transactions when constructing Plasma block chains in tree format
+- Private block chain networks can be constructed, enforced by the root block chain (transactions may occur on local private block chain and have financial activity bonded by a public parent block chain)
 
 #####  
 #####  
 ##### Weaknesses
 
-Must still be proven on other networks apart from Ethereum.
+Must still be proven on other networks apart from Ethereum
 
 +++
 
@@ -391,17 +393,19 @@ Must still be proven on other networks apart from Ethereum.
 
 ##### Opportunities for Tari
 
-- Has alignment with Tari's base requirements.
-- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero?*
+- Has alignment with Tari's base requirements
+- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari specific root block chain?*
 
 #####  
 #####  
 ##### Threats for Tari
 
-The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
+The Loom Network's SDK makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
 
 ---
 
 ## Observations
 
-Further investigation into the more promising layer 2 scaling solutions and technologies is required to verify alignment, applicability and use-ability.
+Further investigation into the more promising layer 2 scaling solutions and technologies is required to verify alignment, applicability and use-ability
+
+An overview of Counterparty, Rootstock, Drivechains and Scriptless scripts must still be added
