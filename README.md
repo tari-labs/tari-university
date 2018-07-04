@@ -32,16 +32,12 @@ Cryptography | Crypto101 | An intro to elliptic curve math and digital signature
 General | Non-Fungible Tokens | An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereuem standards, and players in the Blockchain-based ticketing industry | 1 | Anyone interested in NFTs | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=nft-landscape-1#/) 
 Off-chain Scaling | Lightning Network for Dummies | An intro to the Lightning Network, including examples of its workings, pros and cons | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=LightningNetworkForDummies#/)
 Protocol | MimbleWimble | An intro to MimbleWimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=mimblewimble-1#/) 
-Technical | Merge Mining  | Presents a fundamental undersatnding to the concept of merge mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
+Technical | Merge Mining  | Presents a fundamental understanding to the concept of merge mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
+Technical | Layer 2 Scaling | Presents a survey on some of the current layer 2 scaling initiatives | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/PullRequest12?player2scaling/layer2scaling-landscape/#/)  
  
 
 ## Future Streams and Topics 
 
-Stream | Topic | 
-----|----|
-Blockchain | |
-Game Theory | |
-Regulatory | |
-Socio-Economic | |
-Strategy | |
-Technical | Decred | 
+Stream | Topic | Date
+----|----| --- |
+Technical | Merkle Trees | 9 July 2018 |
