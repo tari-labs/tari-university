@@ -72,7 +72,7 @@ Lightning is spreading across the cryptocurrency landscape. It was originally de
 
 - It is not suitable for making bulk payment, as the intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along; 
 - Recipients cannot receive money unless their node is connected and online at the time of the transaction;
-- Currently channels are only bilaternal 
+- Currently channels are only bilateral 
 
 #### Opportunities for Tari 
 
@@ -108,7 +108,8 @@ Any change of state within a state channel requires explicit cryptographic conse
   - A generalized state channel generalized framework is one where state is deposited once and then be used by any application or set of applications afterwards;
   - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain and is achieved by making users sign and share commitments to the multisig wallet;
   - When a contract is counterfactually instantiated, all parties in the channel act as though it has been deployed, even though it has not;
-  - A global registry is introduced, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses. The hashing function used to produce the deterministic address can be any function that takes into account the bytecode, its owner (i.e. the multi-signature wallet address), and a unique identifier.
+  - A global registry is introduced, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses. The hashing function used to produce the deterministic address can be any function that takes into account the bytecode, its owner (i.e. the multi-signature wallet address), and a unique identifier;
+  - A typical Counterfactual state-channel is composed of counterfactually instantiated objects.
 
 ![Counterfactual](./sources/Counterfactual.PNG)
 
@@ -187,7 +188,7 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
   - Open source protocol to enable creation of independent off-chain dApp matching engines (*Relayers*);
   - Totally transparent matching of orders with no single point of control:
     - Maker's order only enters a Relayer's order book if fee schedule is adhered to;
-    - exchange can only happen if a Taker is willing to accept.
+    - Exchange can only happen if a Taker is willing to accept.
   - Consensus and settlement governed by the publically available DEX smart contract.
 
 #### Weaknesses

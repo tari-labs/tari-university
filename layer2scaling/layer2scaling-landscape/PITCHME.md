@@ -34,7 +34,7 @@ Let's postulate block chain and cryptocurrency "takes over the world", ~433.1 bi
 - Segwit enabled Bitcoin 'like' block chains, need ~644 parallel versions, combined growth ~210 GB per day! 
 - Ethereum 'like' block chains, need ~541 parallel versions, combined growth  ~120 GB per day!
 
-This is why we need a proper scaling solution.
+This is why we need a proper scaling solution
 
 +++
 
@@ -52,7 +52,7 @@ This is where the term 'Layer 2' is borrowed from
 
 <u>Layer 2 scaling</u>
 
-- In block chain, decentralized Layer 2 protocols (i.e. referred to as Layer 2 scaling) refers to transaction throughput scaling solutions
+- In block chain, decentralized Layer 2 protocols (i.e. Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
 
 ![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
@@ -61,9 +61,9 @@ This is where the term 'Layer 2' is borrowed from
 
 ## How will this be applicable to Tari?
 
-- Tari is a high-throughput protocol that will need to handle tens of thousands of transactions per second.
-- For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. 
-- This will be impossible to do with parent block chain scaling solutions.
+- Tari is a high-throughput protocol that will need to handle tens of thousands of transactions per second
+- For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event
+- This will be impossible to do with parent block chain scaling solutions
 
 ---
 
@@ -85,8 +85,8 @@ This is where the term 'Layer 2' is borrowed from
 
 ##### Who ?
 
-- Bitcoin, Litecoin, Zcash, Ripple. 
-- Ethereum also interested. 
+- Bitcoin, Litecoin, Zcash, Ripple
+- Ethereum also interested
 
 #####  
 #####  
@@ -110,7 +110,7 @@ This is where the term 'Layer 2' is borrowed from
 #####  
 ##### Opportunities for Tari
 
-Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
+Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party
 
 #####  
 #####  
@@ -124,15 +124,15 @@ None
 
 State channels are the more general form of micropayment channels  (they can be used not only for payments, but for any arbitrary “state update” on a block chain)  like changes inside a smart contract.
 
-Any change of state within a state channel requires explicit cryptographic consent.
+Any change of state within a state channel requires explicit cryptographic consent
 
 #####  
 #####  
 ##### Who?
 
 - Raiden (*<u>On Ethereum</u>*)
-  - Research state channel technology, define protocols and develop reference implementations;
-  - Works with any ERC20 compatible token.
+  - Research state channel technology, define protocols and develop reference implementations
+  - Works with any ERC20 compatible token
 
 +++
 
@@ -140,7 +140,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 
 <u>Consensus</u>
 
-State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out. 
+State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out
 
 ![Raiden](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
@@ -150,11 +150,19 @@ State updates between two parties are done via digitally signed and hash-locked 
 
 - Counterfactual (*<u>On Ethereum</u>*)
 
-  - A generalised framework for native state channels integration in Ethereum-based dApps;
-  - State is deposited once and then used by any application or set of applications afterwards.
+  - A generalised framework for native state channels integration in Ethereum-based dApps
+  - State is deposited once and then used by any application or set of applications afterwards
   - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain, users sign and share commitments to the multisig wallet 
   -  All parties in the channel act as though it has been deployed, even though it has not 
   - Use global registry, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses 
+
++++
+
+#### #2 State Channels (cont'd)
+
+- - A typical Counterfactual state-channel is composed of counterfactually instantiated objects
+
+![Counterfactual](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Counterfactual.PNG)
 
 +++
 
@@ -166,9 +174,9 @@ State updates between two parties are done via digitally signed and hash-locked 
 
 - Trinity  (*<u>On NEO</u>*)
   - Trinity is an open-source network protocol based on NEP-5 smart contracts;
-  - Trinity for NEO is the same as the Raiden Network for Ethereum;
-  - Trinity uses the same consensus mechanism as the Raiden network;
-  - New token TNC to fund the Trinity network, but NEO, NEP-5 and TNC tokens are supported.
+  - Trinity for NEO is the same as the Raiden Network for Ethereum
+  - Trinity uses the same consensus mechanism as the Raiden network
+  - New token TNC to fund the Trinity network, but NEO, NEP-5 and TNC tokens are supported
 
 +++
 
@@ -201,10 +209,10 @@ State updates between two parties are done via digitally signed and hash-locked 
 
 ##### Who?
 
-<u>Neon Exchange (NEX)</u> a NEO dApp.
+<u>Neon Exchange (NEX)</u> a NEO dApp
 
-- Initially focussed on NEO, GAS and NEP-5 token transactions. Exchange on Ethereum and other blockchains planned
-- off-chain matching engine will be scalable, distributed, fault-tolerant, function continuously and without downtime; 
+- Initially focussed on NEO, GAS and NEP-5 token transactions  -  Exchange on Ethereum and other block chains planned
+- Off-chain matching engine will be scalable, distributed, fault-tolerant, function continuously and without downtime
 - Consensus is achieved using cryptographically signed requests, public ledgers of transactions 
 
 <u>0x</u> An Ethereum ERC20 based smart contract token (ZRX)
@@ -228,27 +236,27 @@ State updates between two parties are done via digitally signed and hash-locked 
 
 #####  Strengths
 
-- Performance {*NEX*, *0x*}:
-  - Off-chain request/order;
-  - Off-chain matching.
-- NEX specific:
-  - Batched on-chain commits;
-  - Cross-chain transfers;
-  - Support of national currencies;
-  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens;
+- Performance {*NEX*, *0x*}
+  - Off-chain request/order
+  - Off-chain matching
+- NEX specific
+  - Batched on-chain commits
+  - Cross-chain transfers
+  - Support of national currencies
+  - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens
 
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-- - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine;
-  - Cure53 full security audit on web extension, NEX tokens will be regulated as registered European securities.
-- 0x specific:
-  - Open source protocol to enable creation of independent off-chain dApp matching engines (*Relayers*);
-  - Totally transparent matching of orders with no single point of control:
-    - Maker's order only enters a Relayer's order book if fee schedule is adhered to;
-    - exchange can only happen if a Taker is willing to accept.
-  - Consensus and settlement governed by the publically available DEX smart contract.
+- - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine
+  - Cure53 full security audit on web extension, NEX tokens regulated as registered European securities
+- 0x specific
+  - Open source protocol enable creation of independent off-chain dApp matching engines (*Relayers*)
+  - Totally transparent matching of orders with no single point of control
+    - Maker's order only enters a Relayer's order book if fee schedule is adhered to
+    - Exchange can only happen if a Taker is willing to accept
+  - Consensus and settlement governed by the publically available DEX smart contract
 
 +++
 
@@ -256,20 +264,20 @@ State updates between two parties are done via digitally signed and hash-locked 
 
 #### Weaknesses
 
-- Still in development.
-- NEX specific:
-  - A certain level of trust is required, similar to a traditional exchange;
-  - Closed liquidity pool.
-- 0x specific:
-  - A trusted Token Registry will be required to verify ERC20 token addresses and exchange rates;
+- NEX and 0x still in development
+- NEX specific
+  - Certain level of trust is required, similar to traditional exchange
+  - Closed liquidity pool
+- 0x specific
+  - Trusted Token Registry will be required to verify ERC20 token addresses and exchange rates
   - Front running transactions and transaction collisions possible, more development needed
-  - Batch processing ability unknown.
+  - Batch processing ability unknown
 
 #####  
 #####  
 ##### Opportunities for Tari
 
-- Has alignment with Tari's base requirements.
+- Has alignment with Tari's base requirements
 
 #####  
 #####  
@@ -281,17 +289,17 @@ State updates between two parties are done via digitally signed and hash-locked 
 
 #### #4 Masternodes
 
-- A masternode is a server on a decentralised network, can be used for features like direct send/instant transactions or private transactions.
-- Masternode operators are rewarded by earning portions of block rewards, standard return on their stakes, portion of the transaction fees. Allowing for a greater ROI.
+- A masternode is a server on a decentralized network, features like direct send/instant transactions or private transactions
+- Masternode operators rewarded by earning portions of block rewards, standard return on their stakes & portion of the transaction fees - allowing for a greater ROI
 
 #####  
 #####  
 ##### **Dash Example**
 
-- 2nd tier network of masternodes exists alongside a 1st tier network of miners to achieve distributed consensus on the block chain
-- A special deterministic algorithm is used to create a pseudo-random ordering of the Masternodes 
+- 2nd tier network masternodes exists alongside a 1st tier network miners to achieve distributed consensus on the block chain
+- Special deterministic algorithm used to create pseudo-random ordering of Masternodes 
 - N pseudo random Masternodes perform the same task, act as an oracle 
-- Proof of service algorithm: Masternodes check the rest of the network to ensure they remain active, ~1% checked each block, entire network checked ab~6 six times per day (trustless, randomly via the Quorum system)
+- Proof of service algorithm: Masternodes check rest of network to ensure they remain active, ~1% checked each block, entire network checked ~6 times per day (trustless, randomly via the Quorum system)
 
 +++
 
@@ -339,9 +347,10 @@ None
 
 ##### What is it?
 
-- Plasma is a framework for incentivised and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format.
+- Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format
+- Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour
 
-- Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains where the Nakamoto Consensus incentives discourage block withholding or other Byzantine behaviour.
+![Plasma-example-01](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Plasma-example-01.png)
 
 +++
 
