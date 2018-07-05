@@ -163,10 +163,10 @@ State channels the more general form of micropayment channels  (also used for 
   - Investigating threshold cryptography like Boneh–Lynn–Shacham (BLS) signature schemes to enable secure random number generation by a group of participants 
 
 - Trinity  (*<u>On NEO</u>*)
-  - Trinity is an open-source network protocol based on NEP-5 smart contracts;
+  - Trinity is an open-source network protocol based on NEP-5 smart contracts
   - Trinity for NEO is the same as the Raiden Network for Ethereum
   - Trinity uses the same consensus mechanism as the Raiden network
-  - New token TNC to fund the Trinity network, but NEO, NEP-5 and TNC tokens are supported
+  - New token (TNC) to fund the Trinity network; NEO, NEP-5 and TNC tokens are supported
 
 +++
 
@@ -252,7 +252,7 @@ State channels the more general form of micropayment channels  (also used for 
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-#### Weaknesses
+##### Weaknesses
 
 - NEX and 0x still in development
 - NEX specific
@@ -284,7 +284,7 @@ State channels the more general form of micropayment channels  (also used for 
 
 #####  
 #####  
-##### **Dash Example**
+**Dash Example**
 
 - 2nd tier network masternodes exists alongside a 1st tier network miners to achieve distributed consensus on the block chain
 - Special deterministic algorithm used to create pseudo-random ordering of Masternodes 
