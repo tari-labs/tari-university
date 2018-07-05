@@ -17,9 +17,9 @@
 
 <u>Block chain problem to solve:</u> 
 
-- average block creation time
-- block size limit
-- number of newer blocks needed to confirm a transaction 
+- Average block creation time
+- Block size limit
+- Number of newer blocks needed to confirm a transaction 
 
 ![waiting](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/waiting.png)
 
@@ -108,10 +108,12 @@ This is where the term 'Layer 2' is borrowed from
 
 #####  
 #####  
+#####  
 ##### Opportunities for Tari
 
 Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party
 
+#####  
 #####  
 #####  
 ##### Threats to Tari
