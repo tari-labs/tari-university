@@ -284,12 +284,12 @@ State channels the more general form of micropayment channels  (also used for 
 
 #####  
 #####  
-**Dash Example**
+- **Dash Example**
 
-- 2nd tier network masternodes exists alongside a 1st tier network miners to achieve distributed consensus on the block chain
-- Special deterministic algorithm used to create pseudo-random ordering of Masternodes 
-- N pseudo random Masternodes perform the same task, act as an oracle 
-- Proof of service algorithm: Masternodes check rest of network to ensure they remain active, ~1% checked each block, entire network checked ~6 times per day (trustless, randomly via the Quorum system)
+  - 2nd tier network masternodes exists alongside a 1st tier network miners to achieve distributed consensus on the block chain
+  - Special deterministic algorithm used to create pseudo-random ordering of Masternodes 
+  - N pseudo random Masternodes perform the same task, act as an oracle 
+  - Proof of service algorithm: Masternodes check rest of network to ensure they remain active, ~1% checked each block, entire network checked ~6 times per day (trustless, randomly via the Quorum system)
 
 +++
 
