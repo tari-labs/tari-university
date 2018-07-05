@@ -109,10 +109,12 @@ This is where the term 'Layer 2' is borrowed from
 #####  
 #####  
 #####  
+#####  
 ##### Opportunities for Tari
 
 Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party
 
+#####  
 #####  
 #####  
 #####  
