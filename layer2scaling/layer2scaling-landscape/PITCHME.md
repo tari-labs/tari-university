@@ -108,14 +108,10 @@ This is where the term 'Layer 2' is borrowed from
 
 #####  
 #####  
-#####  
-#####  
 ##### Opportunities for Tari
 
 Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party
 
-#####  
-#####  
 #####  
 #####  
 ##### Threats to Tari
@@ -130,27 +126,19 @@ State channels are the more general form of micropayment channels  (they can b
 
 Any change of state within a state channel requires explicit cryptographic consent
 
-#####  
-#####  
-##### Who?
-
-- Raiden (*<u>On Ethereum</u>*)
-  - Research state channel technology, define protocols and develop reference implementations
-  - Works with any ERC20 compatible token
-
-+++
-
-#### #2 State Channels (cont'd)
-
-<u>Consensus</u>
-
-State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out
+<u>Consensus</u>: State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out
 
 ![Raiden](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
 +++
 
 #### #2 State Channels (cont'd)
+
+##### Who?
+
+- Raiden (*<u>On Ethereum</u>*)
+  - Research state channel technology, define protocols and develop reference implementations
+  - Works with any ERC20 compatible token
 
 - Counterfactual (*<u>On Ethereum</u>*)
 
