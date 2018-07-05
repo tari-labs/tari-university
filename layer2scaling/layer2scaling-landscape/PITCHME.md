@@ -122,11 +122,9 @@ None
 
 #### #2 State Channels
 
-State channels are the more general form of micropayment channels  (they can be used not only for payments, but for any arbitrary “state update” on a block chain)  like changes inside a smart contract.
+State channels the more general form of micropayment channels  (also used for any arbitrary “state update” on block chain)  like changes inside smart contract.
 
-Any change of state within a state channel requires explicit cryptographic consent
-
-<u>Consensus</u>: State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out
+<u>Consensus</u>: Any change of state within state channels requires explicit cryptographic consent. State updates between two parties via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, and also secured by time-out (i.e. HTLC)
 
 ![Raiden](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
@@ -142,10 +140,10 @@ Any change of state within a state channel requires explicit cryptographic conse
 
 - Counterfactual (*<u>On Ethereum</u>*)
 
-  - A generalised framework for native state channels integration in Ethereum-based dApps
-  - State is deposited once and then used by any application or set of applications afterwards
+  - Generalised framework for native state channels integration (Ethereum dApps)
+  - State deposited once and then used by any set of dApps afterwards
   - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain, users sign and share commitments to the multisig wallet 
-  -  All parties in the channel act as though it has been deployed, even though it has not 
+  - All parties act as though it has been deployed, even though it hasn't 
   - Use global registry, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses 
 
 +++
