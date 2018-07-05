@@ -144,13 +144,13 @@ State channels the more general form of micropayment channels  (also used for 
   - State deposited once and then used by any set of dApps afterwards
   - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain, users sign and share commitments to the multisig wallet 
   - All parties act as though it has been deployed, even though it hasn't 
-  - Use global registry, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses 
 
 +++
 
 #### #2 State Channels (cont'd)
 
-- - A typical Counterfactual state-channel is composed of counterfactually instantiated objects
+- - Makes use of global registry, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses 
+  - A typical Counterfactual state-channel is composed of counterfactually instantiated objects
 
 ![Counterfactual](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Counterfactual.PNG)
 
