@@ -22,15 +22,15 @@ As noted by Ethereum co-founder Vitalik Buterin, leading public blockchain netwo
 
 In September 2017, Buterin stand, “Bitcoin is currently processing a bit less than three transactions per second and if it goes close to four, it is already at peak capacity. Ethereum has been doing five per song and if it goes to above six, then it is also at peak capacity. On the other hand uber on average does 12 riders per second, Paypal several hundred, Visa several thousand, major stock exchanges tens of thousands, and in loT, you’re talking hundreds of thousands per second.”
 
-There exists a tradeoff between flexibility and decentralisation in increasing the on-chain capacity of any public blockchain network without the implementation of second-layer solutions.[[3]](https://www.youtube.com/watch?v=WSN5BaCzsbo)[[4]](https://lunyr.com/article/Second-Layer_Scaling)
+There exists a tradeoff between flexibility and decentralisation in increasing the on-chain capacity of any public blockchain network without the implementation of second-layer solutions. [[3]](https://lunyr.com/article/Second-Layer_Scaling)
 
 “Second layer” is a term used to denote all the platforms and protocols that host or process data so that the base layer blockchain in a network doesn’t have to. 
 
-Base layer blockchains, like all blockchains, can only fit a certain amount of data into watch block. This feature, while necessary, has the effect of limiting how many transactions the network can process in a given period of time. By offloading activity from the main chain onto second layer platforms, the blockchain can handle significantly more transactions.[[5]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-2)   
+Base layer blockchains, like all blockchains, can only fit a certain amount of data into watch block. This feature, while necessary, has the effect of limiting how many transactions the network can process in a given period of time. By offloading activity from the main chain onto second layer platforms, the blockchain can handle significantly more transactions.[[4]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-2)   
 
 Currently, the leading blockchain networks (in terms of number of users) process information too slowly to service a mainstream user base in the billions, or even in the tens of millions. While cryptocurrency has captured the public’s attention, many of the entities interacting directly with blockchain networks are still hobbyists, ideologies, and technologists. As Ethereum founder Vitalik Buterin himself recently noted, the Ethereum network is currently too ‘unscalable’. 
 
-Blockchains may eventually become an integral part of our infrastructure, but they will only het the chance to play that role after scaling up to become many times more powerful than they are today.[[6]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3)   
+Blockchains may eventually become an integral part of our infrastructure, but they will only het the chance to play that role after scaling up to become many times more powerful than they are today.[[5]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3)   
 
 #Scaling Issues of Blockchain 
 
@@ -53,28 +53,20 @@ Scalability of public blockchains remain as urged issues for developers to addre
 On August 23 at block height 481 824 at 1:57 UTC by BTCC, the Bitcoin Core development team’s scaling solution and transaction malleability fix Segregated Witness (SegWit) was activated. The official integration of SegWit into the codebase of the Bitcoin protocol officially enabled second-layer solutions such as Lightning and MimbleWimble, by providing necessary infrastructures for secondary solutions to operate on top of. 
 
 As of December 2017, three main bitcoin-based second-layer scaling solutions are being developed Rootstock (RSK), Lightning Network, and MimbleWimble. [[4]](https://lunyr.com/article/Second-Layer_Scaling)
- 
-
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1  
-
-What is the Second Layer  
-
-The second layer refers to all auxiliary platforms and protocols that act as layer where activities can be offloaded from main chains to save storage space- in some instances these digital spaces are blockchains, but they don’t function as standalone blockchains; the transactions that they support must eventually be verified on the base layer. 
-
-Survey
    
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1   
+#What is the Second Layer  
 
-Payment Channels 
+The second layer refers to all auxiliary platforms and protocols that act as layer where activities can be offloaded from main chains to save storage space- in some instances these digital spaces are blockchains, but they don’t function as standalone blockchains; the transactions that they support must eventually be verified on the base layer. [[1]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1)
+
+#Survey 
+
+##Payment Channels 
 
 A payment channel is an instrument that two users mutually create. It takes the form of a wallet in the Bitcoin context and of an EDCC(executable distributed code contract) also known as a smart contract, in an Ethereum-based environment. Its basic purpose is to allow two parties to execute a theoretically unlimited number of transactions off chain, settling accounts with the main chain only when the parties created the challe, deposit more funds into it, or cash out. 
 
-As more transactions take place on the second layer, the amount of code written to the base layer decreases. This increases the main chain’s processing speed because it allows for more transactions to be processed in a single block. Cryptographic mechanisms encoded into the architecture of payment channels prevent participants from withdrawing funds that they are not entitled to.
+As more transactions take place on the second layer, the amount of code written to the base layer decreases. This increases the main chain’s processing speed because it allows for more transactions to be processed in a single block. Cryptographic mechanisms encoded into the architecture of payment channels prevent participants from withdrawing funds that they are not entitled to. [[1]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1)
 
-https://www.tik.ee.ethz.ch/file/a20a865ce40d40c8f942cf206a7cba96/Scalable_Funding_Of_Blockchain_Micropayment_Networks
-https://lunyr.com/article/Second-Layer_Scaling 
-
-Scalable Funding of Bitcoin Micropayment Channel Networks 
+##Scalable Funding of Bitcoin Micropayment Channel Networks 
 
 In November 2017, three developers and engineers Conrad Burchert, Christian Decker, and Roger Wattenhofer from ETH Zurich and Blockstream co-wrote and released a study entitled “Scalable Funding of Bitcoin Micropayment Channel Networks,” introducing a solution to an underlying issue in Lightning and micro payment channel networks in general. 
 
@@ -82,11 +74,9 @@ One of the major issues with second-layer scaling solutions and micropayment cha
 
 As the paper of Blockstream and ETH Zurich notes, “Two parties cooperating in a channel must lock funds into a shared account. The locked-in funds should be sufficient to provide enough capacity for peaks of transactions. There is a conflict of the two aims to have a low amount of funds locked up in a channel, while at the same time being flexible for these peaks.”
 
-The solution introduced by Blockstream and ETH Zurich solved the issue of locked-in funds and increase in blockchain capacity by only broadcasting payment channels in case of disputes. With it, users are able to enter the micropayment channel system with one blockchain transactions and open many channels without stressing the original blockchain network. This method saves up to 96 percent fo the blockchain space, which can support more than 2 billion users with micropayments. 
+The solution introduced by Blockstream and ETH Zurich solved the issue of locked-in funds and increase in blockchain capacity by only broadcasting payment channels in case of disputes. With it, users are able to enter the micropayment channel system with one blockchain transactions and open many channels without stressing the original blockchain network. This method saves up to 96 percent fo the blockchain space, which can support more than 2 billion users with micropayments. [[3]](https://lunyr.com/article/Second-Layer_Scaling) 
 
-https://lunyr.com/article/Second-Layer_Scaling 
-
-Second-Layer Scaling of Ethereum 
+##Second-Layer Scaling of Ethereum 
 
 Ethereum is fundamentally and structurally different from bitcoin and as a result, second-layer scaling solutions of bitcoin are not applicable on the Ethereum blockchain network. Since its launch in 2015, Ethereum has operated as a protocol for decentralised applications. By nature, it is required to deal with more transactions and settlement of larger volumes of data than bitcoin. 
 
@@ -94,35 +84,25 @@ As demonstrated by Etherscan, the Ethereum blockchain network process nearly 1 m
 
 In the first week of December 2017, a popular Ethereum-based decentralised collectibles game CryptoKitties triggered an Ethereuem network congestion, due to a rapid surge in its transaction volume and sale of digital cartoon kittens on the Ethereum blockchain. At one point, CryptoKitties accounted for 14 percent of Ethereum network’s daily transactions. As of December 16 2017, CryptoKitties account for 4 percent of the total Ethereum daily transaction volume, while decentralised cryptocurrency exchange EtherDelta accounts for 8.69 percent of the daily Ethereum transaction volume. 
 
-In an interview with South Korean mainstream media outlet JoongAng, Ethereum co-founder Vitalik emphasised the necessity of second-layer scaling solution implementation, specifically software like Plasma and Riden that reduce congestion on the Ethereum network by creating interoperable and interconnected blockchain networks on top of Ethereum.
+In an interview with South Korean mainstream media outlet JoongAng, Ethereum co-founder Vitalik emphasised the necessity of second-layer scaling solution implementation, specifically software like Plasma and Riden that reduce congestion on the Ethereum network by creating interoperable and interconnected blockchain networks on top of Ethereum. [[3]](https://lunyr.com/article/Second-Layer_Scaling)
 
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1   
-
-Cross-Chain Atomic Swaps 
+##Cross-Chain Atomic Swaps 
 
 Atomic swaps offer the potentially vital service of easily trading one type of digital asset for another, at little or no cost to either party, and without relying on a cryptocurrency exchange as an intermediary. In a hypothetical future of many blockchains, this would be an important enabler of interoperability between blockchain ecosystems. 
 
-To perform a cross-chain atomic swap, parties must set up tow multi-signature wallets (or multi-signature contracts, in the Ethereum-based networks) that are similar in structure to payment channels. These instruments are governed by cryptographic mechanisms which, among other things, prevent a single party from withdrawing the contents of both wallets. Additionally , any time one party withdraws received funds, a cryptographic ‘secret’ is automatically revealed to the counterparty, with enables it to withdraw as well. 
+To perform a cross-chain atomic swap, parties must set up tow multi-signature wallets (or multi-signature contracts, in the Ethereum-based networks) that are similar in structure to payment channels. These instruments are governed by cryptographic mechanisms which, among other things, prevent a single party from withdrawing the contents of both wallets. Additionally , any time one party withdraws received funds, a cryptographic ‘secret’ is automatically revealed to the counterparty, with enables it to withdraw as well. [[1]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1)  
 
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1   
+##The Lightning Network
 
-The Lightning Network
-
-The Lightning Network is essentially a web of many payment channels on the Bitcoin blockchain. It allows parties that have not opened a payment channel together to exchnage funds through intermediary channels. For instance, if Alice and Bob; Bob and Charlie; and Charlie and Diana have payment channels open, Alice can pay Diana by way of Bob and Charlie. 
-
-https://www.coindesk.com/lightning-last-test-shows-bitcoin-scaling-solution-almost-ready/
-https://lunyr.com/article/Second-Layer_Scaling 
+The Lightning Network is essentially a web of many payment channels on the Bitcoin blockchain. It allows parties that have not opened a payment channel together to exchnage funds through intermediary channels. For instance, if Alice and Bob; Bob and Charlie; and Charlie and Diana have payment channels open, Alice can pay Diana by way of Bob and Charlie. [[1]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1)
 
 Bitcoin’s Lightning Network is being tested by many startups in the bitcoin, Litecoin and cryptocurrency industries. Three of the most active startups working on implementing Lightnign are ACINQ, Blockstream, and Lightning Labs. On December 6, ACINQ, Blockstream, and Lightning Labs achieved a major milestone in regards to Lightning implementation by entering versions 1 of the Lightning specifications. 
 
 ACINQ founder Pierre-Marie Padiou explained, “This is the Lightning standard we’ve been working on for more than a year. There’s been a lot of work from us and from all participants. It’s a big milestone.”
 
-During a similar timeframe, Blockstream engineer Christian Decker completed more than 70 successful tests of all of the active Lightning implementations. Successful tests of Decker enabled ACINQ, Blockstream, and Lightning Labs to send Lightning payments on the bitcoin mainnet, involving different compatible implemation. Essentially, the tests of Decker and a series of successful transactions processed by ACINQ proved the applicability and potential of Lightning as bitcoin micropayment and second-layer scaling technology. 
+During a similar timeframe, Blockstream engineer Christian Decker completed more than 70 successful tests of all of the active Lightning implementations. Successful tests of Decker enabled ACINQ, Blockstream, and Lightning Labs to send Lightning payments on the bitcoin mainnet, involving different compatible implemation. Essentially, the tests of Decker and a series of successful transactions processed by ACINQ proved the applicability and potential of Lightning as bitcoin micropayment and second-layer scaling technology. [[3]](https://lunyr.com/article/Second-Layer_Scaling)
 
-https://lunyr.com/article/Second-Layer_Scaling
-https://raiden.network/101.html
-
-The Raiden Network
+##The Raiden Network
 
 Raiden is a second-layer operating natively on Ethereum that focus on settling micropayment and small transactions. Raiden is attempting to build Ethereum as a potential peer-to-peer (P2P) cash system and retail payments platform by processing transactions with substantially lower fees. 
 
@@ -132,36 +112,23 @@ Raiden’s paper notes that transaction fees on the Ethereum network are indepen
 
 With relatively small payments less than $1, it is not possible or incredibly impractical to broadcast transitions on-chain. Raiden is capable of processing small payments with almost no fees instantaneously. Such efficiency opens the Ethereum network to various applications, including online video streaming, donations, small payments for goos and services and cross-blockchain swaps. 
 
-The Raiden Network also scales linearly, providing a solution to an internet problem fall existing blockchains in the market. The Raiden Network paper further read, “in stark contrast, capacity of the Reaiden Network scales linearly with the number of users, leading to an efficient and future-proof, decentralised transfer network.”
-
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1   
+The Raiden Network also scales linearly, providing a solution to an internet problem fall existing blockchains in the market. The Raiden Network paper further read, “in stark contrast, capacity of the Reaiden Network scales linearly with the number of users, leading to an efficient and future-proof, decentralised transfer network.” [[3]](https://lunyr.com/article/Second-Layer_Scaling) 
 
 RSK
 
-RSK, formeraly known as Rootstock, is a Bitcoin sidechain onto which the Ethereum Virtual Machine has been cloned, meaning that the platform suports EDCCs. While RSK is not a second layer chain, members of the team behind the project have plans for some rather unusual second layer apparatus that they intend to build on top of it.
+RSK, formeraly known as Rootstock, is a Bitcoin sidechain onto which the Ethereum Virtual Machine has been cloned, meaning that the platform suports EDCCs. While RSK is not a second layer chain, members of the team behind the project have plans for some rather unusual second layer apparatus that they intend to build on top of it. [[1]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1)
 
-https://lunyr.com/article/Second-Layer_Scaling
+Rootstock (RSK), which is structurally similar to Ethereum is an open-source project and smart contracts platform that operates with a 2-way peg to the main Bitcoin blockchain. RSK itself exists outside of the Bitcoin protocol but is capable of sharing, sending, and receiving information with, to, and from the original Bitcoin blockchain network. The 2-way peg between RSK and bitcoin allows near instant payments and higher scalability, as it relieves the Bitcoin network of network congestion, stress, high transactions volumes, and maximised mempool. [[3]](https://lunyr.com/article/Second-Layer_Scaling)
 
-Rootstock (RSK), which is structurally similar to Ethereum is an open-source project and smart contracts platform that operates with a 2-way peg to the main Bitcoin blockchain. RSK itself exists outside of the Bitcoin protocol but is capable of sharing, sending, and receiving information with, to, and from the original Bitcoin blockchain network. The 2-way peg between RSK and bitcoin allows near instant payments and higher scalability, as it relieves the Bitcoin network of network congestion, stress, high transactions volumes, and maximised mempool. 
+##Mimblewimble
 
-https://bitcoinmagazine.com/articles/segregated-witness-activates-bitcoin-what-expect/
-https://lunyr.com/article/Second-Layer_Scaling
+Mimblewimble is a privacy-focused solution that focuses on providing privacy and fungibility to bitcoin users. In bitcoin and cryptocurrencies in general, privacy is deeply rooted into scalability because private transactions are significantly smaller in size in contrast to normal transactions. As such, solutions like Mimblewimble are capable of decreasing the size of transactions on public blockchain networks and decreasing transaction fees as a result. [[3]](https://lunyr.com/article/Second-Layer_Scaling)   
 
-Mimblewimble
+##Lumino and the LTCP
 
-Mimblewimble is a privacy-focused solution that focuses on providing privacy and fungibility to bitcoin users. In bitcoin and cryptocurrencies in general, privacy is deeply rooted into scalability because private transactions are significantly smaller in size in contrast to normal transactions. As such, solutions like Mimblewimble are capable of decreasing the size of transactions on public blockchain networks and decreasing transaction fees as a result.  
-
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1   
-
-Lumino and the LTCP
-
-Lumino is essentially a Lightning-type network built atop the RSK sidechain. One of its most distinguishing features is its proposed integration with the Lumino Transaction Compression Protocol (LTCP), a system of computing logic that significantly reduces the quantity of code that must be written to the RSK chain in order to create, top up, or settle a payment channel. It uses a series of references to other transactions, to abbreviate the code that must be written to the base layer in order to open, deposit funds to, or close Lumino’s constituent payment channels. LTCP’s white paper, written by Sergio Demian Lerner, projects that it could enable the RSK platform to accommodate up to a billion users. 
-
-https://plasma.io/plasma.pdf
-https://medium.com/@chriseth/token-contracts-on-plasma-or-a-tale-about-local-and-global-invariants-e37fadba150
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-2   
-
-Plasma 
+Lumino is essentially a Lightning-type network built atop the RSK sidechain. One of its most distinguishing features is its proposed integration with the Lumino Transaction Compression Protocol (LTCP), a system of computing logic that significantly reduces the quantity of code that must be written to the RSK chain in order to create, top up, or settle a payment channel. It uses a series of references to other transactions, to abbreviate the code that must be written to the base layer in order to open, deposit funds to, or close Lumino’s constituent payment channels. LTCP’s white paper, written by Sergio Demian Lerner, projects that it could enable the RSK platform to accommodate up to a billion users. [[1]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1)    
+  
+##Plasma 
 
 Among the second layer solutions currently being pioneered, Plasma has been one of the most talked-about. In this configuration, there are many blockchains that branch out from one another in what Joseph Poon, who co-wrote the foundational paper on Plasma with Ethereum creator Vitalik Buterin, describes as a tree-like formation. 
 
@@ -175,9 +142,7 @@ Because a Proof of Stake (PoS) consensus mechanism would be used to verify trans
 
 If users suspect untoward activity on a child chain where they have some funds, they can simply take their tokens and jump from that child chain onto the ‘parent chain’ from which it branches. If necessary, they can repeat this process ad infinitum until they’re all the way back on the main chain. 
 
-To borrow a metaphor from Poon, a tree of Plasma chains is like a court system in which higher counts can overturn the rulings of lower courts, and the base layer functions as the supreme court. It would be inefficient for the supreme court to hear every case, but avenues exist through which any case can reach the supreme court. 
-
-https://lunyr.com/article/Second-Layer_Scaling 
+To borrow a metaphor from Poon, a tree of Plasma chains is like a court system in which higher counts can overturn the rulings of lower courts, and the base layer functions as the supreme court. It would be inefficient for the supreme court to hear every case, but avenues exist through which any case can reach the supreme court. [[4]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-2)   
 
 Introduced by bitcoin’s Lightning co-author Joseph Poon and Buterin, Plasma is a second-layer scaling solution which creates an incentivised ecosystem in which smart contracts can continue operations autonomously via network transaction fees. Through successful implementation, Plasma could increase or scale the amount of scale updates per second to billions, allowing the Ethereum network to run more active and larger decentralised applications. 
 
@@ -185,11 +150,9 @@ The working pair of Plasma entitled “Scalable Autonomous Smart Contracts” re
 
 In essence, Plasma represents a system of interconnected blockchains arranged in a tree structure. Each blockchain network on top of the main Ethereum network is incentivised to carry out certain operations. Consequently, the main Ethereum blockchain network is not burdened to settle every single operation and process. Plasma undertakes the vision of preventing a user from verifying every single transaction that is sent to the system and the blockchain network. 
 
-Given that only merkelised commitment are sent to the main Ethereum blockchain periodically, Plasma s a second-layer solution also enables scalable, low cost transaction and computation, as the paper of Poon and Buterin emphasised. 
+Given that only merkelised commitment are sent to the main Ethereum blockchain periodically, Plasma s a second-layer solution also enables scalable, low cost transaction and computation, as the paper of Poon and Buterin emphasised. [[3]](https://lunyr.com/article/Second-Layer_Scaling)  
 
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-2   
-
-Sharding 
+##Sharding 
 
 In a sharing system, users are siloed in ‘shards’, blockchains that act as ‘galaxies’ unto themselves, which communicate with the main chain but are distinct from it. 
 
@@ -199,19 +162,15 @@ In early implementations, communication across shards is expected to be impossib
 
 Validators are tased with creating ‘collations’ essentially ‘blocks’, for a particular shard over a specified period of time. Any validator can be sleeted to create collations for any shard, and they are to be selected shortly before the period begins, giving them minimal opportunity to hatch nefarious schemes to cheat that shard’s users. 
 
-Validators need only create collations relating to the shard for which they’ve been selected, saving main chain miners and shard validators alike significant computational power and disk space compared to what is required by the system currently in place on the Ethereum network. 
+Validators need only create collations relating to the shard for which they’ve been selected, saving main chain miners and shard validators alike significant computational power and disk space compared to what is required by the system currently in place on the Ethereum network. [[4]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-2)   
 
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3 
-
-State Channels 
+##State Channels 
 
 Payment channels falls into the category of state channels. While a payment channel only allows for the transfer of funds, users of a state channel can also make non-monetary changes to the star of a ledger without needing to individually record each change to the base layer. These channels, can support both finical and non-financial applications of blockchain technology. 
 
-Ledger Labs founder Jeff Coleman, who is credited as the first to theorise the mechanism, envisions a ‘judge’ contract the would adjudicate on the actual state of a channel before that state is recorded to the main chain in the event of a disagreement. He appears to anticipate that conflicts over a channel’s state will not arise often, however, meaning that the adjudicating contract would only be called in exceptional cases. 
+Ledger Labs founder Jeff Coleman, who is credited as the first to theorise the mechanism, envisions a ‘judge’ contract the would adjudicate on the actual state of a channel before that state is recorded to the main chain in the event of a disagreement. He appears to anticipate that conflicts over a channel’s state will not arise often, however, meaning that the adjudicating contract would only be called in exceptional cases. [[5]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3)   
 
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3
-
-Atomic Multi-Path Payments (On the Lightning Network)
+##Atomic Multi-Path Payments (On the Lightning Network)
 
 In a February email, Lightning Labs’ chief technology officer and co-founder, Olaoluwa Osuntokun, and head of Cryptographic Engineering, Conner Fromknecht, suggested a novel use for Lighting networks: the atomic multi path payment. 
 
@@ -219,11 +178,9 @@ This scheme allows a payment to be automatically broken into pieces and prevents
 
 Large transfers tend to make payment channels less useful because they leave the funds in those channels skewed towards one party. When this happens to too many payment channels, more channels must be opened and/or funds must be deposited into existing channels to keep the network functional. Atomic multi-oath payments couple reduce the frequency with which channels need to be opened or topped up to compensate for channel imbalance. This would mean less funding being spent on main chain transaction fees in the name of maintaining network utility, and therefore lead to a reduction in costs associated with using the Lightning Network.  
 
-The scheme would also enhance user privacy by keeping intermediary senders (those simply forwarding along a payment) from identifying the ultimate sender, the ultimate receiver, and the total amount of funds transferred between those two parties. 
+The scheme would also enhance user privacy by keeping intermediary senders (those simply forwarding along a payment) from identifying the ultimate sender, the ultimate receiver, and the total amount of funds transferred between those two parties. [[5]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3)   
 
-https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3
-
-Plasma Cash 
+##Plasma Cash 
 
 Plasma Cash builds on the basic tree-like structure of Plasma but incorporates several other features as well. The most notable of theses is a mechanism in the main chain EDCCs (aka smart contracts) that establish the rules that will govern the set of Plasma blockchains. Whereas the Plasma systems proposed in the past would create an ‘arbitrary unit of Plasma Ether’ when users deposit Ether tokens into a Plasma contract, Plasma Cash contracts would create tokens within the Plasma network that are linked to unique strings of characters, which act as IDs. 
 
@@ -233,13 +190,9 @@ The primary benefit of this feature is that it dramatically reduces the amount o
 
 To send funds using such a blockchain, one must also send “proof data’ of those tokens’ histories to prove ownership over them. Periodically ‘checkpointing’ state of a Plasma chain on the main chain would allow the reports of these histories to be abbreviated, so that only proof data that has been generated since the last checkpointing exercise needs to be included for a transaction to be processed. 
 
-Buterin named several benefits of adopting such a system, including the fact that malicious actors in earlier Plasma contracts. Hackers in a Plasma Cash world would have to steal specific tokens from specific entities, which is much harder to do, considering that each coin’s history is recorded individually. Also, a cryptocurrency exchange built atop Plasma Cash could provide order matching services without taking custody of users’ tokens, which could drastically reduce the risk of large-scale-thefts by leaving customers in constant possession of their own funds. 
+Buterin named several benefits of adopting such a system, including the fact that malicious actors in earlier Plasma contracts. Hackers in a Plasma Cash world would have to steal specific tokens from specific entities, which is much harder to do, considering that each coin’s history is recorded individually. Also, a cryptocurrency exchange built atop Plasma Cash could provide order matching services without taking custody of users’ tokens, which could drastically reduce the risk of large-scale-thefts by leaving customers in constant possession of their own funds. [[5]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-3)   
 
-
-https://lunyr.com/article/Second-Layer_Scaling 
-https://medium.com/@chriseth/token-contracts-on-plasma-or-a-tale-about-local-and-global-invariants-e37fadba150 
-
-Proof of Stake 
+##Proof of Stake 
 
 Several cryptocurrencies, Ethereum in particular, are exploring the possibility of utilising a hybrid proof of work (PoW) and Proof-of-Stake (PoS) to maximise the potential of senior-layer solutions. 
 
@@ -247,66 +200,21 @@ Plasma is an example of a second-layer solution that uses PoS to relieve the Eth
 
 Stakeholders of each blockchain within the Plasma system will automatically challenge any invalid information or transition, and escalate it to the main Ethereum blockchain to ensure that the Plasma network remains valid. 
 
-The primary purpose of utilising PoS with second-ayer solutions on Ethereum, as explained by Ethereum team leader and Solidity creator Christian Reitwiessner is to prevent users from being overloaded with transaction verification and this slowing down the network. Reitweissner noted, “scalability is only achieved once a user does not have to verify every single transaction that is sent to the system.”
+The primary purpose of utilising PoS with second-ayer solutions on Ethereum, as explained by Ethereum team leader and Solidity creator Christian Reitwiessner is to prevent users from being overloaded with transaction verification and this slowing down the network. Reitweissner noted, “scalability is only achieved once a user does not have to verify every single transaction that is sent to the system.” [[3]](https://lunyr.com/article/Second-Layer_Scaling)  
 
-https://medium.com/loom-network/understanding-blockchain-fundamentals-part-1-byzantine-fault-tolerance-245f46fe8419 
-
-Understanding Blockchain Fundamentals: Byzantine Fault Tolerance 
+##Understanding Blockchain Fundamentals: Byzantine Fault Tolerance 
 
 Blockchains are inherently decentralised system which consists of different actors who act depending on their incentives and on the information that is available to them. 
 
-Whenever a new transaction gets broadcasted to the network, nodes have the option to include that transaction to their copy of they ledger or to ignore it. When a new transaction gets broadcasted to the network, nodes have the option to include that transaction to their copy of their ledger or to ignore it. When the majority of the actors which comprise the network decide n a single state, consensus is achieved. 
+Whenever a new transaction gets broadcasted to the network, nodes have the option to include that transaction to their copy of they ledger or to ignore it. When a new transaction gets broadcasted to the network, nodes have the option to include that transaction to their copy of their ledger or to ignore it. When the majority of the actors which comprise the network decide n a single state, consensus is achieved. [[6]](https://medium.com/loom-network/understanding-blockchain-fundamentals-part-1-byzantine-fault-tolerance-245f46fe8419)
 
-SegWit??
-
-https://coinjournal.net/second-layer-solutions-enable-private-transactions-help-ethereum-scale/ 
-
-Since early 2017, the developers behind most leading public blockchain networks such as Bitcoin and ethereum have begun to actively develop second-layer solutions mainly for scalability purposes. Most notably, in Bitcoin Core development team has integrated Segregated Witness (SegWit), a scaling and transaction malleability solution which decreases the size of transactions by removing unnecessary data. 
-
-Recently, the Byzantium hard fork led by the Ethereum Foundation and its open-source development community featured a scalability solution similar to SegWit, which removes the root of the transaction state tree, leading to faster transaction processing and overall network scaling.
-
-Despite these advancements, Ethereum is still only able to process approximately seven transactions per second, an amount which isn’t sufficient for powering large-scale decentralised applications. Presently? The only practical, commercialised, and successful  decentralised application on the Ethereum protocol is EtherDelta, a decentralised cryptocurrency exchange, and it accounts for 14 percent of Ethereum’s transactions. Still, the vast majority of the community finds the exchange inefficient and slow, duets its decentralised nature.  
-
-Earlier this year, Ethereum co-founder Vitalik Buterin and Lightning Network Joseph Poon introduced a second-layer solution called Plasma, which would allow for the processing of billions of data points per second by creating an ecosystem of interconnected blockchains and integrating privacy focused cryptographic systems such as 
-
-
-https://medium.com/akroma/masternodes-building-blocks-for-something-great-8f5f10a7125e 
-
-Masternodes: Building Blocks for Something Great
-
-
-Masternodes first, Oracles second
-A decentralised masternode system, just like the concept of Oracles, is a system that asks questions of the network and makes a decision that affects a smart contract. 
-
-In the case of Akroma’s initial master node scheme, there are two questions we must continually ask:
-
-Is the node online?
-Is it’s owner holding the required balance of AKA
-
-Building a decentralised system that can support just these two questions will be used as the building blocks for the Akroma Oracles.
-
-
-Masternodes as Oracles Roadmap
-Members of Akroma’s core development tram are in the midst of several different projects where some solutions are more complex than others. The most complex task on the roadmap today is the building out of a second layer of nodes with have features much more advanced than the first. 
-
-
-The MVP version of Akroma Masternodes can be developed and deployed in a much shorter time frame, as portions such as node registration, uptime monitoring function in a traditional centralised fashion. This pattern of building, reeling, and back-porting into a decentralised implementation can  be seen in multiple platforms, such as Dash IOTA and 0xBounty. 
-
-The next major master node iteration is drastically more intricate. This will include either adding a new breed of node to the network or making major modifications to the Ethereum source code. 
-
-Akroma hopes to build a range of features into its masternodes. The four of those features is going to be heavily weighted towards application development and features that attract developers. It’s unlikely that we will focus efforts into features, such as private or instant transactions, that are found in many other networks. 
-
-
-https://cointelegraph.com/explained/blockchain-oracles-explained 
-
-Oracles 
+##Oracles 
 
 Blockchain oracles provide the necessary data to trigger smart contracts to execute when the original terms of the contract are met. These conditions could be anything associated with the smart contract- temperature, payment completion, price changes, etc. Oracles are the only way for smart contracts to interact with data outside of the Blockchain environment. 
 
 Oracles are radically important. Smart contracts cannot function without some data source. Without access to these sources of information, use cases for smart contracts drop to use a tiny fraction of their potential. 
 
 However, with these systems, smart contracts have real world applications in virtually every field available. Once data hits the Blockchain, the information can be used to execute the contracts and provide use cases, which can disrupt industries across the board. 
-
 
 Why can’t decentralised applications communicate with the real world without oracles?
 
@@ -326,4 +234,4 @@ Currently, the marketplace for these types of contracts have continued to expand
 
 As the increasing number of use cases for smart contracts continues to rise, the need for new oracle structures will also rise as the structural framework that makes smart contracts possible. This will drive increasing investment  and design into the market space, and new innovations will make blockchain-to-web communication more simple and elegant. 
 
-One of the more likely future trends is the development of a unified, integrated platform for communication between blockchain and the outside world. Standardised tools and interfaces make it easier for both the developers and the users of blockchain-enabled services. 
+One of the more likely future trends is the development of a unified, integrated platform for communication between blockchain and the outside world. Standardised tools and interfaces make it easier for both the developers and the users of blockchain-enabled services. [[7]](https://cointelegraph.com/explained/blockchain-oracles-explained)
