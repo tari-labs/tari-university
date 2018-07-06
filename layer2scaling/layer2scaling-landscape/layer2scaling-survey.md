@@ -248,18 +248,7 @@ All work done to check the network to prove that nodes are active is done by the
 
 #### Who does it? [[9]](https://blockonomi.com/masternode-guide/)
 
-- Block 
-- Bata
-- Crown 
-- Chaincoin 
-- Dash 
-- Diamond 
-- ION 
-- Monetary Unit
-- Neutron 
-- PIVX
-- Vcash 
-- XtraBytes 
+- Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, XtraBytes 
 
 #### Strengths
 
@@ -335,6 +324,35 @@ Must still be proven on other networks apart from Ethereum.
 #### Threats for Tari
 
 The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
+
+### #6 TrueBit
+
+#### What is it?
+
+TrueBit is a protocol that provides security and scalability by enabling trustless smart contracts to perform and offloading complex computation. This makes it different from state channels and Plasma, which are more useful for increasing the total transaction throughput of the Ethereum block chain. TrueBit relies on solvers (akin to miners), who have to stake their deposits in a smart contract, solve computation and if correct get their deposit back. If the computation is incorrect, the solver looses their deposit. TrueBit uses an economic mechanism called the “verification game” where an incentive is created for other parties, called *challengers,* to check the solvers’ work. ([[17]](https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4), [[41]](http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf), [[44]](https://truebit.io))
+
+![TrueBit_Diagram](./sources/TrueBit_Diagram.PNG)
+
+#### Who does it?
+
+Golem cites TrueBit as a verification mechanism for their forthcoming outsourced computation network LivePeer, a video streaming platform. ( [[40]](https://golem.network/crowdfunding/Golemwhitepaper.pdf), [[42]](https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532), [[43]](https://golem.network))
+
+#### Strengths
+
+- Outsourced computation - anyone in the world can post a computational task, and anyone else can receive a reward for completing it. [[41]](http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf)
+- Scalable - by decoupling verification for miners into a separate protocol, TrueBit can achieve high transaction throughput without facing a Verifier’s Dilemma. [[41]](http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf)
+
+#### Weaknesses
+
+TrueBit is yet to be fully tested. 
+
+#### Opportunities for Tari
+
+Nothing at the moment as Tari wouldn't be doing heavy/complex computation, at least not in the short term.
+
+#### Threats for Tari
+
+None
 
 ## Observations
 
@@ -420,4 +438,14 @@ The Loom Network's Software Development Kit (SDK) makes it extremely easy for an
 [38] Front-running, Griefing and the Perils of Virtual Settlement (Part 2), https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21, Date accessed: 2018-06-29.
 
 [39] MapReduce: Simplied Data Processing on Large Clusters, https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf, Date accessed: 2018-07-02.
+
+[40] The Golem WhitePaper (Future integrations), https://golem.network/crowdfunding/Golemwhitepaper.pdf, Date accessed: 2018-06-22.
+
+[41] A scalable verification solution for block chains, Teutsch J. et. al., http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf, Date accessed: 2018-06-22.
+
+[42] Livepeer’s Path To Decentralization, https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532, Date accessed: 2018-06-22.
+
+[43] Golem website, https://golem.network, Date accessed: 2018-06-22.
+
+[44] TruBit website, https://truebit.io, Date accessed: 2018-06-22.
 
