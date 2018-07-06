@@ -7,13 +7,13 @@ e.g. layer2scaling
 ### URL
 Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
-Tree location:   layer2scaling?p=/
+Tree location:   PullRequest12?p=/
 
 Presentation:    layer2scaling/layer2scaling-landscape#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/layer2scaling?p=/layer2scaling/layer2scaling-landscape#/
+https://gitpitch.com/tari-labs/tari-university/PullRequest12?p=/layer2scaling/layer2scaling-landscape#/
 
 ## On the trunk
 ### Trunk name
