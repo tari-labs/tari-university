@@ -335,7 +335,8 @@ TrueBit is a protocol that provides security and scalability by enabling trustle
 
 #### Who does it?
 
-Golem cites TrueBit as a verification mechanism for their forthcoming outsourced computation network LivePeer, a video streaming platform. ( [[40]](https://golem.network/crowdfunding/Golemwhitepaper.pdf), [[42]](https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532), [[43]](https://golem.network))
+Golem cites TrueBit as a verification mechanism for their forthcoming outsourced computation network.
+LivePeer, a video streaming platform. ( [[40]](https://golem.network/crowdfunding/Golemwhitepaper.pdf), [[42]](https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532), [[43]](https://golem.network))
 
 #### Strengths
 
@@ -353,6 +354,29 @@ Nothing at the moment as Tari wouldn't be doing heavy/complex computation, at le
 #### Threats for Tari
 
 None
+
+### #7 Tumblebit
+
+#### What is it?
+Tumblebit is a unidirectional, unlinkable payment hub that is fully compatible with the Bitcoin protocol. TumbleBit allows parties to make fast, anonymous, off-blockchain payments through an untrusted intermediary called the Tumbler[45]. It allows parties to make payments through an untrusted Tumbler. No-one, not even the Tumbler, can tell which payer paid which payee during a TumbleBit epoch. TumbleBit consists of two interleaved fair-exchange protocols that prevent theft of bitcoins by cheating users or a malicious Tumbler[47]
+
+
+#### Who does it?
+Stratis uses a C# implementation of Tumblebit called NTumblebit.
+NTumbleBit will be a cross-platform framework, server and client for the TumblerBit payment scheme. TumbleBit is separated into two modes, tumbler mode and payment hub mode. The tumbler mode improves transaction fungibility and offers risk free unlinkable transactions. Payment hub mode is a way of making offchain payments possible without requiring implementations like Segwit or the lightning network [46]
+
+#### Strengths
+Privacy on payment hubs - payment hub does not know where payments are being sent to
+
+#### Weaknesses
+Tumblebit is implemented in Stratis but hasn't yet had wide adoptation.
+
+#### Opportunities for Tari
+Has alignment with Tari's base requirements
+
+#### Threats for Tari
+The scalable, privacy-focused payment hubs could be a threat for Tari if Tumblebit and it's implementation were to focus on ticketing. But, Tari's privacy slider gives it the edge as the user is in control of which transactions are private, semi-private or public
+
 
 ## Observations
 
@@ -447,5 +471,11 @@ None
 
 [43] Golem website, https://golem.network, Date accessed: 2018-06-22.
 
-[44] TruBit website, https://truebit.io, Date accessed: 2018-06-22.
+[44] TrueBit website, https://truebit.io, Date accessed: 2018-06-22.
+
+[45] TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub whitepaper, http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2017/09/ndss201701-3HeilmanPaper.pdf , Date accessed: 2018-07-08
+
+[46] Anonymous Transactions Coming to Stratis,https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e, Date accessed: 2018-07-08
+
+[47] Tumblebit ,https://github.com/BUSEC/TumbleBit,Date accessed: 2018-07-08
 
