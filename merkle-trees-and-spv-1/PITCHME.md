@@ -36,14 +36,14 @@
 --- 
 # Merkle Tree Example
 
-![Merkle1](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-1.svg?sanitize=true)
+![Merkle1](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-1.svg.png)
 
 --- 
 # Merkle Tree Example
 
 Adding a node
 
-![Merkle2](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-2.svg?sanitize=true)
+![Merkle2](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-2.svg.png)
 
 ---
 
@@ -51,7 +51,7 @@ Adding a node
 
 Pruned Merkle Branch containing only C
 
-![Merkle3](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-3.svg?sanitize=true)
+![Merkle3](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-3.svg.png)
 
 ---
 # Merkle Tree Example 2
