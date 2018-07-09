@@ -76,8 +76,34 @@ Pruned Merkle Branch containing only C
 --- 
 # Bloom Filters
 
+* Provide filtering when receiving blocks
+* Provides privacy
+
+--- 
+# Bloom Filter Implementation
+* Choose _k_ hash functions
+* Speed of hash function is most important when choosing hash functions
+* Start with empty array of _m_ bits
+* Hash _transaction hashes_, _public keys_ or _other criteria_ with each of the hash functions, and set bits in filter array
+![Bloom1](https://upload.wikimedia.org/wikipedia/commons/a/ac/Bloom_filter.svg)
+
+> By David Eppstein (self-made, originally for a talk at WADS 2007) [Public domain], via Wikimedia Commons
+
+---
+# Bloom Filter Implementation
+
+
+* Send filter to full nodes
+* Full nodes hash transactions using the same hash functions, and only forward transactions when no 0's in the filter match
+* Transactions are sent as pruned Merkle Trees
+---
+# False Positives
+* Client will receive more transactions than it is looking for because of the hashing function, but will not miss any transactions
+> Unless the full node is intentionally omitting them
+* For more privacy, client can set extra bits in the filter
 
 
 ---
 # Useful resources
-* [https://bitcoin.org/en/developer-guide#simplified-payment-verification-spv Bitcoin Developer Guide]
+* [Bitcoin Developer Guide](https://bitcoin.org/en/developer-guide#simplified-payment-verification-spv)
+* [Bloom Filters tutorial](http://llimllib.github.io/bloomfilter-tutorial/)
