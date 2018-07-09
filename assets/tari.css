@@ -35,6 +35,20 @@
   line-height: 1.1em;
 }
 
+.reveal div.left-25 {
+  float: left;
+  z-index: -10;
+  width: 25%;
+  text-align: left;
+}
+
+.reveal div.right-75 {
+  float: right;
+  z-index: -10;
+  width: 75%;
+  text-align: right;
+}
+
 .red {
   color: #f00
 }
