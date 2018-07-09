@@ -85,9 +85,10 @@ Pruned Merkle Branch containing only C
 * Speed of hash function is most important when choosing hash functions
 * Start with empty array of _m_ bits
 * Hash _transaction hashes_, _public keys_ or _other criteria_ with each of the hash functions, and set bits in filter array
-![Bloom1](https://upload.wikimedia.org/wikipedia/commons/a/ac/Bloom_filter.svg)
 
-> By David Eppstein (self-made, originally for a talk at WADS 2007) [Public domain], via Wikimedia Commons
+![Bloom1](https://upload.wikimedia.org/wikipedia/commons/f/f1/Gbf.gif)
+
+> By The original uploader was Rlaufer at English Wikipedia. (Transferred from en.wikipedia to Commons.) [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons
 
 ---
 # Bloom Filter Implementation
