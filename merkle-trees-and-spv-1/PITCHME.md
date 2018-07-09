@@ -17,9 +17,10 @@
 ---
 
 # Inefficient SPV implementation
-* Download the entire block
+* Only store block headers
+* When a transaction is needed, download the entire block
 * Hash to compare it to header to determine if valid
-* Do we really need the entire block to verify a single transaction?
+> Do we really need the entire block to verify a single transaction?
 
 ---
 # Merkle Trees (and more importantly branches)
@@ -35,8 +36,7 @@
 --- 
 # Merkle Tree Example
 
-![Merkle1](
-  https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-1.svg?sanitize=true)
+![Merkle1](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-1.svg?sanitize=true)
 
 --- 
 # Merkle Tree Example
