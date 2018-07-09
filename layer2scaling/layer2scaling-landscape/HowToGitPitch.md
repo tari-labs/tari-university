@@ -2,18 +2,18 @@
 
 ## On a branch
 ### Branch name 
-e.g. layer2scaling
+e.g. MyBranchName
 
 ### URL
 Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
-Tree location:   PullRequest12?p=/
+Tree location:   MyBranchName?p=/
 
 Presentation:    layer2scaling/layer2scaling-landscape#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/PullRequest12?p=/layer2scaling/layer2scaling-landscape#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/layer2scaling/layer2scaling-landscape#/
 
 ## On the trunk
 ### Trunk name

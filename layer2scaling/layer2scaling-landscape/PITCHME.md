@@ -126,7 +126,7 @@ State channels the more general form of micropayment channels  (also used for 
 
 <u>Consensus</u>: Any change of state within state channels requires explicit cryptographic consent. State updates between two parties via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, and also secured by time-out (i.e. HTLC)
 
-![Raiden](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
+![Raiden](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
 +++
 
@@ -152,7 +152,7 @@ State channels the more general form of micropayment channels  (also used for 
 - - Makes use of global registry, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses 
   - A typical Counterfactual state-channel is composed of counterfactually instantiated objects
 
-![Counterfactual](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Counterfactual.PNG)
+![Counterfactual](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Counterfactual.PNG)
 
 +++
 
@@ -218,7 +218,7 @@ State channels the more general form of micropayment channels  (also used for 
 
 ![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
 
-![0xSequence](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/0xSequence.png)
+![0xSequence](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/0xSequence.png)
 
 +++
 
@@ -339,7 +339,7 @@ None
 
 - Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format
 
-![Plasma-example-01](https://github.com/tari-labs/tari-university/raw/PullRequest12/layer2scaling/layer2scaling-landscape/sources/Plasma-example-01.png)
+![Plasma-example-01](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Plasma-example-01.png)
 
 - Plasma relies on two key parts: MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains
 

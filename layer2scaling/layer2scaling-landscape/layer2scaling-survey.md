@@ -449,3 +449,8 @@ None
 
 [44] TruBit website, https://truebit.io, Date accessed: 2018-06-22.
 
+## Contributors
+
+- [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
+- [https://github.com/Kevoulee](https://github.com/Kevoulee)
+- [https://github.com/ksloven](https://github.com/ksloven)
