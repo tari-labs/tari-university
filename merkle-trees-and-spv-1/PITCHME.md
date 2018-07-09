@@ -28,7 +28,7 @@
 * A binary tree structure where:
   * Data is stored in the leaf nodes
   * A non-leaf node is the hash of it's 2 descendants
-* Most importantly, descendant nodes can be pruned, leaving the rest of the tree's hash integrity in tact.
+* Most importantly, descendant nodes can be pruned, leaving the rest of the tree's hash integrity intact.
 * This means we only need the Merkle branch with the transaction we want to verify
 
 > Non-binary Merkle trees also exist
