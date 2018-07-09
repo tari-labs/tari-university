@@ -40,4 +40,4 @@ Technical | Layer 2 Scaling | Presents a survey on some of the current layer 2 s
 
 Stream | Topic | Date
 ----|----| --- |
-Technical | Merkle Trees | 9 July 2018 |
+Technical | Merkle Trees, SPV and BLoom Filters | 9 July 2018 |
