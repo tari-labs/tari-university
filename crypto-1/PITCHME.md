@@ -34,15 +34,24 @@ Note: You can forget about all this technical detail. It's just included here fo
 
 ---
 
-# Addition
+### Addition
 
+@div[left-25]
 ![Addition](http://andrea.corbellini.name/images/point-addition.png)
+@divend
 
-* Geometrically, $ P + Q + R = 0 $ if _P, Q, R_ all lie on the same "line" (mod _p_).
-* Thus addition looks like: $ P + Q = -R $.
-* _-R_ is R reflected around the line $ y = p / 2 $
+@div[right-75]
+<ul>
+<li>Geometrically, $ P + Q + R = 0 $ if _P, Q, R_ all lie on the same "line" (mod _p_).
+<li>Thus addition looks like: $ P + Q = -R $.
+<li>_-R_ is R reflected around the line $ y = p / 2 $
+</ul>
 
-* $ P + P $ has no geometric construction, but is analogous to tangent on the continuous curve (and the math works out the same - mod _p_)
+<p>
+$ P + P $ has no geometric construction, but is analogous to tangent on the continuous curve 
+(and the math works out the same - mod _p_)
+</p>
+@divend
 
 ---
 
