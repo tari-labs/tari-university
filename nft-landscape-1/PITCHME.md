@@ -109,6 +109,7 @@ CryptoCelebrities | ERC721
 * ERC721
 * ERC875
 * Neo 
+* EOS
 
 +++
 
@@ -162,6 +163,16 @@ CryptoCelebrities | ERC721
 * NEO Enhancement Proposal for an NFT standard has yet to be submitted for review, and other developers within the ecosystem are also believed to be working on a similar standard
 
 <https://neonewstoday.com/development/trinity-developing-non-fungible-tokens-nft-standard/>
+
++++
+
+## EOS
+
+* EOSIO has a proposed NFT standard for the EOSIO blockchain - eosio.nft
+
+<https://github.com/unicoeos/eosio.nft>
+
++++
 
 ---
 
