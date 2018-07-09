@@ -93,8 +93,7 @@ Pruned Merkle Branch containing only C
 ---
 # Bloom Filter Implementation
 
-
-* Send filter to full nodes
+* Client sends filter to full nodes
 * Full nodes hash transactions using the same hash functions, and only forward transactions when no 0's in the filter match
 * Transactions are sent as pruned Merkle Trees
 ---
