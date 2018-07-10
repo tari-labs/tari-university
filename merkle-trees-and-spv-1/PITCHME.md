@@ -36,31 +36,39 @@
 --- 
 # Merkle Tree Example
 
-![Merkle1](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-1.svg.png)
+[//]: # "To generate these diagrams go to https://mermaidjs.github.io/mermaid-live-editor and paste the source"
+
+![Merkle1](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-1.png)
 
 --- 
 # Merkle Tree Example
 
 Adding a node
 
-![Merkle2](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-2.svg.png)
+![Merkle2](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-2.png)
 
 ---
 
 # Merkle Tree Example
 
-Pruned Merkle Branch containing only C
+Pruning to branch
 
-![Merkle3](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-3.svg.png)
+![Merkle3](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-3.png)
 
----
-# Merkle Tree Example 2
++++ 
+# Merkle Tree Example
 
-![Merkle4](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/hashchain.png)
+Pruning to branch F
 
+![Merkle4](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-4-1.png)
 
++++ 
+# Merkle Tree Example
 
-> By guardtime.com [CC BY-SA 3.0  (https://creativecommons.org/licenses/by-sa/3.0)], from Wikimedia Commons
+Pruning to branch F
+
+![Merkle4](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-4-2.png)
+
 ---
 # SPV and Merkle Branches
 
@@ -81,29 +89,52 @@ Pruned Merkle Branch containing only C
 
 --- 
 # Bloom Filter Implementation
-* Choose _k_ hash functions
-* Speed of hash function is most important when choosing hash functions
 * Start with empty array of _m_ bits
-* Hash _transaction hashes_, _public keys_ or _other criteria_ with each of the hash functions, and set bits in filter array
 
-![Bloom1](https://upload.wikimedia.org/wikipedia/commons/f/f1/Gbf.gif)
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-empty.png)
 
-> By The original uploader was Rlaufer at English Wikipedia. (Transferred from en.wikipedia to Commons.) [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons
+---
+
+# Bloom Filter Implementation
+
+* Hash the data to filter on (e.g. public address) using _k_ hash functions to a value between 0 and _m_
+* Set those bits in the array
+* In this example, _k_ = 2
+
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-0.png)
 
 ---
 # Bloom Filter Implementation
 
-* Client sends filter to full nodes
-* Full nodes hash transactions using the same hash functions, and only forward transactions when no 0's in the filter match
-* Transactions are sent as pruned Merkle Trees
----
-# False Positives
-* Client will receive more transactions than it is looking for because of the hashing function, but will not miss any transactions
-> Unless the full node is intentionally omitting them
-* For more privacy, client can set extra bits in the filter
+* Repeat for more filter criteria, or to obscure the original filter
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-1.png)
 
+* Then send the filter to the full node
+
+---
+# Bloom Filter Implementation
+
+* Whenever the full node would relay a block, it uses the same _k_ hash functions and checks for an intersect on the filter.
+* If there are no 0's hit, then the transaction is removed from the Merkle Tree before forwarding to the client
+  * Empty blocks are not forwarded
+
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-3.png)
+
+---
+# Bloom Filter Implementation
+
+* If there are transactions that must be forwarded, the pruned Merkle Tree is forwarded
+* There may be false positives included, which the client will filter out
+* This hides the actual filter criteria from any full nodes
+
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-4.png)
+
+---
+# Bloom Filter Implementation
+
+* A very useful Bloom Filters interactive example:
+[Bloom Filters by Example](http://llimllib.github.io/bloomfilter-tutorial/)
 
 ---
 # Useful resources
 * [Bitcoin Developer Guide](https://bitcoin.org/en/developer-guide#simplified-payment-verification-spv)
-* [Bloom Filters tutorial](http://llimllib.github.io/bloomfilter-tutorial/)
