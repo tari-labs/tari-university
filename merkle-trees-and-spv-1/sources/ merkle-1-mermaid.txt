@@ -1,0 +1,10 @@
+graph TD
+Root["Merkle Root: Hash(hA|hB)"]
+hA["Hash(A)"]
+hB["Hash(B)"]
+A["A {transaction data}"]
+B["B {transaction data}"]
+Root-->hA
+Root-->hB
+hA-->A
+hB-->B
