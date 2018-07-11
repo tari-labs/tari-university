@@ -41,8 +41,7 @@ Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Paym
 
 Stream | Topic | Date
 ----|----| --- |
-Technical | Merkle Trees, SPV and BLoom Filters | 9 July 2018 |
 Technical | Atomic Swaps | 16 July 2018 |
-Protocol | Consensus Mechanisms | 23 July 2018 |
+Protocol | Byzantine fault tolerance and Consensus Mechanisms | 23 July 2018 |
 Technical | Layer 2 Scaling Continued | 30 July 2018 |
 Protocol | RGB- a scalable tokenization protocol | 6 August 2018 |
