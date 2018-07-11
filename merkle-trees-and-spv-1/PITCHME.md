@@ -5,7 +5,7 @@
   * Stores the all blocks in the longest chain  
   * Size is a problem 
 
-  ![](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/eth-blockchain-size.png "Well that escalated quickly")
+  ![](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/eth-blockchain-size.png "Well that escalated quickly")
 
 ---
 
@@ -38,14 +38,14 @@
 
 [//]: # "To generate these diagrams go to https://mermaidjs.github.io/mermaid-live-editor and paste the source"
 
-![Merkle1](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-1.png)
+![Merkle1](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/merkle-1.png)
 
 --- 
 # Merkle Tree Example
 
 Adding a node
 
-![Merkle2](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-2.png)
+![Merkle2](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/merkle-2.png)
 
 ---
 
@@ -53,21 +53,21 @@ Adding a node
 
 Pruning to branch
 
-![Merkle3](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-3.png)
+![Merkle3](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/merkle-3.png)
 
 +++ 
 # Merkle Tree Example
 
 Pruning to branch F
 
-![Merkle4](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-4-1.png)
+![Merkle4](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/merkle-4-1.png)
 
 +++ 
 # Merkle Tree Example
 
 Pruning to branch F
 
-![Merkle4](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/merkle-4-2.png)
+![Merkle4](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/merkle-4-2.png)
 
 ---
 # SPV and Merkle Branches
@@ -91,7 +91,7 @@ Pruning to branch F
 # Bloom Filter Implementation
 * Start with empty array of _m_ bits
 
-![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-empty.png)
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/bloom-empty.png)
 
 ---
 
@@ -101,13 +101,13 @@ Pruning to branch F
 * Set those bits in the array
 * In this example, _k_ = 2
 
-![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-0.png)
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/bloom-0.png)
 
 ---
 # Bloom Filter Implementation
 
 * Repeat for more filter criteria, or to obscure the original filter
-![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-1.png)
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/bloom-1.png)
 
 * Then send the filter to the full node
 
@@ -118,7 +118,7 @@ Pruning to branch F
 * If there are no 0's hit, then the transaction is removed from the Merkle Tree before forwarding to the client
   * Empty blocks are not forwarded
 
-![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-3.png)
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/bloom-3.png)
 
 ---
 # Bloom Filter Implementation
@@ -127,7 +127,7 @@ Pruning to branch F
 * There may be false positives included, which the client will filter out
 * This hides the actual filter criteria from any full nodes
 
-![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/mikethetike-merkle-trees/merkle-trees-and-spv-1/sources/bloom-4.png)
+![Bloom](https://raw.githubusercontent.com/tari-labs/tari-university/merkle-trees-and-spv-1/sources/bloom-4.png)
 
 ---
 # Bloom Filter Implementation
