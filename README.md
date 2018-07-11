@@ -34,7 +34,7 @@ Off-chain Scaling | Lightning Network for Dummies | An intro to the Lightning Ne
 Protocol | MimbleWimble | An intro to MimbleWimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=mimblewimble-1#/) 
 Technical | Merge Mining  | Presents a fundamental understanding to the concept of merge mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
 Technical | Layer 2 Scaling | Presents a survey on some of the current layer 2 scaling initiatives | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/PullRequest12?player2scaling/layer2scaling-landscape/#/)  
-Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/mikethetike-merkle-trees?p=merkle-trees-and-spv-1)  
+Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=merkle-trees-and-spv-1)  
  
 
 ## Future Streams and Topics 
