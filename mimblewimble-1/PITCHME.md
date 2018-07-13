@@ -82,7 +82,7 @@ $$ C_{ni} = n.G + k_i.H $$
 where _H_ is a generator on another (specially selected) EC.
 
 This completely _blinds_ the in- and outputs so that no pre-image attack is possible.
-(And is called a _Pederson commitment_).
+(And is called a _Pedersen commitment_).
 
 +++
 

@@ -1,0 +1,14 @@
+graph TB
+Root["Merkle Root: Hash(hA|hBC)"]-->hA
+hA["Hash(A)"]-->A
+Root==>hBC
+Root-.old branch.->hB
+hB["Hash(B)"]
+hC["Hash(C)"]
+A["A {transaction data}"]
+B["B {transaction data}"]
+C["C {transaction data}"]
+hBC["Hash(hB|hC)"]==>hB
+hBC==>hC
+hB-->B
+hC==>C

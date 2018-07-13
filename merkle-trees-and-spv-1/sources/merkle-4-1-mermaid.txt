@@ -1,0 +1,46 @@
+graph TB
+Root["Merkle Root: Hash(hAEFD|hBCGH)"]
+Root-->hAEFD
+hAEFD["Hash(hAEF|hD)"]-->hAEF
+hAEFD-->hD
+hAEF["Hash(hA|hEF)"]
+hAEF-->hA
+hAEF-->hEF
+hEF["Hash(hE|hF)"]
+hE-.->E
+hF-->F
+hEF-.->hE
+hEF-->hF
+hA["Hash(A)"]-.->A
+Root-->hBCGH
+hB["Hash(B)"]
+hC["Hash(C)"]
+A["A {transaction data}"]
+B["B {transaction data}"]
+C["C {transaction data}"]
+hD-.->D
+D["D {transaction data}"]
+E["E {transaction data}"]
+F["F {transaction data}"]
+G["G {transaction data}"]
+H["H {transaction data}"]
+hBCGH["Hash(hBC|hGH)"]
+hBCGH-.->hBC
+hBCGH-.->hGH
+hBC["Hash(hB|hC)"]-.->hB
+hBC-.->hC
+hB-.->B
+hC-.->C
+hGH["Hash(hG|hH)"]
+hGH-.->hG
+hGH-.->hH
+hD["Hash(D)"]
+hE["Hash(E)"]
+hF["Hash(F)"]
+hG["Hash(G)"]
+hH["Hash(H)"]
+hG-.->G
+hH-.->H
+classDef fade fill:#efefef,stroke:#bbb,stroke-width:1px,stroke-dasharray: 5, 5;
+
+class H,G,hH,hG,hGH,C,B,hB,hC,hBC,D,E,A fade
