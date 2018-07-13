@@ -94,7 +94,7 @@ Important to note:
 
 ---
 
-If Alice and Bob do not have an open channels and Alice wants to send Bob 0.5 BTC, they’ll both need to be connected to a third party (or a series of 3rd parties). Say if Charles (the third party) only possesses 0.4 BTC in his respective channels with other users, the transaction will not be able to go through that route.
+If Alice and Bob do not have an open channel and Alice wants to send Bob 0.5 BTC, they’ll both need to be connected to a third party (or a series of 3rd parties). Say if Charles (the third party) only possesses 0.4 BTC in his respective channels with other users, the transaction will not be able to go through that route.
 
 ---
 
@@ -253,7 +253,7 @@ Solution: is watchtowers but is this a 'trustless'system
 
 +++
 
-* DASH has agreed to incrementally test and increase the block she from 2MB blocks through 400MB blocks
+* DASH has agreed to incrementally test and increase the block size from 2MB blocks through 400MB blocks
 * It is also funding research for dedicated hardware for miners and nodes to process increased volume. 
 
 ---

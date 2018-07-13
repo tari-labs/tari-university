@@ -86,7 +86,7 @@ CryptoCelebrities | ERC721
 
 * The CyptoPunks are 24x24 pixel art images, generated algorithmically
 * There are 10 000 unique collectible charaters with proof of owership stored on the Ethereum blockchain   
-* Cryptopunks uses a similar system to ERC20 tokens-  the official webiste descibes them as "almost an ERC20 token"
+* Cryptopunks uses a similar system to ERC20 tokens-  the official website descibes them as "almost an ERC20 token"
 * Cryptopunks are ERC721 tokens that have partial ERC20 compatability.
 
 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md#backwards-compatibility>
@@ -118,7 +118,7 @@ CryptoCelebrities | ERC721
 * ERC stands for Ethereum Request for Comment
 * Authored by Ethereum community developers in the form of a memorandum (methods, behaviours, research, or innovations)  
 * It is submitted either for peer review or simply to convey new concepts or information
-* After core developers and community approval, the proposal became a standard. 
+* After core developers and community approval, the proposal becomes a standard. 
 
 +++
 
