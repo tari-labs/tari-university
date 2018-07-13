@@ -59,7 +59,7 @@ Example:
 
 ## Hashed Timelock Contracts (cont'd)
 
-#### ![Char-2](https://github.com/tari-labs/tari-university/tree/SW-atamicSwaps/AtomicSwaps/sources/Char-3.png)
+#### ![Char-2](https://github.com/tari-labs/tari-university/blob/SW-atamicSwaps/AtomicSwaps/sources/Char-3.png)
 
 ---
 
