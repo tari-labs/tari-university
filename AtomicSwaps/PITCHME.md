@@ -40,13 +40,13 @@
 
 Example:
 
-![layer2scaling](https://raw.githubusercontent.com/tari-labs/tari-university/SW-atamicSwaps/AtomicSwaps/sources/Characters.png)
+#### ![Characters](https://raw.githubusercontent.com/tari-labs/tari-university/SW-atamicSwaps/AtomicSwaps/sources/Characters.png)
 
 ---
 
 ## Hashed Timelock Contracts (cont'd)
 
-####![Char-1](https://raw.githubusercontent.com/tari-labs/tari-university/SW-atamicSwaps/AtomicSwaps/sources/Char-1.png)
+#### ![Char-1](https://raw.githubusercontent.com/tari-labs/tari-university/SW-atamicSwaps/AtomicSwaps/sources/Char-1.png)
 
 ---
 
