@@ -90,31 +90,40 @@ None
 
 ???
 
-### #3 Rootstock
+### #3 RSK/Rootstock and Lumino
 
 #### What is it?
 
-???
+RSK (*formerly Rootstock*)  is a "2-way pegged" Bitcoin sidechain onto which the Ethereum Virtual Machine has been cloned. The platform supports Executable Distributed Code Contracts (EDCC), also known as smart contracts. RSK is scale-able up to 100 transactions per second (Tx/s) and provides a second layer scaling solution for Bitcoin as it can relieve on-chain Bitcoin transactions. ([[14]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1),  [[15]](https://lunyr.com/article/Second-Layer_Scaling), [[16]](https://www.rsk.co))
+
+Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows processing a higher volume of transactions but storing much less information. The Lumino network is a lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner are done by using aggregate signing of previous transactions so previous signatures can be disposed. [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
+
+Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI), and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle  tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist.  [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
+
+![LuminoDataPruning](C:\Users\pluto\Documents\Code\tari-university\layer2scaling\more-landscape\sources\LuminoDataPruning.PNG)
+
+
 
 #### Who does it?
 
-???
+RSK, which has been newly launched on main net in January 2018. The Lumino Network must still be launched in test net. ([[18]](https://cryptonewsmonitor.com/2017/11/11/bitcoin-based-ethereum-rival-rsk-set-to-launch-next-month), [[19]]([18] ))
 
 #### Strengths
 
-- ???
+- The Lumino Network promises high efficiency in pruning the RSK block chain
 
 #### Weaknesses
 
-???
+- The Lumino Network has not been released yet
+- Details about how the Lumino Network will handle payment channels were not decisive in the white paper [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
 #### Opportunities for Tari
 
-???
+LTCP pruning may be beneficial to Tari
 
 #### Threats for Tari
 
-???
+None
 
 ### #4 Drivechains
 
@@ -251,6 +260,18 @@ None
 [12] Bitcoin Privacy is a Breeze: TumbleBit Successfully Integrated Into Breeze, https://stratisplatform.com/2017/08/10/bitcoin-privacy-tumblebit-integrated-into-breeze, Date accessed: 2018-07-13.
 
 [13] TumbleBit Wallet Reaches One Step Forward, https://www.bitcoinmarketinsider.com/tumblebit-wallet-reaches-one-step-forward, Date accessed: 2018-07-13.
+
+[14] A Survey Of Second Layer Solutions For Blockchain Scaling  Part 1, https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1, https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1, Date accessed: 2018-07-16.
+
+[15] Second-Layer Scaling, https://lunyr.com/article/Second-Layer_Scaling, Date accessed: 2018-07-16.
+
+[16] RSK website, https://www.rsk.co, Date accessed: 2018-07-16.
+
+[17] Lumino Transaction Compression Protocol (LTCP), Lerner S. D., https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf, Date accessed: 2018-07-16.
+
+[18] Bitcoin-Based Ethereum Rival RSK Set to Launch Next Month, https://cryptonewsmonitor.com/2017/11/11/bitcoin-based-ethereum-rival-rsk-set-to-launch-next-month, Date accessed: 2018-07-16.
+
+[19] RSK Blog website, https://media.rsk.co/, Date accessed: 2018-07-16.
 
 
 
