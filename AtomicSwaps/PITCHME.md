@@ -54,7 +54,6 @@ Example:
 
 #### ![Char-2](https://raw.githubusercontent.com/tari-labs/tari-university/SW-atamicSwaps/AtomicSwaps/sources/Char-2.png)
 
-
 ---
 
 ## Hashed Timelock Contracts (cont'd)
@@ -76,7 +75,8 @@ Example:
 - Atomic wallet
 - BarterDEX
   - Etomic and Atomic
-  - Electron server
+  - Electron server and native
+  - Zcredits
 
 ---
 

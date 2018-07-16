@@ -55,9 +55,9 @@ Atomic wallet [[5]](https://atomicwallet.io/) is an atomic swop exchange. They a
 
 ### #3 BarterDEX
 
-BarterDEX is a decentrilized exhange created by Komodo [[6]](https://komodoplatform.com/decentralized-exchange/) but it works with electron servers. BarterDEX also suports Etomic swaps. These work by keeping the payments locked in a etomic blockchain which will act as a third party. Although swaps have been done, it is stated as not yet production ready [[7]](https://github.com/artemii235/etomic-swap). 
+BarterDEX is a decentrilized exhange created by Komodo [[6]](https://komodoplatform.com/decentralized-exchange/) but it works with electron servers or native. BarterDEX at its core is more like an auction system then a true decentrilized exchange. It also uses a security deposit in the form of zcredits to do swaps without waiting for confirmation.
 
-Currently (July 2018) its only possible to use Barterdex out of the  cli [[8]]("https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX)").  Barterdex charges a 0.1287% fee for a swop [[9]](https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2). 
+BarterDEX also suports Etomic swaps. These work by keeping the payments locked in a etomic blockchain which will act as a third party. Although swaps have been done, it is stated as not yet production ready [[7]](https://github.com/artemii235/etomic-swap). Currently (July 2018) its only possible to use Barterdex out of the  cli [[8]]("https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX)").  Barterdex charges a 0.1287% fee for a swop [[9]](https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2). 
 
 ## References
 
