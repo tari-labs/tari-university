@@ -94,11 +94,11 @@ None
 
 #### What is it?
 
-RSK (*formerly Rootstock*)  is a "2-way pegged" Bitcoin sidechain onto which the Ethereum Virtual Machine has been cloned. The platform supports Executable Distributed Code Contracts (EDCC), also known as smart contracts. RSK is scale-able up to 100 transactions per second (Tx/s) and provides a second layer scaling solution for Bitcoin as it can relieve on-chain Bitcoin transactions. ([[14]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1),  [[15]](https://lunyr.com/article/Second-Layer_Scaling), [[16]](https://www.rsk.co))
+RSK (*formerly Rootstock*)  is a "*2-way pegged*" Bitcoin sidechain onto which the Ethereum Virtual Machine has been cloned. By making use of an appropriate security protocol, BTC can be locked on the main Bitcoin block chain and unlocked/made available on the Bitcoin sidechain, and vice versa. The RSK platform supports Executable Distributed Code Contracts (EDCC), also known as smart contracts. RSK is scale-able up to 100 transactions per second (Tx/s) and provides a second layer scaling solution for Bitcoin as it can relieve on-chain Bitcoin transactions. ([[14]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1),  [[15]](https://lunyr.com/article/Second-Layer_Scaling), [[16]](https://www.rsk.co))
 
 Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows processing a higher volume of transactions but storing much less information. The Lumino network is a lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner are done by using aggregate signing of previous transactions so previous signatures can be disposed. [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
-Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI), and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle  tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist.  [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
+Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist.  [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
 ![LuminoDataPruning](C:\Users\pluto\Documents\Code\tari-university\layer2scaling\more-landscape\sources\LuminoDataPruning.PNG)
 
@@ -130,6 +130,8 @@ None
 #### What is it?
 
 ???
+
+[[20]](http://www.drivechain.info)  [[21]](http://www.truthcoin.info/blog/drivechain)  
 
 #### Who does it?
 
@@ -272,6 +274,12 @@ None
 [18] Bitcoin-Based Ethereum Rival RSK Set to Launch Next Month, https://cryptonewsmonitor.com/2017/11/11/bitcoin-based-ethereum-rival-rsk-set-to-launch-next-month, Date accessed: 2018-07-16.
 
 [19] RSK Blog website, https://media.rsk.co/, Date accessed: 2018-07-16.
+
+[[20]](http://www.drivechain.info)  [[21]](http://www.truthcoin.info/blog/drivechain)  
+
+[20] Drivechain: Enabling Bitcoin Sidechain, http://www.drivechain.info, Date accessed: 2018-07-17.
+
+[21] Drivechain - The Simple Two Way Peg, http://www.truthcoin.info/blog/drivechain, Date accessed: 2018-07-17.
 
 
 
