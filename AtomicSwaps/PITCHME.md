@@ -84,4 +84,4 @@ Example:
 
 Atomic swaps could make it very easiy for the user to obtain tari tokens. 
 
-In the current stance of things BarterDEX looks like the most complete atomic Swap library. 
+In the current stance of things BarterDEX looks like the most complete atomic Swap Implementation. 
