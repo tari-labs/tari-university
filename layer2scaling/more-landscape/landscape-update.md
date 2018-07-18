@@ -18,7 +18,7 @@ See [Layer 2 Scaling Survey](https://github.com/tari-labs/tari-university/blob/m
 
 The TumbleBit protocol was invented at the Boston University. It is a unidirectional, unlinkable payment hub that is fully compatible with the Bitcoin protocol. TumbleBit allows parties to make fast, anonymous, off-chain payments through an untrusted intermediary called the Tumbler. No-one, not even the Tumbler, can tell which payer paid which payee during a TumbleBit epoch (*i.e. time period of significance*). Two modes of operation are supported; a classic mixing/tumbling/washing mode or as a fully fledged payment hub. TumbleBit consists of two interleaved fair-exchange protocols - *RSA-Puzzle-Solver Protocol* and *Puzzle-Promise Protocol* - that relies on the  Rivest–Shamir–Adleman (RSA) cryptosystem's blinding properties to prevent bad acting from either users or Tumblers and to ensure anonymity. TumbleBit also supports anonymizing through Tor to ensure that the Tumbler server can operate as a hidden service. ([[1]](http://cs-people.bu.edu/heilman/tumblebit/), [[2]](https://eprint.iacr.org/2016/575.pdf), [[8]](https://eprint.iacr.org/2016/056.pdf), [[9]](https://www.youtube.com/watch?v=8BLWUUPfh2Q&feature=youtu.be&t=1h3m10s), [[10]](https://bitcoinmagazine.com/articles/better-bitcoin-privacy-scalability-developers-are-making-tumblebit-reality))
 
-![TumbleBitOverview](C:\Users\pluto\Documents\Code\tari-university\layer2scaling\more-landscape\sources\TumbleBitOverview.PNG)
+![TumbleBitOverview](./sources/TumbleBitOverview.PNG)
 
 TumbleBit combines off-chain cryptographic computations with standard on-chain Bitcoin scripting functionalities to realize smart contracts ([[11]](https://en.bitcoin.it/wiki/Contract)) that is not dependent on Segwit. The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking. [[2]](https://eprint.iacr.org/2016/575.pdf)
 
@@ -90,19 +90,57 @@ None
 
 ???
 
-### #3 RSK/Rootstock and Lumino
+### #3 Sidechains, Drivechains and 2WP
 
 #### What is it?
 
-RSK (*formerly Rootstock*)  is a "*2-way pegged*" Bitcoin sidechain onto which the Ethereum Virtual Machine has been cloned. By making use of an appropriate security protocol, BTC can be locked on the main Bitcoin block chain and unlocked/made available on the Bitcoin sidechain, and vice versa. The RSK platform supports Executable Distributed Code Contracts (EDCC), also known as smart contracts. RSK is scale-able up to 100 transactions per second (Tx/s) and provides a second layer scaling solution for Bitcoin as it can relieve on-chain Bitcoin transactions. ([[14]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1),  [[15]](https://lunyr.com/article/Second-Layer_Scaling), [[16]](https://www.rsk.co))
+A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain to a secondary block chain and vice-versa by making use of an appropriate security protocol. The "transfer" actually involves BTC to be locked on the main Bitcoin block chain and unlocked/made available on the secondary block chain. The 2WP promise is concluded when an equivalent amount of tokens on the secondary block chain are locked (in the secondary block chain) so that the original bitcoins can be unlocked. [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design)
+
+*<u>Sidechain:</u> When the security protocol is implemented using Simplified Payment Verification (SPV) proofs - block chain transaction verification without downloading the entire block chain - the secondary block chain are referred to as a Sidechain.* [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design)
+
+*<u>Drivechain:</u> When the security protocol is implemented by giving custody of the BTC to miners and/or notaries - where miners and/or the notaries vote when to unlock BTC and where to send them - the secondary block chain are referred to as a Drivechain.* [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design)
+
+![RSK_hybrid_side_ drive_chain](./sources/RSK_hybrid_side_ drive_chain.png)
+
+
+
+The locking of BTC on the main Bitcoin block is done by using a Pay to Script Hash (P2SH) transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]](https://en.bitcoin.it/wiki/Pay_to_script_hash)
+
+#### Who does it?
+
+RSK (*formerly Rootstock*) is a 2WP Bitcoin secondary block chain using a hybrid sidechain-drivechain security protocol. RSK is scale-able up to 100 transactions per second (Tx/s) and provides a second layer scaling solution for Bitcoin as it can relieve on-chain Bitcoin transactions. ([[14]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1),  [[15]](https://lunyr.com/article/Second-Layer_Scaling), [[16]](https://www.rsk.co))
+
+Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol which absorbs accurate data into a block chain so that Bitcoin users can speculate in Prediction Markets. [[24]](http://bitcoinhivemind.com)
+
+
+
+#### Strengths
+
+- 
+
+#### Weaknesses
+
+- 
+
+#### Opportunities for Tari
+
+
+
+#### Threats for Tari
+
+None
+
+### #4 Lumino
+
+#### What is it?
 
 Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows processing a higher volume of transactions but storing much less information. The Lumino network is a lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner are done by using aggregate signing of previous transactions so previous signatures can be disposed. [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
 Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist.  [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
-![LuminoDataPruning](C:\Users\pluto\Documents\Code\tari-university\layer2scaling\more-landscape\sources\LuminoDataPruning.PNG)
+![LuminoDataPruning](./sources/LuminoDataPruning.PNG)
 
-
+[[20]](http://www.drivechain.info)  [[21]](http://www.truthcoin.info/blog/drivechain)  
 
 #### Who does it?
 
@@ -124,34 +162,6 @@ LTCP pruning may be beneficial to Tari
 #### Threats for Tari
 
 None
-
-### #4 Drivechains
-
-#### What is it?
-
-???
-
-[[20]](http://www.drivechain.info)  [[21]](http://www.truthcoin.info/blog/drivechain)  
-
-#### Who does it?
-
-???
-
-#### Strengths
-
-- ???
-
-#### Weaknesses
-
-???
-
-#### Opportunities for Tari
-
-???
-
-#### Threats for Tari
-
-???
 
 ### #5 Scriptless scripts
 
@@ -281,7 +291,11 @@ None
 
 [21] Drivechain - The Simple Two Way Peg, http://www.truthcoin.info/blog/drivechain, Date accessed: 2018-07-17.
 
+[22] Sidechains, Drivechains, and RSK 2-Way peg Design, https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design, Date accessed: 2018-07-17.
 
+[23] Pay to script hash, https://en.bitcoin.it/wiki/Pay_to_script_hash, Date accessed: 2018-07-17.
+
+[24] Hivemind website, http://bitcoinhivemind.com, Date accessed: 2018-07-17.
 
 ## Contributors
 
