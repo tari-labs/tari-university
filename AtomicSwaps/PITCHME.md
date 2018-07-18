@@ -1,7 +1,7 @@
 ## Atomic swaps
 
 - Introduction
-- What is Atomic swaps
+- What are Atomic swaps
 - Hashed Timelock Contracts
 - Atomic vs Etomic
 - Currently implementations
