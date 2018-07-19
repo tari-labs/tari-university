@@ -90,15 +90,21 @@ None
 
 ???
 
-### #3 Sidechains, Drivechains and 2WP
+### #3 2-Way Pegged Secondary Block Chains (*Sidechains, Drivechains, Federated Pegs*)
 
 #### What is it?
 
-A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain to a secondary block chain and vice-versa by making use of an appropriate security protocol. The "transfer" actually involves BTC to be locked on the main Bitcoin block chain and unlocked/made available on the secondary block chain. The 2WP promise is concluded when an equivalent amount of tokens on the secondary block chain are locked (in the secondary block chain) so that the original bitcoins can be unlocked. [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design)
+A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain to a secondary block chain and vice-versa at a fixed rate by making use of an appropriate security protocol. The "transfer" actually involves BTC to be locked on the main Bitcoin block chain and unlocked/made available on the secondary block chain. The 2WP promise is concluded when an equivalent amount of tokens on the secondary block chain are locked (in the secondary block chain) so that the original bitcoins can be unlocked. ([[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design), [[28]](https://blockstream.com/technology/sidechains.pdf))
 
 *<u>Sidechain:</u> When the security protocol is implemented using Simplified Payment Verification (SPV) proofs - block chain transaction verification without downloading the entire block chain - the secondary block chain are referred to as a Sidechain.* [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design)
 
-*<u>Drivechain:</u> When the security protocol is implemented by giving custody of the BTC to miners and/or notaries - where miners and/or the notaries vote when to unlock BTC and where to send them - the secondary block chain are referred to as a Drivechain.* [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design)
+*<u>Drivechain:</u> When the security protocol is implemented by giving custody of the BTC to miners - where miners vote when to unlock BTC and where to send them - the secondary block chain are referred to as a Drivechain. In this scheme the miners will sign the block header using a Dynamic Membership Multi-party Signature (DMMS).* ([[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design), [[28]](https://blockstream.com/technology/sidechains.pdf))
+
+*<u>Federated Peg/Sidechain:</u> When the security protocol is implemented by having a trusted federation of mutually distrusting functionaries/notaries - the secondary block chain are referred to as a Federated Peg/Sidechain. In this scheme the DMMS is replaced with a traditional multi-signature scheme.* ([[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design), [[28]](https://blockstream.com/technology/sidechains.pdf))
+
+*<u>Hybrid Sidechain-Drivechain-Federated Peg:</u> When the security protocol is implemented by SPV proofs going to the secondary block chain and dynamic mixture of miner DMMS and functionaries/notaries multi-signatures going back to the main Bitcoin block chain  - the secondary block chain are referred to as a Hybrid Sidechain-Drivechain-Federated Peg.* ([[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design), [[28]](https://blockstream.com/technology/sidechains.pdf), [[29]](https://blockstream.com/strong-federations.pdf))
+
+Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol below [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design): 
 
 ![RSK_hybrid_side_ drive_chain](./sources/RSK_hybrid_side_ drive_chain.png)
 
@@ -112,19 +118,27 @@ RSK (*formerly Rootstock*) is a 2WP Bitcoin secondary block chain using a hybrid
 
 Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol which absorbs accurate data into a block chain so that Bitcoin users can speculate in Prediction Markets. [[24]](http://bitcoinhivemind.com)
 
+Blockstream is implementing a Federated Sidechain called Liquid, with the functionaries/notaries being made up of participating exchanges and Bitcoin businesses. [[29]](https://blockstream.com/strong-federations.pdf)
 
+![Blockstream-Federated-Sidechain](C:\Users\pluto\Documents\Code\tari-university\layer2scaling\more-landscape\sources\Blockstream-Federated-Sidechain.PNG)
 
 #### Strengths
 
-- 
+- <u>Permissionless Innovation:</u> Anyone can create a new block chain project that uses the underlying strengths of the main Bitcoin block chain using real BTC as the currency [[20]](http://www.drivechain.info)
+- <u>New Features:</u> Sidechains/Drivecahains can be used to test or implement new features without risk to the main Bitcoin block chain or without having to change its protocol, like Schnorr signatures and zero-knowledge proofs. ([[20]](http://www.drivechain.info), [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable))
+- <u>Chains-as-a-Service (CaaS) :</u> It is possible to create a CaaS with a data storage 2WP secondary block chains. [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable)
+- <u>Smart Contracts:</u> 2WP secondary block chains make it easier to implement smart contracts. [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable)
+- <u>Scalability:</u> 2WP secondary block chains can support larger block sizes and more transactions per second, thus scaling the Bitcoin main block chain. [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable)
 
 #### Weaknesses
 
-- 
+- <u>Security:</u> Transferring BTC back into the main Bitcoin block chain is not secure enough and can be manipulated because Bitcoin does not support SPV from 2WP secondary block chains. [[21]](http://www.truthcoin.info/blog/drivechain)
+- <u>51% attacks:</u> 2WP secondary block chains are hugely dependent on merged mining. As such, mining power centralization and 51% attacks are a real threat, as demonstrated for Namecoin and Huntercoin (See [Merged Mining Introduction](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md)).
+- The DMMS provided by mining is not very secure for small systems, while the trust of the federation/notaries is riskier for large systems. [[28]](https://blockstream.com/technology/sidechains.pdf)
 
 #### Opportunities for Tari
 
-
+None, if enough functionality will be built into the main Tari block chain.
 
 #### Threats for Tari
 
@@ -136,11 +150,9 @@ None
 
 Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows processing a higher volume of transactions but storing much less information. The Lumino network is a lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner are done by using aggregate signing of previous transactions so previous signatures can be disposed. [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
-Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist.  [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
+Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist. [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
 ![LuminoDataPruning](./sources/LuminoDataPruning.PNG)
-
-[[20]](http://www.drivechain.info)  [[21]](http://www.truthcoin.info/blog/drivechain)  
 
 #### Who does it?
 
@@ -285,17 +297,25 @@ None
 
 [19] RSK Blog website, https://media.rsk.co/, Date accessed: 2018-07-16.
 
-[[20]](http://www.drivechain.info)  [[21]](http://www.truthcoin.info/blog/drivechain)  
-
 [20] Drivechain: Enabling Bitcoin Sidechain, http://www.drivechain.info, Date accessed: 2018-07-17.
 
 [21] Drivechain - The Simple Two Way Peg, http://www.truthcoin.info/blog/drivechain, Date accessed: 2018-07-17.
 
-[22] Sidechains, Drivechains, and RSK 2-Way peg Design, https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design, Date accessed: 2018-07-17.
+[22] Sidechains, Drivechains, and RSK 2-Way peg Design, https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design or https://uploads.strikinglycdn.com/files/27311e59-0832-49b5-ab0e-2b0a73899561/Drivechains_Sidechains_and_Hybrid_2-way_peg_Designs_R9.pdf, Date accessed: 2018-07-18.
 
-[23] Pay to script hash, https://en.bitcoin.it/wiki/Pay_to_script_hash, Date accessed: 2018-07-17.
+[23] Pay to script hash, https://en.bitcoin.it/wiki/Pay_to_script_hash, Date accessed: 2018-07-18.
 
-[24] Hivemind website, http://bitcoinhivemind.com, Date accessed: 2018-07-17.
+[24] Hivemind website, http://bitcoinhivemind.com, Date accessed: 2018-07-18.
+
+[25] Drivechains: What do they enable? Cloud 3.0 Services Smart Contracts and Scalability, http://drivechains.org/what-are-drivechains/what-does-it-enable, Date accessed: 2018-07-19.
+
+[26] Bloq’s Paul Sztorc on the 4 Main Benefits of Sidechains, https://bitcoinmagazine.com/articles/bloq-s-paul-sztorc-on-the-main-benefits-of-sidechains-1463417446, Date accessed: 2018-07-19.
+
+[27] Blockstream website, https://blockstream.com/technology, Date accessed: 2018-07-19.
+
+[28] Enabling Blockchain Innovations with Pegged Sidechains, Back A. et. al., 2014-10-22, https://blockstream.com/technology/sidechains.pdf, Date accessed: 2018-07-19.
+
+[29] Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks, Dilley J. et. al., https://blockstream.com/strong-federations.pdf, Date accessed: 2018-07-19.
 
 ## Contributors
 
