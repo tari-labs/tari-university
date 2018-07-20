@@ -1,4 +1,4 @@
-## Layer 2 Scaling Survey
+## Layer 2 Scaling Executive Summary
 
 - What is Layer 2 scaling?
 
@@ -21,7 +21,7 @@
 - Block size limit
 - Number of newer blocks needed to confirm a transaction 
 
-![waiting](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/waiting.png)
+![waiting](https://raw.githubusercontent.com/tari-labs/tari-university/master/layer2scaling/layer2scaling-landscape/sources/waiting.png)
 
 +++
 
@@ -44,7 +44,7 @@ This is why we need a proper scaling solution
 
 This is where the term 'Layer 2' is borrowed from
 
-![OSI_Model](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
+![OSI_Model](https://raw.githubusercontent.com/tari-labs/tari-university/master/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
 
 +++
 
@@ -55,7 +55,7 @@ This is where the term 'Layer 2' is borrowed from
 - In block chain, decentralized Layer 2 protocols (i.e. Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
 
-![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
+![layer2scaling](https://raw.githubusercontent.com/tari-labs/tari-university/master/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
 
 ---
 
@@ -63,7 +63,7 @@ This is where the term 'Layer 2' is borrowed from
 
 ????
 
-![layer2scaling](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/lexecutive-summary/sources/L2ScalingLandscape.png)
+![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ScalingLandscape.png)
 
 ---
 
@@ -83,7 +83,7 @@ This is where the term 'Layer 2' is borrowed from
 
 ????
 
-![layer2scaling](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/lexecutive-summary/sources/L2ContextTari.png)
+![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ContextTari.png)
 
 ---
 
