@@ -1,4 +1,41 @@
-# Consensus Mechanisms 
+# Byzantine Fault Tolerance and Consensus Mechanisms 
+
+- Will look at concensus in general as a concept
+- How it is implemented in different cypotcurrency protocols?
+
+Note: The Byzantine Generals Problem is referenced when discussing cryptocurrency and cryptographic protocol- when a protocol is described as being byzantine fault tolerant (or BFT)- This stems from a simple analogy, as a means to understand the problem of distrubuted consensus 
+
+---
+
+## Byzantine Fualt Tolerance 
+
+---
+
+## The Premise
+
+- A Byzantine army is tryong to attack a city 
+- there are several generals, who have this city encircled 
+- Some generals want to attack and others want to retreat
+- If the generals do not agree on a plan of action, the army will loss the battle 
+- So... the majority has to agree to attack or the majority has to agree to retreat
+- If the majority comes to a consensus on the strategy - otherewise there may be defeated 
+- The generals cannot just talk to one another 
+- they have to use messengers, becuase there camps are so far away 
+- In addition to be far away from one another, there are generals that are not honest (and may vote the wrong way, just to confuse the situation)
+
+==> therein lies the problem-- when you have peeople distributed in that way, how do those poeple come to consensus, and agree on something 
+
+In Really it revoles around getting 51% of the people to agree on something and all move forward with that strategy. (in the case of the blockchain, all move forward with a cerain set of rules, and a certain view on history i.e. what is in the blockchain)
+
+---
+
+### What is a blockchain?
+
+It is a distributed ledger- a source of truth for history 
+
+Because we have thousands of poeple using thsi ledger, how do we get them all to agree on something-- even worse, how to we make sure that someone with a bad agenda (a bad actor) doesn't come in and try to rewrite history  
+
+---
 
 ## [Understanding of the Principle](https://medium.com/the-daily-bit/9-types-of-consensus-mechanisms-that-you-didnt-know-about-49ec365179da)
 
@@ -12,13 +49,13 @@ Creating consensus mechanisms involves the study of mechanism design, which is a
 1. Consider the desired outcome 
 2. Work backward to create a game that incentivises players to fulfil that outcome
 
+(QUick divertion into the question of the need of incentivising- Algorand and other examples of blockchains without incentives)
+
 ---
 
 ## [Focus on Bitcoin](https://thecontrol.co/cryptoeconomics-101-e5c883e9a8ff) 
 
 ### Brief history on decentralised systems
-
-- 
 
 
 Note: Decentralised P2P systems based on cryptography were not new in 2009 (examples include Kazaa and Bittorrent). What these earlier decentralised systems lacked was economic incentives, and the lack of baked in economic incentives is arguably what stifled these early P2P systems from persisting and thriving over time. 
@@ -39,7 +76,50 @@ The purpose of a consensus algorithm in a public blockchain network is to make s
 
 ---
 
+This is where Proof of Work comes in 
+
+
 ## Proof of Work 
+
+- Concept developed in teh early 1990s as a proposal for how of to get aroudn something called the denial of service attack
+
+Note:  DoS attack is simply a network connection or a system being flooded with requests that it has to serve back, and the system cannot detect whether these requests are legitmit or not 
+
+One of the first implementations of this and where Bitcoin is routed in is called Hash Cash. It was developed by Adam Back (he is now a Bitocoin Core developer) in 1997. 
+
+Proof of Work is essentailly a piece of data that very time consuming and computationally expensive to produce- but at the same time it has to be very simple for someone on the other side to verify that a person did that proof of work 
+
+(Give Saduku example)
+
+How does this help with the Byzantine Generals Problem?
+
+- it makes it pretty expensive to become a bad actor to try an attack the network
+
+Now in the case of Hash Cash- what it was actually being used for was a way to deter spam email. You would have to perform a amoutn of proof of work- which would take a while on a regular computer, and attach that in the header of the email you were sending. When the user on the other end would receive that email, they would check for that header, and be able to verify whether you put some work into that before you sent it.
+
+And the theory here is that a spammer would not go out of their way and spend thousands or hundreds of thousands of dollars creating all of this proof of work to send emails-- it became more expensive to send spam.
+
+So in bitcoin's case, it makes the proof of work the miners responsibility 
+
+### The miners 
+
+Tne miners are the people we are entrusting to be able to write history- they are the generals in this case. So bitcoin automatically adjusts the difficulty of generating this proof of work, so it works out at roughly ten minutes for somebody to find a solution, amougst all the miners out there- (that's how we get to the ten minute block time- you have thousands of miners out there all trying to generate this proof of work, and in abouh ten minutes someone comes up with the solution, and is hence trusted to write to history (because they have put so much time and effort and energy into generating that thing- essentailly making it very costly for anyone to attack that network and do something dishonest. In Bitcoin's current state, it also acts as a way to mint the coins- so every mine, when they solve a block is actually rewarded with new coins, that have been minted in to the network- so that adds extra incentive - 'i should be have because i will be rewarded for all this work I'm doing to secure the network and write that immutable history'
+
+So proof of work mining and the way it solves this distributed consensus problem is really one of the chief innovations in bitcoin and what made it successful- because it is very hard problem to solve 
+
+But this is not to say that Proof of Work is the be all and end all- it does have some drawbacks:
+
+1. It is inefficent and does not really solve anything (those millions and trillions of hashs that are being generated in trying to find a solution- they do not contribute back to society)
+2. It is wasteful and costly from an electricity perspective (some estimates say that it costs half a billion dollars every year just to secure the network through mining (all the people running server farms with mining equipment- just for bitcoin- there is a lot more electricity going into all the other cryptocurrencies 
+3. Because the chief resource that you a putting into securing this network is expensiev hardware, it actually creates an arms race amoungst the miners to try and buy up the most expensive, powerful and advanced mining hardware
+
+Due to that arms race we have seen a lot of proprietory technology being developed- ASICs (applications specific integrated circuit) and realy it is just a special computer solely designed to mine bitcoin, or whatever hashing algorithm it is designed for). They are super efficient- but often the technology is close-sourced and expensive to procure from China. 
+
+All this adds to the problem of ecntralisation 
+
+So you have all the research and developemnt into these ASICs being done over in China-those people are not going to sell their technology which they can use to make lots of money mining bitcoin- they are going to keep it to themself, and they are going to mine and profit of bitcoin-- as a result we have around 70% of the mining power on bitcoin in the hands of a few miners over in China. 
+
+Now no single miner holds over 51% of the hashing power over in China- however if a couple of those parties came together and formed a cartel- then it blows away a solution the byzantine generals problem- because it means that just two generals could colude and be able to write history 
 
 Note: The use of Proof of Work mining was initially proposed to establish that a given block had required a certain amount of work to be mined. This allowed users to simply pick the longest valid chain with the highest amount of work as the correct chain. 
 
