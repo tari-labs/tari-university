@@ -119,7 +119,11 @@ All this adds to the problem of ecntralisation
 
 So you have all the research and developemnt into these ASICs being done over in China-those people are not going to sell their technology which they can use to make lots of money mining bitcoin- they are going to keep it to themself, and they are going to mine and profit of bitcoin-- as a result we have around 70% of the mining power on bitcoin in the hands of a few miners over in China. 
 
-Now no single miner holds over 51% of the hashing power over in China- however if a couple of those parties came together and formed a cartel- then it blows away a solution the byzantine generals problem- because it means that just two generals could colude and be able to write history 
+Now no single miner holds over 51% of the hashing power over in China- however if a couple of those parties came together and formed a cartel- then it blows away a solution the byzantine generals problem- because it means that just two generals could colude and be able to write history as they see fit. 
+
+So just a few years after Bitcoin was initially realesased in 2009, people started getting more vocal about these criticisms, these drawbacks of Bitcoin's proof of work consensus system . As a result a lot of proposals started coming up as a solution to this distributed consensus problem- that wasn't potentially centralised. 
+
+The one that has made the most ground is called prrof of stake...
 
 Note: The use of Proof of Work mining was initially proposed to establish that a given block had required a certain amount of work to be mined. This allowed users to simply pick the longest valid chain with the highest amount of work as the correct chain. 
 
@@ -130,6 +134,39 @@ Another alternative was needed.
 +++
 
 ## Proof of Stake 
+
+Proof of stake popped up in 2011- on a bitcoin talk thread. 
+
+People ssaying, what if the resource we are putting in isnt external, i.e. mining hardware- but actually internal to the cryptocurrency-- what people meant by that, was what if we can trust peoplebased on the number of coins they currently hold, i.e. their stake in teh network-- like proof of work, there is a mining process- but they prefer to call it forging or minting. The difference is that it is kind of like a lottery system - where a people is randomly or pseudo-randonly selected to be the person who is trusted to commit the block every x number of seconds or minutes. This pseudo random selection is actually based or weighted towards the people that hold the most unspent coins on the network. Those people have a lot invested in the network if they hold millions and millions of coins and fhence have a lot to loss if something goes wrong. Often proof od stake systems will also look at the age of those coins (i.e. how long ago did the person procure those coins-- really as a way to determine 'are they heavily invested for the long term in the future of tis network- the implication here, is since they have a lot at stake, it could be implied that they are more trustworthy, or more liekly to behave in a more positive way rather than tryng to attack the network. 
+
+Proof of stake is not something new. The first implimentation- which was originally called PP coin- which was later renamed to peer coin- came out in 2012, and was ground breaking at the time, because the resources that the miners or the forgers were putting in were not expensive pieces of mining hardware, they were the number of coins they held in the network. Tupically these coins allocate all the coins that are ever going to be created, at the genesis of the network, ansd this can actually lead to some distribution issues, because the only way ro get coins is off somebody who already has coins. There is no minting, like tehre is with bitcoin every ten minutes. 
+
+Some coins have adopted a joint proof of work and proof of stake system, s othey have that minting with the proof of work, but then they switch over to prrof of take for the blockchain security. 
+
+There are a lot of benefits to prrof of stake which take aim at all those drawbacks mentioned about proof of work.
+
+1. Energy saving: people are chosen pseudo-randomly by the network to be trusted to commit to history, there is no proof of work, where people are competing every ten minutes, 
+2. and hence no expensive mining hardware or high electricity costs-- and as a result of there being no proof of work mining there is no arms race to develop this special ASIC hardwar-- the technology can be run on any kind of consumer grade computer or server
+3. Attacks become more and more expensive-- say i wanted to buy 51% of the coins to attack the network, but my increased demand and the limited supply makes it more and more expensive in fiat currency for me to mount an attack on the network. And even if I bought 51% of the coins on a network, why would I then do something bad to that network, that is where all my money is invested.
+
+So you can start to see the cryptoeconomics of how incentives align in a proof of stake system. This is not to say that proof od stake is the perfect solution to the consensus problem. 
+
+There is actually a big problem with proof of stake... and some people call it the nothing at stake problem 
+so with bitcoin, i am incentivised to continue mining the longest chain, the most popular chain, because that's where I'll get rewarded with those block rewrds and over time I will be able to sell that to USD. As a result miners are pointing all their expensive hardware at a single blockchain and trying to secure that... with Proof of stake because the right to forge a new block pseudo-random and there is basically no computational cost on me for doing so, there is no real incentive to stop me from mining on multiple proof of stake chains, and if i as a proof of stake miner are voting on multiple chains, it means that consensus can be very hard to resolve or come to in the end. Because of this, an abusive miner can actually mine on multiple proof of stake chains, submit multiple blocks, in a way to double spend or rewrite history. an example of an attack vector here is that i might go out and try and buy the private keys of people, who no loger have money in their accoutns but did at some point in time, and there is no economic incentive for those people not to sell those private keys because there is no money in them any more (why would I care, its free money that someone is willing to give me). That abusive miner can actaully start remining from the very begining of the blockchain and own more than 51% of the historical or old coins (there are many attack vetors that tie into the nothing at stake problem) there is a real issue that most proof od stake implementations have tried to tackle in some way or another. 
+
+That PP coin they actually hard code check points into the software that stop people from doing these rerite attacks, They bascially say as of this date, everything before here is written in stone, and that's in the softwre itself. Some people are a littel dubious about this because it is writing check points about history in thte software itself rather than relying on consensus. It is a little bit centralised because the developers could write in any check point that they want. 
+
+Ethereuem which is using proof od work right now, is planning to switch to proof of stake in the future to address some of the concerns of proof of work mining. they are still developing the system. And it is a non trivial problem to try and deal with a nothing at stake problem in teh proof of stake world. they are develooing something called casper, which is their proof of stake implimentation, and they will be actually implementing somehting called star slasher, which essentailly punishers people who try to sign on two different chains. In a nutshell the miners have to put down a security deposit in Ethereum to even be eligible to be selected to randomly mine that proof of stake block, and if that user is deemed by the protocil to be a bad actor, havinig signed on two different blockchains, then they wil lose that security deposit- so you can see how the incentives are ther, for them to actually behave and only sign the one blockchain- essentailly you have to play by the rules, otherwise you get punished-- this si a realy good cryptoeconomic incentive system to stop people from trying to manipulate or game the protocol. 
+
+There is a lot of active development and work around this. slasher, casper and the whole ethereuem proof of stake implimentation, but there is no release date.
+
+A similar technology or approach that is being used is delegated proof of stake and this is being used in things like bitshares. It is essentially the same as proof of stake but the mining or forging is done by these elected delgates who ahave dedicated nodes taht forge the blocks. So the thousands of millions of holders of the coins ahve to appoint or select a delegate who will then do the forging on their node. 
+
+This slightly helps with the nothing at stake problelm because those delegates are trusted and teh mining is kind of centralised, so thaht just those delegates can do it. There are about a hundred or so delegates in the bitshares ecosystem and those delegates are actually paid for the work that they are doing as well. This semi centralisation is still distributed or some what federated because of the delegation process- it really enables the network to be a lot faster-- in the case of bitshare, they have a 10 second block time and their throughput is a lot higher than bitcoin in terms of transaction capability-- but it goes against bitcoin's proof of work ethos, and the whole nature of any body being able to take part and produce blocks if they want to.
+
+Some may argur that it is not totally decentralised, others may argue that it is a compromise, that actually results in a more secure faster network.
+
+So outside of proof of work and proof of stake there have been other protocols or suggestions of how we minght solve the consensus problem...
 
 Note: A Proof of Stake algorithm has nothing to do with mining. Instead, it is about validating. The specific actor responsible for the next block in the chain is determined by the Proof of Stake algorithm. In order to avoid overly concentrating this power, the algorithm must have some kind of randomness. At the least, voting shares must be distributed properly to avoid morphing into a centralized system. 
 
@@ -144,6 +181,22 @@ Even within the Bitcoin community, some members are considering trying to change
 But could there be a better alternative?
 
 +++
+
+## Proof of Space/Capacity/Retrievability 
+
+This is all related to providing file storage or access to files as a way of doing the work, it is similar to proof of work- but it is highly memory bound, because you are using the disk storage of somebody. There are a couple of proposals out there: Spacemint, permacoin that are trying to do this thing, based on teh disk capacity of file storage that you are willing to give the network, that acts as your proof of work.
+
+There is another interesting project called Storj- they are using prrof of retrievability which is similar, but it means that you are able to retrieve your files at any point in time, if so that node, that person providing that storage is trustworthy. 
+
+Now the one obvious advantage here is that the proof of work, the storage you are providing is actually useful to people, it creates a decentralised dropboxbox.net service and others would argue that storage is esentailly comodity at this point- that there is no way you can create ASICs or have that arms race. But there are drawbacks, even if it is not an arms race, there are already a lot of people with huge amounts of cloud storage that they could throw at something like that, so from teh very beginning the small guys really don't have a chance and ultimately this will elad to centralisation, again those people with the big server farms are going to have the most storage avaiable to the network and they will be the ones trusted with securing the blockchain...
+
+The one other problem, and this happens with everything decentralised, be it file storage, messaging, social media etc. as you decentralisea network to are basically giving away speed and ease of use in exchange for secuity and decentralisation. It is very unlikely that its ever going to get to a point where it is faster or more efficient to get your files to a decentralised group of comodity pieces of hardware versus a box that is sitting in an amazon datacenter somewhere that was purpose built and connected to the internet for that purpose... now that is not to say that decentralised file storage is isnt a good idea... it is just a compromise... and you actually get some other benefits like the distribution like the fault tolerance (if the amazozn datacenter is gone up in flames, you data is lost but if your files are distributed across millions of different devices across the world then they are harder to lose. 
+
+SO again decentralisation is always a bit of a compromise and must be kept be kept in mind. 
+
+Proof od ork and proof od stake are two very interesting approaches to dealing with distributed consensus.  There may be skepicism towards proof of stake, because while tehre are systems that have not been broken or attacked that currently implement proof of stake, there is a worry about its future and its centralisation, if the distribution of the tokens is not adequate, a turning point for the industry and the concept of proof of stake is going to be what ethereum dowith casper and whether it actually works. 
+
+Proof of work is a way to come to distributed consensus and is one of the most innovative things that bitcoin brought to the table, and that's why its had this longevity, and while it is having scaling issues and the consensus of block size  etc. its a pretty resilent solution to the byzantine generals problem 
 
 ## Proof of Authority 
 
