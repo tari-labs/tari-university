@@ -68,7 +68,9 @@ None
 
 #### What is it?
 
-???
+Counterparty is NOT a block chain. Counterparty is a protocol and network of nodes for creating smart contract applications on the Bitcoin block chain. Counterparty uses embedded consensus and federated Counterparty nodes, thus not peer-to-peer networking, whereby transaction meta data are written into Bitcoin transactions and when read and validated by Counterparty nodes, executed by them. Each federated node is running the same Counterparty software to enforce protocol rules.
+
+[([30]](https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md), [[31]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3))
 
 #### Who does it?
 
@@ -316,6 +318,10 @@ None
 [28] Enabling Blockchain Innovations with Pegged Sidechains, Back A. et. al., 2014-10-22, https://blockstream.com/technology/sidechains.pdf, Date accessed: 2018-07-19.
 
 [29] Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks, Dilley J. et. al., https://blockstream.com/strong-federations.pdf, Date accessed: 2018-07-19.
+
+[30] CounterpartyXCP/Documentation/Smart Contracts/EVM FAQ, https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md, Date accessed: 2018-07-23.
+
+[31] Counterparty Development 101, [[https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3), Date accessed: 2018-07-23.
 
 ## Contributors
 
