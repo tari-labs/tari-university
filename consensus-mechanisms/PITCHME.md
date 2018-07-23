@@ -81,7 +81,7 @@ Note: The Byzantine Generals Problem is a siminal paper in computer science and 
 
 ---
 
-![Byzantine Generals 1](https://github.com/tari-labs/tari-university/raw/consensus-mechanisms-1/consensus-mechanisms/TByzantine%20Generals%201.png)
+![Byzantine Generals 1](https://github.com/tari-labs/tari-university/blob/consensus-mechanisms-1/consensus-mechanisms/Byzantine%20Generals%201.png)
 
 Notes: A Byzantine army is trying to attack an enemy; there are several generals who are leading armies to attack a fortress; Here we have five Byzantine generals trying to attack a fortress. And they need to decide what they are going to do tomorrow morning: attack or retreat. So each of them decides what it is they want to do and then they talk to all the other generals, giving their vote (here is what I think we should do tomorrow morning). So the votes that generals come up with are Attack, Retreat, Retreat, Attack, Attack (so three attacks and two retreats)- majority rules, so they see that they will attack, as a consensus is reached. And that is the goal of this problem-- Make sure that all the generals are in consensus 
 
