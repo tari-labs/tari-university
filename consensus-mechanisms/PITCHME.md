@@ -115,11 +115,87 @@ Can we tolerate a singel traitor?---if you have one general, he will obivously a
 
 Let's begin by dismissing the trivial cases, if there is only one general, there is no consensus problem- they agree with them self or they are a traitor and we don't care 
 
-Same with two generals, if they agree with one another, that is great, if one of them is a traitor, there is no consensus to be had
+Same with two generals, if they agree with one another, that is great, if one of them is a traitor, there is no consensus to be had.
 
 So in the case of three generals, can we get them to agree on what is said? We label clearly who is doing what. We have the  genral, who has the order and is trying to communicate it to the two remaining generals are the lietenants- they are listening to the order and trying to agree on what has been said 
 
-So in this case the commander may say attack to both of the lietenants. If you are the lietenant in the bottom left, you may 
+So in this case the commander may say attack to both of the lietenants. If you are the lietenant in the bottom left, you might say, i heard him say attack but i want to make sure that's what he told everyone, so you ask your peer lietenant, what he had heard. And the peer lietenant would confirm that it was 'attack'. So at that point, you would have heard attack from the commander, attack from the other lietenant, and so you would be happy with the the consensus to attack.
+
+But what if one of these three is a traitor, and we assume it is not yourself. If your peer lietenant was the traitor it might flip the order, such that, what you intitally heard was attack from the commander but my peer lietenant says retreat. Now I am not sure what to do.
+
+Let us consider another possible case. In the other case, the commander could be the traitor and he told the two lietenants two different orders: he told me attack and my peer lietenant to retreat. At which point, I would have heard attack from my commander and I would have heard retreat from my peer. And again am getting the same two messages, whether my commander is a traitor or whether my peer lietenant is a traitor- so I cannot decide on whether i should attack or retreat. 
+There is no solution for 3 generals, 1 traitor 
+
+There is no solution to the 3 generals, 1 traitor case, so that raises the question how many generals do I need before we can tolerate a traitor, how many generals do we need before we can tolerate m traitors. 
+
+## How many traitors can be tolerated?
+
+Lemma: No solution for 3m+1 with >m traitors 
+
+
+We know 2 is impossible 
+
+==> Hence soltuion must not exist
+
+Note: In the paper there is a lemma, and that lemma says there is no solution for 3m+1 generals with greater than m traitors...basically if one third of yoru generals are traitors or more that a third of your generals are traitors there is no solution to this problem 
+
+## Proof 
+
+Proof: 
+1. Assume solution exists 
+2. Use solution to solve 1 traitor and 3 generals case
+
+You assume that you have some solution to the Byzantine generals problem, where one third or more of the generals are traitors. E.g. you have 12 generals and four traitors adn you think you have solved the problem 
+
+We have three generals and each of these generals pretends to be four generals by simulation 
+Each of those simulated generals runs the assumed solution amongst themselves, so now we have 12 simulated generals all trying to reach consensus with the order given by the simulated commander. 
+
+The simulations that belong to the loyal generals will execute correctly and they will come to consensus. the simulations that belong to the traitor general will do the worst thing possible and become traitors themselves, but since we assumed we solved the problem, they will get ignored, and as a result all of our loyal simulated generals will agree with one another and then the loyal generals will read the results of their simulations and follow that order. So that means that no matter how many generals we have, if we solve the byzantiine generals problem. We can use that for one third or more of our generals being traitors, we can use that solution to solve the three generals one traitor case, which we know cannot be solved, and hence the lemma is actually true. There is no solution for 3m+1 generals if greater than m of the generals are traitors 
+
+## Solving the Byzantine Generals Problem 
+
+What can you do?
+
+Assuming:
+
+- Less than 1/2 of generals are traitors 
+- Oral messages 
+
+OM(m): solution to BGP for <= traitors 
+
+We have an algorithm, the oral messages algorithm, and its parameter m said how many traitors we are going to tolerate, less than or equal to m traitors 
+
+### Inductive Solution for Oral Messages 
+
+Best case, with zero traitors, commander sends out order and the lietenants follow the order 
+
+If m is greater than zero, if there is one or more traitors. The commander sends the order to all the lietenants, each of the lietenants records the order they have received. Then they use the same algorithm for m-1 to tell all of the other lietenants what they heard from their commander. Once the message had been communicated between all of them, each of the lietenatns has a vector, which is a vector of what they think every lietenant heard from the vector. They then take the majority value of that vector as the order which they follow. So in the case shown here, all the lietenants heard attack, all of them told their peers that they heard attack so the majority of attack, attack, attack is attack and they all have consensus and they all do the right thing 
+
+So that is the solution. how does it work out if there are traitors?
+
+If we have one traitor and that traitor happens to be the commander. The commander will send conflicting orders to its lietenants. So the lietenants will hear, for example, attack, attack, retreat. The lietenants will then tell each other what they have heard, and each lietenant will learn that the first lietenant heard attack, the second heard attack and the third heard retreat. The majority of attack attack retreat, is attack, so they all come to consensus, and all come to the same conclusion, that they should attack, in spite of the fact that their commander was trying to confuse them. 
+
+What if one of the lietenants is the traitor, in that case, the commander will send the order 'attack' to all three of  the lietenants and the third lietenant we dont take into account what they think, but they are going to tell things to their peers to confuse them- maybe they wll say attack, maybe they will say retreat, we don't care, because in spite of what they say, the majority of the values in each of the ohter lietenant's vectors will be attack, which is the correct order, and the conclusion the loyal lietenants will come to is attack. The algorithm works for m=1 
+
+For m greaters than 1, it become complicated with the recursive instantiations.
+
+But as a note: For more than two traitors, you need at least seven generals 
+
+## Running Time 
+
+
+How effiecient is this algorithm?
+
+- This algorithm is slow 
+---|---
+m | messages sent 
+0 | O(n)
+1 | O(n^2) 
+2 | O(n^3) 
+3 | O(n^4) 
+
+- This is an expensive algorithm 
+- Byzantine Fault Tolerance is expensive and difficult to solve 
 
 
 
