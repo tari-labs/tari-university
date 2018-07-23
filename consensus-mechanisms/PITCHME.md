@@ -1,223 +1,119 @@
 # Byzantine Fault Tolerance and Consensus Mechanisms 
 
-- Will look at concensus in general as a concept
-- How it is implemented in different cypotcurrency protocols?
+---
 
-Note: The Byzantine Generals Problem is referenced when discussing cryptocurrency and cryptographic protocol- when a protocol is described as being byzantine fault tolerant (or BFT)- This stems from a simple analogy, as a means to understand the problem of distrubuted consensus 
+- Consensus as a concept in cryptocurrency protocols 
+- How it is implemented in different cyptocurrency protocols
+
+Note: In this presentation we will look at the concept of consenus and how it is implemented in different cyptocurrency protocols. 
 
 ---
 
-## Byzantine Fault Tolerance 
+## [Byzantine Fault Tolerance](https://www.youtube.com/watch?v=_e4wNoTV3Gw)  
+
+Note: When considering the concept of consensus in cryptocurrency and cryptographic protocols, the Byzantine Generals Problem is often referenced - where a protocol is described as being byzantine fault tolerant (or BFT). This stems from an analogy, as a means to understand the problem of distributed consensus. 
 
 ---
 
-## The Design Challenge
+### The Design Challenge
 
-How can you design and build a distributed system that can survive the worst possible failures of that system 
+How can you design and build a distributed system that can survive the worst possible failures of that system? 
 
-To classify Byzantine failure: we say that some node in your system, which is exhibiting Byzantine failure is a traitor node 
-
-- Traitor sends conflicting messages ==> leading to an incorrect result of the calculation of your distributed system is trying to perform 
+- Traitor sends conflicting messages
 
 The cause:
 
 - Flaky node(s)
 - Malicious node(s) 
 
-## The Byzantine Generals Problem (1982) 
+Note: To classify Byzantine failure: we say that some node in your system, which is exhibiting Byzantine failure is a traitor node. The traitor can send conflicting messages, leading to an incorrect result of the calculation that your distributed system is trying to perform where the cause is a flaky or malicious node.
 
-## The Two Generals Problem 
+---
 
-It is a simple problem that helps us reason about a Byzantine opponent 
+### The Two Generals Problem 
 
-The two generals problem is an example of a concensus problem
-A consensus problem is where two nodes in our distrubuted system simply have to agree 
+- The two generals problem is an example of a concensus problem
+- *A consensus problem is where two nodes in our distrubuted system simply have to agree*
 
-The Premise
+Note: The two generals problem is a simple problem that helps us reason about an opponent. The two generals problem is an example of a consensus problem. A consensus problem is where two nodes in our distributed system simply have to agree. 
 
-- There are two armies, Army A and Army B, each led by a general 
-- They need to agree on one fact 'are we going to attack Army C in the morning or are we going to retreat?'
-- If both Army A and B launch an attack in the morning, then they will win, if neither army attacks tomorrow then they will survive to fight another day 
-- However, if either Army A or Army B choses to attack alone, they will lose (Army C is bigger than each fo teh two individual armies A and B) 
+---
 
-The Rub:
-- The generals of Army A and B can only communicate through couriers
-- These couriers ride horses through the territory of Army C - so they may or may not make to the opposing general 
+[The Two Generals Problem]
 
-So a protocol needs to be designed: what messages should the general send between each other, so that they are in consensus and agree to attack or retreat in the morning 
+Note: There are two armies, Army A and Army B, each led by a general; They need to agree on one fact 'are we going to attack Army C in the morning or are we going to retreat?'; If both Army A and B launch an attack in the morning, then they will win, if neither army attacks tomorrow then they will survive to fight another day; However, if either Army A or Army B choses to attack alone, they will lose as Army C is bigger than each fo teh two individual armies A and B. The limitations: The generals of Army A and B can only communicate through messengers; These messengers ride horses through the territory of Army C - so they may or may not make to the opposing general. So a protocol needs to be designed: what messages should the generals send between each other, so that they are in consensus and agree to attack or retreat in the morning 
 
-To simplify the problem, lets assume that that general A decides they want to attack tomorrow morning--  so they want to tell general B that, and be sure that general B got the message 
+---
 
-## Two Generals Problem: Solved?
+#### Two Generals Problem: Solved?
 
-- If general A decides they want to attack they send a message to general B, saying 'if you respond I'll attack'
-- If this message gets lost, its no problem, because A is not going to attack if they don't get a response 
-- So B gets this message, 'okay, I now know that A is going to attack tomorrow morning if I respond, I am going to respond, so A will attack, I want to attack, I send a message back saying 'If you respond, I'll attack too'
-- If this message gets lost, it's no problem, because B hasn't commited to attack and neither has A 
-- A receives the second message, and when A gets the second message, it is now commited to attack, because it has now sent out its challenge and received its response. Then A responds with 'okay, I know I'm going to attack for sure, B you should attack for sure as well'
+[The Two Generals Problem Solved?]
 
-But there is a probem here, because if this third message is lost, A is commited to attack and B is not yet commited ==> so we haven't solved the problem. 
+But there is a problem here, because if this third message is lost, A is commited to attack and B is not yet commited ==> so we haven't solved the problem. 
 
-Maybe we could add another message to this procotol, the problem is, no matter what message we come up with and no matter how many messages we add to this procotol, there is always going to be the problem of having an inconsistent state until that one last message gets through
+It can be proved that there is no way of solving the two generals problem ==> there is no perfect solution
 
-It can be proved that there is no way of solving the two generals problem ==> there is no perfect solution 
+Notes: If general A decides they want to attack they send a message to general B, saying 'if you respond I'll attack'; If this message gets lost, it's no problem, because A is not going to attack if they don't get a response from B; So say B gets this message, and B is now 'okay, I now know that A is going to attack tomorrow morning if I respond, I am going to respond, so A will attack, I want to attack, I send a message back saying 'If you respond, I'll attack too'; Again, if this message gets lost, it's no problem, because B hasn't commited to attack and neither has A; A receives the second message, and when A gets the second message, it is now commited to attack, because it has now sent out it's challenge and received it's response. Then A responds with sending a message'okay, I know I'm going to attack for sure, B you should attack for sure as well'But there is a probem here, because if this third message is lost, A is commited to attack and B is not yet commited ==> so we haven't solved the problem. Maybe we could add another message to this procotol, the problem is, no matter what message we come up with and no matter how many messages we add to this procotol, there is always going to be the problem of having an inconsistent state until that one last message gets through. It can be proved that there is no way of solving the two generals problem ==> there is no perfect solution. 
 
-In this situation, the network is our byzantine opponent-- how do you work around the two generals problem in practice?
+---
 
-In practice, you assume that your enermy, is not perfectly byzantine (maybe it will statistically lose messages, as opposed to alwasy doin the worst possible thing to you and if you make that assumption you can design a protocol like, in general A wants to attack, a hundred couriers must be sent to general B, all saying we are going to attack tomorrow, and if any of them get through to B B attacks, as long as one of the hundred couriers gets through, the problem is solved... not ideal, but it works 
+#### Take aways
 
-So the two general's problem demonstrates that if you are byzantine failure results in the failure of your entire communication network, there is no way that you can get consensus between your nodes in your distributed system... 
+- In this situation, the network is our byzantine opponent. 
 
-...but what if we flip that around... what if the individual nodes in your system is what can get corrupted? and we assume that the network works... in that case we have the Byzantine Generals Problem 
+- The Two General's Problem demonstrates that if your byzantine failure results in the failure of your entire communication network, there is no way that you can get consensus between your nodes in your distributed system. 
 
-# The Byzantine Generals Problem 
+- We can look at this problem differently if we flip that around ==> the Byzantine Generals Problem 
+
+Note: In this situation, the network is our byzantine opponent-- how do you work around the two generals problem in practice? In practice, you assume that your enermy, is not perfectly byzantine (maybe it will statistically lose messages, as opposed to alwasy doing the worst possible thing to you and if you make that assumption you can design a protocol like, in general A wants to attack, so a hundred messengers must be sent to general B, all saying we are going to attack tomorrow, and if any of them get through to B, then B attacks, as long as one of the hundred messengers gets through, the problem is solved... not ideal, but it works. The Two General's Problem demonstrates that if your byzantine failure results in the failure of your entire communication network, there is no way that you can get consensus between your nodes in your distributed system. We can look at this problem differently if we flip that around; What if the individual nodes in your system can get corrupted? and we assume that the network works, then we have the Byzantine Generals Problem     
+
+---
+
+### The Byzantine Generals Problem 
 
 - The Byzantine Generals Problem, Leslie Lamport Robert Shoestack and Marshall Peace. ACM TOPLAS 4.3, 1982
 
 Answers
-- How many byzantine nodes failures can a system survive?
+- How many Byzantine nodes failures can a system survive?
 - How might you build such a system?
 
-Note: The Byzantine Generals Problem is a siminal paper in computer science and distributed systems, published in 1982 by Leslie Lamport Robert Shoestack and Marshall Peace.
-It answers many questions
-
-## The Premise 
-
-- A Byzantine army is trying to attack an enery 
-- there are several generals who are leading armies to attack a fortress 
-
-Here we have five Byzantine generals trying to attack a fortress. ANd they need to decide what they are going to do tomowwo morning, attack or retreat 
-
-So each of them in there own brain decides what it is they want to do and then they talk to all the other generals, giving their vote (here is what I think we should do tomorrow morning)
-
-So the votes that generals come up with are Attack, Retreat, Retreat, Attack, Attack (so three attacks and two retreats)- if the majority wins, they will attack tomorrow morning, and all of them know what the other general's votes are, so they can look at the majority value and do they exact same thing together- doing the same thing together, that is consensus. And that is the goal of this problem-- Make sure that all the generals are in consensus 
-
-What if one of our generals is a traitor, that traitor's mission is to mess with the consensus and make it so that the other generals don't agree on what they are going to do tomorrow morning. 
-
-We don't care about what the traitor is thinking about internally, because they are a traitor- they can think whatever they want --all the evil thoughts. 
-But we do care about what the other generals are think the traitor said- and that they all agree on what the traitor said. 
-
-In this case, they currently all think the traitor said attack, or it would be just as valid if they all thought that the traitor said retreat, because they would still be in consensus and all do the same thing. 
-
-It would be bad news if half of loyal generals thought that the traitor said attack and half thought the traitor said retreat- then they would do different things, and the traitor would be happy because his mission of creating chaos and corrupt consensus of the other generals.
-
-When we study the byzantine generals problem, what has been descibed is a super set of the problem, which is the problem of getting all of the generals to agree on what to do tomorrow morning.
-
-The byzantine generals problem in particular is the problem of cmmunicating one descision from one general to all the other generals. 
-
-So the Byzantine generals problem 1- all of the loyal generals in teh system have to agree on what the first general wants to have happen, either attack or retreat and they have to be in consensus on that fact- they do not care about what the traitor is think- but as long as all the loyal generals agree, we solve the problem 
-
-So that's the byzantine generals problem- we are simply trying to get the loyal generals to agree, come to consensus on a single fact 
-
-So, you may ask yourself, how many traitors can we possibly deal with and have them lie to all their peers and still have the remaining loyal generals come to agreement?
-
-Can we tolerate a singel traitor?---if you have one general, he will obivously agree with himself-tehre is no cincensus to be achieved
-
-Let's begin by dismissing the trivial cases, if there is only one general, there is no consensus problem- they agree with them self or they are a traitor and we don't care 
-
-Same with two generals, if they agree with one another, that is great, if one of them is a traitor, there is no consensus to be had.
-
-So in the case of three generals, can we get them to agree on what is said? We label clearly who is doing what. We have the  genral, who has the order and is trying to communicate it to the two remaining generals are the lietenants- they are listening to the order and trying to agree on what has been said 
-
-So in this case the commander may say attack to both of the lietenants. If you are the lietenant in the bottom left, you might say, i heard him say attack but i want to make sure that's what he told everyone, so you ask your peer lietenant, what he had heard. And the peer lietenant would confirm that it was 'attack'. So at that point, you would have heard attack from the commander, attack from the other lietenant, and so you would be happy with the the consensus to attack.
-
-But what if one of these three is a traitor, and we assume it is not yourself. If your peer lietenant was the traitor it might flip the order, such that, what you intitally heard was attack from the commander but my peer lietenant says retreat. Now I am not sure what to do.
-
-Let us consider another possible case. In the other case, the commander could be the traitor and he told the two lietenants two different orders: he told me attack and my peer lietenant to retreat. At which point, I would have heard attack from my commander and I would have heard retreat from my peer. And again am getting the same two messages, whether my commander is a traitor or whether my peer lietenant is a traitor- so I cannot decide on whether i should attack or retreat. 
-There is no solution for 3 generals, 1 traitor 
-
-There is no solution to the 3 generals, 1 traitor case, so that raises the question how many generals do I need before we can tolerate a traitor, how many generals do we need before we can tolerate m traitors. 
-
-## How many traitors can be tolerated?
-
-Lemma: No solution for 3m+1 with >m traitors 
-
-
-We know 2 is impossible 
-
-==> Hence soltuion must not exist
-
-Note: In the paper there is a lemma, and that lemma says there is no solution for 3m+1 generals with greater than m traitors...basically if one third of yoru generals are traitors or more that a third of your generals are traitors there is no solution to this problem 
-
-## Proof 
-
-Proof: 
-1. Assume solution exists 
-2. Use solution to solve 1 traitor and 3 generals case
-
-You assume that you have some solution to the Byzantine generals problem, where one third or more of the generals are traitors. E.g. you have 12 generals and four traitors adn you think you have solved the problem 
-
-We have three generals and each of these generals pretends to be four generals by simulation 
-Each of those simulated generals runs the assumed solution amongst themselves, so now we have 12 simulated generals all trying to reach consensus with the order given by the simulated commander. 
-
-The simulations that belong to the loyal generals will execute correctly and they will come to consensus. the simulations that belong to the traitor general will do the worst thing possible and become traitors themselves, but since we assumed we solved the problem, they will get ignored, and as a result all of our loyal simulated generals will agree with one another and then the loyal generals will read the results of their simulations and follow that order. So that means that no matter how many generals we have, if we solve the byzantiine generals problem. We can use that for one third or more of our generals being traitors, we can use that solution to solve the three generals one traitor case, which we know cannot be solved, and hence the lemma is actually true. There is no solution for 3m+1 generals if greater than m of the generals are traitors 
-
-## Solving the Byzantine Generals Problem 
-
-What can you do?
-
-Assuming:
-
-- Less than 1/2 of generals are traitors 
-- Oral messages 
-
-OM(m): solution to BGP for <= traitors 
-
-We have an algorithm, the oral messages algorithm, and its parameter m said how many traitors we are going to tolerate, less than or equal to m traitors 
-
-### Inductive Solution for Oral Messages 
-
-Best case, with zero traitors, commander sends out order and the lietenants follow the order 
-
-If m is greater than zero, if there is one or more traitors. The commander sends the order to all the lietenants, each of the lietenants records the order they have received. Then they use the same algorithm for m-1 to tell all of the other lietenants what they heard from their commander. Once the message had been communicated between all of them, each of the lietenatns has a vector, which is a vector of what they think every lietenant heard from the vector. They then take the majority value of that vector as the order which they follow. So in the case shown here, all the lietenants heard attack, all of them told their peers that they heard attack so the majority of attack, attack, attack is attack and they all have consensus and they all do the right thing 
-
-So that is the solution. how does it work out if there are traitors?
-
-If we have one traitor and that traitor happens to be the commander. The commander will send conflicting orders to its lietenants. So the lietenants will hear, for example, attack, attack, retreat. The lietenants will then tell each other what they have heard, and each lietenant will learn that the first lietenant heard attack, the second heard attack and the third heard retreat. The majority of attack attack retreat, is attack, so they all come to consensus, and all come to the same conclusion, that they should attack, in spite of the fact that their commander was trying to confuse them. 
-
-What if one of the lietenants is the traitor, in that case, the commander will send the order 'attack' to all three of  the lietenants and the third lietenant we dont take into account what they think, but they are going to tell things to their peers to confuse them- maybe they wll say attack, maybe they will say retreat, we don't care, because in spite of what they say, the majority of the values in each of the ohter lietenant's vectors will be attack, which is the correct order, and the conclusion the loyal lietenants will come to is attack. The algorithm works for m=1 
-
-For m greaters than 1, it become complicated with the recursive instantiations.
-
-But as a note: For more than two traitors, you need at least seven generals 
-
-## Running Time 
-
-
-How effiecient is this algorithm?
-
-- This algorithm is slow 
----|---
-m | messages sent 
-0 | O(n)
-1 | O(n^2) 
-2 | O(n^3) 
-3 | O(n^4) 
-
-- This is an expensive algorithm 
-- Byzantine Fault Tolerance is expensive and difficult to solve 
-
-
-
-- Some generals want to attack and others want to retreat
-- If the generals do not agree on a plan of action, the army will loss the battle 
-- So... the majority has to agree to attack or the majority has to agree to retreat
-- If the majority comes to a consensus on the strategy - otherewise there may be defeated 
-- The generals cannot just talk to one another 
-- they have to use messengers, becuase there camps are so far away 
-- In addition to be far away from one another, there are generals that are not honest (and may vote the wrong way, just to confuse the situation)
-
-==> therein lies the problem-- when you have peeople distributed in that way, how do those poeple come to consensus, and agree on something 
-
-In Really it revoles around getting 51% of the people to agree on something and all move forward with that strategy. (in the case of the blockchain, all move forward with a cerain set of rules, and a certain view on history i.e. what is in the blockchain)
+Note: The Byzantine Generals Problem is a siminal paper in computer science and distributed systems, published in 1982 by Leslie Lamport Robert Shoestack and Marshall Peace. It was orginally called the Albanian Generals Problem, but the name was changed to prevent people getting offened. It provides answers to many questions; like how many Byzantine nodes failurses can a system survive and how might you build such a system. 
 
 ---
 
-### What is a blockchain?
+[Byzantine Generals 1]
+
+Notes: A Byzantine army is trying to attack an enemy; there are several generals who are leading armies to attack a fortress; Here we have five Byzantine generals trying to attack a fortress. And they need to decide what they are going to do tomorrow morning: attack or retreat. So each of them decides what it is they want to do and then they talk to all the other generals, giving their vote (here is what I think we should do tomorrow morning). So the votes that generals come up with are Attack, Retreat, Retreat, Attack, Attack (so three attacks and two retreats)- majority rules, so they see that they will attack, as a consensus is reached. And that is the goal of this problem-- Make sure that all the generals are in consensus 
+
+---
+
+[Byzantine Generals 2]
+
+Note: What if one of our generals is a traitor, that traitor's mission is to mess with the consensus and make it so that the other generals don't agree on what they are going to do tomorrow morning. We don't care about what the traitor is thinking, because they are a traitor. But we do care about what the other generals think the traitor said- basically that they all agree on what the traitor said. 
+
+---
+
+[Byzantine Generals 3]
+
+Note: In this case, they currently all think the traitor said attack, or it would be just as valid if they all thought that the traitor said retreat, because they would still be in consensus and all do the same thing. It would be bad news if half of loyal generals thought that the traitor said attack and half thought the traitor said retreat- then they would do different things, and the traitor would be happy because his mission of creating chaos and corrupt consensus of the other generals.
+
+---
+
+#### Take aways 
+
+The Byzantine Generals Problem in particular is the problem of communicating one decision from one general to all the other generals. 
+
+We are simply trying to get the loyal generals to agree, come to consensus on a single fact 
+
+Note: The Byzantine Generals Problem in particular is the problem of communicating one decision from one general to all the other generals. We are simply trying to get the loyal generals to agree, come to consensus on a single fact therein lies the problem-- when you have people distributed in that way, how do those poeple come to consensus, and agree on something. In reality it revolves around getting 51% of the people to agree on something and all move forward with that strategy. (in the case of the blockchain, all move forward with a certain set of rules, and a certain view on history i.e. what is in the blockchain)
+
+---
+
+## What is a blockchain?
 
 It is a distributed ledger- a source of truth for history 
 
-Because we have thousands of poeple using thsi ledger, how do we get them all to agree on something-- even worse, how to we make sure that someone with a bad agenda (a bad actor) doesn't come in and try to rewrite history  
+Note: Because we have thousands of poeple using this ledger, how do we get them all to agree on something-- even worse, how to we make sure that someone with a bad agenda (a bad actor) doesn't come in and try to rewrite history  
 
 ---
 
@@ -233,95 +129,81 @@ Creating consensus mechanisms involves the study of mechanism design, which is a
 1. Consider the desired outcome 
 2. Work backward to create a game that incentivises players to fulfil that outcome
 
-(QUick divertion into the question of the need of incentivising- Algorand and other examples of blockchains without incentives)
-
 ---
 
-## [Focus on Bitcoin](https://thecontrol.co/cryptoeconomics-101-e5c883e9a8ff) 
-
-### Brief history on decentralised systems
+## [Brief history on decentralised systems](https://thecontrol.co/cryptoeconomics-101-e5c883e9a8ff) 
 
 
 Note: Decentralised P2P systems based on cryptography were not new in 2009 (examples include Kazaa and Bittorrent). What these earlier decentralised systems lacked was economic incentives, and the lack of baked in economic incentives is arguably what stifled these early P2P systems from persisting and thriving over time. 
 
 Satoshi added economic incentives to P2P systems when he created Bitcoin in 2009. It was actually previously believed to be impossible to achieve consensus among nodes (the Byzantine General’s Problem)
 
-+++
-
-[Note](https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eyal.pdf): Bitcoin has emerged as the first widely-deployed, decentralised global currency, and sparked hundred of copycat currencies. Overall, cryptocurrencies have garnered much attention from the financial and tech sectors, as well as academics; achieved wide market penetration in underground economies; reached a $12B market cap; and attracted close to $1B in venture capital. The core technological innovation powering these systems is the Nakamoto consensus protocol for maintaining a distributed ledger known as the blockchain. The blockchain technology provides a decentralised, open, Byzantine fault-tolerant transaction mechanism, and promises to become the infrastructure for a new generation of Internet interaction, including anonymous online payments, remittance, and transaction of digital assets. 
-
 ---
 
 ## [The need for consensus mechanisms](https://cointelegraph.com/news/why-blockchain-needs-proof-of-authority-instead-of-proof-of-stake) 
 
-Note: The cryptocurrency world is maturing and the debate over the right long-term consensus protocol is intensifying. 
-
 The purpose of a consensus algorithm in a public blockchain network is to make sure that the network’s participants agree on the current state of the blockchain without the need to trust each other or to have a central authority. 
+
+Note: The cryptocurrency world is maturing and the debate over the right long-term consensus protocol is intensifying.This is where Proof of Work comes in  
 
 ---
 
-This is where Proof of Work comes in 
+### Proof of Work 
 
-
-## Proof of Work 
-
-- Concept developed in teh early 1990s as a proposal for how of to get aroudn something called the denial of service attack
-
-Note:  DoS attack is simply a network connection or a system being flooded with requests that it has to serve back, and the system cannot detect whether these requests are legitmit or not 
-
-One of the first implementations of this and where Bitcoin is routed in is called Hash Cash. It was developed by Adam Back (he is now a Bitocoin Core developer) in 1997. 
+- Concept developed in the early 1990s as a proposal for how of to get around something called the denial of service attack
+- One of the first implementations of this and where Bitcoin is routed in is called Hash Cash. 
 
 Proof of Work is essentailly a piece of data that very time consuming and computationally expensive to produce- but at the same time it has to be very simple for someone on the other side to verify that a person did that proof of work 
 
-(Give Saduku example)
-
-How does this help with the Byzantine Generals Problem?
-
-- it makes it pretty expensive to become a bad actor to try an attack the network
-
-Now in the case of Hash Cash- what it was actually being used for was a way to deter spam email. You would have to perform a amoutn of proof of work- which would take a while on a regular computer, and attach that in the header of the email you were sending. When the user on the other end would receive that email, they would check for that header, and be able to verify whether you put some work into that before you sent it.
-
-And the theory here is that a spammer would not go out of their way and spend thousands or hundreds of thousands of dollars creating all of this proof of work to send emails-- it became more expensive to send spam.
-
-So in bitcoin's case, it makes the proof of work the miners responsibility 
-
-### The miners 
-
-Tne miners are the people we are entrusting to be able to write history- they are the generals in this case. So bitcoin automatically adjusts the difficulty of generating this proof of work, so it works out at roughly ten minutes for somebody to find a solution, amougst all the miners out there- (that's how we get to the ten minute block time- you have thousands of miners out there all trying to generate this proof of work, and in abouh ten minutes someone comes up with the solution, and is hence trusted to write to history (because they have put so much time and effort and energy into generating that thing- essentailly making it very costly for anyone to attack that network and do something dishonest. In Bitcoin's current state, it also acts as a way to mint the coins- so every mine, when they solve a block is actually rewarded with new coins, that have been minted in to the network- so that adds extra incentive - 'i should be have because i will be rewarded for all this work I'm doing to secure the network and write that immutable history'
-
-So proof of work mining and the way it solves this distributed consensus problem is really one of the chief innovations in bitcoin and what made it successful- because it is very hard problem to solve 
-
-But this is not to say that Proof of Work is the be all and end all- it does have some drawbacks:
-
-1. It is inefficent and does not really solve anything (those millions and trillions of hashs that are being generated in trying to find a solution- they do not contribute back to society)
-2. It is wasteful and costly from an electricity perspective (some estimates say that it costs half a billion dollars every year just to secure the network through mining (all the people running server farms with mining equipment- just for bitcoin- there is a lot more electricity going into all the other cryptocurrencies 
-3. Because the chief resource that you a putting into securing this network is expensiev hardware, it actually creates an arms race amoungst the miners to try and buy up the most expensive, powerful and advanced mining hardware
-
-Due to that arms race we have seen a lot of proprietory technology being developed- ASICs (applications specific integrated circuit) and realy it is just a special computer solely designed to mine bitcoin, or whatever hashing algorithm it is designed for). They are super efficient- but often the technology is close-sourced and expensive to procure from China. 
-
-All this adds to the problem of ecntralisation 
-
-So you have all the research and developemnt into these ASICs being done over in China-those people are not going to sell their technology which they can use to make lots of money mining bitcoin- they are going to keep it to themself, and they are going to mine and profit of bitcoin-- as a result we have around 70% of the mining power on bitcoin in the hands of a few miners over in China. 
-
-Now no single miner holds over 51% of the hashing power over in China- however if a couple of those parties came together and formed a cartel- then it blows away a solution the byzantine generals problem- because it means that just two generals could colude and be able to write history as they see fit. 
-
-So just a few years after Bitcoin was initially realesased in 2009, people started getting more vocal about these criticisms, these drawbacks of Bitcoin's proof of work consensus system . As a result a lot of proposals started coming up as a solution to this distributed consensus problem- that wasn't potentially centralised. 
-
-The one that has made the most ground is called prrof of stake...
-
-Note: The use of Proof of Work mining was initially proposed to establish that a given block had required a certain amount of work to be mined. This allowed users to simply pick the longest valid chain with the highest amount of work as the correct chain. 
-
-However, Proof of Work is extremely inefficient in terms of energy consumption. This makes it expensive and incentivizes miners to centralise the hashing power. So, instead of pushing us towards a truly distributed network, these concentrated mining farms have become de facto authorities. 
-
-Another alternative was needed.
+Note: Concept developed in the early 1990s as a proposal for how of to get around something called the denial of service attack. DoS attack is simply a network connection or a system being flooded with requests that it has to serve back, and the system cannot detect whether these requests are true or not. One of the first implementations of this and where Bitcoin is routed in is called Hash Cash. It was developed by Adam Back (he is now a Bitocoin Core developer) in 1997. Proof of Work is essentailly a piece of data that very time consuming and computationally expensive to produce- but at the same time it has to be very simple for someone on the other side to verify that a person did that proof of work. 
 
 +++
 
-## Proof of Stake 
+#### How does this help with the Byzantine Generals Problem?
 
-Proof of stake popped up in 2011- on a bitcoin talk thread. 
+- It makes it expensive to become a bad actor to try an attack the network 
 
-People ssaying, what if the resource we are putting in isnt external, i.e. mining hardware- but actually internal to the cryptocurrency-- what people meant by that, was what if we can trust peoplebased on the number of coins they currently hold, i.e. their stake in teh network-- like proof of work, there is a mining process- but they prefer to call it forging or minting. The difference is that it is kind of like a lottery system - where a people is randomly or pseudo-randonly selected to be the person who is trusted to commit the block every x number of seconds or minutes. This pseudo random selection is actually based or weighted towards the people that hold the most unspent coins on the network. Those people have a lot invested in the network if they hold millions and millions of coins and fhence have a lot to loss if something goes wrong. Often proof od stake systems will also look at the age of those coins (i.e. how long ago did the person procure those coins-- really as a way to determine 'are they heavily invested for the long term in the future of tis network- the implication here, is since they have a lot at stake, it could be implied that they are more trustworthy, or more liekly to behave in a more positive way rather than tryng to attack the network. 
+Note: Now in the case of Hash Cash- what it was actually being used for was a way to deter spam email. You would have to perform a amount of proof of work- which would take a while on a regular computer, and attach that in the header of the email you were sending. When the user on the other end would receive that email, they would check for that header, and be able to verify whether you put some work into that before you sent it. And the theory here is that a spammer would not go out of their way and spend thousands or hundreds of thousands of dollars creating all of this proof of work to send emails-- it became more expensive to send spam. In bitcoin's case, it makes the proof of work the miners responsibility 
+
++++
+
+##### The Miners 
+
+- The miners are the people we are entrusting to be able to write history- they are the generals in this case. 
+- Bitcoin automatically adjusts the difficulty of generating this proof of work. 
+- POW also acts as a way to mint the coins -Adding the incentive
+
+So proof of work mining and the way it solves this distributed consensus problem is really one of the chief innovations in bitcoin and what made it successful- because it is very hard problem to solve 
+
+Note: The miners are the people we are entrusting to be able to write history- they are the generals in this case. Bitcoin automatically adjusts the difficulty of generating this proof of work. So it works out at roughly ten minutes for somebody to find a solution, amongst all the miners out there- (that's how we get to the ten minute block time- you have thousands of miners out there all trying to generate this proof of work, and in about ten minutes someone comes up with the solution, and is hence trusted to write to history (because they have put so much time and effort and energy into generating that- essentially making it very costly for anyone to attack that network and do something dishonest. In Bitcoin's current state, it also acts as a way to mint the coins- so every miner, when they solve a block is actually rewarded with new coins, that have been minted into the network- so that adds extra incentive - 'I should be have because I will be rewarded for all this work I'm doing to secure the network and write that immutable history'. So proof of work mining and the way it solves this distributed consensus problem is really one of the chief innovations in bitcoin and what made it successful- because it is very hard problem to solve 
+
++++
+
+##### The Drawbacks 
+
+1. It is inefficient and does not really solve anything 
+2. It is wasteful and costly from an electricity perspective  
+3. Because the chief resource that you a putting into securing this network is expensiev hardware, it actually creates an arms race amoungst the miners to try and buy up the most expensive, powerful and advanced mining hardware
+
+All this adds to the problem of centralisation.
+
+Note: But this is not to say that Proof of Work is the be all and end all- it does have some drawbacks: 1. It is inefficient and does not really solve anything (those millions and trillions of hashs that are being generated in trying to find a solution- they do not contribute back to society) 2. It is wasteful and costly from an electricity perspective (some estimates say that it costs half a billion dollars every year just to secure the network through mining, all the people running server farms with mining equipment- just for bitcoin- there is a lot more electricity going into all the other cryptocurrencies 3. Because the chief resource that you a putting into securing this network is expensiev hardware, it actually creates an arms race amoungst the miners to try and buy up the most expensive, powerful and advanced mining hardware. Due to that arms race we have seen a lot of proprietory technology being developed- ASICs (applications specific integrated circuit) and really it is just a special computer solely designed to mine bitcoin, or whatever hashing algorithm it is designed for). They are super efficient- but often the technology is close-sourced and expensive to procure. All this adds to the problem of centralisation. So you have all the research and development into these ASICs being done over in China-those people are not going to sell their technology which they can use to make lots of money mining bitcoin- they are going to keep it to themself, and they are going to mine and profit of bitcoin-- as a result we have around 70% of the mining power on bitcoin in the hands of a few miners over in China. 
+
++++
+
+- No single miner holds over 51% of the hashing power over in China
+
+However if a couple of those parties came together and formed a cartel- then it blows away a solution the Byzantine Generals Problem- because it means that just two generals could collude and be able to write history as they see fit. 
+
+Note: So just a few years after Bitcoin was initially realesased in 2009, people started getting more vocal about these criticisms, these drawbacks of Bitcoin's proof of work consensus system . As a result a lot of proposals started coming up as a solution to this distributed consensus problem- that wasn't potentially centralised. The one that has made the most ground is called proof of stake...
+
+---
+
+### Proof of Stake 
+
+- Proof of stake popped up in 2011- on a bitcoin talk thread. 
+
+Note: People saying, what if the resource we are putting in isnt external, i.e. mining hardware- but actually internal to the cryptocurrency-- what people meant by that, was what if we can trust peoplebased on the number of coins they currently hold, i.e. their stake in teh network-- like proof of work, there is a mining process- but they prefer to call it forging or minting. The difference is that it is kind of like a lottery system - where a people is randomly or pseudo-randonly selected to be the person who is trusted to commit the block every x number of seconds or minutes. This pseudo random selection is actually based or weighted towards the people that hold the most unspent coins on the network. Those people have a lot invested in the network if they hold millions and millions of coins and fhence have a lot to loss if something goes wrong. Often proof od stake systems will also look at the age of those coins (i.e. how long ago did the person procure those coins-- really as a way to determine 'are they heavily invested for the long term in the future of tis network- the implication here, is since they have a lot at stake, it could be implied that they are more trustworthy, or more liekly to behave in a more positive way rather than tryng to attack the network. 
 
 Proof of stake is not something new. The first implimentation- which was originally called PP coin- which was later renamed to peer coin- came out in 2012, and was ground breaking at the time, because the resources that the miners or the forgers were putting in were not expensive pieces of mining hardware, they were the number of coins they held in the network. Tupically these coins allocate all the coins that are ever going to be created, at the genesis of the network, ansd this can actually lead to some distribution issues, because the only way ro get coins is off somebody who already has coins. There is no minting, like tehre is with bitcoin every ten minutes. 
 
@@ -366,7 +248,7 @@ But could there be a better alternative?
 
 +++
 
-## Proof of Space/Capacity/Retrievability 
+### Proof of Space/Capacity/Retrievability 
 
 This is all related to providing file storage or access to files as a way of doing the work, it is similar to proof of work- but it is highly memory bound, because you are using the disk storage of somebody. There are a couple of proposals out there: Spacemint, permacoin that are trying to do this thing, based on teh disk capacity of file storage that you are willing to give the network, that acts as your proof of work.
 
@@ -382,17 +264,6 @@ Proof od ork and proof od stake are two very interesting approaches to dealing w
 
 Proof of work is a way to come to distributed consensus and is one of the most innovative things that bitcoin brought to the table, and that's why its had this longevity, and while it is having scaling issues and the consensus of block size  etc. its a pretty resilent solution to the byzantine generals problem 
 
-## Proof of Authority 
-
-Note: VIVA introduces the concept of Proof of Authority as an algorithm which delivers instant transactions and seamless consensus over a truly distributed network. 
-
-According to William Banks, CTO at VIVA, “while Proof of Stake might have certain advantages, it is not a panacea. The problem is that there is no guarantee that the validator with the highest collateral deposited a for a block is going to operate the network in its best interests.”
-
-“In fact, Proof of Stake coins are plagued with issues because rational people tend to act in their own self-interest. PoS works only because the best interests of the largest stakeholders usually do align with those of the network. In the case of a disagreement, however, the largest stakeholder might assume the role of the supreme commander.”
-
-The distributed Proof of Stake algorithm was created to solve problems with the earlier Proof of Work algorithms. To make it work the decisions are weighted based on multiple factors. 
-
-First and foremost, the size of the stake and the interests of a validator are taken into account. Secondly, it is important to check when their decision last became the primary decision agreed upon by the network’s participants. Finally, it needs to be considered whether the outcome of this decision met with approval but he majority of the network participants.  
 
 
 
