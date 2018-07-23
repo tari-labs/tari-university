@@ -39,7 +39,7 @@ Note: The two generals problem is a simple problem that helps us reason about an
 
 ---
 
-![The Two Generals Problem](https://github.com/tari-labs/tari-university/raw/consensus-mechanisms-1/consensus-mechanisms/The%20Two%20Generals%20Problem.png)
+![The Two Generals Problem](https://github.com/tari-labs/tari-university/blob/consensus-mechanisms-1/consensus-mechanisms/The%20Two%20Generals%20Problem%20.png)
 
 Note: There are two armies, Army A and Army B, each led by a general; They need to agree on one fact 'are we going to attack Army C in the morning or are we going to retreat?'; If both Army A and B launch an attack in the morning, then they will win, if neither army attacks tomorrow then they will survive to fight another day; However, if either Army A or Army B choses to attack alone, they will lose as Army C is bigger than each fo teh two individual armies A and B. The limitations: The generals of Army A and B can only communicate through messengers; These messengers ride horses through the territory of Army C - so they may or may not make to the opposing general. So a protocol needs to be designed: what messages should the generals send between each other, so that they are in consensus and agree to attack or retreat in the morning 
 
@@ -47,7 +47,7 @@ Note: There are two armies, Army A and Army B, each led by a general; They need 
 
 #### Two Generals Problem: Solved?
 
-![The Two Generals Problem Solved?](https://github.com/tari-labs/tari-university/raw/consensus-mechanisms-1/consensus-mechanisms/The%20Two%20Generals%20Problem%20Solved?.png)
+![The Two Generals Problem Solved?](https://github.com/tari-labs/tari-university/blob/consensus-mechanisms-1/consensus-mechanisms/The%20Two%20Generals%20Problem%20Solved%3F.png)
 
 But there is a problem here, because if this third message is lost, A is commited to attack and B is not yet commited ==> so we haven't solved the problem. 
 
@@ -87,13 +87,13 @@ Notes: A Byzantine army is trying to attack an enemy; there are several generals
 
 ---
 
-![Byzantine Generals 2](https://github.com/tari-labs/tari-university/raw/consensus-mechanisms-1/consensus-mechanisms/TByzantine%20Generals%202.png)
+![Byzantine Generals 2](https://github.com/tari-labs/tari-university/blob/consensus-mechanisms-1/consensus-mechanisms/Byzantine%20Generals%202.png)
 
 Note: What if one of our generals is a traitor, that traitor's mission is to mess with the consensus and make it so that the other generals don't agree on what they are going to do tomorrow morning. We don't care about what the traitor is thinking, because they are a traitor. But we do care about what the other generals think the traitor said- basically that they all agree on what the traitor said. 
 
 ---
 
-![Byzantine Generals 3](https://github.com/tari-labs/tari-university/raw/consensus-mechanisms-1/consensus-mechanisms/TByzantine%20Generals%203.png)
+![Byzantine Generals 3](https://github.com/tari-labs/tari-university/blob/consensus-mechanisms-1/consensus-mechanisms/Byzantine%20Generals%203.png)
 
 Note: In this case, they currently all think the traitor said attack, or it would be just as valid if they all thought that the traitor said retreat, because they would still be in consensus and all do the same thing. It would be bad news if half of loyal generals thought that the traitor said attack and half thought the traitor said retreat- then they would do different things, and the traitor would be happy because his mission of creating chaos and corrupt consensus of the other generals.
 
