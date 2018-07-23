@@ -7,14 +7,122 @@ Note: The Byzantine Generals Problem is referenced when discussing cryptocurrenc
 
 ---
 
-## Byzantine Fualt Tolerance 
+## Byzantine Fault Tolerance 
 
 ---
 
-## The Premise
+## The Design Challenge
 
-- A Byzantine army is tryong to attack a city 
-- there are several generals, who have this city encircled 
+How can you design and build a distributed system that can survive the worst possible failures of that system 
+
+To classify Byzantine failure: we say that some node in your system, which is exhibiting Byzantine failure is a traitor node 
+
+- Traitor sends conflicting messages ==> leading to an incorrect result of the calculation of your distributed system is trying to perform 
+
+The cause:
+
+- Flaky node(s)
+- Malicious node(s) 
+
+## The Byzantine Generals Problem (1982) 
+
+## The Two Generals Problem 
+
+It is a simple problem that helps us reason about a Byzantine opponent 
+
+The two generals problem is an example of a concensus problem
+A consensus problem is where two nodes in our distrubuted system simply have to agree 
+
+The Premise
+
+- There are two armies, Army A and Army B, each led by a general 
+- They need to agree on one fact 'are we going to attack Army C in the morning or are we going to retreat?'
+- If both Army A and B launch an attack in the morning, then they will win, if neither army attacks tomorrow then they will survive to fight another day 
+- However, if either Army A or Army B choses to attack alone, they will lose (Army C is bigger than each fo teh two individual armies A and B) 
+
+The Rub:
+- The generals of Army A and B can only communicate through couriers
+- These couriers ride horses through the territory of Army C - so they may or may not make to the opposing general 
+
+So a protocol needs to be designed: what messages should the general send between each other, so that they are in consensus and agree to attack or retreat in the morning 
+
+To simplify the problem, lets assume that that general A decides they want to attack tomorrow morning--  so they want to tell general B that, and be sure that general B got the message 
+
+## Two Generals Problem: Solved?
+
+- If general A decides they want to attack they send a message to general B, saying 'if you respond I'll attack'
+- If this message gets lost, its no problem, because A is not going to attack if they don't get a response 
+- So B gets this message, 'okay, I now know that A is going to attack tomorrow morning if I respond, I am going to respond, so A will attack, I want to attack, I send a message back saying 'If you respond, I'll attack too'
+- If this message gets lost, it's no problem, because B hasn't commited to attack and neither has A 
+- A receives the second message, and when A gets the second message, it is now commited to attack, because it has now sent out its challenge and received its response. Then A responds with 'okay, I know I'm going to attack for sure, B you should attack for sure as well'
+
+But there is a probem here, because if this third message is lost, A is commited to attack and B is not yet commited ==> so we haven't solved the problem. 
+
+Maybe we could add another message to this procotol, the problem is, no matter what message we come up with and no matter how many messages we add to this procotol, there is always going to be the problem of having an inconsistent state until that one last message gets through
+
+It can be proved that there is no way of solving the two generals problem ==> there is no perfect solution 
+
+In this situation, the network is our byzantine opponent-- how do you work around the two generals problem in practice?
+
+In practice, you assume that your enermy, is not perfectly byzantine (maybe it will statistically lose messages, as opposed to alwasy doin the worst possible thing to you and if you make that assumption you can design a protocol like, in general A wants to attack, a hundred couriers must be sent to general B, all saying we are going to attack tomorrow, and if any of them get through to B B attacks, as long as one of the hundred couriers gets through, the problem is solved... not ideal, but it works 
+
+So the two general's problem demonstrates that if you are byzantine failure results in the failure of your entire communication network, there is no way that you can get consensus between your nodes in your distributed system... 
+
+...but what if we flip that around... what if the individual nodes in your system is what can get corrupted? and we assume that the network works... in that case we have the Byzantine Generals Problem 
+
+# The Byzantine Generals Problem 
+
+- The Byzantine Generals Problem, Leslie Lamport Robert Shoestack and Marshall Peace. ACM TOPLAS 4.3, 1982
+
+Answers
+- How many byzantine nodes failures can a system survive?
+- How might you build such a system?
+
+Note: The Byzantine Generals Problem is a siminal paper in computer science and distributed systems, published in 1982 by Leslie Lamport Robert Shoestack and Marshall Peace.
+It answers many questions
+
+## The Premise 
+
+- A Byzantine army is trying to attack an enery 
+- there are several generals who are leading armies to attack a fortress 
+
+Here we have five Byzantine generals trying to attack a fortress. ANd they need to decide what they are going to do tomowwo morning, attack or retreat 
+
+So each of them in there own brain decides what it is they want to do and then they talk to all the other generals, giving their vote (here is what I think we should do tomorrow morning)
+
+So the votes that generals come up with are Attack, Retreat, Retreat, Attack, Attack (so three attacks and two retreats)- if the majority wins, they will attack tomorrow morning, and all of them know what the other general's votes are, so they can look at the majority value and do they exact same thing together- doing the same thing together, that is consensus. And that is the goal of this problem-- Make sure that all the generals are in consensus 
+
+What if one of our generals is a traitor, that traitor's mission is to mess with the consensus and make it so that the other generals don't agree on what they are going to do tomorrow morning. 
+
+We don't care about what the traitor is thinking about internally, because they are a traitor- they can think whatever they want --all the evil thoughts. 
+But we do care about what the other generals are think the traitor said- and that they all agree on what the traitor said. 
+
+In this case, they currently all think the traitor said attack, or it would be just as valid if they all thought that the traitor said retreat, because they would still be in consensus and all do the same thing. 
+
+It would be bad news if half of loyal generals thought that the traitor said attack and half thought the traitor said retreat- then they would do different things, and the traitor would be happy because his mission of creating chaos and corrupt consensus of the other generals.
+
+When we study the byzantine generals problem, what has been descibed is a super set of the problem, which is the problem of getting all of the generals to agree on what to do tomorrow morning.
+
+The byzantine generals problem in particular is the problem of cmmunicating one descision from one general to all the other generals. 
+
+So the Byzantine generals problem 1- all of the loyal generals in teh system have to agree on what the first general wants to have happen, either attack or retreat and they have to be in consensus on that fact- they do not care about what the traitor is think- but as long as all the loyal generals agree, we solve the problem 
+
+So that's the byzantine generals problem- we are simply trying to get the loyal generals to agree, come to consensus on a single fact 
+
+So, you may ask yourself, how many traitors can we possibly deal with and have them lie to all their peers and still have the remaining loyal generals come to agreement?
+
+Can we tolerate a singel traitor?---if you have one general, he will obivously agree with himself-tehre is no cincensus to be achieved
+
+Let's begin by dismissing the trivial cases, if there is only one general, there is no consensus problem- they agree with them self or they are a traitor and we don't care 
+
+Same with two generals, if they agree with one another, that is great, if one of them is a traitor, there is no consensus to be had
+
+So in the case of three generals, can we get them to agree on what is said? We label clearly who is doing what. We have the  genral, who has the order and is trying to communicate it to the two remaining generals are the lietenants- they are listening to the order and trying to agree on what has been said 
+
+So in this case the commander may say attack to both of the lietenants. If you are the lietenant in the bottom left, you may 
+
+
+
 - Some generals want to attack and others want to retreat
 - If the generals do not agree on a plan of action, the army will loss the battle 
 - So... the majority has to agree to attack or the majority has to agree to retreat
