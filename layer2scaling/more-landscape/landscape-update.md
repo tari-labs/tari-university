@@ -64,33 +64,36 @@ Has alignment with Tari's base requirements as a trustless Masternode matching/b
 
 None
 
-### #2 Counterparty
+### #2 Counterparty Eco System
 
 #### What is it?
 
-Counterparty is NOT a block chain. Counterparty is a protocol and network of nodes for creating smart contract applications on the Bitcoin block chain. Counterparty uses embedded consensus and federated Counterparty nodes, thus not peer-to-peer networking, whereby transaction meta data are written into Bitcoin transactions and when read and validated by Counterparty nodes, executed by them. Each federated node is running the same Counterparty software to enforce protocol rules.
+Counterparty is NOT a block chain. Counterparty is a protocol and network of nodes for creating smart contract applications using the Ethereum Virtual Machine and linked to the Bitcoin block chain. Counterparty uses embedded consensus and federated nodes whereby transaction meta data are written into Bitcoin transactions on the Bitcoin block chain and when read and validated by the federated nodes, executed by them. Embedded consensus means that the nodes maintain identical ledgers without using a peer-to-peer network, using the Bitcoin block chain for transaction ordering and propagation. A Counterparty federated node is a Bitcoin full node that also runs counterparty-lib software. They credit and debit account balances when executing valid protocol messages using Bitcoin addresses as “accounts”. Each federated node is running the same software to enforce protocol rules. [([30]](https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md), [[31]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3), [[32]](https://counterparty.io))
 
-[([30]](https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md), [[31]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3))
+All published Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`. Counterparty is used to broadcast an `execute` transaction to call a specific function or method in the smart contract code. Once an execution transaction is confirmed by a  Bitcoin miner, the Counterparty federated nodes will receive the request and execute that method. The contract state is modified as the smart contract code executes and stored in the Counterparty database. [[32]](https://counterparty.io)
 
 #### Who does it?
 
-???
+The most notable projects built on top of Counterparty is [Age of Chains](https://www.ageofchains.com), [Age of Rust](http://spacepirate.io), [Augmentors](https://www.augmentorsgame.com/), [Authparty](http://authparty.io/), [Bitcorns](https://bitcorns.com/), [Blockfreight™](http://blockfreight.com/), [Blocksafe](http://www.blocksafefoundation.com), [BTCpaymarket.com](http://btcpaymarket.com), [CoinDaddy](http://coindaddy.io), [COVAL](https://coval.readme.io), [FoldingCoin](http://foldingcoin.net/), [FootballCoin](https://www.footballcoin.io/), [GetGems](http://getgems.org/#/), [IndieBoard](https://indiesquare.me/), [LTBCoin - Letstalkbitcoin.com](https://letstalkbitcoin.com/), [Mafia Wars](https://mafiawars.io/), [NVO](https://nvo.io/), [Proof of Visit](https://proofofvisit.com/), [Rarepepe.party](http://rarepepe.party), [SaruTobi Island](http://mandelduck.com/sarutobiisland/), [Spells of Genesis](http://www.spellsofgenesis.com), [Takara](https://mandelduck.com/#portfolio), [The Scarab Experiment](https://www.thescarabexperiment.org/), [Token.FM](https://token.fm/), [Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM). [[32]](https://counterparty.io)
+
+COVAL is being developed with a primary purpose of moving value using “off-chain” methods. They use their own set of node runners to manage various "off-chain" distributed ledgers and ledger assigned wallets to implement an extended transaction value system, whereby tokens as well as containers of tokens can be securely transacted. Scaling within the COVAL eco system is thus achievable because they are not only reliant on the Counterparty federated nodes to execute smart contracts. [[33]](https://coval.readme.io/docs)
 
 #### Strengths
 
-- ???
+Counterparty provides smart contract abilities that is rooted in the Bitcoin block chain.
 
 #### Weaknesses
 
-???
+- All Counterparty smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If the federated nodes are compromised no evidence of any transaction within the Counterparty eco system exists.
+- Counterparty is not a Layer 2 scaling solution.
 
 #### Opportunities for Tari
 
-???
+None
 
 #### Threats for Tari
 
-???
+None
 
 ### #3 2-Way Pegged Secondary Block Chains (*Sidechains, Drivechains, Federated Pegs*)
 
@@ -322,6 +325,10 @@ None
 [30] CounterpartyXCP/Documentation/Smart Contracts/EVM FAQ, https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md, Date accessed: 2018-07-23.
 
 [31] Counterparty Development 101, [[https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3), Date accessed: 2018-07-23.
+
+[32]  Counterparty website, https://counterparty.io, Date accessed: 2018-07-24.
+
+[33] COVAL website, https://coval.readme.io/docs, Date accessed: 2018-07-24.
 
 ## Contributors
 
