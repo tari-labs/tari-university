@@ -186,13 +186,15 @@ None
 
 #### What is it?
 
-"Scriptless Scripts" was coined and invented by mathematician Andrew Poelstra, referring to a utility offered by scripts without actually requiring them on the block chain. It makes use of Schnorr signatures (invented by Claus-Peter Schnorr) that allows for signature aggregation; several signatures can be mathematically combined into a single signature.
+*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra whereby scripting functionality is offered by scripts without actually requiring them on the block chain. It only works on the Mimblewimble block chain and makes use of a Schnorr signature (invented by Claus-Peter Schnorr) scheme that allows for signature aggregation without knowledge of any secret keys. Several signatures representing unique messages can be mathematically combined into a single signature. This is different to a normal multi-signature scheme where one message is signed by all. [[34]](https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts)
 
-[[34]](https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts), [[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)
+Let's say Alice and Bob each needs to provide half a Schnorr signature for a transaction whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as Zero-Knowledge Contingent payments. ([[34]](https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts), [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf))
+
+Mimblewimble is being sited by Andrew Poelstra as the ultimate *Scriptless Script*. [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf)
 
 #### Who does it?
 
-???
+Mimblewimble  
 
 #### Strengths
 
@@ -200,7 +202,7 @@ None
 
 #### Weaknesses
 
-A naive implementation of Schnorr multi-signatures that satisfies satisfies key aggregation is not secure.
+In a recent work Maxwell et al. ([[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)) showed that a naive implementation of Schnorr multi-signatures that satisfies key aggregation is not secure, and that the Bellare and Neven (BN) Schnorr signature scheme loses the key aggregation property in order to gain security in the plain public-key model. They proposed a new Schnorr-based multi-signature scheme called MuSig, which is provably secure in the plain public-key model and allows key aggregation. It has the same key and signature size as standard Schnorr signatures. The joint signature can be verified exactly the same as a standard Schnorr signature with respect to a single “aggregated” public-key, which can be computed from the individual public keys of the signers. Note that the case of interactive signature aggregation where each signer signs their own message must still be proven by a complete security analysis.
 
 #### Opportunities for Tari
 
@@ -322,9 +324,9 @@ A naive implementation of Schnorr multi-signatures that satisfies satisfies key 
 
 [27] Blockstream website, https://blockstream.com/technology, Date accessed: 2018-07-19.
 
-[28] Enabling Blockchain Innovations with Pegged Sidechains, Back A. et. al., 2014-10-22, https://blockstream.com/technology/sidechains.pdf, Date accessed: 2018-07-19.
+[28] Enabling Blockchain Innovations with Pegged Sidechains, Back A. et al., 2014-10-22, https://blockstream.com/technology/sidechains.pdf, Date accessed: 2018-07-19.
 
-[29] Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks, Dilley J. et. al., https://blockstream.com/strong-federations.pdf, Date accessed: 2018-07-19.
+[29] Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks, Dilley J. et al., https://blockstream.com/strong-federations.pdf, Date accessed: 2018-07-19.
 
 [30] CounterpartyXCP/Documentation/Smart Contracts/EVM FAQ, https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md, Date accessed: 2018-07-23.
 
@@ -338,7 +340,9 @@ A naive implementation of Schnorr multi-signatures that satisfies satisfies key 
 
 [35] Key Aggregation for Schnorr Signatures, https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html, Date accessed: 2018-07-24.
 
-[36] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et. al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
+[36] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
+
+[37] Scriptless Scripts, Poelstra A., 4 March 2017  https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf, Date accessed: 2018-07-24.
 
 ## Contributors
 
