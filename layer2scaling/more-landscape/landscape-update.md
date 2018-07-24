@@ -186,7 +186,9 @@ None
 
 #### What is it?
 
-???
+"Scriptless Scripts" was coined and invented by mathematician Andrew Poelstra, referring to a utility offered by scripts without actually requiring them on the block chain. It makes use of Schnorr signatures (invented by Claus-Peter Schnorr) that allows for signature aggregation; several signatures can be mathematically combined into a single signature.
+
+[[34]](https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts), [[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)
 
 #### Who does it?
 
@@ -198,7 +200,7 @@ None
 
 #### Weaknesses
 
-???
+A naive implementation of Schnorr multi-signatures that satisfies satisfies key aggregation is not secure.
 
 #### Opportunities for Tari
 
@@ -331,6 +333,12 @@ None
 [32]  Counterparty website, https://counterparty.io, Date accessed: 2018-07-24.
 
 [33] COVAL website, https://coval.readme.io/docs, Date accessed: 2018-07-24.
+
+[34] Scriptless Scripts: How Bitcoin Can Support Smart Contracts Without Smart Contracts, https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts, Date accessed: 2018-07-24.
+
+[35] Key Aggregation for Schnorr Signatures, https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html, Date accessed: 2018-07-24.
+
+[36] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et. al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
 
 ## Contributors
 
