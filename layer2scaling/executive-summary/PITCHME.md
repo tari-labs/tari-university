@@ -66,16 +66,13 @@ This is where the term 'Layer 2' is borrowed from
 ## How will this be Applicable to Tari?
 
 - Tari is a high-throughput protocol -> tens of thousands of transactions per second
-- Example, "facilitate 500 tickets in 4 minutes", that is ~2 spectators allowed access per second
 - This will be impossible to do with parent block chain scaling solutions
 - Use cases:
-  - Jim, the nightclub owner
-    - Jim can sell 300 general admission tickets per event
   - EventCorp, the stadium owner
-    - 85,000 seats, 72 queues redeeming tickets on match days
-  - Adam, the crypto infrastructure investor
-    - Adam invested in a Tari validating node, with a considerable stake
-    - Adam’s node is available to execute transactions on behalf  Jim or EventCorp
+    - selling: ??
+    - redeeming: 
+      - 85,000 seats, 72 queues tickets on match days
+      - scanning 500 tickets in 4 minutes", that is ~2 spectators allowed access per second per queue
   - Steve, the collectable card game entrepreneur
     - Steve created his own digital collectible
     - Steve developed a website with the Tari API to display his digital cards, update their status in real time, and facilitate trading and interacting
@@ -87,6 +84,16 @@ This is where the term 'Layer 2' is borrowed from
 ????
 
 ![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ContextTari.png)
+
+Off-chain matching engines
+
+Masternodes (many different solutions available, nothing specific, how consensus is reached between nodes)
+
+Plasma
+
+TumbleBit
+
+Scriptless Scripts combined with Federated Nodes
 
 ---
 

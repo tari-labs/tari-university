@@ -141,6 +141,8 @@ Any change of state within a state channel requires explicit cryptographic conse
 
 Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
 
+Non-fungible assets must be "broadcasted", but state channels are private between 2 parties.
+
 #### Threats for Tari
 
 None.
