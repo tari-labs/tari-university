@@ -113,7 +113,7 @@ A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain
 
 Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol below [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design): 
 
-![RSK_hybrid_side_ drive_chain](./sources/RSK_hybrid_side_ drive_chain.png)
+![RSK_HybridSideDriveChain](./sources/RSK_HybridSideDriveChain.png)
 
 
 
@@ -127,7 +127,7 @@ Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol whi
 
 Blockstream is implementing a Federated Sidechain called Liquid, with the functionaries/notaries being made up of participating exchanges and Bitcoin businesses. [[29]](https://blockstream.com/strong-federations.pdf)
 
-![Blockstream-Federated-Sidechain](C:\Users\pluto\Documents\Code\tari-university\layer2scaling\more-landscape\sources\Blockstream-Federated-Sidechain.PNG)
+![Blockstream-Federated-Sidechain](./sources/Blockstream-Federated-Sidechain.PNG)
 
 #### Strengths
 
