@@ -205,7 +205,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 #### Who does it?
 
-Mimblewimble  
+grin-tech.org
 
 #### Strengths
 

@@ -1,14 +1,10 @@
 ## Layer 2 Scaling Executive Summary
 
 - What is Layer 2 scaling?
-
+- Layer 2 Scaling Landscape
 - How will this be applicable to Tari?
-
-- Layer 2 scaling current initiatives
-  - What is it and who does it?
-  - What are its strengths and weaknesses?
-  - Opportunities and Threats for Tari?
-
+- Layer 2 Scaling Context for Tari
+- Layer 2 Scaling Alternatives for Tari
 - Observations
 
 ---
@@ -34,7 +30,7 @@ Let's postulate block chain and cryptocurrency "takes over the world", ~433.1 bi
 - Segwit enabled Bitcoin 'like' block chains, need ~644 parallel versions, combined growth ~210 GB per day! 
 - Ethereum 'like' block chains, need ~541 parallel versions, combined growth  ~120 GB per day!
 
-This is why we need a proper scaling solution
+This is why block chains need a proper scaling solution
 
 +++
 
@@ -69,13 +65,20 @@ This is where the term 'Layer 2' is borrowed from
 
 ## How will this be Applicable to Tari?
 
-- ??? add high level business and derived protocol requirements here ???
-
-- example
-
-- Tari is a high-throughput protocol that will need to handle tens of thousands of transactions per second
-- For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event
+- Tari is a high-throughput protocol -> tens of thousands of transactions per second
+- Example, "facilitate 500 tickets in 4 minutes", that is ~2 spectators allowed access per second
 - This will be impossible to do with parent block chain scaling solutions
+- Use cases:
+  - Jim, the nightclub owner
+    - Jim can sell 300 general admission tickets per event
+  - EventCorp, the stadium owner
+    - 85,000 seats, 72 queues redeeming tickets on match days
+  - Adam, the crypto infrastructure investor
+    - Adam invested in a Tari validating node, with a considerable stake
+    - Adam’s node is available to execute transactions on behalf  Jim or EventCorp
+  - Steve, the collectable card game entrepreneur
+    - Steve created his own digital collectible
+    - Steve developed a website with the Tari API to display his digital cards, update their status in real time, and facilitate trading and interacting
 
 ---
 
