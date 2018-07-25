@@ -186,11 +186,22 @@ None
 
 #### What is it?
 
-*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra whereby scripting functionality is offered by scripts without actually requiring them on the block chain. It only works on the Mimblewimble block chain and makes use of a Schnorr signature (invented by Claus-Peter Schnorr) scheme that allows for signature aggregation without knowledge of any secret keys. Several signatures representing unique messages can be mathematically combined into a single signature. This is different to a normal multi-signature scheme where one message is signed by all. [[34]](https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts)
+*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra whereby scripting functionality is offered without actual scripts on the block chain to implement smart contracts. Currently it can only work on the Mimblewimble block chain and makes use of a specific Schnorr signature scheme that allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the the *plain public-key model* where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks.
+
+Signature aggregation properties sought here are ([[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)):
+
+- Must be provably secure in the *plain public-key model*;
+- Must satisfy the normal Schnorr equation, whereby the resulting signature can be written as a function of a combination of the public keys; 
+- Must allow for Interactive Aggregate Signatures (IAS) where the signers are required to cooperate;
+- Must allow for Non-interactive Aggregate Signatures (NAS) where the aggregation can to be done by anyone;
+- Must allow each signer to sign the same message;
+- Must allow each signer to sign their own message.
+
+This is different to a normal multi-signature scheme where one message is signed by all.
 
 Let's say Alice and Bob each needs to provide half a Schnorr signature for a transaction whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as Zero-Knowledge Contingent payments. ([[34]](https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts), [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf))
 
-Mimblewimble is being sited by Andrew Poelstra as the ultimate *Scriptless Script*. [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf)
+Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*. [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf)
 
 #### Who does it?
 
@@ -198,19 +209,26 @@ Mimblewimble
 
 #### Strengths
 
-- ???
+- <u>Data savings:</u> Signature aggregation provides data compression on the block chain
+- <u>Privacy:</u> Nothing about the *Scriptless Script* smart contract, other than the settlement transaction,  is ever recorded on the block chain. No one will ever know that an underlying smart contract was executed.
+- <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement transaction.
+- <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction. Transactions are only broadcasted to the block chain once all preconditions are met.
 
 #### Weaknesses
 
-In a recent work Maxwell et al. ([[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)) showed that a naive implementation of Schnorr multi-signatures that satisfies key aggregation is not secure, and that the Bellare and Neven (BN) Schnorr signature scheme loses the key aggregation property in order to gain security in the plain public-key model. They proposed a new Schnorr-based multi-signature scheme called MuSig, which is provably secure in the plain public-key model and allows key aggregation. It has the same key and signature size as standard Schnorr signatures. The joint signature can be verified exactly the same as a standard Schnorr signature with respect to a single “aggregated” public-key, which can be computed from the individual public keys of the signers. Note that the case of interactive signature aggregation where each signer signs their own message must still be proven by a complete security analysis.
+In a recent work Maxwell et al. ([[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)) showed that a naive implementation of Schnorr multi-signatures that satisfies key aggregation is not secure, and that the Bellare and Neven (BN) Schnorr signature scheme loses the key aggregation property in order to gain security in the plain public-key model. They proposed a new Schnorr-based multi-signature scheme with key aggregation called MuSig, which is provably secure in the *plain public-key model*. It has the same key and signature size as standard Schnorr signatures. The joint signature can be verified exactly the same as a standard Schnorr signature with respect to a single “aggregated” public-key, which can be computed from the individual public keys of the signers. Note that the case of interactive signature aggregation where each signer signs their own message must still be proven by a complete security analysis.
 
 #### Opportunities for Tari
 
-???
+Tari plans to implement the Mimblewimble  block chain and should implement the *Scriptless Script*s together with the MuSig Schnorr signature scheme. 
+
+However, this in itself will not provide the Layer 2 scaling performance that will be required. Big Neon, the initial business application to be built on top of the Tari block chain, requires to "facilitate 500 tickets in 4 minutes", that is ~2 spectators allowed access every second, with negligible latency. 
+
+The Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final state update being written back to the block chain after the event.
 
 #### Threats for Tari
 
-???
+None
 
 ### #6 Braiding
 
