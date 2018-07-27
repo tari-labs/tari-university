@@ -166,7 +166,7 @@ like always using modular arithmetic at limits on the choice of nonce.
 
 Bob has _s_, _R_, _m_, and $P_a$.
 
-He doesn't know _k_a_ or _r_.
+He doesn't know $k_a$ or _r_.
 
 $$ s.G = (r + ek_a)G
        = rG + ek_aG
