@@ -186,7 +186,7 @@ None
 
 #### What is it?
 
-*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra whereby scripting functionality is offered without actual scripts on the block chain to implement smart contracts. Currently it can only work on the Mimblewimble block chain and makes use of a specific Schnorr signature scheme that allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the the *plain public-key model* where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks.
+*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra whereby scripting functionality is offered without actual scripts on the block chain to implement smart contracts. Currently it can only work on the Mimblewimble block chain and makes use of a specific Schnorr signature scheme [[38]](https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki) that allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the the *plain public-key model* where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks. ([[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf))
 
 Signature aggregation properties sought here are ([[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)):
 
@@ -205,7 +205,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 #### Who does it?
 
-grin-tech.org
+[grin-tech.org](https://grin-tech.org/)
 
 #### Strengths
 
@@ -230,33 +230,7 @@ The Mimblewimble *Scriptless Script*s could be combined with a federated node (o
 
 None
 
-### #6 Braiding
-
-#### What is it?
-
-???
-
-#### Who does it?
-
-???
-
-#### Strengths
-
-- ???
-
-#### Weaknesses
-
-???
-
-#### Opportunities for Tari
-
-???
-
-#### Threats for Tari
-
-???
-
-### #7 Directed Acyclic Graph (DAG)
+### #6 Braiding, Directed Acyclic Graph (DAG)
 
 #### What is it?
 
@@ -361,6 +335,22 @@ None
 [36] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
 
 [37] Scriptless Scripts, Poelstra A., 4 March 2017  https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf, Date accessed: 2018-07-24.
+
+[38] bip-schnorr.mediawiki, https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki, Date accessed: 2018-07-26.
+
+[[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
+
+[39] If There Is an Answer to Selfish Mining, Braiding Could Be It, https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153, Date accessed: 2018-07-27.
+
+[[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf)
+
+[40] Braiding the Blockchain, McElrath B., Scaling Bitcoin, Hong Kong, 7 Dec 2015,  https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf, Date accessed: 2018-07-27.
+
+[[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html)
+
+[41] Braid Examples, https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html, Date accessed: 2018-07-27.
+
+
 
 ## Contributors
 

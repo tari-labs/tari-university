@@ -76,7 +76,7 @@ Lightning is spreading across the cryptocurrency landscape. It was originally de
 
 #### Opportunities for Tari 
 
-Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
+Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party. Non-fungible assets must be "broadcasted", but state channels are private between 2 parties.
 
 #### Threats to Tari 
 
@@ -139,9 +139,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 
 #### Opportunities for Tari
 
-Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
-
-Non-fungible assets must be "broadcasted", but state channels are private between 2 parties.
+Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party. Non-fungible assets must be "broadcasted", but state channels are private between 2 parties.
 
 #### Threats for Tari
 
