@@ -120,16 +120,14 @@ Has alignment with Tari's base requirements as a trustless Masternode matching/b
 
 - 2WP allows "transfer" of BTC from main Bitcoin block chain to secondary block chain and vice-versa at fixed rate, use appropriate security protocol.
 - "Transfer" involves BTC be locked on main Bitcoin block chain, made available on secondary block chain
-- 2WP promise concluded when equivalent amount tokens on secondary block chain locked so original bitcoins can be unlocked
 - <u>Sidechain:</u> Security protocol implemented using Simplified Payment Verification (SPV) proofs 
 - <u>Drivechain:</u> Custody of BTC to miners, vote when to unlock BTC and where to send them
 - <u>Federated Peg/Sidechain:</u> Trusted federation of mutually distrusting functionaries/notaries
+- <u>Hybrid Sidechain-Drivechain-Federated Peg:</u> SPV proofs one way and mix of miner Dynamic Membership Multi-party Signature (DMMS) and functionaries/notaries multi-signatures going back
 
 +++
 
 #### #3 2-Way Pegged Secondary Block Chains (cont'd)
-
-- <u>Hybrid Sidechain-Drivechain-Federated Peg:</u> SPV proofs one way and mix of miner Dynamic Membership Multi-party Signature (DMMS) and functionaries/notaries multi-signatures going back
 
 ![RSK_HybridSideDriveChain](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/RSK_HybridSideDriveChain.png)
 
@@ -139,6 +137,8 @@ Has alignment with Tari's base requirements as a trustless Masternode matching/b
 +++
 
 #### #3 2-Way Pegged Secondary Block Chains (cont'd)
+
+- 2WP promise concluded when equivalent amount tokens on secondary block chain locked so original bitcoins can be unlocked
 
 <u>Who</u>
 
