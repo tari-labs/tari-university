@@ -200,45 +200,78 @@ None, if enough functionality will be built into the main Tari block chain
 
 LTCP pruning may be beneficial to Tari
 
-+++
-
-#### #4 Lumino (cont'd)
-
-
-
-+++
-
-#### #4 Lumino (cont'd)
-
-
-
 ---
 
 #### #5 Scriptless scripts
 
-
-
-+++
-
-#### #5 Scriptless scripts (cont'd)
-
-
-
-+++
-
-#### #5 Scriptless scripts (cont'd)
-
-
+- *Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra 
+- Scripting functionality is offered without actual scripts on the block chain to implement smart contracts
+- Currently only work on Mimblewimble and makes use of specific Schnorr signature scheme
+- Signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK)
+- Known as the *plain public-key model* where only requirement is that each potential signer has public key
+- KOSK requires users prove possession of secret key during public key registration with certification authority, one way to generically prevent rogue-key attacks
 
 +++
 
 #### #5 Scriptless scripts (cont'd)
 
+- Signature aggregation properties sought here (different to normal multi-signature scheme):
+  - Must be provably secure in the *plain public-key model*
+  - Must satisfy normal Schnorr equation, resulting signature written as function of combination of  public keys
+  - Must allow for Interactive Aggregate Signatures (IAS) where signers are required to cooperate
+  - Must allow for Non-interactive Aggregate Signatures (NAS) where aggregation can be done by anyone
+  - Must allow each signer to sign the same message
+  - Must allow each signer to sign their own message
 
++++
+
+#### #5 Scriptless scripts (cont'd)
+
+<u>Story</u>
+
+Alice and Bob each needs to provide half a Schnorr signature for a transaction whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as Zero-Knowledge Contingent payments
+
++++
+
+#### #5 Scriptless scripts (cont'd)
+
+[grin-tech.org](https://grin-tech.org/)
+
+Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*.
+
+<u>Strengths</u>
+
+- <u>Data savings:</u> Signature aggregation provides data compression on block chain
+- <u>Privacy:</u> Nothing about Scriptless Script smart contract, other than the settlement transaction, is ever recorded on the block chain
+- <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement transaction
+- <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction
+
++++
+
+#### #5 Scriptless scripts (cont'd)
+
+<u>Weaknesses</u>
+
+- Naive implementation of Schnorr multi-signatures that satisfies key aggregation is not secure
+- Bellare and Neven (BN) Schnorr signature scheme loses the key aggregation property in order to gain security in the plain public-key model
+- New Schnorr-based multi-signature scheme MuSig, provably secure in the *plain public-key model*, interactive signature aggregation where each signer signs their own message must still be proven by complete security analysis
+
+<u>Opportunities for Tari</u>
+
+- Tari should implement Mimblewimble, *Scriptless Script*s and the MuSig Schnorr signature scheme
+- Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty
+
++++
+
+#### #5 Scriptless scripts (cont'd)
 
 ---
 
 #### #6 DAG Derivative Protocols
+
+
+
+
 
 
 
