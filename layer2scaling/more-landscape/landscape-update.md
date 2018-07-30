@@ -230,35 +230,62 @@ The Mimblewimble *Scriptless Script*s could be combined with a federated node (o
 
 None
 
-### #6 Braiding, Directed Acyclic Graph (DAG)
+### #6 Directed Acyclic Graph (DAG) Derivative Protocols: Greedy Heaviest Observed Sub-Tree (GHOST), Braiding, Jute, SPECTRE
 
 #### What is it?
 
-???
+In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. A directed graph is acyclic if and only if it has a topological ordering, that is for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering. [[42]](https://en.wikipedia.org/wiki/Directed_acyclic_graph) 
+
+![DAG](./sources/DAG.PNG)
+
+DAGs were first proposed as the GHOST protocol [[44]](https://eprint.iacr.org/2013/881.pdf), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html)), Jute [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf) and SPECTRE [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf)  was presented. The main problems to be solved by the DAG derivative protocols are inclusion of orphaned blocks and mitigation against selfish mining attacks. The underlying concept is still in the research and exploration phase. [[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
+
+![Braiding](./sources/Braiding.PNG)
+
+DAG derivative protocols decreases the negative effect of slow propagation and selfish mining. Conflicting blocks are not orphaned, a subsequent block is built on top of both of the conflicting blocks. Both blocks become part of the shared history, and both blocks earn their respective miners a block reward. [[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
+
+![GHOST](./sources/GHOST.PNG)
+
+Inclusive protocols that integrate the contents of non-conflicting off-chain block transactions into the ledger results in incentives for behavior changes by the nodes that lead to an increased throughput, and a better payoff for weak miners. [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf)
+
+![InclusiveProtocolDAG](./sources/InclusiveProtocolDAG.PNG)
+
+DAG derivative protocols are not Layer 2 Scaling solutions, but offer significant scaling of the primary block chain.
 
 #### Who does it?
 
-???
+- The School of Engineering and Computer Science, The Hebrew University of Jerusalem ([[44]](https://eprint.iacr.org/2013/881.pdf), [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf), [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf), [[50]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), [[51]](https://eprint.iacr.org/2016/1159.pdf))
+- Ethereum as the Ethash PoW algorithm
+- Dr. Bob McElrath  ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf), [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html))
+- David Vorick [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf)
+- IOTA [[47]](https://www.iota.org/) 
+- Nano [[48]](https://nano.org/en)
+- Byteball [[49]](https://byteball.org/)
 
 #### Strengths
 
-- ???
+- <u>layer 1 scaling:</u> Increased transaction throughput on the main block chain
+- <u>Fairness:</u> Better payoff for weak miners.
+- <u>Decentralization mitigation:</u> Weaker miners also get profits.
+- <u>Transaction confirmation times:</u> Confirmation times of several seconds (SPECTRE).
 
 #### Weaknesses
 
-???
+Still not proven 100%, development still continuing
+
+All DAG derivative protocols are not created equal, beware!
 
 #### Opportunities for Tari
 
-???
+Some opportunities exist in applying the basic DAG principles to make a 51% harder by virtue of not only evaluating the longest chain to be the truth.
 
 #### Threats for Tari
 
-???
+None
 
 ## Observations
 
-- ???
+- Although not all technologies covered here are Layer 2 Scaling solutions, the strengths should be considered as building blocks for the Tari protocol.
 
 ## References
 
@@ -338,17 +365,31 @@ None
 
 [38] bip-schnorr.mediawiki, https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki, Date accessed: 2018-07-26.
 
-[[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
-
 [39] If There Is an Answer to Selfish Mining, Braiding Could Be It, https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153, Date accessed: 2018-07-27.
-
-[[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf)
 
 [40] Braiding the Blockchain, McElrath B., Scaling Bitcoin, Hong Kong, 7 Dec 2015,  https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf, Date accessed: 2018-07-27.
 
-[[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html)
-
 [41] Braid Examples, https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html, Date accessed: 2018-07-27.
+
+[42] Directed acyclic graph, https://en.wikipedia.org/wiki/Directed_acyclic_graph, Date accessed: 2018-07-30.
+
+[43] Braiding Techniques to Improve Security and Scaling, https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf, Date accessed: 2018-07-30.
+
+[44] Secure High-Rate Transaction Processing in Bitcoin, Sompolinsky Y et al., https://eprint.iacr.org/2013/881.pdf, Date accessed: 2018-07-30.
+
+[45] Inclusive Block Chain Protocols, Lewenberg Y et al., http://fc15.ifca.ai/preproceedings/paper_101.pdf, Date accessed: 2018-07-30.
+
+[46] A Fast and Scalable Cryptocurrency Protocol, Sompolinsky Y et al., http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf, Date accessed: 2018-07-30.
+
+[47] IOTA website, https://www.iota.org/, Date accessed: 2018-07-30.
+
+[48] NANO, https://nano.org/en, Date accessed: 2018-07-30.
+
+[49] Byteball, https://byteball.org/, Date accessed: 2018-07-30.
+
+[50] SPECTRE: Serialization of Proof-of-Work Events, Confirming Transactions via Recursive Elections, [[https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), Date accessed: 2018-07-30.
+
+[51] SPECTRE: Serialization of Proof-of-work Events: Confirming Transactions via Recursive Elections, Sompolinsky  Y et al., https://eprint.iacr.org/2016/1159.pdf, Date accessed: 2018-07-30.
 
 
 
