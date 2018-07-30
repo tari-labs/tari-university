@@ -117,7 +117,7 @@ Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivecha
 
 
 
-The locking of BTC on the main Bitcoin block is done by using a Pay to Script Hash (P2SH) transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]](https://en.bitcoin.it/wiki/Pay_to_script_hash)
+The locking of BTC on the main Bitcoin block chain is done by using a Pay to Script Hash (P2SH) transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]](https://en.bitcoin.it/wiki/Pay_to_script_hash)
 
 #### Who does it?
 
@@ -133,7 +133,7 @@ Blockstream is implementing a Federated Sidechain called Liquid, with the functi
 
 - <u>Permissionless Innovation:</u> Anyone can create a new block chain project that uses the underlying strengths of the main Bitcoin block chain using real BTC as the currency [[20]](http://www.drivechain.info)
 - <u>New Features:</u> Sidechains/Drivecahains can be used to test or implement new features without risk to the main Bitcoin block chain or without having to change its protocol, like Schnorr signatures and zero-knowledge proofs. ([[20]](http://www.drivechain.info), [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable))
-- <u>Chains-as-a-Service (CaaS) :</u> It is possible to create a CaaS with a data storage 2WP secondary block chains. [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable)
+- <u>Chains-as-a-Service (CaaS) :</u> It is possible to create a CaaS with data storage 2WP secondary block chains. [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable)
 - <u>Smart Contracts:</u> 2WP secondary block chains make it easier to implement smart contracts. [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable)
 - <u>Scalability:</u> 2WP secondary block chains can support larger block sizes and more transactions per second, thus scaling the Bitcoin main block chain. [[25]](http://drivechains.org/what-are-drivechains/what-does-it-enable)
 

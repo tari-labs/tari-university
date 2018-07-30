@@ -118,37 +118,87 @@ Has alignment with Tari's base requirements as a trustless Masternode matching/b
 
 #### #3 2-Way Pegged Secondary Block Chains
 
+- 2WP allows "transfer" of BTC from main Bitcoin block chain to secondary block chain and vice-versa at fixed rate, use appropriate security protocol.
+- "Transfer" involves BTC be locked on main Bitcoin block chain, made available on secondary block chain
+- 2WP promise concluded when equivalent amount tokens on secondary block chain locked so original bitcoins can be unlocked
+- <u>Sidechain:</u> Security protocol implemented using Simplified Payment Verification (SPV) proofs 
+- <u>Drivechain:</u> Custody of BTC to miners, vote when to unlock BTC and where to send them
+- <u>Federated Peg/Sidechain:</u> Trusted federation of mutually distrusting functionaries/notaries
+
++++
+
+#### #3 2-Way Pegged Secondary Block Chains (cont'd)
+
+- <u>Hybrid Sidechain-Drivechain-Federated Peg:</u> SPV proofs one way and mix of miner Dynamic Membership Multi-party Signature (DMMS) and functionaries/notaries multi-signatures going back
+
+![RSK_HybridSideDriveChain](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/RSK_HybridSideDriveChain.png)
+
+- Locking of BTC on main block chain with P2SH Tx (BTC to script hash instead of public key hash)
+- To unlock, provide a script matching the script hash and data to make script evaluate true
+
++++
+
+#### #3 2-Way Pegged Secondary Block Chains (cont'd)
+
+<u>Who</u>
+
+- RSK (*formerly Rootstock*) using a hybrid sidechain-drivechain security protocol
+- Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol 
+- Blockstream is implementing a Federated Sidechain called Liquid
+
+![Blockstream-Federated-Sidechain](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/Blockstream-Federated-Sidechain.PNG)
+
 
 
 +++
 
 #### #3 2-Way Pegged Secondary Block Chains (cont'd)
 
+<u>Strengths</u>
 
+- Permissionless Innovation
+- can be used to test or implement new features without risk
+- Chains-as-a-Service (CaaS), with data storage 2WP secondary block chains
+- Make it easier to implement smart contracts
+- Can support larger block sizes and more transactions per second
 
-+++
+<u>Weaknesses</u>
 
-#### #3 2-Way Pegged Secondary Block Chains (cont'd)
+- Transferring BTC back into the main Bitcoin block chain is not secure
+- Hugely dependent on merged mining, thus 51% attacks are a real threat
+- DMMS provided by mining not secure for small systems, while trust of federation/notaries riskier for large systems
 
+<u>Opportunities for Tari</u>
 
-
-+++
-
-#### #3 2-Way Pegged Secondary Block Chains (cont'd)
-
-
+None, if enough functionality will be built into the main Tari block chain
 
 ---
 
 #### #4 Lumino
 
+- Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression
+- Lumino network is a lightning-like extension of the RSK platform that uses LTCP
+- Difference compression of data from same owner with aggregate signing of previous Txs
+- RSK newly launched on main net January 2018, Lumino Network still be launched in test net
 
+![LuminoDataPruning](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/LuminoDataPruning.PNG)
 
 +++
 
 #### #4 Lumino (cont'd)
 
+<u>Strengths</u>
 
+- Promises high efficiency in pruning the RSK block chain
+
+<u>Weaknesses</u>
+
+- Has not been released yet
+- Details about payment channels not decisive in the white paper
+
+<u>Opportunities for Tari</u>
+
+LTCP pruning may be beneficial to Tari
 
 +++
 
