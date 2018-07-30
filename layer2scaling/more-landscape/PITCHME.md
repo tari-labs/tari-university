@@ -261,10 +261,6 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 - Tari should implement Mimblewimble, *Scriptless Script*s and the MuSig Schnorr signature scheme
 - Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty
 
-+++
-
-#### #5 Scriptless scripts (cont'd)
-
 ---
 
 #### #6 DAG Derivative Protocols
