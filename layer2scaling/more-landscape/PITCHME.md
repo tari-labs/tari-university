@@ -50,13 +50,12 @@
 - Balance 
 - 2x modes of operation: classic tumbler, payment hub
 - Scale ability
+- Batch processing 
+- Masternode compatibility
 
 +++
 
 #### #1 TumbleBit (cont'd)
-
-- Batch processing 
-- Masternode compatibility
 
 <u>Weaknesses</u>
 
@@ -64,21 +63,20 @@
 - Tumbler service not distributed
 - Equal denominations required 
 
+<u>Opportunities for Tari</u>
+
+Has alignment with Tari's base requirements as a trustless Masternode matching/batch processing engine with strong privacy features
+
 ---
 
 #### #2 Counterparty Eco System
 
+- Counterparty is NOT a block chain -> protocol & network of nodes for smart contract apps using the EVM linked to Bitcoin block chain
+- Uses embedded consensus (identical ledgers without P2P network) and federated nodes
+- Transaction meta data are written into Bitcoin transactions on the Bitcoin block chain
+- Read and validated by the federated nodes, executed by them
 
-
-+++
-
-#### #2 Counterparty Eco System (cont'd)
-
-
-
-+++
-
-#### #2 Counterparty Eco System (cont'd)
+![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/CounterpartyStack.png)
 
 
 
@@ -86,7 +84,35 @@
 
 #### #2 Counterparty Eco System (cont'd)
 
+- Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`
+- Broadcast an `execute` transaction to call a specific function in smart contract code
+- Transaction confirmed by Bitcoin miner -> Counterparty federated nodes execute the function 
+- The contract state is modified as the smart contract code executes and stored in the Counterparty database
 
++++
+
+#### #2 Counterparty Eco System (cont'd)
+
+- Most notable projects built on top of Counterparty:
+  - [Age of Chains](https://www.ageofchains.com), [Age of Rust](http://spacepirate.io), [Augmentors](https://www.augmentorsgame.com/), [Authparty](http://authparty.io/), [Bitcorns](https://bitcorns.com/), [Blockfreight™](http://blockfreight.com/), [Blocksafe](http://www.blocksafefoundation.com), [BTCpaymarket.com](http://btcpaymarket.com), [CoinDaddy](http://coindaddy.io), [COVAL](https://coval.readme.io), [FoldingCoin](http://foldingcoin.net/), [FootballCoin](https://www.footballcoin.io/), [GetGems](http://getgems.org/#/), [IndieBoard](https://indiesquare.me/), [LTBCoin - Letstalkbitcoin.com](https://letstalkbitcoin.com/), [Mafia Wars](https://mafiawars.io/), [NVO](https://nvo.io/), [Proof of Visit](https://proofofvisit.com/), [Rarepepe.party](http://rarepepe.party), [SaruTobi Island](http://mandelduck.com/sarutobiisland/), [Spells of Genesis](http://www.spellsofgenesis.com), [Takara](https://mandelduck.com/#portfolio), [The Scarab Experiment](https://www.thescarabexperiment.org/), [Token.FM](https://token.fm/), [Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM)
+
++++
+
+#### #2 Counterparty Eco System (cont'd)
+
+<u>Strengths</u>
+
+- Provides smart contract abilities rooted in Bitcoin block chain
+
+
+<u>Weaknesses</u>
+
+- Smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If  federated nodes are compromised no evidence of transactions within eco system exists.
+- Counterparty is not a Layer 2 scaling solution
+
+<u>Opportunities for Tari</u>
+
+- See '*Scriptless scripts*'
 
 ---
 
