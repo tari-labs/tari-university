@@ -32,16 +32,16 @@ Cryptography | Crypto101 | An intro to elliptic curve math and digital signature
 General | Non-Fungible Tokens | An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry | 1 | Anyone interested in NFTs | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=nft-landscape-1#/) 
 Off-chain Scaling | Lightning Network for Dummies | An intro to the Lightning Network, including examples of its workings, pros and cons | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=LightningNetworkForDummies#/)
 Protocol | MimbleWimble | An intro to MimbleWimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=mimblewimble-1#/) 
+Protocol | Byzantine Fault Tolerance and Consensus Mechanisms | Understanding Byzantine Generals Probem and its how consensus is achieved in cryptocurrencies | 1 | All | Presentation 
 Technical | Merged Mining | Presents a fundamental understanding to the concept of merged mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
  Technical | Layer 2 Scaling Survey | Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each. | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/) 
 Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=merkle-trees-and-spv-1)  
+Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
  
 
 ## Future Streams and Topics 
 
 Stream | Topic | Date
 ----|----| --- |
-Technical | Atomic Swaps | 16 July 2018 |
-Protocol | Byzantine fault tolerance and Consensus Mechanisms | 23 July 2018 |
 Technical | Layer 2 Scaling Continued | 30 July 2018 |
-Protocol | RGB- a scalable tokenization protocol | 6 August 2018 |
+Protocol | RGB- a scalable tokenization protocol | TBC |
