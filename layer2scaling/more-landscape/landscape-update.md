@@ -58,7 +58,7 @@ The Boston University provided a proof-of-concept and reference implementation a
 
 #### Opportunities for Tari
 
-Has alignment with Tari's base requirements as a trustless Masternode matching/batch processing engine with strong privacy features.
+Has benefits to Tari as a trustless Masternode matching/batch processing engine with strong privacy features.
 
 #### Threats for Tari
 
@@ -113,7 +113,7 @@ A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain
 
 Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol below [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design): 
 
-![RSK_HybridSideDriveChain](./sources/RSK_HybridSideDriveChain.png)
+![RSK_HybridSideDriveChain](./sources/RSK_HybridSideDriveChain.png)f
 
 
 
@@ -193,7 +193,7 @@ Signature aggregation properties sought here are ([[35]](https://blockstream.com
 - Must be provably secure in the *plain public-key model*;
 - Must satisfy the normal Schnorr equation, whereby the resulting signature can be written as a function of a combination of the public keys; 
 - Must allow for Interactive Aggregate Signatures (IAS) where the signers are required to cooperate;
-- Must allow for Non-interactive Aggregate Signatures (NAS) where the aggregation can to be done by anyone;
+- Must allow for Non-interactive Aggregate Signatures (NAS) where the aggregation can be done by anyone;
 - Must allow each signer to sign the same message;
 - Must allow each signer to sign their own message.
 

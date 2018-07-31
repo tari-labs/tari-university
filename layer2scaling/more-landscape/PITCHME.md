@@ -1,6 +1,6 @@
 ## Layer 2 Scaling Survey
 
-- What is Layer 2 scaling, how will it be applicable o Tari? *[See [layer2scaling-landscape](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/)]*
+- What is Layer 2 scaling, how will it be applicable to Tari? *[See [layer2scaling-landscape](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/)]*
 
 - Layer 2 scaling current initiatives (update)
   - TumbleBit
@@ -65,7 +65,7 @@
 
 <u>Opportunities for Tari</u>
 
-Has alignment with Tari's base requirements as a trustless Masternode matching/batch processing engine with strong privacy features
+Has benefits to Tari as a trustless Masternode matching/batch processing engine with strong privacy features.
 
 ---
 
@@ -265,7 +265,11 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 #### #6 DAG Derivative Protocols
 
+A Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. 
 
+Acyclic if and only if it has a topological ordering, that is for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering.
+
+![DAG](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/DAG.PNG)
 
 
 
@@ -275,7 +279,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 #### #6 DAG Derivative Protocols (cont'd)
 
-
+DAG derivative protocols:  [GHOST](https://eprint.iacr.org/2013/881.pdf) (as Ethash PoW algorithm in Ethereum, Dagger-Hashimoto), [Braiding](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [Jute](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), [SPECTRE](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf) and [PHANTOM](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented. 
 
 +++
 
