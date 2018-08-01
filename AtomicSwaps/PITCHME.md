@@ -19,18 +19,18 @@
 
 ---
 
-## What is Atomic swaps
+## What are Atomic swaps
 
 - Decentralised exchange
 
-- Allows the exchange of currencies in a trustless environment
-- If one party defaults or fails the transaction the tranaction is not completed and neither party can "run off" with the other party's money
+- Allow the exchange of currencies in a trustless environment
+- If one party defaults or fails, the tranaction is not completed and neither party can "run off" with the other party's money
 
 ---
 
 ## Hashed Timelock Contracts
 
-- Hashed Timelock Contracts (HTLC)  is one of the most important technologies required for atomic swaps. 
+- Hashed Timelock Contracts (HTLC) is one of the most important technologies required for atomic swaps. 
 - This is a payment class that uses haslocks and timelocks to require certain public knowledge before doing a payment, otherwise the payment is reversed. 
 - HTLCs are also crucial in the lighting network.
 
@@ -82,6 +82,6 @@ Example:
 
 ## Observations
 
-Atomic swaps could make it very easiy for the user to obtain tari tokens. 
+Atomic swaps could make it very easy for the user to obtain Tari tokens. 
 
 In the current stance of things BarterDEX looks like the most complete atomic Swap Implementation. 
