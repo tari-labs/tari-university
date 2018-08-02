@@ -113,7 +113,7 @@ A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain
 
 Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol below [[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design): 
 
-![RSK_HybridSideDriveChain](./sources/RSK_HybridSideDriveChain.png)f
+![RSK_HybridSideDriveChain](./sources/RSK_HybridSideDriveChain.png)
 
 
 
@@ -234,19 +234,25 @@ None
 
 #### What is it?
 
-In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. A directed graph is acyclic if and only if it has a topological ordering, that is for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering. [[42]](https://en.wikipedia.org/wiki/Directed_acyclic_graph) 
+In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. A directed graph is acyclic if and only if it has a topological ordering, that is for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering (age). [[42]](https://en.wikipedia.org/wiki/Directed_acyclic_graph) 
 
 ![DAG](./sources/DAG.PNG)
 
-DAGs were first proposed as the GHOST protocol [[44]](https://eprint.iacr.org/2013/881.pdf), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html)), Jute [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf) and SPECTRE [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf)  was presented. The main problems to be solved by the DAG derivative protocols are inclusion of orphaned blocks and mitigation against selfish mining attacks. The underlying concept is still in the research and exploration phase. [[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
+
+
+DAGs were first proposed as the GHOST protocol [[44]](https://eprint.iacr.org/2013/881.pdf), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html)), Jute [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), SPECTRE [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf)  and PHANTOM [[52]](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented. 
+
+![DAGTopologicalOrdering](./sources/DAGTopologicalOrdering.PNG)
+
+The main problems to be solved by the DAG derivative protocols are **(a)** inclusion of orphaned blocks and **(b)** mitigation against selfish mining attacks. The underlying concept is still in the research and exploration phase. [[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
 
 ![Braiding](./sources/Braiding.PNG)
 
-DAG derivative protocols decreases the negative effect of slow propagation and selfish mining. Conflicting blocks are not orphaned, a subsequent block is built on top of both of the conflicting blocks. Both blocks become part of the shared history, and both blocks earn their respective miners a block reward. [[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
+DAG derivative protocols decrease the negative effect of slow propagation and selfish mining. Blocks containing conflicting transactions are not orphaned; a subsequent block is built on top of both of the conflicting blocks, but the conflicting transactions are thrown out while processing the chain. Both blocks become part of the shared history, and both blocks earn their respective miners a block reward. SPECTRE provides a scheme whereby blocks, not miners, vote to decide which of the conflicting transactions are robustly accepted or robustly rejected. ([[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153), [[50]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), [[51]](https://eprint.iacr.org/2016/1159.pdf))
 
-![GHOST](./sources/GHOST.PNG)
+###### ![GHOST](./sources/GHOST.PNG)
 
-Inclusive protocols that integrate the contents of non-conflicting off-chain block transactions into the ledger results in incentives for behavior changes by the nodes that lead to an increased throughput, and a better payoff for weak miners. [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf)
+Inclusive (DAG derivative) protocols that integrate the contents of non-conflicting off-chain block transactions into the ledger results in incentives for behavior changes by the nodes that lead to an increased throughput, and a better payoff for weak miners. [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf)
 
 ![InclusiveProtocolDAG](./sources/InclusiveProtocolDAG.PNG)
 
@@ -255,29 +261,36 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but offer significan
 #### Who does it?
 
 - The School of Engineering and Computer Science, The Hebrew University of Jerusalem ([[44]](https://eprint.iacr.org/2013/881.pdf), [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf), [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf), [[50]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), [[51]](https://eprint.iacr.org/2016/1159.pdf))
+  - GHOST, SPECTRE, PHANTOM
 - Ethereum as the Ethash PoW algorithm
 - Dr. Bob McElrath  ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf), [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html))
+  - Brading
 - David Vorick [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf)
-- IOTA [[47]](https://www.iota.org/) 
-- Nano [[48]](https://nano.org/en)
-- Byteball [[49]](https://byteball.org/)
+  - Jute
+- DAGlabs
+  - SPECTRE, PHANTOM
+- Crypto currencies:
+  - IOTA [[47]](https://www.iota.org/) 
+  - Nano [[48]](https://nano.org/en)
+  - Byteball [[49]](https://byteball.org/)
 
 #### Strengths
 
-- <u>layer 1 scaling:</u> Increased transaction throughput on the main block chain
-- <u>Fairness:</u> Better payoff for weak miners.
-- <u>Decentralization mitigation:</u> Weaker miners also get profits.
-- <u>Transaction confirmation times:</u> Confirmation times of several seconds (SPECTRE).
+- <u>Layer 1 scaling:</u> Increased transaction throughput on the main block chain
+- <u>Fairness:</u> Better payoff for weak miners
+- <u>Decentralization mitigation:</u> Weaker miners also get profits
+- <u>Transaction confirmation times:</u> Confirmation times of several seconds (SPECTRE)
+- <u>Smart contracts:</u> Support smart contracts (PHANTOM)
 
 #### Weaknesses
 
 Still not proven 100%, development still continuing
 
-All DAG derivative protocols are not created equal, beware!
+The DAG derivative protocols differ on important aspects like miner payment schemes, security models, support for smart contracts, confirmation times, etc. Thus, all DAG derivative protocols are not created equal, beware!
 
 #### Opportunities for Tari
 
-Some opportunities exist in applying the basic DAG principles to make a 51% harder by virtue of not only evaluating the longest chain to be the truth.
+Opportunities exist in applying the basic DAG principles to make a 51% attack harder by virtue of fairness and miner decentralization resistance. Choosing the correct DAG derivative protocol can also significantly improve Layer 1 scaling.
 
 #### Threats for Tari
 
@@ -390,6 +403,8 @@ None
 [50] SPECTRE: Serialization of Proof-of-Work Events, Confirming Transactions via Recursive Elections, [[https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), Date accessed: 2018-07-30.
 
 [51] SPECTRE: Serialization of Proof-of-work Events: Confirming Transactions via Recursive Elections, Sompolinsky  Y et al., https://eprint.iacr.org/2016/1159.pdf, Date accessed: 2018-07-30.
+
+[52] PHANTOM: A Scalable BlockDAG protocol, Sompolinsky Y. et. al., https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf, Date accessed: 2018-07-30.
 
 
 
