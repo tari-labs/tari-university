@@ -312,12 +312,12 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 #### #6 DAG Derivative Protocols (cont'd)
 
 - Inclusive (DAG derivative) protocols
-  - incentives for behavior changes by nodes lead to increased throughput
-  - better payoff for weak miners
+  - Incentives for behavior changes by nodes lead to increased throughput
+  - Better payoff for weak miners
 
 ![InclusiveProtocolDAG](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/InclusiveProtocolDAG.PNG)
 
-- Note: DAG derivative protocols not Layer 2 Scaling solution, offer scaling of primary block chain
+- *Note: DAG derivative protocols not Layer 2 Scaling solution, offer scaling of primary block chain*
 
 +++
 
