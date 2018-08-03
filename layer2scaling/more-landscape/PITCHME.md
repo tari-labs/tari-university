@@ -131,13 +131,13 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 ![RSK_HybridSideDriveChain](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/RSK_HybridSideDriveChain.png)
 
-- Locking of BTC on main block chain with P2SH Tx (BTC to script hash instead of public key hash)
-- To unlock, provide a script matching the script hash and data to make script evaluate true
+- Locking of BTC on main block chain with P2SH Tx (BTC to script hash, not public key hash)
 
 +++
 
 #### #3 2-Way Pegged Secondary Block Chains (cont'd)
 
+- To unlock, provide a script matching the script hash and data to make script evaluate true
 - 2WP promise concluded when equivalent amount tokens on secondary block chain locked so original bitcoins can be unlocked
 
 <u>Who</u>
@@ -176,10 +176,10 @@ None, if enough functionality will be built into the main Tari block chain
 
 #### #4 Lumino
 
-- Lumino Transaction Compression Protocol (LTCP) is a technique for Tx compression
-- Lumino network is a lightning-like extension of the RSK platform that uses LTCP
-- Difference compression of data from same owner with aggregate signing of previous Txs
-- RSK newly launched on main net January 2018, Lumino Network still be launched in test net
+- Lumino Transaction Compression Protocol (LTCP) -> Tx compression
+- It is a lightning-like extension of the RSK platform that uses LTCP
+- Difference compression of data from same owner, aggregate signing of previous Txs
+- RSK newly launched main net January 2018, Lumino Network to be launched test net
 
 ![LuminoDataPruning](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/LuminoDataPruning.PNG)
 
@@ -227,9 +227,13 @@ LTCP pruning may be beneficial to Tari
 
 #### #5 Scriptless scripts (cont'd)
 
-<u>Story</u>
+<u>User Story...</u>
 
-Alice and Bob each needs to provide half a Schnorr signature for a Tx whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as *Zero-Knowledge Contingent Payments*.
+Alice and Bob each needs to provide half a Schnorr signature for a Tx whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. 
+
+Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. 
+
+By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as *Zero-Knowledge Contingent Payments*.
 
 +++
 
@@ -265,23 +269,18 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 #### #6 DAG Derivative Protocols
 
-- A Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. 
+- A Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles
 
-- A directed graph is acyclic if it has a topological ordering: for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering.
-
+- A directed graph is acyclic if it has a topological ordering: for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering
 
 ![DAG](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/DAG.PNG)
-
-
-
-
 
 +++
 
 #### #6 DAG Derivative Protocols (cont'd)
 
-- DAG derivative protocols: [GHOST](https://eprint.iacr.org/2013/881.pdf) (*as Ethash PoW algorithm in Ethereum, Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [Jute](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), [SPECTRE](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf) and [PHANTOM](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented. 
-- DAG in block chain includes traditional off-chain blocks into the ledger, governed by mathematical rules.
+- DAG derivative protocols: [GHOST](https://eprint.iacr.org/2013/881.pdf) (*as Ethash PoW algorithm in Ethereum, Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [Jute](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), [SPECTRE](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf) and [PHANTOM](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented
+- DAG in block chain includes traditional off-chain blocks into the ledger, governed by mathematical rules
 - A parent that is simultaneously an ancestor of another parent is disallowed
 
 ![DAGTopologicalOrdering](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/DAGTopologicalOrdering.PNG)
@@ -296,7 +295,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 ![GHOST](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/GHOST.PNG)
 
-------
++++
 
 #### #6 DAG Derivative Protocols (cont'd)
 
@@ -308,7 +307,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 ![SPECTRE](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/SPECTRE.PNG)
 
-------
++++
 
 #### #6 DAG Derivative Protocols (cont'd)
 
@@ -320,7 +319,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 - Note: DAG derivative protocols not Layer 2 Scaling solution, offer scaling of primary block chain
 
-------
++++
 
 #### #6 DAG Derivative Protocols (cont'd)
 
@@ -336,7 +335,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
   - [Nano](https://nano.org/en)
   - [Byteball](https://byteball.org/)
 
-------
++++
 
 #### #6 DAG Derivative Protocols (cont'd)
 
@@ -354,7 +353,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 - DAG derivative protocols differ on important aspects like miner payment schemes, security models, support for smart contracts, confirmation times, etc.
 - All DAG derivative protocols are not created equal, beware!
 
-------
++++
 
 #### #6 DAG Derivative Protocols (cont'd)
 
