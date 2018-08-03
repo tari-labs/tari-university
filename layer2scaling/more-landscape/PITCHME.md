@@ -8,7 +8,7 @@
   - 2-Way Pegged Secondary Block Chains
   - Lumino
   - Scriptless scripts
-  - DAG Derivative Protocols:
+  - DAG Derivative Protocols
 
 - Observations
 
@@ -71,9 +71,9 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 #### #2 Counterparty Eco System
 
-- Counterparty is NOT a block chain -> protocol & network of nodes for smart contract apps using the EVM linked to Bitcoin block chain
-- Uses embedded consensus (identical ledgers without P2P network) and federated nodes
-- Transaction meta data are written into Bitcoin transactions on the Bitcoin block chain
+- Counterparty NOT a block chain -> protocol & network of nodes for smart contract apps, using EVM linked to Bitcoin block chain
+- Uses embedded consensus (identical ledgers, no P2P network) & federated nodes
+- Tx meta data are written into Bitcoin Txs on Bitcoin block chain
 - Read and validated by the federated nodes, executed by them
 
 ![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/CounterpartyStack.png)
@@ -85,8 +85,8 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 #### #2 Counterparty Eco System (cont'd)
 
 - Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`
-- Broadcast an `execute` transaction to call a specific function in smart contract code
-- Transaction confirmed by Bitcoin miner -> Counterparty federated nodes execute the function 
+- Broadcast an `execute` Tx to call a specific function in smart contract code
+- Tx confirmed by Bitcoin miner -> Counterparty federated nodes execute the function 
 - The contract state is modified as the smart contract code executes and stored in the Counterparty database
 
 +++
@@ -107,7 +107,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 <u>Weaknesses</u>
 
-- Smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If  federated nodes are compromised no evidence of transactions within eco system exists.
+- Smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If  federated nodes are compromised no evidence of Txs within eco system exists.
 - Counterparty is not a Layer 2 scaling solution
 
 <u>Opportunities for Tari</u>
@@ -160,7 +160,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 - can be used to test or implement new features without risk
 - Chains-as-a-Service (CaaS), with data storage 2WP secondary block chains
 - Make it easier to implement smart contracts
-- Can support larger block sizes and more transactions per second
+- Can support larger block sizes and more Txs per second
 
 <u>Weaknesses</u>
 
@@ -176,7 +176,7 @@ None, if enough functionality will be built into the main Tari block chain
 
 #### #4 Lumino
 
-- Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression
+- Lumino Transaction Compression Protocol (LTCP) is a technique for Tx compression
 - Lumino network is a lightning-like extension of the RSK platform that uses LTCP
 - Difference compression of data from same owner with aggregate signing of previous Txs
 - RSK newly launched on main net January 2018, Lumino Network still be launched in test net
@@ -229,7 +229,7 @@ LTCP pruning may be beneficial to Tari
 
 <u>Story</u>
 
-Alice and Bob each needs to provide half a Schnorr signature for a transaction whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as *Zero-Knowledge Contingent Payments*.
+Alice and Bob each needs to provide half a Schnorr signature for a Tx whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as *Zero-Knowledge Contingent Payments*.
 
 +++
 
@@ -242,9 +242,9 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 <u>Strengths</u>
 
 - <u>Data savings:</u> Signature aggregation provides data compression on block chain
-- <u>Privacy:</u> Nothing about Scriptless Script smart contract, other than the settlement transaction, is ever recorded on the block chain
-- <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement transaction
-- <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction
+- <u>Privacy:</u> Nothing about Scriptless Script smart contract, other than the settlement Tx, is ever recorded on the block chain
+- <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement Tx
+- <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple Txs into a single settlement Tx
 
 +++
 
@@ -280,7 +280,9 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 #### #6 DAG Derivative Protocols (cont'd)
 
-DAG derivative protocols: [GHOST](https://eprint.iacr.org/2013/881.pdf) (*as Ethash PoW algorithm in Ethereum, Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [Jute](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), [SPECTRE](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf) and [PHANTOM](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented. DAG in block chain includes traditional off-chain blocks into the ledger, governed by mathematical rules.
+- DAG derivative protocols: [GHOST](https://eprint.iacr.org/2013/881.pdf) (*as Ethash PoW algorithm in Ethereum, Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [Jute](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), [SPECTRE](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf) and [PHANTOM](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented. 
+- DAG in block chain includes traditional off-chain blocks into the ledger, governed by mathematical rules.
+- A parent that is simultaneously an ancestor of another parent is disallowed
 
 ![DAGTopologicalOrdering](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/DAGTopologicalOrdering.PNG)
 
@@ -288,16 +290,81 @@ DAG derivative protocols: [GHOST](https://eprint.iacr.org/2013/881.pdf) (*as Eth
 
 #### #6 DAG Derivative Protocols (cont'd)
 
+- Main problems solved by the DAG derivative protocols:
+  - inclusion of orphaned blocks (decrease the negative effect of slow propagation)
+  - mitigation against selfish mining attacks
 
+![GHOST](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/GHOST.PNG)
 
-+++
+------
 
 #### #6 DAG Derivative Protocols (cont'd)
 
+- Most DAG derivative protocols
+  - Blocks containing conflicting Txs (*i.e. conflicting blocks*) are not orphaned *[not in Braiding]*
+  - Conflicting Txs are thrown out while processing the chain
+  - SPECTRE: blocks vote -> Tx robustly accepted, Tx robustly rejected, Tx indefinite “pending”
+  - All conflicting blocks earn their respective miners a block reward *[not in Braiding]*
 
+![SPECTRE](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/SPECTRE.PNG)
+
+------
+
+#### #6 DAG Derivative Protocols (cont'd)
+
+- Inclusive (DAG derivative) protocols
+  - incentives for behavior changes by nodes lead to increased throughput
+  - better payoff for weak miners
+
+![InclusiveProtocolDAG](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/InclusiveProtocolDAG.PNG)
+
+- Note: DAG derivative protocols not Layer 2 Scaling solution, offer scaling of primary block chain
+
+------
+
+#### #6 DAG Derivative Protocols (cont'd)
+
+- The Hebrew University of Jerusalem & [DAGlabs](https://www.daglabs.com/) (*the commercial development chapter*)
+  - [GHOST](https://eprint.iacr.org/2013/881.pdf), [SPECTRE](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf), [PHANTOM](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf)
+- Ethereum as the Ethash PoW algorithm that has been adapted from GHOST
+- [Dr. Bob McElrath](http://bob.mcelrath.org/resume/)
+  - [Brading](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf)
+- David Vorick
+  - [Jute](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf)
+- Crypto currencies:
+  - [IOTA](https://www.iota.org/) 
+  - [Nano](https://nano.org/en)
+  - [Byteball](https://byteball.org/)
+
+------
+
+#### #6 DAG Derivative Protocols (cont'd)
+
+<u>Strengths</u>
+
+- Layer 1 scaling: Increased Tx throughput on the main block chain
+- Fairness: Better payoff for weak miners
+- Decentralization mitigation: Weaker miners also get profits
+- Tx confirmation times: Confirmation times of several seconds (SPECTRE)
+- Smart contracts: Support smart contracts (PHANTOM)
+
+<u>Weaknesses</u>
+
+- Still not proven 100%, development continuing
+- DAG derivative protocols differ on important aspects like miner payment schemes, security models, support for smart contracts, confirmation times, etc.
+- All DAG derivative protocols are not created equal, beware!
+
+------
+
+#### #6 DAG Derivative Protocols (cont'd)
+
+<u>Opportunities for Tari</u>
+
+- Applying the basic DAG principles to make a 51% attack harder by virtue of fairness and miner decentralization resistance.
+- Choosing the correct DAG derivative protocol can also significantly improve Layer 1 scaling
 
 ---
 
 ## Observations
 
-???
+Although not all technologies covered here are Layer 2 Scaling solutions, the strengths should be considered as building blocks for the Tari protocol
