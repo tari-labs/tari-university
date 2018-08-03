@@ -72,7 +72,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 #### #2 Counterparty Eco System
 
 - Counterparty NOT a block chain -> protocol & network of nodes for smart contract apps, using EVM linked to Bitcoin block chain
-- Uses embedded consensus (identical ledgers, no P2P network) & federated nodes
+- Embedded consensus (identical ledgers, no P2P network) & federated nodes
 - Tx meta data are written into Bitcoin Txs on Bitcoin block chain
 - Read and validated by the federated nodes, executed by them
 
