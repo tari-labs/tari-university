@@ -290,8 +290,8 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 #### #6 DAG Derivative Protocols (cont'd)
 
 - Main problems solved by the DAG derivative protocols:
-  - inclusion of orphaned blocks (decrease the negative effect of slow propagation)
-  - mitigation against selfish mining attacks
+  - Inclusion of orphaned blocks (decrease the negative effect of slow propagation)
+  - Mitigation against selfish mining attacks
 
 ![GHOST](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/GHOST.PNG)
 
@@ -341,11 +341,11 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 <u>Strengths</u>
 
-- Layer 1 scaling: Increased Tx throughput on the main block chain
-- Fairness: Better payoff for weak miners
-- Decentralization mitigation: Weaker miners also get profits
-- Tx confirmation times: Confirmation times of several seconds (SPECTRE)
-- Smart contracts: Support smart contracts (PHANTOM)
+- **Layer 1 scaling:** Increased Tx throughput on the main block chain
+- **Fairness:** Better payoff for weak miners
+- **Decentralization mitigation:** Weaker miners also get profits
+- **Tx confirmation times:** Confirmation times of several seconds (SPECTRE)
+- **Smart contracts:** Support smart contracts (PHANTOM)
 
 <u>Weaknesses</u>
 
