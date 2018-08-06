@@ -1,18 +1,30 @@
 ## Layer 2 Scaling Executive Summary
 
 - Layer 2 Scaling Landscape
+
 - How will this be applicable to Tari?
+
 - Layer 2 Scaling Context for Tari
+
 - Layer 2 Scaling Alternatives for Tari
+
 - Observations
+
+
+
+*See Layer 2 Scaling Survey [part 1](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) and [part 2](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/more-landscape/landscape-update.md) for the full reports.*
 
 ---
 
 ## Layer 2 Scaling Landscape
 
-See Layer 2 Scaling Survey [part 1](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) and [part 2](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/more-landscape/landscape-update.md) for the full reports.
+
 
 ![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ScalingLandscape.png)
+
+
+
+![Non_L2S](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/Non_L2S.png)
 
 ---
 
