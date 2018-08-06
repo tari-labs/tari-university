@@ -1,4 +1,4 @@
-## Layer 2 Scaling Survey
+## Layer 2 Scaling Survey (part 2)
 
 - What is Layer 2 scaling, how will it be applicable to Tari? *[See [layer2scaling-landscape](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/)]*
 
@@ -239,9 +239,17 @@ By broadcasting the full Schnorr signature Bob has access to Alice's half Schnor
 
 #### #5 Scriptless scripts (cont'd)
 
+<u>Who does it?</u>
+
 [grin-tech.org](https://grin-tech.org/)
 
 Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*.
+
+![Mimblewimble](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/Mimblewimble.PNG)
+
++++
+
+#### #5 Scriptless scripts (cont'd)
 
 <u>Strengths</u>
 

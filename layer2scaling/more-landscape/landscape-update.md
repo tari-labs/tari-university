@@ -1,4 +1,4 @@
-# Layer 2 Scaling Survey
+# Layer 2 Scaling Survey (part 2)
 
 This report provides a survey of TumbleBit , Counterparty, Rootstock, Drivechains, Scriptless scripts, Braiding and Directed Acyclic Graph (DAG) as layer 2 scaling alternatives.
 
@@ -201,11 +201,13 @@ This is different to a normal multi-signature scheme where one message is signed
 
 Let's say Alice and Bob each needs to provide half a Schnorr signature for a transaction whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as Zero-Knowledge Contingent payments. ([[34]](https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts), [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf))
 
-Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*. [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf)
-
 #### Who does it?
 
 [grin-tech.org](https://grin-tech.org/)
+
+Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*. [[37]](https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf)
+
+![Mimblewimble](./sources/Mimblewimble.PNG)
 
 #### Strengths
 
@@ -240,15 +242,17 @@ In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite 
 
 
 
-DAGs in block chain were first proposed as the GHOST protocol ([[44]](https://eprint.iacr.org/2013/881.pdf), [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf)), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html)), Jute [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), SPECTRE [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf) and PHANTOM [[52]](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented. The principle of DAG in block chain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules.
+DAGs in block chain were first proposed as the GHOST protocol ([[44]](https://eprint.iacr.org/2013/881.pdf), [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf)), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf),  [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html)), Jute [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf), SPECTRE [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf) and PHANTOM [[52]](https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf) was presented. The principle of DAG in block chain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed
 
 ![DAGTopologicalOrdering](./sources/DAGTopologicalOrdering.PNG)
 
-The main problems to be solved by the DAG derivative protocols are **(a)** inclusion of orphaned blocks and **(b)** mitigation against selfish mining attacks. The underlying concept is still in the research and exploration phase. [[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
+The main problems to be solved by the DAG derivative protocols are **(a)** inclusion of orphaned blocks (decrease the negative effect of slow propagation) and **(b)** mitigation against selfish mining attacks. The underlying concept is still in the research and exploration phase. [[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153)
 
 ![GHOST](./sources/GHOST.PNG)
 
-DAG derivative protocols decrease the negative effect of slow propagation and selfish mining. Blocks containing conflicting transactions (*i.e. conflicting blocks*) are not orphaned; a subsequent block is built on top of both of the conflicting blocks, but the conflicting transactions themselves are thrown out while processing the chain. SPECTRE, for one, provides a scheme whereby blocks vote to decide which of the conflicting transactions are robustly accepted, robustly rejected or stay in an indefinite “pending” state. Both conflicting blocks become part of the shared history, and both conflicting blocks earn their respective miners a block reward. ([[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153), [[50]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), [[51]](https://eprint.iacr.org/2016/1159.pdf))
+In most DAG derivative protocols, blocks containing conflicting transactions (*i.e. conflicting blocks*) are not orphaned. A subsequent block is built on top of both of the conflicting blocks, but the conflicting transactions themselves are thrown out while processing the chain. SPECTRE, for one, provides a scheme whereby blocks vote to decide which transactions are robustly accepted, robustly rejected or stay in an indefinite “pending” state in case of conflicts. Both conflicting blocks become part of the shared history, and both conflicting blocks earn their respective miners a block reward. ([[39]](https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153), [[50]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), [[51]](https://eprint.iacr.org/2016/1159.pdf))
+
+*<u>Note:</u> Braiding requires that parents and siblings may not contain conflicting transactions.*
 
 ![SPECTRE](./sources/SPECTRE.PNG)
 
@@ -262,10 +266,10 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but offer significan
 
 - The School of Engineering and Computer Science, The Hebrew University of Jerusalem ([[44]](https://eprint.iacr.org/2013/881.pdf), [[45]](http://fc15.ifca.ai/preproceedings/paper_101.pdf), [[46]](http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf), [[50]](https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b5), [[51]](https://eprint.iacr.org/2016/1159.pdf))
   - GHOST, SPECTRE, PHANTOM
-- DAGlabs  (*<u>Note:</u> This is the commercial development chapter.)*
+- DAGlabs [[53]](https://www.daglabs.com/)  (*<u>Note:</u> This is the commercial development chapter.)*
   - SPECTRE, PHANTOM
 - Ethereum as the Ethash PoW algorithm that has been adapted from GHOST
-- Dr. Bob McElrath  ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf), [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html))
+- [Dr. Bob McElrath](http://bob.mcelrath.org/resume/) ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf), [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html))
   - Brading
 - David Vorick [[43]](https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf)
   - Jute
@@ -407,10 +411,11 @@ None
 
 [52] PHANTOM: A Scalable BlockDAG protocol, Sompolinsky Y. et. al., https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf, Date accessed: 2018-07-30.
 
+[53] DAGLabs website, https://www.daglabs.com, Date accessed: 2018-07-30.
+
 
 
 ## Contributors
 
 - [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
 - [https://github.com/ksloven](https://github.com/ksloven)
-- ???
