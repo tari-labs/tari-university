@@ -22,7 +22,7 @@
   - Off-chain matching engines
   - Off-chain processing nodes
   - Off-chain payment channels
-  - Two way pegged secondary chains
+  - Two Way Pegged (2WP) secondary chains
   - Tiered block chains
 
 
@@ -36,8 +36,6 @@
   - Transaction data compression
   - Scriptless scripts
 
-
-
 ![Non_L2S](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/Non_L2S.png)
 
 ---
@@ -45,13 +43,13 @@
 ## How will this be Applicable to Tari?
 
 - Tari is a high-throughput protocol -> tens of thousands of transactions per second imagined
-- This will be impossible to do with parent block chain scaling solutions
+- This will be impossible to do with primary block chain scaling solutions alone
 - Use cases:
   - EventCorp, the stadium owner
-    - selling: ??
-    - redeeming: 
+    - Selling: Do not let the servers crash!
+    - Redeeming: 
       - 85,000 seats, 72 queues tickets on match days
-      - scanning 500 tickets in 4 minutes", that is ~2 spectators allowed access per second per queue
+      - scanning 500 tickets in 4 minutes, that is ~2 spectators allowed access per second per queue
   - Steve, the collectable card game entrepreneur
     - Steve created his own digital collectible
     - Steve developed a website with the Tari API to display his digital cards, update their status in real time, and facilitate trading and interacting
