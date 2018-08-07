@@ -80,7 +80,7 @@
 
 - A new better proposal for blockchain-based asset management standard.
 - Meet the market requirements for standardization, auditability, blindness, independence.
-- Try and stay in Layer 2 oscalability / fungibility strategies.
+- Try and stay in Layer 2 scalability / fungibility strategies.
 - Leverage as much as possible from the current Bitcoin infrastructure.
 - Particular focus is paid to Lightning Network.
 - The protocol proposal will contain an additional, specific and native “layer 2” solution based on the "Proofmarshal" idea
@@ -93,7 +93,8 @@
 
 - RGB enabled wallets must include software capable of analyzing contract conditions and comply with them.
 - Predefined behaviours can be defined using "blueprints" which allows RGB to be implemented in a modular fashion.
-- Together with some very specific, "popular", contract blueprints (which should cover most of the use-cases), there's one more general purpose blueprint that embeds a meta-script executor, which allows very complex contract to be created.
+- Popular contract blueprints to cover most of the use-cases.
+- Another more general purpose blueprint that embeds a meta-script executor, which allows very complex contract to be created.
 
 +++
 
@@ -103,25 +104,25 @@
   - Use address passing.
   - When a payee generates an address he transmits the coordinates of the selected Publishing Server.
   - He generates a number called the "dark-tag" and passes it to the payer along with the address and publishing information.
-  - This feature can be developed by extend the BOLT Invoice Protocol. <span style="font-size:0.2em;">[4](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)</span>
+  - This feature can be developed by extending the BOLT Invoice Protocol. <span style="font-size:0.2em;">[4](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)</span>
 
 +++
 
 **Publisher Servers**
 
-- The scheme requires additional agreed-upon (at the transaction level) third parties which store the chain of encrypted proofs and accept related queries.
+- The scheme requires additional, agreed-upon (at the transaction level) third parties which store the chain of encrypted proofs and accept related queries.
 - In the context of an issued asset, these "publisher" servers could be maintained by the issuer itself.
 - They can be maintained individually by the receivers, or by one or many independent third parties selected by the sender from a set defined by the receivers.
-- The proofs could be stored and communicated via decentralized systems, but there is a complexity gain with that. 
-- The Proofmarshal Integration requires a centralized third party, which could be effectively leveraged for the Lightning Network Integration.
+- The proofs could be stored and communicated via decentralized systems, but there is extra complexity with that. 
+- Proofmarshal Integration requires a centralized third party to be effectively leveraged for Lightning Network Integration.
 
 +++
 
 **Lightning Network Integration**
 
 - Because the protocol is UTXO-based, it will be possible to link one or more assets to a Lightning Network channel.
-- The channel becomes colored, exchanging state updates which are compliant to the asset scheme.
-- There are strong guarantees that asset distribution will be preserved in the case of non-consensual closures.
+- The channel becomes colored, exchanging state updates which are compliant with the asset scheme.
+- Asset distribution is guaranteed to be preserved in the case of non-consensual closures.
 - It can leverage off of the scalability and privacy features of the Lightning Network.
 - LN-enabled atomic swaps and LN-based path discovery for decentralized asset exchange.
 
@@ -130,16 +131,17 @@
 **Proofmarshal Integration**
 
 - The protocol will also include another L2 strategy for scalability / fungibility
-- An asset-specific implementation of the “Proofmarshal” concept, based on “Single-Use-Seals” and “Proof-of-Publication-Ledgers”.
-  
+- An asset-specific implementation of the “Proofmarshal” concept, based on:
+  - “Single-Use-Seals”
+  - “Proof-of-Publication-Ledgers”
 +++
 
 **Proofmarshal Benefits**
 
-- A Publisher Server might also act as “sealer” whereby they can obfuscate transactions but not manipulate/forge/falsify
-  - Committing multiple proofs from different anonymous users to a single UTXO. 
+- A Publisher Server may also act as “sealer” whereby they can obfuscate transactions but not manipulate / forge or falsify
+  - Achieved by committing multiple proofs from different anonymous users to a single UTXO. 
 - This could decouple the anti-double-spending function of the Bitcoin blockchain from the specific asset transactions
-  - Making it possible to "seal" a huge number of them spending a single Bitcoin UTXO.
+  - Thereby "sealing" large amounts of transactions spent on a single Bitcoin UTXO.
 
 ---
 ## References
