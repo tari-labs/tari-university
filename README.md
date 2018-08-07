@@ -44,5 +44,5 @@ Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](http
 Stream | Topic | Date
 ----|----| --- |
 Protocol | RGB- a scalable tokenization protocol | 6 August |
-Technical | 51% Attack Case Studies | 13 August |
-Technical | Blockchain Interoperability | TBC
+Technical | Scriptless Scripts | 13 August |
+
