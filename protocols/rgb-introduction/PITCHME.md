@@ -5,6 +5,7 @@
 - Alternatives
 - Goals
 - Design
+- Maturity
 - References
 
 ---
@@ -48,7 +49,7 @@
 **Asset Blindness**
 
 - To a certain degree, the issuer of the digital asset is "blind" to the exact asset when they act on it.
-- There may be legal ramifications such as KYC/AML <span style="font-size:0.2em;">[[5]](https://bitcointalk.org/index.php?topic=454795.0)</span> legislation.
+- There may be legal ramifications such as KYC/AML <span style="font-size:0.2em;">[[4]](https://bitcointalk.org/index.php?topic=454795.0)</span> legislation.
 
 +++
 
@@ -104,7 +105,7 @@
   - Use address passing.
   - When a payee generates an address he transmits the coordinates of the selected Publishing Server.
   - He generates a number called the "dark-tag" and passes it to the payer along with the address and publishing information.
-  - This feature can be developed by extending the BOLT Invoice Protocol. <span style="font-size:0.2em;">[[4]](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)</span>
+  - This feature can be developed by extending the BOLT Invoice Protocol. <span style="font-size:0.2em;">[[5]](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)</span>
 
 +++
 
@@ -144,10 +145,16 @@
   - Thereby "sealing" large amounts of transactions spent on a single Bitcoin UTXO.
 
 ---
+
+## Maturity
+
+The project is still in its infancy.
+
+---
 ## References
 
-- \[1\] RGB Protocol Specifications for Bitcoin-Based Digital Assets. 2018. [https://github.com/rgb-org/spec/blob/master/README.md](https://github.com/rgb-org/spec/blob/master/README.md), Date accessed: 2018-08-05.
-- \[2\] RGB Protocol Specification #00: Introduction. 2018. [https://github.com/rgb-org/spec/blob/master/00-introduction.md](https://github.com/rgb-org/spec/blob/master/00-introduction.md), Date accessed: 2018-08-05.
-- \[3\] A NonFungible Token Stampede Is Coming. Dan Emmons. 2018. [https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b), Date accessed: 2018-08-05.
-- \[4\] BOLT #11: Invoice Protocol for Lightning Payments. 2018. [https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md), Date accessed: 2018-08-05.
-- \[5\] AML/KYC Explained.2014. [https://bitcointalk.org/index.php?topic=454795.0](https://bitcointalk.org/index.php?topic=454795.0), Date accessed: 2018-08-07.
+- \[1\] RGB Protocol Specifications for Bitcoin-Based Digital Assets. 2018. [https://github.com/rgb-org/spec/blob/master/README.md](https://github.com/rgb-org/spec/blob/master/README.md), (Date accessed: 2018-08-05).
+- \[2\] RGB Protocol Specification #00: Introduction. 2018. [https://github.com/rgb-org/spec/blob/master/00-introduction.md](https://github.com/rgb-org/spec/blob/master/00-introduction.md), (Date accessed: 2018-08-05).
+- \[3\] A NonFungible Token Stampede Is Coming. Dan Emmons. 2018. [https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b), (Date accessed: 2018-08-05).
+- \[4\] AML/KYC Explained.2014. [https://bitcointalk.org/index.php?topic=454795.0](https://bitcointalk.org/index.php?topic=454795.0), (Date accessed: 2018-08-07).
+- \[5\] BOLT #11: Invoice Protocol for Lightning Payments. 2018. [https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md), (Date accessed: 2018-08-05).
