@@ -28,3 +28,5 @@ Presentation:    layer2scaling/layer2scaling-landscape#/
 Final URL:
 
 https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/
+
+ToDo: Change then delete this line please
