@@ -18,9 +18,23 @@
 
 ## Layer 2 Scaling Landscape
 
+- L2S can be roughly grouped into these groups:
+  - Off-chain matching engines
+  - Off-chain processing nodes
+  - Off-chain payment channels
+  - Two way pegged secondary chains
+  - Tiered block chains
+
 
 
 ![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ScalingLandscape.png)
+
+
+
+- Other technologies investigated, mainly directly on the primary block chain
+  - DAG derivative protocols
+  - Transaction data compression
+  - Scriptless scripts
 
 
 
@@ -30,7 +44,7 @@
 
 ## How will this be Applicable to Tari?
 
-- Tari is a high-throughput protocol -> tens of thousands of transactions per second
+- Tari is a high-throughput protocol -> tens of thousands of transactions per second imagined
 - This will be impossible to do with parent block chain scaling solutions
 - Use cases:
   - EventCorp, the stadium owner
