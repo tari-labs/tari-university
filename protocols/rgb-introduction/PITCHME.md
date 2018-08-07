@@ -11,17 +11,17 @@
 
 ## Introduction
 
-- The RGB Protocol is an open-source, community driven development of standards and best practices to issue, transmit and store "Bitcoin-base non-bitcoin assets" <span style="font-size:0.2em;">[1](https://github.com/rgb-org/spec)</span>
+- The RGB Protocol is an open-source, community driven development of standards and best practices to issue, transmit and store "Bitcoin-base non-bitcoin assets" <span style="font-size:0.2em;">[[1]](https://github.com/rgb-org/spec)</span>
 - The standard is being created to overcome major shortcomings of previous attempts to store digital assets on the blockchain.
-- The protocol is currently based on Bitcoin, and is meant to provide an acceptable level of scalability, confidentiality and standardization. <span style="font-size:0.2em;">[2](https://github.com/rgb-org/spec/blob/master/00-introduction.md) </span>
+- The protocol is currently based on Bitcoin, and is meant to provide an acceptable level of scalability, confidentiality and standardization. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md) </span>
 
 ---
 
 ## Digital Assets
 
-- Growing interest in a digital proxy for securities, utilities or collectibles. <span style="font-size:0.2em;">[2](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span>
-- The current methods of issuing and transferring these assets is slow, expensive and inefficient. <span style="font-size:0.2em;">[2](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span>
-- There is now more demand for digital assets. <span style="font-size:0.2em;">[3](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b)</span>
+- Growing interest in a digital proxy for securities, utilities or collectibles. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span>
+- The current methods of issuing and transferring these assets is slow, expensive and inefficient. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span>
+- There is now more demand for digital assets. <span style="font-size:0.2em;">[[3]](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b)</span>
 
 +++
 
@@ -41,14 +41,14 @@
 
 - The asset is completely independent from the centralized issuer right after the issuance moment.
 - Decentralized mechanisms enabling autonomous, trustless, and censorship-resistant mechanisms to enforce rights/benefits connected to the assets.
-  -  The "self-enforced-right" proposition is more interesting but still not realistic: applications of this kind are still far from any actual implementation. <span style="font-size:0.2em;">[2](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span> 
+  -  The "self-enforced-right" proposition is more interesting but still not realistic: applications of this kind are still far from any actual implementation. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span> 
 
 +++
 
 **Asset Blindness**
 
 - To a certain degree, the issuer of the digital asset is "blind" to the exact asset when they act on it.
-- There may be legal ramifications such as KYC/AML legislation.
+- There may be legal ramifications such as KYC/AML <span style="font-size:0.2em;">[[5]](https://bitcointalk.org/index.php?topic=454795.0)</span> legislation.
 
 +++
 
@@ -104,7 +104,7 @@
   - Use address passing.
   - When a payee generates an address he transmits the coordinates of the selected Publishing Server.
   - He generates a number called the "dark-tag" and passes it to the payer along with the address and publishing information.
-  - This feature can be developed by extending the BOLT Invoice Protocol. <span style="font-size:0.2em;">[4](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)</span>
+  - This feature can be developed by extending the BOLT Invoice Protocol. <span style="font-size:0.2em;">[[4]](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)</span>
 
 +++
 
@@ -146,7 +146,8 @@
 ---
 ## References
 
-- \[1\] RGB Protocol Specifications for Bitcoin-Based Digital Assets. 2018. [https://github.com/rgb-org/spec/blob/master/README.md](https://github.com/rgb-org/spec/blob/master/README.md)
-- \[2\] RGB Protocol Specification #00: Introduction. 2018. [https://github.com/rgb-org/spec/blob/master/00-introduction.md](https://github.com/rgb-org/spec/blob/master/00-introduction.md)
-- \[3\] A NonFungible Token Stampede Is Coming. Dan Emmons. 2018. [https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b)
-- \[4\] BOLT #11: Invoice Protocol for Lightning Payments. 2018. [https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)
+- \[1\] RGB Protocol Specifications for Bitcoin-Based Digital Assets. 2018. [https://github.com/rgb-org/spec/blob/master/README.md](https://github.com/rgb-org/spec/blob/master/README.md), Date accessed: 2018-08-05.
+- \[2\] RGB Protocol Specification #00: Introduction. 2018. [https://github.com/rgb-org/spec/blob/master/00-introduction.md](https://github.com/rgb-org/spec/blob/master/00-introduction.md), Date accessed: 2018-08-05.
+- \[3\] A NonFungible Token Stampede Is Coming. Dan Emmons. 2018. [https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b), Date accessed: 2018-08-05.
+- \[4\] BOLT #11: Invoice Protocol for Lightning Payments. 2018. [https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md), Date accessed: 2018-08-05.
+- \[5\] AML/KYC Explained.2014. [https://bitcointalk.org/index.php?topic=454795.0](https://bitcointalk.org/index.php?topic=454795.0), Date accessed: 2018-08-07.
