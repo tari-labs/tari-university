@@ -61,8 +61,11 @@ This is where the term 'Layer 2' is borrowed from
 
 ## How will this be applicable to Tari?
 
-- Tari is a high-throughput protocol that will need to handle tens of thousands of transactions per second
-- For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event
+- Tari is a high-throughput protocol that will need to handle real world transaction volumes
+- Big Neon, the initial business application to be built on top of the Tari block chain
+  - High volume transactions when tickets sales open and when tickets will be redeemed
+  - Imagine an 85,000 seat stadium with 72 entrance queues on match days... 
+  - Serialized real world scanning: 500 tickets in 4 minutes, or ~2 spectators per second per queue
 - This will be impossible to do with parent block chain scaling solutions
 
 ---
@@ -267,7 +270,7 @@ State channels the more general form of micropayment channels  (also used for 
 #####  
 ##### Opportunities for Tari
 
-- Has alignment with Tari's base requirements
+- Matching engines in general have opportunity for Tari; the specific scheme to be investigated further
 
 #####  
 #####  
@@ -386,8 +389,8 @@ Must still be proven on other networks apart from Ethereum
 
 ##### Opportunities for Tari
 
-- Has alignment with Tari's base requirements
-- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari specific root block chain?*
+- Has opportunities for Tari as a L2 scaling solution
+- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari specific root block chain?* [**Note:** This will make the Tari block chain dependent on another block chain.]
 
 #####  
 #####  
