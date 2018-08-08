@@ -59,187 +59,71 @@
 ## Layer 2 Scaling Context for Tari
 
 - Proposal going forward
-  - TumbleBit has many excellent properties as trustless matching engine
-  - TumbleBit can perform off-chain payments in batch mode
-  - Commercial implementation NTumbleBit far advanced, backed by Boston University that provided proof-of-concept and reference implementation alongside the white paper
-- 
+  - <u>TumbleBit,</u> as an off-chain matching engines
+  - <u>Federated Nodes/Masternodes,</u> as off-chain processing nodes 
+  - <u>Scriptless Scripts & Schnorr Signature Aggregation</u>, as Layer 1 scaling
+  - <u>SPECTRE, PHANTOM</u>, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
 
 ![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ContextTari.png)
 
-Off-chain matching engines
-
-Masternodes (many different solutions available, nothing specific, how consensus is reached between nodes)
-
-Plasma
-
-TumbleBit
-
-Scriptless Scripts combined with Federated Nodes
-
-DAGs
-
 ---
 
-## Layer 2 Scaling Alternatives for Tari
+## Layer 2 Scaling Context for Tari (cont'd)
 
-#### #1 ???
+#### #1 Why TumbleBit?
 
-- ???
-
-#####  
-#####  
-##### Who ?
-
-- ???
+- TumbleBit has many excellent properties as trustless matching engine
+- TumbleBit can perform off-chain payments in batch mode
+- Commercial implementation NTumbleBit far advanced, backed by Boston University that provided proof-of-concept and reference implementation alongside white paper
+- Anonymity & bad acting prevention provided by *RSA-Puzzle-Solver Protocol* & *Puzzle-Promise Protocol*, make use of RSA crypto blinding properties
+- TumbleBit also supports anonymizing through Tor
 
 +++
 
-#### #1 ??? (cont'd)
-
-#####  
-#####  
-##### Strengths
+#### #2 Why Federated Nodes/Masternodes?
 
 - ???
 
 #####  
 #####  
-##### Weaknesses
 
-- ???
-
-#####  
-#####  
-##### Opportunities for Tari
-
-???
-
-#####  
-#####  
-##### Threats to Tari
-
-???
-
----
-
-#### #2 ???
-
-- ???
-
-#####  
-#####  
-##### Who ?
-
-- ???
 
 +++
 
-#### #2 ??? (cont'd)
+#### #2 Why Federated Nodes/Masternodes? (cont'd)
 
 #####  
-#####  
-##### Strengths
 
-- ???
-
-#####  
-#####  
-##### Weaknesses
-
-- ???
-
-#####  
-#####  
-##### Opportunities for Tari
-
-???
-
-#####  
-#####  
-##### Threats to Tari
-
-???
 
 ---
 
-#### #3???
+#### #3 Why Scriptless Scripts & Schnorr Signature Aggregation?
 
 - ???
 
 #####  
-#####  
-##### Who ?
 
-- ???
 
 +++
 
-#### #3 ??? (cont'd)
+#### #3 Why Scriptless Scripts & Schnorr Signature Aggregation? (cont'd)
 
 #####  
 #####  
-##### Strengths
-
-- ???
-
-#####  
-#####  
-##### Weaknesses
-
-- ???
-
-#####  
-#####  
-##### Opportunities for Tari
-
-???
-
-#####  
-#####  
-##### Threats to Tari
-
-???
-
 ---
 
-#### #4 ???
+#### #4 Why SPECTRE, PHANTOM?
 
 - ???
 
 #####  
 #####  
-##### Who ?
-
-- ???
-
 +++
 
-#### #4 ??? (cont'd)
+#### #4 Why SPECTRE, PHANTOM? (cont'd)
 
 #####  
 #####  
-##### Strengths
-
-- ???
-
-#####  
-#####  
-##### Weaknesses
-
-- ???
-
-#####  
-#####  
-##### Opportunities for Tari
-
-???
-
-#####  
-#####  
-##### Threats to Tari
-
-???
-
 ---
 
 ## Observations
