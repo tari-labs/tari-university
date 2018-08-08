@@ -58,7 +58,11 @@
 
 ## Layer 2 Scaling Context for Tari
 
-????
+- Proposal going forward
+  - TumbleBit has many excellent properties as trustless matching engine
+  - TumbleBit can perform off-chain payments in batch mode
+  - Commercial implementation NTumbleBit far advanced, backed by Boston University that provided proof-of-concept and reference implementation alongside the white paper
+- 
 
 ![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ContextTari.png)
 
