@@ -75,7 +75,7 @@
 - TumbleBit has many excellent properties as trustless matching engine
 - TumbleBit can perform off-chain payments in batch mode
 - Commercial implementation NTumbleBit far advanced, backed by Boston University that provided proof-of-concept and reference implementation alongside white paper
-- Anonymity & bad acting prevention provided by *RSA-Puzzle-Solver Protocol* & *Puzzle-Promise Protocol*, make use of RSA crypto blinding properties
+- Anonymity & bad acting prevention provided by *RSA-Puzzle-Solver Protocol* & *Puzzle-Promise Protocol*, making use of RSA crypto blinding properties
 - TumbleBit also supports anonymizing through Tor
 
 +++
@@ -87,13 +87,11 @@
 #####  
 #####  
 
-
 +++
 
 #### #2 Why Federated Nodes/Masternodes? (cont'd)
 
 #####  
-
 
 ---
 
@@ -102,7 +100,6 @@
 - ???
 
 #####  
-
 
 +++
 
