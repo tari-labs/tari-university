@@ -55,6 +55,21 @@ Note: Bitcoin, Ethereum and other blockchains make use of a scripting language w
 Note: I know it has been mentioned before, but I would like to digress a little and discuss Schnorr signatures. You have an ephemeral key pair, like k and kg here, you compute this value s which is a simple linear transaction. The position on the line you choose is taken as the  hash of all the data you want to commit to, which is what a digital signature is. The verification equation is simple, one can multiply each of the term in the signing equation by G-there is a cryptographic assumption called the discrete log problem which is where one can put G's in there and they cannot be divided out and this prevents you from deciphering.  
 
 ---
+## Schnorr multi-signatures 
+
+- The multisignature is (s,R) 
+  $$
+  s=Σs(i)
+  $$
+
+
+- It can be seen that a multisignature is already a scriptless script
+- It can be generalised to m-of-n by linear secret sharing 
+- In general, scriptless scripts will see their power from these signatures being linear in all secret inputs 
+
+Note: So kind of a philosophical point is that these signatures are kind of a script less script, in the sense that you have a bunch of people who all have their own independent public keys so they add together to get a joint key and what they publish to the wider is just a joint key and joint signatures using that key, public verifiers who weren’t party to that don’t know that how many people were involved they don’t even know that more than one person was involved they certainly do not know the original public keys and you can generalise this a bit. There is a standard in the literature where you look for threshold signatures find a generalisation this to m of n signatures using linear secret sharing. And this nice property that because the multi signature came from adding up everyones nonces and adding up everyones s values if you put a linear secret sharing scheme among there you can basically do the same thing, where you are contributing shares of signatures rather than entire signatures and this all sort of works magically.  
+
+---
 
 ## Simultaneous Scriptless Scripts 
 
