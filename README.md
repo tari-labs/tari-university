@@ -37,12 +37,12 @@ Technical | Merged Mining | Presents a fundamental understanding to the concept 
 Technical | Layer 2 Scaling Survey | Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each. | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/) 
 Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=merkle-trees-and-spv-1)  
 Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
+Technical | Scriptless Scripts | Basics of Scriptless Scripts | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/scriptless-scripts?p=/scriptless-scripts#/)
  
 
 ## Future Streams and Topics 
 
 Stream | Topic | Date
 ----|----| --- |
-Technical | Scriptless Scripts | 13 August |
 Technical | Decred and Dash | 20 August |
 Technical | Masternodes | 27 August |
