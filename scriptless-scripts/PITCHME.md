@@ -31,7 +31,6 @@ Note: Bitcoin, Ethereum and other blockchains make use of a scripting language w
 
 - A signature is the ephemeral pubic key kG as well as 
 
-  *s=k-ex*
   $$
   s=k-ex
   $$
@@ -41,14 +40,12 @@ Note: Bitcoin, Ethereum and other blockchains make use of a scripting language w
 
   *x*=private key
 
-  *e*=*H*(*kg*||*xG*||message)
   $$
   e=H(kG||xG||message)
   $$
 
 - Verified by checking 
 
-  *sG=kG - exG*
   $$
   sG=kG-exG
   $$
@@ -70,7 +67,6 @@ Note: I know it has been mentioned before, but I would like to digress a little 
 
 - Instead what is done is the difference of two Schnorr signature signatures is considered:
 
-  *d=s-s'=k-k'+ex-e'x'*
   $$
   d=s-s'=k-k'-ex-e'x'
   $$
@@ -78,7 +74,6 @@ Note: I know it has been mentioned before, but I would like to digress a little 
 
 - Given *kG, k'G, e, e'* this construction can be verified as 
 
-  *dG=kG=k'G+exG-e'x'G*
   $$
   dG=kG-k'G+exG-e'x'G
   $$
