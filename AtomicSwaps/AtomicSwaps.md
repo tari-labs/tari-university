@@ -84,4 +84,3 @@ BarterDEX also supports Etomic swaps. These work by keeping the payments locked 
 ## Contributors
 
 - https://github.com/SWvheerden
-- https://github.com/cryptobarbossa
