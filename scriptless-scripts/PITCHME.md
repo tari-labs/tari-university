@@ -19,7 +19,7 @@ Note: Scriptless scripts are magic digital signatures that can only be created b
 - There is little intrinsic structure to be compressed 
 - Script details are visible and thus compromise privacy and fungibility 
 
-*Conversely, with scriptless scripts, the only components visible are the **public keys** (i.e uniformly random curve points) and the **digital signatures** 
+*Conversely, with scriptless scripts, the only components visible are the public keys (i.e uniformly random curve points) and the digital signatures
 
 Note: Bitcoin, Ethereum and other blockchains make use of a scripting language which is a way of describing under which conditions coins can be spent. These scripting languages allow you to do smart contracts where coins can be spent under conditions like time lock, multiparty, delay, random numbers etc. Here, scripts must be downloaded, witnessed and validated and this prevents compression and aggregation. Secondly, public cryptocurrencies have every transaction published and downloadable by everybody- they are visible to everyone forever and they have to be stored. This means different outputs in Bitcoin, or different accounts in ethereum, are not very fungible or private because you can tell what the rules are on each individual coin and you can distinguish between coins. Obviously this is bad for commercial confidentiality-especially if your amounts are recorded on the blockchain-this makes it extremely difficult to do business when you are revealing all of your financial transactions. It is no good and compromises the usability of these systems for real purposes. Conversely, with scriptless scripts, the only components visible are the public keys and the digital signatures- These are faceless cryptographic functions. They just look like random data that has some simple algebraic relationship . It erases so much of the semantic information. It is also a consistent data structure, so you can have a lot of compression. Thus, by using script less scripts one can avoid revealing any contracts.
 
@@ -65,12 +65,11 @@ Note: I know it has been mentioned before, but I would like to digress a little 
 
 ## Simultaneous Scriptless Scripts cont.
 
-- Instead what is done is the difference of two Schnorr signature signatures is considered:
+- Instead what is done is the difference of two Schnorr signature signatures is considered
 
   $$
   d=s-s'=k-k'+ex-e'x'
   $$
-
 
 - Given *kG, k'G, e, e'* this construction can be verified as 
 
