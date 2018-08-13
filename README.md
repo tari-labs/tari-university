@@ -43,6 +43,6 @@ Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](http
 
 Stream | Topic | Date
 ----|----| --- |
-Protocol | RGB- a scalable tokenization protocol | 6 August |
 Technical | Scriptless Scripts | 13 August |
-
+Technical | Decred and Dash | 20 August |
+Technical | Masternodes | 27 August |
