@@ -68,11 +68,13 @@ None
 
 #### What is it?
 
-Counterparty is NOT a block chain. Counterparty is a protocol and network of nodes for creating smart contract applications using the Ethereum Virtual Machine and linked to the Bitcoin block chain. Counterparty uses embedded consensus and federated nodes whereby transaction meta data are written into Bitcoin transactions on the Bitcoin block chain and when read and validated by the federated nodes, executed by them. Embedded consensus means that the nodes maintain identical ledgers without using a peer-to-peer network, using the Bitcoin block chain for transaction ordering and propagation. A Counterparty federated node is a Bitcoin full node that also runs counterparty-lib software. They credit and debit account balances when executing valid protocol messages using Bitcoin addresses as “accounts”. Each federated node is running the same software to enforce protocol rules. [([30]](https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md), [[31]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3), [[32]](https://counterparty.io))
+Counterparty is NOT a block chain. Counterparty is a protocol and network of nodes for creating smart contract applications using the Ethereum Virtual Machine and linked to the Bitcoin block chain. Counterparty uses (1) embedded consensus and (2) federated nodes whereby transaction meta data are written into Bitcoin transactions on the Bitcoin block chain and when read and validated by the federated nodes, executed by them. Embedded consensus means that the nodes maintain identical ledgers without using a peer-to-peer network, using the Bitcoin block chain for transaction ordering and propagation. A Counterparty federated node is a Bitcoin full node that also runs counterparty-lib software. They credit and debit account balances when executing valid protocol messages using Bitcoin addresses as “accounts”. Each federated node is running the same software to enforce protocol rules. [([30]](https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md), [[31]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3), [[32]](https://counterparty.io))
 
 ![CounterpartyStack](./sources/CounterpartyStack.png)
 
 All published Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`. Counterparty is used to broadcast an `execute` transaction to call a specific function or method in the smart contract code. Once an execution transaction is confirmed by a  Bitcoin miner, the Counterparty federated nodes will receive the request and execute that method. The contract state is modified as the smart contract code executes and stored in the Counterparty database. [[32]](https://counterparty.io)
+
+General consensus has it that a *federated network* is a *distributed network of centralized networks. The Ripple blockchain implements a Federated Byzantine Agreement (FBA) consensus mechanism. Federated sidechains implements a security protocol using a trusted federation of mutually distrusting functionaries/notaries. However, it is not clear what the word *federated* means in the term *federated node*. ([[54]](http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network), [[55]](https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0), [[28]](https://blockstream.com/technology/sidechains.pdf))
 
 #### Who does it?
 
@@ -82,16 +84,16 @@ COVAL is being developed with a primary purpose of moving value using “off-cha
 
 #### Strengths
 
-Counterparty provides smart contract abilities that is rooted in the Bitcoin block chain.
+- Counterparty provides smart contract abilities that is rooted in the Bitcoin block chain
+- Embedded consensus - nodes maintain identical ledgers without using a peer-to-peer network
 
 #### Weaknesses
 
 - All Counterparty smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If the federated nodes are compromised no evidence of any transaction within the Counterparty eco system exists.
-- Counterparty is not a Layer 2 scaling solution.
 
 #### Opportunities for Tari
 
-None
+See '*Scriptless scripts*'
 
 #### Threats for Tari
 
@@ -413,7 +415,9 @@ None
 
 [53] DAGLabs website, https://www.daglabs.com, Date accessed: 2018-07-30.
 
+[54] Beyond distributed and decentralized: what is a federated network?, http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network, Date accessed: 2018-08-13.
 
+[55] Federated Byzantine Agreement, https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0, Date accessed: 2018-08-13.
 
 ## Contributors
 

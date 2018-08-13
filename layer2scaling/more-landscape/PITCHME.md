@@ -103,12 +103,12 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 <u>Strengths</u>
 
 - Provides smart contract abilities rooted in Bitcoin block chain
+- Embedded consensus - nodes maintain identical ledgers without P2P network
 
 
 <u>Weaknesses</u>
 
 - Smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If  federated nodes are compromised no evidence of Txs within eco system exists.
-- Counterparty is not a Layer 2 scaling solution
 
 <u>Opportunities for Tari</u>
 

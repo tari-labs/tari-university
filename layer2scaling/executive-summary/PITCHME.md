@@ -82,7 +82,11 @@
 
 #### #2 Why Federated Nodes/Masternodes?
 
-- ???
+- A federated node is a special case of a masternode, with emphasis on the federated trust model
+- Federated Nodes provides a protocol and network of nodes for creating smart contract applications using a customized virtual machine or other mechanism and linked to the primary block chain
+- All smart contracts and their state updates are executed and maintained off-chain in the federated nodes
+- Embedded consensus - nodes maintain identical ledgers without using a peer-to-peer network
+- The Federated Node software stack model lends itself for high volume processing
 
 #####  
 #####  
