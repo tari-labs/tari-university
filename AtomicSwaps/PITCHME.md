@@ -4,7 +4,7 @@
 - What are Atomic swaps
 - Hashed Timelock Contracts
 - Atomic vs Etomic
-- Currently implementations
+- Current implementations
 - Observations
 
 ---
@@ -21,17 +21,17 @@
 
 ## What are Atomic swaps
 
-- Decentralised exchange
+- Decentralized exchange
 
 - Allow the exchange of currencies in a trustless environment
-- If one party defaults or fails, the tranaction is not completed and neither party can "run off" with the other party's money
+- If one party defaults or fails, the transaction is not completed and neither party can "run off" with the other party's money
 
 ---
 
 ## Hashed Timelock Contracts
 
 - Hashed Timelock Contracts (HTLC) is one of the most important technologies required for atomic swaps. 
-- This is a payment class that uses haslocks and timelocks to require certain public knowledge before doing a payment, otherwise the payment is reversed. 
+- This is a payment class that uses hashlocks and timelocks to require certain public knowledge before doing a payment, otherwise the payment is reversed. 
 - HTLCs are also crucial in the lighting network.
 
 ---
@@ -64,8 +64,8 @@ Example:
 
 ## Atomic vs Etomic
 
-- For an atomic swap transaction to happen, both currencies must use the same hashing function as this is crucial for HTLC to function. 
-- Etomic swaps was created in an attemp to make atomic swaps happend between bitcoin coins and ethereum based tokens (ERC20).
+- For an atomic swap transaction to happen, both cryptocurrencies must use the same hashing function as this is crucial for HTLC to function. 
+- Etomic swaps was created in an attempt to make atomic swaps happen between Bitcoin tokens and Ethereum based tokens (ERC20).
 
 ---
 
