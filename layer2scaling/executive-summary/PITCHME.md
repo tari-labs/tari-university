@@ -1,12 +1,12 @@
-## Layer 2 Scaling Executive Summary
+## Scaling Executive Summary
 
-- Layer 2 Scaling Landscape
+- Scaling Landscape
 
 - How will this be applicable to Tari?
 
-- Layer 2 Scaling Context for Tari
+- Scaling Context for Tari
 
-- Layer 2 Scaling Alternatives for Tari
+- Scaling Alternatives for Tari
 
 - Observations
 
@@ -16,9 +16,9 @@
 
 ---
 
-## Layer 2 Scaling Landscape
+## Scaling Landscape
 
-- L2S can be roughly grouped into these groups:
+- Layer 2 Scaling can be roughly grouped into these groups:
   - Off-chain matching engines
   - Off-chain processing nodes
   - Off-chain payment channels
@@ -31,7 +31,7 @@
 
 
 
-- Other technologies investigated, mainly directly on the primary block chain
+- Other scaling technologies investigated, mainly directly on the primary block chain
   - DAG derivative protocols
   - Transaction data compression
   - Scriptless scripts
@@ -56,11 +56,11 @@
 
 ---
 
-## Layer 2 Scaling Context for Tari
+## Scaling Context for Tari
 
 - Proposal going forward
-  - <u>TumbleBit,</u> as an off-chain matching engines
-  - <u>Federated Nodes/Masternodes,</u> as off-chain processing nodes 
+  - <u>TumbleBit,</u> as an off-chain matching engines (L2S)
+  - <u>Federated Nodes/Masternodes,</u> as off-chain processing nodes (L2S)
   - <u>Scriptless Scripts & Schnorr Signature Aggregation</u>, as Layer 1 scaling
   - <u>SPECTRE, PHANTOM</u>, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
 
@@ -85,17 +85,8 @@
 - A federated node is a special case of a masternode, with emphasis on the federated trust model
 - Federated Nodes provides a protocol and network of nodes for creating smart contract applications using a customized virtual machine or other mechanism and linked to the primary block chain
 - All smart contracts and their state updates are executed and maintained off-chain in the federated nodes
-- Embedded consensus - nodes maintain identical ledgers without using a peer-to-peer network
+- Federated Nodes can implement improved consensus models like Federated Byzantine Agreement
 - The Federated Node software stack model lends itself for high volume processing
-
-#####  
-#####  
-
-+++
-
-#### #2 Why Federated Nodes/Masternodes? (cont'd)
-
-#####  
 
 ---
 

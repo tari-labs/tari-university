@@ -85,15 +85,16 @@ COVAL is being developed with a primary purpose of moving value using “off-cha
 #### Strengths
 
 - Counterparty provides smart contract abilities that is rooted in the Bitcoin block chain
-- Embedded consensus - nodes maintain identical ledgers without using a peer-to-peer network
 
 #### Weaknesses
 
 - All Counterparty smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If the federated nodes are compromised no evidence of any transaction within the Counterparty eco system exists.
+- Embedded consensus - nodes maintain identical ledgers without using a peer-to-peer network
 
 #### Opportunities for Tari
 
-See '*Scriptless scripts*'
+- Federated Nodes can implement improved consensus models like Federated Byzantine Agreement [[55]](https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0)
+- See '*Scriptless scripts*'
 
 #### Threats for Tari
 
