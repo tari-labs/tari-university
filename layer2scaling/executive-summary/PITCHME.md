@@ -29,7 +29,7 @@
 
 ![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ScalingLandscape.png)
 
-
++++
 
 - Other scaling technologies investigated, mainly directly on the primary block chain
   - DAG derivative protocols
