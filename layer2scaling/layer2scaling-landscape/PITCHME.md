@@ -127,7 +127,7 @@ None
 
 State channels the more general form of micropayment channels  (also used for any arbitrary “state update” on block chain)  like changes inside smart contract.
 
-<u>Consensus</u>: Any change of state within state channels requires explicit cryptographic consent. State updates between two parties via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, and also secured by time-out (i.e. HTLC)
+<u>Consensus</u>: Change of state within channel needs explicit cryptographic consent. Use digitally signed and hash-locked transfers as consensus mechanism (balance proofs) secured by time-out (HTLC).
 
 ![Raiden](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
@@ -237,13 +237,13 @@ State channels the more general form of micropayment channels  (also used for 
   - Cross-chain transfers
   - Support of national currencies
   - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens
+  - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine
 
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-- - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine
-  - Cure53 full security audit on web extension, NEX tokens regulated as registered European securities
+- - Cure53 full security audit on web extension, NEX tokens regulated as registered European securities
 - 0x specific
   - Open source protocol enable creation of independent off-chain dApp matching engines (*Relayers*)
   - Totally transparent matching of orders with no single point of control
@@ -251,13 +251,16 @@ State channels the more general form of micropayment channels  (also used for 
     - Exchange can only happen if a Taker is willing to accept
   - Consensus and settlement governed by the publically available DEX smart contract
 
+#####  
+#####  
+##### Weaknesses
+
+- NEX and 0x still in development
+
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-##### Weaknesses
-
-- NEX and 0x still in development
 - NEX specific
   - Certain level of trust is required, similar to traditional exchange
   - Closed liquidity pool
