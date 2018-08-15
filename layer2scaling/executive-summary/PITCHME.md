@@ -44,7 +44,7 @@
 
 - Tari is a high-throughput protocol -> tens of thousands of transactions per second imagined
 - This will be impossible to do with primary block chain scaling solutions alone
-- Use cases:
+- Example use cases:
   - EventCorp, the stadium owner
     - Selling: Do not let the servers crash!
     - Redeeming: 
@@ -58,8 +58,8 @@
 
 ## Scaling Context for Tari
 
-- Proposal going forward
-  - <u>TumbleBit,</u> as an off-chain matching engines (L2S)
+- Scaling technologies worth investigating further 
+  - <u>TumbleBit,</u> as an off-chain matching engine (L2S)
   - <u>Federated Nodes/Masternodes,</u> as off-chain processing nodes (L2S)
   - <u>Scriptless Scripts & Schnorr Signature Aggregation</u>, as Layer 1 scaling
   - <u>SPECTRE, PHANTOM</u>, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
