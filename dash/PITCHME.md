@@ -72,7 +72,7 @@
 
 ---
 
-#Conclusion
+## Conclusion
 
 - Dash created a lot of resources for how non-mining masternodes can perform functions in the network while still being backed by proof of work
 - Consensus on technical decisions can be reached much faster
@@ -81,6 +81,8 @@
 
 - [Dash music video 1](https://www.youtube.com/watch?v=GY11UJEeDuI)
 - [Dash music video 2](https://www.youtube.com/watch?v=eVzggP7k3fo)
+
+---
 
 ## Resources
 
