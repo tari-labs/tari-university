@@ -35,7 +35,7 @@
 
 ---
 
-##Governance
+## Governance
 - Decentralized Governance by Blockchain, or DGBB
 - DGBB is an attempt to solve both governance and funding
 - Anyone can submit a budget proposal and masternodes can vote
