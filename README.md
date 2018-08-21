@@ -39,7 +39,7 @@ Technical | Layer 2 Scaling Survey | Presents an overview of different layer 2 s
 Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=merkle-trees-and-spv-1)  
 Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/scriptless-scripts?p=/scriptless-scripts#/)
-Technical | Dash | An introduction to Dash | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=dash#/) 
+
 
 ## Future Streams and Topics 
 
