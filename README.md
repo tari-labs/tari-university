@@ -41,8 +41,3 @@ Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](http
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/scriptless-scripts?p=/scriptless-scripts#/)
 
 
-## Future Streams and Topics 
-
-Stream | Topic | Date
-----|----| --- |
-Technical | Masternodes | 27 August |
