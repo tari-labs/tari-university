@@ -38,7 +38,7 @@ Note: Bitcoin, Ethereum and other blockchains make use of a scripting language w
 
 - For Schnorr signatures the signer has a secret key ***x***, ephemeral secret key ***k*** -- he publishes a public key ***xG*** (*G* is base point, of generator of the group)
 
-- A signature is the ephemeral pubic key kG as well as 
+- A signature is the ephemeral public key kG as well as 
 
   $$
   s=k-ex
