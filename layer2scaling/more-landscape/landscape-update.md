@@ -72,9 +72,9 @@ Counterparty is NOT a block chain. Counterparty is a protocol and network of nod
 
 ![CounterpartyStack](./sources/CounterpartyStack.png)
 
-All published Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`. Counterparty is used to broadcast an `execute` transaction to call a specific function or method in the smart contract code. Once an execution transaction is confirmed by a  Bitcoin miner, the Counterparty federated nodes will receive the request and execute that method. The contract state is modified as the smart contract code executes and stored in the Counterparty database. [[32]](https://counterparty.io)
+All published Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`. Counterparty is used to broadcast an `execute` transaction to call a specific function or method in the smart contract code. Once an execution transaction is confirmed by a Bitcoin miner, the Counterparty federated nodes will receive the request and execute that method. The contract state is modified as the smart contract code executes and stored in the Counterparty database. [[32]](https://counterparty.io)
 
-General consensus has it that a *federated network* is a *distributed network of centralized networks. The Ripple blockchain implements a Federated Byzantine Agreement (FBA) consensus mechanism. Federated sidechains implements a security protocol using a trusted federation of mutually distrusting functionaries/notaries. However, it is not clear what the word *federated* means in the term *federated node*. ([[54]](http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network), [[55]](https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0), [[28]](https://blockstream.com/technology/sidechains.pdf))
+General consensus has it that a *federated network* is a *distributed network of centralized networks*. The Ripple blockchain implements a Federated Byzantine Agreement (FBA) consensus mechanism. Federated sidechains implements a security protocol using a trusted federation of mutually distrusting functionaries/notaries. However, it is not clear what the word *federated* means in the term *federated node*. ([[54]](http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network), [[55]](https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0), [[28]](https://blockstream.com/technology/sidechains.pdf))
 
 #### Who does it?
 
@@ -229,7 +229,7 @@ Tari plans to implement the Mimblewimble  block chain and should implement the *
 
 However, this in itself will not provide the Layer 2 scaling performance that will be required. Big Neon, the initial business application to be built on top of the Tari block chain, requires to "facilitate 500 tickets in 4 minutes", that is ~2 spectators allowed access every second, with negligible latency. 
 
-The Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final state update being written back to the block chain after the event.
+The Mimblewimble *Scriptless Script*s could be combined with a federated node (or specialized masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final consolidated state update being written back to the block chain after the event.
 
 #### Threats for Tari
 
@@ -271,6 +271,8 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but offer significan
   - GHOST, SPECTRE, PHANTOM
 - DAGlabs [[53]](https://www.daglabs.com/)  (*<u>Note:</u> This is the commercial development chapter.)*
   - SPECTRE, PHANTOM
+    - SPECTRE provides high throughput and fast confirmation times. Its DAG structure represents an abstract vote regarding the order between each pair of blocks, but this pairwise ordering may not be extendable to a full linear ordering due to possible Condorcet cycles.
+    - PHANTOM provides a linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts), which SPECTRE cannot. In order for a computation or contract to be processed correctly and consistently, the full order of events in the ledger is required, particularly the order of inputs to the contract. However, PHANTOM’s confirmation times are mush slower than those in SPECTRE.
 - Ethereum as the Ethash PoW algorithm that has been adapted from GHOST
 - [Dr. Bob McElrath](http://bob.mcelrath.org/resume/) ([[40]](https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf), [[41]](https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html))
   - Brading

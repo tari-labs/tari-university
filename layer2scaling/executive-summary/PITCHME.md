@@ -59,16 +59,16 @@
 ## Scaling Context for Tari
 
 - Scaling technologies worth investigating further 
-  - <u>TumbleBit,</u> as an off-chain matching engine (L2S)
-  - <u>Federated Nodes/Masternodes,</u> as off-chain processing nodes (L2S)
-  - <u>Scriptless Scripts & Schnorr Signature Aggregation</u>, as Layer 1 scaling
-  - <u>SPECTRE, PHANTOM</u>, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
+  - *TumbleBit,* as an off-chain matching engine (L2S)
+  - *Federated Nodes/Masternodes* as off-chain processing nodes (L2S)
+  - *Scriptless Scripts & Schnorr Signature Aggregation*, as Layer 1 scaling
+  - *SPECTRE, PHANTOM*, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
 
 ![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ContextTari.png)
 
 ---
 
-## Layer 2 Scaling Context for Tari (cont'd)
+## Scaling Context for Tari (cont'd)
 
 #### #1 Why TumbleBit?
 
@@ -82,40 +82,70 @@
 
 #### #2 Why Federated Nodes/Masternodes?
 
-- A federated node is a special case of a masternode, with emphasis on the federated trust model
-- Federated Nodes provides a protocol and network of nodes for creating smart contract applications using a customized virtual machine or other mechanism and linked to the primary block chain
-- All smart contracts and their state updates are executed and maintained off-chain in the federated nodes
-- Federated Nodes can implement improved consensus models like Federated Byzantine Agreement
-- The Federated Node software stack model lends itself for high volume processing
+- A federated node is a special case of a masternode, with emphasis on the federated trust model.
+- Federated Nodes provides a protocol and network of nodes for creating smart contract applications using a customized virtual machine or other mechanism and linked to the primary block chain.
+- All smart contracts and their state updates are executed and maintained off-chain in the federated nodes.
+- The Federated Node software stack model lends itself for high volume processing.
+- Federated Nodes does not have to use embedded consensus (*although Counterparty does*); improved consensus models like Federated Byzantine Agreement (FBA) can be implemented.
 
 ---
 
 #### #3 Why Scriptless Scripts & Schnorr Signature Aggregation?
 
-- ???
+- <u>Data savings:</u> Signature aggregation using an appropriate Schnorr-based multi-signature scheme (*e.g. MuSig*) provides data compression on the block chain
+- <u>Privacy:</u> Nothing about the *Scriptless Script* smart contract, other than the settlement transaction,  is ever recorded on the block chain. No one will ever know that an underlying smart contract was executed.
+- <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement transaction.
+- <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction. Transactions are only broadcasted to the block chain once all preconditions are met.
 
-#####  
-
-+++
+---
 
 #### #3 Why Scriptless Scripts & Schnorr Signature Aggregation? (cont'd)
 
-#####  
-#####  
+- Signature aggregation properties sought here are:
+  - Must be provably secure in the *plain public-key model*;
+  - Must satisfy the normal Schnorr equation, whereby the resulting signature can be written as a function of a combination of the public keys; 
+  - Must allow for Interactive Aggregate Signatures (IAS) where the signers are required to cooperate;
+  - Must allow for Non-interactive Aggregate Signatures (NAS) where the aggregation can be done by anyone;
+  - Must allow each signer to sign the same message;
+  - Must allow each signer to sign their own message.
+
+---
+
+#### #3 Why Scriptless Scripts & Schnorr Signature Aggregation? (cont'd)
+
+- Possible software stack:
+  - The Mimblewimble *Scriptless Script*s could be implemented by Federated Nodes with FBA on layer 2.
+  - The MuSig Schnorr-based multi-signature scheme with key aggregation can be used.
+  - Secrets revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the Federated Nodes, with intermediate state updates confirmed by FBA.
+  - Final consolidated state update can be written back to the block chain after the event.
+
 ---
 
 #### #4 Why SPECTRE, PHANTOM?
 
-- ???
+- DAG derivative protocols SPECTRE and PHANTOM offer an alternative to a block chain, i.e. block DAG
+- Strengths:
+  - <u>Layer 1 scaling:</u> Increased transaction throughput on the main block chain
 
-#####  
-#####  
+  - <u>Fairness:</u> Better payoff for weak miners
+  - <u>Decentralization mitigation:</u> Weaker miners also get profits
+  - <u>Transaction confirmation times:</u> Confirmation times of several seconds (SPECTRE)
+  - <u>Smart contracts:</u> Support smart contracts (PHANTOM)
+
 +++
 
 #### #4 Why SPECTRE, PHANTOM? (cont'd)
 
-#####  
-#####  
+- SPECTRE:
+  - High throughput and fast confirmation times
+  - Weak liveness for conflicting transactions 
+  - DAG structure represents an abstract vote regarding the order between each pair of blocks
+- PHANTOM:
+  - Confirmation times are mush slower than those in SPECTRE
+  - Strong liveness for conflicting transactions 
+  - Linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts)
+- SPECTRE and PHANTOM can be combined.
+
 ---
 
 ## Observations

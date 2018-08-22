@@ -219,7 +219,7 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 A masternode is a server on a decentralized network. It is utilized to complete unique functions in ways ordinary mining nodes cannot, for example features like direct send, instant transactions and private transactions. Because of their increased capabilities, masternodes typically require an investment in order to run. Masternode operators are incentivized and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. Masternodes will get the standard return on their stakes, but will also be entitled to a portion of the transaction fees, allowing for a greater ROI. ([[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes), [[10]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes))
 
 <u>Dash Example</u> [[31]](https://res.tuoluocaijing.cn/20180517155941-ojog.pdf)
-Dash was the first cryptocurrency to implement the masternode model into its protocol. Under what Dash calls its proof of service algorithm, a second tier network of masternodes exists alongside a first tier network of miners to achieve distributed consensus on the block chain. This two tiered system ensures that proof of service and proof of work perform symbiotic maintenance of Dash’s network. Dash masternodes also enable a decentralized governance system that allows node operators to vote on important developments within the block chain. A masternode for Das, requires a stake of 1,000 DASH and share an equally 45% of block rewards with the miners. The other 10% goes to the block chain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
+Dash was the first cryptocurrency to implement the masternode model into its protocol. Under what Dash calls its proof of service algorithm, a second tier network of masternodes exists alongside a first tier network of miners to achieve distributed consensus on the block chain. This two tiered system ensures that proof of service and proof of work perform symbiotic maintenance of Dash’s network. Dash masternodes also enable a decentralized governance system that allows node operators to vote on important developments within the block chain. A masternode for Dash requires a stake of 1,000 DASH and share an equally 45% of block rewards with the miners. The other 10% goes to the block chain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
 
 *Dash Deterministic Ordering*
 
@@ -227,7 +227,7 @@ A special deterministic algorithm is used to create a pseudo-random ordering of 
 
 *Dash Trustless Quorums*
 
-The Dash masternode network is trustless where no single entity can control the outcome. N pseudo random masternodes (Quorum A) are selected from the total pool to act as an oracle for N pseudo random masternodes (Quorum B) that are selected to perform the actual task. Quorum A are the closest nodes to the current block hash, while Quorum B are the furthest. This process is repeated for each new block in the block chain.
+The Dash masternode network is trustless where no single entity can control the outcome. N pseudo random masternodes (Quorum A) are selected from the total pool to act as an oracle for N pseudo random masternodes (Quorum B) that are selected to perform the actual task. Quorum A are the closest nodes mathematically to the current block hash, while Quorum B are the furthest. This process is repeated for each new block in the block chain.
 
 
 *Dash Proof of Service*
@@ -253,7 +253,7 @@ Bad actors could also run masternodes. To reduce the possibility of bad acting, 
 
 - Maintaining masternodes can be a long and arduous.
 - ROI is not guaranteed and is inconsistent. In some applications Masternodes only gets rewarded if they mine a block and if they are randomly chosen to get paid.
-- in general a masternode's IP address is publicized and thus open to attacks.
+- In general a masternode's IP address is publicized and thus open to attacks.
 
 #### Opportunities for Tari
 
