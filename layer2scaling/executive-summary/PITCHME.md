@@ -207,5 +207,5 @@ Note:
 
 - Not all protocols presented here have production or even reference implementations 
 
-- Careful consideration about each aspect of these technologies and their applicability to the Taro protocol are required
-- TumbleBit are taylor made for BitCoin, features that make it work currently not part of Mimblewimble
+- Careful consideration about each aspect of these technologies and their applicability to the Tari protocol is required
+- Some protocols are tailor made for Bitcoin; features that make it work currently not part of Mimblewimble
