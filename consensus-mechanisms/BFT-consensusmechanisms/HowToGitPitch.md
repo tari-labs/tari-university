@@ -7,7 +7,7 @@ e.g. MyBranchName
 ### URL
 Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
-Tree location:   consensus-mechanisms?p=/
+Tree location:   consensus-mechanisms-1?p=/
 
 Presentation:    consensus-mechanisms/BFT-consensusmechanisms#/
 
