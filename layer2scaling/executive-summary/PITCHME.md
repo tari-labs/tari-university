@@ -27,7 +27,7 @@
 
 
 
-![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ScalingLandscape.png)
+![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/master/layer2scaling/executive-summary/sources/L2ScalingLandscape.png)
 
 +++
 
@@ -36,7 +36,7 @@
   - Transaction data compression
   - Scriptless scripts
 
-![Non_L2S](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/Non_L2S.png)
+![Non_L2S](https://raw.githubusercontent.com/tari-labs/tari-university/master/layer2scaling/executive-summary/sources/Non_L2S.png)
 
 ---
 
@@ -64,7 +64,7 @@
   - *Scriptless Scripts & Schnorr Signature Aggregation*, as Layer 1 scaling
   - *SPECTRE, PHANTOM*, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
 
-![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/L2ScalingUpdate/layer2scaling/executive-summary/sources/L2ContextTari.png)
+![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/master/layer2scaling/executive-summary/sources/L2ContextTari.png)
 
 ---
 
