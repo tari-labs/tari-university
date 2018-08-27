@@ -40,4 +40,9 @@ Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Paym
 Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/scriptless-scripts?p=/scriptless-scripts#/)
 
+## Future Streams and Topics 
+
+Stream | Topic | Summary | Date  
+----|----| --- | --- |
+Technical | Layer 2 Scaling Executive summary | Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and which viable scaling alternatives exists for Tari | 27 August 2018
 
