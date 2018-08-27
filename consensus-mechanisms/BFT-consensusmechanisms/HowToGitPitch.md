@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    layer2scaling/layer2scaling-landscape#/
+Presentation:    consensus-mechanisms/BFT-consensusmechanisms#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/layer2scaling/layer2scaling-landscape#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=consensus-mechanisms/BFT-consensusmechanisms#/
 
 ## On the trunk
 ### Trunk name
@@ -23,10 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    layer2scaling/layer2scaling-landscape#/
+Presentation:    consensus-mechanisms/BFT-consensusmechanisms#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/
-
-ToDo: Change then delete this line please
+https://gitpitch.com/tari-labs/tari-university/master?p=consensus-mechanisms/BFT-consensusmechanisms#/
