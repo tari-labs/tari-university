@@ -185,6 +185,7 @@ PHANTOM:
 - Linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts) [***GOOD***]
 
 ##### 
+
 ##### 
 
 ##### SPECTRE and PHANTOM can be combined.
