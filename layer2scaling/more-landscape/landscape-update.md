@@ -225,7 +225,7 @@ In a recent work Maxwell et al. ([[35]](https://blockstream.com/2018/01/23/musig
 
 #### Opportunities for Tari
 
-Tari plans to implement the Mimblewimble  block chain and should implement the *Scriptless Script*s together with the MuSig Schnorr signature scheme. 
+Tari plans to implement the Mimblewimble block chain and should implement the *Scriptless Script*s together with the MuSig Schnorr signature scheme. 
 
 However, this in itself will not provide the Layer 2 scaling performance that will be required. Big Neon, the initial business application to be built on top of the Tari block chain, requires to "facilitate 500 tickets in 4 minutes", that is ~2 spectators allowed access every second, with negligible latency. 
 

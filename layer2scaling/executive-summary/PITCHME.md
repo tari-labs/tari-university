@@ -68,8 +68,6 @@
 
 ---
 
-## Scaling Context for Tari (cont'd)
-
 #### #1 Why TumbleBit?
 
 - TumbleBit has many excellent properties as trustless matching engine
@@ -78,7 +76,7 @@
 - Anonymity & bad acting prevention provided by *RSA-Puzzle-Solver Protocol* & *Puzzle-Promise Protocol*, making use of RSA crypto blinding properties
 - TumbleBit also supports anonymizing through Tor
 
-+++
+---
 
 #### #2 Why Federated Nodes/Masternodes?
 
@@ -86,20 +84,20 @@
 - Federated Nodes provides a protocol and network of nodes for creating smart contract applications using a customized virtual machine or other mechanism and linked to the primary block chain.
 - All smart contracts and their state updates are executed and maintained off-chain in the federated nodes.
 - The Federated Node software stack model lends itself for high volume processing.
-- Federated Nodes does not have to use embedded consensus (*although Counterparty does*); improved consensus models like Federated Byzantine Agreement (FBA) can be implemented.
+- Federated Nodes does not have to use embedded consensus (*although Counterparty does*); improved **consensus models like Federated Byzantine Agreement (FBA) can be implemented**.
 
 ---
 
-#### #3 Why Scriptless Scripts & Schnorr Signature Aggregation?
+#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation?
 
 - <u>Data savings:</u> Signature aggregation using an appropriate Schnorr-based multi-signature scheme (*e.g. MuSig*) provides data compression on the block chain
 - <u>Privacy:</u> Nothing about the *Scriptless Script* smart contract, other than the settlement transaction,  is ever recorded on the block chain. No one will ever know that an underlying smart contract was executed.
 - <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement transaction.
 - <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction. Transactions are only broadcasted to the block chain once all preconditions are met.
 
----
++++
 
-#### #3 Why Scriptless Scripts & Schnorr Signature Aggregation? (cont'd)
+#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
 
 - Signature aggregation properties sought here are:
   - Must be provably secure in the *plain public-key model*;
@@ -109,15 +107,19 @@
   - Must allow each signer to sign the same message;
   - Must allow each signer to sign their own message.
 
----
++++
 
-#### #3 Why Scriptless Scripts & Schnorr Signature Aggregation? (cont'd)
+#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
 
 - Possible software stack:
   - The Mimblewimble *Scriptless Script*s could be implemented by Federated Nodes with FBA on layer 2.
   - The MuSig Schnorr-based multi-signature scheme with key aggregation can be used.
   - Secrets revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the Federated Nodes, with intermediate state updates confirmed by FBA.
-  - Final consolidated state update can be written back to the block chain after the event.
+- Challenges: 
+  - Smart contract state updates can't be written back to the block chain after the event.
+  - HTLC not supported.
+  - Immediate cut-through (pruning) may delete transactions intended to be persistent.
+  - Standard Mimblewimble Tx does not support signaling a Federated Node
 
 ---
 
