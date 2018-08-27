@@ -127,7 +127,7 @@ None
 
 State channels the more general form of micropayment channels  (also used for any arbitrary “state update” on block chain)  like changes inside smart contract.
 
-<u>Consensus</u>: Any change of state within state channels requires explicit cryptographic consent. State updates between two parties via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, and also secured by time-out (i.e. HTLC)
+<u>Consensus</u>: Change of state within channel needs explicit cryptographic consent. Use digitally signed and hash-locked transfers as consensus mechanism (balance proofs) secured by time-out (HTLC).
 
 ![Raiden](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
@@ -237,13 +237,13 @@ State channels the more general form of micropayment channels  (also used for 
   - Cross-chain transfers
   - Support of national currencies
   - Public JavaScript Object Notation (JSON) Application Programmers Interface (API) & web extension API for third-party applications to trade tokens
+  - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine
 
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-- - Development environment: ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching engine
-  - Cure53 full security audit on web extension, NEX tokens regulated as registered European securities
+- - Cure53 full security audit on web extension, NEX tokens regulated as registered European securities
 - 0x specific
   - Open source protocol enable creation of independent off-chain dApp matching engines (*Relayers*)
   - Totally transparent matching of orders with no single point of control
@@ -251,13 +251,16 @@ State channels the more general form of micropayment channels  (also used for 
     - Exchange can only happen if a Taker is willing to accept
   - Consensus and settlement governed by the publically available DEX smart contract
 
+#####  
+#####  
+##### Weaknesses
+
+- NEX and 0x still in development
+
 +++
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-##### Weaknesses
-
-- NEX and 0x still in development
 - NEX specific
   - Certain level of trust is required, similar to traditional exchange
   - Closed liquidity pool
@@ -306,11 +309,13 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 #####  
 ##### Strengths
 
-- Dash: InstantSend, PrivateSend, Decentralised Governance, Decentralized payment processor 
-- BOScoin: integrates masternodes for its smart contracts, masternode governing system 
-- Syscoin: decentralized marketplace, facilitate anonymous and instant payments 
-- Masternodes are flexible: Compensates for proof of work’s limitations, behaves like beefed-up version proof of stake systems
-- Masternodes may promise enhanced stability 
+- Can sustain and take care of the ecosystem, protect block chains from network attacks
+- Can perform decentralized governance of miners by having the power to reject or orphan blocks
+- Can support decentralized exchanges
+- Can be used to facilitate smart contracts 
+- Can facilitate a decentralized marketplace
+- Can compensate PoW's limitations; avoids mining centralization and consumes less energy
+- Masternodes promise enhanced stability and network loyalty 
 
 +++
 
@@ -318,15 +323,16 @@ Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX,
 
 ##### Weaknesses
 
-- Maintaining of masternodes can be long and arduous task, malfunctions are common
+- Maintaining of masternodes can be long and arduous
 - ROI is not guaranteed and inconsistent
-- Location of your masternode is known, node can physically be stolen
+- IP address is publicized and thus open to attacks
 
 #####  
 #####  
 ##### Opportunities for Tari
 
-Increases incentives
+- Masternodes can facilitate smart contracts off-chain & enhance security
+- Increases incentives
 
 #####  
 #####  

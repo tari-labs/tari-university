@@ -22,7 +22,7 @@
 - Unidirectional, unlinkable payment hub for Bitcoin
 - Combines off-chain cryptographics with on-chain Bitcoin scripting to realize smart contracts not dependent on Segwit
 
-![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/TumbleBitOverview.PNG)
+![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/TumbleBitOverview.PNG)
 
 
 
@@ -76,7 +76,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 - Tx meta data are written into Bitcoin Txs on Bitcoin block chain
 - Read and validated by the federated nodes, executed by them
 
-![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/CounterpartyStack.png)
+![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/CounterpartyStack.png)
 
 
 
@@ -103,12 +103,12 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 <u>Strengths</u>
 
 - Provides smart contract abilities rooted in Bitcoin block chain
+- Embedded consensus - nodes maintain identical ledgers without P2P network
 
 
 <u>Weaknesses</u>
 
 - Smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If  federated nodes are compromised no evidence of Txs within eco system exists.
-- Counterparty is not a Layer 2 scaling solution
 
 <u>Opportunities for Tari</u>
 
@@ -129,7 +129,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 #### #3 2-Way Pegged Secondary Block Chains (cont'd)
 
-![RSK_HybridSideDriveChain](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/RSK_HybridSideDriveChain.png)
+![RSK_HybridSideDriveChain](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/RSK_HybridSideDriveChain.png)
 
 - Locking of BTC on main block chain with P2SH Tx (BTC to script hash, not public key hash)
 
@@ -146,7 +146,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 - Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol 
 - Blockstream is implementing a Federated Sidechain called Liquid
 
-![Blockstream-Federated-Sidechain](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/Blockstream-Federated-Sidechain.PNG)
+![Blockstream-Federated-Sidechain](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/Blockstream-Federated-Sidechain.PNG)
 
 
 
@@ -181,7 +181,7 @@ None, if enough functionality will be built into the main Tari block chain
 - Difference compression of data from same owner, aggregate signing of previous Txs
 - RSK newly launched main net January 2018, Lumino Network to be launched test net
 
-![LuminoDataPruning](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/LuminoDataPruning.PNG)
+![LuminoDataPruning](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/LuminoDataPruning.PNG)
 
 +++
 
@@ -245,7 +245,7 @@ By broadcasting the full Schnorr signature Bob has access to Alice's half Schnor
 
 Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*.
 
-![Mimblewimble](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/Mimblewimble.PNG)
+![Mimblewimble](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/Mimblewimble.PNG)
 
 +++
 
@@ -281,7 +281,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 - A directed graph is acyclic if it has a topological ordering: for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering
 
-![DAG](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/DAG.PNG)
+![DAG](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/DAG.PNG)
 
 +++
 
@@ -291,7 +291,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 - DAG in block chain includes traditional off-chain blocks into the ledger, governed by mathematical rules
 - A parent that is simultaneously an ancestor of another parent is disallowed
 
-![DAGTopologicalOrdering](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/DAGTopologicalOrdering.PNG)
+![DAGTopologicalOrdering](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/DAGTopologicalOrdering.PNG)
 
 +++
 
@@ -301,7 +301,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
   - Inclusion of orphaned blocks (decrease the negative effect of slow propagation)
   - Mitigation against selfish mining attacks
 
-![GHOST](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/GHOST.PNG)
+![GHOST](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/GHOST.PNG)
 
 +++
 
@@ -313,7 +313,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
   - SPECTRE: blocks vote -> Tx robustly accepted, Tx robustly rejected, Tx indefinite “pending”
   - All conflicting blocks earn their respective miners a block reward *[not in Braiding]*
 
-![SPECTRE](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/SPECTRE.PNG)
+![SPECTRE](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/SPECTRE.PNG)
 
 +++
 
@@ -323,7 +323,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
   - Incentives for behavior changes by nodes lead to increased throughput
   - Better payoff for weak miners
 
-![InclusiveProtocolDAG](https://github.com/tari-labs/tari-university/raw/L2ScalingUpdate/layer2scaling/more-landscape/sources/InclusiveProtocolDAG.PNG)
+![InclusiveProtocolDAG](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/InclusiveProtocolDAG.PNG)
 
 - *Note: DAG derivative protocols not Layer 2 Scaling solution, offer scaling of primary block chain*
 
