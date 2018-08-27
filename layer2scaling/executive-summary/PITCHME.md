@@ -149,7 +149,7 @@ Note:
 
 #### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
 
-- - Challenges: 
+- Challenges: 
   - No space allowed to embed data other than Tx inputs and outputs in the form of coin amounts
   - Smart contract state updates can't be written back to the block chain after the event
   - Immediate cut-through (& pruning) may delete transactions intended to be persistent
