@@ -72,6 +72,9 @@
 
 ![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/TumbleBitOverview.PNG)
 
+- **Notes**: 
+  - *The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking*
+
 +++
 
 #### #1 Why TumbleBit? (cont'd)
@@ -81,7 +84,8 @@
 - Commercial implementation NTumbleBit far advanced, backed by Boston University that provided proof-of-concept and reference implementation alongside white paper
 - Anonymity & bad acting prevention provided by *RSA-Puzzle-Solver Protocol* & *Puzzle-Promise Protocol*, making use of RSA crypto blinding properties
 - TumbleBit also supports anonymizing through Tor
-- **Notes**: *The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking*
+- **Notes**: 
+  - *TumbleBit is tailor made for Bitcoin; not all features that make it work currently part of Mimblewimble*
 
 ---
 
@@ -201,6 +205,7 @@ Note:
 
 ## Observations
 
-Not all protocols presented here have production or even reference implementations 
+- Not all protocols presented here have production or even reference implementations 
 
-Careful consideration about each aspect of these technologies and their applicability to the Taro protocol are required 
+- Careful consideration about each aspect of these technologies and their applicability to the Taro protocol are required
+- TumbleBit are taylor made for BitCoin, features that make it work currently not part of Mimblewimble
