@@ -1,13 +1,13 @@
 # Atomic swaps
-## What is Atomic swaps
+## What are Atomic swaps
 
-Atomic swops or cross-chain atomic swops [[1]](https://coinsutra.com/atomic-swap/) in a nutshell are decentralised exchange's, but only for cryoto currencies. This allows two parties to exchange two different crypto currencies in a trustless environment. If one party defaults or fails the transaction the tranaction is not completed and neither party can "run off" with the other party's money.  From this we can deduce that we require two technologies: a payment channel and hashed timelock contracts. An implementation of a pyament channel is the lightning network. 
+Atomic swaps or cross-chain atomic swaps [[1]](https://coinsutra.com/atomic-swap/) in a nutshell are decentralized exchanges, but only for cryptocurrencies. This allows multiple parties to exchange two different crypto currencies in a trustless environment. If one party defaults or fails the transaction, neither party can "run off" with the anyone's money.  For this to work, we will require two technologies: a payment channel and hashed timelock contracts. An implementation of a payment channel is the lightning network. 
 
 
 
 ## Hashed Timelock Contracts 
 
-Hashed Timelock Contracts (HTLC) [[2]](https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345) is one of the most important technologies required for atomic swaps. This is a payment class that uses haslocks and timelocks to require certain public knowledge before doing a payment, otherwise the payment is reversed. HTLCs are also crucial in the lighting network [[3]](https://lightning.network/lightning-network-paper.pdf). 
+Hashed Timelock Contracts (HTLC) [[2]](https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345) is one of the most important technologies required for atomic swaps. This is a payment class that uses hashlocks and timelocks to require certain public knowledge before doing a payment, otherwise the payment is reversed. HTLCs are also crucial in the lighting network [[3]](https://lightning.network/lightning-network-paper.pdf). 
 
 Here is a quick example of how a HTLC works:
 
@@ -25,17 +25,17 @@ If the payment to Carla does not go through the timelock in the contract will re
 
 ## Atomic vs Etomic
 
-For an atomic swap transaction to happen, both currencies must use the same hashing function as this is crucial for HTLC to function. Etomic swaps was created in an attemp to make atomic swaps happend between bitcoin coins and ethereum based tokens. 
+For an atomic swap transaction to happen, both cryptocurrencies must use the same hashing function as this is crucial for HTLC to function. Etomic swaps was created in an attempt to make atomic swaps happen between Bitcoin tokens and Ethereum based tokens. 
 
 
-## Examples of current atomic swaps and implementations there of 
+## Examples of current atomic swaps and implementations
 ### #1 Manual method 
 An article was posted on Hackernoon [[3]](https://hackernoon.com/so-how-do-i-really-do-an-atomic-swap-f797852c7639) showing the exact steps that is required for doing an atomic swap using cli. 
 
-The requirements for this metod can be listed as follows:
+The requirements for this method can be listed as follows:
 
-- Full nodes on both party's.
-- Atomic swop package [[4].
+- Full nodes on both parties.
+- Atomic swap package [[4].
 - Use of supported coins (UXTO based protocol coins, eg Bitcoin, Litecoin, Viacoin).
 - Power user.
 
@@ -43,7 +43,7 @@ The requirements for this metod can be listed as follows:
 
 ### #2 Atomic Wallet
 
-Atomic wallet [[5]](https://atomicwallet.io/) is an atomic swop exchange. They allow two parties to trade with them as a third party.  The process looks as follows:
+Atomic wallet [[5]](https://atomicwallet.io/) is an atomic swap exchange. They allow two parties to trade with them as a third party.  The process looks as follows:
 
 1. Party A select an order from the BitTorrent order book.
 2. Party A enter an amount of coin to swap or coin to receive.
@@ -55,9 +55,9 @@ Atomic wallet [[5]](https://atomicwallet.io/) is an atomic swop exchange. They a
 
 ### #3 BarterDEX
 
-BarterDEX is a decentrilized exhange created by Komodo [[6]](https://komodoplatform.com/decentralized-exchange/) but it works with electron servers or native. BarterDEX at its core is more like an auction system then a true decentrilized exchange. It also uses a security deposit in the form of zcredits to do swaps without waiting for confirmation.
+BarterDEX is a decentralized exchange created by Komodo [[6]](https://komodoplatform.com/decentralized-exchange/) but it works with electron servers or native. BarterDEX at its core is more like an auction system then a true decentralized exchange. It also uses a security deposit in the form of Zcredits to do swaps without waiting for confirmation.
 
-BarterDEX also suports Etomic swaps. These work by keeping the payments locked in a etomic blockchain which will act as a third party. Although swaps have been done, it is stated as not yet production ready [[7]](https://github.com/artemii235/etomic-swap). Currently (July 2018) its only possible to use Barterdex out of the  cli [[8]]("https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX)").  Barterdex charges a 0.1287% fee for a swop [[9]](https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2). 
+BarterDEX also supports Etomic swaps. These work by keeping the payments locked in a etomic blockchain which will act as a third party. Although swaps have been done, it is stated as not yet production ready [[7]](https://github.com/artemii235/etomic-swap). Currently (July 2018) its only possible to use Barterdex out of the  cli [[8]]("https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX)").  Barterdex charges a 0.1287% fee for a swap [[9]](https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2). 
 
 ## References
 
