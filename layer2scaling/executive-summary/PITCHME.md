@@ -81,7 +81,7 @@
 - Commercial implementation NTumbleBit far advanced, backed by Boston University that provided proof-of-concept and reference implementation alongside white paper
 - Anonymity & bad acting prevention provided by *RSA-Puzzle-Solver Protocol* & *Puzzle-Promise Protocol*, making use of RSA crypto blinding properties
 - TumbleBit also supports anonymizing through Tor
-- *<u>**Notes**</u>: The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking*
+- **Notes**: *The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking*
 
 ---
 
