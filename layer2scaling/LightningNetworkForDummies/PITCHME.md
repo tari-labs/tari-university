@@ -1,6 +1,6 @@
 # Lightning Network for Dummies 
 
-![Lightning](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/lightning.png)
+![Lightning](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/LightningNetworkForDummies/sources/lightning.png)
 
 ---
 ## Setting the scene 
@@ -33,7 +33,7 @@ Note: If scaling takes place now, Bitcoin risks technical issues and centralizat
 ---
 
 ## Introducing Lightning
-![Lightningnetworknodes](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/lightningnetworknodes.png)
+![Lightningnetworknodes](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/LightningNetworkForDummies/sources/lightningnetworknodes.png)
 
 ---
 
@@ -81,7 +81,7 @@ Note: If I wanted to purchase a coffee from my local coffee shop, I might open u
 
 YOU DON’T NECESSARILY NEED TO HAVE AN OPEN CHANNEL WITH EVERYONE, IF THERE’S A ROUTE ON THE NETWORK TO THAT MERCHANT
 
-![Distributednetwork](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/distributednetwork.png)
+![Distributednetwork](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/LightningNetworkForDummies/sources/distributednetwork.png)
 
 A well-distributed Lightning Network will require substantial cooperation from the network users. 
 
@@ -101,7 +101,7 @@ If Alice and Bob do not have an open channel and Alice wants to send Bob 0.5 BTC
 What if a well-funded third party exists...
 
 
-![Centraliseddecentraliseddistribution](https://github.com/tari-labs/tari-university/raw/master/LightningNetworkForDummies/Centraliseddecentraliseddistributed.png)
+![Centraliseddecentraliseddistribution](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/LightningNetworkForDummies/sources/Centraliseddecentraliseddistributed.png)
 
 Note: What if Alice, Bob, Charles, Danny, Eddy, Francis and Gina are all connected to that third party? Not only will each route always possess the necessary capital, it will also be the shorted route. There will be no economic incentive for each user to open up new channels with each other. So, in practice, Lightning is more likely to look like this: 
 

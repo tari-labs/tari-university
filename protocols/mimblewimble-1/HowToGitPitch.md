@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    scriptless-scripts/scriptless-scripts#/
+Presentation:    protocols/mimblewimble-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/scriptless-scripts?p=/scriptless-scripts#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/protocols/mimblewimble-1#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    scriptless-scripts/scriptless-scripts#/
+Presentation:    protocols/mimblewimble-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/scriptless-scripts/scriptless-scripts#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/protocols/mimblewimble-1#/
