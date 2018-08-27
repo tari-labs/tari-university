@@ -136,13 +136,19 @@ Note:
 #### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
 
 - Possible software stack:
-  - The Mimblewimble *Scriptless Script*s could be implemented by Federated Nodes with FBA on layer 2.
-  - The MuSig Schnorr-based multi-signature scheme with key aggregation can be used.
-  - Secrets revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the Federated Nodes, with intermediate state updates confirmed by FBA.
-- Challenges: 
-  - Smart contract state updates can't be written back to the block chain after the event.
-  - HTLC not supported.
-  - Immediate cut-through (pruning) may delete transactions intended to be persistent.
+  - The Mimblewimble *Scriptless Script*s logic could be implemented by Federated Nodes with FBA on layer 2
+  - The MuSig Schnorr-based multi-signature scheme with key aggregation can be used
+  - Secrets revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the Federated Nodes, with intermediate state updates confirmed by FBA
+
++++
+
+#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
+
+- - Challenges: 
+  - No space allowed to embed data other than Tx inputs and outputs in the form of coin amounts
+  - Smart contract state updates can't be written back to the block chain after the event
+  - Immediate cut-through (& pruning) may delete transactions intended to be persistent
+  - HTLC not supported
   - Standard Mimblewimble Tx does not support signaling a Federated Node
 
 ---
@@ -169,15 +175,18 @@ Note:
 #### #4 Why SPECTRE, PHANTOM? (cont'd)
 
 SPECTRE:
-- High throughput and fast confirmation times [*GOOD*]
-- Weak liveness for conflicting transactions [*BAD*]
-- DAG structure represents an abstract vote regarding the order between each pair of blocks [*BAD*]
+- High throughput and fast confirmation times [***GOOD***]
+- Weak liveness for conflicting transactions [***BAD***]
+- DAG structure represents an abstract vote regarding the order between each pair of blocks [***BAD***]
 
 PHANTOM:
-- Confirmation times are mush slower than those in SPECTRE [*BAD*]
-- Strong liveness for conflicting transactions [*GOOD*]
-- Linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts) [*GOOD*]
+- Confirmation times are mush slower than those in SPECTRE [***BAD***]
+- Strong liveness for conflicting transactions [***GOOD***]
+- Linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts) [***GOOD***]
 
+#### 
+#### 
+#### 
 SPECTRE and PHANTOM can be combined.
 
 Note:
