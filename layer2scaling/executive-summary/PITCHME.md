@@ -70,6 +70,12 @@
 
 #### #1 Why TumbleBit?
 
+![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/TumbleBitOverview.PNG)
+
++++
+
+#### #1 Why TumbleBit? (cont'd)
+
 - TumbleBit has many excellent properties as trustless matching engine
 - TumbleBit can perform off-chain payments in batch mode
 - Commercial implementation NTumbleBit far advanced, backed by Boston University that provided proof-of-concept and reference implementation alongside white paper
@@ -77,6 +83,12 @@
 - TumbleBit also supports anonymizing through Tor
 
 ---
+
+#### #2 Why Federated Nodes/Masternodes?
+
+![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/CounterpartyStack.png)
+
++++
 
 #### #2 Why Federated Nodes/Masternodes?
 
@@ -89,6 +101,12 @@
 ---
 
 #### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation?
+
+![Mimblewimble](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/Mimblewimble.PNG)
+
++++
+
+#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
 
 - <u>Data savings:</u> Signature aggregation using an appropriate Schnorr-based multi-signature scheme (*e.g. MuSig*) provides data compression on the block chain
 - <u>Privacy:</u> Nothing about the *Scriptless Script* smart contract, other than the settlement transaction,  is ever recorded on the block chain. No one will ever know that an underlying smart contract was executed.
@@ -124,6 +142,12 @@
 ---
 
 #### #4 Why SPECTRE, PHANTOM?
+
+![SPECTRE](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/SPECTRE.PNG)
+
++++
+
+#### #4 Why SPECTRE, PHANTOM? (cont'd)
 
 - DAG derivative protocols SPECTRE and PHANTOM offer an alternative to a block chain, i.e. block DAG
 - Strengths:
