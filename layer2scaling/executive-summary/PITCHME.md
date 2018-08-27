@@ -184,11 +184,11 @@ PHANTOM:
 - Strong liveness for conflicting transactions [***GOOD***]
 - Linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts) [***GOOD***]
 
-##### 
 
-##### 
 
-##### SPECTRE and PHANTOM can be combined.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+##### SPECTRE and PHANTOM can be combined
 
 Note:
 
