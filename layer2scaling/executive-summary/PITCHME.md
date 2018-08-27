@@ -125,6 +125,12 @@
   - Must allow each signer to sign the same message;
   - Must allow each signer to sign their own message.
 
+Note: 
+
+(1) Plain public-key model: allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). 
+
+(2) KOSK requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority.
+
 +++
 
 #### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
@@ -176,6 +182,6 @@
 
 ## Observations
 
-???
+Not all protocols presented here have production or even reference implementations 
 
 ???
