@@ -168,15 +168,23 @@ Note:
 
 #### #4 Why SPECTRE, PHANTOM? (cont'd)
 
-- SPECTRE:
-  - High throughput and fast confirmation times
-  - Weak liveness for conflicting transactions 
-  - DAG structure represents an abstract vote regarding the order between each pair of blocks
-- PHANTOM:
-  - Confirmation times are mush slower than those in SPECTRE
-  - Strong liveness for conflicting transactions 
-  - Linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts)
-- SPECTRE and PHANTOM can be combined.
+SPECTRE:
+- High throughput and fast confirmation times [*GOOD*]
+- Weak liveness for conflicting transactions [*BAD*]
+- DAG structure represents an abstract vote regarding the order between each pair of blocks [*BAD*]
+
+PHANTOM:
+- Confirmation times are mush slower than those in SPECTRE [*BAD*]
+- Strong liveness for conflicting transactions [*GOOD*]
+- Linear ordering over the blocks of the DAG and can support consensus regarding any general computation (smart contracts) [*GOOD*]
+
+SPECTRE and PHANTOM can be combined.
+
+Note:
+
+(1) Strong liveness: all conflicts decided in finite time
+
+(2) Weak liveness: no guarantee a resolution can be reached for conflicting transactions published soon one after the other
 
 ---
 
@@ -184,4 +192,4 @@ Note:
 
 Not all protocols presented here have production or even reference implementations 
 
-???
+Careful consideration about each aspect of these technologies and their applicability to the Taro protocol are required 
