@@ -13,6 +13,8 @@ presentation, please [open an issue](https://github.com/tari-labs/tari-universit
 
 ---
 
+@snap[north]
+
 # Elliptic Curves
 
 $$ y^2 = x^3 + ax + b \mod p$$
@@ -20,6 +22,8 @@ $$ y^2 = x^3 + ax + b \mod p$$
 * Described by this function
 * But _x, y_ are integers
 * And _x, y_ are between 0 and some prime number _p_
+
+@snapend
 
 @snap[south img-45]
 ![Some elliptic curves](http://andrea.corbellini.name/images/curves.png)
