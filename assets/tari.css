@@ -55,31 +55,31 @@
   width: 200px;
 }
 */
-.reveal div.100px {
+.reveal div.s100px {
   width: 100px;
 }
 
-.reveal div.150px {
+.reveal div.s150px {
   width: 150px;
 }
 
-.reveal div.200px {
+.reveal div.s200px {
   width: 200px;
 }
 
-.reveal div.250px {
+.reveal div.s250px {
   width: 250px;
 }
 
-.reveal div.300px {
+.reveal div.s300px {
   width: 300px;
 }
 
-.reveal div.400px{
+.reveal div.s400px{
   width: 400px;
 }
 
-.reveal div.500px {
+.reveal div.s500px {
   width: 500px;
 }
 
