@@ -13,7 +13,7 @@ Presentation:    protocols/rgb-introduction#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/rgb-introduction?p=/protocols/rgb-introduction#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/protocols/rgb-introduction#/
 
 ## On the trunk
 ### Trunk name
