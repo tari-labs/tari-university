@@ -55,24 +55,32 @@
   width: 200px;
 }
 
-.reveal div.img-25 {
-  width: 25%;
+.reveal div.100px {
+  width: 100px;
 }
 
-.reveal div.img-30 {
-  width: 30%;
+.reveal div.150px {
+  width: 150px;
 }
 
-.reveal div.img-40 {
-  width: 40%;
+.reveal div.200px {
+  width: 200px;
 }
 
-.reveal div.img-50 {
-  width: 50%;
+.reveal div.250px {
+  width: 250px;
 }
 
-.reveal div.img-75 {
-  width: 75%;
+.reveal div.300px {
+  width: 300px;
+}
+
+.reveal div.400px{
+  width: 400px;
+}
+
+.reveal div.500px {
+  width: 500px;
 }
 
 .reveal div.left-25 {
