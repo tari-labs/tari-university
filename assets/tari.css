@@ -88,6 +88,7 @@
 .reveal div.s500px {
   z-index: -10;
   width: 500px;
+  text-align: center;
 }
 
 .reveal div.s20 {
@@ -113,6 +114,7 @@
 .reveal div.s75 {
   z-index: -10;
   width: 75%;
+  text-align: center;
 }
 
 .reveal div.left-25 {
