@@ -41,6 +41,7 @@ Note: The two generals problem is a simple problem that helps us reason about an
 
 ![The Two Generals Problem](https://github.com/tari-labs/tari-university/consensus-mechanisms/sources/The_Two_Generals_Problem.png)
 
+
 Note: There are two armies, Army A and Army B, each led by a general; They need to agree on one fact 'are we going to attack Army C in the morning or are we going to retreat?'; If both Army A and B launch an attack in the morning, then they will win, if neither army attacks tomorrow then they will survive to fight another day; However, if either Army A or Army B choses to attack alone, they will lose as Army C is bigger than each fo the two individual armies A and B. The limitations: The generals of Army A and B can only communicate through messengers; These messengers ride horses through the territory of Army C - so they may or may not make to the opposing general. So a protocol needs to be designed: what messages should the generals send between each other, so that they are in consensus and agree to attack or retreat in the morning 
 
 ---

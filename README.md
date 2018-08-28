@@ -41,5 +41,3 @@ Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Paym
 Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/AtomicSwaps/AtomicSwaps.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 2 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/scriptless-scripts#/)
 
-
-

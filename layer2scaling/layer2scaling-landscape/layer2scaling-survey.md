@@ -17,7 +17,7 @@ The Open Systems Interconnection (OSI) model defines 7 layers for communication 
 
 ![OSI_Model](./sources/OSI_Model.png)
 
-Analogous to the OSI layers for communication, in block chain technology decentralized Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus). Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [[2]](https://cloudblogs.microsoft.com/enterprisemobility/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it)
+Analogous to the OSI layers for communication, in block chain technology decentralized Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus). Instead of each transaction only the resultant of a number of transactions are embedded on-chain. [[2]](https://cloudblogs.microsoft.com/enterprisemobility/2018/02/12/decentralized-digital-identities-and-block chain-the-future-as-we-see-it)
 
 ![layer2scaling](./sources/layer2scaling.png)
 
@@ -32,7 +32,9 @@ If you can answer 'no' and 'yes', then you're looking for a Layer 2 scaling solu
 
 ## How will this be applicable to Tari?
 
-Tari is a high-throughput protocol that will need to handle tens of thousands of transactions per second. For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. This will be impossible to do with parent block chain scaling solutions.
+Tari is a high-throughput protocol that will need to handle real world transaction volumes. For example, Big Neon, the initial business application to be built on top of the Tari block chain requires high volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. Imagine filling an 85,000 seat stadium with 72 entrance queues on match days. Serialized real world scanning boils down to ~500 tickets in 4 minutes, or ~2 spectators allowed access per second per queue.
+
+This will be impossible to do with parent block chain scaling solutions.
 
 
 ## Layer 2 scaling current initiatives
@@ -76,7 +78,7 @@ Lightning is spreading across the cryptocurrency landscape. It was originally de
 
 #### Opportunities for Tari 
 
-Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
+Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party. Non-fungible assets must be "broadcasted", but state channels are private between 2 parties.
 
 #### Threats to Tari 
 
@@ -120,7 +122,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 
 <u>On NEO:</u>
 
-- Trinity ([[3]](https://www.investinblockchain.com/trinity-protocol), [[18]](https://trinity.tech), [[19]](https://trinity.tech/file/WhitePaperDraft1.pdf))
+- Trinity ([[3]](https://www.investinblock chain.com/trinity-protocol), [[18]](https://trinity.tech), [[19]](https://trinity.tech/file/WhitePaperDraft1.pdf))
   - Trinity is an open-source network protocol based on NEP-5 smart contracts;
   - Trinity for NEO is the same as the Raiden Network for Ethereum;
   - Trinity uses the same consensus mechanism as the Raiden network;
@@ -139,7 +141,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 
 #### Opportunities for Tari
 
-Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party.
+Less than expected as Tari's ticketing use case requires many fast transactions with many parties, not many fast transactions with a single party. Non-fungible assets must be "broadcasted", but state channels are private between 2 parties.
 
 #### Threats for Tari
 
@@ -205,7 +207,7 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 #### Opportunities for Tari
 
-- Has alignment with Tari's base requirements.
+- Matching engines in general have opportunity for Tari; the specific scheme to be investigated further
 
 #### Threats for Tari
 
@@ -214,37 +216,23 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 ### #4 Masternodes
 #### What is it?
 
-A masternode (MN) is a server on a decentralised network [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08). It is utilised to complete unique functions in ways ordinary nodes cannot. It can be used for features like direct send/instant transactions or private transactions [[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes).
+A masternode is a server on a decentralized network. It is utilized to complete unique functions in ways ordinary mining nodes cannot, for example features like direct send, instant transactions and private transactions. Because of their increased capabilities, masternodes typically require an investment in order to run. Masternode operators are incentivized and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. Masternodes will get the standard return on their stakes, but will also be entitled to a portion of the transaction fees, allowing for a greater ROI. ([[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes), [[10]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes))
 
-Because of their increased capabilities, masternodes typically require an investment in order to run. However, masternode operators are incentivised, and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. [[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes)
+<u>Dash Example</u> [[31]](https://res.tuoluocaijing.cn/20180517155941-ojog.pdf)
+Dash was the first cryptocurrency to implement the masternode model into its protocol. Under what Dash calls its proof of service algorithm, a second tier network of masternodes exists alongside a first tier network of miners to achieve distributed consensus on the block chain. This two tiered system ensures that proof of service and proof of work perform symbiotic maintenance of Dash’s network. Dash masternodes also enable a decentralized governance system that allows node operators to vote on important developments within the block chain. A masternode for Dash requires a stake of 1,000 DASH and share an equally 45% of block rewards with the miners. The other 10% goes to the block chain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
 
-Masternodes will get the standard return on their stakes. But will also be entitled to a portion of the transaction fees. Allowing for a greater ROI. [[10]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes)
+*Dash Deterministic Ordering*
 
-**Dash Example**
-Dash was the first cryptocurrency to implement the masternode model into its protocol.  Under what Dash calls its proof of service algorithm, a second tier network of masternodes exists alongside a first tier network of miners to achieve distributed consensus on the blockchain.  This two tiered system ensures that proof of service and proof of work preform symbiotic maintenance of Dash’s network. A masternode for Dash, for example, requires 1,000 DASH.
+A special deterministic algorithm is used to create a pseudo-random ordering of the masternodes. By using the hash from the proof-of-work for each block, security of this functionality is provided by the mining network. 
 
-To set up a Masternode, you start by downloading your currency’s core wallet and use it to create a masternode.  After you set up your computer as a server, the core wallet integrates your computer as one of many nodes that supports the blockchain.  Operators can also contract a third party to run the server for them.
+*Dash Trustless Quorums*
 
-Once a masternode is live, it accommodates  a unique series of functions, such as instant and/or anonymous payments.  They also enable a decentralized governance system that allows node operators to vote on important developments within the blockchain.  
-
-As compensation for their troubles, masternodes typically share an equally 45% of block rewards with the blockchain’s miners.  The other 10% goes to the blockchain’s treasury fund, and operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
-
-*_Deterministic Ordering of DASH_*
-
-A special deterministic algorithm is used to create a pseudo-random ordering of the Masternodes. By using the hash from the proof-of-work for each block, security of this functionality will be provided by the mining network. [[31]](https://res.tuoluocaijing.cn/20180517155941-ojog.pdf)
-
-*_Trustless Quorums_*
-
-According to DASH, the secondary network can be used to perform highly sensitive tasks in a trustless way, where no single entity can control the outcome: N pseudo random Masternodes are selected from the total pool to perform the same task, these nodes then can act as an oracle, without having the whole network do the task. 
+The Dash masternode network is trustless where no single entity can control the outcome. N pseudo random masternodes (Quorum A) are selected from the total pool to act as an oracle for N pseudo random masternodes (Quorum B) that are selected to perform the actual task. Quorum A are the closest nodes mathematically to the current block hash, while Quorum B are the furthest. This process is repeated for each new block in the block chain.
 
 
-*_Proof of Service_*
+*Dash Proof of Service*
 
-Bad actors could also run Masternodes, but not provide any of the quality service that is required of the rest of the network. To reduce the possibility of people using the system to their advantage nodes must ping the rest of the network to ensure they remain active. 
-
-This work is done by the Masternode network by selecting 2 quorums per block. Quorum A checks the service of Quorum B each block. Quorum A are the closest nodes to the current block hash, while Quorum B are the furtherest nodes from said hash.
-
-All work done to check the network to prove that nodes are active is done by the Masternode network itself. Approximately 1% of the network will be checked each block. This results in the entire network being check about six times per day. In order to keep this system trustless, nodes are selected randomly via the Quorum system- a minimum of six consecutive violations result in the deactivation of a node. [[31]](https://res.tuoluocaijing.cn/20180517155941-ojog.pdf) 
+Bad actors could also run masternodes. To reduce the possibility of bad acting, nodes must ping the rest of the network to ensure they remain active. All masternode verification is done randomly via the Quorum system by the masternode network itself, approximately 1% of the network verified each block. This results in the entire masternode network being verified about six times per day. Six consecutive violations result in the deactivation of a masternode.
 
 #### Who does it? [[9]](https://blockonomi.com/masternode-guide/)
 
@@ -252,32 +240,26 @@ All work done to check the network to prove that nodes are active is done by the
 
 #### Strengths
 
-- Sustain and care of the ecosystem;  
-- Dash Masternodes perform specialised services [[31]](http://dashmasternode.org/what-is-a-masternode): 
-  * InstantSend (instant transactions);  
-  * PrivateSend (anonymous transactions);
-  * Decentralised Governance (masternodes govern, while the block chain funds development);
-  * Dash Evolution (a decentralized payment processor).
-- Dash Masternodes are given voting rights on proposals. Each masternode has a 1 vote and this vote can be used on budget proposals or important decisions [[31]](http://dashmasternode.org/what-is-a-masternode);
-- Masternodes offer payouts in a way similar to staking- whether in a bear or bull market there is still a payout. [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
+- Masternodes help to sustain and take care of the ecosystem and can protect block chains from network attacks;
+- Masternodes can perform decentralized governance of miners by having the power to reject or orphan blocks if required ([[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/), [[31]](http://dashmasternode.org/what-is-a-masternode))
+- Masternodes can support decentralized exchanges by overseeing transactions and offering fiat currency gateways;
+- Masternodes can be used to facilitate smart contracts, like instant transactions, anonymous transactions and decentralized payment processor;
+- Masternode can facilitate a decentralized marketplace like the block chain equivalent of peer-run commerce sites like eBay; [[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/)   
 
-- Cryptoassets like Block Net and Exscudo will use masternodes to support their decentralized exchanges: Masternodes will oversee exchange transactions to facilitate cryptocurrency trading and offer fiat currency gateways.
-- BOScoin integrates masternodes for its smart contracts and adopts the masternode governing system for its Congress Network.  
-- Syscoin applies masternode functionality to its decentralized marketplace.  With Syscoin, users can access the blockchain equivalent of peer-run commerce sites like eBay.  Masternodes will be responsible for facilitating anonymous and instant payments on the marketplace. [[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/)   
-
-Masternode application is quite flexible.  It compensates for proof of work’s limitations and behaves almost like a buffed-up version proof of stake systems.
-Like proof of stake, it avoids the de-facto centralization mining pools bring to proof of work networks, and it consumes less energy than the proof of work model.  Masternodes may promise enhanced stability and network loyalty, as larger dividends and high initial investment costs make it less likely that operators will abandon their position in the network.
-They can even be used to keep miners from stepping out of line.  Under Dash’s model, masternodes on the second tier network monitor the first tier proof of work network.  This gives masternodes full reign to reject or orphan blocks if their miner uses and outdated version of Dash or tries to manipulate block rewards. [[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/)
+- Masternodes compensates for Proof of Work’s limitations; it avoids mining centralization and consumes less energy; [[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/)
+- Masternodes promise enhanced stability and network loyalty, as larger dividends and high initial investment costs make it less likely that operators will abandon their position in the network.  [[23]](https://coincentral.com/what-are-masternodes-an-introduction-and-guide/)
 
 #### Weaknesses
 
-- The maintaining of masternodes can be a long and arduous task- malfunctions are common; 
-- ROI is not guaranteed and inconsistant (Your masternode only gets rewarded if it mines a block- most masternodes quote a 90% chance of getting paid- the system randomly decids if your node gets paid). [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
-- By putting up a masternode, your IP address becomes publicised, and so the location of your masternode is known- node can be physically stolen. [[7]](https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08)
+- Maintaining masternodes can be a long and arduous.
+- ROI is not guaranteed and is inconsistent. In some applications Masternodes only gets rewarded if they mine a block and if they are randomly chosen to get paid.
+- In general a masternode's IP address is publicized and thus open to attacks.
 
 #### Opportunities for Tari
 
-A new token, such as a Tari token, by itself might not be worth very much except for speculative interest on its value proposition: what project it proposes to underlie. So it may not start with very much demand. However, if a token has MNs in its codebase, it proposes to offer additional benefits to holders of a fixed amount of tokens who run a MN. These benefits start with an extra share of all new tokens created in the regularly released blocks on the blockchain. The promise of this passive income increases demand, which increases price.
+Masternodes does not have a specific standard or protocol, many different implementations exist. If the Tari protocol employs Masternodes they can be used to facilitate smart contracts off-chain and to enhance the security of the primary block chain.
+
+Increases incentives for people to be involved with Tari.
 
 #### Threats to Tari
 
@@ -318,8 +300,8 @@ Must still be proven on other networks apart from Ethereum.
 
 #### Opportunities for Tari
 
-- Has alignment with Tari's base requirements.
-- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari specific root block chain?*
+- Has opportunities for Tari as a L2 scaling solution.
+- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari specific root block chain?* [**Note:** This will make the Tari block chain dependent on another block chain.]
 
 #### Threats for Tari
 
@@ -363,17 +345,15 @@ None
 
 [1] OSI mode, https://en.wikipedia.org/wiki/OSI_model, Date accessed: 2018-06-07.
 
-[2] Decentralized Digital Identities and Blockchain – The Future as We See It, https://cloudblogs.microsoft.com/enterprisemobility/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it, Date accessed: 2018-06-07.
+[2] Decentralized Digital Identities and block chain – The Future as We See It, https://cloudblogs.microsoft.com/enterprisemobility/2018/02/12/decentralized-digital-identities-and-block chain-the-future-as-we-see-it, Date accessed: 2018-06-07.
 
-[3] Trinity Protocol: The Scaling Solution of the Future?, https://www.investinblockchain.com/trinity-protocol, Date accessed: 2018-06-08.
+[3] Trinity Protocol: The Scaling Solution of the Future?, https://www.investinblock chain.com/trinity-protocol, Date accessed: 2018-06-08.
 
 [4] Plasma: Scalable Autonomous Smart Contracts, Poon J and Buterin V, http://plasma.io/plasma.pdf, Date accessed: 2018-06-14.
 
 [5] NEX: A High Performance Decentralized Trade and Payment Platform, https://neonexchange.org/pdfs/whitepaper_v2.pdf, Date accessed: 2018-06-11.
 
 [6] OmiseGO: Decentralized Exchange and Payments Platform, Poon J et. al., https://cdn.omise.co/omg/whitepaper.pdf, Date accessed: 2018-06-14.
-
-[7] Masternodes- Risk vs. Reward, https://medium.com/@averagejoecrypto/masternodes-risk-vs-reward-6ca41eccfb08, Date accessed: 2018-06-13.
 
 [8] The Rise of Masternodes Might Soon be Followed by the Creation of Servicenodes, https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes, Date accessed: 2018-06-13.
 
