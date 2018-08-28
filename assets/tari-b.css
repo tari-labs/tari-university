@@ -55,6 +55,26 @@
   width: 400px;
 }
 
+.img-25 img {
+  width: 25%;
+}
+
+.img-30 img {
+  width: 30%;
+}
+
+.img-40 img {
+  width: 40%;
+}
+
+.img-50 img {
+  width: 50%;
+}
+
+.img-75 img {
+  width: 75%;
+}
+
 .reveal div.left-25 {
   float: left;
   z-index: -10;
