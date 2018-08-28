@@ -83,6 +83,26 @@
   width: 500px;
 }
 
+.reveal div.s20 {
+  width: 20%;
+}
+
+.reveal div.s25 {
+  width: 25%;
+}
+
+.reveal div.s33 {
+  width: 33%;
+}
+
+.reveal div.s50 {
+  width: 50%;
+}
+
+.reveal div.s75 {
+  width: 75%;
+}
+
 .reveal div.left-25 {
   float: left;
   z-index: -10;
