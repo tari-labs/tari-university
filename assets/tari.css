@@ -55,23 +55,23 @@
   width: 200px;
 }
 
-.img-25 img {
+.reveal div.img-25 {
   width: 25%;
 }
 
-.img-30 img {
+.reveal div.img-30 {
   width: 30%;
 }
 
-.img-40 img {
+.reveal div.img-40 {
   width: 40%;
 }
 
-.img-50 img {
+.reveal div.img-50 {
   width: 50%;
 }
 
-.img-75 img {
+.reveal div.img-75 {
   width: 75%;
 }
 
