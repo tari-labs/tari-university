@@ -38,7 +38,7 @@ Technical | Layer 2 Scaling Survey (Part 1) | Presents an overview of different 
 Technical | Layer 2 Scaling Survey (Part 2) | Presents an   overview of different layer 2 scaling solutions being worked at today, as   well as a basic SWOT analysis of each | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/more-landscape/landscape-update.md)  [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/more-landscape#/)
 Technical | Layer 2 Scaling Executive summary | Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and which viable scaling alternatives exists for Tari | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/executive-summary#/)
 Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=merkle-trees-and-spv-1)  
-Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
+Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/AtomicSwaps/AtomicSwaps.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 2 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/scriptless-scripts#/)
 
 
