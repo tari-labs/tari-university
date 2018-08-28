@@ -12,7 +12,9 @@
 
 # Transactions
 
+@div[s25]
 ![mw_txs](https://github.com/tari-labs/tari-university/raw/master/protocols/mimblewimble-1/sources/mw_txs.png)
+@divend
 
 ---
 
