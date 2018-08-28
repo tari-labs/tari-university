@@ -56,50 +56,62 @@
 }
 
 .reveal div.s100px {
+  z-index: -10;
   width: 100px;
 }
 
 .reveal div.s150px {
+  z-index: -10;
   width: 150px;
 }
 
 .reveal div.s200px {
+  z-index: -10;
   width: 200px;
 }
 
 .reveal div.s250px {
+  z-index: -10;
   width: 250px;
 }
 
 .reveal div.s300px {
+  z-index: -10;
   width: 300px;
 }
 
 .reveal div.s400px{
+  z-index: -10;
   width: 400px;
 }
 
 .reveal div.s500px {
+  z-index: -10;
   width: 500px;
 }
 
 .reveal div.s20 {
+  z-index: -10;
   width: 20%;
 }
 
 .reveal div.s25 {
+  z-index: -10;
   width: 25%;
 }
 
 .reveal div.s33 {
+  z-index: -10;
   width: 33%;
 }
 
 .reveal div.s50 {
+  z-index: -10;
   width: 50%;
 }
 
 .reveal div.s75 {
+  z-index: -10;
   width: 75%;
 }
 
