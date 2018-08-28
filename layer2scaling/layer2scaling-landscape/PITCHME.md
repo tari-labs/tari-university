@@ -360,7 +360,7 @@ None
 
 - MapReduce: commitments on block chain computations as input in map phase, merkleized proof of state transition in reduce step when returning the result
 
-![Plasma example](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
+![Plasma-example](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
 
 +++
 
