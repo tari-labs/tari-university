@@ -21,9 +21,9 @@ $$ y^2 = x^3 + ax + b \mod p$$
 * But _x, y_ are integers
 * And _x, y_ are between 0 and some prime number _p_
 
-@snap[south img-50]
+<img-40>
 ![Some elliptic curves](http://andrea.corbellini.name/images/curves.png)
-@snapend
+</img-40>
 
 Note: You can forget about all this technical detail. It's just included here for completeness.
 
