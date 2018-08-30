@@ -16,7 +16,7 @@
 
 Scriptless Scripts are digital signatures-created only through the execution of a smart contract through the implementation of Schnorr signatures. 
 
-The concept of Scriptless Scripts was borne from MimbleWimble-which is a blockchain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of MimbleWimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. 
+The concept of Scriptless Scripts was borne from MimbleWimble, which is a blockchain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of MimbleWimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. 
 
 ---
 
@@ -24,7 +24,7 @@ The concept of Scriptless Scripts was borne from MimbleWimble-which is a blockch
 
 Bitcoin, Ethereum and other blockchains have implemented a scripting language as a means to describe smart contracts and enforce their execution. These scripting languages allow one to execute smart contracts where coins can be spent under specified conditions, namely lock, multiparty, delay etc.
 
-The script must be downloaded, witnessed and validated-preventing compression and aggregation; and since these cryptocurrencies have every transaction published and downloadable by all, they are not very fungible or private, as one is able to discern the rules applied to each individual coin and thus distinguish between coins. This has ramifications for commercial confidentiality-as the details of financial transactions are revealed-compromising the real world purpose of these systems. 
+The script must be downloaded, witnessed and validated, preventing compression and aggregation; and since these cryptocurrencies have every transaction published and downloadable by all, they are not very fungible or private, as one is able to discern the rules applied to each individual coin and thus distinguish between coins. This has ramifications for commercial confidentiality, as the details of financial transactions are revealed, which compromises the real world purpose of these systems. 
 
 Conversely, with scriptless scripts, the only components visible are the public keys and the digital signatures. These faceless cryptographic functions remove much of the semantic information. Thus, by using scriptless scripts one can avoid revealing any contracts.
 
@@ -84,7 +84,7 @@ $$
 d=s-s'=k-k'+ex-e'x'
 $$
 
-The above equation can be verified in a similar manner to that of a single Schorr signature-by multiplying each term by G and confirming algebraic correctness. 
+The above equation can be verified in a similar manner to that of a single Schorr signature, by multiplying each term by G and confirming algebraic correctness. 
 
 $$
 dG=kG-k'G+exG-e'x'G
@@ -114,7 +114,7 @@ Alongside s<sub>1</sub> it passes T<sub>1</sub>
 
 Adaptive signature= (T<sub>1</sub> , T<sub>1</sub>  + R<sub>1</sub>, s<sub>1</sub> ) 
 
-So one follows the protocol, and receives a signature that is partially valid-valid if it offset by a secret value *t* that only one party knows. It then becomes simple for everyone involved to verify that this occurrence. 
+So one follows the protocol, and receives a signature that is partially valid: valid if it offset by a secret value *t* that only one party knows. It then becomes simple for everyone involved to verify that this occurrence. 
 
 (s, R) is not valid but (s+t<sub>1</sub>,R ) is valid
 
@@ -132,9 +132,9 @@ Alice has a certain number of coins on a particular blockchain; Bob also has a c
 
 The  classical way of achieving this involves the use of the blockchain's script system to put a hash preimage challenge and then reveal the same preimage on both sides: Once Alice knows the preimage, she reveals it to take her coins; Bob then copies it of one chain to the other chain to take his coins. 
 
-Using adaptive signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each blockchain. They sign the multisignature protocols in parallel, where Bob then gives Alice the adaptive signatures for each side using the same value (T<sub>1</sub>)-Meaning that for Bob to take his coins he needs to reveal t and for Alice to take her coins she needs to reveal T. Bob then replaces one of the signatures (s, R) with (s+t<sub>1</sub>,R )and publishes t, taking his coins. Alice computes t<sub>1</sub>  from the final signature, visible on the blockchain and uses that to reveal another signature, giving her her coins. 
+Using adaptive signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each blockchain. They sign the multisignature protocols in parallel, where Bob then gives Alice the adaptive signatures for each side using the same value (T<sub>1</sub>); Meaning that for Bob to take his coins he needs to reveal t and for Alice to take her coins she needs to reveal T. Bob then replaces one of the signatures (s, R) with (s+t<sub>1</sub>,R )and publishes t, taking his coins. Alice computes t<sub>1</sub>  from the final signature, visible on the blockchain and uses that to reveal another signature, giving her her coins. 
 
-Thus it can be seen that atomicity is achieved. One is still able to exchange information but now there are no explicit hashes or preimages on the blockchain-No script properties are necessary and privacy is achieved. 
+Thus it can be seen that atomicity is achieved. One is still able to exchange information but now there are no explicit hashes or preimages on the blockchain: No script properties are necessary and privacy is achieved. 
 
 ---
 
