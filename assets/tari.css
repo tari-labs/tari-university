@@ -55,62 +55,72 @@
   width: 200px;
 }
 
-.reveal .s100px img {
+.reveal .100px img {
   width: 100px;
 }
 
-.reveal .s150px img {
+.reveal .150px img {
   width: 150px;
 }
 
-.reveal .s200px img {
+.reveal .200px img {
   width: 200px;
 }
 
-.reveal .s250px img {
+.reveal .250px img {
   width: 250px;
 }
 
-.reveal div.s300px {
-  z-index: -10;
+.reveal .300px img {
   width: 300px;
 }
 
-.reveal div.s400px{
-  z-index: -10;
+.reveal .350px img {
+  width: 350px;
+}
+
+.reveal .400px img {
   width: 400px;
 }
 
-.reveal div.s500px {
-  z-index: -10;
+.reveal .450px img {
+  width: 450px;
+}
+
+.reveal .500px img {
   width: 500px;
-  text-align: center;
 }
 
-.reveal div.s20 {
-  z-index: -10;
-  width: 20%;
+.reveal .550px img {
+  width: 550px;
 }
 
-.reveal div.s25 {
-  z-index: -10;
-  width: 25%;
+.reveal .600px img {
+  width: 600px;
 }
 
-.reveal div.s33 {
-  z-index: -10;
-  width: 33%;
+.reveal .650px img {
+  width: 650px;
 }
 
-.reveal div.s50 {
-  z-index: -10;
-  width: 50%;
+.reveal .700px img {
+  width: 700px;
 }
 
-.reveal div.s75 {
-  z-index: -10;
-  width: 75%;
-  text-align: center;
+.reveal .750px img {
+  width: 750px;
+}
+
+.reveal .800px img {
+  width: 800px;
+}
+
+.reveal .850px img {
+  width: 850px;
+}
+
+.reveal .900px img {
+  width: 900px;
 }
 
 .reveal div.left-25 {
