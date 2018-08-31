@@ -55,52 +55,80 @@
   width: 400px;
 }
 
-.reveal div.s100px {
+.reveal .s100px img {
   width: 100px;
 }
 
-.reveal div.s150px {
+.reveal .s150px img {
   width: 150px;
 }
 
-.reveal div.s200px {
+.reveal .s200px img {
   width: 200px;
 }
 
-.reveal div.s250px {
+.reveal .s250px img {
   width: 250px;
 }
 
-.reveal div.s300px {
+.reveal .s300px img {
   width: 300px;
 }
 
-.reveal div.s400px{
+.reveal .s350px img {
+  width: 350px;
+}
+
+.reveal .s400px img {
   width: 400px;
 }
 
-.reveal div.s500px {
+.reveal .s450px img {
+  width: 450px;
+}
+
+.reveal .s500px img {
   width: 500px;
 }
 
-.reveal div.s20 {
-  width: 20%;
+.reveal .s550px img {
+  width: 550px;
 }
 
-.reveal div.s25 {
-  width: 25%;
+.reveal .s600px img {
+  width: 600px;
 }
 
-.reveal div.s33 {
-  width: 33%;
+.reveal .s650px img {
+  width: 650px;
 }
 
-.reveal div.s50 {
-  width: 50%;
+.reveal .s700px img {
+  width: 700px;
 }
 
-.reveal div.s75 {
-  width: 75%;
+.reveal .s750px img {
+  width: 750px;
+}
+
+.reveal .s800px img {
+  width: 800px;
+}
+
+.reveal .s850px img {
+  width: 850px;
+}
+
+.reveal .s900px img {
+  width: 900px;
+}
+
+.reveal div.float-left {
+  float: left;
+}
+
+.reveal div.float-right {
+  float: right;
 }
 
 .reveal div.left-25 {
@@ -110,26 +138,38 @@
   text-align: left;
 }
 
+.reveal div.left-50 {
+  float: left;
+  z-index: -10;
+  width: 50%;
+  text-align: left;
+}
+
+.reveal div.left-75 {
+  float: left;
+  z-index: -10;
+  width: 75%;
+  text-align: left;
+}
+
+.reveal div.right-25 {
+  float: right;
+  z-index: -10;
+  width: 25%;
+  text-align: right;
+}
+
+.reveal div.right-50 {
+  float: right;
+  z-index: -10;
+  width: 50%;
+  text-align: right;
+}
+
 .reveal div.right-75 {
   float: right;
   z-index: -10;
   width: 75%;
   text-align: right;
-}
-
-.reveal div.left {
-  float: left;
-  z-index: -10;
-  width: 50%;
-  text-align: left;
-  font-size:75%;
-}
-
-.reveal div.right {
-  float: right;
-  z-index: -10;
-  width: 50%;
-  text-align: right;
-  font-size:75%;
 }
 
