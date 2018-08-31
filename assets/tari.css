@@ -123,6 +123,14 @@
   width: 900px;
 }
 
+.reveal div.left {
+  float: left;
+}
+
+.reveal div.right {
+  float: right;
+}
+
 .reveal div.left-25 {
   float: left;
   z-index: -10;
