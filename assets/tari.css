@@ -123,12 +123,30 @@
   width: 900px;
 }
 
-.reveal div.left {
+.reveal div.float-left {
   float: left;
 }
 
-.reveal div.right {
+.reveal div.float-right {
   float: right;
+}
+
+.reveal div.bottom-left {
+    position: absolute;
+    left:0;
+    bottom:0;
+}
+
+.reveal div.bottom-right {
+    position: absolute;
+    right:0;
+    bottom:0;
+}
+
+.reveal div.bottom-center {
+    position: absolute;
+    left:0;right:0;
+    bottom:0;
 }
 
 .reveal div.left-25 {
