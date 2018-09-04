@@ -131,45 +131,50 @@
   float: right;
 }
 
+.reveal div.text-left {
+  text-align: left;
+}
+
+.reveal div.text-right {
+  text-align: right;
+}
+
+.reveal div.text-center {
+  text-align: center;
+}
+
 .reveal div.left-25 {
   float: left;
   z-index: -10;
   width: 25%;
-  text-align: left;
 }
 
 .reveal div.left-50 {
   float: left;
   z-index: -10;
   width: 50%;
-  text-align: left;
 }
 
 .reveal div.left-75 {
   float: left;
   z-index: -10;
   width: 75%;
-  text-align: left;
 }
 
 .reveal div.right-25 {
   float: right;
   z-index: -10;
   width: 25%;
-  text-align: right;
 }
 
 .reveal div.right-50 {
   float: right;
   z-index: -10;
   width: 50%;
-  text-align: right;
 }
 
 .reveal div.right-75 {
   float: right;
   z-index: -10;
   width: 75%;
-  text-align: right;
 }
-
