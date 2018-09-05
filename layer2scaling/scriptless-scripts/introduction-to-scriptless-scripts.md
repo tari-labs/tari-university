@@ -14,7 +14,7 @@
 
 ## Definition of Scriptless Scripts 
 
-Scriptless Scripts are digital signatures-created only through the execution of a smart contract through the implementation of Schnorr signatures. 
+Scriptless Scripts are digital signatures, created only through the execution of a smart contract through the implementation of Schnorr signatures. 
 
 The concept of Scriptless Scripts was borne from MimbleWimble, which is a blockchain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of MimbleWimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. 
 
@@ -42,15 +42,19 @@ $$
 
 Where:
 
-*k*= secret nonce 
+$$
+k= secret nonce 
+$$
 
-*x*=private key and 
+$$
+x=private key and 
+$$
 
 $$
 e=H(kG||xG||message)
 $$
 
-The position on the line chosen is taken as the hash of all the data that one needs to commit to-the digital signature. The verification equation involves the multiplication of each of the terms in the equation by G-taking in account the cryptographic assumption (discrete log) where G can be multiplied in but not divided out, thus preventing deciphering. 
+The position on the line chosen is taken as the hash of all the data that one needs to commit to, the digital signature. The verification equation involves the multiplication of each of the terms in the equation by G and takes in account the cryptographic assumption (discrete log) where G can be multiplied in but not divided out, thus preventing deciphering. 
 
 $$
 sG=kG-exG
@@ -62,7 +66,7 @@ ECDSA signatures (used in Bitcoin) have the same shape, but *s* lacks some struc
 
 ## Schnorr multi-signatures
 
- For a multisignature, there are multiple parties and single signature. Every participant needs to contribute to produce the signature. The formulation of a multisignature involves taking the sum of all components-thus all nonces and *s* values result in the formulation of a multisignature. 
+For a multisignature, there are multiple parties and single signature. Every participant needs to contribute to produce the signature. The formulation of a multisignature involves taking the sum of all components; thus all nonces and *s* values result in the formulation of a multisignature. 
  
 $$
 s=Σs(i)
@@ -90,9 +94,9 @@ $$
 dG=kG-k'G+exG-e'x'G
 $$
 
-It must be noted that the Schnorr signature itself is not being verified, but instead the difference *d*. *d* functions as the translating key between two separate independent Schnorr signatures-Given *d* and either *s* or *s'*, the other can be computed. So possession of *d* makes these two signatures atomic. This scheme does not link the two signatures or compromise their security. 
+It must be noted that the Schnorr signature itself is not being verified, but instead the difference *d*. *d* functions as the translating key between two separate independent Schnorr signatures. Given *d* and either *s* or *s'*, the other can be computed. So possession of *d* makes these two signatures atomic. This scheme does not link the two signatures or compromise their security. 
 
-For an atomic transaction, during the setup stage, someone provides the opposing party with the value *d*, and asserts it as the correct value. Once the transaction is signed it can be adjusted to complete the other transaction. Atomicity is achieved- but can only be used by the person who possesses this *d* value. Generally the party that stands to lose money requires the *d* value. 
+For an atomic transaction, during the setup stage, someone provides the opposing party with the value *d*, and asserts it as the correct value. Once the transaction is signed it can be adjusted to complete the other transaction. Atomicity is achieved; but can only be used by the person who possesses this *d* value. Generally the party that stands to lose money requires the *d* value. 
 
 The *d* value provides an interesting property with regards to atomicity, it is shared before signatures are public which in turn allows the two transactions to be atomic once the transactions are published and by taking difference of any two Schnorr signatures one is able to construct transcripts, such as an atomic swap multisig contract. 
 
@@ -128,7 +132,7 @@ The above is very general however, by attaching auxiliary proofs to T<sub>1</sub
 
 ## Atomic (Cross-chain Swaps) Example with Adaptive Signatures
 
-Alice has a certain number of coins on a particular blockchain; Bob also has a certain number of coins on another blockchain. Alice and Bob want to engage in an atomic exchange-however neither of the blockchains are aware of each other nor are they able to verify each others transactions. 
+Alice has a certain number of coins on a particular blockchain; Bob also has a certain number of coins on another blockchain. Alice and Bob want to engage in an atomic exchange, however neither of the blockchains are aware of each other nor are they able to verify each others transactions. 
 
 The  classical way of achieving this involves the use of the blockchain's script system to put a hash preimage challenge and then reveal the same preimage on both sides: Once Alice knows the preimage, she reveals it to take her coins; Bob then copies it of one chain to the other chain to take his coins. 
 
@@ -140,14 +144,14 @@ Thus it can be seen that atomicity is achieved. One is still able to exchange in
 
 ## MimbleWimble's Scriptless Script
 
-As previously stated, MimbleWimble is a blockchain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a corresponding key, referred to as a confidential transition commitment. Confidential commitments have an interesting property where in a valid balanced transaction  one can subtract the input from the output commitments- ensuring that all of the values of the Pedersen values balance out. Taking the difference results in the multisignature key of the owners of every output and every input in the transaction- this is referred to as the kernel. 
+As previously stated, MimbleWimble is a blockchain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a corresponding key, referred to as a confidential transition commitment. Confidential commitments have an interesting property where in a valid balanced transaction  one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. Taking the difference results in the multisignature key of the owners of every output and every input in the transaction. This is referred to as the kernel. 
 
 In order for a transaction to be considered valid, a signature is required with this key. This ensures two things 
 
 1. The signature authorises the transaction and proves that the owners of the outputs and inputs are in agreement of the transaction
-2. Secondly, the fact that the signature is possible, suggests that this difference is actually a multisignature key, which in turn means that the transaction balanced-using this proof of non-inflation. This highlights the validity of a transaction-where all relevant parties authorise it and no coins were created or destroyed.  
+2. Secondly, the fact that the signature is possible, suggests that this difference is actually a multisignature key, which in turn means that the transaction balanced, using this proof of non-inflation. This highlights the validity of a transaction, where all relevant parties authorise it and no coins were created or destroyed.  
 
-The core of MimbleWimble is that every transaction is compressed into a single key and a single signature-which has far reaching potential. 
+The core of MimbleWimble is that every transaction is compressed into a single key and a single signature, which has far reaching potential. 
 
 ---
 
