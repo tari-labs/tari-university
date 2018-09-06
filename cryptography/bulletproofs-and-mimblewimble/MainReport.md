@@ -1,4 +1,4 @@
-# Regulatory Directions in Cryptocurrency
+# Bulletproofs and Mimblewimble
 
 ???
 
