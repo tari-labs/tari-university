@@ -41,3 +41,15 @@ Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Paym
 Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/AtomicSwaps/AtomicSwaps.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 2 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/scriptless-scripts#/)
 
+## Topic Choice and Research on Tari Labs University should be guided by these five principles: 
+1. The topic researched must be reviewed for it’s potential application to the Tari protocol;
+2. The topic must be thoroughly researched;
+3. An unbiased approach must be taken taken, where dissenting views, critiques and commentaries sought out and presented alongside the main topic;
+4. A recommendation/conclusion section must be included, providing a critical analysis on whether or not the technology/proposal can be implemented in the Tari protocol
+5. The work presented must be easy to read and understand, distilling complex topics into a form that is accessible to a technical but non-expert audience.
+
+## Deliverables and the Process 
+1. A detailed report is required as the first deliverable; this report will be reviewed internally;
+2. A presentation should only be created after the detailed report has been reviewed and accepted;
+3. Enough time must be allocated for each presenter to conduct significant research; 
+4. The talk will be scheduled on Tari Labs University three weeks from the initial submission of the report.
