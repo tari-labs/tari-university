@@ -1,7 +1,5 @@
 # Byzantine Fault Tolerance and Consensus Mechanisms 
 
----
-
 - Consensus as a concept in cryptocurrency protocols 
 - How it is implemented in different cryptocurrency protocols
 
@@ -32,27 +30,33 @@ Note: To classify Byzantine failure: we say that some node in your system, which
 
 ### The Two Generals Problem 
 
-- The two generals problem is an example of a consensus problem
-- *A consensus problem is where two nodes in our distributed system simply have to agree*
-
-Note: The two generals problem is a simple problem that helps us reason about an opponent. The two generals problem is an example of a consensus problem. A consensus problem is where two nodes in our distributed system simply have to agree. 
-
----
-
+@div[left-50 s250px text-center]
 ![The Two Generals Problem](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/The_Two_Generals_Problem.png)
+@divend
 
+@div[right-50 text-left]
+<ul>
+  <li>The two generals problem is an example of a consensus problem</li>
+  <li>A consensus problem is where two nodes in our distributed system simply have to agree</li>
+</ul>
+@divend
 
-Note: There are two armies, Army A and Army B, each led by a general; They need to agree on one fact 'are we going to attack Army C in the morning or are we going to retreat?'; If both Army A and B launch an attack in the morning, then they will win, if neither army attacks tomorrow then they will survive to fight another day; However, if either Army A or Army B choses to attack alone, they will lose as Army C is bigger than each fo the two individual armies A and B. The limitations: The generals of Army A and B can only communicate through messengers; These messengers ride horses through the territory of Army C - so they may or may not make to the opposing general. So a protocol needs to be designed: what messages should the generals send between each other, so that they are in consensus and agree to attack or retreat in the morning 
+Note: The two generals problem is a simple problem that helps us reason about an opponent. The two generals problem is an example of a consensus problem. A consensus problem is where two nodes in our distributed system simply have to agree. There are two armies, Army A and Army B, each led by a general; They need to agree on one fact 'are we going to attack Army C in the morning or are we going to retreat?'; If both Army A and B launch an attack in the morning, then they will win, if neither army attacks tomorrow then they will survive to fight another day; However, if either Army A or Army B choses to attack alone, they will lose as Army C is bigger than each fo the two individual armies A and B. The limitations: The generals of Army A and B can only communicate through messengers; These messengers ride horses through the territory of Army C - so they may or may not make to the opposing general. So a protocol needs to be designed: what messages should the generals send between each other, so that they are in consensus and agree to attack or retreat in the morning 
 
 ---
 
 #### Two Generals Problem: Solved?
 
+@div[left-50 s250px text-center]
 ![The Two Generals Problem Solved?](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/The_Two_Generals_Problem_Solved.png)
+@divend
 
-But there is a problem here, because if this third message is lost, A is committed to attack and B is not yet committed ==> so we haven't solved the problem. 
-
-It can be proved that there is no way of solving the two generals problem ==> there is no perfect solution
+@div[right-50 text-left]
+<ul>
+  <li>But there is a problem here, because if this third message is lost, A is committed to attack and B is not yet committed ==> so we haven't solved the problem</li>
+  <li>It can be proved that there is no way of solving the two generals problem ==> there is no perfect solution</li>
+</ul>
+@divend
 
 Note: If general A decides they want to attack they send a message to general B, saying 'if you respond I'll attack'; If this message gets lost, it's no problem, because A is not going to attack if they don't get a response from B; So say B gets this message, and B is now 'okay, I now know that A is going to attack tomorrow morning if I respond, I am going to respond, so A will attack, I want to attack, I send a message back saying 'If you respond, I'll attack too'; Again, if this message gets lost, it's no problem, because B hasn't committed to attack and neither has A; A receives the second message, and when A gets the second message, it is now committed to attack, because it has now sent out it's challenge and received it's response. Then A responds with sending a message’ okay, I know I'm going to attack for sure, B you should attack for sure as well'But there is a problem here, because if this third message is lost, A is committed to attack and B is not yet committed ==> so we haven't solved the problem. Maybe we could add another message to this protocol, the problem is, no matter what message we come up with and no matter how many messages we add to this protocol, there is always going to be the problem of having an inconsistent state until that one last message gets through. It can be proved that there is no way of solving the two generals problem ==> there is no perfect solution. 
 
@@ -81,22 +85,50 @@ Answers
 Note: The Byzantine Generals Problem is a seminal paper in computer science and distributed systems, published in 1982 by Leslie Lamport Robert Shoestack and Marshall Peace. It was originally called the Albanian Generals Problem, but the name was changed to prevent people getting offended. It provides answers to many questions; like how many Byzantine nodes failures can a system survive and how might you build such a system. 
 
 ---
-
+@div[left-50 s250px text-center]
 ![Byzantine Generals 1](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_1.png)
+@divend
 
-Note: A Byzantine army is trying to attack an enemy; there are several generals who are leading armies to attack a fortress; Here we have five Byzantine generals trying to attack a fortress. And they need to decide what they are going to do tomorrow morning: attack or retreat. So each of them decides what it is they want to do and then they talk to all the other generals, giving their vote (here is what I think we should do tomorrow morning). So the votes that generals come up with are Attack, Retreat, Retreat, Attack, Attack (so three attacks and two retreats)- majority rules, so they see that they will attack, as a consensus is reached. And that is the goal of this problem-- Make sure that all the generals are in consensus 
+@div[right-50 text-left]
+<ul>
+  <li>A Byzantine army is trying to attack an enemy</li>
+  <li>There are five generals who are leading armies to attack a fortress</li>
+  <li>They need to decide what they are going to do tomorrow morning: attack or retreat</li>
+  <li>The votes that generals come up with are Attack, Retreat, Retreat, Attack, Attack</li> 
+  <li>Majority rules, so they see that they will attack, as a consensus is reached</li> 
+</ul>
+@divend
+
+Note: And that is the goal of this problem-- Make sure that all the generals are in consensus 
 
 ---
-
+@div[left-50 s250px text-center]
 ![Byzantine Generals 2](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_2.png)
+@divend
 
-Note: What if one of our generals is a traitor, that traitor's mission is to mess with the consensus and make it so that the other generals don't agree on what they are going to do tomorrow morning. We don't care about what the traitor is thinking, because they are a traitor. But we do care about what the other generals think the traitor said- basically that they all agree on what the traitor said. 
+@div[right-50 text-left]
+<ul>
+  <li>What if one of the generals is a traitor--> that traitor's mission is to disrupt consensus such that the generals do not agree on what they intend to do tomorrow morning</li>
+  <li>What the traitor decides is negated, however what needs to be considered is what the other generals think the traitor said</li>
+</ul>
+@divend
+
+Note: We basically need to ensure that they all agree on what the traitor said. 
 
 ---
-
+@div[left-50 s250px text-center]
 ![Byzantine Generals 3](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_3.png)
+@divend
 
-Note: In this case, they currently all think the traitor said attack, or it would be just as valid if they all thought that the traitor said retreat, because they would still be in consensus and all do the same thing. It would be bad news if half of loyal generals thought that the traitor said attack and half thought the traitor said retreat- then they would do different things, and the traitor would be happy because his mission of creating chaos and corrupt consensus of the other generals.
+@div[right-50 text-left]
+<ul>
+  <li>In this case, they currently all think the traitor said attack (or retreat)
+  <li>It would be bad if half of loyal generals thought that the traitor said attack and half thought the traitor said retreat</li> 
+  <li>If that were to happen, the traitor would be happy because his mission of creating chaos and corrupting consensus would be achieved</li>
+</ul>  
+@divend
+
+Note: or it would be just as valid if they all thought that the traitor said retreat, because they would still be in consensus and all do the same thing. 
 
 ---
 
