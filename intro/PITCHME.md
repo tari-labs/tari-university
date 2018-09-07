@@ -6,9 +6,10 @@
 <li>Create a new folder for your topic
 <li>Copy the contents of this folder to your folder
 <li>Commit all and push to a new branch
-<li>Fix the paths in PITCHME.md to point to your branch
-<li>Follow the pronciples in [README.md](https://github.com/tari-labs/tari-university/blob/master/README.md) to contribute your topic to Tari University
+<li>Fix the paths in <i>PITCHME.md</i> & <i>HowToGitPitch.md</i> to point to your branch
+<li>Follow the principles in <i>[README.md](https://github.com/tari-labs/tari-university/blob/master/README.md)</i> to contribute your topic to Tari University
 </ol>
+
 
 @divend
 
