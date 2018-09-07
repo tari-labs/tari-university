@@ -260,7 +260,7 @@ Note: Proof of stake is not something new. The first implementation- which was o
 
 Note: There are a lot of benefits to proof of stake which take aim at all those drawbacks mentioned about proof of work. 1. Energy saving: people are chosen pseudo-randomly by the network to be trusted to commit to history, there is no proof of work, where people are competing every ten minutes, 2. and hence no expensive mining hardware or high electricity costs-- and as a result of there being no proof of work mining there is no arms race to develop this special ASIC hardware-- the technology can be run on any kind of consumer grade computer or server3. Attacks become more and more expensive-- say i wanted to buy 51% of the coins to attack the network, but my increased demand and the limited supply makes it more and more expensive in fiat currency for me to mount an attack on the network. And even if I bought 51% of the coins on a network, why would I then do something bad to that network, that is where all my money is invested. So you can start to see the crypto-economics of how incentives align in a proof of stake system. This is not to say that proof of stake is the perfect solution to the consensus problem. 
 
----
++++
 
 #### The Drawbacks 
 
