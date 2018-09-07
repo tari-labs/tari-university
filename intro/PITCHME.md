@@ -1,4 +1,4 @@
-## Sample Presentation
+## Presentation Guideline
 
 @div[text-left]
 
@@ -9,7 +9,6 @@
 <li>Fix the paths in PITCHME.md to point to your branch
 <li>Follow the pronciples in [README.md](https://github.com/tari-labs/tari-university/blob/master/README.md) to contribute your topic to Tari University
 </ol>
-
 
 @divend
 
@@ -22,6 +21,14 @@
 @divend
 
 ---
+
+## Go get 'em
+
+* Need help? Check out the [docs](https://github.com/gitpitch/gitpitch/wiki)
+
+---
+
+# Sample Presentation
 
 - Topic 1 ???
 
