@@ -31,7 +31,12 @@ An SPV client such as a mobile device would not have the ability to process all 
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients [7]
 
-To avoid downloading and indexing all transactions and blocks, what SPV rely on is Merkle trees.
+To avoid downloading and indexing all transactions and blocks, what SPV rely on is Merkle trees. A merkle tree is a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs a small part of the block, called a merkle root, to prove the transaction is in the block[8]
+
+
+![merkle-tree.png](sources/merkle-tree.png)
+
+
 ## Problems with SPV clients
 
 
@@ -64,7 +69,9 @@ To avoid downloading and indexing all transactions and blocks, what SPV rely on 
 [6]Meditations on Fraud Proofs,http://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
 
 [7] On the Privacy Provisions of Bloom Filters in Lightweight
-Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date ccessed: 2018-09-10.
+Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10.
+
+[8]SPV, Bloom filters and checkpoints, https://multibit.org/hd0.4/how-spv-works.html, Date accessed: 2018-09-10.
 
 ## Contributors
 
