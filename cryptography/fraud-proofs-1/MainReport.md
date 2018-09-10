@@ -1,16 +1,44 @@
 # Fraud Proofs - easier said than done?
 
-The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node. In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather only block headers with the longest proof-of-work chain [3].
+## Background
+The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node.
+In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain [3]. 
+
+Longest Proof of work chain
+Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System
+![proofofworkchain.png](sources/proofofworkchain.png)
+
+The full nodes would need to be able to alert SPV clients when an invalid block is detected [2].
+
+An invalid block could be as a result of any of the following[6]:
+* **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
+* **Missing block data** (the Merkle Tree “neighbors” of Sally’s txn are unknown and undiscoverable – this could be intentional or accidental).
+* **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
+* **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
+
+# What are they?
+
+Fraud proofs are a way to improve the security of SVP clients [5] and allow SPV clients to have the same security as full nodes. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6].
+
+A full Bitcoin node contains the following details:
+  * every transaction that is currently being broadcast around the network
+  * every transaction that has ever been sent
+  * all the unspent transaction outputs (UTXOs) [4]
+  
+An SPV client such as a mobile device would not have the ability to process all that information.
+
+  
+ 
+## Problems with SPV clients
 
 
 
-Sample image below
-
-![sample](sources/sample.PNG)
-
-
-
+## Suggested fraud proof improvements
 ???
+
+
+
+## Possible attacks on SPV clients
 
 
 ## Conclusions, Observations, Recommendations
@@ -19,14 +47,15 @@ Sample image below
 
 ## References
 
-[1] Size of the Bitcoin blockchain from 2010 to 2018, by quarter (in megabytes)
-, https://www.statista.com/statistics/647523/worldwide-bitcoin-blockchain-size/, Date accessed: 2018-09-10.
-
+[1] Size of the Bitcoin blockchain from 2010 to 2018, by quarter (in megabytes),https://www.statista.com/statistics/647523/worldwide-bitcoin-blockchain-size/, Date accessed: 2018-09-10.
 [2] Bitcoin: A Peer-to-Peer Electronic Cash System, https://www.bitcoin.com/bitcoin.pdf, Date accessed: 2018-09-10.
-
 [3] Simple Payment Verification, http://docs.electrum.org/en/latest/spv.html , Date accessed: 2018-09-10.
+[4] SPV, Bloom filters and checkpoints, https://multibit.org/hd0.4/how-spv-works.html, Date accessed: 2018-09-10.
+[5] Improving the ability of SPV clients to detect invalid chains
+,https://gist.github.com/justusranvier/451616fa4697b5f25f60, Date accessed: 2018-09-10.
+[6]Meditations on Fraud Proofs,http://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
 
 
 ## Contributors
 
-- [https://github.com/???](https://github.com/ksloven)
+- [https://github.com/ksloven](https://github.com/ksloven)
