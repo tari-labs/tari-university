@@ -4,9 +4,8 @@
 The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node.
 In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain [3]. 
 
-Longest Proof of work chain
 ![proofofworkchain.png](sources/proofofworkchain.png)
-Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System
+Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System[2]
 
 
 The full nodes would need to be able to alert SPV clients when an invalid block is detected [2].
@@ -28,8 +27,11 @@ A full Bitcoin node contains the following details:
   
 An SPV client such as a mobile device would not have the ability to process all that information and would need to check significantly less information than that.
 
-  
- 
+![spv.png](sources/spv.png)
+Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
+Bitcoin Clients [7]
+
+To avoid downloading and indexing all transactions and blocks, what SPV rely on is Merkle trees.
 ## Problems with SPV clients
 
 
@@ -61,6 +63,8 @@ An SPV client such as a mobile device would not have the ability to process all 
 
 [6]Meditations on Fraud Proofs,http://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
 
+[7] On the Privacy Provisions of Bloom Filters in Lightweight
+Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date ccessed: 2018-09-10.
 
 ## Contributors
 
