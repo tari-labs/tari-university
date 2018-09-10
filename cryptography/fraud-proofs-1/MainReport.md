@@ -48,11 +48,16 @@ An SPV client such as a mobile device would not have the ability to process all 
 ## References
 
 [1] Size of the Bitcoin blockchain from 2010 to 2018, by quarter (in megabytes),https://www.statista.com/statistics/647523/worldwide-bitcoin-blockchain-size/, Date accessed: 2018-09-10.
+
 [2] Bitcoin: A Peer-to-Peer Electronic Cash System, https://www.bitcoin.com/bitcoin.pdf, Date accessed: 2018-09-10.
+
 [3] Simple Payment Verification, http://docs.electrum.org/en/latest/spv.html , Date accessed: 2018-09-10.
+
 [4] SPV, Bloom filters and checkpoints, https://multibit.org/hd0.4/how-spv-works.html, Date accessed: 2018-09-10.
+
 [5] Improving the ability of SPV clients to detect invalid chains
 ,https://gist.github.com/justusranvier/451616fa4697b5f25f60, Date accessed: 2018-09-10.
+
 [6]Meditations on Fraud Proofs,http://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
 
 
