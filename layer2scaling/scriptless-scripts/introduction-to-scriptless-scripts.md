@@ -18,7 +18,7 @@ See [Layer 2 Scaling Survey (part 2)](https://gitpitch.com/tari-labs/tari-univer
 
 Scriptless Scripts are a means to execute smart contracts off-chain, through the use of Schnorr signatures. [[1]](https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8)  
 
-The concept of Scriptless Scripts was borne from Mimblewimble, which is a block chain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of Mimblewimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. [2](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s)
+The concept of Scriptless Scripts was borne from Mimblewimble, which is a block chain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of Mimblewimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. [[2]](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s)
 
 ---
 
@@ -36,7 +36,7 @@ With regards to efficiency, Scriptless Scripts minimize the amount of data that 
 
 ## A list of Scriptless Scripts 
 
-In this report various forms of Scripts will be covered. These include: [3](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
+In this report various forms of Scripts will be covered. These include: [[3]](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
 - Simultaneous Scriptless Scripts
 - Adaptive Signatures 
 - Zero Knowledge Contingent Payments
@@ -76,7 +76,7 @@ First, a mulitsignature has multiple participants that produce a signature. Ever
 
 With Schnorr Signatures, one can have a single public key, which is the sum of many different people's public keys. the resulting key is one that signatures will be verifiable against. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/)
 
-The formulation of a multisignature involves taking the sum of all components; thus all nonces and *s* values result in the formulation of a multisignature. [[4]]((https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20))
+The formulation of a multisignature involves taking the sum of all components; thus all nonces and *s* values result in the formulation of a multisignature. [[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
  
 $$
 s=Σs(i)
