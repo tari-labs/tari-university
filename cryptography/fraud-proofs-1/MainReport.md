@@ -18,7 +18,7 @@ An invalid block could be as a result of any of the following[6]:
 
 # What are they?
 
-Fraud proofs are a way to improve the security of SVP clients [5] by providing a mechanism for full nodes to prove that a chain is invalid irrespective of the amount of proof of work it has[5]. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6].
+Fraud proofs are a way to improve the security of SPV clients [5] by providing a mechanism for full nodes to prove that a chain is invalid irrespective of the amount of proof of work it has[5]. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6].
 
 A full Bitcoin node contains the following details:
   * every transaction that is currently being broadcast around the network
@@ -32,7 +32,7 @@ filters to receive transactions that are relevant to the user[7]. Bloom filters 
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients [7]
 
-In addition to Bloom filters, SPV cleints rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs to check a small part of the block, called a merkle root, to prove the transaction is in the block[8].
+In addition to Bloom filters, SPV clients rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs to check a small part of the block, called a merkle root, to prove the transaction is in the block[8].
 
 ![merkle-tree.png](sources/merkle-tree.png)
 
@@ -41,10 +41,15 @@ In addition to Bloom filters, SPV cleints rely on Merkle trees - a binary struct
 * **Security**
 
 In August 2017, a weakness in the Bitcoin merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11]
+Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (e.g 80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
+
 
 * **Privacy**
 
-The BIP37 SPV[13] Bloom filters don't have relevant privacy features and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP address[12] (if TOR or VPNs aren't used).
+The BIP37 SPV[13] Bloom filters don't have relevant privacy features[7] and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP address[12] (if TOR or VPNs aren't used).
+
+
+
 
 
 
@@ -84,6 +89,10 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 [12] Privacy in bitsquare,https://bisq.network/blog/privacy-in-bitsquare/, Date accessed: 2018-09-11.
 
 [13] bip-0037.mediawiki,https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki, Date accessed: 2018-09-11.
+
+[14] Committed bloom filters for improved wallet performance and SPV security,https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2016-May/012636.html, Date accessed: 2018-09-11.
+
+[15] Bloom-io-attack, https://github.com/petertodd/bloom-io-attack, Date accessed: 2018-09-11.
 
 ## Contributors
 
