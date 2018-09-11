@@ -40,7 +40,8 @@ In addition to Bloom filters, SPV clients rely on Merkle trees - a binary struct
 ## Security and privacy issues with SPV clients
 * **Security**
 
-In August 2017, a weakness in the Bitcoin merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11]
+In August 2017, a weakness in the Bitcoin merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11].
+
 Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (e.g 80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
 
 
