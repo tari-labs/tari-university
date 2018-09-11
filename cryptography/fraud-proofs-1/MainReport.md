@@ -26,7 +26,7 @@ A full Bitcoin node contains the following details:
   * all the unspent transaction outputs (UTXOs) [4]
   
 An SPV client such as a mobile device would not have the ability to process all that information and would need to check significantly less information than that. These SPV client make use of Bloom
-filters to receive transactions that are relevant to their local wallet[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
+filters to receive transactions that are relevant to the user[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
 
 ![spv.png](sources/spv.png)
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
@@ -43,6 +43,8 @@ In addition to Bloom filters, SPV cleints rely on Merkle trees - a binary struct
 In August 2017, a weakness in the Bitcoin merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11]
 
 * **Privacy**
+
+The BIP37 SPV[13] Bloom filters don't have relevant privacy features and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP address[12] (if TOR or VPNs aren't used).
 
 
 
@@ -78,6 +80,10 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 [10] The Design Of Bitcoin Merkle Trees Reduces The Security Of SPV Clients,https://media.rsk.co/the-design-of-bitcoin-merkle-trees-reduces-the-security-of-spv-clients/, Date accessed: 2018-09-11.
 
 [11] Leaf-Node weakness in Bitcoin Merkle Tree Design, https://bitslog.wordpress.com/2018/06/09/leaf-node-weakness-in-bitcoin-merkle-tree-design/, Date accessed: 2018-09-11.
+
+[12] Privacy in bitsquare,https://bisq.network/blog/privacy-in-bitsquare/, Date accessed: 2018-09-11.
+
+[13] bip-0037.mediawiki,https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki, Date accessed: 2018-09-11.
 
 ## Contributors
 
