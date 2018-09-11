@@ -26,7 +26,7 @@ The concept of Scriptless Scripts was borne from Mimblewimble, which is a block 
 
 The benefit of Scriptless Scripts are functionality, privacy and efficiency. 
 
-With regards to functionality, Scriptless Scripts are said to increase the range and complexity of smart contracts. Currently, as within Bitcoin Script limitations stem from the number of ```OP_CODES ```that have been enabled bu the network. Scriptless scripts move the specification and execution of smart contractions from the network to a discussion that only involves the participants of the smart contract. 
+With regards to functionality, Scriptless Scripts are said to increase the range and complexity of smart contracts. Currently, as within Bitcoin Script limitations stem from the number of ```OP_CODES``` that have been enabled by the network. Scriptless scripts move the specification and execution of smart contractions from the network to a discussion that only involves the participants of the smart contract. 
 
 With regards to privacy, moving the specification and execution of smart contracts from on-chain to off-chain increases privacy. When on-chain, many details of the smart contract are shared to the entire network including the number and addresses of participants and the amounts transferred. By moving smart contracts off-chain, the network only knows that the participants agree that the terms of their contract have been satisfied and that the transaction in question is valid. 
 
@@ -72,12 +72,12 @@ ECDSA signatures (used in Bitcoin) are not linear in *x* and *r*, and thus less 
 
 ## Schnorr multi-signatures
 
-First, a mulitsignature has multiple participants that produce a signature. Every participant might product a separate signature and concatenate them forming a multisignature. 
+First, a mulit-signature (mulitsig) has multiple participants that produce a signature. Every participant might product a separate signature and concatenate them forming a mulitsig. 
 
 With Schnorr Signatures, one can have a single public key, which is the sum of many different people's public keys. the resulting key is one that signatures will be verifiable against. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/)
 
-The formulation of a multisignature involves taking the sum of all components; thus all nonces and *s* values result in the formulation of a multisignature. [[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
- 
+The formulation of a mulitsig involves taking the sum of all components; thus all nonces and *s* values result in the formulation of a mulitsig. [[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
+
 $$
 s=Σs(i)
 $$
@@ -88,22 +88,33 @@ It can therefore be seen that these signatures are essentially scriptless script
 
 ## Adaptive Signatures  
 
-This multisignature protocol can be modified to produce an adaptive signature, which serves as the building block for all scriptless script functions. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/) 
+This mulitsig protocol can be modified to produce an adaptive signature, which serves as the building block for all scriptless script functions. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/) 
 
 Instead of functioning as full valid signature on a message with a key, an adapter signature is a promise that a signature agreed to be published, will reveal a secret. 
 
-This concept is similar to that of atomic swaps, however no scrips are implemented. Since this is elliptic curve cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, like a hash function, elliptic curve function in one way, so an elliptic curve point (T), can simply be shared and the secret will be it's corresponding private key.  
+This concept is similar to that of atomic swaps, however no scrips are implemented. Since this is elliptic curve cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, like a hash function, elliptic curve function in one way, so an elliptic curve point (*T*), can simply be shared and the secret will be it's corresponding private key.  
 
-If two parties are considered: rather than providing their nonce *R* in the multisignature protocol, a blinding factor, taken as an elliptic curve point *T* is conceived and sent in addition to *R* (ie. *R+T*). So it can be seen that *R* is not blinded, it has instead been offset by the secret value *T*. 
+If two parties are considered: rather than providing their nonce *R* in the mulitsig protocol, a blinding factor, taken as an elliptic curve point *T* is conceived and sent in addition to *R* (ie. *R+T*). So it can be seen that *R* is not blinded, it has instead been offset by the secret value *T*. 
 
-Here, the Schnorr multisignature construction is modified such that the first party generates $$T=tG$$ where *t* is the shared secret and $$R=rG$$(this is all with respect to the first participant of the 2 of 2 case swap) where *G*= generator of discreet log hard group and *r*=random nonce 
+Here, the Schnorr mulitsig construction is modified such that the first party generates 
+$$
+T=tG
+$$
+where *t* is the shared secret and 
+$$
+R=rG
+$$
+ (this is all with respect to the first participant of the 2 of 2 case swap) where *G* is the generator of discreet log hard group and *r* the random nonce 
 
 $$
 s=r+t+H(P||R+T||message)x
 $$
 
 The first participant, publishes to the second participant and other the following 
-$$s'=s-t$$, $$T=tG$$ and $$R=rG$$ where *s'* is the adaptive signature
+$$
+s'=s-t
+$$
+where *s'* is the adaptive signature
 
 The second participant can verify the adapter signature *s'* 
 
@@ -116,8 +127,10 @@ However this is not a valid signature as the hashed nonce point is *R+T* and not
 The second participant cannot retrieve a valid signature and requires ECDLP solving to recover *s'+t*
 
 After validation of adaptive signature by the second participant, it is known:
-Receipt of *t* ==> receipt of valid signature $$s=s'+t$$
-
+Receipt of *t* ==> receipt of valid signature 
+$$
+s=s'+t
+$$
 The above is very general however, by attaching auxiliary proofs to one can derive an adaptive signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
 
 ---
@@ -156,7 +169,7 @@ Alice has a certain number of coins on a particular block chain; Bob also has a 
 
 The  classical way of achieving this involves the use of the block chain's script system to put a hash preimage challenge and then reveal the same preimage on both sides: Once Alice knows the preimage, she reveals it to take her coins; Bob then copies it of one chain to the other chain to take his coins. 
 
-Using adaptive signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each block chain. They sign the multisignature protocols in parallel, where Bob then gives Alice the adaptive signatures for each side using the same value *T* ; Meaning that for Bob to take his coins he needs to reveal t and for Alice to take her coins she needs to reveal T. Bob then replaces one of the signatures and publishes *t*, taking his coins. Alice computes *t*  from the final signature, visible on the block chain and uses that to reveal another signature, giving her her coins. 
+Using adaptive signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each block chain. They sign the mulitsig protocols in parallel, where Bob then gives Alice the adaptive signatures for each side using the same value *T* ; Meaning that for Bob to take his coins he needs to reveal t and for Alice to take her coins she needs to reveal T. Bob then replaces one of the signatures and publishes *t*, taking his coins. Alice computes *t*  from the final signature, visible on the block chain and uses that to reveal another signature, giving her her coins. 
 
 Thus it can be seen that atomicity is achieved. One is still able to exchange information but now there are no explicit hashes or preimages on the block chain: No script properties are necessary and privacy is achieved. [[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
 
@@ -170,7 +183,7 @@ ZKCP is a transaction protocol. This protocol allows a buyer to purchase informa
 
 ## Mimblewimble's Core Scriptless Script
 
-As previously stated, Mimblewimble is a block chain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a confidential transition commitment. Confidential commitments have an interesting property where in a valid balanced transaction one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the multisignature key of the owners of every output and every input in the transaction. This is referred to as the kernel.
+As previously stated, Mimblewimble is a block chain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a confidential transition commitment. Confidential commitments have an interesting property where in a valid balanced transaction one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
 
 Mimblewimble blocks will only have a list of new inputs, a list of new outputs and a list of signatures which are created from the aforementioned excess value. [[7]](https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
 

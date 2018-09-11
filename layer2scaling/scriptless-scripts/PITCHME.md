@@ -16,7 +16,7 @@
 
 - Scriptless scripts involve the 'magicking' of digital signatures so that they can only be created by faithful execution of a smart contract (using Schnorr signatures)
 - They have been considered to be limited in power
-- As a recap: Mimblewimble is a blockchain design with no permanent data except kernels and their signatures; supports only script less scripts (anything that supports Schnorr signatures will support scriptless scripts-which is how it derives its privacy and scaling properties
+- As a recap: Mimblewimble is a block chain design with no permanent data except kernels and their signatures; supports only script less scripts (anything that supports Schnorr signatures will support scriptless scripts-which is how it derives its privacy and scaling properties
 
 ---
 
@@ -35,16 +35,12 @@
 
 - For Schnorr signatures the signer has a secret key ***x***, ephemeral secret key ***k*** -- he publishes a public key ***xG*** (*G* is base point, of generator of the group)
 
-- A signature is the ephemeral public key kG as well as 
+- A signature is the ephemeral public key *kG* as well as 
 
   $$
   s=k-ex
   $$
-  Where:
-
-  *k*= secret nonce 
-
-  *x*=private key
+  Where *k* is the secret nonce and *x* the private key
 
   $$
   e=H(kG||xG||message)
@@ -56,19 +52,19 @@
   sG=kG-exG
   $$
 
-- ECDSA signatures (used in Bitcoin) have the same shape, but *s* lacks some structure and *e* commits to only the message  
+- ECDSA signatures (used in Bitcoin) are not linear in *x* and *r*, and thus less useful  
 
 ---
 
-## Schnorr multi-signatures=Scriptless Scripts
+## Schnorr multi-signatures = Scriptless Scripts
 
 - The multisignature is (s,R) 
   $$
   s=Σs(i)
   $$
 
-- It can be seen that a multisignature is already a scriptless script
-- It can be generalised to m-of-n by linear secret sharing 
+- It can be seen that a multisig is already a scriptless script
+- It can be generalized to m-of-n by linear secret sharing 
 - In general, scriptless scripts will see their power from these signatures being linear in all secret inputs 
 
 ---
@@ -93,6 +89,7 @@
   $$
   dG=kG-k'G+exG-e'x'G
   $$
+
 
 
 - Given *d* and either *s* or *s'*, the other can be computed. So possession of d makes these two signatures atomic
@@ -133,7 +130,7 @@
 
 - MimbleWimble can then be considered the ultimate scriptless script 
 - Every input and output has a key (referred to as a Pedersen commitment-but the transactions balances exactly when these commitment behave like keys; this trick is Confidential Transactions)
-- A transaction signature uses the multi signature key of all input and output keys (called a "kernel" in MimbleWimble). It is irrelevant what gets signed, just that something is 
+- A transaction signature uses the multi signature key of all input and output keys (called a "kernel" in Mimblewimble). It is irrelevant what gets signed, just that something is 
 - Transaction validity is now contained in a scriptless script; further the signature has be used with other scriptless script constructions (atomic swaps, ZKCP, etc.) to add additional validity requirements with zero overhead
 
 ---
