@@ -97,23 +97,29 @@ This concept is similar to that of atomic swaps, however no scrips are implement
 If two parties are considered: rather than providing their nonce *R* in the mulitsig protocol, a blinding factor, taken as an elliptic curve point *T* is conceived and sent in addition to *R* (ie. *R+T*). So it can be seen that *R* is not blinded, it has instead been offset by the secret value *T*. 
 
 Here, the Schnorr mulitsig construction is modified such that the first party generates 
+
 $$
 T=tG
 $$
+
 where *t* is the shared secret and 
+
 $$
 R=rG
 $$
- (this is all with respect to the first participant of the 2 of 2 case swap) where *G* is the generator of discreet log hard group and *r* the random nonce 
+
+(this is all with respect to the first participant of the 2 of 2 case swap) where *G* is the generator of discreet log hard group and *r* the random nonce 
 
 $$
 s=r+t+H(P||R+T||message)x
 $$
 
 The first participant, publishes to the second participant and other the following 
+
 $$
 s'=s-t
 $$
+
 where *s'* is the adaptive signature
 
 The second participant can verify the adapter signature *s'* 
@@ -128,9 +134,11 @@ The second participant cannot retrieve a valid signature and requires ECDLP solv
 
 After validation of adaptive signature by the second participant, it is known:
 Receipt of *t* ==> receipt of valid signature 
+
 $$
 s=s'+t
 $$
+
 The above is very general however, by attaching auxiliary proofs to one can derive an adaptive signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
 
 ---
