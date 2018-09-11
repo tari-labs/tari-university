@@ -18,40 +18,40 @@ An invalid block could be as a result of any of the following[6]:
 
 # What are they?
 
-Fraud proofs are a way to improve the security of SVP clients [5] and allow SPV clients to have the same security as full nodes. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6].
+Fraud proofs are a way to improve the security of SVP clients [5] by providing a mechanism for full nodes to prove that a chain is invalid irrespective of the amount of proof of work it has[5]. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6].
 
 A full Bitcoin node contains the following details:
   * every transaction that is currently being broadcast around the network
   * every transaction that has ever been sent
   * all the unspent transaction outputs (UTXOs) [4]
   
-An SPV client such as a mobile device would not have the ability to process all that information and would need to check significantly less information than that.
+An SPV client such as a mobile device would not have the ability to process all that information and would need to check significantly less information than that. These SPV client make use of Bloom
+filters to receive transactions that are relevant to their local wallet[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
 
 ![spv.png](sources/spv.png)
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients [7]
 
-To avoid downloading and indexing all transactions and blocks, what SPV rely on is Merkle trees. A merkle tree is a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs a small part of the block, called a merkle root, to prove the transaction is in the block[8]
-
+In addition to Bloom filters, SPV cleints rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs to check a small part of the block, called a merkle root, to prove the transaction is in the block[8].
 
 ![merkle-tree.png](sources/merkle-tree.png)
 
 
-## Problems with SPV clients
+## Security and privacy issues with SPV clients
+* **Security**
+
+In August 2017, a weakness in the Bitcoin merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11]
+
+* **Privacy**
 
 
 
 ## Suggested fraud proof improvements
-???
 
-
-
-## Possible attacks on SPV clients
 
 
 ## Conclusions, Observations, Recommendations
 
-- ???
 
 ## References
 
@@ -66,12 +66,18 @@ To avoid downloading and indexing all transactions and blocks, what SPV rely on 
 [5] Improving the ability of SPV clients to detect invalid chains
 ,https://gist.github.com/justusranvier/451616fa4697b5f25f60, Date accessed: 2018-09-10.
 
-[6]Meditations on Fraud Proofs,http://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
+[6] Meditations on Fraud Proofs,http://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
 
 [7] On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10.
 
 [8]SPV, Bloom filters and checkpoints, https://multibit.org/hd0.4/how-spv-works.html, Date accessed: 2018-09-10.
+
+[9] A Case of False Positives in Bloom Filters, https://medium.com/blockchain-musings/a-case-of-false-positives-in-bloom-filters-da09ec487ff0, Date accessed: 2018-09-11.
+
+[10] The Design Of Bitcoin Merkle Trees Reduces The Security Of SPV Clients,https://media.rsk.co/the-design-of-bitcoin-merkle-trees-reduces-the-security-of-spv-clients/, Date accessed: 2018-09-11.
+
+[11] Leaf-Node weakness in Bitcoin Merkle Tree Design, https://bitslog.wordpress.com/2018/06/09/leaf-node-weakness-in-bitcoin-merkle-tree-design/, Date accessed: 2018-09-11.
 
 ## Contributors
 
