@@ -12,7 +12,7 @@ SPV clients will believe everything miners or nodes tell them, as evidenced by P
 In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain [3]. 
 
 ![proofofworkchain.png](sources/proofofworkchain.png)
-Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System[2]
+Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System
 
 
 In this system, the full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected [2].
