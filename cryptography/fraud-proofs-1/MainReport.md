@@ -2,13 +2,17 @@
 
 ## Background
 The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node.
+
+![proofofworkchain.png](sources/proofofworkchain.png)
+SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs[17] 
+
 In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain [3]. 
 
 ![proofofworkchain.png](sources/proofofworkchain.png)
 Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System[2]
 
 
-The full nodes would need to be able to alert SPV clients when an invalid block is detected [2].
+In this system, the full nodes would need to provide fraud proofs by alerting SPV clients when an invalid block is detected [2].
 
 An invalid block could be as a result of any of the following[6]:
 * **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
@@ -25,29 +29,32 @@ A full Bitcoin node contains the following details:
   * every transaction that has ever been sent
   * all the unspent transaction outputs (UTXOs) [4]
   
-An SPV client such as a mobile device would not have the ability to process all that information and would need to check significantly less information than that. These SPV client make use of Bloom
+An SPV client, such as a mobile device, would not have the ability to process all that information and would need to check significantly less information than that. These SPV client make use of Bloom
 filters to receive transactions that are relevant to the user[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
 
 ![spv.png](sources/spv.png)
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients [7]
 
-In addition to Bloom filters, SPV clients rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs to check a small part of the block, called a merkle root, to prove the transaction is in the block[8].
+In addition to Bloom filters, SPV clients rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs to check a small part of the block, called a merkle root, to prove that the transaction has been accepted in the network[8].
 
 ![merkle-tree.png](sources/merkle-tree.png)
 
 
 ## Security and privacy issues with SPV clients
-* **Security**
+* **weak bloom filters and merkle tree designs**
 
 In August 2017, a weakness in the Bitcoin merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11].
 
-Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (e.g 80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
 
 
-* **Privacy**
+Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
 
-The BIP37 SPV[13] Bloom filters don't have relevant privacy features[7] and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP address[12] (if TOR or VPNs aren't used).
+
+
+The BIP37 SPV[13] Bloom filters don't have relevant privacy features[7] and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP addresses of the user[12] (if TOR or VPNs aren't used).
+
+To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37[16], a bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size[14]. A second bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute[16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method.[14]
 
 
 
@@ -94,6 +101,10 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 [14] Committed bloom filters for improved wallet performance and SPV security,https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2016-May/012636.html, Date accessed: 2018-09-11.
 
 [15] Bloom-io-attack, https://github.com/petertodd/bloom-io-attack, Date accessed: 2018-09-11.
+
+[16] Committed Bloom Filters Versus BIP37 SPV,https://www.newsbtc.com/2016/05/10/developers-introduce-bloom-filters-improve-bitcoin-wallet-security/, Date accessed: 2018-09-12.
+
+[17] Fraud Proofs,https://www.linkedin.com/pulse/peter-todds-fraud-proofs-talk-mit-bitcoin-expo-2016-mark-morris/, Date accessed: 2018-09-12
 
 ## Contributors
 
