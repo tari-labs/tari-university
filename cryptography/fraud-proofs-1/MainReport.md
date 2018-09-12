@@ -15,9 +15,9 @@ In the original Bitcoin whitepaper, Satoshi recognised this and introduced the c
 Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System[2]
 
 
-In this system, the full nodes would need to provide fraud proofs by alerting SPV clients when an invalid block is detected [2].
+In this system, the full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected [2].
 
-An invalid block could be as a result of any of the following[6]:
+An invalid block need not be of malicious intent, but could be as a result of any of the following[6]:
 * **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
 * **Missing block data** (the Merkle Tree “neighbors” of Sally’s txn are unknown and undiscoverable – this could be intentional or accidental).
 * **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
