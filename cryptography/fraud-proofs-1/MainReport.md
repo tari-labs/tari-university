@@ -23,7 +23,7 @@ An invalid block need not be of malicious intent, but could be as a result of an
 * **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
 * **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
 
-# What is a fraud proof?
+# What are fraud proofs?
 
 Fraud proofs are a way to improve the security of SPV clients [5] by providing a mechanism for full nodes to prove that a chain is invalid irrespective of the amount of proof of work it has[5]. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6][18].
 
@@ -49,13 +49,16 @@ Fraud proofs are integral to the security of SPV clients, however, the other com
 * **weak bloom filters and merkle tree designs**
 
 In August 2017, a weakness in the Bitcoin Merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. The bitcoin Merkle tree makes no distinction between inner and leaf nodes and could thus be manipulated by an attack that could re-interpret transactions as nodes and nodes as transactions[11]. This weakness is due to inner nodes having no format and only requiring the length to be 64 bytes.
-This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11].
-One proposed solution is to ensure that no internal, 64-bit node is ever accepted as a valid transaction by SPV wallets/clients[11].
+
+This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million.One proposed solution is to ensure that no internal, 64-bit node is ever accepted as a valid transaction by SPV wallets/clients[11].
 
 The BIP37 SPV[13] Bloom filters don't have relevant privacy features[7] and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP addresses of the user[12] (if TOR or VPNs aren't used).
+
 Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
 
-To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37[16], a Bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size[14]. A second Bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute[16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method.[14]
+To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37[16], a Bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size[14].
+
+A second Bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute[16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method.[14]
 
 ## fraud proof implementations in other blockchains
 
@@ -64,6 +67,19 @@ Similar to how fraud proofs could potentially help with scalability via SPV clie
 ![plasmafraud.png](sources/plasmafraud.png)
 Courtesy:Plasma: Scalable Autonomous Smart Contracts
 
+There is one issue raised in using fraud proofs with Plasma : what happens in the event that a malicious node publishes partial (valid or invalid) blocks and when another node raises the flag to try to prove fraud, the malicious node publishes the remaining block data? In that instance, the honest node would have their deposits slashed due to providing a false fraud proof[20]. This could disincentivize honest nodes from providing fraud proofs.
+
+![falsealarm.png](sources/falsealarm.png)
+
+## Suggested fraud proof improvements
+
+### Erasure codes
+A proposed solution to the Plasma "false fraud proofs" issue is to use erasure codes.
+
+
+### Merklix Proof
+
+### Compact fraud proofs
 
 
 ## Conclusions, Observations, Recommendations
@@ -111,6 +127,9 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 , https://www.trustnodes.com/2017/08/12/new-satoshi-nakamoto-e-mails-revealed, Date accessed: 2018-09-12.
 
 [19] Plasma: Scalable Autonomous Smart Contracts,https://plasma.io/plasma.pdf, Date accessed: 2018-09-13.
+
+[20] A note on data availability and erasure coding
+,https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding, Date accessed: 2018-09-13.
 
 ## Contributors
 
