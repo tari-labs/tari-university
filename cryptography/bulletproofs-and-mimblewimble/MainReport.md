@@ -1,7 +1,32 @@
 # Bulletproofs and Mimblewimble
 
+## Introduction
+
 ???
 
+## Contents
+
+[TOC]
+
+Brief 
+
+
+
+## Interesting Grin-Bulletproof Snippets
+
+### Wallet Reconstruction [[5]](https://github.com/mimblewimble/grin/issues/273)
+
+"{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
+
+"{**yeastplume** } @apoelstra the amount, and quite possibly the switch commitment hash as well (or just a hash of the entire output) as per #207..."
+
+"{**apoelstra**} Ok, I can get you 64 bytes without much trouble (xoring them into `tau_1` and `alpha` which are easy to extract from `tau_x` and `mu` if you know the original seed used to produce the randomness). I think it's possible to get another 32 bytes into `t` but that's way more involved since `t` is a big inner product." 
+
+???
+
+## Negatives
+
+- A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]](https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup)
 
 ## Conclusions, Observations, Recommendations
 
@@ -13,7 +38,7 @@
 
 [2] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
-[3] Range Proofs - A Primer, https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md, Date accessed: 2018-09-10. **????**
+[3] **????** Range Proofs - A Primer, https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md, Date accessed: 2018-09-10. **????**
 
 [4] Mimblewimble Explained, https://www.weusecoins.com/mimble-wimble-andrew-poelstra/, Date accessed: 2018-09-10.
 
@@ -21,13 +46,13 @@
 
 [6] Message hiding in Bulletproofs #721, https://github.com/mimblewimble/grin/issues/721, Date accessed: 2018-09-10.
 
-[7] , , Date accessed: 2018-09-??.
+[7] Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf, Date accessed: 2018-09-10.
 
-[8] , , Date accessed: 2018-09-??.
+[8] Bullet Proofs (Video), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://www.pscp.tv/w/1mnxerNaNkLKX, Date accessed: 2018-09-??.
 
-[9] , , Date accessed: 2018-09-??.
+[9] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs, Date accessed: 2018-09-??.
 
-[10] , , Date accessed: 2018-09-??.
+[10] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-??.
 
 [11] , , Date accessed: 2018-09-??.
 
