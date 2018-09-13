@@ -2,7 +2,7 @@
 
 Welcome to Tari Labs University
 
-Our aim: Build a learning platform and populate it with content
+Our mission: To be the premier destination for balanced and accessible learning material for blockchain, digital curerency and digital assets learning material.
 
 We hope to make this a learning experience for us at Tari Labs: as a means to grow our knowledge base and internal expertise or as a refresher-- but we think this will also be an excellent resource for anyone interested in the myriad of disciplines required to understand blockchain technology.  
 
@@ -16,18 +16,24 @@ This extends to our presentations; we are learning along with you: our content m
  
 As much as this learning platform is called Tari Labs University and will see input from many internal contributors and external experts, we would like you to contribute to new material, be it in the form of a suggestion of topics, varying the skill levels of presentations, or posting presentations that you may feel will benefit us as a growing community. In the words of Yoda, “Always pass on what you have learned”.  
 
-### Topic Choice and Research on Tari Labs University should be guided by these five principles: 
-1. The topic researched must be reviewed for it’s potential application to the Tari protocol;
-2. The topic must be thoroughly researched;
-3. An unbiased approach must be taken taken, where dissenting views, critiques and commentaries sought out and presented alongside the main topic;
-4. A recommendation/conclusion section must be included, providing a critical analysis on whether or not the technology/proposal can be implemented in the Tari protocol
-5. The work presented must be easy to read and understand, distilling complex topics into a form that is accessible to a technical but non-expert audience.
+If you are considering contributing content to Tari Labs University, please be aware of our guiding principles.
 
-### Deliverables and the Process 
-1. A detailed report is required as the first deliverable; this report will be peer reviewed;
-2. A presentation should only be created after the detailed report has been reviewed and accepted;
-3. Enough time must be allocated for each presenter to conduct significant research; 
-4. The talk will be scheduled on Tari Labs University three weeks from the initial submission of the report.
+### Guiding Principles
+1. The topic researched should be potentially relevant to the Tari protocol; Chat to us on #tari-research on IRC if you're not sure.
+2. The topic should be thoroughly researched;
+3. An critical approach should be taken taken (in the academic sense), with critiques and commentaries sought out and presented alongside the main topic. Remember that every white paper promises the world, so go and look for counterclaims.
+4. A recommendation/conclusion section should be included, providing a critical analysis on whether or not the technology/proposal would be useful to the Tari protocol
+5. The work presented should be easy to read and understand, distilling complex topics into a form that is accessible to a technical but non-expert audience. Use your own voice.
+
+### The Submission Process 
+
+This is the basic process we follow within Tari Labs. As an external contributor, we'd appreciate it if you followed the same process.
+1. Get some agreement from the community that the topic is of interest.
+1. Write up your report.
+1. Push a first draft of your report as a Pull Request.
+1. The community will peer-review the report; much the same as we would with a code PR. 
+1. The report gets merged into master. 
+1. Receive the Fame and acclaim that is due.
 
 ## Current Streams 
 
