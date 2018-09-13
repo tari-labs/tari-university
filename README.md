@@ -19,8 +19,8 @@ As much as this learning platform is called Tari Labs University and will see in
 ### Topic Choice and Research on Tari Labs University should be guided by these five principles: 
 1. The topic researched must be reviewed for it’s potential application to the Tari protocol;
 2. The topic must be thoroughly researched;
-3. An unbiased approach must be taken taken, where dissenting views, critiques and commentaries sought out and presented alongside the main topic;
-4. A recommendation/conclusion section must be included, providing a critical analysis on whether or not the technology/proposal can be implemented in the Tari protocol
+3. An unbiased approach must be taken, where dissenting views, critiques and commentaries sought out and presented alongside the main topic;
+4. A recommendation/conclusion section must be included, providing a critical analysis on whether or not the technology/proposal can be implemented in the Tari protocol;
 5. The work presented must be easy to read and understand, distilling complex topics into a form that is accessible to a technical but non-expert audience.
 
 ### Deliverables and the Process 
