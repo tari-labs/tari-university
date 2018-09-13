@@ -32,14 +32,14 @@ A full Bitcoin node contains the following details:
   * every transaction that has ever been sent
   * all the unspent transaction outputs (UTXOs) [4]
   
-An SPV client, such as a mobile device, would not have the ability to process all that information and would need to check significantly less information than that. These SPV client make use of Bloom
-filters to receive transactions that are relevant to the user[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
+An SPV client, such as a mobile device, would not have the ability to process all that information and thus only needs to download block headers.
+These SPV client make use of Bloom filters to receive transactions that are relevant to the user[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
 
 ![spv.png](sources/spv.png)
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients [7]
 
-In addition to Bloom filters, SPV clients rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network[8].
+In addition to Bloom filters, SPV clients rely on Merkle trees - binary structures that have a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network[8].
 
 ![merkle-tree.png](sources/merkle-tree.png)
 
@@ -49,23 +49,20 @@ Fraud proofs are integral to the security of SPV clients, however, the other com
 * **weak bloom filters and merkle tree designs**
 
 In August 2017, a weakness in the Bitcoin Merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. The bitcoin Merkle tree makes no distinction between inner and leaf nodes and could thus be manipulated by an attack that could re-interpret transactions as nodes and nodes as transactions[11]. This weakness is due to inner nodes having no format and only requiring the length to be 64 bytes.
-
 This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11].
-
-Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
-
+One proposed solution is to ensure that no internal, 64-bit node is ever accepted as a valid transaction by SPV wallets/clients[11].
 
 The BIP37 SPV[13] Bloom filters don't have relevant privacy features[7] and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP addresses of the user[12] (if TOR or VPNs aren't used).
+Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
 
 To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37[16], a Bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size[14]. A second Bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute[16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method.[14]
 
 ## fraud proof implementations in other blockchains
 
-Truebit and Ethereum's Plasma have their implementation of fraud proofs where penalties are imposed and invalid blocks are rolled back[19]
+Similar to how fraud proofs could potentially help with scalability via SPV clients on Bitcoin, Truebit and Ethereum's Plasma (which aims to improve scalability on Ethereum) have their implementation of fraud proofs where penalties are imposed and invalid blocks are rolled back when proof of fraud is submitted to the root chain[19]. On the Plasma blockchain, consensus is enforced by fraud proofs on the root chain.
+
 ![plasmafraud.png](sources/plasmafraud.png)
-
-## Suggested fraud proof improvements
-
+Courtesy:Plasma: Scalable Autonomous Smart Contracts
 
 
 
