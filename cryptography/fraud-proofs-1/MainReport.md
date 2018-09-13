@@ -1,7 +1,7 @@
 # Fraud Proofs - easier said than done?
 
 ## Background
-The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node. At some point, lightweight clients will have to be used by users since not everyone can run full nodes. 
+The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node. Lightweight clients will have to be used by users since not everyone can run full nodes due to the computational power and cost needed to run a full Bitcoin node. 
 
 ![spv21.png](sources/spv21.png)
 Courtesy:MIT Bitcoin Expo 2016 Day 1
@@ -19,11 +19,11 @@ In this system, the full nodes would need to provide an alert (known as a fraud 
 
 An invalid block need not be of malicious intent, but could be as a result of any of the following[6]:
 * **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
-* **Missing block data** (the Merkle Tree “neighbors” of Sally’s txn are unknown and undiscoverable – this could be intentional or accidental).
+* **Missing block data** (unknown and undiscoverable Merkle trees – this could be intentional or accidental).
 * **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
 * **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
 
-# What are they?
+# What is a fraud proof?
 
 Fraud proofs are a way to improve the security of SPV clients [5] by providing a mechanism for full nodes to prove that a chain is invalid irrespective of the amount of proof of work it has[5]. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6][18].
 
@@ -39,7 +39,7 @@ filters to receive transactions that are relevant to the user[7]. Bloom filters 
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients [7]
 
-In addition to Bloom filters, SPV clients rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With merkle trees, one only needs to check a small part of the block, called a merkle root, to prove that the transaction has been accepted in the network[8].
+In addition to Bloom filters, SPV clients rely on Merkle trees - a binary structure that has a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network[8].
 
 ![merkle-tree.png](sources/merkle-tree.png)
 
@@ -48,20 +48,24 @@ Fraud proofs are integral to the security of SPV clients, however, the other com
 ## Security and privacy issues with SPV clients
 * **weak bloom filters and merkle tree designs**
 
-In August 2017, a weakness in the Bitcoin merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. The bitcoin merkle tree makes no distinction between inner and leaf nodes and could thus be manipulated by an attack that could re-interpret transactions as nodes and nodes as transactions[11]. This weakness is due to inner nodes having no format and only requiring the length to be 64 bytes.
+In August 2017, a weakness in the Bitcoin Merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid[10]. The bitcoin Merkle tree makes no distinction between inner and leaf nodes and could thus be manipulated by an attack that could re-interpret transactions as nodes and nodes as transactions[11]. This weakness is due to inner nodes having no format and only requiring the length to be 64 bytes.
 
 This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million[11].
-
 
 Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests[14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service[15].
 
 
 The BIP37 SPV[13] Bloom filters don't have relevant privacy features[7] and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP addresses of the user[12] (if TOR or VPNs aren't used).
 
-To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37[16], a bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size[14]. A second bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute[16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method.[14]
+To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37[16], a Bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size[14]. A second Bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute[16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method.[14]
 
+## fraud proof implementations in other blockchains
+
+Truebit and Ethereum's Plasma have their implementation of fraud proofs where penalties are imposed and invalid blocks are rolled back[19]
+![plasmafraud.png](sources/plasmafraud.png)
 
 ## Suggested fraud proof improvements
+
 
 
 
@@ -108,6 +112,8 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 
 [18] New Satoshi Nakamoto E-mails Revealed
 , https://www.trustnodes.com/2017/08/12/new-satoshi-nakamoto-e-mails-revealed, Date accessed: 2018-09-12.
+
+[19] Plasma: Scalable Autonomous Smart Contracts,https://plasma.io/plasma.pdf, Date accessed: 2018-09-13.
 
 ## Contributors
 
