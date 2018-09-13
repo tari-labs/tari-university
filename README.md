@@ -2,7 +2,7 @@
 
 Welcome to Tari Labs University
 
-Our mission: To be the premier destination for balanced and accessible learning material for blockchain, digital curerency and digital assets learning material.
+Our mission: To be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.
 
 We hope to make this a learning experience for us at Tari Labs: as a means to grow our knowledge base and internal expertise or as a refresher-- but we think this will also be an excellent resource for anyone interested in the myriad of disciplines required to understand blockchain technology.  
 
