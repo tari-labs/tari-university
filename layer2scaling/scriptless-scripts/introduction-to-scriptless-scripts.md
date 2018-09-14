@@ -1,5 +1,4 @@
 # Introduction to Scriptless Scripts 
-See [Layer 2 Scaling Survey (part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/more-landscape#/5)
 
 - Definition of Scriptless Scripts 
 - Rationale for Scriptless Scripts 
