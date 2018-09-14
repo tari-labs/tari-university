@@ -67,17 +67,33 @@ Similar to how fraud proofs could potentially help with scalability via SPV clie
 ![plasmafraud.png](sources/plasmafraud.png)
 Courtesy:Plasma: Scalable Autonomous Smart Contracts
 
-There is one issue raised in using fraud proofs with Plasma : what happens in the event that a malicious node publishes partial (valid or invalid) blocks and when another node raises the flag to try to prove fraud, the malicious node publishes the remaining block data? In that instance, the honest node would have their deposits slashed due to providing a false fraud proof[20]. This could disincentivize honest nodes from providing fraud proofs.
+There is one issue raised in using fraud proofs with Plasma : what happens in the event that a malicious node publishes partial (valid or invalid) blocks and when another node raises the flag to try to prove fraud, the malicious node publishes the remaining block data? In that instance, the honest node would have their deposits slashed due to providing a false fraud proof[20]. This could disincentivize honest nodes from providing fraud proofs; this also presents the problem of data availability in blocks.
 
 ![falsealarm.png](sources/falsealarm.png)
 
 ## Suggested fraud proof improvements
 
 ### Erasure codes
-A proposed solution to the Plasma "false fraud proofs" issue is to use erasure codes.
+A proposed solution to the Plasma "false fraud proofs" issue is to use erasure codes and an assumption of a minimum of one honest node. Erasure coding which allows a piece of data M chunks long to be expanded into a piece of data N chunks long (“chunks” can be of arbitrary size), such that any M of the N chunks can be used to recover the original data. Blocks are then required to commit the Merkle root of this extended data and have light clients probabilistically check that the majority of the extended data is available[21].
 
+Using these erasure codes, one of three conditions will be true to the SPV client[20]:
 
-### Merklix Proof
+1) The entire extended data is available, the erasure code is constructed correctly, and the block is valid.
+
+2) The entire extended data is available, the erasure code is constructed correctly, but the block is invalid.
+
+3) The entire extended data is available, but the erasure code is constructed incorrectly.
+
+In case (1), the block is valid and the light client can accept it. In case (2), it is expected that some other node will quickly construct and relay a fraud proof. In case (3), it is also expected that some other node will quickly construct and relay a specialized kind of fraud proof that shows that the erasure code is constructed incorrectly.
+
+### Merklix trees
+Another suggested fraud proof improvement for the Bitcoin blockchain is by means of block sharding and validation using Merklix trees. Merklix trees are essentially Merkle trees that use unordered set[22].
+This also assumes that there is atleast one honest node per shard. Using Merklix proofs, the following can be proven[23]:
+
+1) a transactrion is in the block
+2) it's inputs and outputs are or aren't in the UTXO set
+
+In this scenario, SPV clients can be made aware of any invalidity in blocks and can’t be lied to about the UTXO set.
 
 ### Compact fraud proofs
 
@@ -130,6 +146,12 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 
 [20] A note on data availability and erasure coding
 ,https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding, Date accessed: 2018-09-13.
+
+[21] Vitalik Buterin and Peter Todd Go Head to Head in the Crypto Culture Wars,https://www.trustnodes.com/2017/08/14/vitalik-buterin-peter-todd-go-head-head-crypto-culture-wars, Date accessed: 2018-09-14.
+
+[22] Introducing Merklix tree as an unordered Merkle tree on steroid,https://www.deadalnix.me/2016/09/24/introducing-merklix-tree-as-an-unordered-merkle-tree-on-steroid/, Date accessed 2018-09-14.
+
+[23] Using Merklix tree to shard block validation,https://www.deadalnix.me/2016/11/06/using-merklix-tree-to-shard-block-validation/, Date accessed: 2018-09-14.
 
 ## Contributors
 
