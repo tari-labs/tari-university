@@ -60,6 +60,9 @@ $$
 e=H(P||r||message)
 $$
 
+$$
+P=xG
+$$
 
 The position on the line chosen is taken as the hash of all the data that one needs to commit to, the digital signature. The verification equation involves the multiplication of each of the terms in the equation by G and takes in account the cryptographic assumption (discrete log) where G can be multiplied in but not divided out, thus preventing deciphering. 
 
