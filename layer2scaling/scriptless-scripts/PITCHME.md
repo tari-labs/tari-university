@@ -167,6 +167,7 @@ By attaching auxiliary proofs one can derive an adaptor signature to translate c
 
 
 
+
 - The Schnorr signature itself is not being verified, but instead the difference *d*
 - *d* functions as the translating key between two separate independent Schnorr signatures
 - Given *d* and either *s* or *s'*, the other can be computed
@@ -214,8 +215,8 @@ By attaching auxiliary proofs one can derive an adaptor signature to translate c
 
 [4] - [Andrew Poelstra: Presentation at MIT Bitcoin Expo Day 2017](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
 
-[5] - [Flipping the scriptless script on Schnorr, Nov 2017]((https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/))
+[5] - [Flipping the scriptless script on Schnorr, Nov 2017](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/)
 
-[6] - [The first successful Zero-Knowledge Contingent Payment, 26 Feb 2016]((https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/))
+[6] - [The first successful Zero-Knowledge Contingent Payment, 26 Feb 2016](https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/)
 
-[7] - [What is Mimblewimble?, 30 Jun 2018]((https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/))
+[7] - [What is Mimblewimble?, 30 Jun 2018](https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
