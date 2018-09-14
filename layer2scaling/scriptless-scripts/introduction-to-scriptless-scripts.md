@@ -8,7 +8,8 @@
 - Adaptor Signatures
 - Simultaneous Scriptless Scripts
 - Atomic (Cross-chain Swaps) Example with Adaptor Signatures
-- Mimblewimble's Scriptless Scripts 
+- Zero Knowledge Contingent Payments
+- Mimblewimble's Core Scriptless Script
 
 ---
 
