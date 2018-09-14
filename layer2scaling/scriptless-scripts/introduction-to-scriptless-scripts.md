@@ -204,10 +204,16 @@ Since the values are homomorphically encrypted, nodes can verify that no coin ar
 
 ## References 
 [1] Crypto Innovation Spotlight 2: Scriptless Scripts, 27 Feb 2018. https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8
+
 [2]  Andrew Poelstra: Presentation at [Real World Crypto](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s) 
+
 [3]  Andrew Poelstra: Presentation at [Layer 2 Summit Hosted by MIT DCI and Fidelity Labs](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
+
 [4]  Andrew Poelstra: Presentation at [MIT Bitcoin Expo Day 2017](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
+
 [5]  Flipping the scriptless script on Schnorr, Nov 2017. (https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/)
+
 [6]  The first successful Zero-Knowledge Contingent Payment, 26 Feb 2016. (https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/)
+
 [7]  What is Mimblewimble?, 30 Jun 2018. (https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
 
