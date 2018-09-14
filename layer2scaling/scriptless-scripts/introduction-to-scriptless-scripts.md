@@ -9,7 +9,7 @@ See [Layer 2 Scaling Survey (part 2)](https://gitpitch.com/tari-labs/tari-univer
 - Simultaneous Scriptless Scripts
 - Adaptor Signatures
 - Features of Adaptor Signatures
-- Atomic (Cross-chain Swaps) Example with Adaptive Signatures
+- Atomic (Cross-chain Swaps) Example with Adaptor Signatures
 - Mimblewimble's Scriptless Scripts 
 
 ---
@@ -19,6 +19,8 @@ See [Layer 2 Scaling Survey (part 2)](https://gitpitch.com/tari-labs/tari-univer
 Scriptless Scripts are a means to execute smart contracts off-chain, through the use of Schnorr signatures. [[1]](https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8)  
 
 The concept of Scriptless Scripts was borne from Mimblewimble, which is a block chain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of Mimblewimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. [[2]](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s)
+
+A brief introduction is also given in [#5 Scriptless scripts, Layer 2 Scaling Survey (part 2)](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/more-landscape/landscape-update.md) 
 
 ---
 
@@ -38,7 +40,7 @@ With regards to efficiency, Scriptless Scripts minimize the amount of data that 
 
 In this report various forms of Scripts will be covered. These include: [[3]](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
 - Simultaneous Scriptless Scripts
-- Adaptive Signatures 
+- Adaptor Signatures 
 - Zero Knowledge Contingent Payments
 
 ---
@@ -86,11 +88,11 @@ It can therefore be seen that these signatures are essentially scriptless script
 
 ---
 
-## Adaptive Signatures  
+## Adaptor Signatures  
 
-This mulitsig protocol can be modified to produce an adaptive signature, which serves as the building block for all scriptless script functions. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/) 
+This mulitsig protocol can be modified to produce an adaptor signature, which serves as the building block for all scriptless script functions. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/) 
 
-Instead of functioning as full valid signature on a message with a key, an adapter signature is a promise that a signature agreed to be published, will reveal a secret. 
+Instead of functioning as full valid signature on a message with a key, an adaptor signature is a promise that a signature agreed to be published, will reveal a secret. 
 
 This concept is similar to that of atomic swaps, however no scrips are implemented. Since this is elliptic curve cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, like a hash function, elliptic curve function in one way, so an elliptic curve point (*T*), can simply be shared and the secret will be it's corresponding private key.  
 
@@ -99,47 +101,46 @@ If two parties are considered: rather than providing their nonce *R* in the muli
 Here, the Schnorr mulitsig construction is modified such that the first party generates 
 
 $$
-T=tG
+T=tG, R=rG
 $$
 
-where *t* is the shared secret and 
+where *t* is the shared secret, *G* is the generator of discreet log hard group and *r* the random nonce 
+
+Using this information the second party generates 
 
 $$
-R=rG
+H(P||R+T||message)x
 $$
 
-(this is all with respect to the first participant of the 2 of 2 case swap) where *G* is the generator of discreet log hard group and *r* the random nonce 
+where the coins to be swapped are contained within *message*. The first party can now calculate the complete signatue *s* such that  
 
 $$
 s=r+t+H(P||R+T||message)x
 $$
 
-The first participant, publishes to the second participant and other the following 
+The first party then calculates and publishes the adaptor signature *s'* to the second party (and any one else listening)
 
 $$
 s'=s-t
 $$
 
-where *s'* is the adaptive signature
-
-The second participant can verify the adapter signature *s'* 
+The second party can verify the adaptor signature *s'* by asserting *s'G*
 
 $$
-s'G?+R+H(P||R+T||message)P
+s'G=?+R+H(P||R+T||message)P
 $$
 
 However this is not a valid signature as the hashed nonce point is *R+T* and not *R*
 
-The second participant cannot retrieve a valid signature and requires ECDLP solving to recover *s'+t*
+The second party cannot retrieve a valid signature from this and requires ECDLP solving to recover *s'+t*, which is virtually impossible. 
 
-After validation of adaptive signature by the second participant, it is known:
-Receipt of *t* ==> receipt of valid signature 
+After the first party broadcasts *s* to claim the coins within *message* the second party can calculate the secret *t* from 
 
 $$
-s=s'+t
+t=s-s'
 $$
 
-The above is very general however, by attaching auxiliary proofs to one can derive an adaptive signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
+The above is very general however, by attaching auxiliary proofs to one can derive an adaptor signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
 
 ---
 
@@ -171,13 +172,13 @@ This is a critical feature for Mimblewimble, which was previously thought to be 
 
 ---
 
-## Atomic (Cross-chain Swaps) Example with Adaptive Signatures
+## Atomic (Cross-chain Swaps) Example with Adaptor Signatures
 
 Alice has a certain number of coins on a particular block chain; Bob also has a certain number of coins on another block chain. Alice and Bob want to engage in an atomic exchange, however neither of the block chains are aware of each other nor are they able to verify each others transactions. 
 
 The  classical way of achieving this involves the use of the block chain's script system to put a hash preimage challenge and then reveal the same preimage on both sides: Once Alice knows the preimage, she reveals it to take her coins; Bob then copies it of one chain to the other chain to take his coins. 
 
-Using adaptive signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each block chain. They sign the mulitsig protocols in parallel, where Bob then gives Alice the adaptive signatures for each side using the same value *T* ; Meaning that for Bob to take his coins he needs to reveal t and for Alice to take her coins she needs to reveal T. Bob then replaces one of the signatures and publishes *t*, taking his coins. Alice computes *t*  from the final signature, visible on the block chain and uses that to reveal another signature, giving her her coins. 
+Using adaptor signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each block chain. They sign the mulitsig protocols in parallel, where Bob then gives Alice the adaptor signatures for each side using the same value *T* ; Meaning that for Bob to take his coins he needs to reveal t and for Alice to take her coins she needs to reveal *T*. Bob then replaces one of the signatures and publishes *t*, taking his coins. Alice computes *t*  from the final signature, visible on the block chain and uses that to reveal another signature, giving her her coins. 
 
 Thus it can be seen that atomicity is achieved. One is still able to exchange information but now there are no explicit hashes or preimages on the block chain: No script properties are necessary and privacy is achieved. [[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
 
@@ -191,7 +192,7 @@ ZKCP is a transaction protocol. This protocol allows a buyer to purchase informa
 
 ## Mimblewimble's Core Scriptless Script
 
-As previously stated, Mimblewimble is a block chain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a confidential transition commitment. Confidential commitments have an interesting property where in a valid balanced transaction one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
+As previously stated, Mimblewimble is a block chain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a confidential transaction commitment. Confidential commitments have an interesting property where in a valid balanced transaction one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
 
 Mimblewimble blocks will only have a list of new inputs, a list of new outputs and a list of signatures which are created from the aforementioned excess value. [[7]](https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
 
@@ -200,11 +201,11 @@ Since the values are homomorphically encrypted, nodes can verify that no coin ar
 ---
 
 ## References 
-1. Crypto Innovation Spotlight 2: Scriptless Scripts, 27 Feb 2018. https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8
-2.  Andrew Poelstra: Presentation at [Real World Crypto](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s) 
-3.  Andrew Poelstra: Presentation at [Layer 2 Summit Hosted by MIT DCI and Fidelity Labs](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
-4.  Andrew Poelstra: Presentation at [MIT Bitcoin Expo Day 2017](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
-5.  Flipping the scriptless script on Schnorr, Nov 2017. (https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/)
-6.  The first successful Zero-Knowledge Contingent Payment, 26 Feb 2016. (https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/)
-7.  What is Mimblewimble?, 30 Jun 2018. (https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
+[1] Crypto Innovation Spotlight 2: Scriptless Scripts, 27 Feb 2018. https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8
+[2]  Andrew Poelstra: Presentation at [Real World Crypto](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s) 
+[3]  Andrew Poelstra: Presentation at [Layer 2 Summit Hosted by MIT DCI and Fidelity Labs](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
+[4]  Andrew Poelstra: Presentation at [MIT Bitcoin Expo Day 2017](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
+[5]  Flipping the scriptless script on Schnorr, Nov 2017. (https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/)
+[6]  The first successful Zero-Knowledge Contingent Payment, 26 Feb 2016. (https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/)
+[7]  What is Mimblewimble?, 30 Jun 2018. (https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
 
