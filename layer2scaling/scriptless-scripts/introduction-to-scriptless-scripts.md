@@ -1,7 +1,7 @@
 # Introduction to Scriptless Scripts 
 
 - Definition of Scriptless Scripts 
-- Rationale for Scriptless Scripts 
+- The Benefit of Scriptless Scripts
 - List of Scriptless Scripts 
 - The Role of Schnorr Signatures
 - Schnorr multi-signatures=Scriptless Scripts
@@ -23,7 +23,7 @@ A brief introduction is also given in [#5 Scriptless scripts, Layer 2 Scaling Su
 
 ---
 
-## The benefit of Scriptless Scripts 
+## The Benefit of Scriptless Scripts 
 
 The benefit of Scriptless Scripts are functionality, privacy and efficiency. 
 
