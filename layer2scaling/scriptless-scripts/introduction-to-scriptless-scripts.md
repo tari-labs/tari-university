@@ -5,9 +5,8 @@
 - List of Scriptless Scripts 
 - The Role of Schnorr Signatures
 - Schnorr multi-signatures=Scriptless Scripts
-- Simultaneous Scriptless Scripts
 - Adaptor Signatures
-- Features of Adaptor Signatures
+- Simultaneous Scriptless Scripts
 - Atomic (Cross-chain Swaps) Example with Adaptor Signatures
 - Mimblewimble's Scriptless Scripts 
 
