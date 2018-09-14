@@ -44,7 +44,7 @@ These include: [[3]](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
 
 ## The Role of Schnorr Signatures 
 
-The fundamentals of Schnorr signatures must be defined . The signer has a private key *x*, random nonce *r*, and *G* is the generator of a discreet log hard group. *P* is the public key. [[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)[[2]](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s)
+The fundamentals of Schnorr signatures must be defined . The signer has a private key *x*, random nonce *r*, and *G* is the generator of a discreet log hard group. *P* is the public key. ([[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20), [[2]](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s))
 
 s, the signature, can then be computed as a simple linear transaction
 
@@ -73,10 +73,10 @@ $$
 ## Schnorr multi-signatures = Scriptless Scripts
 
 -a mulitsig has multiple participants that produce a signature. Every participant might product a separate signature and concatenate them forming a mulitsig. 
-  
-  $$
+
+$$
   s=Σs(i)
-  $$
+$$
 
 - It can be seen that a multisig is already a scriptless script
 - Independent public keys of several participants are joint to form a single key and signature
@@ -140,7 +140,7 @@ $$
 t=s-s'
 $$
 
-The above is very general however, by attaching auxiliary proofs to one can derive an adaptor signature that will let one translate correct movement of the auxiliary protocol into a valid signature.
+By attaching auxiliary proofs one can derive an adaptor signature to translate correct movement of the auxiliary protocol into a valid signature.
 
 ---
 
@@ -166,6 +166,7 @@ The above is very general however, by attaching auxiliary proofs to one can deri
   $$
 
 
+
 - The Schnorr signature itself is not being verified, but instead the difference *d*
 - *d* functions as the translating key between two separate independent Schnorr signatures
 - Given *d* and either *s* or *s'*, the other can be computed
@@ -189,7 +190,7 @@ The above is very general however, by attaching auxiliary proofs to one can deri
 - ZKCP is a transaction protocol
 - This protocol allows a buyer to purchase information from a seller using coins in a manner which is private, scalable, secure, and importantly in a trustless environment
 - The expected information is transferred only when  payment is made
-- The buyer and seller do not need to trust each other or depend on arbitration by a third party.[[6]](https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/)
+- The buyer and seller do not need to trust each other or depend on arbitration by a third party. [[6]](https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/)
 
 ---
 
@@ -205,16 +206,16 @@ The above is very general however, by attaching auxiliary proofs to one can deri
 
 ## References 
 
-[1] Crypto Innovation Spotlight 2: Scriptless Scripts, 27 Feb 2018. https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8
+[1] - [Crypto Innovation Spotlight 2: Scriptless Scripts, 27 Feb 2018](https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8)
 
-[2]  Andrew Poelstra: Presentation at [Real World Crypto](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s) 
+[2] - [Andrew Poelstra: Presentation at Real World Crypto](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s) 
 
-[3]  Andrew Poelstra: Presentation at [Layer 2 Summit Hosted by MIT DCI and Fidelity Labs](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
+[3] - [Andrew Poelstra: Presentation at Layer 2 Summit Hosted by MIT DCI and Fidelity Labs](https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m)
 
-[4]  Andrew Poelstra: Presentation at [MIT Bitcoin Expo Day 2017](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
+[4] - [Andrew Poelstra: Presentation at MIT Bitcoin Expo Day 2017](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
 
-[5]  Flipping the scriptless script on Schnorr, Nov 2017. (https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/)
+[5] - [Flipping the scriptless script on Schnorr, Nov 2017]((https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/))
 
-[6]  The first successful Zero-Knowledge Contingent Payment, 26 Feb 2016. (https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/)
+[6] - [The first successful Zero-Knowledge Contingent Payment, 26 Feb 2016]((https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/))
 
-[7]  What is Mimblewimble?, 30 Jun 2018. (https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
+[7] - [What is Mimblewimble?, 30 Jun 2018]((https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/))

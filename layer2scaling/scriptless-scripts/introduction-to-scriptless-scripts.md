@@ -114,7 +114,7 @@ $$
 H(P||R+T||message)x
 $$
 
-where the coins to be swapped are contained within *message*. The first party can now calculate the complete signatue *s* such that  
+where the coins to be swapped are contained within *message*. The first party can now calculate the complete signature *s* such that  
 
 $$
 s=r+t+H(P||R+T||message)x
@@ -129,7 +129,7 @@ $$
 The second party can verify the adaptor signature *s'* by asserting *s'G*
 
 $$
-s'G=?+R+H(P||R+T||message)P
+s'G =? R+H(P||R+T||message)P
 $$
 
 However this is not a valid signature as the hashed nonce point is *R+T* and not *R*
@@ -142,7 +142,7 @@ $$
 t=s-s'
 $$
 
-The above is very general however, by attaching auxiliary proofs to one can derive an adaptor signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
+The above is very general however, by attaching auxiliary proofs too one can derive an adaptor signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
 
 ---
 
@@ -168,7 +168,7 @@ It must be noted that the Schnorr signature itself is not being verified, but in
 
 For an atomic transaction, during the setup stage, someone provides the opposing party with the value *d*, and asserts it as the correct value. Once the transaction is signed it can be adjusted to complete the other transaction. Atomicity is achieved; but can only be used by the person who possesses this *d* value. Generally the party that stands to lose money requires the *d* value. 
 
-The *d* value provides an interesting property with regards to atomicity, it is shared before signatures are public which in turn allows the two transactions to be atomic once the transactions are published and by taking difference of any two Schnorr signatures one is able to construct transcripts, such as an atomic swap multisig contract. 
+The *d* value provides an interesting property with regards to atomicity. It is shared before signatures are public, which in turn allows the two transactions to be atomic once the transactions are published. By taking difference of any two Schnorr signatures one is able to construct transcripts, such as an atomic swap multisig contract. 
 
 This is a critical feature for Mimblewimble, which was previously thought to be unable to support atomic swaps or lightning channels. [[4]](https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20)
 
