@@ -42,7 +42,7 @@ Bulletproofs are inner product arguments that provide general ways to prove know
 
 [2]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction "Elliptic Curve Cryptography: a gentle introduction"
 
-[[3]] **????** Range Proofs - A Primer, https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md, Date accessed: 2018-09-10. **????**
+[[3]] **?????** Range Proofs - A Primer, https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md, Date accessed: 2018-09-10. **?????**
 
 [3]: https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md	"Range Proofs - A Primer"
 
