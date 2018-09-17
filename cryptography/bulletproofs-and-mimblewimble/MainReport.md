@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Bulletproofs are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. They form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).   Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[9]](https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs), [[11]](https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040))
+Bulletproofs are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. They form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).   Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[9]](https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs), [[11]](https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040)) ([[9]], [[11]])
 
 ## Contents
 
@@ -36,7 +36,11 @@ Bulletproofs are inner product arguments that provide general ways to prove know
 
 [1] Bulletproofs, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
 
+[1]: https://github.com/adjoint-io/bulletproofs, "Bulletproofs"
+
 [2] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
+
+[2]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction "Elliptic Curve Cryptography: a gentle introduction"
 
 [3] **????** Range Proofs - A Primer, https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md, Date accessed: 2018-09-10. **????**
 
@@ -48,13 +52,17 @@ Bulletproofs are inner product arguments that provide general ways to prove know
 
 [7] Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf, Date accessed: 2018-09-10.
 
-[8] Bullet Proofs (Video), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://www.pscp.tv/w/1mnxerNaNkLKX, Date accessed: 2018-09-??.
+[8] Bullet Proofs (Video), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://www.pscp.tv/w/1mnxerNaNkLKX, Date accessed: 2018-09-10.
 
-[9] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs, Date accessed: 2018-09-??.
+[9] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs, Date accessed: 2018-09-10.
 
-[10] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-??.
+[9]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02"
+
+[10] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
 [11] Decoding zk-SNARKs, https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040, Date accessed: 2018-09-17.
+
+[11]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040	"Decoding zk-SNARKs"
 
 [12] , , Date accessed: 2018-09-??.
 
