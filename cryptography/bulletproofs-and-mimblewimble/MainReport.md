@@ -14,7 +14,7 @@ Bulletproofs are inner product arguments that provide general ways to prove know
 
 ## Interesting Grin-Bulletproof Snippets
 
-### Wallet Reconstruction [[5]](https://github.com/mimblewimble/grin/issues/273)
+### Wallet Reconstruction [[5]]
 
 "{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
 
@@ -26,7 +26,7 @@ Bulletproofs are inner product arguments that provide general ways to prove know
 
 ## Negatives
 
-- A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]](https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup)
+- A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]]
 
 ## Conclusions, Observations, Recommendations
 
