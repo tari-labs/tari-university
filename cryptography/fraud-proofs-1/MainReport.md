@@ -17,12 +17,6 @@ Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System
 
 In this system, the full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected [2].
 
-An invalid block need not be of malicious intent, but could be as a result of any of the following[6]:
-* **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
-* **Missing block data** (unknown and undiscoverable Merkle trees – this could be intentional or accidental).
-* **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
-* **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
-
 # What are fraud proofs?
 
 Fraud proofs are a way to improve the security of SPV clients [5] by providing a mechanism for full nodes to prove that a chain is invalid irrespective of the amount of proof of work it has[5]. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues[6][18].
@@ -32,6 +26,13 @@ A full Bitcoin node contains the following details:
   * every transaction that has ever been sent
   * all the unspent transaction outputs (UTXOs) [4]
   
+An invalid block need not be of malicious intent, but could be as a result of any of the following[6]:
+* **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
+* **Missing block data** (unknown and undiscoverable Merkle trees – this could be intentional or accidental).
+* **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
+* **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
+
+
 An SPV client, such as a mobile device, would not have the ability to process all that information and thus only needs to download block headers.
 These SPV client make use of Bloom filters to receive transactions that are relevant to the user[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
 
@@ -76,7 +77,7 @@ There is one issue raised in using fraud proofs with Plasma : what happens in th
 ### Erasure codes
 A proposed solution to the Plasma "false fraud proofs" issue is to use erasure codes and an assumption of a minimum of one honest node. Erasure coding which allows a piece of data M chunks long to be expanded into a piece of data N chunks long (“chunks” can be of arbitrary size), such that any M of the N chunks can be used to recover the original data. Blocks are then required to commit the Merkle root of this extended data and have light clients probabilistically check that the majority of the extended data is available[21].
 
-Using these erasure codes, one of three conditions will be true to the SPV client[20]:
+According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes[20]:
 
 1) The entire extended data is available, the erasure code is constructed correctly, and the block is valid.
 
@@ -96,7 +97,8 @@ This also assumes that there is atleast one honest node per shard. Using Merklix
 In this scenario, SPV clients can be made aware of any invalidity in blocks and can’t be lied to about the UTXO set.
 
 ### Compact fraud proofs
-
+The concept of compact fraud proofs is to be able to efficiently prove different types of fraud to SPV clients[24]. As already noted in the [introduction to fraud proofs](https://github.com/tari-labs/tari-university/blob/fraudproofs/cryptography/fraud-proofs-1/MainReport.md#what-are-fraud-proofs), invalid blocks need not necesarily be due to malicious intent.
+However, in order to implement the suggested compact fraud proofs, the Bitcoin blockchain would have to be amended to makes all proposed fraud proofs possible as well as adding a mechanism to enable a market of fraud protection providers and consumers[24].
 
 ## Conclusions, Observations, Recommendations
 
@@ -152,6 +154,8 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 [22] Introducing Merklix tree as an unordered Merkle tree on steroid,https://www.deadalnix.me/2016/09/24/introducing-merklix-tree-as-an-unordered-merkle-tree-on-steroid/, Date accessed 2018-09-14.
 
 [23] Using Merklix tree to shard block validation,https://www.deadalnix.me/2016/11/06/using-merklix-tree-to-shard-block-validation/, Date accessed: 2018-09-14.
+
+[24] fraud proofs, https://bitco.in/forum/threads/fraud-proofs.1617/, Date accessed: 2018-09-18.
 
 ## Contributors
 
