@@ -31,15 +31,24 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 [TOC]
 
-[Bulletproofs and Mimblewimble](#Bulletproofs and Mimblewimble)
-    [Introduction](#Introduction)
-    [Contents](#Contents)
-    [Interesting Grin-Bulletproof Snippets](#Interesting Grin-Bulletproof Snippets)
+- [Bulletproofs and Mimblewimble](#Bulletproofs-and-Mimblewimble)
+  - [Introduction](#Introduction)
+  - [Contents](#Contents)
+  - [Interesting Grin-Bulletproof Snippets](#Interesting-Grin-Bulletproof-Snippets)
+    - [Wallet Reconstruction](#Wallet-Reconstruction)
+  - [Negatives](#Negatives)
+  - [Conclusions, Observations, Recommendations](#Conclusions,-Observations,-Recommendations)
+  - [Definition of Terms](#Definition-of-Terms)
+  - [References](#References)
+  - [Contributors](#Contributors)
+
 
 
 ## Interesting Grin-Bulletproof Snippets
 
-### Wallet Reconstruction [[5]][\[5\]]
+### Wallet Reconstruction
+
+See  [[5]][\[5\]]
 
 "{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
 
