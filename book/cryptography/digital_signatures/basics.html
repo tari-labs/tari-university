@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Basics of Schnorr signatures - Tari University</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A collection of learning resources for cryptocurrency">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "../../";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../../cryptography/digital_signatures/introduction.html"><strong aria-hidden="true">1.</strong> Introduction to Schnorr signatures</a></li><li><ol class="section"><li><a href="../../cryptography/digital_signatures/basics.html" class="active"><strong aria-hidden="true">1.1.</strong> Basics of Schnorr signatures</a></li><li><a href="../../cryptography/digital_signatures/schnorr_signatures.html"><strong aria-hidden="true">1.2.</strong> Signature Aggregation</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Tari University</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#public-and-private-keys" id="public-and-private-keys"><h2>Public and Private keys</h2></a>
+<p>The first thing we'll do is create a public and private key.</p>
+<p>On secp256k1, a private key is simply a scalar integer value between 0 and ~2<sup>256</sup>. That's roughly how many
+atoms there are in the universe, so we have a big sandbox to play in.</p>
+<p>We have a special point on the secp256k1 curve called <em>G</em>, that acts as the 'origin'. A public key is calculated
+from the private key by multiplying it by <em>G</em>:</p>
+<p>Let's take an example from <a href="https://chuckbatson.wordpress.com/2014/11/26/secp256k1-test-vectors/">this post</a>.</p>
+<p>\[
+P_a = k_a G
+\]</p>
+<pre><pre class="playpen"><code class="language-rust">extern crate libsecp256k1_rs;
+
+use libsecp256k1_rs::{ SecretKey, PublicKey };
+
+#[allow(non_snake_case)]
+fn main() {
+    let k = SecretKey::from_hex(&quot;0000000000000000000000000000000000000000000000000000000000000001&quot;).unwrap();
+    let pub_from_k = PublicKey::from_secret_key(&amp;k);
+    let known_pub = PublicKey::from_hex(&quot;0479BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8&quot;).unwrap();
+
+    assert_eq!(pub_from_k, known_pub);
+    println!(&quot;Ok&quot;)
+}
+
+</code></pre></pre>
+<a class="header" href="#creating-a-signature" id="creating-a-signature"><h1>Creating a signature</h1></a>
+<p>ECC math multiplication cannot be undone easily. This fact is used to create digital signatures. A valid digital signature is
+a <em>proof</em> that the person providing the signature knows the private key corresponding to the public key the message
+is associated with.</p>
+<p>The approach to creating signatures always follows this recipe:</p>
+<ol>
+<li>Generate a secret once-off number, <em>r</em></li>
+<li>Create a public key, <em>R</em> from <em>r</em> (<em>R = r.G</em>)</li>
+<li>Send the following to Bob, your recipient: your message (<em>m</em>), <em>R</em>, and your public key (<em>P = k.G</em>)</li>
+</ol>
+<p>The actual signature is created by hashing the combination of all the public information above to create a <em>challenge</em>, e:</p>
+<p>\[
+e = H(R || P || m)
+\]</p>
+<p>The hashing function is chosen so that <em>e</em> has the same range as your private keys. In our case, SHA256 is a good choice.</p>
+<p>Now the signature is constructed using your private information:</p>
+<p>\[
+s = r + ke
+\]</p>
+<p>Now Bob can also calculate <em>e</em>, since he already knows <em>m, R, P</em>. But he doesn't know your private key, or nonce.
+<em>Note:</em> When you construct the signature like this, it's known as a <em>Schnorr signature</em>, which we'll discuss in more
+detail in the next section. There are other ways of constructing <em>s</em>, such as ECDSA <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm" title="Wikipedia: ECDSA">WP1</a>, which is used in Bitcoin.</p>
+<p>But see this:</p>
+<p>\[
+\begin{align}
+sG &amp;= (r + ke)G \\
+sG &amp;= rG + (kG)e \\
+sG &amp;= R + Pe
+\end{align}
+\]</p>
+<p>So Bob, must just calculate the Public key corresponding to the signature and check that it equals the RHS of the last
+equation above (R + Pe), all of which Bob knows.</p>
+<a class="header" href="#why-do-we-need-the-nonce" id="why-do-we-need-the-nonce"><h2>Why do we need the nonce?</h2></a>
+<p>Why do we need a nonce in the standard signature?</p>
+<p>Let's say we naïvely sign a message m with</p>
+<p>\[
+e = H(R || m)
+\]</p>
+<p>and then the signature would be \(s = ek \).</p>
+<p>Now as before, we can check that the signature is valid:</p>
+<p>\[
+\begin{align}
+s &amp;= ek \\
+\therefore sG &amp;= (ek)G = e(kG) = eP
+\end{align}
+\]</p>
+<p>So far so good. But anyone can read your private key now because s is a scalar, so \(k = e/s\)
+is not hard to do.
+With the nonce you have to solve \( k = (s - r)/e \), but r is unknown</p>
+<pre><pre class="playpen"><code class="language-rust">extern crate libsecp256k1_rs as secp256k1;
+
+use secp256k1::{SecretKey, PublicKey, thread_rng, Message};
+use secp256k1::schnorr::{ Challenge};
+
+#[allow(non_snake_case)]
+fn main() {
+    // Create a random private key
+    let mut rng = thread_rng();
+    let k = SecretKey::random(&amp;mut rng);
+    println!(&quot;My private key: {}&quot;, k);
+    let P = PublicKey::from_secret_key(&amp;k);
+    let m = Message::hash(b&quot;Meet me at 12&quot;).unwrap();
+    // Challenge, e = H(P || m)
+    let e = Challenge::new(&amp;[&amp;P, &amp;m]).as_scalar().unwrap();
+
+    // Signature
+    let s = e * k;
+
+    // Verify the signature
+    assert_eq!(PublicKey::from_secret_key(&amp;s), e*P);
+    println!(&quot;Signature is valid!&quot;);
+    // But let's try calculate the private key from known information
+    let hacked = s * e.inv();
+    assert_eq!(k, hacked);
+    println!(&quot;Hacked key:     {}&quot;, k)
+}
+
+</code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../cryptography/digital_signatures/introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../../cryptography/digital_signatures/schnorr_signatures.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../../cryptography/digital_signatures/introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../../cryptography/digital_signatures/schnorr_signatures.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+        <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
