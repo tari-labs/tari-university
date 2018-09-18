@@ -1,6 +1,6 @@
-# Bulletproofs and Mimblewimble
+# Bulletproofs and Mimblewimble<a name="h-Bulletproofs-and-Mimblewimble"> </a>
 
-## Introduction
+## Introduction<a name="h-Introduction"> </a>
 
 Bulletproofs is a non-interactive zero-knowledge<sup>[def](#zk)</sup> proof protocol for general arithmetic circuits<sup>[def](#ac)</sup> with very short proofs (arguments of knowledge<sup>[def](#afs)</sup>) and without requiring a trusted setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]][\[12\]]
 
@@ -27,26 +27,24 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 
 
-## Contents
+## Contents<a name="h-Contents"> </a>
 
-[TOC]
-
-- [Bulletproofs and Mimblewimble](#Bulletproofs-and-Mimblewimble)
-  - [Introduction](#Introduction)
-  - [Contents](#Contents)
-  - [Interesting Grin-Bulletproof Snippets](#Interesting-Grin-Bulletproof-Snippets)
-    - [Wallet Reconstruction](#Wallet-Reconstruction)
-  - [Negatives](#Negatives)
-  - [Conclusions, Observations, Recommendations](#Conclusions,-Observations,-Recommendations)
-  - [Definition of Terms](#Definition-of-Terms)
-  - [References](#References)
-  - [Contributors](#Contributors)
+- [Bulletproofs and Mimblewimble](#h-Bulletproofs-and-Mimblewimble)
+  - [Introduction](#h-Introduction)
+  - [Contents](#h-Contents)
+  - [Interesting Grin-Bulletproof Snippets](#h-Interesting-Grin-Bulletproof-Snippets)
+    - [Wallet Reconstruction](#h-Wallet-Reconstruction)
+  - [Negatives](#h-Negatives)
+  - [Conclusions, Observations, Recommendations](#h-Conclusions,-Observations,-Recommendations)
+  - [Definition of Terms](#h-Definition-of-Terms)
+  - [References](#h-References)
+  - [Contributors](#h-Contributors)
 
 
 
-## Interesting Grin-Bulletproof Snippets
+## Interesting Grin-Bulletproof Snippets<a name="h-Interesting-Grin-Bulletproof-Snippets"> </a>
 
-### Wallet Reconstruction
+### Wallet Reconstruction<a name="h-Wallet-Reconstruction"> </a>
 
 See  [[5]][\[5\]]
 
@@ -58,15 +56,15 @@ See  [[5]][\[5\]]
 
 ???
 
-## Negatives
+## Negatives<a name="h-Negatives"> </a>
 
-- A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]]
+- A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]][\[10\]]
 
-## Conclusions, Observations, Recommendations
+## Conclusions, Observations, Recommendations<a name="h-Conclusions,-Observations,-Recommendations"> </a>
 
 - ???
 
-## Definition of Terms
+## Definition of Terms<a name="h-Definition-of-Terms"> </a>
 
 - <u>Arithmetic Circuits</u>:<a name="ac"> </a>???
 - <u>Argument of Knowledge System</u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
@@ -74,7 +72,7 @@ See  [[5]][\[5\]]
 - <u>Zero-knowledge System</u>:<a name="zk"> </a>???
 - ???
 
-## References
+## References<a name="h-References"> </a>
 
 [[1]][\[1\]] Bulletproofs, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
 
@@ -192,7 +190,7 @@ See  [[5]][\[5\]]
 
 [\[29\]]:  ""
 
-## Contributors
+## Contributors<a name="h-Contributors"> </a>
 
 - [https://github.com/???](https://github.com/??)
 - 
