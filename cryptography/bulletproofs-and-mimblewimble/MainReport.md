@@ -1,6 +1,6 @@
-# Bulletproofs and Mimblewimble<a name="h-Bulletproofs-and-Mimblewimble"> </a>
+# <a name="h-Bulletproofs-and-Mimblewimble"> </a>Bulletproofs and Mimblewimble
 
-## Introduction<a name="h-Introduction"> </a>
+## <a name="h-Introduction"> </a>Introduction
 
 Bulletproofs is a non-interactive zero-knowledge<sup>[def](#zk)</sup> proof protocol for general arithmetic circuits<sup>[def](#ac)</sup> with very short proofs (arguments of knowledge<sup>[def](#afs)</sup>) and without requiring a trusted setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]][\[12\]]
 
@@ -27,7 +27,7 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 
 
-## Contents<a name="h-Contents"> </a>
+## <a name="h-Contents"> </a>Contents
 
 - [Bulletproofs and Mimblewimble](#h-Bulletproofs-and-Mimblewimble)
   - [Introduction](#h-Introduction)
