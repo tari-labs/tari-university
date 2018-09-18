@@ -4,6 +4,10 @@
 
 Bulletproofs is a non-interactive zero-knowledge<sup>[def](#zk)</sup> proof protocol for general arithmetic circuits<sup>[def](#ac)</sup> with very short proofs (arguments of knowledge<sup>[def](#afs)</sup>) and without requiring a trusted setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]][\[12\]]
 
+[[100]][\[100\]]
+
+[\[100\]]: https:\\www.google.co.za	"Google browse"
+
 Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[9]][\[9\]], [[11]][\[11\]])
 
 In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[9]][\[9\]]
@@ -109,13 +113,13 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 [\[11\]]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040	"Decoding zk-SNARKs"
 
-[[12]][\[12\]] Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-??.
+[[blabla]][\[12\]] Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-??.
 
 [\[12\]]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf	"Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al"
 
-[[13]][\[13\]] , , Date accessed: 2018-09-??.
+[[13]] , , Date accessed: 2018-09-??.
 
-[\[13\]]: 
+[13]: https://www.google.co.za "Google test"
 
 [[14]][\[14\]] , , Date accessed: 2018-09-??.
 
@@ -185,3 +189,11 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 - [https://github.com/???](https://github.com/??)
 - 
+
+[\[12\]]: 
+[\[9\]]: 
+
+[\[1\]]: 
+[\[100\]]: 
+
+[\[9\]]: 
