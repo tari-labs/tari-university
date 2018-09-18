@@ -75,7 +75,7 @@ There is one issue raised in using fraud proofs with Plasma : what happens in th
 ## Suggested fraud proof improvements
 
 ### Erasure codes
-A proposed solution to the Plasma "false fraud proofs" issue is to use erasure codes and an assumption of a minimum of one honest node. Erasure coding which allows a piece of data M chunks long to be expanded into a piece of data N chunks long (“chunks” can be of arbitrary size), such that any M of the N chunks can be used to recover the original data. Blocks are then required to commit the Merkle root of this extended data and have light clients probabilistically check that the majority of the extended data is available[21].
+A proposed solution to the Plasma "false fraud proofs" issue is to use erasure codes with an assumption of a minimum of one honest node. Erasure coding which allows a piece of data M chunks long to be expanded into a piece of data N chunks long (“chunks” can be of arbitrary size), such that any M of the N chunks can be used to recover the original data. Blocks are then required to commit the Merkle root of this extended data and have light clients probabilistically check that the majority of the extended data is available[21].
 
 According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes[20]:
 
