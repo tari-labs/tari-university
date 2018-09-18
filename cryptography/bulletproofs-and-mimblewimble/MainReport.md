@@ -42,9 +42,9 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 
 
-## Interesting Grin-Bulletproof Snippets<a name="h-Interesting-Grin-Bulletproof-Snippets"> </a>
+## <a name="h-Interesting-Grin-Bulletproof-Snippets"> </a>Interesting Grin-Bulletproof Snippets
 
-### Wallet Reconstruction<a name="h-Wallet-Reconstruction"> </a>
+### <a name="h-Wallet-Reconstruction"> </a>Wallet Reconstruction
 
 See  [[5]][\[5\]]
 
@@ -56,15 +56,15 @@ See  [[5]][\[5\]]
 
 ???
 
-## Negatives<a name="h-Negatives"> </a>
+## <a name="h-Negatives"> </a>Negatives
 
 - A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]][\[10\]]
 
-## Conclusions, Observations, Recommendations<a name="h-Conclusions,-Observations,-Recommendations"> </a>
+## <a name="h-Conclusions,-Observations,-Recommendations"> </a>Conclusions, Observations, Recommendations
 
 - ???
 
-## Definition of Terms<a name="h-Definition-of-Terms"> </a>
+## <a name="h-Definition-of-Terms"> </a>Definition of Terms
 
 - <u>Arithmetic Circuits</u>:<a name="ac"> </a>???
 - <u>Argument of Knowledge System</u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
@@ -72,7 +72,7 @@ See  [[5]][\[5\]]
 - <u>Zero-knowledge System</u>:<a name="zk"> </a>???
 - ???
 
-## References<a name="h-References"> </a>
+## <a name="h-References"> </a>References
 
 [[1]][\[1\]] Bulletproofs, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
 
@@ -190,7 +190,7 @@ See  [[5]][\[5\]]
 
 [\[29\]]:  ""
 
-## Contributors<a name="h-Contributors"> </a>
+## <a name="h-Contributors"> </a>Contributors
 
 - [https://github.com/???](https://github.com/??)
 - 
