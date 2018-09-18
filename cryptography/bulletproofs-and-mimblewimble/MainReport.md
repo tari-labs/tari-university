@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Bulletproofs is a non-interactive zero-knowledge proof protocol for general arithmetic circuits with very short proofs (arguments of knowledge[^*]) and without requiring a trusted setup. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]][\[12\]]
+Bulletproofs is a non-interactive zero-knowledge<sup>[3](f3)</sup> proof protocol for general arithmetic circuits<sup id="a1">[2](#foot-1)</sup> with very short proofs (arguments of knowledge<sup>[1](#footnote_1)</sup>) and without requiring a trusted setup. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]][\[12\]]
 
 Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[9]][\[9\]], [[11]][\[11\]])
 
@@ -57,7 +57,14 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 ## Definition of Terms
 
-[^*]: See Definition of Terms
+<a name="footnote_1">1</a>: See *Definition of Terms*
+
+```
+<b id="foot-1">2</b> See 'Definition of Terms' [↩](#a1)
+```
+
+[f3]: 	"See &#39;Definition of Terms&#39;"
+
 - <u>Argument of knowledge system</u>: Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
 - ???
 
