@@ -7,13 +7,13 @@ e.g. MyBranchName
 ### URL
 Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
-Tree location:   consensus-mechanisms-1?p=/
+Tree location:   MyBranchName?p=/
 
 Presentation:    consensus-mechanisms/BFT-consensusmechanisms#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/consensus-mechanisms-1?p=/consensus-mechanisms/BFT-consensusmechanisms#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/consensus-mechanisms/BFT-consensusmechanisms#/
 
 ## On the trunk
 ### Trunk name
