@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Signature Aggregation - Tari University</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A collection of learning resources for cryptocurrency">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "../../";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../../cryptography/digital_signatures/introduction.html"><strong aria-hidden="true">1.</strong> Introduction to Schnorr signatures</a></li><li><ol class="section"><li><a href="../../cryptography/digital_signatures/basics.html"><strong aria-hidden="true">1.1.</strong> Basics of Schnorr signatures</a></li><li><a href="../../cryptography/digital_signatures/schnorr_signatures.html" class="active"><strong aria-hidden="true">1.2.</strong> Signature Aggregation</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Tari University</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#schnorr-signatures" id="schnorr-signatures"><h1>Schnorr signatures</h1></a>
+<p>If you follow the crypto news, you'll know that that new hotness in Bitcoin is Schnorr Signatures.</p>
+<p><img src="./img/schnorr-meme.jpg" alt="schnorr" /></p>
+<p>But in actual fact, they're old news! The Schnorr signature is considered the simplest digital signature scheme
+to be provably secure in a random oracle model. It is efficient and generates short signatures.
+It was covered by U.S. Patent 4,995,082 which expired in February 2008 <a href="https://en.wikipedia.org/wiki/Schnorr_signature" title="Wikipedia:Schnorr signature">WP1</a>.</p>
+<a class="header" href="#so-why-all-the-fuss" id="so-why-all-the-fuss"><h2>So why all the fuss?</h2></a>
+<p>What makes Schnorr signatures to interesting (and potentially dangerous) is their simplicity.
+Schnorr signatures are <em>linear</em>, so you have some nice properties.</p>
+<p>Given two private keys <em>x, y</em> with corresponding public keys, <em>X, Y</em>, the following holds:</p>
+<p>\[
+(x + y)G = xG + yG = X + Y
+\]</p>
+<p>You saw this multiplicative property in the previous section, when we were verifying the signature. It's this
+linear property of Schnorr signatures that makes it very attractive for things like</p>
+<ul>
+<li>signature aggregation</li>
+<li>atomic swaps</li>
+<li>'scriptless' scripts</li>
+</ul>
+<a class="header" href="#naïve-signature-aggregation" id="naïve-signature-aggregation"><h1>(Naïve) Signature aggregation</h1></a>
+<p>Let's see how the linearity property of Schnorr signatures can be used to construct a 2-of-2 multi-signature.</p>
+<p>Alice and Bob want to co-sign something (a Tari transaction, say) without having to trust each other;
+i.e. they need to be able to prove ownership of their respective keys, and the aggregate signature is
+only valid if <em>both</em> Alice and Bob provide their part of the signature.</p>
+<p>Assuming private keys are denoted \( k_i \) and public keys \( P_i \). If we ask Alice and Bob to each
+supply a nonce, we can try</p>
+<p>\[
+\begin{align}
+P_{agg} &amp;= P_a + P_b \\
+e &amp;= H(R_a || R_b || P_a || P_b || m) \\
+s_{agg} &amp;= r_a + r_b + (k_a + k_b)e \\
+&amp;= (r_a + k_ae) + (r_b + k_ae) \\
+&amp;= s_a + s_b
+\end{align}
+\]</p>
+<p>So it looks like Alice and Bob can supply their own <em>R</em>, and anyone can construct the 2-of-2 signature
+from the sum of the _R_s and public keys. This does work:</p>
+<pre><pre class="playpen"><code class="language-rust">extern crate libsecp256k1_rs as secp256k1;
+
+use secp256k1::{SecretKey, PublicKey, thread_rng, Message};
+use secp256k1::schnorr::{Schnorr, Challenge};
+
+#[allow(non_snake_case)]
+fn main() {
+    // Alice generates some keys
+    let (ka, Pa, ra, Ra) = get_keyset();
+    // Bob generates some keys
+    let (kb, Pb, rb, Rb) = get_keyset();
+    let m = Message::hash(b&quot;a multisig transaction&quot;).unwrap();
+    // The challenge uses both nonce public keys and private keys
+    // e = H(Ra || Rb || Pa || Pb || H(m))
+    let e = Challenge::new(&amp;[&amp;Ra, &amp;Rb, &amp;Pa, &amp;Pb, &amp;m]).as_scalar().unwrap();
+    // Alice calculates her signature
+    let sa = ra + ka * e;
+    // Bob calculates his signature
+    let sb = rb + kb * e;
+    // Calculate the aggregate signature
+    let s_agg = sa + sb;
+    // S = s_agg.G
+    let S = PublicKey::from_secret_key(&amp;s_agg);
+    // This should equal Ra + Rb + e(Pa + Pb)
+    assert_eq!(S, Ra + Rb + e*(Pa + Pb));
+    println!(&quot;The aggregate signature is valid!&quot;)
+}
+
+#[allow(non_snake_case)]
+fn get_keyset() -&gt; (SecretKey, PublicKey, SecretKey, PublicKey) {
+    let mut rng = thread_rng();
+    let k = SecretKey::random(&amp;mut rng);
+    let P = PublicKey::from_secret_key(&amp;k);
+    let r = SecretKey::random(&amp;mut rng);
+    let R = PublicKey::from_secret_key(&amp;r);
+    (k, P, r, R)
+}
+
+</code></pre></pre>
+<p>But this scheme is not secure!</p>
+<a class="header" href="#key-cancellation-attack" id="key-cancellation-attack"><h1>Key cancellation attack</h1></a>
+<p>Let's take the previous scenario again, but this time, Bob knows Alice's public key and nonce ahead of time, by
+waiting until she reveals them.</p>
+<p>Now Bob lies, and says that his public key is \( P_b' = P_b - P_a \) and public nonce is \( R_b' = R_b - R_a \).</p>
+<p>Note that Bob doesn't know the private keys for these faked values, but that doesn't matter.</p>
+<p>Everyone assumes that \(s_{agg} = R_a + R_b' + e(P_a + P_b') \) as per the aggregation scheme.</p>
+<p>But Bob can create this signature himself:</p>
+<p>\[
+\begin{align}
+s_{agg}G &amp;= R_a + R_b' + e(P_a + P_b') \\
+&amp;= R_a + (R_b - R_a) + e(P_a + P_b - P_a) \\
+&amp;= R_b + eP_b \\
+&amp;= r_bG + ek_bG \\
+\therefore s_{agg} &amp;= r_b + ek_b = s_b
+\end{align}
+\]</p>
+<pre><pre class="playpen"><code class="language-rust">extern crate libsecp256k1_rs as secp256k1;
+
+use secp256k1::{SecretKey, PublicKey, thread_rng, Message};
+use secp256k1::schnorr::{Schnorr, Challenge};
+
+#[allow(non_snake_case)]
+fn main() {
+    // Alice generates some keys
+    let (ka, Pa, ra, Ra) = get_keyset();
+    // Bob generates some keys as before
+    let (kb, Pb, rb, Rb) = get_keyset();
+    // ..and then publishes his forged keys
+    let Pf = Pb - Pa;
+    let Rf = Rb - Ra;
+
+    let m = Message::hash(b&quot;a multisig transaction&quot;).unwrap();
+    // The challenge uses both nonce public keys and private keys
+    // e = H(Ra || Rb' || Pa || Pb' || H(m))
+    let e = Challenge::new(&amp;[&amp;Ra, &amp;Rf, &amp;Pa, &amp;Pf, &amp;m]).as_scalar().unwrap();
+
+    // Bob creates a forged signature
+    let s_f = rb + e * kb;
+    // Check if it's valid
+    let sG = Ra + Rf + e*(Pa + Pf);
+    assert_eq!(sG, PublicKey::from_secret_key(&amp;s_f));
+    println!(&quot;Bob successfully forged the aggregate signature!&quot;)
+}
+
+#[allow(non_snake_case)]
+fn get_keyset() -&gt; (SecretKey, PublicKey, SecretKey, PublicKey) {
+    let mut rng = thread_rng();
+    let k = SecretKey::random(&amp;mut rng);
+    let P = PublicKey::from_secret_key(&amp;k);
+    let r = SecretKey::random(&amp;mut rng);
+    let R = PublicKey::from_secret_key(&amp;r);
+    (k, P, r, R)
+}
+
+</code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../cryptography/digital_signatures/basics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../../cryptography/digital_signatures/basics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+        <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
