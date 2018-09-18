@@ -1,12 +1,6 @@
 # Body 
 
-Distributed agents (these could be computers, generals co-ordinating an attack, or sensors in a nuclear plant) 
-that communicate via a network (be it digital, courier or mechanical) need to agree on facts in order to act
-as a coordinated whole.
-
-When *all* the (non-faulty) agents _agree on a given fact_, then we say that the network is in consensus.
-
-Formal requirements for a consensus protocol may include [[1]]:
+One key property of a block chain system is that the nodes do not trust each other, meaning that some may behave in Byzantine manners. The consensus protocol must therefore tolerate Byzantine failures. The research literature on distributed consensus is vast, and there are many variants of previously proposed protocols being devloped for block chains. They can be largely clasified alsong a spectrum.[[1]]:
 
 # References
 [[1]] Consensus mechanisms. Wikipedia.
