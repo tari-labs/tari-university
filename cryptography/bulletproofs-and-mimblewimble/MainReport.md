@@ -57,12 +57,7 @@ Bulletproofs have wide application [[7]][7] and can be used for :
 
 ## Definition of Terms
 
-<<<<<<< HEAD
 [^*]: See ~Definition of Terms~
-=======
-[^*]: "See 'Definition~ of Terms'"
->>>>>>> ace79c0841f849ad653ab4fa6d6490dd61944d41
-
 - <u>Argument of knowledge system</u>: Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][12]
 - ???
 
