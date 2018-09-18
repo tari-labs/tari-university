@@ -57,7 +57,7 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 ## Definition of Terms
 
-[^*]: See *Definition of Terms*
+[^*]: See Definition of Terms
 - <u>Argument of knowledge system</u>: Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
 - ???
 
@@ -65,7 +65,7 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 [[1]][\[1\]] Bulletproofs, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
 
-[\[1\]]: https://github.com/adjoint-io/bulletproofs, "Bulletproofs"
+[\[1\]]: https://github.com/adjoint-io/bulletproofs "Bulletproofs"
 
 [[2]][\[2\]] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
@@ -77,7 +77,7 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 [[4]][\[4\]] Mimblewimble Explained, https://www.weusecoins.com/mimble-wimble-andrew-poelstra/, Date accessed: 2018-09-10.
 
-[\[4]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra	"Mimblewimble Explained"
+[\[4\]]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra	"Mimblewimble Explained"
 
 [[5]][\[5\]] Bulletproofs #273, https://github.com/mimblewimble/grin/issues/273, Date  accessed: 2018-09-10.
 
@@ -99,9 +99,9 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 [\[9\]]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02"
 
-[[10]][\[10\]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
+[[10]][\[10\]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
-[\[10\]]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup	"Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra)"
+[\[10\]]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup	"Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit"
 
 [[11]][\[11\]] Decoding zk-SNARKs, https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040, Date accessed: 2018-09-17.
 
