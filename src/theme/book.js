@@ -16,7 +16,7 @@ function playpen_text(playpen) {
 }
 
 (function codeSnippets() {
-    const PLAYPEN_URL="http://ec2-52-23-198-21.compute-1.amazonaws.com:5000";
+    const PLAYPEN_URL="http://ec2-52-23-198-21.compute-1.amazonaws.com";
 
     // Hide Rust code lines prepended with a specific character
     var hiding_character = "#";

@@ -1,24 +1,3 @@
-# Introduction
-
-This is an interactive introduction to digital signatures. It uses Rust code to demonstrate some of 
-the idea presented here, so you can see them at work. The code for this introduction makes use 
-of the [libsecp256k-rs](https://github.com/tari-labs/libsecp256k1) library. 
-
-That's a mouthful, but secp256k1 is the name of the elliptic curve that secure a *lot* of Bitcoin, and
-other cryptocurrencies' transactions. 
-
-This particular library has some nice features. I've overridden the `+` (addition) and `*` (multiplication)
-operators so that the Rust code looks a lot more like mathematical formulae. This makes it much easier
-to play with the ideas we'll be exploring.
-
-**WARNING!** _Don't use this library in production code_. It hasn't been battle-hardened, so [use this one in
-production instead](https://github.com/rust-bitcoin/rust-secp256k1)
-
-# Let's get started
-
-I'm going to assume you know the basics of elliptic curve cryptography (ECC). If not, don't stress, there's a
-[gentle introduction](https://gitpitch.com/tari-labs/tari-university/master?p=/cryptography/crypto-1#/) 
-on Tari Labs University archives.
 
 ## Public and Private keys
 
@@ -30,7 +9,7 @@ atoms there are in the universe, so we have a big sandbox to play in.
 We have a special point on the secp256k1 curve called _G_, that acts as the 'origin'. A public key is calculated
 from the private key by multiplying it by _G_:
 
-Let's take an example [this post](https://chuckbatson.wordpress.com/2014/11/26/secp256k1-test-vectors/).
+Let's take an example from [this post](https://chuckbatson.wordpress.com/2014/11/26/secp256k1-test-vectors/).
 
 \\[
   P_a = k_a G
@@ -65,6 +44,8 @@ Now the signature is constructed using your private information:
 \\]
 
 Now Bob can also calculate _e_, since he already knows _m, R, P_. But he doesn't know your private key, or nonce.
+_Note:_ When you construct the signature like this, it's known as a _Schnorr signature_, which we'll discuss in more 
+detail in the next section. There are other ways of constructing _s_, such as ECDSA [WP1], which is used in Bitcoin.
 
 But see this:
 
@@ -76,9 +57,35 @@ But see this:
     \end{align}
 \\]
 
-So Bob, must just calculate the Public key sorresponding to the signature and check that it equals the RHS of the last
+So Bob, must just calculate the Public key corresponding to the signature and check that it equals the RHS of the last
 equation above (R + Pe), all of which Bob knows.
 
+## Why do we need the nonce?
+
+Why do we need a nonce in the standard signature?
+
+Let's say we naïvely sign a message m with
+
+\\[
+e = H(R || m)
+\\]
+
+and then the signature would be \\(s = ek \\). 
+
+Now as before, we can check that the signature is valid:
+
+\\[
+\begin{align}
+  s &= ek \\\\
+ \therefore sG &= (ek)G = e(kG) = eP
+\end{align}
+\\]
+
+So far so good. But anyone can read your private key now because s is a scalar, so \\(k = e/s\\)
+ is not hard to do.
+With the nonce you have to solve \\( k = (s - r)/e \\), but r is unknown
 
 
-{{#playpen src/signature.rs}}
+{{#playpen src/no-nonce.rs}}
+
+[WP1]: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm 'Wikipedia: ECDSA'

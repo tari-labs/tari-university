@@ -1,2 +1,4 @@
 - Cryptography
-  - [Introduction to digital signatures](./cryptography/digital_signatures.md)
+  - [Introduction to Schnorr signatures](./cryptography/digital_signatures/introduction.md)
+    - [Basics of Schnorr signatures](cryptography/digital_signatures/basics.md)
+    - [Signature Aggregation](cryptography/digital_signatures/schnorr_signatures.md)
