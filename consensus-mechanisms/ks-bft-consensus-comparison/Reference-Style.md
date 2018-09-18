@@ -9,4 +9,7 @@ When *all* the (non-faulty) agents _agree on a given fact_, then we say that the
 Formal requirements for a consensus protocol may include [[1]]:
 
 # References
-1. Consensus mechanisms. Wikipedia. [1]: https://en.wikipedia.org/wiki/Consensus_(computer_science) 'Wikipedia - Consensus mechanisms' 
+1. Consensus mechanisms. Wikipedia. [[1]] 
+
+
+[1]: https://en.wikipedia.org/wiki/Consensus_(computer_science) 'Wikipedia - Consensus mechanisms' 
