@@ -2,15 +2,15 @@
 
 ## Introduction
 
-Bulletproofs is a non-interactive zero-knowledge proof protocol for general arithmetic circuits with very short proofs (arguments of knowledge[^*]) and without requiring a trusted setup. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]]
+Bulletproofs is a non-interactive zero-knowledge proof protocol for general arithmetic circuits with very short proofs (arguments of knowledge[^*]) and without requiring a trusted setup. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]][]
 
-Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[9]][9], [[11]][11])
+Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[9]][], [[11]][])
 
-In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[9]][9]
+In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[9]][]
 
 
 
-Bulletproofs have wide application [[7]][7] and can be used for :
+Bulletproofs have wide application [[7]] and can be used for :
 
 - Rangeproofs
   - ???
@@ -37,7 +37,7 @@ Bulletproofs have wide application [[7]][7] and can be used for :
 
 ## Interesting Grin-Bulletproof Snippets
 
-### Wallet Reconstruction [[5]][5]
+### Wallet Reconstruction [[5]]
 
 "{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
 
@@ -49,7 +49,7 @@ Bulletproofs have wide application [[7]][7] and can be used for :
 
 ## Negatives
 
-- A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]][10]
+- A discrete-log attacker (e.g. a quantum computer) would be able to exploit Bulletproofs to silently inflate any currency that used them [[10]]
 
 ## Conclusions, Observations, Recommendations
 
@@ -58,20 +58,20 @@ Bulletproofs have wide application [[7]][7] and can be used for :
 ## Definition of Terms
 
 [^*]: See *Definition of Terms*
-- <u>Argument of knowledge system</u>: Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][12]
+- <u>Argument of knowledge system</u>: Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]]
 - ???
 
 ## References
 
-[[1]][1] Bulletproofs, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
+[[1]] Bulletproofs, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
 
 [1]: https://github.com/adjoint-io/bulletproofs, "Bulletproofs"
 
-[[2]][2] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
+[[2]] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
 [2]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction "Elliptic Curve Cryptography: a gentle introduction"
 
-[[3]][3] **?????** Range Proofs - A Primer, https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md, Date accessed: 2018-09-10. **?????**
+[[3]] **?????** Range Proofs - A Primer, https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md, Date accessed: 2018-09-10. **?????**
 
 [3]: https://github.com/ignopeverell/grin/blob/master/doc/rangeproofs.md	"Range Proofs - A Primer"
 
@@ -107,9 +107,9 @@ Bulletproofs have wide application [[7]][7] and can be used for :
 
 [11]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040	"Decoding zk-SNARKs"
 
-[[12]] Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-??.
+[[12]][] Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-??.
 
-[12]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf	"Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al"
+[[12\]]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf	"Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al"
 
 [[13]] , , Date accessed: 2018-09-??.
 
