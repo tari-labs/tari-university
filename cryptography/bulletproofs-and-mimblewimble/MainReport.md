@@ -57,10 +57,10 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 ## <a name="Definition_of_Terms"> </a>Definition of Terms
 
-- <u><u>Arithmetic Circuits</u>:<a name="ac"> </a>???
-- Argument of Knowledge System</u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
-- <u><u>Trusted Setup</u>:<a name="ts"> </a>???
-- Zero-knowledge System</u>:<a name="zk"> </a>???
+- <u>Arithmetic Circuits</u>:<a name="ac"> </a>???
+- <u>Argument of Knowledge System</u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
+- <u>Trusted Setup</u>:<a name="ts"> </a>???
+- <u>Zero-knowledge System</u>:<a name="zk"> </a>???
 - ???
 
 ## References
