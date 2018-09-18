@@ -31,14 +31,10 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 [TOC]
 
-```
-<!--ts-->
-   * [Bulletproofs and Mimblewimble](#Bulletproofs-and-Mimblewimblec)
-     * [Introduction](#Introduction)
-     * [Contents](#Contents)
-<!--te-->
-```
-
+[Bulletproofs and Mimblewimble](#Bulletproofs and Mimblewimble)
+    [Introduction](#Introduction)
+    [Contents](#Contents)
+    [Interesting Grin-Bulletproof Snippets](#Interesting Grin-Bulletproof Snippets)
 
 
 ## Interesting Grin-Bulletproof Snippets
