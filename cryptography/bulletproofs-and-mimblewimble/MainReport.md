@@ -45,7 +45,7 @@ Bulletproofs have wide application [[7]][7] and can be used for :
 
 "{**apoelstra**} Ok, I can get you 64 bytes without much trouble (xoring them into `tau_1` and `alpha` which are easy to extract from `tau_x` and `mu` if you know the original seed used to produce the randomness). I think it's possible to get another 32 bytes into `t` but that's way more involved since `t` is a big inner product." 
 
-???
+????
 
 ## Negatives
 
