@@ -93,7 +93,7 @@ COVAL is being developed with a primary purpose of moving value using “off-cha
 #### Strengths
 
 - Embedded consensus/Counterparty provides a simple way to add "layer 2" functionality to an already existing blockchain implementation that supports basic data embedding
-- Counterparty's embedded consensus model utilizes "permissionless innovation", meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
+- Counterparty's embedded consensus model utilizes "permission less innovation", meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
 
 #### Weaknesses
 

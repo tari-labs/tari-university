@@ -72,12 +72,12 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 #### #2 Counterparty
 
 - Counterparty NOT a block chain -> token protocol that operates on Bitcoin
-- Fully functional DEX & hardcoded smart contracts, e.g. difference, binary options
+- Full DEX & hardcoded smart contracts, e.g. difference, binary options
 - Embedded consensus (all comms via Bitcoin, identical ledgers, no P2P network)
 - Tx meta data embedded into Bitcoin Txs on Bitcoin block chain (e.g. 1-of-3 multisig, P2SH or P2PKH)
 - Read and validated by the federated nodes, executed by them
 
-![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/robby-dermody-patch-1/layer2scaling/more-landscape/sources/CounterpartyStack.png)
+![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/CounterpartyStack.png)
 
 
 
