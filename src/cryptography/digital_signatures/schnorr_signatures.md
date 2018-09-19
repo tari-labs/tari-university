@@ -10,17 +10,21 @@ It was covered by U.S. Patent 4,995,082 which expired in February 2008 [WP1].
 
 ## So why all the fuss?
 
-What makes Schnorr signatures to interesting (and potentially dangerous) is their simplicity. 
+What makes Schnorr signatures so interesting (and [potentially dangerous](#key_cancellation_attack)) is their simplicity. 
 Schnorr signatures are _linear_, so you have some nice properties.
 
-Given two private keys _x, y_ with corresponding public keys, _X, Y_, the following holds:
+Elliptic curves have the multiplicative property. So if you have two scalars _x, y_ with corresponding points, _X, Y_, 
+the following holds:
 
 \\[
   (x + y)G = xG + yG = X + Y 
 \\]
 
-You saw this multiplicative property in the previous section, when we were verifying the signature. It's this 
-linear property of Schnorr signatures that makes it very attractive for things like
+Schnorr signatures are of the form \\( s = r + e.k \\). This construction is linear too, so it meshes nicely with
+the linearity of elliptic curve math..
+ 
+You saw this property in the previous section, when we were verifying the signature. Schnorr signatures' linearity 
+makes it very attractive for things like
 
 * signature aggregation
 * atomic swaps
@@ -79,4 +83,17 @@ But Bob can create this signature himself:
 
 {{#playpen src/cancellation.rs}}
 
+
+# Better approaches to aggregation
+
+In the key attack above, Bob didn't know the private keys for his published _R_ and _P_ values. We could defeat Bob
+by asking him to sign a message proving that he _does_ know the private keys.
+
+This works, but it requires another round of messaging between parties, which is not conducive to great UX.
+
+[TODO - MuSig]
+
+
+
 [WP1]: https://en.wikipedia.org/wiki/Schnorr_signature 'Wikipedia:Schnorr signature'
+[BS18]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html 'Blockstream: Key Aggregation for Schnorr Signatures'

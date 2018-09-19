@@ -85,7 +85,28 @@ So far so good. But anyone can read your private key now because s is a scalar, 
  is not hard to do.
 With the nonce you have to solve \\( k = (s - r)/e \\), but r is unknown
 
-
 {{#playpen src/no-nonce.rs}}
+
+# Secure key exchange
+
+We can descrive the Elliptic Curve Diffie-Hellmam exchange (ECDH) which is a simple way for two parties
+to generate a shared secret.
+
+Alice and Bob want to communicate securely. A simple way to do this is to use each other's public keys and
+calculate
+
+\\[
+\begin{align}
+  S_a &= k_a Pb \tag{Alice} \\\\
+  S_b &= k_b Pa \tag{Bob} \\\\
+  \implies S_a = k_a k_b G &\equiv S_b = k_b k_a G
+\end{align}
+\\]
+
+For security reasons, the private keys are usually chosen at random for each session (you'll see the term
+_ephemeral_ keys being used), but then we have the problem of not being sure the other party is who they say they
+are (perhaps due to a [MITM attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack)).
+
+Various additional authentication steps can be employed to resolve this problem, which we won't get into here. 
 
 [WP1]: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm 'Wikipedia: ECDSA'
