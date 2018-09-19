@@ -2,15 +2,15 @@
 
 ## <a name="h-Introduction"> </a>Introduction
 
-Bulletproofs is a non-interactive zero-knowledge<sup>[def](#zk)</sup> proof protocol for general arithmetic circuits<sup>[def](#ac)</sup> with very short proofs (arguments of knowledge<sup>[def](#afs)</sup>) and without requiring a trusted setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[12]][\[12\]]
+Bulletproofs is a non-interactive zero-knowledge<sup>[def](#zk)</sup> proof protocol for general arithmetic circuits<sup>[def](#ac)</sup> with very short proofs (arguments of knowledge<sup>[def](#afs)</sup>) and without requiring a trusted setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[1]][\[1\]]
 
-Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[9]][\[9\]], [[11]][\[11\]])
+Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
 
-In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[9]][\[9\]]
+In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[2]][\[2\]]
 
 
 
-Bulletproofs have wide application [[7]][\[7\]] and can be used for :
+Bulletproofs have wide application [[3]][\[3\]] and can be used for :
 
 - Rangeproofs
   - ???
@@ -32,8 +32,9 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 - [Bulletproofs and Mimblewimble](#h-Bulletproofs-and-Mimblewimble)
   - [Introduction](#h-Introduction)
   - [Contents](#h-Contents)
-  - [Interesting Grin-Bulletproof Snippets](#h-Interesting-Grin-Bulletproof-Snippets)
-    - [Wallet Reconstruction](#h-Wallet-Reconstruction)
+  - [Interesting Bulletproof Implementation Snippets](#h-Interesting-Bulletproof-Implementation-Snippets)
+    - [Wallet Reconstruction - Grin](#h-Wallet-Reconstruction-Grin)
+    - [Current & Past Efforts](#h-Current-Past-Efforts)
   - [Negatives](#h-Negatives)
   - [Conclusions, Observations, Recommendations](#h-Conclusions,-Observations,-Recommendations)
   - [Definition of Terms](#h-Definition-of-Terms)
@@ -42,11 +43,15 @@ Bulletproofs have wide application [[7]][\[7\]] and can be used for :
 
 
 
-## <a name="h-Interesting-Grin-Bulletproof-Snippets"> </a>Interesting Grin-Bulletproof Snippets
+## <a name="h-Interesting-Bulletproof-Implementation-Snippets"> </a>Interesting Bulletproof Implementation Snippets
 
-### <a name="h-Wallet-Reconstruction"> </a>Wallet Reconstruction
+### <a name="h-Current-Past-Efforts"> </a>Current & Past Efforts
 
-See  [[5]][\[5\]]
+
+
+### <a name="h-Wallet-Reconstruction-Grin"> </a>Wallet Reconstruction - Grin
+
+See  [[11]][\[11\]]
 
 "{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
 
@@ -69,74 +74,60 @@ See  [[5]][\[5\]]
 - <u>Arithmetic Circuits</u>:<a name="ac"> </a>???
 - <u>Argument of Knowledge System</u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
 - <u>Trusted Setup</u>:<a name="ts"> </a>???
-- <u>Zero-knowledge System</u>:<a name="zk"> </a>???
+- <u>Zero-knowledge Proof/Protocol</u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `x`, without conveying any information apart from the fact that she knows the value `x`. [[16]][\[16\]]
 - ???
 
 ## <a name="h-References"> </a>References
 
-[[1]][\[1\]] Bulletproofs, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
+[[1]][\[1\]] Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-18.
 
-[\[1\]]: https://github.com/adjoint-io/bulletproofs "Bulletproofs"
+[\[1\]]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al"
 
-[[2]][\[2\]] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
+[[2]][\[2\]] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs, Date accessed: 2018-09-10.
 
-[\[2\]]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction "Elliptic Curve Cryptography: a gentle introduction"
+[\[2\]]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02"
 
-[[3]][\[3\]]  ,  , Date accessed: 2018-09-??. 
+[[3]][\[3\]] Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf, Date accessed: 2018-09-10.
 
-[\[3\]]: ???	"???"
+[\[3\]]: https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf "Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra"
 
-[[4]][\[4\]] Mimblewimble Explained, https://www.weusecoins.com/mimble-wimble-andrew-poelstra/, Date accessed: 2018-09-10.
+[[4]][\[4\]] Decoding zk-SNARKs, https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040, Date accessed: 2018-09-17.
 
-[\[4\]]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra	"Mimblewimble Explained"
+[\[4\]]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 "Decoding zk-SNARKs" 
 
-[[5]][\[5\]] Bulletproofs #273, https://github.com/mimblewimble/grin/issues/273, Date  accessed: 2018-09-10.
+[[5]][\[5\]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Range Proofs, Date accessed: 2018-09-18.
 
-[\[5\]]: https://github.com/mimblewimble/grin/issues/273	"Bulletproofs #273"
+[\[5\]]: https://github.com/ElementsProject/secp256k1-zkp "GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Range Proofs"
 
-[[6]][\[6\]] Message hiding in Bulletproofs #721, https://github.com/mimblewimble/grin/issues/721, Date accessed: 2018-09-10.
 
-[\[6\]]: https://github.com/mimblewimble/grin/issues/721	"Message hiding in Bulletproofs #721"
 
-[[7]][\[7\]] Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf, Date accessed: 2018-09-10.
 
-[\[7\]]: https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf "Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra"
-
-[[8]][\[8\]] Bullet Proofs (Video), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://www.pscp.tv/w/1mnxerNaNkLKX, Date accessed: 2018-09-10.
-
-[\[8\]]: https://www.pscp.tv/w/1mnxerNaNkLKX "Bullet Proofs (Video), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra"
-
-[[9]][\[9\]] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs, Date accessed: 2018-09-10.
-
-[\[9\]]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02"
 
 [[10]][\[10\]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
 [\[10\]]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup "Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit"
 
-[[11]][\[11\]] Decoding zk-SNARKs, https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040, Date accessed: 2018-09-17.
+[[11]][\[11\]] Bulletproofs #273, https://github.com/mimblewimble/grin/issues/273, Date  accessed: 2018-09-10.
 
-[\[11\]]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 "Decoding zk-SNARKs"
+[\[11\]]: https://github.com/mimblewimble/grin/issues/273	"Bulletproofs #273"
 
-[[12]][\[12\]] Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-??.
+[[12]][\[12\]] GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
 
-[\[12\]]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al"
+[\[12\]]: https://github.com/adjoint-io/bulletproofs "GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup"
 
-[[13]][\[13\]] , , Date accessed: 2018-09-??.
+[[13]][\[13\]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs, Date accessed: 2018-09-18.
 
-[\[13\]]:  ""
+[\[13\]]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs "GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives"
 
-[[14]][\[14\]] , , Date accessed: 2018-09-??.
 
-[\[14\]]:  ""
 
-[[15]][\[15\]] , , Date accessed: 2018-09-??.
+[[15]][\[15\]] GitHub: mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the Grin/MimbleWimble project, https://github.com/mimblewimble/secp256k1-zkp, Date accessed: 2018-09-18.
 
-[\[15\]]:  ""
+[\[15\]]: https://github.com/mimblewimble/secp256k1-zkp ""
 
-[[16]][\[16\]] , , Date accessed: 2018-09-??.
+[[16]][\[16\]]  Wikipedia - Zero-knowledge Proof,  https://en.wikipedia.org/wiki/Zero-knowledge_proof, Date accessed: 2018-09-18. 
 
-[\[16\]]:  ""
+[\[16\]]: https://en.wikipedia.org/wiki/Zero-knowledge_proof	"Wikipedia - Zero-knowledge Proof"
 
 [[17]][\[17\]] , , Date accessed: 2018-09-??.
 
@@ -150,13 +141,13 @@ See  [[5]][\[5\]]
 
 [\[19\]]:  ""
 
-[[20]][\[20\]] , , Date accessed: 2018-09-??.
+[[20]][\[20\]] Mimblewimble Explained, https://www.weusecoins.com/mimble-wimble-andrew-poelstra/, Date accessed: 2018-09-10.
 
-[\[20\]]:  ""
+[\[20\]]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra	"Mimblewimble Explained"
 
-[[21]][\[2\]] , , Date accessed: 2018-09-??.
+[[21]][\[21\]] Message hiding in Bulletproofs #721, https://github.com/mimblewimble/grin/issues/721, Date accessed: 2018-09-10.
 
-[\[21\]]:  ""
+[\[21\]]: https://github.com/mimblewimble/grin/issues/721	"Message hiding in Bulletproofs #721"
 
 [[22]][\[22\]] , , Date accessed: 2018-09-??.
 
@@ -189,6 +180,10 @@ See  [[5]][\[5\]]
 [[29]][\[29\]] , , Date accessed: 2018-09-??.
 
 [\[29\]]:  ""
+
+[[30]][\[30\]] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
+
+[\[30\]]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction "Elliptic Curve Cryptography: a gentle introduction"
 
 ## <a name="h-Contributors"> </a>Contributors
 
