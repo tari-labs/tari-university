@@ -4,7 +4,7 @@
 
 - Layer 2 scaling current initiatives (update)
   - TumbleBit
-  - Counterparty Eco System
+  - Counterparty
   - 2-Way Pegged Secondary Block Chains
   - Lumino
   - Scriptless scripts
@@ -69,20 +69,21 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 ---
 
-#### #2 Counterparty Eco System
+#### #2 Counterparty
 
-- Counterparty NOT a block chain -> protocol & network of nodes for smart contract apps, using EVM linked to Bitcoin block chain
+- Counterparty NOT a block chain -> token protocol that operates on Bitcoin
+- Has fully functional DEX & several hardcoded smart contracts, e.g. difference and binary options
 - Embedded consensus (identical ledgers, no P2P network) & federated nodes
 - Tx meta data are written into Bitcoin Txs on Bitcoin block chain
 - Read and validated by the federated nodes, executed by them
 
-![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/CounterpartyStack.png)
+![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/robby-dermody-patch-1/layer2scaling/more-landscape/sources/CounterpartyStack.png)
 
 
 
 +++
 
-#### #2 Counterparty Eco System (cont'd)
+#### #2 Counterparty (cont'd)
 
 - Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`
 - Broadcast an `execute` Tx to call a specific function in smart contract code
@@ -91,7 +92,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 +++
 
-#### #2 Counterparty Eco System (cont'd)
+#### #2 Counterparty (cont'd)
 
 - Most notable projects built on top of Counterparty:
   - [Age of Chains](https://www.ageofchains.com), [Age of Rust](http://spacepirate.io), [Augmentors](https://www.augmentorsgame.com/), [Authparty](http://authparty.io/), [Bitcorns](https://bitcorns.com/), [Blockfreight™](http://blockfreight.com/), [Blocksafe](http://www.blocksafefoundation.com), [BTCpaymarket.com](http://btcpaymarket.com), [CoinDaddy](http://coindaddy.io), [COVAL](https://coval.readme.io), [FoldingCoin](http://foldingcoin.net/), [FootballCoin](https://www.footballcoin.io/), [GetGems](http://getgems.org/#/), [IndieBoard](https://indiesquare.me/), [LTBCoin - Letstalkbitcoin.com](https://letstalkbitcoin.com/), [Mafia Wars](https://mafiawars.io/), [NVO](https://nvo.io/), [Proof of Visit](https://proofofvisit.com/), [Rarepepe.party](http://rarepepe.party), [SaruTobi Island](http://mandelduck.com/sarutobiisland/), [Spells of Genesis](http://www.spellsofgenesis.com), [Takara](https://mandelduck.com/#portfolio), [The Scarab Experiment](https://www.thescarabexperiment.org/), [Token.FM](https://token.fm/), [Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM)
