@@ -72,9 +72,9 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 #### #2 Counterparty
 
 - Counterparty NOT a block chain -> token protocol that operates on Bitcoin
-- Has fully functional DEX & several hardcoded smart contracts, e.g. difference and binary options
-- Embedded consensus (identical ledgers, no P2P network) & federated nodes
-- Tx meta data are written into Bitcoin Txs on Bitcoin block chain
+- Fully functional DEX & hardcoded smart contracts, e.g. difference, binary options
+- Embedded consensus (all comms via Bitcoin, identical ledgers, no P2P network)
+- Tx meta data embedded into Bitcoin Txs on Bitcoin block chain (e.g. 1-of-3 multisig, P2SH or P2PKH)
 - Read and validated by the federated nodes, executed by them
 
 ![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/robby-dermody-patch-1/layer2scaling/more-landscape/sources/CounterpartyStack.png)
@@ -85,10 +85,11 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 #### #2 Counterparty (cont'd)
 
-- Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`
-- Broadcast an `execute` Tx to call a specific function in smart contract code
-- Tx confirmed by Bitcoin miner -> Counterparty federated nodes execute the function 
-- The contract state is modified as the smart contract code executes and stored in the Counterparty database
+- On testnet only, never included on the mainnet : **EVM** for smart contracts
+  - Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`
+  - Broadcast an `execute` Tx to call a specific function in smart contract code
+  - Tx confirmed by Bitcoin miner -> Counterparty federated nodes execute the function 
+  - The contract state is modified as the smart contract code executes and stored in the Counterparty database
 
 +++
 
@@ -103,13 +104,14 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 <u>Strengths</u>
 
-- Provides smart contract abilities rooted in Bitcoin block chain
-- Embedded consensus - nodes maintain identical ledgers without P2P network
-
+- Provides hard coded smart contract abilities rooted in Bitcoin block chain
+- Embedded consensus - nodes maintain identical ledgers without P2P network. "permission less innovation"
 
 <u>Weaknesses</u>
 
-- Smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If  federated nodes are compromised no evidence of Txs within eco system exists.
+- Embedded consensus requires lockstep upgrades from network nodes to avoid forks
+- Embedded consensus imposes limitations on 2nd layer to interact with base layer's token
+- Embedded consensus -> hampers protocol flexibility, limits speed to base layer's
 
 <u>Opportunities for Tari</u>
 
@@ -272,7 +274,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 <u>Opportunities for Tari</u>
 
 - Tari should implement Mimblewimble, *Scriptless Script*s and the MuSig Schnorr signature scheme
-- Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty
+- Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty, but with improved consensus
 
 ---
 
