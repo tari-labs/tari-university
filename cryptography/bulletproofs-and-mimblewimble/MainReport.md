@@ -4,13 +4,19 @@
 
 Bulletproofs form part of the family of distinct Zero-knowledge<sup>[def](#zk)</sup> proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
 
-Bulletproofs is a non-interactive zero-knowledge proof protocol for general Arithmetic Circuits<sup>[def](#ac)</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def](#afs)</sup>) and without requiring a Trusted Setup<sup>[def](#ts)</sup>. They rely on the discrete logarithmic assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". [[1]][\[1\]]
+Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def](#ac)</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def](#afs)</sup>) and without requiring a Trusted Setup<sup>[def](#ts)</sup>. They rely on the Discrete Logarithmic<sup>[def](#dlp)</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". ([[1]][\[1\]], [[9]][\[9\]])
+
+Bulletproofs also implements a Multi-party Computation (MCP) protocol whereby proofs of multiple provers are aggregated into a single proof for each round (i.e. communication between provers).
 
 
 
 In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[2]][\[2\]]
 
 
+
+Add short history here
+
+Bulletproofs builds on the techniques of Bootle et al. [[12]][\[12\]], which yield communication efficient zero-knowledge proofs, but offer a replacement for their inner-product argument that reduces overall communication by a factor of 3.
 
 Bulletproofs have wide application [[3]][\[3\]] and can be used for :
 
@@ -57,7 +63,8 @@ See  [[11]][\[11\]]
 
 "{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
 
-"{**yeastplume** } @apoelstra the amount, and quite possibly the switch commitment hash as well (or just a hash of the entire output) as per #207..."
+- "{**yeastplume** } @apoelstra the amount, and quite possibly the switch commitment hash as well (or just a hash of the entire output) as per #207..."
+
 
 "{**apoelstra**} Ok, I can get you 64 bytes without much trouble (xoring them into `tau_1` and `alpha` which are easy to extract from `tau_x` and `mu` if you know the original seed used to produce the randomness). I think it's possible to get another 32 bytes into `t` but that's way more involved since `t` is a big inner product." 
 
@@ -73,9 +80,9 @@ See  [[11]][\[11\]]
 
 ## <a name="h-Definition-of-Terms"> </a>Definition of Terms
 
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code>(a1, ..., an)</code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[12]][\[12\]]
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code>(a1, ..., an)</code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[9]][\[9\]]
 
-- <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. [[12]][\[12\]]
+- <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. [[9]][\[9\]]
 
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
 
@@ -107,9 +114,21 @@ See  [[11]][\[11\]]
 
 [\[5\]]: https://github.com/ElementsProject/secp256k1-zkp "GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Range Proofs"
 
+[[6]][\[6\]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs, Date accessed: 2018-09-18.
 
+[\[6\]]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs "GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives"
 
+[[7]][\[7\]] GitHub: bbuenz/BulletProofLib, Library for generating non-interactive zero knowledge proofs without trusted setup (Bulletproofs), https://github.com/bbuenz/BulletProofLib, Date accessed: 2018-09-??.
 
+[\[7\]]: https://github.com/bbuenz/BulletProofLib "GitHub: bbuenz/BulletProofLib, Library for generating non-interactive zero knowledge proofs without trusted setup (Bulletproofs)"
+
+[[8]][\[8\]] GitHub: dalek-cryptography/bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto, https://github.com/dalek-cryptography/bulletproofs, Date accessed: 2018-09-??.
+
+[\[8\]]: https://github.com/dalek-cryptography/bulletproofs "GitHub: dalek-cryptography/bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto"
+
+[[9]][\[9\]] GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
+
+[\[9\]]: https://github.com/adjoint-io/bulletproofs "GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup"
 
 [[10]][\[10\]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
@@ -119,15 +138,17 @@ See  [[11]][\[11\]]
 
 [\[11\]]: https://github.com/mimblewimble/grin/issues/273	"Bulletproofs #273"
 
-[[12]][\[12\]] GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
+[[12]][\[12\]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-??.
 
-[\[12\]]: https://github.com/adjoint-io/bulletproofs "GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup"
+[\[12\]]: https://eprint.iacr.org/2016/263.pdf "Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al."
 
-[[13]][\[13\]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs, Date accessed: 2018-09-18.
+[[13]][\[13\]] , , Date accessed: 2018-09-??.
 
-[\[13\]]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs "GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives"
+[\[13\]]:  ""
 
+[[14]][\[14\]] , , Date accessed: 2018-09-??.
 
+[\[14\]]:  ""
 
 [[15]][\[15\]] GitHub: mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the Grin/MimbleWimble project, https://github.com/mimblewimble/secp256k1-zkp, Date accessed: 2018-09-18.
 
