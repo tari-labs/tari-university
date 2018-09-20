@@ -2,7 +2,7 @@
 
 ## <a name="h-Introduction"> </a>Introduction
 
-Bulletproofs form part of the family of distinct Zero-knowledge<sup>[def](zk_)</sup> proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
+Bulletproofs form part of the family of distinct Zero-knowledge<sup>[def](#zk)</sup> proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
 
 Bulletproofs is a non-interactive zero-knowledge proof protocol for general Arithmetic Circuits<sup>[def](#ac)</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def](#afs)</sup>) and without requiring a Trusted Setup<sup>[def](#ts)</sup>. They rely on the discrete logarithmic assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". [[1]][\[1\]]
 
@@ -80,9 +80,6 @@ See  [[11]][\[11\]]
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
 
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`. [[16]][\[16\]]
-
-[zk_]: #zk 'In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) 
-can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`.'
 
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function. A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment and shared statement as opposed to only the commitment. ([[18]][\[18\]], [[19]][\[19\]])
 
