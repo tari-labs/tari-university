@@ -68,7 +68,7 @@ None
 
 #### What is it?
 
-Counterparty is NOT a block chain. Counterparty is a token protocol released in January 2014 that operates on Bitcoin. It has a fully functional decentralized exchange, as well as several hardcoded smart contracts defined that include contracts for difference and binary options ("bets"). To operate, Counterparty utilizes "embedded consensus", which means that a Counterparty transaction is created and embedded into a Bitcoin transaction, using encoding such as 1-of-3 multisig, P2SH or P2PKH. Counterparty nodes, i.e. nodes that run both `bitcoind` and the `counterparty-server` applications, will receive Bitcoin transactions as normal (from `bitcoind`), and then `counterparty-server` will scan each, and decode and parse any embedded Counterparty transactions it finds. In effect, Counterparty is a ledger within the larger Bitcoin ledger, and the functioning of embedded consensus can be thought of similar to the fitting of one Russian stacking doll inside another.  [([30]](https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md), [[31]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3), [[32]](https://counterparty.io))
+Counterparty is NOT a block chain. Counterparty is a token protocol released in January 2014 that operates on Bitcoin. It has a fully functional Decentralized Exchange (DEX), as well as several hardcoded smart contracts defined that include contracts for difference and binary options ("bets"). To operate, Counterparty utilizes "embedded consensus", which means that a Counterparty transaction is created and embedded into a Bitcoin transaction, using encoding such as 1-of-3 multi-signature (multisig), Pay to Script Hash (P2SH) or Pay To Public Key Hash (P2PKH). Counterparty nodes, i.e. nodes that run both `bitcoind` and the `counterparty-server` applications, will receive Bitcoin transactions as normal (from `bitcoind`), and then `counterparty-server` will scan each, and decode and parse any embedded Counterparty transactions it finds. In effect, Counterparty is a ledger within the larger Bitcoin ledger, and the functioning of embedded consensus can be thought of similar to the fitting of one Russian stacking doll inside another.  [([30]](https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md), [[31]](https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3), [[32]](https://counterparty.io))
 
 Embedded consensus also means that the nodes maintain identical ledgers without using a separate peer-to-peer network, solely using the Bitcoin block chain for all communication (i.e. timestamping, transaction ordering and transaction propagation). Unlike Bitcoin, which has the concept of both a soft fork and a hard fork, a change to the protocol or "consensus" code of Counterparty always has the potential to create a hard fork. In practice, this means that each Counterparty node must run the same version of `counterparty-server` (or at least the same minor version, e.g. the "3" in 2.3.0) so that the protocol code matches up across all nodes. ([[56]](https://counterparty.io/docs/faq/), [[57]](https://counterparty.io/docs/protocol_specification/))
 
@@ -92,8 +92,8 @@ COVAL is being developed with a primary purpose of moving value using “off-cha
 
 #### Strengths
 
-- Embedded consensus/Counterparty provides a simple way to add "layer 2" functionality to an already existing blockchain implementation that supports basic data embedding
-- Counterparty's embedded consensus model utilizes "permission less innovation", meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
+- Counterparty provides a simple way to add "layer 2" functionality (i.e. hard coded smart contracts) to an already existing blockchain implementation that supports basic data embedding
+- Counterparty's embedded consensus model utilizes "permissionless innovation", meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
 
 #### Weaknesses
 
@@ -130,7 +130,7 @@ Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivecha
 
 
 
-The locking of BTC on the main Bitcoin block chain is done by using a Pay to Script Hash (P2SH) transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]](https://en.bitcoin.it/wiki/Pay_to_script_hash)
+The locking of BTC on the main Bitcoin block chain is done by using a P2SH transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]](https://en.bitcoin.it/wiki/Pay_to_script_hash)
 
 #### Who does it?
 
