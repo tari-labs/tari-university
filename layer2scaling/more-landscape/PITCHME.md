@@ -71,7 +71,7 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 #### #2 Counterparty
 
-- Counterparty NOT a block chain -> token protocol that operates on Bitcoin
+- Counterparty NOT a block chain, but token protocol that operates on Bitcoin
 - Full DEX & hardcoded smart contracts, e.g. difference, binary options
 - Embedded consensus (all comms via Bitcoin, identical ledgers, no P2P network)
 - Tx meta data embedded into Bitcoin Txs on Bitcoin block chain (e.g. 1-of-3 multisig, P2SH or P2PKH)
@@ -100,22 +100,28 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 +++
 
-#### #2 Counterparty Eco System (cont'd)
+#### #2 Counterparty (cont'd)
 
 <u>Strengths</u>
 
 - Provides hard coded smart contract abilities rooted in Bitcoin block chain
-- Embedded consensus - nodes maintain identical ledgers without P2P network. "permission less innovation"
+- Embedded consensus - Txs created and embedded into Bitcoin Txs (permissionless innovation)
 
 <u>Weaknesses</u>
 
 - Embedded consensus requires lockstep upgrades from network nodes to avoid forks
 - Embedded consensus imposes limitations on 2nd layer to interact with base layer's token
-- Embedded consensus -> hampers protocol flexibility, limits speed to base layer's
+- Embedded consensus hampers protocol flexibility & limits speed to that of base layer
 
 <u>Opportunities for Tari</u>
 
-- See '*Scriptless scripts*'
+@div[text-left]
+
+<ul>
+<li>See '<i>Scriptless scripts</i>'
+</ul>
+
+@divend
 
 ---
 
