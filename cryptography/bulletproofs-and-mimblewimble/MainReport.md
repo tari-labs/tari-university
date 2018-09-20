@@ -2,9 +2,11 @@
 
 ## <a name="h-Introduction"> </a>Introduction
 
-Bulletproofs is a non-interactive Zero-knowledge (ZK)<sup>[def](#zk)</sup> proof protocol for general Arithmetic Circuits<sup>[def](#ac)</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def](#afs)</sup>) and without requiring a Trusted Setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". [[1]][\[1\]]
+Bulletproofs form part of the family of distinct Zero-knowledge<sup>[def](#zk)</sup> proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
 
-Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
+Bulletproofs is a non-interactive zero-knowledge proof protocol for general Arithmetic Circuits<sup>[def](#ac)</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def](#afs)</sup>) and without requiring a Trusted Setup<sup>[def](#ts)</sup>. They rely on the discrete logarithmic assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". [[1]][\[1\]]
+
+
 
 In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[2]][\[2\]]
 
@@ -76,7 +78,7 @@ See  [[11]][\[11\]]
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`. [[16]][\[16\]]
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function. A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment and shared statement as opposed to only the commitment. ([[18]][\[18\]], [[19]][\[19\]])
-- 
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem</u></i>:<a name="dlp"> </a>In the mathematics of the real numbers, the logarithm <code>log<i><sub>b</sub>a</i></code> is a number <code><i>x</i></code> such that <code><i>b<sup>x</sup>=a</i></code>, for given numbers <code><i>a</i></code> and <code><i>b</i></code>. Analogously, in any group  <code><i>G</i></code> , powers  <code><i>b<sup>k</sup></i></code> can be defined for all integers <code><i>k</i></code>, and the discrete logarithm <code>log<i><sub>b</sub>a</i></code> is an integer <code><i>k</i></code> such that <code><i>b<sup>k</sup>=a</i></code>. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]][\[17\]], [[29]][\[29\]])
 
 ## <a name="h-References"> </a>References
 
@@ -126,13 +128,13 @@ See  [[11]][\[11\]]
 
 [\[15\]]: https://github.com/mimblewimble/secp256k1-zkp ""
 
-[[16]][\[16\]]  Wikipedia - Zero-knowledge Proof,  https://en.wikipedia.org/wiki/Zero-knowledge_proof, Date accessed: 2018-09-18. 
+[[16]][\[16\]]  Wikipedia: Zero-knowledge Proof,  https://en.wikipedia.org/wiki/Zero-knowledge_proof, Date accessed: 2018-09-18. 
 
 [\[16\]]: https://en.wikipedia.org/wiki/Zero-knowledge_proof	"Wikipedia - Zero-knowledge Proof"
 
-[[17]][\[17\]] , , Date accessed: 2018-09-??.
+[[17]][\[17\]] Wikipedia: Discrete logarithm, https://en.wikipedia.org/wiki/Discrete_logarithm, Date accessed: 2018-09-20.
 
-[\[17\]]:  ""
+[\[17\]]: https://en.wikipedia.org/wiki/Discrete_logarithm "Wikipedia: Discrete logarithm"
 
 [[18]][\[18\]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-??.
 
@@ -178,9 +180,9 @@ See  [[11]][\[11\]]
 
 [\[28\]]:  ""
 
-[[29]][\[29\]] , , Date accessed: 2018-09-??.
+[[29]][\[29\]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-??.
 
-[\[29\]]:  ""
+[\[29\]]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf "Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al."
 
 [[30]][\[30\]] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
