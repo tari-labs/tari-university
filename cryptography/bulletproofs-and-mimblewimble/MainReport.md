@@ -74,13 +74,17 @@ See  [[11]][\[11\]]
 ## <a name="h-Definition-of-Terms"> </a>Definition of Terms
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code>(a1, ..., an)</code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[12]][\[12\]]
+
 - <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. [[12]][\[12\]]
+
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
+
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`. [[16]][\[16\]]
 
-[zk_]: #zk 'In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`.'
+[zk_]: #zk 'In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy)  <br> can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`.'
 
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function. A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment and shared statement as opposed to only the commitment. ([[18]][\[18\]], [[19]][\[19\]])
+
 - <i><u>Discrete Logarithm/Discrete Logarithm Problem</u></i>:<a name="dlp"> </a>In the mathematics of the real numbers, the logarithm <code>log<i><sub>b</sub>a</i></code> is a number <code><i>x</i></code> such that <code><i>b<sup>x</sup>=a</i></code>, for given numbers <code><i>a</i></code> and <code><i>b</i></code>. Analogously, in any group  <code><i>G</i></code> , powers  <code><i>b<sup>k</sup></i></code> can be defined for all integers <code><i>k</i></code>, and the discrete logarithm <code>log<i><sub>b</sub>a</i></code> is an integer <code><i>k</i></code> such that <code><i>b<sup>k</sup>=a</i></code>. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]][\[17\]], [[29]][\[29\]])
 
 ## <a name="h-References"> </a>References
