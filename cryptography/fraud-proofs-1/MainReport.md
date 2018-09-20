@@ -98,9 +98,22 @@ In this scenario, SPV clients can be made aware of any invalidity in blocks and 
 
 ### Compact fraud proofs
 The concept of compact fraud proofs is to be able to efficiently prove different types of fraud to SPV clients[24]. As already noted in the [introduction to fraud proofs](https://github.com/tari-labs/tari-university/blob/fraudproofs/cryptography/fraud-proofs-1/MainReport.md#what-are-fraud-proofs), invalid blocks need not necesarily be due to malicious intent.
-However, in order to implement the suggested compact fraud proofs, the Bitcoin blockchain would have to be amended to makes all proposed fraud proofs possible as well as adding a mechanism to enable a market of fraud protection providers and consumers[24].
+However, in order to implement the suggested compact fraud proofs, the Bitcoin blockchain would have to be amended to make all proposed fraud proofs possible as well as adding a mechanism to enable a market of fraud protection providers and consumers[24].
+
+### payment channels
+Bitcoin is made to be reselient to denial of service (Dos) attacks, however, the same cannot be said for SPV clients. This could be an issue if malicious alerting nodes spam with false fraud proofs.
+A proposed solution to this is payment channels[6] due to them:
+1) operating at near instant speeds thus allowing quick alerting of fraud proofs
+2) facilitate micro-transactions
+3) Are robust to temporary mining failures (as they use long “custodial periods”)
+
+In this way, the use of payment channels can help with incentivising full nodes to issue fraud proofs.
 
 ## Conclusions, Observations, Recommendations
+
+Fraud proofs seem to be complex[6] and hard to implement, but appear to be necessary for scalabity of blockchains and the security and privacy for SPV clients, since not everyone can nor should want to run a full node to participate in the network.
+
+Based on [3 different fraud proof proposals](https://github.com/tari-labs/tari-university/blob/fraudproofs/cryptography/fraud-proofs-1/MainReport.md#suggested-fraud-proof-improvements) that suggest some sort of incentive for nodes that issue alert/fraud proofs, it seems likely that some sort of fraud proof providers and consumers market place will emerge.
 
 
 ## References
