@@ -2,7 +2,7 @@
 
 ## <a name="h-Introduction"> </a>Introduction
 
-Bulletproofs is a non-interactive zero-knowledge<sup>[def](#zk)</sup> proof protocol for general arithmetic circuits<sup>[def](#ac)</sup> with very short proofs (arguments of knowledge<sup>[def](#afs)</sup>) and without requiring a trusted setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "short like a bullet with bulletproof security assumption". [[1]][\[1\]]
+Bulletproofs is a non-interactive Zero-knowledge (ZK)<sup>[def](#zk)</sup> proof protocol for general Arithmetic Circuits<sup>[def](#ac)</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def](#afs)</sup>) and without requiring a Trusted Setup<sup>[def](#ts)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". [[1]][\[1\]]
 
 Bulletproofs form part of the family of distinct zero-knowledge proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo).  Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
 
@@ -71,11 +71,12 @@ See  [[11]][\[11\]]
 
 ## <a name="h-Definition-of-Terms"> </a>Definition of Terms
 
-- <u>Arithmetic Circuits</u>:<a name="ac"> </a>???
-- <u>Argument of Knowledge System</u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems [[12]][\[12\]]
-- <u>Trusted Setup</u>:<a name="ts"> </a>???
-- <u>Zero-knowledge Proof/Protocol</u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `x`, without conveying any information apart from the fact that she knows the value `x`. [[16]][\[16\]]
-- ???
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code>(a1, ..., an)</code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[12]][\[12\]]
+- <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. [[12]][\[12\]]
+- <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
+- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`. [[16]][\[16\]]
+- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function. A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment and shared statement as opposed to only the commitment. ([[18]][\[18\]], [[19]][\[19\]])
+- 
 
 ## <a name="h-References"> </a>References
 
@@ -133,13 +134,13 @@ See  [[11]][\[11\]]
 
 [\[17\]]:  ""
 
-[[18]][\[18\]] , , Date accessed: 2018-09-??.
+[[18]][\[18\]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-??.
 
-[\[18\]]:  ""
+[\[18\]]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf "How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al."
 
-[[19]][\[19\]] , , Date accessed: 2018-09-??.
+[[19]][\[19\]] How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios, https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf, Date accessed: 2018-09-20.
 
-[\[19\]]:  ""
+[\[19\]]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf "How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios"
 
 [[20]][\[20\]] Mimblewimble Explained, https://www.weusecoins.com/mimble-wimble-andrew-poelstra/, Date accessed: 2018-09-10.
 
