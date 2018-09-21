@@ -85,7 +85,7 @@ See  [[11]][\[11\]]
 [ac~]: #ac 
 "An arithmetic circuit over a field 
 and variables (a1, ..., an) is a 
-directed acyclic graph..."
+directed acyclic graph ..."
 
 - <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. [[9]][\[9\]]
 
@@ -123,47 +123,69 @@ is a number x such that ..."
 
 [[1]][\[1\]] Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-18.
 
-[\[1\]]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and More, Bünz B. et al"
+[\[1\]]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf 
+"Bulletproofs: Short Proofs for Confidential Transactions and More, 
+Bünz B. et al"
 
 [[2]][\[2\]] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs, Date accessed: 2018-09-10.
 
-[\[2\]]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02"
+[\[2\]]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs 
+"Bullet Proofs (Transcript), 
+Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra"
 
 [[3]][\[3\]] Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf, Date accessed: 2018-09-10.
 
-[\[3\]]: https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf "Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra"
+[\[3\]]: https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf 
+"Bullet Proofs (Slides), 
+Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra"
 
 [[4]][\[4\]] Decoding zk-SNARKs, https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040, Date accessed: 2018-09-17.
 
-[\[4\]]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 "Decoding zk-SNARKs" 
+[\[4\]]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 
+"Decoding zk-SNARKs" 
 
 [[5]][\[5\]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Range Proofs, Date accessed: 2018-09-18.
 
-[\[5\]]: https://github.com/ElementsProject/secp256k1-zkp "GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Range Proofs"
+[\[5\]]: https://github.com/ElementsProject/secp256k1-zkp 
+"GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of 
+libsecp256k1 with Support for Pedersen Commitments and Range Proofs"
 
 [[6]][\[6\]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs, Date accessed: 2018-09-18.
 
-[\[6\]]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs "GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives"
+[\[6\]]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs 
+"GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp 
+`d78f12b` to Add Support for Mimblewimble Primitives"
 
 [[7]][\[7\]] GitHub: bbuenz/BulletProofLib, Library for generating non-interactive zero knowledge proofs without trusted setup (Bulletproofs), https://github.com/bbuenz/BulletProofLib, Date accessed: 2018-09-??.
 
-[\[7\]]: https://github.com/bbuenz/BulletProofLib "GitHub: bbuenz/BulletProofLib, Library for generating non-interactive zero knowledge proofs without trusted setup (Bulletproofs)"
+[\[7\]]: https://github.com/bbuenz/BulletProofLib 
+"GitHub: bbuenz/BulletProofLib, Library for generating 
+non-interactive zero knowledge proofs without trusted 
+setup (Bulletproofs)"
 
 [[8]][\[8\]] GitHub: dalek-cryptography/bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto, https://github.com/dalek-cryptography/bulletproofs, Date accessed: 2018-09-??.
 
-[\[8\]]: https://github.com/dalek-cryptography/bulletproofs "GitHub: dalek-cryptography/bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto"
+[\[8\]]: https://github.com/dalek-cryptography/bulletproofs 
+"GitHub: dalek-cryptography/bulletproofs, A pure-Rust 
+implementation of Bulletproofs using Ristretto"
 
 [[9]][\[9\]] GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
 
-[\[9\]]: https://github.com/adjoint-io/bulletproofs "GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup"
+[\[9\]]: https://github.com/adjoint-io/bulletproofs 
+"GitHub: adjoint-io/bulletproofs, Bulletproofs are Short
+Non-interactive Zero-knowledge Proofs that Require no 
+Trusted Setup"
 
 [[10]][\[10\]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
-[\[10\]]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup "Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit"
+[\[10\]]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup 
+"Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), 
+Reddit"
 
 [[11]][\[11\]] Bulletproofs #273, https://github.com/mimblewimble/grin/issues/273, Date  accessed: 2018-09-10.
 
-[\[11\]]: https://github.com/mimblewimble/grin/issues/273	"Bulletproofs #273"
+[\[11\]]: https://github.com/mimblewimble/grin/issues/273	
+"Bulletproofs #273"
 
 [[12]][\[12\]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-??.
 
@@ -171,55 +193,73 @@ is a number x such that ..."
 
 [[13]][\[13\]] , , Date accessed: 2018-09-??.
 
-[\[13\]]:  ""
+[\[13\]]:  
+""
 
 [[14]][\[14\]] , , Date accessed: 2018-09-??.
 
-[\[14\]]:  ""
+[\[14\]]:  
+""
 
 [[15]][\[15\]] GitHub: mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the Grin/MimbleWimble project, https://github.com/mimblewimble/secp256k1-zkp, Date accessed: 2018-09-18.
 
-[\[15\]]: https://github.com/mimblewimble/secp256k1-zkp ""
+[\[15\]]: https://github.com/mimblewimble/secp256k1-zkp 
+"GitHub: mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp 
+for the Grin/MimbleWimble project"
 
 [[16]][\[16\]]  Wikipedia: Zero-knowledge Proof,  https://en.wikipedia.org/wiki/Zero-knowledge_proof, Date accessed: 2018-09-18. 
 
-[\[16\]]: https://en.wikipedia.org/wiki/Zero-knowledge_proof	"Wikipedia - Zero-knowledge Proof"
+[\[16\]]: https://en.wikipedia.org/wiki/Zero-knowledge_proof	
+"Wikipedia - Zero-knowledge Proof"
 
 [[17]][\[17\]] Wikipedia: Discrete logarithm, https://en.wikipedia.org/wiki/Discrete_logarithm, Date accessed: 2018-09-20.
 
-[\[17\]]: https://en.wikipedia.org/wiki/Discrete_logarithm "Wikipedia: Discrete logarithm"
+[\[17\]]: https://en.wikipedia.org/wiki/Discrete_logarithm 
+"Wikipedia: Discrete logarithm"
 
 [[18]][\[18\]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-??.
 
-[\[18\]]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf "How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al."
+[\[18\]]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf 
+"How to Prove Yourself: Practical Solutions to 
+Identification and Signature Problems, 
+Fiat A. et al."
 
-[[19]][\[19\]] How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios, https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf, Date accessed: 2018-09-20.
+[[19]][\[19\]] How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios, Bernhard D. et al., https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf, Date accessed: 2018-09-20.
 
-[\[19\]]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf "How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios"
+[\[19\]]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf 
+"How not to Prove Yourself: Pitfalls of the 
+Fiat-Shamir Heuristic and Applications to Helios, 
+Bernhard D. et al."
 
 [[20]][\[20\]] Mimblewimble Explained, https://www.weusecoins.com/mimble-wimble-andrew-poelstra/, Date accessed: 2018-09-10.
 
-[\[20\]]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra	"Mimblewimble Explained"
+[\[20\]]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra	
+"Mimblewimble Explained"
 
 [[21]][\[21\]] Message hiding in Bulletproofs #721, https://github.com/mimblewimble/grin/issues/721, Date accessed: 2018-09-10.
 
-[\[21\]]: https://github.com/mimblewimble/grin/issues/721	"Message hiding in Bulletproofs #721"
+[\[21\]]: https://github.com/mimblewimble/grin/issues/721	
+"Message hiding in Bulletproofs #721"
 
 [[22]][\[22\]] , , Date accessed: 2018-09-??.
 
-[\[22\]]:  ""
+[\[22\]]:  
+""
 
 [[23]][\[23\]] , , Date accessed: 2018-09-??.
 
-[\[23\]]:  ""
+[\[23\]]:  
+""
 
 [[24]][\[24\]] , , Date accessed: 2018-09-??.
 
-[\[24\]]:  ""
+[\[24\]]:  
+""
 
 [[25]][\[25\]] , , Date accessed: 2018-09-??.
 
-[\[25\]]:  ""
+[\[25\]]:  
+""
 
 [[26]][\[26\]] , , Date accessed: 2018-09-??.
 
@@ -231,17 +271,22 @@ is a number x such that ..."
 
 [[28]][\[28\]] , , Date accessed: 2018-09-??.
 
-[\[28\]]:  ""
+[\[28\]]:  
+""
 
 [[29]][\[29\]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-??.
 
-[\[29\]]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf "Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al."
+[\[29\]]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf 
+"Assumptions Related to Discrete Logarithms: Why 
+Subtleties Make a Real Difference, 
+Sadeghi A et al."
 
 [[30]][\[30\]] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
-[\[30\]]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction "Elliptic Curve Cryptography: a gentle introduction"
+[\[30\]]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction 
+"Elliptic Curve Cryptography: a gentle introduction"
 
 ## <a name="h-Contributors"> </a>Contributors
 
-- [https://github.com/???](https://github.com/??)
+- [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
 - 
