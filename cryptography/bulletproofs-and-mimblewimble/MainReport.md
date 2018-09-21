@@ -2,9 +2,9 @@
 
 ## <a name="h-Introduction"> </a>Introduction
 
-Bulletproofs form part of the family of distinct Zero-knowledge<sup>[def](#zk)</sup> proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
+Bulletproofs form part of the family of distinct Zero-knowledge<sup>[def][zk~]</sup> proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
 
-Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def](#ac)  [def2][ac~]</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def](#afs)</sup>) and without requiring a Trusted Setup<sup>[def](#ts)</sup>. They rely on the Discrete Logarithmic<sup>[def](#dlp)</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". ([[1]][\[1\]], [[9]][\[9\]])
+Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def][ac~]</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def][afs~]</sup>) and without requiring a Trusted Setup<sup>[def][ts~]</sup>. They rely on the Discrete Logarithmic<sup>[def][dlp~]</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. The name 'Bulletproofs' originated from a non-technical summary of the scheme's properties: "<i>short like a bullet with bulletproof security assumption</i>". ([[1]][\[1\]], [[9]][\[9\]])
 
 Bulletproofs also implements a Multi-party Computation (MCP) protocol whereby proofs of multiple provers are aggregated into a single proof for each round (i.e. communication between provers).
 
@@ -82,9 +82,15 @@ See  [[11]][\[11\]]
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code>(a1, ..., an)</code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[9]][\[9\]]
 
-[ac~]: #ac "An arithmetic circuit over a field and variables <code>(a1, ..., an)</code> is a directed acyclic graph..."
+[ac~]: #ac 
+"An arithmetic circuit over a field and variables 
+<code>(a1, ..., an)</code> is a directed acyclic graph..."
 
 - <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. [[9]][\[9\]]
+
+[afs~]: #afs 
+"Proof systems with computational soundness like 
+Bulletproofs are sometimes called argument systems."
 
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
 
