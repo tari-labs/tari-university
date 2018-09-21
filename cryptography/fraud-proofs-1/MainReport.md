@@ -1,7 +1,7 @@
 # Fraud Proofs - easier said than done?
 
 ## Background
-The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node. Lightweight clients will have to be used by users since not everyone can run full nodes due to the computational power and cost needed to run a full Bitcoin node. 
+The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node. Lightweight/Simplified Payment Verification (SPV) clients will have to be used by users since not everyone can run full nodes due to the computational power and cost needed to run a full Bitcoin node. 
 
 ![spv21.png](sources/spv21.png)
 Courtesy:MIT Bitcoin Expo 2016 Day 1
@@ -9,13 +9,20 @@ Courtesy:MIT Bitcoin Expo 2016 Day 1
 
 SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs[17] 
 
-In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain [3]. 
+In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain , which are achieved by obtaining the Merkle branch linking a transaction to a block[3]. The existence of Merkle root in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
 
 ![proofofworkchain.png](sources/proofofworkchain.png)
 Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System
 
 
-In this system, the full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected [2].
+In this system, the full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected. The SPV clients would then be prompted to download the full block and alerted transactions to
+confirm the inconsistency[2].
+
+An invalid block need not be of malicious intent, but could be as a result of any of the following[6]:
+* **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
+* **Missing block data** (unknown and undiscoverable Merkle trees – this could be intentional or accidental).
+* **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
+* **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
 
 # What are fraud proofs?
 
@@ -26,14 +33,6 @@ A full Bitcoin node contains the following details:
   * every transaction that has ever been sent
   * all the unspent transaction outputs (UTXOs) [4]
   
-An invalid block need not be of malicious intent, but could be as a result of any of the following[6]:
-* **Bad Txn** (invalid txn, doublespent txn, or repeat txn).
-* **Missing block data** (unknown and undiscoverable Merkle trees – this could be intentional or accidental).
-* **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
-* **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
-
-
-An SPV client, such as a mobile device, would not have the ability to process all that information and thus only needs to download block headers.
 These SPV client make use of Bloom filters to receive transactions that are relevant to the user[7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer[9]
 
 ![spv.png](sources/spv.png)
@@ -45,6 +44,7 @@ In addition to Bloom filters, SPV clients rely on Merkle trees - binary structur
 ![merkle-tree.png](sources/merkle-tree.png)
 
 Fraud proofs are integral to the security of SPV clients, however, the other components in SPV clients are not without issues. 
+
 
 ## Security and privacy issues with SPV clients
 * **weak bloom filters and merkle tree designs**
@@ -60,6 +60,9 @@ Furthermore, SPV clients pose the risk of a denial of service attack against ful
 To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37[16], a Bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size[14].
 
 A second Bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute[16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method.[14]
+
+## examples of SPV implementations
+There are two well-known SPV implementations for Bitcoin - Bitcoinj and Electrum. The latter does SPV level validation, comparing multiple electrum servers against each other. It's got very similar security to bitcoinj, but potentially better privacy[25] due to Bitcoinj's Bloom filters implimentation[7].
 
 ## fraud proof implementations in other blockchains
 
@@ -111,9 +114,11 @@ In this way, the use of payment channels can help with incentivising full nodes 
 
 ## Conclusions, Observations, Recommendations
 
-Fraud proofs seem to be complex[6] and hard to implement, but appear to be necessary for scalabity of blockchains and the security and privacy for SPV clients, since not everyone can nor should want to run a full node to participate in the network.
+Fraud proofs seem to be complex[6] and hard to implement, but appear to be necessary for scalabity of blockchains and the security and privacy for SPV clients, since not everyone can nor should want to run a full node to participate in the network. The current SPV implementations are working on improving the security and privacy of these SPV clients.
 
 Based on [3 different fraud proof proposals](https://github.com/tari-labs/tari-university/blob/fraudproofs/cryptography/fraud-proofs-1/MainReport.md#suggested-fraud-proof-improvements) that suggest some sort of incentive for nodes that issue alert/fraud proofs, it seems likely that some sort of fraud proof providers and consumers market place will emerge.
+
+SPV clients have not been implemented on Monero due to it's security model and Tari, a Monero sidechain, will also likely not want to implement any SPV clients due to privacy reasons. However, given that Tari will be users-focused and aiming for mass adoptation, some of the suggested SPV improvements such as payment channels could be an area to be looked at.
 
 
 ## References
@@ -169,6 +174,8 @@ Bitcoin Clients, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10
 [23] Using Merklix tree to shard block validation,https://www.deadalnix.me/2016/11/06/using-merklix-tree-to-shard-block-validation/, Date accessed: 2018-09-14.
 
 [24] fraud proofs, https://bitco.in/forum/threads/fraud-proofs.1617/, Date accessed: 2018-09-18.
+
+[25] Whats the difference between an API wallet and a SPV wallet?,https://www.reddit.com/r/Bitcoin/comments/3c3zn4/whats_the_difference_between_an_api_wallet_and_a/, Date accessed: 2018-09-21.
 
 ## Contributors
 
