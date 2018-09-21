@@ -10,13 +10,11 @@ Bulletproofs also implements a Multi-party Computation (MCP) protocol whereby pr
 
 
 
-In essence they are inner product arguments that provide general ways to prove knowledge about multiplying things to some other things. [[2]][\[2\]]
-
-
-
 Add short history here
 
-Bulletproofs builds on the techniques of Bootle et al. [[12]][\[12\]], which yield communication efficient zero-knowledge proofs, but offer a replacement for their inner-product argument that reduces overall communication by a factor of 3.
+The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]][\[13\]] and then further refined by Bootle et al. [[12]][\[12\]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen commitments that satisfy a given inner product relation, which is of independent interest. Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of 3. ([[1]][\[1\]], [[9]][\[9\]])
+
+
 
 Bulletproofs have wide application [[3]][\[3\]] and can be used for :
 
@@ -95,6 +93,20 @@ directed acyclic graph ..."
 soundness like Bulletproofs are 
 sometimes called argument systems."
 
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem</u></i>:<a name="dlp"> </a>In the mathematics of the real numbers, the logarithm <code>log<i><sub>b</sub>a</i></code> is a number <code><i>x</i></code> such that <code><i>b<sup>x</sup>=a</i></code>, for given numbers <code><i>a</i></code> and <code><i>b</i></code>. Analogously, in any group  <code><i>G</i></code> , powers  <code><i>b<sup>k</sup></i></code> can be defined for all integers <code><i>k</i></code>, and the discrete logarithm <code>log<i><sub>b</sub>a</i></code> is an integer <code><i>k</i></code> such that <code><i>b<sup>k</sup>=a</i></code>. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]][\[17\]], [[29]][\[29\]])
+
+[dlp~]: #dlp
+"In the mathematics of the real 
+numbers, the logarithm log_b(a) 
+is a number x such that ..."
+
+- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function. A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment and shared statement as opposed to only the commitment. ([[18]][\[18\]], [[19]][\[19\]])
+
+[fsh~]: #fsh
+"The Fiat–Shamir heuristic is a 
+technique in cryptography to 
+convert an interactive ..."
+
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
 
 [ts~]: #ts "???"
@@ -105,28 +117,6 @@ sometimes called argument systems."
 "In cryptography, a zero-knowledge 
 proof/protocol is a method by which 
 one party (the prover Peggy) ..."
-
-- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function. A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment and shared statement as opposed to only the commitment. ([[18]][\[18\]], [[19]][\[19\]])
-
-[fsh~]: #fsh
-"The Fiat–Shamir heuristic is a 
-technique in cryptography to 
-convert an interactive ..."
-
-- <i><u>Discrete Logarithm/Discrete Logarithm Problem</u></i>:<a name="dlp"> </a>In the mathematics of the real numbers, the logarithm <code>log<i><sub>b</sub>a</i></code> is a number <code><i>x</i></code> such that <code><i>b<sup>x</sup>=a</i></code>, for given numbers <code><i>a</i></code> and <code><i>b</i></code>. Analogously, in any group  <code><i>G</i></code> , powers  <code><i>b<sup>k</sup></i></code> can be defined for all integers <code><i>k</i></code>, and the discrete logarithm <code>log<i><sub>b</sub>a</i></code> is an integer <code><i>k</i></code> such that <code><i>b<sup>k</sup>=a</i></code>. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over $\Gamma + \tau = \nu$ carefully  $\eta \Eta​$ chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]][\[17\]], [[29]][\[29\]])
-
-- 
-
-$$
-\Gamma - \Eta - \eta - \zeta - \xi
-$$
-
-
-
-[dlp~]: #dlp
-"In the mathematics of the real 
-numbers, the logarithm log_b(a) 
-is a number x such that ..."
 
 ## <a name="h-References"> </a>References
 
@@ -203,10 +193,11 @@ Meetup (Andrew Poelstra), Reddit"
 
 [\[12\]]: https://eprint.iacr.org/2016/263.pdf "Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al."
 
-[[13]][\[13\]] , , Date accessed: 2018-09-??.
+[[13]][\[13\]] Linear Algebra with Sub-linear Zero-Knowledge Arguments, Groth J., https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf, Date accessed: 2018-09-21.
 
-[\[13\]]:  
-""
+[\[13\]]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf 
+"Linear Algebra with Sub-linear Zero-Knowledge 
+Arguments, Groth J."
 
 [[14]][\[14\]] , , Date accessed: 2018-09-??.
 
