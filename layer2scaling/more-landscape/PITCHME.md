@@ -4,7 +4,7 @@
 
 - Layer 2 scaling current initiatives (update)
   - TumbleBit
-  - Counterparty Eco System
+  - Counterparty
   - 2-Way Pegged Secondary Block Chains
   - Lumino
   - Scriptless scripts
@@ -69,11 +69,12 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 ---
 
-#### #2 Counterparty Eco System
+#### #2 Counterparty
 
-- Counterparty NOT a block chain -> protocol & network of nodes for smart contract apps, using EVM linked to Bitcoin block chain
-- Embedded consensus (identical ledgers, no P2P network) & federated nodes
-- Tx meta data are written into Bitcoin Txs on Bitcoin block chain
+- Counterparty NOT a block chain, but token protocol that operates on Bitcoin
+- Full DEX & hardcoded smart contracts, e.g. difference, binary options
+- Embedded consensus (all comms via Bitcoin, identical ledgers, no P2P network)
+- Tx meta data embedded into Bitcoin Txs on Bitcoin block chain (e.g. 1-of-3 multisig, P2SH or P2PKH)
 - Read and validated by the federated nodes, executed by them
 
 ![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/layer2scaling/more-landscape/sources/CounterpartyStack.png)
@@ -82,37 +83,45 @@ Has benefits to Tari as a trustless Masternode matching/batch processing engine 
 
 +++
 
-#### #2 Counterparty Eco System (cont'd)
+#### #2 Counterparty (cont'd)
 
-- Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`
-- Broadcast an `execute` Tx to call a specific function in smart contract code
-- Tx confirmed by Bitcoin miner -> Counterparty federated nodes execute the function 
-- The contract state is modified as the smart contract code executes and stored in the Counterparty database
+- On testnet only, never included on the mainnet : **EVM** for smart contracts
+  - Counterparty smart contracts “lives” at Bitcoin addresses that starts with a `C`
+  - Broadcast an `execute` Tx to call a specific function in smart contract code
+  - Tx confirmed by Bitcoin miner -> Counterparty federated nodes execute the function 
+  - The contract state is modified as the smart contract code executes and stored in the Counterparty database
 
 +++
 
-#### #2 Counterparty Eco System (cont'd)
+#### #2 Counterparty (cont'd)
 
 - Most notable projects built on top of Counterparty:
   - [Age of Chains](https://www.ageofchains.com), [Age of Rust](http://spacepirate.io), [Augmentors](https://www.augmentorsgame.com/), [Authparty](http://authparty.io/), [Bitcorns](https://bitcorns.com/), [Blockfreight™](http://blockfreight.com/), [Blocksafe](http://www.blocksafefoundation.com), [BTCpaymarket.com](http://btcpaymarket.com), [CoinDaddy](http://coindaddy.io), [COVAL](https://coval.readme.io), [FoldingCoin](http://foldingcoin.net/), [FootballCoin](https://www.footballcoin.io/), [GetGems](http://getgems.org/#/), [IndieBoard](https://indiesquare.me/), [LTBCoin - Letstalkbitcoin.com](https://letstalkbitcoin.com/), [Mafia Wars](https://mafiawars.io/), [NVO](https://nvo.io/), [Proof of Visit](https://proofofvisit.com/), [Rarepepe.party](http://rarepepe.party), [SaruTobi Island](http://mandelduck.com/sarutobiisland/), [Spells of Genesis](http://www.spellsofgenesis.com), [Takara](https://mandelduck.com/#portfolio), [The Scarab Experiment](https://www.thescarabexperiment.org/), [Token.FM](https://token.fm/), [Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM)
 
 +++
 
-#### #2 Counterparty Eco System (cont'd)
+#### #2 Counterparty (cont'd)
 
 <u>Strengths</u>
 
-- Provides smart contract abilities rooted in Bitcoin block chain
-- Embedded consensus - nodes maintain identical ledgers without P2P network
-
+- Provides hard coded smart contract abilities rooted in Bitcoin block chain
+- Embedded consensus - Txs created and embedded into Bitcoin Txs (permissionless innovation)
 
 <u>Weaknesses</u>
 
-- Smart contracts and their state updates are executed and maintained off-chain in the federated nodes. If  federated nodes are compromised no evidence of Txs within eco system exists.
+- Embedded consensus requires lockstep upgrades from network nodes to avoid forks
+- Embedded consensus imposes limitations on 2nd layer to interact with base layer's token
+- Embedded consensus hampers protocol flexibility & limits speed to that of base layer
 
 <u>Opportunities for Tari</u>
 
-- See '*Scriptless scripts*'
+@div[text-left]
+
+<ul>
+<li>See '<i>Scriptless scripts</i>'
+</ul>
+
+@divend
 
 ---
 
@@ -271,7 +280,7 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 <u>Opportunities for Tari</u>
 
 - Tari should implement Mimblewimble, *Scriptless Script*s and the MuSig Schnorr signature scheme
-- Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty
+- Mimblewimble *Scriptless Script*s could be combined with a federated node (or masternode), similar to that being developed by Counterparty, but with improved consensus
 
 ---
 
