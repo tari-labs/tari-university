@@ -134,7 +134,7 @@ SPV clients have not been implemented on Monero due to it's security model and T
 
 ## References
 
-[1] Size of the Bitcoin blockchain from 2010 to 2018, by quarter (in megabytes), ttps://www.statista.com/statistics/647523/worldwide-bitcoin-blockchain-size/, Date accessed: 2018-09-10.
+[1] Size of the Bitcoin blockchain from 2010 to 2018, by quarter (in megabytes),  https://www.statista.com/statistics/647523/worldwide-bitcoin-blockchain-size/, Date accessed: 2018-09-10.
 
 [2] Bitcoin: A Peer-to-Peer Electronic Cash System, Satoshi Nakamoto, https://www.bitcoin.com/bitcoin.pdf, Date accessed: 2018-09-10.
 
@@ -143,9 +143,9 @@ SPV clients have not been implemented on Monero due to it's security model and T
 [4] SPV, Bloom filters and checkpoints, https://multibit.org/hd0.4/how-spv-works.html, Date accessed: 2018-09-10.
 
 [5] Improving the ability of SPV clients to detect invalid chains
-,https://gist.github.com/justusranvier/451616fa4697b5f25f60, Date accessed: 2018-09-10.
+, https://gist.github.com/justusranvier/451616fa4697b5f25f60, Date accessed: 2018-09-10.
 
-[6] Meditations on Fraud Proofs, htp://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
+[6] Meditations on Fraud Proofs, http://www.truthcoin.info/blog/fraud-proofs/, Dated accessed: 2018-09-10.
 
 [7] On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients, Arthur Gervais, et al, https://eprint.iacr.org/2014/763.pdf, Date accessed: 2018-09-10.
@@ -154,11 +154,11 @@ Bitcoin Clients, Arthur Gervais, et al, https://eprint.iacr.org/2014/763.pdf, Da
 
 [9] A Case of False Positives in Bloom Filters, https://medium.com/blockchain-musings/a-case-of-false-positives-in-bloom-filters-da09ec487ff0, Date accessed: 2018-09-11.
 
-[10] The Design Of Bitcoin Merkle Trees Reduces The Security Of SPV Clients, htps://media.rsk.co/the-design-of-bitcoin-merkle-trees-reduces-the-security-of-spv-clients/, Date accessed: 2018-09-11.
+[10] The Design Of Bitcoin Merkle Trees Reduces The Security Of SPV Clients, https://media.rsk.co/the-design-of-bitcoin-merkle-trees-reduces-the-security-of-spv-clients/, Date accessed: 2018-09-11.
 
 [11] Leaf-Node weakness in Bitcoin Merkle Tree Design, https://bitslog.wordpress.com/2018/06/09/leaf-node-weakness-in-bitcoin-merkle-tree-design/, Date accessed: 2018-09-11.
 
-[12] Privacy in bitsquare, htps://bisq.network/blog/privacy-in-bitsquare/, Date accessed: 2018-09-11.
+[12] Privacy in bitsquare, https://bisq.network/blog/privacy-in-bitsquare/, Date accessed: 2018-09-11.
 
 [13] bip-0037.mediawiki, https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki, Date accessed: 2018-09-11.
 
