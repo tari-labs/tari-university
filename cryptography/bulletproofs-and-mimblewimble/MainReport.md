@@ -20,7 +20,7 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 Bulletproofs have wide application [[3]][\[3\]] and can be used for :
 
 - Rangeproofs
-  - ???
+  - <code><i>x</i></code> is an element of <code><i>[0,2<sup>52</sup> - 1]</i></code>
 - Merkle proofs
   - ???
 - Proof of solvency
@@ -47,6 +47,20 @@ Bulletproofs have wide application [[3]][\[3\]] and can be used for :
   - [Definition of Terms](#h-Definition-of-Terms)
   - [References](#h-References)
   - [Contributors](#h-Contributors)
+
+## <a name="h-Comparison-to-other-Zero-knowledge-Proof-Systems"> </a>Comparison to other Zero-knowledge Proof Systems
+
+The table below shows a high level comparison between Sigma Protocols and the different Zero-knowledge proof systems mentioned in this report. 
+
+| Proof System         | Sigma Protocols | zk-SNARK        | STARK                                 | ZKBoo        | Bulletproofs   |
+| -------------------- | --------------- | --------------- | ------------------------------------- | ------------ | -------------- |
+| <b>Interactive</b>   | yes             | no              | no                                    | no           | no             |
+| <b>Proof Size</b>    | long            | short           | shortish                              | long         | short          |
+| <b>Prover</b>        | linear          | FFT             | FFT   (big memory requirement)        | efficient    | linear         |
+| <b>Verifier</b>      | linear          | efficient       | efficient                             | efficient    | linear         |
+| <b>Trusted Setup</b> | no              | required        | no                                    | no           | no             |
+| <b>Practical</b>     | yes             | yes             | not   quite                           | somewhat     | yes            |
+| <b>Assumptions</b>   | discrete   log  | non-falsifiable | quantum secure One-way Function (OWF) | discrete log | discrete   log |
 
 
 
@@ -81,15 +95,18 @@ See  [[35]][\[35\]]
 
 ## <a name="h-Negatives"> </a>Negatives
 
-- A discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding (*i.e. confidential*), but only computationally binding (*i.e. not quantum resistant*). ([[1]][\[1\]], [[5]][\[5\]] and [[10]][\[10\]])
+- A discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding (*i.e. confidential*), but only computationally binding (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]][\[1\]], [[5]][\[5\]] and [[10]][\[10\]])
 - 
 
 ## <a name="h-Conclusions,-Observations,-Recommendations"> </a>Conclusions, Observations, Recommendations
 
-- Bünz B. et al [[1]][\[1\]] proposed that for Bulletproofs all Pedersen commitments be replaced with ElGamal Commitments<sup>[def][pc~]</sup> in order to make the scheme quantum secure. The ElGamal scheme can be improved slightly if the same <code><i>g<sup>r</sup></i></code> is used in multiple range proofs. In order to retain the hiding property, a different <code><i>h</i></code> must be used for every proof.
+- Bünz B. et al [[1]][\[1\]] proposed that the switch commitment scheme proposed by Ruffing T. et al. [[24]][\[24\]] can be a good fit for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. 
+- for Bulletproofs all Pedersen commitments be replaced with ElGamal Commitments<sup>[def][pc~]</sup> in order to make the scheme quantum secure. The ElGamal scheme can be improved slightly if the same <code><i>g<sup>r</sup></i></code> is used in multiple range proofs. In order to retain the hiding property, a different <code><i>h</i></code> must be used for every proof.
 - 
 
 ## <a name="h-Definition-of-Terms"> </a>Definition of Terms
+
+Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code><i>(a1, ..., an)</i></code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]][\[29\]]
 
@@ -127,16 +144,16 @@ is a number x such that ..."
 technique in cryptography to 
 convert an interactive ..."
 
-- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>A commitment scheme is a cryptographic primitive that allows one to commit to a chosen value (or chosen statement) while keeping it hidden to others, with the ability to reveal the committed value later. ([[1]][\[1\]], [[15]][\[15\]], [[22]][\[22\]])
-  - A Pedersen Commitment scheme allows a sender to create a commitment to a secret value and consists of three algorithms: 
-    - <code><i>Setup()</i></code> to set up the commitment parameters;
-    - <code><i>Commit()</i></code> to commit to the message using the commitment parameters;
-    - <code><i>Open()</i></code> to open and verify the commitment.
+- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>A Pedersen Commitment scheme is a cryptographic primitive that allows a prover to commit to a secret value (or statement) without revealing any information about it and without the prover being able to change its mind later on, with the ability to reveal the committed value later. ([[1]][\[1\]], [[15]][\[15\]], [[22]][\[22\]])
+  - An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields.
   - A Pedersen Commitment scheme has the following properties:
     - Hiding: A dishonest party cannot discover the honest party's value;
     - Binding: A dishonest party cannot open their commitment in more than one way;
     - Non-correlation: A dishonest party cannot commit to a value that is in some significant way correlated to the honest party's value.
-  - An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields.
+  - Pedersen Commitment scheme implementations usually consists of three algorithms: 
+    - <code><i>Setup()</i></code> to set up the commitment parameters;
+    - <code><i>Commit()</i></code> to commit to the message using the commitment parameters;
+    - <code><i>Open()</i></code> to open and verify the commitment.
 
 [pc~]: #pc
 "A commitment scheme is a cryptographic
@@ -147,12 +164,30 @@ A Pedersen Commitment scheme allows ..."
 
 [ts~]: #ts "???"
 
-- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover Peggy) can prove to another party (the verifier Victor) that she knows a value `w`, without conveying any information apart from the fact that she knows the value `w`. [[16]][\[16\]]
+- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement <code><i>Y</i></code> is true, without conveying any information apart from the fact that the prover knows the value of <code><i>Y</i></code>. The proof system must be complete, sound and zero-knowledge. ([[16]][\[16\]], [[23]][\[23\]])
+  - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
+  - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
+  - Zero-knowledge: If the statement is true and the prover follows the protocol; the verifier will not learn any confidential information from the interaction with the prover but the fact the statement is true.
 
 [zk~]: #zk
 "In cryptography, a zero-knowledge 
 proof/protocol is a method by which 
-one party (the prover Peggy) ..."
+one party (the prover) can convince ..."
+
+- <u><i>Security Paradigms</i></u>:<a name="sp"> </a>A commitment scheme is a cryptographic primitive that allows one to commit to a chosen value (or chosen statement) while keeping it hidden to others, with the ability to reveal the committed value later. More than one formal definition of commitment schemes exists. The one described here provides a play-off between perfect, statistical and computational security with respect to the hiding or binding properties. [[36]][\[36\]]
+  - Hiding property: The ability to keep the chosen value during the commit phase secret from others
+  - Binding property: The ability to ensure that the value chosen during the commit phase can be the only value the prover can compute and that validates during the reveal phase
+  - Perfect binding:
+  - Computational binding: 
+  - Statistical binding: 
+  -  Perfect, statistical, and computational hiding: 
+  - 
+
+[sp~]: #sp
+
+"More than one formal definition 
+of commitment schemes exists. 
+The one described here ..."
 
 ## <a name="h-References"> </a>References
 
@@ -259,15 +294,18 @@ Bernhard D. et al."
 "pedersen-commitment: An implementation
 of Pedersen commitment schemes"
 
-[[23]][\[23\]] , , Date accessed: 2018-09-??.
+[[23]][\[23\]] Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative, https://zkproof.org/documents.html, Date accessed: 2018-09-26.
 
-[\[23\]]:  
-""
+[\[23\]]: https://zkproof.org/documents.html 
+"Zero Knowledge Proof Standardization - 
+An Open Industry/Academic Initiative"
 
-[[24]][\[24\]] , , Date accessed: 2018-09-??.
+[[24]][\[24\]] Switch Commitments: A Safety Switch for Confidential Transactions, Ruffing T. et al., https://eprint.iacr.org/2017/237.pdf, Date accessed: 2018-09-26.
 
-[\[24\]]:  
-""
+[\[24\]]: https://eprint.iacr.org/2017/237.pdf 
+"Switch Commitments: A Safety Switch 
+for Confidential Transactions, 
+Ruffing T. et al."
 
 [[25]][\[25\]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Range Proofs, Date accessed: 2018-09-18.
 
@@ -313,6 +351,11 @@ for the Grin/MimbleWimble project"
 [\[35\]]: https://github.com/mimblewimble/grin/issues/273	
 "GitHub: mimblewimble/grin, Bulletproofs #273"
 
+[[36]][\[36\]] Wikipedia: Commitment scheme, https://en.wikipedia.org/wiki/Commitment_scheme, Date accessed: 2018-09-26.
+
+[\[36\]]: https://en.wikipedia.org/wiki/Commitment_scheme 
+"Wikipedia: Commitment scheme"
+
 [[40]][\[40\]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-??.
 
 [\[40\]]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf 
@@ -329,6 +372,8 @@ Sadeghi A et al."
 
 [\[?\]]:  
 ""
+
+
 
 ## <a name="h-Contributors"> </a>Contributors
 
