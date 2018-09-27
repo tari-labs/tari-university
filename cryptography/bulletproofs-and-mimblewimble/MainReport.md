@@ -2,7 +2,7 @@
 
 ## <a name="h-Introduction"> </a>Introduction
 
-Bulletproofs form part of the family of distinct Zero-knowledge<sup>[def][zk~]</sup> proof systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
+Bulletproofs form part of the family of distinct Zero-knowledge Proof<sup>[def][zk~]</sup> systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]][\[2\]], [[4]][\[4\]])
 
 Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def][ac~]</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def][afs~]</sup>) and without requiring a Trusted Setup<sup>[def][ts~]</sup>. They rely on the Discrete Logarithmic<sup>[def][dlp~]</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. The name 'Bulletproof' originated from a non-technical summary from one of the original authors of the scheme's properties: "<i>Short like a bullet with bulletproof security assumptions</i>". ([[1]][\[1\]], [[29]][\[29\]])
 
@@ -50,7 +50,7 @@ Bulletproofs have wide application [[3]][\[3\]] and can be used for :
 
 ## <a name="h-Comparison-to-other-Zero-knowledge-Proof-Systems"> </a>Comparison to other Zero-knowledge Proof Systems
 
-The table below shows a high level comparison between Sigma Protocols and the different Zero-knowledge proof systems mentioned in this report. 
+The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. 
 
 | Proof System         | Sigma Protocols | zk-SNARK        | STARK                                 | ZKBoo        | Bulletproofs   |
 | -------------------- | --------------- | --------------- | ------------------------------------- | ------------ | -------------- |
@@ -100,8 +100,8 @@ See  [[35]][\[35\]]
 
 ## <a name="h-Conclusions,-Observations,-Recommendations"> </a>Conclusions, Observations, Recommendations
 
-- Bünz B. et al [[1]][\[1\]] proposed that the switch commitment scheme proposed by Ruffing T. et al. [[24]][\[24\]] can be a good fit for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. 
-- for Bulletproofs all Pedersen commitments be replaced with ElGamal Commitments<sup>[def][pc~]</sup> in order to make the scheme quantum secure. The ElGamal scheme can be improved slightly if the same <code><i>g<sup>r</sup></i></code> is used in multiple range proofs. In order to retain the hiding property, a different <code><i>h</i></code> must be used for every proof.
+- Bünz B. et al [[1]][\[1\]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]][\[24\]] can be a good fit for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a block chain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries, but weakening the perfectly hiding property and slowing down all proof calculations at the same time. In this proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][pc~]</sup>. Bünz B. et al [[1]][\[1\]] have further proposals about how the switch commitment scheme can possibly be enhanced to also improve the hiding property to be statistical or perfect.
+-  
 - 
 
 ## <a name="h-Definition-of-Terms"> </a>Definition of Terms
@@ -122,6 +122,14 @@ directed acyclic graph ..."
 soundness like Bulletproofs are 
 sometimes called argument systems."
 
+- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a zero-knowledge proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[36]][\[36\]], [[37]][\[37\]])
+
+[cs~]: #cs
+
+"A commitment scheme in a 
+zero-knowledge proof is a 
+cryptographic primitive ..."
+
 - <i><u>Discrete Logarithm/Discrete Logarithm Problem</u></i>:<a name="dlp"> </a>In the mathematics of the real numbers, the logarithm <code>log<i><sub>b</sub>a</i></code> is a number <code><i>x</i></code> such that <code><i>b<sup>x</sup>=a</i></code>, for given numbers <code><i>a</i></code> and <code><i>b</i></code>. Analogously, in any group  <code><i>G</i></code> , powers  <code><i>b<sup>k</sup></i></code> can be defined for all integers <code><i>k</i></code>, and the discrete logarithm <code>log<i><sub>b</sub>a</i></code> is an integer <code><i>k</i></code> such that <code><i>b<sup>k</sup>=a</i></code>. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]][\[17\]], [[40]][\[40\]])
 
 [dlp~]: #dlp
@@ -132,7 +140,8 @@ is a number x such that ..."
 - <u><i>ElGamal Commitment</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment <code><i>g<sup>r</sup></i></code> to the randomness used. [[1]][\[1\]]
 
 [egc~]: #egc
-"An ElGamal Commitment ..."
+"An ElGamal Commitment is a 
+Pedersen Commitment with ..."
 
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]][\[18\]], [[19]][\[19\]])
   - The prover will use a <code><i>Prove()</i></code> algorithm to calculate a commitment <code><i>A</i></code> with a statement <code><i>Y</i></code> that is shared with the verifier and a secret witness value <code><i>w</i></code> as inputs. The commitment <code><i>A</i></code> is then hashed to obtain the challenge <code><i>c</i></code>, which is further processed with the <code><i>Prove()</i></code> algorithm to calculate the response <code><i>f</i></code>. The single message sent to the verifier then contains the challenge <code><i>c</i></code> and response <code><i>f</i></code>.
@@ -144,21 +153,24 @@ is a number x such that ..."
 technique in cryptography to 
 convert an interactive ..."
 
-- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>A Pedersen Commitment scheme is a cryptographic primitive that allows a prover to commit to a secret value (or statement) without revealing any information about it and without the prover being able to change its mind later on, with the ability to reveal the committed value later. ([[1]][\[1\]], [[15]][\[15\]], [[22]][\[22\]])
-  - An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields.
-  - A Pedersen Commitment scheme has the following properties:
-    - Hiding: A dishonest party cannot discover the honest party's value;
-    - Binding: A dishonest party cannot open their commitment in more than one way;
-    - Non-correlation: A dishonest party cannot commit to a value that is in some significant way correlated to the honest party's value.
-  - Pedersen Commitment scheme implementations usually consists of three algorithms: 
-    - <code><i>Setup()</i></code> to set up the commitment parameters;
-    - <code><i>Commit()</i></code> to commit to the message using the commitment parameters;
-    - <code><i>Open()</i></code> to open and verify the commitment.
+- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]][\[1\]], [[15]][\[15\]], [[22]][\[22\]], [[38]][\[38\]], [[39]][\[39\]]).
+  - The generalized Pedersen commitment definition follows:
+    - Let <code><i>q</i></code> be a large prime and <code><i>p</i></code> be a large safe prime such that <code><i>p = 2q + 1</i></code>
+    - Let <code><i>G</i></code> and <code><i>Q</i></code> denote cyclic groups of prime order <code><i>p</i></code> and <code><i>q</i></code>, and let <code><i>Z<sub>p</sub></i></code> and <code><i>Z<sub>q</sub></i></code> denote the ring of integers modulo <code><i>p</i></code> and modulo <code><i>q</i></code>, respectively
+    - Let <code><i>Z<sub>p</sub><sup>\*</sup></i></code> denote <code><i>Z<sub>p</sub>\\{0}</i></code> and <code><i>Z<sub>q</sub><sup>\*</sup></i></code> denote <code><i>Z<sub>q</sub>\\{0}</i></code> 
+    - Let <code><i>g</i></code> be a random generator of cyclic group <code><i>G</i></code> such that <code><i>g</i></code> is an element of <code><i>Z<sub>q</sub><sup>\*</sup></i></code>
+    - Let <code><i>a</i></code> be a random value and element of <code><i>Z<sub>q</sub><sup>\*</sup></i></code> and calculate <code><i>h</i></code> such that <code><i>h = g<sup>a</sup></i></code>
+    - Let <code><i>r</i></code> be a random value and element of <code><i>Z<sub>p</sub><sup>\*</sup></i></code> 
+    - The commitment of value <code><i>x</i></code> is then determined by calculating <code><i>C(x,r) = g<sup>r</sup>h<sup>x</sup></i></code> 
+    - The generator <code><i>g</i></code> and resulting number <code><i>h</i></code> are known as the commitment bases, and should be shared along with <code><i>C(x,r)</i></code> with whomever wishes to open the value.
+    - Pedersen commitments are also additionally homomorphic, such that for messages <code><i>m<sub>0</sub></i></code> and <code><i>m<sub>1</sub></i></code> and blinding factors <code><i>r<sub>0</sub></i></code> and <code><i>r<sub>1</sub></i></code> we have <code><i>C(m<sub>0</sub>,r<sub>0</sub>)·C(m<sub>1</sub>,r<sub>1</sub>) = C(m<sub>0</sub>+m<sub>1</sub>,r<sub>0</sub>+r<sub>1</sub>)</i></code> 
+  - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
+  - Practical implementations usually consist of three algorithms: <code><i>Setup()</i></code> to set up the commitment parameters; <code><i>Commit()</i></code> to commit to the message using the commitment parameters and <code><i>Open()</i></code> to open and verify the commitment.
 
 [pc~]: #pc
-"A commitment scheme is a cryptographic
-primitive that allows one to commit to a ...
-A Pedersen Commitment scheme allows ..."
+"A Pedersen Commitment scheme is a cryptographic
+primitive that allows one to commit to a
+secret value (or statement) without ..."
 
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
 
@@ -167,27 +179,14 @@ A Pedersen Commitment scheme allows ..."
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement <code><i>Y</i></code> is true, without conveying any information apart from the fact that the prover knows the value of <code><i>Y</i></code>. The proof system must be complete, sound and zero-knowledge. ([[16]][\[16\]], [[23]][\[23\]])
   - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
   - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
-  - Zero-knowledge: If the statement is true and the prover follows the protocol; the verifier will not learn any confidential information from the interaction with the prover but the fact the statement is true.
+  - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any confidential information from the interaction with the prover apart from the fact that the statement is true.
 
 [zk~]: #zk
 "In cryptography, a zero-knowledge 
 proof/protocol is a method by which 
 one party (the prover) can convince ..."
 
-- <u><i>Security Paradigms</i></u>:<a name="sp"> </a>A commitment scheme is a cryptographic primitive that allows one to commit to a chosen value (or chosen statement) while keeping it hidden to others, with the ability to reveal the committed value later. More than one formal definition of commitment schemes exists. The one described here provides a play-off between perfect, statistical and computational security with respect to the hiding or binding properties. [[36]][\[36\]]
-  - Hiding property: The ability to keep the chosen value during the commit phase secret from others
-  - Binding property: The ability to ensure that the value chosen during the commit phase can be the only value the prover can compute and that validates during the reveal phase
-  - Perfect binding:
-  - Computational binding: 
-  - Statistical binding: 
-  -  Perfect, statistical, and computational hiding: 
-  - 
-
-[sp~]: #sp
-
-"More than one formal definition 
-of commitment schemes exists. 
-The one described here ..."
+- ?
 
 ## <a name="h-References"> </a>References
 
@@ -237,7 +236,7 @@ Bünz B. et al"
 "Bulletproofs presentation at Feb 2 Milan 
 Meetup (Andrew Poelstra), Reddit"
 
-[[12]][\[12\]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-??.
+[[12]][\[12\]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-21.
 
 [\[12\]]: https://eprint.iacr.org/2016/263.pdf "Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al."
 
@@ -264,7 +263,7 @@ Blockstream"
 [\[17\]]: https://en.wikipedia.org/wiki/Discrete_logarithm 
 "Wikipedia: Discrete logarithm"
 
-[[18]][\[18\]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-??.
+[[18]][\[18\]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-20.
 
 [\[18\]]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf 
 "How to Prove Yourself: Practical Solutions to 
@@ -320,14 +319,14 @@ Commitments and Range Proofs"
 "GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp 
 `d78f12b` to Add Support for Mimblewimble Primitives"
 
-[[27]][\[27\]] GitHub: bbuenz/BulletProofLib, Library for generating non-interactive zero knowledge proofs without trusted setup (Bulletproofs), https://github.com/bbuenz/BulletProofLib, Date accessed: 2018-09-??.
+[[27]][\[27\]] GitHub: bbuenz/BulletProofLib, Library for generating non-interactive zero knowledge proofs without trusted setup (Bulletproofs), https://github.com/bbuenz/BulletProofLib, Date accessed: 2018-09-18.
 
 [\[27\]]: https://github.com/bbuenz/BulletProofLib 
 "GitHub: bbuenz/BulletProofLib, Library for generating 
 non-interactive zero knowledge proofs without trusted 
 setup (Bulletproofs)"
 
-[[28]][\[28\]] GitHub: dalek-cryptography/bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto, https://github.com/dalek-cryptography/bulletproofs, Date accessed: 2018-09-??.
+[[28]][\[28\]] GitHub: dalek-cryptography/bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto, https://github.com/dalek-cryptography/bulletproofs, Date accessed: 2018-09-18.
 
 [\[28\]]: https://github.com/dalek-cryptography/bulletproofs 
 "GitHub: dalek-cryptography/bulletproofs, A pure-Rust 
@@ -356,19 +355,37 @@ for the Grin/MimbleWimble project"
 [\[36\]]: https://en.wikipedia.org/wiki/Commitment_scheme 
 "Wikipedia: Commitment scheme"
 
-[[40]][\[40\]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-??.
+[[37]][\[37\]] Cryptography Wikia: Commitment scheme, http://cryptography.wikia.com/wiki/Commitment_scheme, Date accessed: 2018-09-26.
+
+[\[37\]]: http://cryptography.wikia.com/wiki/Commitment_scheme 
+"Cryptography Wikia: Commitment scheme"
+
+[[38]][\[38\]] Adjoint Inc. Documentation: Pedersen Commitment Scheme, https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme, Date accessed: 2018-09-27.
+
+[\[38\]]: https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme 
+"Adjoint Inc. Documentation: 
+Pedersen Commitment Scheme"
+
+[[39]][\[39\]] Non-interactive and information-theoretic secure verifiable secret sharing, Pedersen T. et al., https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf, Date accessed: 2018-09-27.
+
+[\[39\]]: https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf 
+"Non-interactive and information-theoretic
+secure verifiable secret sharing, 
+Pedersen T. et al."
+
+[[40]][\[40\]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-24.
 
 [\[40\]]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf 
 "Assumptions Related to Discrete Logarithms: 
 Why Subtleties Make a Real Difference, 
 Sadeghi A et al."
 
-[[50]][\[50\]] Elliptic Curve Cryptography: a gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
+[[50]][\[50\]] Elliptic Curve Cryptography: A gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
 [\[50\]]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction 
-"Elliptic Curve Cryptography: a gentle introduction"
+"Elliptic Curve Cryptography: A gentle introduction"
 
-[[?]][\[?\]] , , Date accessed: 2018-09-??.
+[[?]][\[?\]] , , Date accessed: 2018-09-?.
 
 [\[?\]]:  
 ""
