@@ -113,7 +113,6 @@ Consensus algorithms are those algorithms that help a distributed or decentraliz
 [[11]][\[11\]] Survey of Consensus Protocols of Blockchain Applications 201, Sankar et al., https://ieeexplore.ieee.org/document/8014672/, Date accessed: 2018-08-30
 
 [\[11\]]: https://ieeexplore.ieee.org/document/8014672/ 
-
 "Survey of Consensus Protocols of Blockchain Applications, 
 2017 4th International Conference on Advanced Computing 
 and Communication Systems, Sankar et al."
