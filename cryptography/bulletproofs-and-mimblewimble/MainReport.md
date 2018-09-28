@@ -160,7 +160,7 @@ convert an interactive ..."
     - Let <code><i>Z<sub>p</sub><sup>\*</sup></i></code> denote <code><i>Z<sub>p</sub>\\{0}</i></code> and <code><i>Z<sub>q</sub><sup>\*</sup></i></code> denote <code><i>Z<sub>q</sub>\\{0}</i></code> 
     - Let <code><i>g</i></code> be a random generator of cyclic group <code><i>G</i></code> such that <code><i>g</i></code> is an element of <code><i>Z<sub>q</sub><sup>\*</sup></i></code>
     - Let <code><i>a</i></code> be a random value and element of <code><i>Z<sub>q</sub><sup>\*</sup></i></code> and calculate <code><i>h</i></code> such that <code><i>h = g<sup>a</sup></i></code>
-    - Let <code><i>r</i></code> be a random value and element of <code><i>Z<sub>p</sub><sup>\*</sup></i></code> 
+    - Let <code><i>r</i></code> (the blinding factor) be a random value and element of <code><i>Z<sub>p</sub><sup>\*</sup></i></code> 
     - The commitment of value <code><i>x</i></code> is then determined by calculating <code><i>C(x,r) = g<sup>r</sup>h<sup>x</sup></i></code> 
     - The generator <code><i>g</i></code> and resulting number <code><i>h</i></code> are known as the commitment bases, and should be shared along with <code><i>C(x,r)</i></code> with whomever wishes to open the value.
     - Pedersen commitments are also additionally homomorphic, such that for messages <code><i>m<sub>0</sub></i></code> and <code><i>m<sub>1</sub></i></code> and blinding factors <code><i>r<sub>0</sub></i></code> and <code><i>r<sub>1</sub></i></code> we have <code><i>C(m<sub>0</sub>,r<sub>0</sub>)·C(m<sub>1</sub>,r<sub>1</sub>) = C(m<sub>0</sub>+m<sub>1</sub>,r<sub>0</sub>+r<sub>1</sub>)</i></code> 
