@@ -1,5 +1,3 @@
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js? config=TeX-MML-AM_CHTML" </script>
-
 # <a name="h-Bulletproofs-and-Mimblewimble"> </a>Bulletproofs and Mimblewimble
 
 ## <a name="h-Introduction"> </a>Introduction
@@ -110,32 +108,6 @@ See  [[35]][\[35\]]
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-| $P = k·G$        | <code>$P=k·G</code>                    | <code><em>P = k·G</em></code>              |
-| ---------------- | -------------------------------------- | ------------------------------------------ |
-| $e=H(G)$         | <code>$e=H(G)$</code>                  | <code><i>e = H(G)</i></code>               |
-| $e = H(R\|P\|m)$ | <code><em>$e = H(R\|P\|m)$</em></code> | <code><em>e = H(R \|\|P\|\|\m)</em></code> |
-
-$P = k·G$   <code>$P = k·G$</code>   <code><em>P = k·G</em></code>
-
-$e = H(R \| P \| m)$   <code><em>$e = H(R \| P \| m)$</em></code>   <code><em>e = H(R \|\| P \|\| m)</em></code> 
-
-$e=H(G)$  <code>$ e=H(G)$</code>   <code><i>e = H(G)</i></code>
-
-$s_{agg} = R_a + R_b' + e(P_a + P_b') $
-
-
-
-$$
-\begin{align}
-s_{agg}G &= R_a + R_b' + e(P_a + P_b') \\
-&= R_a + (R_b - R_a) + e(P_a + P_b - P_a) \\
-&= R_b + eP_b \\
-&= r_bG + ek_bG \\
-\therefore s_{agg} &= r_b + ek_b = s_b
-\end{align}
-$$
-
-
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code><i>(a1, ..., an)</i></code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]][\[29\]]
 
 [ac~]: #ac
@@ -153,7 +125,6 @@ sometimes called argument systems."
 - <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a zero-knowledge proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[36]][\[36\]], [[37]][\[37\]])
 
 [cs~]: #cs
-
 "A commitment scheme in a 
 zero-knowledge proof is a 
 cryptographic primitive ..."
