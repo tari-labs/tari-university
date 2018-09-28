@@ -100,13 +100,39 @@ See  [[35]][\[35\]]
 
 ## <a name="h-Conclusions,-Observations,-Recommendations"> </a>Conclusions, Observations, Recommendations
 
-- Bünz B. et al [[1]][\[1\]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]][\[24\]] can be a good fit for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a block chain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries, but weakening the perfectly hiding property and slowing down all proof calculations at the same time. In this proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][pc~]</sup>. Bünz B. et al [[1]][\[1\]] have further proposals about how the switch commitment scheme can possibly be enhanced to also improve the hiding property to be statistical or perfect.
+- Bünz B. et al [[1]][\[1\]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]][\[24\]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a block chain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries, but weakening the perfectly hiding property as a drawback and slowing down all proof calculations. In this proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][pc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]][\[1\]] also have further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
 -  
 - 
 
 ## <a name="h-Definition-of-Terms"> </a>Definition of Terms
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
+
+| $P = k·G$        | <code>$P=k·G</code>                    | <code><em>P = k·G</em></code>              |
+| ---------------- | -------------------------------------- | ------------------------------------------ |
+| $e=H(G)$         | <code>$e=H(G)$</code>                  | <code><i>e = H(G)</i></code>               |
+| $e = H(R\|P\|m)$ | <code><em>$e = H(R\|P\|m)$</em></code> | <code><em>e = H(R \|\|P\|\|\m)</em></code> |
+
+$P = k·G$   <code>$P = k·G$</code>   <code><em>P = k·G</em></code>
+
+$e = H(R \| P \| m)$   <code><em>$e = H(R \| P \| m)$</em></code>   <code><em>e = H(R \|\| P \|\| m)</em></code> 
+
+$e=H(G)$  <code>$ e=H(G)$</code>   <code><i>e = H(G)</i></code>
+
+$s_{agg} = R_a + R_b' + e(P_a + P_b') $
+
+
+
+$$
+\begin{align}
+s_{agg}G &= R_a + R_b' + e(P_a + P_b') \\
+&= R_a + (R_b - R_a) + e(P_a + P_b - P_a) \\
+&= R_b + eP_b \\
+&= r_bG + ek_bG \\
+\therefore s_{agg} &= r_b + ek_b = s_b
+\end{align}
+$$
+
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables <code><i>(a1, ..., an)</i></code> is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]][\[29\]]
 
@@ -378,7 +404,12 @@ Pedersen T. et al."
 [\[40\]]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf 
 "Assumptions Related to Discrete Logarithms: 
 Why Subtleties Make a Real Difference, 
-Sadeghi A et al."
+Sadeghi A et al." 
+
+[[41]][\[41\]] , , Date accessed: 2018-09-?.
+
+[\[41\]]:  
+""
 
 [[50]][\[50\]] Elliptic Curve Cryptography: A gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
