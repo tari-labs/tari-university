@@ -108,3 +108,10 @@ References
 5. Project Spotlight: Maidsafe and PARSEC Part 1 https://medium.com/@flatoutcrypto/project-spotlight-maidsafe-and-parsec-part-1-4830cec8d9e3
 6. The Honey Badger of BFT Protocols https://eprint.iacr.org/2016/199.pdf
 
+Consensus algorithms are those algorithms that help a distributed or decentralized network to unanimously take a decision whenever necessary. Its features include assuring decentralized governance, quorum structure, authentication, integrity, non-repudiation, byzantine fault tolerance and performance.  [[11]][\11\]] 
+
+[\[11\]]: https://ieeexplore.ieee.org/document/8014672/ 
+
+"Survey of Consensus Protocols of Blockchain Applications, 
+2017 4th International Conference on Advanced Computing 
+and Communication Systems, Sankar et al."
