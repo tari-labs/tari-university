@@ -55,7 +55,7 @@ In terms of the monetary policy of the two projects BEAM has stated that they wi
 ## Conclusions, Observations, Recommendations
 In summary, Grin and BEAM are two open-source projects that are implementing the Mimblewimble blockchain scheme. Both projects are building from scratch. Grin is using Rust and BEAM is using C++ and as such there are many technical differences in their design and implementations. However, from a functional perspective both projects will support all the core Mimblewimble functionality. Each project does contain some unique functionality which was discussed. The main differences between the projects are the chosen PoW algorithms, monetary policy and their Governance models. 
 
-These projects are still very young and many of their core design choices have not been made or tested yet. It will be interesting to keep an eye on these projects to see how their various decisions play out both technically and in terms of their monetary policy and governance models.
+These projects are still very young and many of their core design choices have not been made or tested yet. Much of the BEAM wiki is still in Russian so it is likely there are details contained there that we are not privy to yet. It will be interesting to keep an eye on these projects to see how their various decisions play out both technically and in terms of their monetary policy and governance models.
 
 ## References
 
