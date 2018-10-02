@@ -143,6 +143,53 @@ Let's demonstrate this using a three-of-three multisig:
 
 {{#playpen src/musig.rs}}
 
+As a final demonstration, let's show how MuSig defeats the cancellation attack from the naïve signature scheme described
+above. Using the same idea as in [the previous section](#key_cancellation_attack), Bob has provided fake values for his
+nonce and public keys:
+
+\\[ 
+\begin{align}
+  R_f &= R_b - R_a \\\\
+  X_f &= X_b - X_a \\\\
+\end{align}
+\\]
+
+This leads to both Alice and Bob calculation the following "shared" values:
+
+\\[ 
+\begin{align}
+  \ell &= H(X_a || X_f) \\\\
+  a_a &= H(\ell || X_a) \\\\
+  a_f &= H(\ell || X_f) \\\\
+  X &= a_a X_a + a_f X_f \\\\
+  R &= R_a + R_f (= R_b) \\\\
+  e &= H(R || X || m)
+\end{align}
+\\]
+
+He then tries to construct a unilateral signature following MuSig:
+
+\\[ 
+  s_b = r_b + k_s e
+\\]
+
+Let's assume for now that \\( k_s \\) doesn't need to be Bob's private key, but that he can derive it using information
+he knows. For this to be a valid signature, it must verify to \\( R + eX \\). So therefore
+
+\\[ 
+\begin{align}
+  s_b G          &= R + eX \\\\
+  (r_b + k_s e)G &= R_b + e(a_a X_a + a_f X_f) \\\\
+                 &= R_b + e(a_a X_a + a_f X_b - a_f X_a) \\\\
+                 &= (r_b + e a_a k_a + e a_f k_b - e a_f k_a)G \\\\
+  k_s e &=  e a_a k_a + e a_f k_b - e a_f k_a \\\\
+  k_s &= a_a k_a + a_f k_b - a_f k_a \\\\              
+\end{align}
+\\]
+
+In the previous attack, Bob had all the information he needed on the right-hand side of the analogous calculation. In MuSig,
+Bob must somehow know Alice's private key and the faked private key (the terms don't cancel anymore) in order to create a unilateral signature
+and so his cancellation attack is defeated.
 
 
 [WP1]: https://en.wikipedia.org/wiki/Schnorr_signature 'Wikipedia:Schnorr signature'
