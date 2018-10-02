@@ -30,7 +30,7 @@ makes it very attractive for things like
 * atomic swaps
 * 'scriptless' scripts
 
-# (Naïve) Signature aggregation
+## (Naïve) Signature aggregation
 
 Let's see how the linearity property of Schnorr signatures can be used to construct a 2-of-2 multi-signature.
 
@@ -58,7 +58,7 @@ from the sum of the _R_s and public keys. This does work:
 
 But this scheme is not secure!
 
-# Key cancellation attack
+## Key cancellation attack
 
 Let's take the previous scenario again, but this time, Bob knows Alice's public key and nonce ahead of time, by
 waiting until she reveals them. 
@@ -84,16 +84,67 @@ But Bob can create this signature himself:
 {{#playpen src/cancellation.rs}}
 
 
-# Better approaches to aggregation
+## Better approaches to aggregation
 
 In the key attack above, Bob didn't know the private keys for his published _R_ and _P_ values. We could defeat Bob
 by asking him to sign a message proving that he _does_ know the private keys.
 
 This works, but it requires another round of messaging between parties, which is not conducive to great UX.
 
-[TODO - MuSig]
+# MuSig
+
+[MuSig](GM18) is another simple signature aggregation scheme that is secure and preserves the property that the aggreate
+signature is still a valid Schnorr signature.
+
+MuSig is an interactive scheme, meaning that an input message is required from all the signers. The scheme works as follows:
+
+1. Each signer has a public-private key pair as before.
+1. Each signer publishes the public key of their nonce, \\( R_i \\),
+1. Everyone calculates the same "shared public key", _X_: 
+\\[
+    \begin{align}
+        \ell &= H(X_1 || \dots || X_n) \\\\
+        a_i &= H(\ell || X_i) \\\\
+        X &= \sum a_i X_i \\\\
+    \end{align}
+\\]
+Note that in the ordering of public keys above, some deterministic convention should be used, such as the lexicographical
+order of the serialised keys.
+1. as well as the shared nonce, \\( R = \sum R_i \\).
+1. The challenge, _e_ is \\( H(R || X || m) \\)
+1. Each signer provides their contribution to the signature as
+\\[ 
+    s_i = r_i + k_i a_i e
+\\]
+Notice that the only departure here from a standard Schnorr signature is the inclusion of the factor \\( a_i \\).
+1. The aggregate signature is the usual summation, \\( s = \sum s_i \\).
+
+Verification is done by confirming that 
+
+\\[ 
+  sG \equiv R + e X \\
+\\]
+
+as usual. Proof:
+
+\\[ 
+\begin{align}
+  sG &= \sum s_i G \\\\
+     &= \sum (r_i + k_i a_i e)G \\\\
+     &= \sum r_iG + k_iG a_i e \\\\
+     &= \sum R_i + X_i a_i e \\\\
+     &= \sum R_i + e \sum a_i X_i \\\\
+     &= R + e X \\\\
+     \blacksquare
+\end{align}
+\\]
+
+Let's demonstrate this using a three-of-three multisig:
+
+{{#playpen src/musig.rs}}
 
 
 
 [WP1]: https://en.wikipedia.org/wiki/Schnorr_signature 'Wikipedia:Schnorr signature'
 [BS18]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html 'Blockstream: Key Aggregation for Schnorr Signatures'
+[GM18]: https://eprint.iacr.org/2018/068.pdf 'Maxwell et. al., Simple Schnorr Multi-Signatures with Applications to Bitcoin'
