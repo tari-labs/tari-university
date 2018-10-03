@@ -6,11 +6,11 @@ If you follow the crypto news, you'll know that that new hotness in Bitcoin is S
 
 But in actual fact, they're old news! The Schnorr signature is considered the simplest digital signature scheme 
 to be provably secure in a random oracle model. It is efficient and generates short signatures. 
-It was covered by U.S. Patent 4,995,082 which expired in February 2008 [WP1].
+It was covered by U.S. Patent 4,995,082 which expired in February 2008 [[1]].
 
 ## So why all the fuss?
 
-What makes Schnorr signatures so interesting (and [potentially dangerous](#key_cancellation_attack)) is their simplicity. 
+What makes Schnorr signatures so interesting (and [potentially dangerous](#key-cancellation-attack)) is their simplicity. 
 Schnorr signatures are _linear_, so you have some nice properties.
 
 Elliptic curves have the multiplicative property. So if you have two scalars _x, y_ with corresponding points, _X, Y_, 
@@ -52,7 +52,7 @@ supply a nonce, we can try
 \\]
 
 So it looks like Alice and Bob can supply their own _R_, and anyone can construct the 2-of-2 signature 
-from the sum of the _R_s and public keys. This does work:
+from the sum of the _Rs_ and public keys. This does work:
 
 {{#playpen src/aggregation_1.rs}}
 
@@ -93,7 +93,7 @@ This works, but it requires another round of messaging between parties, which is
 
 # MuSig
 
-[MuSig](GM18) is another simple signature aggregation scheme that is secure and preserves the property that the aggreate
+MuSig [[2]],[[3]] is another simple signature aggregation scheme that is secure and preserves the property that the aggregate
 signature is still a valid Schnorr signature.
 
 MuSig is an interactive scheme, meaning that an input message is required from all the signers. The scheme works as follows:
@@ -110,7 +110,7 @@ MuSig is an interactive scheme, meaning that an input message is required from a
 \\]
 Note that in the ordering of public keys above, some deterministic convention should be used, such as the lexicographical
 order of the serialised keys.
-1. as well as the shared nonce, \\( R = \sum R_i \\).
+1. Everyone also calculates the shared nonce, \\( R = \sum R_i \\).
 1. The challenge, _e_ is \\( H(R || X || m) \\)
 1. Each signer provides their contribution to the signature as
 \\[ 
@@ -143,8 +143,10 @@ Let's demonstrate this using a three-of-three multisig:
 
 {{#playpen src/musig.rs}}
 
+## Security demonstration
+
 As a final demonstration, let's show how MuSig defeats the cancellation attack from the naïve signature scheme described
-above. Using the same idea as in [the previous section](#key_cancellation_attack), Bob has provided fake values for his
+above. Using the same idea as in [the previous section](#key-cancellation-attack), Bob has provided fake values for his
 nonce and public keys:
 
 \\[ 
@@ -154,7 +156,7 @@ nonce and public keys:
 \end{align}
 \\]
 
-This leads to both Alice and Bob calculation the following "shared" values:
+This leads to both Alice and Bob calculating the following "shared" values:
 
 \\[ 
 \begin{align}
@@ -179,10 +181,10 @@ he knows. For this to be a valid signature, it must verify to \\( R + eX \\). So
 \\[ 
 \begin{align}
   s_b G          &= R + eX \\\\
-  (r_b + k_s e)G &= R_b + e(a_a X_a + a_f X_f) \\\\
+  (r_b + k_s e)G &= R_b + e(a_a X_a + a_f X_f) & \text{The first term looks good so far}\\\\
                  &= R_b + e(a_a X_a + a_f X_b - a_f X_a) \\\\
-                 &= (r_b + e a_a k_a + e a_f k_b - e a_f k_a)G \\\\
-  k_s e &=  e a_a k_a + e a_f k_b - e a_f k_a \\\\
+                 &= (r_b + e a_a k_a + e a_f k_b - e a_f k_a)G & \text{The r terms cancel as before} \\\\
+  k_s e &=  e a_a k_a + e a_f k_b - e a_f k_a & \text{But nothing else is going away}\\\\
   k_s &= a_a k_a + a_f k_b - a_f k_a \\\\              
 \end{align}
 \\]
@@ -191,7 +193,12 @@ In the previous attack, Bob had all the information he needed on the right-hand 
 Bob must somehow know Alice's private key and the faked private key (the terms don't cancel anymore) in order to create a unilateral signature
 and so his cancellation attack is defeated.
 
+# References
 
-[WP1]: https://en.wikipedia.org/wiki/Schnorr_signature 'Wikipedia:Schnorr signature'
-[BS18]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html 'Blockstream: Key Aggregation for Schnorr Signatures'
-[GM18]: https://eprint.iacr.org/2018/068.pdf 'Maxwell et. al., Simple Schnorr Multi-Signatures with Applications to Bitcoin'
+[1]: https://en.wikipedia.org/wiki/Schnorr_signature 'Wikipedia:Schnorr signature'
+[2]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html 'Blockstream: Key Aggregation for Schnorr Signatures'
+[3]: https://eprint.iacr.org/2018/068.pdf 'Maxwell et. al., Simple Schnorr Multi-Signatures with Applications to Bitcoin'
+
+* [[1]]: Schnorr signature, Wikipedia, _https://en.wikipedia.org/wiki/Schnorr_signature_
+* [[2]]: Key Aggregation for Schnorr Signatures, Blockstream, _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_
+* [[3]]: Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell _et. al._, _https://eprint.iacr.org/2018/068.pdf_

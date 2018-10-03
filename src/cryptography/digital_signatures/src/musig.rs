@@ -5,17 +5,17 @@ use secp256k1::schnorr::{ Challenge };
 
 #[allow(non_snake_case)]
 fn main() {
-    let (k1, X1, r1, R1) = get_keypair();
-    let (k2, X2, r2, R2) = get_keypair();
-    let (k3, X3, r3, R3) = get_keypair();
+    let (k1, X1, r1, R1) = get_keys();
+    let (k2, X2, r2, R2) = get_keys();
+    let (k3, X3, r3, R3) = get_keys();
 
     // I'm setting the order here. In general, they'll be sorted
     let l = Challenge::new(&[&X1, &X2, &X3]);
     // ai = H(l || p)
-    // X = sum( a_i X_i)
     let a1 = Challenge::new(&[ &l, &X1 ]).as_scalar().unwrap();
     let a2 = Challenge::new(&[ &l, &X2 ]).as_scalar().unwrap();
     let a3 = Challenge::new(&[ &l, &X3 ]).as_scalar().unwrap();
+    // X = sum( a_i X_i)
     let X = a1 * X1 + a2 * X2 + a3 * X3;
 
     let m = Message::hash(b"SomeSharedMultiSigTx").unwrap();
@@ -41,7 +41,7 @@ fn main() {
 }
 
 #[allow(non_snake_case)]
-fn get_keypair() -> (SecretKey, PublicKey, SecretKey, PublicKey) {
+fn get_keys() -> (SecretKey, PublicKey, SecretKey, PublicKey) {
     let mut rng = thread_rng();
     let k = SecretKey::random(&mut rng);
     let P = PublicKey::from_secret_key(&k);
