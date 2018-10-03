@@ -304,13 +304,31 @@ Miller  et al."
 
 "Blockchain, crytography and consensus 2017, Cachin"
 
-[[8]][\[8]] https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a 
+[[8]][\[8]] Comments from Medium: I don't see how it's plausible for parallel forks of the hash chain to be finalised concurrently 2018, https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a, Date accessed: 2018-09-14 
+
+[\[8\]]: https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a
+
+"Comments from Medium: 
+
+I don't see hope it's plausible
+
+for parallel forks of the hash chain
+
+to be finalised concurrently"
 
 [[9]][\[9\]] High-Performance Consensus Mechanisms for Blockchains 2018, Rusch,  http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf, Date accessed: 2018-08-30
 
-[]
+[\[9\]]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
+
+"High-Performance Consensus Mechanisms for Blockchains,
+
+Rusch"
  
-10Untangling Blockchain: A Data Processing View of Blockchain Systems https://arxiv.org/pdf/1708.05665.pdf
+[[10]][\[10\]] Untangling Blockchain: A Data Processing View of Blockchain Systems 2017, Dinh et al., https://arxiv.org/pdf/1708.05665.pdf, Date accessed: 2018-08-30
+
+[[10]][\[10]]: https://arxiv.org/pdf/1708.05665.pdf
+
+"Untangling Blockchain: A Datat Processing View of Blockchain Systems
 
 [[11]][\[11\]] Survey of Consensus Protocols of Blockchain Applications 2018, Sankar et al., https://ieeexplore.ieee.org/document/8014672/, Date accessed: 2018-08-30
 
@@ -322,14 +340,34 @@ Miller  et al."
 
 and Communication Systems, Sankar et al."
 
-12The Stellar Consensus Protocol: A Federated Model for Internet-level Consensus https://www.stellar.org/papers/stellar-consensus-protocol.pdf
+[[12]][\[12\]] The Stellar Consensus Protocol: A Federated Model for Internet-level Consensus 2016, Mazières, https://www.stellar.org/papers/stellar-consensus-protocol.pdf, Date accessed: 2018-08-30
 
-13Architecture of the Hyperledger Blockchain Fabric https://www.zurich.ibm.com/dccl/papers/cachin_dccl.pdf
+[\[12\]]: https://www.stellar.org/papers/stellar-consensus-protocol.pdf
 
-14The Ripple Protocol Consensus Algorithm https://ripple.com/files/ripple_consensus_whitepaper.pdf
+"The Stellar Consensus Procotol: 
 
-15Tendermint https://tendermint.com/docs/
+A Federated Model for Internet- level
 
+Consensus 2016, Mazières"
 
+[[13]][\[13\]] Architecture of the Hyperledger Blockchain Fabric 2016, Cachin, https://www.zurich.ibm.com/dccl/papers/cachin_dccl.pdf, Date accessed: 2018-09-16
 
+[\[13\]]: https://www.zurich.ibm.com/dccl/papers/cachin_dccl.pdf
 
+"Architecture of the Hyperledger 
+
+Blockchain Fabric 2016, Cachin"
+
+[[14]][\[14\]] The Ripple Protocol Consensus Algorithm 2014, Schwartz et al.,  https://ripple.com/files/ripple_consensus_whitepaper.pdf, Date accessed: 2018-09-13
+
+[\[14\]]: https://ripple.com/files/ripple_consensus_whitepaper.pdf
+
+"The Ripple Protocol Consensus 
+
+Algorithm 2014, Schwartz et al."
+
+[[15]][\[15\]] Tendermint: Consenus without Mining 2014, Kwon,  https://tendermint.com/static/docs/tendermint.pdf, Date accessed: 2018-09-20
+
+[\[15\]]: https://tendermint.com/static/docs/tendermint.pdf
+
+"Tendermint: Consenus without Mining 2014, Kwon"
