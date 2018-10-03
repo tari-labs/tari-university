@@ -83,7 +83,7 @@ Messages are delivered with random delays, such that the average delay is finite
 ### Synchrony
 
 Here, the time for nodes to wait and receive information is predefined. If a node has not received an input within the redefined time structure,  there is a problem. [[5]][\[5\]
-A △-synchronous network guarantees that every message sent is delivered after at most a delay of △ (where △ is a measure of real time) [[6]][\6\]] Synchronous protocols come to a consensus every x seconds. [[5]][\[5\]]
+A △-synchronous network guarantees that every message sent is delivered after at most a delay of △ (where △ is a measure of real time) [[6]][\[6\]] Synchronous protocols come to a consensus every x seconds. [[5]][\[5\]]
 
 ### Partial Synchrony 
 
@@ -311,7 +311,7 @@ Rusch"
  
 [[10]][\[10\]] Untangling Blockchain: A Data Processing View of Blockchain Systems, Dinh et al., https://arxiv.org/pdf/1708.05665.pdf, Date accessed: 2018-08-30
 
-[[10]][\[10]]: https://arxiv.org/pdf/1708.05665.pdf
+[\[10\]]: https://arxiv.org/pdf/1708.05665.pdf
 "Untangling Blockchain: A Datat Processing View of Blockchain Systems"
 
 [[11]][\[11\]] Survey of Consensus Protocols of Blockchain Applications, Sankar et al., https://ieeexplore.ieee.org/document/8014672/, Date accessed: 2018-08-30
