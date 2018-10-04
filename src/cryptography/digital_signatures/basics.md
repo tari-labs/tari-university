@@ -9,9 +9,9 @@ atoms there are in the universe, so we have a big sandbox to play in.
 We have a special point on the secp256k1 curve called _G_, that acts as the 'origin'. A public key is calculated
 from the private key by multiplying it by _G_:
 
-\\[
+$$
   P_a = k_a G
-\\]
+$$
 
 Let's take an example from [this post](https://chuckbatson.wordpress.com/2014/11/26/secp256k1-test-vectors/), where
 it is known that the public key for `1`, when written in uncompressed format is `0479BE667...C47D08FFB10D4B8`.
@@ -34,17 +34,17 @@ The approach to creating signatures always follows this recipe:
 
 The actual signature is created by hashing the combination of all the public information above to create a _challenge_, e:
 
-\\[
+$$
     e = H(R || P || m)
-\\]
+$$
 
 The hashing function is chosen so that _e_ has the same range as your private keys. In our case, SHA256 is a good choice.
 
 Now the signature is constructed using your private information:
 
-\\[
+$$
     s = r + ke 
-\\]
+$$
 
 Now Bob can also calculate _e_, since he already knows _m, R, P_. But he doesn't know your private key, or nonce.
 _Note:_ When you construct the signature like this, it's known as a _Schnorr signature_, which we'll discuss in more 
@@ -52,16 +52,16 @@ detail in the next section. There are other ways of constructing _s_, such as EC
 
 But see this:
 
-\\[
+$$
     \begin{align}
       sG &= (r + ke)G \\\\
       sG &= rG + (kG)e \\\\
       sG &= R + Pe
     \end{align}
-\\]
+$$
 
 So Bob, must just calculate the public key corresponding to the signature and check that it equals the RHS of the last
-equation above (R + Pe), all of which Bob knows.
+equation above (R + Pe), all of which Bob knows WOOOHOO.
 
 ## Why do we need the nonce?
 
@@ -69,20 +69,20 @@ Why do we need a nonce in the standard signature?
 
 Let's say we naïvely sign a message m with
 
-\\[
-e = H(R || m)
-\\]
+$$
+    e = H(R || m)
+$$
 
 and then the signature would be \\(s = ek \\). 
 
 Now as before, we can check that the signature is valid:
 
-\\[
+$$
 \begin{align}
   s &= ek \\\\
  \therefore sG &= (ek)G = e(kG) = eP
 \end{align}
-\\]
+$$
 
 So far so good. But anyone can read your private key now because s is a scalar, so \\(k = \frac{s}{e} \\)
  is not hard to do.
@@ -103,13 +103,13 @@ ECDH is used in many places, including the Lightning Network during channel nego
 Here's how it works. Alice and Bob want to communicate securely. A simple way to do this is to use each other's public keys and
 calculate
 
-\\[
+$$
 \begin{align}
   S_a &= k_a P_b \tag{Alice} \\\\
   S_b &= k_b P_a \tag{Bob} \\\\
   \implies S_a = k_a k_b G &\equiv S_b = k_b k_a G
 \end{align}
-\\]
+$$
 
 {{#playpen src/ecdh.rs}}
 

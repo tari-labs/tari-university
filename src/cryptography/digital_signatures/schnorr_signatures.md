@@ -16,9 +16,9 @@ Schnorr signatures are _linear_, so you have some nice properties.
 Elliptic curves have the multiplicative property. So if you have two scalars _x, y_ with corresponding points, _X, Y_, 
 the following holds:
 
-\\[
+$$
   (x + y)G = xG + yG = X + Y 
-\\]
+$$
 
 Schnorr signatures are of the form \\( s = r + e.k \\). This construction is linear too, so it meshes nicely with
 the linearity of elliptic curve math..
@@ -41,7 +41,7 @@ only valid if _both_ Alice and Bob provide their part of the signature.
 Assuming private keys are denoted \\( k_i \\) and public keys \\( P_i \\). If we ask Alice and Bob to each 
 supply a nonce, we can try
 
-\\[
+$$
 \begin{align}
   P_{agg} &= P_a + P_b \\\\
   e &= H(R_a || R_b || P_a || P_b || m) \\\\
@@ -49,7 +49,7 @@ supply a nonce, we can try
         &= (r_a + k_ae) + (r_b + k_ae) \\\\
         &= s_a + s_b
 \end{align}
-\\]
+$$
 
 So it looks like Alice and Bob can supply their own _R_, and anyone can construct the 2-of-2 signature 
 from the sum of the _Rs_ and public keys. This does work:
@@ -71,7 +71,7 @@ Everyone assumes that \\(s_{agg} = R_a + R_b' + e(P_a + P_b') \\) as per the agg
 
 But Bob can create this signature himself: 
 
-\\[
+$$
 \begin{align}
   s_{agg}G &= R_a + R_b' + e(P_a + P_b') \\\\
     &= R_a + (R_b - R_a) + e(P_a + P_b - P_a) \\\\
@@ -79,7 +79,7 @@ But Bob can create this signature himself:
     &= r_bG + ek_bG \\\\
   \therefore s_{agg} &= r_b + ek_b = s_b
 \end{align}
-\\]
+$$
 
 {{#playpen src/cancellation.rs}}
 
@@ -101,33 +101,33 @@ MuSig is an interactive scheme, meaning that an input message is required from a
 1. Each signer has a public-private key pair as before.
 1. Each signer publishes the public key of their nonce, \\( R_i \\),
 1. Everyone calculates the same "shared public key", _X_: 
-\\[
+$$
     \begin{align}
         \ell &= H(X_1 || \dots || X_n) \\\\
         a_i &= H(\ell || X_i) \\\\
         X &= \sum a_i X_i \\\\
     \end{align}
-\\]
+$$
 Note that in the ordering of public keys above, some deterministic convention should be used, such as the lexicographical
 order of the serialised keys.
 1. Everyone also calculates the shared nonce, \\( R = \sum R_i \\).
 1. The challenge, _e_ is \\( H(R || X || m) \\)
 1. Each signer provides their contribution to the signature as
-\\[ 
+$$ 
     s_i = r_i + k_i a_i e
-\\]
+$$
 Notice that the only departure here from a standard Schnorr signature is the inclusion of the factor \\( a_i \\).
 1. The aggregate signature is the usual summation, \\( s = \sum s_i \\).
 
 Verification is done by confirming that 
 
-\\[ 
+$$ 
   sG \equiv R + e X \\
-\\]
+$$
 
 as usual. Proof:
 
-\\[ 
+$$ 
 \begin{align}
   sG &= \sum s_i G \\\\
      &= \sum (r_i + k_i a_i e)G \\\\
@@ -137,7 +137,7 @@ as usual. Proof:
      &= R + e X \\\\
      \blacksquare
 \end{align}
-\\]
+$$
 
 Let's demonstrate this using a three-of-three multisig:
 
@@ -149,16 +149,16 @@ As a final demonstration, let's show how MuSig defeats the cancellation attack f
 above. Using the same idea as in [the previous section](#key-cancellation-attack), Bob has provided fake values for his
 nonce and public keys:
 
-\\[ 
+$$ 
 \begin{align}
   R_f &= R_b - R_a \\\\
   X_f &= X_b - X_a \\\\
 \end{align}
-\\]
+$$
 
 This leads to both Alice and Bob calculating the following "shared" values:
 
-\\[ 
+$$ 
 \begin{align}
   \ell &= H(X_a || X_f) \\\\
   a_a &= H(\ell || X_a) \\\\
@@ -167,18 +167,18 @@ This leads to both Alice and Bob calculating the following "shared" values:
   R &= R_a + R_f (= R_b) \\\\
   e &= H(R || X || m)
 \end{align}
-\\]
+$$
 
 He then tries to construct a unilateral signature following MuSig:
 
-\\[ 
+$$ 
   s_b = r_b + k_s e
-\\]
+$$
 
 Let's assume for now that \\( k_s \\) doesn't need to be Bob's private key, but that he can derive it using information
 he knows. For this to be a valid signature, it must verify to \\( R + eX \\). So therefore
 
-\\[ 
+$$ 
 \begin{align}
   s_b G          &= R + eX \\\\
   (r_b + k_s e)G &= R_b + e(a_a X_a + a_f X_f) & \text{The first term looks good so far}\\\\
@@ -187,7 +187,7 @@ he knows. For this to be a valid signature, it must verify to \\( R + eX \\). So
   k_s e &=  e a_a k_a + e a_f k_b - e a_f k_a & \text{But nothing else is going away}\\\\
   k_s &= a_a k_a + a_f k_b - a_f k_a \\\\              
 \end{align}
-\\]
+$$
 
 In the previous attack, Bob had all the information he needed on the right-hand side of the analogous calculation. In MuSig,
 Bob must somehow know Alice's private key and the faked private key (the terms don't cancel anymore) in order to create a unilateral signature
