@@ -5,7 +5,7 @@ The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size 
 
 SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs [17] 
 
-![spv21.png](sources/spv21.png)
+![todd-btc-spv.jpg](sources/todd-btc-spv.jpg)
 Courtesy:MIT Bitcoin Expo 2016 Day 1
 
 
