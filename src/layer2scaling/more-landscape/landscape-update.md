@@ -1,14 +1,6 @@
 # Layer 2 Scaling Survey (part 2)
 
-This report provides a survey of TumbleBit , Counterparty, Rootstock, Drivechains, Scriptless scripts, Braiding and Directed Acyclic Graph (DAG) as layer 2 scaling alternatives.
-
-## What is Layer 2 scaling?
-
-See [Layer 2 Scaling Survey](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md)
-
-## How will this be applicable to Tari?
-
-See [Layer 2 Scaling Survey](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md)
+This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondary Block Chains, Lumino, Scriptless scripts and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling alternatives, building on [Layer 2 Scaling Survey (part 1)](../layer2scaling-landscape/layer2scaling-survey.md).
 
 ## Layer 2 scaling current initiatives (updated)
 

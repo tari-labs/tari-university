@@ -12,7 +12,7 @@
 
 
 
-*See Layer 2 Scaling Survey [part 1](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) and [part 2](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/more-landscape/landscape-update.md) for the full reports.*
+*See Layer 2 Scaling Survey [part 1](../layer2scaling-landscape/layer2scaling-survey.md) and [part 2](../more-landscape/landscape-update.md) for the full reports.*
 
 ---
 

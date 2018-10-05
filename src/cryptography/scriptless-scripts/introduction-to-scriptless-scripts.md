@@ -19,7 +19,7 @@ Scriptless Scripts are a means to execute smart contracts off-chain, through the
 
 The concept of Scriptless Scripts was borne from Mimblewimble, which is a block chain design that with the exception of kernels and their signatures does not store permanent data. \\( \eta=\gamma \\) Fundamental properties of Mimblewimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. [[2]](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s)
 
-A brief introduction is also given in [#5 Scriptless scripts, Layer 2 Scaling Survey (part 2)](../../layer2scaling/more-landscape/landscape-update.md) 
+A brief introduction is also given in [#5 Scriptless scripts, Layer 2 Scaling Survey (part 2)](../../layer2scaling/more-landscape/landscape-update.md#a5-scriptless-scripts) 
 
 ---
 
