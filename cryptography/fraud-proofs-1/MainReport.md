@@ -3,11 +3,11 @@
 ## Background
 The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node. Lightweight/Simplified Payment Verification (SPV) clients will have to be used by users since not everyone can run full nodes due to the computational power and cost needed to run a full Bitcoin node. 
 
+SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs [17] 
+
 ![spv21.png](sources/spv21.png)
 Courtesy:MIT Bitcoin Expo 2016 Day 1
 
-
-SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs [17] 
 
 ## Contents
 - [Fraud Proofs - easier said than done?](#Fraud-Proofs---easier-said-than-done?)
