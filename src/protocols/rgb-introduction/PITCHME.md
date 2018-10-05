@@ -1,4 +1,4 @@
-## RGB Protocol
+## RGB Protocol, an Introduction
 
 - Introduction
 - Digital Assets

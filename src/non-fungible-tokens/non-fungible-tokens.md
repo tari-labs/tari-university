@@ -1,4 +1,4 @@
-# Non-fungible Token
+# Non-fungible Tokens
 
 From [<u>**Wikipedia**</u>](https://en.wikipedia.org/wiki/Non-fungible_token)
 

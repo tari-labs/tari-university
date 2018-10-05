@@ -1,4 +1,4 @@
-# Lightning Network for Dummies 
+# Lightning Network for Dummies
 
 ![Lightning](https://github.com/tari-labs/tari-university/raw/master/src/protocols/lightning-network-for-dummies/sources/lightning.png)
 
