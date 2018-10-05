@@ -15,12 +15,11 @@ SPV clients will believe everything miners or nodes tell them, as evidenced by P
    - [What are fraud proofs](#what-are-fraud-proofs)
    - [Security and privacy issues with SPV clients](#security-and-privacy-issues-with-spv-clients)
    - [Examples of SPV implementations](#examples-of-spv-implementations)
-   - [Fraud proof implementations in other blockchains](#fraud-proof-implementations-in-other-blockchains)
    - [Suggested fraud proof improvements](#suggested-fraud-proof-improvements)
    - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
    - [References](#references)
 
-In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain , which are achieved by obtaining the Merkle branch linking a transaction to a block[3]. The existence of Merkle root in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
+In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [2], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain , which are achieved by obtaining the Merkle branch linking a transaction to a block[3]. The existence of [Merkle root](#blob/master/merkle-trees-and-spv-1/PITCHME.md#merkle-trees-and-more-importantly-branches) in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
 
 ![proofofworkchain.png](sources/proofofworkchain.png)
 Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System
@@ -44,7 +43,7 @@ A full Bitcoin node contains the following details:
   * every transaction that has ever been sent
   * all the unspent transaction outputs (UTXOs) [4]
   
-These SPV client make use of Bloom filters to receive transactions that are relevant to the user [7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by respond with a boolean answer [9]
+These SPV client make use of [Bloom filters](#blob/master/merkle-trees-and-spv-1/PITCHME.md#bloom-filters) to receive transactions that are relevant to the user [7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by responding with a boolean answer [9]
 
 ![spv.png](sources/spv.png)
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
@@ -62,34 +61,24 @@ Fraud proofs are integral to the security of SPV clients, however, the other com
 
 In August 2017, a weakness in the Bitcoin Merkle tree design was found to reduce the security of SPV clients which could allow an attacker to simulate a payment of arbitrary amount to a victim using a SPV wallet, and trick the victim into accepting it as valid [10]. The bitcoin Merkle tree makes no distinction between inner and leaf nodes and could thus be manipulated by an attack that could re-interpret transactions as nodes and nodes as transactions [11]. This weakness is due to inner nodes having no format and only requiring the length to be 64 bytes.
 
-This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million.One proposed solution is to ensure that no internal, 64-bit node is ever accepted as a valid transaction by SPV wallets/clients [11].
+This brute force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately $3 million. One proposed solution is to ensure that no internal, 64-bit node is ever accepted as a valid transaction by SPV wallets/clients [11].
 
 The BIP37 SPV [13] Bloom filters don't have relevant privacy features [7] and leak information such as determining if multiple address belong to a single owner, as well as leaking of IP addresses of the user [12] (if TOR or VPNs aren't used).
 
 Furthermore, SPV clients pose the risk of a denial of service attack against full nodes due to processing load (80Gig disk reads) when SPV clients sync and full nodes themselves can cause a denial of service against SPV clients by returning NULL filter responses to requests [14]. Peter Todd's Bloom-io-attack aptly demonstrates the risk of SPV denial of service [15].
 
-To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37 [16], a Bloom filer digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size [14].
+To address this, a new concept called committed bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37 [16], a Bloom filter digest (BFD) of every blocks inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size [14].
 
 A second Bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to re-compute [16] and also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method. [14]
 
 ## Examples of SPV implementations
 There are two well-known SPV implementations for Bitcoin - Bitcoinj and Electrum. The latter does SPV level validation, comparing multiple electrum servers against each other. It's got very similar security to bitcoinj, but potentially better privacy [25] due to Bitcoinj's Bloom filters implimentation [7].
 
-## Fraud proof implementations in other blockchains
-
-Similar to how fraud proofs could potentially help with scalability via SPV clients on Bitcoin, Truebit and Ethereum's Plasma (which aims to improve scalability on Ethereum) have their implementation of fraud proofs where penalties are imposed and invalid blocks are rolled back when proof of fraud is submitted to the root chain [19]. On the Plasma blockchain, consensus is enforced by fraud proofs on the root chain.
-
-![plasmafraud.png](sources/plasmafraud.png)
-Courtesy:Plasma: Scalable Autonomous Smart Contracts
-
-There is one issue raised in using fraud proofs with Plasma : what happens in the event that a malicious node publishes partial (valid or invalid) blocks and when another node raises the flag to try to prove fraud, the malicious node publishes the remaining block data? In that instance, the honest node would have their deposits slashed due to providing a false fraud proof [20]. This could disincentivize honest nodes from providing fraud proofs; this also presents the problem of data availability in blocks.
-
-![falsealarm.png](sources/falsealarm.png)
 
 ## Suggested fraud proof improvements
 
 ### Erasure codes
-A proposed solution to the Plasma "false fraud proofs" issue is to use erasure codes with an assumption of a minimum of one honest node. Erasure coding which allows a piece of data M chunks long to be expanded into a piece of data N chunks long (“chunks” can be of arbitrary size), such that any M of the N chunks can be used to recover the original data. Blocks are then required to commit the Merkle root of this extended data and have light clients probabilistically check that the majority of the extended data is available [21].
+A proposed solution data availability issue with fraud proofs is erasure coding. Erasure coding which allows a piece of data M chunks long to be expanded into a piece of data N chunks long (“chunks” can be of arbitrary size), such that any M of the N chunks can be used to recover the original data. Blocks are then required to commit the Merkle root of this extended data and have light clients probabilistically check that the majority of the extended data is available [21].
 
 According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes [20]:
 
