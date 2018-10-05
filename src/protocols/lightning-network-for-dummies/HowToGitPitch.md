@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    layer2scaling/LightningNetworkForDummies#/
+Presentation:    src/protocols/lightning-network-for-dummies#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/layer2scaling/LightningNetworkForDummies#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/lightning-network-for-dummies#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    layer2scaling/LightningNetworkForDummies#/
+Presentation:    src/protocols/lightning-network-for-dummies#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/LightningNetworkForDummies#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/

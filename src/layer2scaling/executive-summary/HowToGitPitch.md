@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    layer2scaling/executive-summary#/
+Presentation:    src/layer2scaling/executive-summary#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/layer2scaling/executive-summary#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/layer2scaling/executive-summary#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    layer2scaling/executive-summary#/
+Presentation:    src/layer2scaling/executive-summary#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/executive-summary#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/

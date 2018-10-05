@@ -1,8 +1,18 @@
-**<u>Tari Labs University - Contents</u>**
-
-- [Cryptography](cryptogrphy.md)
-- - [Introduction to Schnorr signatures](./cryptography/digital_signatures/introduction.md)
-    - [Basics of Schnorr signatures](cryptography/digital_signatures/basics.md)
-    - [Signature Aggregation](cryptography/digital_signatures/schnorr_signatures.md)
-- [Layer 2 Scaling]()
+- **<u>Tari Labs University - Contents</u>**
+  - [Cryptography](./cryptography/cryptography.md)
+    - [Introduction to Schnorr signatures](./cryptography/digital_signatures/introduction.md)
+      - [Basics of Schnorr signatures](cryptography/digital_signatures/basics.md)
+      - [Signature Aggregation](cryptography/digital_signatures/schnorr_signatures.md)
+    - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)
+  - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
+    - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/PITCHME.md)
+  - [Layer 2 Scaling](./layer2scaling/layer2scaling.md)
+    - [Layer 2 Scaling Survey (part 1)](layer2scaling/layer2scaling-landscape/layer2scaling-survey.md)
+    - [Layer 2 Scaling Survey (part 2)](layer2scaling/more-landscape/landscape-update.md)
+    - [Executive Summary](layer2scaling/executive-summary/PITCHME.md)
+  - [Merged Mining](./merged-mining/merged-mining.md)
+    - [Merged Mining Introduction](merged-mining/merged-mining-scene/MergedMiningIntroduction.md)
+  - [Non-fungible Tokens](./non-fungible-tokens/non-fungible-tokens.md)
+    - [NFT Landscape](non-fungible-tokens/nft-landscape-1/PITCHME.md)
+  - [Protocols](protocols/protocols.md)
 

@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    AtomicSwaps#/
+Presentation:    src/protocols/atomic-swaps#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/AtomicSwaps#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/atomic-swaps#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    AtomicSwaps#/
+Presentation:    src/protocols/atomic-swaps#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/AtomicSwaps#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/

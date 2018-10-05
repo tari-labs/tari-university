@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    layer2scaling/scriptless-scripts#/
+Presentation:    src/cryptography/scriptless-scripts#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/layer2scaling/scriptless-scripts#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/cryptography/scriptless-scripts#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    layer2scaling/scriptless-scripts#/
+Presentation:    src/cryptography/scriptless-scripts#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/scriptless-scripts#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/

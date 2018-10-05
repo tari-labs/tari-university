@@ -362,7 +362,7 @@ This means that parties will have their money a lot earlier, instead of waiting 
 
 ---
 
-![Roadmap](https://github.com/tari-labs/tari-university/raw/master/nft-landscape-1/Roadmap.png)
+![Roadmap](https://github.com/tari-labs/tari-university/raw/master/src/non-fungible-tokens/nft-landscape-1/Roadmap.png)
 
 ---
 

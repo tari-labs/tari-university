@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    protocols/rgb-introduction#/
+Presentation:    src/protocols/rgb-introduction#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/protocols/rgb-introduction#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/rgb-introduction#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    protocols/rgb-introduction#/
+Presentation:    src/protocols/rgb-introduction#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/protocols/rgb-introduction#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/

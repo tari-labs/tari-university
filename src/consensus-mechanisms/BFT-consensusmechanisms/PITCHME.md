@@ -31,7 +31,7 @@ Note: To classify Byzantine failure: we say that some node in your system, which
 ### The Two Generals Problem 
 
 @div[left-50 s500px text-center]
-![The Two Generals Problem](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/The_Two_Generals_Problem.png)
+![The Two Generals Problem](https://github.com/tari-labs/tari-university/raw/master/src/consensus-mechanisms/BFT-consensusmechanisms/sources/The_Two_Generals_Problem.png)
 @divend
 
 @div[right-50 text-left]
@@ -48,7 +48,7 @@ Note: The two generals problem is a simple problem that helps us reason about an
 #### Two Generals Problem: Solved?
 
 @div[left-50 s500px text-center]
-![The Two Generals Problem Solved?](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/The_Two_Generals_Problem_Solved.png)
+![The Two Generals Problem Solved?](https://github.com/tari-labs/tari-university/raw/master/src/consensus-mechanisms/BFT-consensusmechanisms/sources/The_Two_Generals_Problem_Solved.png)
 @divend
 
 @div[right-50 text-left]
@@ -86,7 +86,7 @@ Note: The Byzantine Generals Problem is a seminal paper in computer science and 
 
 ---
 @div[left-50 s500px text-center]
-![Byzantine Generals 1](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_1.png)
+![Byzantine Generals 1](https://github.com/tari-labs/tari-university/raw/master/src/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_1.png)
 @divend
 
 @div[right-50 text-left]
@@ -103,7 +103,7 @@ Note: And that is the goal of this problem-- Make sure that all the generals are
 
 ---
 @div[left-50 s500px text-center]
-![Byzantine Generals 2](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_2.png)
+![Byzantine Generals 2](https://github.com/tari-labs/tari-university/raw/master/src/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_2.png)
 @divend
 
 @div[right-50 text-left]
@@ -117,7 +117,7 @@ Note: We basically need to ensure that they all agree on what the traitor said.
 
 ---
 @div[left-50 s500px text-center]
-![Byzantine Generals 3](https://github.com/tari-labs/tari-university/raw/master/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_3.png)
+![Byzantine Generals 3](https://github.com/tari-labs/tari-university/raw/master/src/consensus-mechanisms/BFT-consensusmechanisms/sources/Byzantine_Generals_3.png)
 @divend
 
 @div[right-50 text-left]

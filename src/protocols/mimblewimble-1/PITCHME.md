@@ -1,4 +1,4 @@
-# MimbleWimble
+# Mimblewimble
 ## A high-level overview
 
 ---
@@ -12,7 +12,7 @@
 
 # Transactions
 
-![mw_txs](https://github.com/tari-labs/tari-university/raw/master/protocols/mimblewimble-1/sources/mw_txs.png)
+![mw_txs](https://github.com/tari-labs/tari-university/raw/master/protocols/src/protocols/mimblewimble-1/sources/mw_txs.png)
 
 ---
 
@@ -52,7 +52,7 @@ but note that we _only see public keys_ and thus the values are hidden!
 
 Cool!
 
-Note: Technically only scalar integer values are valid for
+**Note:** Technically only scalar integer values are valid for
 elliptic curve multiplication. In practice, we'll be using MinoTaris (name TBD) so that the
 amounts are always integers. 
 The transactions aren't sent as an equation like this, but as a list of inputs, outputs and the fee. The fee

@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:    merkle-trees-and-spv-1#/
+Presentation:    src/protocols/merkle-trees-and-spv-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/merkle-trees-and-spv-1#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/merkle-trees-and-spv-1#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    merkle-trees-and-spv-1#/
+Presentation:    src/protocols/merkle-trees-and-spv-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/merkle-trees-and-spv-1#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/merkle-trees-and-spv-1#/

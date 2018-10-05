@@ -19,7 +19,7 @@
 
 - The concept of Scriptless Scripts was borne from Mimblewimble, recap: Mimblewimble is a block chain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of Mimblewimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. [[2]](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s)
 
-*Also see [#5 Scriptless scripts, Layer 2 Scaling Survey (part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/more-landscape#/)*
+*Also see [#5 Scriptless scripts, Layer 2 Scaling Survey (part 2)](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/more-landscape/landscape-update.md)*
 
 ---
 
@@ -164,6 +164,8 @@ By attaching auxiliary proofs one can derive an adaptor signature to translate c
   $$
   dG=kG-k'G+exG-e'x'G
   $$
+
+
 
 
 
