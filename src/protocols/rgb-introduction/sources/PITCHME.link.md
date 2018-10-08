@@ -1,4 +1,4 @@
-# Thr RGB Protocol - An introduction
+# The RGB Protocol - An Introduction
 
 <iframe width=1200 height=800 src="https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/"></iframe>
 
