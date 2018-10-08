@@ -5,6 +5,7 @@
       - [Basics of Schnorr signatures](cryptography/digital_signatures/basics.md)
       - [Signature Aggregation](cryptography/digital_signatures/schnorr_signatures.md)
     - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)
+    - [Bulletproofs and Mimblewimble](cryptography/bulletproofs-and-mimblewimble/MainReport.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)
   - [Layer 2 Scaling](./layer2scaling/layer2scaling.md)
@@ -21,4 +22,3 @@
     - [Lightning Network for Dummies](protocols/lightning-network-for-dummies/sources/PITCHME.link.md)
     - [Introduction to SPV, Merkle Trees and Bloom Filters](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)
     - [The RGB Protocol - An Introduction](protocols/rgb-introduction/sources/PITCHME.link.md)
-
