@@ -17,5 +17,5 @@ production instead](https://github.com/rust-bitcoin/rust-secp256k1)
 # Let's get started
 
 We'm going to assume you know the basics of elliptic curve cryptography (ECC). If not, don't stress, there's a
-[gentle introduction](https://gitpitch.com/tari-labs/tari-university/master?p=/cryptography/crypto-1#/) 
+[gentle introduction](../crypto-1/sources/PITCHME.link.md) 
 on Tari Labs University archives.
