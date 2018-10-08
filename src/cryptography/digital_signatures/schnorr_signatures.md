@@ -21,7 +21,7 @@ $$
 $$
 
 Schnorr signatures are of the form \\( s = r + e.k \\). This construction is linear too, so it meshes nicely with
-the linearity of elliptic curve math..
+the linearity of elliptic curve math.
  
 You saw this property in the previous section, when we were verifying the signature. Schnorr signatures' linearity 
 makes it very attractive for things like
@@ -89,18 +89,18 @@ $$
 In the key attack above, Bob didn't know the private keys for his published _R_ and _P_ values. We could defeat Bob
 by asking him to sign a message proving that he _does_ know the private keys.
 
-This works, but it requires another round of messaging between parties, which is not conducive to great UX.
+This works, but it requires another round of messaging between parties, which is not conducive to a great user experience.
 
 # MuSig
 
-MuSig [[2]],[[3]] is another simple signature aggregation scheme that is secure and preserves the property that the aggregate
+MuSig is a recently proposed [[2]],[[3]] simple signature aggregation scheme that is secure and preserves the property that the aggregate
 signature is still a valid Schnorr signature.
 
 MuSig is an interactive scheme, meaning that an input message is required from all the signers. The scheme works as follows:
 
 1. Each signer has a public-private key pair as before.
 1. Each signer publishes the public key of their nonce, \\( R_i \\),
-1. Everyone calculates the same "shared public key", _X_: 
+1. Everyone calculates the same "shared public key", _X_ per: 
 $$
     \begin{align}
         \ell &= H(X_1 || \dots || X_n) \\\\
@@ -199,6 +199,6 @@ and so his cancellation attack is defeated.
 [2]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html 'Blockstream: Key Aggregation for Schnorr Signatures'
 [3]: https://eprint.iacr.org/2018/068.pdf 'Maxwell et. al., Simple Schnorr Multi-Signatures with Applications to Bitcoin'
 
-* [[1]]: Schnorr signature, Wikipedia, _https://en.wikipedia.org/wiki/Schnorr_signature_
-* [[2]]: Key Aggregation for Schnorr Signatures, Blockstream, _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_
+* [[1]]: Schnorr signature, Wikipedia, _https://en.wikipedia.org/wiki/Schnorr_signature_, Date accessed: 19 September 2018
+* [[2]]: Key Aggregation for Schnorr Signatures, Blockstream, _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_, Date accessed: 19 September 2018
 * [[3]]: Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell _et. al._, _https://eprint.iacr.org/2018/068.pdf_

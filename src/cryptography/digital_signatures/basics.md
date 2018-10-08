@@ -6,8 +6,9 @@ The first thing we'll do is create a public and private key.
 On secp256k1, a private key is simply a scalar integer value between 0 and ~2<sup>256</sup>. That's roughly how many
 atoms there are in the universe, so we have a big sandbox to play in.
 
-We have a special point on the secp256k1 curve called _G_, that acts as the 'origin'. A public key is calculated
-from the private key by multiplying it by _G_:
+We have a special point on the secp256k1 curve called _G_, that acts as the 'origin'. A public key is calculated by 
+adding _G_ on the curve to itself, \\( k_a \\) times. This is the definition of multiplication by a scalar and is
+ written as such:
 
 $$
   P_a = k_a G
@@ -28,7 +29,7 @@ is associated with, or that they have solved the Discrete Log Problem.
 
 The approach to creating signatures always follows this recipe:
 
-1. Generate a secret once-off number, _r_
+1. Generate a secret once-off number (called a _nonce_), _r_
 1. Create a public key, _R_ from _r_ (_R = r.G_)
 1. Send the following to Bob, your recipient: your message (_m_), _R_, and your public key (_P = k.G_)
 
@@ -38,7 +39,8 @@ $$
     e = H(R || P || m)
 $$
 
-The hashing function is chosen so that _e_ has the same range as your private keys. In our case, SHA256 is a good choice.
+The hashing function is chosen so that _e_ has the same range as your private keys. In our case, we want something that
+returns a 256 bit number, so SHA256 is a good choice.
 
 Now the signature is constructed using your private information:
 
@@ -47,7 +49,8 @@ $$
 $$
 
 Now Bob can also calculate _e_, since he already knows _m, R, P_. But he doesn't know your private key, or nonce.
-_Note:_ When you construct the signature like this, it's known as a _Schnorr signature_, which we'll discuss in more 
+
+**Note:** When you construct the signature like this, it's known as a _Schnorr signature_, which we'll discuss in more 
 detail in the next section. There are other ways of constructing _s_, such as ECDSA [[1]], which is used in Bitcoin.
 
 But see this:
@@ -60,8 +63,8 @@ $$
     \end{align}
 $$
 
-So Bob, must just calculate the public key corresponding to the signature and check that it equals the RHS of the last
-equation above (R + Pe), all of which Bob knows WOOOHOO.
+So Bob must just calculate the public key corresponding to the signature (_s.G_) and check that it equals the RHS of the last
+equation above (_R + P.e_), all of which Bob already knows.
 
 ## Why do we need the nonce?
 
@@ -115,7 +118,7 @@ $$
 
 For security reasons, the private keys are usually chosen at random for each session (you'll see the term
 _ephemeral_ keys being used), but then we have the problem of not being sure the other party is who they say they
-are (perhaps due to a MITM attack [[3]]).
+are (perhaps due to a man-in-the-middle attack [[3]]).
 
 Various additional authentication steps can be employed to resolve this problem, which we won't get into here. 
 
