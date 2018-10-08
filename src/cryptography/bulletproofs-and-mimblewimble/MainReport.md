@@ -204,9 +204,9 @@ Bünz B. et al"
 Bitcoin Milan Meetup 2018-02-02, 
 Andrew Poelstra"
 
-[[3]] Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf, Date accessed: 2018-09-10.
+[[3]] Bullet Proofs (Slides), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view, Date accessed: 2018-09-10.
 
-[3]: https://download.wpsoftware.net/bitcoin/2018-02-bp-slides/slides.pdf
+[3]: https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view
 "Bullet Proofs (Slides), 
 Bitcoin Milan Meetup 2018-02-02, 
 Andrew Poelstra"
