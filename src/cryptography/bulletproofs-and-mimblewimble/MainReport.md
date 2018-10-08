@@ -7,30 +7,24 @@ Bulletproofs form part of the family of distinct Zero-knowledge Proof<sup>[def][
 Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def][ac~]</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def][afs~]</sup>) and without requiring a Trusted Setup<sup>[def][ts~]</sup>. They rely on the Discrete Logarithmic<sup>[def][dlp~]</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. The name 'Bulletproof' originated from a non-technical summary from one of the original authors of the scheme's properties: "<i>Short like a bullet with bulletproof security assumptions</i>". ([[1]], [[29]])
 
 Bulletproofs also implements a Multi-party Computation (MCP) protocol whereby distributed proofs of multiple provers with secret committed values are aggregated into a single proof before the Fiat-Shamir
-challenge is calculated and sent to the verifier. Secret committed values will stay secret.
+challenge is calculated and sent to the verifier. Secret committed values will stay secret. [[1]]
 
+The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner product relation, which is of independent interest. Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
+Bulletproofs have wide application ([[3]], [[6]]) and can be used for :
 
-Add short history here
-
-The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner product relation, which is of independent interest. Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of 3. ([[1]], [[29]])
-
-
-
-Bulletproofs have wide application [[3]] and can be used for :
-
-- Rangeproofs
-  - <code><i>x</i></code> is an element of <code><i>[0,2<sup>52</sup> - 1]</i></code>
+- Range proofs
+  - A range proof prevents any numbers coming near the magnitude of the large prime <code><i>2<sup>256</sup></i></code> that can cause wrap around when adding a small number, i.e. proof that <code><i>x</i></code> is an element of <code><i>[0,2<sup>52</sup> - 1]</i></code>.
 - Merkle proofs
   - ???
 - Proof of solvency
-  - ???
+  - Cryptocurrency exchanges can prove they really hold some cryptocurrency coins, proof that they are solvent and the proof would not reveal any information about why they are solvent.
 - Multisig with deterministic nonces
   - ???
 - Scriptless Scripts (with ECDSA in some cases)
   - ???
 - Assets / smart contracts / crypto-derivatives
-  - ???
+  - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts.
 
 
 
@@ -50,7 +44,7 @@ Bulletproofs have wide application [[3]] and can be used for :
 
 ## <a name="h-Comparison-to-other-Zero-knowledge-Proof-Systems"> </a>Comparison to other Zero-knowledge Proof Systems
 
-The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. 
+The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. Bulletproofs is unique in that it is not interactive, has short proof size, does not require a trusted setup and is practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
 
 | Proof System         | Sigma Protocols | zk-SNARK        | STARK                                 | ZKBoo        | Bulletproofs   |
 | -------------------- | --------------- | --------------- | ------------------------------------- | ------------ | -------------- |
@@ -152,7 +146,7 @@ Pedersen Commitment with ..."
 technique in cryptography to 
 convert an interactive ..."
 
-- *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, nonce is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is similar in spirit to a nonce word, hence the name. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
+- *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, nonce is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
 
 [nonce~]: #nonce
 "In security engineering, nonce is an 
