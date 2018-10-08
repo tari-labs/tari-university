@@ -1,0 +1,28 @@
+[book]
+title = "Tari University"
+authors = ["Tari Labs"]
+description = "A collection of learning resources for cryptocurrency"
+
+[build]
+build-dir = "book"
+create-missing = false
+preprocess = ["links", "index"]
+
+[output.html]
+mathjax-support=true
+theme = "src/theme"
+
+[output.html.playpen]
+editable = true
+
+[output.html.search]
+enable = true
+limit-results = 30
+teaser-word-count = 30
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 1
+boost-paragraph = 1
+expand = true
+heading-split-level = 3
+copy-js = true
