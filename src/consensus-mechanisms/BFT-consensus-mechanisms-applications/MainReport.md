@@ -240,15 +240,15 @@ The term weak coordinator is used to describe the ability of the algorithm to te
 
 ## <a name="h-DAGS"> </a>DAGs
 
-Fully asynchronous BFT consensus systems require the limiting structure of a DAG or other equivalent reference point in order to achieve 100% probability of finality (within the liveness and safety BFT thresholds). David Mazieres' SCIP consensus system algorithm designed for Stellar apparently employee the structure of trust reputation as a reference point to achieve 100% probability of finality (within the liveness and safety BFT thresholds). [[8]][\[8\]]
+Fully asynchronous BFT consensus systems require the limiting structure of a DAG or other equivalent reference point in order to achieve 100% probability of finality (within the liveness and safety BFT thresholds). David Mazieres' SCIP consensus system algorithm designed for Stellar apparently employee the structure of trust reputation as a reference point to achieve 100% probability of finality (within the liveness and safety BFT thresholds). [[8]]
 
 ## <a name="h-Conclusion"> </a>Conclusion
 
 ## <a name="h-References"> </a>References 
 
-[[1]][\[1\]] Protocol for Asynchronous, Reliable, Secure and Efficient Consensus (PARSEC) WhitePaper, Chevalier et al., http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf, Date accessed: 2018-08-30
+[[1]] Protocol for Asynchronous, Reliable, Secure and Efficient Consensus (PARSEC) WhitePaper, Chevalier et al., http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf, Date accessed: 2018-08-30
 
-[\[1\]]: http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf
+[1]: http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf
 "Protocol for Asynchronous, Reliable, 
 Secure and Efficient Consensus (PARSEC) 
 WhitePaper, Chevalier et al." 
@@ -287,9 +287,9 @@ Miller  et al."
 [\[7\]]:  https://cachin.com/cc/talks/20170622-blockchain-ice.pdf
 "Blockchain, crytography and consensus 2017, Cachin"
 
-[[8]][\[8\]] Comments from Medium: I don't see how it's plausible for parallel forks of the hash chain to be finalised concurrently, https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a, Date accessed: 2018-09-14 
+[[8]] Comments from Medium: I don't see how it's plausible for parallel forks of the hash chain to be finalised concurrently, https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a, Date accessed: 2018-09-14 
 
-[\[8\]]: https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a
+[8]: https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a
 "Comments from Medium: 
 I don't see hope it's plausible
 for parallel forks of the hash chain
