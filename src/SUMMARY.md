@@ -4,6 +4,7 @@
     - [Introduction to Schnorr signatures](./cryptography/digital_signatures/introduction.md)
       - [Basics of Schnorr signatures](cryptography/digital_signatures/basics.md)
       - [Signature Aggregation](cryptography/digital_signatures/schnorr_signatures.md)
+      - [Fraud proofs](cryptography/fraud-proofs-1/MainReport.md)
     - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)
