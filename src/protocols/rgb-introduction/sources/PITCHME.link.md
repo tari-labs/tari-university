@@ -1,0 +1,1 @@
+See <span style="font-size:1.25em;">[RGB Protocol, an Introduction](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/)</span> presentation
