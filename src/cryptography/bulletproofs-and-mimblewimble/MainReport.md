@@ -2,7 +2,7 @@
 
 ## <a name="h-Introduction"> </a>Introduction
 
-Bulletproofs form part of the family of distinct Zero-knowledge Proof<sup>[def][zk~]</sup> systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce. ([[2]], [[4]])
+Bulletproofs form part of the family of distinct Zero-knowledge Proof<sup>[def][zk~]</sup> systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce<sup>[def][nonce~]</sup>. ([[2]], [[4]])
 
 Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def][ac~]</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def][afs~]</sup>) and without requiring a Trusted Setup<sup>[def][ts~]</sup>. They rely on the Discrete Logarithmic<sup>[def][dlp~]</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. The name 'Bulletproof' originated from a non-technical summary from one of the original authors of the scheme's properties: "<i>Short like a bullet with bulletproof security assumptions</i>". ([[1]], [[29]])
 
@@ -152,6 +152,14 @@ Pedersen Commitment with ..."
 technique in cryptography to 
 convert an interactive ..."
 
+- *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, nonce is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is similar in spirit to a nonce word, hence the name. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
+
+[nonce~]: #nonce
+"In security engineering, nonce is an 
+abbreviation of number used once. 
+In cryptography, a nonce is an arbitrary 
+number  ..."
+
 - <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
   - The generalized Pedersen commitment definition follows:
     - Let <code><i>q</i></code> be a large prime and <code><i>p</i></code> be a large safe prime such that <code><i>p = 2q + 1</i></code>
@@ -185,7 +193,10 @@ secret value (or statement) without ..."
 proof/protocol is a method by which 
 one party (the prover) can convince ..."
 
-- ?
+- Term ?:<a name="term?"> </a>Definition ?
+
+[term?~]: #zk
+"Definition ?  ..."
 
 ## <a name="h-References"> </a>References
 
@@ -382,10 +393,15 @@ Pedersen T. et al."
 Why Subtleties Make a Real Difference, 
 Sadeghi A et al." 
 
-[[41]] , , Date accessed: 2018-09-?.
+[[41]] Crypto Wiki: Cryptographic nonce, http://cryptography.wikia.com/wiki/Cryptographic_nonce, Date accessed: 2018-10-08.
 
-[41]:  
-""
+[41]: http://cryptography.wikia.com/wiki/Cryptographic_nonce
+"Crypto Wiki: Cryptographic nonce"
+
+[[42]] Wikipedia: Cryptographic nonce, https://en.wikipedia.org/wiki/Cryptographic_nonce, Date accessed: 2018-10-08.
+
+[42]: https://en.wikipedia.org/wiki/Cryptographic_nonce
+"Wikipedia: Cryptographic nonce"
 
 [[50]] Elliptic Curve Cryptography: A gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
