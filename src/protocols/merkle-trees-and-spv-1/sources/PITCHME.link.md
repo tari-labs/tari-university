@@ -1,0 +1,1 @@
+See <span style="font-size:1.25em;">[Introduction to SPV, Merkle Trees and Bloom Filters](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/merkle-trees-and-spv-1#/)</span> presentation
