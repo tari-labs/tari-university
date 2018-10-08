@@ -12,7 +12,7 @@
 
 # Transactions
 
-![mw_txs](https://github.com/tari-labs/tari-university/raw/master/protocols/src/protocols/mimblewimble-1/sources/mw_txs.png)
+![mw_txs](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/mimblewimble-1/sources/mw_txs.png)
 
 ---
 
