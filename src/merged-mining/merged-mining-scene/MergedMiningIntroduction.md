@@ -89,7 +89,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 - FantamCoin was the 1st CryptoNote based coin to develop merged mining with Monero, but was abandoned until DigitalNote developers became interested in merged mining with Monero and revived FantamCoin in the October 2016 ([[17]](https://minergate.com/blog/merged-mining-with-monero), [[18]](https://bitcointalk.org/index.php?topic=1082745.msg16615346#msg16615346), [[19]](https://github.com/xdn-project)).
 
-- ```
+- ```text
   FantamCoin Release notes 2.0.0
   - Fantomcoin 2.0 by XDN-project, major FCN update to the latest
     cryptonotefoundation codebase 
