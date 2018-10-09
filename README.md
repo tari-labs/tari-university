@@ -60,4 +60,18 @@ Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Paym
 Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/src/protocols/atomic-swaps/AtomicSwaps.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/)
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 2 | All |[Report](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/)
 
+## Upcoming Talks  
+
+Date | Topic 
+---- | ----
+22 October | Fraud Proofs - Easier said than done? 
+29 October | Grin vs. Beam, a Comparison
+5 November | Introduction to Digital Signatures
+12 November | Grin Design Choice Criticisms
+19 November | Mimblewimble-Grin Block Chain Protocol Overview
+26 November | Monero's privacy features: RingCT investigated
+3 December | Block chain propagation/relay network optimization
+10 December | Distributed Hash Tables (DHT) Application to Block Chain
+
+
 
