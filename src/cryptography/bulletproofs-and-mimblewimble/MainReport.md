@@ -7,32 +7,17 @@ Bulletproofs form part of the family of distinct Zero-knowledge Proof<sup>[def][
 Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def][ac~]</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def][afs~]</sup>) and without requiring a Trusted Setup<sup>[def][ts~]</sup>. They rely on the Discrete Logarithmic<sup>[def][dlp~]</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. The name 'Bulletproof' originated from a non-technical summary from one of the original authors of the scheme's properties: "<i>Short like a bullet with bulletproof security assumptions</i>". ([[1]], [[29]])
 
 Bulletproofs also implements a Multi-party Computation (MCP) protocol whereby distributed proofs of multiple provers with secret committed values are aggregated into a single proof before the Fiat-Shamir
-challenge is calculated and sent to the verifier. Secret committed values will stay secret. [[1]]
+challenge is calculated and sent to the verifier. Secret committed values will stay secret. ([[1]], [[6]])
 
-The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner product relation, which is of independent interest. Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
-
-Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used for :
-
-- Range proofs
-  - Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say \\( 2^{256} \\), that can cause wrap around when adding a small number, e.g. proof that \\( x \in [0,2^{52} - 1] \\).
-- Merkle proofs
-  - ???
-- Proof of solvency
-  - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information.
-- Multisig with deterministic nonces
-  - ???
-- Scriptless Scripts (with ECDSA in some cases)
-  - ???
-- Assets / smart contracts / crypto-derivatives
-  - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts.
-
-
+The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner product relation, which is of independent interest (not related). Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
 ## <a name="h-Contents"> </a>Contents
 
 - [Bulletproofs and Mimblewimble](#h-Bulletproofs-and-Mimblewimble)
   - [Introduction](#h-Introduction)
   - [Contents](#h-Contents)
+  - [How does Bulletproofs work?](#h-How-does-Bulletproofs-work?)
+  - [Applications for Bulletproofs](#h-Applications-for-Bulletproofs)
   - [Interesting Bulletproof Implementation Snippets](#h-Interesting-Bulletproof-Implementation-Snippets)
     - [Wallet Reconstruction - Grin](#h-Wallet-Reconstruction-Grin)
     - [Current & Past Efforts](#h-Current-Past-Efforts)
@@ -42,9 +27,17 @@ Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used fo
   - [References](#h-References)
   - [Contributors](#h-Contributors)
 
+## <a name="h-How-does-Bulletproofs-work?"> </a>How does Bulletproofs work?
+
+The basis of confidential transactions are to replace the output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as \\( integers mod q )\\, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate rangeproofs from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies \\( x(x-1) = 0 )\\ and that they sum to v. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments.
+
+Bulletproofs are made non-interactive using this Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof size is short; only \\( 2 \log_2(n) + 9 \\) elements for the range proofs and \\( log_2(n) + 13 \\) elements for arithmetic circuit proofs.
+
+???
+
 ## <a name="h-Comparison-to-other-Zero-knowledge-Proof-Systems"> </a>Comparison to other Zero-knowledge Proof Systems
 
-The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. Bulletproofs is unique in that it is not interactive, has short proof size, does not require a trusted setup and is practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
+The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. Bulletproofs is unique in that it is not interactive, has short proof size, does not require a trusted setup and is practical to implement. These attributes make Bulletproofs extremely desirable to use as rangeproofs in cryptocurrencies.
 
 | Proof System         | Sigma Protocols | zk-SNARK        | STARK                                 | ZKBoo        | Bulletproofs   |
 | -------------------- | --------------- | --------------- | ------------------------------------- | ------------ | -------------- |
@@ -56,6 +49,24 @@ The table below shows a high level comparison between Sigma Protocols (i.e. inte
 | <b>Practical</b>     | yes             | yes             | not   quite                           | somewhat     | yes            |
 | <b>Assumptions</b>   | discrete   log  | non-falsifiable | quantum secure One-way Function (OWF) | discrete log | discrete   log |
 
+
+
+## <a name="h-Applications-for-Bulletproofs"> </a>Applications for Bulletproofs
+
+Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used for :
+
+- Rangeproofs
+  - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say \\( 2^{256} \\), that can cause wrap around when adding a small number, e.g. proof that \\( x \in [0,2^{52} - 1] \\).
+- Merkle proofs
+  - ???
+- Proof of solvency
+  - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information.
+- Multi-signatures with deterministic nonces
+  - With bulletproofs every signatory can prove that their nonce was generated deterministically. A sha256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and rejoin later on, with no memory of interacting with the other parties they were previously interacting with.
+- Scriptless Scripts
+  - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a sigma protocol. This can now all be done with bulletproofs, which could be extended to allow assets that are functions of other assets - crypto derivatives perhaps.
+- Assets / smart contracts / crypto-derivatives
+  - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts.
 
 
 ## <a name="h-Interesting-Bulletproof-Implementation-Snippets"> </a>Interesting Bulletproof Implementation Snippets
@@ -78,7 +89,7 @@ The table below shows a high level comparison between Sigma Protocols (i.e. inte
 
 See  [[35]]
 
-"{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
+"{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current rangeproofs). We also need to be aware that we can't rely as much on the message hiding properties of rangeproofs when switching to bullet proofs."
 
 - "{**yeastplume** } @apoelstra the amount, and quite possibly the switch commitment hash as well (or just a hash of the entire output) as per #207..."
 
@@ -314,12 +325,12 @@ An Open Industry/Academic Initiative"
 for Confidential Transactions, 
 Ruffing T. et al."
 
-[[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Range Proofs, Date accessed: 2018-09-18.
+[[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Rangeproofs, Date accessed: 2018-09-18.
 
 [25]: https://github.com/ElementsProject/secp256k1-zkp
 "GitHub: ElementsProject/secp256k1-zkp, Experimental 
 Fork of libsecp256k1 with Support for Pedersen 
-Commitments and Range Proofs"
+Commitments and Rangeproofs"
 
 [[26]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs, Date accessed: 2018-09-18.
 
