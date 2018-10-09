@@ -2,7 +2,7 @@
 
 Welcome to Tari Labs University
 
-Our aim: Build a learning platform and populate it with content
+Our mission: To be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.
 
 We hope to make this a learning experience for us at Tari Labs: as a means to grow our knowledge base and internal expertise or as a refresher-- but we think this will also be an excellent resource for anyone interested in the myriad of disciplines required to understand blockchain technology.  
 
@@ -15,6 +15,25 @@ We want this collection of educational presentations and videos to be collaborat
 This extends to our presentations; we are learning along with you: our content may not be perfect first time around- so we invite you to alert us to errors and issues, or better yet, if you know how to make a pull request to contribute a fix, write the correction and use a pull request.
  
 As much as this learning platform is called Tari Labs University and will see input from many internal contributors and external experts, we would like you to contribute to new material, be it in the form of a suggestion of topics, varying the skill levels of presentations, or posting presentations that you may feel will benefit us as a growing community. In the words of Yoda, “Always pass on what you have learned”.  
+
+If you are considering contributing content to Tari Labs University, please be aware of our guiding principles.
+
+### Guiding Principles
+1. The topic researched should be potentially relevant to the Tari protocol; Chat to us on #tari-research on IRC if you're not sure.
+2. The topic should be thoroughly researched;
+3. An critical approach should be taken taken (in the academic sense), with critiques and commentaries sought out and presented alongside the main topic. Remember that every white paper promises the world, so go and look for counterclaims.
+4. A recommendation/conclusion section should be included, providing a critical analysis on whether or not the technology/proposal would be useful to the Tari protocol
+5. The work presented should be easy to read and understand, distilling complex topics into a form that is accessible to a technical but non-expert audience. Use your own voice.
+
+### The Submission Process 
+
+This is the basic process we follow within Tari Labs. As an external contributor, we'd appreciate it if you followed the same process.
+1. Get some agreement from the community that the topic is of interest.
+1. Write up your report.
+1. Push a first draft of your report as a Pull Request.
+1. The community will peer-review the report; much the same as we would with a code PR. 
+1. The report gets merged into master. 
+1. Receive the Fame and acclaim that is due.
 
 ## Current Streams 
 
@@ -40,4 +59,5 @@ Technical | Layer 2 Scaling Executive summary | Presents the scaling landscape, 
 Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=merkle-trees-and-spv-1)  
 Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/AtomicSwaps/AtomicSwaps.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
 Technical | Scriptless Scripts | Basics of Scriptless Scripts | 2 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/scriptless-scripts#/)
+
 

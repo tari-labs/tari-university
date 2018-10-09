@@ -1,35 +1,4 @@
-## Presentation Guideline
-
-@div[text-left]
-
-<ol>
-<li>Create a new folder for your topic
-<li>Copy the contents of this folder to your folder
-<li>Commit all and push to a new branch
-<li>Fix the paths in <i>PITCHME.md</i> & <i>HowToGitPitch.md</i> to point to your branch
-<li>Follow the principles in <i>[README.md](https://github.com/tari-labs/tari-university/blob/master/README.md)</i> to contribute your topic to Tari University
-</ol>
-
-
-@divend
-
-@div[text-center]
-
-<p>
-<p>
-<p>That's all, folks.
-
-@divend
-
----
-
-## Go get 'em
-
-* Need help? Check out the [docs](https://github.com/gitpitch/gitpitch/wiki)
-
----
-
-# Sample Presentation
+## Bulletproofs and Mimblewimble
 
 - Topic 1 ???
 
@@ -50,7 +19,7 @@
 Sample image below, set at 450 pixels width
 
 @div[s450px]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/master/intro/sources/sample.PNG)
+![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs/cryptography/bulletproofs-and-mimblewimble/sources/sample.PNG)
 @divend
 
 +++
@@ -62,7 +31,7 @@ Sample image below, set at 450 pixels width
 Sample side by side image (set at 250 pixels width, aligned center) and text (aligned left) inside div containers. [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
 
 @div[left-50 s250px text-center]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/master/intro/sources/sample.PNG)
+![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs/cryptography/bulletproofs-and-mimblewimble/sources/sample.PNG)
 @divend
 
 @div[right-50 text-left]
