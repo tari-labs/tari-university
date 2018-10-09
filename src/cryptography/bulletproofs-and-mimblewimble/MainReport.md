@@ -11,14 +11,14 @@ challenge is calculated and sent to the verifier. Secret committed values will s
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner product relation, which is of independent interest. Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-Bulletproofs have wide application ([[3]], [[6]]) and can be used for :
+Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used for :
 
 - Range proofs
   - Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say \\( 2^{256} \\), that can cause wrap around when adding a small number, e.g. proof that \\( x \in [0,2^{52} - 1] \\).
 - Merkle proofs
   - ???
 - Proof of solvency
-  - Cryptocurrency exchanges can prove they really hold some cryptocurrency coins, proof that they are solvent and the proof would not reveal any information about why they are solvent.
+  - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information.
 - Multisig with deterministic nonces
   - ???
 - Scriptless Scripts (with ECDSA in some cases)
