@@ -273,7 +273,19 @@ Randomized algorithms can used per-process "local" coins or a shared "common" co
 
 A recent randomized algoritm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler. 
 
-To solve the consensus problem deterministically and prevent the use of the common coin, researchers have assumed partial or eventual synchrony.
+To solve the consensus problem deterministically and prevent the use of the common coin, researchers have assumed partial or eventual synchrony. Here, these solutions require a unique coordinator process, referred to as the leader, in order to remain non-faulty. There are both advantages and disadvantages to this technique: the advantage is if the coordinator is non-faulty and if the messages are delivered in a timely manner in an asynchronous round, then the coordinator broadcasts its proposal to all processes and this value is decided after a contest number of message delays; however a faulty coordinator can dramatically impact the algorithm performance by leveraging the power it has in a round and imposing its value to all. Non-faulty processes thus have no other choices but to decide nothing in this round. 
+
+This protocol sees the use of a weak coordinator; a weak coordinator allows for the introduction of a new deterministic Byzantine consensus algorithm that is time optimal, resilience optimal and does not require the use of signatures. Unlike the classic, strong coordinator, the weak coordinator does not impost its value. It allows non-faulty processes to decide a value quickly, without the need of the coordinator, while helping the algorithm to terminate if non-faulty processes know that they proposed distinct values that might all be decided. In addition, the presence of a weak coordinator allows rounds to be executed optimistically without waiting for a specific message. This is unlike classic BFT algorithms that have to wait for a particular message from their coordinator and occasionally has to recover from a slow network or faulty coordinator. 
+
+With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*]. 
+
+The protocol of DBFT, was studied with its applications to the context of block chains. Work into consortium blockchain was thought of as a promising endeavor at reducing the amount of resources consumed by avoiding the resolve the crypto puzzle but restricting the set of proposers to *n* known processes. 
+
+Consortium blockchains mimic similar traits to that of replicated state machines [] as a sequence of commands must be decided by multiple processes.  
+
+There are currently blockchains that utilize BFT consensus, these include, Hyperledger [] uses a consensus based on a classic coordinator [], Honeybadger [] which uses a consensus based on a randomized algorithm [] and the Red Belly Blockchain, which implements the algorithm fleshed out above []. 
+
+
 
 ## <a name="h-DAGS"> </a>DAGs
 
