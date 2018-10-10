@@ -10,7 +10,7 @@ It was covered by U.S. Patent 4,995,082 which expired in February 2008 [[1]].
 
 ## So why all the fuss?
 
-What makes Schnorr signatures so interesting (and [potentially dangerous](#key-cancellation-attack)) is their simplicity. 
+What makes Schnorr signatures so interesting, and [potentially dangerous](#key-cancellation-attack), is their simplicity. 
 Schnorr signatures are _linear_, so you have some nice properties.
 
 Elliptic curves have the multiplicative property. So if you have two scalars _x, y_ with corresponding points, _X, Y_, 
@@ -20,15 +20,15 @@ $$
   (x + y)G = xG + yG = X + Y 
 $$
 
-Schnorr signatures are of the form \\( s = r + e.k \\). This construction is linear too, so it meshes nicely with
+Schnorr signatures are of the form \\( s = r + e.k \\). This construction is linear too, so it fits nicely with
 the linearity of elliptic curve math.
  
 You saw this property in the previous section, when we were verifying the signature. Schnorr signatures' linearity 
 makes it very attractive for things like
 
 * signature aggregation
-* atomic swaps
-* 'scriptless' scripts
+* [atomic swaps](../../protocols/atomic-swaps/AtomicSwaps.md)
+* ['scriptless' scripts](../scriptless-scripts/introduction-to-scriptless-scripts.md)
 
 ## (Naïve) Signature aggregation
 
@@ -39,7 +39,7 @@ i.e. they need to be able to prove ownership of their respective keys, and the a
 only valid if _both_ Alice and Bob provide their part of the signature. 
 
 Assuming private keys are denoted \\( k_i \\) and public keys \\( P_i \\). If we ask Alice and Bob to each 
-supply a nonce, we can try
+supply a nonce, we can try:
 
 $$
 \begin{align}
@@ -91,16 +91,25 @@ by asking him to sign a message proving that he _does_ know the private keys.
 
 This works, but it requires another round of messaging between parties, which is not conducive to a great user experience.
 
+A better approach would be one that incorporates one or more of the following features:
+
+* Must be provably secure in the plain public-key model, without having to prove knowledge of secret keys, as we might have asked Bob to do in the naïve approach above;
+* should satisfy the normal Schnorr equation, i.e. the resulting signature can be verified with an expression of the form \\( R + e X \\).
+* allows for Interactive Aggregate Signatures (IAS) where the signers are required to cooperate;
+* allows for Non-interactive Aggregate Signatures (NAS) where the aggregation can be done by anyone;
+* allow each signer to sign the same message, _m_;
+* allow each signer to sign their own message, \\( m_i \)).
+
 # MuSig
 
-MuSig is a recently proposed [[2]],[[3]] simple signature aggregation scheme that is secure and preserves the property that the aggregate
-signature is still a valid Schnorr signature.
+MuSig is a recently proposed [[2]],[[3]] simple signature aggregation scheme that satisfies all of the properties above.
 
-MuSig is an interactive scheme, meaning that an input message is required from all the signers. The scheme works as follows:
+We'll demonstrate the interactive MuSig scheme here, where each signatory signs the same message. 
+The scheme works as follows:
 
 1. Each signer has a public-private key pair as before.
 1. Each signer publishes the public key of their nonce, \\( R_i \\),
-1. Everyone calculates the same "shared public key", _X_ per: 
+1. Everyone calculates the same "shared public key", _X_ as follows: 
 $$
     \begin{align}
         \ell &= H(X_1 || \dots || X_n) \\\\
