@@ -33,8 +33,17 @@
         {{#if mathjax_support}}
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
         {{/if}}
     </head>
+
     <body class="light">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">var path_to_root = "{{ path_to_root }}";</script>

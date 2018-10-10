@@ -1,3 +1,6 @@
+
+
+
 # <a name="h-Bulletproofs-and-Mimblewimble"> </a>Bulletproofs and Mimblewimble
 
 ## <a name="h-Introduction"> </a>Introduction
@@ -29,11 +32,62 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 
 ## <a name="h-How-does-Bulletproofs-work?"> </a>How does Bulletproofs work?
 
-The basis of confidential transactions are to replace the output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as \\( integers mod q )\\, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate rangeproofs from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies \\( x(x-1) = 0 )\\ and that they sum to v. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments.
+The basis of confidential transactions are to replace the output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate rangeproofs from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $ and that they sum to v. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments.
 
-Bulletproofs are made non-interactive using this Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof size is short; only \\( 2 \log_2(n) + 9 \\) elements for the range proofs and \\( log_2(n) + 13 \\) elements for arithmetic circuit proofs.
+Bulletproofs are made non-interactive using this Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof size is short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs.
 
 ???
+
+```sequence
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
+Note left of Alice: Alice frowns
+Alice-->Bob: How nice...
+Bob->Charlie: Did you hear that?
+Bob->Alice: Mmmm...
+```
+
+
+
+```flow
+st=>start: Start
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+e=>end
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
+
+
+
+```mermaid
+%% Example of sequence diagram
+  sequenceDiagram
+    Alice->>Bob: Hello Bob, how are you?
+    alt is sick
+    Bob->>Alice: Not so good :(
+    else is well
+    Bob->>Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+    Bob->>Alice: Thanks for asking
+    end
+```
+
+```mermaid
+graph LR
+A[Hard edge] -->B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+```
+
+
+
+
 
 ## <a name="h-Comparison-to-other-Zero-knowledge-Proof-Systems"> </a>Comparison to other Zero-knowledge Proof Systems
 
@@ -56,7 +110,7 @@ The table below shows a high level comparison between Sigma Protocols (i.e. inte
 Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used for :
 
 - Rangeproofs
-  - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say \\( 2^{256} \\), that can cause wrap around when adding a small number, e.g. proof that \\( x \in [0,2^{52} - 1] \\).
+  - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
 - Merkle proofs
   - ???
 - Proof of solvency
@@ -113,7 +167,7 @@ See  [[35]]
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables \\( (a_1, ..., a_n) \\) is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]]
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables $ (a_1, ..., a_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]]
 
 [ac~]: #ac
 "An arithmetic circuit over a field 
@@ -134,14 +188,14 @@ sometimes called argument systems."
 zero-knowledge proof is a 
 cryptographic primitive ..."
 
-- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm \\( \log_b^a \\) is a number \\( x \\) such that \\( b^x=a \\), for given numbers \\( a \\) and \\( b \\). Analogously, in any group  \\( G \\) , powers  \\( b^k \\) can be defined for all integers \\( k \\), and the discrete logarithm \\( \log_ba \\) is an integer \\( k \\) such that \\( b^k=a \\). Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers  $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
 
 [dlp~]: #dlp
 "In the mathematics of the real 
 numbers, the logarithm log_b(a) 
 is a number x such that ..."
 
-- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment \\( g^r \\) to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[43]], [[44]], [[45]])
+- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[43]], [[44]], [[45]])
 
 [egc~]: #egc
 "An ElGamal Commitment is a 
@@ -149,9 +203,9 @@ Pedersen Commitment with
 additional commitment  ..."
 
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
-  - The prover will use a <code>Prove()</code> algorithm to calculate a commitment \\( A \\) with a statement \\( Y \\) that is shared with the verifier and a secret witness value \\( w \\) as inputs. The commitment \\( A \\) is then hashed to obtain the challenge \\( c \\), which is further processed with the <code>Prove()</code> algorithm to calculate the response \\( f \\). The single message sent to the verifier then contains the challenge \\( c \\) and response \\( f \\).
-  - The verifier is then able to compute the commitment \\( A \\) from the shared statement \\( Y \\), challenge \\( c \\) and response \\( f \\). The verifier will then use a <code>Verify()</code> algorithm to verify the combination of shared statement \\( Y \\), commitment \\( A \\), challenge \\( c \\) and response \\( f \\).
-  - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment \\( A \\) and shared statement \\( Y \\) to obtain the challenge \\( c \\) as opposed to only the commitment \\( A \\).
+  - The prover will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the verifier and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the verifier then contains the challenge $ c $ and response $ f $.
+  - The verifier is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The verifier will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
+  - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
 
 [fsh~]: #fsh
 "The Fiat–Shamir heuristic is a 
@@ -168,15 +222,15 @@ number  ..."
 
 - <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
   - The generalized Pedersen commitment definition follows:
-    - Let \\( q \\) be a large prime and \\( p \\) be a large safe prime such that \\( p = 2q + 1 \\)
-    - Let \\( \mathbb G \\) and \\( \mathbb Q \\) denote cyclic groups of prime order \\( p \\) and \\( q \\), and let \\( \mathbb Z_p \\) and \\( \mathbb Z_q \\) denote the ring of integers \\( modulo \mspace{4mu} p \\) and \\( modulo \mspace{4mu} q \\), respectively
-    - Let \\( \mathbb Z_p^* \\)  denote \\( \mathbb Z_p \setminus \lbrace 0 \rbrace \\) and \\( \mathbb Z_q^* \\) denote \\( \mathbb Z_q \setminus \lbrace 0 \rbrace \\)
-    - Let \\( h \\) be a random generator of cyclic group \\( G \\) such that \\( h \\) is an element of \\( \mathbb Z_q^* \\)
-    - Let \\( a \\) be a random value and element of \\( \mathbb Z_q^* \\) and calculate \\( g \\) such that \\( g = h^a \\)
-    - Let \\( r \\) (the blinding factor) be a random value and element of \\( \mathbb Z_p^* \\) 
-    - The commitment of value \\( x \\) is then determined by calculating \\( C(x,r) = h^r g^x \\) 
-    - The generator \\( h \\) and resulting number \\( g \\) are known as the commitment bases, and should be shared along with \\( C(x,r) \\) with whomever wishes to open the value.
-    - Pedersen commitments are also additionally homomorphic, such that for messages \\( x_0 \\) and \\( x_1 \\) and blinding factors \\( r_0 \\) and \\( r_1 \\) we have \\( C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) \\)
+    - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $
+    - Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $, and let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $, respectively
+    - Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $
+    - Let $ h $ be a random generator of cyclic group $ G $ such that $ h $ is an element of $ \mathbb Z_q^* $
+    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $
+    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $ 
+    - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
+    - The generator $ h $ and resulting number $ g $ are known as the commitment bases, and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
+    - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $
   - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
   - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
 
@@ -189,7 +243,7 @@ secret value (or statement) without ..."
 
 [ts~]: #ts
 
-- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement \\( Y \\) is true, without conveying any information apart from the fact that the prover knows the value of \\( Y \\). The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
+- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
   - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
   - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
   - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any confidential information from the interaction with the prover apart from the fact that the statement is true.
