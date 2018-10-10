@@ -285,6 +285,10 @@ Consortium blockchains mimic similar traits to that of replicated state machines
 
 There are currently blockchains that utilize BFT consensus, these include, Hyperledger [] uses a consensus based on a classic coordinator [], Honeybadger [] which uses a consensus based on a randomized algorithm [] and the Red Belly Blockchain, which implements the algorithm fleshed out above []. 
 
+The validation of protocol was conducted similarly to that of the HoneyBadger blockchain, where "Coin", the randomization algorithm from Mousteoui et al. was used. Using the 100 Amazon VMs located in 5 datacentres on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
+
+Though the coupling with an optimized variant of the reduction of multivalve to binary consensus from Ben-Or et al., the Democratic Byzantine Fault Tolerant (DBFT) consensus algorithm was generated which terminates in 4 messages delays in the good case, when all non-faulty processes propose the same value. [17]
+
 
 
 ## <a name="h-DAGS"> </a>DAGs
@@ -387,3 +391,7 @@ Algorithm, Schwartz et al."
 "Tendermint: Consenus without Mining, Kwon"
 
 [[16]] LinBFT: Liner-Communication Byzantine Fault Tolerance for Public Blockchains https://arxiv.org/pdf/1807.01829.pdf
+
+
+
+[[17]]DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Consortium Blockchains http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf
