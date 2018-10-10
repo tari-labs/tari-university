@@ -259,7 +259,21 @@ PARSEC claims it is possible to reach 100% certainty consensus with no reliance 
 ## <a name="h-DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to COnsortium Block chains"> </a>DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Constortium Block chains 
 
 This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator (what is that?)
-The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the abiliity to terminate. 
+The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. 
+
+This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator
+
+The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. The fundamental idea here is to allow processes to complete asynchronous rounds as soon as they receive a threshold of messages, instead of having to wait for a message from a coordinator that may be slow. 
+
+The resulting algorithm assumes partial synchrony, is resilience optimal, time optimal and does not require signatures. 
+
+Moving away from the impossibility of solving consensus in asynchronous message systems, where processes can be faulty or *Byzantine*, the technic of randomization[] or additional synchrony is adopted. 
+
+Randomized algorithms can used per-process "local" coins or a shared "common" coin to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the exisiting algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
+
+A recent randomized algoritm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler. 
+
+To solve the consensus problem deterministically and prevent the use of the common coin, researchers have assumed partial or eventual synchrony.
 
 ## <a name="h-DAGS"> </a>DAGs
 
@@ -323,7 +337,7 @@ to be finalised concurrently"
 [9]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
 "High-Performance Consensus Mechanisms for Blockchains,
 Rusch"
- 
+
 [[10]] Untangling Blockchain: A Data Processing View of Blockchain Systems, Dinh et al., https://arxiv.org/pdf/1708.05665.pdf, Date accessed: 2018-08-30
 
 [10]: https://arxiv.org/pdf/1708.05665.pdf
@@ -331,7 +345,7 @@ Rusch"
 
 [[11]] Survey of Consensus Protocols of Blockchain Applications, Sankar et al., https://ieeexplore.ieee.org/document/8014672/, Date accessed: 2018-08-30
 
-[11]: https://ieeexplore.ieee.org/document/8014672/ 
+[11]: https://ieeexplore.ieee.org/document/8014672/
 "Survey of Consensus Protocols of Blockchain Applications,
 4th International Conference on Advanced Computing 
 and Communication Systems, Sankar et al."
