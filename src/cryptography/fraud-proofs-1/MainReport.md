@@ -1,4 +1,4 @@
-# Fraud Proofs and SPV clients - easier said than done?
+# Fraud Proofs and SPV (lightweight) clients - easier said than done?
 
 ## Background
 The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [[1]]. This makes it nearly impossible for everyone to run a full Bitcoin node. Lightweight/Simplified Payment Verification (SPV) clients will have to be used by users since not everyone can run full nodes due to the computational power, bandwidth and cost needed to run a full Bitcoin node. 
@@ -186,11 +186,11 @@ In this way, the use of payment channels can help with incentivising full nodes 
 
 ## Conclusions, Observations, Recommendations
 
-Fraud proofs seem to be complex [[6]] and hard to implement, but appear to be necessary for scalabity of blockchains and the security and privacy for SPV clients, since not everyone can nor should want to run a full node to participate in the network. The current SPV implementations are working on improving the security and privacy of these SPV clients.
+Fraud proofs can be complex [[6]] and hard to implement, but appear to be necessary for scalabity of blockchains and the security and privacy for SPV clients, since not everyone can nor should want to run a full node to participate in the network. The current SPV implementations are working on improving the security and privacy of these SPV clients.
 
-Based on [3 different fraud proof proposals](#suggested-fraud-proof-improvements) that suggest some sort of incentive for nodes that issue alert/fraud proofs, it seems likely that some sort of fraud proof providers and consumers market place will emerge.
+Based on [3 different fraud proof proposals](#suggested-fraud-proof-improvements) that suggest some sort of incentive for nodes that issue alert/fraud proofs, it seems likely that some sort of fraud proof providers and consumers market place will have to emerge.
 
-SPV clients have not been implemented on Monero due to it's security model and Tari, a Monero sidechain, will also likely not want to implement any SPV clients due to privacy reasons. However, given that Tari will be users-focused and aiming for mass adoptation, some of the suggested SPV improvements such as payment channels could be an area to be looked at.
+Where Tari is concerned, it would appear that the universal fraud proof proposals or something similar would need to be looked into as undoubtedly end users of the protocol/network will mostly be using lightclients.
 
 
 ## References
