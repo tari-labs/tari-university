@@ -1,9 +1,10 @@
-# Fraud Proofs - easier said than done?
+# Fraud Proofs and SPV clients - easier said than done?
 
 ## Background
 The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [1]. This makes it nearly impossible for everyone to run a full Bitcoin node. Lightweight/Simplified Payment Verification (SPV) clients will have to be used by users since not everyone can run full nodes due to the computational power and cost needed to run a full Bitcoin node. 
 
-SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs [17] 
+SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs [17]. 
+Peter modified the code for his node in order to decieve the Bitcoin wallet since the [wallets can't verify coin amounts](https://github.com/petertodd/bitcoin/commit/53dda4643a0dba85699cc4b9dc06a0b9afb1d315) (code can be found in the "[Quick-n-dirty hack to lie to SPV wallets](https://github.com/petertodd/bitcoin/tree/2016-02-lie-to-spv)" branch on his github).
 
 ![todd-btc-spv.jpg](sources/todd-btc-spv.jpg)
 Courtesy:MIT Bitcoin Expo 2016 Day 1
@@ -34,15 +35,73 @@ An invalid block need not be of malicious intent, but could be as a result of an
 * **Bad Block** (Other) (misplaced coinbase, wrong version, witness data missing, (drivechain) most updates to Escrow_DB/Withdrawal_DB)
 * **Bad Accumulation** (the infamous blocksize/SigOps limits, the coinbase txn fees (which must balance total fees paid by the block’s txns), (drivechain) sidechain outputs – the “CTIP” field of “Escrow DB”)
 
+## Full node vs SPV client
+
+A full Bitcoin node contains the following details:
+  * every block
+  * every transaction that has ever been sent
+  * all the unspent transaction outputs (UTXOs) [4]
+
+An SPV client, however, contains :
+* a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
+or 
+* just a block header with no transactions.
+
 ## What are fraud proofs?
 
 Fraud proofs are a way to improve the security of SPV clients [5] by providing a mechanism for full nodes to prove that a chain is invalid irrespective of the amount of proof of work it has [5]. Fraud proofs could also help with the Bitcoin scaling debate as SPV clients are easier to run and could thus help with Bitcoin scalability issues [6][18].
-
-A full Bitcoin node contains the following details:
-  * every transaction that is currently being broadcast around the network
-  * every transaction that has ever been sent
-  * all the unspent transaction outputs (UTXOs) [4]
   
+## Fraud proof data structure
+There are currently different proofs that are needed to prove fraud in the Bitcon blockchain based on various actions.
+Below are the various types of proofs that are needed to prove fraud based on specific fraud cases [5]:
+
+### Invalid transaction due to stateless criteria violation (correct syntax, input scripts conditions satisfied,etc)
+For an invalid transaction, the fraud proofs consists of:
+* the header of invalid block
+* the invalid transaction
+* An invalid block's Merkle tree containing the minimum number of nodes needed to proof the existance of the invalid transaction in the tree
+
+### Invalid transaction due to input already been spent
+For this case, the fraud proof would consist of the following:
+* the header of the invalid block
+* the invalid transaction
+* proof that the invalid transaction is within the invalid block
+* the header of the block containing original spend transaction
+* the original spending transaction
+* proof showing that the spend transaction is within the header block of the spend transaction
+
+### Invalid transaction due to incorrect generation output value
+For this case, the fraud proof consists of:
+* the block itself
+
+### Invalid transaction if input does not exist
+For this case, the fraud proof consists of:
+* the entire blockchain
+
+The following fraud proofs would requiere changes to the Bitcoin protocol itself [5]
+
+### Invalid transaction if input does not exist in old blocks
+For this case, the fraud proof consists of:
+* the header of the invalid block
+* the invaild transaction
+* proof that the header of the invalid block contains the invalid transaction
+* proof that the header of the invalid block contains the leaf node corresponding to the non-existant input
+* the block referenced by the leaf node if it exists
+
+### Missing proof tree item
+For this case, the fraud proof consists of:
+* the header of the invalid block
+* the transaction of the missing proof tree node
+* An indication of which input from the transaction of the missing proof tree node is missing from it
+* proof that the header of the invalid block contains the transtion of the missing proof tree node
+* proof that the proof tree contains two adjacent leaf nodes
+
+As can be seen, requiring different fraud proof constructions for different different fraud proofs can get combersome. In a recent paper, Al-Bassam, et all [26] proposed a general, universal fraud proof construction for most cases.
+Their proposition is to generalize the entire blockchain as a state transition system and represent the entire state as a Merkle root, with each transaction changing the state root of the blockchain.
+
+![stateroot.png](sources/stateroot.png)
+
+
 These SPV client make use of [Bloom filters](#blob/master/merkle-trees-and-spv-1/PITCHME.md#bloom-filters) to receive transactions that are relevant to the user [7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by responding with a boolean answer [9]
 
 ![spv.png](sources/spv.png)
@@ -103,7 +162,7 @@ In this scenario, SPV clients can be made aware of any invalidity in blocks and 
 The concept of compact fraud proofs is to be able to efficiently prove different types of fraud to SPV clients [24]. As already noted in the [introduction to fraud proofs](#what-are-fraud-proofs), invalid blocks need not necesarily be due to malicious intent.
 However, in order to implement the suggested compact fraud proofs, the Bitcoin blockchain would have to be amended to make all proposed fraud proofs possible as well as adding a mechanism to enable a market of fraud protection providers and consumers [24].
 
-### payment channels
+### Payment channels
 Bitcoin is made to be reselient to denial of service (Dos) attacks, however, the same cannot be said for SPV clients. This could be an issue if malicious alerting nodes spam with false fraud proofs.
 A proposed solution to this is payment channels [6] due to them:
 1) operating at near instant speeds thus allowing quick alerting of fraud proofs
@@ -176,6 +235,8 @@ Bitcoin Clients, Arthur Gervais, et al, https://eprint.iacr.org/2014/763.pdf, Da
 [24] fraud proofs, https://bitco.in/forum/threads/fraud-proofs.1617/, Date accessed: 2018-09-18.
 
 [25] Whats the difference between an API wallet and a SPV wallet?, https://www.reddit.com/r/Bitcoin/comments/3c3zn4/whats_the_difference_between_an_api_wallet_and_a/, Date accessed: 2018-09-21.
+
+[26] Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities, Mustafa Al-Bassam, Alberto Sinnino, Vitalik Butterin, https://arxiv.org/pdf/1809.09044.pdf, Date accessed: 2018-10-08
 
 ## Contributors
 
