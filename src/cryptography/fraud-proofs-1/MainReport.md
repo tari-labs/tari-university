@@ -99,10 +99,21 @@ For this case, the fraud proof consists of:
 As can be seen, requiring different fraud proof constructions for different different fraud proofs can get combersome. In a recent paper, Al-Bassam, et all [26] proposed a general, universal fraud proof construction for most cases.
 Their proposition is to generalize the entire blockchain as a state transition system and represent the entire state as a Merkle root, with each transaction changing the state root of the blockchain.
 
+
 ![stateroot.png](sources/stateroot.png)
+courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities
+
+In this proposition, the fraud proof construction will consist of:
+* the transaction
+* the pre-state root
+* the post-state root
+* Witnesses (Merkle proofs of all the parts of the state the transactions accesses)
+
+![fraudproof.png](sources/fraudproof.png)
 
 
-These SPV client make use of [Bloom filters](#blob/master/merkle-trees-and-spv-1/PITCHME.md#bloom-filters) to receive transactions that are relevant to the user [7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by responding with a boolean answer [9]
+## How SPV clients work
+SPV clients make use of [Bloom filters](#blob/master/merkle-trees-and-spv-1/PITCHME.md#bloom-filters) to receive transactions that are relevant to the user [7]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by responding with a boolean answer [9]
 
 ![spv.png](sources/spv.png)
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
