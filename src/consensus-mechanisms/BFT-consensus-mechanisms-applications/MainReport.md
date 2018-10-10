@@ -276,7 +276,7 @@ PARSEC is a byzantine fault tolerant consensus algorithm possessing weak synchro
 
 Similar to Hashgraph, it has no leaders, no round robin, no proof of work and reaches eventual consensus with probability one. If differs from Hashgraph, in that it provides high speed in the absence and presence of faults.  Thus, it avoids the structures of delegated proof of stake, which requires a trusted set of leaders, and does not have a round robin (where a set of instated miners sign each block)
 
-It is fully open, unlike Hashgraph, which is patented and closed sourced and the GPLv3 written in Rust will soon be available. [[1]][[5]]
+It is fully open, unlike Hashgraph, which is patented and closed sourced and the GPLv3 written in Rust will soon be available. [[1]];[[5]]
 
 "The general problem of reaching Byzantine agreement on any value is reduced to the simple problem of reaching binary Byzantine agreement not eh nodes participating in each agreement protocol"
 
@@ -294,7 +294,15 @@ Due to random synchrony, all users can reach an agreement on what is going on, t
 
 PARSEC claims it is possible to reach 100% certainty consensus with no reliance on timing, with up to 1/3 of the network being dishonest even if the network is attacked. 
 
-## <a name="h-DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to COnsortium Block chains"> </a>DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Constortium Block chains 
+## Avalanche
+
+This consensus protocol was first seen in the WhitePaper entitled "Snowflake to Avalanche". Outlined in the paper are four protocols which are building blocks forming a protocol family. The leaderless Byzantine fault tolerance protocols are build on a metastable mechanism and are referred to as: Slush; Snowflake; Snowball and Avalanche
+
+The work is conducted by a group identified as Team Rocket. 
+
+
+
+## <a name="h-DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to COnsortium Block chains"> </a>DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Consortium Block chains 
 
 This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator (what is that?)
 The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. 
