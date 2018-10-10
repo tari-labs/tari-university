@@ -8,11 +8,22 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
 
 ## <a name="h-Contents"> </a>Contents
 -[Introduction](#h-Introduction)
--[Consensus]
--[Byzantine Faults]
+-[Consensus](#h-Consensus)
+-[Byzantine Faults](#h-Byzantine Faults)
+- 
 
 
 ## <a name="h-Introduction"> </a>Introduction 
+
+An attractive alternative to Proof-of-Work is Byzantine Fault Tolerance, which involves negligible computations and ensures no forks. There have been several studies regarding this distributed system. 
+
+However, unlike traditional distributed systems, the block chain setting requires alternate application. 
+
+BFT is thought to not be scalable to the number of participants *n*, since most existing solutions insure the transmission of Ω (*n*<sup>2</sup>) messages, even under favorable network conditions. Thus, existing BFT chains do not have many nodes (e.g. 21 in [] ), which can be elected delegates[] , PoW winners [] or a random sample set obtained through cryptographic sortition . 
+
+The concept of fixed delegates does not aid in decentralization, while PoW introduces uncertainty in the participant set due to forks. 
+
+Sortition-based BFT, provides probabilistic guarantees on safety, as there is no fork capability however, its probability of failure is only small enough with a large sample: a minimum of a few hundred nodes. [[16]]
 
 ## <a name="h-Consensus"> </a>Consensus
 
@@ -201,6 +212,18 @@ Tendermint Core is a low-level protocol which is composed of two protocols in on
 
 ### <a name="h-LinBFT"> </a>LinBFT
 
+LinBFT is another Byzantine fault tolerance protocol for block chain systems that allows for the amortized *O(n)* communication volume per block under reasonable conditions (where *n* is the number of participants) while satisfying deterministic guarantees on safety and liveness. 
+
+LinBFT cuts down its *O(n*<sup>4</sup>*)* complexity by implementing changes each by  *O(n)*:  linear view change, threshold signatures and verifiable random functions. 
+
+This is clearly optimal, in the sense that disseminating a block already takes *Ω(n)* transmissions. 
+
+LinBFT is designed to be implemented for permission-less, public blockchain systems and takes into account anonymous participants without a public-key infrastructure, proof-of-stake, rotating leader ,and a dynamic participant set. [[16]]
+
+For instance, participants can be anonymous, without a centralized public key infrastructure (PKI) public key among themselves, and participate in a distributed key generation (DKG) protocol required to create threshold signatures, both of which are communication-heavy processes. 
+
+LinBFT is compatible with proof-of-state (PoS), which counters Sybil attacks and deters dishonest behavior through slashing. [[16]]
+
 ### <a name="h-Cosmos"> </a>Cosmos
 
 ### <a name="h-Algorand"> </a>Algorand 
@@ -336,3 +359,5 @@ Algorithm, Schwartz et al."
 
 [15]: https://tendermint.com/static/docs/tendermint.pdf
 "Tendermint: Consenus without Mining, Kwon"
+
+[[16]] LinBFT: Liner-Communication Byzantine Fault Tolerance for Public Blockchains https://arxiv.org/pdf/1807.01829.pdf
