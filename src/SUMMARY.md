@@ -17,7 +17,9 @@
     - [NFT Landscape](non-fungible-tokens/nft-landscape-1/sources/PITCHME.link.md)
   - [Protocols](protocols/protocols.md)
     - [Mimblewimble](protocols/mimblewimble-1/sources/PITCHME.link.md)
+    - [Grin Design Choice Criticisms - Truth or Fiction](protocols/grin-design-choice-criticisms/MainReport.md)
     - [Atomic Swaps](protocols/atomic-swaps/AtomicSwaps.md)
     - [Lightning Network for Dummies](protocols/lightning-network-for-dummies/sources/PITCHME.link.md)
     - [Introduction to SPV, Merkle Trees and Bloom Filters](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)
     - [The RGB Protocol - An Introduction](protocols/rgb-introduction/sources/PITCHME.link.md)
+
