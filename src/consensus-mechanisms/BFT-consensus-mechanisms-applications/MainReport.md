@@ -300,9 +300,23 @@ This consensus protocol was first seen in the WhitePaper entitled "Snowflake to 
 
 The work is conducted by a group identified as Team Rocket. 
 
+Traditional consensus protocols require all nodes to communicate with all other nodes in order to reach consensus. The Nakamoto consensus protocol, primarily associated with Bitcoin, establishes consensus through Proof of Work. 
+
+The protocols published by Team Rocket differ from the traditional consensus protocols and the Nakamoto consensus protocols by not requiring an elected leader, but instead the protocol simply guides all the nodes to consensus. 
+
+Given the fact that most forms of consensus algorithms see the implementation of a leader in various forms, with the likes of PoW and PoS electing a validator for a specific block, the degree of centralization in these decentralised networks creates some contention. 
+
+Metastability refers to the concept that the system is constructed to put forward an answer and will thus not stay in balance; if the system remains in balance consensus cannot new reached. 
+
+These four protocols are described as a new family of protocols due to this concept of metastability: a means to establish consensus by guiding all nodes towards an emerging consensus without requiring leaders, while still maintaining the same level of security and inducing a speed that exceeding current protocols. 
+
+This is achieved through the formation of 'sub-quorums', which are small randomized samples from nodes on the network. This allows for greater throughputs and sees parallel consensuses running before they merge to form the overarching consensus: what can be seen as similar in nature to the gossip protocol. 
+
+With safety, throughput: the number of transactions per second and scalability: the number of people supported by the network, of great importance, these protocols seem to be able to achieve all three. They impart a probabilistic safety guarantee in the presence of Byzantine adversaries and achieve a high throughput and scalability due to their concurrent nature. 
 
 
-## <a name="h-DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to COnsortium Block chains"> </a>DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Consortium Block chains 
+
+## <a name="h-DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to COnsortium Block chains"> </a>Deterministic BFT
 
 This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator (what is that?)
 The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. 
