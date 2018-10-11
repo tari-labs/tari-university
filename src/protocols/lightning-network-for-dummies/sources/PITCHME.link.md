@@ -1,6 +1,6 @@
 # Lightning Network for Dummies
 
-<iframe width=1200 height=800 src="https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/"
+<iframe width=750 height=600 src="https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/"></iframe>
 
 ### Having trouble viewing this presentation?
 

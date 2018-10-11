@@ -46,18 +46,33 @@ Level | Description
 
 Stream | Topic | Summary | Level | Target Audience | Format 
 ----|----|----|----|----|----
-Cryptography | Crypto101 | An intro to elliptic curve math and digital signatures | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/cryptography/crypto-1#/) 
-General | Non-Fungible Tokens | An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry | 1 | Anyone interested in NFTs | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=nft-landscape-1#/) 
-Off-chain Scaling | Lightning Network for Dummies | An intro to the Lightning Network, including examples of its workings, pros and cons | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/LightningNetworkForDummies#/)
-Protocol | MimbleWimble | An intro to MimbleWimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/protocols/mimblewimble-1#/) 
-Protocol | Byzantine Fault Tolerance and Consensus Mechanisms | Understanding Byzantine Generals Problem and how consensus is achieved in cryptocurrencies | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=consensus-mechanisms/BFT-consensusmechanisms#/)
-Protocol | RGB Protocol | An Introduction to RGB | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/protocols/rgb-introduction#/)
-Technical | Merged Mining | Presents a fundamental understanding to the concept of merged mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md) 
-Technical | Layer 2 Scaling Survey (Part 1) | Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each | 3 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/layer2scaling-landscape#/)
-Technical | Layer 2 Scaling Survey (Part 2) | Presents an   overview of different layer 2 scaling solutions being worked at today, as   well as a basic SWOT analysis of each | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/layer2scaling/more-landscape/landscape-update.md)  [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/more-landscape#/)
-Technical | Layer 2 Scaling Executive summary | Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and which viable scaling alternatives exists for Tari | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/executive-summary#/)
-Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=merkle-trees-and-spv-1)  
-Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/AtomicSwaps/AtomicSwaps.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=AtomicSwaps#/)
-Technical | Scriptless Scripts | Basics of Scriptless Scripts | 2 | All |[Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/layer2scaling/scriptless-scripts#/)
+Cryptography | Crypto101 | An intro to elliptic curve math and digital signatures | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/) 
+General | Non-Fungible Tokens | An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry | 1 | Anyone interested in NFTs | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/non-fungible-tokens/nft-landscape-1#/) 
+Off-chain Scaling | Lightning Network for Dummies | An intro to the Lightning Network, including examples of its workings, pros and cons | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/)
+Protocol | MimbleWimble | An intro to MimbleWimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions | 2 | Written by a non-cryptographer for other non-cryptographers | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/) 
+Protocol | Byzantine Fault Tolerance and Consensus Mechanisms | Understanding Byzantine Generals Problem and how consensus is achieved in cryptocurrencies | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/consensus-mechanisms/BFT-consensusmechanisms#/)
+Protocol | RGB Protocol | An Introduction to RGB | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/)
+Technical | Merged Mining | Presents a fundamental understanding to the concept of merged mining, including definitions, relevant case studies and vector attacks | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/src/merged-mining/merged-mining.md) 
+Technical | Layer 2 Scaling Survey (Part 1) | Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each | 3 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/layer2scaling-landscape#/)
+Technical | Layer 2 Scaling Survey (Part 2) | Presents an   overview of different layer 2 scaling solutions being worked at today, as   well as a basic SWOT analysis of each | 2 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/more-landscape/landscape-update.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)
+Technical | Layer 2 Scaling Executive summary | Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and which viable scaling alternatives exists for Tari | 2 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/)
+Technical | SPV, Merkle Trees and Bloom Filters | An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters  | 1 | All | [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/merkle-trees-and-spv-1#/)  
+Technical | Atomic Swaps | Basics of Atomic Swaps | 1 | All | [Report](https://github.com/tari-labs/tari-university/blob/master/src/protocols/atomic-swaps/AtomicSwaps.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/)
+Technical | Scriptless Scripts | Basics of Scriptless Scripts | 2 | All |[Report](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) [Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/)
+
+## Upcoming Talks  
+
+Date | Topic 
+---- | ----
+22 October | Fraud Proofs - Easier said than done? 
+29 October | Grin vs. Beam, a Comparison
+5 November | Introduction to Digital Signatures
+12 November | Grin Design Choice Criticisms
+19 November | Mimblewimble-Grin Block Chain Protocol Overview
+26 November | Monero's privacy features: RingCT investigated
+3 December | Block chain propagation/relay network optimization
+10 December | Distributed Hash Tables (DHT) Application to Block Chain
+
+
 
 
