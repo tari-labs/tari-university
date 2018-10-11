@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:   cryptography/fraud-proofs-1#/
+Presentation:   src/cryptography/fraud-proofs-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/cryptography/fraud-proofs-1#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/cryptography/fraud-proofs-1#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    cryptography/fraud-proofs-1#/
+Presentation:    src/cryptography/fraud-proofs-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/cryptography/fraud-proofs-1#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/fraud-proofs-1#/
