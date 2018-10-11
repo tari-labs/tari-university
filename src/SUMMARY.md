@@ -7,7 +7,6 @@
     - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)
-    - [Applications of Byzantine Consensus Mechanisms](consensus-mechanisms/BFT-consensus-mechanisms-applications/MainReport.md)
   - [Layer 2 Scaling](./layer2scaling/layer2scaling.md)
     - [Layer 2 Scaling Survey (part 1)](layer2scaling/layer2scaling-landscape/layer2scaling-survey.md)
     - [Layer 2 Scaling Survey (part 2)](layer2scaling/more-landscape/landscape-update.md)
