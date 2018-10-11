@@ -36,58 +36,15 @@ The basis of confidential transactions are to replace the output amounts with Pe
 
 Bulletproofs are made non-interactive using this Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof size is short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs.
 
-???
+$$
+\eta = \sum r
+$$
 
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-Note left of Alice: Alice frowns
-Alice-->Bob: How nice...
-Bob->Charlie: Did you hear that?
-Bob->Alice: Mmmm...
-```
+\\[
+\zeta = \sum f
+\\]
 
-
-
-```flow
-st=>start: Start
-op=>operation: Your Operation
-cond=>condition: Yes or No?
-e=>end
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
-
-
-```mermaid
-%% Example of sequence diagram
-  sequenceDiagram
-    Alice->>Bob: Hello Bob, how are you?
-    alt is sick
-    Bob->>Alice: Not so good :(
-    else is well
-    Bob->>Alice: Feeling fresh like a daisy
-    end
-    opt Extra response
-    Bob->>Alice: Thanks for asking
-    end
-```
-
-```mermaid
-graph LR
-A[Hard edge] -->B(Round edge)
-    B --> C{Decision}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
-```
-
-
-
-
+test $ \beta \in [a_1..a_n] $ and also \\(  \gamma \in [b_1..b_n] \\) that
 
 ## <a name="h-Comparison-to-other-Zero-knowledge-Proof-Systems"> </a>Comparison to other Zero-knowledge Proof Systems
 
