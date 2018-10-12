@@ -51,6 +51,7 @@ or
 +++
 
 ## Fraud proof data structures
+
 Invalid transaction if input does not exist
 - the entire blockchain
 
@@ -97,11 +98,11 @@ Proposition:
 #### How SPV/Lightweight clients work
 
 - Merkle trees
-- Bloomfilters
+- Bloom filters
 
 
 
-## Strengths
+# Strengths
 - memory light
 - user adoption
 - Low transaction fees
