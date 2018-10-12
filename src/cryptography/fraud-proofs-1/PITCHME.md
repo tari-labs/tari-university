@@ -34,13 +34,14 @@ SPV clients will believe anything
 <ul>A full Bitcoin node contains the following details:
   <li> every block
   <li> every transaction that has ever been sent
-  <li> all the unspent transaction outputs (UTXOs) [[4]]
+  <li> all the unspent transaction outputs (UTXOs)
 </ul>
-<ul>An SPV client, however, contains :
+
+<ul>An SPV client, however, contains:
   <li> a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
 or 
   <li> just a block header with no transactions.
-  </ul>
+</ul>
 
 
 ---
@@ -87,7 +88,7 @@ For this case, the fraud proof consists of:
 For this case, the fraud proof consists of:
 <li> the entire blockchain
 
-+++
+
 
 ## Universal fraud proofs (suggested improvement)
 
