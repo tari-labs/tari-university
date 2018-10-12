@@ -42,7 +42,6 @@ A full Bitcoin node contains the following details:
 - every block
 - every transaction that has ever been sent
 - all the unspent transaction outputs (UTXOs)
-
 An SPV client, however, contains :
 - a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
 or 
@@ -51,7 +50,6 @@ or
 +++
 
 ## fraud proof data structures
-Alot of these proposals would require changes to the Bitcoin protocol itself
 <ul>Invalid transaction if input does not exist
 <li> the entire blockchain
 </ul>
@@ -66,6 +64,7 @@ Alot of these proposals would require changes to the Bitcoin protocol itself
 <li>the original spending transaction
 <li>proof showing that the spend transaction is within the header block of the spend transaction
 </ul>
+
 +++
 
 ## Universal fraud proof proposal
