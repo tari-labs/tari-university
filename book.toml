@@ -11,8 +11,6 @@ preprocess = ["links", "index"]
 [output.html]
 mathjax-support=true
 theme = "src/theme"
-additional-css = ["mermaid.css"]
-additional-js = ["mermaid.min.js", "mermaid-init.js"]
 
 [output.html.playpen]
 editable = true
