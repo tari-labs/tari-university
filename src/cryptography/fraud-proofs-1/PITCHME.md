@@ -51,22 +51,20 @@ or
 +++
 
 ## fraud proof data structures
-
 <u>Alot of these proposals would require changes to the Bitcoin protocol itself</u>
-
-Invalid transaction if input does not exist
-- the entire blockchain
-
-Invalid transaction due to incorrect generation output value
-- the block itself
-
-Invalid transaction due to input already been spent
-- header of the invalid block
-- invalid transaction
-- proof that the invalid transaction is within the invalid block
-- the header of the block containing original spend transaction
-- the original spending transaction
-- proof showing that the spend transaction is within the header block of the spend transaction
+<ul>Invalid transaction if input does not exist
+<li> the entire blockchain
+</ul>
+<ul>Invalid transaction due to incorrect generation output value
+<li> the block itself
+</ul>
+<ul>Invalid transaction due to input already been spent
+ <li>header of the invalid block
+<li>invalid transaction
+<li>proof that the invalid transaction is within the invalid block
+<li>the header of the block containing original spend transaction
+<li>the original spending transaction
+<li>proof showing that the spend transaction is within the header block of the spend transaction
 
 ---
 
@@ -81,12 +79,9 @@ Proposition:
 
 ![stateroot](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/stateroot.png)
 
-
----
-
++++
 ## Universal fraud proof (Cont'n)
 <u>Bitcoin blockchain</u>
-
 - represent the entire blockchain as a key-value store Sparse Merkle tree
     - `Key = UTXO ID`
     - `Value = 1 if unspent or 0 if spent`
@@ -94,11 +89,10 @@ Proposition:
     - `rootTransition(stateRoot, tx, witnesses) != stateRoot`
 - full node sends lightclient/SPV this data to proof a valid fraud proof
 - SPV computes this function. If the transition root of the state root is different from the state root in the block then the block is rejected
-
 ![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
 
 - post-state root can be excluded in order to save block space
--  But this increase the fraud proof size
+- But this increase the fraud proof size
 
 +++
 
