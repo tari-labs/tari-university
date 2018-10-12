@@ -53,9 +53,10 @@ or
 ## Fraud proof data structures
 Invalid transaction if input does not exist
 - the entire blockchain
+
 Invalid transaction due to incorrect generation output value
 - the block itself
-</ul>
+
 <ul>Invalid transaction due to input already been spent
 <li>header of the invalid block
 <li>invalid transaction
