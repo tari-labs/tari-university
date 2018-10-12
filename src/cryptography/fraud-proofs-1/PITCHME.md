@@ -68,6 +68,8 @@ The following fraud proofs would require changes to the Bitcoin protocol itself
 <li>  proof showing that the spend transaction is within the header block of the spend transaction
 </ul>
 
+ +++
+ 
 ### Invalid transaction due to incorrect generation output value
 <ul>For this case, the fraud proof consists of:
 <li> the block itself
