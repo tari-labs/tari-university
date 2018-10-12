@@ -20,6 +20,7 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
   - [Introduction](#h-Introduction)
   - [Contents](#h-Contents)
   - [How does Bulletproofs work?](#h-How-does-Bulletproofs-work?)
+  - [Comparison to other Zero-knowledge Proof Systems](#h-Comparison-to-other-Zero-knowledge-Proof-Systems)
   - [Applications for Bulletproofs](#h-Applications-for-Bulletproofs)
   - [Interesting Bulletproof Implementation Snippets](#h-Interesting-Bulletproof-Implementation-Snippets)
     - [Wallet Reconstruction - Grin](#h-Wallet-Reconstruction-Grin)
@@ -61,7 +62,7 @@ Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used fo
 - Rangeproofs
   - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
 - Merkle proofs
-  - ???
+  - In this context a full node (*verifier*) maintains a complete copy of the merkle tree and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the merkle tree in some block <code>B</code> with block header <code>H</code>.  [[7]] This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK.
 - Proof of solvency
   - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information.
 - Multi-signatures with deterministic nonces
@@ -251,6 +252,11 @@ Bünz B. et al"
 and More (Transcripts), Blockchain Protocol Analysis and 
 Security Engineering 2018, 
 Bünz B. et al"
+
+[[7]] Merkle Root and Merkle Proofs, https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs, Date accessed: 2018-10-?.
+
+[7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs
+"Merkle Root and Merkle Proofs"
 
 [[10]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
