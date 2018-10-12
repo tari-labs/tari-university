@@ -99,7 +99,7 @@ Proposition:
 - Merkle trees
 - Bloomfilters
 
- Strengths
+##### Strengths
 
 - memory light
 - user adoption
