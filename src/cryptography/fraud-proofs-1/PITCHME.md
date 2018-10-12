@@ -52,6 +52,7 @@ The following fraud proofs would require changes to the Bitcoin protocol itself
 <li> the invalid transaction
 <li> An invalid block's Merkle tree containing the minimum number of nodes needed to proof the existance of the invalid transaction in the tree
 </ul>
+ --- 
 
 ### Invalid transaction due to incorrect generation output value
 <ul>For this case, the fraud proof consists of:
@@ -69,7 +70,7 @@ The following fraud proofs would require changes to the Bitcoin protocol itself
 </ul>
 
  +++
- 
+
 ### Invalid transaction due to incorrect generation output value
 <ul>For this case, the fraud proof consists of:
 <li> the block itself
@@ -84,7 +85,6 @@ The following fraud proofs would require changes to the Bitcoin protocol itself
 
 
 
-???
 
 +++
 
