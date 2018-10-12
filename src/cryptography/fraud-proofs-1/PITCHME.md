@@ -40,9 +40,9 @@ A full Bitcoin node contains the following details:
   * all the unspent transaction outputs (UTXOs) [[4]]
 
 An SPV client, however, contains :
-* a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
+  * a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
 or 
-* just a block header with no transactions.
+  * just a block header with no transactions.
 
 
 ---
