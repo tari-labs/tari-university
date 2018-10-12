@@ -1,21 +1,13 @@
 # Fraud Proofs and SPV (lightweight) clients - easier said than done?
 
 - Background
-
 - Full node vs SPV client
-
 - What are fraud proofs?
-
 - Fraud proof data structure
-
 - Universal fraud proofs (suggested improvement)
-
 - How SPV clients work
-
 - Security and privacy issues with SPV clients
-
 - Other suggested fraud proof improvements
-
 - Conclusions, Observations, Recommendations
 
 ---
@@ -27,7 +19,6 @@ SPV clients will believe anything
 ![SPV client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
 @divend
 
-+++
 
 # Full node vs SPV client
 
@@ -36,10 +27,8 @@ SPV clients will believe anything
   <li> every transaction that has ever been sent
   <li> all the unspent transaction outputs (UTXOs)
 </ul>
-
 <ul>An SPV client, however, contains:
-  <li> a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
-or 
+  <li> a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root or 
   <li> just a block header with no transactions.
 </ul>
 
@@ -47,13 +36,11 @@ or
 ---
 
 # What are fraud proofs?
-
 <ul>
 <li> alerts for SPV
 <li> improve scalability
 <li> improve security of SPV/lightweight clients
 </ul>
-
 
 ## Fraud proof data structure
 The following fraud proofs would require changes to the Bitcoin protocol itself
@@ -81,13 +68,13 @@ The following fraud proofs would require changes to the Bitcoin protocol itself
 </ul>
 
 ## Invalid transaction due to incorrect generation output value
-For this case, the fraud proof consists of:
+<ul>For this case, the fraud proof consists of:
 <li> the block itself
-
+</ul>
 ## Invalid transaction if input does not exist
-For this case, the fraud proof consists of:
+<ul>For this case, the fraud proof consists of:
 <li> the entire blockchain
-
+</ul>
 
 
 ## Universal fraud proofs (suggested improvement)
