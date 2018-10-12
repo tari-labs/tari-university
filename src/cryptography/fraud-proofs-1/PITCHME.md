@@ -1,124 +1,99 @@
-# Fraud Proofs - easier said than done?
+# Fraud Proofs and SPV (lightweight) clients - easier said than done?
 
-- Topic 1 ???
+- Background
 
-- Topic 2 ???
+- Full node vs SPV client
 
-- Topic 3 ???
+- What are fraud proofs?
 
-- Etc. 
+- Fraud proof data structure
 
-- Conclusions
+- Universal fraud proofs (suggested improvement)
+
+- How SPV clients work
+
+- Security and privacy issues with SPV clients
+
+- Other suggested fraud proof improvements
+
+- Conclusions, Observations, Recommendations
 
 ---
 
-## Topic 1 ???
+# Background
 
 ????
 
 Sample image below, set at 450 pixels width
 
 @div[s450px]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/spv.png)
+![SPV client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
 @divend
 
 +++
 
-## Topic 1 ??? (cnt'd)
+# Full node vs SPV client
 
-???
+A full Bitcoin node contains the following details:
+  * every block
+  * every transaction that has ever been sent
+  * all the unspent transaction outputs (UTXOs) [[4]]
 
-Sample side by side image (set at 250 pixels width, aligned center) and text (aligned left) inside div containers. [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
+An SPV client, however, contains :
+* a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
+or 
+* just a block header with no transactions.
 
-@div[left-50 s250px text-center]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/spv.png)
-@divend
-
-@div[right-50 text-left]
-
-<p>[Unordered list](https://html.com/tags/ul/) of items below:
-
-<ul>
-<li>???
-<li>???
-</ul>
-@divend
 
 ---
 
-## Topic 2 ???
-
-Sample side by side text inside div containers, with alternating alignment.  [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
-
-@div[left-50]
-
-@div[text-left]
-
-<p>[Paragraph left](https://html.com/tags/p/)
-<p>Paragraph left
-
-
-@divend
-
-@div[text-center]
+# What are fraud proofs?
 
 <ul>
-<li>[Unordered list center](https://html.com/tags/ul/)
-<li>Unordered list center
+<li> alerts for SPV
+<li> improve scalability
+<li> improve security of SPV/lightweight clients
 </ul>
 
 
-@divend
+## Fraud proof data structure
+The following fraud proofs would require changes to the Bitcoin protocol itself
 
-@div[text-right]
-
-<ol>
-<li>[Ordered list right](https://html.com/tags/ol/)
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
-
-
-
-@div[right-50 text-right]
-
-@div[text-left]
-
-<p>Paragraph left
-<p>Paragraph left
-
-
-@divend
-
-@div[text-center]
-
-<ul>
-<li>Unordered list center
-<li>Unordered list center
+## Invalid transaction due to stateless criteria violation (correct syntax, input scripts conditions satisfied,etc)
+<ul>For an invalid transaction, the fraud proofs consists of:
+<li> the header of invalid block
+<li> the invalid transaction
+<li> An invalid block's Merkle tree containing the minimum number of nodes needed to proof the existance of the invalid transaction in the tree
 </ul>
 
+## Invalid transaction due to incorrect generation output value
+<ul>For this case, the fraud proof consists of:
+<li> the block itself
+</ul>
 
-@divend
+## Invalid transaction due to input already been spent
+<ul>For this case, the fraud proof would consist of the following:
+<li> the header of the invalid block
+<li> the invalid transaction
+<li>  proof that the invalid transaction is within the invalid block
+<li>  the header of the block containing original spend transaction
+<li>  the original spending transaction
+<li>  proof showing that the spend transaction is within the header block of the spend transaction
+</ul>
 
-@div[text-right]
+## Invalid transaction due to incorrect generation output value
+For this case, the fraud proof consists of:
+<li> the block itself
 
-<ol>
-<li>Ordered list right
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
+## Invalid transaction if input does not exist
+For this case, the fraud proof consists of:
+<li> the entire blockchain
 
 +++
 
-## Topic 2 ??? (cnt'd)
+## Universal fraud proofs (suggested improvement)
+
+
 
 ???
 
