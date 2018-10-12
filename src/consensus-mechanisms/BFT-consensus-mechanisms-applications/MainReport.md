@@ -1,28 +1,32 @@
-# <a name="h-Applications of Byzantine Consensus Mechanisms"> </a>Applications of Byzantine Consensus Mechanisms 
+# Applications of Byzantine Consensus Mechanisms 
 
-## <a name="h-Abstract"> </a>Abstract 
+## Abstract 
 
-This report investigates the most promising Byzantine Consensus Mechanisms like HoneyBadger, PARSEC, Stellar Consensus Protocol (SCP), etc. to achieve optimal consensus performance and safety against ill-behaved participants.
+This report investigates the most promising Byzantine Consensus Mechanisms to achieve optimal consensus performance and safety against ill-behaved participants.
 
 This paper focuses on analyzing these consensus protocols and their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. 
 
-## <a name="h-Contents"> </a>Contents
+## Contents
 -[Introduction](#h-Introduction)
 -[Terminology](#h-Terminology)
+-[A Brief survey of BFT Consensus Mechanisms](#h-A Brief survey of BFT Consensus Mechanisms)
 -[Permission Block Chains](#h-Permission Block Chains)
--[Hyperledger Fabric](#h-Hyperledger Fabric)
+​	-[Hyperledger Fabric](#h-Hyperledger Fabric)
+​	-[Tendermint](#h-Tendermint)
 -[Permissionless Block Chains](#h-Permissionless Block Chains)
--[Paxos](#h-Paxos)
--[Raft](#h-Raft)
--[Randomized Agreement](#h-Randomized Agreement)
--[SINTRA](#h-SINTRA)
--[HoneyBadger BFT](#h-HoneyBadger BFT)
--[Stellar Consensus Protocol](#h-Stellar Consenus Protocol)
--[The Ripple Protocol Consensus Algorithm](#h-The Ripple Protocol Consensus Algorithm)
--[Tendermint](#h-Tendermint)
--[LinBFT](#h-LinBFT)
--[Algorand](#h-Algorand)
--[PARSEC](#h-PARSEC)
+​	-[Paxos](#h-Paxos)
+​	-[Chandra-Toueg](#h-Chandra-Toueg)
+​	-[Raft](#h-Raft)
+​	-[HashGraph](#h-HashGraph)
+​	-[SINTRA](#h-SINTRA)
+​	-[HoneyBadgerBFT](#h-HoneyBadgerBFT)
+​	-[Stellar Consensus Protocol](#h-Stellar Consenus Protocol)
+​	-[LinBFT](#h-LinBFT)
+​	-[Algorand](#h-Algorand)
+​	-[Thunderella](#h-Thunderella)
+​	-[Avalanche](#h-Avalanche)
+​	-[PARSEC](#h-PARSEC)
+​	-[Democratic BFT](#h-Democratic BFT)
 -[Conclusion](#h-Conclusion)
 -[References](#h-References)
 
@@ -42,11 +46,11 @@ Through the recent development of this ecosystem, most block chains have focused
 
 This paper sees the examination of proposals considering Byzantine Consensus Mechanism (BFT) and considers their feasibility and efficiency  in meeting the characteristics of scalability, decentralization and security. In each instance the protocol assumptions; reference implementations and discernment on whether the protocol may be used for Tari as a means to maintain the distributed asset state will be assessed. 
 
-## Terminology
+## <a name="h-Terminology"> </a>Terminology
 
 In order to gain a full understanding of the field of consensus mechanism, specifically BFT consensus mechanisms, certain terms and concepts need to be defined and fleshed out.  
 
-### <a name="h-Consensus"> </a>*Consensus*
+### *Consensus*
 
 Consensus algorithms are those algorithms that help a distributed or decentralized network to unanimously take a decision whenever necessary. Its features include assuring decentralized governance, quorum structure, authentication, integrity, non-repudiation, byzantine fault tolerance and performance.  [[11]]
 
@@ -65,7 +69,7 @@ There is a unique case of the consensus problem, referred to as the binary conse
 
 When the input domain is large; relative to the number of processes, for instance an input set of all the natural numbers, it can be shown that consensus is impossible in a synchronous message passing model. [[21]]
 
-### <a name="h-Byzantine Faults"> </a>*Byzantine Faults Tolerance* 
+### *Byzantine Faults Tolerance* 
 
 Several papers in the literature contextualize the problem using generals at different camps, situated outside the enemy castle, needing to decide whether or not to attack. A consensus algorithm that would fail, would perhaps see one general attack while all the others stay back, resulting in the vulnerability of first general 
 
@@ -77,17 +81,21 @@ A Byzantine fault is a fault presenting different symptoms to different observer
 
 For systems with _n_ processors, of which _f_ are Byzantine, it has been shown that _no algorithm exists_ that solves the consensus problem for _f > n/3_.[[21]]
 
-### <a name="h-PBFT Variants"> </a>*PBFT Variants* 
+### *PBFT Variants* 
 
 PoW suffers from non-finality, that is a block appended to a blockchain is not confirmed until it is extended by many other blocks. Even then, its existence in the blockchain is only probablistic. For example, eclipse attacks on Bitcoin exploit this probabilistic guarantee to allow double spending. In contrast, the original PBFT protocol is deterministic. [[10]]
 
-### <a name="h-Deterministic"> </a>*Deterministic and Non-Deterministic Procotols*
+### *Deterministic and Non-Deterministic Procotols*
 
 Deterministic, bounded Byzantine agreement relies on consensus being finalized for each epoch before moving to the next one ensuring that there is some safety about a consensus reference point prior to continuing. If instead you allow an unbound number of consensus agreement within the same epoch, then there is no overall consensus reference point with which to declare finality and thus safety is compromised. [[8]]
 
 For non-deterministic or probabilistic protocols, the probability that an honest node is undecided after _r_ rounds approaches zero as r approaches infinity.
 
-### <a name="h-Scalability-performance trade off"> </a>*Scalability-performance trade off* 
+Nondeterministic protocols which solve consensus under the purely asynchronous case potentially rely on random oracles and generally incur high message complexity overhead, as they depend on reliable broadcasting for all communication.
+
+Protocols like HoneyBadger BFT fall into this class of nondeterministic protocols under asynchrony. Normally, they require three instances of reliable broadcast for a single round of communication. [[34]]
+
+### *Scalability-performance trade off* 
 
 As briefly mentioned in the [Introduction](#h-Introduction), the scalability of BFT protocols considering the number of participants is highly limited and the performance of most protocols deteriorates as the number of involved replicase increases. This effect is especially problematic for BFT deployment in permission-less blockchains. [[7]]
 
@@ -97,17 +105,17 @@ Bitcoin mining, for example supports thousands of participants, offers good reco
 
 Several approaches have been employed to remedy these problems, e.g. threshold cryptography, creating new consensus groups for every round, or limiting the number of necessary messages to reach consensus. [[9]]
 
-### <a name="h-Many Forms of Timing Assumptions (Degrees of Synchrony)"> </a>*Many Forms of Timing Assumptions (Degrees of Synchrony)* 
+### *Many Forms of Timing Assumptions (Degrees of Synchrony)* 
 
-#### <a name="h-Synchrony"> </a>Synchrony
+#### Synchrony
 
 Here, the time for nodes to wait and receive information is predefined. If a node has not received an input within the redefined time structure,  there is a problem. [[5]]
 
 In synchronous systems it is assumed that all communications proceed in rounds. In one round a process may send all the messages it requires while receiving all messages from other processes. In this manner no message from one round may influence any messages sent within the same round [[21]]
 
-A △-synchronous network guarantees that every message sent is delivered after at most a delay of △ (where △ is a measure of real time) [[6]] Synchronous protocols come to a consensus every x seconds. [[5]]
+A △T-synchronous network guarantees that every message sent is delivered after at most a delay of △T (where △T is a measure of real time) [[6]] Synchronous protocols come to a consensus every x seconds. [[5]]
 
-#### <a name="h-Partial Synchrony"> </a>Partial Synchrony 
+#### Partial Synchrony 
 
 Here, the network retains some form of a predefined timing structure, however it can operate within knowing the assumption of how fast nodes can exchange messages over the network. Instead of pushing out a block every x seconds, in a partially synchronous blockchain would gauge the limit, with messages always being sent and received within the unknown deadline. 
 
@@ -115,15 +123,15 @@ Distributed Ledger Technology that is not synchronous tend to be partially synch
 
 Partially synchronous protocols come to a consensus every unknown amount of seconds. [[5]]
 
-##### <a name="h-Unknown-△ Model"> </a>Unknown-△ Model 
+##### Unknown-△T Model 
 
 The protocol is unable to use the delay bound as a parameter. [[6]] 
 
-##### <a name="h-Eventually Synchronous"> </a>Eventually Synchronous  
+##### Eventually Synchronous  
 
 The message delay bound △ is only guaranteed to hold after some (unknown instant, called the "Global Stabilization Time". [[6]]
 
-#### <a name="h-Weak Synchrony"> </a>Weak Synchrony 
+#### Weak Synchrony 
 
 Most existing Byzantine fault tolerant systems, even those called 'robust' assume some variation of *weak synchrony*, where messages are guaranteed to be delivered after a certain bound △T, but △T may be time-varying or unknown to the protocol designer. 
 
@@ -133,11 +141,11 @@ Even when the weak synchrony assumptions are satisfied in practice, weakly synch
 
 In terms of feasibility, both weak and partially synchronous protocols are equivalent- a protocol that succeeds in one setting can be systematically adapted for another. In terms of concrete performance, however, adjusting for weak synchrony means gradually increasing the timeout parameter over time (e.g. by an exponential back-off policy). This results in delays when recovering from transient network partition. Protocols typically manifest these assumptions in the form of a timeout event. For example, if parties detect that no progress has been made within a certain interval, then they take a corrective action such as electing a new leader. Asynchronous protocols do not rely on timers, and make progress whenever messages are delivered, regardless of actual clock time. [[6]]
 
-#### <a name="h-Random Synchrony"> </a>Random Synchrony
+#### Random Synchrony
 
 Messages are delivered with random delays, such that the average delay is finite. There many be periods of arbitrarily long days (this is a weaker assumption than weak synchrony, and only a bit stronger than full asynchrony, where the only guarantee is that messages are eventually delivered). It is impossible to tell whether an instance has failed by completely stopping or if there is just a delay in message delivery. [[1]]
 
-#### <a name="h-Asynchrony"> </a>Asynchrony 
+#### Asynchrony 
 
 In an asynchronous network, the adversary can deliver messages in any order and at any time, however the message must eventually be delivered between correct nodes. Nodes in an asynchronous network effectively have no use for real time clocks, and can only take actions based on the ordering of messages they receive. [[6]]. The speed is determined by the speed at which the network communicates-instead of a fixed limit of x seconds. 
 
@@ -145,17 +153,17 @@ An asynchronous protocol requires a different means to decide when all nodes are
 
 As will be discussed in [The FLP Impossibility](#h-The FLP Impossibility), FLP result rules out the possibility of the deterministic asynchronous protocols for atomic broadcast and many other tasks. A deterministic protocol must therefore make some stronger timing assumptions. [[6]]
 
-##### <a name="h-Counting rounds in asynchronous networks"> </a>Counting rounds in asynchronous networks
+##### Counting rounds in asynchronous networks
 
 Although the guarantee of eventual delivery is decoupled from notions of 'real time', it is nonetheless desirable to characterize the running time of asynchronous protocols. The standard approach is for the adverse to assign each message a virtual round number, subject to the condition that every (*r*-1) message between correct nodes must be delivered before any (*r*+1) message is sent. 
 
-### <a name="h-The Problem"> </a>*The Problem with Timing Assumptions* 
+### *The Problem with Timing Assumptions* 
 
 Protocols based on timing assumptions are unsuitable for decentralized, cryptocurrency settings, where network links can be unreliable, network speeds change rapidly, and network delays may even be adversarially induced. [[6]]
 
 The problem with both synchronous and partially synchronous assumptions is that "the protocols based on timing assumptions are unsuitable for decentralized, cryptocurrency settings, where network links can be unreliable, network speeds change rapidly, and network delays may even be adversarially induced."[[6]]
 
-#### <a name="h-Denial of Service Attack"> </a>Denial of Service Attack 
+#### Denial of Service Attack 
 
 Basing a protocol on timings, exposes the network to Denial of Service attacks. A synchronous protocol will be deemed unsafe if a DoS slows down the network sufficiently. Even though a partially synchronous protocol would be safe, it would be unable to operate, as the messages would be exposed to interference. 
 
@@ -169,112 +177,23 @@ The result, referred to as the FLP result, which raised the problem of consensus
 
 This kind of failure detection is not possible in an asynchronous setting, as there are no bounds on the amount of time a processor might take to complete its work and then respond. The FLP result shows that in an asynchronous setting, where only one processor might crash, there is no distributed algorithm that solves the consensus problem. [[23]]
 
-### *<a name="h-Randomized Agreement"> </a>Randomized Agreement* 
+### *Randomized Agreement* 
 
 Deterministic asynchronous protocols are impossible for most tasks. While the vast majority of practical BFT protocol steer clear of this impossibility result by making timing assumptions, randomness (and, in particular, cryptography) providers an alternative route. Indeed, we know of asynchronous BFT protocols for a variety of tasks such as binary agreement (ABA), reliable broadcast (RBC) and more. [[6]]
 
-### <a name="h-Gossip Protocol"> </a>*Gossip Protocol* 
+### *Gossip Protocol* 
 
 A gossip protocol is a procedure or process of computer–computer communication. The manner in which the protocol functions is  based on the way social networks disseminate information or how epidemics spread. Modern distributed systems have implemented gossip protocols to solve problems that might be difficult to solve in other ways, either because the underlying network has an inconvenient structure, is extremely large, or because gossip solutions are the most efficient ones available. [[4]]
 
-## A brief survey of BFT Consensus Mechanisms
-
-Many peer-to-peer online Real-time strategy games use a modified Lockstep protocol as a consensus protocol in order to manage game state between players in a game. Each game action results in a game state delta broadcast to all other  players in the game along with a hash of the total game state. Each player validates the change by applying the delta to their own game state and comparing the game state hashes. If the hashes do not agree then a vote is cast, and those players whose game state is in the minority are disconnected and removed from the game (known as a desync.) [[21]]
-
-## <a name="h-Permission Blockchains"> </a>Permission Blockchains
-
-Byzantine agreement schemes are considered well suited for permission blockchains, where the identify of the participants is known. Examples include Hyperledger and Tendermint. Here the Federated Consensus Algorithm is implemented. [[9]] 
-
-### <a name="h-Hyperledger Fabric (HLF)"> </a>Hyperledger Fabric (HLF)
-
-Hyperledger began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source cross-industry standard platform for distributed ledgers. Hyperledger Fabric is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. [[11]]
-
-The blockchains hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since hyper ledge fabric proposes to follow Practical Byzantine Fault Tolerance, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
-
-A prominent example for permission blockchain platforms is Hyperledger Fabric (HLF). While being redesigned for a v1.0 release, the formats goal was to achieve extensibility. HLF v1.0 allows for multiple of its modules to be exchanged, *viz* membership service, consensus mechanism. Being permission, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
-
-### <a name="h-Tendermint"> </a>Tendermint
-
-Tendermint Core is a low-level protocol which is composed of two protocols in one: a consensus algorithm and a peer-to-peer networking protocol. Jae Kwon and Ethan Buchman, inspired by the design goal behind Raft and PBFT, specified Tendermint as an easy to understand, developer-friendly algorithm while doing algorithmically complex systems engineering. The new generation of BFT Proof-of-Stake (poS) consensus algorithms draw elements from Tendermint's BFT adaptation to the public blockchain domain. This adaption is referred to as Tendermint BFT, and is more generally callsifed as BFT-bsed Proof-of-Stake (as opposed to chain-based Proof-of-Stake) []
-
-## <a name="h-Permissionless Blockchains"> </a>Permissionless Blockchains 
-
-BFT protocols face several limitations when utilized in permission-less blockchains as they do not scale well with the number of participants resulting in performance deterioration for the targeted network sizes and as they re not well established in this setting, they are prone security issues, e.g. Sybil attacks. Currently, there are approaches that attempt to circumvent or solve this problem. [[9]]
-
-### <a name="h-Paxos"> </a>Paxos 
-
-The Paxos family of protocols includes a spectrum of trade-offs between the number of processors, number of message delays before learning the agreed value, the activity level of individual participants, number of messages sent,  and types of failures. Although the FLP theorem says that there's no deterministic fault-tolerant consensus protocol that can guarantee progress in an asynchronous network, Paxos guarantees safety (consistency), and the conditions that  could prevent it from making progress are difficult to provoke [[29]].
-
-Paxos achieves consensus as long as there are *f* failures, where _f < (n-1)/2_. These failures cannot be Byzantine (otherwise the BFT proof would be violated). Thus it is assumed that messages are never corrupted, and that nodes do not collude to subvert the system. 
-
-Paxos proceeds through a set of negotiation rounds, with one node having 'Leadership' status. Progress will stall if the leader becomes unreliable, until a new leader is elected, or if suddenly an old leader comes back online and a dispute between two leader nodes arises.
-
-### <a name="h-Chandra-Toueg"> </a>Chandra-Toueg
-
-The Chandra–Toueg consensus algorithm, published by Tushar Deepak Chandra and Sam Toueg in 1996, relies on a special node that acts as a failure detector. In essence, it pings other nodes to make sure they're still responsive.
-
-This implies that the detector stays online and that the detector must somehow be made aware when new nodes join the network.
-
-The algorithm itself is similar to the Paxos algorithm, which also relies on failure detectors and as such requires *f<n/2*, where n is the total number of processes. [[27]]
-
-### <a name="h-Raft"> </a>Raft
-
-Raft is a consensus algorithm designed as an alternative to Paxos. It was meant to be more understandable than Paxos by means of separation of logic, but it is also formally proven safe and offers some additional features [[28]].  
-
-Raft achieves consensus via an elected leader. Each follower has a timeout in which it expects the heartbeat from the leader. It is thus a synchronous protocol. If the leader fails, an election is held to find a new leader. This entails nodes nominating themselves on a first-come, first-served basis. Hung votes require the election to be scrapped and restarted. This suggests that a high degree of cooperation is required by nodes and that malicious nodes could easily collude to  disrupt a leader and then prevent a new leader from being elected. Raft is a simple algorithm but is clearly unsuitable for consensus in cryptocurrency applications.
-
-While Paxos and Raft and many other well-known protocols tolerate crash faults, Byzantine fault tolerant protocols beginning with PBFT, tolerate even arbitrary corrupted nodes. Many subsequent protocols offer improved performance, often through optimistic execution that provides excellent performance when there are no faults, clients do not contend much, and the network is well behaved, and at least some progress otherwise. 
-
-In general, BFT systems are evaluated in deployment scenarios where latency and CPU are the bottelneck, thus the most effective protocols reduce the number of rounds and minimize expensive cryptographic operations.
-
-Clement et al. initiated a recent line of work by advocating improvement of the worst-case performance, providing service quality guarantees even when the system is under attack- even if this comes at the expense of performance in the optimistic case. However, although the "Robust BFT protocols in this vein gracefully tolerate comprised nodes, they still rely on timing assumptions about the underlying network".  Thus focus shifted to asynchronous networks. [[6]] 
-
-### HashGraph
-
-The Hashgraph consensus algorithm [[SHG]], was released in 2016.  It claims Byzantine fault tolerance under complete 
-asynchrony assumptions, no leaders, no round robin, no proof-of-work, and eventual consensus with probability one. 
-And high speed in the absence of faults. 
-
-It is based on the gossip protocol, which is a fairly efficient distribution strategy that entails nodes randomly 
-sharing information with each other, similar to how human beings gossip with each other.
-
-Nodes jointly build a hash graph reflecting all of the gossip events. This allows Byzantine agreement to be achieved 
-through virtual voting. Alice does not send Bob a vote over the Internet. Instead, Bob calculates what vote Alice would 
-have sent, based on his knowledge of what Alice knows. 
-
-HashGraph uses digital signatures to prevent undetectable changes to transmitted messages.
-
-HashGraph does not violate the FLP theorem, since it is _non-deterministic_.
-
-The Hash graph has some similarities to a blockchain. To quote the white paper: "The hashgraph consensus algorithm is
-equivalent to a block chain in which the 'chain' is constantly branching, without any pruning, where no blocks are ever 
-stale, and where each miner is allowed to mine many new blocks per second, without proof-of-work" [[SHG]].
-
-Because each node keeps track of the hash graph, there's no need to have voting rounds in HashGraph; each node already 
-knows what all of its peers will vote for and thus consensus is reached purely by analyzing the graph. 
-
-#### The HashGraph Algorithm: The Gossip Protocol 
-
 The gossip protocol works like this:
 
-Alice selects a random peer node, say Bob, and sends him _everything she knows_. She then selects another random node
-and repeats the process indefinitely.
+- Alice selects a random peer node, say Bob, and sends him _everything she knows_. She then selects another random node and repeats the process indefinitely.
 
-Bob, on receiving Alice's information, marks this as a gossip event and fills in any gaps in his knowledge from Alice's
-information. Once done, he continues gossiping with his updated informaiton.
+- Bob, on receiving Alice's information, marks this as a gossip event and fills in any gaps in his knowledge from Alice's information. Once done, he continues gossiping with his updated informaiton.
 
-In this way, information spreads throughout the network in an exponential fashion.
+In this way, information spreads throughout the network in an exponential fashion. [[30]]
 
-![Figure 1 - HashGraph](../assets/gossip.png 'The history of any gossip protocol can be represented by a directed graph, 
-where each member is a column of vertices. Each transfer event is shown as a new vertex with two edges linking the 
-immediately-preceding gossip events.')
-
-The gossip history can be represented as a directed graph, as in Figure 1. 
-
-HashGraph introduces a few important concepts that are used repeatedly in later BFT consensus algorithms: famous 
-witnesses, and strongly seeing.
-
-### Ancestors
+#### Ancestors
 
 If an event (_x1_) comes before another event (_x2_), and they are connected by a line; the older event is an _ancestor_ of that event.
 
@@ -282,13 +201,11 @@ If both events were created by the _same node_, then _x1_ is a _self-ancestor_ o
 
 **Note**: The gossip protocol defines an event as being a (self-)ancestor of itself!
 
-### Seeing
+#### Seeing
 
-If an event _x1_ is an ancestor of _x2_, then we say that _x1_ **sees** _x2_ as long as the node is not aware of any
-forks from _x2_.
+If an event _x1_ is an ancestor of _x2_, then we say that _x1_ **sees** _x2_ as long as the node is not aware of any forks from _x2_.
 
 So in the absence of forks, all events will _see_ all of their ancestors.
-
 
 ```
      +-----> y
@@ -299,41 +216,26 @@ x +--+
      +-----> z
 ```
 
-In the example above, x is an ancestor to both y and z. However, because there is no ancestor relationship between 
-y and z, the _seeing_ condition fails, and so y cannot see x, and z cannot see x.
+In the example above, x is an ancestor to both y and z. However, because there is no ancestor relationship between y and z, the _seeing_ condition fails, and so y cannot see x, and z cannot see x.
 
-It may be the case that it takes time before nodes in the protocol detect the fork. For instance Bob may create z and y;
- but share z with Alice and y with Charlie. Both Alice and Charlie will eventually learn about the deception, but until
- that point, Alice will believe that y sees x, and Charlie will believe that z sees x.
+It may be the case that it takes time before nodes in the protocol detect the fork. For instance Bob may create z and y; but share z with Alice and y with Charlie. Both Alice and Charlie will eventually learn about the deception, but until that point, Alice will believe that y sees x, and Charlie will believe that z sees x. This is where the concept of _strongly seeing_ comes in. 
 
- This is where the concept of _strongly seeing_ comes in. 
+#### Strongly seeing
 
+See [HashGraph](#h-HashGraph): If a node examines its hash graph and notices that an event z _sees_ an event x, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees x; then it is said that according to this node, that z _strongly sees_ x.
 
-### Strongly seeing
+#### The Construct of Gossiping
 
-If a node examines its hash graph and notices that an event z _sees_ an event x, and not only that, but it can draw
-an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different
-event from each node also sees x; then we say that according to this node, that z _strongly sees_ x.
+The main consensus algorithm loop consists of every node (Alice), selecting a random peer node (Bob) and sharing their graph history. Now Alice and Bob have the same graph history.
 
-The following example comes from [[HGP]]:
-
-![Strongly seeing example](../assets/strongly-seeing.png)
-
-## Consensus 
-
-### Gossiping
-
-The main consensus algorithm loop consists of every node (Alice), selecting a random peer node (Bob) and sharing their 
-graph history. Now Alice and Bob have the same graph history.
-
-Alice and Bob both create a new event with the new knowledge they've just learnt from their peer.
+Alice and Bob both create a new event with the new knowledge they havve just learnt from their peer.
 
 Alice repeats this process continuously.
 
-### Internal consensus
+#### Internal consensus
 
 After a sync, a node will determine the order for as many events as possible, using three procedures.
-The algorithm uses constant _n_ (the number of nodes) and a small constant value _c_ > 2.  
+The algorithm uses constant _n_ (the number of nodes) and a small constant value _c_>2.  
 
 ```
 in parallel:
@@ -382,20 +284,89 @@ in parallel:
               y.vote ← middle bit of y.signature
 ```
 
-## Drawbacks
+## <a name="h-A-brief-survey-of-BFT-Consensus-Mechanisms"> </a>A brief survey of BFT Consensus Mechanisms
 
-* HashGraph is patented [[HGP]].
-* The HashGraph white paper assumes that _n_, the number of nodes in the network, is constant. In practice, _n_ can increase,
-  but performance likely degrades badly as _n_ becomes large [[HN1]].
-* HashGraph is probably not "fair" as claimed in their paper, with at least one attack being proposed [[GRA18]]
+Many peer-to-peer online Real-time strategy games use a modified Lockstep protocol as a consensus protocol in order to manage game state between players in a game. Each game action results in a game state delta broadcast to all other  players in the game along with a hash of the total game state. Each player validates the change by applying the delta to their own game state and comparing the game state hashes. If the hashes do not agree then a vote is cast, and those players whose game state is in the minority are disconnected and removed from the game (known as a desync.) [[21]]
 
-Baird tries to address some of these drawbacks in a follow-up paper [[BAI16]]
+## <a name="h-Permission-Blockchains"> </a>Permission Blockchains
+
+Byzantine agreement schemes are considered well suited for permission blockchains, where the identify of the participants is known. Examples include Hyperledger and Tendermint. Here the Federated Consensus Algorithm is implemented. [[9]] 
+
+### <a name="h-Hyperledger-Fabric-(HLF)"> </a>Hyperledger Fabric (HLF)
+
+Hyperledger began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source cross-industry standard platform for distributed ledgers. Hyperledger Fabric is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. [[11]]
+
+The blockchains hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since hyper ledge fabric proposes to follow Practical Byzantine Fault Tolerance, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
+
+A prominent example for permission blockchain platforms is Hyperledger Fabric (HLF). While being redesigned for a v1.0 release, the formats goal was to achieve extensibility. HLF v1.0 allows for multiple of its modules to be exchanged, *viz* membership service, consensus mechanism. Being permission, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
+
+### <a name="h-Tendermint"> </a>Tendermint
+
+Tendermint Core is a BFT Proof-of-Stake protocol which is composed of two protocols in one: a consensus algorithm and a peer-to-peer networking protocol. Jae Kwon and Ethan Buchman, inspired by the design goal behind [Raft](#h-Raft), specified Tendermint as an easy to understand, developer-friendly algorithm while doing algorithmically complex systems engineering. [[34]]
+
+Tendermint is modeled as a deterministic protocol, live under partial synchrony, which achieves throughput within the bounds of the latency of the network and individual processes themselves. 
+
+Tendermint rotates through the validator set, i.e. block proposers, in a weighted round-robin fashion. The more stake that a validator has delegated to them, the more weight that they have, and the proportionally more times they will be elected as leaders. 
+
+Critics have argued that Tenderloin is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them , sniffling the progression of the chain. Although Sentry Architecture in Tendermint has been implemented, the argument on the degree of decentralization is still questionable. 
+
+## <a name="h-Permissionless-Blockchains"> </a>Permissionless Blockchains 
+
+BFT protocols face several limitations when utilized in permission-less blockchains as they do not scale well with the number of participants resulting in performance deterioration for the targeted network sizes and as they re not well established in this setting, they are prone security issues, e.g. Sybil attacks. Currently, there are approaches that attempt to circumvent or solve this problem. [[9]]
+
+### <a name="h-Paxos"> </a>Paxos 
+
+The Paxos family of protocols includes a spectrum of trade-offs between the number of processors, number of message delays before learning the agreed value, the activity level of individual participants, number of messages sent,  and types of failures. Although the FLP theorem states that there is no deterministic fault-tolerant consensus protocol that can guarantee progress in an asynchronous network, Paxos guarantees safety (consistency), and the conditions that could prevent it from making progress are difficult to provoke [[29]].
+
+Paxos achieves consensus as long as there are *f* failures, where _f < (n-1)/2_. These failures cannot be Byzantine (otherwise the BFT proof would be violated). Thus it is assumed that messages are never corrupted, and that nodes do not collude to subvert the system. 
+
+Paxos proceeds through a set of negotiation rounds, with one node having 'Leadership' status. Progress will stall if the leader becomes unreliable, until a new leader is elected, or if suddenly an old leader comes back online and a dispute between two leader nodes arises.
+
+### <a name="h-Chandra-Toueg"> </a>Chandra-Toueg
+
+The Chandra–Toueg consensus algorithm, was published by Tushar Deepak Chandra and Sam Toueg in 1996. It relies on a special node that acts as a failure detector. In essence, it pings other nodes to make sure they're still responsive.
+
+This implies that the detector stays online and that the detector must continuously be made aware when new nodes join the network.
+
+The algorithm itself is similar to the Paxos algorithm, which also relies on failure detectors and as such requires *f<n/2*, where n is the total number of processes. [[27]]
+
+### <a name="h-Raft"> </a>Raft
+
+Raft is a consensus algorithm designed as an alternative to Paxos. It was meant to be more understandable than Paxos by means of separation of logic, but it is also formally proven safe and offers some additional features [[28]].  
+
+Raft achieves consensus via an elected leader. Each follower has a timeout in which it expects the heartbeat from the leader. It is thus a synchronous protocol. If the leader fails, an election is held to find a new leader. This entails nodes nominating themselves on a first-come, first-served basis. Hung votes require the election to be scrapped and restarted. This suggests that a high degree of cooperation is required by nodes and that malicious nodes could easily collude to  disrupt a leader and then prevent a new leader from being elected. Raft is a simple algorithm but is clearly unsuitable for consensus in cryptocurrency applications.
+
+While Paxos and Raft and many other well-known protocols tolerate crash faults, Byzantine fault tolerant protocols beginning with PBFT, tolerate even arbitrary corrupted nodes. Many subsequent protocols offer improved performance, often through optimistic execution that provides excellent performance when there are no faults, clients do not contend much, and the network is well behaved, and at least some progress otherwise. 
+
+In general, BFT systems are evaluated in deployment scenarios where latency and CPU are the bottelneck, thus the most effective protocols reduce the number of rounds and minimize expensive cryptographic operations.
+
+Clement et al. initiated a recent line of work by advocating improvement of the worst-case performance, providing service quality guarantees even when the system is under attack- even if this comes at the expense of performance in the optimistic case. However, although the "Robust BFT protocols in this vein gracefully tolerate comprised nodes, they still rely on timing assumptions about the underlying network".  Thus focus shifted to asynchronous networks. [[6]] 
+
+### <a name="h-HashGraph"> </a>HashGraph
+
+The Hashgraph consensus algorithm [[SHG]], was released in 2016.  It claims Byzantine fault tolerance under complete **asynchrony** assumptions, no leaders, no round robin, no proof-of-work, and eventual consensus with probability one.  And high speed in the absence of faults. 
+
+It is based on the gossip protocol, which is a fairly efficient distribution strategy that entails nodes randomly sharing information with each other, similar to how human beings gossip with each other.
+
+Nodes jointly build a hash graph reflecting all of the gossip events. This allows Byzantine agreement to be achieved through virtual voting. Alice does not send Bob a vote over the Internet. Instead, Bob calculates what vote Alice would have sent, based on his knowledge of what Alice knows.  
+
+HashGraph uses digital signatures to prevent undetectable changes to transmitted messages.
+
+HashGraph does not violate the FLP theorem, since it is _non-deterministic_. 
+
+The Hash graph has some similarities to a block chain. To quote the white paper: "The Hashgraph consensus algorithm is equivalent to a block chain in which the 'chain' is constantly branching, without any pruning, where no blocks are ever stale, and where each miner is allowed to mine many new blocks per second, without proof-of-work" [[30]].
+
+Because each node keeps track of the hash graph, there is no need to have voting rounds in HashGraph; each node already knows what all of its peers will vote for and thus consensus is reached purely by analyzing the graph. 
+
+HashGraph introduces a few important concepts that are used repeatedly in later BFT consensus algorithms: famous witnesses, and strongly seeing.
+
+Although, drawbacks have been addressed [[31]], ultimately, the HashGraph protocol is patented. In addition, the HashGraph white paper assumes that _n_, the number of nodes in the network, is constant. In practice, _n_ can increase, but performance likely degrades badly as _n_ becomes large [[32]]. HashGraph is not as "fair" as claimed in their paper, with at least one attack being proposed [[33]]
 
 ### <a name="h-SINTRA"> </a>SINTRA
 
 SINTRA is a system implementation based on the **asynchronous** atomic broadcast protocol from Cachin et al. This protocol consists of a reduction from atomic broadcast (ABC) to common subset agreement (ACS), as well as reduction from ACS to multi-value validated agreement (MVBA). This protocol can be improved using a more effect ACS construction, [[6]]
 
-### <a name="h-HoneyNadgerBFT"> </a>HoneyBadgerBFT
+### <a name="h-HoneyBadgerBFT"> </a>HoneyBadgerBFT
 
 HoneyBadgerBFT was released in November 2016 and is seens as the first practical **asynchronous** BFT consensus algorithm. Designed with cryptocurrencies in mind, where bandwidth is considered scares, but an abundance of CPU. Thus, the protocol implements public-private key encryption to increase the efficiency of the establishment of consensus. The protocol works with a fixed set of servers to run the consensus; however, this leads to centralization and allows an attacker to specifically target these servers. [[9]]
 
@@ -403,9 +374,9 @@ In its threshold encryption scheme, any one party can encrypt a message using a 
 
 HoneyBadger offers a novel reductions from ABC to ACS that provides better efficiency (by O(N) factor) through batching, while using threshold encryption to preserve censorship resilience. Better efficiency is also obtained by cherry-picking improved instantiations of sub-components. For example, the expensive MVBA is circumvented by using an ternative ACS along with an effect RBC. [[6]]
 
-### <a name="h-Stellar Consensus Protocol"> </a>Stellar Consensus Protocol
+### <a name="h-Stellar-Consensus-Protocol"> </a>Stellar Consensus Protocol
 
-Stellar Consensus Protocol (SCP) proposed by David Mazieres is considered to be a global consensus protocol consisting of nomination protocol and ballot protocol, and is said to be Byzantine Fault Tolerant by bringing with it the concept of quorum slices and defeated byzantine fault tolerance. [[11]]
+Stellar Consensus Protocol (SCP) is an **asynchronous** protocol proposed by David Mazieres. It considered to be a global consensus protocol consisting of nomination protocol and ballot protocol, and is said to be Byzantine Fault Tolerant by bringing with it the concept of quorum slices and defeated byzantine fault tolerance. [[11]]
 
 Each participant forms a quorum of other users, thus creating a trust hierarchy, which requires complex trust decisions. [[9]]
 
@@ -415,15 +386,13 @@ Initially the nomination proctor is run. During this, new values called candidat
 
 After successful execution of nomination protocol, the nodes deploy the ballot protocol. This involves the federated voting to either commit or abort the values resulting from nomination protocol. This results in externalizing the ballot for the current slot. The aborted ballots are now declared irrelevant. However, there can be stuck states where nodes cannot reach a conclusion, whether to abort or commit a value. This situation is avoided by moving it to a higher valued ballot, considering it in a new ballot protocol execution. This aids in case a node believes that this stuck ballot was committed. Thus SCP assures avoidance and management of stuck states and thus provides liveliness. 
 
+The concept of quorum slices in case of SCP provides asymptotic security and flexible trust, making it more acceptable than other earlier consensus algorithms utilizing Federated BFT, like the Ripple consensus protocol. [[14]] Here, the user is provided more independence in deciding whom to trust. [[15]]
+
 SCP protocol claims to be free of blocked states, provides decentralized control, asymptotic security, flexible trust and low latency. But it does not guarantee safety all the time. If the user node chooses an inefficient quorum slice security is not guaranteed.
-
-The key distinction between FBA and prior Byzantine agreement systems is that, in case of FBA, the nodes that involve in the transaction decide quorums. SCP in sprite of a FBA construction achieves optimal safety against ill-behaved participants. [[11]]
-
-The concept of quorum slices in case of SCP provides asymptotic security and flexible trust, making it more acceptable than other earlier consensus algorithms utilizing FBFT, like the ripple consensus protocol. [[14]] Here, the user is provided more independence in deciding whom to trust. Though the concept of asymptotic security was included in the tendermint consensus algorithm [[15]]
 
 ### <a name="h-LinBFT"> </a>LinBFT
 
-LinBFT is another Byzantine fault tolerance protocol for block chain systems that allows for the amortized *O(n)* communication volume per block under reasonable conditions (where *n* is the number of participants) while satisfying deterministic guarantees on safety and liveness. It satisfies liveness in a **partially synchronous** network. 
+LinBFT is a Byzantine fault tolerance protocol for block chain systems that allows for the amortized *O(n)* communication volume per block under reasonable conditions (where *n* is the number of participants) while satisfying deterministic guarantees on safety and liveness. It satisfies liveness in a **partially synchronous** network. 
 
 LinBFT cuts down its *O(n*<sup>4</sup>*)* complexity by implementing changes each by  *O(n)*:  linear view change, threshold signatures and verifiable random functions. 
 
@@ -434,8 +403,6 @@ LinBFT is designed to be implemented for permission-less, public blockchain syst
 For instance, participants can be anonymous, without a centralized public key infrastructure (PKI) public key among themselves, and participate in a distributed key generation (DKG) protocol required to create threshold signatures, both of which are communication-heavy processes. 
 
 LinBFT is compatible with proof-of-state (PoS), which counters Sybil attacks and deters dishonest behavior through slashing. [[16]]
-
-
 
 ### <a name="h-Algorand"> </a>Algorand 
 
@@ -453,15 +420,37 @@ Thunderella, implements an asynchronous strategy, where a **synchronous** strate
 
 It can be applied in permissionless networks using proof-of-work. Network robustness and "instant confirmations" requires both 75% of the network to be honest, as well as the presence of a leader node.
 
+### <a name="h-Avalanche"> </a>Avalanche
+
+This consensus protocol was first seen in the WhitePaper entitled "Snowflake to Avalanche". Outlined in the paper are four protocols which are building blocks forming a protocol family. The leaderless Byzantine fault tolerance protocols are build on a metastable mechanism and are referred to as: Slush; Snowflake; Snowball and Avalanche
+
+The protocols published by Team Rocket differ from the traditional consensus protocols and the Nakamoto consensus protocols by not requiring an elected leader, but instead the protocol simply guides all the nodes to consensus. 
+
+These four protocols are described as a new family of protocols due to this concept of metastability: a means to establish consensus by guiding all nodes towards an emerging consensus without requiring leaders, while still maintaining the same level of security and inducing a speed that exceeding current protocols. 
+
+This is achieved through the formation of 'sub-quorums', which are small randomized samples from nodes on the network. This allows for greater throughputs and sees parallel consensuses running before they merge to form the overarching consensus: what can be seen as similar in nature to the gossip protocol. 
+
+With safety, throughput: the number of transactions per second and scalability: the number of people supported by the network, of great importance, these protocols seem to be able to achieve all three. They impart a probabilistic safety guarantee in the presence of Byzantine adversaries and achieve a high throughput and scalability due to their concurrent nature. A **synchronous** network is assumed. 
+
+This is the current problem facing the design of Byzantine Fault Tolerant protocols, in that a system can be very fast when a small number of nodes are active, since there are less decisions to make, however, when there are many users and an increase in transactions, the system cannot be maintained. 
+
+Unlike the PoW implementation, which requires constant active participation from the miners, Avalanche can function with the even when nodes are dormant. 
+
+While traditional consensus protocols require *O*(n<sup>2</sup>) communication, there communication complexity ranges from *O(kn log n)* to *O(kn)* for some security parameter *k<<n*. In a sense, Team Rocket highlight that the communication complexity of their protocols is less intensive than that of *O*(n<sup>2</sup>) communications, thus making these protocols faster and more scalable. 
+
+The reason for this is *O*(n<sup>2</sup>) suggests that the rate of growth of function is determined by n<sup>2</sup> where *n* is the number of people on the network. Thus, the addition of a person exponentially increases the time taken to disseminate the information on the network while traditional consensus protocols require everyone to communicate with one another- making it a laborious process. [[18]]
+
+Now despite assuming a synchronous network; which is susceptible to the DoS attacks, as noted by Dr Emin Gün Sirer, the new family of protocols "reaches a level of security that is simply good enough while surging forward with other advancements"  
+
 ### <a name="h-PARSEC"> </a>PARSEC
 
 PARSEC is a byzantine fault tolerant consensus algorithm possessing **weak synchrony** assumptions (highly asynchronous, assuming random delays with finite expected value)
 
 Similar to Hashgraph, it has no leaders, no round robin, no proof of work and reaches eventual consensus with probability one. If differs from Hashgraph, in that it provides high speed in the absence and presence of faults.  Thus, it avoids the structures of delegated proof of stake, which requires a trusted set of leaders, and does not have a round robin (where a set of instated miners sign each block)
 
-It is fully open, unlike Hashgraph, which is patented and closed sourced and the GPLv3 written in Rust will soon be available. [[1]];[[5]]
+It is fully open, unlike Hashgraph, which is patented and closed sourced and the GPLv3 written in Rust will soon be available. [[1]]
 
-"The general problem of reaching Byzantine agreement on any value is reduced to the simple problem of reaching binary Byzantine agreement not eh nodes participating in each agreement protocol"
+"The general problem of reaching Byzantine agreement on any value is reduced to the simple problem of reaching binary Byzantine agreement not eh nodes participating in each agreement protocol". [[5]]
 
 Similar to Honeybadger BFT, this protocol is composed through the additions of interesting ideas presented in literature. 
 
@@ -471,14 +460,11 @@ Like Hashgraph and Avalanche, a gossip protocol is used to allow efficient commu
 
 Finally, the need for a trusted leader or a trusted setup phase implied is removed by porting the key ideas to an asynchronous setting [[3]]
 
-The network is set to N of N instances of the algorithm communicating via randomly synchronous connections. 
+The network is set to *N of N* instances of the algorithm communicating via randomly synchronous connections. 
 
 Due to random synchrony, all users can reach an agreement on what is going on, there is no guarantee for nodes on the timing that they should be receiving messages and a possibility of up to *t* Byzantine (arbitrary) failures are allowed, were *3t*<N. The instances where no failures have occurred are deemed correct or honest, while the failed instances are termed faulty or malicious. Since a Byzantine failure model allows for malicious behavior, any set of instances containing more than 2/3N of them are referred to as the supermajority. 
 
-PARSEC claims it is possible to reach 100% certainty consensus with no reliance on timing, with up to 1/3 of the network being dishonest even if the network is attacked. 
-
-When a node receives a gossip request, it 
-creates a new event and sends a response back (in HashGraph, the response was optional). Each gossip event contains [[FOC18]]:
+When a node receives a gossip request, it creates a new event and sends a response back (in HashGraph, the response was optional). Each gossip event contains [[35]]:
 
 1. The data being transmitted
 2. The self-parent (the hash of another gossip event created by the same node)
@@ -488,71 +474,29 @@ creates a new event and sends a response back (in HashGraph, the response was op
 5. Creator ID (public key)
 6. Signature – signing the above information.
 
-The self-parent and other-parent prevents tampering because they are signed and related to other gossip events [[FOC18]].
-As with HashGraph, it's difficult for adversaries to interfere with the consensus algorithm because all voting is _virtual_
-and done without sharing details of votes cast; each node figures out what other nodes would have voted based on their
+The self-parent and other-parent prevents tampering because they are signed and related to other gossip events [[35]].
+
+As with HashGraph, it is difficult for adversaries to interfere with the consensus algorithm because all voting is *virtual* and done without sharing details of votes cast; each node figures out what other nodes would have voted based on their
 copy of the gossip graph.
 
-PARSEC is relatively efficient, requiring O(n log n) messages and O(log N) stages to reach consensus [[MSP]].
+PARSEC also uses the concept of a *concrete coin*, from Algorand that is used to break ties; particularly in cases where an adversary is carefully managing communication between nodes in order to maintain a deadlock on votes.
 
-PARSEC also uses the concept of a "concrete coin", from Algorand that is used to break ties; particularly in cases where an adversary
-is carefully managing communication between nodes in order to maintain a deadlock on votes.
-
-## Voting Algorithm
-
-First nodes, try and converge on a 'true' result for a set of results. If they can't, they move onto step 2, which is
-trying to converge on a 'false' result. If consensus still cannot be reached, a coin flip is made and we go back to step 1
+First nodes, try and converge on a 'true' result for a set of results. If this is not achieved, they move onto step 2, which is trying to converge on a 'false' result. If consensus still cannot be reached, a coin flip is made and we go back to step 1
 in another voting round.
 
-## Drawbacks
+Similar to HashGraph, it is not clear that PARSEC will scale well as _n_ grows to millions of nodes. 
 
-Similar to HashGraph. It's not clear that PARSEC will scale well as _n_ grows to millions of nodes, but at least PARSEC is
-open source and a reference implementation has already been released in Rust.
+## <a name="h-Democratic-BFT"> </a>Democratic BFT
 
-## Avalanche
-
-This consensus protocol was first seen in the WhitePaper entitled "Snowflake to Avalanche". Outlined in the paper are four protocols which are building blocks forming a protocol family. The leaderless Byzantine fault tolerance protocols are build on a metastable mechanism and are referred to as: Slush; Snowflake; Snowball and Avalanche
-
-The work is conducted by a group identified as Team Rocket. 
-
-Traditional consensus protocols require all nodes to communicate with all other nodes in order to reach consensus. The Nakamoto consensus protocol, primarily associated with Bitcoin, establishes consensus through Proof of Work. 
-
-The protocols published by Team Rocket differ from the traditional consensus protocols and the Nakamoto consensus protocols by not requiring an elected leader, but instead the protocol simply guides all the nodes to consensus. 
-
-Given the fact that most forms of consensus algorithms see the implementation of a leader in various forms, with the likes of PoW and PoS electing a validator for a specific block, the degree of centralization in these decentralised networks creates some contention. 
-
-Metastability refers to the concept that the system is constructed to put forward an answer and will thus not stay in balance; if the system remains in balance consensus cannot new reached. 
-
-These four protocols are described as a new family of protocols due to this concept of metastability: a means to establish consensus by guiding all nodes towards an emerging consensus without requiring leaders, while still maintaining the same level of security and inducing a speed that exceeding current protocols. 
-
-This is achieved through the formation of 'sub-quorums', which are small randomized samples from nodes on the network. This allows for greater throughputs and sees parallel consensuses running before they merge to form the overarching consensus: what can be seen as similar in nature to the gossip protocol. 
-
-With safety, throughput: the number of transactions per second and scalability: the number of people supported by the network, of great importance, these protocols seem to be able to achieve all three. They impart a probabilistic safety guarantee in the presence of Byzantine adversaries and achieve a high throughput and scalability due to their concurrent nature. A synchronous network is assumed. 
-
-This is the current problem facing the design of Byzantine Fault Tolerant protocols, in that a system can be very fast when a small number of nodes are active, since there are less decisions to make, however, when there are many users and an increase in transactions, the system cannot be maintained. 
-
-Unlike the PoW implementation, which requires constant active participation from the miners, Avalanche can function with the even when nodes are dormant. 
-
-While traditional consensus protocols require *O*(n<sup>2</sup>) communication, there communication complexity ranges from *O(kn log n)* to *O(kn)* for some security parameter *k<<n*. In a sense, Team Rocket highlight that the communication complexity of their protocols is less intensive than that of *O*(n<sup>2</sup>) communications, thus making these protocols faster and more scalable. 
-
-The reason for this is *O*(n<sup>2</sup>) suggests that the rate of growth of function is determined by n<sup>2</sup> where n is the number of people on the network. Thus, the addition of a person exponentially increases the time taken to disseminate the information on the network while traditional consensus protocols require everyone to communicate with one another- making it a laborious process. [[18]]
-
-Now despite assuming a synchronous network; which is susceptible to the DoS attacks, as noted by Dr Emin Gün Sirer, the new family of protocols "reaches a level of security that is simply good enough while surging forward with other advancements"  
-
-## <a name="h-DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to COnsortium Block chains"> </a>Democratic BFT
-
-This is a democratic Byzantine consensus algorithm that relies on a new weak coordinator (what is that?)
-The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. 
-
-This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator
+This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator. This procotol is implemented in the Red Belly Block chain and is said to achieve 30 000 transactions/second on Amazon Cloud Trials [[36]] 
 
 The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. The fundamental idea here is to allow processes to complete asynchronous rounds as soon as they receive a threshold of messages, instead of having to wait for a message from a coordinator that may be slow. 
 
 The resulting algorithm assumes partial synchrony, is resilience optimal, time optimal and does not require signatures. 
 
-Moving away from the impossibility of solving consensus in asynchronous message systems, where processes can be faulty or *Byzantine*, the technic of randomization[] or additional synchrony is adopted. 
+Moving away from the impossibility of solving consensus in asynchronous message systems, where processes can be faulty or *Byzantine*, the technic of randomization or additional synchrony is adopted. 
 
-Randomized algorithms can used per-process "local" coins or a shared "common" coin to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the exisiting algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
+Randomized algorithms can used per-process "local" coins or a shared *common coin* to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the existing algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
 
 A recent randomized algoritm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler. 
 
@@ -560,21 +504,11 @@ To solve the consensus problem deterministically and prevent the use of the comm
 
 This protocol sees the use of a weak coordinator; a weak coordinator allows for the introduction of a new deterministic Byzantine consensus algorithm that is time optimal, resilience optimal and does not require the use of signatures. Unlike the classic, strong coordinator, the weak coordinator does not impost its value. It allows non-faulty processes to decide a value quickly, without the need of the coordinator, while helping the algorithm to terminate if non-faulty processes know that they proposed distinct values that might all be decided. In addition, the presence of a weak coordinator allows rounds to be executed optimistically without waiting for a specific message. This is unlike classic BFT algorithms that have to wait for a particular message from their coordinator and occasionally has to recover from a slow network or faulty coordinator. 
 
-With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*]. 
+With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*].   
 
-The protocol of DBFT, was studied with its applications to the context of block chains. Work into consortium blockchain was thought of as a promising endeavor at reducing the amount of resources consumed by avoiding the resolve the crypto puzzle but restricting the set of proposers to *n* known processes. 
-
-Consortium blockchains mimic similar traits to that of replicated state machines [] as a sequence of commands must be decided by multiple processes.  
-
-There are currently blockchains that utilize BFT consensus, these include, Hyperledger [] uses a consensus based on a classic coordinator [], Honeybadger [] which uses a consensus based on a randomized algorithm [] and the Red Belly Blockchain, which implements the algorithm fleshed out above []. 
-
-The validation of protocol was conducted similarly to that of the HoneyBadger blockchain, where "Coin", the randomization algorithm from Mousteoui et al. was used. Using the 100 Amazon VMs located in 5 datacentres on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
+The validation of protocol was conducted similarly to that of the HoneyBadger blockchain, where "Coin", the randomization algorithm from Mousteoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 datacentres on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
 
 Though the coupling with an optimized variant of the reduction of multivalve to binary consensus from Ben-Or et al., the Democratic Byzantine Fault Tolerant (DBFT) consensus algorithm was generated which terminates in 4 messages delays in the good case, when all non-faulty processes propose the same value. [17]
-
-
-
-
 
 ## <a name="h-Conclusion"> </a>Conclusion
 
@@ -671,33 +605,112 @@ Algorithm, Schwartz et al."
 [15]: https://tendermint.com/static/docs/tendermint.pdf
 "Tendermint: Consenus without Mining, Kwon"
 
-[[16]] LinBFT: Liner-Communication Byzantine Fault Tolerance for Public Blockchains https://arxiv.org/pdf/1807.01829.pdf
+[[16]] LinBFT: Linear-Communication Byzantine Fault Tolerance for Public Blockchains,  Yang, https://arxiv.org/pdf/1807.01829.pdf, Date accessed: 2018-09-20
 
+[16] https://arxiv.org/pdf/1807.01829.pdf
+"LinBFT: Linear-Communication Byzantine 
+Fault Tolerance for Public Blockchains, Yang" 
 
+[[17]] DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Consortium Blockchains, Crain et al., http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf, Date accessed: 2018-09-30
 
-[[17]]DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Consortium Blockchains http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf
+[17] http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf
+"DBFT: Efficient Byzantine Consensus 
+with a Weak Coordinator and its Application 
+to Consortium Blockchains, Crain et al."
 
-[[18]] https://flatoutcrypto.com/home/avalancheprotocol
+[[18]] Protocol Spotlight: Avalanche Part 1, https://flatoutcrypto.com/home/avalancheprotocol, Date Accessed: 2018-09-09
 
-[[19]] https://bitcoinist.com/breaking-down-the-scalability-trilemma/
+[18] https://flatoutcrypto.com/home/avalancheprotocol
+"Protocol Spotlight: Avalanche Part 1"
 
-[[20]] https://blog.cdemi.io/byzantine-fault-tolerance/
+[[19]] Breaking down the Blockchain Scalability Trilemma, Asolo, https://bitcoinist.com/breaking-down-the-scalability-trilemma/, Date accessed: 2018-10-01
 
-[[21]] Consensus Wiki https://en.wikipedia.org/wiki/Consensus_(computer_science)
+[19] https://bitcoinist.com/breaking-down-the-scalability-trilemma/
+"Breaking down the Blockchain 
+Scalability Trilemma, Asolo,"
 
-[[22]]  Impossibility of Distributed Consensus with One Faulty Process https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf
+[[20]] Byzantine Fault Tolerance, Demicoli, https://blog.cdemi.io/byzantine-fault-tolerance/, Date accessed: 2018-10-01
 
-[[23]] A brief Tour of FLP Impossibility https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/
+[20] https://blog.cdemi.io/byzantine-fault-tolerance/ 
+"Byzantine Fault Tolerance, Demicoli"
 
-[[24]] https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5 'Demystifying HashGraph'
+[[21]] Consensus Mechanisms, Wikipedia,  https://en.wikipedia.org/wiki/Consensus_(computer_science), Date accessed: 2018-10-01
 
-[[25]] https://arxiv.org/pdf/1607.01341.pdf 'Algorand whitepaper'
+[21]  https://en.wikipedia.org/wiki/Consensus_(computer_science)
+"Consensus Mechanisms, Wikipedia"
 
-[[26]] https://eprint.iacr.org/2017/913.pdf ' Thunderella Whitepaper'
+[[22]]  Impossibility of Distributed Consensus with One Faulty Process, Fischer et al., https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf, Date accessed: 2018-09-30
 
-[[27]] Chandra-Toueg Consensus Algorithm https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm
+[22] https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf
+"Impossibility of Distributed Consensus 
+with One Faulty Process, Fischer et al."
 
-[[28]] https://en.wikipedia.org/wiki/Raft_(computer_science) 'Wikipedia - Raft'
+[[23]] A brief Tour of FLP Impossibility,  https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/, Date accessed: 2018-09-30
 
-[[29]]https://en.wikipedia.org/wiki/Paxos_(computer_science) 'Wikipedia - Paxos'
+[23] https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/
+"A brief Tour of FLP Impossibility"
 
+[[24]] Demystifying Hashgraph: Benefits and Challenges,  Jia, . https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5, Date accessed: 2018-09-09
+
+[24] https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5 
+"Demystifying HashGraph, Jia"
+
+[[25]] Algorand WhitePaper, Chen and Micali, https://arxiv.org/pdf/1607.01341.pdf , Date accessed: 2018-09-13
+
+[25] https://arxiv.org/pdf/1607.01341.pdf 
+"Algorand WhitePaper 
+Chen and Micali"
+
+[[26]] Thunderella: Blockchains with Optimistic Instant Confirmation, Pass and Shi, https://eprint.iacr.org/2017/913.pdf, Date accessed: 2018-09-13
+
+[26] https://eprint.iacr.org/2017/913.pdf 
+"Thunderella WhitePaper, Pass and Shi"
+
+[[27]] Chandra-Toueg Consensus Algorithm, Wikipedia, https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm, Date accessed: 2018-09-13
+
+[27] https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm 
+"Chandra-Toueg Consensus Algorithm, Wikipedia"
+
+[[28]] Raft, Wikipedia, https://en.wikipedia.org/wiki/Raft_(computer_science), Date accessed: 2018-09-13
+
+[28] https://en.wikipedia.org/wiki/Raft_(computer_science) 
+"Raft, Wikipedia"
+
+[[29]] Paxos, Wikipedia, https://en.wikipedia.org/wiki/Paxos_(computer_science), Date accessed: 2018-10-01
+
+[29] https://en.wikipedia.org/wiki/Paxos_(computer_science) 
+"Paxos, Wikipedia"
+
+[[30]] The Swirlds Hashgraph consensus algorithm: Fair, fast, byzantine fault tolerance, Baird, https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf, Date accessed: 2018-09-30
+
+[30] https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf "Hashgraph WhitePaper, Baird"
+
+[[31]] Swirlds and Sybil Attacks, Baird, http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf, Date accessed: 2018-09-30 
+
+[31] http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf "Swirlds and Sybil Attacks, Baird"
+
+[[32]] Demystifying Hashgraph: Benefits and Challenges,  Jia, https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5, Date accessed: 2018-09-30
+
+[32] https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5 
+"Demystifying HashGraph"
+
+[[33]] Hashgraph: A Whitepaper Review, Graczyk, https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647, Date accessed: 2018-09-30
+
+[33] https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647 
+"Hashgraph: A Whitepaper Review"
+
+[[34]] Tendermint Explained- Bringing BFT-based PoS to the Public Blockchain Domain, https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb, Date accessed: 2018-09-30
+
+[34] https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb
+"Tendermint Explained- Bringing BFT-based
+PoS to the Public Blockchain Domain"
+
+[[35]] Project Spotlight: Maidsafe and PARSEC Part 2, https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2, Date accessed: 2018-09-18
+
+[35] https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2 
+"Project Spotlight: Maidsafe and PARSEC Part 2"
+
+[[36]] Red Belly Blockchain, https://www.ccn.com/tag/red-belly-blockchain/, Date accessed: 2018-10-10
+
+[36] https://www.ccn.com/tag/red-belly-blockchain/
+"Red Belly Blockchain"
