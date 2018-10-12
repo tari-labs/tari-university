@@ -51,7 +51,7 @@ or
 +++
 
 ## fraud proof data structures
-<u>Alot of these proposals would require changes to the Bitcoin protocol itself</u>
+Alot of these proposals would require changes to the Bitcoin protocol itself
 <ul>Invalid transaction if input does not exist
 <li> the entire blockchain
 </ul>
@@ -59,14 +59,14 @@ or
 <li> the block itself
 </ul>
 <ul>Invalid transaction due to input already been spent
- <li>header of the invalid block
+<li>header of the invalid block
 <li>invalid transaction
 <li>proof that the invalid transaction is within the invalid block
 <li>the header of the block containing original spend transaction
 <li>the original spending transaction
 <li>proof showing that the spend transaction is within the header block of the spend transaction
-
----
+</ul>
++++
 
 ## Universal fraud proof proposal
 
