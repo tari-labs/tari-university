@@ -38,16 +38,16 @@ Satoshi recognised this and introduced the concept of a Simplified Payment Verif
 
 ## Full node vs SPV client
 
-<ul>A full Bitcoin node contains the following details:
+A full Bitcoin node contains the following details:
 - every block
 - every transaction that has ever been sent
 - all the unspent transaction outputs (UTXOs)
-</ul>
-<ul>An SPV client, however, contains :
+
+An SPV client, however, contains :
 - a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
 or 
 - just a block header with no transactions
-<ul>
+
 +++
 
 ## Fraud proof data structures
@@ -57,14 +57,13 @@ Invalid transaction if input does not exist
 Invalid transaction due to incorrect generation output value
 - the block itself
 
-<ul>Invalid transaction due to input already been spent
-<li>header of the invalid block
-<li>invalid transaction
-<li>proof that the invalid transaction is within the invalid block
-<li>the header of the block containing original spend transaction
-<li>the original spending transaction
-<li>proof showing that the spend transaction is within the header block of the spend transaction
-</ul>
+Invalid transaction due to input already been spent
+- header of the invalid block
+- invalid transaction
+- proof that the invalid transaction is within the invalid block
+- the header of the block containing original spend transaction
+- the original spending transaction
+- proof showing that the spend transaction is within the header block of the spend transaction
 
 +++
 
