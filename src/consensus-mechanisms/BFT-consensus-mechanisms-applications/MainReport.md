@@ -20,7 +20,7 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
 ​	-[HashGraph](#h-HashGraph)
 ​	-[SINTRA](#h-SINTRA)
 ​	-[HoneyBadgerBFT](#h-HoneyBadgerBFT)
-​	-[Stellar Consensus Protocol](#h-Stellar Consenus Protocol)
+​	-[Stellar Consensus Protocol](#h-Stellar Consensus Protocol)
 ​	-[LinBFT](#h-LinBFT)
 ​	-[Algorand](#h-Algorand)
 ​	-[Thunderella](#h-Thunderella)
@@ -83,9 +83,9 @@ For systems with _n_ processors, of which _f_ are Byzantine, it has been shown t
 
 ### *PBFT Variants* 
 
-PoW suffers from non-finality, that is a block appended to a blockchain is not confirmed until it is extended by many other blocks. Even then, its existence in the blockchain is only probablistic. For example, eclipse attacks on Bitcoin exploit this probabilistic guarantee to allow double spending. In contrast, the original PBFT protocol is deterministic. [[10]]
+PoW suffers from non-finality, that is a block appended to a blockchain is not confirmed until it is extended by many other blocks. Even then, its existence in the blockchain is only probabilistic. For example, eclipse attacks on Bitcoin exploit this probabilistic guarantee to allow double spending. In contrast, the original PBFT protocol is deterministic. [[10]]
 
-### *Deterministic and Non-Deterministic Procotols*
+### *Deterministic and Non-Deterministic Protocols*
 
 Deterministic, bounded Byzantine agreement relies on consensus being finalized for each epoch before moving to the next one ensuring that there is some safety about a consensus reference point prior to continuing. If instead you allow an unbound number of consensus agreement within the same epoch, then there is no overall consensus reference point with which to declare finality and thus safety is compromised. [[8]]
 
@@ -189,7 +189,7 @@ The gossip protocol works like this:
 
 - Alice selects a random peer node, say Bob, and sends him _everything she knows_. She then selects another random node and repeats the process indefinitely.
 
-- Bob, on receiving Alice's information, marks this as a gossip event and fills in any gaps in his knowledge from Alice's information. Once done, he continues gossiping with his updated informaiton.
+- Bob, on receiving Alice's information, marks this as a gossip event and fills in any gaps in his knowledge from Alice's information. Once done, he continues gossiping with his updated information.
 
 In this way, information spreads throughout the network in an exponential fashion. [[30]]
 
@@ -368,11 +368,11 @@ SINTRA is a system implementation based on the **asynchronous** atomic broadcast
 
 ### <a name="h-HoneyBadgerBFT"> </a>HoneyBadgerBFT
 
-HoneyBadgerBFT was released in November 2016 and is seens as the first practical **asynchronous** BFT consensus algorithm. Designed with cryptocurrencies in mind, where bandwidth is considered scares, but an abundance of CPU. Thus, the protocol implements public-private key encryption to increase the efficiency of the establishment of consensus. The protocol works with a fixed set of servers to run the consensus; however, this leads to centralization and allows an attacker to specifically target these servers. [[9]]
+HoneyBadgerBFT was released in November 2016 and is seen as the first practical **asynchronous** BFT consensus algorithm. Designed with cryptocurrencies in mind, where bandwidth is considered scares, but an abundance of CPU. Thus, the protocol implements public-private key encryption to increase the efficiency of the establishment of consensus. The protocol works with a fixed set of servers to run the consensus; however, this leads to centralization and allows an attacker to specifically target these servers. [[9]]
 
 In its threshold encryption scheme, any one party can encrypt a message using a master public key, and it requires f+1 correct nodes to compute and reveal decryption shares for a ciphertext before the plaintext can be recovered.
 
-HoneyBadger offers a novel reductions from ABC to ACS that provides better efficiency (by O(N) factor) through batching, while using threshold encryption to preserve censorship resilience. Better efficiency is also obtained by cherry-picking improved instantiations of sub-components. For example, the expensive MVBA is circumvented by using an ternative ACS along with an effect RBC. [[6]]
+HoneyBadger offers a novel reductions from ABC to ACS that provides better efficiency (by O(N) factor) through batching, while using threshold encryption to preserve censorship resilience. Better efficiency is also obtained by cherry-picking improved instantiations of sub-components. For example, the expensive MVBA is circumvented by using an alternative ACS along with an effect RBC. [[6]]
 
 ### <a name="h-Stellar-Consensus-Protocol"> </a>Stellar Consensus Protocol
 
@@ -488,7 +488,7 @@ Similar to HashGraph, it is not clear that PARSEC will scale well as _n_ grows t
 
 ## <a name="h-Democratic-BFT"> </a>Democratic BFT
 
-This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator. This procotol is implemented in the Red Belly Block chain and is said to achieve 30 000 transactions/second on Amazon Cloud Trials [[36]] 
+This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator. This protocol is implemented in the Red Belly Block chain and is said to achieve 30 000 transactions/second on Amazon Cloud Trials [[36]] 
 
 The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. The fundamental idea here is to allow processes to complete asynchronous rounds as soon as they receive a threshold of messages, instead of having to wait for a message from a coordinator that may be slow. 
 
@@ -498,7 +498,7 @@ Moving away from the impossibility of solving consensus in asynchronous message 
 
 Randomized algorithms can used per-process "local" coins or a shared *common coin* to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the existing algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
 
-A recent randomized algoritm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler. 
+A recent randomized algorithm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler. 
 
 To solve the consensus problem deterministically and prevent the use of the common coin, researchers have assumed partial or eventual synchrony. Here, these solutions require a unique coordinator process, referred to as the leader, in order to remain non-faulty. There are both advantages and disadvantages to this technique: the advantage is if the coordinator is non-faulty and if the messages are delivered in a timely manner in an asynchronous round, then the coordinator broadcasts its proposal to all processes and this value is decided after a contest number of message delays; however a faulty coordinator can dramatically impact the algorithm performance by leveraging the power it has in a round and imposing its value to all. Non-faulty processes thus have no other choices but to decide nothing in this round. 
 
@@ -506,7 +506,7 @@ This protocol sees the use of a weak coordinator; a weak coordinator allows for 
 
 With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*].   
 
-The validation of protocol was conducted similarly to that of the HoneyBadger blockchain, where "Coin", the randomization algorithm from Mousteoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 datacentres on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
+The validation of protocol was conducted similarly to that of the HoneyBadger blockchain, where "Coin", the randomization algorithm from Mousteoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 data centers on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
 
 Though the coupling with an optimized variant of the reduction of multivalve to binary consensus from Ben-Or et al., the Democratic Byzantine Fault Tolerant (DBFT) consensus algorithm was generated which terminates in 4 messages delays in the good case, when all non-faulty processes propose the same value. [17]
 
@@ -553,15 +553,15 @@ Miller  et al."
 [[7]] Blockchain, cryptography and consensus, Cachin,  https://cachin.com/cc/talks/20170622-blockchain-ice.pdf, Date accessed: 2018-09-04
 
 [7]:  https://cachin.com/cc/talks/20170622-blockchain-ice.pdf
-"Blockchain, crytography and consensus 2017, Cachin"
+"Blockchain, cryptography and consensus 2017, Cachin"
 
-[[8]] Comments from Medium: I don't see how it's plausible for parallel forks of the hash chain to be finalised concurrently, https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a, Date accessed: 2018-09-14 
+[[8]] Comments from Medium: I don't see how it's plausible for parallel forks of the hash chain to be finalized concurrently, https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a, Date accessed: 2018-09-14 
 
 [8]: https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a
 "Comments from Medium: 
 I don't see hope it's plausible
 for parallel forks of the hash chain
-to be finalised concurrently"
+to be finalized concurrently"
 
 [[9]] High-Performance Consensus Mechanisms for Blockchains, Rusch,  http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf, Date accessed: 2018-08-30
 
@@ -572,7 +572,7 @@ Rusch"
 [[10]] Untangling Blockchain: A Data Processing View of Blockchain Systems, Dinh et al., https://arxiv.org/pdf/1708.05665.pdf, Date accessed: 2018-08-30
 
 [10]: https://arxiv.org/pdf/1708.05665.pdf
-"Untangling Blockchain: A Datat Processing View of Blockchain Systems"
+"Untangling Blockchain: A Data Processing View of Blockchain Systems"
 
 [[11]] Survey of Consensus Protocols of Blockchain Applications, Sankar et al., https://ieeexplore.ieee.org/document/8014672/, Date accessed: 2018-08-30
 
@@ -584,7 +584,7 @@ and Communication Systems, Sankar et al."
 [[12]] The Stellar Consensus Protocol: A Federated Model for Internet-level Consensus, Mazières, https://www.stellar.org/papers/stellar-consensus-protocol.pdf, Date accessed: 2018-08-30
 
 [12]: https://www.stellar.org/papers/stellar-consensus-protocol.pdf
-"The Stellar Consensus Procotol: 
+"The Stellar Consensus Protocol: 
 A Federated Model for Internet- level
 Consensus, Mazières"
 
@@ -600,10 +600,10 @@ Blockchain Fabric, Cachin"
 "The Ripple Protocol Consensus 
 Algorithm, Schwartz et al."
 
-[[15]] Tendermint: Consenus without Mining, Kwon,  https://tendermint.com/static/docs/tendermint.pdf, Date accessed: 2018-09-20
+[[15]] Tendermint: Consensus without Mining, Kwon,  https://tendermint.com/static/docs/tendermint.pdf, Date accessed: 2018-09-20
 
 [15]: https://tendermint.com/static/docs/tendermint.pdf
-"Tendermint: Consenus without Mining, Kwon"
+"Tendermint: Consensus without Mining, Kwon"
 
 [[16]] LinBFT: Linear-Communication Byzantine Fault Tolerance for Public Blockchains,  Yang, https://arxiv.org/pdf/1807.01829.pdf, Date accessed: 2018-09-20
 
@@ -694,10 +694,10 @@ Chen and Micali"
 [32] https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5 
 "Demystifying HashGraph"
 
-[[33]] Hashgraph: A Whitepaper Review, Graczyk, https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647, Date accessed: 2018-09-30
+[[33]] Hashgraph: A WhitePaper Review, Graczyk, https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647, Date accessed: 2018-09-30
 
 [33] https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647 
-"Hashgraph: A Whitepaper Review"
+"Hashgraph: A WhitePaper Review"
 
 [[34]] Tendermint Explained- Bringing BFT-based PoS to the Public Blockchain Domain, https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb, Date accessed: 2018-09-30
 
