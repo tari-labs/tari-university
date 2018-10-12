@@ -9,25 +9,25 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
 ## Contents
 -[Introduction](#h-Introduction)
 -[Terminology](#h-Terminology)
--[A Brief survey of BFT Consensus Mechanisms](#h-A Brief survey of BFT Consensus Mechanisms)
--[Permission Block Chains](#h-Permission Block Chains)
-​	-[Hyperledger Fabric](#h-Hyperledger Fabric)
+-[A-Brief-survey-of-BFT-Consensus-Mechanisms](#h-A-Brief-survey-of-BFT-Consensus-Mechanisms)
+-[Permission-Block-Chains](#h-Permission-Block-Chains)
+​	-[Hyperledger-Fabric-(HLF)](#h-Hyperledger-Fabric-(HLF))
 ​	-[Tendermint](#h-Tendermint)
--[Permissionless Block Chains](#h-Permissionless Block Chains)
+-[Permissionless-Block-Chains](#h-Permissionless-Block-Chains)
 ​	-[Paxos](#h-Paxos)
 ​	-[Chandra-Toueg](#h-Chandra-Toueg)
 ​	-[Raft](#h-Raft)
 ​	-[HashGraph](#h-HashGraph)
 ​	-[SINTRA](#h-SINTRA)
 ​	-[HoneyBadgerBFT](#h-HoneyBadgerBFT)
-​	-[Stellar Consensus Protocol](#h-Stellar Consensus Protocol)
+​	-[Stellar-Consensus-Protocol](#h-Stellar-Consensus-Protocol)
 ​	-[LinBFT](#h-LinBFT)
 ​	-[Algorand](#h-Algorand)
 ​	-[Thunderella](#h-Thunderella)
 ​	-[Avalanche](#h-Avalanche)
 ​	-[PARSEC](#h-PARSEC)
-​	-[Democratic BFT](#h-Democratic BFT)
--[Conclusion](#h-Conclusion)
+​	-[Democratic-BFT](#h-Democratic-BFT)
+-[Summary](#h-Summary)
 -[References](#h-References)
 
 ## <a name="h-Introduction"> </a>Introduction 
@@ -83,7 +83,7 @@ For systems with _n_ processors, of which _f_ are Byzantine, it has been shown t
 
 ### *PBFT Variants* 
 
-PoW suffers from non-finality, that is a block appended to a blockchain is not confirmed until it is extended by many other blocks. Even then, its existence in the blockchain is only probabilistic. For example, eclipse attacks on Bitcoin exploit this probabilistic guarantee to allow double spending. In contrast, the original PBFT protocol is deterministic. [[10]]
+PoW suffers from non-finality, that is a block appended to a block chain is not confirmed until it is extended by many other blocks. Even then, its existence in the block chain is only probabilistic. For example, eclipse attacks on Bitcoin exploit this probabilistic guarantee to allow double spending. In contrast, the original PBFT protocol is deterministic. [[10]]
 
 ### *Deterministic and Non-Deterministic Protocols*
 
@@ -97,7 +97,7 @@ Protocols like HoneyBadger BFT fall into this class of nondeterministic protocol
 
 ### *Scalability-performance trade off* 
 
-As briefly mentioned in the [Introduction](#h-Introduction), the scalability of BFT protocols considering the number of participants is highly limited and the performance of most protocols deteriorates as the number of involved replicase increases. This effect is especially problematic for BFT deployment in permission-less blockchains. [[7]]
+As briefly mentioned in the [Introduction](#h-Introduction), the scalability of BFT protocols considering the number of participants is highly limited and the performance of most protocols deteriorates as the number of involved replicase increases. This effect is especially problematic for BFT deployment in permission-less block chains. [[7]]
 
 The problem of BFT scalability is twofold: a high throughput as well as a large consensus group with good reconfigurability that can tolerate a high number of failures are both desirable properties in BFT protocols, but are often in direct conflict. 
 
@@ -117,7 +117,7 @@ A △T-synchronous network guarantees that every message sent is delivered after
 
 #### Partial Synchrony 
 
-Here, the network retains some form of a predefined timing structure, however it can operate within knowing the assumption of how fast nodes can exchange messages over the network. Instead of pushing out a block every x seconds, in a partially synchronous blockchain would gauge the limit, with messages always being sent and received within the unknown deadline. 
+Here, the network retains some form of a predefined timing structure, however it can operate within knowing the assumption of how fast nodes can exchange messages over the network. Instead of pushing out a block every x seconds, in a partially synchronous block chain would gauge the limit, with messages always being sent and received within the unknown deadline. 
 
 Distributed Ledger Technology that is not synchronous tend to be partially synchronous.
 
@@ -288,17 +288,17 @@ in parallel:
 
 Many peer-to-peer online Real-time strategy games use a modified Lockstep protocol as a consensus protocol in order to manage game state between players in a game. Each game action results in a game state delta broadcast to all other  players in the game along with a hash of the total game state. Each player validates the change by applying the delta to their own game state and comparing the game state hashes. If the hashes do not agree then a vote is cast, and those players whose game state is in the minority are disconnected and removed from the game (known as a desync.) [[21]]
 
-## <a name="h-Permission-Blockchains"> </a>Permission Blockchains
+## <a name="h-Permission-Block-Chains"> </a>Permission Block Chains
 
-Byzantine agreement schemes are considered well suited for permission blockchains, where the identify of the participants is known. Examples include Hyperledger and Tendermint. Here the Federated Consensus Algorithm is implemented. [[9]] 
+Byzantine agreement schemes are considered well suited for permission block chains, where the identify of the participants is known. Examples include Hyperledger and Tendermint. Here the Federated Consensus Algorithm is implemented. [[9]] 
 
 ### <a name="h-Hyperledger-Fabric-(HLF)"> </a>Hyperledger Fabric (HLF)
 
 Hyperledger began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source cross-industry standard platform for distributed ledgers. Hyperledger Fabric is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. [[11]]
 
-The blockchains hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since hyper ledge fabric proposes to follow Practical Byzantine Fault Tolerance, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
+The block chains hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since hyper ledge fabric proposes to follow Practical Byzantine Fault Tolerance, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
 
-A prominent example for permission blockchain platforms is Hyperledger Fabric (HLF). While being redesigned for a v1.0 release, the formats goal was to achieve extensibility. HLF v1.0 allows for multiple of its modules to be exchanged, *viz* membership service, consensus mechanism. Being permission, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
+A prominent example for permission block chain platforms is Hyperledger Fabric (HLF). While being redesigned for a v1.0 release, the formats goal was to achieve extensibility. HLF v1.0 allows for multiple of its modules to be exchanged, *viz* membership service, consensus mechanism. Being permission, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
 
 ### <a name="h-Tendermint"> </a>Tendermint
 
@@ -310,9 +310,9 @@ Tendermint rotates through the validator set, i.e. block proposers, in a weighte
 
 Critics have argued that Tenderloin is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them , sniffling the progression of the chain. Although Sentry Architecture in Tendermint has been implemented, the argument on the degree of decentralization is still questionable. 
 
-## <a name="h-Permissionless-Blockchains"> </a>Permissionless Blockchains 
+## <a name="h-Permissionless-Block-Chains"> </a>Permissionless Block Chains 
 
-BFT protocols face several limitations when utilized in permission-less blockchains as they do not scale well with the number of participants resulting in performance deterioration for the targeted network sizes and as they re not well established in this setting, they are prone security issues, e.g. Sybil attacks. Currently, there are approaches that attempt to circumvent or solve this problem. [[9]]
+BFT protocols face several limitations when utilized in permission-less block chains as they do not scale well with the number of participants resulting in performance deterioration for the targeted network sizes and as they re not well established in this setting, they are prone security issues, e.g. Sybil attacks. Currently, there are approaches that attempt to circumvent or solve this problem. [[9]]
 
 ### <a name="h-Paxos"> </a>Paxos 
 
@@ -398,7 +398,7 @@ LinBFT cuts down its *O(n*<sup>4</sup>*)* complexity by implementing changes eac
 
 This is clearly optimal, in the sense that disseminating a block already takes *Ω(n)* transmissions. 
 
-LinBFT is designed to be implemented for permission-less, public blockchain systems and takes into account anonymous participants without a public-key infrastructure, proof-of-stake, rotating leader ,and a dynamic participant set. [[16]]
+LinBFT is designed to be implemented for permission-less, public block chain systems and takes into account anonymous participants without a public-key infrastructure, proof-of-stake, rotating leader ,and a dynamic participant set. [[16]]
 
 For instance, participants can be anonymous, without a centralized public key infrastructure (PKI) public key among themselves, and participate in a distributed key generation (DKG) protocol required to create threshold signatures, both of which are communication-heavy processes. 
 
@@ -506,11 +506,33 @@ This protocol sees the use of a weak coordinator; a weak coordinator allows for 
 
 With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*].   
 
-The validation of protocol was conducted similarly to that of the HoneyBadger blockchain, where "Coin", the randomization algorithm from Mousteoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 data centers on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
+The validation of protocol was conducted similarly to that of the HoneyBadger block chain, where "Coin", the randomization algorithm from Mousteoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 data centers on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
 
 Though the coupling with an optimized variant of the reduction of multivalve to binary consensus from Ben-Or et al., the Democratic Byzantine Fault Tolerant (DBFT) consensus algorithm was generated which terminates in 4 messages delays in the good case, when all non-faulty processes propose the same value. [17]
 
-## <a name="h-Conclusion"> </a>Conclusion
+## <a name="h-Summary"> </a>Summary
+
+Important characteristics of each protocol are summarized in the table below. 
+
+| Protocol                   | Permissionless Blockchain |  Timing Assumptions   | Decentralized Control | Low Latency | Flexible Trust | Asymptotic Security |
+| -------------------------- | :-----------------------: | :-------------------: | :-------------------: | :---------: | :------------: | :-----------------: |
+| Hyperledger Fabric (HLF)   |                           | Partially synchronous |           ✓           |             |       ✓        |                     |
+| Tendermint                 |                           | Partially synchronous |                       |      ✓      |       ✓        |          ✓          |
+| Paxos                      |             ✓             | Partially synchronous |           ✓           |      ✓      |       ✓        |                     |
+| Chandra-Toureg             |             ✓             | Partially synchronous |           ✓           |             |       ✓        |                     |
+| Raft                       |             ✓             |  Weakly synchronous   |           ✓           |      ✓      |       ✓        |                     |
+| HashGraph                  |             ✓             |     Asynchronous      |           ✓           |      ✓      |       ✓        |                     |
+| SINTRA                     |             ✓             |     Asynchronous      |           ✓           |             |       ✓        |                     |
+| HoneyBadgerBFT             |             ✓             |     Asynchronous      |           ✓           |      ✓      |       ✓        |          ✓          |
+| Stellar Consensus Protocol |             ✓             |     Asynchronous      |           ✓           |      ✓      |       ✓        |          ✓          |
+| LinBFT                     |             ✓             | Partially synchronous |           ✓           |             |       ✓        |                     |
+| Algorand                   |             ✓             |      Synchronous      |           ✓           |      ✓      |       ✓        |                     |
+| Thunderella                |             ✓             |      Synchronous      |           ✓           |      ✓      |       ✓        |                     |
+| Avalanche                  |             ✓             |      Synchronous      |           ✓           |      ✓      |       ✓        |                     |
+| PARSEC                     |             ✓             |  Weakly synchronous   |           ✓           |             |       ✓        |                     |
+| Democratic BFT             |             ✓             | Partially synchronous |           ✓           |      ✓      |       ✓        |                     |
+
+
 
 ## <a name="h-References"> </a>References 
 
@@ -552,7 +574,7 @@ Miller  et al."
 
 [[7]] Blockchain, cryptography and consensus, Cachin,  https://cachin.com/cc/talks/20170622-blockchain-ice.pdf, Date accessed: 2018-09-04
 
-[7]:  https://cachin.com/cc/talks/20170622-blockchain-ice.pdf
+[7]: https://cachin.com/cc/talks/20170622-blockchain-ice.pdf
 "Blockchain, cryptography and consensus 2017, Cachin"
 
 [[8]] Comments from Medium: I don't see how it's plausible for parallel forks of the hash chain to be finalized concurrently, https://medium.com/@shelby_78386/i-dont-see-how-it-s-plausible-for-parallel-forks-of-the-hash-chain-to-be-finalized-concurrently-cb57afe9dd0a, Date accessed: 2018-09-14 
@@ -607,110 +629,110 @@ Algorithm, Schwartz et al."
 
 [[16]] LinBFT: Linear-Communication Byzantine Fault Tolerance for Public Blockchains,  Yang, https://arxiv.org/pdf/1807.01829.pdf, Date accessed: 2018-09-20
 
-[16] https://arxiv.org/pdf/1807.01829.pdf
+[16]: https://arxiv.org/pdf/1807.01829.pdf
 "LinBFT: Linear-Communication Byzantine 
 Fault Tolerance for Public Blockchains, Yang" 
 
 [[17]] DBFT: Efficient Byzantine Consensus with a Weak Coordinator and its Application to Consortium Blockchains, Crain et al., http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf, Date accessed: 2018-09-30
 
-[17] http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf
+[17]: http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf
 "DBFT: Efficient Byzantine Consensus 
 with a Weak Coordinator and its Application 
 to Consortium Blockchains, Crain et al."
 
 [[18]] Protocol Spotlight: Avalanche Part 1, https://flatoutcrypto.com/home/avalancheprotocol, Date Accessed: 2018-09-09
 
-[18] https://flatoutcrypto.com/home/avalancheprotocol
+[18]: https://flatoutcrypto.com/home/avalancheprotocol
 "Protocol Spotlight: Avalanche Part 1"
 
 [[19]] Breaking down the Blockchain Scalability Trilemma, Asolo, https://bitcoinist.com/breaking-down-the-scalability-trilemma/, Date accessed: 2018-10-01
 
-[19] https://bitcoinist.com/breaking-down-the-scalability-trilemma/
+[19]: https://bitcoinist.com/breaking-down-the-scalability-trilemma/
 "Breaking down the Blockchain 
 Scalability Trilemma, Asolo,"
 
 [[20]] Byzantine Fault Tolerance, Demicoli, https://blog.cdemi.io/byzantine-fault-tolerance/, Date accessed: 2018-10-01
 
-[20] https://blog.cdemi.io/byzantine-fault-tolerance/ 
+[20]: https://blog.cdemi.io/byzantine-fault-tolerance/
 "Byzantine Fault Tolerance, Demicoli"
 
 [[21]] Consensus Mechanisms, Wikipedia,  https://en.wikipedia.org/wiki/Consensus_(computer_science), Date accessed: 2018-10-01
 
-[21]  https://en.wikipedia.org/wiki/Consensus_(computer_science)
+[21]: https://en.wikipedia.org/wiki/Consensus_(computer_science)
 "Consensus Mechanisms, Wikipedia"
 
 [[22]]  Impossibility of Distributed Consensus with One Faulty Process, Fischer et al., https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf, Date accessed: 2018-09-30
 
-[22] https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf
+[22]: https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf
 "Impossibility of Distributed Consensus 
 with One Faulty Process, Fischer et al."
 
 [[23]] A brief Tour of FLP Impossibility,  https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/, Date accessed: 2018-09-30
 
-[23] https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/
+[23]: https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/
 "A brief Tour of FLP Impossibility"
 
 [[24]] Demystifying Hashgraph: Benefits and Challenges,  Jia, . https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5, Date accessed: 2018-09-09
 
-[24] https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5 
+[24]: https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5
 "Demystifying HashGraph, Jia"
 
 [[25]] Algorand WhitePaper, Chen and Micali, https://arxiv.org/pdf/1607.01341.pdf , Date accessed: 2018-09-13
 
-[25] https://arxiv.org/pdf/1607.01341.pdf 
+[25]: https://arxiv.org/pdf/1607.01341.pdf
 "Algorand WhitePaper 
 Chen and Micali"
 
 [[26]] Thunderella: Blockchains with Optimistic Instant Confirmation, Pass and Shi, https://eprint.iacr.org/2017/913.pdf, Date accessed: 2018-09-13
 
-[26] https://eprint.iacr.org/2017/913.pdf 
+[26]: https://eprint.iacr.org/2017/913.pdf
 "Thunderella WhitePaper, Pass and Shi"
 
 [[27]] Chandra-Toueg Consensus Algorithm, Wikipedia, https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm, Date accessed: 2018-09-13
 
-[27] https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm 
+[27]: https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm
 "Chandra-Toueg Consensus Algorithm, Wikipedia"
 
 [[28]] Raft, Wikipedia, https://en.wikipedia.org/wiki/Raft_(computer_science), Date accessed: 2018-09-13
 
-[28] https://en.wikipedia.org/wiki/Raft_(computer_science) 
+[28]: https://en.wikipedia.org/wiki/Raft_(computer_science)
 "Raft, Wikipedia"
 
 [[29]] Paxos, Wikipedia, https://en.wikipedia.org/wiki/Paxos_(computer_science), Date accessed: 2018-10-01
 
-[29] https://en.wikipedia.org/wiki/Paxos_(computer_science) 
+[29]: https://en.wikipedia.org/wiki/Paxos_(computer_science)
 "Paxos, Wikipedia"
 
 [[30]] The Swirlds Hashgraph consensus algorithm: Fair, fast, byzantine fault tolerance, Baird, https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf, Date accessed: 2018-09-30
 
-[30] https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf "Hashgraph WhitePaper, Baird"
+[30]: https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf "Hashgraph WhitePaper, Baird"
 
 [[31]] Swirlds and Sybil Attacks, Baird, http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf, Date accessed: 2018-09-30 
 
-[31] http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf "Swirlds and Sybil Attacks, Baird"
+[31]: http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf "Swirlds and Sybil Attacks, Baird"
 
 [[32]] Demystifying Hashgraph: Benefits and Challenges,  Jia, https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5, Date accessed: 2018-09-30
 
-[32] https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5 
+[32]: https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5
 "Demystifying HashGraph"
 
 [[33]] Hashgraph: A WhitePaper Review, Graczyk, https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647, Date accessed: 2018-09-30
 
-[33] https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647 
+[33]: https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647
 "Hashgraph: A WhitePaper Review"
 
 [[34]] Tendermint Explained- Bringing BFT-based PoS to the Public Blockchain Domain, https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb, Date accessed: 2018-09-30
 
-[34] https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb
+[34]: https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb
 "Tendermint Explained- Bringing BFT-based
 PoS to the Public Blockchain Domain"
 
 [[35]] Project Spotlight: Maidsafe and PARSEC Part 2, https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2, Date accessed: 2018-09-18
 
-[35] https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2 
+[35]: https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2
 "Project Spotlight: Maidsafe and PARSEC Part 2"
 
 [[36]] Red Belly Blockchain, https://www.ccn.com/tag/red-belly-blockchain/, Date accessed: 2018-10-10
 
-[36] https://www.ccn.com/tag/red-belly-blockchain/
+[36]: https://www.ccn.com/tag/red-belly-blockchain/
 "Red Belly Blockchain"
