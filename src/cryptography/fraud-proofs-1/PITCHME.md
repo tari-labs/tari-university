@@ -38,23 +38,23 @@ Satoshi recognised this and introduced the concept of a Simplified Payment Verif
 
 ## Full node vs SPV client
 
-A full Bitcoin node contains the following details:
+<ul>A full Bitcoin node contains the following details:
 - every block
 - every transaction that has ever been sent
 - all the unspent transaction outputs (UTXOs)
-An SPV client, however, contains :
+</ul>
+<ul>An SPV client, however, contains :
 - a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
 or 
 - just a block header with no transactions
-
+<ul>
 +++
 
-## fraud proof data structures
-<ul>Invalid transaction if input does not exist
-<li> the entire blockchain
-</ul>
-<ul>Invalid transaction due to incorrect generation output value
-<li> the block itself
+## Fraud proof data structures
+Invalid transaction if input does not exist
+- the entire blockchain
+Invalid transaction due to incorrect generation output value
+- the block itself
 </ul>
 <ul>Invalid transaction due to input already been spent
 <li>header of the invalid block
@@ -89,7 +89,6 @@ Proposition:
 - full node sends lightclient/SPV this data to proof a valid fraud proof
 - SPV computes this function. If the transition root of the state root is different from the state root in the block then the block is rejected
 ![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
-
 - post-state root can be excluded in order to save block space
 - But this increase the fraud proof size
 
@@ -100,7 +99,7 @@ Proposition:
 - Merkle trees
 - Bloomfilters
 
-##### Strengths
+ Strengths
 
 - memory light
 - user adoption
@@ -134,7 +133,7 @@ Proposition:
 
 +++
 
-#### ther suggested fraud proof improvements (cont'd)
+#### Other suggested fraud proof improvements (cont'd)
 
 - Merklix trees
   - Merkle trees that use unordered set
