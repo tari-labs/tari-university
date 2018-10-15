@@ -89,6 +89,7 @@ Proposition:
     - `rootTransition(stateRoot, tx, witnesses) != stateRoot`
 - full node sends lightclient/SPV this data to proof a valid fraud proof
 - SPV computes this function. If the transition root of the state root is different from the state root in the block then the block is rejected
+
 ![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
 - post-state root can be excluded in order to save block space
 - But this increase the fraud proof size
