@@ -19,17 +19,19 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 - [Bulletproofs and Mimblewimble](#bulletproofs-and-mimblewimble)
   - [Introduction](#introduction)
   - [Contents](#contents)
-  - [How does Bulletproofs work?](#how-does-bulletproofs-work?)
+  - [How does Bulletproofs work?](#how-does-bulletproofs-work)
   - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Applications for Bulletproofs](#applications-for-bulletproofs)
   - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
-    - [Current & Past Efforts](#current-&-past-efforts)
+    - [Current & Past Efforts](#current--past-efforts)
     - [Wallet Reconstruction - Grin](#wallet-reconstruction---grin)
   - [Negatives](#negatives)
-  - [Conclusions, Observations, Recommendations](#conclusions,-observations,-recommendations)
+  - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
   - [Definition of Terms](#definition-of-terms)
   - [References](#references)
   - [Contributors](#contributors)
+
+## 
 
 ## How does Bulletproofs work?
 
