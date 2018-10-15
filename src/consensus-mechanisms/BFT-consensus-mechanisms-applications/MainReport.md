@@ -208,7 +208,7 @@ If an event _x1_ is an ancestor of _x2_, then we say that _x1_ **sees** _x2_ as 
 
 So in the absence of forks, all events will _see_ all of their ancestors.
 
-```
+```text
      +-----> y
      |
 x +--+
@@ -238,7 +238,7 @@ Alice repeats this process continuously.
 After a sync, a node will determine the order for as many events as possible, using three procedures.
 The algorithm uses constant _n_ (the number of nodes) and a small constant value _c_>2.  
 
-```
+```text
 in parallel:
     loop
       sync all known events to a random member
