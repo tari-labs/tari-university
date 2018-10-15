@@ -105,7 +105,7 @@ Proposition:
 #### How SPV/Lightweight clients work
 
 
-# Strengths
+##### Strengths
 - memory light
 - user adoption
 - Low transaction fees
