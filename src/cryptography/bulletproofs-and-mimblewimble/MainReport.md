@@ -1,9 +1,9 @@
 
 
 
-# <a name="h-Bulletproofs-and-Mimblewimble"> </a>Bulletproofs and Mimblewimble
+# Bulletproofs and Mimblewimble
 
-## <a name="h-Introduction"> </a>Introduction
+## Introduction
 
 Bulletproofs form part of the family of distinct Zero-knowledge Proof<sup>[def][zk~]</sup> systems, like Zero-Knowledge Succinct Non-Interactive ARguments of Knowledge (zk-SNARK), Succinct Transparent ARgument of Knowledge (STARK) and Zero Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a prover is able to indirectly verify that a statement is true without having to provide any information beyond the verification of the statement, for example to prove that a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce<sup>[def][nonce~]</sup>. ([[2]], [[4]])
 
@@ -14,32 +14,32 @@ challenge is calculated and sent to the verifier. Secret committed values will s
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner product relation, which is of independent interest (not related). Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-## <a name="h-Contents"> </a>Contents
+## Contents
 
-- [Bulletproofs and Mimblewimble](#Bulletproofs-and-Mimblewimble)
-  - [Introduction](#Introduction)
-  - [Contents](#h-Contents)
-  - [How does Bulletproofs work?](#h-How-does-Bulletproofs-work?)
-  - [Comparison to other Zero-knowledge Proof Systems](#h-Comparison-to-other-Zero-knowledge-Proof-Systems)
-  - [Applications for Bulletproofs](#h-Applications-for-Bulletproofs)
-  - [Interesting Bulletproof Implementation Snippets](#Interesting-Bulletproof-Implementation-Snippets)
-    - [Wallet Reconstruction - Grin](Wallet-Reconstruction-Grin)
-    - [Current & Past Efforts](Current-Past-Efforts)
-  - [Negatives](#h-Negatives)
-  - [Conclusions, Observations, Recommendations](#h-Conclusions,-Observations,-Recommendations)
-  - [Definition of Terms](#h-Definition-of-Terms)
-  - [References](#h-References)
-  - [Contributors](#h-Contributors)
+- [Bulletproofs and Mimblewimble](#bulletproofs-and-mimblewimble)
+  - [Introduction](#introduction)
+  - [Contents](#Contents)
+  - [How does Bulletproofs work?](#How-does-Bulletproofs-work?)
+  - [Comparison to other Zero-knowledge Proof Systems](#Comparison-to-other-Zero-knowledge-Proof-Systems)
+  - [Applications for Bulletproofs](#Applications-for-Bulletproofs)
+  - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
+    - [Current & Past Efforts](#Current-&-Past-Efforts)
+    - [Wallet Reconstruction - Grin](#Wallet-Reconstruction---Grin)
+  - [Negatives](#Negatives)
+  - [Conclusions, Observations, Recommendations](#Conclusions,-Observations,-Recommendations)
+  - [Definition of Terms](#Definition-of-Terms)
+  - [References](#References)
+  - [Contributors](#Contributors)
 
-## <a name="h-How-does-Bulletproofs-work?"> </a>How does Bulletproofs work?
+## How does Bulletproofs work?
 
-The basis of confidential transactions are to replace the output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate rangeproofs from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 ​$ and that they sum to v. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments.
+The basis of confidential transactions are to replace the output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate rangeproofs from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $ and that they sum to v. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments.
 
 Bulletproofs are made non-interactive using this Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof size is short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs.
 
 
 
-## <a name="h-Comparison-to-other-Zero-knowledge-Proof-Systems"> </a>Comparison to other Zero-knowledge Proof Systems
+## Comparison to other Zero-knowledge Proof Systems
 
 The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. Bulletproofs is unique in that it is not interactive, has short proof size, does not require a trusted setup and is practical to implement. These attributes make Bulletproofs extremely desirable to use as rangeproofs in cryptocurrencies.
 
@@ -55,7 +55,7 @@ The table below shows a high level comparison between Sigma Protocols (i.e. inte
 
 
 
-## <a name="h-Applications-for-Bulletproofs"> </a>Applications for Bulletproofs
+## Applications for Bulletproofs
 
 Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used for :
 
@@ -73,9 +73,9 @@ Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used fo
   - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts.
 
 
-## <a name="h-Interesting-Bulletproof-Implementation-Snippets"> </a>Interesting Bulletproof Implementation Snippets
+## Interesting Bulletproof Implementation Snippets
 
-### <a name="h-Current-Past-Efforts"> </a>Current & Past Efforts
+### Current & Past Efforts
 
 [[25]]
 
@@ -89,7 +89,7 @@ Bulletproofs have wide application ([[3]], [[6]]) and can be efficiently used fo
 
 [[30]]
 
-### <a name="h-Wallet-Reconstruction-Grin"> </a>Wallet Reconstruction - Grin
+### Wallet Reconstruction - Grin
 
 See  [[35]]
 
@@ -102,18 +102,18 @@ See  [[35]]
 
 ???
 
-## <a name="h-Negatives"> </a>Negatives
+## Negatives
 
 - A discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding (*i.e. confidential*), but only computationally binding (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
 - 
 
-## <a name="h-Conclusions,-Observations,-Recommendations"> </a>Conclusions, Observations, Recommendations
+## Conclusions, Observations, Recommendations
 
 - Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a block chain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries, but weakening the perfectly hiding property as a drawback and slowing down all proof calculations. In this proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also have further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
 -  
 - 
 
-## <a name="h-Definition-of-Terms"> </a>Definition of Terms
+## Definition of Terms
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
@@ -208,7 +208,7 @@ one party (the prover) can convince ..."
 [term?~]: #zk
 "Definition ?  ..."
 
-## <a name="h-References"> </a>References
+## References
 
 [[1]] Bulletproofs: Short Proofs for Confidential Transactions and More, Blockchain Protocol Analysis and Security Engineering 2018, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-18.
 
@@ -448,7 +448,7 @@ Tsiounis Y. et al."
 
 
 
-## <a name="h-Contributors"> </a>Contributors
+## Contributors
 
 - [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
 - ???
