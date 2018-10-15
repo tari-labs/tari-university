@@ -21,7 +21,7 @@ SPV clients will believe everything miners or nodes tell them:
 
 ## What are fraud proofs
 
-Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV)
+- Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV)
 
 - full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected irrespective of the amount of proof of work it has
 
@@ -42,6 +42,8 @@ A full Bitcoin node contains the following details:
 - every block
 - every transaction that has ever been sent
 - all the unspent transaction outputs (UTXOs)
+
++++ 
 
 An SPV client, however, contains :
 - a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
