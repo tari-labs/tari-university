@@ -60,6 +60,8 @@ Invalid transaction if input does not exist
 Invalid transaction due to incorrect generation output value
 - the block itself
 
++++
+
 Invalid transaction due to input already been spent
 - header of the invalid block
 - invalid transaction
