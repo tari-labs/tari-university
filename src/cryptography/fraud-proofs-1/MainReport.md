@@ -26,7 +26,7 @@ Courtesy:MIT Bitcoin Expo 2016 Day 1
 
 ## Introduction
 
-In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [[2]], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain , which are achieved by obtaining the Merkle branch linking a transaction to a block [[3]]. The existence of [Merkle root](#blob/master/merkle-trees-and-spv-1/PITCHME.md#merkle-trees-and-more-importantly-branches) in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
+In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [[2]], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain , which are achieved by obtaining the Merkle branch linking a transaction to a block [[3]]. The existence of [Merkle root](#tree/master/src/protocols/merkle-trees-and-spv-1) in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
 
 ![proofofworkchain.png](sources/proofofworkchain.png)
 Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System
@@ -131,7 +131,7 @@ courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains
 The post-state root can be excluded in order to save block space but that does, however, increase the fraud proof size. This works with the assumption that the SPV client is connected to a minimum of one honest node.
 
 ## How SPV clients work
-SPV clients make use of [Bloom filters](#blob/master/merkle-trees-and-spv-1/PITCHME.md#bloom-filters) to receive transactions that are relevant to the user [[7]]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by responding with a boolean answer [[9]]
+SPV clients make use of [Bloom filters](#tree/master/src/protocols/merkle-trees-and-spv-1) to receive transactions that are relevant to the user [[7]]. Bloom filters are probalistic data structures used to check the existence of an element in a set quicker by responding with a boolean answer [[9]]
 
 ![spv.png](sources/spv.png)
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
