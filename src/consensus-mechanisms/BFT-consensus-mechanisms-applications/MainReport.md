@@ -194,6 +194,12 @@ The gossip protocol works like this:
 
 In this way, information spreads throughout the network in an exponential fashion. [[30]]
 
+![Figure 1 - HashGraph](../assets/gossip.png 'The history of any gossip protocol can be represented by a directed graph, 
+where each member is a column of vertices. Each transfer event is shown as a new vertex with two edges linking the 
+immediately-preceding gossip events.')
+
+The gossip history can be represented as a directed graph, as in Figure 1. 
+
 #### Ancestors
 
 If an event (_x1_) comes before another event (_x2_), and they are connected by a line; the older event is an _ancestor_ of that event.
@@ -224,6 +230,10 @@ It may be the case that it takes time before nodes in the protocol detect the fo
 #### Strongly seeing
 
 See [HashGraph](#HashGraph): If a node examines its hash graph and notices that an event z _sees_ an event x, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees x; then it is said that according to this node, that z _strongly sees_ x.
+
+The following example comes from [[30]]:
+
+![Strongly seeing example](../assets/strongly-seeing.png)
 
 #### The Construct of Gossiping
 
