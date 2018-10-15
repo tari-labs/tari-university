@@ -16,15 +16,15 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 
 ## <a name="h-Contents"> </a>Contents
 
-- [Bulletproofs and Mimblewimble](#h-Bulletproofs-and-Mimblewimble)
-  - [Introduction](#h-Introduction)
+- [Bulletproofs and Mimblewimble](#Bulletproofs-and-Mimblewimble)
+  - [Introduction](#Introduction)
   - [Contents](#h-Contents)
   - [How does Bulletproofs work?](#h-How-does-Bulletproofs-work?)
   - [Comparison to other Zero-knowledge Proof Systems](#h-Comparison-to-other-Zero-knowledge-Proof-Systems)
   - [Applications for Bulletproofs](#h-Applications-for-Bulletproofs)
-  - [Interesting Bulletproof Implementation Snippets](#h-Interesting-Bulletproof-Implementation-Snippets)
-    - [Wallet Reconstruction - Grin](#h-Wallet-Reconstruction-Grin)
-    - [Current & Past Efforts](#h-Current-Past-Efforts)
+  - [Interesting Bulletproof Implementation Snippets](#Interesting-Bulletproof-Implementation-Snippets)
+    - [Wallet Reconstruction - Grin](Wallet-Reconstruction-Grin)
+    - [Current & Past Efforts](Current-Past-Efforts)
   - [Negatives](#h-Negatives)
   - [Conclusions, Observations, Recommendations](#h-Conclusions,-Observations,-Recommendations)
   - [Definition of Terms](#h-Definition-of-Terms)
@@ -33,7 +33,7 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 
 ## <a name="h-How-does-Bulletproofs-work?"> </a>How does Bulletproofs work?
 
-The basis of confidential transactions are to replace the output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate rangeproofs from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $ and that they sum to v. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments.
+The basis of confidential transactions are to replace the output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate rangeproofs from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 ​$ and that they sum to v. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments.
 
 Bulletproofs are made non-interactive using this Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof size is short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs.
 
