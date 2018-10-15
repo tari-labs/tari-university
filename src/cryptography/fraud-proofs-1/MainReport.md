@@ -4,21 +4,27 @@
 The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size [[1]]. This makes it nearly impossible for everyone to run a full Bitcoin node. Lightweight/Simplified Payment Verification (SPV) clients will have to be used by users since not everyone can run full nodes due to the computational power, bandwidth and cost needed to run a full Bitcoin node. 
 
 SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of bitcoin. The wallet was sent a transaction 2.1 million BTC outputs [[17]]. 
-Peter modified the code for his node in order to decieve the Bitcoin wallet since the [wallets can't verify coin amounts](https://github.com/petertodd/bitcoin/commit/53dda4643a0dba85699cc4b9dc06a0b9afb1d315) (code can be found in the "[Quick-n-dirty hack to lie to SPV wallets](https://github.com/petertodd/bitcoin/tree/2016-02-lie-to-spv)" branch on his github).
+Peter modified the code for his node in order to decieve the Bitcoin wallet since the wallets can't verify coin amounts [[27]] (code can be found in the "Quick-n-dirty hack to lie to SPV wallets" branch on his github).
 
 ![todd-btc-spv.jpg](sources/todd-btc-spv.jpg)
 Courtesy:MIT Bitcoin Expo 2016 Day 1
 
 
 ## Contents
-- [Fraud Proofs - easier said than done?](#Fraud-Proofs---easier-said-than-done?)
+- [Fraud Proofs and SPV clients - easier said than done?](#Fraud-Proofs---easier-said-than-done?)
    - [Background](#background)
+   - [Introduction](#Introduction)
+   - [Full node vs SPV client](#full-node-vs-spv-client)
    - [What are fraud proofs](#what-are-fraud-proofs)
+   - [Fraud proof data structure](#fraud-proof-data-structure)
+   - [How SPV clients work](#how-spv-clients-work)
    - [Security and privacy issues with SPV clients](#security-and-privacy-issues-with-spv-clients)
    - [Examples of SPV implementations](#examples-of-spv-implementations)
-   - [Suggested fraud proof improvements](#suggested-fraud-proof-improvements)
+   - [Other suggested fraud proof improvements](#other-suggested-fraud-proof-improvements)
    - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
    - [References](#references)
+
+## Introduction
 
 In the original Bitcoin whitepaper, Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV) [[2]], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain , which are achieved by obtaining the Merkle branch linking a transaction to a block [[3]]. The existence of [Merkle root](#blob/master/merkle-trees-and-spv-1/PITCHME.md#merkle-trees-and-more-importantly-branches) in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
 
@@ -131,7 +137,7 @@ SPV clients make use of [Bloom filters](#blob/master/merkle-trees-and-spv-1/PITC
 Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight
 Bitcoin Clients [[7]]
 
-In addition to Bloom filters, SPV clients rely on Merkle trees - binary structures that have a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network [[8]].
+In addition to Bloom filters, SPV clients rely on Merkle trees [[26]] - binary structures that have a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network [[8]].
 
 ![merkle-tree.png](sources/merkle-tree.png)
 
@@ -311,6 +317,9 @@ Where Tari is concerned, it would appear that the universal fraud proof proposal
 
 [26]: https://arxiv.org/pdf/1809.09044.pdf "Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities"
 
+[[27]] Bitcoin intergration/staging tree, https://github.com/petertodd/bitcoin/tree/2016-02-lie-to-spv , Date accessed: 2018-10-12.
+
+[27]: https://github.com/petertodd/bitcoin/tree/2016-02-lie-to-spv "Bitcoin intergration/staging tree"
 ## Contributors
 
 - [https://github.com/ksloven](https://github.com/ksloven)
