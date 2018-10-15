@@ -74,11 +74,10 @@ Invalid transaction due to input already been spent
 
 ## Universal fraud proof proposal
 
-<u>Requiring different fraud proof constructions for different different fraud proofs is combersome</u>
 Proposition:
 - generalize the entire blockchain as a state transition system
 - represent the entire state as a Merkle root using a Sparse Merkle tree
-- each transaction changing the state root of the blockchain
+- each transaction changes the state root of the blockchain
   - `transaction(state,tx) = State or Error`
 
 ![stateroot](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/stateroot.png)
@@ -86,15 +85,16 @@ Proposition:
 +++
 ## Universal fraud proof (Cont'n)
 <u>Bitcoin blockchain</u>
-- represent the entire blockchain as a key-value store Sparse Merkle tree
+- represent the entire blockchain as a key-value store uisng Sparse Merkle tree
     - `Key = UTXO ID`
     - `Value = 1 if unspent or 0 if spent`
 - Each transaction will change the state root of the blockchain
     - `rootTransition(stateRoot, tx, witnesses) != stateRoot`
 - full node sends lightclient/SPV this data to proof a valid fraud proof
-- SPV computes this function. If the transition root of the state root is different from the state root in the block then the block is rejected
+- SPV computes this function. 
 
 ![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
+
 - post-state root can be excluded in order to save block space
 - But this increase the fraud proof size
 
