@@ -90,8 +90,10 @@ Proposition:
     - `Value = 1 if unspent or 0 if spent`
 - Each transaction will change the state root of the blockchain
     - `rootTransition(stateRoot, tx, witnesses) != stateRoot`
+
++++
 - full node sends lightclient/SPV this data to proof a valid fraud proof
-- SPV computes this function. 
+- SPV computes this function.
 
 ![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
 
@@ -101,10 +103,6 @@ Proposition:
 +++
 
 #### How SPV/Lightweight clients work
-
-- Merkle trees
-- Bloom filters
-
 
 
 # Strengths
