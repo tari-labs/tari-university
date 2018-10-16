@@ -2,7 +2,7 @@
 
 # Grin design choice criticisms - Truth or Fiction
 
-Grin is a blockchain and cryptocurrency implemented in Rust that make use of MimbleWimble transactions and the Cuckatoo algorithm to perform Proof-of-Work calculations. The main goals of the Grin project are: privacy, transaction scaling and design simplicity to promote long term maintenance of the Grin source code [[1]](https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d).
+Grin is a blockchain and cryptocurrency implemented in Rust that make use of MimbleWimble transactions and the Cuckatoo algorithm to perform Proof-of-Work calculations. The main goals of the Grin project are: privacy, transaction scaling and design simplicity to promote long term maintenance of the Grin source code [[1]].
 
 During the development of the Grin project, the developers have received criticisms from the community on many of the design and implementation decisions that they have made. We will have a look at some of these criticism and determine if their is some truth to these concerns or if the concerns are unwarranted or invalid. Some suggestions will be made on how these problem could be improved or addressed.
 
@@ -29,7 +29,7 @@ Unfortunately, the selected emission rate will result in Grin becoming an inflat
 
 The fixed emission rate of Grin on the other hand will limit its use as a SoV, as it will experience constant price pressure, which might make it difficult for Grin to maintain a high value initially, while the inflation rate remains high. This high inflation rate might encourage Grin to rather be used as a Medium of Exchange (MoE), [[6]](https://www.reddit.com/r/grincoin/comments/91g1nx/on_grin_mimblewimble_and_monetary_policy/) as it will take approximately 50 years for the inflation to drop below 2%. The Grin team believes that the inflation rate is not that high as many coins are lost and become unusable on a blockchain. These lost coins should be subtracted from the inflation rate. The Grin team believes that by selecting a high inflation rate it will improve the distribution of coins as holding of coins will be discouraged. They also hope that a high inflation rate will produce natural pricing and limit price manipulation by large coin holders [[7]](https://github.com/mimblewimble/docs/wiki/Monetary-Policy). Only time will tell if this is the case.
 
-##From ASIC Resistant to ASIC Friendly
+## From ASIC Resistant to ASIC Friendly
 
 Initially, the Grin team proposed using two ASIC resistant algorithms: Cuckoo cycles and a high memory requirement Equihash algorithm called Equigrin. These algorithms were selected to encourage mining decentralisation. ASIC resistance was obtained by having high memory requirements for the PoW algorithms, limiting its calculation to CPUs and High-range GPUs [[8]](https://www.grin-forum.org/t/proof-of-work-update/713). The plan was to adjust the parameters of these PoW algorithms every 6 months to deter stealth ASIC mining and move over to using only Cuckoo cycles as the primary PoW algorithm.
 
@@ -65,7 +65,11 @@ Grin uses the Lightning Memory-Mapped Database(LMDB) to maintain the state of Gr
 
 ## References
 
-[1] Mattia Franzoni, Grin: a lightweight implementation of the MimbleWimble protocol, https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d, Date accessed: 2018-10-05.
+[[1]] Mattia Franzoni, Grin: a lightweight implementation of the MimbleWimble protocol, https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d, Date accessed: 2018-10-05.
+
+[1]: https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d
+"Mattia Franzoni, Grin: a lightweight 
+implementation of the MimbleWimble protocol"
 
 [2] Satoshi Nakamoto, Bitcoin: A Peer-to-Peer Electronic Cash System, https://bitcoin.org/bitcoin.pdf, Date accessed: 2018-10-05.
 
