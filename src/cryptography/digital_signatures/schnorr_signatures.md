@@ -98,7 +98,7 @@ A better approach would be one that incorporates one or more of the following fe
 * allows for Interactive Aggregate Signatures (IAS) where the signers are required to cooperate;
 * allows for Non-interactive Aggregate Signatures (NAS) where the aggregation can be done by anyone;
 * allow each signer to sign the same message, _m_;
-* allow each signer to sign their own message, \\( m_i \)).
+* allow each signer to sign their own message, \\( m_i \\).
 
 # MuSig
 
@@ -211,3 +211,10 @@ and so his cancellation attack is defeated.
 * [[1]]: Schnorr signature, Wikipedia, _https://en.wikipedia.org/wiki/Schnorr_signature_, Date accessed: 19 September 2018
 * [[2]]: Key Aggregation for Schnorr Signatures, Blockstream, _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_, Date accessed: 19 September 2018
 * [[3]]: Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell _et. al._, _https://eprint.iacr.org/2018/068.pdf_
+
+# Contributors
+
+* [CjS77](https://github.com/CjS77)
+* [SWvHeerden](https://github.com/SWvHeerden)
+* [hansieodendaal](https://github.com/hansieodendaal)
+* [neonknight64](https://github.com/neonknight64)
