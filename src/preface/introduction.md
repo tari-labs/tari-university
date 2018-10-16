@@ -36,3 +36,38 @@ This is the basic process we follow within Tari Labs. As an external contributor
 4. The community will peer-review the report; much the same as we would with a code PR. 
 5. The report gets merged into master. 
 6. Receive the Fame and acclaim that is due.
+
+### Learning Paths
+
+We have put the presentations and reports into 
+
+#### Beginner's learning path 
+Here we have a set of introductory talks and presentations 
+
+1. [Crypto101](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/)-An into to elliptoc curve math and digital signatures 
+2. [Lightning Network for Dummies][Presentation](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/)-An intro to the Lightning Network, including examples of its wortkings, procs and cons
+
+#### Presentations 
+
+1. [Non-Fungible Tokens](https://gitpitch.com/tari-labs/tari-university/master?p=/src/non-fungible-tokens/nft-landscape-1#/)- An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry
+2. [Mimblewimble]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/)- An intro to Mimblewimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions
+3. [Byzantine Fault Tolerance and Consensus Mechanisms](https://gitpitch.com/tari-labs/tari-university/master?p=/src/consensus-mechanisms/BFT-consensusmechanisms#/)- Understanding Byzantine Generals Problem and how consensus is achieved in cryptocurrencies
+4. [RGB Protocol](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/)- An Introduction to RGB
+6. [Layer 2 Scaling Survey (Part 1)]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)- Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each
+7. [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)-Presents an   overview of different layer 2 scaling solutions being worked at today, as   well as a basic SWOT analysis of each
+8. [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/)- Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and which viable scaling alternatives exists for Tari
+9. [SPV, Merkle Trees and Bloom Filters](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/merkle-trees-and-spv-1#/)- An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters
+10. [Atomic Swaps]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/)- Basics of Atomic Swaps
+11. [Basics of Scriptless Scripts](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/)- Basics of Scriptless Scripts
+
+
+
+#### Report
+
+5. [Merged Mining](https://tari-labs.github.io/tari-university/merged-mining/merged-mining-scene/MergedMiningIntroduction.html)- Presents a fundamental understanding to the concept of merged mining, including definitions, relevant case studies and vector attacks
+6. [Layer 2 Scaling Survey (Part 1)](https://tari-labs.github.io/tari-university/layer2scaling/layer2scaling-landscape/layer2scaling-survey.html)
+7. [Layer 2 Scaling Survey (Part 2)](https://tari-labs.github.io/tari-university/layer2scaling/more-landscape/landscape-update.html)
+8. [Atomic Swaps](https://tari-labs.github.io/tari-university/protocols/atomic-swaps/AtomicSwaps.html)
+9. [Scriptless Scripts](https://tari-labs.github.io/tari-university/cryptography/scriptless-scripts/introduction-to-scriptless-scripts.html)
+10. [Introduction to Schnorr Signatures](https://tari-labs.github.io/tari-university/cryptography/digital_signatures/introduction.html)
+
