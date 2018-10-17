@@ -46,7 +46,7 @@ We have put the presentations and reports into categories of difficulty, interes
 Here we have a set of introductory level presentations 
 
 - [Crypto101](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/)-An into to elliptoc curve math and digital signatures 
-- [Mimblewimble]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/)- An intro to Mimblewimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions
+- [Mimblewimble](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/)- An intro to Mimblewimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions
 - [Lightning Network for Dummies](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/)-An intro to the Lightning Network, including examples of its wortkings, procs and cons
 - [Non-Fungible Tokens](https://gitpitch.com/tari-labs/tari-university/master?p=/src/non-fungible-tokens/nft-landscape-1#/)- An intro to non-fungible tokens(NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry
 - [Byzantine Fault Tolerance and Consensus Mechanisms](https://gitpitch.com/tari-labs/tari-university/master?p=/src/consensus-mechanisms/BFT-consensusmechanisms#/)- Understanding Byzantine Generals Problem and how consensus is achieved in cryptocurrencies
@@ -55,7 +55,6 @@ Here we have a set of introductory level presentations
 
 A small jump with a lay of the land...
 
-- [Mimblewimble]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/)- An intro to Mimblewimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions
 - [Basics of Scriptless Scripts](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/)- Basics of Scriptless Scripts
 - [Layer 2 Scaling Survey (Part 1)]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)- Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each
 - [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)-Presents an   overview of different layer 2 scaling solutions being worked at today, as   well as a basic SWOT analysis of each
@@ -74,5 +73,5 @@ A small jump with a lay of the land...
 - [Layer 2 Scaling Survey (Part 2)](https://tari-labs.github.io/tari-university/layer2scaling/more-landscape/landscape-update.html)
 - [Atomic Swaps](https://tari-labs.github.io/tari-university/protocols/atomic-swaps/AtomicSwaps.html)
 - [Scriptless Scripts](https://tari-labs.github.io/tari-university/cryptography/scriptless-scripts/introduction-to-scriptless-scripts.html)
-- Introduction to Schnorr Signatures](https://tari-labs.github.io/tari-university/cryptography/digital_signatures/introduction.html)
+- [Introduction to Schnorr Signatures](https://tari-labs.github.io/tari-university/cryptography/digital_signatures/introduction.html)
 
