@@ -56,7 +56,7 @@ Here we have a set of introductory level presentations
 A small jump with a lay of the land...
 
 - [Basics of Scriptless Scripts](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/)- Basics of Scriptless Scripts
-- [Layer 2 Scaling Survey (Part 1)]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)- Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each
+- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)- Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each
 - [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/)-Presents an   overview of different layer 2 scaling solutions being worked at today, as   well as a basic SWOT analysis of each
 - [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/)- Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and which viable scaling alternatives exists for Tari
 
@@ -64,7 +64,7 @@ A small jump with a lay of the land...
 
 - [RGB Protocol](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/)- An Introduction to RGB
 - [SPV, Merkle Trees and Bloom Filters](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/merkle-trees-and-spv-1#/)- An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters
-- [Atomic Swaps]((https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/)- Basics of Atomic Swaps
+- [Atomic Swaps](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/)- Basics of Atomic Swaps
 
 #### Report
 
