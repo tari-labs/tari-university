@@ -66,7 +66,7 @@ A small jump with a lay of the land...
 - [SPV, Merkle Trees and Bloom Filters](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/merkle-trees-and-spv-1#/)- An Introduction to Simple Payment Verification and how it is achieved with Merkle trees and Bloom Filters
 - [Atomic Swaps](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/)- Basics of Atomic Swaps
 
-#### Report
+#### Reports
 
 - [Merged Mining](https://tari-labs.github.io/tari-university/merged-mining/merged-mining-scene/MergedMiningIntroduction.html)- Presents a fundamental understanding to the concept of merged mining, including definitions, relevant case studies and vector attacks
 - [Layer 2 Scaling Survey (Part 1)](https://tari-labs.github.io/tari-university/layer2scaling/layer2scaling-landscape/layer2scaling-survey.html)
