@@ -35,7 +35,7 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
 
 When considering the how Tari will potentially build its second layer, an analysis of the most promising Byzantine Consensus Mechanisms and their applications was sought. 
 
-Important to consider is the 'scalability trilemma'; a name referred to by Vitalik Buterin, which takes into account the potential trade-offs regarding decentralization, security and scalability. 
+Important to consider is the 'scalability trilemma'; a phrase referred to by Vitalik Buterin, which takes into account the potential trade-offs regarding decentralization, security and scalability. [[19]]
 
 **Decentralization** : a core principle on which majority of the systems are build, taking into account censorship-resistance and ensuring that everyone, without prejudice, is permitted to partake in the decentralized system. 
 
@@ -53,7 +53,11 @@ In order to gain a full understanding of the field of consensus mechanism, speci
 
 ### *Consensus*
 
-Consensus algorithms are those algorithms that help a distributed or decentralized network to unanimously take a decision whenever necessary. Its features include assuring decentralized governance, quorum structure, authentication, integrity, non-repudiation, byzantine fault tolerance and performance.  [[11]]
+Distributed agents (these could be computers, generals co-ordinating an attack, or sensors in a nuclear plant)
+that communicate via a network (be it digital, courier or mechanical) need to agree on facts in order to act
+as a coordinated whole.
+
+When all non-faulty agents agree on a given fact, then we say that the network is in consensus.
 
 Consensus is achieved when all non-faulty agents, agree on a prescribed fact. 
 
@@ -70,7 +74,7 @@ There is a unique case of the consensus problem, referred to as the binary conse
 
 When the input domain is large; relative to the number of processes, for instance an input set of all the natural numbers, it can be shown that consensus is impossible in a synchronous message passing model. [[21]]
 
-### *Byzantine Faults Tolerance* 
+### *Byzantine Fault Tolerance* 
 
 Several papers in the literature contextualize the problem using generals at different camps, situated outside the enemy castle, needing to decide whether or not to attack. A consensus algorithm that would fail, would perhaps see one general attack while all the others stay back, resulting in the vulnerability of first general 
 
