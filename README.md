@@ -10,6 +10,34 @@ We would like this platform to be a place of learning- accessible to anyone, irr
 
 _The Tari Labs University online book is rendered [here](https://tari-labs.github.io/tari-university/)._ 
 
+## Errors, Comments and Contributions 
+
+We want this collection of educational presentations and videos to be collaborative affair.
+
+This extends to our presentations; we are learning along with you: our content may not be perfect first time around- so we invite you to alert us to errors and issues, or better yet, if you know how to make a pull request to contribute a fix, write the correction and use a pull request.
+
+As much as this learning platform is called Tari Labs University and will see input from many internal contributors and external experts, we would like you to contribute to new material, be it in the form of a suggestion of topics, varying the skill levels of presentations, or posting presentations that you may feel will benefit us as a growing community. In the words of Yoda, “Always pass on what you have learned”.  
+
+If you are considering contributing content to Tari Labs University, please be aware of our guiding principles.
+
+### Guiding Principles
+
+1. The topic researched should be potentially relevant to the Tari protocol; Chat to us on #tari-research on IRC if you're not sure.
+2. The topic should be thoroughly researched;
+3. An critical approach should be taken taken (in the academic sense), with critiques and commentaries sought out and presented alongside the main topic. Remember that every white paper promises the world, so go and look for counterclaims.
+4. A recommendation/conclusion section should be included, providing a critical analysis on whether or not the technology/proposal would be useful to the Tari protocol
+5. The work presented should be easy to read and understand, distilling complex topics into a form that is accessible to a technical but non-expert audience. Use your own voice.
+
+### The Submission Process 
+
+This is the basic process we follow within Tari Labs. As an external contributor, we'd appreciate it if you followed the same process.
+
+1. Get some agreement from the community that the topic is of interest.
+2. Write up your report.
+3. Push a first draft of your report as a Pull Request.
+4. The community will peer-review the report; much the same as we would with a code PR. 
+5. The report gets merged into master. 
+6. Receive the Fame and acclaim that is due.
 
 ## Upcoming Talks  
 
@@ -26,7 +54,7 @@ To join the live presentation open the respective meeting link below.
 | [Bulletproofs and Mimblewimble (Part 1)](https://zoom.us/j/281575837)
 | [Regulatory directions in cryptocurrency](https://zoom.us/j/320773712)
 
-Detailed schedule is avaiable [here](https://docs.google.com/presentation/d/1hAFNeN0CPV2TywwlRHX2iLQJtjPddbMSWTyNHVCA-_E/edit#slide=id.p)
+Detailed schedule is avaiable [here](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000)
 
 
 
