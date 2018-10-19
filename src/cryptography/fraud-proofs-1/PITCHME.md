@@ -15,7 +15,7 @@ SPV clients will believe everything miners or nodes tell them:
 - Node code modified
 - Lightweight clients don't verify coin amounts
 
-![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
+![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
 
 +++
 
@@ -80,7 +80,7 @@ Proposition:
 - each transaction changes the state root of the blockchain
   - `transaction(state,tx) = State or Error`
 
-![stateroot](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/stateroot.png)
+![stateroot](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/stateroot.png)
 
 +++
 ## Universal fraud proof (Cont'n)
@@ -95,7 +95,7 @@ Proposition:
 - full node sends lightclient/SPV this data to proof a valid fraud proof
 - SPV computes this function.
 
-![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/fraudproofs/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
+![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
 
 - post-state root can be excluded in order to save block space
 - But this increase the fraud proof size
