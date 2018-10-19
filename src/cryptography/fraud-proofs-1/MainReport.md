@@ -6,7 +6,7 @@ The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size 
 SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of Bitcoins. The wallet was sent a transaction 2.1 million BTC outputs [[17]]. 
 Peter modified the code for his node in order to deceive the Bitcoin wallet since the wallets can't verify coin amounts [[27]] (code can be found in the "Quick-n-dirty hack to lie to SPV wallets" branch on his GitHub repository).
 
-<p align="center"><img src="sources/todd-btc-spv.jpg" width="300" /></p>
+<p align="center"><img src="sources/todd-btc-spv.jpg" width="301" /></p>
 
 <div align="center"><i>Courtesy: MIT Bitcoin Expo 2016 Day 1</i></div>
 
