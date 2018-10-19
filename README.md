@@ -8,7 +8,7 @@ We hope to make this a learning experience for us at Tari Labs: as a means to gr
 
 We would like this platform to be a place of learning- accessible to anyone, irrespective of their degree of expertise. Our aim is to cover a wide range of topics that are relevant to the Tari space, starting at a beginner level, extending down a path of deeper complexity. 
 
-_The Tari Labs University online book is rendered [here](https://tari-labs.github.io/tari-university/)._ 
+_The Tari Labs University online book is rendered [**here**](https://tari-labs.github.io/tari-university/)._ 
 
 ## Errors, Comments and Contributions 
 
@@ -23,25 +23,24 @@ If you are considering contributing content to Tari Labs University, please be a
 ### Guiding Principles
 
 1. The topic researched should be potentially relevant to the Tari protocol; Chat to us on #tari-research on IRC if you're not sure.
-2. The topic should be thoroughly researched;
+2. The topic should be thoroughly researched.
 3. An critical approach should be taken taken (in the academic sense), with critiques and commentaries sought out and presented alongside the main topic. Remember that every white paper promises the world, so go and look for counterclaims.
-4. A recommendation/conclusion section should be included, providing a critical analysis on whether or not the technology/proposal would be useful to the Tari protocol
+4. A recommendation/conclusion section should be included, providing a critical analysis on whether or not the technology/proposal would be useful to the Tari protocol.
 5. The work presented should be easy to read and understand, distilling complex topics into a form that is accessible to a technical but non-expert audience. Use your own voice.
 
 ### The Submission Process 
 
 This is the basic process we follow within Tari Labs. As an external contributor, we'd appreciate it if you followed the same process.
-
-1. Get some agreement from the community that the topic is of interest.
-2. Write up your report.
-3. Push a first draft of your report as a Pull Request.
-4. The community will peer-review the report; much the same as we would with a code PR. 
-5. The report gets merged into master. 
-6. Receive the Fame and acclaim that is due.
+   1. Get some agreement from the community that the topic is of interest.
+   2. Write up your report.
+   3. Push a first draft of your report as a Pull Request.
+   4. The community will peer-review the report; much the same as we would with a code Pull Request. 
+   5. The report gets merged into master. 
+   6. Receive the Fame and acclaim that is due.
 
 ## Upcoming Talks  
 
-To join the live presentation meeting, view the detail report or to get a link to the presentation detail open the schedule available [here](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000)
+*To join the live presentation meeting, get a link to the GitPitch presentation or to view the detail report online open the schedule available [**here**](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000).*
 
 
 
