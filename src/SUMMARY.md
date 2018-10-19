@@ -1,4 +1,5 @@
 - **<u>Tari Labs University - Contents</u>**
+- [Introduction](./preface/introduction.md)
   - [Cryptography](./cryptography/cryptography.md)
     - [Elliptic curves 101](cryptography/crypto-1/sources/PITCHME.link.md)
     - [Introduction to Schnorr signatures](./cryptography/digital_signatures/introduction.md)
