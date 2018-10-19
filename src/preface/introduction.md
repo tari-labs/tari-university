@@ -64,7 +64,8 @@ We have put the presentations and reports into categories of difficulty, interes
 - [Atomic Swaps](../protocols/atomic-swaps/AtomicSwaps.md) - Basics of Atomic Swaps
 - [Basics of Scriptless Scripts](../cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) - Basics of Scriptless Scripts
 - Introduction to Schnorr Signatures - An Introduction to Schnorr Signatures and Signature Aggregation
-  - [Basics](../cryptography/digital_signatures/basics.md) [Schnorr Signatures](../cryptography/digital_signatures/schnorr_signatures.md)
+  - [Basics](../cryptography/digital_signatures/basics.md) 
+  - [Schnorr Signatures](../cryptography/digital_signatures/schnorr_signatures.md)
 
 #### Beginners
 
