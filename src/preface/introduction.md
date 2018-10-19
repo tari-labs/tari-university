@@ -63,7 +63,8 @@ We have put the presentations and reports into categories of difficulty, interes
 - [Layer 2 Scaling Survey (Part 2)](../layer2scaling/more-landscape/landscape-update.md) - Presents an overview of different layer 2 scaling solutions being worked at today, as   well as a basic SWOT analysis of each
 - [Atomic Swaps](../protocols/atomic-swaps/AtomicSwaps.md) - Basics of Atomic Swaps
 - [Basics of Scriptless Scripts](../cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) - Basics of Scriptless Scripts
-- Introduction to Schnorr Signatures [Basics](../cryptography/digital_signatures/basics.md) [Schnorr Signatures](../cryptography/digital_signatures/schnorr_signatures.md) - An Introduction to Schnorr Signatures and Signature Aggregation
+- Introduction to Schnorr Signatures - An Introduction to Schnorr Signatures and Signature Aggregation
+[Basics](../cryptography/digital_signatures/basics.md) [Schnorr Signatures](../cryptography/digital_signatures/schnorr_signatures.md)
 
 #### Beginners
 
