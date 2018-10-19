@@ -15,7 +15,7 @@ SPV clients will believe everything miners or nodes tell them:
 - Node code modified
 - Lightweight clients don't verify coin amounts
 
-@div[s450px]
+@div[s250px]
 ![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
 @divend
 
