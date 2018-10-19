@@ -10,7 +10,6 @@ Peter modified the code for his node in order to deceive the Bitcoin wallet sinc
 
 <div align="center"><i>Courtesy: MIT Bitcoin Expo 2016 Day 1</i></div>
 
-
 ## Contents
 - [Fraud Proofs and SPV clients - easier said than done?](#fraud-proofs-and-spv-lightweight-clients---easier-said-than-done)
    - [Background](#background)
