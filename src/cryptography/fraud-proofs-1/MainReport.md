@@ -340,3 +340,5 @@ Where Tari is concerned, it would appear that the universal fraud proof proposal
 ## Contributors
 
 - [https://github.com/ksloven](https://github.com/ksloven)
+- [https://github.com/CjS77](https://github.com/CjS77)
+- [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
