@@ -6,9 +6,9 @@ The Bitcoin blockchain is, as of June 2018, approximately 173 Gigabytes in size 
 SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the screenshot above showing an Android client showing millions of Bitcoins. The wallet was sent a transaction 2.1 million BTC outputs [[17]]. 
 Peter modified the code for his node in order to deceive the Bitcoin wallet since the wallets can't verify coin amounts [[27]] (code can be found in the "Quick-n-dirty hack to lie to SPV wallets" branch on his GitHub repository).
 
-![todd-btc-spv.jpg](sources/todd-btc-spv.jpg)
+<p align="center"><img src="sources/todd-btc-spv.jpg" width="300" /></p>
 
-<div align="right"><i>Courtesy: MIT Bitcoin Expo 2016 Day 1</i></div>
+<div align="center"><i>Courtesy: MIT Bitcoin Expo 2016 Day 1</i></div>
 
 
 ## Contents
@@ -41,7 +41,7 @@ Peter modified the code for his node in order to deceive the Bitcoin wallet sinc
 
 In the original Bitcoin whitepaper, Satoshi recognized this and introduced the concept of a Simplified Payment Verification (SPV) [[2]], in which he describes a technique that allows verification of payments using a lightweight client that doesn't need to download the entire Bitcoin blockchain, but rather by only downloading block headers with the longest proof-of-work chain , which are achieved by obtaining the Merkle branch linking a transaction to a block [[3]]. The existence of Merkle root in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
 
-![proofofworkchain.png](sources/proofofworkchain.png)
+<p align="center"><img src="sources/proofofworkchain.png" width="700" /></p>
 
 <div align="right"><i>Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System</i></div>
 
@@ -118,7 +118,7 @@ Their proposition is to generalize the entire blockchain as a state transition s
 
 * `transaction(state,tx) = State or Error`
 
-![stateroot.png](sources/stateroot.png)
+<p align="center"><img src="sources/stateroot.png" width="500" /></p>
 
 <div align="right"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
 
@@ -140,7 +140,7 @@ Also expressed as this function:
 
 So a full node would send a light client/SPV this data to proof a valid fraud proof. The SPV would compute this function and if the transition root of the state root is different from the state root in the block then the block is rejected.
 
-![fraudproof.png](sources/fraudproof.png)
+<p align="center"><img src="sources/fraudproof.png" width="500" /></p>
 
 <div align="right"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
 
@@ -149,13 +149,13 @@ The post-state root can be excluded in order to save block space but that does, 
 ## How SPV clients work
 SPV clients make use of Bloom filters to receive transactions that are relevant to the user [[7]]. Bloom filters are probabilistic data structures used to check the existence of an element in a set quicker by responding with a boolean answer [[9]]
 
-![spv.png](sources/spv.png)
+<p align="center"><img src="sources/spv.png" width="600" /></p>
 
 <div align="right"><i>Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight Bitcoin Clients [[7]]</i></div>
 
 In addition to Bloom filters, SPV clients rely on Merkle trees [[26]] - binary structures that have a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network [[8]].
 
-![merkle-tree.png](sources/merkle-tree.png)
+<p align="center"><img src="sources/merkle-tree.png" width="800" /></p>
 
 Fraud proofs are integral to the security of SPV clients, however, the other components in SPV clients are not without issues. 
 
