@@ -41,20 +41,7 @@ This is the basic process we follow within Tari Labs. As an external contributor
 
 ## Upcoming Talks  
 
-To join the live presentation open the respective meeting link below. 
-
-| Presentation Link | 
-|---- |
-| [Fraud Proofs - Easier said than done?](https://zoom.us/j/484781502) |
-| [Grin vs. Beam, a Comparison](https://zoom.us/j/780395815 ) |
-| [Introduction to Digital Signatures](https://zoom.us/j/899157313)
-| [Grin Design Choice Criticisms](https://zoom.us/j/566651547)
-| [Mimblewimble-Grin Block Chain Protocol Overview](https://zoom.us/j/963423672)
-| [Applications of Byzantine Consensus Mechanisms (Part 1)](https://zoom.us/j/724823304)
-| [Bulletproofs and Mimblewimble (Part 1)](https://zoom.us/j/281575837)
-| [Regulatory directions in cryptocurrency](https://zoom.us/j/320773712)
-
-Detailed schedule is avaiable [here](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000)
+To join the live presentation meeting, view the detail report or to get a link to the presentation detail open the schedule available [here](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000)
 
 
 
