@@ -56,7 +56,7 @@ We have put the presentations and reports into categories of difficulty, interes
 - [Basics of Scriptless Scripts](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/) - Basics of Scriptless Scripts
 - [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/) - Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and which viable scaling alternatives exists for Tari
 
-#### Reports
+#### [Reports](../layer2scaling/more-landscape/landscape-update.md)
 
 - [Merged Mining](https://tari-labs.github.io/tari-university/merged-mining/merged-mining-scene/MergedMiningIntroduction.html) - Presents a fundamental understanding to the concept of merged mining, including definitions, relevant case studies and vector attacks
 - [Layer 2 Scaling Survey (Part 1)](https://tari-labs.github.io/tari-university/layer2scaling/layer2scaling-landscape/layer2scaling-survey.html) - Presents an overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each
