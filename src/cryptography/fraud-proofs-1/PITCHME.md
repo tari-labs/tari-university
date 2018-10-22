@@ -15,25 +15,9 @@ SPV clients will believe everything miners or nodes tell them:
 - Node code modified
 - Lightweight clients don't verify coin amounts
 
-@div[s250px]
-![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
-@divend
 
-+++
+<p align="center"><img src="sources/todd-btc-spv.jpg" width="301" /></p>
 
-## What are fraud proofs
-
-- Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV)
-
-- full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected irrespective of the amount of proof of work it has
-
-- An invalid block need not be of malicious intent, but could be as a result of other accounting errors
-
-- assumes a minimum of one honest node
-
-- Could help with scalability of blockchains and security of SPV
-
-- Satoshi didn't go into the details of how it could be done
 
 +++
 
@@ -50,6 +34,22 @@ An SPV client, however, contains :
 - a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
 or 
 - just a block header with no transactions
+
++++
+
+## What are fraud proofs
+
+- Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV)
+
+- full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected irrespective of the amount of proof of work it has
+
+- An invalid block need not be of malicious intent, but could be as a result of other accounting errors
+
+- assumes a minimum of one honest node
+
+- Could help with scalability of blockchains and security of SPV
+
+- Satoshi didn't go into the details of how it could be done
 
 +++
 
@@ -80,10 +80,8 @@ Proposition:
 - represent the entire state as a Merkle root using a Sparse Merkle tree
 - each transaction changes the state root of the blockchain
   - `transaction(state,tx) = State or Error`
-
-@div[s650px]
-![stateroot](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/stateroot.png)
-@divend
+  
+<p align="center"><img src="sources/stateroot.png" width="500" /></p>
 
 +++
 ## Universal fraud proof (Cont'n)
@@ -98,9 +96,9 @@ Proposition:
 - full node sends lightclient/SPV this data to proof a valid fraud proof
 - SPV computes this function.
 
-@div[s650px]
-![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
-@divend
+
+<p align="center"><img src="sources/fraudproof.png" width="500" /></p>
+
 
 - post-state root can be excluded in order to save block space
 - But this increase the fraud proof size
@@ -113,7 +111,6 @@ Proposition:
 ##### Strengths
 - memory light
 - user adoption
-- Low transaction fees
 
 +++
 
@@ -138,7 +135,6 @@ Proposition:
     - helps with data availability
     - allows a piece of data M chunks long to be expanded into a piece of data N chunks long
     - any M of the N chunks can be used to recover the original data
-
 
 
 +++
