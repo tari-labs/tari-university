@@ -31,6 +31,7 @@ If you are considering contributing content to Tari Labs University, please be a
 ### The Submission Process 
 
 This is the basic process we follow within Tari Labs. As an external contributor, we'd appreciate it if you followed the same process.
+
    1. Get some agreement from the community that the topic is of interest.
    2. Write up your report.
    3. Push a first draft of your report as a Pull Request.
@@ -41,7 +42,3 @@ This is the basic process we follow within Tari Labs. As an external contributor
 ## Upcoming Talks  
 
 *To join the live presentation meeting, get a link to the GitPitch presentation or to view the detail report online open the schedule available [**here**](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000).*
-
-
-
-
