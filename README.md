@@ -38,19 +38,20 @@ This is the basic process we follow within Tari Labs. As an external contributor
    5. The report gets merged into master. 
    6. Receive the Fame and acclaim that is due.
 
-## Upcoming Talks  
+## Future Topics 
 
- Date | Topic 
+View our pipeline<sup id="a1">[*](#f1)</sup> below. 
+
+\# | Topic 
 ---- | ----
-22 October | Fraud Proofs - Easier said than done? 
-29 October | Grin vs. Beam, a Comparison
-5 November | Introduction to Digital Signatures
-12 November | Grin Design Choice Criticisms
-19 November | Mimblewimble-Grin Block Chain Protocol Overview
-26 November | Applications of Byzantine Consensus Mechanisms
-3 December | Bulletproofs and Mimblewimble
-10 December | Regulatory directions in cryptocurrency
+1 | Fraud Proofs - Easier said than done? 
+2 | Grin vs. Beam, a Comparison
+3 | Introduction to Digital Signatures
+4 | Grin Design Choice Criticisms
+5 | Mimblewimble-Grin Block Chain Protocol Overview
+6 | Applications of Byzantine Consensus Mechanisms
+7 | Regulatory directions in cryptocurrency
 
+<br>
 
-
-
+<i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
