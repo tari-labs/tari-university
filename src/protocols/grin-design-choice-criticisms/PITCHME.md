@@ -1,4 +1,4 @@
-## Bulletproofs and Mimblewimble
+## Grin Design Choice Criticisms - Truth or Fiction
 
 - Topic 1 ???
 
@@ -19,7 +19,7 @@
 Sample image below, set at 450 pixels width
 
 @div[s450px]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs/cryptography/bulletproofs-and-mimblewimble/sources/sample.PNG)
+![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/grin/protocols/grin-design-choice-criticisms/sources/sample.PNG)
 @divend
 
 +++
@@ -31,7 +31,7 @@ Sample image below, set at 450 pixels width
 Sample side by side image (set at 250 pixels width, aligned center) and text (aligned left) inside div containers. [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
 
 @div[left-50 s250px text-center]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs/cryptography/bulletproofs-and-mimblewimble/sources/sample.PNG)
+![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/grin/protocols/grin-design-choice-criticisms/sources/sample.PNG)
 @divend
 
 @div[right-50 text-left]
