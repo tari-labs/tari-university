@@ -38,8 +38,7 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
 
 The basis of confidential transactions are to replace the input and output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive) while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate proofs, including rangeproofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $ and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
 
-Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs. The
-logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see **Figure 1**). ([[1]], [[3]], [[5]])
+Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see **Figure 1**). ([[1]], [[3]], [[5]])
 
 <p align="center"><img src="sources/AggregateBulletproofsSize.png" width="650" /></p>
 
@@ -82,7 +81,7 @@ Bulletproofs have wide application ([[1]], [[3]], [[6]]) and can be efficiently 
 - Assets / smart contracts / crypto-derivatives
   - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts.
 - Verifiable shuffles
-  - 
+  - When a proof is needed that one list of values $x_1, ... , x_n$ is a permutation of a second list of values  $y_1, ... , y_n$ it is called a verifiable shuffle. It has many applications in for example voting and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$. 
 
 
 ## Interesting Bulletproof Implementation Snippets
