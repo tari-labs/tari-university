@@ -40,7 +40,16 @@ This is the basic process we follow within Tari Labs. As an external contributor
 
 ## Upcoming Talks  
 
-*To join the live presentation meeting, get a link to the GitPitch presentation or to view the detail report online open the schedule available [**here**](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000).*
+ Date | Topic 
+---- | ----
+22 October | Fraud Proofs - Easier said than done? 
+29 October | Grin vs. Beam, a Comparison
+5 November | Introduction to Digital Signatures
+12 November | Grin Design Choice Criticisms
+19 November | Mimblewimble-Grin Block Chain Protocol Overview
+26 November | Applications of Byzantine Consensus Mechanisms
+3 December | Bulletproofs and Mimblewimble
+10 December | Regulatory directions in cryptocurrency
 
 
 
