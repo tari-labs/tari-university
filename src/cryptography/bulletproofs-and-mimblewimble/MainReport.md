@@ -15,14 +15,16 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 
 Mimblewimble is a block chain designed for confidential transactions. The essence is that a Pedersen commitment to 0 can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be 0. A prover constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The block chain consists only of block-headers, remaining UTXOs with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the block chain. [[1]]
 
+
+
 ## Contents
 
 - [Bulletproofs and Mimblewimble](#bulletproofs-and-mimblewimble)
   - [Introduction](#introduction)
   - [Contents](#contents)
   - [How does Bulletproofs work?](#how-does-bulletproofs-work)
-  - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Applications for Bulletproofs](#applications-for-bulletproofs)
+  - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
     - [Current & Past Efforts](#current--past-efforts)
     - [Wallet Reconstruction - Grin](#wallet-reconstruction---grin)
@@ -32,7 +34,7 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
   - [References](#references)
   - [Contributors](#contributors)
 
-## 
+
 
 ## How does Bulletproofs work?
 
@@ -48,6 +50,71 @@ In Bitcoin, approximately 50 million Unspent Transaction Outputs (UTXO) from app
 
 In Mimblewimble the block chain grows with the size of the UTXO set. Using Bulletproofs as a drop-in replacement for range proofs in confidential transactions, the size would only grow with the number of transactions that have unspent outputs, thus much smaller than the size of the UTXO set. [[1]]
 
+
+
+## Applications for Bulletproofs
+
+Bulletproofs have wide application ([[1]], [[3]], [[6]]) and can be efficiently used for many types of proofs. These are summarized below.
+
+### Bulletproof Protocols
+
+In [[1]] three protocols were suggested in using Bulletproofs (*see Appendix B for notations used*).
+
+**Protocol 1**
+
+The inputs to the inner-product argument are independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $, and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that such that $
+P =g^ah^b $ and $ c = \langle \mathbf {a}, \mathbf {b} \rangle $. 
+
+The inner product argument is an efficient proof system for the following relation:
+
+$$
+\{ (g,h \in \mathbb G^n \,\, , \,\, P \in \mathbb G \,\, , \,\, c \in \mathbb Z_p \,\, ; \,\,   \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \, : \,\,\, P =g^ah^b \, \wedge \, c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
+$$
+
+Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier*, for a given $ P \in \mathbb G $, the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to among $ g,h \in \mathbb G^n $. 
+$$
+\{ (g,h \in \mathbb G^n \,\, , \,\, u,P \in \mathbb G \,\, ; \,\, \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \, : \,\,\, P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
+$$
+
+A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required.
+
+The element $ u $ is raised to a *verifier* chosen power $ x $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from Protocol 2 satisfy $ c = \langle \mathbf {a}, \mathbf {b} \rangle $
+$$
+Prover's \,\, input \,\, : \,\, (g,h,P,c,\mathbf{a},\mathbf{b}) \\
+Verifier's \,\, input: \,\, (g,h,P,c) \\
+$$
+
+
+**Protocol 2**
+
+$ \ref{aaa} $ 
+
+**Protocol 3**
+
+
+
+
+
+Applications of Bulletproofs are listed below. Pleas note this list may not be exhaustive.
+
+- Rangeproofs
+  - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
+- Merkle proofs
+  - In this context a full node (*verifier*) maintains a complete copy of the merkle tree and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the merkle tree in some block <code>B</code> with block header <code>H</code>.  [[7]] This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK.
+- Proof of solvency
+  - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol. Using Bulletproofs and its variant protocols proposed in [[1]] this size could be reduced to approximately 62MB.
+- Multi-signatures with deterministic nonces
+  - With bulletproofs every signatory can prove that their nonce was generated deterministically. A sha256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and rejoin later on, with no memory of interacting with the other parties they were previously interacting with.
+- Scriptless Scripts
+  - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a sigma protocol. This can now all be done with bulletproofs, which could be extended to allow assets that are functions of other assets - crypto derivatives perhaps.
+- Assets / smart contracts / crypto-derivatives
+  - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts. 
+    ?????
+- Verifiable shuffles
+  - When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$. 
+
+
+
 ## Comparison to other Zero-knowledge Proof Systems
 
 The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. Bulletproofs is unique in that it is not interactive, has short proof size, does not require a trusted setup and is practical to implement. These attributes make Bulletproofs extremely desirable to use as rangeproofs in cryptocurrencies.
@@ -62,26 +129,6 @@ The table below shows a high level comparison between Sigma Protocols (i.e. inte
 | <b>Practical</b>     | yes             | yes             | not   quite                           | somewhat     | yes            |
 | <b>Assumptions</b>   | discrete   log  | non-falsifiable | quantum secure One-way Function (OWF) | discrete log | discrete   log |
 
-
-
-## Applications for Bulletproofs
-
-Bulletproofs have wide application ([[1]], [[3]], [[6]]) and can be efficiently used for :
-
-- Rangeproofs
-  - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
-- Merkle proofs
-  - In this context a full node (*verifier*) maintains a complete copy of the merkle tree and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the merkle tree in some block <code>B</code> with block header <code>H</code>.  [[7]] This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK.
-- Proof of solvency
-  - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol. Using Bulletproofs and its variant protocols proposed in [[1]] this size could be reduced to approximately 62MB.
-- Multi-signatures with deterministic nonces
-  - With bulletproofs every signatory can prove that their nonce was generated deterministically. A sha256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and rejoin later on, with no memory of interacting with the other parties they were previously interacting with.
-- Scriptless Scripts
-  - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a sigma protocol. This can now all be done with bulletproofs, which could be extended to allow assets that are functions of other assets - crypto derivatives perhaps.
-- Assets / smart contracts / crypto-derivatives
-  - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts.
-- Verifiable shuffles
-  - When a proof is needed that one list of values $x_1, ... , x_n$ is a permutation of a second list of values  $y_1, ... , y_n$ it is called a verifiable shuffle. It has many applications in for example voting and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$. 
 
 
 ## Interesting Bulletproof Implementation Snippets
@@ -100,6 +147,12 @@ Bulletproofs have wide application ([[1]], [[3]], [[6]]) and can be efficiently 
 
 [[30]]
 
+### Security Considerations
+
+[[8]] and  [[9]] and [[11]]
+
+[[14]] and [[31]] and [[32]]
+
 ### Wallet Reconstruction - Grin
 
 See  [[35]]
@@ -113,10 +166,14 @@ See  [[35]]
 
 ???
 
+
+
 ## Negatives
 
 - A discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding (*i.e. confidential*), but only computationally binding (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
 - 
+
+
 
 ## Conclusions, Observations, Recommendations
 
@@ -124,100 +181,7 @@ See  [[35]]
 -  
 - 
 
-## Definition of Terms
 
-Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
-
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables $ (a_1, ..., a_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]]
-
-[ac~]: #ac
-"An arithmetic circuit over a field 
-and variables (a1, ..., an) is a 
-directed acyclic graph ..."
-
-- <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. In this report the terms *proof* and *argument of knowledge* have exactly the same meaning and can be used interchangeably. [[29]]
-
-[afs~]: #afs
-"Proof systems with computational 
-soundness like Bulletproofs are 
-sometimes called argument systems."
-
-- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[36]], [[37]])
-
-[cs~]: #cs
-"A commitment scheme in a 
-zero-knowledge proof is a 
-cryptographic primitive ..."
-
-- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers  $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
-
-[dlp~]: #dlp
-"In the mathematics of the real 
-numbers, the logarithm log_b(a) 
-is a number x such that ..."
-
-- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[43]], [[44]], [[45]])
-
-[egc~]: #egc
-"An ElGamal Commitment is a 
-Pedersen Commitment with
-additional commitment  ..."
-
-- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
-  - The prover will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the verifier and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the verifier then contains the challenge $ c $ and response $ f $.
-  - The verifier is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The verifier will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
-  - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
-
-[fsh~]: #fsh
-"The Fiat–Shamir heuristic is a 
-technique in cryptography to 
-convert an interactive ..."
-
-- *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, nonce is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
-
-[nonce~]: #nonce
-"In security engineering, nonce is an 
-abbreviation of number used once. 
-In cryptography, a nonce is an arbitrary 
-number  ..."
-
-- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
-  - The generalized Pedersen commitment definition follows:
-    - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $
-    - Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $, and let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $, respectively
-    - Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $
-    - Let $ h $ be a random generator of cyclic group $ G $ such that $ h $ is an element of $ \mathbb Z_q^* $
-    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $
-    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $ 
-    - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
-    - The generator $ h $ and resulting number $ g $ are known as the commitment bases, and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
-    - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $
-  - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
-  - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
-
-[pc~]: #pc
-"A Pedersen Commitment scheme is a cryptographic
-primitive that allows one to commit to a
-secret value (or statement) without ..."
-
-- <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
-
-[ts~]: #ts
-
-- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
-  - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
-  - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
-  - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any confidential information from the interaction with the prover apart from the fact that the statement is true.
-
-[zk~]: #zk
-"In cryptography, a zero-knowledge 
-proof/protocol is a method by which 
-one party (the prover) can convince ..."
-
-- Term ?:<a name="term?"> </a>Definition ?
-
-[term?~]: #zk
-"Definition ?  ..."
 
 ## References
 
@@ -269,11 +233,26 @@ Bünz B. et al"
 [7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs
 "Merkle Root and Merkle Proofs"
 
+[[8]] Bulletproofs audit: fundraising, https://forum.getmonero.org/22/completed-tasks/90007/bulletproofs-audit-fundraising, Date accessed: 2018-10-23.
+
+[8]: https://forum.getmonero.org/22/completed-tasks/90007/bulletproofs-audit-fundraising
+"Bulletproofs audit: fundraising"
+
+[[9]] The QuarksLab and Kudelski Security audits of Monero Bulletproofs are Complete, https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-bulletproofs-are-complete, Date accessed: 2018-10-23.
+
+[9]: https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-bulletproofs-are-complete
+"The QuarksLab and Kudelski Security audits of Monero Bulletproofs are Complete"
+
 [[10]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
 [10]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup
 "Bulletproofs presentation at Feb 2 Milan 
 Meetup (Andrew Poelstra), Reddit"
+
+[[11]] The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched, https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-bulletproofs-is-complete-critical-bug-patched, Date accessed: 2018-10-23.
+
+[11]: https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-bulletproofs-is-complete-critical-bug-patched/
+"The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched"
 
 [[12]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-21.
 
@@ -284,6 +263,11 @@ Meetup (Andrew Poelstra), Reddit"
 [13]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf
 "Linear Algebra with Sub-linear Zero-Knowledge 
 Arguments, Groth J."
+
+[[14]] The XEdDSA and VXEdDSA Signature Schemes, Perrin T, 2016-10-20, https://signal.org/docs/specifications/xeddsa & https://signal.org/docs/specifications/xeddsa/xeddsa.pdf, Date accessed: 2018-10-23.
+
+[14]: https://signal.org/docs/specifications/xeddsa
+"The XEdDSA and VXEdDSA Signature Schemes"
 
 [[15]] Confidential  Assets, Poelstra A. et al., Blockstream, https://blockstream.com/bitcoin17-final41.pdf, Date accessed: 2018-09-25.
 
@@ -384,6 +368,26 @@ no Trusted Setup"
 "GitHub: mimblewimble/secp256k1-zkp, Fork of 
 secp256k1-zkp for the Grin/MimbleWimble project"
 
+[[31]] Climbing the elliptic learning curve (was: Re: Finalizing XEdDSA), https://moderncrypto.org/mail-archive/curves/2017/000846.html, Date accessed: 2018-10-23.
+
+[31]: https://moderncrypto.org/mail-archive/curves/2017/000846.html
+""Climbing the elliptic learning curve (was: Re: Finalizing XEdDSA)
+
+[[32]] SafeCurves: choosing safe curves for elliptic-curve cryptography, http://safecurves.cr.yp.to/, Date accessed: 2018-10-23.
+
+[?]: http://safecurves.cr.yp.to/
+"SafeCurves: choosing safe curves for elliptic-curve cryptography"
+
+[[33]] , , Date accessed: 2018-10-?.
+
+[?]:  
+""
+
+[[34]] , , Date accessed: 2018-10-?.
+
+[?]:  
+""
+
 [[35]] GitHub: mimblewimble/grin, Bulletproofs #273, https://github.com/mimblewimble/grin/issues/273, Date  accessed: 2018-09-10.
 
 [35]: https://github.com/mimblewimble/grin/issues/273
@@ -456,6 +460,129 @@ Tsiounis Y. et al."
 
 [?]:  
 ""
+
+
+
+## Appendices
+
+### Appendix A: Definition of Terms
+
+Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
+
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables $ (a_1, ..., a_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]]
+
+[ac~]: #ac
+
+"An arithmetic circuit over a field 
+and variables (a1, ..., an) is a 
+directed acyclic graph ..."
+
+- <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. In this report the terms *proof* and *argument of knowledge* have exactly the same meaning and can be used interchangeably. [[29]]
+
+[afs~]: #afs
+
+"Proof systems with computational 
+soundness like Bulletproofs are 
+sometimes called argument systems."
+
+- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[36]], [[37]])
+
+[cs~]: #cs
+
+"A commitment scheme in a 
+zero-knowledge proof is a 
+cryptographic primitive ..."
+
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers  $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
+
+[dlp~]: #dlp
+
+"In the mathematics of the real 
+numbers, the logarithm log_b(a) 
+is a number x such that ..."
+
+- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[43]], [[44]], [[45]])
+
+[egc~]: #egc
+
+"An ElGamal Commitment is a 
+Pedersen Commitment with
+additional commitment  ..."
+
+- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
+  - The prover will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the verifier and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the verifier then contains the challenge $ c $ and response $ f $.
+  - The verifier is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The verifier will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
+  - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
+
+[fsh~]: #fsh
+
+"The Fiat–Shamir heuristic is a 
+technique in cryptography to 
+convert an interactive ..."
+
+- *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, nonce is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
+
+[nonce~]: #nonce
+
+"In security engineering, nonce is an 
+abbreviation of number used once. 
+In cryptography, a nonce is an arbitrary 
+number  ..."
+
+- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
+  - The generalized Pedersen commitment definition follows (*see Appendix B for notations used*):
+    - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $ 
+    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $ 
+    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $ 
+    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $ 
+    - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
+    - The generator $ h $ and resulting number $ g $ are known as the commitment bases, and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
+    - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
+  - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
+  - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
+
+[pc~]: #pc
+
+"A Pedersen Commitment scheme is a cryptographic
+primitive that allows one to commit to a
+secret value (or statement) without ..."
+
+- <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
+
+[ts~]: #ts
+
+- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
+  - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
+  - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
+  - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any confidential information from the interaction with the prover apart from the fact that the statement is true.
+
+[zk~]: #zk
+
+"In cryptography, a zero-knowledge 
+proof/protocol is a method by which 
+one party (the prover) can convince ..."
+
+- Term ?:<a name="term?"> </a>Definition ?
+
+[term?~]: #zk
+
+"Definition ?  ..."
+
+
+
+### Appendix B: Notations Used
+
+The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
+
+- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively
+- let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively
+- Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
+- Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
+- Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively
+- Let $  \mathbf {a} \in \mathbb F^n $ be a vector with elements  $  a_1 \cdot b_1 \,  ,  \, . . .  \, , \,  a_n \cdot b_n \in F^n $ 
+- Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sideset{}{_{i=1}^n} \sum {a_i \cdot b_i} $ denote the inner product between two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
+- Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \,  ,  \, . . .  \, , \,  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $  
+- Let $  \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $  \mathbf {a}  \in \mathbb Z^n $ and  $ \mathbf {b}  \in \mathbb Z^m $ then $ \mathbf {a} \parallel \mathbf {b}  \in \mathbb Z_p^{n+m} $ 
 
 
 
