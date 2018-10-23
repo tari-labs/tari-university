@@ -10,6 +10,26 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
 
 - [Introduction](#introduction)
 - [Terminology](#terminology)
+  -[Consensus](#consensus)
+  -[Binary Consensus](#binary-consensus)
+  -[Byzantine Fault Tolerance](#byzantine-fault-tolerance)
+  -[PBFT Variants](#pbft-variants)
+  -[Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
+  -[Scalability-performance trade off](#scalability-performance-trade-off)
+  -[Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
+    -[Synchrony](#synchrony)
+    -[Partial Synchrony](#partial-synchrony)
+    -[Unknown-△T Model](#unknown-△t-model)
+    -[Eventually Synchronous]
+    -[Weak Synchrony]
+    -[Random Synchrony]
+    -[Asynchrony]
+      -[Counting rounds in asynchronous networks]
+      -[The Problem with Timing Assumptions]
+  -[Denial of Service Attack]
+  -[The FLP Impossibility]
+  -[Randomized Agreement]
+  -[Gossip Protocol] 
 - [A brief survey of BFT Consensus Mechanisms](#a-brief-survey-of-bft-consensus-mechanisms)
 - [Permissioned Block Chains](#permissioned-block-chains)
   - [Hyperledger Fabric (HLF)](#hyperledger-fabric-hlf)
@@ -39,13 +59,13 @@ Important to consider is the 'scalability trilemma'; a phrase referred to by Vit
 
 **Decentralization** : a core principle on which majority of the systems are build, taking into account censorship-resistance and ensuring that everyone, without prejudice, is permitted to partake in the decentralized system. 
 
-**Scalability**: encompasses the ability of the network to process transactions. Thus, if a public block chain is deemed to be efficient, effective and usable, it should be designed to handle millions of users on the network. 
+**Scalability** : encompasses the ability of the network to process transactions. Thus, if a public block chain is deemed to be efficient, effective and usable, it should be designed to handle millions of users on the network. 
 
-**Security**: refers to the immutability of the ledger and takes into account, protects against the threat of 51% attacks, Sybil attacks and DDoS attacks etc. 
+**Security** : refers to the immutability of the ledger and takes into account threats of 51% attacks, Sybil attacks and DDoS attacks etc. 
 
 Through the recent development of this ecosystem, most block chains have focused on two of the three factors, namely decentralization and security; at the expense of scalability. The primary reason for this is that nodes must reach consensus before transactions can be processed. [[19]]
 
-This paper sees the examination of proposals considering Byzantine Consensus Mechanism (BFT) and considers their feasibility and efficiency  in meeting the characteristics of scalability, decentralization and security. In each instance the protocol assumptions; reference implementations and discernment on whether the protocol may be used for Tari as a means to maintain the distributed asset state will be assessed. 
+This report sees the examination of proposals considering Byzantine Consensus Mechanism (BFT) and considers their feasibility and efficiency  in meeting the characteristics of scalability, decentralization and security. In each instance the protocol assumptions, reference implementations and discernment on whether the protocol may be used for Tari as a means to maintain the distributed asset state will be assessed. 
 
 ## Terminology
 
@@ -61,7 +81,7 @@ When all non-faulty agents agree on a given fact, then we say that the network i
 
 Consensus is achieved when all non-faulty agents, agree on a prescribed fact. 
 
-There are a host own formal requirements which a consensus protocol may adhere to; these include:
+There are a host of formal requirements which a consensus protocol may adhere to; these include:
 
 - **Agreement:** Where all correct processes agree on the same fact 
 - **Weak Validity:** Where for all correct processes, the output must be the input for some correct process
@@ -102,7 +122,7 @@ Protocols like HoneyBadger BFT fall into this class of nondeterministic protocol
 
 ### *Scalability-performance trade off* 
 
-As briefly mentioned in the [Introduction](#introduction), the scalability of BFT protocols considering the number of participants is highly limited and the performance of most protocols deteriorates as the number of involved replicase increases. This effect is especially problematic for BFT deployment in permission-less block chains. [[7]]
+As briefly mentioned in the [Introduction](#introduction), the scalability of BFT protocols considering the number of participants is highly limited and the performance of most protocols deteriorates as the number of involved replicas increases. This effect is especially problematic for BFT deployment in permission-less block chains. [[7]]
 
 The problem of BFT scalability is twofold: a high throughput as well as a large consensus group with good reconfigurability that can tolerate a high number of failures are both desirable properties in BFT protocols, but are often in direct conflict. 
 
@@ -148,7 +168,7 @@ In terms of feasibility, both weak and partially synchronous protocols are equiv
 
 #### Random Synchrony
 
-Messages are delivered with random delays, such that the average delay is finite. There many be periods of arbitrarily long days (this is a weaker assumption than weak synchrony, and only a bit stronger than full asynchrony, where the only guarantee is that messages are eventually delivered). It is impossible to tell whether an instance has failed by completely stopping or if there is just a delay in message delivery. [[1]]
+Messages are delivered with random delays, such that the average delay is finite. There may be periods of arbitrarily long days (this is a weaker assumption than weak synchrony, and only a bit stronger than full asynchrony, where the only guarantee is that messages are eventually delivered). It is impossible to tell whether an instance has failed by completely stopping or if there is just a delay in message delivery. [[1]]
 
 #### Asynchrony 
 
@@ -163,8 +183,6 @@ As will be discussed in [The FLP Impossibility](#the-flp-impossibility), FLP res
 Although the guarantee of eventual delivery is decoupled from notions of 'real time', it is nonetheless desirable to characterize the running time of asynchronous protocols. The standard approach is for the adverse to assign each message a virtual round number, subject to the condition that every (*r*-1) message between correct nodes must be delivered before any (*r*+1) message is sent. 
 
 ### *The Problem with Timing Assumptions* 
-
-Protocols based on timing assumptions are unsuitable for decentralized, cryptocurrency settings, where network links can be unreliable, network speeds change rapidly, and network delays may even be adversarially induced. [[6]]
 
 The problem with both synchronous and partially synchronous assumptions is that "the protocols based on timing assumptions are unsuitable for decentralized, cryptocurrency settings, where network links can be unreliable, network speeds change rapidly, and network delays may even be adversarially induced."[[6]]
 
@@ -184,7 +202,7 @@ This kind of failure detection is not possible in an asynchronous setting, as th
 
 ### Randomized Agreement 
 
-Deterministic asynchronous protocols are impossible for most tasks. While the vast majority of practical BFT protocol steer clear of this impossibility result by making timing assumptions, randomness (and, in particular, cryptography) providers an alternative route. Indeed, we know of asynchronous BFT protocols for a variety of tasks such as binary agreement (ABA), reliable broadcast (RBC) and more. [[6]]
+Deterministic asynchronous protocols are impossible for most tasks. While the vast majority of practical BFT protocols steer clear of this impossibility result by making timing assumptions, randomness (and, in particular, cryptography) providers an alternative route. Indeed, we know of asynchronous BFT protocols for a variety of tasks such as binary agreement (ABA), reliable broadcast (RBC) and more. [[6]]
 
 ### Gossip Protocol 
 
@@ -233,7 +251,7 @@ It may be the case that it takes time before nodes in the protocol detect the fo
 
 #### Strongly seeing
 
-See [HashGraph](#HashGraph): If a node examines its hash graph and notices that an event z _sees_ an event x, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees x; then it is said that according to this node, that z _strongly sees_ x.
+See [HashGraph](#hashgraph): If a node examines its hash graph and notices that an event z _sees_ an event x, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees x; then it is said that according to this node, that z _strongly sees_ x.
 
 The following example comes from [[30]]:
 
@@ -243,7 +261,7 @@ The following example comes from [[30]]:
 
 The main consensus algorithm loop consists of every node (Alice), selecting a random peer node (Bob) and sharing their graph history. Now Alice and Bob have the same graph history.
 
-Alice and Bob both create a new event with the new knowledge they havve just learnt from their peer.
+Alice and Bob both create a new event with the new knowledge they have just learnt from their peer.
 
 Alice repeats this process continuously.
 
@@ -311,7 +329,7 @@ Byzantine agreement schemes are considered well suited for permission block chai
 
 Hyperledger began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source cross-industry standard platform for distributed ledgers. Hyperledger Fabric is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. [[11]]
 
-The block chains hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since hyper ledge fabric proposes to follow Practical Byzantine Fault Tolerance, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
+The block chains hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since hyper ledge fabric proposes to follow Practical Byzantine Fault Tolerance, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
 
 A prominent example for permission block chain platforms is Hyperledger Fabric (HLF). While being redesigned for a v1.0 release, the formats goal was to achieve extensibility. HLF v1.0 allows for multiple of its modules to be exchanged, *viz* membership service, consensus mechanism. Being permission, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
 
