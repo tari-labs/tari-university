@@ -31,7 +31,7 @@ A full Bitcoin node contains the following details:
 +++
 
 An SPV client, however, contains :
-- a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
+- a block header with transaction data relative to the client including other transactions required to compute the Merkle root
 or 
 - just a block header with no transactions
 
@@ -101,7 +101,7 @@ Proposition:
 
 
 - post-state root can be excluded in order to save block space
-- But this increase the fraud proof size
+- But this increases the fraud proof size
 
 +++
 
