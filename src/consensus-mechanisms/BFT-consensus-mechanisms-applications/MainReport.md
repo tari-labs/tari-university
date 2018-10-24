@@ -331,7 +331,7 @@ Hyperledger began as a project under the LinX Foundation in early 2016 [[13]], w
 
 The block chains hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since hyper ledge fabric proposes to follow Practical Byzantine Fault Tolerance, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
 
-A prominent example for permission block chain platforms is Hyperledger Fabric (HLF). While being redesigned for a v1.0 release, the formats goal was to achieve extensibility. HLF v1.0 allows for multiple of its modules to be exchanged, *viz* membership service, consensus mechanism. Being permission, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
+A prominent example for permission block chain platforms is Hyperledger Fabric (HLF). While being redesigned for a v1.0 release, the formats goal was to achieve extensibility. HLF v1.0 allows for multiple of its modules to be exchanged, *viz* membership service, consensus mechanism. Being permissioned, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
 
 ### Tendermint
 
@@ -341,7 +341,7 @@ Tendermint is modeled as a deterministic protocol, live under partial synchrony,
 
 Tendermint rotates through the validator set, i.e. block proposers, in a weighted round-robin fashion. The more stake that a validator has delegated to them, the more weight that they have, and the proportionally more times they will be elected as leaders. 
 
-Critics have argued that Tenderloin is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them , sniffling the progression of the chain. Although Sentry Architecture in Tendermint has been implemented, the argument on the degree of decentralization is still questionable. 
+Critics have argued that Tendermint is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them , sniffling the progression of the chain. Although Sentry Architecture in Tendermint has been implemented, the argument on the degree of decentralization is still questionable. 
 
 ## Permissionless Block Chains 
 
@@ -357,7 +357,7 @@ Paxos proceeds through a set of negotiation rounds, with one node having 'Leader
 
 ### Chandra-Toueg
 
-The Chandra–Toueg consensus algorithm, was published by Tushar Deepak Chandra and Sam Toueg in 1996. It relies on a special node that acts as a failure detector. In essence, it pings other nodes to make sure they're still responsive.
+The Chandra–Toueg consensus algorithm was published by Tushar Deepak Chandra and Sam Toueg in 1996. It relies on a special node that acts as a failure detector. In essence, it pings other nodes to make sure they're still responsive.
 
 This implies that the detector stays online and that the detector must continuously be made aware when new nodes join the network.
 
@@ -455,7 +455,7 @@ It can be applied in permissionless networks using proof-of-work. Network robust
 
 ### Avalanche
 
-This consensus protocol was first seen in the WhitePaper entitled "Snowflake to Avalanche". Outlined in the paper are four protocols which are building blocks forming a protocol family. The leaderless Byzantine fault tolerance protocols are build on a metastable mechanism and are referred to as: Slush; Snowflake; Snowball and Avalanche
+This consensus protocol was first seen in the WhitePaper entitled "Snowflake to Avalanche". Outlined in the paper are four protocols which are building blocks forming a protocol family. The leaderless Byzantine fault tolerance protocols are build on a metastable mechanism and are referred to as: Slush; Snowflake; Snowball and Avalanche.
 
 The protocols published by Team Rocket differ from the traditional consensus protocols and the Nakamoto consensus protocols by not requiring an elected leader, but instead the protocol simply guides all the nodes to consensus. 
 
@@ -479,17 +479,15 @@ Now despite assuming a synchronous network; which is susceptible to the DoS atta
 
 PARSEC is a byzantine fault tolerant consensus algorithm possessing **weak synchrony** assumptions (highly asynchronous, assuming random delays with finite expected value)
 
-Similar to Hashgraph, it has no leaders, no round robin, no proof of work and reaches eventual consensus with probability one. If differs from Hashgraph, in that it provides high speed in the absence and presence of faults.  Thus, it avoids the structures of delegated proof of stake, which requires a trusted set of leaders, and does not have a round robin (where a set of instated miners sign each block)
+Similar to Hashgraph, it has no leaders, no round robin, no proof of work and reaches eventual consensus with probability one. It differs from Hashgraph, in that it provides high speed in the absence and presence of faults.  Thus, it avoids the structures of delegated proof of stake, which requires a trusted set of leaders, and does not have a round robin (where a set of instated miners sign each block)
 
 It is fully open, unlike Hashgraph, which is patented and closed sourced and the GPLv3 written in Rust will soon be available. [[1]]
 
-"The general problem of reaching Byzantine agreement on any value is reduced to the simple problem of reaching binary Byzantine agreement not eh nodes participating in each agreement protocol". [[5]]
+"The general problem of reaching Byzantine agreement on any value is reduced to the simple problem of reaching binary Byzantine agreement on the nodes participating in each agreement protocol". [[5]]
 
 Similar to Honeybadger BFT, this protocol is composed through the additions of interesting ideas presented in literature. 
 
 Like Hashgraph and Avalanche, a gossip protocol is used to allow efficient communication between nodes. [[1]]
-
-"The general problem of reaching Byzantine agreement on any value is reduced to the simpler problem of reaching binary Byzantine agreement on the nodes participating in each decision. This allows it to reuse the elegant binary Byzantine agreement protocol after adapting it to the gossip protocol". [[2]]
 
 Finally, the need for a trusted leader or a trusted setup phase implied is removed by porting the key ideas to an asynchronous setting [[3]]
 
@@ -514,14 +512,14 @@ copy of the gossip graph.
 
 PARSEC also uses the concept of a *concrete coin*, from Algorand that is used to break ties; particularly in cases where an adversary is carefully managing communication between nodes in order to maintain a deadlock on votes.
 
-First nodes, try and converge on a 'true' result for a set of results. If this is not achieved, they move onto step 2, which is trying to converge on a 'false' result. If consensus still cannot be reached, a coin flip is made and we go back to step 1
+First nodes try and converge on a 'true' result for a set of results. If this is not achieved, they move onto step 2, which is trying to converge on a 'false' result. If consensus still cannot be reached, a coin flip is made and we go back to step 1
 in another voting round.
 
 Similar to HashGraph, it is not clear that PARSEC will scale well as _n_ grows to millions of nodes. 
 
 ## Democratic BFT
 
-This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator. This protocol is implemented in the Red Belly Block chain and is said to achieve 30 000 transactions/second on Amazon Cloud Trials [[36]] 
+This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator. This protocol is implemented in the Red Belly Block chain and is said to achieve 30 000 transactions/second on Amazon Cloud Trials [[36]], Through the coupling with an optimized variant of the reduction of multivalve to binary consensus from Ben-Or et al., the Democratic Byzantine Fault Tolerant (DBFT) consensus algorithm was generated which terminates in 4 message delays in the good case, when all non-faulty processes propose the same value. [[17]]
 
 The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or slow coordinator unlike previous algorithms that do not have the ability to terminate. The fundamental idea here is to allow processes to complete asynchronous rounds as soon as they receive a threshold of messages, instead of having to wait for a message from a coordinator that may be slow. 
 
@@ -529,7 +527,7 @@ The resulting algorithm assumes partial synchrony, is resilience optimal, time o
 
 Moving away from the impossibility of solving consensus in asynchronous message systems, where processes can be faulty or *Byzantine*, the technic of randomization or additional synchrony is adopted. 
 
-Randomized algorithms can used per-process "local" coins or a shared *common coin* to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the existing algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
+Randomized algorithms can use per-process "local" coins or a shared *common coin* to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the existing algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
 
 A recent randomized algorithm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler. 
 
@@ -539,9 +537,7 @@ This protocol sees the use of a weak coordinator; a weak coordinator allows for 
 
 With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*].   
 
-The validation of protocol was conducted similarly to that of the HoneyBadger block chain, where "Coin", the randomization algorithm from Mousteoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 data centers on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been implemented. 
-
-Though the coupling with an optimized variant of the reduction of multivalve to binary consensus from Ben-Or et al., the Democratic Byzantine Fault Tolerant (DBFT) consensus algorithm was generated which terminates in 4 messages delays in the good case, when all non-faulty processes propose the same value. [17]
+The validation of protocol was conducted similarly to that of the HoneyBadger block chain, where "Coin", the randomization algorithm from Moustefaoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 data centers on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen to severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been tested in the validation. 
 
 ## Summary
 
