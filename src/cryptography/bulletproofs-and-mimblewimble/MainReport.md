@@ -19,11 +19,11 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
 
 ## Contents
 
-- [Bulletproofs and Mimblewimble](#bulletproofs-and-mimblewimble)
+- [Bulletproofs and Mimblewimble](#Bulletproofs-and-mimblewimble)
   - [Introduction](#introduction)
   - [Contents](#contents)
-  - [How does Bulletproofs work?](#how-does-bulletproofs-work)
-  - [Applications for Bulletproofs](#applications-for-bulletproofs)
+  - [How does Bulletproofs work?](#how-does-Bulletproofs-work)
+  - [Applications for Bulletproofs](#applications-for-Bulletproofs)
   - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
     - [Current & Past Efforts](#current--past-efforts)
@@ -54,64 +54,83 @@ In Mimblewimble the block chain grows with the size of the UTXO set. Using Bulle
 
 ## Applications for Bulletproofs
 
-Bulletproofs have wide application ([[1]], [[3]], [[6]]) and can be efficiently used for many types of proofs. These are summarized below.
+Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits. What this means in practice is that Bulletproofs have wide application and can be efficiently used for many types of proofs.  ([[1]], [[3]], [[6]]) 
 
 ### Bulletproof Protocols
 
 In [[1]] three protocols were suggested in using Bulletproofs (*see Appendix B for notations used*).
 
-**Protocol 1**
+**Protocol 1 - Inner-product Argument ???**
 
-The inputs to the inner-product argument are independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $, and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that such that $
-P =g^ah^b $ and $ c = \langle \mathbf {a}, \mathbf {b} \rangle $. 
-
-The inner product argument is an efficient proof system for the following relation:
-
+Let inputs to the inner-product argument be independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $, and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that $
+P =g^ah^b $ and $ c = \langle \mathbf {a}, \mathbf {b} \rangle $. $ P $ is referred to as the binding vector commitment to $ \mathbf{a}, \mathbf{b} $. The inner product argument is an efficient proof system for the following relation:
 $$
 \{ (g,h \in \mathbb G^n \,\, , \,\, P \in \mathbb G \,\, , \,\, c \in \mathbb Z_p \,\, ; \,\,   \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \, : \,\,\, P =g^ah^b \, \wedge \, c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
 $$
 
-Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier*, for a given $ P \in \mathbb G $, the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to among $ g,h \in \mathbb G^n $. 
+Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier*, for a given $ P \in \mathbb G $, the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to $ g,h \in \mathbb G^n $. 
 $$
 \{ (g,h \in \mathbb G^n \,\, , \,\, u,P \in \mathbb G \,\, ; \,\, \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \, : \,\,\, P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
 $$
 
-A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required.
+A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. Protocol 1 is then defined as the proof system for relation (2).
+
+<p align="center"><img src="sources/Protocol-1.png" width="500" /></p>
+<div align="center"><b>Figure 2: Bulletproofs Protocol 1  [[1]]</b></div>
 
 The element $ u $ is raised to a *verifier* chosen power $ x $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from Protocol 2 satisfy $ c = \langle \mathbf {a}, \mathbf {b} \rangle $
-$$
-Prover's \,\, input \,\, : \,\, (g,h,P,c,\mathbf{a},\mathbf{b}) \\
-Verifier's \,\, input: \,\, (g,h,P,c) \\
-$$
 
 
-**Protocol 2**
+
+**Protocol 2 - **
 
 $ \ref{aaa} $ 
 
-**Protocol 3**
+**Protocol 3 - **
 
 
 
+**Protocol 4 - Multi-Exponentiation and Batch Verification**
 
 
-Applications of Bulletproofs are listed below. Pleas note this list may not be exhaustive.
+
+### Use Cases
+
+Some use cases of Bulletproofs are listed below, and note this list may not be exhaustive.
 
 - Rangeproofs
+
   - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
 - Merkle proofs
+
   - In this context a full node (*verifier*) maintains a complete copy of the merkle tree and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the merkle tree in some block <code>B</code> with block header <code>H</code>.  [[7]] This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK.
 - Proof of solvency
+
   - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol. Using Bulletproofs and its variant protocols proposed in [[1]] this size could be reduced to approximately 62MB.
 - Multi-signatures with deterministic nonces
-  - With bulletproofs every signatory can prove that their nonce was generated deterministically. A sha256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and rejoin later on, with no memory of interacting with the other parties they were previously interacting with.
+
+  - With Bulletproofs every signatory can prove that their nonce was generated deterministically. A sha256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and rejoin later on, with no memory of interacting with the other parties they were previously interacting with.
 - Scriptless Scripts
-  - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a sigma protocol. This can now all be done with bulletproofs, which could be extended to allow assets that are functions of other assets - crypto derivatives perhaps.
-- Assets / smart contracts / crypto-derivatives
-  - A bulletproof can be calculated as a short proof for an arbitrary computation in a smart contract, thereby creating privacy-preserving smart contracts. 
-    ?????
+
+  - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a sigma protocol. This can all be done with Bulletproofs, which could be extended to allow assets that are functions of other assets, i.e. crypto derivatives.
+- Smart contracts and Crypto-derivatives
+  - Traditionally, each privacy-preserving smart contract need a new trusted setup, but with Bulletproofs no trusted setup is needed. Verification time however is linear and it might be too complex to proof every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with pubic verifiability in the offline stage. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts. 
+
+    <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
+    <div align="center"><b>Figure 2: Bulletproofs for Refereed Delegation Model  [[5]]</b></div>
+
+  - Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with Bulletproofs to proof that the transaction is valid.
+
 - Verifiable shuffles
+
   - When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$. 
+
+    <p align="center"><img src="sources/VerifiableShuffles.png" width="600" /></p>
+    <div align="center"><b>Figure 3: Bulletproofs for Verifiable Shuffles [[5]]</b></div>
+
+- Batch verifications
+  - Batch verifications can be done using various values and outputs from running the Bulletproofs Protocol 1 and Protocol 2. This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied in order to reduce the number of expensive exponentiations.
+  - 
 
 
 
@@ -185,7 +204,7 @@ See  [[35]]
 
 ## References
 
-[[1]] Bulletproofs: Short Proofs for Confidential Transactions and More, Blockchain Protocol Analysis and Security Engineering 2018, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-18.
+[[1]] Bulletproofs: Short Proofs for Confidential Transactions and More, Blockchain Protocol Analysis and Security Engineering 2018, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/Bulletproofs.pdf, Date accessed: 2018-09-18.
 
 [1]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf
 "Bulletproofs: Short Proofs for Confidential Transactions 
@@ -193,7 +212,7 @@ and More, Blockchain Protocol Analysis and Security
 Engineering 2018, 
 Bünz B. et al"
 
-[[2]] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs, Date accessed: 2018-09-10.
+[[2]] Bullet Proofs (Transcript), Bitcoin Milan Meetup 2018-02-02, Andrew Poelstra, https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-Bulletproofs, Date accessed: 2018-09-10.
 
 [2]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs
 "Bullet Proofs (Transcript), 
@@ -220,7 +239,7 @@ and More (Slides), Blockchain Protocol Analysis and
 Security Engineering 2018, 
 Bünz B. et al"
 
-[[6]] Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts), Bünz B. et al., http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs, Date accessed: 2018-09-18.
+[[6]] Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts), Bünz B. et al., http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/Bulletproofs, Date accessed: 2018-09-18.
 
 [6]: http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs
 "Bulletproofs: Short Proofs for Confidential Transactions 
@@ -233,30 +252,34 @@ Bünz B. et al"
 [7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs
 "Merkle Root and Merkle Proofs"
 
-[[8]] Bulletproofs audit: fundraising, https://forum.getmonero.org/22/completed-tasks/90007/bulletproofs-audit-fundraising, Date accessed: 2018-10-23.
+[[8]] Bulletproofs audit: fundraising, https://forum.getmonero.org/22/completed-tasks/90007/Bulletproofs-audit-fundraising, Date accessed: 2018-10-23.
 
 [8]: https://forum.getmonero.org/22/completed-tasks/90007/bulletproofs-audit-fundraising
 "Bulletproofs audit: fundraising"
 
-[[9]] The QuarksLab and Kudelski Security audits of Monero Bulletproofs are Complete, https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-bulletproofs-are-complete, Date accessed: 2018-10-23.
+[[9]] The QuarksLab and Kudelski Security audits of Monero Bulletproofs are Complete, https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-Bulletproofs-are-complete, Date accessed: 2018-10-23.
 
 [9]: https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-bulletproofs-are-complete
-"The QuarksLab and Kudelski Security audits of Monero Bulletproofs are Complete"
+"The QuarksLab and Kudelski Security audits 
+of Monero Bulletproofs are Complete"
 
-[[10]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
+[[10]] Bulletproofs presentation at Feb 2 Milan Meetup (Andrew Poelstra), Reddit, https://www.reddit.com/r/Bitcoin/comments/7w72pq/Bulletproofs_presentation_at_feb_2_milan_meetup, Date accessed: 2018-09-10.
 
 [10]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup
 "Bulletproofs presentation at Feb 2 Milan 
 Meetup (Andrew Poelstra), Reddit"
 
-[[11]] The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched, https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-bulletproofs-is-complete-critical-bug-patched, Date accessed: 2018-10-23.
+[[11]] The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched, https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-Bulletproofs-is-complete-critical-bug-patched, Date accessed: 2018-10-23.
 
 [11]: https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-bulletproofs-is-complete-critical-bug-patched/
-"The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched"
+"The OSTIF and QuarksLab Audit of Monero 
+Bulletproofs is Complete – Critical Bug Patched"
 
 [[12]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-21.
 
-[12]: https://eprint.iacr.org/2016/263.pdf "Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al."
+[12]: https://eprint.iacr.org/2016/263.pdf
+"Efficient zero-knowledge arguments for arithmetic 
+circuits in the discrete log setting, Bootle J et al."
 
 [[13]] Linear Algebra with Sub-linear Zero-Knowledge Arguments, Groth J., https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf, Date accessed: 2018-09-21.
 
@@ -313,7 +336,7 @@ Bernhard D. et al."
 [[22]] pedersen-commitment: An implementation of Pedersen commitment schemes, https://hackage.haskell.org/package/pedersen-commitment, Date accessed: 2018-09-25.
 
 [22]: https://hackage.haskell.org/package/pedersen-commitment
-"pedersen-commitment: An implementation
+"Pedersen-commitment: An implementation
 of Pedersen commitment schemes"
 
 [[23]] Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative, https://zkproof.org/documents.html, Date accessed: 2018-09-26.
@@ -329,14 +352,14 @@ An Open Industry/Academic Initiative"
 for Confidential Transactions, 
 Ruffing T. et al."
 
-[[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Rangeproofs, Date accessed: 2018-09-18.
+[[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Rangeproofs, https://github.com/ElementsProject/secp256k1-zkp, Date accessed: 2018-09-18.
 
 [25]: https://github.com/ElementsProject/secp256k1-zkp
 "GitHub: ElementsProject/secp256k1-zkp, Experimental 
 Fork of libsecp256k1 with Support for Pedersen 
 Commitments and Rangeproofs"
 
-[[26]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs, Date accessed: 2018-09-18.
+[[26]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/Bulletproofs, Date accessed: 2018-09-18.
 
 [26]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs
 "GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp 
@@ -349,16 +372,16 @@ Commitments and Rangeproofs"
 non-interactive zero knowledge proofs without trusted 
 setup (Bulletproofs)"
 
-[[28]] GitHub: dalek-cryptography/bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto, https://github.com/dalek-cryptography/bulletproofs, Date accessed: 2018-09-18.
+[[28]] GitHub: dalek-cryptography/Bulletproofs, A pure-Rust implementation of Bulletproofs using Ristretto, https://github.com/dalek-cryptography/Bulletproofs, Date accessed: 2018-09-18.
 
 [28]: https://github.com/dalek-cryptography/bulletproofs
-"GitHub: dalek-cryptography/bulletproofs, A pure-Rust 
+"GitHub: dalek-cryptography/Bulletproofs, A pure-Rust 
 implementation of Bulletproofs using Ristretto"
 
-[[29]] GitHub: adjoint-io/bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/bulletproofs, Date accessed: 2018-09-10.
+[[29]] GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/Bulletproofs, Date accessed: 2018-09-10.
 
 [29]: https://github.com/adjoint-io/bulletproofs
-"GitHub: adjoint-io/bulletproofs, Bulletproofs are Short
+"GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short
 Non-interactive Zero-knowledge Proofs that Require 
 no Trusted Setup"
 
@@ -371,17 +394,20 @@ secp256k1-zkp for the Grin/MimbleWimble project"
 [[31]] Climbing the elliptic learning curve (was: Re: Finalizing XEdDSA), https://moderncrypto.org/mail-archive/curves/2017/000846.html, Date accessed: 2018-10-23.
 
 [31]: https://moderncrypto.org/mail-archive/curves/2017/000846.html
-""Climbing the elliptic learning curve (was: Re: Finalizing XEdDSA)
+""Climbing the elliptic learning curve 
+(was: Re: Finalizing XEdDSA)
 
 [[32]] SafeCurves: choosing safe curves for elliptic-curve cryptography, http://safecurves.cr.yp.to/, Date accessed: 2018-10-23.
 
-[?]: http://safecurves.cr.yp.to/
-"SafeCurves: choosing safe curves for elliptic-curve cryptography"
+[32]: http://safecurves.cr.yp.to/
+"SafeCurves: choosing safe curves for 
+elliptic-curve cryptography"
 
-[[33]] , , Date accessed: 2018-10-?.
+[[33]] Two 1-Round Protocols for Delegation of Computation, Canetti R. et al., https://eprint.iacr.org/2011/518.pdf, Date accessed: 2018-10-?.
 
-[?]:  
-""
+[33]: https://eprint.iacr.org/2011/518.pdf
+"Two 1-Round Protocols for Delegation of Computation
+Canetti R. et al."
 
 [[34]] , , Date accessed: 2018-10-?.
 
@@ -582,7 +608,13 @@ The general notation of mathematical expressions when specifically referenced ar
 - Let $  \mathbf {a} \in \mathbb F^n $ be a vector with elements  $  a_1 \cdot b_1 \,  ,  \, . . .  \, , \,  a_n \cdot b_n \in F^n $ 
 - Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sideset{}{_{i=1}^n} \sum {a_i \cdot b_i} $ denote the inner product between two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
 - Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \,  ,  \, . . .  \, , \,  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $  
-- Let $  \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $  \mathbf {a}  \in \mathbb Z^n $ and  $ \mathbf {b}  \in \mathbb Z^m $ then $ \mathbf {a} \parallel \mathbf {b}  \in \mathbb Z_p^{n+m} $ 
+- Let $  \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $  \mathbf {a}  \in \mathbb Z_p^n $ and  $ \mathbf {b}  \in \mathbb Z_p^m $ then $ \mathbf {a} \parallel \mathbf {b}  \in \mathbb Z_p^{n+m} $ 
+- Let $ p(X) = \sideset{}{_{i=0}^d} \sum { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $ 
+- Let $ \langle l(X),r(X) \rangle = \sideset{}{_{i=0}^d} \sum { \sideset{}{_{j=0}^i} \sum { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X]$ denote the inner product between two vector polynomials $l(X),r(X) $ 
+- Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $ 
+- Let $ C=g^a = \sideset{}{_{i=1}^n} \prod g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \, , \, ... \, , \, g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \sideset{}{_{i=1}^n} \prod (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
+- Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \, , \, ... \, , \, a_l) \in \mathbb F^l \, , \,\,\,\,\ \mathbf {a_{[l:]}} = (a_{l+1} \, , \, ... \, , \, a_n) \in \mathbb F^{n-l}$  
+- Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^*$ such that  $ \mathbf {k}^n = (1,k,k^2, \, ... \, ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
 
 
 
