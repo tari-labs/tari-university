@@ -60,7 +60,8 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ### Bulletproof Protocols
 
-In [[1]] a number of protocols were suggested in using Bulletproofs. They are only briefly summarized here (*see Appendix B for notations used*) to explain the logic and the most important terms. Full mathematical definitions are available in the original reference.
+In [[1]] a number of protocols were suggested in using Bulletproofs, which are only briefly summarized here to explain the logic and the most important terms (*see Appendix B for notations used*). 
+<i>**Note:** Full mathematical definitions and terms not defined are available in 5.</i>
 
 **Protocol 1 - Inner-product Argument**
 
@@ -72,12 +73,12 @@ $$
 
 $ P $ is referred to as the binding vector commitment to $ \mathbf{a}, \mathbf{b} $. The inner product argument is an efficient proof system for the following relation:
 $$
-\{ (g,h \in \mathbb G^n \,\, , \,\, P \in \mathbb G \,\, , \,\, c \in \mathbb Z_p \,\, ; \,\,   \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \, : \,\,\, P =g^ah^b \, \wedge \, c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
+\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n \,\, , \,\, P \in \mathbb G \,\, , \,\, c \in \mathbb Z_p \,\, ; \,\,   \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \, : \,\,\, P =g^ah^b \, \wedge \, c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
 $$
 
 Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier* for a given $ P \in \mathbb G $ the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to $ g,h \in \mathbb G^n $. 
 $$
-\{ (g,h \in \mathbb G^n \,\, , \,\, u,P \in \mathbb G \,\, ; \,\, \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \, : \,\,\, P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
+\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n \,\, , \,\, u,P \in \mathbb G \,\, ; \,\, \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \, : \,\,\, P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
 $$
 
 A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
@@ -91,9 +92,15 @@ The argument presented in Protocol 1 for the relation (1) is perfectly hiding an
 
 **Protocol 2 - Improved Inner-Product Argument**
 
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* and *verifier* compute a new set of generators $ g^\backprime, h^\backprime ​$:
-
-??????
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* and *verifier* compute a new set of generators. By unrolling the recursion these final $ g ​$ and $ h ​$ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$ as:
+$$
+g =  \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \,\,\,\,\,\,\, h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
+$$
+where  $  \mathbf {s} = (s_1 \, , \, ... \, , \, s_n) \in \mathbb Z_p^n $ only depends on the challenges $  (x_1 \, , \, ... \, , \, x_{\log_2(n)}) \in \mathbb Z_p^n $. The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $:
+$$
+\mathbf{g}^{a \cdot \mathbf{s}} \cdot \mathbf{h}^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \,\, \overset{?}{=} \,\, P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
+$$
+with $ L $ and $R $ as defined in the original reference.
 
 Protocol 2 is is shown in Figure&nbsp;3. 
 
