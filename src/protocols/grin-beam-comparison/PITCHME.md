@@ -57,17 +57,17 @@
 +++
 
 ## Dandelion Relay
-@div[left-50]
+
 
 - Two phases:
 - Stem phase: Randomly forwards the transaction one peer at a time for a random distance
 - Fluff phase: Broadcast the transactions to the whole network
 
-@divend
 
-@div[right-50]
+
+
 ![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
-@divend
+
 ---
 ## Grin unique features
 couple things
