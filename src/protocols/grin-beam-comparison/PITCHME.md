@@ -2,11 +2,9 @@
 
 
 
-### vs.
+### Grin vs. BEAM
+## a comparison
 
-@snap[north-west]
-Grin
-@snapend
 
 @snap[west sidebar]
 @div[s250px text-center]
@@ -14,19 +12,14 @@ Grin
 @divend
 @snapend
 
-@snap[north-east]
-BEAM
-@snapend
 
 @snap[east sidebar]
-@div[s250px text-center]
+@div[s150px text-center]
 ![BEAM](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/beam.webp)
 @divend
 @snapend
 
-@snap[south]
-## a comparison
-@snapend
+
 
 ---
 
