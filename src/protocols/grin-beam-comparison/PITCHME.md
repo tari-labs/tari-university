@@ -60,8 +60,8 @@
 @div[left-50]
 
 - Two phases:
-    - Stem phase: Randomly forwards the transaction one peer at a time for a random distance
-    - Fluff phase: Broadcast the transactions to the whole network
+- Stem phase: Randomly forwards the transaction one peer at a time for a random distance
+- Fluff phase: Broadcast the transactions to the whole network
 
 @divend
 
