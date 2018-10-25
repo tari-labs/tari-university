@@ -52,25 +52,20 @@
 </table>
 
 ---
-## Commonalities
-- they have some 
-+++
-
 ## Dandelion Relay
+One piece of functionality that both projects implement outside of Mimblewimble is the Dandelion relay mechanism.
 
-
-- Two phases:
-- Stem phase: Randomly forwards the transaction one peer at a time for a random distance
-- Fluff phase: Broadcast the transactions to the whole network
-
-
-
+- **Two phases:**
+    - Stem phase (Anonymity phase): Randomly forwards the transaction one peer at a time for a random distance
+    - Fluff phase (Spreading phase): Broadcast the transactions to the whole network
 
 ![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
-
 ---
 ## Grin unique features
-couple things
+From a functional perspective Grin does not have many features that are not represented in BEAM.
+
+One such feature that Grin has implemented is *Partial History* syncing.
+
 ---
 ## BEAM unique features
 - stuff
