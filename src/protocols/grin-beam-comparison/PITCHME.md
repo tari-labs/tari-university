@@ -56,15 +56,20 @@
 One piece of functionality that both projects implement outside of Mimblewimble is the Dandelion relay mechanism.
 
 - **Two phases:**
-    - Stem phase (Anonymity phase): Randomly forwards the transaction one peer at a time for a random distance
-    - Fluff phase (Spreading phase): Broadcast the transactions to the whole network
+    - *Stem phase (Anonymity phase)*: Randomly forwards the transaction one peer at a time for a random distance
+    - *Fluff phase (Spreading phase)*: Broadcast the transactions to the whole network
 
 ![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
 ---
 ## Grin unique features
 From a functional perspective Grin does not have many features that are not represented in BEAM.
 
-One such feature that Grin has implemented is *Partial History* syncing.
+One such feature that Grin has implemented is *Partial History* syncing. This feature lets a new node to sync to the blockchain very quickly.
+
+1. A new node queries the current head block of the chain and requests the data up to a horizon (e.g. 5000 previous blocks)
+2. The node checks the embedded proofs to to see if there is enoguh data to confirm consensus.
+3. If not it will increase the horizon depth.
+4. Once a horizon is found that provides enough data for consensus the full UTXO set is downloaded at the horizon.
 
 ---
 ## BEAM unique features
