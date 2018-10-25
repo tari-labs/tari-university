@@ -1,17 +1,32 @@
 
 
 
-# Grin vs. Beam, a Comparison
 
-- Topic 1 ???
+### vs.
 
-- Topic 2 ???
+@snap[north-west]
+Grin
+@snapend
 
-- Topic 3 ???
+@snap[west sidebar]
+@div[s250px text-center]
+![Gringots](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/gringots.png)
+@divend
+@snapend
 
-- Etc. 
+@snap[north-east]
+BEAM
+@snapend
 
-- Conclusions
+@snap[east sidebar]
+@div[s250px text-center]
+![BEAM](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/beam.webp)
+@divend
+@snapend
+
+@snap[south]
+## a comparison
+@snapend
 
 ---
 
