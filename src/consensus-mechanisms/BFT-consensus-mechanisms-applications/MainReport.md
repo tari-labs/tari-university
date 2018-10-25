@@ -16,20 +16,20 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   -[PBFT Variants](#pbft-variants)
   -[Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
   -[Scalability-performance trade off](#scalability-performance-trade-off)
-  -[Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
+  -[Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony)
     -[Synchrony](#synchrony)
     -[Partial Synchrony](#partial-synchrony)
     -[Unknown-△T Model](#unknown-△t-model)
-    -[Eventually Synchronous]
-    -[Weak Synchrony]
-    -[Random Synchrony]
-    -[Asynchrony]
-      -[Counting rounds in asynchronous networks]
-      -[The Problem with Timing Assumptions]
-  -[Denial of Service Attack]
-  -[The FLP Impossibility]
-  -[Randomized Agreement]
-  -[Gossip Protocol] 
+    -[Eventually Synchronous](#eventually-synchronous)
+    -[Weak Synchrony](#weak-synchrony)
+    -[Random Synchrony](#random-synchrony)
+    -[Asynchrony](#asynchrony)
+      -[Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
+      -[The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
+  -[Denial of Service Attack](#denial-of-service-attack)
+  -[The FLP Impossibility](#the-flp-impossibility)
+  -[Randomized Agreement](#randomized-agreement)
+  -[Gossip Protocol](#gossip-protocol) 
 - [A brief survey of BFT Consensus Mechanisms](#a-brief-survey-of-bft-consensus-mechanisms)
 - [Permissioned Block Chains](#permissioned-block-chains)
   - [Hyperledger Fabric (HLF)](#hyperledger-fabric-hlf)
@@ -431,7 +431,7 @@ LinBFT cuts down its *O(n*<sup>4</sup>*)* complexity by implementing changes eac
 
 This is clearly optimal, in the sense that disseminating a block already takes *Ω(n)* transmissions. 
 
-LinBFT is designed to be implemented for permission-less, public block chain systems and takes into account anonymous participants without a public-key infrastructure, proof-of-stake, rotating leader ,and a dynamic participant set. [[16]]
+LinBFT is designed to be implemented for permission-less, public block chain systems and takes into account anonymous participants without a public-key infrastructure, proof-of-stake, rotating leader and a dynamic participant set. [[16]]
 
 For instance, participants can be anonymous, without a centralized public key infrastructure (PKI) public key among themselves, and participate in a distributed key generation (DKG) protocol required to create threshold signatures, both of which are communication-heavy processes. 
 
@@ -469,7 +469,7 @@ This is the current problem facing the design of Byzantine Fault Tolerant protoc
 
 Unlike the PoW implementation, which requires constant active participation from the miners, Avalanche can function with the even when nodes are dormant. 
 
-While traditional consensus protocols require *O*(n<sup>2</sup>) communication, there communication complexity ranges from *O(kn log n)* to *O(kn)* for some security parameter *k<<n*. In a sense, Team Rocket highlight that the communication complexity of their protocols is less intensive than that of *O*(n<sup>2</sup>) communications, thus making these protocols faster and more scalable. 
+While traditional consensus protocols require *O*(n<sup>2</sup>) communication, their communication complexity ranges from *O(kn log n)* to *O(kn)* for some security parameter *k<<n*. In a sense, Team Rocket highlight that the communication complexity of their protocols is less intensive than that of *O*(n<sup>2</sup>) communications, thus making these protocols faster and more scalable. 
 
 The reason for this is *O*(n<sup>2</sup>) suggests that the rate of growth of function is determined by n<sup>2</sup> where *n* is the number of people on the network. Thus, the addition of a person exponentially increases the time taken to disseminate the information on the network while traditional consensus protocols require everyone to communicate with one another- making it a laborious process. [[18]]
 
@@ -537,7 +537,7 @@ This protocol sees the use of a weak coordinator; a weak coordinator allows for 
 
 With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*].   
 
-The validation of protocol was conducted similarly to that of the HoneyBadger block chain, where "Coin", the randomization algorithm from Moustefaoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 data centers on different continents, it was sent that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen to severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been tested in the validation. 
+The validation of protocol was conducted similarly to that of the HoneyBadger block chain, where "Coin", the randomization algorithm from Moustefaoui et al. was used [[6]]. Using the 100 Amazon VMs located in 5 data centers on different continents, it was shown that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen to severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been tested in the validation. 
 
 ## Summary
 
