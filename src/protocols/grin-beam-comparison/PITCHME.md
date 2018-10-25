@@ -24,9 +24,9 @@
 
 - Mimblewimble
     - Some stuff about Mimblewimble
-- Grin aiming to be minimalistic MW
-- BEAM is X
-- Some implementation details:
+- Grin's stated goal is to produce a minimalistic reference implementation of Mimblewimble
+- BEAM has however made many modifications to the original Mimblewimble approach to achieve new features
+- Some raw implementation differences:
 <table>
   <tr>
     <th></th>
@@ -39,9 +39,14 @@
     <td>C++</td>
   </tr>
   <tr>
-    <td>Database</td>
+    <td>**Database**</td>
     <td>LMDB</td>
     <td>SQLite</td>
+  </tr>
+  <tr>
+    <td>**Mempool Datastructure**</td>
+    <td>DAG</td>
+    <td>Multiset key-value store + verification logic</td>
   </tr>
 </table>
 
