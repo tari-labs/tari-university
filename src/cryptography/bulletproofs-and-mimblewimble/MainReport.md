@@ -19,6 +19,8 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
 
 ## Contents
 
+Needs update!!!!!!!!
+
 - [Bulletproofs and Mimblewimble](#Bulletproofs-and-mimblewimble)
   - [Introduction](#introduction)
   - [Contents](#contents)
@@ -40,11 +42,11 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
 
 The basis of confidential transactions are to replace the input and output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive) while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate proofs, including rangeproofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $ and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
 
-Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see **Figure 1**). ([[1]], [[3]], [[5]])
+Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
 
 <p align="center"><img src="sources/AggregateBulletproofsSize.png" width="650" /></p>
 
-<p align="center"><b>Figure 1: Logarithmic Aggregate Bulletproofs Proof Sizes [[3]]</b></p>
+<p align="center"><b>Figure&nbsp;1: Logarithmic Aggregate Bulletproofs Proof Sizes [[3]]</b></p>
 
 In Bitcoin, approximately 50 million Unspent Transaction Outputs (UTXO) from approximately 22 million transactions would result in roughly 160GB of range proof data using the current systems, when using 52-bits to represent any value from 1 satoshi up to 21 million bitcoins. Aggregated Bulletproofs would reduce that data set to less than 17GB. [[1]]
 
@@ -58,39 +60,55 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ### Bulletproof Protocols
 
-In [[1]] three protocols were suggested in using Bulletproofs (*see Appendix B for notations used*).
+In [[1]] a number of protocols were suggested in using Bulletproofs. They are only briefly summarized here (*see Appendix B for notations used*) to explain the logic and the most important terms. Full mathematical definitions are available in the original reference.
 
-**Protocol 1 - Inner-product Argument ???**
+**Protocol 1 - Inner-product Argument**
 
-Let inputs to the inner-product argument be independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $, and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that $
-P =g^ah^b $ and $ c = \langle \mathbf {a}, \mathbf {b} \rangle $. $ P $ is referred to as the binding vector commitment to $ \mathbf{a}, \mathbf{b} $. The inner product argument is an efficient proof system for the following relation:
+Let inputs to the inner-product argument be independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $ and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that
+
+$$
+P =g^ah^b \,\,\,\,\,\, \mathrm{and} \,\,\,\,\,\, c = \langle \mathbf {a}, \mathbf {b} \rangle
+$$
+
+$ P $ is referred to as the binding vector commitment to $ \mathbf{a}, \mathbf{b} $. The inner product argument is an efficient proof system for the following relation:
 $$
 \{ (g,h \in \mathbb G^n \,\, , \,\, P \in \mathbb G \,\, , \,\, c \in \mathbb Z_p \,\, ; \,\,   \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \, : \,\,\, P =g^ah^b \, \wedge \, c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
 $$
 
-Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier*, for a given $ P \in \mathbb G $, the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to $ g,h \in \mathbb G^n $. 
+Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier* for a given $ P \in \mathbb G $ the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to $ g,h \in \mathbb G^n $. 
 $$
 \{ (g,h \in \mathbb G^n \,\, , \,\, u,P \in \mathbb G \,\, ; \,\, \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \, : \,\,\, P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
 $$
 
-A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. Protocol 1 is then defined as the proof system for relation (2).
+A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
 
-<p align="center"><img src="sources/Protocol-1.png" width="500" /></p>
-<div align="center"><b>Figure 2: Bulletproofs Protocol 1  [[1]]</b></div>
+Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;2. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from Protocol 2 satisfy $ c = \langle \mathbf {a}, \mathbf {b} \rangle $.
 
-The element $ u $ is raised to a *verifier* chosen power $ x $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from Protocol 2 satisfy $ c = \langle \mathbf {a}, \mathbf {b} \rangle $
+<p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
+<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 1  [[1]]</b></div>
+
+The argument presented in Protocol 1 for the relation (1) is perfectly hiding and statistically binding.
+
+**Protocol 2 - Improved Inner-Product Argument**
+
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* and *verifier* compute a new set of generators $ g^\backprime, h^\backprime ​$:
+
+??????
+
+Protocol 2 is is shown in Figure&nbsp;3. 
+
+<p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
+<div align="center"><b>Figure&nbsp;3: Bulletproofs Protocol 2  [[1]]</b></div>
 
 
-
-**Protocol 2 - **
-
-$ \ref{aaa} $ 
 
 **Protocol 3 - **
 
-
+???
 
 **Protocol 4 - Multi-Exponentiation and Batch Verification**
+
+???
 
 
 
@@ -114,19 +132,19 @@ Some use cases of Bulletproofs are listed below, and note this list may not be e
 
   - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a sigma protocol. This can all be done with Bulletproofs, which could be extended to allow assets that are functions of other assets, i.e. crypto derivatives.
 - Smart contracts and Crypto-derivatives
-  - Traditionally, each privacy-preserving smart contract need a new trusted setup, but with Bulletproofs no trusted setup is needed. Verification time however is linear and it might be too complex to proof every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with pubic verifiability in the offline stage. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts. 
+  - Traditionally, verifying privacy-preserving smart contracts need a new trusted setup for each, but with Bulletproofs no trusted setup is needed. Verification time however is linear and it might be too complex to proof every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with pubic verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract. A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid, and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then run to identify the gate where the proof turns invalid, and hence the smart contract only has to check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (see Figure&nbsp;3). 
 
     <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
-    <div align="center"><b>Figure 2: Bulletproofs for Refereed Delegation Model  [[5]]</b></div>
+    <div align="center"><b>Figure&nbsp;3: Bulletproofs for Refereed Delegation Model  [[5]]</b></div>
 
   - Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with Bulletproofs to proof that the transaction is valid.
 
 - Verifiable shuffles
 
-  - When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$. 
+  - When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$ as shown in Figure&nbsp;4. 
 
     <p align="center"><img src="sources/VerifiableShuffles.png" width="600" /></p>
-    <div align="center"><b>Figure 3: Bulletproofs for Verifiable Shuffles [[5]]</b></div>
+    <div align="center"><b>Figure&nbsp;4: Bulletproofs for Verifiable Shuffles [[5]]</b></div>
 
 - Batch verifications
   - Batch verifications can be done using various values and outputs from running the Bulletproofs Protocol 1 and Protocol 2. This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied in order to reduce the number of expensive exponentiations.
@@ -503,7 +521,7 @@ Definitions of terms presented here are high level and general in nature. Full m
 and variables (a1, ..., an) is a 
 directed acyclic graph ..."
 
-- <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. In this report the terms *proof* and *argument of knowledge* have exactly the same meaning and can be used interchangeably. [[29]]
+- <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. The terms *proof* and *argument of knowledge* have exactly the same meaning and can be used interchangeably. [[29]]
 
 [afs~]: #afs
 
@@ -615,6 +633,8 @@ The general notation of mathematical expressions when specifically referenced ar
 - Let $ C=g^a = \sideset{}{_{i=1}^n} \prod g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \, , \, ... \, , \, g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \sideset{}{_{i=1}^n} \prod (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
 - Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \, , \, ... \, , \, a_l) \in \mathbb F^l \, , \,\,\,\,\ \mathbf {a_{[l:]}} = (a_{l+1} \, , \, ... \, , \, a_n) \in \mathbb F^{n-l}$  
 - Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^*$ such that  $ \mathbf {k}^n = (1,k,k^2, \, ... \, ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
+- Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively
+- Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} $ denote the *prover* and *verifier* in relation to inner product calculations respectively
 
 
 
