@@ -120,7 +120,7 @@ BEAM implements a process called **kernel fusion** which means a kernel can refe
     - Payer chooses their blinding factor
     - Payer includes a kernel that is fused with the payees kernel.
     - The payees kernel must appear in the final transaction.
-
++++
 ## Planned features in BEAM
 There are some features that have been mentioned in BEAM but do not seem to be implemented as yet
 - Embedding plain text contracts (hash of text content) into transactions.
