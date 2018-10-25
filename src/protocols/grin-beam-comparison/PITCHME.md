@@ -49,6 +49,11 @@
     <td>DAG</td>
     <td>Multiset key-value store</td>
   </tr>
+  <tr>
+    <td>**Tree Proofs**</td>
+    <td>Merkel trees and MMR</td>
+    <td>Radix-Hash trees and MMR</td>
+  </tr>
 </table>
 
 ---
@@ -105,29 +110,60 @@ Mimblewimble transactions need to be interactivelty built by the participants.
 
 +++
 ## One-sided transactions
-BEAM supports constructing a one-sided transaction which is signed by the payee and sent to the payer to be completed and published to the blockchain.
+BEAM supports constructing a one-sided transaction which is signed by the payee and sent to the payer to be completed and published to the blockchain at their leisure.
 
 This is not possible in standard Mimblewimble as it would reveal the payee's blinding factor.
 
-BEAM implements a process called kernel fusion which is a thing that does stuff.
+BEAM implements a process called **kernel fusion** which means a kernel can reference a previous kernel.
+- The payee constructs the transaction with a kernel that compensates for their secret blinding factor.
+- The payer completes the transaction
+    - Payer chooses their blinding factor
+    - Payer includes a kernel that is fused with the payees kernel.
+    - The payees kernel must appear in the final transaction.
 
-+++
-## Radix-Hash trees
-better than Merkle Trees?
-
-## Planned features
-some features that might happen?
-- Embedding contract text
-- Confedential assets?
+## Planned features in BEAM
+There are some features that have been mentioned in BEAM but do not seem to be implemented as yet
+- Embedding plain text contracts (hash of text content) into transactions.
+- Assets and confedential assets on the base layer.
 
 ---
 ## Proof of Work algorithms
-Cuckoo cycle
-Equihash
+Grin
+- Was going to implement the Cuckoo cycle now opting for two PoW algorithms. 
+    - ASIC Friendly (AF)
+    - ASIC Resistant (AR)
+- Now implementing Cuckatoo32+ for AR
+- Still deciding on AR PoW algorithm
+
+BEAM
+- Equihash
+- Not chasing ASIC resistance
 
 ---
 ## Governance models and monetary policy
-things
+Both projects are Open-Source.
+<table>
+  <tr>
+    <th></th>
+    <th>**Grin**</th>
+    <th>**Beam**</th>
+  </tr>
+  <tr>
+    <td>**Governance Model**</td>
+    <td>Community Drvien with Technocratic Council</td>
+    <td>Foundation</td>
+  </tr>
+  <tr>
+    <td>**Funding**</td>
+    <td>Ad-Hoc community funding</td>
+    <td>Dev tax and VC</td>
+  </tr>
+  <tr>
+    <td>**Monetary Policy**</td>
+    <td>Inflationary with constant emission</td>
+    <td>Deflationary set maximum supply with periodic halving of emission</td>
+  </tr>
+</table>
 
 
 
