@@ -22,10 +22,11 @@
 ---
 ## Introduction
 
-- Mimblewimble
-    - Some stuff about Mimblewimble
-- Grin's stated goal is to produce a minimalistic reference implementation of Mimblewimble
-- BEAM has however made many modifications to the original Mimblewimble approach to achieve new features
+- Mimblewimble is a newly proposed blockchain architecture based on Pederson commitments.
+    - Offers built-in privacy
+    - Very compact blockchain   
+- Grin's stated goal is to produce a minimalistic reference implementation of Mimblewimble.
+- BEAM has however made many modifications to the original Mimblewimble approach to achieve new features.
 - Some raw implementation differences:
 <table>
   <tr>
@@ -44,9 +45,9 @@
     <td>SQLite</td>
   </tr>
   <tr>
-    <td>**Mempool Datastructure**</td>
+    <td>**Mempool data structure**</td>
     <td>DAG</td>
-    <td>Multiset key-value store + verification logic</td>
+    <td>Multiset key-value store</td>
   </tr>
 </table>
 
@@ -56,7 +57,15 @@
 +++
 
 ## Dandelion Relay
-- Relays
+@div[right-50]
+- Two phases
+    - Stem phase: Randomly forwards the transaction one peer at a time for a random distance
+    - Fluff phase: Broadcast the transactions to the whole network
+@divend
+
+@div[left-50]
+![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
+#divend
 ---
 ## Grin unique features
 couple things
