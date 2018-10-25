@@ -20,23 +20,37 @@
 @snapend
 
 ---
-## Introduction [Introduction]
+## Introduction
 
 - Mimblewimble
     - Some stuff about Mimblewimble
 - Grin aiming to be minimalistic MW
 - BEAM is X
 - Some implementation details:
-| Grin | BEAM |
-|:----:|:----:|
-| Rust | C++  |
+<table>
+  <tr>
+    <th></th>
+    <th>**Grin**</th>
+    <th>**Beam**</th>
+  </tr>
+  <tr>
+    <td>**Language**</td>
+    <td>Rust</td>
+    <td>C++</td>
+  </tr>
+  <tr>
+    <td>Database</td>
+    <td>LMDB</td>
+    <td>SQLite</td>
+  </tr>
+</table>
 
 ---
-## Commonalities [Commonalities]
+## Commonalities
 - they have some 
 +++
 
-## Dandelion Relay [Dandelion Relay]
+## Dandelion Relay
 - Relays
 ---
 ## Grin unique features
