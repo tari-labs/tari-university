@@ -8,14 +8,14 @@
 
 @snap[west sidebar]
 @div[s250px text-center]
-![Gringots](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/gringots.png)
+![Gringots](https://github.com/tari-labs/tari-university/raw/master/src/protocols/grin-beam-comparison/sources/gringots.png)
 @divend
 @snapend
 
 
 @snap[east sidebar]
 @div[s250px text-center]
-![BEAM](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/beam.png)
+![BEAM](https://github.com/tari-labs/tari-university/raw/master/src/protocols/grin-beam-comparison/sources/beam.png)
 @divend
 @snapend
 
@@ -62,7 +62,7 @@ One piece of functionality that both projects implement outside of Mimblewimble 
     - *Stem phase (Anonymity phase)*: Randomly forwards the transaction one peer at a time for a random distance
     - *Fluff phase (Spreading phase)*: Broadcast the transactions to the whole network
 
-![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
+![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/master/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
 ---
 ## Grin unique features
 Grin has implemented **Partial History** syncing. This feature lets a new node to sync to the blockchain very quickly.
