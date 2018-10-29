@@ -126,7 +126,7 @@ Proposition:
 - bitcoin Merkle tree makes no distinction between inner and leaf nodes
     - re-interpret transactions as nodes and nodes as transactions
     - inner nodes having no format and only requiring the length to be 64 bytes
-- Bloom filters leak information such as determining if multiple address belongs to a single owner
+- Bloom filters leak information such as determining if multiple addresses belongs to a single owner
 - SPV clients pose the risk of a denial of service attack against full nodes when syncing
 - nodes can cause a denial of service against SPV clients by returning NULL filter responses to requests
 
@@ -149,8 +149,8 @@ Proposition:
   - Merkle trees that use unordered set
   - block sharding and validation
 - What can be proved?
-  - a transactrion is in the block
-  - it's inputs and outputs are or aren't in the UTXO set
+  - a transaction is in the block
+  - its inputs and outputs are or aren't in the UTXO set
 
 - SPV clients can be made aware of any invalidity in blocks and can’t be lied to about the UTXO set
 
@@ -165,6 +165,6 @@ Proposition:
 ## Observations
 
 - Fraud proofs can be complex and hard to implement
-- There is continouos research and suggested improvements on this topic
+- There is continuous research and suggested improvements on this topic
 - Universal fraud proofs seem to be the simpler solution to implement
 
