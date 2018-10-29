@@ -8,7 +8,7 @@ During the development of the Grin project, the developers have received critici
 
 ![sample](sources/intro.PNG)
 
-We will investigate their selected emission scheme, Proof-of-Work (PoW) algorithm and their choice of cryptographic curve used for signatures. Each of these topics will be discussed in detail, starting with their selected emission scheme.
+We will investigate their selected emission scheme, Proof-of-Work (PoW) algorithm, selection of key-store library and their choice of cryptographic curve used for signatures. Each of these topics will be discussed in detail, starting with their selected emission scheme.
 
 
 ## Monetary policy due to static emission scheme
@@ -39,8 +39,6 @@ Recently, the Grin team proposed to switch to a new dual PoW system, where one P
 
 ASIC miners tend to be specialised hardware that is very efficient at calculating and solving specific PoW algorithms. Encouraging ASIC miners on your network, might not seem like a bad idea as your mining network will have a higher hash rate making it more difficult to hack and it will use less electrical power compared to using primarily CPU and GPU based miners. Unfortunately, a negative side effect of running a PoW algorithm that is ASIC friendly is that your network of miners will become more centralised. General consumers do not have access or a need for this type of hardware, this limits the use of ASIC miners to be primarily reserved for enthusiasts and large corporations establishing mining farms. Having the majority of your networks hash rate localised in large mining farms will result in your blockchain becoming more vulnerable to potential 51% attacks [[11]], especially when specific ASIC manufacturers recommend or enforce their hardware to make use of specific mining pools that are controlled by single bodies.
 
-
-
 ![sample](sources/gpu_mining.JPG)
 
 Using general purpose and multi use hardware such as CPUs and GPUs that are primarily used for gaming and large workstations, ensures that your network of miners are more widely distributed and that it is not controlled by a single potential bad player. This will make it more difficult for a single entity to control more than 50% of the networks total computational power, limiting the potential of double spends. 
@@ -61,11 +59,21 @@ Starting a project with a potentially compromised curve does not seem like a goo
 Many additional alternatives exist and platforms such as SafeCurves, maintained by Daniel J. Bernstein and Tanje Lange can help the investigation and selection of an alternate security curve. The SafeCurves platform will make it easier to evaluate the security properties and potential vulnerabilities of many cryptographic curves [[18]].
 
 
+##Storing wallet state using LMDB
+
+Grin originally made use of RocksDB [[19]] as an internal key-value store, but received some criticism for this decision. A number of alternatives with other performance and security characteristics exist such as LevelDB [[20]], HyperLevelDB [[21]] and LMDB [[22]]. But selecting the "Best" key-value store library for your application remain a difficult problem as many online sources with conflicting information exist.
+
+Based on the controversial results from a number of online benchmarks it seems as if some of these alternatives have better performance such as producing small database sizes and performing faster queries [[23]]. As an example, RocksDB or LevelDB seem incorrectly to be better alternatives to LMDB as they produced the fastest reads and deletes and produce some of the smallest databases compared to the other database libraries [[24]]. This is not entirely true as some mistakes were were made during the testing process. Howard Chu wrote an article entitleds "Lies, Damn Lies, Statistics, and Benchmarks" that exposes some of these issues and show that LMDB is the best key-value store library [[25]]. Other benchmarks performed by Symas Corp support this claim, where LMDB outperformed all the tested key store libraries [[26]].
+
+Grin later replaced RocksDB with LMDB (Lightning Memory-Mapped Database) to maintain the state of Grin Wallets [[27]], [[28]], this switch was a good idea as LMDB seem to be the best key-value store library for blockchain related applications.
+
+
 ## Conclusions, Observations, Recommendations
 
 - Selecting the correct emmision rate to create a sustainable monetary policy is an important decision and care should be taken to ensure that the right balance is found between being a SoV and/or a MoE.
 - Weighting the benefits and potential issues of being ASIC friendly compared to ASIC resistant need to be carefully evaluated.
 - Tools such as SafeCurves can be used to select a secure elliptic curve for your application. Cryptographic curves with even potential security vulnerabilities should rather be ignored.
+- Care should be taken when using online benchmarks to help select libraries for your project as the results might be missleading.
 
 
 ## References
@@ -165,6 +173,58 @@ behind elliptic curve cryptography?"
 [18]: http://safecurves.cr.yp.to/
 "SafeCurves - choosing safe curves
 for elliptic-curve cryptography"
+
+[[19]] RocksDB, https://rocksdb.org/, Date accessed: 2018-10-10.
+
+[19]: https://rocksdb.org/
+"RocksDB"
+
+[[20]] LevelDB, http://leveldb.org/, Date accessed: 2018-10-15.
+
+[20]: http://leveldb.org/
+"LevelDB"
+
+[[21]] HyperLevelDB, http://hyperdex.org/, Date accessed: 2018-10-15.
+
+[21]: http://hyperdex.org/
+"HyperLevelDB"
+
+[[22]] LMDB, https://github.com/LMDB, Date accessed: 2018-10-29.
+
+[22]: https://github.com/LMDB
+"LMDB"
+
+[[23]] Paul Dix, Benchmarking LevelDB vs. RocksDB vs. HyperLevelDB vs. LMDB Performance for InfluxDB, https://www.influxdata.com/blog/benchmarking-leveldb-vs-rocksdb-vs-hyperleveldb-vs-lmdb-performance-for-influxdb/, Date accessed: 2018-10-15.
+
+[23]: https://www.influxdata.com/blog/benchmarking-leveldb-vs-rocksdb-vs-hyperleveldb-vs-lmdb-performance-for-influxdb/
+"Paul Dix, Benchmarking LevelDB vs.
+RocksDB vs. HyperLevelDB vs. LMDB
+Performance for InfluxDB"
+
+[[24]] Ben Alex, Lmdbjava - benchmarks, https://github.com/lmdbjava/benchmarks/blob/master/results/20160630/README.md, Date accessed: 2018-10-14.
+
+[24]: https://github.com/lmdbjava/benchmarks/blob/master/results/20160630/README.md
+"Ben Alex, Lmdbjava - benchmarks"
+
+[[25]] Howard Chu, Lies, Damn Lies, Statistics, and Benchmarks, https://www.linkedin.com/pulse/lies-damn-statistics-benchmarks-howard-chu, Date accessed: 2018-10-29.
+
+[25]: https://www.linkedin.com/pulse/lies-damn-statistics-benchmarks-howard-chu
+"Howard Chu, Lies, Damn Lies, Statistics, and Benchmarks"
+
+[[26]] HyperDex Benchmark, Symas Corp, http://www.lmdb.tech/bench/hyperdex/, Date accessed: 2018-10-29.
+
+[26]: http://www.lmdb.tech/bench/hyperdex/
+"HyperDex Benchmark, Symas Corp"
+
+[[27]] Grin - Basic Wallet, https://github.com/mimblewimble/grin/blob/master/doc/wallet/usage.md, Date accessed: 2018-10-15.
+
+[27]: https://github.com/mimblewimble/grin/blob/master/doc/wallet/usage.md
+"Grin - Basic Wallet"
+
+[[28]] Yeastplume, Progress update May - Sep 2018, https://www.grin-forum.org/t/yeastplume-progress-update-thread-may-sept-2018/361/12, Date accessed: 2018-10-28.
+
+[28]: https://www.grin-forum.org/t/yeastplume-progress-update-thread-may-sept-2018/361/12
+"Yeastplume, Progress update May - Sep 2018"
 
 ## Contributors
 
