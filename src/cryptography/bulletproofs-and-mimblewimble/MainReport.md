@@ -68,17 +68,17 @@ In [[1]] a number of protocols were suggested in using Bulletproofs, which are o
 Let inputs to the inner-product argument be independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $ and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that
 
 $$
-P =g^ah^b \,\,\,\,\,\, \mathrm{and} \,\,\,\,\,\, c = \langle \mathbf {a}, \mathbf {b} \rangle
+P =g^ah^b \mspace{30mu} \mathrm{and} \mspace{30mu} c = \langle \mathbf {a}, \mathbf {b} \rangle
 $$
 
 $ P $ is referred to as the binding vector commitment to $ \mathbf{a}, \mathbf{b} $. The inner product argument is an efficient proof system for the following relation:
 $$
-\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n \,\, , \,\, P \in \mathbb G \,\, , \,\, c \in \mathbb Z_p \,\, ; \,\,   \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \, : \,\,\, P =g^ah^b \, \wedge \, c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
+\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu}  P \in \mathbb G , \mspace{12mu}  c \in \mathbb Z_p ; \mspace{12mu}    \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \mspace{3mu}  : \mspace{15mu} P =g^ah^b \mspace{3mu}  \wedge \mspace{3mu}  c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
 $$
 
 Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier* for a given $ P \in \mathbb G $ the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to $ g,h \in \mathbb G^n $. 
 $$
-\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n \,\, , \,\, u,P \in \mathbb G \,\, ; \,\, \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \, : \,\,\, P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
+\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu}  u,P \in \mathbb G ; \mspace{12mu}  \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) : \mspace{15mu} P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
 $$
 
 A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
@@ -92,14 +92,18 @@ The argument presented in Protocol 1 for the relation (1) is perfectly hiding an
 
 **Protocol 2 - Improved Inner-Product Argument**
 
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* and *verifier* compute a new set of generators. By unrolling the recursion these final $ g ​$ and $ h ​$ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$ as:
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* and *verifier* compute a new set of generators. By unrolling the recursion these final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+
 $$
-g =  \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \,\,\,\,\,\,\, h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
+g =  \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
 $$
-where  $  \mathbf {s} = (s_1 \, , \, ... \, , \, s_n) \in \mathbb Z_p^n $ only depends on the challenges $  (x_1 \, , \, ... \, , \, x_{\log_2(n)}) \in \mathbb Z_p^n $. The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $:
+
+where  $  \mathbf {s} = (s_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} s_n) \in \mathbb Z_p^n $ only depends on the challenges $  (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_{\log_2(n)}) \in \mathbb Z_p^n $. The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $:
+
 $$
-\mathbf{g}^{a \cdot \mathbf{s}} \cdot \mathbf{h}^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \,\, \overset{?}{=} \,\, P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
+\mathbf{g}^{a \cdot \mathbf{s}} \cdot \mathbf{h}^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \mspace{12mu}  \overset{?}{=} \mspace{12mu}  P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
 $$
+
 with $ L $ and $R $ as defined in the original reference.
 
 Protocol 2 is is shown in Figure&nbsp;3. 
@@ -109,7 +113,7 @@ Protocol 2 is is shown in Figure&nbsp;3.
 
 
 
-**Protocol 3 - **
+**Protocol 3 - ?**
 
 ???
 
@@ -522,8 +526,7 @@ Definitions of terms presented here are high level and general in nature. Full m
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables $ (a_1, ..., a_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]]
 
-[ac~]: #ac
-
+[ac~]: #
 "An arithmetic circuit over a field 
 and variables (a1, ..., an) is a 
 directed acyclic graph ..."
@@ -531,7 +534,6 @@ directed acyclic graph ..."
 - <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. The terms *proof* and *argument of knowledge* have exactly the same meaning and can be used interchangeably. [[29]]
 
 [afs~]: #afs
-
 "Proof systems with computational 
 soundness like Bulletproofs are 
 sometimes called argument systems."
@@ -539,7 +541,6 @@ sometimes called argument systems."
 - <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[36]], [[37]])
 
 [cs~]: #cs
-
 "A commitment scheme in a 
 zero-knowledge proof is a 
 cryptographic primitive ..."
@@ -547,7 +548,6 @@ cryptographic primitive ..."
 - <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers  $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
 
 [dlp~]: #dlp
-
 "In the mathematics of the real 
 numbers, the logarithm log_b(a) 
 is a number x such that ..."
@@ -555,7 +555,6 @@ is a number x such that ..."
 - <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[43]], [[44]], [[45]])
 
 [egc~]: #egc
-
 "An ElGamal Commitment is a 
 Pedersen Commitment with
 additional commitment  ..."
@@ -566,15 +565,13 @@ additional commitment  ..."
   - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
 
 [fsh~]: #fsh
-
 "The Fiat–Shamir heuristic is a 
 technique in cryptography to 
 convert an interactive ..."
 
-- *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, nonce is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
+- *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, ***nonce*** is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
 
 [nonce~]: #nonce
-
 "In security engineering, nonce is an 
 abbreviation of number used once. 
 In cryptography, a nonce is an arbitrary 
@@ -583,7 +580,7 @@ number  ..."
 - <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
   - The generalized Pedersen commitment definition follows (*see Appendix B for notations used*):
     - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $ 
-    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $ 
+    - Let $ h ​$ be a random generator of cyclic group $ \mathbb G ​$ such that $ h ​$ is an element of $ \mathbb Z_q^* ​$ 
     - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $ 
     - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $ 
     - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
@@ -593,7 +590,6 @@ number  ..."
   - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
 
 [pc~]: #pc
-
 "A Pedersen Commitment scheme is a cryptographic
 primitive that allows one to commit to a
 secret value (or statement) without ..."
@@ -601,6 +597,7 @@ secret value (or statement) without ..."
 - <u><i>Trusted Setup</i></u>:<a name="ts"> </a>???
 
 [ts~]: #ts
+"???"
 
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
   - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
@@ -608,15 +605,13 @@ secret value (or statement) without ..."
   - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any confidential information from the interaction with the prover apart from the fact that the statement is true.
 
 [zk~]: #zk
-
 "In cryptography, a zero-knowledge 
 proof/protocol is a method by which 
 one party (the prover) can convince ..."
 
-- Term ?:<a name="term?"> </a>Definition ?
+- <u>*Term ?*</u>:<a name="term"> </a>Definition ?
 
-[term?~]: #zk
-
+[term?~]: #term
 "Definition ?  ..."
 
 
@@ -630,16 +625,16 @@ The general notation of mathematical expressions when specifically referenced ar
 - Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
 - Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
 - Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively
-- Let $  \mathbf {a} \in \mathbb F^n $ be a vector with elements  $  a_1 \cdot b_1 \,  ,  \, . . .  \, , \,  a_n \cdot b_n \in F^n $ 
+- Let $  \mathbf {a} \in \mathbb F^n $ be a vector with elements  $  a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n \in F^n $ 
 - Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sideset{}{_{i=1}^n} \sum {a_i \cdot b_i} $ denote the inner product between two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
-- Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \,  ,  \, . . .  \, , \,  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $  
+- Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $  
 - Let $  \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $  \mathbf {a}  \in \mathbb Z_p^n $ and  $ \mathbf {b}  \in \mathbb Z_p^m $ then $ \mathbf {a} \parallel \mathbf {b}  \in \mathbb Z_p^{n+m} $ 
 - Let $ p(X) = \sideset{}{_{i=0}^d} \sum { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $ 
 - Let $ \langle l(X),r(X) \rangle = \sideset{}{_{i=0}^d} \sum { \sideset{}{_{j=0}^i} \sum { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X]$ denote the inner product between two vector polynomials $l(X),r(X) $ 
 - Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $ 
-- Let $ C=g^a = \sideset{}{_{i=1}^n} \prod g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \, , \, ... \, , \, g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \sideset{}{_{i=1}^n} \prod (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
-- Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \, , \, ... \, , \, a_l) \in \mathbb F^l \, , \,\,\,\,\ \mathbf {a_{[l:]}} = (a_{l+1} \, , \, ... \, , \, a_n) \in \mathbb F^{n-l}$  
-- Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^*$ such that  $ \mathbf {k}^n = (1,k,k^2, \, ... \, ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
+- Let $ C=g^a = \sideset{}{_{i=1}^n} \prod g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \sideset{}{_{i=1}^n} \prod (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
+- Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_l) \in \mathbb F^l \mspace{3mu} , \mspace{12mu}\ \mathbf {a_{[l:]}} = (a_{l+1} \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \mathbb F^{n-l}$  
+- Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^*$ such that  $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
 - Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively
 - Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} $ denote the *prover* and *verifier* in relation to inner product calculations respectively
 
