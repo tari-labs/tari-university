@@ -149,7 +149,7 @@ Both projects are Open-Source.
   </tr>
   <tr>
     <td>**Governance Model**</td>
-    <td>Community Drvien with Technocratic Council</td>
+    <td>Community Driven with Technocratic Council</td>
     <td>Foundation</td>
   </tr>
   <tr>
