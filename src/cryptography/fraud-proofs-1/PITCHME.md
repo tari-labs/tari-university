@@ -15,9 +15,11 @@ SPV clients will believe everything miners or nodes tell them:
 - Node code modified
 - Lightweight clients don't verify coin amounts
 
+@div[s250px]
+![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
+@divend
 
 <p align="center"><img src="sources/todd-btc-spv.jpg" width="301" /></p>
-
 
 +++
 
@@ -80,8 +82,10 @@ Proposition:
 - represent the entire state as a Merkle root using a Sparse Merkle tree
 - each transaction changes the state root of the blockchain
   - `transaction(state,tx) = State or Error`
-  
-<p align="center"><img src="sources/stateroot.png" width="500" /></p>
+
+@div[s650px]
+![stateroot](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/stateroot.png)
+@divend
 
 +++
 ## Universal fraud proof (Cont'n)
@@ -96,9 +100,9 @@ Proposition:
 - full node sends lightclient/SPV this data to proof a valid fraud proof
 - SPV computes this function.
 
-
-<p align="center"><img src="sources/fraudproof.png" width="500" /></p>
-
+@div[s650px]
+![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
+@divend
 
 - post-state root can be excluded in order to save block space
 - But this increases the fraud proof size
@@ -123,7 +127,7 @@ Proposition:
 - bitcoin Merkle tree makes no distinction between inner and leaf nodes
     - re-interpret transactions as nodes and nodes as transactions
     - inner nodes having no format and only requiring the length to be 64 bytes
-- Bloom filters leak information such as determining if multiple address belongs to a single owner
+- Bloom filters leak information such as determining if multiple addresses belongs to a single owner
 - SPV clients pose the risk of a denial of service attack against full nodes when syncing
 - nodes can cause a denial of service against SPV clients by returning NULL filter responses to requests
 
@@ -145,8 +149,8 @@ Proposition:
   - Merkle trees that use unordered set
   - block sharding and validation
 - What can be proved?
-  - a transactrion is in the block
-  - it's inputs and outputs are or aren't in the UTXO set
+  - a transaction is in the block
+  - its inputs and outputs are or aren't in the UTXO set
 
 - SPV clients can be made aware of any invalidity in blocks and can’t be lied to about the UTXO set
 
@@ -161,6 +165,6 @@ Proposition:
 ## Observations
 
 - Fraud proofs can be complex and hard to implement
-- There is continouos research and suggested improvements on this topic
+- There is continuous research and suggested improvements on this topic
 - Universal fraud proofs seem to be the simpler solution to implement
 
