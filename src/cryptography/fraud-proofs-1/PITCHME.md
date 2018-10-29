@@ -19,6 +19,24 @@ SPV clients will believe everything miners or nodes tell them:
 ![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
 @divend
 
+<p align="center"><img src="sources/todd-btc-spv.jpg" width="301" /></p>
+
++++
+
+## Full node vs SPV client
+
+A full Bitcoin node contains the following details:
+- every block
+- every transaction that has ever been sent
+- all the unspent transaction outputs (UTXOs)
+
++++
+
+An SPV client, however, contains :
+- a block header with transaction data relative to the client including other transactions required to compute the Merkle root
+or 
+- just a block header with no transactions
+
 +++
 
 ## What are fraud proofs
@@ -34,22 +52,6 @@ SPV clients will believe everything miners or nodes tell them:
 - Could help with scalability of blockchains and security of SPV
 
 - Satoshi didn't go into the details of how it could be done
-
-+++
-
-## Full node vs SPV client
-
-A full Bitcoin node contains the following details:
-- every block
-- every transaction that has ever been sent
-- all the unspent transaction outputs (UTXOs)
-
-+++
-
-An SPV client, however, contains :
-- a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
-or 
-- just a block header with no transactions
 
 +++
 
@@ -103,7 +105,7 @@ Proposition:
 @divend
 
 - post-state root can be excluded in order to save block space
-- But this increase the fraud proof size
+- But this increases the fraud proof size
 
 +++
 
@@ -113,7 +115,6 @@ Proposition:
 ##### Strengths
 - memory light
 - user adoption
-- Low transaction fees
 
 +++
 
@@ -138,7 +139,6 @@ Proposition:
     - helps with data availability
     - allows a piece of data M chunks long to be expanded into a piece of data N chunks long
     - any M of the N chunks can be used to recover the original data
-
 
 
 +++
