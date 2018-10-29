@@ -59,7 +59,7 @@ Starting a project with a potentially compromised curve does not seem like a goo
 Many additional alternatives exist and platforms such as SafeCurves, maintained by Daniel J. Bernstein and Tanje Lange can help the investigation and selection of an alternate security curve. The SafeCurves platform will make it easier to evaluate the security properties and potential vulnerabilities of many cryptographic curves [[18]].
 
 
-##Storing wallet state using LMDB
+## Selection of key-store library
 
 Grin originally made use of RocksDB [[19]] as an internal key-value store, but received some criticism for this decision. A number of alternatives with other performance and security characteristics exist such as LevelDB [[20]], HyperLevelDB [[21]] and LMDB [[22]]. But selecting the "Best" key-value store library for your application remain a difficult problem as many online sources with conflicting information exist.
 
