@@ -8,14 +8,14 @@
 
 @snap[west sidebar]
 @div[s250px text-center]
-![Gringots](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/gringots.png)
+![Gringots](https://github.com/tari-labs/tari-university/raw/master/src/protocols/grin-beam-comparison/sources/gringots.png)
 @divend
 @snapend
 
 
 @snap[east sidebar]
 @div[s250px text-center]
-![BEAM](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/beam.png)
+![BEAM](https://github.com/tari-labs/tari-university/raw/master/src/protocols/grin-beam-comparison/sources/beam.png)
 @divend
 @snapend
 
@@ -62,13 +62,13 @@ One piece of functionality that both projects implement outside of Mimblewimble 
     - *Stem phase (Anonymity phase)*: Randomly forwards the transaction one peer at a time for a random distance
     - *Fluff phase (Spreading phase)*: Broadcast the transactions to the whole network
 
-![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/grin-beam/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
+![Dandelion Relay](https://github.com/tari-labs/tari-university/raw/master/src/protocols/grin-beam-comparison/sources/dandelion-stem-fluff.png)
 ---
 ## Grin unique features
 Grin has implemented **Partial History** syncing. This feature lets a new node to sync to the blockchain very quickly.
 
 1. A new node queries the current head block of the chain and requests the data up to a horizon (e.g. 5000 previous blocks)
-2. The node checks the embedded proofs to to see if there is enoguh data to confirm consensus.
+2. The node checks the embedded proofs to see if there is enough data to confirm consensus.
 3. If not it will increase the horizon depth and repeat the consensus check.
 4. Once a horizon is found that provides enough data for consensus the full UTXO set is downloaded at the horizon.
 
@@ -78,9 +78,9 @@ Grin's goal is to build a minimalistic implementation of Mimblewimble.
 BEAM has proposed quite a number of extensions to Mimblewimble to implement new features. Most are discussed in whitepapers and announcements but the features listed here were found in the code on Github so appear to be implemented.
 +++
 ## BEAM Transactions
-- Both confidential and non-confedential UXTOs
+- Both confidential and non-confidential UXTOs
     - Confidential UTXOs are signed by Bulletproofs 
-    - Non-confidential UTXOs are signed using a custom non-confedential signature
+    - Non-confidential UTXOs are signed using a custom non-confidential signature
 - BEAM supports an explicit incubation period on UTXO's
 - BEAM supports timelocked transactions that specify a minimum and maximum time threshold.
 +++
@@ -102,8 +102,8 @@ Beam supports the reuse of previous transactions kernels.
 - Incentivised through lower fees.
 +++
 ## Secure BBS system for building transactions
-Mimblewimble transactions need to be interactivelty built by the participants.
-- Grin achieves through through a direct socket connections.
+Mimblewimble transactions need to be interactively built by the participants.
+- Grin achieves through a direct socket connection.
 - BEAM implements a secure BBS system that is hosted on each node.
     - Supports non-real-time transaction negotiation.
 
@@ -117,13 +117,13 @@ BEAM implements a process called **kernel fusion** which means a kernel can refe
 - The payee constructs the transaction with a kernel that compensates for their secret blinding factor.
 - The payer completes the transaction
     - Payer chooses their blinding factor
-    - Payer includes a kernel that is fused with the payees kernel.
+    - Payer includes a kernel that is fused with the payee's kernel.
     - The payees kernel must appear in the final transaction.
 +++
 ## Planned features in BEAM
 There are some features that have been mentioned in BEAM but do not seem to be implemented as yet
 - Embedding plain text contracts (hash of text content) into transactions.
-- Assets and confedential assets on the base layer.
+- Assets and confidential assets on the base layer.
 
 ---
 ## Proof of Work algorithms
@@ -149,7 +149,7 @@ Both projects are Open-Source.
   </tr>
   <tr>
     <td>**Governance Model**</td>
-    <td>Community Drvien with Technocratic Council</td>
+    <td>Community Driven with Technocratic Council</td>
     <td>Foundation</td>
   </tr>
   <tr>

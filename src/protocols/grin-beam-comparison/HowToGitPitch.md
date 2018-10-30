@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:   protocols/grin-beam-comparison#/
+Presentation:   src/protocols/grin-beam-comparison#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/protocols/grin-beam-comparison#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/grin-beam-comparison#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    protocols/grin-beam-comparison#/
+Presentation:    src/protocols/grin-beam-comparison#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/protocols/grin-beam-comparison#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/grin-beam-comparison#/
