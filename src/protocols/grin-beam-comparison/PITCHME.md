@@ -68,7 +68,7 @@ One piece of functionality that both projects implement outside of Mimblewimble 
 Grin has implemented **Partial History** syncing. This feature lets a new node to sync to the blockchain very quickly.
 
 1. A new node queries the current head block of the chain and requests the data up to a horizon (e.g. 5000 previous blocks)
-2. The node checks the embedded proofs to to see if there is enough data to confirm consensus.
+2. The node checks the embedded proofs to see if there is enough data to confirm consensus.
 3. If not it will increase the horizon depth and repeat the consensus check.
 4. Once a horizon is found that provides enough data for consensus the full UTXO set is downloaded at the horizon.
 
@@ -117,7 +117,7 @@ BEAM implements a process called **kernel fusion** which means a kernel can refe
 - The payee constructs the transaction with a kernel that compensates for their secret blinding factor.
 - The payer completes the transaction
     - Payer chooses their blinding factor
-    - Payer includes a kernel that is fused with the payees kernel.
+    - Payer includes a kernel that is fused with the payee's kernel.
     - The payees kernel must appear in the final transaction.
 +++
 ## Planned features in BEAM
