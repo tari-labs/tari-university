@@ -19,6 +19,24 @@ SPV clients will believe everything miners or nodes tell them:
 ![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
 @divend
 
+<p align="center"><img src="sources/todd-btc-spv.jpg" width="301" /></p>
+
++++
+
+## Full node vs SPV client
+
+A full Bitcoin node contains the following details:
+- every block
+- every transaction that has ever been sent
+- all the unspent transaction outputs (UTXOs)
+
++++
+
+An SPV client, however, contains :
+- a block header with transaction data relative to the client including other transactions required to compute the Merkle root
+or 
+- just a block header with no transactions
+
 +++
 
 ## What are fraud proofs
@@ -34,22 +52,6 @@ SPV clients will believe everything miners or nodes tell them:
 - Could help with scalability of blockchains and security of SPV
 
 - Satoshi didn't go into the details of how it could be done
-
-+++
-
-## Full node vs SPV client
-
-A full Bitcoin node contains the following details:
-- every block
-- every transaction that has ever been sent
-- all the unspent transaction outputs (UTXOs)
-
-+++
-
-An SPV client, however, contains :
-- a block header with transaction data relative to the client including other transactiosn required to compute the Merkle root
-or 
-- just a block header with no transactions
 
 +++
 
@@ -103,7 +105,7 @@ Proposition:
 @divend
 
 - post-state root can be excluded in order to save block space
-- But this increase the fraud proof size
+- But this increases the fraud proof size
 
 +++
 
@@ -113,7 +115,6 @@ Proposition:
 ##### Strengths
 - memory light
 - user adoption
-- Low transaction fees
 
 +++
 
@@ -126,7 +127,7 @@ Proposition:
 - bitcoin Merkle tree makes no distinction between inner and leaf nodes
     - re-interpret transactions as nodes and nodes as transactions
     - inner nodes having no format and only requiring the length to be 64 bytes
-- Bloom filters leak information such as determining if multiple address belongs to a single owner
+- Bloom filters leak information such as determining if multiple addresses belongs to a single owner
 - SPV clients pose the risk of a denial of service attack against full nodes when syncing
 - nodes can cause a denial of service against SPV clients by returning NULL filter responses to requests
 
@@ -140,7 +141,6 @@ Proposition:
     - any M of the N chunks can be used to recover the original data
 
 
-
 +++
 
 #### Other suggested fraud proof improvements (cont'd)
@@ -149,8 +149,8 @@ Proposition:
   - Merkle trees that use unordered set
   - block sharding and validation
 - What can be proved?
-  - a transactrion is in the block
-  - it's inputs and outputs are or aren't in the UTXO set
+  - a transaction is in the block
+  - its inputs and outputs are or aren't in the UTXO set
 
 - SPV clients can be made aware of any invalidity in blocks and can’t be lied to about the UTXO set
 
@@ -165,6 +165,6 @@ Proposition:
 ## Observations
 
 - Fraud proofs can be complex and hard to implement
-- There is continouos research and suggested improvements on this topic
+- There is continuous research and suggested improvements on this topic
 - Universal fraud proofs seem to be the simpler solution to implement
 
