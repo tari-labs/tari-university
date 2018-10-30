@@ -68,7 +68,7 @@ One piece of functionality that both projects implement outside of Mimblewimble 
 Grin has implemented **Partial History** syncing. This feature lets a new node to sync to the blockchain very quickly.
 
 1. A new node queries the current head block of the chain and requests the data up to a horizon (e.g. 5000 previous blocks)
-2. The node checks the embedded proofs to to see if there is enoguh data to confirm consensus.
+2. The node checks the embedded proofs to to see if there is enough data to confirm consensus.
 3. If not it will increase the horizon depth and repeat the consensus check.
 4. Once a horizon is found that provides enough data for consensus the full UTXO set is downloaded at the horizon.
 
@@ -78,9 +78,9 @@ Grin's goal is to build a minimalistic implementation of Mimblewimble.
 BEAM has proposed quite a number of extensions to Mimblewimble to implement new features. Most are discussed in whitepapers and announcements but the features listed here were found in the code on Github so appear to be implemented.
 +++
 ## BEAM Transactions
-- Both confidential and non-confedential UXTOs
+- Both confidential and non-confidential UXTOs
     - Confidential UTXOs are signed by Bulletproofs 
-    - Non-confidential UTXOs are signed using a custom non-confedential signature
+    - Non-confidential UTXOs are signed using a custom non-confidential signature
 - BEAM supports an explicit incubation period on UTXO's
 - BEAM supports timelocked transactions that specify a minimum and maximum time threshold.
 +++
@@ -102,7 +102,7 @@ Beam supports the reuse of previous transactions kernels.
 - Incentivised through lower fees.
 +++
 ## Secure BBS system for building transactions
-Mimblewimble transactions need to be interactivelty built by the participants.
+Mimblewimble transactions need to be interactively built by the participants.
 - Grin achieves through through a direct socket connections.
 - BEAM implements a secure BBS system that is hosted on each node.
     - Supports non-real-time transaction negotiation.
@@ -123,7 +123,7 @@ BEAM implements a process called **kernel fusion** which means a kernel can refe
 ## Planned features in BEAM
 There are some features that have been mentioned in BEAM but do not seem to be implemented as yet
 - Embedding plain text contracts (hash of text content) into transactions.
-- Assets and confedential assets on the base layer.
+- Assets and confidential assets on the base layer.
 
 ---
 ## Proof of Work algorithms
