@@ -103,7 +103,7 @@ Beam supports the reuse of previous transactions kernels.
 +++
 ## Secure BBS system for building transactions
 Mimblewimble transactions need to be interactively built by the participants.
-- Grin achieves through through a direct socket connections.
+- Grin achieves through a direct socket connections.
 - BEAM implements a secure BBS system that is hosted on each node.
     - Supports non-real-time transaction negotiation.
 
