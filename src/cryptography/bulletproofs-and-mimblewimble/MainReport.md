@@ -19,21 +19,29 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
 
 ## Contents
 
-Needs update!!!!!!!!
-
-- [Bulletproofs and Mimblewimble](#Bulletproofs-and-mimblewimble)
+- [Bulletproofs and Mimblewimble](#bulletproofs-and-mimblewimble)
   - [Introduction](#introduction)
   - [Contents](#contents)
-  - [How does Bulletproofs work?](#how-does-Bulletproofs-work)
-  - [Applications for Bulletproofs](#applications-for-Bulletproofs)
+  - [How does Bulletproofs work?](#how-does-bulletproofs-work)
+  - [Applications for Bulletproofs](#applications-for-bulletproofs)
+    - [Use Cases](#use-cases)
+    - [Bulletproof Protocols](#bulletproof-protocols)
+      - [Protocol 1 - Inner-product Argument](#protocol-1---inner-product-argument)
+      - [Protocol 2 - Inner-Product Verification through Multi-Exponentiation](#protocol-2---inner-product-verification-through-multi-exponentiation)
+      - [Protocol 2b - Range Proof Protocol with Logarithmic Size](#protocol-2b---range-proof-protocol-with-logarithmic-size)
+      - [Protocol 3 - Zero-Knowledge Proof for Arithmetic Circuits](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)
+      - [Protocol 4 - Multi-Exponentiation and Batch Verification](#protocol-4---multi-exponentiation-and-batch-verification)
   - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
     - [Current & Past Efforts](#current--past-efforts)
+    - [Security Considerations](#security-considerations)
     - [Wallet Reconstruction - Grin](#wallet-reconstruction---grin)
   - [Negatives](#negatives)
   - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
-  - [Definition of Terms](#definition-of-terms)
   - [References](#references)
+  - [Appendices](#appendices)
+    - [Appendix A: Definition of Terms](#appendix-a-definition-of-terms)
+    - [Appendix B: Notations Used](#appendix-b-notations-used)
   - [Contributors](#contributors)
 
 
@@ -57,70 +65,6 @@ In Mimblewimble the block chain grows with the size of the UTXO set. Using Bulle
 ## Applications for Bulletproofs
 
 Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits. What this means in practice is that Bulletproofs have wide application and can be efficiently used for many types of proofs.  ([[1]], [[3]], [[6]]) 
-
-### Bulletproof Protocols
-
-In [[1]] a number of protocols were suggested in using Bulletproofs, which are only briefly summarized here to explain the logic and the most important terms (*see Appendix B for notations used*). 
-<i>**Note:** Full mathematical definitions and terms not defined are available in 5.</i>
-
-**Protocol 1 - Inner-product Argument**
-
-Let inputs to the inner-product argument be independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $ and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that
-
-$$
-P =g^ah^b \mspace{30mu} \mathrm{and} \mspace{30mu} c = \langle \mathbf {a}, \mathbf {b} \rangle
-$$
-
-$ P $ is referred to as the binding vector commitment to $ \mathbf{a}, \mathbf{b} $. The inner product argument is an efficient proof system for the following relation:
-$$
-\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu}  P \in \mathbb G , \mspace{12mu}  c \in \mathbb Z_p ; \mspace{12mu}    \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \mspace{3mu}  : \mspace{15mu} P =g^ah^b \mspace{3mu}  \wedge \mspace{3mu}  c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
-$$
-
-Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier* for a given $ P \in \mathbb G $ the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to $ g,h \in \mathbb G^n $. 
-$$
-\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu}  u,P \in \mathbb G ; \mspace{12mu}  \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) : \mspace{15mu} P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
-$$
-
-A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
-
-Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;2. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from Protocol 2 satisfy $ c = \langle \mathbf {a}, \mathbf {b} \rangle $.
-
-<p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
-<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 1  [[1]]</b></div>
-
-The argument presented in Protocol 1 for the relation (1) is perfectly hiding and statistically binding.
-
-**Protocol 2 - Improved Inner-Product Argument**
-
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* and *verifier* compute a new set of generators. By unrolling the recursion these final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
-
-$$
-g =  \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
-$$
-
-where  $  \mathbf {s} = (s_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} s_n) \in \mathbb Z_p^n $ only depends on the challenges $  (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_{\log_2(n)}) \in \mathbb Z_p^n $. The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $:
-
-$$
-\mathbf{g}^{a \cdot \mathbf{s}} \cdot \mathbf{h}^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \mspace{12mu}  \overset{?}{=} \mspace{12mu}  P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
-$$
-
-with $ L $ and $R $ as defined in the original reference.
-
-Protocol 2 is is shown in Figure&nbsp;3. 
-
-<p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;3: Bulletproofs Protocol 2  [[1]]</b></div>
-
-
-
-**Protocol 3 - ?**
-
-???
-
-**Protocol 4 - Multi-Exponentiation and Batch Verification**
-
-???
-
 
 
 ### Use Cases
@@ -148,9 +92,9 @@ Some use cases of Bulletproofs are listed below, and note this list may not be e
     <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
     <div align="center"><b>Figure&nbsp;3: Bulletproofs for Refereed Delegation Model  [[5]]</b></div>
 
-  - Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with Bulletproofs to proof that the transaction is valid.
-
 - Verifiable shuffles
+
+  - Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with Bulletproofs to proof that the transaction is valid.
 
   - When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$ as shown in Figure&nbsp;4. 
 
@@ -158,8 +102,117 @@ Some use cases of Bulletproofs are listed below, and note this list may not be e
     <div align="center"><b>Figure&nbsp;4: Bulletproofs for Verifiable Shuffles [[5]]</b></div>
 
 - Batch verifications
-  - Batch verifications can be done using various values and outputs from running the Bulletproofs Protocol 1 and Protocol 2. This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied in order to reduce the number of expensive exponentiations.
-  - 
+  - Batch verifications can be done using various values and outputs from running the Bulletproofs [Protocol 1](#protocol-1---inner-product-argument) and [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied in order to reduce the number of expensive exponentiations.
+  - ???
+
+
+
+### Bulletproof Protocols
+
+In [[1]] a number of protocols were suggested in using Bulletproofs, which are only briefly summarized here to explain the logic and the most important terms (*see [Appendix B](#appendix-b-notations-used) for notations used*). 
+
+<i>**Note:** Full mathematical definitions and terms not defined are available in [[1]].</i>
+<br>
+
+#### Protocol 1 - Inner-product Argument
+
+Protocol 1 is an argument of knowledge that the *prover* knows the openings of two binding Pedersen vector commitments that satisfy a given inner product relation. Let inputs to the inner-product argument be independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $ and $ P \in \mathbb G $. The argument lets the *prover* convince a *verifier* that the *prover* knows two vectors $ \mathbf{a}, \mathbf{b}  \in \mathbb Z^n_p $ such that
+$$
+P =g^ah^b \mspace{30mu} \mathrm{and} \mspace{30mu} c = \langle \mathbf {a}, \mathbf {b} \rangle
+$$
+
+$ P $ is referred to as the binding vector commitment to $ \mathbf{a}, \mathbf{b} $. The inner product argument is an efficient proof system for the following relation:
+$$
+\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu}  P \in \mathbb G , \mspace{12mu}  c \in \mathbb Z_p ; \mspace{12mu}    \mathbf {a}, \mathbf {b}  \in \mathbb Z^n_p  ) \mspace{3mu}  : \mspace{15mu} P =g^ah^b \mspace{3mu}  \wedge \mspace{3mu}  c = \langle \mathbf {a}, \mathbf {b} \rangle \} \mspace{100mu} (1)
+$$
+
+Relation (1) requires sending $ 2n $ elements to the *verifier*. In order to send only $ 2 \log 2 (n) $ elements  to the *verifier* for a given $ P \in \mathbb G $ the *prover* proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which $ P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to $ g,h \in \mathbb G^n $. 
+$$
+\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu}  u,P \in \mathbb G ; \mspace{12mu}  \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) : \mspace{15mu} P =g^ah^b \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
+$$
+
+A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
+
+Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;2. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) satisfy $ c = \langle \mathbf {a}, \mathbf {b} \rangle $.
+
+<p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
+<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 1  [[1]]</b></div>
+
+The argument presented in Protocol 1 for the relation (1) is perfectly hiding and statistically binding.
+
+#### Protocol 2 - Inner-Product Verification through Multi-Exponentiation
+
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* and *verifier* compute a new set of generators. By unrolling the recursion these final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+
+$$
+g =  \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
+$$
+
+where  $  \mathbf {s} = (s_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} s_n) \in \mathbb Z_p^n $ only depends on the challenges $  (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_{\log_2(n)}) \in \mathbb Z_p^n $. The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $:
+
+$$
+\mathbf{g}^{a \cdot \mathbf{s}} \cdot \mathbf{h}^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \mspace{12mu}  \overset{?}{=} \mspace{12mu}  P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
+$$
+
+with $ L $ and $R $ as defined in the original reference.
+
+Protocol 2 is is shown in Figure&nbsp;3. 
+
+<p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
+<div align="center"><b>Figure&nbsp;3: Bulletproofs Protocol 2  [[1]]</b></div>
+
+
+
+#### Protocol 2b - Range Proof Protocol with Logarithmic Size
+
+Protocol 2b provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by
+using the Fiat-Shamir heuristic and how to allow multiple parties to construct a single aggregate range proof.
+
+##### Inner-Product Range Proof
+
+This protocol provides the ability to construct a range proof that requires the *verifier* to check an inner product between two vectors. The range proof is constructed by exploiting the fact that a Pedersen commitment $ V $ is an element in the same group $ \mathbb G $ that is used to perform the inner product argument. Let $ v \in \mathbb Z_p $ and let $ V \in \mathbb G $ be a Pedersen commitment to $ v $ using randomness $ \gamma $. The proof system will convince the verifier that commitment $ V $ contains a number $ v \in [0,2^n - 1] $ such that
+
+$$
+\{ (g,h \in \mathbb{G}) , V , n \mspace{3mu} ; \mspace{12mu}  v, \gamma \in \mathbb{Z_p} ) \mspace{3mu}  : \mspace{3mu} V =h^\gamma g^v \mspace{5mu}  \wedge \mspace{5mu} v \in [0,2^n - 1] \} \mspace{100mu} (3)
+$$
+
+without revealing $ v $. Let $  \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $ be the vector containing the bits of $ v, $ so that  $ \langle \mathbf {a}_L, \mathbf {2}^n \rangle = v $. The prover $ \mathcal{P} $ commits to $  \mathbf {a}_L $ using a constant size vector commitment $ A \in \mathbb{G} $. It will convince the verifier that $ v $ is in $ [0,2^n - 1] $ by proving that it knows an opening  $  \mathbf {a}_L \in \mathbb{Z}_p^n $ of $ A $ and $ v, \gamma \in \mathbb{Z_p} $ such
+that $ V =h^\gamma g^v $ and
+$$
+\langle \mathbf {a}_L, \mathbf {2}^n \rangle = v  \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_L \circ \mathbf {a}_R = \mathbf{0}^n  \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_R = \mathbf {a}_L - \mathbf {1}^n \mspace{100mu} (4)
+$$
+
+This proves that $ a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n $ are all in $ \{0,1\} $ and that $ \mathbf {a}_L $ is composed of the bits of $ v $. However, the $ 2n + 1 $ constraints needs to be expressed as a single inner-product constant so that [Protocol 1](#protocol-1---inner-product-argument) can be used.
+
+?????
+
+##### Logarithmic Range Proof
+
+This protocol replaces the inner product argument with an efficient inner-product argument.
+
+##### Aggregating Logarithmic Proofs
+
+This protocol efficiently aggregate m range proofs into one short proof.
+
+##### Non-Interactive Proof through Fiat-Shamir
+
+This protocol makes interactive public coin protocols non-interactive by using the Fiat-Shamir heuristic.
+
+##### MPC Protocol for Bulletproofs
+
+ This protocol allow multiple parties to construct a single aggregate range proof.
+
+
+
+#### Protocol 3 - Zero-Knowledge Proof for Arithmetic Circuits
+
+???
+
+
+
+#### Protocol 4 - Multi-Exponentiation and Batch Verification
+
+???
 
 
 
@@ -561,7 +614,9 @@ additional commitment  ..."
 
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
   - The prover will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the verifier and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the verifier then contains the challenge $ c $ and response $ f $.
+
   - The verifier is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The verifier will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
+
   - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
 
 [fsh~]: #fsh
@@ -578,15 +633,24 @@ In cryptography, a nonce is an arbitrary
 number  ..."
 
 - <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
-  - The generalized Pedersen commitment definition follows (*see Appendix B for notations used*):
+  - The generalized Pedersen commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
+
     - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $ 
-    - Let $ h ​$ be a random generator of cyclic group $ \mathbb G ​$ such that $ h ​$ is an element of $ \mathbb Z_q^* ​$ 
+
+    - Let $ h $ be a random generator of cyclic group $ \mathbb G ​$ such that $ h $ is an element of $ \mathbb Z_q^* $ 
+
     - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $ 
+
     - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $ 
+
     - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
+
     - The generator $ h $ and resulting number $ g $ are known as the commitment bases, and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
+
     - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
+
   - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
+
   - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
 
 [pc~]: #pc
@@ -601,7 +665,9 @@ secret value (or statement) without ..."
 
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
   - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
+
   - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
+
   - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any confidential information from the interaction with the prover apart from the fact that the statement is true.
 
 [zk~]: #zk
@@ -620,22 +686,38 @@ one party (the prover) can convince ..."
 
 The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
 
-- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively
+- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q ​$ respectively
+
 - let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively
+
 - Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
+
 - Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
+
 - Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively
+
 - Let $  \mathbf {a} \in \mathbb F^n $ be a vector with elements  $  a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n \in F^n $ 
-- Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sideset{}{_{i=1}^n} \sum {a_i \cdot b_i} $ denote the inner product between two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
-- Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $  
+
+- Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sum _{i=1}^n {a_i \cdot b_i} $ denote the inner product between two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
+
+- Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
+
 - Let $  \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $  \mathbf {a}  \in \mathbb Z_p^n $ and  $ \mathbf {b}  \in \mathbb Z_p^m $ then $ \mathbf {a} \parallel \mathbf {b}  \in \mathbb Z_p^{n+m} $ 
-- Let $ p(X) = \sideset{}{_{i=0}^d} \sum { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $ 
-- Let $ \langle l(X),r(X) \rangle = \sideset{}{_{i=0}^d} \sum { \sideset{}{_{j=0}^i} \sum { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X]$ denote the inner product between two vector polynomials $l(X),r(X) $ 
+
+- Let $ p(X) = \sum _{i=0}^d { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $ 
+
+- Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] $ denote the inner product between two vector polynomials $ l(X),r(X) $ 
+
 - Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $ 
-- Let $ C=g^a = \sideset{}{_{i=1}^n} \prod g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \sideset{}{_{i=1}^n} \prod (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
-- Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_l) \in \mathbb F^l \mspace{3mu} , \mspace{12mu}\ \mathbf {a_{[l:]}} = (a_{l+1} \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \mathbb F^{n-l}$  
-- Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^*$ such that  $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
+
+- Let $ C=g^a = \prod _{i=1}^n g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C=  \prod _{i=1}^n (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
+
+- Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_l) \in \mathbb F^l \mspace{3mu} , \mspace{12mu}\ \mathbf {a_{[l:]}} = (a_{l+1} \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \mathbb F^{n-l}$ 
+
+- Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^* $ such that  $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
+
 - Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively
+
 - Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} $ denote the *prover* and *verifier* in relation to inner product calculations respectively
 
 
