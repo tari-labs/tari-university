@@ -246,7 +246,11 @@ and More, Blockchain Protocol Analysis and Security
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
-The range proof presented here has perfect completeness (*see Definition 9 in [[1]]*), perfect special honest verifier zero-knowledge (*see Definition 12 in [[1]]*), and computational witness extended emulation (*see Definition 10 in [[1]]*). **??????? Explain ????????**
+The range proof presented here has:
+
+- <u>Perfect completeness</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
+- <u>Perfect special honest verifier zero-knowledge</u>: The verifier $ \mathcal{V} $ behaves according to the protocol, also see Definition&nbsp;12 in [[1]];
+- <u>Computational witness extended emulation</u>: A witness can be computed in time closely related to time spent by the prover $ \mathcal{P} $, also see Definition&nbsp;10 in [[1]].
 
 
 
