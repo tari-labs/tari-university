@@ -54,7 +54,9 @@ Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only r
 
 <p align="center"><img src="sources/AggregateBulletproofsSize.png" width="650" /></p>
 
-<p align="center"><b>Figure&nbsp;1: Logarithmic Aggregate Bulletproofs Proof Sizes [[3]]</b></p>
+<p align="center"><b>Figure&nbsp;1: Logarithmic Aggregate Bulletproofs Proof Sizes [<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bullet Proofs (Slides), 
+Bitcoin Milan Meetup 2018-02-02, 
+Andrew Poelstra">3</a>]</b></p>
 
 In Bitcoin, approximately 50 million Unspent Transaction Outputs (UTXO) from approximately 22 million transactions would result in roughly 160GB of range proof data using the current systems, when using 52-bits to represent any value from 1 satoshi up to 21 million bitcoins. Aggregated Bulletproofs would reduce that data set to less than 17GB. [[1]]
 
@@ -90,7 +92,10 @@ Some use cases of Bulletproofs are listed below, and note this list may not be e
   - Traditionally, verifying privacy-preserving smart contracts need a new trusted setup for each, but with Bulletproofs no trusted setup is needed. Verification time however is linear and it might be too complex to proof every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with pubic verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract. A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid, and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then run to identify the gate where the proof turns invalid, and hence the smart contract only has to check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (see Figure&nbsp;3). 
 
     <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
-    <div align="center"><b>Figure&nbsp;3: Bulletproofs for Refereed Delegation Model  [[5]]</b></div>
+    <div align="center"><b>Figure&nbsp;3: Bulletproofs for Refereed Delegation Model [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions 
+    and More (Slides), Blockchain Protocol Analysis and 
+    Security Engineering 2018, 
+    Bünz B. et al">5</a>]</b></div>
 
 - Verifiable shuffles
 
@@ -99,7 +104,10 @@ Some use cases of Bulletproofs are listed below, and note this list may not be e
   - When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$ as shown in Figure&nbsp;4. 
 
     <p align="center"><img src="sources/VerifiableShuffles.png" width="600" /></p>
-    <div align="center"><b>Figure&nbsp;4: Bulletproofs for Verifiable Shuffles [[5]]</b></div>
+    <div align="center"><b>Figure&nbsp;4: Bulletproofs for Verifiable Shuffles [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions 
+    and More (Slides), Blockchain Protocol Analysis and 
+    Security Engineering 2018, 
+    Bünz B. et al">5</a>]</b></div>
 
 - Batch verifications
   - Batch verifications can be done using various values and outputs from running the Bulletproofs [Protocol 1](#protocol-1---inner-product-argument) and [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied in order to reduce the number of expensive exponentiations.
@@ -136,7 +144,10 @@ A proof system for relation (2) gives a proof system for (1) with the same compl
 Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;2. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
 
 <p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
-<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 1  [[1]]</b></div>
+<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+and More, Blockchain Protocol Analysis and Security 
+Engineering 2018, 
+Bünz B. et al">1</a>]</b></div>
 
 The argument presented in Protocol 1 for the relation (1) is perfectly hiding and statistically binding.
 
@@ -159,14 +170,16 @@ with $ L $ and $R $ as defined in the original reference.
 Protocol 2 is is shown in Figure&nbsp;3. 
 
 <p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;3: Bulletproofs Protocol 2  [[1]]</b></div>
+<div align="center"><b>Figure&nbsp;3: Bulletproofs Protocol 2 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+and More, Blockchain Protocol Analysis and Security 
+Engineering 2018, 
+Bünz B. et al">1</a>]</b></div>
 
 
 
 #### Protocol 2b - Range Proof Protocol with Logarithmic Size
 
-Protocol 2b provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by
-using the Fiat-Shamir heuristic and how to allow multiple parties to construct a single aggregate range proof.
+Protocol 2b provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir heuristic and how to allow multiple parties to construct a single aggregate range proof.
 
 ##### Inner-Product Range Proof
 
@@ -199,14 +212,43 @@ $$
 $$
 can be easily calculated by the  *verifier* $ \mathcal{V} $. The proof that relation (40) holds was thus reduced to a single inner-product identity.
 
-Relation (7) cannot be used as is without revealing information about $  \mathbf {a}_L $. Two additional blinding terms $  \mathbf {s}_L , \mathbf {s}_R \in \mathbb{Z}_p^n $ are introduced with the *prover* $ \mathcal{P} $ and  *verifier* $ \mathcal{V} $ engaging in the following zero knowledge protocol:
+Relation (7) cannot be used as is without revealing information about $  \mathbf {a}_L $. Two additional blinding vectors $  \mathbf {s}_L , \mathbf {s}_R \in \mathbb{Z}_p^n $ are introduced with the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engaging in the following zero knowledge protocol (Figure&nbsp;4):
 
-<p align="center"><img src="sources/Protocol-2b-part-a.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;4: Bulletproofs Protocol 2b Part A [[1]]</b></div>
+<p align="center"><img src="sources/Protocol-2b-part-a.png" width="550" /></p>
+<div align="center"><b>Figure&nbsp;4: Bulletproofs Protocol 2b Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+and More, Blockchain Protocol Analysis and Security 
+Engineering 2018, 
+Bünz B. et al">1</a>]</b></div>
+
+Two linear vector polynomials $ l(X), r(X) $ in $  \mathbb Z^n_p[X] $ are defined as the inner-product terms for relation (7), also containing the blinding vectors $  \mathbf {s}_L , \mathbf {s}_R $. A quadratic polynomial $ t(X) \in \mathbb Z^n_p[X] $ is then defined as the inner product between the two vector polynomials $ l(X), r(X) $ such that
+$$
+t(X) = \langle l(X) \mspace{3mu} , \mspace{3mu} r(X) \rangle = t_0 + t_1 \cdot X + t_2 \cdot X^2 \mspace{10mu} \in \mathbb {Z}_p[X]
+$$
+The blinding vectors $  \mathbf {s}_L , \mathbf {s}_R  $ ensure that the *prover* $ \mathcal{P} $ can publish $ l(x) $ and $ r(x) $ for one $ x \in \mathbb Z_p^* $ without revealing any information about $ \mathbf {a}_L $ and $ \mathbf {a}_R $. The constant term $ t_0 $ of the quadratic polynomial $ t(X) $ is then the result of the inner product in relation (7), and the *prover* $ \mathcal{P} $ needs to convince the *verifier* $ \mathcal{V} $ that 
+$$
+t_0 = z^2 \cdot v + \delta (y,z)
+$$
+In order to do so the *prover* $ \mathcal{P} $ convinces the *verifier* $ \mathcal{V} $ that it has a commitment to the remaining coefficients of $ t(X) $, namely $ t_1,t_2 \in \mathbb Z_p $ by checking the value of $ t(X) $ at a random point $ x \in \mathbb Z_p^* $. This is illustrated in Figure&nbsp;5.
+
+<p align="center"><img src="sources/Protocol-2b-part-b.png" width="655" /></p>
+<div align="center"><b>Figure&nbsp;5: Bulletproofs Protocol 2b Part B [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+and More, Blockchain Protocol Analysis and Security 
+Engineering 2018, 
+Bünz B. et al">1</a>]</b></div>
+
+The *verifier* $ \mathcal{V} $ now needs to check that $ l $ and $ r $ are in fact $ l(x) $ and $ r(x) $ and that $ t(x) = \langle l \mspace{3mu} , \mspace{3mu} r \rangle $. A commitment for $ \mathbf {a}_R \circ \mathbf {y}^n $ is needed and in order to do so the commitment generators are switched from $ h \in \mathbb G^n $ to $ h ^\backprime = h^{(\mathbf {y}^{-1})}$. Thus $ A $ and $ S $ now become vector commitments to $ ( \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n ) $ and $ ( \mathbf {s}_L \mspace{3mu} , \mspace{3mu} \mathbf {s}_R \circ \mathbf {y}^n ) $ respectively with respect to the new generators $ (g, h ^\backprime, h) $. This is illustrated in Figure&nbsp;6.
 
 
 
-?????
+<p align="center"><img src="sources/Protocol-2b-part-c.png" width="640" /></p>
+<div align="center"><b>Figure&nbsp;6: Bulletproofs Protocol 2b Part C [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+and More, Blockchain Protocol Analysis and Security 
+Engineering 2018, 
+Bünz B. et al">1</a>]</b></div>
+
+The range proof presented here has perfect completeness (*see Definition 9 in [[1]]*), perfect special honest verifier zero-knowledge (*see Definition 12 in [[1]]*), and computational witness extended emulation (*see Definition 10 in [[1]]*). **??????? Explain ????????**
+
+
 
 ##### Logarithmic Range Proof
 
