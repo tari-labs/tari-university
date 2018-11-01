@@ -16,7 +16,7 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   -[Practical Byzantine Fault Tolerant Variants](#practical-byzantine-fault-tolerant-variants)
   -[Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
   -[Scalability-performance trade off](#scalability-performance-trade-off)
-  -[Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony)
+  -[Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
     -[Synchrony](#synchrony)
     -[Partial Synchrony](#partial-synchrony)
     -[Unknown-△T Model](#unknown-△t-model)
@@ -294,11 +294,6 @@ The gossip protocol works like this:
 
 In this way, information spreads throughout the network in an exponential fashion. [[30]]
 
-![Figure 1 - HashGraph](../assets/gossip.png'The history of any gossip protocol can be represented by a directed graph, 
-where each member is a column of vertices. Each transfer event is shown as a new vertex with two edges linking the 
-immediately-preceding gossip events.')
-
-
 <p align="center"><img src="../assets/gossip.png" width="400" /></p>
 <p align="center"><b>Figure 1: Gossip Protocol Directed Graph</b></p>
 
@@ -340,7 +335,8 @@ If a node examines its hash graph and notices that an event _z_ _sees_ an event 
 
 The following example comes from [[30]]:
 
-![Strongly seeing example](../assets/strongly-seeing.png)
+<p align="center"><img src="../assets/strongly-seeing.png" width="600" /></p>
+<p align="center"><b>Figure 2: Illustration of Strongly-Seeing </b></p>
 
 #### The Construct of Gossiping
 
