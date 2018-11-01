@@ -216,7 +216,7 @@ Byzantine agreement schemes are considered well suited for permissioned block ch
 
 HLF began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source cross-industry standard platform for distributed ledgers. Hyperledger Fabric is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. [[11]]
 
-The block chain's hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF follows PBFT, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
+The block chain's hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode (the transaction which involves accepting the code of the smart contract to be deployed) is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF follows PBFT, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
 
 While being redesigned for a v1.0 release, the format's goal was to achieve extensibility. This version allowed for modules such as membership and consensus mechanism to be exchanged. Being permissioned, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
 
@@ -234,7 +234,7 @@ Critics have argued that Tendermint is not decentralized, and one can distinguis
 
 Sentry Nodes are guardians of a validator node and provide the validator nodes with access to the rest of the network. Sentry nodes are well connected to other full nodes on the network. Sentry nodes may be dynamic, but should maintain persistent connections to some evolving random subset of each other. They should always expect to have direct incoming connections from the validator node and its backup(s). They do not report the validator node's address in the Peer Exchange Reactor (PEX) and they may be more strict about the quality of peers they keep.
 
-Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual Private Network (VPN) with one another, but only report each other sparingly in the PEX.
+Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual Private Network (VPN) with one another, but only report each other sparingly in the PEX.[[44]]
 
 ## Permissionless Byzantine Fault Tolerant Protocols  
 
@@ -294,9 +294,13 @@ The gossip protocol works like this:
 
 In this way, information spreads throughout the network in an exponential fashion. [[30]]
 
-![Figure 1 - HashGraph](../assets/gossip.png 'The history of any gossip protocol can be represented by a directed graph, 
-where each member is a column of vertices. Each transfer event is shown as a new vertex with two e dges linking the 
+![Figure 1 - HashGraph](../assets/gossip.png'The history of any gossip protocol can be represented by a directed graph, 
+where each member is a column of vertices. Each transfer event is shown as a new vertex with two edges linking the 
 immediately-preceding gossip events.')
+
+
+<p align="center"><img src="../assets/gossip.png" width="400" /></p>
+<p align="center"><b>Figure 1: Gossip Protocol Directed Graph</b></p>
 
 The gossip history can be represented as a directed graph, as in Figure 1. 
 
@@ -321,19 +325,18 @@ So in the absence of forks, all events will _see_ all of their ancestors.
      |
 x +--+
      |
-     |
      +-----> z
 ```
 
-In the example above, x is an ancestor to both y and z. However, because there is no ancestor relationship between y and z, the _seeing_ condition fails, and so y cannot see x, and z cannot see x.
+In the example above, _x_ is an ancestor to both y and z. However, because there is no ancestor relationship between _y_ and _z_, the _seeing_ condition fails, and so _y_ cannot see _x_, and _z_ cannot see _x_.
 
-It may be the case that it takes time before nodes in the protocol detect the fork. For instance Bob may create z and y; but share z with Alice and y with Charlie. Both Alice and Charlie will eventually learn about the deception, but until that point, Alice will believe that y sees x, and Charlie will believe that z sees x. 
+It may be the case that it takes time before nodes in the protocol detect the fork. For instance Bob may create _z_ and _y_; but share _z_ with Alice and _y_ with Charlie. Both Alice and Charlie will eventually learn about the deception, but until that point, Alice will believe that _y_ sees _x_, and Charlie will believe that _z_ sees _x_. 
 
 This is where the concept of _strongly seeing_ comes in. 
 
 #### Strongly seeing
 
-If a node examines its hash graph and notices that an event z _sees_ an event x, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees x; then it is said that according to this node, that z _strongly sees_ x.
+If a node examines its hash graph and notices that an event _z_ _sees_ an event _x_, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees _x_; then it is said that according to this node, that _z_ _strongly sees_ _x_.
 
 The following example comes from [[30]]:
 
@@ -816,3 +819,9 @@ optimal resilience, Ben-Or et al."
 [43]: https://dl.acm.org/citation.cfm?id=198088
 "Asynchronous secure computations with 
 optimal resilience, Ben-Or et al." 
+
+[[44]] Tendermint Peer Discovery, https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md, Date accessed 2018-10-22
+
+[44]: https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md
+"Tendermint Peer Discovery
+GitHub repository" 
