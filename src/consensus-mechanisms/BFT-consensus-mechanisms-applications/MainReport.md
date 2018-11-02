@@ -10,31 +10,31 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
 
 - [Introduction](#introduction)
 - [Terminology](#terminology)
-  -[Consensus](#consensus)
-  -[Binary Consensus](#binary-consensus)
-  -[Byzantine Fault Tolerance](#byzantine-fault-tolerance)
-  -[Practical Byzantine Fault Tolerant Variants](#practical-byzantine-fault-tolerant-variants)
-  -[Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
-  -[Scalability-performance trade off](#scalability-performance-trade-off)
-  -[Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
-   -[Synchrony](#synchrony)
-   -[Partial Synchrony](#partial-synchrony)
-   -[Unknown-△T Model](#unknown-△t-model)
-   -[Eventually Synchronous](#eventually-synchronous)
-   -[Weak Synchrony](#weak-synchrony)
-   -[Random Synchrony](#random-synchrony)
-   -[Asynchrony](#asynchrony)
-    -[Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
-    -[The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
-  -[Denial of Service Attack](#denial-of-service-attack)
-  -[The FLP Impossibility](#the-flp-impossibility)
-  -[Randomized Agreement](#randomized-agreement)
-  -[Gossip Protocol](#gossip-protocol) 
+  - [Consensus](#consensus)
+  - [Binary Consensus](#binary-consensus)
+  - [Byzantine Fault Tolerance](#byzantine-fault-tolerance)
+  - [Practical Byzantine Fault Tolerant Variants](#practical-byzantine-fault-tolerant-variants)
+  - [Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
+  - [Scalability-performance trade off](#scalability-performance-trade-off)
+  - [Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
+   - [Synchrony](#synchrony)
+   - [Partial Synchrony](#partial-synchrony)
+    - [Unknown-△T Model](#unknown-△t-model)
+    - [Eventually Synchronous](#eventually-synchronous)
+   - [Weak Synchrony](#weak-synchrony)
+   - [Random Synchrony](#random-synchrony)
+   - [Asynchrony](#asynchrony)
+    - [Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
+   - [The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
+  - [Denial of Service Attack](#denial-of-service-attack)
+  - [The FLP Impossibility](#the-flp-impossibility)
+  - [Randomized Agreement](#randomized-agreement)
+  - [Gossip Protocol](#gossip-protocol) 
 - [A brief survey of Byzantine Fault Tolerant Consensus Mechanisms](#a-brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms)
-- [Permissioned Byzantine Fault Tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
+ - [Permissioned Byzantine Fault Tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
   - [Hyperledger Fabric (HLF)](#hyperledger-fabric-(hlf))
   - [Tendermint](#tendermint)
-- [Permissionless Byzantine Fault Tolerant Protocols](#permissionless-byzantine-fault-tolerant-protocols)
+ - [Permissionless Byzantine Fault Tolerant Protocols](#permissionless-byzantine-fault-tolerant-protocols)
   - [Paxos](#paxos)
   - [Chandra Toueg](#chandra-toueg)
   - [Raft](#raft)
@@ -102,11 +102,11 @@ Several papers in the literature contextualize the problem using generals at dif
 
 One key property of a block chain system is that the nodes do not trust each other, meaning that some may behave in Byzantine manners. The consensus protocol must therefore tolerate Byzantine failures. 
 
-A network is Byzantine Fault Tolerant when it can provide service and reach a consensus despite faults or failures of the system. The processes use a protocol for consensus or atomic broadcast to agree on a common sequence of operations to execute. [[20]]
+A network is Byzantine Fault Tolerant when it can provide service and reach a consensus despite faults or failures of the system. The processes use a protocol for consensus or atomic broadcast (a broadcast where all correct processes in a system of multiple processes receive the same set of messages in the same order; that is, the same sequence of messages [[46]]) to agree on a common sequence of operations to execute. [[20]]
 
 The literature on distributed consensus is vast, and there are many variants of previously proposed protocols being developed for block chains. They can be largely classified along a spectrum. One extreme consists of purely computation based protocols which use proof of computation to randomly select a node which single-handedly decides the next operation. The other extreme is purely communication based protocols in which nodes have equal votes and go through multiple rounds of communication to reach consensus, Practical Byzantine Fault Tolerance (PBFT) being the prime example, which is a replication algorithm designed to be BFT.  [[10]]
 
-For systems with _n_ processors, of which _f_ are Byzantine, it has been shown that _no algorithm exists_ that solves the consensus problem for _f > n/3_.[[21]]
+For systems with _n_ nodes, of which _f_ are Byzantine, it has been shown that _no algorithm exists_ that solves the consensus problem for _f > n/3_.[[21]]
 
 So how then does the Bitcoin protocol get away with only needing 51% honest nodes to reach consensus?
 
@@ -165,7 +165,7 @@ The message delay bound △ is only guaranteed to hold after some (unknown insta
 
 Most existing Byzantine fault tolerant systems, even those called 'robust' assume some variation of *weak synchrony*, where messages are guaranteed to be delivered after a certain bound △T, but △T may be time-varying or unknown to the protocol designer. 
 
-However, the liveness properties of weakly synchronous protocols can fail completely when the expected timing assumptions are violated (e.g., due to a malicious network adversary). 
+However, the liveness properties of weakly synchronous protocols can fail completely when the expected timing assumptions are violated (e.g., due to a malicious network adversary). In general, liveness refers to a set of properties of concurrent systems, that require a system to make progress despite the fact that its concurrently executing components may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple components.[[47]] 
 
 Even when the weak synchrony assumptions are satisfied in practice, weakly synchronous protocols degrade significantly in throughput when the underlying network is unpredictable. Unfortunately, weakly asynchronous protocols require timeout parameters that are difficult to tune, especially in cryptocurrency application settings; and when the chosen timeout values are either too long to too short, throughput can be hampered. 
 
@@ -460,7 +460,7 @@ SCP protocol claims to be free of blocked states, provides decentralized control
 
 ### LinBFT
 
-LinBFT is a Byzantine fault tolerance protocol for block chain systems that allows for the amortized *O(n)* communication volume per block under reasonable conditions (where *n* is the number of participants) while satisfying deterministic guarantees on safety and liveness. It satisfies liveness in a **partially synchronous** network. 
+LinBFT is a Byzantine fault tolerance protocol for block chain systems that allows for the amortized communication volume per block *O(n)* under reasonable conditions (where *n* is the number of participants) while satisfying deterministic guarantees on safety and liveness. It satisfies liveness in a **partially synchronous** network. 
 
 LinBFT cuts down its *O(n*<sup>4</sup>*)* complexity by implementing changes each by  *O(n)*: linear view change, threshold signatures and verifiable random functions. 
 
@@ -564,13 +564,13 @@ Moving away from the impossibility of solving consensus in asynchronous message 
 
 Randomized algorithms can use per-process "local" coins or a shared *common coin* to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the existing algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
 
-A recent randomized algorithm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler. 
+A recent randomized algorithm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler, where _O_ is the binary.  
 
 To solve the consensus problem deterministically and prevent the use of the common coin, researchers have assumed partial or eventual synchrony. Here, these solutions require a unique coordinator process, referred to as the leader, in order to remain non-faulty. There are both advantages and disadvantages to this technique: the advantage is if the coordinator is non-faulty and if the messages are delivered in a timely manner in an asynchronous round, then the coordinator broadcasts its proposal to all processes and this value is decided after a contest number of message delays; however a faulty coordinator can dramatically impact the algorithm performance by leveraging the power it has in a round and imposing its value to all. Non-faulty processes thus have no other choices but to decide nothing in this round. 
 
 This protocol sees the use of a weak coordinator; a weak coordinator allows for the introduction of a new deterministic Byzantine consensus algorithm that is time optimal, resilience optimal and does not require the use of signatures. Unlike the classic, strong coordinator, the weak coordinator does not impose its value. It allows non-faulty processes to decide a value quickly, without the need of the coordinator, while helping the algorithm to terminate if non-faulty processes know that they proposed distinct values that might all be decided. In addition, the presence of a weak coordinator allows rounds to be executed optimistically without waiting for a specific message. This is unlike classic BFT algorithms that have to wait for a particular message from their coordinator and occasionally has to recover from a slow network or faulty coordinator. 
 
-With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in BAMP<sub>n,t</sub>[*t<n/3*].   
+With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in the Binary Byzantine Consensus Algorithm, BAMP<sub>n,t</sub>[*t<n/3*].   
 
 The validation of protocol was conducted similarly to that of the HoneyBadger block chain, where "Coin", the randomization algorithm from Moustefaoui et al. was used [[38]]. Using the 100 Amazon Virtual Machines located in 5 data centers on different continents, it was shown that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen to severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been tested in the validation. 
 
@@ -854,3 +854,15 @@ GitHub repository"
 
 [45]: https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/
 "Introduction to Gossip" 
+
+[[46]] Atomic Broadcast. Wikipedia, https://en.wikipedia.org/wiki/Atomic_broadcast, Date accessed: 2018-10-22
+
+[46]: https://en.wikipedia.org/wiki/Atomic_broadcast
+"Atomic Broadcast, Wikipedia"
+
+[[47]] Liveness. Wikipedia, https://en.wikipedia.org/wiki/Liveness, Date accessed: 2018-10-22
+
+[47]: https://en.wikipedia.org/wiki/Liveness
+"Liveness, Wikipedia"
+
+
