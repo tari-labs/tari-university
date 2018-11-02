@@ -17,15 +17,15 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   -[Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
   -[Scalability-performance trade off](#scalability-performance-trade-off)
   -[Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
-    -[Synchrony](#synchrony)
-    -[Partial Synchrony](#partial-synchrony)
-    -[Unknown-△T Model](#unknown-△t-model)
-    -[Eventually Synchronous](#eventually-synchronous)
-    -[Weak Synchrony](#weak-synchrony)
-    -[Random Synchrony](#random-synchrony)
-    -[Asynchrony](#asynchrony)
-      -[Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
-      -[The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
+   -[Synchrony](#synchrony)
+   -[Partial Synchrony](#partial-synchrony)
+   -[Unknown-△T Model](#unknown-△t-model)
+   -[Eventually Synchronous](#eventually-synchronous)
+   -[Weak Synchrony](#weak-synchrony)
+   -[Random Synchrony](#random-synchrony)
+   -[Asynchrony](#asynchrony)
+    -[Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
+    -[The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
   -[Denial of Service Attack](#denial-of-service-attack)
   -[The FLP Impossibility](#the-flp-impossibility)
   -[Randomized Agreement](#randomized-agreement)
@@ -439,7 +439,10 @@ HoneyBadgerBFT was released in November 2016 and is seen as the first practical 
 
 In its threshold encryption scheme, any one party can encrypt a message using a master public key, and it requires f+1 correct nodes to compute and reveal decryption shares for a ciphertext before the plaintext can be recovered.
 
-HoneyBadger offers a novel reductions from ABC to ACS that provides better efficiency (by O(N) factor) through batching, while using threshold encryption to preserve censorship resilience. Better efficiency is also obtained by cherry-picking improved instantiations of sub-components. For example, the expensive MVBA is circumvented by using an alternative ACS along with an effect RBC. [[6]]
+
+The work of HoneyBadgerBFT is closely related to [SINTRA](#sintra) , which as mentioned before, is a system implementation based on the asynchronous atomic broadcast protocol from Cachin et al. [[41]] This protocol consists of a reduction from Atomic Broadcast Channel (ABC) to Asynchronous Common Subset (ACS), as well as a reduction from ACS to Multi-Value Validated Agreement (MVBA) 
+
+HoneyBadger offers a novel reductions from ABC to ACS that provides better efficiency (by O(N) factor) through batching, while using threshold encryption to preserve censorship resilience. Better efficiency is also obtained by cherry-picking improved instantiations of sub-components. For example, the expensive MVBA is circumvented by using an alternative ACS along with an effect reliable broadcast (RBC). [[6]]
 
 ### Stellar Consensus Protocol
 
