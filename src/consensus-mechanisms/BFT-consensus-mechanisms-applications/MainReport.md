@@ -219,9 +219,9 @@ Byzantine agreement schemes are considered well suited for permissioned block ch
 
 ### Hyperledger Fabric (HLF)
 
-HLF began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source cross-industry standard platform for distributed ledgers. Hyperledger Fabric is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. [[11]]
+HLF began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source cross-industry standard platform for distributed ledgers. HLF is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. The fabric distinguishes peers as validating peers (they run the consensus algorithm, thus validating the transactions) and non-validating peers (they act as a proxy that helps in connecting clients to validating peers). The validating peers run a BFT consensus protocol for executing a replicated state machine that accepts deploy, invoke and query rtansactions as operations. [[11]]
 
-The block chain's hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode (the transaction which involves accepting the code of the smart contract to be deployed) is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF follows PBFT, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
+The block chain's hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode (the transaction which involves accepting the code of the smart contract to be deployed) is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF proposes to follow PBFT, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent state. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers. [[11]]
 
 While being redesigned for a v1.0 release, the format's goal was to achieve extensibility. This version allowed for modules such as membership and consensus mechanism to be exchanged. Being permissioned, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single orderer for testing purposes and a crash-tolerant ordering service based on Apache Kafka. [[9]]
 
@@ -456,7 +456,7 @@ After successful execution of nomination protocol, the nodes deploy the ballot p
 
 The concept of quorum slices in case of SCP provides asymptotic security and flexible trust, making it more acceptable than other earlier consensus algorithms utilizing Federated BFT, like the Ripple consensus protocol. [[14]] Here, the user is provided more independence in deciding whom to trust. [[15]]
 
-SCP protocol claims to be free of blocked states, provides decentralized control, asymptotic security, flexible trust and low latency. But it does not guarantee safety all the time. If the user node chooses an inefficient quorum slice security is not guaranteed.
+SCP protocol claims to be free of blocked states, provides decentralized control, asymptotic security, flexible trust and low latency. But it does not guarantee safety all the time. If the user node chooses an inefficient quorum slice security is not guaranteed. In the event of partition or misbehaving nodes, it halts progress of the network until consensus can be reached.
 
 ### LinBFT
 
@@ -506,6 +506,8 @@ Unlike the PoW implementation, which requires constant active participation from
 
 While traditional consensus protocols require *O*(n<sup>2</sup>) communication, their communication complexity ranges from *O(kn log n)* to *O(kn)* for some security parameter *k<<n*. In a sense, Team Rocket highlight that the communication complexity of their protocols is less intensive than that of *O*(n<sup>2</sup>) communications, thus making these protocols faster and more scalable. 
 
+To backtrack a bit, Big _O_ notation is used in Computer Science to describe the performance or complexity of an algorithm. It descibes the worst-case scenario and can be used to describe the execution time required by an algorithm. [[49]] In the case of consensus algorithms, _O_ describes a finite expected number of steps or operations. [[50]] For example, _O_(1) describes an algorithm that will always execute in teh same time regardless of the size of the input data set. _O_(n)_ describes an algorithm whose performnace will grow linearly and in direct proportion to the size of the input data set.*O*(n<sup>2</sup>)represents an algorithm whose performance is directly proportional to the sqaure of the size of the input data set.
+
 The reason for this is *O*(n<sup>2</sup>) suggests that the rate of growth of function is determined by n<sup>2</sup> where *n* is the number of people on the network. Thus, the addition of a person exponentially increases the time taken to disseminate the information on the network while traditional consensus protocols require everyone to communicate with one another- making it a laborious process. [[18]]
 
 Despite assuming a synchronous network, which is susceptible to the DoS attacks, this new family of protocols "reaches a level of security that is simply good enough while surging forward with other advancements". [[18]] 
@@ -524,7 +526,7 @@ Similar to Honeybadger BFT, this protocol is composed through the additions of i
 
 Like HashGraph and Avalanche, a gossip protocol is used to allow efficient communication between nodes. [[1]]
 
-Finally, the need for a trusted leader or a trusted setup phase implied is removed by porting the key ideas to an asynchronous setting [[3]]
+Finally, the need for a trusted leader or a trusted setup phase implied in Mostefaoui et al.[[2]] is removed by porting the key ideas to an asynchronous setting [[3]]
 
 The network is set to *N of N* instances of the algorithm communicating via randomly synchronous connections. 
 
@@ -550,8 +552,6 @@ PARSEC also uses the concept of a *concrete coin*, from Algorand that is used to
 First nodes try and converge on a 'true' result for a set of results. If this is not achieved, they move onto step 2, which is trying to converge on a 'false' result. If consensus still cannot be reached, a coin flip is made and we go back to step 1
 in another voting round.
 
-Similar to HashGraph, it is not clear that PARSEC will scale well as _n_ grows to millions of nodes. 
-
 ## Democratic BFT
 
 This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator. This protocol is implemented in the Red Belly Block chain and is said to achieve 30 000 transactions/second on Amazon Cloud Trials [[36]], Through the coupling with an optimized variant of the reduction of multivalve to binary consensus from Ben-Or et al., the Democratic BFT (DBFT) consensus algorithm was generated which terminates in 4 message delays in the good case, when all non-faulty processes propose the same value. [[17]]
@@ -576,9 +576,18 @@ The validation of protocol was conducted similarly to that of the HoneyBadger bl
 
 ## Summary
 
+Here is a table highlighting characteristics of the above mentioned BFT Protocols. Asymptotic Security, Permissionless Blockchain, Timing Assumptions, Decentralized Control, Low Latency and Flexible Trust form part of the value system. 
+
+Asymptotic Security: This depends only on digital signatures (and hash functions) for security
+Permissionless Protocol: This allows anybody to create an address and begin interacting with the protocol.
+Timing Assumptions: Please see [Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
+Decentralized Control:Consensus is achieved and defended by protecting the identity of that node until their job is done, through a leaderless nodes. 
+Low Latency: This describes a computer network that is optimized to process a very high volume of data messages with minimal delay.
+Flexible Trust: Where users have the freedom to trust any combinations of parties they see fit.
+
 Important characteristics of each protocol are summarized in the table below. 
 
-| Protocol                   | Permissionless Blockchain |  Timing Assumptions   | Decentralized Control | Low Latency | Flexible Trust | Asymptotic Security |
+| Protocol                   | Permissionless Protocol |  Timing Assumptions   | Decentralized Control | Low Latency | Flexible Trust | Asymptotic Security |
 | -------------------------- | :-----------------------: | :-------------------: | :-------------------: | :---------: | :------------: | :-----------------: |
 | Hyperledger Fabric (HLF)   |                           | Partially synchronous |           ✓           |             |       ✓        |                     |
 | Tendermint                 |                           | Partially synchronous |                       |      ✓      |       ✓        |          ✓          |
@@ -596,7 +605,7 @@ Important characteristics of each protocol are summarized in the table below.
 | PARSEC                     |             ✓             |  Weakly synchronous   |           ✓           |             |       ✓        |                     |
 | Democratic BFT             |             ✓             | Partially synchronous |           ✓           |      ✓      |       ✓        |                     |
 
-
+BFT consensus protocols have been considered as a means to diseminate and validate information, can schnorr multisignatures perform the same function in validating information through the action of signing. This will form part of the next review. 
 
 ## References 
 
@@ -864,5 +873,23 @@ GitHub repository"
 
 [47]: https://en.wikipedia.org/wiki/Liveness
 "Liveness, Wikipedia"
+
+[[48]] Stellar Consensus Protocol Developer Guides, https://www.stellar.org/developers/guides/concepts/scp.html, Date accessed: 2018-10-22
+
+[48]: https://www.stellar.org/developers/guides/concepts/scp.html
+"Stellar Consensus Protocol"
+
+[[49]] A beginner's guide to Big O notation, https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/, Date accessed: 2018-10-22
+
+[49]: https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+"A beginner's guide to Big O notation"
+
+[[50]] Fast Randomized Consensus using Shared Memory, Aspnes et al., http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf, Date accessed: 2018-10-22
+
+[50]: http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf
+"Fast Randomized Consensus using Shared Memory,
+Aspnes et al."
+
+
 
 
