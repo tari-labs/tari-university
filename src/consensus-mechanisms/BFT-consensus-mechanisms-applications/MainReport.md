@@ -108,6 +108,11 @@ The literature on distributed consensus is vast, and there are many variants of 
 
 For systems with _n_ processors, of which _f_ are Byzantine, it has been shown that _no algorithm exists_ that solves the consensus problem for _f > n/3_.[[21]]
 
+So how then does the Bitcoin protocol get away with only needing 51% honest nodes to reach consensus?
+
+Well, strictly speaking, Bitcoin is NOT a BFT-CM because there is never absolute finality in bitcoin ledgers; there is always a
+chance (however small) that someone can 51% attack the network and rewrite the entire history. Bitcoin is a probabilistic consensus, rather than deterministic.
+
 ### Practical Byzantine Fault Tolerant Variants 
 
 PoW suffers from non-finality, that is a block appended to a block chain is not confirmed until it is extended by many other blocks. Even then, its existence in the block chain is only probabilistic. For example, eclipse attacks on Bitcoin exploit this probabilistic guarantee to allow double spending. In contrast, the original PBFT protocol is deterministic. [[10]]
@@ -140,11 +145,11 @@ Here, the time for nodes to wait and receive information is predefined. If a nod
 
 In synchronous systems it is assumed that all communications proceed in rounds. In one round a process may send all the messages it requires while receiving all messages from other processes. In this manner no message from one round may influence any messages sent within the same round [[21]]
 
-A △T-synchronous network guarantees that every message sent is delivered after at most a delay of △T (where △T is a measure of real time) [[6]] Synchronous protocols come to a consensus every x seconds. [[5]]
+A △T-synchronous network guarantees that every message sent is delivered after at most a delay of △T (where △T is a measure of real time) [[6]] Synchronous protocols come to a consensus after △T. [[5]]
 
 #### Partial Synchrony 
 
-Here, the network retains some form of a predefined timing structure, however it can operate within knowing the assumption of how fast nodes can exchange messages over the network. Instead of pushing out a block every x seconds, in a partially synchronous block chain would gauge the limit, with messages always being sent and received within the unknown deadline. 
+Here, the network retains some form of a predefined timing structure, however it can operate without knowing said assumption of how fast nodes can exchange messages over the network. Instead of pushing out a block every x seconds, in a partially synchronous block chain would gauge the limit, with messages always being sent and received within the unknown deadline. 
 
 Partially synchronous protocols come to a consensus in an unknown, but finite period. [[5]]
 
@@ -292,6 +297,12 @@ The gossip protocol works like this:
 
 - Bob, on receiving Alice's information, marks this as a gossip event and fills in any gaps in his knowledge from Alice's information. Once done, he continues gossiping with his updated information.
 
+The basic idea behind the Gossip Protocol is the following: A node wants to share some information to the other nodes in the netwrok. Then periodically it randomly selects a node from the set of nodes and exchanges the information. The node that receives the information performs the randomly selects a node from the set of nodes and exchanges the information, and so on. The information is periodically sent to _N_ targets, where _N_ is the fanout. [[45]]
+
+The _cycle_ is the number of rounds to spread the information. The _fanout_ is the number of nodes a node gossips with in each cycle.
+
+With a fanout=1, $O(LogN)$ cycles are necessary for the update to reach all the nodes. 
+
 In this way, information spreads throughout the network in an exponential fashion. [[30]]
 
 <p align="center"><img src="../assets/gossip.png" width="400" /></p>
@@ -364,8 +375,10 @@ in parallel:
       call decideFame
       call findOrder
     end loop
-    
-    procedure divideRounds
+```
+Here we have the Swirlds HashGraph consensus algorithm. Each member runs this in parallel. Each sync brings in new events, which are then added to the hash graph. All known events are then divided into rounds. Then the first events in each round are decided as being famous or not (through purely local Byzantine agreement with virtual voting). Then the total order is found on those events for which enough information is available. If two members independently assign a position in history to an event, they are guaranteed to assign the same position, and guaranteed to never change it, even as more information comes in. Furthermore, each event is eventually assigned such a position, with probability one.[[30]] 
+
+   ```procedure divideRounds
       for each event x
         r ← max round of parents of x ( or 1 if none exist )
         if x can strongly see more than 2/3*n round r witnesses
@@ -373,8 +386,10 @@ in parallel:
         else
           x.round ← r
         x.witness ← ( x has no self parent ) || ( x.round > x.selfParent.round )
-        
-    procedure decideFame
+   ```
+The above is deemed the divideRounds procedure. As soon as an event x is known, it is assigned a round number x.round, and the boolean value x.witness is calculated, indicating whether it is the first event that a member created in that round. [[30]]
+    
+   ```procedure decideFame
       for each event x in order from earlier rounds to later
         x.famous ← UNDECIDED
         for each event y in order from earlier rounds to later
@@ -397,6 +412,8 @@ in parallel:
             else // else flip a coin
               y.vote ← middle bit of y.signature
 ```
+This is the decideFame procedure. For each witness event (i.e., an event x where x.witness is true), decide whether it is famous (i.e., assign a boolean to x.famous). This decision is done by a Byzantine agreement protocol based on virtual voting. Each member runs it locally, on their own copy of the hashgraph, with no additional communication. It treats the events in the hashgraph as if they were sending votes to each other, though the calculation is purely local to a member’s computer. The member assigns votes to the witnesses of each round, for several rounds, until more than 2/3 of the population agrees. [[30]]
+
 #### Criticisms
 
 An attempt to address some of these criticisms has been presented. [[31]], 
@@ -406,7 +423,15 @@ An attempt to address some of these criticisms has been presented. [[31]],
 
 ### SINTRA
 
-SINTRA is a system implementation based on the **asynchronous** atomic broadcast protocol from Cachin et al. [[41]] This protocol consists of a reduction from Atomic Broadcast Channel (ABC) to Asynchronous Common Subset (ACS), as well as reduction from ACS to multi-value validated agreement (MVBA). According to Miller et al., the protocol suggested by Cahin et al., can be improved using a more effect ACS construction. [[6]]
+SINTRA is a Secure INtrusion-Tolerant Replication Architecture used for the coordination in asynchronous networks subject to Byzantine faults. It consists of a collection of protocols and are implemented in Java, providing secure replication and coordination among a group of servers connected by a wide-area network, such as the Internet. For a group consisting of _n_ servers, it tolerates up to $t<n/3$ servers failing in arbitrary, malicious ways, which is optimal for the given model. The servers are connected only by asynchronous point-to-point communication links. Thus, SINTRA automatically tolerates timing failures as well as attacks that exploit timing. The SINTRA group model is static, which means that failed servers must be recovered by mechanisms outside of SINTRA, and the group must be initialized by a trusted process.
+
+The protocols exploit randomization, which is needed to solve Byzantine agreement in such asynchronous distributed systems. Randomization is provided by a threshold-cryptographic pseudorandom generator, a coin-tossing protocol based on the Diffie-Hellman problem. Threshold cryptography is a fundamental concept in SINTRA as it allows the group to perform a common cryptographic operation for which the secret key is shared among the servers in such a way that no single server or small coalition of corrupted servers can obtain useful information about it. SINTRA provides threshold-cryptographic schemes for digital signatures, public-key encryption, and unpredictable pseudo-random number generation (coin-tossing). It contains broadcast primitives for reliable and consistent broadcasts, which provide agreement on individual messages sent by distinguished senders. However, these primitives cannot guarantee a total order for a stream of multiple messages delivered by the system, which is needed to build fault-tolerant services using the state machine replication paradigm. This is the problem of atomic broadcast and requires more expensive protocols based on Byzantine agreement. SINTRA provides multiple randomized Byzantine agreement protocols, for binary and multi-valued agreement, and implements an atomic broadcast channel on top of agreement. An atomic broadcast that also maintains a causal order in the presence of Byzantine faults is provided by the secure causal atomic broadcast channel.
+
+SINTRA is designed in a modular way as shown in Figure 1. Modularity greatly simplifies the construction
+and analysis of the complex protocols needed to tolerate Byzantine faults.
+
+<p align="center"><img src="../assets/design-of-sintra.png" width="600" /></p>
+<p align="center"><b>Figure 2: The Design of SINTRA </b></p>
 
 ### HoneyBadgerBFT
 
@@ -821,3 +846,8 @@ optimal resilience, Ben-Or et al."
 [44]: https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md
 "Tendermint Peer Discovery
 GitHub repository" 
+
+[[45]] Just My Thoughts: Introduction to Gossip, https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/, Date accessed 2018-10-22
+
+[45]: https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/
+"Introduction to Gossip" 
