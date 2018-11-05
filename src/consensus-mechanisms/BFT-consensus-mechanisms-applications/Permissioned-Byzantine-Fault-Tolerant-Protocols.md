@@ -1,20 +1,3 @@
-# Applications of Byzantine Consensus Mechanisms (Part 2/5)
-
-## Abstract 
-
-This report investigates the most promising Byzantine Consensus Mechanisms to achieve optimal consensus performance and safety against ill-behaved participants.
-
-This paper focuses on analyzing these consensus protocols and their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. 
-
-This report is broken up into parts, and each part will delve a little further into the world of Byzantine Consensus Mechansisms and their workings. *Part 1* provided some background information into Byzantine Fault Tolerance and looked at a host of definitions and concepts to gain an understanding of this area of study. *Part 2* focuses on a few examples of permissioned Byzantine Fault Tolerant Procotols. 
-
-## Contents
-
-- [A brief survey of Byzantine Fault Tolerant Consensus Mechanisms](#a-brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms)
- - [Permissioned Byzantine Fault Tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
-  - [Hyperledger Fabric (HLF)](#hyperledger-fabric-(hlf))
-  - [Tendermint](#tendermint)
-
 ## A brief survey of Byzantine Fault Tolerant Consensus Mechanisms
 
 Many peer-to-peer online Real-time strategy games use a modified Lockstep protocol as a consensus protocol in order to manage game state between players in a game. Each game action results in a game state delta broadcast to all other  players in the game along with a hash of the total game state. Each player validates the change by applying the delta to their own game state and comparing the game state hashes. If the hashes do not agree then a vote is cast, and those players whose game state is in the minority are disconnected and removed from the game (known as a desync.) [[21]]
