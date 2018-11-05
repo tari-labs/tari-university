@@ -1,4 +1,4 @@
-# Applications of Byzantine Consensus Mechanisms Part (2/5)
+# Applications of Byzantine Consensus Mechanisms (Part 2/5)
 
 ## Abstract 
 
