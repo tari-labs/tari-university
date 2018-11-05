@@ -1,35 +1,3 @@
-# Applications of Byzantine Consensus Mechanisms (Part 1/5)
-
-## Abstract 
-
-The over arching aim of this report is to investigate the most promising Byzantine Consensus Mechanisms to achieve optimal consensus performance and safety against ill-behaved participants. It focuses on analyzing these consensus protocols and their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. 
-
-This report is broken up into parts, and each part will delve a little further into the world of Byzantine Consensus Mechansisms and their workings. To start with, *Part 1* will aim to provide some background information into Byzantine Fault Tolerance and look at a host of definitions and concepts to gain an understanding of this area of study. 
-
-## Contents
-
-- [Introduction](#introduction)
-- [Terminology](#terminology)
-  - [Consensus](#consensus)
-  - [Binary Consensus](#binary-consensus)
-  - [Byzantine Fault Tolerance](#byzantine-fault-tolerance)
-  - [Practical Byzantine Fault Tolerant Variants](#practical-byzantine-fault-tolerant-variants)
-  - [Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
-  - [Scalability-performance trade off](#scalability-performance-trade-off)
-  - [Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
-   - [Synchrony](#synchrony)
-   - [Partial Synchrony](#partial-synchrony)
-    - [Unknown-△T Model](#unknown-△t-model)
-    - [Eventually Synchronous](#eventually-synchronous)
-   - [Weak Synchrony](#weak-synchrony)
-   - [Random Synchrony](#random-synchrony)
-   - [Asynchrony](#asynchrony)
-    - [Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
-   - [The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
-  - [Denial of Service Attack](#denial-of-service-attack)
-  - [The FLP Impossibility](#the-flp-impossibility)
-  - [Randomized Agreement](#randomized-agreement) 
-
 ## Introduction 
 
 When considering the how Tari will potentially build its second layer, an analysis of the most promising Byzantine Consensus Mechanisms and their applications was sought. 
