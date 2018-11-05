@@ -16,7 +16,7 @@ While being redesigned for a v1.0 release, the format's goal was to achieve exte
 
 ### Tendermint
 
-Tendermint Core is a BFT Proof-of-Stake (PoS) protocol which is composed of two protocols in one: a consensus algorithm and a peer-to-peer networking protocol. Jae Kwon and Ethan Buchman, inspired by the design goal behind [Raft](#raft), specified Tendermint as an easy to understand, developer-friendly algorithm while doing algorithmically complex systems engineering. [[34]]
+Tendermint Core is a BFT Proof-of-Stake (PoS) protocol which is composed of two protocols in one: a consensus algorithm and a peer-to-peer networking protocol. Jae Kwon and Ethan Buchman, inspired by the design goal behind [Raft](), specified Tendermint as an easy to understand, developer-friendly algorithm while doing algorithmically complex systems engineering. [[34]]
 
 Tendermint is modeled as a deterministic protocol, live under partial synchrony, which achieves throughput within the bounds of the latency of the network and individual processes themselves. 
 
