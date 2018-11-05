@@ -53,7 +53,7 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
 
 ## How does Bulletproofs work?
 
-The basis of confidential transactions are to replace the input and output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive) while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this rangeproofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate proofs, including rangeproofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $ and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
+The basis of confidential transactions are to replace the input and output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive) while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but to prevent this range proofs are used. Enter Bulletproofs. The essence of Bulletproofs is its ability to calculate proofs, including range proofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $ and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
 
 Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
 
@@ -76,25 +76,25 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ### Use Cases
 
-Some use cases of Bulletproofs are listed below, and note this list may not be exhaustive.
+Some use cases of Bulletproofs are listed below and note this list may not be exhaustive.
 
-- Rangeproofs
+- range proofs
 
-  - Rangeproofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
+  - range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
 - Merkle proofs
 
-  - In this context a full node (*verifier*) maintains a complete copy of the merkle tree and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the merkle tree in some block <code>B</code> with block header <code>H</code>.  [[7]] This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK.
+  - In this context a full node (*verifier*) maintains a complete copy of the Merkle tree and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the Merkle tree in some block <code>B</code> with block header <code>H</code>.  [[7]] This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK.
 - Proof of solvency
 
-  - Proofs of solvency are a specialized application of merkle proofs; coins can be added into a giant merkle tree. It can then be proven that some outputs are in the merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol. Using Bulletproofs and its variant protocols proposed in [[1]] this size could be reduced to approximately 62MB.
+  - Proofs of solvency are a specialized application of Merkle proofs; coins can be added into a giant Merkle tree. It can then be proven that some outputs are in the Merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol. Using Bulletproofs and its variant protocols proposed in [[1]] this size could be reduced to approximately 62MB.
 - Multi-signatures with deterministic nonces
 
-  - With Bulletproofs every signatory can prove that their nonce was generated deterministically. A sha256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and rejoin later on, with no memory of interacting with the other parties they were previously interacting with.
+  - With Bulletproofs every signatory can prove that their nonce was generated deterministically. A sha256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and re-join later, with no memory of interacting with the other parties they were previously interacting with.
 - Scriptless Scripts
 
   - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a sigma protocol. This can all be done with Bulletproofs, which could be extended to allow assets that are functions of other assets, i.e. crypto derivatives.
 - Smart contracts and Crypto-derivatives
-  - Traditionally, verifying privacy-preserving smart contracts need a new trusted setup for each, but with Bulletproofs no trusted setup is needed. Verification time however is linear and it might be too complex to proof every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with pubic verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract. A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid, and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then run to identify the gate where the proof turns invalid, and hence the smart contract only has to check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (see Figure&nbsp;3). 
+  - Traditionally, verifying privacy-preserving smart contracts need a new trusted setup for each, but with Bulletproofs no trusted setup is needed. Verification time however is linear, and it might be too complex to proof every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with pubic verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract. A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then run to identify the gate where the proof turns invalid, and hence the smart contract must only check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (see Figure&nbsp;3). 
 
     <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
     <div align="center"><b>Figure&nbsp;3: Bulletproofs for Refereed Delegation Model [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -115,7 +115,7 @@ Some use cases of Bulletproofs are listed below, and note this list may not be e
     Bünz B. et al">5</a>]</b></div>
 
 - Batch verifications
-  - Batch verifications can be done using various values and outputs from running the Bulletproofs [Protocol 1](#protocol-1---inner-product-argument) and [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied in order to reduce the number of expensive exponentiations.
+  - Batch verifications can be done using various values and outputs from running the Bulletproofs [Protocol 1](#protocol-1---inner-product-argument) and [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
   - ???
 
 
@@ -161,7 +161,7 @@ The argument presented in Protocol 1 for the relation (1) is perfectly hiding an
 
 #### Protocol 2 - Inner-Product Verification through Multi-Exponentiation
 
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations are reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion these final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion these final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
 
 $$
 g =  \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
@@ -175,7 +175,7 @@ $$
 
 with $ L $ and $R $ as defined in the original reference.
 
-Protocol 2 is is shown in Figure&nbsp;3. 
+Protocol 2 is shown in Figure&nbsp;3. 
 
 <p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
 <div align="center"><b>Figure&nbsp;3: Bulletproofs Protocol 2 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -257,7 +257,7 @@ and More, Blockchain Protocol Analysis and Security
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
-The *verifier* $ \mathcal{V} $ now needs to check that $ l $ and $ r $ are in fact $ l(x) $ and $ r(x) $ and that $ t(x) = \langle l \mspace{3mu} , \mspace{3mu} r \rangle $. A commitment for $ \mathbf {a}_R \circ \mathbf {y}^n $ is needed and in order to do so the commitment generators are switched from $ h \in \mathbb G^n $ to $ h ^\backprime = h^{(\mathbf {y}^{-1})}$. Thus $ A $ and $ S $ now become vector commitments to $ ( \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n ) $ and $ ( \mathbf {s}_L \mspace{3mu} , \mspace{3mu} \mathbf {s}_R \circ \mathbf {y}^n ) $ respectively with respect to the new generators $ (g, h ^\backprime, h) $. This is illustrated in Figure&nbsp;6.
+The *verifier* $ \mathcal{V} $ now needs to check that $ l $ and $ r $ are in fact $ l(x) $ and $ r(x) $ and that $ t(x) = \langle l \mspace{3mu} , \mspace{3mu} r \rangle $. A commitment for $ \mathbf {a}_R \circ \mathbf {y}^n $ is needed and to do so the commitment generators are switched from $ h \in \mathbb G^n $ to $ h ^\backprime = h^{(\mathbf {y}^{-1})}$. Thus $ A $ and $ S $ now become vector commitments to $ ( \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n ) $ and $ ( \mathbf {s}_L \mspace{3mu} , \mspace{3mu} \mathbf {s}_R \circ \mathbf {y}^n ) $ respectively with respect to the new generators $ (g, h ^\backprime, h) $. This is illustrated in Figure&nbsp;6.
 
 
 
@@ -287,7 +287,7 @@ This protocol efficiently aggregate $ m $ range proofs into one short proof with
 $$
 \{ (g,h \in \mathbb{G}) , \mspace{9mu} \mathbf {V} \in \mathbb{G}^m \mspace{3mu} ; \mspace{9mu}  \mathbf {v}, \gamma \in \mathbb{Z}_p^m ) \mspace{6mu}  : \mspace{6mu} V_j =h^{\gamma_j} g^{v_j} \mspace{6mu}  \wedge \mspace{6mu} v_j \in [0,2^n - 1] \mspace{15mu} \forall \mspace{15mu} j \in [1,m] \} \mspace{100mu} (8)
 $$
-The *prover* $ \mathcal{P} $ should now compute $ \langle \mathbf{2}^2 \mspace{3mu} , \mspace{3mu} \mathbf{a}_L() $
+The *prover* $ \mathcal{P} $ should now compute $ \langle \mathbf{2}^n \mspace{3mu} , \mspace{3mu} \mathbf{a}_L[(j-1) \cdot n : j \cdot n-1] \rangle = v_j \forall j \in [1,m] \mspace{3mu} and  \mspace{3mu} \mathbf{a}_L \in \mathbb{Z}_p^{n \cdot m} $
 
 
 
@@ -299,7 +299,7 @@ This protocol makes interactive public coin protocols non-interactive by using t
 
 ##### MPC Protocol for Bulletproofs
 
- This protocol allow multiple parties to construct a single aggregate range proof.
+ This protocol allows multiple parties to construct a single aggregate range proof.
 
 
 
@@ -317,7 +317,7 @@ This protocol makes interactive public coin protocols non-interactive by using t
 
 ## Comparison to other Zero-knowledge Proof Systems
 
-The table below shows a high level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. Bulletproofs is unique in that it is not interactive, has short proof size, does not require a trusted setup and is practical to implement. These attributes make Bulletproofs extremely desirable to use as rangeproofs in cryptocurrencies.
+The table below shows a high-level comparison between Sigma Protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. Bulletproofs is unique in that it is not interactive, has short proof size, does not require a trusted setup and is practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
 
 | Proof System         | Sigma Protocols | zk-SNARK        | STARK                                 | ZKBoo        | Bulletproofs   |
 | -------------------- | --------------- | --------------- | ------------------------------------- | ------------ | -------------- |
@@ -357,7 +357,7 @@ The table below shows a high level comparison between Sigma Protocols (i.e. inte
 
 See  [[35]]
 
-"{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the rangeproof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current rangeproofs). We also need to be aware that we can't rely as much on the message hiding properties of rangeproofs when switching to bullet proofs."
+"{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the range proof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
 
 - "{**yeastplume** } @apoelstra the amount, and quite possibly the switch commitment hash as well (or just a hash of the entire output) as per #207..."
 
@@ -377,7 +377,7 @@ See  [[35]]
 
 ## Conclusions, Observations, Recommendations
 
-- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a block chain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries, but weakening the perfectly hiding property as a drawback and slowing down all proof calculations. In this proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also have further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
+- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a block chain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
 -  
 - 
 
@@ -428,7 +428,7 @@ and More (Transcripts), Blockchain Protocol Analysis and
 Security Engineering 2018, 
 Bünz B. et al"
 
-[[7]] Merkle Root and Merkle Proofs, https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs, Date accessed: 2018-10-?.
+[[7]] Merkle Root and Merkle Proofs, https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs, Date accessed: 2018-10-?.
 
 [7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs
 "Merkle Root and Merkle Proofs"
@@ -533,12 +533,12 @@ An Open Industry/Academic Initiative"
 for Confidential Transactions, 
 Ruffing T. et al."
 
-[[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and Rangeproofs, https://github.com/ElementsProject/secp256k1-zkp, Date accessed: 2018-09-18.
+[[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and range proofs, https://github.com/ElementsProject/secp256k1-zkp, Date accessed: 2018-09-18.
 
 [25]: https://github.com/ElementsProject/secp256k1-zkp
 "GitHub: ElementsProject/secp256k1-zkp, Experimental 
 Fork of libsecp256k1 with Support for Pedersen 
-Commitments and Rangeproofs"
+Commitments and range proofs"
 
 [[26]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives, https://github.com/apoelstra/secp256k1-mw/tree/Bulletproofs, Date accessed: 2018-09-18.
 
@@ -744,7 +744,7 @@ number  ..."
 
     - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
 
-    - The generator $ h $ and resulting number $ g $ are known as the commitment bases, and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
+    - The generator $ h $ and resulting number $ g $ are known as the commitment bases and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
 
     - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
 
@@ -807,7 +807,7 @@ The general notation of mathematical expressions when specifically referenced ar
 
 - Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] ​$ denote the inner-product between two vector polynomials $ l(X),r(X) ​$ 
 
-- Let $ t(X)=\langle l(X),r(X) \rangle ​$, then the inner-product is defined such that $ t(x)=\langle l(x),r(x) \rangle ​$ holds for all $ x \in \mathbb{Z_p} ​$ 
+- Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner-product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $ 
 
 - Let $ C=g^a = \prod _{i=1}^n g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C=  \prod _{i=1}^n (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
 
