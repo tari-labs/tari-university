@@ -1,30 +1,31 @@
 # Grin Design Choice Criticisms - Truth or Fiction
 
-- Topic 1 Introduction
-
-- Topic 2 ???
-
-- Topic 3 ???
-
-- Etc. 
-
-- Conclusions
-
----
 
 # Introduction
 
-????
+What is Grin?
+-  Cryptocurrency implemented in Rust
+-  Mimblewimble transactions
+-  Proof-of-Work (PoW): Cuckatoo algorithm
 
-Sample image below, set at 450 pixels width
+Main design goals?
+- Privacy
+- Transaction scaling
+- Design simplicity 
 
-@div[s450px]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/grin/protocols/grin-design-choice-criticisms/sources/sample.PNG)
-@divend
+# Introduction (cnt'd)
 
-+++
+Grin received criticisms on some design and implementation decisions:
+- Emission scheme
+- PoW algorithm,
+- Key-store library
+- Cryptographic curve
 
-# Monetary Policy Due to Static Emission Scheme
+This report investigated if there are some truth to these concerns
+Suggestions will be presented to addressed these issues
+
+## Topic 2 ???
+
 
 ???
 
@@ -43,10 +44,6 @@ Sample side by side image (set at 250 pixels width, aligned center) and text (al
 <li>???
 </ul>
 @divend
-
----
-
-# From ASIC Resistant to ASIC Friendly
 
 Sample side by side text inside div containers, with alternating alignment.  [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
 
@@ -118,15 +115,30 @@ Sample side by side text inside div containers, with alternating alignment.  [HT
 
 +++
 
-# Choice of Cryptographic Elliptic-curve - secp256k1
+## Topic 2 ??? (cnt'd)
 
 ???
 
 ---
 
-# Selection of Key-store Library
+## Topic 3 ???
 
 ???
 
 +++
 
+## Topic 3 ??? (cnt'd)
+
+???
+
+---
+
+## Conclusions
+
+???
+
++++
+
+## Conclusions (cnt'd)
+
+???
