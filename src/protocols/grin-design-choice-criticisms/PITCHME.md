@@ -1,6 +1,6 @@
-## Grin Design Choice Criticisms - Truth or Fiction
+# Grin Design Choice Criticisms - Truth or Fiction
 
-- Topic 1 ???
+- Topic 1 Introduction
 
 - Topic 2 ???
 
@@ -12,7 +12,7 @@
 
 ---
 
-## Topic 1 ???
+# Introduction
 
 ????
 
@@ -24,7 +24,7 @@ Sample image below, set at 450 pixels width
 
 +++
 
-## Topic 1 ??? (cnt'd)
+# Monetary Policy Due to Static Emission Scheme
 
 ???
 
@@ -46,7 +46,7 @@ Sample side by side image (set at 250 pixels width, aligned center) and text (al
 
 ---
 
-## Topic 2 ???
+# From ASIC Resistant to ASIC Friendly
 
 Sample side by side text inside div containers, with alternating alignment.  [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
 
@@ -118,30 +118,15 @@ Sample side by side text inside div containers, with alternating alignment.  [HT
 
 +++
 
-## Topic 2 ??? (cnt'd)
+# Choice of Cryptographic Elliptic-curve - secp256k1
 
 ???
 
 ---
 
-## Topic 3 ???
+# Selection of Key-store Library
 
 ???
 
 +++
 
-## Topic 3 ??? (cnt'd)
-
-???
-
----
-
-## Conclusions
-
-???
-
-+++
-
-## Conclusions (cnt'd)
-
-???
