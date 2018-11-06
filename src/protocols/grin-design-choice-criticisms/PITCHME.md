@@ -13,6 +13,8 @@ Main design goals?
 - Transaction scaling
 - Design simplicity 
 
++++
+
 # Introduction (cnt'd)
 
 Grin received criticisms on some design and implementation decisions:
@@ -24,8 +26,69 @@ Grin received criticisms on some design and implementation decisions:
 This report investigated if there are some truth to these concerns
 Suggestions will be presented to addressed these issues
 
-## Topic 2 ???
+---
 
+# Monetary Policy Due to Static Emission Scheme
+
+Bitcoin - limited and finite supply of coins
+- 21 million coins
+- 10-minute block times
+-  First block reward: 50 BTC
+-  Reward halved every 4 years
+
+What hapens to newly minted coins?
+ - New coins and transaction are paid to miners
+ - Incentive to maintain the block chain
+ 
+---
+
+## What happens when all coins have been mined?
+
+Only transaction fees will be paid to miners
+Will transaction fees be sufficient to maintain a large network of miners?
+Option 1: Non-capped supply
+- Fees will be insufficient
+- Only large mining farms remain profitable
+- Centralisation of the network
+
+Option 2: Fixed supply
+- Fees will be sufficient
+- Over time transaction fees will increase
+- Mining hardware costs decrease
+- Maintaining block chain remain lucrative for small mining operations
+
++++
+
+## Grin's Emmision scheme
+
+- Number of coins not capped at a fixed supply.
+- Static emission rate: constant 60 Grin is released as a reward for solving every block
+- block goal of 60 seconds
+- Result in 1 coin being created every second.
+
+Grins motivations for static emission rate: 
+- No upper limit on coins amount
+- Inflation will tend to zero over time
+- Mitigate effect of lost coins
+- Encourage spending rather than holding
+
+---
+
+## Topic 3 ???
+
+???
+
++++
+
+## Topic 3 ??? (cnt'd)
+
+???
+
+---
+
+## Conclusions
+
+???
 
 ???
 
@@ -112,30 +175,6 @@ Sample side by side text inside div containers, with alternating alignment.  [HT
 @divend
 
 @divend
-
-+++
-
-## Topic 2 ??? (cnt'd)
-
-???
-
----
-
-## Topic 3 ???
-
-???
-
-+++
-
-## Topic 3 ??? (cnt'd)
-
-???
-
----
-
-## Conclusions
-
-???
 
 +++
 
