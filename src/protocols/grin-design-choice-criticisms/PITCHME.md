@@ -1,6 +1,6 @@
 # Grin Design Choice Criticisms - Truth or Fiction
 
-
+---
 # Introduction
 
 What is Grin?
@@ -13,7 +13,7 @@ Main design goals?
 - Transaction scaling
 - Design simplicity 
 
-+++
+---
 
 # Introduction (cnt'd)
 
@@ -57,7 +57,7 @@ Option 2: Fixed supply
 - Mining hardware costs decrease
 - Maintaining block chain remain lucrative for small mining operations
 
-+++
+---
 
 ## Grin's Emmision scheme
 
