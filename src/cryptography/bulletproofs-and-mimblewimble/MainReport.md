@@ -78,7 +78,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 Some use cases of Bulletproofs are listed below and note this list may not be exhaustive.
 
-- range proofs
+- Range proofs
 
   - range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
 - Merkle proofs
@@ -227,7 +227,7 @@ $$
 \delta (y,z) = (z-z^2) \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n\rangle -z^3 \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {2}^n\rangle \in \mathbb{Z_p}
 $$
 
-can be easily calculated by the  *verifier* $ \mathcal{V} $. The proof that relation (40) holds was thus reduced to a single inner-product identity.
+can be easily calculated by the  *verifier* $ \mathcal{V} $. The proof that relation (4) holds was thus reduced to a single inner-product identity.
 
 Relation (7) cannot be used as is without revealing information about $  \mathbf {a}_L $. Two additional blinding vectors $  \mathbf {s}_L , \mathbf {s}_R \in \mathbb{Z}_p^n $ are introduced with the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engaging in the following zero knowledge protocol (Figure&nbsp;4):
 
@@ -237,7 +237,7 @@ and More, Blockchain Protocol Analysis and Security
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
-Two linear vector polynomials $ l(X), r(X) $ in $  \mathbb Z^n_p[X] $ are defined as the inner-product terms for relation (7), also containing the blinding vectors $  \mathbf {s}_L , \mathbf {s}_R $. A quadratic polynomial $ t(X) \in \mathbb Z^n_p[X] $ is then defined as the inner product between the two vector polynomials $ l(X), r(X) $ such that
+Two linear vector polynomials $ l(X), r(X) $ in $  \mathbb Z^n_p[X] $ are defined as the inner-product terms for relation (7), also containing the blinding vectors $  \mathbf {s}_L , \mathbf {s}_R $. A quadratic polynomial $ t(X) \in \mathbb Z_p[X] $ is then defined as the inner product between the two vector polynomials $ l(X), r(X) $ such that
 
 $$
 t(X) = \langle l(X) \mspace{3mu} , \mspace{3mu} r(X) \rangle = t_0 + t_1 \cdot X + t_2 \cdot X^2 \mspace{10mu} \in \mathbb {Z}_p[X]
@@ -277,7 +277,7 @@ The range proof presented here has:
 
 ##### Logarithmic Range Proof
 
-This protocol replaces the inner product argument with an efficient inner-product argument. In step (63) Figure 5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Observe that checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ in step (67) Figure 5 and $ \hat {t} $ in step (68) Figure 5 is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , Ph^{-\mu}, t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ in step (63) Figure 5 can then be eliminated and transfer of information limited to the scalar properties alone, thereby archiving a proof size that is logarithmic in $ n $.
+This protocol replaces the inner product argument with an efficient inner-product argument. In step (63) Figure 5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step (67) Figure 6) and $ \hat {t} $ (step (68) Figure 6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , Ph^{-\mu}, t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step (63) Figure 5) can then be eliminated and transfer of information limited to the scalar properties alone, thereby archiving a proof size that is logarithmic in $ n $.
 
 
 
@@ -287,13 +287,19 @@ This protocol efficiently aggregate $ m $ range proofs into one short proof with
 $$
 \{ (g,h \in \mathbb{G}) , \mspace{9mu} \mathbf {V} \in \mathbb{G}^m \mspace{3mu} ; \mspace{9mu}  \mathbf {v}, \gamma \in \mathbb{Z}_p^m ) \mspace{6mu}  : \mspace{6mu} V_j =h^{\gamma_j} g^{v_j} \mspace{6mu}  \wedge \mspace{6mu} v_j \in [0,2^n - 1] \mspace{15mu} \forall \mspace{15mu} j \in [1,m] \} \mspace{100mu} (8)
 $$
-The *prover* $ \mathcal{P} $ should now compute $ \langle \mathbf{2}^n \mspace{3mu} , \mspace{3mu} \mathbf{a}_L[(j-1) \cdot n : j \cdot n-1] \rangle = v_j \forall j \in [1,m] \mspace{3mu} and  \mspace{3mu} \mathbf{a}_L \in \mathbb{Z}_p^{n \cdot m} $
+The *prover* $ \mathcal{P} $ should now compute $ \mspace{3mu} \mathbf{a}_L \in \mathbb{Z}_p^{n \cdot m} $ as the concatenation of all of the bits for every $ v_j $ such that
+$$
+\langle \mathbf{2}^n \mspace{3mu} , \mspace{3mu} \mathbf{a}_L[(j-1) \cdot n : j \cdot n-1] \rangle = v_j \mspace{9mu} \forall \mspace{9mu} j \in [1,m] \mspace{3mu}
+$$
+The quantity $ \delta (y,z) $ is adjusted to incorporate more cross terms $ n \cdot m $ , the linear vector polynomials $ l(X), r(X) $ are adjusted to be in $  \mathbb Z^{n \cdot m}_p[X] $ and the blinding factor $ \tau_x $ for $ \hat{t} $ (step (61) Figure 5) is adjusted for the randomness of each commitment $ V_j $. The verification check (step (65) Figure 6) is updated to include all $ V_j $ commitments and the definition of $ P $ (step (66) Figure 6) is changed to be a commitment to the new $ r $.
+
+This aggregated range proof that makes use of the inner product argument uses $ 2 \cdot [ \log _2 (n \cdot m)] + 4 $ group elements and 5 elements in $ \mathbb{Z}_p $. The growth is size is limited to an additive term $ 2 \cdot [ \log _2 (m)] $ as opposed to multiplicative factor $ m $ for $ m $ independent range proofs. 
 
 
 
 ##### Non-Interactive Proof through Fiat-Shamir
 
-This protocol makes interactive public coin protocols non-interactive by using the Fiat-Shamir heuristic.
+So far the *verifier* $ \mathcal{V} $  behaves as an honest verifier and all messages are random elements from $ \mathbb{Z}_p^* $. These are the pre-requisites needed to convert the protocol into a non-interactive protocol that is secure and full zero-knowledge in the random oracle model using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
 
 
