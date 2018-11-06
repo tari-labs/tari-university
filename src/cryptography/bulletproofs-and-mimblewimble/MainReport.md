@@ -9,7 +9,7 @@ Bulletproofs form part of the family of distinct Zero-knowledge Proof<sup>[def][
 
 Bulletproofs is a Non-interactive Zero-knowledge (NIZK) proof protocol for general Arithmetic Circuits<sup>[def][ac~]</sup> with very short proofs (Arguments of Knowledge Systems<sup>[def][afs~]</sup>) and without requiring a Trusted Setup<sup>[def][ts~]</sup>. They rely on the Discrete Logarithmic<sup>[def][dlp~]</sup> assumption and are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. The name 'Bulletproof' originated from a non-technical summary from one of the original authors of the scheme's properties: "<i>Short like a bullet with bulletproof security assumptions</i>". ([[1]], [[29]])
 
-Bulletproofs also implements a Multi-party Computation (MCP) protocol whereby distributed proofs of multiple *provers* with secret committed values are aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, thereby minimizing rounds of communication. Secret committed values will stay secret. ([[1]], [[6]])
+Bulletproofs also implements a Multi-party Computation (MPC) protocol whereby distributed proofs of multiple *provers* with secret committed values are aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, thereby minimizing rounds of communication. Secret committed values will stay secret. ([[1]], [[6]])
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner-product relation, which is of independent interest (not related). Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
@@ -283,7 +283,9 @@ This protocol replaces the inner product argument with an efficient inner-produc
 
 ##### Aggregating Logarithmic Proofs
 
-This protocol efficiently aggregate $ m $ range proofs into one short proof with a slight modification to the protocol presented in [Inner-Product Range Proof](l#inner-product-range-proof).  A proof system must be presented for the following relation:
+This protocol efficiently aggregate $ m $ range proofs into one short proof with a slight modification to the protocol presented in [Inner-Product Range Proof](#inner-product-range-proof). For aggregate range proofs, the inputs of one range proof do not affect the output of another range proof. Aggregating logarithmic range proofs is especially helpful if a single *prover* $ \mathcal{P} $ needs to perform multiple range proofs at the same time.
+
+A proof system must be presented for the following relation:
 $$
 \{ (g,h \in \mathbb{G}) , \mspace{9mu} \mathbf {V} \in \mathbb{G}^m \mspace{3mu} ; \mspace{9mu}  \mathbf {v}, \gamma \in \mathbb{Z}_p^m ) \mspace{6mu}  : \mspace{6mu} V_j =h^{\gamma_j} g^{v_j} \mspace{6mu}  \wedge \mspace{6mu} v_j \in [0,2^n - 1] \mspace{15mu} \forall \mspace{15mu} j \in [1,m] \} \mspace{100mu} (8)
 $$
@@ -291,21 +293,39 @@ The *prover* $ \mathcal{P} $ should now compute $ \mspace{3mu} \mathbf{a}_L \in 
 $$
 \langle \mathbf{2}^n \mspace{3mu} , \mspace{3mu} \mathbf{a}_L[(j-1) \cdot n : j \cdot n-1] \rangle = v_j \mspace{9mu} \forall \mspace{9mu} j \in [1,m] \mspace{3mu}
 $$
-The quantity $ \delta (y,z) $ is adjusted to incorporate more cross terms $ n \cdot m $ , the linear vector polynomials $ l(X), r(X) $ are adjusted to be in $  \mathbb Z^{n \cdot m}_p[X] $ and the blinding factor $ \tau_x $ for $ \hat{t} $ (step (61) Figure 5) is adjusted for the randomness of each commitment $ V_j $. The verification check (step (65) Figure 6) is updated to include all $ V_j $ commitments and the definition of $ P $ (step (66) Figure 6) is changed to be a commitment to the new $ r $.
+The quantity $ \delta (y,z) $ is adjusted to incorporate more cross terms $ n \cdot m $ , the linear vector polynomials $ l(X), r(X) $ are adjusted to be in $  \mathbb Z^{n \cdot m}_p[X] $ and the blinding factor $ \tau_x $ for the inner product $ \hat{t} $ (step (61) Figure 5) is adjusted for the randomness of each commitment $ V_j $. The verification check (step (65) Figure 6) is updated to include all $ V_j $ commitments and the definition of $ P $ (step (66) Figure 6) is changed to be a commitment to the new $ r $.
 
-This aggregated range proof that makes use of the inner product argument uses $ 2 \cdot [ \log _2 (n \cdot m)] + 4 $ group elements and 5 elements in $ \mathbb{Z}_p $. The growth is size is limited to an additive term $ 2 \cdot [ \log _2 (m)] $ as opposed to multiplicative factor $ m $ for $ m $ independent range proofs. 
+This aggregated range proof that makes use of the inner product argument only uses $ 2 \cdot [ \log _2 (n \cdot m)] + 4 $ group elements and $ 5 $ elements in $ \mathbb{Z}_p $. The growth in size is limited to an additive term $ 2 \cdot [ \log _2 (m)] $ as opposed to a multiplicative factor $ m $ for $ m $ independent range proofs.
 
 
 
 ##### Non-Interactive Proof through Fiat-Shamir
 
-So far the *verifier* $ \mathcal{V} $  behaves as an honest verifier and all messages are random elements from $ \mathbb{Z}_p^* $. These are the pre-requisites needed to convert the protocol into a non-interactive protocol that is secure and full zero-knowledge in the random oracle model using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
+So far the *verifier* $ \mathcal{V} $  behaves as an honest verifier and all messages are random elements from $ \mathbb{Z}_p^* $. These are the pre-requisites needed to convert the protocol presented so far into a non-interactive protocol that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. 
 
 
 
 ##### MPC Protocol for Bulletproofs
 
- This protocol allows multiple parties to construct a single aggregate range proof.
+This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs $ m $ parties each having a Pedersen commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each
+$ V_k $ commits to a number in some fixed range.
+
+Let $ k $ denote the $ k $th party's message, thus $ A^{(k)} $ is generated using only inputs of party $ k $. A set of distinct generators $ (g^{(k)}, h^{(k)})_{k=1}^m $ is assigned to each party, and $ \mathbf{g},\mathbf{h} $ is defined as the interleaved concatenation of all $ g^{(k)} ,  h^{(k)} $ such that 
+$$
+g_i=g_{[{i \over{m}}]}^{((i-1) \mod m+1)} \mspace{15mu} \mathrm{and} \mspace{15mu} h_i=h_{[{i \over{m}}]}^{((i-1) \mod m+1)}
+$$
+The protocol either uses three rounds with linear communication in both $ m $ and the binary encoding of the range, or it uses a logarithmic number of rounds and communication that is only linear in $ m $. For the linear communication case the protocol in [Inner-Product Range Proof](#inner-product-range-proof) is followed with the difference that each party generates its part of the proof using its own inputs and generators, that is
+
+$$
+A^{(k)},S^{(k)};T_1^{(k)},T_2^{(k)};\tau_x^{(k)},\mu^{(k)},\hat{t}^{(k)},\mathbf{l}^{(k)},\mathbf{r}^{(k)}
+$$
+These shares are sent to a dealer (could be anyone, even one of the parties) who adds them homomorphically to generate the respective proof components, that is
+$$
+A = \prod^{(l)}_{k=1} A^{(k)} \mspace{15mu} \mathrm{and} \mspace{15mu} \tau_x = \prod^{(l)}_{k=1} \tau_x^{(k)}
+$$
+In each round, the dealer generates the challenges using the Fiat-Shamir heuristic and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ( [Protocol 1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof.
+
+The communication can be reduced by running a second MPC protocol for the inner product argument, reducing the rounds to $ \log_2(l) $. Up to the last $ \log_2(l) $ round each parties' witnesses are independent and the overall witness is the interleaved concatenation of the parties' witnesses. The parties compute $ L^{(k)}, R^{(k)} $ in each round and the dealer computes $ L, R ​$ as the homomorphic sum of the shares. In the final round the dealer generates the final challenge and sends it to each party who in turn send their witness to the dealer who completes [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). 
 
 
 
