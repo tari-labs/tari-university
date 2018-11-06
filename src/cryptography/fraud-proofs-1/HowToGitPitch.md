@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:   protocols/grin-design-choice-criticisms#/
+Presentation:   src/cryptography/fraud-proofs-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/protocols/grin-design-choice-criticisms#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/cryptography/fraud-proofs-1#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    protocols/grin-design-choice-criticisms#/
+Presentation:    src/cryptography/fraud-proofs-1#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/protocols/grin-design-choice-criticisms#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/fraud-proofs-1#/
