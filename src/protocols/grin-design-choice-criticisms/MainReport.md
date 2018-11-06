@@ -4,15 +4,15 @@
 
 Grin is a cryptocurrency implemented in Rust that makes use of Mimblewimble transactions and the Cuckatoo algorithm to perform Proof-of-Work (PoW) calculations. The main design goals of the Grin project are: privacy, transaction scaling and design simplicity to promote long term maintenance of the Grin source code [[1]].
 
-During the development of the Grin project, the developers have received criticisms from the community on a number of the design and implementation decisions that they have made. We will have a look at some of these criticisms and determine if there are some truth to these concerns or if the concerns are unwarranted or invalid. Some suggestions will be made on how these problems could be improved or addressed.
+During the development of the Grin project, the developers have received criticisms from the community on a number of the design and implementation decisions that they have made. This report will have a look at some of these criticisms and determine if there are some truth to these concerns or if the concerns are unwarranted or invalid. Some suggestions will be made on how these problems could be improved or addressed.
 
 <p align="center"><img src="sources/intro.PNG" width="700" /></p>
 
-We will investigate their selected emission scheme, PoW algorithm, selection of key-store library and their choice of cryptographic curve used for signatures. Each of these topics will be discussed in detail, starting with their selected emission scheme.
+This report will also investigate their selected emission scheme, PoW algorithm, selection of key-store library and their choice of cryptographic curve used for signatures. Each of these topics will be discussed in detail, starting with their selected emission scheme.
 
 ## Contents
 
-- [Grin Design Choice Criticisms - Truth or Fiction](#Grin-design-choice-criticisms-truth-or-fiction)
+- [Grin Design Choice Criticisms - Truth or Fiction](#grin-design-choice-criticisms---truth-or-fiction)
    - [Introduction](#introduction)
    - [Contents](#contents)
    - [Monetary Policy Due to Static Emission Scheme](#monetary-policy-due-to-static-emission-scheme)
@@ -44,7 +44,7 @@ Most economists for traditional fiat systems agree that deflation is bad as it i
 
 On the other hand, deflation in traditional fiat systems, produce over time an increase of purchasing power that encourages saving and discourages debt, resulting in the currency being used as a SoV. Unfortunately, this comes with a negative side effect that people will stop purchasing goods and services. Bitcoin can be considered deflationary as people would rather buy and hold Bitcoins as the price per coin might increase over time, this is limiting its use as a MoE. Also, high deflation can cause a deflationary spiral, as people with debt will have more debt and people with money will start hoarding their money as it might be worth more at a later stage [[11]]. Deflation in traditional fiat systems typically tend to only happen in times of economic crisis and recession and is managed by introducing inflation using monetary policies [[12]]. 
 
-As most inflationary fiat systems are government backed, they are able to control the amount of inflation to help alleviate government debt and finance budget deficits [[13]].  This could result in Hyperinflation where the devaluation of currency occur at an extreme pace resulting in many people losing their savings and pensions [[14]]. Cryptocurrencies on the other hand provide a transparent algorithmic monetary inflation that is not controlled by a central authority or government, limiting its misuse. 
+As most inflationary fiat systems are government backed, they are able to control the amount of inflation to help alleviate government debt and finance budget deficits [[13]].  This could result in hyperinflation where the devaluation of currency occur at an extreme pace resulting in many people losing their savings and pensions [[14]]. Cryptocurrencies on the other hand provide a transparent algorithmic monetary inflation that is not controlled by a central authority or government, limiting its misuse. 
 
 Finding a good balance between being a SoV and MoV is an important issue for developing a successful currency. A balance between deflation and inflation need to be selected to motivate saving and at the same time spending of a currency. A low inflationary model where inflation is algorithmically maintained and not controlled by a single authority seem like the safest choice, but only time will tell if the high inflation model proposed by Grin will have the desired effect. 
 
@@ -57,7 +57,7 @@ Recently, the Grin team proposed to switch to a new dual PoW system, where one P
 
 <p align="center"><img src="sources/attack51.JPG" width="550" /></p>
 
-ASIC miners tend to be specialised hardware that are very efficient at calculating and solving specific PoW algorithms. Encouraging ASIC miners on a network, might not seem like a bad idea as the mining network will have a higher hash rate. This will make it more difficult to hack and it will use less electrical power compared to using primarily CPU and GPU based miners. 
+ASIC miners tend to be specialised hardware that are very efficient at calculating and solving specific PoW algorithms. Encouraging ASIC miners on a network might not seem like a bad idea as the mining network will have a higher hash rate. This will make it more difficult to hack and it will use less electrical power compared to using primarily CPU and GPU based miners. 
 
 Unfortunately, a negative side effect of running a PoW algorithm that is ASIC friendly is that the network of miners will become more centralised. General consumers do not have access or a need for this type of hardware; this limits the use of ASIC miners to be primarily reserved for enthusiasts and large corporations establishing mining farms. Having the majority of the networks hash rate localised in large mining farms will result in the block chain becoming more vulnerable to potential 51% attacks [[18]], especially when specific ASIC manufacturers recommend or enforce their hardware to make use of specific mining pools that are controlled by single bodies.
 
@@ -94,8 +94,8 @@ Grin later replaced RocksDB with LMDB to maintain the state of Grin Wallets [[34
 
 - Selecting the correct emission rate to create a sustainable monetary policy is an important decision and care should be taken to ensure that the right balance is found between being a SoV and/or a MoE.
 - Weighing the benefits and potential issues of being ASIC friendly compared to ASIC resistant need to be carefully evaluated.
-- Tools such as SafeCurves can be used to select a secure elliptic curve for your application. Cryptographic curves with even potential security vulnerabilities should rather be ignored.
-- Care should be taken when using online benchmarks to help select libraries for your project as the results might be misleading.
+- Tools such as SafeCurves can be used to select a secure elliptic curve for an application. Cryptographic curves with even potential security vulnerabilities should rather be ignored.
+- Care should be taken when using online benchmarks to help select libraries for a project as the results might be misleading.
 
 
 ## References
