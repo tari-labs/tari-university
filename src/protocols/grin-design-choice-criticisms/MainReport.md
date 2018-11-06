@@ -17,7 +17,7 @@ We will investigate their selected emission scheme, PoW algorithm, selection of 
    - [Contents](#contents)
    - [Monetary Policy Due to Static Emission Scheme](#monetary-policy-due-to-static-emission-scheme)
    - [From ASIC Resistant to ASIC Friendly](#from-asic-resistant-to-asic-friendly)
-   - [Choice of Cryptographic Elliptic-curve - secp256k1](#choice-of-cryptographic-elliptic-curve-secp256k1)
+   - [Choice of Cryptographic Elliptic-curve - secp256k1](#choice-of-cryptographic-elliptic-curve---secp256k1)
    - [Selection of Key-store Library](#selection-of-key-store-library)
    - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
    - [References](#references)
