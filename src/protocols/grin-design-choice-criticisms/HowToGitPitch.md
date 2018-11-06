@@ -9,7 +9,7 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:   protocols/grin-design-choice-criticisms#/
+Presentation:   src/protocols/grin-design-choice-criticisms#/
 
 Final URL:
 
@@ -23,7 +23,7 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    protocols/grin-design-choice-criticisms#/
+Presentation:    src/protocols/grin-design-choice-criticisms#/
 
 Final URL:
 
