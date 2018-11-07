@@ -1,17 +1,15 @@
-# Grin Design Choice Criticisms - Truth or Fiction
+# Grin Design Choice Criticisms   Truth or Fiction
 
 ---
-# Introduction
+# What is Grin?
+- Cryptocurrency implemented in Rust
+- Mimblewimble transactions
+- Dual Proof-of-Work (PoW) system: Cuckatoo algorithm + Equigrin(?)
 
-What is Grin?
--  Cryptocurrency implemented in Rust
--  Mimblewimble transactions
--  Proof-of-Work (PoW): Cuckatoo algorithm
-
-Main design goals?
-- Privacy
-- Transaction scaling
-- Design simplicity 
+- Main design goals?
+	- Privacy
+	- Transaction scaling
+	- Design simplicity 
 
 ---
 # Introduction (cnt'd)
