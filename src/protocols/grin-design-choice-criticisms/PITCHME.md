@@ -82,6 +82,7 @@
 	- produce natural pricing
 	- limit price manipulation by large coin holders
 
++++
 ## Lost coins reduce high inflation
 
 - Grin team believes the high inflation is much lower
@@ -96,9 +97,9 @@
 +++
 ## Deflation vs Inflation in fiat systems
 
-Most economists agree:
- -  Deflation is bad as it increases debt
- - "Some" inflation is good as it stimulates the economy
+- Most economists agree:
+	- Deflation is bad as it increases debt
+	- "Some" inflation is good as it stimulates the economy
  
 +++
 ## Effect of inflation in fiat systems
