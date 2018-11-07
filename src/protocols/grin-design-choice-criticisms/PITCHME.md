@@ -42,16 +42,16 @@
 
 - Only transaction fees will be paid to miners
 - Will transaction fees be sufficient to maintain a large network of miners?
-Possibility 1: Fixed supply
-- Fees will be sufficient
-- Over time transaction fees will increase
-- Mining hardware costs decrease
-- Maintaining the block chain remain lucrative for small mining operations
+- Possibility 1: Fixed supply
+	- Fees will be sufficient
+	- Over time transaction fees will increase
+	- Mining hardware costs decrease
+	- Maintaining the block chain remain lucrative for small mining operations
 
-Possibility 2: Non-capped supply
-- Fees will be insufficient
-- Only large mining farms remain profitable
-- Centralisation of the network
+- Possibility 2: Non-capped supply
+	- Fees will be insufficient
+	- Only large mining farms remain profitable
+	- Centralisation of the network
 
 +++
 ## Grin's Emmision scheme
@@ -70,65 +70,72 @@ Possibility 2: Non-capped supply
 - Encourage spending rather than holding
 
 +++
-## The value of Grin?
+## The future value of Grin?
 
-fixed emission will limit its use as a SoV, encourage MoE
-experience constant price pressure
-difficult for Grin to maintain a high value initially
+- Approximately 50 years for the inflation to drop below 2%.
+- Fixed emission will limit its use as a SoV, encourage MoE
+- Experience constant price pressure
+- Difficult for Grin to maintain a high value initially
+- The Grin team believes
+	- high inflation rate will improve distribution of coins
+	- discourage holding of coins
+	- produce natural pricing
+	- limit price manipulation by large coin holders
 
-approximately 50 years for the inflation to drop below 2%.
+## Lost coins reduce high inflation
 
-Grin team believes  inflation rate not that high
- - many coins are lost and become unusable on a block chain
- - lost coins account for upto 2% per year of the total supply,
- - Excluded lost coins from inflation rate calculation
+- Grin team believes the high inflation is much lower
+- Many coins are lost and become unusable on a block chain
+- Lost coins account for upto 2% per year of the total supply
+- lost coins should be deducted inflation rate
  
-Percentage of lost transactional coins are difficult to estimate
- - More lost coins per year for low value coins
- - High value coins have lower rate of lost coins, users tend to be more careful.
- - 
- - The Grin team believes that by selecting a high inflation rate it will improve the distribution of coins as holding of coins will be discouraged. They also hope that a high inflation rate will produce natural pricing and limit price manipulation by large coin holders [[7]]. 
+- Percentage of lost transactional coins are difficult to estimate:
+	- More lost coins per year for low value coins
+	- High value coins have lower rate of lost coins, users tend to be more careful.
 
 +++
 ## Deflation vs Inflation in fiat systems
 
-
 Most economists agree:
- - deflation is bad as it increases debt
- - "some" inflation is good as it stimulates the economy.
+ -  Deflation is bad as it increases debt
+ - "Some" inflation is good as it stimulates the economy
  
 +++
 ## Effect of inflation in fiat systems
 
 - Inflationary currency: MoE rather than a SoV
-- purchasing power of savings decrease over time
-- encourages the purchasing of goods and services
+- Positive effect of inflation:
+	- encourages the purchasing of goods and services
+	- People with debt benefit from inflation
+		- eroding effect on total debt
 
-- People with debt benefit from inflation
-- eroding effect on total debt
+- Negative effect of inflation:
+	- Discourages saving 
+		- purchasing power of savings decrease over time
+	- Encourages debt
 
-Negative effect of inflation:
-- Discourages saving
-- Encourages debt
++++
+## Debt benefit does not apply to cryptocurrencies
 
-Debt benefit does not apply to cryptocurrencies:
-- not much debt exists
-- difficult to maintain successful borrower-lender relationships
-- due to the anonymous nature of cryptocurrencies
+- Not much debt exists
+
+- Reason: Difficult to maintain successful borrower-lender relationships
+	- due to the anonymous nature of cryptocurrencies
 
 +++
 ## Effect of deflation in fiat systems
 
 - Deflationary currency: SoV rather than a MoE
-- increase of purchasing power 
-- encourages saving 
-- discourages debt
+- Positive effect of deflation:
+	- increase of purchasing power 
+	- encourages saving 
+	- discourages debt
 
-Negative effect of deflation:
-- Discourages the purchasing of goods and services
--  high deflation can cause a deflationary spiral
-	- people with debt will have more debt 
-	- people with money will start hoarding  		
+- Negative effect of deflation:
+	- Discourages the purchasing of goods and services
+	- High deflation can cause a deflationary spiral
+		- people with debt will have more debt 
+		- people with money will start hoarding  		
 
 Bitcoin can be considered deflationary:
 - buy and hold Bitcoins as the price per coin might increase over time
@@ -137,77 +144,79 @@ Bitcoin can be considered deflationary:
 +++
 ## Who controls deflation and inflation?
 
-Deflation in traditional fiat systems:
-- only happen in times of economic crisis and recession
-- managed by introducing inflation 
+- Traditional fiat systems:
+	- Deflation:
+		- only happen in times of economic crisis and recession
+		- managed by introducing inflation 
+	- Inflation:
+		- fiat systems are government backed
+		- control the amount of inflation to help alleviate government debt and finance budget deficits 
+			- could result in hyperinflation:
 
-Inflation in traditional fiat systems:
-- fiat systems are government backed
-- control the amount of inflation to help alleviate government debt and finance budget deficits - could result in hyperinflation:
-
-Inflation/Deflation in cryptocurrencies:
-- algorithmic and transparent algorithmic monetary inflation 
-- not controlled by a central authority or government
-- limiting its misuse. 
+- Cryptocurrency Systems:
+	- Algorithmic and transparent monetary inflation/deflation 
+	- Potentially not controlled by a central authority or government
+	- Limiting its misuse
 
 +++
 ## Balancing between SoV and MoV
 
-Finding a good balance between SoV and MoV is an important issue for developing a successful currency:
- - Try to motivate saving
- - Try to motivate spending
- - Worrying about debt -> probably not important
+- Finding a good balance between SoV and MoV is an important issue for developing a successful currency:
+	- Try to motivate saving
+	- Try to motivate spending
+	- Worrying about debt -> probably not important
 
-A low inflationary model where inflation is algorithmically maintained seem like the safest choice.
+- A low inflationary model where inflation is algorithmically maintained seem like the safest choice
 
-Only time will tell if the high inflation model proposed by Grin will have the desired effect. 
+- Only time will tell if the high inflation model proposed by Grin will have the desired effect
 
 ---
 # From ASIC Resistant to ASIC Friendly
 
 +++
-## Initial dual PoW algorithms used by Grin
+## Initial dual PoW algorithms proposed by Grin
 
-Two ASIC resistant PoW algorithms:
-- Cuckoo cycles
-- Equigrin
+- Two ASIC resistant PoW algorithms:
+	- Cuckoo cycles
+	- Equigrin
 
-Encourage mining decentralisation.
-High memory requirements
-Adjust parameters every 6 months to deter stealth ASIC mining and move over to using only Cuckoo cycles as the primary PoW algorithm.
+- Encourage mining decentralisation.
+- High memory requirements
+- Adjust parameters every 6 months to deter stealth ASIC mining 
+- Move over to using only Cuckoo cycles as the primary PoW algorithm
 
 +++
 ## New dual PoW algorithm proposal
 
-1 ASIC resistant and 1 ASIC friendly:
-- Cuckatoo cycles
-- vague details on second algorithm
+- Dual PoW algorithm:
+	- 1 ASIC resistant - Cuckatoo cycles
+	- 1 ASIC friendly - vague details on second algorithm
 
-What is Cuckatoo cycles
-- variation of Cuckoo 
-- Aims to be more ASIC friendly 
-	- plain bits for ternary counters
-	- requires large amounts of Static Random-Access Memory (SRAM)
-	- SRAM used to speed up the memory latency bound access of random node bits
-	- SRAM is limited on GPU and CPU processors
-	- Increasing SRAM on ASIC processors is much easier
+- What is Cuckatoo cycles?
+	- Variation of Cuckoo 
+	- Aims to be more ASIC friendly: 
+		- Plain bits for ternary counters
+		- Requires large amounts of Static Random-Access Memory (SRAM)
+		- SRAM is used to speed up the memory latency bound access of random node bits
+		- SRAM is limited on GPU and CPU processors
+		- Increasing SRAM on ASIC processors is much easier
 
 +++
-## What are ASIC miner?
+## What are ASIC miners?
 
 - Specialised hardware
-- very efficient at solving specific PoW algorithms.
+- very efficient at solving specific PoW algorithms
 
 TODO - Add image of ASIC Miner
 
-Benefits of being ASIC friendly:
-- higher hash rate on network will make it more difficult to hack
-- Use less electrical power to maintaining blockchain 
+- Benefits of being ASIC friendly:
+	- higher hash rate on network will make it more difficult to hack
+	- Use less electrical power to maintaining blockchain 
 
 +++
 ## Negative effect of ASIC friendly PoW algorithm
 
-- Network of miners will become more centralised.
+- Network of miners will become more centralised
 
 - General consumers do not have access or a need for this type of hardware
 - ASIC miners are primarily reserved for enthusiasts and large corporations
@@ -221,7 +230,7 @@ Benefits of being ASIC friendly:
 ## ASIC resistant mining
 
 - Use general purpose and multi-use (Gaming) hardware for mining
-- 
+
 - CPUs and GPUs that are primarily used for gaming and large workstations
 - Network of miners is more widely distributed
 - More difficult for single bad player to control more than 50% of the networks computational power
@@ -239,41 +248,41 @@ Benefits of being ASIC friendly:
 +++
 ## Elliptic curve cryptography and Secp256k1
 
-What is Elliptic curve cryptography?
-- Used to generate Private and Public key pairs:
-- Digital signatures 
-- Authorisation of individuals and transactions
-- More secure than RSA (smaller keys for similar security)
+- What is Elliptic curve cryptography?
+	- Used to generate Private and Public key pairs:
+	- Digital signatures 
+	- Authorisation of individuals and transactions
+	- More secure than RSA (smaller keys for similar security)
 
-Secp256k1 is an elliptic curve:
- - Defined in the Standards for Efficient Cryptography
- - Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc.).
+- Secp256k1 is an elliptic curve:
+	- Defined in the Standards for Efficient Cryptography
+	- Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc.).
 
 +++
 ## Security of Secp256k1
 
- Grin uses Secp256k1
+- Grin uses Secp256k1
  
- Some security experts recommend not using the secp256k1
- - Some issues have been uncovered, but not necessarily exploited.
- - Complex-multiplication field discriminant is not high enough to be secure.
- - Curves with low complex-multiplication field discriminant tend to be easier to break
- - Could result in  future exploits
+- Some security experts recommend not using the secp256k1
+	- Some issues have been uncovered, but not necessarily exploited.
+	- Complex-multiplication field discriminant is not high enough to be secure.
+	- Curves with low complex-multiplication field discriminant tend to be easier to break
+	- Could result in  future exploits
 
 +++
 ## Alternative cryptographic curves
 
-Starting a project with a potentially compromised curve does not seem like a good idea
+- Starting a project with a potentially compromised curve does not seem like a good idea
 
-Alternative curves with better security properties do exist: 
-- Curve25519 
-- Edwards-curve Digital Signature Algorithm (EdDSA)  -> Ed25519 public-key signature system
-- Fast signature scheme without sacrificing security
+- Alternative curves with better security properties do exist: 
+	- Curve25519 
+	- Edwards-curve Digital Signature Algorithm (EdDSA)  -> Ed25519 public-key signature system
+	- Fast signature scheme without sacrificing security
 
 +++
 ## Additional alternatives using SafeCurves
 
-SafeCurves Link:  https://safecurves.cr.yp.to/
+- SafeCurves Link:  https://safecurves.cr.yp.to/
 - Maintained by Daniel J. Bernstein and Tanje Lange
 - makes it easier to investigate and select an alternative curve
 - evaluate the security properties and potential vulnerabilities of many cryptographic curves
@@ -283,35 +292,36 @@ SafeCurves Link:  https://safecurves.cr.yp.to/
 
 +++
 ## Selecting the "best" key-value store library
-Grin originally made use of RocksDB [[26]] as an internal key-value store
-There are many key-store libraries to choose from with different performance and security characteristics:
-- RocksDB
-- LevelDB
-- HyperLevelDB
-- LMDB (Lightning Memory-Mapped Database)
+
+- Grin originally made use of RocksDB as an internal key-value store
+- Many key-store libraries to choose from with different performance and security characteristics:
+	- RocksDB
+	- LevelDB
+	- HyperLevelDB
+	- LMDB (Lightning Memory-Mapped Database)
 
 Selecting the "best" key-value store library is difficult?
 
 +++
 ## Conflicting online benchmarks
 
-Many conflicting online benchmarks:
-- Some show that RocksDB or LevelDB are better than LMDB
-- Random records were incorreclty selected 
+- Many conflicting online benchmarks:
+	- Some show that RocksDB or LevelDB are better than LMDB
+	- Random records were incorreclty selected 
 
-Howard Chu wrote the article "Lies, Damn Lies, Statistics, and Benchmarks"
-- exposing these online benchmarking issues
-- LMDB is the best key-value store library
-- Other benchmarks performed by Symas Corp support this claim
+- Howard Chu wrote the article "Lies, Damn Lies, Statistics, and Benchmarks"
+	- Exposing these online benchmarking issues
+	- LMDB is the best key-value store library
+	- Other benchmarks performed by Symas Corp support this claim
 
 +++
 ## Grin switched to LMDB
 
-Grin later replaced RocksDB with LMDB
-- Wallet state stored in LMDB database
-- Block chain storage
+- Grin later replaced RocksDB with LMDB
+	- Wallet state stored in LMDB database
+	- Block chain storage
 
-Probably a good idea as LMDB seem to be the best key-value store library for block chain related applications
+- Probably a good idea as LMDB seem to be the best key-value store library for block chain related applications
 
 ---
 ## Conclusions
@@ -322,94 +332,3 @@ Probably a good idea as LMDB seem to be the best key-value store library for blo
 - SafeCurves can be used to select a secure elliptic curve
 - Cryptographic curves with potential security vulnerabilities should rather be ignored.
 - Becareful when trusting online benchmarks to select libraries
-
-Sample side by side image (set at 250 pixels width, aligned center) and text (aligned left) inside div containers. [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
-
-<---
-@div[left-50 s250px text-center]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/grin/protocols/grin-design-choice-criticisms/sources/sample.PNG)
-@divend
-
-@div[right-50 text-left]
-
-<p>[Unordered list](https://html.com/tags/ul/) of items below:
-
-<ul>
-<li>???
-<li>???
-</ul>
-@divend
-
-Sample side by side text inside div containers, with alternating alignment.  [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
-
-@div[left-50]
-
-@div[text-left]
-
-<p>[Paragraph left](https://html.com/tags/p/)
-<p>Paragraph left
-
-
-@divend
-
-@div[text-center]
-
-<ul>
-<li>[Unordered list center](https://html.com/tags/ul/)
-<li>Unordered list center
-</ul>
-
-
-@divend
-
-@div[text-right]
-
-<ol>
-<li>[Ordered list right](https://html.com/tags/ol/)
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
-
-
-
-@div[right-50 text-right]
-
-@div[text-left]
-
-<p>Paragraph left
-<p>Paragraph left
-
-
-@divend
-
-@div[text-center]
-
-<ul>
-<li>Unordered list center
-<li>Unordered list center
-</ul>
-
-
-@divend
-
-@div[text-right]
-
-<ol>
-<li>Ordered list right
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
-
-+++
-
-## Conclusions (cnt'd)
-
-???
