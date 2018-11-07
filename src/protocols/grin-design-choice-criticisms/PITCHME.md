@@ -1,7 +1,7 @@
 # Grin Design Choice Criticisms   Truth or Fiction
 
 ---
-# What is Grin?
+## What is Grin?
 - Cryptocurrency implemented in Rust
 - Mimblewimble transactions
 - Dual Proof-of-Work (PoW) system: Cuckatoo algorithm + Equigrin(?)
@@ -12,17 +12,15 @@
 	- Design simplicity 
 
 ---
-# Introduction (cnt'd)
+## Grin's Criticisms from Community
 
-Grin received criticisms on some design and implementation decisions:
-- Emission scheme
-- PoW algorithm,
-- Key-store library
-- Cryptographic curve
-
-This report investigated if there are some truth to these concerns
-Suggestions will be presented to addressed these issues
-
+- Grin received a number of criticisms on some design and implementation decisions
+- This report will investigated if there are some truth to these concerns:
+	- Emission scheme
+	- Dual PoW algorithm
+	- Cryptographic curve
+	- Key-store library
+- Some suggestions and recommendation will be presented to addressed these issues
 
 ---
 # Monetary Policy Due to Static Emission Scheme
