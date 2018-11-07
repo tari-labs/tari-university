@@ -14,13 +14,13 @@
 ---
 ## Grin's Criticisms from Community
 
-- Grin received a number of criticisms on some design and implementation decisions
-- This report will investigated if there are some truth to these concerns:
+- Grin received criticisms on design and implementation decisions
+- Investigated if there are truth to these concerns:
 	- Emission scheme
 	- Dual PoW algorithm
 	- Cryptographic curve
 	- Key-store library
-- Some suggestions and recommendation will be presented to addressed these issues
+- Suggestions will be presented to addressed these issues
 
 ---
 # Monetary Policy Due to Static Emission Scheme
