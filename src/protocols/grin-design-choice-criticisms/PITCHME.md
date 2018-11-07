@@ -5,7 +5,6 @@
 - Cryptocurrency implemented in Rust
 - Mimblewimble transactions
 - Dual Proof-of-Work (PoW) system: Cuckatoo algorithm + Equigrin(?)
-\
 - Main design goals:
 	- Privacy
 	- Transaction scaling
@@ -25,6 +24,9 @@
 ---
 # Monetary Policy Due to Static Emission Scheme
 
++++
+## Bitcoin
+
 Bitcoin - limited and finite supply of coins
 - 21 million coins
 - 10-minute block goal
@@ -35,7 +37,7 @@ What hapens to newly minted coins?
  - New coins and transaction fees are paid to miners
  - Incentive to maintain the block chain
  
----
++++
 ## What happens when all coins have been mined?
 
 Only transaction fees will be paid to miners
@@ -51,7 +53,7 @@ Option 1: Non-capped supply
 - Only large mining farms remain profitable
 - Centralisation of the network
 
----
++++
 ## Grin's Emmision scheme
 
 - Number of coins not capped to a fixed supply.
@@ -65,7 +67,7 @@ Grins motivations for static emission rate:
 - Mitigate effect of lost coins
 - Encourage spending rather than holding
 
----
++++
 ## The value of Grin?
 
 fixed emission will limit its use as a SoV, encourage MoE
@@ -85,7 +87,7 @@ Percentage of lost transactional coins are difficult to estimate
  - 
  - The Grin team believes that by selecting a high inflation rate it will improve the distribution of coins as holding of coins will be discouraged. They also hope that a high inflation rate will produce natural pricing and limit price manipulation by large coin holders [[7]]. 
 
----
++++
 ## Deflation vs Inflation in fiat systems
 
 
@@ -93,7 +95,7 @@ Most economists agree:
  - deflation is bad as it increases debt
  - "some" inflation is good as it stimulates the economy.
  
----
++++
 ## Effect of inflation in fiat systems
 
 - Inflationary currency: MoE rather than a SoV
@@ -112,7 +114,7 @@ Debt benefit does not apply to cryptocurrencies:
 - difficult to maintain successful borrower-lender relationships
 - due to the anonymous nature of cryptocurrencies
 
----
++++
 ## Effect of deflation in fiat systems
 
 - Deflationary currency: SoV rather than a MoE
@@ -130,7 +132,7 @@ Bitcoin can be considered deflationary:
 - buy and hold Bitcoins as the price per coin might increase over time
 - limiting its use as a MoE
 
----
++++
 ## Who controls deflation and inflation?
 
 Deflation in traditional fiat systems:
@@ -146,8 +148,8 @@ Inflation/Deflation in cryptocurrencies:
 - not controlled by a central authority or government
 - limiting its misuse. 
 
----
-## Balance between SoV and MoV
++++
+## Balancing between SoV and MoV
 
 Finding a good balance between SoV and MoV is an important issue for developing a successful currency:
  - Try to motivate saving
@@ -161,7 +163,7 @@ Only time will tell if the high inflation model proposed by Grin will have the d
 ---
 # From ASIC Resistant to ASIC Friendly
 
----
++++
 ## Initial dual PoW algorithms used by Grin
 
 Two ASIC resistant PoW algorithms:
@@ -172,7 +174,7 @@ Encourage mining decentralisation.
 High memory requirements
 Adjust parameters every 6 months to deter stealth ASIC mining and move over to using only Cuckoo cycles as the primary PoW algorithm.
 
----
++++
 ## New dual PoW algorithm proposal
 
 1 ASIC resistant and 1 ASIC friendly:
@@ -188,7 +190,7 @@ What is Cuckatoo cycles
 	- SRAM is limited on GPU and CPU processors
 	- Increasing SRAM on ASIC processors is much easier
 
----
++++
 ## What are ASIC miner?
 
 - Specialised hardware
@@ -200,7 +202,7 @@ Benefits of being ASIC friendly:
 - higher hash rate on network will make it more difficult to hack
 - Use less electrical power to maintaining blockchain 
 
----
++++
 ## Negative effect of ASIC friendly PoW algorithm
 
 - Network of miners will become more centralised.
@@ -213,7 +215,7 @@ Benefits of being ASIC friendly:
 - Risk even higher when when hardware is preset to use a specific mining pool
 - Mining pool might be controlled by single body.
 
----
++++
 ## ASIC resistant mining
 
 - Use general purpose and multi-use (Gaming) hardware for mining
@@ -223,6 +225,7 @@ Benefits of being ASIC friendly:
 - More difficult for single bad player to control more than 50% of the networks computational power
 - limiting the potential of double spends.
 
++++
 ## ASIC resistant or ASIC friendly?
 
 - Very important decision
@@ -231,6 +234,7 @@ Benefits of being ASIC friendly:
 ---
 # Choice of Cryptographic Elliptic-curve - secp256k1
 
++++
 ## Elliptic curve cryptography and Secp256k1
 
 What is Elliptic curve cryptography?
@@ -243,7 +247,7 @@ Secp256k1 is an elliptic curve:
  - Defined in the Standards for Efficient Cryptography
  - Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc.).
 
----
++++
 ## Security of Secp256k1
 
  Grin uses Secp256k1
@@ -254,7 +258,7 @@ Secp256k1 is an elliptic curve:
  - Curves with low complex-multiplication field discriminant tend to be easier to break
  - Could result in  future exploits
 
----
++++
 ## Alternative cryptographic curves
 
 Starting a project with a potentially compromised curve does not seem like a good idea
@@ -264,8 +268,7 @@ Alternative curves with better security properties do exist:
 - Edwards-curve Digital Signature Algorithm (EdDSA)  -> Ed25519 public-key signature system
 - Fast signature scheme without sacrificing security
 
----
-
++++
 ## Additional alternatives using SafeCurves
 
 SafeCurves Link:  https://safecurves.cr.yp.to/
@@ -274,9 +277,9 @@ SafeCurves Link:  https://safecurves.cr.yp.to/
 - evaluate the security properties and potential vulnerabilities of many cryptographic curves
 
 ---
-
 # Selection of Key-store Library
 
++++
 ## Selecting the "best" key-value store library
 Grin originally made use of RocksDB [[26]] as an internal key-value store
 There are many key-store libraries to choose from with different performance and security characteristics:
@@ -287,8 +290,7 @@ There are many key-store libraries to choose from with different performance and
 
 Selecting the "best" key-value store library is difficult?
 
----
-
++++
 ## Conflicting online benchmarks
 
 Many conflicting online benchmarks:
@@ -300,6 +302,7 @@ Howard Chu wrote the article "Lies, Damn Lies, Statistics, and Benchmarks"
 - LMDB is the best key-value store library
 - Other benchmarks performed by Symas Corp support this claim
 
++++
 ## Grin switched to LMDB
 
 Grin later replaced RocksDB with LMDB
@@ -309,7 +312,6 @@ Grin later replaced RocksDB with LMDB
 Probably a good idea as LMDB seem to be the best key-value store library for block chain related applications
 
 ---
-
 ## Conclusions
 
 - Selecting an emission rate to create a sustainable monetary system is important
