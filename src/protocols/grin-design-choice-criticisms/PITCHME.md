@@ -6,7 +6,10 @@
 - Mimblewimble transactions
 - Dual Proof-of-Work (PoW) system: Cuckatoo algorithm + Equigrin(?)
 
-- Main design goals?
+
+
+
+- Main design goals:
 	- Privacy
 	- Transaction scaling
 	- Design simplicity 
