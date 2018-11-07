@@ -25,30 +25,30 @@
 # Monetary Policy Due to Static Emission Scheme
 
 +++
-## Bitcoin
+## Bitcoin's Emmision scheme
 
-Bitcoin - limited and finite supply of coins
-- 21 million coins
-- 10-minute block goal
-- First block reward: 50 BTC
-- Reward halved every 4 years
+- Bitcoin - limited and finite supply of coins
+	- 21 million coins
+	- 10-minute block goal
+	- First block reward: 50 BTC
+	- Reward halved every 4 years
 
-What hapens to newly minted coins?
- - New coins and transaction fees are paid to miners
- - Incentive to maintain the block chain
+- What hapens to newly minted coins?
+	- New coins and transaction fees are paid to miners
+	- Incentive to maintain the block chain
  
 +++
 ## What happens when all coins have been mined?
 
-Only transaction fees will be paid to miners
-Will transaction fees be sufficient to maintain a large network of miners?
-Option 2: Fixed supply
+- Only transaction fees will be paid to miners
+- Will transaction fees be sufficient to maintain a large network of miners?
+Possibility 1: Fixed supply
 - Fees will be sufficient
 - Over time transaction fees will increase
 - Mining hardware costs decrease
-- Maintaining block chain remain lucrative for small mining operations
+- Maintaining the block chain remain lucrative for small mining operations
 
-Option 1: Non-capped supply
+Possibility 2: Non-capped supply
 - Fees will be insufficient
 - Only large mining farms remain profitable
 - Centralisation of the network
@@ -56,15 +56,17 @@ Option 1: Non-capped supply
 +++
 ## Grin's Emmision scheme
 
-- Number of coins not capped to a fixed supply.
+- Grin - Not capped to a fixed supply
 - Static emission rate: constant 60 Grin is released as a reward for solving every block
 - block goal of 60 seconds
-- Result in 1 coin being created every second.
+- Result in 1 coin being created every second
 
-Grins motivations for static emission rate: 
-- No upper limit on coins amount
++++
+## Grins motivations for static emission rate
+
+- No upper limit on number of coins
 - Inflation will tend to zero over time
-- Mitigate effect of lost coins
+- Mitigate the effect of lost coins
 - Encourage spending rather than holding
 
 +++
@@ -323,6 +325,7 @@ Probably a good idea as LMDB seem to be the best key-value store library for blo
 
 Sample side by side image (set at 250 pixels width, aligned center) and text (aligned left) inside div containers. [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
 
+<---
 @div[left-50 s250px text-center]
 ![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/grin/protocols/grin-design-choice-criticisms/sources/sample.PNG)
 @divend
