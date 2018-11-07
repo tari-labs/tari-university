@@ -5,7 +5,7 @@
 - Cryptocurrency implemented in Rust
 - Mimblewimble transactions
 - Dual Proof-of-Work (PoW) system: Cuckatoo algorithm + Equigrin(?)
-&nbsp;
+\
 - Main design goals:
 	- Privacy
 	- Transaction scaling
