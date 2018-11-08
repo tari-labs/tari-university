@@ -115,14 +115,14 @@ Some use cases of Bulletproofs are listed below and note this list may not be ex
     Bünz B. et al">5</a>]</b></div>
 
 - Batch verifications
-  - Batch verifications can be done using various values and outputs from running the Bulletproofs [Protocol 1](#protocol-1---inner-product-argument) and [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
+  - Batch verifications can be done using various values and outputs from running the Bulletproofs [Protocol&nbsp;1](#protocol-1---inner-product-argument) and [Protocol&nbsp;2](#protocol-2---inner-product-verification-through-multi-exponentiation). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
   - ???
 
 
 
 ### Bulletproof Protocols
 
-In [[1]] a number of protocols were suggested in using Bulletproofs, which are only briefly summarized here to explain the logic and the most important terms (*see [Appendix B](#appendix-b-notations-used) for notations used*). 
+In [[1]] a number of protocols were suggested in using Bulletproofs, which are only briefly summarized here to explain the logic and the most important terms (*see [Appendix&nbsp;B](#appendix-b-notations-used) for notations used*). 
 
 <i>**Note:** Full mathematical definitions and terms not defined are available in [[1]].</i>
 <br>
@@ -149,7 +149,7 @@ $$
 
 A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
 
-Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;2. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
+Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;2. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#protocol-2---inner-product-verification-through-multi-exponentiation) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
 
 <p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
 <div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -187,7 +187,12 @@ Bünz B. et al">1</a>]</b></div>
 
 #### Protocol 2b - Range Proof Protocol with Logarithmic Size
 
-Protocol 2b provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir heuristic and how to allow multiple parties to construct a single aggregate range proof.
+Protocol 2b provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir heuristic and how to allow multiple parties to construct a single aggregate range proof. A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;7.
+
+<p align="center"><img src="sources/RangeProofDiagram.PNG" width="1000" /></p>
+<div align="center"><b>Figure&nbsp;7: Range Proof Protocol Implementation Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography - 
+Crate Bulletproofs">46</a>]</b></div>
+
 
 ##### Inner-Product Range Proof
 
@@ -203,7 +208,7 @@ $$
 \langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_R = \mathbf {a}_L - \mathbf {1}^n \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_L \circ \mathbf {a}_R = \mathbf{0}^n  \mspace{20mu} \mspace{100mu} (4)
 $$
 
-This proves that $ a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n $ are all in $ \{0,1\} $ and that $ \mathbf {a}_L $ is composed of the bits of $ v $. However, the $ 2n + 1 $ constraints needs to be expressed as a single inner-product constant so that [Protocol 1](#protocol-1---inner-product-argument) can be used, by letting the *verifier* $ \mathcal{V} $ choose a random linear combination of the constraints. To prove that a committed vector $  \mathbf {b} \in \mathbb{Z}_p^n $ satisfies $ \mathbf {b} = \mathbf{0}^n $ it suffices for the *verifier* $ \mathcal{V} $ to send a random $ y \in \mathbb{Z_p} $ to the *prover* $ \mathcal{P} $ and for the *prover* $ \mathcal{P} $ to prove that $ \langle \mathbf {b}, \mathbf {y}^n \rangle = 0 $, which will convince the *verifier* $ \mathcal{V} $ that $ \mathbf {b} = \mathbf{0}^n $. The *prover* $ \mathcal{P} $ can thus prove relation (4) by proving that
+This proves that $ a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n $ are all in $ \{0,1\} $ and that $ \mathbf {a}_L $ is composed of the bits of $ v $. However, the $ 2n + 1 $ constraints needs to be expressed as a single inner-product constant so that [Protocol&nbsp;1](#protocol-1---inner-product-argument) can be used, by letting the *verifier* $ \mathcal{V} $ choose a random linear combination of the constraints. To prove that a committed vector $  \mathbf {b} \in \mathbb{Z}_p^n $ satisfies $ \mathbf {b} = \mathbf{0}^n $ it suffices for the *verifier* $ \mathcal{V} $ to send a random $ y \in \mathbb{Z_p} $ to the *prover* $ \mathcal{P} $ and for the *prover* $ \mathcal{P} $ to prove that $ \langle \mathbf {b}, \mathbf {y}^n \rangle = 0 $, which will convince the *verifier* $ \mathcal{V} $ that $ \mathbf {b} = \mathbf{0}^n $. The *prover* $ \mathcal{P} $ can thus prove relation (4) by proving that
 
 $$
 \langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v  \mspace{20mu} \mathrm{and} \mspace{20mu} \langle \mathbf {a}_L - 1 - \mathbf {a}_R \mspace{3mu} , \mspace{3mu} \mathbf {y}^n \rangle=0 \mspace{20mu} \mathrm{and} \mspace{20mu} \langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n \rangle = \mathbf{0}^n  \mspace{20mu} \mspace{100mu} (5)
@@ -277,7 +282,7 @@ The range proof presented here has:
 
 ##### Logarithmic Range Proof
 
-This protocol replaces the inner product argument with an efficient inner-product argument. In step (63) Figure 5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step (67) Figure 6) and $ \hat {t} $ (step (68) Figure 6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , Ph^{-\mu}, t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step (63) Figure 5) can then be eliminated and transfer of information limited to the scalar properties alone, thereby archiving a proof size that is logarithmic in $ n $.
+This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) Figure&nbsp;5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(67) Figure 6) and $ \hat {t} $ (step&nbsp;(68) Figure&nbsp;6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , Ph^{-\mu}, t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(63) Figure&nbsp;5) can then be eliminated and transfer of information limited to the scalar properties alone, thereby archiving a proof size that is logarithmic in $ n $.
 
 
 
@@ -293,7 +298,7 @@ The *prover* $ \mathcal{P} $ should now compute $ \mspace{3mu} \mathbf{a}_L \in 
 $$
 \langle \mathbf{2}^n \mspace{3mu} , \mspace{3mu} \mathbf{a}_L[(j-1) \cdot n : j \cdot n-1] \rangle = v_j \mspace{9mu} \forall \mspace{9mu} j \in [1,m] \mspace{3mu}
 $$
-The quantity $ \delta (y,z) $ is adjusted to incorporate more cross terms $ n \cdot m $ , the linear vector polynomials $ l(X), r(X) $ are adjusted to be in $  \mathbb Z^{n \cdot m}_p[X] $ and the blinding factor $ \tau_x $ for the inner product $ \hat{t} $ (step (61) Figure 5) is adjusted for the randomness of each commitment $ V_j $. The verification check (step (65) Figure 6) is updated to include all $ V_j $ commitments and the definition of $ P $ (step (66) Figure 6) is changed to be a commitment to the new $ r $.
+The quantity $ \delta (y,z) $ is adjusted to incorporate more cross terms $ n \cdot m $ , the linear vector polynomials $ l(X), r(X) $ are adjusted to be in $  \mathbb Z^{n \cdot m}_p[X] $ and the blinding factor $ \tau_x $ for the inner product $ \hat{t} $ (step&nbsp;(61) Figure&nbsp;5) is adjusted for the randomness of each commitment $ V_j $. The verification check (step&nbsp;(65) Figure&nbsp;6) is updated to include all $ V_j $ commitments and the definition of $ P $ (step&nbsp;(66) Figure&nbsp;6) is changed to be a commitment to the new $ r $.
 
 This aggregated range proof that makes use of the inner product argument only uses $ 2 \cdot [ \log _2 (n \cdot m)] + 4 $ group elements and $ 5 $ elements in $ \mathbb{Z}_p $. The growth in size is limited to an additive term $ 2 \cdot [ \log _2 (m)] $ as opposed to a multiplicative factor $ m $ for $ m $ independent range proofs.
 
@@ -310,26 +315,37 @@ So far the *verifier* $ \mathcal{V} $  behaves as an honest verifier and all mes
 This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs $ m $ parties each having a Pedersen commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each
 $ V_k $ commits to a number in some fixed range.
 
-Let $ k $ denote the $ k $th party's message, thus $ A^{(k)} $ is generated using only inputs of party $ k $. A set of distinct generators $ (g^{(k)}, h^{(k)})_{k=1}^m $ is assigned to each party, and $ \mathbf{g},\mathbf{h} $ is defined as the interleaved concatenation of all $ g^{(k)} ,  h^{(k)} $ such that 
+Let $ k $ denote the $ k $th party's message, thus $ A^{(k)} $ is generated using only inputs of party $ k $. A set of distinct generators $ (g^{(k)}, h^{(k)})^m_{k=1} $ is assigned to each party, and $ \mathbf{g},\mathbf{h} $ is defined as the interleaved concatenation of all $ g^{(k)} ,  h^{(k)} $ such that 
+
 $$
 g_i=g_{[{i \over{m}}]}^{((i-1) \mod m+1)} \mspace{15mu} \mathrm{and} \mspace{15mu} h_i=h_{[{i \over{m}}]}^{((i-1) \mod m+1)}
 $$
+
 The protocol either uses three rounds with linear communication in both $ m $ and the binary encoding of the range, or it uses a logarithmic number of rounds and communication that is only linear in $ m $. For the linear communication case the protocol in [Inner-Product Range Proof](#inner-product-range-proof) is followed with the difference that each party generates its part of the proof using its own inputs and generators, that is
 
 $$
-A^{(k)},S^{(k)};T_1^{(k)},T_2^{(k)};\tau_x^{(k)},\mu^{(k)},\hat{t}^{(k)},\mathbf{l}^{(k)},\mathbf{r}^{(k)}
+A^{(k)} , S^{(k)}; \mspace{15mu} T_1^{(k)} , T_2^{(k)}; \mspace{15mu} \tau_x^{(k)} , \mu^{(k)} , \hat{t}^{(k)} , \mathbf{l}^{(k)} , \mathbf{r}^{(k)}
 $$
-These shares are sent to a dealer (could be anyone, even one of the parties) who adds them homomorphically to generate the respective proof components, that is
-$$
-A = \prod^{(l)}_{k=1} A^{(k)} \mspace{15mu} \mathrm{and} \mspace{15mu} \tau_x = \prod^{(l)}_{k=1} \tau_x^{(k)}
-$$
-In each round, the dealer generates the challenges using the Fiat-Shamir heuristic and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ( [Protocol 1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof.
 
-The communication can be reduced by running a second MPC protocol for the inner product argument, reducing the rounds to $ \log_2(l) $. Up to the last $ \log_2(l) $ round each parties' witnesses are independent and the overall witness is the interleaved concatenation of the parties' witnesses. The parties compute $ L^{(k)}, R^{(k)} $ in each round and the dealer computes $ L, R ​$ as the homomorphic sum of the shares. In the final round the dealer generates the final challenge and sends it to each party who in turn send their witness to the dealer who completes [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). 
+These shares are sent to a dealer (could be anyone, even one of the parties) who adds them homomorphically to generate the respective proof components, for example
+
+$$
+A = \prod^m_{k=1} A^{(k)} \mspace{15mu} \mathrm{and} \mspace{15mu} \tau_x = \prod^m_{k=1} \tau_x^{(k)}
+$$
+
+In each round, the dealer generates the challenges using the Fiat-Shamir heuristic and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ( [Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
+
+<p align="center"><img src="sources/MPC-diagram.PNG" width="850" /></p>
+<div align="center"><b>Figure&nbsp;7: MPC Implementation Example [<a href="https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html" title="Dalek Cryptography - 
+Module bulletproofs::aggregation">34</a>]</b></div>
+
+The communication can be reduced by running a second MPC protocol for the inner product argument, reducing the rounds to $ \log_2(l) $. Up to the last $ \log_2(l) $ round each parties' witnesses are independent and the overall witness is the interleaved concatenation of the parties' witnesses. The parties compute $ L^{(k)}, R^{(k)} $ in each round and the dealer computes $ L, R $ as the homomorphic sum of the shares. In the final round the dealer generates the final challenge and sends it to each party who in turn send their witness to the dealer who completes [Protocol&nbsp;2](#protocol-2---inner-product-verification-through-multi-exponentiation). 
 
 
 
 #### Protocol 3 - Zero-Knowledge Proof for Arithmetic Circuits
+
+Bulletproofs present an efficient zero-knowledge argument for arbitrary arithmetic circuits with a proof size of $ 2 \cdot [ \log _2 (n)+13] $elements with $ n $ denoting the multiplicative complexity of the circuit. Committed values are also included as input wires to the arithmetic circuit, which is important otherwise the circuit would need to implement a commitment algorithm. 
 
 ???
 
@@ -616,10 +632,11 @@ elliptic-curve cryptography"
 "Two 1-Round Protocols for Delegation of Computation
 Canetti R. et al."
 
-[[34]] , , Date accessed: 2018-10-?.
+[[34]] Dalek Cryptography - Module bulletproofs::aggregation, https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html, Date accessed: 2018-10-?.
 
-[?]:  
-""
+[34]: https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html
+"Dalek Cryptography - 
+Module bulletproofs::aggregation"
 
 [[35]] GitHub: mimblewimble/grin, Bulletproofs #273, https://github.com/mimblewimble/grin/issues/273, Date  accessed: 2018-09-10.
 
@@ -684,6 +701,12 @@ Tsiounis Y. et al."
 [45]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption
 "Wikipedia: Decisional Diffie–Hellman assumption"
 
+[[46]] Dalek Cryptography - Crate Bulletproofs, https://doc.dalek.rs/bulletproofs/index.html, Date accessed: 2018-11-08.
+
+[46]: https://doc.dalek.rs/bulletproofs/index.html
+"Dalek Cryptography - 
+Crate Bulletproofs"
+
 [[50]] Elliptic Curve Cryptography: A gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
 [50]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction
@@ -703,6 +726,8 @@ Tsiounis Y. et al."
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables $ (a_1, ..., a_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]]
+
+  <p align="center"><img src="sources/ArithmiticCircuit.PNG" width="300" /></p>
 
 [ac~]: #
 "An arithmetic circuit over a field 
