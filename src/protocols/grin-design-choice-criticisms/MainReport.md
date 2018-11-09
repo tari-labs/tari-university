@@ -6,7 +6,7 @@ Grin is a cryptocurrency implemented in Rust that makes use of Mimblewimble tran
 
 During the development of the Grin project, the developers have received criticisms from the community on a number of the design and implementation decisions that they have made. This report will have a look at some of these criticisms and determine if there are some truth to these concerns or if the concerns are unwarranted or invalid. Some suggestions will be made on how these problems could be improved or addressed.
 
-<p align="center"><img src="https://github.com/tari-labs/tari-university/blob/master/src/protocols/grin-design-choice-criticisms/sources/intro.png?raw=true" width="700" /></p>
+<p align="center"><img src="sources/intro.png" width="700" /></p>
 
 This report will also investigate their selected emission scheme, PoW algorithm, selection of key-store library and their choice of cryptographic curve used for signatures. Each of these topics will be discussed in detail, starting with their selected emission scheme.
 
