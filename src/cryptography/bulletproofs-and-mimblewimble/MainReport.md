@@ -345,9 +345,11 @@ The communication can be reduced by running a second MPC protocol for the inner 
 
 #### Protocol 3 - Zero-Knowledge Proof for Arithmetic Circuits
 
-Bulletproofs present an efficient zero-knowledge argument for arbitrary arithmetic circuits with a proof size of $ 2 \cdot [ \log _2 (n)+13] $elements with $ n $ denoting the multiplicative complexity of the circuit. Committed values are also included as input wires to the arithmetic circuit, which is important otherwise the circuit would need to implement a commitment algorithm. 
+Bulletproofs present an efficient zero-knowledge argument for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> with a proof size of $ 2 \cdot [ \log _2 (n)+13] $ elements with $ n ​$ denoting the multiplicative complexity of the circuit. Committed values are also included as input wires to the arithmetic circuit, which is important otherwise the circuit would need to implement a commitment algorithm. 
 
-???
+The high level idea of the protocol is to convert the Hadamard-product relation along with the linear constraints into a single inner product relation.
+
+an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted  into a  containing a Hadamard-product relation
 
 
 
@@ -707,6 +709,11 @@ Tsiounis Y. et al."
 "Dalek Cryptography - 
 Crate Bulletproofs"
 
+[[47]] Wikipedia: Arithmetic circuit complexity, https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity, Date accessed: 2018-10-?.
+
+[47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity
+"Wikipedia: Arithmetic circuit complexity"
+
 [[50]] Elliptic Curve Cryptography: A gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
 [50]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction
@@ -725,14 +732,14 @@ Crate Bulletproofs"
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit over a field and variables $ (a_1, ..., a_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. [[29]]
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
 
   <p align="center"><img src="sources/ArithmiticCircuit.PNG" width="300" /></p>
 
-[ac~]: #
-"An arithmetic circuit over a field 
-and variables (a1, ..., an) is a 
-directed acyclic graph ..."
+[ac~]: #ac
+"An arithmetic circuit C over a 
+field F and variables (x_1, ..., x_n) 
+is a directed acyclic graph ..."
 
 - <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. The terms *proof* and *argument of knowledge* have exactly the same meaning and can be used interchangeably. [[29]]
 
