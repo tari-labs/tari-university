@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Depending on who you ask, MimbleWimble is either a tongue-tying curse or blockchain protocol designed to be private and scalable. The transactions in MimbleWimble is derived from confidential transactions by Greg Maxwell[1], that is in turn based on the Pedersen commitment scheme. On 19 July 2016 someone with the name Tom Elvis Jedusor left a whitepaper on the tor network describing how MimbleWimble could work. As the potential for this was realised work was done to make this a reality. One of these projects is Grin, which is a minimalistic implementation of MimbleWimble.  Further information could be found on Grin at Grin vs. BEAM, a Comparison [] and Grin design choice criticisms - Truth or Fiction[]. 
+Depending on who you ask, MimbleWimble is either a tongue-tying curse or blockchain protocol designed to be private and scalable. The transactions in MimbleWimble is derived from confidential transactions by Greg Maxwell[1], that is in turn based on the Pedersen commitment scheme. On 19 July 2016 someone with the name Tom Elvis Jedusor left a whitepaper on the tor network describing how MimbleWimble could work. As the potential for this was realised work was done to make this a reality. One of these projects is Grin, which is a minimalistic implementation of MimbleWimble.  Further information could be found on [Grin at Grin vs. BEAM, a Comparison](https://tari-labs.github.io/tari-university/protocols/grin-beam-comparison/MainReport.html)[2] and [Grin design choice criticisms - Truth or Fiction](https://tari-labs.github.io/tari-university/protocols/grin-design-choice-criticisms/MainReport.html)[3]. 
 
 ## Contents
 
@@ -37,7 +37,7 @@ But this requires that
 
 ​	$r_i = r_o + r_c$
 
-A more detail explanation of how MimbleWimble works can be found in the Grin GitHub documents [2].
+A more detail explanation of how MimbleWimble works can be found in the Grin GitHub documents [4].
 
 ### Cut-through and Pruning
 
@@ -127,7 +127,7 @@ The rest of the block contains a list of kernels, inputs and outputs. An example
 
 ## Trustless transactions
 
-Schnorr signatures have been done in Tari Labs University (TLU), please have a look there for a more detailed explanation [5]. 
+Schnorr signatures have been done in Tari Labs University (TLU), please have a look [here](https://tari-labs.github.io/tari-university/cryptography/digital_signatures/introduction.html) for a more detailed explanation [7]. 
 
 Since Grin transactions are obscured by Pedersen Commitments, there is no prove that money was actually transferred. To solve this problem, we require the receiver to collaborate with the sender in building a transaction and more specifically the kernel signature [4].
 
@@ -171,7 +171,7 @@ Taking into account how an absolute time-locked transaction is constructed the s
 
 Multisigs (Multi-signatures) are also known as N-of-M signatures, and this means that N amount out of M amount of peers need to agree before a transaction can be spend.
 
-When Bob and Alice [4] wants to do a 2-of-2 multisig contract, the contract can be done with the following steps:
+When Bob and Alice [6] wants to do a 2-of-2 multisig contract, the contract can be done with the following steps:
 
 1. Bob picks a blinding factor $r_b$ and sends $r_b\cdot G$  to Alice.
 2. Alice picks a blinding factor $r_a$  and builds the commitment $ C= r_a\cdot G + r_b\cdot G + v\cdot H$, she sends the commitment to Bob.
@@ -183,7 +183,7 @@ We observe that the output $O_{ab}$ , is unknown to both party because neither k
 
 ## Atomic swaps
 
-Atomic swaps can be used to exchange coins from different blockchains in a trustless environment. In the Grin documentation this is handled in length by contracts documentation [4] and in the contracts ideas documentation [6]. In practice there has already been an atomic swap between Grin and Ethureum [7], but this used the Grin test-net with modified Grin code as the release version Grin did not yet support the contracts required at that time. TLU has a section about Atomic swaps [5].
+Atomic swaps can be used to exchange coins from different blockchains in a trustless environment. In the Grin documentation this is handled in length by the contracts documentation [6] and in the contracts ideas documentation [8]. In practice there has already been an atomic swap between Grin and Ethureum [9], but this used the Grin test-net with modified Grin code as the release version Grin did not yet support the contracts required at that time. TLU has a section about [Atomic swaps](https://tari-labs.github.io/tari-university/protocols/atomic-swaps/AtomicSwaps.html)[7].
 
 Atomic swaps work with 2-of-2 multisig contracts, one public key being Alice's, the second being the hash of a preimage that Bob has to reveal. Consider public key derivation $x\cdot G$ to be the hash function and by Bob revealing $x$, Alice can then produce an adequate signature proving she knows $x$  (in addition to her own private key).
 
@@ -204,15 +204,15 @@ To verify the output, Alice would take $x\cdot G$, recreate the bitcoin script, 
 
 ## References
 
-1. Maxwell, G. (2017) *Confidential Transactions*. Available at: https://people.xiph.org/~greg/confidential_values.txt (Accessed: 24 October 2018).
-2. Robinson, P. and et al (2018) *Grin vs. BEAM, a Comparison*. Available at: https://tari-labs.github.io/tari-university/protocols/grin-beam-comparison/MainReport.html#grin-vs-beam-a-comparison (Accessed: 8 October 2018).
-3. Roodt, Y. and et al (2018) *Grin Design Choice Criticisms - Truth or Fiction*. Available at: https://tari-labs.github.io/tari-university/protocols/grin-design-choice-criticisms/MainReport.html (Accessed: 8 October 2018).
-4. Simon B and Et al (2018) *Grin document structure*. Available at: https://github.com/mimblewimble/grin/blob/master/doc/table_of_contents.md (Accessed: 24 October 2018).
-5. Peverell, I. and et al (2016) *Pruning Blockchain Data*. Available at: https://github.com/mimblewimble/grin/blob/master/doc/pruning.md (Accessed: 26 October 2018).
-6. Peverell, I. and Et al (2018) *Contracts*. Available at: https://github.com/mimblewimble/grin/blob/master/doc/contracts.md (Accessed: 26 October 2018).
-7. Tari Labs (2018) *Tari Labs University*. Available at: https://tari-labs.github.io/tari-university/ (Accessed: 27 October 2018).
-8. Sceller, Q. Le (2018) *Contract ideas*. Available at: https://github.com/mimblewimble/grin/blob/master/doc/contract_ideas.md (Accessed: 27 October 2018).
-9. Jasper (2018) *First Grin atomic swap!* Available at: https://medium.com/grinswap/first-grin-atomic-swap-a16b4cc19196 (Accessed: 27 October 2018).
+1. *Confidential Transactions*. Maxwell, G. (2017)  Available at: https://people.xiph.org/~greg/confidential_values.txt (Accessed: 24 October 2018).
+2. *Grin vs. BEAM, a Comparison*. Robinson, P. and et al (2018)Available at: https://tari-labs.github.io/tari-university/protocols/grin-beam-comparison/MainReport.html#grin-vs-beam-a-comparison (Accessed: 8 October 2018).
+3.  *Grin Design Choice Criticisms - Truth or Fiction*. Roodt, Y. and et al (2018) Available at: https://tari-labs.github.io/tari-university/protocols/grin-design-choice-criticisms/MainReport.html (Accessed: 8 October 2018).
+4. *Grin document structure*. Simon B and Et al (2018) Available at: https://github.com/mimblewimble/grin/blob/master/doc/table_of_contents.md (Accessed: 24 October 2018).
+5. *Pruning Blockchain Data*. Peverell, I. and et al (2016) Available at: https://github.com/mimblewimble/grin/blob/master/doc/pruning.md (Accessed: 26 October 2018).
+6. *Contracts*. Peverell, I. and Et al (2018) Available at: https://github.com/mimblewimble/grin/blob/master/doc/contracts.md (Accessed: 26 October 2018).
+7. *Tari Labs University*.  Tari Labs (2018) Available at: https://tari-labs.github.io/tari-university/ (Accessed: 27 October 2018).
+8. *Contract ideas*. Sceller, Q. Le (2018) Available at: https://github.com/mimblewimble/grin/blob/master/doc/contract_ideas.md (Accessed: 27 October 2018).
+9. *First Grin atomic swap!* Jasper (2018) Available at: https://medium.com/grinswap/first-grin-atomic-swap-a16b4cc19196 (Accessed: 27 October 2018).
 
 ## Contributors
 
