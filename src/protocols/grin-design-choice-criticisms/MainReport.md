@@ -55,13 +55,13 @@ Initially, the Grin team proposed using two Application-Specific Integrated Circ
 
 Recently, the Grin team proposed to switch to a new dual PoW system, where one PoW algorithm is ASIC friendly and the other PoW algorithm is not. Grin will now make use of the new Cuckatoo Cycle algorithm, but details of their second PoW algorithm remain vague. The Cuckatoo PoW algorithm is a variation of Cuckoo that aims to be more ASIC friendly [[16]].  This is achieved by using plain bits for ternary counters and requiring large amounts of Static Random-Access Memory (SRAM) to speed up the memory latency bound access of random node bits. SRAM tends to be limited on GPU and CPU processors, but increasing SRAM on ASIC processors is much easier to implement [[17]].
 
-<p align="center"><img src="https://github.com/tari-labs/tari-university/blob/master/src/protocols/grin-design-choice-criticisms/sources/attack51.jpg?raw=true" width="550" /></p>
+<p align="center"><img src="sources/attack51.jpg" width="550" /></p>
 
 ASIC miners tend to be specialised hardware that are very efficient at calculating and solving specific PoW algorithms. Encouraging ASIC miners on a network might not seem like a bad idea as the mining network will have a higher hash rate. This will make it more difficult to hack and it will use less electrical power compared to using primarily CPU and GPU based miners. 
 
 Unfortunately, a negative side effect of running a PoW algorithm that is ASIC friendly is that the network of miners will become more centralised. General consumers do not have access or a need for this type of hardware; this limits the use of ASIC miners to be primarily reserved for enthusiasts and large corporations establishing mining farms. Having the majority of the networks hash rate localised in large mining farms will result in the block chain becoming more vulnerable to potential 51% attacks [[18]], especially when specific ASIC manufacturers recommend or enforce their hardware to make use of specific mining pools that are controlled by single bodies.
 
-<p align="center"><img src="https://github.com/tari-labs/tari-university/blob/master/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg?raw=true" width="450" /></p>
+<p align="center"><img src="sources/gpu_mining.jpg" width="450" /></p>
 
 Using general purpose and multi-use hardware such as CPUs and GPUs that are primarily used for gaming and large workstations, ensures that the network of miners is more widely distributed and that it is not controlled by a single potential bad player. This will make it more difficult for a single entity to control more than 50% of the networks hash rate or total computational power, limiting the potential of double spends.
 
@@ -72,7 +72,7 @@ Selecting to be ASIC resistant or ASIC friendly is an important decision that ca
 
 Elliptic curve cryptography is used for generating Private and Public key pairs that can be used for digital signatures as well as authorisation for individuals and transactions. It is much more secure and requires smaller keys for similar security compared to other Public-key cryptography techniques such as RSA [[19]]
 
-<p align="center"><img src="https://github.com/tari-labs/tari-university/blob/master/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true" width="700" /></p>
+<p align="center"><img src="sources/publickey.png" width="700" /></p>
 
 Secp256k1 is an elliptic curve defined in the Standards for Efficient Cryptography [[20]] and is used for digital signatures in a number of cryptocurrencies such as Bitcoin, Ethereum, EOS, Litecoin, etc. [[21]]. Grin also makes use of this same elliptic curve [[22]]. Some security experts recommend not using the secp256k1 curve as some issues have been uncovered, but not necessarily exploited. One of these problems are that the complex-multiplication field discriminant is not high enough to be secure. This could result in potential future exploits as curves with low complex-multiplication field discriminant tend to be easier to break [[23]].
 
