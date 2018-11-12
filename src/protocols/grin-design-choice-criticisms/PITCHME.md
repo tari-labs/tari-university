@@ -244,7 +244,7 @@
 - Very important decision that can affect the security of the blockchain
 - The Grin team's choice to support the ASIC community and trying to balancing an ASIC friendly and an ASIC resistant PoW algorithm will be interesting with many potential pitfalls
 
-![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg?raw=true)
+![GPU_Mining](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg?raw=true)
 
 ---
 # Choice of Cryptographic Elliptic-curve - secp256k1
@@ -262,7 +262,7 @@
 	- Defined in the Standards for Efficient Cryptography
 	- Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc)
 
-![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true)
+![PublicKey_Cryptography](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true)
 
 +++
 ## Security of Secp256k1
