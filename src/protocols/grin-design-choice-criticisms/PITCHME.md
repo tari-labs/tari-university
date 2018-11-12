@@ -276,7 +276,9 @@
 	- Curves with low complex-multiplication field discriminant tend to be easier to break
 	- Could result in  future exploits
 
+@div[s450px]
 ![PublicKey_Cryptography](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true)
+@divend
 
 +++
 ## Alternative cryptographic curves
