@@ -20,7 +20,7 @@
 	- Cryptographic curve
 	- Key-store library
 - Suggestions will be presented to addressed these issues
-![Community_Criticisms](sources/intro.png)
+![Community_Criticisms](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/intro.png?raw=true)
 
 ---
 # Monetary Policy Due to Static Emission Scheme
