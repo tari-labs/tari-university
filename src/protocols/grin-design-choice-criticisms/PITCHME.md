@@ -11,7 +11,7 @@
 	- Design simplicity 
 
 ---
-## Grin's Criticisms from Community
+## Criticisms from Community
 
 - Grin received criticisms on design and implementation decisions
 - Investigated if there are truth to these concerns:
