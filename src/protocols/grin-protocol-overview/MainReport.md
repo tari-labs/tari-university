@@ -76,7 +76,7 @@ After cut-through
 
 In the diagrams: I are new inputs, X are inputs from previous blocks and O are outputs. 
 
-This causes that Mimblewimble blocks be much smaller than normal bitcoin blocks as the cut-through transactions are not listed under inputs and outputs anymore. In practice after this we can still see there was a transaction because the kernel excess still remains, but the actual hidden values are not recorded. 
+This causes that Mimblewimble blocks to be much smaller than normal bitcoin blocks as the cut-through transactions are not listed under inputs and outputs anymore. In practice after this we can still see there was a transaction because the kernel excess still remains, but the actual hidden values are not recorded. 
 
 #### 	Pruning
 
@@ -100,11 +100,11 @@ The grin block contains the following data:
    1. A Pedersen commitment (33 bytes).
    2. A range proof (over 5KB at this time).
 2. Transaction inputs, which are just output references (32 bytes).
-3. Transaction fees in clear text
+3. Transaction fees, in clear text
 4. Transaction "proofs", which include for each transaction:
    1. The excess commitment sum for the transaction (33 bytes).
    2. A signature generated with the excess (71 bytes average).
-5. A block header includes Merkle trees and proof of work (about 250 bytes).
+5. A block header that includes Merkle trees and proof of work (about 250 bytes).
 
 The Grin header:
 
@@ -164,9 +164,13 @@ When Alice wants to pay Bob, the transaction will be performed using the followi
 
 In a normal Grin transaction the signature [[4]] just the normal fee gets signed as the message. But to get an absolute time locked transaction the message can be modified taking the block height and appending the fee to that. A block with a kernel that includes a lock height greater than the current block height is then rejected.
 
+​	$ M = fee | h $
+
 #### 	Relative
 
 Taking into account how an absolute time-locked transaction is constructed the same idea can be extended by taking the relative block height and not the absolute height, but also adding a specific kernel commitment. In this way the signature references a specific block as height. The same principle counts as with absolute time-locked transactions in that a block with a kernel containing a relative time-locked transaction that has not passed is rejected. 
+
+​	$ M = fee|h|c $
 
 ### Multisig
 
@@ -178,17 +182,17 @@ When Bob and Alice [[6]] wants to do a 2-of-2 multisig contract, the contract ca
 2. Alice picks a blinding factor $ r_a $  and builds the commitment $ C= r_a\cdot G + r_b\cdot G + v\cdot H $, she sends the commitment to Bob.
 3. Bob creates a range proof for $ v $  using $ C $  and $ r_b $  and sends it to Alice.
 4. Alice generates her own range proof, aggregates it with Bob, finalising the multiparty output $ O_{ab} $ 
-5. The kernel is built following the same procedure as for Trustless Transactions.
+5. The kernel is built following the same procedure as used with Trustless Transactions.
 
 We observe that the output $ O_{ab} $ , is unknown to both party because neither knows the whole blinding factor. To be able to build a transaction spending $ O_{ab} $, someone would need to know $ r_a + r_b $ to produce a kernel signature. To produce the original spending kernel, Alice and Bob need to collaborate.
 
 ## Atomic swaps
 
-Atomic swaps can be used to exchange coins from different blockchains in a trustless environment. In the Grin documentation this is handled in length by the contracts documentation [[6]] and in the contracts ideas documentation [[8]]. In practice there has already been an atomic swap between Grin and Ethureum [[9]], but this used the Grin test-net with modified Grin code as the release version Grin did not yet support the contracts required at that time. TLU has a section about [Atomic swaps](../../atomic-swaps/AtomicSwaps.html)[[7]].
+Atomic swaps can be used to exchange coins from different blockchains in a trustless environment. In the Grin documentation this is handled in length by the contracts documentation [[6]] and in the contracts ideas documentation [[8]]. In practice there has already been an atomic swap between Grin and Ethereum [[9]], but this only used the Grin test-net with a modified Grin implementation as the release version of Grin did not yet support the required contracts. TLU has a section about [Atomic swaps](../../atomic-swaps/AtomicSwaps.html)[[7]].
 
 Atomic swaps work with 2-of-2 multisig contracts, one public key being Alice's, the second being the hash of a preimage that Bob has to reveal. Consider public key derivation $ x\cdot G $ to be the hash function and by Bob revealing $ x $, Alice can then produce an adequate signature proving she knows $ x $  (in addition to her own private key).
 
-Alice will swap Grin with Bob for Bitcoin. We assume Bob created an output on the Bitcoin blockchain that allows spending with by Alice if she learns a hash pre-image $ x $, or by Bob after time $ T_b $ . Alice is ready to send her Grin to Bob if he reveals $ x $.
+Alice will swap Grin with Bob for Bitcoin. We assume Bob created an output on the Bitcoin blockchain that allows spending by Alice if she learns a hash pre-image $ x $, or by Bob after time $ T_b $ . Alice is ready to send her Grin to Bob if he reveals $ x $.
 
 Alice will send her Grin to a multiparty timelock contract with a refund time $ T_a < T_b $. To send the 2-of-2 output to Bob and execute the swap, Alice and Bob start as if they were building a normal trustless transaction.
 
@@ -199,7 +203,7 @@ Alice will send her Grin to a multiparty timelock contract with a refund time $ 
 5. To complete the signature, Bob computes $ s_r = k_r + e\cdot r_r $ and the final signature is $ (s_r + s_s, k_r\cdot G + k_s\cdot G) $ 
 6. As soon as Bob broadcasts the final transaction to get his Grin, Alice can compute $ s_r' - s_r $ to get $ x $.
 
-Prior to completing the atomic swap, Bob needs to know Alice's public key. Bob would then create an output on the Bitcoin blockchain with a 2-of-2 multisig similar to `alice_pubkey secret_pubkey 2 OP_CHECKMULTISIG`. This should be wrapped in an `OP_IF` so Bob can get his money back after an agreed-upon time. All of this can even be wrapped in a  Pays To Script Hash (P2SH) . Here `secret_pubkey` is $x\cdot G$ from the previous section.
+Prior to completing the atomic swap, Bob needs to know Alice's public key. Bob would then create an output on the Bitcoin blockchain with a 2-of-2 multisig similar to `alice_pubkey secret_pubkey 2 OP_CHECKMULTISIG`. This should be wrapped in an `OP_IF` so Bob can get his money back after an agreed-upon time. All of this can even be wrapped in a  Pays To Script Hash (P2SH). Here `secret_pubkey` is $x\cdot G$ from the previous section.
 
 To verify the output, Alice would take $x\cdot G$, recreate the bitcoin script, hash it and check that her hash matches what's in theP2SH  (step 2 in previous section). Once she gets $x$ (step 6), she can build the 2 signatures necessary to spend the 2-of-2, having both private keys, and get her bitcoin.
 
@@ -283,4 +287,4 @@ https://github.com/hansieodendaal
 
 <details class="black" open="" style="box-sizing: border-box;"><summary style="box-sizing: border-box; touch-action: manipulation; display: list-item; background-color: rgb(153, 153, 153); color: rgb(255, 255, 255); font-weight: bold; line-height: 40px; padding-left: 8px;">Kernels (3)</summary><table class="table table-horizontal-bordered table-hover" style="box-sizing: border-box; border-collapse: collapse; width: 1110px; max-width: 100%; margin-bottom: 1rem; background-color: transparent;"><thead class="thead-light" style="box-sizing: border-box;"><tr style="box-sizing: border-box;"><th style="box-sizing: border-box; text-align: inherit; padding: 0.75rem; vertical-align: bottom; border-top: 1px solid rgb(233, 236, 239); border-bottom: 2px solid rgb(233, 236, 239); color: rgb(73, 80, 87); background-color: rgb(233, 236, 239); border-right-color: rgb(233, 236, 239); border-left-color: rgb(233, 236, 239);">Features</th><th style="box-sizing: border-box; text-align: inherit; padding: 0.75rem; vertical-align: bottom; border-top: 1px solid rgb(233, 236, 239); border-bottom: 2px solid rgb(233, 236, 239); color: rgb(73, 80, 87); background-color: rgb(233, 236, 239); border-right-color: rgb(233, 236, 239); border-left-color: rgb(233, 236, 239);">Fee</th><th style="box-sizing: border-box; text-align: inherit; padding: 0.75rem; vertical-align: bottom; border-top: 1px solid rgb(233, 236, 239); border-bottom: 2px solid rgb(233, 236, 239); color: rgb(73, 80, 87); background-color: rgb(233, 236, 239); border-right-color: rgb(233, 236, 239); border-left-color: rgb(233, 236, 239);">Lock Height</th></tr></thead><tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;"><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">DEFAULT_KERNEL</td><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">6 mg</td><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">7477</td></tr><tr style="box-sizing: border-box;"><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">DEFAULT_KERNEL</td><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">8 mg</td><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">7477</td></tr><tr style="box-sizing: border-box;"><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">COINBASE_KERNEL</td><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">0 grin</td><td style="box-sizing: border-box; padding: 0.75rem; vertical-align: top; border-top: 1px solid rgb(233, 236, 239); border-bottom: 1px solid rgb(221, 221, 221);">7482</td></tr></tbody></table></details>
 
-Apart from the header information we can only see that this block contains 2 transcation from the 2 kernels present. And that between those two transcaction there where 4 inputs and 4 outputs. Becuase of the way Mimblewimble obfuscates the transaction we dont know the values or the which input and output belongs to which transaction. 
+Apart from the header information we can only see that this block contains 2 transcation from the 2 kernels present. Between those two transcaction we only know that there where 4 inputs and 4 outputs. Because of the way Mimblewimble obfuscates the transaction we dont know the values or which input and output belongs to which transaction. 
