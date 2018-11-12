@@ -226,6 +226,8 @@
 - Risk even higher when when hardware is preset to use a specific mining pool
 - Mining pool might be controlled by single bad player
 
+![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/attack51.jpg?raw=true)
+
 +++
 ## ASIC resistant mining
 
@@ -235,6 +237,8 @@
 - Network of miners is more widely distributed
 - More difficult for single bad player to control more than 50% of the networks computational power
 - Limiting the potential of double spends
+
+![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg?raw=true)
 
 +++
 ## ASIC resistant or ASIC friendly?
@@ -257,6 +261,8 @@
 - Secp256k1 is an elliptic curve:
 	- Defined in the Standards for Efficient Cryptography
 	- Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc)
+
+![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true)
 
 +++
 ## Security of Secp256k1
