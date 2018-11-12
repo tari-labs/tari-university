@@ -255,7 +255,7 @@
 
 - Secp256k1 is an elliptic curve:
 	- Defined in the Standards for Efficient Cryptography
-	- Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc.).
+	- Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc)
 
 +++
 ## Security of Secp256k1
@@ -318,7 +318,7 @@
 ## Grin switched to LMDB
 
 - Grin later replaced RocksDB with LMDB
-	- Wallet state stored in LMDB database
+	- Wallet state
 	- Blockchain storage
 
 - Probably a good idea as LMDB seem to be the best key-value store library for blockchain related applications
@@ -327,8 +327,8 @@
 ## Conclusions
 
 - Selecting an emission rate to create a sustainable monetary system is important
-	- Try to find a balance between SoV and/or a MoE
-- Being ASIC friendly vs ASIC resistant need to be carefully evaluated
-- SafeCurves can be used to select a secure elliptic curve
-	- Cryptographic curves with potential security vulnerabilities should rather be ignored.
+  - Try to find a balance between SoV and/or a MoE
+- Being ASIC friendly vs ASIC resistant need to be carefully evaluated
+- Cryptographic curves with potential security vulnerabilities should rather be ignored
+  - SafeCurves can be used to select a secure elliptic curve
 - Be careful when trusting online benchmarks when selecting libraries
