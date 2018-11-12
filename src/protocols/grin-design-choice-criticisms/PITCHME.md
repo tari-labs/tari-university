@@ -35,7 +35,7 @@
 
 - What happens to newly minted coins?
 	- New coins and transaction fees are paid to miners
-	- Incentive to maintain the block chain
+	- Incentive to maintain the blockchain
  
 +++
 ## What happens when all coins have been mined?
@@ -46,7 +46,7 @@
 	- Fees will be sufficient
 	- Over time transaction fees will increase
 	- Mining hardware costs decrease
-	- Maintaining the block chain remain lucrative for small mining operations
+	- Maintaining the blockchain remain lucrative for small mining operations
 
 - Possibility 2: Non-capped supply
 	- Fees will be insufficient
@@ -73,7 +73,7 @@
 ## The future value of Grin?
 
 - Approximately 50 years for the inflation to drop below 2%.
-- Fixed emission will limit its use as a SoV, encourage MoE
+- Limit its use as a SoV, encourage MoE
 - Experience constant price pressure
 - Difficult for Grin to maintain a high value initially
 - The Grin team believes a high inflation rate will:
@@ -86,7 +86,7 @@
 ## Lost coins reduce high inflation
 
 - Grin team believes the high inflation is much lower
-- Many coins are lost and become unusable on a block chain
+- Many coins are lost and become unusable on a blockchain
 - Lost coins account for upto 2% per year of the total supply
 - lost coins should be deducted inflation rate
  
@@ -106,7 +106,7 @@
 
 - Inflationary currency: MoE rather than a SoV
 - Positive effect of inflation:
-	- encourages the purchasing of goods and services
+	- Encourages the purchasing of goods and services
 	- People with debt benefit from inflation
 		- eroding effect on total debt
 
@@ -139,20 +139,20 @@
 		- people with money will start hoarding  		
 
 - Bitcoin can be considered deflationary:
-	- buy and hold Bitcoins as the price per coin might increase over time
-	- limiting its use as a MoE
+	- Buy and hold Bitcoins as the price per coin might increase over time
+	- Limiting its use as a MoE
 
 +++
 ## Who controls deflation and inflation?
 
 - Traditional fiat systems:
 	- Deflation:
-		- only happen in times of economic crisis and recession
-		- managed by introducing inflation 
+		- Only happen in times of economic crisis and recession
+		- Managed by introducing inflation 
 	- Inflation:
-		- fiat systems are government backed
-		- control the amount of inflation to help alleviate government debt and finance budget deficits 
-			- could result in hyperinflation
+		- Fiat systems are government backed
+		- Control the amount of inflation to help alleviate government debt and finance budget deficits 
+			- Could result in hyperinflation
 
 - Cryptocurrency Systems:
 	- Algorithmic and transparent monetary inflation/deflation 
@@ -190,8 +190,8 @@
 ## New dual PoW algorithm proposal
 
 - Dual PoW algorithm:
-	- 1 ASIC friendly - vague details on second algorithm
-	- 1 ASIC resistant - Cuckatoo cycles
+	- 1 ASIC friendly - Cuckatoo cycles
+	- 1 ASIC resistant - vague details on second algorithm (Equigrin?)
 
 - What is Cuckatoo cycles?
 	- Variation of Cuckoo 
@@ -221,9 +221,9 @@
 - ASIC miners are primarily reserved for enthusiasts and large corporations
 - Localises majority of the networks hash rate in large mining farms. 
 
-- block chain more vulnerable to 51% attacks
+- Blockchain more vulnerable to 51% attacks
 - Risk even higher when when hardware is preset to use a specific mining pool
-- Mining pool might be controlled by single body.
+- Mining pool might be controlled by single body
 
 +++
 ## ASIC resistant mining
@@ -233,12 +233,12 @@
 - CPUs and GPUs that are primarily used for gaming and large workstations
 - Network of miners is more widely distributed
 - More difficult for single bad player to control more than 50% of the networks computational power
-- limiting the potential of double spends.
+- Limiting the potential of double spends.
 
 +++
 ## ASIC resistant or ASIC friendly?
 
-- Very important decision that can affect the security of the block chain
+- Very important decision that can affect the security of the blockchain
 - The Grin team's choice to support the ASIC community and trying to balancing an ASIC friendly and an ASIC resistant PoW algorithm will be interesting with many potential pitfalls.
 
 ---
@@ -262,7 +262,7 @@
 
 - Grin uses Secp256k1
  
-- Some security experts recommend not using the secp256k1
+- Some security experts recommend not using the secp256k1:
 	- Some issues have been uncovered, but not necessarily exploited
 	- Complex-multiplication field discriminant is not high enough to be secure
 	- Curves with low complex-multiplication field discriminant tend to be easier to break
@@ -319,9 +319,9 @@
 
 - Grin later replaced RocksDB with LMDB
 	- Wallet state stored in LMDB database
-	- Block chain storage
+	- Blockchain storage
 
-- Probably a good idea as LMDB seem to be the best key-value store library for block chain related applications
+- Probably a good idea as LMDB seem to be the best key-value store library for blockchain related applications
 
 ---
 ## Conclusions
