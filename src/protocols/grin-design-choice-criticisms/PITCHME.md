@@ -21,7 +21,7 @@
 	- Key-store library
 - Suggestions will be presented to addressed these issues
 
-@div[left-50 s500px text-center]
+@div[s450px]
 ![Community_Criticisms](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/intro.png?raw=true)
 @divend
 
