@@ -262,8 +262,6 @@
 	- Defined in the Standards for Efficient Cryptography
 	- Used for digital signatures in a number of cryptocurrencies (Bitcoin, Ethereum, EOS, Litecoin, etc)
 
-![PublicKey_Cryptography](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true)
-
 +++
 ## Security of Secp256k1
 
@@ -274,6 +272,8 @@
 	- Complex-multiplication field discriminant is not high enough to be secure
 	- Curves with low complex-multiplication field discriminant tend to be easier to break
 	- Could result in  future exploits
+
+![PublicKey_Cryptography](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true)
 
 +++
 ## Alternative cryptographic curves
