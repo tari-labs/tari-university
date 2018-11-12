@@ -331,4 +331,4 @@
 - Being ASIC friendly vs ASIC resistant need to be carefully evaluated
 - SafeCurves can be used to select a secure elliptic curve
 	- Cryptographic curves with potential security vulnerabilities should rather be ignored.
-- Be careful when trusting online benchmarks to select libraries
+- Be careful when trusting online benchmarks when selecting libraries
