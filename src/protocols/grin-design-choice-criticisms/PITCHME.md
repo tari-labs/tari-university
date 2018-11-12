@@ -238,13 +238,13 @@
 - More difficult for single bad player to control more than 50% of the networks computational power
 - Limiting the potential of double spends
 
-![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg?raw=true)
-
 +++
 ## ASIC resistant or ASIC friendly?
 
 - Very important decision that can affect the security of the blockchain
 - The Grin team's choice to support the ASIC community and trying to balancing an ASIC friendly and an ASIC resistant PoW algorithm will be interesting with many potential pitfalls
+
+![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg?raw=true)
 
 ---
 # Choice of Cryptographic Elliptic-curve - secp256k1
