@@ -13,7 +13,7 @@ Presentation:   src/protocols/grin-design-choice-criticisms#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/protocols/grin-design-choice-criticisms#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/grin-design-choice-criticisms#/
 
 ## On the trunk
 ### Trunk name
@@ -27,4 +27,4 @@ Presentation:    src/protocols/grin-design-choice-criticisms#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/protocols/grin-design-choice-criticisms#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/grin-design-choice-criticisms#/
