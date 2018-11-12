@@ -58,7 +58,7 @@
 
 - Grin - Not capped to a fixed supply
 - Static emission rate: constant 60 Grin block reward
-- block goal of 60 seconds
+- Block goal of 60 seconds
 - Result in 1 coin being created every second
 
 +++
@@ -72,7 +72,7 @@
 +++
 ## The future value of Grin?
 
-- Approximately 50 years for the inflation to drop below 2%.
+- Approximately 50 years for the inflation to drop below 2%
 - Limit its use as a SoV, encourage MoE
 - Experience constant price pressure
 - Difficult for Grin to maintain a high value initially
@@ -88,7 +88,7 @@
 - Grin team believes the high inflation is much lower
 - Many coins are lost and become unusable on a blockchain
 - Lost coins account for upto 2% per year of the total supply
-- lost coins should be deducted inflation rate
+- Lost coins could be deducted from inflation rate
 
 - Percentage of lost transactional coins are difficult to estimate:
 	- More lost coins per year for low value coins
@@ -108,11 +108,11 @@
 - Positive effect of inflation:
 	- Encourages the purchasing of goods and services
 	- People with debt benefit from inflation
-		- eroding effect on total debt
+		- Eroding effect on total debt
 
 - Negative effect of inflation:
 	- Discourages saving 
-		- purchasing power of savings decrease over time
+		- Purchasing power of savings decrease over time
 	- Encourages debt
 
 +++
@@ -121,7 +121,7 @@
 - Not much debt exists
 
 - Reason: Difficult to maintain successful borrower-lender relationships
-	- due to the anonymous nature of cryptocurrencies
+	- Due to the anonymous nature of cryptocurrencies
 
 +++
 ## Effect of deflation in fiat systems
@@ -135,8 +135,8 @@
 - Negative effect of deflation:
 	- Discourages the purchasing of goods and services
 	- High deflation can cause a deflationary spiral
-		- people with debt will have more debt 
-		- people with money will start hoarding  		
+		- People with debt will have more debt 
+		- People with money will start hoarding  		
 
 - Bitcoin can be considered deflationary:
 	- Buy and hold Bitcoins as the price per coin might increase over time
