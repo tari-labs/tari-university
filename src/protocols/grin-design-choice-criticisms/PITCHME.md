@@ -77,10 +77,10 @@
 - Experience constant price pressure
 - Difficult for Grin to maintain a high value initially
 - The Grin team believes a high inflation rate will:
-	- improve distribution of coins
-	- discourage holding of coins
-	- produce natural pricing
-	- limit price manipulation by large coin holders
+	- Improve distribution of coins
+	- Discourage holding of coins
+	- Produce natural pricing
+	- Limit price manipulation by large coin holders
 
 +++
 ## Lost coins reduce high inflation
