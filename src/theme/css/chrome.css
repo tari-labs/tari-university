@@ -13,7 +13,9 @@
 .content a:link,
 a:visited,
 a > .hljs {
-    color: var(--links);
+    /*color: var(--links);*/
+    color: #932FFF;
+    font-weight:700;
 }
 
 /* Menu Bar */
@@ -22,13 +24,15 @@ a > .hljs {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 101;
+    z-index: 99;
     margin: auto calc(0px - var(--page-padding));
+    background: #fff;
+    border-bottom:1px solid #e8e8e8;
 }
 #menu-bar > #menu-bar-sticky-container {
     display: flex;
     flex-wrap: wrap;
-    background-color: var(--bg);
+    /*background-color: var(--bg);*/
     border-bottom-color: var(--bg);
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -46,6 +50,7 @@ a > .hljs {
     line-height: 50px;
     cursor: pointer;
     transition: color 0.5s;
+    color: #000;
 }
 @media only screen and (max-width: 420px) {
     #menu-bar i, #menu-bar .icon-button {
@@ -94,6 +99,12 @@ html:not(.sidebar-visible) #menu-bar:not(:hover).folded > #menu-bar-sticky-conta
 .js .menu-title {
     cursor: pointer;
 }
+
+.gem{
+    position: relative;
+    top: 7px;
+}
+
 
 .menu-bar,
 .menu-bar:visited,
@@ -299,14 +310,26 @@ ul#searchresults span.teaser em {
     bottom: 0;
     width: var(--sidebar-width);
     overflow-y: auto;
-    padding: 10px 10px;
-    font-size: 0.875em;
+    padding: 10px 20px;
+    font-size: 0.8em;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
     background-color: var(--sidebar-bg);
-    color: var(--sidebar-fg);
+    background: #fff;
+    border-right: 1px solid #e8e8e8;
+    z-index: 100;
 }
+
+li .section {
+    margin-bottom: 20px;
+}
+
+li .section li .section {
+    margin-bottom: 0px;
+}
+
+
 .js .sidebar {
     transition: transform 0.3s; /* Animation: slide away */
 }
@@ -337,6 +360,7 @@ ul#searchresults span.teaser em {
     list-style: none outside none;
     padding-left: 0;
     line-height: 2.2em;
+    font-size: 13px;
 }
 .chapter li {
     color: var(--sidebar-non-existant);
@@ -347,11 +371,10 @@ ul#searchresults span.teaser em {
     padding: 0;
     text-decoration: none;
 }
-.chapter li a:hover { text-decoration: none }
-.chapter li .active,
-a:hover {
+.chapter li a:hover { text-decoration: none; color:#932FFF; }
+.chapter li .active {
     /* Animate color change */
-    color: var(--sidebar-active);
+    color: #932FFF;
 }
 
 .spacer {
