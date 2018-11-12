@@ -36,7 +36,7 @@
 - What happens to newly minted coins?
 	- New coins and transaction fees are paid to miners
 	- Incentive to maintain the blockchain
- 
+
 +++
 ## What happens when all coins have been mined?
 
@@ -89,10 +89,10 @@
 - Many coins are lost and become unusable on a blockchain
 - Lost coins account for upto 2% per year of the total supply
 - lost coins should be deducted inflation rate
- 
+
 - Percentage of lost transactional coins are difficult to estimate:
 	- More lost coins per year for low value coins
-	- High value coins have lower rate of lost coins, users tend to be more careful.
+	- High value coins have lower rate of lost coins, users tend to be more careful
 
 +++
 ## Deflation vs Inflation in fiat systems
@@ -100,7 +100,7 @@
 - Most economists agree:
 	- Deflation is bad as it increases debt
 	- "Some" inflation is good as it stimulates the economy
- 
+
 +++
 ## Effect of inflation in fiat systems
 
@@ -128,9 +128,9 @@
 
 - Deflationary currency: SoV rather than a MoE
 - Positive effect of deflation:
-	- increase of purchasing power 
-	- encourages saving 
-	- discourages debt
+	- Increase of purchasing power 
+	- Encourages saving 
+	- Discourages debt
 
 - Negative effect of deflation:
 	- Discourages the purchasing of goods and services
@@ -160,9 +160,9 @@
 	- Limiting its misuse
 
 +++
-## Balancing between SoV and MoV
+## Balancing between SoV and MoE
 
-- Finding a good balance between SoV and MoV is an important issue for developing a successful currency:
+- Finding a good balance between SoV and MoE is an important issue for developing a successful currency:
 	- Try to motivate saving
 	- Try to motivate spending
 	- Worrying about debt -> probably not important
@@ -209,7 +209,7 @@
 - very efficient at solving specific PoW algorithms
 
 - Benefits of being ASIC friendly:
-	- higher hash rate on network will make it more difficult to hack
+	- Higher hash rate on network will make it more difficult to hack
 	- Use less electrical power to maintaining blockchain 
 
 +++
@@ -219,27 +219,27 @@
 
 - General consumers do not have access or a need for this type of hardware
 - ASIC miners are primarily reserved for enthusiasts and large corporations
-- Localises majority of the networks hash rate in large mining farms. 
+- Localises majority of the networks hash rate in large mining farms
 
 - Blockchain more vulnerable to 51% attacks
 - Risk even higher when when hardware is preset to use a specific mining pool
-- Mining pool might be controlled by single body
+- Mining pool might be controlled by single bad player
 
 +++
 ## ASIC resistant mining
 
-- Use general purpose and multi-use (Gaming) hardware for mining
+- Use general purpose and multi-use hardware for mining
 
 - CPUs and GPUs that are primarily used for gaming and large workstations
 - Network of miners is more widely distributed
 - More difficult for single bad player to control more than 50% of the networks computational power
-- Limiting the potential of double spends.
+- Limiting the potential of double spends
 
 +++
 ## ASIC resistant or ASIC friendly?
 
 - Very important decision that can affect the security of the blockchain
-- The Grin team's choice to support the ASIC community and trying to balancing an ASIC friendly and an ASIC resistant PoW algorithm will be interesting with many potential pitfalls.
+- The Grin team's choice to support the ASIC community and trying to balancing an ASIC friendly and an ASIC resistant PoW algorithm will be interesting with many potential pitfalls
 
 ---
 # Choice of Cryptographic Elliptic-curve - secp256k1
@@ -261,7 +261,7 @@
 ## Security of Secp256k1
 
 - Grin uses Secp256k1
- 
+
 - Some security experts recommend not using the secp256k1:
 	- Some issues have been uncovered, but not necessarily exploited
 	- Complex-multiplication field discriminant is not high enough to be secure
