@@ -13,7 +13,7 @@ Bulletproofs also implements a Multi-party Computation (MPC) protocol whereby di
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner-product relation, which is of independent interest (not related). Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-Mimblewimble is a block chain designed for confidential transactions. The essence is that a Pedersen commitment to 0 can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be 0. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The block chain consists only of block-headers, remaining UTXOs with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the block chain. [[1]]
+Mimblewimble is a block chain designed for confidential transactions. The essence is that a Pedersen commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The block chain consists only of block-headers, remaining UTXOs with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the block chain. [[1]]
 
 
 
@@ -345,11 +345,19 @@ The communication can be reduced by running a second MPC protocol for the inner 
 
 #### Protocol 3 - Zero-Knowledge Proof for Arithmetic Circuits
 
-Bulletproofs present an efficient zero-knowledge argument for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> with a proof size of $ 2 \cdot [ \log _2 (n)+13] $ elements with $ n ​$ denoting the multiplicative complexity of the circuit. Committed values are also included as input wires to the arithmetic circuit, which is important otherwise the circuit would need to implement a commitment algorithm. 
+Bulletproofs present an efficient zero-knowledge argument for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> with a proof size of $ 2 \cdot [ \log _2 (n)+13] $ elements with $ n $ denoting the multiplicative complexity of the circuit. 
 
-The high level idea of the protocol is to convert the Hadamard-product relation along with the linear constraints into a single inner product relation.
+Bootle et al. [[12]] showed how an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted into a relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear constraints. The communication cost of the addition gates in the argument was removed by providing a technique that can directly handle a set of Hadamard products and linear relations together. For a two-input multiplication gate let $ \mathbf{a}_L $ and $ \mathbf{a}_R $ be the left and right input vectors respectively, then $ \mathbf{a}_O = \mathbf{a}_L + \mathbf{a}_R $ is the vector of outputs. Let $ 1 \leqslant q \leqslant Q $ with $ \mathbf{W}_{L,q} , \mathbf{W}_{R,q} , \mathbf{W}_{O,q} \in \mathbb{Z}_p^n $ and $ c_g \in \mathbb{Z}_p $, then the $ Q \leqslant 2 \cdot n $ linear constraints has the form
+$$
+\langle \mathbf{W}_{L,q}, \mathbf{a}_L \rangle + \langle \mathbf{W}_{R,q}, \mathbf{a}_R \rangle +\langle \mathbf{W}_{O,q}, \mathbf{a}_O \rangle = c_q
+$$
+The high level idea of this protocol is to convert the Hadamard-product relation along with the linear consistency constraints into a single inner product relation. Committed values are also included as input wires to the arithmetic circuit, which is an important refinement otherwise the arithmetic circuit would need to implement a commitment algorithm. The linear consistency constraints also include openings $ v_j $ of the Pedersen commitments $ V_j $. 
 
-an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted  into a  containing a Hadamard-product relation
+Similar to the [Inner-Product Range Proof](#inner-product-range-proof) the *prover* $ \mathcal{P} $ produces a random linear combination of the Hadamard product and linear constraints to form a single inner product constraint. If the combination is chosen randomly by the *verifier* $ \mathcal{V} $ then with overwhelming probability the inner-product constraint implies the other constraints. A proof system must be presented for relation (9) below:
+$$
+{ g,h \in \mathbb{G} \mspace{3mu} ; \mspace{3mu} \mathbf{g},\mathbf{h} \in \mathbb{G}^n \mspace{3mu} ; \mspace{3mu} \mathbf{V} \in \mathbb{G}^m \mspace{3mu} ; \mspace{3mu} \mathbf{W}_{L} , \mathbf{W}_{R} , \mathbf{W}_{O} \in \mathbb{Z}_p^{Qxn}  }
+$$
+
 
 
 
@@ -377,6 +385,8 @@ The table below shows a high-level comparison between Sigma Protocols (i.e. inte
 
 ## Interesting Bulletproof Implementation Snippets
 
+Bulletproofs development is currently still evolving as can be seen when following the different community development projects. Different implementations of Bulletproofs also offer different levels of efficiency, security and functionality. This section describes some of these aspects.
+
 ### Current & Past Efforts
 
 [[25]]
@@ -390,6 +400,8 @@ The table below shows a high-level comparison between Sigma Protocols (i.e. inte
 [[29]]
 
 [[30]]
+
+[[34]], [[46]], [[48]], [[49]]
 
 ### Security Considerations
 
@@ -472,7 +484,7 @@ and More (Transcripts), Blockchain Protocol Analysis and
 Security Engineering 2018, 
 Bünz B. et al"
 
-[[7]] Merkle Root and Merkle Proofs, https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs, Date accessed: 2018-10-?.
+[[7]] Merkle Root and Merkle Proofs, https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs, Date accessed: 2018-10-10.
 
 [7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs
 "Merkle Root and Merkle Proofs"
@@ -628,13 +640,13 @@ secp256k1-zkp for the Grin/MimbleWimble project"
 "SafeCurves: choosing safe curves for 
 elliptic-curve cryptography"
 
-[[33]] Two 1-Round Protocols for Delegation of Computation, Canetti R. et al., https://eprint.iacr.org/2011/518.pdf, Date accessed: 2018-10-?.
+[[33]] Two 1-Round Protocols for Delegation of Computation, Canetti R. et al., https://eprint.iacr.org/2011/518.pdf, Date accessed: 2018-10-11.
 
 [33]: https://eprint.iacr.org/2011/518.pdf
 "Two 1-Round Protocols for Delegation of Computation
 Canetti R. et al."
 
-[[34]] Dalek Cryptography - Module bulletproofs::aggregation, https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html, Date accessed: 2018-10-?.
+[[34]] Dalek Cryptography - Module bulletproofs::aggregation, https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html, Date accessed: 2018-11-07.
 
 [34]: https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html
 "Dalek Cryptography - 
@@ -709,17 +721,55 @@ Tsiounis Y. et al."
 "Dalek Cryptography - 
 Crate Bulletproofs"
 
-[[47]] Wikipedia: Arithmetic circuit complexity, https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity, Date accessed: 2018-10-?.
+[[47]] Wikipedia: Arithmetic circuit complexity, https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity, Date accessed: 2018-11-08.
 
 [47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity
 "Wikipedia: Arithmetic circuit complexity"
+
+[[48]] Bulletproof Multi-Party Computation in Rust with Session Types, Cathie Yun, https://blog.chain.com/bulletproof-multi-party-computation-in-rust-with-session-types-b3da6e928d5d, Date accessed: 2018-11-12.
+
+[48]: https://blog.chain.com/bulletproof-multi-party-computation-in-rust-with-session-types-b3da6e928d5d
+"Bulletproof Multi-Party Computation in 
+Rust with Session Types, 
+Cathie Yun"
+
+[[49]] Bulletproofs pre-release, Henry de Valence, https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b, Date accessed: 2018-11-12.
+
+[49]: https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b
+"Bulletproofs pre-release, 
+Henry de Valence"
 
 [[50]] Elliptic Curve Cryptography: A gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
 
 [50]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction
 "Elliptic Curve Cryptography: A gentle introduction"
 
-[[?]] , , Date accessed: 2018-10-?.
+[[51]] Wikipedia: Hadamard product (matrices), https://en.wikipedia.org/wiki/Hadamard_product_(matrices), Date accessed: 2018-11-12.
+
+[51]: https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
+"Wikipedia: Hadamard product (matrices)"
+
+[[?]] , , Date accessed: 2018-11-?.
+
+[?]:  
+""
+
+[[?]] , , Date accessed: 2018-11-?.
+
+[?]:  
+""
+
+[[?]] , , Date accessed: 2018-11-?.
+
+[?]:  
+""
+
+[[?]] , , Date accessed: 2018-11-?.
+
+[?]:  
+""
+
+[[?]] , , Date accessed: 2018-11-?.
 
 [?]:  
 ""
@@ -780,6 +830,17 @@ additional commitment  ..."
 "The Fiat–Shamir heuristic is a 
 technique in cryptography to 
 convert an interactive ..."
+
+- <u>*Hadamard Product*</u>:<a name="hdmp"> </a>In mathematics, the Hadamard product is a binary operation that takes two matrices $ \mathbf {A} , \mathbf {B} $ of the same dimensions, and produces another matrix of the same dimensions where each element $ i,j $ is the product of elements $ i,j $ of the original two matrices. The Hadamard product $ \mathbf {A} \circ \mathbf {B} $ is different from normal matrix multiplication most notably because it is also commutative $ [ \mathbf {A} \circ \mathbf {B} = \mathbf {B} \circ \mathbf {A} ] $ along with being associative $ [ \mathbf {A} \circ ( \mathbf {B} \circ \mathbf {C} ) = ( \mathbf {A} \circ \mathbf {B} ) \circ \mathbf {C} ] $ and distributive over addition $ [ \mathbf {A} \circ ( \mathbf {B} + \mathbf {C} ) = \mathbf {A} \circ \mathbf {B} +  \mathbf {A} \circ \mathbf {C} ] $. ([[51]])
+
+$$
+\mathbf {A} \circ \mathbf {B} = \mathbf {C} = (a_{11} \cdot b_{11} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{1m} \cdot b_{1m} \mspace{6mu}  ;  \mspace{6mu} . . . \mspace{6mu} ; \mspace{6mu} a_{n1} \cdot b_{n1} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{nm} \cdot b_{nm} )
+$$
+
+[hdmp~]: #hdmp
+"In mathematics, the Hadamard product 
+is a binary operation that takes two 
+matrices A,B of the same dimensions ..."
 
 - *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, ***nonce*** is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
 
@@ -844,37 +905,22 @@ one party (the prover) can convince ..."
 The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
 
 - Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively
-
 - let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively
-
 - Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
-
 - Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
-
 - Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively
-
 - Let $  \mathbf {a} \in \mathbb F^n $ be a vector with elements  $  a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n \in F^n $ 
-
 - Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sum _{i=1}^n {a_i \cdot b_i} ​$ denote the inner-product between two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n ​$ 
-
 - Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
-
+- Let $  \mathbf {A} \circ \mathbf {B} = (a_{11} \cdot b_{11} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{1m} \cdot b_{1m} \mspace{6mu}  ;  \mspace{6mu} . . . \mspace{6mu} ; \mspace{6mu} a_{n1} \cdot b_{n1} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{nm} \cdot b_{nm} ) $ denote the entry wise multiplication of two matrixes, also known as the Hadamard Product<sup>[def][hdmp~]</sup> 
 - Let $  \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $  \mathbf {a}  \in \mathbb Z_p^n $ and  $ \mathbf {b}  \in \mathbb Z_p^m $ then $ \mathbf {a} \parallel \mathbf {b}  \in \mathbb Z_p^{n+m} $ 
-
 - Let $ p(X) = \sum _{i=0}^d { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $ 
-
-- Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] ​$ denote the inner-product between two vector polynomials $ l(X),r(X) ​$ 
-
+- Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] $ denote the inner-product between two vector polynomials $ l(X),r(X) $ 
 - Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner-product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $ 
-
 - Let $ C=g^a = \prod _{i=1}^n g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C=  \prod _{i=1}^n (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
-
 - Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_l) \in \mathbb F^l \mspace{3mu} , \mspace{12mu}\ \mathbf {a_{[l:]}} = (a_{l+1} \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \mathbb F^{n-l}$ 
-
 - Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^* $ such that  $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
-
 - Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively
-
 - Let $ \mathcal{P_{IP}} ​$ and $ \mathcal{V_{IP}} ​$ denote the *prover* and *verifier* in relation to inner-product calculations respectively
 
 
