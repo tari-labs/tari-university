@@ -213,6 +213,8 @@
 	- Higher hash rate on network will make it more difficult to hack
 	- Use less electrical power to maintaining blockchain 
 
+![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/attack51.jpg?raw=true)
+
 +++
 ## Negative effect of ASIC friendly PoW algorithm
 
@@ -225,8 +227,6 @@
 - Blockchain more vulnerable to 51% attacks
 - Risk even higher when when hardware is preset to use a specific mining pool
 - Mining pool might be controlled by single bad player
-
-![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/attack51.jpg?raw=true)
 
 +++
 ## ASIC resistant mining
