@@ -158,8 +158,10 @@ Protocol 1 is then defined as the proof system for relation (2) as shown in Figu
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+The argument presented in Protocol 1 has:
 
-The argument presented in Protocol 1 for the relation (1) is perfectly hiding and statistically binding.
+- <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
+- <u>Statistical witness extended emulation (binding)</u>: Robust against either extracting a non-trivial discrete logarithm relation between $ \mathbf {g} , \mathbf {h} , u $ or extracting a valid witness $ \mathbf {a}, \mathbf {b} $.
 
 #### Protocol 2 - Inner-Product Verification through Multi-Exponentiation
 
@@ -276,15 +278,15 @@ Bünz B. et al">1</a>]</b></div>
 
 The range proof presented here has:
 
-- <u>Perfect completeness</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
+- <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Perfect special honest verifier zero-knowledge</u>: The *verifier* $ \mathcal{V} $ behaves according to the protocol, also see Definition&nbsp;12 in [[1]];
-- <u>Computational witness extended emulation</u>: A witness can be computed in time closely related to time spent by the *prover* $ \mathcal{P} $, also see Definition&nbsp;10 in [[1]].
+- <u>Computational witness extended emulation (binding)</u>: A witness can be computed in time closely related to time spent by the *prover* $ \mathcal{P} $, also see Definition&nbsp;10 in [[1]].
 
 
 
 ##### Protocol 2.2` - Logarithmic Range Proof
 
-This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) Figure&nbsp;5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(67) Figure 6) and $ \hat {t} $ (step&nbsp;(68) Figure&nbsp;6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(63) Figure&nbsp;5) can then be eliminated and transfer of information limited to the scalar properties alone, thereby archiving a proof size that is logarithmic in $ n $.
+This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) Figure&nbsp;5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(67) Figure 6) and $ \hat {t} $ (step&nbsp;(68) Figure&nbsp;6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(63) Figure&nbsp;5) can then be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone, thereby archiving a proof size that is logarithmic in $ n $.
 
 
 
@@ -303,6 +305,12 @@ $$
 The quantity $ \delta (y,z) $ is adjusted to incorporate more cross terms $ n \cdot m $ , the linear vector polynomials $ l(X), r(X) $ are adjusted to be in $  \mathbb Z^{n \cdot m}_p[X] $ and the blinding factor $ \tau_x $ for the inner product $ \hat{t} $ (step&nbsp;(61) Figure&nbsp;5) is adjusted for the randomness of each commitment $ V_j $. The verification check (step&nbsp;(65) Figure&nbsp;6) is updated to include all $ V_j $ commitments and the definition of $ P $ (step&nbsp;(66) Figure&nbsp;6) is changed to be a commitment to the new $ r $.
 
 This aggregated range proof that makes use of the inner product argument only uses $ 2 \cdot [ \log _2 (n \cdot m)] + 4 $ group elements and $ 5 $ elements in $ \mathbb Z_p $. The growth in size is limited to an additive term $ 2 \cdot [ \log _2 (m)] $ as opposed to a multiplicative factor $ m $ for $ m $ independent range proofs.
+
+The aggregate range proof presented here has:
+
+- <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
+- <u>Perfect special honest verifier zero-knowledge</u>: The *verifier* $ \mathcal{V} $ behaves according to the protocol, also see Definition&nbsp;12 in [[1]];
+- <u>Computational witness extended emulation (binding)</u>: A witness can be computed in time closely related to time spent by the *prover* $ \mathcal{P} $, also see Definition&nbsp;10 in [[1]].
 
 
 
@@ -394,17 +402,23 @@ Bünz B. et al">1</a>]</b></div>
 
 The proof system presented here has:
 
-- <u>Perfect completeness</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
+- <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Perfect honest verifier zero-knowledge</u>: The *verifier* $ \mathcal{V} $ behaves according to the protocol, also see Definition&nbsp;12 in [[1]];
-- <u>Computational witness extended emulation</u>: A witness can be computed in time closely related to time spent by the *prover* $ \mathcal{P} $, also see Definition&nbsp;10 in [[1]].
+- <u>Computational witness extended emulation (binding)</u>: A witness can be computed in time closely related to time spent by the *prover* $ \mathcal{P} $, also see Definition&nbsp;10 in [[1]].
 
 
 
-##### Protocol 3.1` - Logarithmic-Sized Protocol
+##### Protocol 3.1` - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits
 
-This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) Figure&nbsp;5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(67) Figure 6) and $ \hat {t} $ (step&nbsp;(68) Figure&nbsp;6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(63) Figure&nbsp;5) can then be eliminated and transfer of information limited to the scalar properties alone, thereby archiving a proof size that is logarithmic in $ n $.
+Similar to [Protocol 2.2`](#protocol-22---logarithmic-range-proof) the communication cost of [Protocol 3](#protocol-3---inner-product-proof-for-arithmetic-circuits) can be reduced by using the efficient inner product argument. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(82) Figure&nbsp;8) can be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone. The *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engage in an inner product argument on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $ to check correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(92) Figure 8) and $ \hat {t} $ (step&nbsp;(88) Figure&nbsp;8); this is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation. Communication is now reduced to $ 2 \cdot [ \log_22(n)] + 8 $ group elements and $ 5 $ elements in $ \mathbb Z $ instead of $ 2 \cdot n $ elements, thereby archiving a proof size that is logarithmic in $ n $.
 
-Similar to [Protocol 2.2`](#protocol-22---logarithmic-range-proof) the communication cost of [Protocol 3](#protocol-3---inner-product-proof-for-arithmetic-circuits) can be reduced by using the inner product argument.
+Similar to [Protocol 2.4`](#protocol-24---non-interactive-proof-through-fiat-shamir) the protocol presented so far can be turned into an efficient non interactive proof that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
+
+The proof system presented here has:
+
+- <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
+- <u>Statistical zero-knowledge</u>:  The *verifier* $ \mathcal{V} $ behaves according to the protocol and $ \mathbf {l} , \mathbf {r} $ can be efficiently simulated;
+- <u>Computational soundness (binding)</u>: if the generators $ \mathbf {g} , \mathbf {h} , g , h $ are independently generated, then finding a discrete logarithm relation between them is as hard as breaking the discrete log problem.
 
 
 
