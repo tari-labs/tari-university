@@ -426,8 +426,15 @@ The proof system presented here has:
 
 In many of the Bulletproofs' [Use Cases](#use-cases) the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that is also extendable to aggregate range proofs ([Protocol 2.3`](#protocol-23---aggregating-logarithmic-proofs)) and the arithmetic circuit protocol ([Protocol 3`](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)). 
 
-In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $ The Bulletproofs
- *verifier* only performs two checks....
+In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. The Bulletproofs *verifier* only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;3. Exponentiation is delayed until those checks are performed and they are also combined into a single check. In the protocol presented in Figure 9, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j ​$ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation).
+
+<p align="center"><img src="sources/Protocol-4.png" width="570" /></p>
+<div align="center"><b>Figure&nbsp;9: Bulletproofs Protocol 4` [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+and More, Blockchain Protocol Analysis and Security 
+Engineering 2018, 
+Bünz B. et al">1</a>]</b></div>
+
+
 
 
 
