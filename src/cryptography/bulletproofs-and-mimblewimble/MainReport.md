@@ -36,7 +36,7 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
         - [Protocol 2.5` - MPC Protocol for Bulletproofs](#protocol-25---mpc-protocol-for-bulletproofs)
       - [Protocol 3` - Zero-Knowledge Proof for Arithmetic Circuits](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)
         - [Protocol 3 - Inner-Product Proof for Arithmetic Circuits](#protocol-3---inner-product-proof-for-arithmetic-circuits)
-        - [Protocol 3.1` - Logarithmic-Sized Protocol](#protocol-31---logarithmic-sized-protocol)
+        - [Protocol 3.1` - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits](#protocol-31---logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
       - [Protocol 4` - Multi-Exponentiation and Batch Verification](#protocol-4---multi-exponentiation-and-batch-verification)
   - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
@@ -422,9 +422,12 @@ The proof system presented here has:
 
 
 
-#### Protocol 4` - Multi-Exponentiation and Batch Verification
+#### Protocol 4` - Optimized Verifier using Multi-Exponentiation and Batch Verification
 
-???
+In many of the Bulletproofs' [Use Cases](#use-cases) the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that is also extendable to aggregate range proofs ([Protocol 2.3`](#protocol-23---aggregating-logarithmic-proofs)) and the arithmetic circuit protocol ([Protocol 3`](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)). 
+
+In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $ The Bulletproofs
+ *verifier* only performs two checks....
 
 
 
