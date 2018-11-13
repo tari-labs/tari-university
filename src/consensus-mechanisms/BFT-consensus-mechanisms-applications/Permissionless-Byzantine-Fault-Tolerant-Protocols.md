@@ -190,8 +190,6 @@ and analysis of the complex protocols needed to tolerate Byzantine faults.
 <p align="center"><img src="../assets/design-of-sintra.png" width="300" /></p>
 <p align="center"><b>Figure 2: The Design of SINTRA </b></p>
 
-### References
-
 [9]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
 "High-Performance Consensus Mechanisms for Blockchains,
 Rusch"
