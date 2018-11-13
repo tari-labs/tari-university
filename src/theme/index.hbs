@@ -249,6 +249,10 @@
         <script src="{{ path_to_root }}highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="{{ path_to_root }}book.js" type="text/javascript" charset="utf-8"></script>
 
+        <!-- Initialize mermaid -->
+        <script src="{{ path_to_root }}theme/js/mermaid.min.js" type="text/javascript" charset="utf-8"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+
         <!-- Custom JS scripts -->
         {{#each additional_js}}
         <script type="text/javascript" src="{{ path_to_root }}{{this}}"></script>
