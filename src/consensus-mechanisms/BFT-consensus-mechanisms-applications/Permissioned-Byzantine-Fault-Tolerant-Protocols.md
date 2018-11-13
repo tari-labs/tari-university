@@ -1,7 +1,3 @@
-## A brief survey of Byzantine Fault Tolerant Consensus Mechanisms
-
-Many peer-to-peer online Real-time strategy games use a modified Lockstep protocol as a consensus protocol in order to manage game state between players in a game. Each game action results in a game state delta broadcast to all other  players in the game along with a hash of the total game state. Each player validates the change by applying the delta to their own game state and comparing the game state hashes. If the hashes do not agree then a vote is cast, and those players whose game state is in the minority are disconnected and removed from the game (known as a desync.) [[21]]
-
 ## Permissioned Byzantine Fault Tolerant Protocols 
 
 Byzantine agreement schemes are considered well suited for permissioned block chains, where the identity of the participants is known. Examples include Hyperledger and Tendermint. Here the Federated Consensus Algorithm is implemented. [[9]] 
@@ -29,3 +25,24 @@ Critics have argued that Tendermint is not decentralized, and one can distinguis
 Sentry Nodes are guardians of a validator node and provide the validator nodes with access to the rest of the network. Sentry nodes are well connected to other full nodes on the network. Sentry nodes may be dynamic, but should maintain persistent connections to some evolving random subset of each other. They should always expect to have direct incoming connections from the validator node and its backup(s). They do not report the validator node's address in the Peer Exchange Reactor (PEX) and they may be more strict about the quality of peers they keep.
 
 Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual Private Network (VPN) with one another, but only report each other sparingly in the PEX.[[44]]
+
+[9]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
+"High-Performance Consensus Mechanisms for Blockchains,
+Rusch"
+
+[13]: https://www.zurich.ibm.com/dccl/papers/cachin_dccl.pdf
+"Architecture of the Hyperledger 
+Blockchain Fabric, Cachin"
+
+[11]: https://ieeexplore.ieee.org/document/8014672/
+"Survey of Consensus Protocols of Blockchain Applications,
+4th International Conference on Advanced Computing 
+and Communication Systems, Sankar et al."
+
+[34]: https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb
+"Tendermint Explained- Bringing BFT-based
+PoS to the Public Blockchain Domain"
+
+[44]: https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md
+"Tendermint Peer Discovery
+GitHub repository" 
