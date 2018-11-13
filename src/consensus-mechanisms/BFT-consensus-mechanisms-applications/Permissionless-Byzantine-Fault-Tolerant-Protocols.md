@@ -180,12 +180,54 @@ An attempt to address some of these criticisms has been presented. [[31]],
 
 ### SINTRA
 
-SINTRA is a Secure INtrusion-Tolerant Replication Architecture used for the coordination in asynchronous networks subject to Byzantine faults. It consists of a collection of protocols and are implemented in Java, providing secure replication and coordination among a group of servers connected by a wide-area network, such as the Internet. For a group consisting of _n_ servers, it tolerates up to $t<n/3$ servers failing in arbitrary, malicious ways, which is optimal for the given model. The servers are connected only by asynchronous point-to-point communication links. Thus, SINTRA automatically tolerates timing failures as well as attacks that exploit timing. The SINTRA group model is static, which means that failed servers must be recovered by mechanisms outside of SINTRA, and the group must be initialized by a trusted process.
+SINTRA is a Secure Intrusion-Tolerant Replication Architecture used for the coordination in asynchronous networks subject to Byzantine faults. It consists of a collection of protocols and are implemented in Java, providing secure replication and coordination among a group of servers connected by a wide-area network, such as the Internet. For a group consisting of _n_ servers, it tolerates up to $t<n/3$ servers failing in arbitrary, malicious ways, which is optimal for the given model. The servers are connected only by asynchronous point-to-point communication links. Thus, SINTRA automatically tolerates timing failures as well as attacks that exploit timing. The SINTRA group model is static, which means that failed servers must be recovered by mechanisms outside of SINTRA, and the group must be initialized by a trusted process.
 
-The protocols exploit randomization, which is needed to solve Byzantine agreement in such asynchronous distributed systems. Randomization is provided by a threshold-cryptographic pseudorandom generator, a coin-tossing protocol based on the Diffie-Hellman problem. Threshold cryptography is a fundamental concept in SINTRA as it allows the group to perform a common cryptographic operation for which the secret key is shared among the servers in such a way that no single server or small coalition of corrupted servers can obtain useful information about it. SINTRA provides threshold-cryptographic schemes for digital signatures, public-key encryption, and unpredictable pseudo-random number generation (coin-tossing). It contains broadcast primitives for reliable and consistent broadcasts, which provide agreement on individual messages sent by distinguished senders. However, these primitives cannot guarantee a total order for a stream of multiple messages delivered by the system, which is needed to build fault-tolerant services using the state machine replication paradigm. This is the problem of atomic broadcast and requires more expensive protocols based on Byzantine agreement. SINTRA provides multiple randomized Byzantine agreement protocols, for binary and multi-valued agreement, and implements an atomic broadcast channel on top of agreement. An atomic broadcast that also maintains a causal order in the presence of Byzantine faults is provided by the secure causal atomic broadcast channel.
+The protocols exploit randomization, which is needed to solve Byzantine agreement in such asynchronous distributed systems. Randomization is provided by a threshold-cryptographic pseudorandom generator, a coin-tossing protocol based on the Diffie-Hellman problem. Threshold cryptography is a fundamental concept in SINTRA as it allows the group to perform a common cryptographic operation for which the secret key is shared among the servers in such a way that no single server or small coalition of corrupted servers can obtain useful information about it. SINTRA provides threshold-cryptographic schemes for digital signatures, public-key encryption, and unpredictable pseudo-random number generation (coin-tossing). It contains broadcast primitives for reliable and consistent broadcasts, which provide agreement on individual messages sent by distinguished senders. However, these primitives cannot guarantee a total order for a stream of multiple messages delivered by the system, which is needed to build fault-tolerant services using the state machine replication paradigm. This is the problem of atomic broadcast and requires more expensive protocols based on Byzantine agreement. SINTRA provides multiple randomized Byzantine agreement protocols, for binary and multi-valued agreement, and implements an atomic broadcast channel on top of agreement. An atomic broadcast that also maintains a causal order in the presence of Byzantine faults is provided by the secure causal atomic broadcast channel.[[51]]
 
 SINTRA is designed in a modular way as shown in Figure 1. Modularity greatly simplifies the construction
 and analysis of the complex protocols needed to tolerate Byzantine faults.
 
 <p align="center"><img src="../assets/design-of-sintra.png" width="300" /></p>
 <p align="center"><b>Figure 2: The Design of SINTRA </b></p>
+
+### References
+
+[9]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
+"High-Performance Consensus Mechanisms for Blockchains,
+Rusch"
+
+[29]: https://en.wikipedia.org/wiki/Paxos_(computer_science)
+"Paxos, Wikipedia"
+
+[27]: https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm
+"Chandra-Toueg Consensus Algorithm, Wikipedia"
+
+[28]: https://en.wikipedia.org/wiki/Raft_(computer_science)
+"Raft, Wikipedia"
+
+[40]: https://www.usenix.org/legacy/event/nsdi09/tech/full_papers/clement/clement.pdf
+"Making Byzantine fault Tolerant Systems Tolerate Byzantine Faults , 
+Clement et al."
+
+[6]: https://eprint.iacr.org/2016/199.pdf
+"The Honey Badger of BFT Protocols WhitePaper,
+Miller  et al."
+
+[30]: https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf 
+"Hashgraph WhitePaper, Baird"
+
+[45]: https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/
+"Introduction to Gossip" 
+
+[31]: http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf 
+"Swirlds and Sybil Attacks, Baird"
+
+[32]: https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5
+"Demystifying HashGraph"
+
+[33]: https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647
+"HashGraph: A WhitePaper Review"
+
+[51]: https://cachin.com/cc/papers/sintra.pdf
+"Secure Intrusion-tolerant Replication 
+on the Internet, Cachin et al."
