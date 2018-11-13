@@ -73,7 +73,7 @@ While traditional consensus protocols require *O*(n<sup>2</sup>) communication, 
 
 To backtrack a bit, Big _O_ notation is used in Computer Science to describe the performance or complexity of an algorithm. It descibes the worst-case scenario and can be used to describe the execution time required by an algorithm. [[49]] In the case of consensus algorithms, _O_ describes a finite expected number of steps or operations. [[50]] For example, _O_(1) describes an algorithm that will always execute in teh same time regardless of the size of the input data set. _O_(n)_ describes an algorithm whose performnace will grow linearly and in direct proportion to the size of the input data set.*O*(n<sup>2</sup>)represents an algorithm whose performance is directly proportional to the sqaure of the size of the input data set.
 
-The reason for this is *O*(n<sup>2</sup>) suggests that the rate of growth of function is determined by n<sup>2</sup> where *n* is the number of people on the network. Thus, the addition of a person exponentially increases the time taken to disseminate the information on the network while traditional consensus protocols require everyone to communicate with one another- making it a laborious process. [[18]]
+The reason for this is *O(n<sup>2</sup>)* suggests that the rate of growth of function is determined by *n<sup>2</sup>* where *n* is the number of people on the network. Thus, the addition of a person exponentially increases the time taken to disseminate the information on the network while traditional consensus protocols require everyone to communicate with one another- making it a laborious process. [[18]]
 
 Despite assuming a synchronous network, which is susceptible to the DoS attacks, this new family of protocols "reaches a level of security that is simply good enough while surging forward with other advancements". [[18]] 
 
@@ -138,3 +138,86 @@ This protocol sees the use of a weak coordinator; a weak coordinator allows for 
 With regards to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a value while still allowing termination in a constant number of message delays and thus is unlike the classic coordinator or the eventual leader which cannot be implemented in the Binary Byzantine Consensus Algorithm, BAMP<sub>n,t</sub>[*t<n/3*].   
 
 The validation of protocol was conducted similarly to that of the HoneyBadger block chain, where "Coin", the randomization algorithm from Moustefaoui et al. was used [[38]]. Using the 100 Amazon Virtual Machines located in 5 data centers on different continents, it was shown that the DBFT algorithm outperforms that of "Coin"; which is known to terminate in *O*(1) round in expectation. In addition, since Byzantine behaviors have been seen to severely affect the performance of strong coordinator-based consensus, 4 different Byzantine attacks have been tested in the validation. 
+
+[9]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
+"High-Performance Consensus Mechanisms for Blockchains,
+Rusch"
+
+[41]: https://www.shoup.net/papers/ckps.pdf
+"Secure and Efficent Asynchronous Broadcast Protocols, 
+Cachin et al."
+
+[6]: https://eprint.iacr.org/2016/199.pdf
+"The Honey Badger of BFT Protocols WhitePaper,
+Miller  et al."
+
+[11]: https://ieeexplore.ieee.org/document/8014672/
+"Survey of Consensus Protocols of Blockchain Applications,
+4th International Conference on Advanced Computing 
+and Communication Systems, Sankar et al."
+
+[14]: https://ripple.com/files/ripple_consensus_whitepaper.pdf
+"The Ripple Protocol Consensus 
+Algorithm, Schwartz et al."
+
+[15]: https://tendermint.com/static/docs/tendermint.pdf
+"Tendermint: Consensus without Mining, Kwon"
+
+[16]: https://arxiv.org/pdf/1807.01829.pdf
+"LinBFT: Linear-Communication Byzantine 
+Fault Tolerance for Public Blockchains, Yang" 
+
+[25]: https://arxiv.org/pdf/1607.01341.pdf
+"Algorand WhitePaper 
+Chen and Micali"
+
+[26]: https://eprint.iacr.org/2017/913.pdf
+"Thunderella WhitePaper, Pass and Shi"
+
+[49]: https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+"A beginner's guide to Big O notation"
+
+[50]: http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf
+"Fast Randomized Consensus using Shared Memory,
+Aspnes et al."
+
+[18]: https://flatoutcrypto.com/home/avalancheprotocol
+"Protocol Spotlight: Avalanche Part 1"
+
+[1]: http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf
+"Protocol for Asynchronous, Reliable, 
+Secure and Efficient Consensus (PARSEC) 
+WhitePaper, Chevalier et al." 
+
+[37]: https://github.com/maidsafe/parsec
+"GitHub repository: Protocol for Asynchronous,
+Reliable, Secure and Efficient Consensus"
+
+[5]: https://medium.com/@flatoutcrypto/project-spotlight-maidsafe-and-parsec-part-1-4830cec8d9e3
+"Project Spotlight: Maidsafe and PARSEC Part 1" 
+
+[2]: https://hal.inria.fr/hal-00944019v2/document
+"Signature-Free Asynchronous Byzantine Consensus 
+with t<n/3 and O(n2) Messages,
+Mostefaoui et al." 
+
+[3]: https://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Distributed%20Computation/BYZANTYNE%20AGREEMENT%20MADE%20TRIVIAL.pdf
+"Byzantine Agreement Made Trivial
+Micali" 
+
+[35]: https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2
+"Project Spotlight: Maidsafe and PARSEC Part 2"
+
+[36]: https://www.ccn.com/tag/red-belly-blockchain/
+"Red Belly Blockchain"
+
+[17]: http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf
+"DBFT: Efficient Byzantine Consensus 
+with a Weak Coordinator and its Application 
+to Consortium Blockchains, Crain et al."
+
+[38]: https://hal.inria.fr/hal-00944019v2/document
+"Signature-Free Asynchronous Byzantine 
+Consensus with $t<n/3$ and 
+*O*(n<sup>2</sup>) Messages, 
+Mostefaoui et al."
