@@ -9,6 +9,25 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
 ## Contents
 
 - [Introduction](#introduction)
+- [A brief survey of Byzantine Fault Tolerant Consensus Mechanisms](#a-brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms)
+- [Permissioned Byzantine Fault Tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
+  - [Hyperledger Fabric (HLF)](#hyperledger-fabric-(hlf))
+  - [Tendermint](#tendermint)
+- [Permissionless Byzantine Fault Tolerant Protocols](#permissionless-byzantine-fault-tolerant-protocols)
+  - [Paxos](#paxos)
+  - [Chandra Toueg](#chandra-toueg)
+  - [Raft](#raft)
+  - [HashGraph](#hashgraph)
+  - [SINTRA](#sintra)
+  - [HoneyBadgerBFT](#honeybadgerbft)
+  - [Stellar Consensus Protocol](#stellar-consensus-protocol)
+  - [LinBFT](#linbft)
+  - [Algorand](#algorand)
+  - [Thunderella](#thunderella)
+  - [Avalanche](#avalanche)
+  - [PARSEC](#parsec)
+  - [Democratic BFT](#democratic-bft)
+-Appendix A(#appendix-a)
 - [Terminology](#terminology)
   - [Consensus](#consensus)
   - [Binary Consensus](#binary-consensus)
@@ -30,24 +49,6 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   - [The FLP Impossibility](#the-flp-impossibility)
   - [Randomized Agreement](#randomized-agreement)
   - [Gossip Protocol](#gossip-protocol) 
-- [A brief survey of Byzantine Fault Tolerant Consensus Mechanisms](#a-brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms)
-  - [Permissioned Byzantine Fault Tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
-    - [Hyperledger Fabric (HLF)](#hyperledger-fabric-(hlf))
-    - [Tendermint](#tendermint)
-  - [Permissionless Byzantine Fault Tolerant Protocols](#permissionless-byzantine-fault-tolerant-protocols)
-    - [Paxos](#paxos)
-    - [Chandra Toueg](#chandra-toueg)
-    - [Raft](#raft)
-    - [HashGraph](#hashgraph)
-    - [SINTRA](#sintra)
-    - [HoneyBadgerBFT](#honeybadgerbft)
-    - [Stellar Consensus Protocol](#stellar-consensus-protocol)
-    - [LinBFT](#linbft)
-    - [Algorand](#algorand)
-    - [Thunderella](#thunderella)
-    - [Avalanche](#avalanche)
-    - [PARSEC](#parsec)
-    - [Democratic BFT](#democratic-bft)
 - [Summary](#summary)
 - [References](#references)
 
@@ -66,6 +67,8 @@ Important to consider is the 'scalability trilemma'; a phrase referred to by Vit
 Through the recent development of this ecosystem, most block chains have focused on two of the three factors, namely decentralization and security; at the expense of scalability. The primary reason for this is that nodes must reach consensus before transactions can be processed. [[19]]
 
 This report sees the examination of proposals considering Byzantine Fault Tolerant (BFT) consensus mechanisms and considers their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. In each instance the protocol assumptions, reference implementations and discernment on whether the protocol may be used for Tari as a means to maintain the distributed asset state will be assessed. 
+
+
 
 ## A brief survey of Byzantine Fault Tolerant Consensus Mechanisms
 
