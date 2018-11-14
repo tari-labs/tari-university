@@ -28,16 +28,16 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
     - [Bulletproof Protocols](#bulletproof-protocols)
       - [Protocol 1 - Inner-product Argument](#protocol-1---inner-product-argument)
       - [Protocol 2 - Inner-Product Verification through Multi-Exponentiation](#protocol-2---inner-product-verification-through-multi-exponentiation)
-      - [Protocol 2` - Range Proof Protocol with Logarithmic Size](#protocol-2---range-proof-protocol-with-logarithmic-size)
-        - [Protocol 2.1` - Inner-Product Range Proof](#protocol-21---inner-product-range-proof)
-        - [Protocol 2.2` - Logarithmic Range Proof](#protocol-22---logarithmic-range-proof)
-        - [Protocol 2.3` - Aggregating Logarithmic Proofs](#protocol-23---aggregating-logarithmic-proofs)
-        - [Protocol 2.4` - Non-Interactive Proof through Fiat-Shamir](#protocol-24---non-interactive-proof-through-fiat-shamir)
-        - [Protocol 2.5` - MPC Protocol for Bulletproofs](#protocol-25---mpc-protocol-for-bulletproofs)
-      - [Protocol 3` - Zero-Knowledge Proof for Arithmetic Circuits](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)
+      - [Protocol 2! - Range Proof Protocol with Logarithmic Size](#protocol-2---range-proof-protocol-with-logarithmic-size)
+        - [Protocol 2.1! - Inner-Product Range Proof](#protocol-21---inner-product-range-proof)
+        - [Protocol 2.2! - Logarithmic Range Proof](#protocol-22---logarithmic-range-proof)
+        - [Protocol 2.3! - Aggregating Logarithmic Proofs](#protocol-23---aggregating-logarithmic-proofs)
+        - [Protocol 2.4! - Non-Interactive Proof through Fiat-Shamir](#protocol-24---non-interactive-proof-through-fiat-shamir)
+        - [Protocol 2.5! - MPC Protocol for Bulletproofs](#protocol-25---mpc-protocol-for-bulletproofs)
+      - [Protocol 3! - Zero-Knowledge Proof for Arithmetic Circuits](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)
         - [Protocol 3 - Inner-Product Proof for Arithmetic Circuits](#protocol-3---inner-product-proof-for-arithmetic-circuits)
-        - [Protocol 3.1` - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits](#protocol-31---logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
-      - [Protocol 4` - Multi-Exponentiation and Batch Verification](#protocol-4---multi-exponentiation-and-batch-verification)
+        - [Protocol 3.1! - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits](#protocol-31---logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
+      - [Protocol 4! - Optimized Verifier using Multi-Exponentiation and Batch Verification](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)
   - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
     - [Current & Past Efforts](#current--past-efforts)
@@ -124,7 +124,7 @@ Some use cases of Bulletproofs are listed below and note this list may not be ex
 
 ### Bulletproof Protocols
 
-In [[1]] a number of protocols were suggested in using Bulletproofs, which are only briefly summarized here to explain the logic and the most important terms (*see [Appendix&nbsp;B](#appendix-b-notations-used) for notations used*).  Protocols 1, 2 and 3 are numbered consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with an accent sign "`" to differentiate them.
+In [[1]] a number of protocols were suggested in using Bulletproofs, which are only briefly summarized here to explain the logic and the most important terms (*see [Appendix&nbsp;B](#appendix-b-notations-used) for notations used*).  Protocols 1, 2 and 3 are numbered consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with an faculty sign "!" to differentiate them.
 
 <i>**Note:** Full mathematical definitions and terms not defined are available in [[1]].</i>
 <br>
@@ -189,7 +189,7 @@ Bünz B. et al">1</a>]</b></div>
 
 
 
-#### Protocol 2` - Range Proof Protocol with Logarithmic Size
+#### Protocol 2! - Range Proof Protocol with Logarithmic Size
 
 Protocol 2' provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir heuristic and how to allow multiple parties to construct a single aggregate range proof. A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;7.
 
@@ -198,7 +198,7 @@ Protocol 2' provides short and aggregatable range proofs, using the improved inn
 Crate Bulletproofs">46</a>]</b></div>
 
 
-##### Protocol 2.1` - Inner-Product Range Proof
+##### Protocol 2.1! - Inner-Product Range Proof
 
 This protocol provides the ability to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors. The range proof is constructed by exploiting the fact that a Pedersen commitment $ V $ is an element in the same group $ \mathbb G $ that is used to perform the inner product argument. Let $ v \in \mathbb Z_p $ and let $ V \in \mathbb G $ be a Pedersen commitment to $ v $ using randomness $ \gamma $. The proof system will convince the *verifier* $ \mathcal{V} $ that commitment $ V $ contains a number $ v \in [0,2^n - 1] $ such that
 
@@ -241,10 +241,11 @@ can be easily calculated by the  *verifier* $ \mathcal{V} $. The proof that rela
 Relation (7) cannot be used as is without revealing information about $  \mathbf {a}_L $. Two additional blinding vectors $  \mathbf {s}_L , \mathbf {s}_R \in \mathbb Z_p^n $ are introduced with the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engaging in the following zero knowledge protocol (Figure&nbsp;4):
 
 <p align="center"><img src="sources/Protocol-2b-part-a.png" width="550" /></p>
-<div align="center"><b>Figure&nbsp;4: Bulletproofs Protocol 2b Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;4: Bulletproofs Protocol 2.1! Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 Two linear vector polynomials $ l(X), r(X) $ in $  \mathbb Z^n_p[X] $ are defined as the inner-product terms for relation (7), also containing the blinding vectors $  \mathbf {s}_L , \mathbf {s}_R $. A quadratic polynomial $ t(X) \in \mathbb Z_p[X] $ is then defined as the inner product between the two vector polynomials $ l(X), r(X) $ such that
 
@@ -261,20 +262,22 @@ $$
 In order to do so the *prover* $ \mathcal{P} $ convinces the *verifier* $ \mathcal{V} $ that it has a commitment to the remaining coefficients of $ t(X) $, namely $ t_1,t_2 \in \mathbb Z_p $ by checking the value of $ t(X) $ at a random point $ x \in \mathbb Z_p^* $. This is illustrated in Figure&nbsp;5.
 
 <p align="center"><img src="sources/Protocol-2b-part-b.png" width="655" /></p>
-<div align="center"><b>Figure&nbsp;5: Bulletproofs Protocol 2b Part B [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;5: Bulletproofs Protocol 2.1! Part B [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 The *verifier* $ \mathcal{V} $ now needs to check that $ l $ and $ r $ are in fact $ l(x) $ and $ r(x) $ and that $ t(x) = \langle l \mspace{3mu} , \mspace{3mu} r \rangle $. A commitment for $ \mathbf {a}_R \circ \mathbf {y}^n $ is needed and to do so the commitment generators are switched from $ h \in \mathbb G^n $ to $ h ^\backprime = h^{(\mathbf {y}^{-1})}$. Thus $ A $ and $ S $ now become vector commitments to $ ( \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n ) $ and $ ( \mathbf {s}_L \mspace{3mu} , \mspace{3mu} \mathbf {s}_R \circ \mathbf {y}^n ) $ respectively with respect to the new generators $ (g, h ^\backprime, h) $. This is illustrated in Figure&nbsp;6.
 
 
 
 <p align="center"><img src="sources/Protocol-2b-part-c.png" width="640" /></p>
-<div align="center"><b>Figure&nbsp;6: Bulletproofs Protocol 2b Part C [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;6: Bulletproofs Protocol 2.1! Part C [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 The range proof presented here has:
 
@@ -284,15 +287,15 @@ The range proof presented here has:
 
 
 
-##### Protocol 2.2` - Logarithmic Range Proof
+##### Protocol 2.2! - Logarithmic Range Proof
 
 This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) Figure&nbsp;5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(67) Figure 6) and $ \hat {t} $ (step&nbsp;(68) Figure&nbsp;6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(63) Figure&nbsp;5) can then be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone, thereby archiving a proof size that is logarithmic in $ n $.
 
 
 
-##### Protocol 2.3` - Aggregating Logarithmic Proofs
+##### Protocol 2.3! - Aggregating Logarithmic Proofs
 
-This protocol efficiently aggregate $ m $ range proofs into one short proof with a slight modification to the protocol presented in [Protocol 2.1`](#protocol-21---inner-product-range-proof). For aggregate range proofs, the inputs of one range proof do not affect the output of another range proof. Aggregating logarithmic range proofs is especially helpful if a single *prover* $ \mathcal{P} $ needs to perform multiple range proofs at the same time.
+This protocol efficiently aggregate $ m $ range proofs into one short proof with a slight modification to the protocol presented in [Protocol 2.1!](#protocol-21---inner-product-range-proof). For aggregate range proofs, the inputs of one range proof do not affect the output of another range proof. Aggregating logarithmic range proofs is especially helpful if a single *prover* $ \mathcal{P} $ needs to perform multiple range proofs at the same time.
 
 A proof system must be presented for the following relation:
 $$
@@ -314,13 +317,13 @@ The aggregate range proof presented here has:
 
 
 
-##### Protocol 2.4` - Non-Interactive Proof through Fiat-Shamir
+##### Protocol 2.4! - Non-Interactive Proof through Fiat-Shamir
 
 So far the *verifier* $ \mathcal{V} $  behaves as an honest verifier and all messages are random elements from $ \mathbb Z_p^* $. These are the pre-requisites needed to convert the protocol presented so far into a non-interactive protocol that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. 
 
 
 
-##### Protocol 2.5` - MPC Protocol for Bulletproofs
+##### Protocol 2.5! - MPC Protocol for Bulletproofs
 
 This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs $ m $ parties each having a Pedersen commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each
 $ V_k $ commits to a number in some fixed range.
@@ -331,7 +334,7 @@ $$
 g_i=g_{[{i \over{m}}]}^{((i-1) \mod m+1)} \mspace{15mu} \mathrm{and} \mspace{15mu} h_i=h_{[{i \over{m}}]}^{((i-1) \mod m+1)}
 $$
 
-The protocol either uses three rounds with linear communication in both $ m $ and the binary encoding of the range, or it uses a logarithmic number of rounds and communication that is only linear in $ m $. For the linear communication case the protocol in [Protocol 2.1`](#protocol-21---inner-product-range-proof) is followed with the difference that each party generates its part of the proof using its own inputs and generators, that is
+The protocol either uses three rounds with linear communication in both $ m $ and the binary encoding of the range, or it uses a logarithmic number of rounds and communication that is only linear in $ m $. For the linear communication case the protocol in [Protocol 2.1!](#protocol-21---inner-product-range-proof) is followed with the difference that each party generates its part of the proof using its own inputs and generators, that is
 
 $$
 A^{(k)} , S^{(k)}; \mspace{15mu} T_1^{(k)} , T_2^{(k)}; \mspace{15mu} \tau_x^{(k)} , \mu^{(k)} , \hat{t}^{(k)} , \mathbf{l}^{(k)} , \mathbf{r}^{(k)}
@@ -353,21 +356,21 @@ The communication can be reduced by running a second MPC protocol for the inner 
 
 
 
-#### Protocol 3` - Zero-Knowledge Proof for Arithmetic Circuits
+#### Protocol 3! - Zero-Knowledge Proof for Arithmetic Circuits
 
 Bulletproofs present an efficient zero-knowledge argument for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> with a proof size of $ 2 \cdot [ \log _2 (n)+13] $ elements with $ n $ denoting the multiplicative complexity (number of multiplication gates) of the circuit. 
 
-Bootle et al. [[12]] showed how an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted into a relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear constraints. The communication cost of the addition gates in the argument was removed by providing a technique that can directly handle a set of Hadamard products and linear relations together. For a two-input multiplication gate let $ \mathbf a_L  , \mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear constraints, $ \mathbf W_{L,q}  \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}  , \mathbf W_{O,q} \in \mathbb Z_p^n $ and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] $ then the linear constraints has the form
+Bootle et al. [[12]] showed how an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted into a relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear consistency constraints. The communication cost of the addition gates in the argument was removed by providing a technique that can directly handle a set of Hadamard products and linear relations together. For a two-input multiplication gate let $ \mathbf a_L  , \mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear consistency constraints, $ \mathbf W_{L,q}  \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}  , \mathbf W_{O,q} \in \mathbb Z_p^n $ be the gate weights and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] $, then the linear consistency constraints has the form
 
 $$
 \langle \mathbf W_{L,q}, \mathbf a_L \rangle + \langle \mathbf W_{R,q}, \mathbf a_R \rangle +\langle \mathbf W_{O,q}, \mathbf a_O \rangle = c_q
 $$
 
-The high level idea of this protocol is to convert the Hadamard-product relation along with the linear constraints into a single inner product relation. Pedersen commitments $ V_j $ are also included as input wires to the arithmetic circuit, which is an important refinement otherwise the arithmetic circuit would need to implement a commitment algorithm. The linear constraints also include openings $ v_j $ of $ V_j $. 
+The high level idea of this protocol is to convert the Hadamard-product relation along with the linear consistency constraints into a single inner product relation. Pedersen commitments $ V_j $ are also included as input wires to the arithmetic circuit, which is an important refinement otherwise the arithmetic circuit would need to implement a commitment algorithm. The linear constraints also include openings $ v_j $ of $ V_j $. 
 
 ##### Protocol 3 - Inner-Product Proof for Arithmetic Circuits
 
-Similar to [Protocol 2.1`](#protocol-21---inner-product-range-proof) the *prover* $ \mathcal{P} $ produces a random linear combination of the Hadamard product and linear constraints to form a single inner product constraint. If the combination is chosen randomly by the *verifier* $ \mathcal{V} $ then with overwhelming probability the inner-product constraint implies the other constraints. A proof system must be presented for relation (9) below:
+Similar to [Protocol 2.1!](#protocol-21---inner-product-range-proof) the *prover* $ \mathcal{P} $ produces a random linear combination of the Hadamard product and linear constraints to form a single inner product constraint. If the combination is chosen randomly by the *verifier* $ \mathcal{V} $ then with overwhelming probability the inner-product constraint implies the other constraints. A proof system must be presented for relation (9) below:
 
 $$
 \begin{aligned} 
@@ -408,11 +411,11 @@ The proof system presented here has:
 
 
 
-##### Protocol 3.1` - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits
+##### Protocol 3.1! - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits
 
-Similar to [Protocol 2.2`](#protocol-22---logarithmic-range-proof) the communication cost of [Protocol 3](#protocol-3---inner-product-proof-for-arithmetic-circuits) can be reduced by using the efficient inner product argument. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(82) Figure&nbsp;8) can be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone. The *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engage in an inner product argument on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $ to check correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(92) Figure 8) and $ \hat {t} $ (step&nbsp;(88) Figure&nbsp;8); this is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation. Communication is now reduced to $ 2 \cdot [ \log_22(n)] + 8 $ group elements and $ 5 $ elements in $ \mathbb Z $ instead of $ 2 \cdot n $ elements, thereby archiving a proof size that is logarithmic in $ n $.
+Similar to [Protocol 2.2!](#protocol-22---logarithmic-range-proof) the communication cost of [Protocol 3](#protocol-3---inner-product-proof-for-arithmetic-circuits) can be reduced by using the efficient inner product argument. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(82) Figure&nbsp;8) can be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone. The *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engage in an inner product argument on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $ to check correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(92) Figure 8) and $ \hat {t} $ (step&nbsp;(88) Figure&nbsp;8); this is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation. Communication is now reduced to $ 2 \cdot [ \log_22(n)] + 8 $ group elements and $ 5 $ elements in $ \mathbb Z $ instead of $ 2 \cdot n $ elements, thereby archiving a proof size that is logarithmic in $ n $.
 
-Similar to [Protocol 2.4`](#protocol-24---non-interactive-proof-through-fiat-shamir) the protocol presented so far can be turned into an efficient non interactive proof that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
+Similar to [Protocol 2.4!](#protocol-24---non-interactive-proof-through-fiat-shamir) the protocol presented so far can be turned into an efficient non interactive proof that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
 The proof system presented here has:
 
@@ -422,18 +425,21 @@ The proof system presented here has:
 
 
 
-#### Protocol 4` - Optimized Verifier using Multi-Exponentiation and Batch Verification
+#### Protocol 4! - Optimized Verifier using Multi-Exponentiation and Batch Verification
 
-In many of the Bulletproofs' [Use Cases](#use-cases) the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that is also extendable to aggregate range proofs ([Protocol 2.3`](#protocol-23---aggregating-logarithmic-proofs)) and the arithmetic circuit protocol ([Protocol 3`](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)). 
+In many of the Bulletproofs' [Use Cases](#use-cases) the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that is also extendable to aggregate range proofs ([Protocol 2.3!](#protocol-23---aggregating-logarithmic-proofs)) and the arithmetic circuit protocol ([Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)).
 
-In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. The Bulletproofs *verifier* only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;3. Exponentiation is delayed until those checks are performed and they are also combined into a single check. In the protocol presented in Figure 9, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j ​$ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation).
+In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. The Bulletproofs *verifier* $ \mathcal{V} $ only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;3. Exponentiation is delayed until those checks are performed and they are also combined into a single check. In the protocol presented in Figure 9 run by the *verifier* $ \mathcal{V} $, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation).
 
 <p align="center"><img src="sources/Protocol-4.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;9: Bulletproofs Protocol 4` [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;9: Bulletproofs Protocol 4! [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
+The two multi-exponentiations in steps (98) and (105) in Figure&nbsp;9 can be combined using a random value $ c \xleftarrow[]{$} \mathbf Z_p $, which follows from the fact that if $ A^cB = 1 $ for a random $ c $ then with high probability $ A = 1 \wedge B = 1 $.
+
+???????????
 
 
 
