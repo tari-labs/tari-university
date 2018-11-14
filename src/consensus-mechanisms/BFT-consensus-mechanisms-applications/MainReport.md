@@ -27,7 +27,7 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   - [Avalanche](#avalanche)
   - [PARSEC](#parsec)
   - [Democratic BFT](#democratic-bft)
--Appendix A(#appendix-a)
+-[Appendix A](#appendix-a)
 - [Terminology](#terminology)
   - [Consensus](#consensus)
   - [Binary Consensus](#binary-consensus)
@@ -66,11 +66,9 @@ Important to consider is the 'scalability trilemma'; a phrase referred to by Vit
 
 Through the recent development of this ecosystem, most block chains have focused on two of the three factors, namely decentralization and security; at the expense of scalability. The primary reason for this is that nodes must reach consensus before transactions can be processed. [[19]]
 
-This report sees the examination of proposals considering Byzantine Fault Tolerant (BFT) consensus mechanisms and takes into account their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. In each instance the protocol assumptions, reference implementations and discernment on whether the protocol may be used for Tari as a means to maintain the distributed asset state will be assessed.<sup id="a1">[1](#f1)</sup> below. 
+This report sees the examination of proposals considering Byzantine Fault Tolerant (BFT) consensus mechanisms and takes into account their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. In each instance the protocol assumptions, reference implementations and discernment on whether the protocol may be used for Tari as a means to maintain the distributed asset state will be assessed.
 
-<br>
-
-<i><b id="f1">1</b> This report discusses several terms and concepts related to consensus mechanisms; these include definitions of [Consensus](#consensus), [Binary Consensus](#binary-consensus), [Byzantine Fault Tolerance](#byzantine-fault-tolerance), [Practical Byzantine Fault Tolerant Variants](#practical-byzantine-fault-tolerant-variants), [Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols) and [Scalability-performance trade off](#scalability-performance-trade-off. An important characteristic of consensus mechanisms are degrees of synchrony which range from [Synchrony](#synchrony), [Partial Synchrony](#partial-synchrony), [Weak Synchrony](#weak-synchrony), [Random Synchrony](#random-synchrony) and [Asynchrony](#asynchrony), as well as [The Problem with Timing Assumptions](#the-problem-with-timing-assumptions). Definitions on [Denial of Service Attack](#denial-of-service-attack), The FLP Impossibility](#the-flp-impossibility) and [Randomized Agreement](#randomized-agreement) are also provided.[↩](#a1)</i>
+This report discusses several terms and concepts related to consensus mechanisms; these include definitions of [Consensus](#consensus), [Binary Consensus](#binary-consensus), [Byzantine Fault Tolerance](#byzantine-fault-tolerance), [Practical Byzantine Fault Tolerant Variants](#practical-byzantine-fault-tolerant-variants), [Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols) and [Scalability-performance trade off](#scalability-performance-trade-off. An important characteristic of consensus mechanisms are degrees of synchrony which range from [Synchrony](#synchrony), [Partial Synchrony](#partial-synchrony), [Weak Synchrony](#weak-synchrony), [Random Synchrony](#random-synchrony) and [Asynchrony](#asynchrony), as well as [The Problem with Timing Assumptions](#the-problem-with-timing-assumptions). Definitions on [Denial of Service Attack](#denial-of-service-attack), [The FLP Impossibility](#the-flp-impossibility) and [Randomized Agreement](#randomized-agreement) are also provided.
 
 ## A brief survey of Byzantine Fault Tolerant Consensus Mechanisms
 
