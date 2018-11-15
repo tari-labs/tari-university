@@ -19,6 +19,7 @@
     - [NFT Landscape](non-fungible-tokens/nft-landscape-1/sources/PITCHME.link.md)
   - [Protocols](protocols/protocols.md)
     - [Mimblewimble](protocols/mimblewimble-1/sources/PITCHME.link.md)
+    - [Mimblewimble-Grin Block Chain Protocol Overview](protocols/grin-protocol-overview/MainReport.md)
     - [Grin vs. BEAM; a Comparison](protocols/grin-beam-comparison/MainReport.md)
     - [Grin Design Choice Criticisms - Truth or Fiction](protocols/grin-design-choice-criticisms/MainReport.md)
     - [Atomic Swaps](protocols/atomic-swaps/AtomicSwaps.md)
