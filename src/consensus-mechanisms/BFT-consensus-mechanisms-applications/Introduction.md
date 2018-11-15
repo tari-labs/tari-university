@@ -3,7 +3,7 @@
 - [Introduction](#introduction)
 - [A brief survey of Byzantine Fault Tolerant Consensus Mechanisms](#a-brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms)
 
-## Introduction 
+## Introduction to Applications of Byzantine Consensus Mechanisms 
 
 When considering the how Tari will potentially build its second layer, an analysis of the most promising Byzantine Consensus Mechanisms and their applications was sought. 
 
