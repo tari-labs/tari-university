@@ -1,3 +1,27 @@
+## Contents
+
+- [Appendix A](#appendix-a)
+- [Terminology](#terminology)
+  - [Consensus](#consensus)
+  - [Binary Consensus](#binary-consensus)
+  - [Byzantine Fault Tolerance](#byzantine-fault-tolerance)
+  - [Practical Byzantine Fault Tolerant Variants](#practical-byzantine-fault-tolerant-variants)
+  - [Deterministic and Non-Deterministic Protocols](#deterministic-and-non-deterministic-protocols)
+  - [Scalability-performance trade off](#scalability-performance-trade-off)
+  - [Many Forms of Timing Assumptions (Degrees of Synchrony)](#many-forms-of-timing-assumptions-(degrees-of-synchrony))
+     - [Synchrony](#synchrony)
+     - [Partial Synchrony](#partial-synchrony)
+        - [Unknown-△T Model](#unknown-△t-model)
+        - [Eventually Synchronous](#eventually-synchronous)
+    - [Weak Synchrony](#weak-synchrony)
+    - [Random Synchrony](#random-synchrony)
+    - [Asynchrony](#asynchrony)
+      - [Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
+   - [The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
+  - [Denial of Service Attack](#denial-of-service-attack)
+  - [The FLP Impossibility](#the-flp-impossibility)
+  - [Randomized Agreement](#randomized-agreement)
+
 # Appendix A
 
 ## Terminology
