@@ -13,6 +13,7 @@ body {
     margin: 0;
     font-size: 1rem;
     overflow-x: hidden;
+    background: #f9f9f9;
 }
 
 code {
@@ -43,7 +44,12 @@ a.header:target h4:before {
     margin-left: -30px;
     width: 30px;
 }
-
+.tlu{
+    border-bottom: 1px solid #eee;
+    width: 230px;
+    padding-top: 20px;
+    padding-bottom: 27px;
+}
 .page {
     outline: 0;
     padding: 0 var(--page-padding);

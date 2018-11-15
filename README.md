@@ -31,7 +31,6 @@ If you are considering contributing content to Tari Labs University, please be a
 ### The Submission Process 
 
 This is the basic process we follow within Tari Labs. As an external contributor, we'd appreciate it if you followed the same process.
-
    1. Get some agreement from the community that the topic is of interest.
    2. Write up your report.
    3. Push a first draft of your report as a Pull Request.
@@ -39,6 +38,20 @@ This is the basic process we follow within Tari Labs. As an external contributor
    5. The report gets merged into master. 
    6. Receive the Fame and acclaim that is due.
 
-## Upcoming Talks  
+## Future Topics 
 
-*To join the live presentation meeting, get a link to the GitPitch presentation or to view the detail report online open the schedule available [**here**](https://docs.google.com/presentation/d/e/2PACX-1vRTWfzkepCxn4htBPo5SfAK9mTUEpMAYls7OvGBqu8fdAeyggf24Rtj5Wns8mJdUoB6-FZZ3Uhrl59o/pub?start=false&loop=false&delayms=3000).*
+View our pipeline<sup id="a1">[*](#f1)</sup> below. 
+
+\# | Topic 
+---- | ----
+1 | Fraud Proofs - Easier said than done? 
+2 | Grin vs. Beam, a Comparison
+3 | Introduction to Digital Signatures
+4 | Grin Design Choice Criticisms
+5 | Mimblewimble-Grin Block Chain Protocol Overview
+6 | Applications of Byzantine Consensus Mechanisms
+7 | Regulatory directions in cryptocurrency
+
+<br>
+
+<i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
