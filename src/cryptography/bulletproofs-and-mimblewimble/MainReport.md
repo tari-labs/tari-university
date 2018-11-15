@@ -117,8 +117,7 @@ Some use cases of Bulletproofs are listed below and note this list may not be ex
     Bünz B. et al">5</a>]</b></div>
 
 - Batch verifications
-  - Batch verifications can be done using various values and outputs from running the Bulletproofs [Protocol&nbsp;1](#protocol-1---inner-product-argument) and [Protocol&nbsp;2](#protocol-2---inner-product-verification-through-multi-exponentiation). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
-  - ???
+  - Batch verifications can be done using one of the Bulletproofs derivative protocols ([Protocol&nbsp;4!](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
 
 
 
@@ -429,7 +428,11 @@ The proof system presented here has:
 
 In many of the Bulletproofs' [Use Cases](#use-cases) the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that is also extendable to aggregate range proofs ([Protocol 2.3!](#protocol-23---aggregating-logarithmic-proofs)) and the arithmetic circuit protocol ([Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)).
 
-In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. The Bulletproofs *verifier* $ \mathcal{V} $ only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;3. Exponentiation is delayed until those checks are performed and they are also combined into a single check. In the protocol presented in Figure 9 run by the *verifier* $ \mathcal{V} $, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation).
+<u>Multi-exponentiation</u>
+
+In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) the Bulletproofs *verifier* $ \mathcal{V} $ only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;3.
+
+In the protocol presented in Figure 9 run by the *verifier* $ \mathcal{V} $, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation).  
 
 <p align="center"><img src="sources/Protocol-4.png" width="570" /></p>
 <div align="center"><b>Figure&nbsp;9: Bulletproofs Protocol 4! [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -437,11 +440,11 @@ and More, Blockchain Protocol Analysis and Security
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
-The two multi-exponentiations in steps (98) and (105) in Figure&nbsp;9 can be combined using a random value $ c \xleftarrow[]{$} \mathbf Z_p $, which follows from the fact that if $ A^cB = 1 $ for a random $ c $ then with high probability $ A = 1 \wedge B = 1 $.
+A further idea is that multi-exponentiation (steps (98) and (105) in Figure 9 ) be delayed until those checks are performed and that they are also combined into a single check using a random value $ c \xleftarrow[]{$} \mathbf Z_p $. This follows from the fact that if $ A^cB = 1 $ for a random $ c $ then with high probability $ A = 1 \mspace 3mu \wedge \mspace 3mu B = 1 $. Various algorithms are known to compute the multi-exponentiations and scalar quantities (steps (101) and (102) in Figure 9) efficiently (sub-linearly), thereby further improving the speed and efficiency of the protocol.
 
-???????????
+<u>Batch verification</u>
 
-
+A further important optimization concerns the verification of multiple proofs. The essence of the verification is to calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive exponentiations. This is based on the observation that checking $ g^x = 1 \mspace 3mu \wedge \mspace 3mu g^y = 1 $ can be checked by drawing a random scalar $ \alpha $ from a large enough domain and checking that $ g^{\alpha x + y} = 1 $. With high probability, the latter equation implies the first. When applied to multi-exponentiations $ 2n $ exponentiations can be saved per additional proof. Verifying $ m $ distinct range proofs of size $ n $ only requires a single multi-exponentiation of size $ 2n+2+m \cdot (2 \cdot \log (n) + 5 ) $ along with $ O ( m \cdot n ) $ scalar operations.
 
 
 ## Comparison to other Zero-knowledge Proof Systems
