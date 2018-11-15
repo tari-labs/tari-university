@@ -48,7 +48,6 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   - [Denial of Service Attack](#denial-of-service-attack)
   - [The FLP Impossibility](#the-flp-impossibility)
   - [Randomized Agreement](#randomized-agreement)
-  - [Gossip Protocol](#gossip-protocol) 
 - [Summary](#summary)
 - [References](#references)
 
