@@ -27,6 +27,8 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   - [Avalanche](#avalanche)
   - [PARSEC](#parsec)
   - [Democratic BFT](#democratic-bft)
+- [Summary](#summary)
+- [References](#references)
 - [Appendix A](#appendix-a)
 - [Terminology](#terminology)
   - [Consensus](#consensus)
@@ -48,8 +50,6 @@ This paper focuses on analyzing these consensus protocols and their feasibility 
   - [Denial of Service Attack](#denial-of-service-attack)
   - [The FLP Impossibility](#the-flp-impossibility)
   - [Randomized Agreement](#randomized-agreement)
-- [Summary](#summary)
-- [References](#references)
 
 ## Introduction 
 
