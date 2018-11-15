@@ -1,3 +1,14 @@
+## Contents
+
+  - [HoneyBadgerBFT](#honeybadgerbft)
+  - [Stellar Consensus Protocol](#stellar-consensus-protocol)
+  - [LinBFT](#linbft)
+  - [Algorand](#algorand)
+  - [Thunderella](#thunderella)
+  - [Avalanche](#avalanche)
+  - [PARSEC](#parsec)
+  - [Democratic BFT](#democratic-bft)
+
 ### HoneyBadgerBFT
 
 HoneyBadgerBFT was released in November 2016 and is seen as the first practical **asynchronous** BFT consensus algorithm. Designed with cryptocurrencies in mind, where bandwidth is considered scarce, but an abundance of CPU power is available. Thus, the protocol implements public-private key encryption to increase the efficiency of the establishment of consensus. The protocol works with a fixed set of servers to run the consensus; however, this leads to centralization and allows an attacker to specifically target these servers. [[9]]
