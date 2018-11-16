@@ -55,7 +55,7 @@ The Hash graph has some similarities to a block chain. To quote the white paper:
 
 Because each node keeps track of the hash graph, there is no need to have voting rounds in HashGraph; each node already knows what all of its peers will vote for and thus consensus is reached purely by analyzing the graph. 
 
-### The HashGraph Algorithm: The Gossip Protocol 
+#### The HashGraph Algorithm: The Gossip Protocol 
 
 The gossip protocol works like this:
 
