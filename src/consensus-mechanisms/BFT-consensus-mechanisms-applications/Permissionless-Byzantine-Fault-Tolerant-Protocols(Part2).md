@@ -1,4 +1,4 @@
-## Contents
+# Permissionless Byzantine Fault Tolerant Protocols (Part 2)
 
   - [HoneyBadgerBFT](#honeybadgerbft)
   - [Stellar Consensus Protocol](#stellar-consensus-protocol)
