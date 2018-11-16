@@ -5,6 +5,13 @@
   - [Chandra Toueg](#chandra-toueg)
   - [Raft](#raft)
   - [HashGraph](#hashgraph)
+    - [The Gossip Protocol](#the-gossip-protocol)
+    - [Ancestors](#ancestors)
+    - [Seeing](#seeing)
+    - [Strongly seeing](#strongly-seeing)
+    - [The Construct of Gossiping](#the-construct-of-gossiping)
+    - [Internal consenus](#internal-consensus)
+    - [Criticisms](#criticisms) 
   - [SINTRA](#sintra)
 
 ## Introduction
@@ -55,7 +62,7 @@ The Hash graph has some similarities to a block chain. To quote the white paper:
 
 Because each node keeps track of the hash graph, there is no need to have voting rounds in HashGraph; each node already knows what all of its peers will vote for and thus consensus is reached purely by analyzing the graph. 
 
-#### The HashGraph Algorithm: The Gossip Protocol 
+#### The Gossip Protocol 
 
 The gossip protocol works like this:
 
