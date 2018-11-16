@@ -1,10 +1,10 @@
-## Contents
+# Permissioned Byzantine Fault Tolerant Protocols 
 
-- [Permissioned Byzantine Fault Tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
+- [Introduction](#introduction)
   - [Hyperledger Fabric (HLF)](#hyperledger-fabric-(hlf))
   - [Tendermint](#tendermint)
 
-## Permissioned Byzantine Fault Tolerant Protocols 
+## Introduction
 
 Byzantine agreement schemes are considered well suited for permissioned block chains, where the identity of the participants is known. Examples include Hyperledger and Tendermint. Here the Federated Consensus Algorithm is implemented. [[9]] 
 
