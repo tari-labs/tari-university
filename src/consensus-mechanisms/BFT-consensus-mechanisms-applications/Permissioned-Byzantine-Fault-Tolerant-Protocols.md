@@ -18,13 +18,13 @@ While being redesigned for a v1.0 release, the format's goal was to achieve exte
 
 ### Tendermint
 
-Tendermint Core is a BFT Proof-of-Stake (PoS) protocol which is composed of two protocols in one: a consensus algorithm and a peer-to-peer networking protocol. Jae Kwon and Ethan Buchman, inspired by the design goal behind [Raft](), specified Tendermint as an easy to understand, developer-friendly algorithm while doing algorithmically complex systems engineering. [[34]]
+Tendermint Core is a BFT Proof-of-Stake (PoS) protocol which is composed of two protocols in one: a consensus algorithm and a peer-to-peer networking protocol. Jae Kwon and Ethan Buchman, inspired by the design goal behind [Raft](./Permissionless-Byzantine-Fault-Tolerant-Protocols(Part1).md#raft), specified Tendermint as an easy to understand, developer-friendly algorithm while doing algorithmically complex systems engineering. [[34]]
 
 Tendermint is modeled as a deterministic protocol, live under partial synchrony, which achieves throughput within the bounds of the latency of the network and individual processes themselves. 
 
 Tendermint rotates through the validator set, in a weighted round-robin fashion: where the higher the stake (i.e. voting power) that a validator possesses, the greater their weighting, the proportionally more times they will be elected as leaders. Thus, if one validator has the same amount of voting power as another validator, they will both be elected by the protocol an equal amount of times. [[34]] 
 
-Critics have argued that Tendermint is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them, sniffling the progression of the chain. Although Sentry Architecture (containing sentry nodes, see [Sentry Nodes](#sentry-nodes)) in Tendermint has been implemented, the argument on the degree of decentralization is still questionable. 
+Critics have argued that Tendermint is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them, sniffling the progression of the chain. Although Sentry Architecture (containing sentry nodes, see [Sentry Nodes](#sentry-nodes) in Tendermint has been implemented, the argument on the degree of decentralization is still questionable. 
 
 #### Sentry Nodes 
 
