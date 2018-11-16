@@ -30,7 +30,7 @@ Micali"
 [5]: https://medium.com/@flatoutcrypto/project-spotlight-maidsafe-and-parsec-part-1-4830cec8d9e3
 "Project Spotlight: Maidsafe and PARSEC Part 1" 
 
-[[6]] The Honey Badger of BFT Protocols WhitePaper, Miller et al.  https://eprint.iacr.org/2016/199.pdf, Date accessed: 2018-08-30
+[[6]] The Honey Badger of BFT Protocols WhitePaper, Miller et al.,  https://eprint.iacr.org/2016/199.pdf, Date accessed: 2018-08-30
 
 [6]: https://eprint.iacr.org/2016/199.pdf
 "The Honey Badger of BFT Protocols WhitePaper,

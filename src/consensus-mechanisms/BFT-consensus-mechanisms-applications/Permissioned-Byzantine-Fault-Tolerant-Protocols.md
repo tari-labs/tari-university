@@ -1,7 +1,7 @@
 # Permissioned Byzantine Fault Tolerant Protocols 
 
 - [Introduction](#introduction)
-  - [Hyperledger Fabric (HLF)](#hyperledger-fabric-(hlf))
+  - [Hyperledger Fabric (HLF)](#hyperledger-fabric-hlf)
   - [Tendermint](#tendermint)
     - [Sentry Nodes](#sentry-nodes)
 
@@ -25,13 +25,13 @@ Tendermint is modeled as a deterministic protocol, live under partial synchrony,
 
 Tendermint rotates through the validator set, in a weighted round-robin fashion: where the higher the stake (i.e. voting power) that a validator possesses, the greater their weighting, the proportionally more times they will be elected as leaders. Thus, if one validator has the same amount of voting power as another validator, they will both be elected by the protocol an equal amount of times. [[34]] 
 
-Critics have argued that Tendermint is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them, sniffling the progression of the chain. Although Sentry Architecture (containing sentry nodes, see [Sentry Nodes](#sentry-nodes) in Tendermint has been implemented, the argument on the degree of decentralization is still questionable. 
+Critics have argued that Tendermint is not decentralized, and one can distinguish and target leadership, launching a DDoS attack against them, sniffling the progression of the chain. Although Sentry Architecture (containing [Sentry Nodes](#sentry-nodes)) has been implemented in Tendermint, the argument on the degree of decentralization is still questionable. 
 
 #### Sentry Nodes 
 
 Sentry Nodes are guardians of a validator node and provide the validator nodes with access to the rest of the network. Sentry nodes are well connected to other full nodes on the network. Sentry nodes may be dynamic, but should maintain persistent connections to some evolving random subset of each other. They should always expect to have direct incoming connections from the validator node and its backup(s). They do not report the validator node's address in the Peer Exchange Reactor (PEX) and they may be more strict about the quality of peers they keep.
 
-Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual Private Network (VPN) with one another, but only report each other sparingly in the PEX.[[44]]
+Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual Private Network (VPN) with one another, but only report each other sparingly in the PEX. [[44]]
 
 [9]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
 "High-Performance Consensus Mechanisms for Blockchains,

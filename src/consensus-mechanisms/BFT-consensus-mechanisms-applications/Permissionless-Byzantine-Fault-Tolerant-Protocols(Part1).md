@@ -70,7 +70,7 @@ The gossip protocol works like this:
 
 - Bob, on receiving Alice's information, marks this as a gossip event and fills in any gaps in his knowledge from Alice's information. Once done, he continues gossiping with his updated information.
 
-The basic idea behind the Gossip Protocol is the following: A node wants to share some information to the other nodes in the netwrok. Then periodically it randomly selects a node from the set of nodes and exchanges the information. The node that receives the information performs the randomly selects a node from the set of nodes and exchanges the information, and so on. The information is periodically sent to _N_ targets, where _N_ is the fanout. [[45]]
+The basic idea behind the Gossip Protocol is the following: A node wants to share some information to the other nodes in the network. Then periodically it randomly selects a node from the set of nodes and exchanges the information. The node that receives the information performs the randomly selects a node from the set of nodes and exchanges the information, and so on. The information is periodically sent to _N_ targets, where _N_ is the fanout. [[45]]
 
 The _cycle_ is the number of rounds to spread the information. The _fanout_ is the number of nodes a node gossips with in each cycle.
 
@@ -149,7 +149,7 @@ in parallel:
       call findOrder
     end loop
 ```
-Here we have the Swirlds HashGraph consensus algorithm. Each member runs this in parallel. Each sync brings in new events, which are then added to the hash graph. All known events are then divided into rounds. Then the first events in each round are decided as being famous or not (through purely local Byzantine agreement with virtual voting). Then the total order is found on those events for which enough information is available. If two members independently assign a position in history to an event, they are guaranteed to assign the same position, and guaranteed to never change it, even as more information comes in. Furthermore, each event is eventually assigned such a position, with probability one.[[30]] 
+Here we have the Swirlds HashGraph consensus algorithm. Each member runs this in parallel. Each sync brings in new events, which are then added to the hash graph. All known events are then divided into rounds. Then the first events in each round are decided as being famous or not (through purely local Byzantine agreement with virtual voting). Then the total order is found on those events for which enough information is available. If two members independently assign a position in history to an event, they are guaranteed to assign the same position, and guaranteed to never change it, even as more information comes in. Furthermore, each event is eventually assigned such a position, with probability one. [[30]] 
 
    ```procedure divideRounds
       for each event x
@@ -161,7 +161,7 @@ Here we have the Swirlds HashGraph consensus algorithm. Each member runs this in
         x.witness ← ( x has no self parent ) || ( x.round > x.selfParent.round )
    ```
 The above is deemed the divideRounds procedure. As soon as an event x is known, it is assigned a round number x.round, and the boolean value x.witness is calculated, indicating whether it is the first event that a member created in that round. [[30]]
-    
+​    
    ```procedure decideFame
       for each event x in order from earlier rounds to later
         x.famous ← UNDECIDED
@@ -184,7 +184,7 @@ The above is deemed the divideRounds procedure. As soon as an event x is known, 
               y.vote ← v
             else // else flip a coin
               y.vote ← middle bit of y.signature
-```
+   ```
 This is the decideFame procedure. For each witness event (i.e., an event x where x.witness is true), decide whether it is famous (i.e., assign a boolean to x.famous). This decision is done by a Byzantine agreement protocol based on virtual voting. Each member runs it locally, on their own copy of the hashgraph, with no additional communication. It treats the events in the hashgraph as if they were sending votes to each other, though the calculation is purely local to a member’s computer. The member assigns votes to the witnesses of each round, for several rounds, until more than 2/3 of the population agrees. [[30]]
 
 #### Criticisms
@@ -198,13 +198,13 @@ An attempt to address some of these criticisms has been presented. [[31]],
 
 SINTRA is a Secure Intrusion-Tolerant Replication Architecture used for the coordination in asynchronous networks subject to Byzantine faults. It consists of a collection of protocols and are implemented in Java, providing secure replication and coordination among a group of servers connected by a wide-area network, such as the Internet. For a group consisting of _n_ servers, it tolerates up to $t<n/3$ servers failing in arbitrary, malicious ways, which is optimal for the given model. The servers are connected only by asynchronous point-to-point communication links. Thus, SINTRA automatically tolerates timing failures as well as attacks that exploit timing. The SINTRA group model is static, which means that failed servers must be recovered by mechanisms outside of SINTRA, and the group must be initialized by a trusted process.
 
-The protocols exploit randomization, which is needed to solve Byzantine agreement in such asynchronous distributed systems. Randomization is provided by a threshold-cryptographic pseudorandom generator, a coin-tossing protocol based on the Diffie-Hellman problem. Threshold cryptography is a fundamental concept in SINTRA as it allows the group to perform a common cryptographic operation for which the secret key is shared among the servers in such a way that no single server or small coalition of corrupted servers can obtain useful information about it. SINTRA provides threshold-cryptographic schemes for digital signatures, public-key encryption, and unpredictable pseudo-random number generation (coin-tossing). It contains broadcast primitives for reliable and consistent broadcasts, which provide agreement on individual messages sent by distinguished senders. However, these primitives cannot guarantee a total order for a stream of multiple messages delivered by the system, which is needed to build fault-tolerant services using the state machine replication paradigm. This is the problem of atomic broadcast and requires more expensive protocols based on Byzantine agreement. SINTRA provides multiple randomized Byzantine agreement protocols, for binary and multi-valued agreement, and implements an atomic broadcast channel on top of agreement. An atomic broadcast that also maintains a causal order in the presence of Byzantine faults is provided by the secure causal atomic broadcast channel.[[51]]
+The protocols exploit randomization, which is needed to solve Byzantine agreement in such asynchronous distributed systems. Randomization is provided by a threshold-cryptographic pseudorandom generator, a coin-tossing protocol based on the Diffie-Hellman problem. Threshold cryptography is a fundamental concept in SINTRA as it allows the group to perform a common cryptographic operation for which the secret key is shared among the servers in such a way that no single server or small coalition of corrupted servers can obtain useful information about it. SINTRA provides threshold-cryptographic schemes for digital signatures, public-key encryption, and unpredictable pseudo-random number generation (coin-tossing). It contains broadcast primitives for reliable and consistent broadcasts, which provide agreement on individual messages sent by distinguished senders. However, these primitives cannot guarantee a total order for a stream of multiple messages delivered by the system, which is needed to build fault-tolerant services using the state machine replication paradigm. This is the problem of atomic broadcast and requires more expensive protocols based on Byzantine agreement. SINTRA provides multiple randomized Byzantine agreement protocols, for binary and multi-valued agreement, and implements an atomic broadcast channel on top of agreement. An atomic broadcast that also maintains a causal order in the presence of Byzantine faults is provided by the secure causal atomic broadcast channel. [[51]]
 
-SINTRA is designed in a modular way as shown in Figure 1. Modularity greatly simplifies the construction
+SINTRA is designed in a modular way as shown in Figure 3. Modularity greatly simplifies the construction
 and analysis of the complex protocols needed to tolerate Byzantine faults.
 
 <p align="center"><img src="../assets/design-of-sintra.png" width="300" /></p>
-<p align="center"><b>Figure 2: The Design of SINTRA </b></p>
+<p align="center"><b>Figure 3: The Design of SINTRA </b></p>
 
 [9]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf
 "High-Performance Consensus Mechanisms for Blockchains,
@@ -227,13 +227,13 @@ Clement et al."
 "The Honey Badger of BFT Protocols WhitePaper,
 Miller  et al."
 
-[30]: https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf 
+[30]: https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf
 "Hashgraph WhitePaper, Baird"
 
 [45]: https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/
 "Introduction to Gossip" 
 
-[31]: http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf 
+[31]: http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf
 "Swirlds and Sybil Attacks, Baird"
 
 [32]: https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5
