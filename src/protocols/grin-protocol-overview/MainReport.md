@@ -59,7 +59,7 @@ We don't have to record these transactions inside the block, although we still h
 
 An example of cut-through can be seen below:
 
-```
+```text
  I1(x1)    +---> O1
            +---> O2
 
@@ -71,7 +71,7 @@ An example of cut-through can be seen below:
 
 After cut-through
 
-```
+```text
  I1(x1)    +---> O1
  I2(x2)    +---> O4
            +---> O5
