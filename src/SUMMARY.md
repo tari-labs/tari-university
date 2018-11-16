@@ -12,7 +12,6 @@
       - [Permissionless Byzantine Fault Tolerant Protocols (Part 1)](consensus-mechanisms/BFT-consensus-mechanisms-applications/Permissionless-Byzantine-Fault-Tolerant-Protocols(Part1).md)
       - [Permissionless Byzantine Fault Tolerant Protocols (Part 2)](consensus-mechanisms/BFT-consensus-mechanisms-applications/Permissionless-Byzantine-Fault-Tolerant-Protocols(Part2).md)
       - [Summary of Findings](consensus-mechanisms/BFT-consensus-mechanisms-applications/Summary-of-Findings.md)
-      - [Summary of Findings](consensus-mechanisms/BFT-consensus-mechanisms-applications/Summary-of-Findings.md)
       - [References](consensus-mechanisms/BFT-consensus-mechanisms-applications/References.md) 
       - [Appendix A](consensus-mechanisms/BFT-consensus-mechanisms-applications/Appendix-A.md)
   - [Layer 2 Scaling](./layer2scaling/layer2scaling.md)
