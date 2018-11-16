@@ -486,7 +486,7 @@ See [Mimblewimble-Grin Blockchain Protocol Overview](../../protocols/grin-protoc
 
 An independent implementation for Bulletproofs range proofs ([[53]], [[54]]) was done for the Monero project (an open source CryptoNote implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) and [moneromooo-monero](https://github.com/moneromooo-monero). Their implementation supports single and aggregate range proofs. The Monero project have also had security audits done ([[8]], [[9]], [[11]]) on their Bulletproofs implementation.
 
-
+Adjoint, Inc. has done another independent open source implementation of Bulletproofs in Haskell at `GitHub: adjoint-io/bulletproofs` [[29]]. They utilize open source private permissioned blockchain technology for multi-party workflows in the financial industry.
 
 
 
