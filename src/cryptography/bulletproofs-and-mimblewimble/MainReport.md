@@ -13,7 +13,7 @@ Bulletproofs also implements a Multi-party Computation (MPC) protocol whereby di
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner-product relation, which is of independent interest (not related). Bulletproofs builds on these techniques, which yield communication efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-Mimblewimble is a block chain designed for confidential transactions. The essence is that a Pedersen commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The block chain consists only of block-headers, remaining UTXOs with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the block chain. [[1]]
+[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain designed for confidential transactions. The essence is that a Pedersen commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining UTXOs with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. [[1]]
 
 
 
@@ -39,7 +39,7 @@ Mimblewimble is a block chain designed for confidential transactions. The essenc
         - [Protocol 3.1! - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits](#protocol-31---logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
       - [Protocol 4! - Optimized Verifier using Multi-Exponentiation and Batch Verification](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)
   - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
-  - [Interesting Bulletproof Implementation Snippets](#interesting-bulletproof-implementation-snippets)
+  - [Interesting Bulletproofs Implementation Snippets](#interesting-bulletproofs-implementation-snippets)
     - [Current & Past Efforts](#current--past-efforts)
     - [Security Considerations](#security-considerations)
     - [Wallet Reconstruction - Grin](#wallet-reconstruction---grin)
@@ -67,7 +67,7 @@ Andrew Poelstra">3</a>]</b></p>
 
 In Bitcoin, approximately 50 million Unspent Transaction Outputs (UTXO) from approximately 22 million transactions would result in roughly 160GB of range proof data using the current systems, when using 52-bits to represent any value from 1 satoshi up to 21 million bitcoins. Aggregated Bulletproofs would reduce that data set to less than 17GB. [[1]]
 
-In Mimblewimble the block chain grows with the size of the UTXO set. Using Bulletproofs as a drop-in replacement for range proofs in confidential transactions, the size would only grow with the number of transactions that have unspent outputs, thus much smaller than the size of the UTXO set. [[1]]
+In Mimblewimble the blockchain grows with the size of the UTXO set. Using Bulletproofs as a drop-in replacement for range proofs in confidential transactions, the size would only grow with the number of transactions that have unspent outputs, thus much smaller than the size of the UTXO set. [[1]]
 
 
 
@@ -117,7 +117,8 @@ Some use cases of Bulletproofs are listed below and note this list may not be ex
     Bünz B. et al">5</a>]</b></div>
 
 - Batch verifications
-  - Batch verifications can be done using one of the Bulletproofs derivative protocols ([Protocol&nbsp;4!](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a block chain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
+
+  - Batch verifications can be done using one of the Bulletproofs derivative protocols ([Protocol&nbsp;4!](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a blockchain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
 
 
 
@@ -463,17 +464,31 @@ The table below shows a high-level comparison between Sigma Protocols (i.e. inte
 
 
 
-## Interesting Bulletproof Implementation Snippets
+## Interesting Bulletproofs Implementation Snippets
 
 Bulletproofs development is currently still evolving as can be seen when following the different community development projects. Different implementations of Bulletproofs also offer different levels of efficiency, security and functionality. This section describes some of these aspects.
 
 ### Current & Past Efforts
 
-[[25]]
+The initial prototype Bulletproofs implementation was done by [Benedikt Bünz](https://github.com/bbuenz) in Java located at `GitHub:bbuenz/BulletProofLib` [[27]].
 
-[[26]]
+The initial work that provided cryptographic support for a Mimblewimble implementation was mainly done by [Pieter Wuille](https://github.com/sipa), [Gregory Maxwell](https://github.com/gmaxwell) and [Andrew Poelstra](https://github.com/apoelstra) in C located at `GitHub:ElementsProject/secp256k1-zkp` [[25]]. This effort was forked as `GitHub:apoelstra/secp256k1-mw` [[26]] with main contributors being [Andrew Poelstra](https://github.com/apoelstra), [Pieter Wuille](https://github.com/sipa), and [Gregory Maxwell](https://github.com/gmaxwell) where Mimblewimble primitives and support for many of the Bulletproofs protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits) were added. Current effort also involves MuSig [[52]] support.
 
-[[27]]
+The Grin project (an open source Mimblewimble implementation in Rust) subsequently forked `GitHub:ElementsProject/secp256k1-zkp` [[25]] as `mimblewimble/secp256k1-zkp` [[30]] and have added Rust wrappers to it as `mimblewimble/rust-secp256k1-zkp` [[55]] for use in their blockchain. The Beam project (another an open source Mimblewimble implementation in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp` [[25]] as their cryptographic sub-module:
+
+```
+[submodule "secp256k1-zkp"]
+	path = secp256k1-zkp
+	url = https://github.com/ElementsProject/secp256k1-zkp.git
+```
+
+See [Mimblewimble-Grin Blockchain Protocol Overview](../../protocols/grin-protocol-overview/MainReport.md) and [Grin vs. BEAM, a Comparison](../../protocols/grin-beam-comparison/MainReport.md) for more information about the Mimblewimble implementation of Grin and Beam.
+
+An independent implementation for Bulletproofs range proofs ([[53]], [[54]]) was done for the Monero project (an open source CryptoNote implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) and [moneromooo-monero](https://github.com/moneromooo-monero). Their implementation supports single and aggregate range proofs. The Monero project have also had security audits done ([[8]], [[9]], [[11]]) on their Bulletproofs implementation.
+
+
+
+
 
 [[28]]
 
@@ -493,7 +508,7 @@ Bulletproofs development is currently still evolving as can be seen when followi
 
 See  [[35]]
 
-"{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only think I think we're missing here from being able to use this implementation is the ability to store an amount within the range proof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
+"{**yeastplume** } Single commit bullet proofs appear to be working, which is all we need. The only thing I think we're missing here from being able to use this implementation is the ability to store an amount within the range proof (for wallet reconstruction). From conversations with @apoelstra earlier, I believe it's possible to store 64 bytes worth of 'message' (not nearly as much as the current range proofs). We also need to be aware that we can't rely as much on the message hiding properties of range proofs when switching to bullet proofs."
 
 - "{**yeastplume** } @apoelstra the amount, and quite possibly the switch commitment hash as well (or just a hash of the entire output) as per #207..."
 
@@ -513,7 +528,7 @@ See  [[35]]
 
 ## Conclusions, Observations, Recommendations
 
-- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a block chain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
+- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
 -  
 - 
 
@@ -828,6 +843,28 @@ Henry de Valence"
 
 [51]: https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
 "Wikipedia: Hadamard product (matrices)"
+
+[[52]] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
+
+[52]: https://eprint.iacr.org/2018/068.pdf
+"Simple Schnorr Multi-Signatures with 
+Applications to Bitcoin, 
+Maxwell G. et al."
+
+[[53]] GitHub: b-g-goodell/research-lab, https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java, Date accessed: 2018-11-16.
+
+[53]: https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java
+"GitHub: b-g-goodell/research-lab"
+
+[[54]] GitHub: monero-project/monero, https://github.com/monero-project/monero/tree/master/src/ringct, Date accessed: 2018-11-16.
+
+[54]: https://github.com/monero-project/monero/tree/master/src/ringct
+"GitHub: monero-project/monero"
+
+[[55]] GitHub: mimblewimble/rust-secp256k1-zkp, https://github.com/mimblewimble/rust-secp256k1-zkp, Date accessed: 2018-11-16.
+
+[55]: https://github.com/mimblewimble/rust-secp256k1-zkp
+"GitHub: mimblewimble/rust-secp256k1-zkp"
 
 [[?]] , , Date accessed: 2018-11-?.
 
