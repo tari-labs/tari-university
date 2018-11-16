@@ -17,7 +17,7 @@
     - [Asynchrony](#asynchrony)
       - [Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
    - [The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
-    - [Denial of Service Attack](#denial-of-service-attack)
+      - [Denial of Service Attack](#denial-of-service-attack)
   - [The FLP Impossibility](#the-flp-impossibility)
   - [Randomized Agreement](#randomized-agreement)
 
