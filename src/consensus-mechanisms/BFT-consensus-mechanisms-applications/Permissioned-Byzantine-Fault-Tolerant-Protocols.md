@@ -3,6 +3,7 @@
 - [Introduction](#introduction)
   - [Hyperledger Fabric (HLF)](#hyperledger-fabric-(hlf))
   - [Tendermint](#tendermint)
+  - [Sentry Nodes](#sentry-nodes)
 
 ## Introduction
 
