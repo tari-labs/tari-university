@@ -1,6 +1,5 @@
-## Contents
+# Appendix
 
-- [Appendix A](#appendix-a)
 - [Terminology](#terminology)
   - [Consensus](#consensus)
   - [Binary Consensus](#binary-consensus)
@@ -18,11 +17,10 @@
     - [Asynchrony](#asynchrony)
       - [Counting rounds in asynchronous networks](#counting-rounds-in-asynchronous-networks)
    - [The Problem with Timing Assumptions](#the-problem-with-timing-assumptions)
-  - [Denial of Service Attack](#denial-of-service-attack)
+    - [Denial of Service Attack](#denial-of-service-attack)
   - [The FLP Impossibility](#the-flp-impossibility)
   - [Randomized Agreement](#randomized-agreement)
 
-# Appendix A
 
 ## Terminology
 
@@ -94,7 +92,7 @@ Bitcoin mining, for example supports thousands of participants, offers good reco
 
 Several approaches have been employed to remedy these problems, e.g. threshold cryptography, creating new consensus groups for every round, or limiting the number of necessary messages to reach consensus. [[9]]
 
-### *Many Forms of Timing Assumptions (Degrees of Synchrony)* 
+### Many Forms of Timing Assumptions (Degrees of Synchrony) 
 
 #### Synchrony
 
