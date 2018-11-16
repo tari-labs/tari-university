@@ -1,0 +1,391 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+The MuSig Schnorr Signature Scheme
+\end_layout
+
+\begin_layout Section
+Introduction 
+\end_layout
+
+\begin_layout Standard
+This report investigates MuSig, which is provably secure in the 
+\emph on
+plain public-key model
+\emph default
+.
+ However, the case of interactive signature aggregation where each signer
+ signs their own message must still be proven by a complete security analysis.
+ 
+\end_layout
+
+\begin_layout Standard
+Multisignatures are a form of technology used to add additional security
+ for cryptocurrency transactions.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Schnorr Signatures for Bitcoin 
+\end_layout
+
+\begin_layout Standard
+Schnorr signatures produce a smaller on-chain size, support faster validation
+ and have better privacy.
+ They natively allow for combining multiple signatures into one through
+ aggregation.
+ They permit more complex spending policies, including 
+\emph on
+k
+\emph default
+-of-
+\emph on
+n
+\emph default
+ and more to be represented as as single signature for a single key.
+\end_layout
+
+\begin_layout Standard
+Signature aggregation also has its challenges.
+ This included the rogue-key attack, where a participant steals funds using
+ a specifically constructed key.
+ This is easily solved for simple multi-signatures, however, through an
+ enrollment procedure, where the keys sign themselves, supporting it across
+ multiple inputs of a transaction requires plain public-key security, meaning
+ there is no setup.
+ 
+\end_layout
+
+\begin_layout Standard
+An additional attack, termed the Russel attacks, after Russel O'Connor,
+ who was discovered for multi-party schemes where a party could claim ownership
+ of someone else's key and so spend their other outputs.
+ 
+\end_layout
+
+\begin_layout Standard
+Peter Wuille discussed the issues and their solutions, which refines the
+ Bellare-Neven (BN) scheme.
+ He also discussed the performance improvements that were implemented for
+ the scaler multiplication fo the BN scheme and how they enable batch validation
+ on the blockchain.
+ A pair of BIPs are in process to make these advances a reality for Bitcoin.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blocks2018"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Key Aggregation for Schnorr Signatures 
+\end_layout
+
+\begin_layout Standard
+MuSig is a simple multi-signature scheme that is novel in combining:
+\end_layout
+
+\begin_layout Enumerate
+Support for key aggregation 
+\end_layout
+
+\begin_layout Enumerate
+Security in the plain public-key model 
+\end_layout
+
+\begin_layout Standard
+There are two versions of MuSig, that are provably secure, which differ
+ based on the number of communication rounds:
+\end_layout
+
+\begin_layout Itemize
+Three-round MuSig only relies on the Discrete Logarithm (DL) assumption,
+ which ECDSA (Elliptic Curve Digital Signature Algorithm) also relies on
+ 
+\end_layout
+
+\begin_layout Itemize
+Two-round MuSig instead relies on the slightly stronger One-More Discrete
+ Logarithm (OMDL) assumption
+\end_layout
+
+\begin_layout Standard
+A multi-signature scheme is a combination of a signing and verification
+ algorithm, where multiple signers (each with their own private/public key)
+ jointly sign a single message, resulting in a single signature.
+ This can then be verified by anyone knowing the message and the public
+ keys of the signers.
+ 
+\end_layout
+
+\begin_layout Standard
+Note: in the context of Bitcoin, the term 'multisig' refers to a 
+\emph on
+k
+\emph default
+-of-
+\emph on
+n
+\emph default
+ policy, where 
+\emph on
+k
+\emph default
+ can be different from 
+\emph on
+n
+\emph default
+.
+ While in the cryptographic literature, the term multi signature really
+ only refers to 
+\emph on
+n
+\emph default
+-of-
+\emph on
+n
+\emph default
+ policies, however, 
+\emph on
+k
+\emph default
+-of-
+\emph on
+n
+\emph default
+ can be constructed on top of 
+\emph on
+n
+\emph default
+-of-
+\emph on
+n
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The term 
+\emph on
+key aggregation
+\emph default
+ refers to multi-signatures that look like a single-key signature, but with
+ respect to an aggregated public key that is a function of only the participants
+' public keys.
+ Thus, verifiers do not require the knowledge of the original participants'
+ public keys- they can just be given the aggregated key.
+ In some use cases, this leads to better privacy and performance.
+ MuSig is effectively a key aggregation scheme for Schnorr signatures.
+ 
+\end_layout
+
+\begin_layout Standard
+There are other multi-signature schemes that already exist that provide
+ key aggregation for Schnorr signatures, however they come with some limitations
+, such as needing to verify that participants actually have the private
+ key corresponding to the pubic keys that they claim to have.
+ 
+\emph on
+Security in the plain public-key model 
+\emph default
+means that no limitations exist.
+ All that is needed from the participants is their public keys.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wuille2018"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Applications of mulit-signatures in Bitcoin 
+\end_layout
+
+\begin_layout Standard
+The most obvious use case for mulit-signatures with regards to Bitcoin is
+ as a more efficient replacement of 
+\emph on
+n
+\emph default
+-of-
+\emph on
+n
+\emph default
+ multisig scripts and other policies that permit a number of possible combinatio
+ns of keys (including 
+\emph on
+k
+\emph default
+-of-
+\emph on
+n
+\emph default
+, using key trees, MAST, or traditional threshold schemes).
+ For these, a native multisignature scheme means that what is left is one
+ signature per transaction input.
+ 
+\end_layout
+
+\begin_layout Standard
+A key aggregation scheme also lets us reduce the number of public keys per
+ input to one, as a user can send coins to the aggregate of all involved
+ key, rather than including them all in the script.
+ This leads to smaller on-chain footprint, faster validation, and better
+ privacy.
+ As a result, MuSig is a good choice here.
+ 
+\end_layout
+
+\begin_layout Standard
+Instead of creating restrictions with one signature per input, one signature
+ can be used for the entire transaction.
+ Key aggregation cannot be used across multiple inputs, as the public keys
+ are committed to by the outputs, and those can be spent independently.
+ MuSig can be used here (with key aggregation done by the verifier).
+ 
+\end_layout
+
+\begin_layout Standard
+On a technical standing, in order to combine all the transaction inputs'
+ signatures, a multi-signature scheme is not necessary, instead an aggregate
+ signature scheme can be used.
+ The distinction is simply that in an aggregate signature, each signer has
+ their own message, instead of one message shared by all.
+ 
+\end_layout
+
+\begin_layout Standard
+Aggregate signatures can be categorized as being:
+\end_layout
+
+\begin_layout Itemize
+Interactive: Interactive aggregate signatures (IAS) require the signers
+ to cooperate, while non-interactive schemes all the aggregation to be done
+ by anyone
+\end_layout
+
+\begin_layout Itemize
+Non-interactive: These allow the aggregation to be done by anyone
+\end_layout
+
+\begin_layout Standard
+No non-interactive aggregation schemes are known that only rely on the DL
+ assumption, but interactive ones are trivial to construct.
+ 
+\end_layout
+
+\begin_layout Section
+Bellare and Neven 
+\end_layout
+
+\begin_layout Standard
+Bellare-Neven (BN) is a more widely known plain public-key multi-signature
+ scheme, that does not support key aggregation.
+ It is possible to use BN multi-signatures where the individual keys are
+ MuSig aggregates.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Documents/The MuSig Schnorr Signature Scheme"
+options "IEEEtran"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
