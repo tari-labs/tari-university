@@ -1,13 +1,13 @@
-## Contents
+# Permissionless Byzantine Fault Tolerant Protocols (Part 1)
 
-- [Permissionless Byzantine Fault Tolerant Protocols](#permissionless-byzantine-fault-tolerant-protocols)
+- [Introduction](#introduction)
   - [Paxos](#paxos)
   - [Chandra Toueg](#chandra-toueg)
   - [Raft](#raft)
   - [HashGraph](#hashgraph)
   - [SINTRA](#sintra)
 
-## Permissionless Byzantine Fault Tolerant Protocols  
+## Introduction
 
 BFT protocols face several limitations when utilized in permissionless block chains. They do not scale well with the number of participants, resulting in performance deterioration for the targeted network sizes. In addition, they are not well established in this setting, thus they are prone to security issues, e.g. Sybil attacks. Currently, there are approaches that attempt to circumvent or solve this problem. [[9]]
 
