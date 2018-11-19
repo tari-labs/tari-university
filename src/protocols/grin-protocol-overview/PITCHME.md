@@ -90,7 +90,7 @@ Show example block
 2. Alice picks a random nonce ks and sends her partial transaction, $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
 
 ---
-
+## Trustless transactions (cont'd)
 3. Bob picks his own random nonce $ k_r $ and the blinding factor for his output $ r_r $. Using $ r_r $ Bob adds his output to the transaction.
 
 4. Bob computes the message $ M= fee \Vert lock_-height $, 
@@ -102,13 +102,13 @@ Show example block
 5. Bob sends: $ s_r $ and $ k_r\cdot G $ and $ r_r\cdot G $  to Alice.
 
 ---
-
+## Trustless transactions (cont'd)
 6. Alice computes $ e $ just like Bob did and can check that $ s_r\cdot G = k_r\cdot G + e\cdot r_r \cdot G $ 
 
 7. Alice sends her side of the signature $ s_s = k_s + e\cdot r_s $  to Bob.
 
 ---
-
+## Trustless transactions (cont'd)
 8. Bob validates $ s_s\cdot G $  just like Alice did for $ s_r\cdot G $ in step 5 and can produce the final signature $ s = s_s + s_r , k_s\cdot G + k_s\cdot G$ as well as the final transaction kernel including $ s $ and the public key $ r_r\cdot G + r_s\cdot G$
 
 ---
@@ -134,18 +134,20 @@ Relative - $ M = fee \Vert h \Vert c $
 2. Alice picks a random nonce $ k_s $  and her blinding sum $ r_s $ and sends $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
 
 ---
+## Atomic swaps (cont'd)
 3. Bob picks a random blinding factor $ r_r $ and a random nonce $ k_r $. However, this time, instead of simply sending $ s_r = k_r + e\cdot r_r $  with his $ r_r\cdot G $ and $ k_r\cdot G $, Bob sends $ s_r' = k_r + x + e\cdot r_r $ as well as $ x\cdot G $ 
 
 ---
+## Atomic swaps (cont'd)
 4. Alice can validate that $ s_r'\cdot G = k_r\cdot G + x\cdot G + r_r\cdot G $. She can also check that Bob has money locked with $ x\cdot G $ on the other chain.
 5. Alice sends back her $ s_s = k_s + e\cdot x_s $ as she normally would, now that she can also compute $ e = SHA256(M \Vert k_s\cdot G+k_r\cdot G) $
 
 ---
+## Atomic swaps (cont'd)
 6. To complete the signature, Bob computes $ s_r = k_r + e\cdot r_r $ and the final signature is $ (s_r + s_s, k_r\cdot G + k_s\cdot G) $ 
 7. As soon as Bob broadcasts the final transaction to get his Grin, Alice can compute $ s_r' - s_r $ to get $ x $.
 
 ---
 ## Questions 
--
-?
--
+
+## ?
