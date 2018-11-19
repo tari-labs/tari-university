@@ -10,7 +10,7 @@
 
 - Conclusions
 
-+++
+---
 ## Mimblewimble protocol overview - commitments
 
 - Confiditial transactions
@@ -23,8 +23,7 @@
 $ (r_i \cdot G + v_i \cdot H) = (r_c \cdot G + v_c \cdot H) + (r_c \cdot G + v_c + \cdot H) $ 
 
 
-
-+++
+---
 ## Mimblewimble protocol overview - Cut-through and pruning 
 
 MimbleWimble removes all spent outputs in the memorial pool and old blocks. 
@@ -53,8 +52,7 @@ $ output - inputs = kernel_-excess +(part \mspace{3mu} of)kernel_- offset $
 
 
 
-------
-+++
+---
 ## Mimblewimble protocol overview - Cut-through and pruning (cont'd)
 
 Assuming 10 million transactions with 100&nbsp;000 unspent outputs the ledger will be roughly 130GB,
@@ -70,7 +68,6 @@ The total storage requirements can be reduced if cut-through and pruning is appl
 - 250MB of block headers.
 
 ---
-+++
 ## Mimblewimble protocol overview - Blocks
 
 1. Transaction outputs, which include for each output:
@@ -83,7 +80,7 @@ The total storage requirements can be reduced if cut-through and pruning is appl
    2. A signature generated with the excess (71 bytes average).
 5. A block header that includes Merkle trees and proof of work (about 250 bytes).
 
-+++
+---
 ## Trustless transactions
 
 1. Alice selects her inputs and her change. The sum of all blinding factors (change output minus inputs) is $ r_s $.
@@ -107,14 +104,13 @@ The total storage requirements can be reduced if cut-through and pruning is appl
 8. Bob validates $ s_s\cdot G $  just like Alice did for $ s_r\cdot G $ in step 5 and can produce the final signature $ s = s_s + s_r , k_s\cdot G + k_s\cdot G$ as well as the final transaction kernel including $ s $ and the public key $ r_r\cdot G + r_s\cdot G$
 
 ---
-+++
 ## Contracts - time-locked
 
 Absolute - $ M = fee \Vert h $
 
 Relative - $ M = fee \Vert h \Vert c $
 
-+++
+---
 ## Contracts - Multisig
 
 1. Bob picks a blinding factor $ r_b $ and sends $ r_b\cdot G $ to Alice.
@@ -124,7 +120,6 @@ Relative - $ M = fee \Vert h \Vert c $
 5. The kernel is built following the same procedure as used with Trustless Transactions.
 
 ---
-+++
 ## Atomic swaps
 
 1. Alice will send her Grin to a multiparty timelock contract with a refund time $ T_a < T_b $
@@ -135,7 +130,7 @@ Relative - $ M = fee \Vert h \Vert c $
 6. To complete the signature, Bob computes $ s_r = k_r + e\cdot r_r $ and the final signature is $ (s_r + s_s, k_r\cdot G + k_s\cdot G) $ 
 7. As soon as Bob broadcasts the final transaction to get his Grin, Alice can compute $ s_r' - s_r $ to get $ x $.
 
-+++
+---
 ## Questions 
 
 ?
