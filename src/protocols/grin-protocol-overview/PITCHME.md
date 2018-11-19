@@ -20,7 +20,7 @@
 - An example transaction can be expressed as input = output + change. 
 
 
-  $ (r_i \cdot G + v_i \cdot H) = (r_c \cdot G + v_c \cdot H) + (r_c \cdot G + v_c + \cdot H) $ 
+  $ (r_i \cdot G + v_i \cdot H) = (r_c \cdot G + v_c \cdot H) + (r_o \cdot G + v_o + \cdot H) $ 
 
 ---
 ## Mimblewimble protocol overview - Cut-through and pruning 
