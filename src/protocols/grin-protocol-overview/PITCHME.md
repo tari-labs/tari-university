@@ -28,7 +28,7 @@
 MimbleWimble removes all spent outputs in the memorial pool and old blocks. 
 
 
-  $ output - inputs = kernel_-excess + (part \mspace{3mu} of)kernel_- offset $ 
+  $ (output - inputs = kernel_-excess + (part \mspace{3mu} of)kernel_- offset) $ 
 
   ' output - inputs = kernel_-excess + (part \mspace{3mu} of)kernel_- offset ' 
 
