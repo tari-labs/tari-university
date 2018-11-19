@@ -20,15 +20,14 @@
 - An example transaction can be expressed as input = output + change. 
 
 
-$ (r_i \cdot G + v_i \cdot H) = (r_c \cdot G + v_c \cdot H) + (r_c \cdot G + v_c + \cdot H) $ 
-
+  $ (r_i \cdot G + v_i \cdot H) = (r_c \cdot G + v_c \cdot H) + (r_c \cdot G + v_c + \cdot H) $ 
 
 ---
 ## Mimblewimble protocol overview - Cut-through and pruning 
 
 MimbleWimble removes all spent outputs in the memorial pool and old blocks. 
 
-$ output - inputs = kernel_-excess +(part \mspace{3mu} of)kernel_- offset $ 
+​	$ output - inputs = kernel_-excess + (part \mspace{3mu} of)kernel_- offset $ 
 
 
 
@@ -81,11 +80,16 @@ The total storage requirements can be reduced if cut-through and pruning is appl
 5. A block header that includes Merkle trees and proof of work (about 250 bytes).
 
 ---
+Show example block
+
+---
 ## Trustless transactions
 
 1. Alice selects her inputs and her change. The sum of all blinding factors (change output minus inputs) is $ r_s $.
 
 2. Alice picks a random nonce ks and sends her partial transaction, $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
+
+---
 
 3. Bob picks his own random nonce $ k_r $ and the blinding factor for his output $ r_r $. Using $ r_r $ Bob adds his output to the transaction.
 
@@ -97,9 +101,13 @@ The total storage requirements can be reduced if cut-through and pruning is appl
 
 5. Bob sends: $ s_r $ and $ k_r\cdot G $ and $ r_r\cdot G $  to Alice.
 
+---
+
 6. Alice computes $ e $ just like Bob did and can check that $ s_r\cdot G = k_r\cdot G + e\cdot r_r \cdot G $ 
 
 7. Alice sends her side of the signature $ s_s = k_s + e\cdot r_s $  to Bob.
+
+---
 
 8. Bob validates $ s_s\cdot G $  just like Alice did for $ s_r\cdot G $ in step 5 and can produce the final signature $ s = s_s + s_r , k_s\cdot G + k_s\cdot G$ as well as the final transaction kernel including $ s $ and the public key $ r_r\cdot G + r_s\cdot G$
 
@@ -124,13 +132,20 @@ Relative - $ M = fee \Vert h \Vert c $
 
 1. Alice will send her Grin to a multiparty timelock contract with a refund time $ T_a < T_b $
 2. Alice picks a random nonce $ k_s $  and her blinding sum $ r_s $ and sends $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
+
+---
 3. Bob picks a random blinding factor $ r_r $ and a random nonce $ k_r $. However, this time, instead of simply sending $ s_r = k_r + e\cdot r_r $  with his $ r_r\cdot G $ and $ k_r\cdot G $, Bob sends $ s_r' = k_r + x + e\cdot r_r $ as well as $ x\cdot G $ 
+
+---
 4. Alice can validate that $ s_r'\cdot G = k_r\cdot G + x\cdot G + r_r\cdot G $. She can also check that Bob has money locked with $ x\cdot G $ on the other chain.
 5. Alice sends back her $ s_s = k_s + e\cdot x_s $ as she normally would, now that she can also compute $ e = SHA256(M \Vert k_s\cdot G+k_r\cdot G) $
+
+---
 6. To complete the signature, Bob computes $ s_r = k_r + e\cdot r_r $ and the final signature is $ (s_r + s_s, k_r\cdot G + k_s\cdot G) $ 
 7. As soon as Bob broadcasts the final transaction to get his Grin, Alice can compute $ s_r' - s_r $ to get $ x $.
 
 ---
 ## Questions 
-
+-
 ?
+-
