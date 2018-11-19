@@ -34,7 +34,6 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
   - [References](#references)
   - [Appendices](#appendices)
     - [Appendix A: Definition of Terms](#appendix-a-definition-of-terms)
-    - [Appendix B: Notations Used](#appendix-b-notations-used)
   - [Contributors](#contributors)
 
 
@@ -99,7 +98,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 - Batch verifications
 
-  - Batch verifications can be done using one of the Bulletproofs derivative protocols ([Protocol&nbsp;4!](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)). This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a blockchain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
+  - Batch verifications can be done using one of the Bulletproofs derivative protocols. This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a blockchain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
 
 
 
@@ -130,7 +129,7 @@ The initial prototype Bulletproofs implementation was done by [Benedikt Bünz](h
 
 The initial work that provided cryptographic support for a Mimblewimble implementation was mainly done by [Pieter Wuille](https://github.com/sipa), [Gregory Maxwell](https://github.com/gmaxwell) and [Andrew Poelstra](https://github.com/apoelstra) in C located at `GitHub:ElementsProject/secp256k1-zkp` [[25]]. This effort was forked as `GitHub:apoelstra/secp256k1-mw` [[26]] with main contributors being [Andrew Poelstra](https://github.com/apoelstra), [Pieter Wuille](https://github.com/sipa), and [Gregory Maxwell](https://github.com/gmaxwell) where Mimblewimble primitives and support for many of the Bulletproofs protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits) were added. Current effort also involves MuSig [[52]] support.
 
-The Grin project (an open source Mimblewimble implementation in Rust) subsequently forked `GitHub:ElementsProject/secp256k1-zkp` [[25]] as `mimblewimble/secp256k1-zkp` [[30]] and have added Rust wrappers to it as `mimblewimble/rust-secp256k1-zkp` [[55]] for use in their blockchain. The Beam project (another an open source Mimblewimble implementation in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp` [[25]] as their cryptographic sub-module:
+The Grin project (an open source Mimblewimble implementation in Rust) subsequently forked `GitHub:ElementsProject/secp256k1-zkp` [[25]] as `mimblewimble/secp256k1-zkp` [[30]] and have added Rust wrappers to it as `mimblewimble/rust-secp256k1-zkp` [[55]] for use in their blockchain. The Beam project (another open source Mimblewimble implementation in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp` [[25]] as their cryptographic sub-module:
 
 ```
 [submodule "secp256k1-zkp"]
@@ -140,25 +139,35 @@ The Grin project (an open source Mimblewimble implementation in Rust) subsequent
 
 See [Mimblewimble-Grin Blockchain Protocol Overview](../../protocols/grin-protocol-overview/MainReport.md) and [Grin vs. BEAM, a Comparison](../../protocols/grin-beam-comparison/MainReport.md) for more information about the Mimblewimble implementation of Grin and Beam.
 
-An independent implementation for Bulletproofs range proofs ([[53]], [[54]]) was done for the Monero project (an open source CryptoNote implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) and [moneromooo-monero](https://github.com/moneromooo-monero). Their implementation supports single and aggregate range proofs. The Monero project have also had security audits done ([[8]], [[9]], [[11]]) on their Bulletproofs implementation.
+An independent implementation for Bulletproofs range proofs was done for the Monero project (an open source CryptoNote implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) [[53]] in Java as the pre-cursor and [moneromooo-monero](https://github.com/moneromooo-monero) [[54]] in C++ as the final implementation. Their implementation supports single and aggregate range proofs. The Monero project have also had security audits done on their Bulletproofs implementation ([[8]], [[9]], [[11]]) that resulted in a number of serious and critical bug fixes as well as some other code improvements.
 
-Adjoint, Inc. has done another independent open source implementation of Bulletproofs in Haskell at `GitHub: adjoint-io/bulletproofs` [[29]]. They utilize open source private permissioned blockchain technology for multi-party workflows in the financial industry.
+Adjoint, Inc. has also done an independent open source implementation of Bulletproofs in Haskell at `GitHub: adjoint-io/bulletproofs` [[29]]. They utilize open source private permissioned blockchain technology for multi-party workflows in the financial industry.
+
+Chain has done another independent open source implementation of Bulletproofs in Rust from the ground up at `dalek-cryptography/bulletproofs` [[28]]. Their implementation uses Ristretto [[31]], a technique for constructing prime order elliptic curve groups with non-malleable encodings, which allows an existing Curve25519 library to implement a prime-order group with only a thin abstraction layer. This makes it possible for systems using Ed25519 signatures to be safely extended with zero-knowledge protocols, with no additional cryptographic assumptions and minimal code changes. They also implemented parallel Edwards formulas [[39]] using Intel® Advanced Vector Extensions 2 (AVX2) to accelerate curve operations. Initial testing suggests approximately 50% speedup over libsecp256k1.
 
 
-
-[[28]]
-
-[[29]]
-
-[[30]]
 
 [[34]], [[46]], [[48]], [[49]]
 
 ### Security Considerations
 
-[[8]] and  [[9]] and [[11]]
+Real world implementation of Elliptic-curve Cryptography (ECC) is largely based on official standards that govern the selection of curves in order to try and make the Elliptic-curve Discrete-logarithm Problem (ECDLP) hard to solve, that is finding an ECC user's secret key given the user's public key. Many attacks break real-world ECC without solving ECDLP due to problems in ECC security, where implementations can produce incorrect results and also leak secret data. Some implementation considerations also trumps efficiency over security. Secure implementations of the standards based curves are theoretically possible but highly unlikely. ([[14]], [[32]])
 
-[[14]] and [[31]] and [[32]]
+Grin, Beam and Adjoint use ECC curve secp256k1 [[24]] for their Bulletproofs implementation, which fails 1 out of 4 ECDLP security criteria and 3 out of 4 ECC security criteria:
+
+```
+y^2 = x^3 + 0x + 7
+modulo p = 2^256 - 2^32 - 977
+```
+
+Monero and Chain use ECC curve Curve25519 [[38]] for their Bulletproofs implementation, which passes all ECDLP and ECC security criteria:
+
+```
+y^2 = x^3 + 486662x^2 + x
+modulo p = 2^255 - 19
+```
+
+
 
 ### Wallet Reconstruction - Grin
 
@@ -333,6 +342,14 @@ of Pedersen commitment schemes"
 "Zero Knowledge Proof Standardization - 
 An Open Industry/Academic Initiative"
 
+[[24]] SEC 2: Recommended Elliptic Curve Domain Parameters, Standards for Efficient Cryptography, 20 September 2000, http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf, Date accessed: 2018-09-26. 
+
+[24]: http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf
+"SEC 2: Recommended Elliptic 
+Curve Domain Parameters,
+Standards for Efficient Cryptography, 
+20 September 2000"
+
 [[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments and range proofs, https://github.com/ElementsProject/secp256k1-zkp, Date accessed: 2018-09-18.
 
 [25]: https://github.com/ElementsProject/secp256k1-zkp
@@ -372,11 +389,10 @@ no Trusted Setup"
 "GitHub: mimblewimble/secp256k1-zkp, Fork of 
 secp256k1-zkp for the Grin/MimbleWimble project"
 
-[[31]] Climbing the elliptic learning curve (was: Re: Finalizing XEdDSA), https://moderncrypto.org/mail-archive/curves/2017/000846.html, Date accessed: 2018-10-23.
+[[31]] The Ristretto Group, https://ristretto.group/ristretto.html, Date accessed: 2018-10-23.
 
-[31]: https://moderncrypto.org/mail-archive/curves/2017/000846.html
-""Climbing the elliptic learning curve 
-(was: Re: Finalizing XEdDSA)
+[31]: https://ristretto.group/ristretto.html
+"The Ristretto Group"
 
 [[32]] SafeCurves: choosing safe curves for elliptic-curve cryptography, http://safecurves.cr.yp.to/, Date accessed: 2018-10-23.
 
@@ -411,18 +427,20 @@ Module bulletproofs::aggregation"
 [37]: http://cryptography.wikia.com/wiki/Commitment_scheme
 "Cryptography Wikia: Commitment scheme"
 
-[[38]] Adjoint Inc. Documentation: Pedersen Commitment Scheme, https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme, Date accessed: 2018-09-27.
+[[38]] Curve25519: new Diﬃe-Hellman speed records, Bernstein D.J., https://cr.yp.to/ecdh/curve25519-20060209.pdf, Date accessed: 2018-09-26.
 
-[38]: https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme
-"Adjoint Inc. Documentation: 
-Pedersen Commitment Scheme"
+[38]: https://cr.yp.to/ecdh/curve25519-20060209.pdf
+"Curve25519: new Diﬃe-Hellman 
+speed records,
+Bernstein D.J."
 
-[[39]] Non-interactive and information-theoretic secure verifiable secret sharing, Pedersen T. et al., https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf, Date accessed: 2018-09-27.
+[[39]] Twisted Edwards Curves Revisited, Hisil H. et al., Information Security Institute, Queensland University of Technolog, https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf, Date accessed: 2018-09-26.
 
-[39]: https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf
-"Non-interactive and information-theoretic
-secure verifiable secret sharing, 
-Pedersen T. et al."
+[39]: https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf
+"Twisted Edwards Curves Revisited,
+Hisil H. et al.,
+Information Security Institute,
+Queensland University of Technology"
 
 [[40]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-24.
 
@@ -440,24 +458,6 @@ Sadeghi A et al."
 
 [42]: https://en.wikipedia.org/wiki/Cryptographic_nonce
 "Wikipedia: Cryptographic nonce"
-
-[[43]] Intensified ElGamal Cryptosystem (IEC), Sharma P. et al., International Journal of Advances in Engineering & Technology, Jan 2012, http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf, Date accessed: 2018-10-09.
-
-[43]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf
-"Intensified ElGamal Cryptosystem (IEC), Sharma P. et al.
-International Journal of Advances in Engineering & Technology,
-Jan 2012"
-
-[[44]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al., http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf, Date accessed: 2018-10-09.
-
-[44]: http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf
-"On the Security of ElGamal Based Encryption,
-Tsiounis Y. et al."
-
-[[45]] Wikipedia: Decisional Diffie–Hellman assumption, https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption, Date accessed: 2018-10-09.
-
-[45]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption
-"Wikipedia: Decisional Diffie–Hellman assumption"
 
 [[46]] Dalek Cryptography - Crate Bulletproofs, https://doc.dalek.rs/bulletproofs/index.html, Date accessed: 2018-11-08.
 
@@ -483,16 +483,6 @@ Cathie Yun"
 "Bulletproofs pre-release, 
 Henry de Valence"
 
-[[50]] Elliptic Curve Cryptography: A gentle introduction, http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/, Date accessed: 2018-09-10.
-
-[50]: http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction
-"Elliptic Curve Cryptography: A gentle introduction"
-
-[[51]] Wikipedia: Hadamard product (matrices), https://en.wikipedia.org/wiki/Hadamard_product_(matrices), Date accessed: 2018-11-12.
-
-[51]: https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
-"Wikipedia: Hadamard product (matrices)"
-
 [[52]] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
 
 [52]: https://eprint.iacr.org/2018/068.pdf
@@ -514,31 +504,6 @@ Maxwell G. et al."
 
 [55]: https://github.com/mimblewimble/rust-secp256k1-zkp
 "GitHub: mimblewimble/rust-secp256k1-zkp"
-
-[[?]] , , Date accessed: 2018-11-?.
-
-[?]:  
-""
-
-[[?]] , , Date accessed: 2018-11-?.
-
-[?]:  
-""
-
-[[?]] , , Date accessed: 2018-11-?.
-
-[?]:  
-""
-
-[[?]] , , Date accessed: 2018-11-?.
-
-[?]:  
-""
-
-[[?]] , , Date accessed: 2018-11-?.
-
-[?]:  
-""
 
 
 
@@ -591,7 +556,7 @@ abbreviation of number used once.
 In cryptography, a nonce is an arbitrary 
 number  ..."
 
-- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
+- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]]).
   - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
 
   - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
