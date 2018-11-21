@@ -65,10 +65,10 @@ $$
 
 A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
 
-Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;2. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#protocol-2---inner-product-verification-through-multi-exponentiation) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
+Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;1. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#protocol-2---inner-product-verification-through-multi-exponentiation) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
 
 <p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
-<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;1: Bulletproofs Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
@@ -93,10 +93,10 @@ $$
 
 with $ L $ and $R $ as defined in the original reference.
 
-Protocol 2 is shown in Figure&nbsp;3. 
+Protocol 2 is shown in Figure&nbsp;2. 
 
 <p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;3: Bulletproofs Protocol 2 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 2 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
@@ -105,11 +105,12 @@ Bünz B. et al">1</a>]</b></div>
 
 #### Protocol 2! - Range Proof Protocol with Logarithmic Size
 
-Protocol 2' provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#)</sup> and how to allow multiple parties to construct a single aggregate range proof. A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;7.
+Protocol 2' provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#)</sup> and how to allow multiple parties to construct a single aggregate range proof. A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;3.
 
 <p align="center"><img src="sources/RangeProofDiagram.PNG" width="1000" /></p>
-<div align="center"><b>Figure&nbsp;7: Range Proof Protocol Implementation Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography - 
-Crate Bulletproofs">46</a>]</b></div>
+<div align="center"><b>Figure&nbsp;3: Range Proof Protocol Implementation Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography - 
+Crate Bulletproofs">22</a>]</b></div>
+
 
 
 ##### Protocol 2.1! - Inner-Product Range Proof
@@ -203,7 +204,7 @@ The range proof presented here has the following Commitment Scheme<sup>[def][cs~
 
 ##### Protocol 2.2! - Logarithmic Range Proof
 
-This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) Figure&nbsp;5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(67) Figure 6) and $ \hat {t} $ (step&nbsp;(68) Figure&nbsp;6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(63) Figure&nbsp;5) can then be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone, thereby archiving a proof size that is logarithmic in $ n $.
+This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) Figure&nbsp;5 the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $, but their size is linear in $ n $. To make this efficient a proof size that is logarithmic in $ n $ is needed. The transfer of $ \mathbf {l} $ and $ \mathbf {r} $ can be eliminated with an inner-product argument. Checking correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(67) Figure&nbsp;6) and $ \hat {t} $ (step&nbsp;(68) Figure&nbsp;6) is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation (2) on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(63) Figure&nbsp;5) can then be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone, thereby archiving a proof size that is logarithmic in $ n $.
 
 
 
@@ -274,7 +275,7 @@ The communication can be reduced by running a second MPC protocol for the inner 
 
 Bulletproofs present an efficient zero-knowledge argument for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> with a proof size of $ 2 \cdot [ \log _2 (n)+13] $ elements with $ n $ denoting the multiplicative complexity (number of multiplication gates) of the circuit. 
 
-Bootle et al. [[12]] showed how an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted into a relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear consistency constraints. The communication cost of the addition gates in the argument was removed by providing a technique that can directly handle a set of Hadamard products and linear relations together. For a two-input multiplication gate let $ \mathbf a_L  , \mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear consistency constraints, $ \mathbf W_{L,q}  \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}  , \mathbf W_{O,q} \in \mathbb Z_p^n $ be the gate weights and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] $, then the linear consistency constraints has the form
+Bootle et al. [[2]] showed how an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted into a relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear consistency constraints. The communication cost of the addition gates in the argument was removed by providing a technique that can directly handle a set of Hadamard products and linear relations together. For a two-input multiplication gate let $ \mathbf a_L  , \mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear consistency constraints, $ \mathbf W_{L,q}  \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}  , \mathbf W_{O,q} \in \mathbb Z_p^n $ be the gate weights and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] $, then the linear consistency constraints has the form
 
 $$
 \langle \mathbf W_{L,q}, \mathbf a_L \rangle + \langle \mathbf W_{R,q}, \mathbf a_R \rangle +\langle \mathbf W_{O,q}, \mathbf a_O \rangle = c_q
@@ -284,7 +285,7 @@ The high level idea of this protocol is to convert the Hadamard-product relation
 
 ##### Protocol 3 - Inner-Product Proof for Arithmetic Circuits
 
-Similar to [Protocol 2.1!](#protocol-21---inner-product-range-proof) the *prover* $ \mathcal{P} $ produces a random linear combination of the Hadamard product and linear constraints to form a single inner product constraint. If the combination is chosen randomly by the *verifier* $ \mathcal{V} $ then with overwhelming probability the inner-product constraint implies the other constraints. A proof system must be presented for relation (9) below:
+Similar to [Protocol 2.1!](#protocol-21---inner-product-range-proof) the *prover* $ \mathcal{P} $ produces a random linear combination of the Hadamard Product<sup>[def][hdmp~]</sup> and linear constraints to form a single inner product constraint. If the combination is chosen randomly by the *verifier* $ \mathcal{V} $ then with overwhelming probability the inner-product constraint implies the other constraints. A proof system must be presented for relation (9) below:
 
 $$
 \begin{aligned} 
@@ -300,7 +301,7 @@ $$
 
 Let $ \mathbf W_V \in \mathbb Z_p^{Q \times m}  $ be the weights for a commitment $  V_j  $. Relation (9) only holds when $ \mathbf W_{V} $ is of rank $ m $, i.e. if the columns of the matrix are all linearly independent. 
 
-Part 1 of the protocol is presented in Figure 8 where the the *prover* $ \mathcal{P} $ commits to $ l(X),r(X),t(X) $.
+Part 1 of the protocol is presented in Figure&nbsp;8 where the the *prover* $ \mathcal{P} $ commits to $ l(X),r(X),t(X) $.
 
 <p align="center"><img src="sources/Protocol-3-part-1.png" width="690" /></p>
 <div align="center"><b>Figure&nbsp;8: Bulletproofs Protocol 3 (Part 1) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -309,13 +310,14 @@ Engineering 2018,
 Bünz B. et al">1</a>]</b></div>
 
 
-Part 2 of the protocol is presented in Figure 9 where the *prover* $ \mathcal{P} $ convinces the *verifier* $ \mathcal{V} $ that the polynomials are well formed and that $ \langle l(X),r(X) \rangle = t(X) $.
+Part 2 of the protocol is presented in Figure&nbsp;9 where the *prover* $ \mathcal{P} $ convinces the *verifier* $ \mathcal{V} $ that the polynomials are well formed and that $ \langle l(X),r(X) \rangle = t(X) $.
 
 <p align="center"><img src="sources/Protocol-3-part-2.png" width="690" /></p>
-<div align="center"><b>Figure&nbsp;8: Bulletproofs Protocol 3 (Part 2) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;9: Bulletproofs Protocol 3 (Part 2) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 The proof system presented here has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
 
@@ -327,7 +329,7 @@ The proof system presented here has the following Commitment Scheme<sup>[def][cs
 
 ##### Protocol 3.1! - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits
 
-Similar to [Protocol 2.2!](#protocol-22---logarithmic-range-proof) the communication cost of [Protocol 3](#protocol-3---inner-product-proof-for-arithmetic-circuits) can be reduced by using the efficient inner product argument. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(82) Figure&nbsp;8) can be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone. The *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engage in an inner product argument on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $ to check correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(92) Figure 8) and $ \hat {t} $ (step&nbsp;(88) Figure&nbsp;8); this is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation. Communication is now reduced to $ 2 \cdot [ \log_22(n)] + 8 $ group elements and $ 5 $ elements in $ \mathbb Z $ instead of $ 2 \cdot n $ elements, thereby archiving a proof size that is logarithmic in $ n $.
+Similar to [Protocol 2.2!](#protocol-22---logarithmic-range-proof) the communication cost of [Protocol 3](#protocol-3---inner-product-proof-for-arithmetic-circuits) can be reduced by using the efficient inner product argument. Transmission of vectors  $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(82) Figure&nbsp;9) can be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone. The *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engage in an inner product argument on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $ to check correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(92) Figure&nbsp;9) and $ \hat {t} $ (step&nbsp;(88) Figure&nbsp;9); this is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation. Communication is now reduced to $ 2 \cdot [ \log_22(n)] + 8 $ group elements and $ 5 $ elements in $ \mathbb Z $ instead of $ 2 \cdot n $ elements, thereby archiving a proof size that is logarithmic in $ n $.
 
 Similar to [Protocol 2.4!](#protocol-24---non-interactive-proof-through-fiat-shamir) the protocol presented so far can be turned into an efficient non interactive proof that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
@@ -345,17 +347,18 @@ In many of the Bulletproofs' [Use Cases](#use-cases) the *verifier's* runtime is
 
 <u>Multi-exponentiation</u>
 
-In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) the Bulletproofs *verifier* $ \mathcal{V} $ only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;3.
+In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) the Bulletproofs *verifier* $ \mathcal{V} $ only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;2.
 
-In the protocol presented in Figure 9 run by the *verifier* $ \mathcal{V} $, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation).  
+In the protocol presented in Figure&nbsp;10 run by the *verifier* $ \mathcal{V} $, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation).  
 
 <p align="center"><img src="sources/Protocol-4.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;9: Bulletproofs Protocol 4! [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;10: Bulletproofs Protocol 4! [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
-A further idea is that multi-exponentiation (steps (98) and (105) in Figure 9 ) be delayed until those checks are performed and that they are also combined into a single check using a random value $ c \xleftarrow[]{$} \mathbf Z_p $. This follows from the fact that if $ A^cB = 1 $ for a random $ c $ then with high probability $ A = 1 \mspace 3mu \wedge \mspace 3mu B = 1 $. Various algorithms are known to compute the multi-exponentiations and scalar quantities (steps (101) and (102) in Figure 9) efficiently (sub-linearly), thereby further improving the speed and efficiency of the protocol.
+
+A further idea is that multi-exponentiation (steps (98) and (105) in Figure&nbsp;10) be delayed until those checks are performed and that they are also combined into a single check using a random value $ c \xleftarrow[]{$} \mathbf Z_p $. This follows from the fact that if $ A^cB = 1 $ for a random $ c $ then with high probability $ A = 1 \mspace 3mu \wedge \mspace 3mu B = 1 $. Various algorithms are known to compute the multi-exponentiations and scalar quantities (steps (101) and (102) in Figure&nbsp;10) efficiently (sub-linearly), thereby further improving the speed and efficiency of the protocol.
 
 <u>Batch verification</u>
 
@@ -363,9 +366,33 @@ A further important optimization concerns the verification of multiple proofs. T
 
 
 
+## Evolving Bulletproofs Protocols
+
+Interstellar recently introduced the Programmable Constraint Systems for Bulletproofs [[23]], an evolution of [Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits), extending it to support proving arbitrary statements in zero knowledge using a constraint system, bypassing arithmetic circuits altogether. They provide an Application Programmers Interface (API) for building a constraint system directly, without the need to construct arithmetic expressions and then transform them into constraints. The Bulletproofs constraint system proofs are then used as building block for a confidential assets protocol called Cloak.
+
+
+
+The constraint system has three kinds of variables: 
+
+- high-level witness variables
+  - known only to the prover, and represent external inputs to the constraint system
+  - In Bulletproofs, these are represented as individual Pedersen commitments to the external variables
+- low-level witness variables
+  - known only to the prover
+  - internal to the constraint system, 
+  - representing the inputs and outputs of the multiplication gates
+- instance variables
+  - public parameters, known to both the prover and the verifier
+  - In Bulletproofs there’s no difference between a constraint system with public inputs and a family of constraint systems parameterized by those inputs
+  - internally fold all instance variables into a single constant parameter
+
+
+
+
+
 ## Conclusions, Observations, Recommendations
 
-- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[24]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
+- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[10]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
 -  
 - 
 
@@ -381,126 +408,140 @@ and More, Blockchain Protocol Analysis and Security
 Engineering 2018, 
 Bünz B. et al"
 
-[[12]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-21.
+[[2]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-21.
 
-[12]: https://eprint.iacr.org/2016/263.pdf
+[2]: https://eprint.iacr.org/2016/263.pdf
 "Efficient zero-knowledge arguments for arithmetic 
 circuits in the discrete log setting, Bootle J et al."
 
-[[15]] Confidential  Assets, Poelstra A. et al., Blockstream, https://blockstream.com/bitcoin17-final41.pdf, Date accessed: 2018-09-25.
+[[3]] Confidential  Assets, Poelstra A. et al., Blockstream, https://blockstream.com/bitcoin17-final41.pdf, Date accessed: 2018-09-25.
 
-[15]: https://blockstream.com/bitcoin17-final41.pdf
+[3]: https://blockstream.com/bitcoin17-final41.pdf
 "Confidential  Assets,
 Poelstra A. et al.,
 Blockstream"
 
-[[16]]  Wikipedia: Zero-knowledge Proof,  https://en.wikipedia.org/wiki/Zero-knowledge_proof, Date accessed: 2018-09-18. 
+[[4]]  Wikipedia: Zero-knowledge Proof,  https://en.wikipedia.org/wiki/Zero-knowledge_proof, Date accessed: 2018-09-18. 
 
-[16]: https://en.wikipedia.org/wiki/Zero-knowledge_proof
+[4]: https://en.wikipedia.org/wiki/Zero-knowledge_proof
 "Wikipedia - Zero-knowledge Proof"
 
-[[17]] Wikipedia: Discrete logarithm, https://en.wikipedia.org/wiki/Discrete_logarithm, Date accessed: 2018-09-20.
+[[5]] Wikipedia: Discrete logarithm, https://en.wikipedia.org/wiki/Discrete_logarithm, Date accessed: 2018-09-20.
 
-[17]: https://en.wikipedia.org/wiki/Discrete_logarithm
+[5]: https://en.wikipedia.org/wiki/Discrete_logarithm
 "Wikipedia: Discrete logarithm"
 
-[[18]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-20.
+[[6]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-20.
 
-[18]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf
+[6]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf
 "How to Prove Yourself: Practical Solutions to 
 Identification and Signature Problems, 
 Fiat A. et al."
 
-[[19]] How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios, Bernhard D. et al., https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf, Date accessed: 2018-09-20.
+[[7]] How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios, Bernhard D. et al., https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf, Date accessed: 2018-09-20.
 
-[19]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf
+[7]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf
 "How not to Prove Yourself: Pitfalls of the 
 Fiat-Shamir Heuristic and Applications to Helios, 
 Bernhard D. et al."
 
-[[22]] pedersen-commitment: An implementation of Pedersen commitment schemes, https://hackage.haskell.org/package/pedersen-commitment, Date accessed: 2018-09-25.
+[[8]] pedersen-commitment: An implementation of Pedersen commitment schemes, https://hackage.haskell.org/package/pedersen-commitment, Date accessed: 2018-09-25.
 
-[22]: https://hackage.haskell.org/package/pedersen-commitment
+[8]: https://hackage.haskell.org/package/pedersen-commitment
 "Pedersen-commitment: An implementation
 of Pedersen commitment schemes"
 
-[[23]] Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative, https://zkproof.org/documents.html, Date accessed: 2018-09-26.
+[[9]] Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative, https://zkproof.org/documents.html, Date accessed: 2018-09-26.
 
-[23]: https://zkproof.org/documents.html
+[9]: https://zkproof.org/documents.html
 "Zero Knowledge Proof Standardization - 
 An Open Industry/Academic Initiative"
 
-[[24]] Switch Commitments: A Safety Switch for Confidential Transactions, Ruffing T. et al., https://eprint.iacr.org/2017/237.pdf, Date accessed: 2018-09-26.
+[[10]] Switch Commitments: A Safety Switch for Confidential Transactions, Ruffing T. et al., https://eprint.iacr.org/2017/237.pdf, Date accessed: 2018-09-26.
 
-[24]: https://eprint.iacr.org/2017/237.pdf
+[10]: https://eprint.iacr.org/2017/237.pdf
 "Switch Commitments: A Safety Switch 
 for Confidential Transactions, 
 Ruffing T. et al."
 
-[[29]] GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/Bulletproofs, Date accessed: 2018-09-10.
+[[11]] GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no Trusted Setup, https://github.com/adjoint-io/Bulletproofs, Date accessed: 2018-09-10.
 
-[29]: https://github.com/adjoint-io/bulletproofs
+[11]: https://github.com/adjoint-io/bulletproofs
 "GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short
 Non-interactive Zero-knowledge Proofs that Require 
 no Trusted Setup"
 
-[[36]] Wikipedia: Commitment scheme, https://en.wikipedia.org/wiki/Commitment_scheme, Date accessed: 2018-09-26.
+[[12]] Wikipedia: Commitment scheme, https://en.wikipedia.org/wiki/Commitment_scheme, Date accessed: 2018-09-26.
 
-[36]: https://en.wikipedia.org/wiki/Commitment_scheme
+[12]: https://en.wikipedia.org/wiki/Commitment_scheme
 "Wikipedia: Commitment scheme"
 
-[[37]] Cryptography Wikia: Commitment scheme, http://cryptography.wikia.com/wiki/Commitment_scheme, Date accessed: 2018-09-26.
+[[13]] Cryptography Wikia: Commitment scheme, http://cryptography.wikia.com/wiki/Commitment_scheme, Date accessed: 2018-09-26.
 
-[37]: http://cryptography.wikia.com/wiki/Commitment_scheme
+[13]: http://cryptography.wikia.com/wiki/Commitment_scheme
 "Cryptography Wikia: Commitment scheme"
 
-[[38]] Adjoint Inc. Documentation: Pedersen Commitment Scheme, https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme, Date accessed: 2018-09-27.
+[[14]] Adjoint Inc. Documentation: Pedersen Commitment Scheme, https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme, Date accessed: 2018-09-27.
 
-[38]: https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme
+[14]: https://www.adjoint.io/docs/cryptography.html#pedersen-commitment-scheme
 "Adjoint Inc. Documentation: 
 Pedersen Commitment Scheme"
 
-[[39]] Non-interactive and information-theoretic secure verifiable secret sharing, Pedersen T. et al., https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf, Date accessed: 2018-09-27.
+[[15]] Non-interactive and information-theoretic secure verifiable secret sharing, Pedersen T. et al., https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf, Date accessed: 2018-09-27.
 
-[39]: https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf
+[15]: https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf
 "Non-interactive and information-theoretic
 secure verifiable secret sharing, 
 Pedersen T. et al."
 
-[[40]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-24.
+[[16]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-24.
 
-[40]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf
+[16]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf
 "Assumptions Related to Discrete Logarithms: 
 Why Subtleties Make a Real Difference, 
 Sadeghi A et al." 
 
-[[43]] Intensified ElGamal Cryptosystem (IEC), Sharma P. et al., International Journal of Advances in Engineering & Technology, Jan 2012, http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf, Date accessed: 2018-10-09.
+[[17]] Intensified ElGamal Cryptosystem (IEC), Sharma P. et al., International Journal of Advances in Engineering & Technology, Jan 2012, http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf, Date accessed: 2018-10-09.
 
-[43]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf
+[17]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf
 "Intensified ElGamal Cryptosystem (IEC), Sharma P. et al.
 International Journal of Advances in Engineering & Technology,
 Jan 2012"
 
-[[44]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al., http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf, Date accessed: 2018-10-09.
+[[18]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al., http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf, Date accessed: 2018-10-09.
 
-[44]: http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf
+[18]: http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf
 "On the Security of ElGamal Based Encryption,
 Tsiounis Y. et al."
 
-[[45]] Wikipedia: Decisional Diffie–Hellman assumption, https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption, Date accessed: 2018-10-09.
+[[19]] Wikipedia: Decisional Diffie–Hellman assumption, https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption, Date accessed: 2018-10-09.
 
-[45]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption
+[19]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption
 "Wikipedia: Decisional Diffie–Hellman assumption"
 
-[[47]] Wikipedia: Arithmetic circuit complexity, https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity, Date accessed: 2018-11-08.
+[[20]] Wikipedia: Arithmetic circuit complexity, https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity, Date accessed: 2018-11-08.
 
-[47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity
+[20]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity
 "Wikipedia: Arithmetic circuit complexity"
 
-[[51]] Wikipedia: Hadamard product (matrices), https://en.wikipedia.org/wiki/Hadamard_product_(matrices), Date accessed: 2018-11-12.
+[[21]] Wikipedia: Hadamard product (matrices), https://en.wikipedia.org/wiki/Hadamard_product_(matrices), Date accessed: 2018-11-12.
 
-[51]: https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
+[21]: https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
 "Wikipedia: Hadamard product (matrices)"
+
+[[22]] Dalek Cryptography - Crate Bulletproofs, https://doc.dalek.rs/bulletproofs/index.html, Date accessed: 2018-11-12.
+
+[22]: https://doc.dalek.rs/bulletproofs/index.html
+"Dalek Cryptography - 
+Crate Bulletproofs"
+
+[[23]] Programmable Constraint Systems for Bulletproofs, https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7, Date accessed: 2018-11-12.
+
+[23]: https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7
+"Programmable Constraint Systems for Bulletproofs,
+Interstallar,
+Cathie Yun"
+
 
 
 
@@ -510,7 +551,7 @@ Tsiounis Y. et al."
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C ​$ over a field $ F ​$ and variables $ (x_1, ..., x_n) ​$ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f ​$ is to find any arithmetic circuit that can calculate $ f ​$, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C ​$ over a field $ F ​$ and variables $ (x_1, ..., x_n) ​$ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f ​$ is to find any arithmetic circuit that can calculate $ f ​$, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[11]], [[20]])
 
   <p align="center"><img src="sources/ArithmiticCircuit.PNG" width="300" /></p>
 
@@ -519,28 +560,28 @@ Definitions of terms presented here are high level and general in nature. Full m
 field F and variables (x_1, ..., x_n) 
 is a directed acyclic graph ..."
 
-- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[36]], [[37]])
+- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[12]], [[13]])
 
 [cs~]: #cs
 "A commitment scheme in a 
 zero-knowledge proof is a 
 cryptographic primitive ..."
 
-- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers  $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers  $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[5]], [[16]])
 
 [dlp~]: #dlp
 "In the mathematics of the real 
 numbers, the logarithm log_b(a) 
 is a number x such that ..."
 
-- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[43]], [[44]], [[45]])
+- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[17]], [[18]], [[19]])
 
 [egc~]: #egc
 "An ElGamal Commitment is a 
 Pedersen Commitment with
 additional commitment  ..."
 
-- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
+- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[6]], [[7]])
   - The prover will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the verifier and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the verifier then contains the challenge $ c $ and response $ f $.
 
   - The verifier is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The verifier will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
@@ -552,7 +593,7 @@ additional commitment  ..."
 technique in cryptography to 
 convert an interactive ..."
 
-- <u>*Hadamard Product*</u>:<a name="hdmp"> </a>In mathematics, the Hadamard product is a binary operation that takes two matrices $ \mathbf {A} , \mathbf {B} $ of the same dimensions, and produces another matrix of the same dimensions where each element $ i,j $ is the product of elements $ i,j $ of the original two matrices. The Hadamard product $ \mathbf {A} \circ \mathbf {B} $ is different from normal matrix multiplication most notably because it is also commutative $ [ \mathbf {A} \circ \mathbf {B} = \mathbf {B} \circ \mathbf {A} ] $ along with being associative $ [ \mathbf {A} \circ ( \mathbf {B} \circ \mathbf {C} ) = ( \mathbf {A} \circ \mathbf {B} ) \circ \mathbf {C} ] $ and distributive over addition $ [ \mathbf {A} \circ ( \mathbf {B} + \mathbf {C} ) = \mathbf {A} \circ \mathbf {B} +  \mathbf {A} \circ \mathbf {C} ] $. ([[51]])
+- <u>*Hadamard Product*</u>:<a name="hdmp"> </a>In mathematics, the Hadamard product is a binary operation that takes two matrices $ \mathbf {A} , \mathbf {B} $ of the same dimensions, and produces another matrix of the same dimensions where each element $ i,j $ is the product of elements $ i,j $ of the original two matrices. The Hadamard product $ \mathbf {A} \circ \mathbf {B} $ is different from normal matrix multiplication most notably because it is also commutative $ [ \mathbf {A} \circ \mathbf {B} = \mathbf {B} \circ \mathbf {A} ] $ along with being associative $ [ \mathbf {A} \circ ( \mathbf {B} \circ \mathbf {C} ) = ( \mathbf {A} \circ \mathbf {B} ) \circ \mathbf {C} ] $ and distributive over addition $ [ \mathbf {A} \circ ( \mathbf {B} + \mathbf {C} ) = \mathbf {A} \circ \mathbf {B} +  \mathbf {A} \circ \mathbf {C} ] $. ([[21]])
 
 $$
 \mathbf {A} \circ \mathbf {B} = \mathbf {C} = (a_{11} \cdot b_{11} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{1m} \cdot b_{1m} \mspace{6mu}  ;  \mspace{6mu} . . . \mspace{6mu} ; \mspace{6mu} a_{n1} \cdot b_{n1} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{nm} \cdot b_{nm} )
@@ -563,7 +604,7 @@ $$
 is a binary operation that takes two 
 matrices A,B of the same dimensions ..."
 
-- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]], [[38]], [[39]]).
+- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[3]], [[8]], [[14]], [[15]]).
 
 - - The generalized Pedersen commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
 
@@ -590,7 +631,7 @@ matrices A,B of the same dimensions ..."
 for making blinded non-interactive 
 commitments to a value ..."
 
-- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
+- <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[4]], [[9]])
 
 - - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
 
