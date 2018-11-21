@@ -136,7 +136,7 @@ The initial work that provided cryptographic support for a Mimblewimble implemen
 
 The Grin project (an open source Mimblewimble implementation in Rust) subsequently forked `GitHub:ElementsProject/secp256k1-zkp` [[25]] as `GitHub:mimblewimble/secp256k1-zkp` [[30]] and have added Rust wrappers to it as `mimblewimble/rust-secp256k1-zkp` [[45]] for use in their blockchain. The Beam project (another open source Mimblewimble implementation in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp` [[25]] as their cryptographic sub-module:
 
-```
+```text
 [submodule "secp256k1-zkp"]
 	path = secp256k1-zkp
 	url = https://github.com/ElementsProject/secp256k1-zkp.git
@@ -158,14 +158,14 @@ Real world implementation of Elliptic-curve Cryptography (ECC) is largely based 
 
 Grin, Beam and Adjoint use ECC curve secp256k1 [[24]] for their Bulletproofs implementation, which fails 1 out of 4 ECDLP security criteria and 3 out of 4 ECC security criteria:
 
-```
+```text
 y^2 = x^3 + 0x + 7
 modulo p = 2^256 - 2^32 - 977
 ```
 
 Monero and Chain/Interstellar use ECC curve Curve25519 [[38]] for their Bulletproofs implementation, which passes all ECDLP and ECC security criteria:
 
-```
+```text
 y^2 = x^3 + 486662x^2 + x
 modulo p = 2^255 - 19
 ```
