@@ -28,8 +28,9 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
   - [Interesting Bulletproofs Implementation Snippets](#interesting-bulletproofs-implementation-snippets)
     - [Current & Past Efforts](#current--past-efforts)
     - [Security Considerations](#security-considerations)
-    - [Wallet Reconstruction - Grin](#wallet-reconstruction---grin)
-  - [Negatives](#negatives)
+    - [Wallet Reconstruction and Switch Commitment - Grin](#wallet-reconstruction-and-switch-commitment---grin)
+      - [Discussion](#discussion)
+      - [GitHub Extracts](#github-extracts)
   - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
   - [References](#references)
   - [Appendices](#appendices)
@@ -131,9 +132,9 @@ Bulletproofs development is currently still evolving as can be seen when followi
 
 The initial prototype Bulletproofs implementation was done by [Benedikt Bünz](https://github.com/bbuenz) in Java located at `GitHub:bbuenz/BulletProofLib` [[27]].
 
-The initial work that provided cryptographic support for a Mimblewimble implementation was mainly done by [Pieter Wuille](https://github.com/sipa), [Gregory Maxwell](https://github.com/gmaxwell) and [Andrew Poelstra](https://github.com/apoelstra) in C located at `GitHub:ElementsProject/secp256k1-zkp` [[25]]. This effort was forked as `GitHub:apoelstra/secp256k1-mw` [[26]] with main contributors being [Andrew Poelstra](https://github.com/apoelstra), [Pieter Wuille](https://github.com/sipa), and [Gregory Maxwell](https://github.com/gmaxwell) where Mimblewimble primitives and support for many of the Bulletproofs protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits) were added. Current effort also involves MuSig [[52]] support.
+The initial work that provided cryptographic support for a Mimblewimble implementation was mainly done by [Pieter Wuille](https://github.com/sipa), [Gregory Maxwell](https://github.com/gmaxwell) and [Andrew Poelstra](https://github.com/apoelstra) in C located at `GitHub:ElementsProject/secp256k1-zkp` [[25]]. This effort was forked as `GitHub:apoelstra/secp256k1-mw` [[26]] with main contributors being [Andrew Poelstra](https://github.com/apoelstra), [Pieter Wuille](https://github.com/sipa), and [Gregory Maxwell](https://github.com/gmaxwell) where Mimblewimble primitives and support for many of the Bulletproofs protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits) were added. Current effort also involves MuSig [[48]] support.
 
-The Grin project (an open source Mimblewimble implementation in Rust) subsequently forked `GitHub:ElementsProject/secp256k1-zkp` [[25]] as `GitHub:mimblewimble/secp256k1-zkp` [[30]] and have added Rust wrappers to it as `mimblewimble/rust-secp256k1-zkp` [[55]] for use in their blockchain. The Beam project (another open source Mimblewimble implementation in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp` [[25]] as their cryptographic sub-module:
+The Grin project (an open source Mimblewimble implementation in Rust) subsequently forked `GitHub:ElementsProject/secp256k1-zkp` [[25]] as `GitHub:mimblewimble/secp256k1-zkp` [[30]] and have added Rust wrappers to it as `mimblewimble/rust-secp256k1-zkp` [[45]] for use in their blockchain. The Beam project (another open source Mimblewimble implementation in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp` [[25]] as their cryptographic sub-module:
 
 ```
 [submodule "secp256k1-zkp"]
@@ -143,7 +144,7 @@ The Grin project (an open source Mimblewimble implementation in Rust) subsequent
 
 See [Mimblewimble-Grin Blockchain Protocol Overview](../../protocols/grin-protocol-overview/MainReport.md) and [Grin vs. BEAM, a Comparison](../../protocols/grin-beam-comparison/MainReport.md) for more information about the Mimblewimble implementation of Grin and Beam.
 
-An independent implementation for Bulletproofs range proofs was done for the Monero project (an open source CryptoNote implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) [[53]] in Java as the pre-cursor and [moneromooo-monero](https://github.com/moneromooo-monero) [[54]] in C++ as the final implementation. Their implementation supports single and aggregate range proofs. 
+An independent implementation for Bulletproofs range proofs was done for the Monero project (an open source CryptoNote implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) [[49]] in Java as the pre-cursor and [moneromooo-monero](https://github.com/moneromooo-monero) [[46]] in C++ as the final implementation. Their implementation supports single and aggregate range proofs. 
 
 Adjoint, Inc. has also done an independent open source implementation of Bulletproofs in Haskell at `GitHub: adjoint-io/bulletproofs` [[29]]. They utilize open source private permissioned blockchain technology for multi-party workflows in the financial industry.
 
@@ -153,7 +154,7 @@ Chain has done another independent open source implementation of Bulletproofs in
 
 ### Security Considerations
 
-Real world implementation of Elliptic-curve Cryptography (ECC) is largely based on official standards that govern the selection of curves in order to try and make the Elliptic-curve Discrete-logarithm Problem (ECDLP) hard to solve, that is finding an ECC user's secret key given the user's public key. Many attacks break real-world ECC without solving ECDLP due to problems in ECC security, where implementations can produce incorrect results and also leak secret data. Some implementation considerations also trumps efficiency over security. Secure implementations of the standards based curves are theoretically possible but highly unlikely. ([[14]], [[32]])
+Real world implementation of Elliptic-curve Cryptography (ECC) is largely based on official standards that govern the selection of curves in order to try and make the Elliptic-curve Discrete-logarithm Problem (ECDLP) hard to solve, that is finding an ECC user's secret key given the user's public key. Many attacks break real-world ECC without solving ECDLP due to problems in ECC security, where implementations can produce incorrect results and also leak secret data. Some implementation considerations also trump efficiency over security. Secure implementations of the standards-based curves are theoretically possible but highly unlikely. ([[14]], [[32]])
 
 Grin, Beam and Adjoint use ECC curve secp256k1 [[24]] for their Bulletproofs implementation, which fails 1 out of 4 ECDLP security criteria and 3 out of 4 ECC security criteria:
 
@@ -179,18 +180,39 @@ The Monero project have also had security audits done on their Bulletproofs impl
 
 #### Discussion
 
-The Grin implementation hides two things in the Bulletproofs range proof: an amount for wallet reconstruction and the optional switch commitment hash [[43]] to make the transaction perfectly binding in addition to it being perfectly hiding. The Bulletproofs range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
+The Grin implementation hides two things in the Bulletproofs range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash [[43]] to make the transaction perfectly binding in addition to it being perfectly hiding. The Bulletproofs range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
 
-A Grin transaction output consist of the original Schnorr signature output as well as an optional switch commitment hash [[43]]. The switch commitment hash takes the blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form:
+A Grin transaction output consist of the original Schnorr signature output as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form:
+
 $$
-(vG+bH \mspace{3mu} , \mspace{3mu} BLAKE2(bJ \mspace{3mu} , \mspace{3mu} r))
+(vG + bH \mspace{3mu} , \mspace{3mu} Hash_{Blake2}(bJ \mspace{3mu} , \mspace{3mu} r))
 $$
 
-Grin implemented the BLAKE2 hash function [[44]], which outperforms all mainstream hash function implementations in terms of hashing speed, but is at least as secure as the latest standard Secure Hash Algorithm 3 (SHA-3).
+In order for such an amount to be spent the *Verifier* also need to check the opening of $ Hash_{Blake2}(bJ \mspace{3mu} , \mspace{3mu} r) $. Grin implemented the BLAKE2 hash function [[44]], which outperforms all mainstream hash function implementations in terms of hashing speed, but is at least as secure as the latest Secure Hash Algorithm 3 (SHA-3) standard.
+
+The idea behind the switch commitment hash is to pose as defense mechanism when quantum adversaries start to appear. In that event the owner of an output can choose to stay anonymous and not claim ownership or reveal $ bJ $ and $ r $ whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.
+
+In the Bulletproofs range proof protocol two 32-byte scalar nonces $ \tau_1 , \alpha $ (*not important to know what they are*) are generated with a secure random number generator. If the seed for the random number generator is known the scalar values $ \tau_1 , \alpha $ can be re-calculated when needed, thus providing 64 bytes of the 674 bytes Bulletproofs range proof to embed a message in using a logic $ XOR $ gate. This message space is used for the transaction amount for wallet reconstruction.
+
+To ensure that the transaction amount of the output cannot be spent by only opening the Schnorr signature $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproofs range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a function that uses as input a $ nonce $ (which may be equal to the original blinding factor $ b $), the Pedersen commitment and the switch commitment hash:
+
+$$
+seed = nonce \mspace{3mu} \Vert \mspace{3mu} Hash_{sha256}(PedersenCommitment \mspace{3mu} \Vert \mspace{3mu} Hash_{Blake2}(bJ \mspace{3mu} , \mspace{3mu} r) )
+$$
+
+The Bulletproofs range proof is then calculated with an adapted pair $ \tilde{\alpha} , \tilde{\tau_1} $ using the original $ \tau_1 , \alpha $ and two 32-byte words of the 64 byte embedded message as follows:
+
+$$
+\tilde{\alpha} = \alpha \mspace{6mu} XOR \mspace{6mu} message_{word1} \mspace{12mu} \mathrm{and} \mspace{12mu} \tilde{\tau_1} = \tau_1 \mspace{6mu} XOR \mspace{6mu} message_{word2} \mspace{12mu}
+$$
+
+To retrieve the embedded message the process is simply inverted. Notice that the owner of an output needs to keep record of the blinding factor $ b $, the $ nonce $ if not equal to the blinding factor $ b $, as well as the wallet-seed derived random value $ r $ to be able to claim such an output.
 
 
 
 #### GitHub Extracts
+
+The extracts of the discussions below depict the development of embedding the transaction amount and switch commitment hash inside the Bulletproofs range proof.
 
 <u>Bulletproofs #273</u> [[35]]
 
@@ -204,24 +226,15 @@ Grin implemented the BLAKE2 hash function [[44]], which outperforms all mainstre
 
 <u>Switch Commits / Bulletproofs - Status #734</u> [[34]]
 
-"*The **prove** function takes a **value**, a **secret key** (blinding factor in our case) a **nonce** optional **extra_data**, and a **generator** and produces a 674 byte proof. I've also modified it to optionally take a **message** (more about this in a bit). It creates the Pedersen commit it works upon internally with these values.*"
+"*The **prove** function takes a **value**, a **secret key** (blinding factor in our case), a **nonce**, optional **extra_data** and a **generator** and produces a 674 byte proof. I've also modified it to optionally take a **message** (more about this in a bit). It creates the Pedersen **commitment** it works upon internally with these values.*"
 
-"*Additionally, I've added an **unwind** function which takes a **proof**, a **commit**, optional **extra_data** and a 32 bit **nonce** (which needs to be the same as the original nonce used in order to return the same message) and returns the hidden **message**.*"
+"*The **verify** function takes a **proof**, a Pedersen **commitment** and optional **extra_data** and returns true if **proof** demonstrates that the value within the Pedersen **commitment** is in the range [0..2^64] (and the **extra_data** is correct).*"
 
-"*If you have the correct **commit** and **proof** and **extra_data**, and attempt to unwind a message out using the wrong **nonce**, the attempt won't fail, you'll get out gibberish or just wildly incorrect values as you parse back the bytes.*"
+"*Additionally, I've added an **unwind** function which takes a **proof**, a Pedersen **commitment**, optional **extra_data** and a 32 bit **nonce** (which needs to be the same as the original nonce used in order to return the same message) and returns the hidden **message**.*"
 
-"*Now recall that with switch commits, an output is structured as follows, `(vG + bH, blake2(bJ,r))`, where `J` is a third NUMS generator, `r` is another wallet-seed derived value and the original commit `vG + bH` remains perfectly hiding.*"
-
-"*In the event of a quantum computeageddon, the owner of an output can choose to remain anonymous and never claim ownership of the (still hidden) output, or can choose to reveal `bJ` and `r`. Validators can then confirm `blake2(bJ,r)` matches what's in the switch commit, ownership is proven and amounts can be moved to some other quantum secure mechanism.*"
+"*If you have the correct Pedersen **commitment** and **proof** and **extra_data**, and attempt to unwind a **message** out using the wrong **nonce**, the attempt won't fail, you'll get out gibberish or just wildly incorrect values as you parse back the bytes.*"
 
 "*The `SwitchCommitHash`  is currently a field of an output, and while it is stored in the Txo set and passed around during a transaction, it is not currently included in the output's hash. It is passed in as the **extra_data** field above, meaning that anyone validating the range proof also needs to have the correct switch commit in order to validate the range proof.*"
-
-
-
-## Negatives
-
-- A discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding (*i.e. confidential*), but only computationally binding (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
-- 
 
 
 
@@ -230,8 +243,8 @@ Grin implemented the BLAKE2 hash function [[44]], which outperforms all mainstre
 - Bulletproofs is not Bulletproofs is not Bulletproofs. This is evident by comparing the functionality, security and performance of all the current different Bulletproofs implementations as well as the evolving nature of Bulletproofs.
 - The security audit instigated by the Monero project on their Bulletproofs implementation and the resulting findings and corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to the nature of confidential transactions; transacted values and token owners are not public.
 - The growing number of open source Bulletproofs implementations should strengthen the development of a new confidential blockchain protocol like Tari.
-- 
-- 
+- In the pure implementation of Bulletproofs range proofs a discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding (*i.e. confidential*), but only computationally binding (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
+- Bulletproofs is not only about range proofs. All the different Bulletproofs use cases have a potential implementation in a new confidential blockchain protocol like Tari; in the base layer as well as in the probable 2nd layer.
 
 
 
@@ -498,7 +511,6 @@ Sadeghi A et al."
 [[43]] Switch Commitments: A Safety Switch for Confidential Transactions, Ruffing T. et al., Saarland University, https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf, Date accessed: 2018-10-08.
 
 [43]: https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf
-
 "Switch Commitments: A Safety Switch 
 for Confidential Transactions, 
 Ruffing T. et al., 
@@ -507,35 +519,34 @@ Saarland University"
 [[44]] BLAKE2 — fast secure hashing, https://blake2.net, Date accessed: 2018-10-08.
 
 [44]: https://blake2.net
-
 "BLAKE2 — fast secure hashing"
+
+[[45]] GitHub: mimblewimble/rust-secp256k1-zkp, https://github.com/mimblewimble/rust-secp256k1-zkp, Date accessed: 2018-11-16.
+
+[45]: https://github.com/mimblewimble/rust-secp256k1-zkp
+"GitHub: mimblewimble/rust-secp256k1-zkp"
+
+[[46]] GitHub: monero-project/monero, https://github.com/monero-project/monero/tree/master/src/ringct, Date accessed: 2018-11-16.
+
+[46]: https://github.com/monero-project/monero/tree/master/src/ringct
+"GitHub: monero-project/monero"
 
 [[47]] Wikipedia: Arithmetic circuit complexity, https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity, Date accessed: 2018-11-08.
 
 [47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity
 "Wikipedia: Arithmetic circuit complexity"
 
-[[52]] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
+[[48]] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et al., 20 May 2018, https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
 
-[52]: https://eprint.iacr.org/2018/068.pdf
+[48]: https://eprint.iacr.org/2018/068.pdf
 "Simple Schnorr Multi-Signatures with 
 Applications to Bitcoin, 
 Maxwell G. et al."
 
-[[53]] GitHub: b-g-goodell/research-lab, https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java, Date accessed: 2018-11-16.
+[[49]] GitHub: b-g-goodell/research-lab, https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java, Date accessed: 2018-11-16.
 
-[53]: https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java
+[49]: https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java
 "GitHub: b-g-goodell/research-lab"
-
-[[54]] GitHub: monero-project/monero, https://github.com/monero-project/monero/tree/master/src/ringct, Date accessed: 2018-11-16.
-
-[54]: https://github.com/monero-project/monero/tree/master/src/ringct
-"GitHub: monero-project/monero"
-
-[[55]] GitHub: mimblewimble/rust-secp256k1-zkp, https://github.com/mimblewimble/rust-secp256k1-zkp, Date accessed: 2018-11-16.
-
-[55]: https://github.com/mimblewimble/rust-secp256k1-zkp
-"GitHub: mimblewimble/rust-secp256k1-zkp"
 
 
 
@@ -594,7 +605,7 @@ number  ..."
   - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
 
 [pc~]: #pc
-"A Pedersen commitments are a system 
+"Pedersen commitments are a system 
 for making blinded non-interactive 
 commitments to a value ..."
 
