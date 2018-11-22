@@ -5,7 +5,7 @@
 
 ## Introduction
 
-An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"), which has largely been based on the original work done in [[1]] by Bünz B. et al. They documented a number of different Bulletproofs protocols, but not so obvious as to catch the eye when scanning the paper. This report summarizes and try to explain the different Bulletproofs protocols in as simple terms as possible, tries to simplifies the the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed.
+An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"), which has largely been based on the original work done in [[1]] by Bünz B. et al. They documented a number of different Bulletproofs protocols, but not so obvious as to catch the eye when scanning the paper. This report summarizes and try to explain the different Bulletproofs protocols in as simple terms as possible, tries to simplify the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report ends off discussing an evolutionary approach to improve the Bulletproofs zero-knowledge proof protocol.
 
 
 
@@ -27,6 +27,7 @@ An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble](".
       - [Protocol 3 - Inner-Product Proof for Arithmetic Circuits](#protocol-3---inner-product-proof-for-arithmetic-circuits)
       - [Protocol 3.1! - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits](#protocol-31---logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
     - [Protocol 4! - Optimized Verifier using Multi-Exponentiation and Batch Verification](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)
+  - [Evolving Bulletproofs Protocols](#evolving-bulletproofs-protocols)
   - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
   - [References](#references)
   - [Appendices](#appendices)
@@ -153,7 +154,7 @@ $$
 
 can be easily calculated by the  *verifier* $ \mathcal{V} $. The proof that relation (4) holds was thus reduced to a single inner-product identity.
 
-Relation (7) cannot be used as is without revealing information about $  \mathbf {a}_L $. Two additional blinding vectors $  \mathbf {s}_L , \mathbf {s}_R \in \mathbb Z_p^n $ are introduced with the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engaging in the following zero knowledge protocol (Figure&nbsp;4):
+Relation (7) cannot be used as is without revealing information about $  \mathbf {a}_L $. Two additional blinding vectors $  \mathbf {s}_L , \mathbf {s}_R \in \mathbb Z_p^n $ are introduced with the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engaging in the following zero-knowledge protocol (Figure&nbsp;4):
 
 <p align="center"><img src="sources/Protocol-2b-part-a.png" width="550" /></p>
 <div align="center"><b>Figure&nbsp;4: Bulletproofs Protocol 2.1! Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -261,7 +262,7 @@ $$
 A = \prod^m_{k=1} A^{(k)} \mspace{15mu} \mathrm{and} \mspace{15mu} \tau_x = \prod^m_{k=1} \tau_x^{(k)}
 $$
 
-In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ( [Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
+In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
 
 <p align="center"><img src="sources/MPC-diagram.PNG" width="850" /></p>
 <div align="center"><b>Figure&nbsp;7: MPC Implementation Example [<a href="https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html" title="Dalek Cryptography - 
@@ -281,7 +282,7 @@ $$
 \langle \mathbf W_{L,q}, \mathbf a_L \rangle + \langle \mathbf W_{R,q}, \mathbf a_R \rangle +\langle \mathbf W_{O,q}, \mathbf a_O \rangle = c_q
 $$
 
-The high level idea of this protocol is to convert the Hadamard-product relation along with the linear consistency constraints into a single inner product relation. Pedersen commitments $ V_j $ are also included as input wires to the arithmetic circuit, which is an important refinement otherwise the arithmetic circuit would need to implement a commitment algorithm. The linear constraints also include openings $ v_j $ of $ V_j $. 
+The high-level idea of this protocol is to convert the Hadamard-product relation along with the linear consistency constraints into a single inner product relation. Pedersen commitments $ V_j $ are also included as input wires to the arithmetic circuit, which is an important refinement otherwise the arithmetic circuit would need to implement a commitment algorithm. The linear constraints also include openings $ v_j $ of $ V_j $. 
 
 ##### Protocol 3 - Inner-Product Proof for Arithmetic Circuits
 
@@ -301,7 +302,7 @@ $$
 
 Let $ \mathbf W_V \in \mathbb Z_p^{Q \times m}  $ be the weights for a commitment $  V_j  $. Relation (9) only holds when $ \mathbf W_{V} $ is of rank $ m $, i.e. if the columns of the matrix are all linearly independent. 
 
-Part 1 of the protocol is presented in Figure&nbsp;8 where the the *prover* $ \mathcal{P} $ commits to $ l(X),r(X),t(X) $.
+Part 1 of the protocol is presented in Figure&nbsp;8 where the *prover* $ \mathcal{P} $ commits to $ l(X),r(X),t(X) $.
 
 <p align="center"><img src="sources/Protocol-3-part-1.png" width="690" /></p>
 <div align="center"><b>Figure&nbsp;8: Bulletproofs Protocol 3 (Part 1) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -368,33 +369,44 @@ A further important optimization concerns the verification of multiple proofs. T
 
 ## Evolving Bulletproofs Protocols
 
-Interstellar recently introduced the Programmable Constraint Systems for Bulletproofs [[23]], an evolution of [Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits), extending it to support proving arbitrary statements in zero knowledge using a constraint system, bypassing arithmetic circuits altogether. They provide an Application Programmers Interface (API) for building a constraint system directly, without the need to construct arithmetic expressions and then transform them into constraints. The Bulletproofs constraint system proofs are then used as building block for a confidential assets protocol called Cloak.
-
-
+Interstellar [[24]] recently introduced the Programmable Constraint Systems for Bulletproofs [[23]], an evolution of [Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits), extending it to support proving arbitrary statements in zero-knowledge using a constraint system, bypassing arithmetic circuits altogether. They provide an Application Programmers Interface (API) for building a constraint system directly, without the need to construct arithmetic expressions and then transform them into constraints. The Bulletproofs constraint system proofs are then used as building block for a confidential assets protocol called Cloak.
 
 The constraint system has three kinds of variables: 
 
-- high-level witness variables
-  - known only to the prover, and represent external inputs to the constraint system
-  - In Bulletproofs, these are represented as individual Pedersen commitments to the external variables
-- low-level witness variables
-  - known only to the prover
-  - internal to the constraint system, 
-  - representing the inputs and outputs of the multiplication gates
-- instance variables
-  - public parameters, known to both the prover and the verifier
-  - In Bulletproofs there’s no difference between a constraint system with public inputs and a family of constraint systems parameterized by those inputs
-  - internally fold all instance variables into a single constant parameter
+- High-level witness variables:
+  - Known only to the *prover* $ \mathcal{P} $, as external inputs to the constraint system;
+  - Represented as individual Pedersen commitments to the external variables in Bulletproofs.
+- Low-level witness variables:
+  - Known only to the *prover* $ \mathcal{P} $, as internal to the constraint system;
+  - Representing the inputs and outputs of the multiplication gates.
+- Instance variables:
+  - Known to both the *prover* $ \mathcal{P} $ and the *verifier* $ \mathcal{V} $, as public parameters;
+  - Represented as a family of constraint systems parameterized by public inputs (compatible with Bulletproofs);
+  - Folding all instance variables into a single constant parameter internally.
 
+Instance variables can select the constraint system out of a family for each proof. The constraint system becomes a challenge from a *verifier* $ \mathcal{V} $ to a *prover* $ \mathcal{P} $, where some constraints are generated randomly in response to the *prover*'s $ \mathcal{P} $ commitments. Challenges to parametrize constraint systems makes the resulting proof smaller, requiring only $ O(n) $ multiplications instead of $ O(n^2) $ in the case of verifiable shuffles when compared to a static constraint system.
 
+Merlin transcripts [[25]] employing the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup> are used to generate the challenges. The challenges are bound to the high-level witness variables (the external inputs to the constraint system) which are added to the transcript before any of the constraints are created. The *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ can then compute weights for some constraints with the use of the challenges.
+
+Because the challenges are not bound to low-level witness variables the resulting construction can be unsafe. Interstellar are working on an improvement to the protocol that would allow challenges to be bound to a subset of the low-level witness variables, and have a safer API using features of Rust’s type system.
+
+The resulting API provides a single code path used by both the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ to allocate variables and define constraints. This is organized into a hierarchy of task-specific gadgets, which manages allocation, assignment and constraints on the variables, ensuring that all variables are constrained. Gadgets interact with mutable constraint system objects, which are specific to the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $. They also receive secret variables and public parameters and generate challenges.
+
+The Bulletproofs library [[22]] does not provide any standard gadgets, but only an API for the constraint system. Each protocol built on top of the Bulletproofs library must create its own collection of gadgets to enable building a complete constraint system out of them. The Interstellar Bulletproofs zero-knowledge proof protocol built with their programmable constraint system is shown in Figure&nbsp;11.
+
+<p align="center"><img src="sources/InterstellarConstraintSystem.png" width="870" /></p>
+<div align="center"><b>Figure&nbsp;11: Interstellar Bulletproofs Zero-Knowledge Proof Protocol  [<a href="https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7" title="Programmable Constraint Systems for Bulletproofs,
+Interstellar,
+Cathie Yun">24</a>]</b></div>
 
 
 
 ## Conclusions, Observations, Recommendations
 
-- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[10]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
--  
-- 
+- Bulletproofs have many potential [applications](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs), but are still under [development](../bulletproofs-and-mimblewimble/MainReport.md#current--past-efforts). A new confidential blockchain protocol like Tari should carefully consider expanded use of Bulletproofs as shown in the Interstellar example to maximally leverage functionality of the code base.
+- Bulletproofs are not done yet, as illustrated in [Evolving Bulletproofs Protocols](#evolving-bulletproofs-protocols), and its further development and efficient implementation has a lot of traction in the community.
+- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[10]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. (*See the Grin projects' implementation [here](../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).*) The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
+- It is important that developers understand more about the underlying mathematics when implementing something like Bulletproofs, even if they just re-use libraries developed by someone else.
 
 
 
@@ -535,12 +547,23 @@ Tsiounis Y. et al."
 "Dalek Cryptography - 
 Crate Bulletproofs"
 
-[[23]] Programmable Constraint Systems for Bulletproofs, https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7, Date accessed: 2018-11-12.
+[[23]] Programmable Constraint Systems for Bulletproofs, https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7, Date accessed: 2018-11-22.
 
 [23]: https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7
 "Programmable Constraint Systems for Bulletproofs,
-Interstallar,
+Interstellar,
 Cathie Yun"
+
+[[24]] Inter/stellar website, https://interstellar.com, Date accessed: 2018-11-22.
+
+[24]: https://interstellar.com
+"Inter/stellar Website"
+
+[[25]] Dalek Cryptography - Crate merlin, https://doc.dalek.rs/merlin/index.html, Date accessed: 2018-11-22.
+
+[25]: https://doc.dalek.rs/merlin/index.html
+"Dalek Cryptography - 
+Crate merlin"
 
 
 
