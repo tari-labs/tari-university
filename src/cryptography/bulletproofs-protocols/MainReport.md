@@ -5,7 +5,7 @@
 
 ## Introduction
 
-An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"), which has largely been based on the original work done in [[1]] by Bünz B. et al. They documented a number of different Bulletproofs protocols, but not so obvious as to catch the eye when scanning the paper. This report summarizes and try to explain the different Bulletproofs protocols in as simple terms as possible, tries to simplify the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report ends off discussing an evolutionary approach to improve the Bulletproofs zero-knowledge proof protocol.
+An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"), which has largely been based on the original work done in [[1]] by Bünz B. et al. They documented a number of different Bulletproofs protocols, but not so obvious as to catch the eye when scanning the paper. This report summarizes and try to explain the different Bulletproofs protocols in as simple terms as possible, tries to simplify the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report ends off discussing an evolutionary approach by some community members to improve the Bulletproofs zero-knowledge proof protocol.
 
 
 
@@ -73,6 +73,7 @@ Protocol 1 is then defined as the proof system for relation (2) as shown in Figu
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 The argument presented in Protocol 1 has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
 
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
@@ -106,7 +107,7 @@ Bünz B. et al">1</a>]</b></div>
 
 #### Protocol 2! - Range Proof Protocol with Logarithmic Size
 
-Protocol 2' provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#)</sup> and how to allow multiple parties to construct a single aggregate range proof. A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;3.
+Protocol 2' provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and how to allow multiple parties to construct a single aggregate range proof. A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;3.
 
 <p align="center"><img src="sources/RangeProofDiagram.PNG" width="1000" /></p>
 <div align="center"><b>Figure&nbsp;3: Range Proof Protocol Implementation Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography - 
@@ -262,7 +263,7 @@ $$
 A = \prod^m_{k=1} A^{(k)} \mspace{15mu} \mathrm{and} \mspace{15mu} \tau_x = \prod^m_{k=1} \tau_x^{(k)}
 $$
 
-In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
+In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
 
 <p align="center"><img src="sources/MPC-diagram.PNG" width="850" /></p>
 <div align="center"><b>Figure&nbsp;7: MPC Implementation Example [<a href="https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html" title="Dalek Cryptography - 
@@ -344,7 +345,7 @@ The proof system presented here has the following Commitment Scheme<sup>[def][cs
 
 #### Protocol 4! - Optimized Verifier using Multi-Exponentiation and Batch Verification
 
-In many of the Bulletproofs' [Use Cases](#use-cases) the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that is also extendable to aggregate range proofs ([Protocol 2.3!](#protocol-23---aggregating-logarithmic-proofs)) and the arithmetic circuit protocol ([Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)).
+In many of the Bulletproofs' [Use Cases](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs) the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that is also extendable to aggregate range proofs ([Protocol 2.3!](#protocol-23---aggregating-logarithmic-proofs)) and the arithmetic circuit protocol ([Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits)).
 
 <u>Multi-exponentiation</u>
 
@@ -403,10 +404,10 @@ Cathie Yun">24</a>]</b></div>
 
 ## Conclusions, Observations, Recommendations
 
-- Bulletproofs have many potential [applications](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs), but are still under [development](../bulletproofs-and-mimblewimble/MainReport.md#current--past-efforts). A new confidential blockchain protocol like Tari should carefully consider expanded use of Bulletproofs as shown in the Interstellar example to maximally leverage functionality of the code base.
+- Bulletproofs have many potential use cases or [applications](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs), but are still under [development](../bulletproofs-and-mimblewimble/MainReport.md#current--past-efforts). A new confidential blockchain protocol like Tari should carefully consider expanded use of Bulletproofs to maximally leverage functionality of the code base.
 - Bulletproofs are not done yet, as illustrated in [Evolving Bulletproofs Protocols](#evolving-bulletproofs-protocols), and its further development and efficient implementation has a lot of traction in the community.
-- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[10]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. (*See the Grin projects' implementation [here](../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).*) The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In their proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. Bünz B. et al [[1]] also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect.
-- It is important that developers understand more about the underlying mathematics when implementing something like Bulletproofs, even if they just re-use libraries developed by someone else.
+- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[10]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In the Bünz B. et al [[1]] proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. They also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect. (*See the Grin projects' implementation [here](../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).*)
+- It is important that developers understand more about the fundamental underlying mathematics when implementing something like Bulletproofs, even if they just re-use libraries developed by someone else.
 
 
 
@@ -520,9 +521,9 @@ Sadeghi A et al."
 International Journal of Advances in Engineering & Technology,
 Jan 2012"
 
-[[18]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al., http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf, Date accessed: 2018-10-09.
+[[18]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al., https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view, Date accessed: 2018-10-09.
 
-[18]: http://www-verimag.imag.fr/~plafourc/teaching/Elgamal.pdf
+[18]: https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view
 "On the Security of ElGamal Based Encryption,
 Tsiounis Y. et al."
 
@@ -629,8 +630,7 @@ matrices A,B of the same dimensions ..."
 
 - <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[3]], [[8]], [[14]], [[15]]).
 
-- - The generalized Pedersen commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
-
+  - The generalized Pedersen commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
     - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $ 
 
     - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $ 
@@ -643,7 +643,7 @@ matrices A,B of the same dimensions ..."
 
     - The generator $ h $ and resulting number $ g $ are known as the commitment bases and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
 
-    - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
+  - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
 
   - Security attributes of the Pedersen Commitment scheme are perfectly *hiding*<sup>[def][cs~]</sup> and computationally *binding*<sup>[def][cs~]</sup>. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
 
@@ -656,8 +656,7 @@ commitments to a value ..."
 
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[4]], [[9]])
 
-- - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
-
+  - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
   - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
 
   - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any confidential information from the interaction with the prover apart from the fact that the statement is true.
@@ -674,24 +673,44 @@ one party (the prover) can convince ..."
 The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
 
 - Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively
+
 - let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively
+
 - Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
+
 - Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
+
 - Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively
+
+- Let $ h^r \mathbf g^\mathbf x = h^r \prod_i g_i^{x_i} \in \mathbb G $ be the vector Pedersen Commitment<sup>[def][pc~]</sup> with $   \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n  $ and
+
+  $   \mathbf {x} = (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_n) \in \mathbb G^n $ 
+
 - Let $  \mathbf {a} \in \mathbb F^n $ be a vector with elements  $  a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n \in F^n $ 
+
 - Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sum _{i=1}^n {a_i \cdot b_i} ​$ denote the inner-product between two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n ​$ 
+
 - Let $  \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $  \mathbf {a}, \mathbf {b}  \in \mathbb F^n $ 
+
 - Let $  \mathbf {A} \circ \mathbf {B} = (a_{11} \cdot b_{11} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{1m} \cdot b_{1m} \mspace{6mu}  ;  \mspace{6mu} . . . \mspace{6mu} ; \mspace{6mu} a_{n1} \cdot b_{n1} \mspace{3mu}  ,  \mspace{3mu} . . .  \mspace{3mu} , \mspace{3mu}  a_{nm} \cdot b_{nm} ) $ denote the entry wise multiplication of two matrixes, also known as the Hadamard Product<sup>[def][hdmp~]</sup> 
+
 - Let $  \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $  \mathbf {a}  \in \mathbb Z_p^n $ and  $ \mathbf {b}  \in \mathbb Z_p^m $ then $ \mathbf {a} \parallel \mathbf {b}  \in \mathbb Z_p^{n+m} $ 
+
 - Let $ p(X) = \sum _{i=0}^d { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $ 
+
 - Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] $ denote the inner-product between two vector polynomials $ l(X),r(X) $ 
+
 - Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner-product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $ 
+
 - Let $ C=g^a = \prod _{i=1}^n g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a}  \in \mathbb Z_p^n $ where $  \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b}  \in \mathbb Z_p^n $ with non-zero entries, $  \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C=  \prod _{i=1}^n (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
+
 - Let slices of vectors be defined as $  \mathbf {a_{[:l]}} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_l) \in \mathbb F^l \mspace{3mu} , \mspace{12mu}\ \mathbf {a_{[l:]}} = (a_{l+1} \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \mathbb F^{n-l}$ 
+
 - Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^* $ such that  $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $ 
+
 - Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively
+
 - Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} $ denote the *prover* and *verifier* in relation to inner-product calculations respectively
-- Let $ h^r \mathbf g^\mathbf x = h^r \prod_i g_i^{x_i} \in \mathbb G $ be the vector Pedersen Commitment<sup>[def][pc~]</sup> with ?????
 
 
 
