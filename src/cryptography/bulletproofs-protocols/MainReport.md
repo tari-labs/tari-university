@@ -242,8 +242,7 @@ So far the *verifier* $ \mathcal{V} $  behaves as an honest verifier and all mes
 
 ##### Protocol 2.5! - MPC Protocol for Bulletproofs
 
-This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs $ m $ parties each having a Pedersen commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each
-$ V_k $ commits to a number in some fixed range.
+This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs $ m $ parties each having a Pedersen commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each $ V_k $ commits to a number in some fixed range.
 
 Let $ k $ denote the $ k $th party's message, thus $ A^{(k)} $ is generated using only inputs of party $ k $. A set of distinct generators $ (g^{(k)}, h^{(k)})^m_{k=1} $ is assigned to each party, and $ \mathbf g,\mathbf h $ is defined as the interleaved concatenation of all $ g^{(k)} ,  h^{(k)} $ such that 
 
@@ -263,7 +262,7 @@ $$
 A = \prod^m_{k=1} A^{(k)} \mspace{15mu} \mathrm{and} \mspace{15mu} \tau_x = \prod^m_{k=1} \tau_x^{(k)}
 $$
 
-In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
+In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
 
 <p align="center"><img src="sources/MPC-diagram.PNG" width="850" /></p>
 <div align="center"><b>Figure&nbsp;7: MPC Implementation Example [<a href="https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html" title="Dalek Cryptography - 
@@ -339,7 +338,7 @@ The proof system presented here has the following Commitment Scheme<sup>[def][cs
 
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Statistical zero-knowledge</u>:  The *verifier* $ \mathcal{V} $ behaves according to the protocol and $ \mathbf {l} , \mathbf {r} $ can be efficiently simulated;
-- <u>Computational soundness (binding)</u>: if the generators $ \mathbf {g} , \mathbf {h} , g , h $ are independently generated, then finding a discrete logarithm relation between them is as hard as breaking the Discrete Log Problem.
+- <u>Computational soundness (binding)</u>: if the generators $ \mathbf {g} , \mathbf {h} , g , h $ are independently generated, then finding a discrete logarithm relation between them is as hard as breaking the Discrete Log Problem.
 
 
 
@@ -458,7 +457,7 @@ Fiat A. et al."
 Fiat-Shamir Heuristic and Applications to Helios, 
 Bernhard D. et al."
 
-[[8]] pedersen-commitment: An implementation of Pedersen commitment schemes, https://hackage.haskell.org/package/pedersen-commitment, Date accessed: 2018-09-25.
+[[8]] Pedersen-commitment: An implementation of Pedersen commitment schemes, https://hackage.haskell.org/package/pedersen-commitment, Date accessed: 2018-09-25.
 
 [8]: https://hackage.haskell.org/package/pedersen-commitment
 "Pedersen-commitment: An implementation
@@ -655,7 +654,6 @@ for making blinded non-interactive
 commitments to a value ..."
 
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[4]], [[9]])
-
   - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
   - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
 
