@@ -44,13 +44,13 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 
 \# | Topic 
 ---- | ----
-1 | Fraud Proofs - Easier said than done? 
-2 | Grin vs. Beam, a Comparison
-3 | Introduction to Digital Signatures
-4 | Grin Design Choice Criticisms
-5 | Mimblewimble-Grin Block Chain Protocol Overview
-6 | Applications of Byzantine Consensus Mechanisms
-7 | Regulatory directions in cryptocurrency
+
+1 | Applications of Byzantine Consensus Mechanisms Part 1
+2 | Bulletproofs and Mimblewimble Part 1
+3 | The Application of Howey to token sales on public blockchain networks, Part 1: The Efforts of Others.
+4 | Monero's privacy features: RingCT investigated
+5 | Block chain propagation/relay network optimization
+6 | Distributed Hash Tables (DHT) Application to Block Chain
 
 <br>
 
