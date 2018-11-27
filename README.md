@@ -44,14 +44,11 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 
 \# | Topic 
 ---- | ----
-
 1 | Applications of Byzantine Consensus Mechanisms Part 1
 2 | Bulletproofs and Mimblewimble Part 1
 3 | The Application of Howey to token sales on public blockchain networks, Part 1: The Efforts of Others.
 4 | Monero's privacy features: RingCT investigated
 5 | Block chain propagation/relay network optimization
 6 | Distributed Hash Tables (DHT) Application to Block Chain
-
-<br>
 
 <i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
