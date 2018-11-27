@@ -2,21 +2,21 @@
 
 Welcome to Tari Labs University
 
-Our mission: To be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.
+Our mission: To be the premier destination for balanced and accessible learning material for blockchain technology, digital currencies and digital assets.
 
-We hope to make this a learning experience for us at Tari Labs: as a means to grow our knowledge base and internal expertise or as a refresher, but we think this will also be an excellent resource for anyone interested in the myriad of disciplines required to understand blockchain technology.  
+We hope to make this a learning experience for the team at Tari Labs and the Tari community at large - as a tool to grow our blockchain knowledge base or as a refresher. Either way, here at Tari Labs, we think this will be an excellent resource for anyone interested in the myriad of disciplines required to understand blockchain technology.
 
-We would like this platform to be a place of learning- accessible to anyone, irrespective of their degree of expertise. Our aim is to cover a wide range of topics that are relevant to the Tari space, starting at a beginner level, extending down a path of deeper complexity. 
+Tari Labs would like this platform to be a place of learning - accessible to anyone, irrespective of their degree of expertise. Our aim is to cover a wide range of topics that are relevant to the Tari protocol, starting at a beginner level, extending down a path of deeper complexity. 
 
 _The Tari Labs University online book is rendered [**here**](https://tari-labs.github.io/tari-university/)._ 
 
 ## Errors, Comments and Contributions 
 
-We want this collection of educational presentations and videos to be collaborative affair.
+Our team at Tari Labs wants this collection of educational presentations and videos to be collaborative affair.
 
-This extends to our presentations; we are learning along with you: our content may not be perfect first time around- so we invite you to alert us to errors and issues, or better yet, if you know how to make a pull request to contribute a fix, write the correction and use a pull request.
+We are learning alongside you. We don't claim to know everything about digital currencies or blockchain technology, and our content will not be perfect the first time around. Therefore, we invite you to alert us of errors and issues, or better yet, if you know how to submit a pull request, you can write the correction yourself.
 
-As much as this learning platform is called Tari Labs University and will see input from many internal contributors and external experts, we would like you to contribute to new material, be it in the form of a suggestion of topics, varying the skill levels of presentations, or posting presentations that you may feel will benefit us as a growing community. In the words of Yoda, “Always pass on what you have learned”.  
+Although this learning platform is called Tari Labs University and it will see input from many internal contributors, we also encourage our Tari community experts to contribute to new material, either in the form of a topic suggestion, a formatting suggestion, or even posting presentations that you think will benefit the growing Tari community. In the words of Yoda, “Always pass on what you have learned”.  
 
 If you are considering contributing content to Tari Labs University, please be aware of our guiding principles.
 
@@ -44,14 +44,11 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 
 \# | Topic 
 ---- | ----
-
 1 | Applications of Byzantine Consensus Mechanisms Part 1
 2 | Bulletproofs and Mimblewimble Part 1
 3 | The Application of Howey to token sales on public blockchain networks, Part 1: The Efforts of Others.
 4 | Monero's privacy features: RingCT investigated
 5 | Block chain propagation/relay network optimization
 6 | Distributed Hash Tables (DHT) Application to Block Chain
-
-<br>
 
 <i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
