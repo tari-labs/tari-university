@@ -1,6 +1,3 @@
-
-
-
 # Bulletproofs and Mimblewimble
 
 ## Introduction
@@ -22,7 +19,7 @@ The essence of Bulletproofs are its inner-product algorithm originally presented
 - [Bulletproofs and Mimblewimble](#bulletproofs-and-mimblewimble)
   - [Introduction](#introduction)
   - [Contents](#contents)
-  - [How does Bulletproofs work?](#how-does-bulletproofs-work)
+  - [How do Bulletproofs work?](#how-do-bulletproofs-work)
   - [Applications for Bulletproofs](#applications-for-bulletproofs)
   - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
   - [Interesting Bulletproofs Implementation Snippets](#interesting-bulletproofs-implementation-snippets)
@@ -41,9 +38,9 @@ The essence of Bulletproofs are its inner-product algorithm originally presented
 
 
 
-## How does Bulletproofs work?
+## How do Bulletproofs work?
 
-The basis of confidential transactions is to replace the input and output amounts with Pedersen commitments. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $, that is each $ x $ is either $ 0 $ or $ 1 $, and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
+The basis of confidential transactions is to replace the input and output amounts with Pedersen Commitments<sup>[def][pc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $, that is each $ x $ is either $ 0 $ or $ 1 $, and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
 
 Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements are required for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
 
@@ -61,7 +58,7 @@ In Mimblewimble the blockchain grows with the size of the UTXO set. Using Bullet
 
 ## Applications for Bulletproofs
 
-Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits. What this means in practice is that Bulletproofs have wide application and can be efficiently used for many types of proofs. Use cases of Bulletproofs are listed below, but this list may not be exhaustive as use cases for Bulletproofs continue to evolve. ([[1]], [[3]], [[6]]) 
+Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits. What this means in practice is that Bulletproofs have wide application and can be efficiently used for many types of proofs. Use cases of Bulletproofs are listed below, but this list may not be exhaustive as use cases for Bulletproofs continue to evolve. ([[1]], [[3]], [[5]], [[6]]) 
 
 - Range proofs
 
@@ -69,11 +66,11 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 - Merkle proofs
 
-  - In this context a full node (*verifier*) maintains a complete copy of the Merkle tree and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the Merkle tree in some block <code>B</code> with block header <code>H</code>.  [[7]] This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK proof.
+  - In this context a full node (*verifier*) maintains a complete copy of the Merkle tree [[7]] and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the Merkle tree in some block <code>B</code> with block header <code>H</code>. This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK proof.
 
 - Proof of solvency
 
-  - Proofs of solvency are a specialized application of Merkle proofs; coins can be added into a giant Merkle tree. It can then be proven that some outputs are in the Merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol. Using Bulletproofs and its variant protocols proposed in [[1]], this size could be reduced to approximately 62MB.
+  - Proofs of solvency are a specialized application of Merkle proofs; coins can be added into a giant Merkle tree. It can then be proven that some outputs are in the Merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol [[58]]. Using Bulletproofs and its variant protocols proposed in [[1]], this size could be reduced to approximately 62MB.
 
 - Multi-signatures with deterministic nonces
 
@@ -84,7 +81,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
   - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a Sigma protocol. This can all be done with Bulletproofs, which could be extended to allow assets that are functions of other assets, i.e. crypto derivatives.
 
 - Smart contracts and Crypto-derivatives
-  - Traditionally, a new trusted setup is needed when verifying privacy-preserving smart contracts in each case, but with Bulletproofs no trusted setup is needed. Verification time however is linear, and it might be too complex to proof every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with public verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract. 
+  - Traditionally, a new trusted setup is needed when verifying privacy-preserving smart contracts in each case, but with Bulletproofs no trusted setup is needed. Verification time however is linear, and it might be too complex to prove every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with public verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract. 
 
     A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then used to identify the gate where the proof turns invalid, and hence the smart contract must only check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (see Figure&nbsp;3). 
 
@@ -114,17 +111,17 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ## Comparison to other Zero-knowledge Proof Systems
 
-The table below ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown in *italics*.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
+The table below ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown in ***bold italics***.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
 
-| Proof System                        | Sigma Protocols | zk-SNARK                                | STARK                                                        | ZKBoo               | Bulletproofs |
-| ----------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------ | ------------------- | ------------ |
-| <b>Interactive</b>                  | yes             | *no*                                    | *no*                                                         | *no*                | *no*         |
-| <b>Proof Size</b>                   | long            | *short*                                 | shortish                                                     | long                | *short*      |
-| <b>Prover Runtime Scalability</b>   | *linear*        | quasilinear                             | quasilinear (big memory requirement)                         | *linear*            | *linear*     |
-| <b>Verifier Runtime Scalability</b> | linear          | *efficient*                             | *efficient* (*poly-logarithmically*)                         | *efficient*         | linear       |
-| <b>Trusted Setup</b>                | *no*            | required                                | *no*                                                         | *no*                | *no*         |
-| <b>Practical</b>                    | *yes*           | *yes*                                   | not   quite                                                  | somewhat            | *yes*        |
-| <b>Security Assumptions</b>         | *DL*            | non-falsifiable, but not on par with DL | *quantum secure One-way Function ([OWF][owf]) [[50]], which is better than DL* | *similar to STARKs* | *DL*         |
+| Proof System                        | Sigma Protocols | zk-SNARK                                | STARK                                                        | ZKBoo                   | Bulletproofs |
+| ----------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------ | ----------------------- | ------------ |
+| <b>Interactive</b>                  | yes             | ***no***                                | ***no***                                                     | ***no***                | ***no***     |
+| <b>Proof Size</b>                   | long            | ***short***                             | shortish                                                     | long                    | *short*      |
+| <b>Prover Runtime Scalability</b>   | ***linear***    | quasilinear                             | quasilinear (big memory requirement)                         | ***linear***            | ***linear*** |
+| <b>Verifier Runtime Scalability</b> | linear          | *efficient*                             | ***efficient* (*poly-logarithmically*)**                     | ***efficient***         | linear       |
+| <b>Trusted Setup</b>                | ***no***        | required                                | ***no***                                                     | ***no***                | ***no***     |
+| <b>Practical</b>                    | ***yes***       | ***yes***                               | not   quite                                                  | somewhat                | ***yes***    |
+| <b>Security Assumptions</b>         | ***DL***        | non-falsifiable, but not on par with DL | ***quantum secure One-way Function ([OWF][owf]) [[50]], which is better than DL*** | ***similar to STARKs*** | ***DL***     |
 
 [owf]: #owf
 "A one-way function is a function that is easy to 
@@ -184,7 +181,7 @@ Grin implemented a switch commitment [[43]] as part of a transaction output to b
 
 #### Initial Implementation
 
-The initial Grin implementation ([[21]], [[34]]. [[35]], [[54]]) hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly binding in addition to it being perfectly hiding. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
+The initial Grin implementation ([[21]], [[34]]. [[35]], [[54]]) hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly *binding*<sup>[def][cs~]</sup>  later on as opposed to currently being perfectly *hiding*<sup>[def][cs~]</sup>. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
 
 In this implementation a Grin transaction output contains the original Schnorr signature output as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
 
@@ -198,7 +195,7 @@ In the event of quantum adversaries the owner of an output can choose to stay an
 
 In the Bulletproof range proof protocol two 32-byte scalar nonces $ \tau_1 , \alpha $ (*not important to know what they are*) are generated with a secure random number generator. If the seed for the random number generator is known, the scalar values $ \tau_1 , \alpha $ can be re-calculated when needed. Sixty four (64) bytes worth of message space (out of 674 bytes worth of range proof) are made available by embedding a message into those variables using a logic $ \mathrm{XOR} $ gate. This message space is used for the transaction amount for wallet reconstruction.
 
-To ensure that the transaction amount of the output cannot be spend by only opening the Schnorr signature $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original blinding factor $ b $), the Pedersen commitment $ P $ and the switch commitment hash
+To ensure that the transaction amount of the output cannot be spend by only opening the Schnorr signature $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original blinding factor $ b $), the Pedersen Commitment<sup>[def][pc~]</sup> $ P $ and the switch commitment hash
 
 $$
 \mathrm S (\eta \mspace{3mu} , \mspace{3mu} P \mspace{3mu} ,  \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) ) = \eta \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{S256}}(P \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) )
@@ -285,7 +282,7 @@ The extracts of the discussions below depict the initial and improved implementa
 - Bulletproofs are not Bulletproofs are not Bulletproofs. This is evident by comparing the functionality, security and performance of all the current different Bulletproof implementations as well as the evolving nature of Bulletproofs.
 - The security audit instigated by the Monero project on their Bulletproofs implementation and the resulting findings and corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to the nature of confidential transactions; transacted values and token owners are not public.
 - The growing number of open source Bulletproof implementations should strengthen the development of a new confidential blockchain protocol like Tari.
-- In the pure implementation of Bulletproof range proofs a discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding (*i.e. confidential*), but only computationally binding (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
+- In the pure implementation of Bulletproof range proofs a discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding<sup>[def][cs~]</sup>  (*i.e. confidential*), but only computationally *binding*<sup>[def][cs~]</sup>  (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
 - Bulletproofs are not only about range proofs. All the different Bulletproof use cases have a potential implementation in a new confidential blockchain protocol like Tari; in the base layer as well as in the probable 2nd layer.
 
 
@@ -636,6 +633,15 @@ switch commitment discussion #998"
 "GitHub: mimblewimble/grin, 
 [DNM] Switch commitments #2007"
 
+[[58]] Provisions: Privacy-preserving proofs of solvency for Bitcoin exchanges, Dagher G. et al., Oct 2015, https://eprint.iacr.org/2015/1008.pdf, Date  accessed: 2018-11-29.
+
+[58]: https://eprint.iacr.org/2015/1008.pdf
+"Provisions: Privacy-preserving proofs of 
+solvency for Bitcoin exchanges, 
+Dagher G. et al., 
+Oct 2015"
+
+
 
 ## Appendices
 
@@ -659,28 +665,28 @@ is a directed acyclic graph ..."
 soundness like Bulletproofs are 
 sometimes called argument systems."
 
-- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly binding and perfectly hiding. ([[36]], [[37]])
+- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly *binding* and perfectly hiding. ([[36]], [[37]])
 
 [cs~]: #cs
 "A commitment scheme in a 
 zero-knowledge proof is a 
 cryptographic primitive ..."
 
-- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers  $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
 
 [dlp~]: #dlp
 "In the mathematics of the real 
 numbers, the logarithm log_b(a) 
 is a number x such that ..."
 
-- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[51]], [[52]], [[53]])
+- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[51]], [[52]], [[53]])
 
 [egc~]: #egc
 "An ElGamal Commitment is a 
 Pedersen Commitment with
-additional commitment  ..."
+additional commitment ..."
 
-- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
+- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a one-message (non-interactive) protocol using a cryptographic hash function. ([[18]], [[19]])
   - The *prover* will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the *verifier* then contains the challenge $ c $ and response $ f $.
   - The *verifier* is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The *verifier* will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
   - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
@@ -696,7 +702,7 @@ convert an interactive ..."
 "In security engineering, nonce is an 
 abbreviation of number used once. 
 In cryptography, a nonce is an arbitrary 
-number  ..."
+number ..."
 
 - <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>In cryptography, Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]]).
   - The generalized Pedersen commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
@@ -707,7 +713,7 @@ number  ..."
     - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
     - The generator $ h $ and resulting number $ g $ are known as the commitment bases and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
   - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
-  - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
+  - Security attributes of the Pedersen Commitment scheme are perfectly *hiding*<sup>[def][cs~]</sup> and computationally *binding*<sup>[def][cs~]</sup>. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
   - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
 
 [pc~]: #pc
@@ -737,7 +743,7 @@ The general notation of mathematical expressions when specifically referenced ar
 
 - let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively
 
-- Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
+- Let $ \mathbb Z_p^* $ denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
 
 - Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
 
