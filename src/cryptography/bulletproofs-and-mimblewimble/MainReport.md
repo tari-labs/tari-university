@@ -29,12 +29,14 @@ The essence of Bulletproofs are its inner-product algorithm originally presented
     - [Current & Past Efforts](#current--past-efforts)
     - [Security Considerations](#security-considerations)
     - [Wallet Reconstruction and Switch Commitment - Grin](#wallet-reconstruction-and-switch-commitment---grin)
-      - [Discussion](#discussion)
+      - [Initial Implementation](#initial-implementation)
+      - [Improved Implementation](#improved-implementation)
       - [GitHub Extracts](#github-extracts)
   - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
   - [References](#references)
   - [Appendices](#appendices)
     - [Appendix A: Definition of Terms](#appendix-a-definition-of-terms)
+    - [Appendix B: Notations Used](#appendix-b-notations-used)
   - [Contributors](#contributors)
 
 
@@ -112,7 +114,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ## Comparison to other Zero-knowledge Proof Systems
 
-The table below ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown *italics*.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
+The table below ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown in *italics*.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
 
 | Proof System                        | Sigma Protocols | zk-SNARK                                | STARK                                                        | ZKBoo               | Bulletproofs |
 | ----------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------ | ------------------- | ------------ |
@@ -145,7 +147,7 @@ An independent implementation for Bulletproof range proofs was done for the Mone
 
 Adjoint, Inc. has also done an independent open source implementation of Bulletproofs in Haskell at `GitHub: adjoint-io/bulletproofs` [[29]]. They have an open source implementation of a private permissioned blockchain with multi-party workflows aimed at the financial industry.
 
-Chain has done another independent open source implementation of Bulletproofs in Rust from the ground up at `GitHub:dalek-cryptography/bulletproofs` [[28]]. They have implemented parallel Edwards formulas [[39]] using Intel® Advanced Vector Extensions 2 (AVX2) to accelerate curve operations. Initial testing suggests approximately 50% speedup (twice as fast) over the original `libsecp256k1`-based Bulletproofs implementation.
+Chain/Interstellar has done another independent open source implementation of Bulletproofs in Rust from the ground up at `GitHub:dalek-cryptography/bulletproofs` [[28]]. They have implemented parallel Edwards formulas [[39]] using Intel® Advanced Vector Extensions 2 (AVX2) to accelerate curve operations. Initial testing suggests approximately 50% speedup (twice as fast) over the original `libsecp256k1`-based Bulletproofs implementation.
 
 
 
@@ -175,11 +177,16 @@ The Monero project have also had security audits done on their Bulletproofs' imp
 
 ### Wallet Reconstruction and Switch Commitment - Grin
 
-#### Discussion
+Grin implemented a switch commitment [[43]] as part of a transaction output to be ready for the age of quantum adversaries and to pose as defense mechanism. They had an original implementation that was discarded (completely removed) due to it being complex, using a lot of space in the blockchain and allowing inclusion of arbitrary data. Grin also employed a complex scheme to embed the transaction amount inside a Bulletproof range proof for wallet reconstruction, which was linked to the original switch commitment hash implementation. The latest implementation improved on all those aspects and uses a much simpler method to regain the transaction amount from a Bulletproof range proof. 
 
-The Grin implementation hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash [[43]] to make the transaction perfectly binding in addition to it being perfectly hiding. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
 
-A Grin transaction output contains the original Schnorr signature output as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
+
+
+#### Initial Implementation
+
+The initial Grin implementation ([[21]], [[34]]. [[35]], [[54]]) hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly binding in addition to it being perfectly hiding. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
+
+In this implementation a Grin transaction output contains the original Schnorr signature output as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
 
 $$
 (vG + bH \mspace{3mu} , \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r))
@@ -187,9 +194,9 @@ $$
 
 where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [[44]] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $ the switch commitment hash. In order for such an amount to be spent the *Verifier* also need to check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $. Grin implemented the BLAKE2 hash function, which outperforms all mainstream hash function implementations in terms of hashing speed with similar security to the latest Secure Hash Algorithm 3 (SHA-3) standard.
 
-The idea behind the switch commitment hash is to pose as defense mechanism when quantum adversaries start to appear. In that event the owner of an output can choose to stay anonymous and not claim ownership or reveal $ bJ $ and $ r $ whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.
+In the event of quantum adversaries the owner of an output can choose to stay anonymous and not claim ownership or reveal $ bJ $ and $ r $ whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.
 
-In the Bulletproof range proof protocol two 32-byte scalar nonces $ \tau_1 , \alpha $ (*not important to know what they are*) are generated with a secure random number generator. If the seed for the random number generator is known, the scalar values $ \tau_1 , \alpha $ can be re-calculated when needed. Sixty four (64) bytes worth of message space (out of 674 bytes worth of range proof) are made available by embedding a message into those variables using a logic XOR gate. This message space is used for the transaction amount for wallet reconstruction.
+In the Bulletproof range proof protocol two 32-byte scalar nonces $ \tau_1 , \alpha $ (*not important to know what they are*) are generated with a secure random number generator. If the seed for the random number generator is known, the scalar values $ \tau_1 , \alpha $ can be re-calculated when needed. Sixty four (64) bytes worth of message space (out of 674 bytes worth of range proof) are made available by embedding a message into those variables using a logic $ \mathrm{XOR} $ gate. This message space is used for the transaction amount for wallet reconstruction.
 
 To ensure that the transaction amount of the output cannot be spend by only opening the Schnorr signature $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original blinding factor $ b $), the Pedersen commitment $ P $ and the switch commitment hash
 
@@ -207,9 +214,25 @@ To retrieve the embedded message the process is simply inverted. Notice that the
 
 
 
+#### Improved Implementation
+
+The latter Grin implementation ([[56]], [[57]]) uses Bulletproof range proof rewinding so that wallets can recognize their own transaction outputs. This negated the requirement to remember the wallet-seed derived random value $ r $, nonce $ \eta $ for the seed function $ \mathrm S $ and use of the adapted pair $ \tilde{\alpha} , \tilde{\tau_1} $ in the Bulletproof range proof calculation.
+
+In this implementation it is not necessary to remember a hash of the switch commitment as part of the transaction output set and for it to be passed around during a transaction. The switch commitment looks exactly like the original Schnorr signature $ vG + bH $ but in this instance the blinding factor $ b $ is tweaked to be 
+$$
+b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J )
+$$
+ with $ b^\prime $ being the user generated blinding factor. The Schnorr signature then becomes
+$$
+vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
+$$
+After activation of the switch commitment in the age of quantum adversaries users can reveal $ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $ and *Verifiers* can check if it's computed correctly and use it as if it were the ElGamal Commitment<sup>[def][egc~]</sup>  $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) $. 
+
+
+
 #### GitHub Extracts
 
-The extracts of the discussions below depict the development of embedding the transaction amount and switch commitment hash inside the Bulletproof range proof.
+The extracts of the discussions below depict the initial and improved implementations of the switch commitment and retrieving transactions amounts from Bulletproofs for wallet reconstruction.
 
 <u>Bulletproofs #273</u> [[35]]
 
@@ -232,6 +255,28 @@ The extracts of the discussions below depict the development of embedding the tr
 "*If you have the correct Pedersen **commitment** and **proof** and **extra_data**, and attempt to unwind a **message** out using the wrong **nonce**, the attempt won't fail, you'll get out gibberish or just wildly incorrect values as you parse back the bytes.*"
 
 "*The `SwitchCommitHash`  is currently a field of an output, and while it is stored in the Txo set and passed around during a transaction, it is not currently included in the output's hash. It is passed in as the **extra_data** field above, meaning that anyone validating the range proof also needs to have the correct switch commit in order to validate the range proof.*"
+
+*<u>Removed all switch commitment usages, including restore #841</u>* [[55]]
+
+{**ignopeverell**} "*After some discussion with @antiochp, @yeastplume and @tromp, we decided switch commitments weren't worth the cost of maintaining them and their drawbacks. Removing them.*"
+
+{**ignopeverell**} "*For reference, switch commitments were found to:*
+* *add a lot of complexity and assumptions*
+* *take additional space for little benefit right now*
+* *allow the inclusion of arbitrary data, potentially for the worst*
+* *provide little to no advantage in case of quantamageddon (as range proofs are still a weakness)*"
+
+{**apoelstra**} "*After chatting with @yeastplume on IRC, I realize that we can actually use rangeproof rewinding for wallets to recognize their own outputs, which even avoids the "gap" problem of just scanning for pre-generated keys. With that in mind, it's true that the benefit of switch commitments for MW are not spectacular.*"
+
+<u>Switch commitment discussion #998</u> [[56]]
+
+{**antiochp**} "*Sounds like there is a "zero cost" way of getting switch commitments in as part of the commitment itself, so we would not need to store and maintain a separate "switch commitment" on each output. I saw that switch commitments have been removed for various reasons.*"
+
+"*Let me suggest a variant (idea suggested by Pieter Wuille initially): The switch commitment is (vG + bH), where b = b' + hash(vG + b'H,b'J). (So this "tweaks" the commitment, in a pay-to-contract / taproot style). Before the switch, this is just used like a normal Pedersen commitment vG + bH. After the switch, users can reveal (vG + b'H, b'J), and verifiers check if it's computed correctly and use as if it were the ElGamal commitment (vG + bH, bJ).*"
+
+{**@ignopeverell**} *modified the milestones: Beta / testnet3, Mainnet on 11 Jul*
+
+{**@ignopeverell**} *added the must-have label on 24 Aug*
 
 
 
@@ -550,6 +595,47 @@ Maxwell G. et al."
 [50]: https://en.wikipedia.org/wiki/One-way_function
 "Wikipedia: One-way function"
 
+[[51]] Intensified ElGamal Cryptosystem (IEC), Sharma P. et al., International Journal of Advances in Engineering & Technology, Jan 2012, http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf, Date accessed: 2018-10-09.
+
+[51]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf
+"Intensified ElGamal Cryptosystem (IEC), Sharma P. et al.
+International Journal of Advances in Engineering & Technology,
+Jan 2012"
+
+[[52]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al., https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view, Date accessed: 2018-10-09.
+
+[52]: https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view
+"On the Security of ElGamal Based Encryption,
+Tsiounis Y. et al."
+
+[[53]] Wikipedia: Decisional Diffie–Hellman assumption, https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption, Date accessed: 2018-10-09.
+
+[53]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption
+"Wikipedia: Decisional Diffie–Hellman assumption"
+
+[[54]] GitHub: mimblewimble/grin, Bulletproof messages #730, https://github.com/mimblewimble/grin/pull/730, Date  accessed: 2018-11-29.
+
+[54]: https://github.com/mimblewimble/grin/pull/730
+"GitHub: mimblewimble/grin, Bulletproof messages #730"
+
+[[55]] GitHub: mimblewimble/grin, Removed all switch commitment usages, including restore #841, https://github.com/mimblewimble/grin/pull/841, Date  accessed: 2018-11-29.
+
+[55]: https://github.com/mimblewimble/grin/pull/841
+"GitHub: mimblewimble/grin, Removed all switch 
+commitment usages, including restore #841"
+
+[[56]] GitHub: mimblewimble/grin, switch commitment discussion #998, https://github.com/mimblewimble/grin/issues/998, Date  accessed: 2018-11-29.
+
+[56]: https://github.com/mimblewimble/grin/issues/998
+"GitHub: mimblewimble/grin, 
+switch commitment discussion #998"
+
+[[57]] GitHub: mimblewimble/grin, [DNM] Switch commitments #2007, https://github.com/mimblewimble/grin/pull/2007, Date  accessed: 2018-11-29.
+
+[57]: https://github.com/mimblewimble/grin/pull/2007
+"GitHub: mimblewimble/grin, 
+[DNM] Switch commitments #2007"
+
 
 ## Appendices
 
@@ -557,7 +643,9 @@ Maxwell G. et al."
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. ([[29]], [[47]])
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
+
+  <p align="center"><img src="sources/ArithmiticCircuit.PNG" width="300" /></p>
 
 [ac~]: #ac
 "An arithmetic circuit C over a 
@@ -585,7 +673,17 @@ cryptographic primitive ..."
 numbers, the logarithm log_b(a) 
 is a number x such that ..."
 
-- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
+- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields.  The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[51]], [[52]], [[53]])
+
+[egc~]: #egc
+"An ElGamal Commitment is a 
+Pedersen Commitment with
+additional commitment  ..."
+
+- <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a one-message (non-interactive) protocol using a cryptographic hash function.  ([[18]], [[19]])
+  - The *prover* will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the *verifier* then contains the challenge $ c $ and response $ f $.
+  - The *verifier* is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The *verifier* will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
+  - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
 
 [fsh~]: #fsh
 "The Fiat–Shamir heuristic is a 
@@ -601,8 +699,15 @@ In cryptography, a nonce is an arbitrary
 number  ..."
 
 - <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>In cryptography, Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]]).
+  - The generalized Pedersen commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
+    - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $ 
+    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $ 
+    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $ 
+    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $ 
+    - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
+    - The generator $ h $ and resulting number $ g $ are known as the commitment bases and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
+  - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
   - Security attributes of the Pedersen Commitment scheme are perfectly *hiding* and computationally *binding*. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
-
   - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
 
 [pc~]: #pc
@@ -624,7 +729,25 @@ one party (the prover) can convince ..."
 
 
 
+### Appendix B: Notations Used
+
+The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
+
+- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively
+
+- let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively
+
+- Let $ \mathbb Z_p^* $  denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
+
+- Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
+
+
+
 ## Contributors
 
 - [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
-- ???
+- [https://github.com/CjS77](https://github.com/CjS77)
+- [https://github.com/SWvheerden](https://github.com/SWvheerden)
+- [https://github.com/philipr-za](https://github.com/philipr-za)
+- [https://github.com/neonknight64](https://github.com/neonknight64)
+- [https://github.com/Kevoulee](https://github.com/Kevoulee) ???
