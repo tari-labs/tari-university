@@ -8,7 +8,7 @@ The Bulletproofs technology is a Non-interactive Zero-knowledge (NIZK) proof pro
 
 Bulletproofs also implement a Multi-party Computation (MPC) protocol whereby distributed proofs of multiple *provers* with secret committed values are aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, thereby minimizing rounds of communication. Secret committed values will stay secret. ([[1]], [[6]])
 
-The essence of Bulletproofs are its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The algorithm provides an argument of knowledge (proof) of two binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfy a given inner-product relation, which is of independent interest (not related). Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
+The essence of Bulletproofs are its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
 [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
 
@@ -189,7 +189,7 @@ $$
 (vG + bH \mspace{3mu} , \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r))
 $$
 
-where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [[44]] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $ the switch commitment hash. In order for such an amount to be spent the *Verifier* also need to check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $. Grin implemented the BLAKE2 hash function, which outperforms all mainstream hash function implementations in terms of hashing speed with similar security to the latest Secure Hash Algorithm 3 (SHA-3) standard.
+where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [[44]] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $ the switch commitment hash. In order for such an amount to be spent the *Verifier* also need to check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $. Grin implemented the BLAKE2 hash function, which outperforms all mainstream hash function implementations in terms of hashing speed with similar security to the latest Secure Hash Algorithm 3 (SHA-3) standard [[44]].
 
 In the event of quantum adversaries the owner of an output can choose to stay anonymous and not claim ownership or reveal $ bJ $ and $ r $ whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.
 
@@ -289,7 +289,7 @@ The extracts of the discussions below depict the initial and improved implementa
 
 ## References
 
-[[1]] Bulletproofs: Short Proofs for Confidential Transactions and More, Blockchain Protocol Analysis and Security Engineering 2018, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/Bulletproofs.pdf, Date accessed: 2018-09-18.
+[[1]] Bulletproofs: Short Proofs for Confidential Transactions and More, Blockchain Protocol Analysis and Security Engineering 2018, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf, Date accessed: 2018-09-18.
 
 [1]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf
 "Bulletproofs: Short Proofs for Confidential Transactions 
