@@ -1,17 +1,17 @@
-# The Bulletproofs Protocols
+# The Bulletproof Protocols
 
 ## Introduction
 
-An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"), which has largely been based on the original work done in [[1]] by Bünz B. et al. They documented a number of different Bulletproofs protocols, but not so obvious as to catch the eye when scanning the paper. This report summarizes and try to explain the different Bulletproofs protocols in as simple terms as possible, tries to simplify the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report ends off discussing an evolutionary approach by some community members to improve the Bulletproofs zero-knowledge proof protocol.
+An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"), which has largely been based on the original work done by Bünz et al. [[1]]. They documented a number of different Bulletproof protocols, but not all of them in an obvious manner. This report chronologically numbers, summarizes and explain the different Bulletproof protocols in as simple terms as possible. It also simplifies the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report concludes with a discussion on an improved Bulletproof zero-knowledge proof protocol by some community members following an evolutionary approach.
 
 
 
 ## Contents
 
-- [Bulletproofs and Mimblewimble](#bulletproofs-and-mimblewimble)
+- [The Bulletproof Protocols](#the-bulletproof-protocols)
   - [Introduction](#introduction)
   - [Contents](#contents)
-  - [Bulletproofs Protocols](#bulletproofs-protocols)
+  - [Bulletproof Protocols](#bulletproof-protocols)
     - [Protocol 1 - Inner-product Argument](#protocol-1---inner-product-argument)
     - [Protocol 2 - Inner-Product Verification through Multi-Exponentiation](#protocol-2---inner-product-verification-through-multi-exponentiation)
     - [Protocol 2! - Range Proof Protocol with Logarithmic Size](#protocol-2---range-proof-protocol-with-logarithmic-size)
@@ -24,7 +24,7 @@ An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble](".
       - [Protocol 3 - Inner-Product Proof for Arithmetic Circuits](#protocol-3---inner-product-proof-for-arithmetic-circuits)
       - [Protocol 3.1! - Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits](#protocol-31---logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
     - [Protocol 4! - Optimized Verifier using Multi-Exponentiation and Batch Verification](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification)
-  - [Evolving Bulletproofs Protocols](#evolving-bulletproofs-protocols)
+  - [Evolving Bulletproof Protocols](#evolving-bulletproof-protocols)
   - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
   - [References](#references)
   - [Appendices](#appendices)
@@ -34,7 +34,7 @@ An overview of Bulletproofs has been given in [Bulletproofs and Mimblewimble](".
 
 
 
-## Bulletproofs Protocols
+## Bulletproof Protocols
 
 Protocols 1, 2 and 3 are numbered consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with a faculty sign "!" to differentiate them. See [Appendix&nbsp;B](#appendix-b-notations-used) for notations used. 
 
@@ -66,10 +66,11 @@ A proof system for relation (2) gives a proof system for (1) with the same compl
 Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;1. The element $ u $ is raised to a random power $ x $ chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#protocol-2---inner-product-verification-through-multi-exponentiation) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
 
 <p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
-<div align="center"><b>Figure&nbsp;1: Bulletproofs Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;1: Bulletproofs' Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 The argument presented in Protocol 1 has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
 
@@ -78,7 +79,7 @@ The argument presented in Protocol 1 has the following Commitment Scheme<sup>[de
 
 #### Protocol 2 - Inner-Product Verification through Multi-Exponentiation
 
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion these final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion the, final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
 
 $$
 g = \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
@@ -95,16 +96,25 @@ with $ L $ and $R $ as defined in the original reference.
 Protocol 2 is shown in Figure&nbsp;2. 
 
 <p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 2 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;2: Bulletproofs' Protocol 2 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
 
 
+
 #### Protocol 2! - Range Proof Protocol with Logarithmic Size
 
-Protocol 2' provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts; how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors, how to replace the inner product argument with an efficient inner-product argument, how to efficiently aggregate m range proofs into one short proof, how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and how to allow multiple parties to construct a single aggregate range proof. A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;3.
+Protocol 2! provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts: 
+
+- how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors;
+- how to replace the inner product argument with an efficient inner-product argument;
+- how to efficiently aggregate $ m $ range proofs into one short proof;
+- how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and 
+- how to allow multiple parties to construct a single aggregate range proof. 
+
+A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;3.
 
 <p align="center"><img src="sources/RangeProofDiagram.PNG" width="1000" /></p>
 <div align="center"><b>Figure&nbsp;3: Range Proof Protocol Implementation Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography - 
@@ -152,34 +162,36 @@ $$
 
 can be easily calculated by the *verifier* $ \mathcal{V} $. The proof that relation (4) holds was thus reduced to a single inner-product identity.
 
-Relation (7) cannot be used as is without revealing information about $ \mathbf {a}_L $. Two additional blinding vectors $ \mathbf {s}_L , \mathbf {s}_R \in \mathbb Z_p^n $ are introduced with the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engaging in the following zero-knowledge protocol (Figure&nbsp;4):
+Relation (7) cannot be used in its current form without revealing information about $ \mathbf {a}_L $. Two additional blinding vectors $ \mathbf {s}_L , \mathbf {s}_R \in \mathbb Z_p^n $ are introduced with the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engaging in the following zero-knowledge protocol (Figure&nbsp;4):
 
 <p align="center"><img src="sources/Protocol-2b-part-a.png" width="550" /></p>
-<div align="center"><b>Figure&nbsp;4: Bulletproofs Protocol 2.1! Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;4: Bulletproofs' Protocol 2.1! Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
 
 
-Two linear vector polynomials $ l(X), r(X) $ in $ \mathbb Z^n_p[X] $ are defined as the inner-product terms for relation (7), also containing the blinding vectors $ \mathbf {s}_L , \mathbf {s}_R $. A quadratic polynomial $ t(X) \in \mathbb Z_p[X] $ is then defined as the inner product between the two vector polynomials $ l(X), r(X) $ such that
+
+Two linear vector polynomials $ l(X), r(X) $ in $ \mathbb Z^n_p[X] $ are defined as the inner-product terms for relation (7), also containing the blinding vectors $ \mathbf {s}_L $ and $ \mathbf {s}_R $. A quadratic polynomial $ t(X) \in \mathbb Z_p[X] $ is then defined as the inner product between the two vector polynomials $ l(X), r(X) $ such that
 
 $$
 t(X) = \langle l(X) \mspace{3mu} , \mspace{3mu} r(X) \rangle = t_0 + t_1 \cdot X + t_2 \cdot X^2 \mspace{10mu} \in \mathbb {Z}_p[X]
 $$
 
-The blinding vectors $ \mathbf {s}_L , \mathbf {s}_R $ ensure that the *prover* $ \mathcal{P} $ can publish $ l(x) $ and $ r(x) $ for one $ x \in \mathbb Z_p^* $ without revealing any information about $ \mathbf {a}_L $ and $ \mathbf {a}_R $. The constant term $ t_0 $ of the quadratic polynomial $ t(X) $ is then the result of the inner product in relation (7), and the *prover* $ \mathcal{P} $ needs to convince the *verifier* $ \mathcal{V} $ that 
+The blinding vectors $ \mathbf {s}_L $ and $ \mathbf {s}_R $ ensure that the *prover* $ \mathcal{P} $ can publish $ l(x) $ and $ r(x) $ for one $ x \in \mathbb Z_p^* $ without revealing any information about $ \mathbf {a}_L $ and $ \mathbf {a}_R $. The constant term $ t_0 $ of the quadratic polynomial $ t(X) $ is then the result of the inner product in relation (7), and the *prover* $ \mathcal{P} $ needs to convince the *verifier* $ \mathcal{V} $ that 
 
 $$
 t_0 = z^2 \cdot v + \delta (y,z)
 $$
 
-In order to do so the *prover* $ \mathcal{P} $ convinces the *verifier* $ \mathcal{V} $ that it has a commitment to the remaining coefficients of $ t(X) $, namely $ t_1,t_2 \in \mathbb Z_p $ by checking the value of $ t(X) $ at a random point $ x \in \mathbb Z_p^* $. This is illustrated in Figure&nbsp;5.
+In order to do so, the *prover* $ \mathcal{P} $ convinces the *verifier* $ \mathcal{V} $ that it has a commitment to the remaining coefficients of $ t(X) $, namely $ t_1,t_2 \in \mathbb Z_p $ by checking the value of $ t(X) $ at a random point $ x \in \mathbb Z_p^* $. This is illustrated in Figure&nbsp;5.
 
 <p align="center"><img src="sources/Protocol-2b-part-b.png" width="655" /></p>
-<div align="center"><b>Figure&nbsp;5: Bulletproofs Protocol 2.1! Part B [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;5: Bulletproofs' Protocol 2.1! Part B [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 
 The *verifier* $ \mathcal{V} $ now needs to check that $ l $ and $ r $ are in fact $ l(x) $ and $ r(x) $ and that $ t(x) = \langle l \mspace{3mu} , \mspace{3mu} r \rangle $. A commitment for $ \mathbf {a}_R \circ \mathbf {y}^n $ is needed and to do so the commitment generators are switched from $ h \in \mathbb G^n $ to $ h ^\backprime = h^{(\mathbf {y}^{-1})}$. Thus $ A $ and $ S $ now become vector commitments to $ ( \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n ) $ and $ ( \mathbf {s}_L \mspace{3mu} , \mspace{3mu} \mathbf {s}_R \circ \mathbf {y}^n ) $ respectively with respect to the new generators $ (g, h ^\backprime, h) $. This is illustrated in Figure&nbsp;6.
@@ -187,10 +199,11 @@ The *verifier* $ \mathcal{V} $ now needs to check that $ l $ and $ r $ are in fa
 
 
 <p align="center"><img src="sources/Protocol-2b-part-c.png" width="640" /></p>
-<div align="center"><b>Figure&nbsp;6: Bulletproofs Protocol 2.1! Part C [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;6: Bulletproofs' Protocol 2.1! Part C [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 
 The range proof presented here has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
@@ -233,13 +246,13 @@ The aggregate range proof presented here has the following Commitment Scheme<sup
 
 ##### Protocol 2.4! - Non-Interactive Proof through Fiat-Shamir
 
-So far the *verifier* $ \mathcal{V} $ behaves as an honest verifier and all messages are random elements from $ \mathbb Z_p^* $. These are the pre-requisites needed to convert the protocol presented so far into a non-interactive protocol that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. 
+So far the *verifier* $ \mathcal{V} $ behaves as an honest verifier and all messages are random elements from $ \mathbb Z_p^* $. These are the pre-requisites needed to convert the protocol presented so far into a non-interactive protocol that is secure and has full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. 
 
 
 
 ##### Protocol 2.5! - MPC Protocol for Bulletproofs
 
-This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs $ m $ parties each having a Pedersen commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each $ V_k $ commits to a number in some fixed range.
+This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs, $ m $ parties each having a Pedersen commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each $ V_k $ commits to a number in some fixed range.
 
 Let $ k $ denote the $ k $th party's message, thus $ A^{(k)} $ is generated using only inputs of party $ k $. A set of distinct generators $ (g^{(k)}, h^{(k)})^m_{k=1} $ is assigned to each party, and $ \mathbf g,\mathbf h $ is defined as the interleaved concatenation of all $ g^{(k)} , h^{(k)} $ such that 
 
@@ -302,19 +315,21 @@ Let $ \mathbf W_V \in \mathbb Z_p^{Q \times m} $ be the weights for a commitment
 Part 1 of the protocol is presented in Figure&nbsp;8 where the *prover* $ \mathcal{P} $ commits to $ l(X),r(X),t(X) $.
 
 <p align="center"><img src="sources/Protocol-3-part-1.png" width="690" /></p>
-<div align="center"><b>Figure&nbsp;8: Bulletproofs Protocol 3 (Part 1) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;8: Bulletproofs' Protocol 3 (Part 1) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 
 Part 2 of the protocol is presented in Figure&nbsp;9 where the *prover* $ \mathcal{P} $ convinces the *verifier* $ \mathcal{V} $ that the polynomials are well formed and that $ \langle l(X),r(X) \rangle = t(X) $.
 
 <p align="center"><img src="sources/Protocol-3-part-2.png" width="690" /></p>
-<div align="center"><b>Figure&nbsp;9: Bulletproofs Protocol 3 (Part 2) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;9: Bulletproofs' Protocol 3 (Part 2) [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 
 The proof system presented here has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
@@ -345,28 +360,29 @@ In many of the Bulletproofs' [Use Cases](../bulletproofs-and-mimblewimble/MainRe
 
 <u>Multi-exponentiation</u>
 
-In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) the Bulletproofs *verifier* $ \mathcal{V} $ only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;2.
+In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) verification of the inner-product is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single multi-exponentiation of size $ 2n + \log_2(n) + 7 $. In [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation) the Bulletproof *verifier* $ \mathcal{V} $ only performs two checks, that is step&nbsp;(68) Figure&nbsp;6 and step&nbsp;(16) Figure&nbsp;2.
 
-In the protocol presented in Figure&nbsp;10 run by the *verifier* $ \mathcal{V} $, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). 
+In the protocol presented in Figure&nbsp;10, that is processed by the *verifier* $ \mathcal{V} $, $ x_u $ is the challenge from [Protocol 1](#protocol-1---inner-product-argument), $ x_j $ the challenge from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation), and $ L_j , R_j $ the $ L , R $ values from round $ j $ of [Protocol 2](#protocol-2---inner-product-verification-through-multi-exponentiation). 
 
 <p align="center"><img src="sources/Protocol-4.png" width="570" /></p>
-<div align="center"><b>Figure&nbsp;10: Bulletproofs Protocol 4! [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
+<div align="center"><b>Figure&nbsp;10: Bulletproofs' Protocol 4! [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
 Bünz B. et al">1</a>]</b></div>
+
 
 
 A further idea is that multi-exponentiation (steps (98) and (105) in Figure&nbsp;10) be delayed until those checks are performed and that they are also combined into a single check using a random value $ c \xleftarrow[]{$} \mathbf Z_p $. This follows from the fact that if $ A^cB = 1 $ for a random $ c $ then with high probability $ A = 1 \mspace 3mu \wedge \mspace 3mu B = 1 $. Various algorithms are known to compute the multi-exponentiations and scalar quantities (steps (101) and (102) in Figure&nbsp;10) efficiently (sub-linearly), thereby further improving the speed and efficiency of the protocol.
 
 <u>Batch verification</u>
 
-A further important optimization concerns the verification of multiple proofs. The essence of the verification is to calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive exponentiations. This is based on the observation that checking $ g^x = 1 \mspace 3mu \wedge \mspace 3mu g^y = 1 $ can be checked by drawing a random scalar $ \alpha $ from a large enough domain and checking that $ g^{\alpha x + y} = 1 $. With high probability, the latter equation implies the first. When applied to multi-exponentiations $ 2n $ exponentiations can be saved per additional proof. Verifying $ m $ distinct range proofs of size $ n $ only requires a single multi-exponentiation of size $ 2n+2+m \cdot (2 \cdot \log (n) + 5 ) $ along with $ O ( m \cdot n ) $ scalar operations.
+A further important optimization concerns the verification of multiple proofs. The essence of the verification is to calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive exponentiations. This is based on the observation that checking $ g^x = 1 \mspace 3mu \wedge \mspace 3mu g^y = 1 $ can be checked by drawing a random scalar $ \alpha $ from a large enough domain and checking that $ g^{\alpha x + y} = 1 $. With high probability, the latter equation implies the first. When applied to multi-exponentiations, $ 2n $ exponentiations can be saved per additional proof. Verifying $ m $ distinct range proofs of size $ n $ only requires a single multi-exponentiation of size $ 2n+2+m \cdot (2 \cdot \log (n) + 5 ) $ along with $ O ( m \cdot n ) $ scalar operations.
 
 
 
-## Evolving Bulletproofs Protocols
+## Evolving Bulletproof Protocols
 
-Interstellar [[24]] recently introduced the Programmable Constraint Systems for Bulletproofs [[23]], an evolution of [Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits), extending it to support proving arbitrary statements in zero-knowledge using a constraint system, bypassing arithmetic circuits altogether. They provide an Application Programmers Interface (API) for building a constraint system directly, without the need to construct arithmetic expressions and then transform them into constraints. The Bulletproofs constraint system proofs are then used as building block for a confidential assets protocol called Cloak.
+Interstellar [[24]] recently introduced the Programmable Constraint Systems for Bulletproofs [[23]], an evolution of [Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits), extending it to support proving arbitrary statements in zero-knowledge using a constraint system, bypassing arithmetic circuits altogether. They provide an Application Programmers Interface (API) for building a constraint system directly, without the need to construct arithmetic expressions and then transform them into constraints. The Bulletproof constraint system proofs are then used as building blocks for a confidential assets protocol called Cloak.
 
 The constraint system has three kinds of variables: 
 
@@ -389,27 +405,28 @@ Because the challenges are not bound to low-level witness variables the resultin
 
 The resulting API provides a single code path used by both the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ to allocate variables and define constraints. This is organized into a hierarchy of task-specific gadgets, which manages allocation, assignment and constraints on the variables, ensuring that all variables are constrained. Gadgets interact with mutable constraint system objects, which are specific to the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $. They also receive secret variables and public parameters and generate challenges.
 
-The Bulletproofs library [[22]] does not provide any standard gadgets, but only an API for the constraint system. Each protocol built on top of the Bulletproofs library must create its own collection of gadgets to enable building a complete constraint system out of them. The Interstellar Bulletproofs zero-knowledge proof protocol built with their programmable constraint system is shown in Figure&nbsp;11.
+The Bulletproofs library [[22]] does not provide any standard gadgets, but only an API for the constraint system. Each protocol built on top of the Bulletproofs library must create its own collection of gadgets to enable building a complete constraint system out of them. The Interstellar Bulletproof zero-knowledge proof protocol built with their programmable constraint system is shown in Figure&nbsp;11.
 
 <p align="center"><img src="sources/InterstellarConstraintSystem.png" width="870" /></p>
-<div align="center"><b>Figure&nbsp;11: Interstellar Bulletproofs Zero-Knowledge Proof Protocol [<a href="https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7" title="Programmable Constraint Systems for Bulletproofs,
+<div align="center"><b>Figure&nbsp;11: Interstellar Bulletproof Zero-Knowledge Proof Protocol [<a href="https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7" title="Programmable Constraint Systems for Bulletproofs,
 Interstellar,
 Cathie Yun">24</a>]</b></div>
+
 
 
 
 ## Conclusions, Observations, Recommendations
 
 - Bulletproofs have many potential use cases or [applications](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs), but are still under [development](../bulletproofs-and-mimblewimble/MainReport.md#current--past-efforts). A new confidential blockchain protocol like Tari should carefully consider expanded use of Bulletproofs to maximally leverage functionality of the code base.
-- Bulletproofs are not done yet, as illustrated in [Evolving Bulletproofs Protocols](#evolving-bulletproofs-protocols), and its further development and efficient implementation has a lot of traction in the community.
-- Bünz B. et al [[1]] proposed that the switch commitment scheme defined by Ruffing T. et al. [[10]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In the Bünz B. et al [[1]] proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. They also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect. (*See the Grin projects' implementation [here](../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).*)
+- Bulletproofs are not done yet, as illustrated in [Evolving Bulletproof Protocols](#evolving-bulletproof-protocols), and its further development and efficient implementation has a lot of traction in the community.
+- Bünz et al. [[1]] proposed that the switch commitment scheme defined by Ruffing et al. [[10]] can be used for Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch commitment scheme allows for a blockchain with proofs that are currently only computationally binding to later switch to a proof system that is perfectly binding and secure against quantum adversaries; this will weaken the perfectly hiding property as a drawback and slow down all proof calculations. In the Bünz et al. [[1]] proposal all Pedersen commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to perfectly binding. They also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve the hiding property to be statistical or perfect. (*See the Grin projects' implementation [here](../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).*)
 - It is important that developers understand more about the fundamental underlying mathematics when implementing something like Bulletproofs, even if they just re-use libraries developed by someone else.
 
 
 
 ## References
 
-[[1]] Bulletproofs: Short Proofs for Confidential Transactions and More, Blockchain Protocol Analysis and Security Engineering 2018, Bünz B. et al., http://web.stanford.edu/~buenz/pubs/Bulletproofs.pdf, Date accessed: 2018-09-18.
+[[1]] Bulletproofs: Short Proofs for Confidential Transactions and More, Blockchain Protocol Analysis and Security Engineering 2018, Bünz B., Bootle J., Boneh D., Poelstra A., Wuille P. and Maxwell G., http://web.stanford.edu/~buenz/pubs/Bulletproofs.pdf, Date accessed: 2018-09-18.
 
 [1]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf
 "Bulletproofs: Short Proofs for Confidential Transactions 
@@ -417,13 +434,13 @@ and More, Blockchain Protocol Analysis and Security
 Engineering 2018, 
 Bünz B. et al"
 
-[[2]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J et al., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-21.
+[[2]] Efficient zero-knowledge arguments for arithmetic circuits in the discrete log setting, Bootle J., Cerulli A., Chaidos P., Groth J. and Petit C., Annual International Conference on the Theory and Applications of Cryptographic Techniques, pages 327-357. Springer, 2016., https://eprint.iacr.org/2016/263.pdf, Date accessed: 2018-09-21.
 
 [2]: https://eprint.iacr.org/2016/263.pdf
 "Efficient zero-knowledge arguments for arithmetic 
 circuits in the discrete log setting, Bootle J et al."
 
-[[3]] Confidential Assets, Poelstra A. et al., Blockstream, https://blockstream.com/bitcoin17-final41.pdf, Date accessed: 2018-09-25.
+[[3]] Confidential Assets, Poelstra A., Back A., Friedenbach M., Maxwell G. and Wuille P., Blockstream, https://blockstream.com/bitcoin17-final41.pdf, Date accessed: 2018-09-25.
 
 [3]: https://blockstream.com/bitcoin17-final41.pdf
 "Confidential Assets,
@@ -440,14 +457,14 @@ Blockstream"
 [5]: https://en.wikipedia.org/wiki/Discrete_logarithm
 "Wikipedia: Discrete logarithm"
 
-[[6]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. et al., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-20.
+[[6]] How to Prove Yourself: Practical Solutions to Identification and Signature Problems, Fiat A. and Shamir A., CRYPTO 1986: pp. 186-194, https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf, Date accessed: 2018-09-20.
 
 [6]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf
 "How to Prove Yourself: Practical Solutions to 
 Identification and Signature Problems, 
 Fiat A. et al."
 
-[[7]] How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios, Bernhard D. et al., https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf, Date accessed: 2018-09-20.
+[[7]] How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and Applications to Helios, Bernhard D., Pereira O. and Warinschi B., https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf, Date accessed: 2018-09-20.
 
 [7]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf
 "How not to Prove Yourself: Pitfalls of the 
@@ -466,7 +483,7 @@ of Pedersen commitment schemes"
 "Zero Knowledge Proof Standardization - 
 An Open Industry/Academic Initiative"
 
-[[10]] Switch Commitments: A Safety Switch for Confidential Transactions, Ruffing T. et al., https://eprint.iacr.org/2017/237.pdf, Date accessed: 2018-09-26.
+[[10]] Switch Commitments: A Safety Switch for Confidential Transactions, Ruffing T. and Malavolta G., https://eprint.iacr.org/2017/237.pdf, Date accessed: 2018-09-26.
 
 [10]: https://eprint.iacr.org/2017/237.pdf
 "Switch Commitments: A Safety Switch 
@@ -496,28 +513,28 @@ no Trusted Setup"
 "Adjoint Inc. Documentation: 
 Pedersen Commitment Scheme"
 
-[[15]] Non-interactive and information-theoretic secure verifiable secret sharing, Pedersen T. et al., https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf, Date accessed: 2018-09-27.
+[[15]] Non-interactive and information-theoretic secure verifiable secret sharing, Pedersen T., https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf, Date accessed: 2018-09-27.
 
 [15]: https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf
 "Non-interactive and information-theoretic
 secure verifiable secret sharing, 
-Pedersen T. et al."
+Pedersen T."
 
-[[16]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-24.
+[[16]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A. and Steiner M., http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-24.
 
 [16]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf
 "Assumptions Related to Discrete Logarithms: 
 Why Subtleties Make a Real Difference, 
 Sadeghi A et al." 
 
-[[17]] Intensified ElGamal Cryptosystem (IEC), Sharma P. et al., International Journal of Advances in Engineering & Technology, Jan 2012, http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf, Date accessed: 2018-10-09.
+[[17]] Intensified ElGamal Cryptosystem (IEC), Sharma P., Gupta A. and Sharma S., International Journal of Advances in Engineering & Technology, Jan 2012, http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf, Date accessed: 2018-10-09.
 
 [17]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf
 "Intensified ElGamal Cryptosystem (IEC), Sharma P. et al.
 International Journal of Advances in Engineering & Technology,
 Jan 2012"
 
-[[18]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al., https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view, Date accessed: 2018-10-09.
+[[18]] On the Security of ElGamal Based Encryption, Tsiounis Y. and Yung M., https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view, Date accessed: 2018-10-09.
 
 [18]: https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view
 "On the Security of ElGamal Based Encryption,
@@ -587,10 +604,10 @@ is a directed acyclic graph ..."
 zero-knowledge proof is a 
 cryptographic primitive ..."
 
-- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group $ G $ , powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[5]], [[16]])
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a ​$ is a number $ x ​$ such that $ b^x=a ​$, for given numbers $ a ​$ and $ b ​$. Analogously, in any group $ G ​$ , powers $ b^k ​$ can be defined for all integers $ k ​$, and the discrete logarithm $ \log_ba ​$ is an integer $ k ​$ such that $ b^k=a ​$. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[5]], [[16]])
 
 [dlp~]: #dlp
-"In the mathematics of the real 
+"In the mathematics of real 
 numbers, the logarithm log_b(a) 
 is a number x such that ..."
 
@@ -677,9 +694,7 @@ The general notation of mathematical expressions when specifically referenced ar
 
 - Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively
 
-- Let $ h^r \mathbf g^\mathbf x = h^r \prod_i g_i^{x_i} \in \mathbb G $ be the vector Pedersen Commitment<sup>[def][pc~]</sup> with $ \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $ and
-
- $ \mathbf {x} = (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_n) \in \mathbb G^n $ 
+- Let $ h^r \mathbf g^\mathbf x = h^r \prod_i g_i^{x_i} \in \mathbb G $ be the vector Pedersen Commitment<sup>[def][pc~]</sup> with $ \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $ and $ \mathbf {x} = (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_n) \in \mathbb G^n $ 
 
 - Let $ \mathbf {a} \in \mathbb F^n $ be a vector with elements $ a_1 \cdot b_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n \cdot b_n \in F^n $ 
 - Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sum _{i=1}^n {a_i \cdot b_i} ​$ denote the inner-product between two vectors $ \mathbf {a}, \mathbf {b} \in \mathbb F^n ​$ 
@@ -701,4 +716,7 @@ The general notation of mathematical expressions when specifically referenced ar
 ## Contributors
 
 - [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
-- ???
+- [https://github.com/neonknight64](https://github.com/neonknight64)
+- [https://github.com/CjS77](https://github.com/CjS77)
+- [https://github.com/philipr-za](https://github.com/philipr-za)
+- [https://github.com/Kevoulee](https://github.com/Kevoulee) ???
