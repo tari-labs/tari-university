@@ -10,7 +10,7 @@ Bulletproofs also implement a Multi-party Computation (MPC) protocol whereby dis
 
 The essence of Bulletproofs are its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
+[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
 
 
 
@@ -42,7 +42,7 @@ The essence of Bulletproofs are its inner-product algorithm originally presented
 
 The basis of confidential transactions is to replace the input and output amounts with Pedersen Commitments<sup>[def][pc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $, that is each $ x $ is either $ 0 $ or $ 1 $, and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
 
-Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements are required for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
+Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements are required for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs with $ n $ denoting the multiplicative complexity. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
 
 <p align="center"><img src="sources/AggregateBulletproofsSize.png" width="650" /></p>
 
@@ -54,11 +54,17 @@ If all Bitcoin transactions were confidential, approximately 50 million UTXOs fr
 
 In Mimblewimble the blockchain grows with the size of the UTXO set. Using Bulletproofs as a drop-in replacement for range proofs in confidential transactions, the size of the blockchain would only grow with the number of transactions that have unspent outputs. This is much smaller than the size of the UTXO set. [[1]]
 
+The recent implementation of Bulletproofs in Monero on 18 October 2018 saw the average data size on the blockchain per payment reduce by ~73% and the average US$-based fees reduce by ~94.5% for the period 30 August 2018 to 28 November 2018 (Figure&nbsp;2).
+
+<p align="center"><img src="sources/xmr-tx-size.png" width="650" /></p>
+
+<p align="center"><b>Figure&nbsp;2: Monero Payment, Block and Data Size Statistics</b></p>
+
 
 
 ## Applications for Bulletproofs
 
-Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits. What this means in practice is that Bulletproofs have wide application and can be efficiently used for many types of proofs. Use cases of Bulletproofs are listed below, but this list may not be exhaustive as use cases for Bulletproofs continue to evolve. ([[1]], [[3]], [[5]], [[6]]) 
+Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits. What this means in practice is that Bulletproofs have wide application and can be efficiently used for many types of proofs. Use cases of Bulletproofs are listed below, but this list may not be exhaustive as use cases for Bulletproofs continue to evolve. ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]) 
 
 - Range proofs
 
@@ -66,7 +72,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 - Merkle proofs
 
-  - In this context a full node (*verifier*) maintains a complete copy of the Merkle tree [[7]] and a thin node (*prover*) wants to be convinced that a certain transaction <code>t</code> is included in the Merkle tree in some block <code>B</code> with block header <code>H</code>. This proof between the *verifier* and *prover* can be done with Bulletproofs as a NIZK proof.
+  - Hash preimages in a Merkle tree [[7]] can be leveraged to create zero-knowledge Merkle proofs using Bulletproofs, to create efficient proofs of inclusion in massive data sets.
 
 - Proof of solvency
 
@@ -81,7 +87,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
   - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a Sigma protocol. This can all be done with Bulletproofs, which could be extended to allow assets that are functions of other assets, i.e. crypto derivatives.
 
 - Smart contracts and Crypto-derivatives
-  - Traditionally, a new trusted setup is needed when verifying privacy-preserving smart contracts in each case, but with Bulletproofs no trusted setup is needed. Verification time however is linear, and it might be too complex to prove every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with public verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract. 
+  - Traditionally, a new trusted setup is needed for each smart contract when verifying privacy-preserving smart contracts, but with Bulletproofs no trusted setup is needed. Verification time however is linear, and it might be too complex to prove every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with public verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract.
 
     A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then used to identify the gate where the proof turns invalid, and hence the smart contract must only check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (see Figure&nbsp;3). 
 
@@ -102,6 +108,8 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
     and More (Slides), Blockchain Protocol Analysis and 
     Security Engineering 2018, 
     Bünz B. et al">5</a>]</b></div>
+
+  - Another potential use case is to verify that two nodes executed the same list of independent instructions $ [x1,x4,x3,x2] $ and $ [x1,x2,x3,x4] $, that may be in different order, to arrive at the same next state $ N $. The nodes don't need to share the actual instructions with a *Verifier*, but the *Verifier* can show that they executed the same set without having without having knowledge of the instructions.
 
 - Batch verifications
 
@@ -183,25 +191,25 @@ Grin implemented a switch commitment [[43]] as part of a transaction output to b
 
 The initial Grin implementation ([[21]], [[34]]. [[35]], [[54]]) hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly *binding*<sup>[def][cs~]</sup>  later on as opposed to currently being perfectly *hiding*<sup>[def][cs~]</sup>. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
 
-In this implementation a Grin transaction output contains the original Schnorr signature output as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
+In this implementation a Grin transaction output contains the original Pedersen commitment as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
 
 $$
 (vG + bH \mspace{3mu} , \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r))
 $$
 
-where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [[44]] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $ the switch commitment hash. In order for such an amount to be spent the *Verifier* also need to check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $. Grin implemented the BLAKE2 hash function, which outperforms all mainstream hash function implementations in terms of hashing speed with similar security to the latest Secure Hash Algorithm 3 (SHA-3) standard [[44]].
+where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [[44]] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $ the switch commitment hash. In order for such an amount to be spent the owner needs to reveal $ b , r $ so that the *Verifier* can check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $ by confirming that it matches the value stored in the switch commitment hash portion of the transaction output. Grin implemented the BLAKE2 hash function, which outperforms all mainstream hash function implementations in terms of hashing speed with similar security to the latest Secure Hash Algorithm 3 (SHA-3) standard [[44]].
 
-In the event of quantum adversaries the owner of an output can choose to stay anonymous and not claim ownership or reveal $ bJ $ and $ r $ whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.
+In the event of quantum adversaries, the owner of an output can choose to stay anonymous and not claim ownership or reveal $ bJ $ and $ r $ whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.
 
-In the Bulletproof range proof protocol two 32-byte scalar nonces $ \tau_1 , \alpha $ (*not important to know what they are*) are generated with a secure random number generator. If the seed for the random number generator is known, the scalar values $ \tau_1 , \alpha $ can be re-calculated when needed. Sixty four (64) bytes worth of message space (out of 674 bytes worth of range proof) are made available by embedding a message into those variables using a logic $ \mathrm{XOR} $ gate. This message space is used for the transaction amount for wallet reconstruction.
+In the Bulletproof range proof protocol two 32-byte scalar nonces $ \tau_1 , \alpha $ (*not important to know what they are*) are generated with a secure random number generator. If the seed for the random number generator is known, the scalar values $ \tau_1 , \alpha $ can be re-calculated when needed. Sixty-four (64) bytes worth of message space (out of 674 bytes worth of range proof) are made available by embedding a message into those variables using a logic $ \mathrm{XOR} $ gate. This message space is used for the transaction amount for wallet reconstruction.
 
-To ensure that the transaction amount of the output cannot be spend by only opening the Schnorr signature $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original blinding factor $ b $), the Pedersen Commitment<sup>[def][pc~]</sup> $ P $ and the switch commitment hash
+To ensure that the transaction amount of the output cannot be spend by only opening the Pedersen commitment $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original blinding factor $ b $), the Pedersen Commitment<sup>[def][pc~]</sup> $ P $ and the switch commitment hash
 
 $$
 \mathrm S (\eta \mspace{3mu} , \mspace{3mu} P \mspace{3mu} ,  \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) ) = \eta \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{S256}}(P \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) )
 $$
 
-where $ \mathrm{H_{S256}}$ is the SHA256 hash function. The Bulletproof range proof is then calculated with an adapted pair $ \tilde{\alpha} , \tilde{\tau_1} $ using the original $ \tau_1 , \alpha $ and two 32-byte words $m_{w1} $ and $m_{w2} $ that make up the 64 byte embedded message as follows:
+where $ \mathrm{H_{S256}}$ is the SHA256 hash function. The Bulletproof range proof is then calculated with an adapted pair $ \tilde{\alpha} , \tilde{\tau_1} $ using the original $ \tau_1 , \alpha $ and two 32-byte words $m_{w1} $ and $m_{w2} $ that make up the 64-byte embedded message as follows:
 
 $$
 \tilde{\alpha} = \mathrm {XOR} ( \alpha \mspace{3mu} , \mspace{3mu} m_{w1}) \mspace{12mu} \mathrm{and} \mspace{12mu} \tilde{\tau_1} = \mathrm {XOR} ( \tau_1 \mspace{3mu} , \mspace{3mu} m_{w2} )
@@ -215,15 +223,15 @@ To retrieve the embedded message the process is simply inverted. Notice that the
 
 The latter Grin implementation ([[56]], [[57]]) uses Bulletproof range proof rewinding so that wallets can recognize their own transaction outputs. This negated the requirement to remember the wallet-seed derived random value $ r $, nonce $ \eta $ for the seed function $ \mathrm S $ and use of the adapted pair $ \tilde{\alpha} , \tilde{\tau_1} $ in the Bulletproof range proof calculation.
 
-In this implementation it is not necessary to remember a hash of the switch commitment as part of the transaction output set and for it to be passed around during a transaction. The switch commitment looks exactly like the original Schnorr signature $ vG + bH $ but in this instance the blinding factor $ b $ is tweaked to be 
+In this implementation it is not necessary to remember a hash of the switch commitment as part of the transaction output set and for it to be passed around during a transaction. The switch commitment looks exactly like the original Pedersen commitment $ vG + bH $ but in this instance the blinding factor $ b $ is tweaked to be 
 $$
 b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J )
 $$
- with $ b^\prime $ being the user generated blinding factor. The Schnorr signature then becomes
+ with $ b^\prime $ being the user generated blinding factor. The Pedersen commitment then becomes
 $$
 vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
 $$
-After activation of the switch commitment in the age of quantum adversaries users can reveal $ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $ and *Verifiers* can check if it's computed correctly and use it as if it were the ElGamal Commitment<sup>[def][egc~]</sup>  $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) $. 
+After activation of the switch commitment in the age of quantum adversaries, users can reveal $ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $ and *Verifiers* can check if it's computed correctly and use it as if it were the ElGamal Commitment<sup>[def][egc~]</sup>  $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) $. 
 
 
 
@@ -282,7 +290,7 @@ The extracts of the discussions below depict the initial and improved implementa
 - Bulletproofs are not Bulletproofs are not Bulletproofs. This is evident by comparing the functionality, security and performance of all the current different Bulletproof implementations as well as the evolving nature of Bulletproofs.
 - The security audit instigated by the Monero project on their Bulletproofs implementation and the resulting findings and corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to the nature of confidential transactions; transacted values and token owners are not public.
 - The growing number of open source Bulletproof implementations should strengthen the development of a new confidential blockchain protocol like Tari.
-- In the pure implementation of Bulletproof range proofs a discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding<sup>[def][cs~]</sup>  (*i.e. confidential*), but only computationally *binding*<sup>[def][cs~]</sup>  (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
+- In the pure implementation of Bulletproof range proofs, a discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding<sup>[def][cs~]</sup>  (*i.e. confidential*), but only computationally *binding*<sup>[def][cs~]</sup>  (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. ([[1]], [[5]], [[6]] and [[10]])
 - Bulletproofs are not only about range proofs. All the different Bulletproof use cases have a potential implementation in a new confidential blockchain protocol like Tari; in the base layer as well as in the probable 2nd layer.
 
 
@@ -640,6 +648,14 @@ switch commitment discussion #998"
 solvency for Bitcoin exchanges, 
 Dagher G. et al., 
 Oct 2015"
+
+[[59]] Bulletproofs: Faster Rangeproofs and Much More, Poelstra A., February 2018, https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/, Date  accessed: 2018-11-30.
+
+[59]: https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/
+"Bulletproofs: Faster Rangeproofs and Much More,
+Poelstra A., 
+February 2018"
+
 
 
 
