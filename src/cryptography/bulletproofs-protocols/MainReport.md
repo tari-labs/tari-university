@@ -11,6 +11,10 @@ An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble]("
 - [The Bulletproof Protocols](#the-bulletproof-protocols)
   - [Introduction](#introduction)
   - [Contents](#contents)
+  - [Preliminaries](#preliminaries)
+    - [Notations Used](#notations-used)
+    - [Pedersen Commitments and Elliptic Curve Pedersen Commitments](#pedersen-commitments-and-elliptic-curve-pedersen-commitments)
+    - [Security aspects of (Elliptic Curve) Pedersen Commitments](l#security-aspects-of-elliptic-curve-pedersen-commitments)
   - [Bulletproof Protocols](#bulletproof-protocols)
     - [Protocol 1 - Inner-product Argument](#protocol-1---inner-product-argument)
     - [Protocol 2 - Inner-Product Verification through Multi-Exponentiation](#protocol-2---inner-product-verification-through-multi-exponentiation)
@@ -29,14 +33,117 @@ An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble]("
   - [References](#references)
   - [Appendices](#appendices)
     - [Appendix A: Definition of Terms](#appendix-a-definition-of-terms)
-    - [Appendix B: Notations Used](#appendix-b-notations-used)
   - [Contributors](#contributors)
+
+
+
+## Preliminaries
+
+### Notations Used
+
+The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]]. These notations are important pre-knowledge for the remainder of the report.
+
+- Let  $ p $ and $ q $ be large prime numbers.
+- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively. 
+- let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively.
+- Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $. In other words, there exists a number $ g \in \mathbb G  $ such that $  \mathbb G  = \lbrace 1 \mspace{3mu} , \mspace{3mu} g \mspace{3mu} , \mspace{3mu} g^2 \mspace{3mu} , \mspace{3mu} g^3 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu}  g^{p-1} \rbrace \equiv  \mathbb Z_p $. Note that not every element of $ \mathbb Z_p $ is a generator of $ \mathbb G $.
+- Let $ \mathbb Z_p^* $ denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $, that is all invertible elements of  $ \mathbb Z_p $ and $ \mathbb Z_q $ respectively. This excludes the element $ 0 $ which is not invertible.
+- Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively.
+- Let $ h^r \mathbf g^\mathbf x = h^r \prod_i g_i^{x_i} \in \mathbb G $ be the vector Pedersen Commitment<sup>[def][pc~]</sup> with $ \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $ and $ \mathbf {x} = (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_n) \in \mathbb G^n $. 
+- Let $ \mathbf {a} \in \mathbb F^n $ be a vector with elements $ a_1 \cdot b_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n \cdot b_n \in F^n $. 
+- Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sum _{i=1}^n {a_i \cdot b_i} $ denote the inner-product between two vectors $ \mathbf {a}, \mathbf {b} \in \mathbb F^n $. 
+- Let $ \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $ \mathbf {a}, \mathbf {b} \in \mathbb F^n $. 
+- Let $ \mathbf {A} \circ \mathbf {B} = (a_{11} \cdot b_{11} \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_{1m} \cdot b_{1m} \mspace{6mu} ; \mspace{6mu} . . . \mspace{6mu} ; \mspace{6mu} a_{n1} \cdot b_{n1} \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_{nm} \cdot b_{nm} ) $ denote the entry wise multiplication of two matrixes, also known as the Hadamard Product<sup>[def][hdmp~]</sup>. 
+- Let $ \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $ \mathbf {a} \in \mathbb Z_p^n $ and $ \mathbf {b} \in \mathbb Z_p^m $ then $ \mathbf {a} \parallel \mathbf {b} \in \mathbb Z_p^{n+m} $. 
+- Let $ p(X) = \sum _{i=0}^d { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $. 
+- Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] $ denote the inner-product between two vector polynomials $ l(X),r(X) $. 
+- Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner-product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $. 
+- Let $ C=g^a = \prod _{i=1}^n g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a} \in \mathbb Z_p^n $ where $ \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b} \in \mathbb Z_p^n $ with non-zero entries, $ \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \prod _{i=1}^n (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
+- Let slices of vectors be defined as $ \mathbf {a_{[:l]}} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_l) \in \mathbb F^l \mspace{3mu} , \mspace{12mu}\ \mathbf {a_{[l:]}} = (a_{l+1} \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \mathbb F^{n-l}$. 
+- Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^* $ such that $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $. 
+- Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively.
+- Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} $ denote the *prover* and *verifier* in relation to inner-product calculations respectively.
+
+
+
+### Pedersen Commitments and Elliptic Curve Pedersen Commitments
+
+The basis of confidential transactions is the Pedersen Commitment scheme defined by Pedersen T. [[15]]. 
+
+A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. On the one end of the scale *perfect* means that a quantum adversary (an attacker with infinite computing power) cannot tell what amount has been committed to and is also unable to produce fake commitments. *Statistical* means the probability for an adversary to do the same in a finite amount of time is negligible and the least secure, *computational*, means that no efficient algorithm running in a practical amount of time can reveal the commitment amount or produce fake commitments except with small probability. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.  ([[12]], [[13]])
+
+Two variations of the Pedersen Commitment scheme sharing the same security attributes exist as defined below:
+
+
+
+- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>The Pedersen Commitment is a system for making a blinded non-interactive commitment to a value. ([[1]], [[3]], [[8]], [[14]], [[15]]).
+
+  - The generalized Pedersen Commitment definition follows (*refer to [Notations Used](#notations-used)*):
+    - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $. 
+
+    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $. 
+
+    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $. 
+
+    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $. 
+
+    - The commitment to value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $, which is called the Pedersen Commitment.
+
+    - The generator $ h $ and resulting number $ g $ are known as the commitment bases and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
+
+  - Pedersen Commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
+
+[pc~]: #pc
+"A Pedersen commitments is a system 
+for making blinded non-interactive 
+commitments to a value ..."
+
+
+
+- <u><i>Elliptic Curve Pedersen Commitment</i></u>:<a name="ecpc"> </a>An efficient implementation of the Pedersen Commitment<sup>[def][pc~]</sup> will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers (integers) and upper case letters for curve points. ([[26]], [[27]], [[28]])
+  - The generalized Elliptic Curve Pedersen Commitment definition follows (*refer to [Notations Used](#notations-used)*):
+    - Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.
+
+    - Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) is solved. 
+
+    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p $.
+
+    - The commitment to value $ x \in \mathbb Z_p $ is then determined by calculating $ C(x,r) = rH + xG $, which is called the Elliptic Curve Pedersen Commitment.
+
+  - Elliptic curve point addition is analogous to multiplication in the originally defined Pedersen Commitment<sup>[def][pc~]</sup>. Thus $ g^x $, the number $ g $ multiplied by itself $ m $ times, is analogous to $ xG $, the elliptic curve point $ G $ added to itself $ x $ times. In this context $ xG $ is also a point in $ \mathbb F_p $.
+
+  - In the Elliptic Curve context $ C(x,r) = rH + xG $ is then analogous to  $ C(x,r) = h^r g^x $.
+
+  - The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. With secp256k1 the value of $ H $ is the SHA256 hash of a simple encoding of the pre-specified generator point  $ G $.
+
+  - Similar to Pedersen Commitments, the Elliptic Curve Pedersen Commitments are also additionally homomorphic, such that for messages $ x $, $ x_0 $ and $ x_1 $, blinding factors $ r $, $ r_0 $ and $ r_1 $ and scalar $ k $ the following relation holds: $ C(x_0,r_0) + C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ and $ C(k \cdot x, k \cdot r) = k \cdot C(x, r) $.
+
+  - In secure implementations of ECC it is as hard to guess $ x $ from $ xG $ as it is to guess $ x $ from $g^x $. This is called the Elliptic Curve DLP (ECDLP).
+
+  - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
+
+[ecpc~]: #ecpc
+"An efficient implementation of the 
+Pedersen Commitment  will use secure 
+Elliptic Curve Cryptography, which is ..."
+
+ 
+
+### Security aspects of (Elliptic Curve) Pedersen Commitments
+
+By virtue of their definition Pedersen Commitments are only computationally *binding* but perfectly *hiding*. A simplified explanation follows.
+
+If Alice wants to commit to a value $ x $ that will be sent to Bob who will at a later stage wants Alice to prove that the value $ x $ is the value that was used to generate the commitment $ C $, then Alice will select random blinding factor $ r $, calculate $ C(x,r) = h^r g^x $ and send that to Bob. Later Alice can reveal $ x $ and $ r $ and Bob can do the calculation and see that the commitment $ C $ it produces is the same as the one Alice sent earlier.
+
+Perhaps Alice or Bob has managed to build a computer that can solve the DLP and given a public key could in reasonable time find alternate solutions to $ C(x,r) = h^r g^x $ in a reasonable time, that is $  C(x,r) =  h^{r^\prime} g^{x^\prime} $. This means even though Bob can find values for $ r^\prime $ and $ x^\prime $ that produce $ C $ he cannot know if those are actually the specific $ x $ and $ r $ that Alice chose because there are so many that can produce the same  $ C $. Pedersen Commitments are thus perfectly *hiding*.
+
+Although the Pederson Commitment is perfectly *hiding* it does rely on the fact that Alice has NOT cracked the DLP to be able to calculate other pairs of input values to open the commitment to another value when challenged. The Pederson Commitment is thus only computationally *binding*.
 
 
 
 ## Bulletproof Protocols
 
-Protocols 1, 2 and 3 are numbered consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with a faculty sign "!" to differentiate them. See [Appendix&nbsp;B](#appendix-b-notations-used) for notations used. 
+Protocols 1, 2 and 3 are numbered consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with a faculty sign "!" to differentiate them. Refer to [Notations Used](#notations-used). 
 
 <i>**Note:** Full mathematical definitions and terms not defined are available in [[1]].</i>
 <br>
@@ -72,7 +179,7 @@ Engineering 2018,
 Bünz B. et al">1</a>]</b></div>
 
 
-The argument presented in Protocol 1 has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
+The argument presented in Protocol 1 has the following Commitment Scheme properties:
 
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Statistical witness extended emulation (binding)</u>: Robust against either extracting a non-trivial discrete logarithm relation between $ \mathbf {g} , \mathbf {h} , u $ or extracting a valid witness $ \mathbf {a}, \mathbf {b} $.
@@ -114,7 +221,7 @@ Protocol 2! provides short and aggregatable range proofs, using the improved inn
 - how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and 
 - how to allow multiple parties to construct a single aggregate range proof. 
 
-A diagrammatic overview of a range proof protocol implementation is given in Figure&nbsp;3.
+A diagrammatic overview of a range proof protocol implementation using Elliptic Curve Pedersen Commitments<sup>[def][ecpc~]</sup> is given in Figure&nbsp;3.
 
 <p align="center"><img src="sources/RangeProofDiagram.PNG" width="1000" /></p>
 <div align="center"><b>Figure&nbsp;3: Range Proof Protocol Implementation Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography - 
@@ -206,7 +313,7 @@ Bünz B. et al">1</a>]</b></div>
 
 
 
-The range proof presented here has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
+The range proof presented here has the following Commitment Scheme properties:
 
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Perfect special honest verifier zero-knowledge</u>: The *verifier* $ \mathcal{V} $ behaves according to the protocol, also see Definition&nbsp;12 in [[1]];
@@ -236,7 +343,7 @@ The quantity $ \delta (y,z) $ is adjusted to incorporate more cross terms $ n \c
 
 This aggregated range proof that makes use of the inner product argument only uses $ 2 \cdot [ \log _2 (n \cdot m)] + 4 $ group elements and $ 5 $ elements in $ \mathbb Z_p $. The growth in size is limited to an additive term $ 2 \cdot [ \log _2 (m)] $ as opposed to a multiplicative factor $ m $ for $ m $ independent range proofs.
 
-The aggregate range proof presented here has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
+The aggregate range proof presented here has the following Commitment Scheme properties:
 
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Perfect special honest verifier zero-knowledge</u>: The *verifier* $ \mathcal{V} $ behaves according to the protocol, also see Definition&nbsp;12 in [[1]];
@@ -332,7 +439,7 @@ Bünz B. et al">1</a>]</b></div>
 
 
 
-The proof system presented here has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
+The proof system presented here has the following Commitment Scheme properties:
 
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Perfect honest verifier zero-knowledge</u>: The *verifier* $ \mathcal{V} $ behaves according to the protocol, also see Definition&nbsp;12 in [[1]];
@@ -346,7 +453,7 @@ Similar to [Protocol 2.2!](#protocol-22---logarithmic-range-proof) the communica
 
 Similar to [Protocol 2.4!](#protocol-24---non-interactive-proof-through-fiat-shamir) the protocol presented so far can be turned into an efficient non interactive proof that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
-The proof system presented here has the following Commitment Scheme<sup>[def][cs~]</sup> properties:
+The proof system presented here has the following Commitment Scheme properties:
 
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Statistical zero-knowledge</u>: The *verifier* $ \mathcal{V} $ behaves according to the protocol and $ \mathbf {l} , \mathbf {r} $ can be efficiently simulated;
@@ -619,14 +726,6 @@ field F and variables (x_1, ..., x_n)
 is a directed acyclic graph ..."
 
 
-- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*. ([[12]], [[13]])
-
-[cs~]: #cs
-"A commitment scheme in a 
-zero-knowledge proof is a 
-cryptographic primitive ..."
-
-
 - <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a ​$ is a number $ x ​$ such that $ b^x=a ​$, for given numbers $ a ​$ and $ b ​$. Analogously, in any group $ G ​$ , powers $ b^k ​$ can be defined for all integers $ k ​$, and the discrete logarithm $ \log_ba ​$ is an integer $ k ​$ such that $ b^k=a ​$. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[5]], [[16]])
 
 [dlp~]: #dlp
@@ -641,25 +740,6 @@ is a number x such that ..."
 "An ElGamal Commitment is a 
 Pedersen Commitment with
 additional commitment ..."
-
-
-- <u><i>Elliptic Curve Pedersen Commitment</i></u>:<a name="ecpc"> </a>An efficient implementation of the Pedersen Commitment<sup>[def][pc~]</sup> will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers (integers) and upper case letters for curve points. ([[26]], [[27]], [[28]])
-  - The generalized Elliptic Curve Pedersen Commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
-    - Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.
-    - Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) is solved. 
-    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p $.
-    - The commitment to value $ x \in \mathbb Z_p $ is then determined by calculating $ C(x,r) = rH + xG $, which is called the Elliptic Curve Pedersen Commitment.
-  - Elliptic curve point addition is analogous to multiplication in the originally defined Pedersen Commitment<sup>[def][pc~]</sup>. Thus $ g^x $, the number $ g $ multiplied by itself $ m $ times, is analogous to $ xG $, the elliptic curve point $ G $ added to itself $ x $ times. In this context $ xG $ is also a point in $ \mathbb F_p $.
-  - In the Elliptic Curve context $ C(x,r) = rH + xG $ is then analogous to  $ C(x,r) = h^r g^x $.
-  - The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. With secp256k1 the value of $ H $ is the SHA256 hash of a simple encoding of the pre-specified generator point  $ G $.
-  - Similar to Pedersen Commitments, the Elliptic Curve Pedersen Commitments are also additionally homomorphic, such that for messages $ x $, $ x_0 $ and $ x_1 $, blinding factors $ r $, $ r_0 $ and $ r_1 $ and scalar $ k $ we have $ C(x_0,r_0) + C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ and $ C(k \cdot x, k \cdot r) = k \cdot C(x, r) $.
-  - In secure implementations of ECC it is as hard to guess $ x $ from $ xG $ as it is to guess $ x $ from $g^x $. This is called the Elliptic Curve DLP (ECDLP). Security attributes of the Elliptic Curve Pedersen Commitment scheme are also perfectly *hiding*<sup>[def][cs~]</sup> and computationally *binding*<sup>[def][cs~]</sup>.
-  - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
-
-[ecpc~]: #ecpc
-"An efficient implementation of the 
-Pedersen Commitment  will use secure 
-Elliptic Curve Cryptography, which is ..."
 
 
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a one-message (non-interactive) protocol using a cryptographic hash function. ([[6]], [[7]])
@@ -687,30 +767,6 @@ is a binary operation that takes two
 matrices A,B of the same dimensions ..."
 
 
-- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>The Pedersen Commitment is a system for making a blinded non-interactive commitment to a value. ([[1]], [[3]], [[8]], [[14]], [[15]]).
-  - The generalized Pedersen Commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
-    - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $. 
-
-    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $. 
-
-    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $. 
-
-    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $. 
-
-    - The commitment to value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $, which is called the Pedersen Commitment.
-
-    - The generator $ h $ and resulting number $ g $ are known as the commitment bases and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
-
-  - Pedersen Commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = h^{r_0} g^{x_0} + h^{r_1} g^{x_1} = h^{r_0 + r_1} g^{x_0 + x_1} = C(x_0+x_1,r_0+r_1) $ 
-
-  - Security attributes of the Pedersen Commitment scheme are perfectly *hiding*<sup>[def][cs~]</sup> and computationally *binding*<sup>[def][cs~]</sup>. 
-
-[pc~]: #pc
-"A Pedersen commitments are a system 
-for making blinded non-interactive 
-commitments to a value ..."
-
-
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[4]], [[9]])
   - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
   - Sound: If the statement is false, and the verifier follows the protocol; the verifier will not be convinced.
@@ -721,33 +777,6 @@ commitments to a value ..."
 "In cryptography, a zero-knowledge 
 proof/protocol is a method by which 
 one party (the prover) can convince ..."
-
-
-
-### Appendix B: Notations Used
-
-The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
-
-- Let  $ p $ and $ q $ be large prime numbers.
-- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively. 
-- let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively.
-- Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $. In other words, there exists a number $ g \in \mathbb G  $ such that $  \mathbb G  = \lbrace 1 \mspace{3mu} , \mspace{3mu} g \mspace{3mu} , \mspace{3mu} g^2 \mspace{3mu} , \mspace{3mu} g^3 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu}  g^{p-1} \rbrace \equiv  \mathbb Z_p $. Note that not every element of $ \mathbb Z_p $ is a generator of $ \mathbb G $.
-- Let $ \mathbb Z_p^* $ denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $, that is all invertible elements of  $ \mathbb Z_p $ and $ \mathbb Z_q $ respectively. This excludes the element $ 0 $ which is not invertible.
-- Let $ \mathbb G^n $ and $ \mathbb Z^n_p $ be vector spaces of dimension $ n $ over $ \mathbb G $ and $ \mathbb Z_p $ respectively.
-- Let $ h^r \mathbf g^\mathbf x = h^r \prod_i g_i^{x_i} \in \mathbb G $ be the vector Pedersen Commitment<sup>[def][pc~]</sup> with $ \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $ and $ \mathbf {x} = (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_n) \in \mathbb G^n $. 
-- Let $ \mathbf {a} \in \mathbb F^n $ be a vector with elements $ a_1 \cdot b_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n \cdot b_n \in F^n $. 
-- Let $ \langle \mathbf {a}, \mathbf {b} \rangle = \sum _{i=1}^n {a_i \cdot b_i} $ denote the inner-product between two vectors $ \mathbf {a}, \mathbf {b} \in \mathbb F^n $. 
-- Let $ \mathbf {a} \circ \mathbf {b} = (a_1 \cdot b_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n \cdot b_n) \in \mathbb F^n $ denote the entry wise multiplication of two vectors $ \mathbf {a}, \mathbf {b} \in \mathbb F^n $. 
-- Let $ \mathbf {A} \circ \mathbf {B} = (a_{11} \cdot b_{11} \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_{1m} \cdot b_{1m} \mspace{6mu} ; \mspace{6mu} . . . \mspace{6mu} ; \mspace{6mu} a_{n1} \cdot b_{n1} \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_{nm} \cdot b_{nm} ) $ denote the entry wise multiplication of two matrixes, also known as the Hadamard Product<sup>[def][hdmp~]</sup>. 
-- Let $ \mathbf {a} \parallel \mathbf {b} $ denote the concatenation of two vectors; if $ \mathbf {a} \in \mathbb Z_p^n $ and $ \mathbf {b} \in \mathbb Z_p^m $ then $ \mathbf {a} \parallel \mathbf {b} \in \mathbb Z_p^{n+m} $. 
-- Let $ p(X) = \sum _{i=0}^d { \mathbf {p_i} \cdot X^i} \in \mathbb Z_p^n [X] $ be a vector polynomial where each coefficient $ \mathbf {p_i} $ is a vector in $ \mathbb Z_p^n $. 
-- Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] $ denote the inner-product between two vector polynomials $ l(X),r(X) $. 
-- Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner-product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $. 
-- Let $ C=g^a = \prod _{i=1}^n g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a} \in \mathbb Z_p^n $ where $ \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b} \in \mathbb Z_p^n $ with non-zero entries, $ \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \prod _{i=1}^n (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
-- Let slices of vectors be defined as $ \mathbf {a_{[:l]}} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_l) \in \mathbb F^l \mspace{3mu} , \mspace{12mu}\ \mathbf {a_{[l:]}} = (a_{l+1} \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \mathbb F^{n-l}$. 
-- Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^* $ such that $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $. 
-- Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively.
-- Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} $ denote the *prover* and *verifier* in relation to inner-product calculations respectively.
 
 
 
