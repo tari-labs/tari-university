@@ -656,6 +656,27 @@ Oct 2015"
 Poelstra A., 
 February 2018"
 
+[[60]] Homomorphic Mini-blockchain Scheme, Franca B., April 2015, http://cryptonite.info/files/HMBC.pdf, Date accessed: 2018-11-22.
+
+[60]: http://cryptonite.info/files/HMBC.pdf
+"Homomorphic Mini-blockchain Scheme, 
+Franca B., 
+April 2015"
+
+[[61]] Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves, Franck C. and Großschädl J., University of Luxembourg, http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf, Date accessed: 2018-11-22.
+
+[61]: http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf
+"Efficient Implementation of Pedersen 
+Commitments Using Twisted Edwards Curves, 
+Franck C. and Großschädl J., 
+University of Luxembourg"
+
+[[62]] An investigation into Confidential Transactions, Gibson A., July 2018, https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf, Date accessed: 2018-11-22.
+
+[62]: https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf
+"An investigation into Confidential Transactions, 
+Gibson A., 
+July 2018"
 
 
 
@@ -699,8 +720,8 @@ numbers, the logarithm log_b(a)
 is a number x such that ..."
 
 
-- <u><i>Elliptic Curve Pedersen Commitment</i></u>:<a name="ecpc"> </a>An efficient implementation of the Pedersen Commitment ([[15]], [[22]]) will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers (integers) and upper case letters for curve points. ([[26]], [[27]], [[28]])
-  - The generalized Elliptic Curve Pedersen Commitment definition follows (*refer to [Notations Used](#notations-used)*):
+- <u><i>Elliptic Curve Pedersen Commitment</i></u>:<a name="ecpc"> </a>An efficient implementation of the Pedersen Commitment ([[15]], [[22]]) will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers (integers) and upper case letters for curve points. ([[60]], [[61]], [[62]])
+  - The generalized Elliptic Curve Pedersen Commitment definition follows (*refer to [Appendix B: Notations Used](#appendix-b-notations-used)*):
     - Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.
 
     - Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) is solved. 
@@ -773,13 +794,11 @@ one party (the prover) can convince ..."
 
 The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
 
-- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively
-
-- let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively
-
-- Let $ \mathbb Z_p^* $ denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $ 
-
-- Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $ 
+- Let  $ p $ and $ q $ be large prime numbers.
+- Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively.
+- let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively.
+- Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $. In other words, there exists a number $ g \in \mathbb G  $ such that $  \mathbb G  = \lbrace 1 \mspace{3mu} , \mspace{3mu} g \mspace{3mu} , \mspace{3mu} g^2 \mspace{3mu} , \mspace{3mu} g^3 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu}  g^{p-1} \rbrace \equiv  \mathbb Z_p $. Note that not every element of $ \mathbb Z_p $ is a generator of $ \mathbb G $.
+- Let $ \mathbb Z_p^* $ denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote $ \mathbb Z_q \setminus \lbrace 0 \rbrace $, that is all invertible elements of  $ \mathbb Z_p $ and $ \mathbb Z_q $ respectively. This excludes the element $ 0 $ which is not invertible.
 
 
 
