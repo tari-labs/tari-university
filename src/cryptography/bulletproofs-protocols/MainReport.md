@@ -135,7 +135,7 @@ By virtue of their definition Pedersen Commitments are only computationally *bin
 
 If Alice wants to commit to a value $ x $ that will be sent to Bob who will at a later stage wants Alice to prove that the value $ x $ is the value that was used to generate the commitment $ C $, then Alice will select random blinding factor $ r $, calculate $ C(x,r) = h^r g^x $ and send that to Bob. Later Alice can reveal $ x $ and $ r $ and Bob can do the calculation and see that the commitment $ C $ it produces is the same as the one Alice sent earlier.
 
-Perhaps Alice or Bob has managed to build a computer that can solve the DLP and given a public key could in reasonable time find alternate solutions to $ C(x,r) = h^r g^x $ in a reasonable time, that is $  C(x,r) =  h^{r^\prime} g^{x^\prime} $. This means even though Bob can find values for $ r^\prime $ and $ x^\prime $ that produce $ C $ he cannot know if those are actually the specific $ x $ and $ r $ that Alice chose because there are so many that can produce the same  $ C $. Pedersen Commitments are thus perfectly *hiding*.
+Perhaps Alice or Bob has managed to build a computer that can solve the DLP and given a public key could in reasonable time find alternate solutions to $ C(x,r) = h^r g^x $ in a reasonable time, that is $  C(x,r) =  h^{r^\prime} g^{x^\prime} $. This means even though Bob can find values for $ r^\prime $ and $ x^\prime $ that produce $ C $ he cannot know if those are the specific $ x $ and $ r $ that Alice chose, because there are so many that can produce the same $ C $. Pedersen Commitments are thus perfectly *hiding*.
 
 Although the Pederson Commitment is perfectly *hiding* it does rely on the fact that Alice has NOT cracked the DLP to be able to calculate other pairs of input values to open the commitment to another value when challenged. The Pederson Commitment is thus only computationally *binding*.
 
@@ -143,7 +143,18 @@ Although the Pederson Commitment is perfectly *hiding* it does rely on the fact 
 
 ## Bulletproof Protocols
 
-Protocols 1, 2 and 3 are numbered consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with a faculty sign "!" to differentiate them. Refer to [Notations Used](#notations-used). 
+Bulletproof protocols have multiple applications; most of these are discussed in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"). The list below links these use cases up with the different Bulletproof protocols:
+
+- Bulletproofs provide short non-interactive zero-knowledge proofs without a trusted setup. The small size of Bulletproofs reduce overall cost. This has applicability in distributed systems where proofs are transmitted over a network or stored for a long time.
+- [Protocol 2!](#protocol-2---range-proof-protocol-with-logarithmic-size) provides short single and aggregatable range proofs and can be used with multiple blockchain protocols including Mimblewimble. These can be applied to normal transactions or to some smart contract where committed values need to be proven to be in a specific range without revealing the values.
+- The protocol presented in [Protocol 2.3!](#protocol-23---aggregating-logarithmic-proofs) can be used for Merkle proofs and proof of solvency without revealing any additional information.
+- Range proofs can be compiled for a multi-party single joined confidential transaction for their known outputs using [Protocol 2.5!](#protocol-25---mpc-protocol-for-bulletproofs). Users do not have to reveal their secret transaction values.
+- Verifiable shuffles and multi-signatures with deterministic nonces can be implemented with [Protocol 3](#protocol-3---inner-product-proof-for-arithmetic-circuits).
+- Bulletproofs present an efficient and short zero-knowledge proof for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> using [Protocol 3!](#protocol-3---zero-knowledge-proof-for-arithmetic-circuits).
+- Various Bulletproof protocols can be applied to scriptless scripts, to make them non-interactive and not having to use Sigma protocols.
+- Batch verifications can be done using [Protocol 4!](#protocol-4---optimized-verifier-using-multi-exponentiation-and-batch-verification), for example a blockchain full node receiving a block of transactions needs to verify all transactions as well as range proofs.
+
+A detailed mathematical discussion of the different Bulletproof protocols follows. Protocols 1, 2 and 3 are numbered consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with a faculty sign "!" to differentiate them. Refer to [Notations Used](#notations-used). 
 
 <i>**Note:** Full mathematical definitions and terms not defined are available in [[1]].</i>
 <br>
@@ -186,7 +197,7 @@ The argument presented in Protocol 1 has the following Commitment Scheme propert
 
 #### Protocol 2 - Inner-Product Verification through Multi-Exponentiation
 
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion the, final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion, the final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
 
 $$
 g = \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
@@ -359,7 +370,7 @@ So far the *verifier* $ \mathcal{V} $ behaves as an honest verifier and all mess
 
 ##### Protocol 2.5! - MPC Protocol for Bulletproofs
 
-This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs, $ m ​$ parties each having a Pedersen Commitment $ (V_k)_{k=1}^m ​$ can generate a single Bulletproof that each $ V_k ​$ commits to a number in some fixed range.
+This protocol allows multiple parties to construct a single simple efficient aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs. In Bulletproofs, $ m $ parties each having a Pedersen Commitment $ (V_k)_{k=1}^m $ can generate a single Bulletproof that each $ V_k $ commits to a number in some fixed range.
 
 Let $ k $ denote the $ k $th party's message, thus $ A^{(k)} $ is generated using only inputs of party $ k $. A set of distinct generators $ (g^{(k)}, h^{(k)})^m_{k=1} $ is assigned to each party, and $ \mathbf g,\mathbf h $ is defined as the interleaved concatenation of all $ g^{(k)} , h^{(k)} $ such that 
 
@@ -393,13 +404,13 @@ The communication can be reduced by running a second MPC protocol for the inner 
 
 Bulletproofs present an efficient zero-knowledge argument for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> with a proof size of $ 2 \cdot [ \log _2 (n)+13] $ elements with $ n $ denoting the multiplicative complexity (number of multiplication gates) of the circuit. 
 
-Bootle et al. [[2]] showed how an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted into a relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear consistency constraints. The communication cost of the addition gates in the argument was removed by providing a technique that can directly handle a set of Hadamard products and linear relations together. For a two-input multiplication gate let $ \mathbf a_L , \mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear consistency constraints, $ \mathbf W_{L,q} \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}, \mathbf W_{O,q} \in \mathbb Z_p^n $ be the gate weights and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] $, then the linear consistency constraints has the form
+Bootle et al. [[2]] showed how an arbitrary arithmetic circuit with $ n $ multiplication gates can be converted into a relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear consistency constraints. The communication cost of the addition gates in the argument was removed by providing a technique that can directly handle a set of Hadamard products and linear relations together. For a two-input multiplication gate let $ \mathbf a_L , \mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear consistency constraints, $ \mathbf W_{L,q} \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}, \mathbf W_{O,q} \in \mathbb Z_p^n $ be the gate weights and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] ​$, then the linear consistency constraints have the form
 
 $$
 \langle \mathbf W_{L,q}, \mathbf a_L \rangle + \langle \mathbf W_{R,q}, \mathbf a_R \rangle +\langle \mathbf W_{O,q}, \mathbf a_O \rangle = c_q
 $$
 
-The high-level idea of this protocol is to convert the Hadamard-product relation along with the linear consistency constraints into a single inner product relation. Pedersen Commitments $ V_j ​$ are also included as input wires to the arithmetic circuit, which is an important refinement otherwise the arithmetic circuit would need to implement a commitment algorithm. The linear constraints also include openings $ v_j ​$ of $ V_j ​$. 
+The high-level idea of this protocol is to convert the Hadamard-product relation along with the linear consistency constraints into a single inner product relation. Pedersen Commitments $ V_j $ are also included as input wires to the arithmetic circuit, which is an important refinement otherwise the arithmetic circuit would need to implement a commitment algorithm. The linear constraints also include openings $ v_j $ of $ V_j $. 
 
 ##### Protocol 3 - Inner-Product Proof for Arithmetic Circuits
 
