@@ -8,9 +8,9 @@ The Bulletproofs technology is a Non-interactive Zero-knowledge (NIZK) proof pro
 
 Bulletproofs also implement a Multi-party Computation (MPC) protocol whereby distributed proofs of multiple *provers* with secret committed values are aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, thereby minimizing rounds of communication. Secret committed values will stay secret. ([[1]], [[6]])
 
-The essence of Bulletproofs are its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) binding vector Pedersen Commitments<sup>[def][pc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
+The essence of Bulletproofs are its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) *binding*<sup>[def][cs~]</sup> vector Pedersen Commitments<sup>[def][ecpc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
+[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen Commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
 
 
 
@@ -40,7 +40,7 @@ The essence of Bulletproofs are its inner-product algorithm originally presented
 
 ## How do Bulletproofs work?
 
-The basis of confidential transactions is to replace the input and output amounts with Pedersen Commitments<sup>[def][pc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen commitment, to prove that each bit satisfies $ x(x-1) = 0 $, that is each $ x $ is either $ 0 $ or $ 1 $, and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen commitments. ([[1]], [[3]], [[5]])
+The basis of confidential transactions is to replace the input and output amounts with Pedersen Commitments<sup>[def][ecpc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen Commitment, to prove that each bit satisfies $ x(x-1) = 0 $, that is each $ x $ is either $ 0 $ or $ 1 $, and that they sum to some value $v$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen Commitments. ([[1]], [[3]], [[5]])
 
 Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements are required for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs with $ n $ denoting the multiplicative complexity. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
 
@@ -189,9 +189,9 @@ Grin implemented a switch commitment [[43]] as part of a transaction output to b
 
 #### Initial Implementation
 
-The initial Grin implementation ([[21]], [[34]]. [[35]], [[54]]) hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly *binding*<sup>[def][cs~]</sup>  later on as opposed to currently being perfectly *hiding*<sup>[def][cs~]</sup>. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
+The initial Grin implementation ([[21]], [[34]]. [[35]], [[54]]) hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly *binding*<sup>[def][cs~]</sup>  later on as opposed to currently being perfectly *hiding*<sup>[def][cs~]</sup>.  *Perfect* in this sense means that a quantum adversary (an attacker with infinite computing power) cannot tell what amount has been committed to and is also unable to produce fake commitments. *Computational*, means that no efficient algorithm running in a practical amount of time can reveal the commitment amount or produce fake commitments except with small probability. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
 
-In this implementation a Grin transaction output contains the original Pedersen commitment as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
+In this implementation a Grin transaction output contains the original (Elliptic Curve) Pedersen Commitment<sup>[def][ecpc~]</sup> as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
 
 $$
 (vG + bH \mspace{3mu} , \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r))
@@ -203,7 +203,7 @@ In the event of quantum adversaries, the owner of an output can choose to stay a
 
 In the Bulletproof range proof protocol two 32-byte scalar nonces $ \tau_1 , \alpha $ (*not important to know what they are*) are generated with a secure random number generator. If the seed for the random number generator is known, the scalar values $ \tau_1 , \alpha $ can be re-calculated when needed. Sixty-four (64) bytes worth of message space (out of 674 bytes worth of range proof) are made available by embedding a message into those variables using a logic $ \mathrm{XOR} $ gate. This message space is used for the transaction amount for wallet reconstruction.
 
-To ensure that the transaction amount of the output cannot be spend by only opening the Pedersen commitment $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original blinding factor $ b $), the Pedersen Commitment<sup>[def][pc~]</sup> $ P $ and the switch commitment hash
+To ensure that the transaction amount of the output cannot be spend by only opening the (Elliptic Curve) Pedersen Commitment $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original blinding factor $ b $), the (Elliptic Curve) Pedersen Commitment<sup>[def][ecpc~]</sup> $ P $ and the switch commitment hash
 
 $$
 \mathrm S (\eta \mspace{3mu} , \mspace{3mu} P \mspace{3mu} ,  \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) ) = \eta \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{S256}}(P \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) )
@@ -223,11 +223,11 @@ To retrieve the embedded message the process is simply inverted. Notice that the
 
 The latter Grin implementation ([[56]], [[57]]) uses Bulletproof range proof rewinding so that wallets can recognize their own transaction outputs. This negated the requirement to remember the wallet-seed derived random value $ r $, nonce $ \eta $ for the seed function $ \mathrm S $ and use of the adapted pair $ \tilde{\alpha} , \tilde{\tau_1} $ in the Bulletproof range proof calculation.
 
-In this implementation it is not necessary to remember a hash of the switch commitment as part of the transaction output set and for it to be passed around during a transaction. The switch commitment looks exactly like the original Pedersen commitment $ vG + bH $ but in this instance the blinding factor $ b $ is tweaked to be 
+In this implementation it is not necessary to remember a hash of the switch commitment as part of the transaction output set and for it to be passed around during a transaction. The switch commitment looks exactly like the original (Elliptic Curve) Pedersen Commitment $ vG + bH $ but in this instance the blinding factor $ b $ is tweaked to be 
 $$
 b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J )
 $$
- with $ b^\prime $ being the user generated blinding factor. The Pedersen commitment then becomes
+ with $ b^\prime $ being the user generated blinding factor. The (Elliptic Curve) Pedersen Commitment then becomes
 $$
 vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
 $$
@@ -277,7 +277,7 @@ The extracts of the discussions below depict the initial and improved implementa
 
 {**antiochp**} "*Sounds like there is a "zero cost" way of getting switch commitments in as part of the commitment itself, so we would not need to store and maintain a separate "switch commitment" on each output. I saw that switch commitments have been removed for various reasons.*"
 
-"*Let me suggest a variant (idea suggested by Pieter Wuille initially): The switch commitment is (vG + bH), where b = b' + hash(vG + b'H,b'J). (So this "tweaks" the commitment, in a pay-to-contract / taproot style). Before the switch, this is just used like a normal Pedersen commitment vG + bH. After the switch, users can reveal (vG + b'H, b'J), and verifiers check if it's computed correctly and use as if it were the ElGamal commitment (vG + bH, bJ).*"
+"*Let me suggest a variant (idea suggested by Pieter Wuille initially): The switch commitment is (vG + bH), where b = b' + hash(vG + b'H,b'J). (So this "tweaks" the commitment, in a pay-to-contract / taproot style). Before the switch, this is just used like a normal Pedersen Commitment vG + bH. After the switch, users can reveal (vG + b'H, b'J), and verifiers check if it's computed correctly and use as if it were the ElGamal commitment (vG + bH, bJ).*"
 
 {**@ignopeverell**} *modified the milestones: Beta / testnet3, Mainnet on 11 Jul*
 
@@ -426,11 +426,11 @@ Bernhard D. et al."
 [21]: https://github.com/mimblewimble/grin/issues/721
 "Message hiding in Bulletproofs #721"
 
-[[22]] pedersen-commitment: An implementation of Pedersen commitment schemes, https://hackage.haskell.org/package/pedersen-commitment, Date accessed: 2018-09-25.
+[[22]] pedersen-commitment: An implementation of Pedersen Commitment schemes, https://hackage.haskell.org/package/pedersen-commitment, Date accessed: 2018-09-25.
 
 [22]: https://hackage.haskell.org/package/pedersen-commitment
 "Pedersen-commitment: An implementation
-of Pedersen commitment schemes"
+of Pedersen Commitment schemes"
 
 [[23]] Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative, https://zkproof.org/documents.html, Date accessed: 2018-09-26.
 
@@ -674,6 +674,7 @@ Definitions of terms presented here are high level and general in nature. Full m
 field F and variables (x_1, ..., x_n) 
 is a directed acyclic graph ..."
 
+
 - <u><i>Argument of Knowledge System</i></u>:<a name="afs"> </a>Proof systems with computational soundness like Bulletproofs are sometimes called argument systems. The terms *proof* and *argument of knowledge* have exactly the same meaning and can be used interchangeably. [[29]]
 
 [afs~]: #afs
@@ -681,12 +682,14 @@ is a directed acyclic graph ..."
 soundness like Bulletproofs are 
 sometimes called argument systems."
 
-- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be computational, statistical or perfect. No commitment scheme can at the same time be perfectly *binding* and perfectly hiding. ([[36]], [[37]])
+
+- <u><i>Commitment Scheme</i></u>:<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*. ([[36]], [[37]])
 
 [cs~]: #cs
 "A commitment scheme in a 
 zero-knowledge proof is a 
 cryptographic primitive ..."
+
 
 - <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
 
@@ -695,12 +698,42 @@ cryptographic primitive ..."
 numbers, the logarithm log_b(a) 
 is a number x such that ..."
 
-- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment<sup>[def][pc~]</sup> with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[51]], [[52]], [[53]])
+
+- <u><i>Elliptic Curve Pedersen Commitment</i></u>:<a name="ecpc"> </a>An efficient implementation of the Pedersen Commitment ([[15]], [[22]]) will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers (integers) and upper case letters for curve points. ([[26]], [[27]], [[28]])
+  - The generalized Elliptic Curve Pedersen Commitment definition follows (*refer to [Notations Used](#notations-used)*):
+    - Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.
+
+    - Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) is solved. 
+
+    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p $.
+
+    - The commitment to value $ x \in \mathbb Z_p $ is then determined by calculating $ C(x,r) = rH + xG $, which is called the Elliptic Curve Pedersen Commitment.
+
+  - Elliptic curve point addition is analogous to multiplication in the originally defined Pedersen Commitment. Thus $ g^x $, the number $ g $ multiplied by itself $ m $ times, is analogous to $ xG $, the elliptic curve point $ G $ added to itself $ x $ times. In this context $ xG $ is also a point in $ \mathbb F_p $.
+
+  - In the Elliptic Curve context $ C(x,r) = rH + xG $ is then analogous to  $ C(x,r) = h^r g^x $.
+
+  - The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. With secp256k1 the value of $ H $ is the SHA256 hash of a simple encoding of the pre-specified generator point  $ G $.
+
+  - Similar to Pedersen Commitments, the Elliptic Curve Pedersen Commitments are also additionally homomorphic, such that for messages $ x $, $ x_0 $ and $ x_1 $, blinding factors $ r $, $ r_0 $ and $ r_1 $ and scalar $ k $ the following relation holds: $ C(x_0,r_0) + C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ and $ C(k \cdot x, k \cdot r) = k \cdot C(x, r) $.
+
+  - In secure implementations of ECC it is as hard to guess $ x $ from $ xG $ as it is to guess $ x $ from $g^x $. This is called the Elliptic Curve DLP (ECDLP).
+
+  - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
+
+[ecpc~]: #ecpc
+"An efficient implementation of the 
+Pedersen Commitment  will use secure 
+Elliptic Curve Cryptography, which is ..."
+
+
+- <u><i>ElGamal Commitment/Encryption</i></u>:<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment ([[15]], [[22]]) with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** The ElGamal encryption scheme should not be confused with the ElGamal signature scheme.</i>) ([[1]], [[51]], [[52]], [[53]])
 
 [egc~]: #egc
 "An ElGamal Commitment is a 
 Pedersen Commitment with
 additional commitment ..."
+
 
 - <u><i>Fiat–Shamir Heuristic/Transformation</i></u>:<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a one-message (non-interactive) protocol using a cryptographic hash function. ([[18]], [[19]])
   - The *prover* will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the *verifier* then contains the challenge $ c $ and response $ f $.
@@ -712,6 +745,7 @@ additional commitment ..."
 technique in cryptography to 
 convert an interactive ..."
 
+
 - *<u>Nonce</u>*:<a name="nonce"> </a>In security engineering, ***nonce*** is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks. ([[41]], [[42]])
 
 [nonce~]: #nonce
@@ -720,22 +754,6 @@ abbreviation of number used once.
 In cryptography, a nonce is an arbitrary 
 number ..."
 
-- <u><i>Pedersen Commitment</i></u>:<a name="pc"> </a>In cryptography, Pedersen commitments are a system for making blinded non-interactive commitments to a value. ([[1]], [[15]], [[22]]).
-  - The generalized Pedersen commitment definition follows (*see [Appendix B](#appendix-b-notations-used) for notations used*):
-    - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $ 
-    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $ 
-    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $ 
-    - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $ 
-    - The commitment of value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $ 
-    - The generator $ h $ and resulting number $ g $ are known as the commitment bases and should be shared along with $ C(x,r) $ with whomever wishes to open the value.
-  - Pedersen commitments are also additionally homomorphic, such that for messages $ x_0 $ and $ x_1 $ and blinding factors $ r_0 $ and $ r_1 $ we have $ C(x_0,r_0) \cdot C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ 
-  - Security attributes of the Pedersen Commitment scheme are perfectly *hiding*<sup>[def][cs~]</sup> and computationally *binding*<sup>[def][cs~]</sup>. An efficient implementation of the Pedersen Commitment will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. 
-  - Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment parameters; <code>Commit()</code> to commit to the message using the commitment parameters and <code>Open()</code> to open and verify the commitment.
-
-[pc~]: #pc
-"Pedersen commitments are a system 
-for making blinded non-interactive 
-commitments to a value ..."
 
 - <u><i>Zero-knowledge Proof/Protocol</i></u>:<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be complete, sound and zero-knowledge. ([[16]], [[23]])
   - Complete: If the statement is true and both prover and verifier follow the protocol; the verifier will accept.
