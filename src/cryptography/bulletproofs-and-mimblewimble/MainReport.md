@@ -8,7 +8,7 @@ The Bulletproofs technology is a Non-interactive Zero-knowledge (NIZK) proof pro
 
 Bulletproofs also implement a Multi-party Computation (MPC) protocol whereby distributed proofs of multiple *provers* with secret committed values are aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, thereby minimizing rounds of communication. Secret committed values will stay secret. ([[1]], [[6]])
 
-The essence of Bulletproofs are its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) *binding*<sup>[def][cs~]</sup> vector Pedersen Commitments<sup>[def][ecpc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
+The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) *binding*<sup>[def][cs~]</sup> vector Pedersen Commitments<sup>[def][ecpc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
 [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen Commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
 
@@ -160,19 +160,7 @@ Chain/Interstellar has done another independent open source implementation of Bu
 
 Real world implementation of Elliptic-curve Cryptography (ECC) is largely based on official standards that govern the selection of curves in order to try and make the Elliptic-curve Discrete-logarithm Problem (ECDLP) hard to solve, that is finding an ECC user's secret key given the user's public key. Many attacks break real-world ECC without solving ECDLP due to problems in ECC security, where implementations can produce incorrect results and also leak secret data. Some implementation considerations also favor efficiency over security. Secure implementations of the standards-based curves are theoretically possible but highly unlikely. ([[14]], [[32]])
 
-Grin, Beam and Adjoint use ECC curve secp256k1 [[24]] for their Bulletproofs implementation, which fails 1 out of the 4 ECDLP security criteria and 3 out of the 4 ECC security criteria [[32]]. The basic form of the curve is shown below:
-
-```text
-y^2 = x^3 + 0x + 7
-modulo p = 2^256 - 2^32 - 977
-```
-
-Monero and Chain/Interstellar use the ECC curve Curve25519 [[38]] for their Bulletproofs implementation, which passes all ECDLP and ECC security criteria [[32]]. The basic form of the curve is shown below:
-
-```text
-y^2 = x^3 + 486662x^2 + x
-modulo p = 2^255 - 19
-```
+Grin, Beam and Adjoint use ECC curve secp256k1 [[24]] for their Bulletproofs implementation, which fails 1 out of the 4 ECDLP security criteria and 3 out of the 4 ECC security criteria. Monero and Chain/Interstellar use the ECC curve Curve25519 [[38]] for their Bulletproofs implementation, which passes all ECDLP and ECC security criteria. [[32]]
 
 Chain/Interstellar goes one step further with their use of Ristretto, a technique for constructing prime order elliptic curve groups with non-malleable encodings, which allows an existing Curve25519 library to implement a prime-order group with only a thin abstraction layer. This makes it possible for systems using Ed25519 signatures to be safely extended with zero-knowledge protocols, with no additional cryptographic assumptions and minimal code changes. [[31]]
 
