@@ -809,4 +809,3 @@ The general notation of mathematical expressions when specifically referenced ar
 - [https://github.com/SWvheerden](https://github.com/SWvheerden)
 - [https://github.com/philipr-za](https://github.com/philipr-za)
 - [https://github.com/neonknight64](https://github.com/neonknight64)
-- [https://github.com/Kevoulee](https://github.com/Kevoulee) ???
