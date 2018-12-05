@@ -2,7 +2,7 @@
 
 ## Introduction
 
-An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"), which has largely been based on the original work done by Bünz et al. [[1]]. They documented a number of different Bulletproof protocols, but not all of them in an obvious manner. This report chronologically numbers, summarizes and explain the different Bulletproof protocols in as simple terms as possible. It also simplifies the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report concludes with a discussion on an improved Bulletproof zero-knowledge proof protocol by some community members following an evolutionary approach.
+An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble](../bulletproofs-and-mimblewimble/MainReport.md), which has largely been based on the original work done by Bünz et al. [[1]]. They documented a number of different Bulletproof protocols, but not all of them in an obvious manner. This report chronologically numbers, summarizes and explain the different Bulletproof protocols in as simple terms as possible. It also simplifies the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report concludes with a discussion on an improved Bulletproof zero-knowledge proof protocol by some community members following an evolutionary approach.
 
 
 
@@ -14,7 +14,7 @@ An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble]("
   - [Preliminaries](#preliminaries)
     - [Notations Used](#notations-used)
     - [Pedersen Commitments and Elliptic Curve Pedersen Commitments](#pedersen-commitments-and-elliptic-curve-pedersen-commitments)
-    - [Security aspects of (Elliptic Curve) Pedersen Commitments](l#security-aspects-of-elliptic-curve-pedersen-commitments)
+    - [Security aspects of (Elliptic Curve) Pedersen Commitments](#security-aspects-of-elliptic-curve-pedersen-commitments)
   - [Bulletproof Protocols](#bulletproof-protocols)
     - [Protocol 1 - Inner-product Argument](#protocol-1---inner-product-argument)
     - [Protocol 2 - Inner-Product Verification through Multi-Exponentiation](#protocol-2---inner-product-verification-through-multi-exponentiation)
@@ -143,7 +143,7 @@ Although the Pederson Commitment is perfectly *hiding* it does rely on the fact 
 
 ## Bulletproof Protocols
 
-Bulletproof protocols have multiple applications; most of these are discussed in [Bulletproofs and Mimblewimble]("../bulletproofs-and-mimblewimble/MainReport.md"). The list below links these use cases up with the different Bulletproof protocols:
+Bulletproof protocols have multiple applications; most of these are discussed in [Bulletproofs and Mimblewimble](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs). The list below links these use cases up with the different Bulletproof protocols:
 
 - Bulletproofs provide short non-interactive zero-knowledge proofs without a trusted setup. The small size of Bulletproofs reduce overall cost. This has applicability in distributed systems where proofs are transmitted over a network or stored for a long time.
 - [Protocol 2!](#protocol-2---range-proof-protocol-with-logarithmic-size) provides short single and aggregatable range proofs and can be used with multiple blockchain protocols including Mimblewimble. These can be applied to normal transactions or to some smart contract where committed values need to be proven to be in a specific range without revealing the values.
@@ -797,4 +797,3 @@ one party (the prover) can convince ..."
 - [https://github.com/neonknight64](https://github.com/neonknight64)
 - [https://github.com/CjS77](https://github.com/CjS77)
 - [https://github.com/philipr-za](https://github.com/philipr-za)
-- [https://github.com/Kevoulee](https://github.com/Kevoulee) ???
