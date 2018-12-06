@@ -676,7 +676,7 @@ Definitions of terms presented here are high level and general in nature. Full m
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
 
-  <p align="center"><img src="sources/ArithmiticCircuit.PNG" width="300" /></p>
+  <p align="center"><img src="sources/ArithmiticCircuit.png" width="300" /></p>
 
 [ac~]: #ac
 "An arithmetic circuit C over a 

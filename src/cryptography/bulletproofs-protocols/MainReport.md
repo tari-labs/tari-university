@@ -234,7 +234,7 @@ Protocol 2! provides short and aggregatable range proofs, using the improved inn
 
 A diagrammatic overview of a range proof protocol implementation using Elliptic Curve Pedersen Commitments<sup>[def][ecpc~]</sup> is given in Figure&nbsp;3.
 
-<p align="center"><img src="sources/RangeProofDiagram.PNG" width="1000" /></p>
+<p align="center"><img src="sources/RangeProofDiagram.png" width="1000" /></p>
 <div align="center"><b>Figure&nbsp;3: Range Proof Protocol Implementation Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography - 
 Crate Bulletproofs">22</a>]</b></div>
 
@@ -392,7 +392,7 @@ $$
 
 In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
 
-<p align="center"><img src="sources/MPC-diagram.PNG" width="850" /></p>
+<p align="center"><img src="sources/MPC-diagram.png" width="850" /></p>
 <div align="center"><b>Figure&nbsp;7: MPC Implementation Example [<a href="https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html" title="Dalek Cryptography - 
 Module bulletproofs::aggregation">34</a>]</b></div>
 
@@ -729,7 +729,7 @@ Definitions of terms presented here are high level and general in nature. Full m
 
 - <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[11]], [[20]])
 
- <p align="center"><img src="sources/ArithmiticCircuit.PNG" width="300" /></p>
+ <p align="center"><img src="sources/ArithmiticCircuit.png" width="300" /></p>
 
 [ac~]: #ac
 "An arithmetic circuit C over a 
