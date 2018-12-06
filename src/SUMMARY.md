@@ -8,6 +8,7 @@
     - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)
     - [Fraud proofs](cryptography/fraud-proofs-1/MainReport.md)
     - [Bulletproofs and Mimblewimble](cryptography/bulletproofs-and-mimblewimble/MainReport.md)
+    - [The Bulletproofs Protocols](cryptography/bulletproofs-protocols/MainReport.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)
     - [Introduction to Applications of Byzantine Consensus Mechanisms](consensus-mechanisms/BFT-consensus-mechanisms-applications/Introduction.md)
