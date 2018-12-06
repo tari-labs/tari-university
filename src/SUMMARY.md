@@ -7,6 +7,7 @@
       - [Signature Aggregation](cryptography/digital_signatures/schnorr_signatures.md)
     - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)
     - [Fraud proofs](cryptography/fraud-proofs-1/MainReport.md)
+    - [Bulletproofs and Mimblewimble](cryptography/bulletproofs-and-mimblewimble/MainReport.md)
     - [The Bulletproofs Protocols](cryptography/bulletproofs-protocols/MainReport.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)

@@ -22,7 +22,7 @@
 - Suggestions will be presented to addressed these issues
 
 @div[s450px]
-![Community_Criticisms](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/intro.png?raw=true)
+![Community_Criticisms](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/grin-design-choice-criticisms/sources/intro.png)
 @divend
 
 ---
@@ -216,7 +216,7 @@
 	- Higher hash rate on network will make it more difficult to hack
 	- Use less electrical power to maintaining blockchain 
 
-![Blockchain_Attack](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/attack51.jpg?raw=true)
+![Blockchain_Attack](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/grin-design-choice-criticisms/sources/attack51.jpg)
 
 +++
 ## Negative effect of ASIC friendly PoW algorithm
@@ -247,7 +247,7 @@
 - Very important decision that can affect the security of the blockchain
 - The Grin team's choice to support the ASIC community and trying to balancing an ASIC friendly and an ASIC resistant PoW algorithm will be interesting with many potential pitfalls
 
-![GPU_Mining](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg?raw=true)
+![GPU_Mining](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/grin-design-choice-criticisms/sources/gpu_mining.jpg)
 
 ---
 # Choice of Cryptographic Elliptic-curve - secp256k1
@@ -277,7 +277,7 @@
 	- Could result in  future exploits
 
 @div[s450px]
-![PublicKey_Cryptography](https://github.com/tari-labs/tari-university/blob/grin/src/protocols/grin-design-choice-criticisms/sources/publickey.png?raw=true)
+![PublicKey_Cryptography](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/grin-design-choice-criticisms/sources/publickey.png)
 @divend
 
 +++
