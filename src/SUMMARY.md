@@ -24,8 +24,8 @@
     - [Executive Summary](layer2scaling/executive-summary/sources/PITCHME.link.md)
   - [Merged Mining](./merged-mining/merged-mining.md)
     - [Merged Mining Introduction](merged-mining/merged-mining-scene/MergedMiningIntroduction.md)
-  - [Non-fungible Tokens](./non-fungible-tokens/non-fungible-tokens.md)
-    - [NFT Landscape](non-fungible-tokens/nft-landscape-1/sources/PITCHME.link.md)
+  - [Digital Assets](./digital-assets/digital-assets.md)
+    - [Non-fungible Tokens Survey](digital-assets/nft-landscape-1/sources/PITCHME.link.md)
   - [Protocols](protocols/protocols.md)
     - [Mimblewimble](protocols/mimblewimble-1/sources/PITCHME.link.md)
     - [Mimblewimble-Grin Block Chain Protocol Overview](protocols/grin-protocol-overview/MainReport.md)
@@ -37,3 +37,4 @@
     - [The RGB Protocol - An Introduction](protocols/rgb-introduction/sources/PITCHME.link.md)
   - [Labs](labs/introduction.md)
     - [Mermaid demonstration](labs/mermaid-demo.md)
+
