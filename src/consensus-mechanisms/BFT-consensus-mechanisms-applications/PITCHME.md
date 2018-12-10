@@ -140,8 +140,7 @@ The basic idea behind the Gossip Protocol is the following:
 
 #### Gossip Protocol Directed Graph
 
-<p align="center"><img src="../sources/gossip.png" width="400" /></p>
-<p align="center"><b>Figure 1: Gossip Protocol Directed Graph</b></p>
+![gossip.png](sources/gossip.png)
 
 HashGraph introduces a few important concepts that are used repeatedly in later BFT consensus algorithms: famous witnesses, and strongly seeing.
 
