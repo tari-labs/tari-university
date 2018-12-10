@@ -138,9 +138,7 @@ The basic idea behind the Gossip Protocol is the following:
 
 +++
 
-#### Gossip Protocol Directed Graph
-
-![gossip.png](sources/gossip.png)
+#### 
 
 HashGraph introduces a few important concepts that are used repeatedly in later BFT consensus algorithms: famous witnesses, and strongly seeing.
 
@@ -183,9 +181,6 @@ This is where the concept of _strongly seeing_ comes in.
 #### Strongly seeing 
 
 If a node examines its hash graph and notices that an event _z_ _sees_ an event _x_, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees _x_; then it is said that according to this node, that _z_ _strongly sees_ _x_.
-
-<p align="center"><img src="../assets/strongly-seeing.png" width="600" /></p>
-<p align="center"><b>Figure 2: Illustration of Strongly-Seeing </b></p>
 
 +++
 
