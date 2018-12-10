@@ -26,6 +26,7 @@
     - [Merged Mining Introduction](merged-mining/merged-mining-scene/MergedMiningIntroduction.md)
   - [Digital Assets](./digital-assets/digital-assets.md)
     - [Non-fungible Tokens Survey](digital-assets/nft-landscape-1/sources/PITCHME.link.md)
+    - [Confidential Assets](digital-assets/confidential-assets/MainReport.md)
   - [Protocols](protocols/protocols.md)
     - [Mimblewimble](protocols/mimblewimble-1/sources/PITCHME.link.md)
     - [Mimblewimble-Grin Block Chain Protocol Overview](protocols/grin-protocol-overview/MainReport.md)
