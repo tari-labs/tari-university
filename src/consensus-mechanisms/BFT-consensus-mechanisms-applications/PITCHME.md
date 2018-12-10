@@ -29,7 +29,7 @@ There are a host of formal requirements which a consensus protocol may adhere to
 +++
 
 - A network is Byzantine Fault Tolerant when it can provide service and reach a consensus despite faults or failures of the system. The processes use a protocol for consensus or atomic broadcast (a broadcast where all correct processes in a system of multiple processes receive the same set of messages in the same order; that is, the same sequence of messages) to agree on a common sequence of operations to execute.
-- For systems with _n_ nodes, of which _f_ are Byzantine, it has been shown that _no algorithm exists_ that solves the consensus problem for _f > n/3_.[[21]]
+- For systems with _n_ nodes, of which _f_ are Byzantine, it has been shown that _no algorithm exists_ that solves the consensus problem for _f > n/3_.
 - So how then does the Bitcoin protocol get away with only needing 51% honest nodes to reach consensus?
 Well, strictly speaking, Bitcoin is NOT a BFT-CM because there is never absolute finality in bitcoin ledgers; there is always a
 chance (however small) that someone can 51% attack the network and rewrite the entire history. Bitcoin is a probabilistic consensus, rather than deterministic.
