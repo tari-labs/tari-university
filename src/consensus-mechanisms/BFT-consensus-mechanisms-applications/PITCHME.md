@@ -39,9 +39,8 @@ chance (however small) that someone can 51% attack the network and rewrite the e
 ## Deterministic and Non-Deterministic Protocols
 
 - Deterministic, bounded Byzantine agreement relies on consensus being finalized for each epoch before moving to the next one ensuring that there is some safety about a consensus reference point prior to continuing. If instead you allow an unbounded number of consensus agreements within the same epoch, then there is no overall consensus reference point with which to declare finality and thus safety is compromised.
-- For non-deterministic or probabilistic protocols, the probability that an honest node is undecided after _r_ rounds approaches zero as r approaches infinity.
+- For non-deterministic or probabilistic protocols, the probability that an honest node is undecided after _r_ rounds approaches zero as _r_ approaches infinity.
 - Non-deterministic protocols which solve consensus under the purely asynchronous case potentially rely on random oracles and generally incur high message complexity overhead, as they depend on reliable broadcasting for all communication.
-- Protocols like HoneyBadger BFT fall into this class of nondeterministic protocols under asynchrony. Normally, they require three instances of reliable broadcast for a single round of communication.
 
 ---
 
@@ -96,7 +95,6 @@ Several approaches have been employed to remedy these problems, e.g. threshold c
 
 - While Paxos and Raft and many other well-known protocols tolerate crash faults, Byzantine fault tolerant protocols beginning with PBFT, tolerate even arbitrary corrupted nodes. Many subsequent protocols offer improved performance, often through optimistic execution that provides excellent performance when there are no faults, clients do not contend much, and the network is well behaved, and at least some progress otherwise.
 - In general, BFT systems are evaluated in deployment scenarios where latency and CPU are the bottleneck, thus the most effective protocols reduce the number of rounds and minimize expensive cryptographic operations.
-- Research  advocating improvement of the worst-case performance, providing service quality guarantees even when the system is under attack, even if this comes at the expense of performance in the optimistic case. However, although the "Robust BFT protocols in this vein gracefully tolerate comprised nodes, they still rely on timing assumptions about the underlying network". Thus focus shifted to asynchronous networks. [6]
 
 ---
 
@@ -142,7 +140,7 @@ The basic idea behind the Gossip Protocol is the following:
 
 #### Gossip Protocol Directed Graph
 
-<p align="center"><img src="../assets/gossip.png" width="400" /></p>
+<p align="center"><img src="../sources/gossip.png" width="400" /></p>
 <p align="center"><b>Figure 1: Gossip Protocol Directed Graph</b></p>
 
 HashGraph introduces a few important concepts that are used repeatedly in later BFT consensus algorithms: famous witnesses, and strongly seeing.
