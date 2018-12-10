@@ -138,7 +138,6 @@ The basic idea behind the Gossip Protocol is the following:
 
 +++
 
-#### 
 
 HashGraph introduces a few important concepts that are used repeatedly in later BFT consensus algorithms: famous witnesses, and strongly seeing.
 
@@ -170,7 +169,7 @@ x +--+
 ```
 +++
 
-In the example above, x is an ancestor to both _y_ and _z_. However, because there is no ancestor relationship between _y_ and _z_, the seeing condition fails, and so _y_ cannot see _x_, and _z_ cannot see _x_.
+In the example above, _x_ is an ancestor to both _y_ and _z_. However, because there is no ancestor relationship between _y_ and _z_, the seeing condition fails, and so _y_ cannot see _x_, and _z_ cannot see _x_.
 
 It may be the case that it takes time before nodes in the protocol detect the fork. For instance Bob may create _z_ and _y_; but share _z_ with Alice and _y_ with Charlie. Both Alice and Charlie will eventually learn about the deception, but until that point, Alice will believe that _y_ sees _x_, and Charlie will believe that _z_ sees _x_.
 
@@ -181,12 +180,6 @@ This is where the concept of _strongly seeing_ comes in.
 #### Strongly seeing 
 
 If a node examines its hash graph and notices that an event _z_ _sees_ an event _x_, and not only that, but it can draw an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different event from each node also sees _x_; then it is said that according to this node, that _z_ _strongly sees_ _x_.
-
-+++
-
-#### Illustration of Strongly Seeing 
-
-Insert image 
 
 +++
 
@@ -228,7 +221,8 @@ in parallel:
 
 +++
 
-   ```procedure divideRounds
+   ```text
+   procedure divideRounds
       for each event x
         r ← max round of parents of x ( or 1 if none exist )
         if x can strongly see more than 2/3*n round r witnesses
@@ -241,7 +235,8 @@ in parallel:
 
 What was just shown is deemed the divideRounds procedure. As soon as an event x is known, it is assigned a round number x.round, and the boolean value x.witness is calculated, indicating whether it is the first event that a member created in that round.
 ​    
-   ```procedure decideFame
+   ```text
+   procedure decideFame
       for each event x in order from earlier rounds to later
         x.famous ← UNDECIDED
         for each event y in order from earlier rounds to later
