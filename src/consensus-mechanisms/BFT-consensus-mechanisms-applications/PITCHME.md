@@ -217,7 +217,8 @@ in parallel:
 - Here we have the Swirlds HashGraph consensus algorithm. 
 - Each member runs this in parallel. 
 - Each sync brings in new events, which are then added to the hash graph. All known events are then divided into rounds. 
-- Then the first events in each round are decided as being famous or not (through purely local Byzantine agreement with virtual voting). - Then the total order is found on those events for which enough information is available. If two members independently assign a position in history to an event, they are guaranteed to assign the same position, and guaranteed to never change it, even as more information comes in. Furthermore, each event is eventually assigned such a position, with probability one. 
+- Then the first events in each round are decided as being famous or not (through purely local Byzantine agreement with virtual voting).
+- Then the total order is found on those events for which enough information is available. If two members independently assign a position in history to an event, they are guaranteed to assign the same position, and guaranteed to never change it, even as more information comes in. Furthermore, each event is eventually assigned such a position, with probability one. 
 
 +++
 
@@ -233,7 +234,7 @@ in parallel:
    ```   
 +++
 
-What was just shown is deemed the divideRounds procedure. As soon as an event x is known, it is assigned a round number x.round, and the boolean value x.witness is calculated, indicating whether it is the first event that a member created in that round.
+What was just shown is deemed the divideRounds procedure. As soon as an event x is known, it is assigned a round number x round, and the boolean value x witness is calculated, indicating whether it is the first event that a member created in that round.
 ​    
    ```text
    procedure decideFame
