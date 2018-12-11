@@ -2,11 +2,13 @@
 
 ## Introduction
 
-Confidential assets in the context of blockchain technology and blockchain-based cryptocurrencies can have different meanings to different audiences, and can also be something totally different or unique depending on the use case. It is a special type of digital asset and inherits all its properties except that it is also confidential. Confidential assets therefor has value, can be owned but has no physical presence.  The confidentiality aspect implies that the amount of assets owned as well as the asset type can be confidential. A further classification can be made with regards to whether it is fungible (interchangeable) or non-fungible (unique, not interchangeable). Confidential assets can only exist in the form of a cryptographic token or derivative thereof that is also cryptographically secure, at least under the Discrete Logarithmic Problem<sup>[def][dlp~]</sup> assumption. 
+Confidential assets in the context of blockchain technology and blockchain-based cryptocurrencies can have different meanings to different audiences, and can also be something totally different or unique depending on the use case. It is a special type of digital asset and inherits all its properties except that it is also confidential. Confidential assets therefor has value, can be owned but has no physical presence.  The confidentiality aspect implies that the amount of assets owned as well as the asset type can be confidential. A further classification can be made with regards to whether it is fungible (interchangeable) or non-fungible (unique, not interchangeable). Confidential assets can only exist in the form of a cryptographic token or derivative thereof that is also cryptographically secure, at least under the Discrete Logarithmic Problem<sup>[def][dlp~]</sup>  (DLP) assumption. 
 
-The basis of confidential assets are confidential transactions as proposed by Maxwell [[4]] and Poelstra et al. [[5]], where the amounts transferred are kept visible only to participants in the transaction (and those they designate). Confidential transactions succeed in making the transaction amounts private, while still preserving the ability of the public blockchain network to verify that the ledger entries and Unspent Transaction Output (UTXO) set still add up. All amounts in the UTXO set are blinded, while preserving public verifiability. Poelstra et al. [[5]] showed how the asset types can also be blinded in conjunction with the output amounts. Multiple asset types can be accommodated within single transactions.
+The basis of confidential assets are confidential transactions as proposed by Maxwell [[4]] and Poelstra et al. [[5]], where the amounts transferred are kept visible only to participants in the transaction (and those they designate). Confidential transactions succeed in making the transaction amounts private, while still preserving the ability of the public blockchain network to verify that the ledger entries and Unspent Transaction Output (UTXO) set still add up. All amounts in the UTXO set are blinded, while preserving public verifiability. Poelstra et al. [[5]] showed how the asset types can also be blinded in conjunction with the output amounts. Multiple asset types can be accommodated within single transactions on the same blockchain.
 
-This report investigates confidential assets as a natural progression of confidential transactions. 
+This report investigates confidential assets as a natural progression of confidential transactions in the context of a [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) ([[9]], [[10]]), a privacy preserving blockchain. 
+
+Bulletproofs could be extended to allow assets that are functions of other assets, i.e. crypto derivatives ???
 
 
 
@@ -30,19 +32,41 @@ This report investigates confidential assets as a natural progression of confide
 
 The general notation of mathematical expressions when specifically referenced are listed here. These notations are important pre-knowledge for the remainder of the report.
 
-- Let  $ p $ and $ q $ be large prime numbers.
-- let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively.
-- Let $ \mathbb F_p $ be the group of elliptic curve points
+- Let $ p $ be a large prime number.
+- Let $ \mathbb G $ denote a cyclic group of prime order $ p $. 
+- let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $.
+- Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field.
+- All references to Pedersen Commitment will imply (Elliptic Curve) Pedersen Commitment.
 
 
 
 ## The Basis of Confidential Assets
 
-Confidential transactions are made confidential by replacing each explicit UTXO with a homomorphic commitment like an (Elliptic Curve) [Pedersen Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and made robust against overflow and inflation attacks by using efficient range proofs, like a [Bulletproof](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#how-do-bulletproofs-work). Pedersen Commitments are perfectly hiding - an attacker with infinite computing power cannot tell what amount has been committed to - and computationally binding - no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability. Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} ​$, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{52} - 1] ​$. The (Elliptic Curve) Pedersen Commitment has the following form:
+### Confidential Transactions
+
+Confidential transactions are made confidential by replacing each explicit UTXO with a homomorphic commitment, like an (Elliptic Curve) [Pedersen Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments), and made robust against overflow and inflation attacks by using efficient zero-knowledge range proofs, like a [Bulletproof](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#how-do-bulletproofs-work).
+
+Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{64} - 1] $.
+
+Pedersen Commitments are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability). The (Elliptic Curve) Pedersen Commitment for value $ x \in \mathbb Z_p $ has the following form
 $$
- C(x,r) = rH + xG 
+C(x,r) = xH + rG
 $$
-where $ r $ is a random blinding factor and element of $ \mathbb Z_p $, $ G \in  \mathbb F_p $ a random generator point and $ H \in  \mathbb F_p $ specially chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) is solved.
+where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ is specially chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP<sup>[def][dlp~]</sup> (ECDLP) is solved. The Pedersen Commitment scheme is implemented with three algorithms: <code>Setup()</code> to set up the commitment parameters $ G $ and $ H $; <code>Commit()</code> to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and <code>Open()</code> to open and verify the commitment.
+
+[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is based on and achieves confidentiality using these primitives, thus Mimblewimble confidential transactions. If confidentiality is not sought inputs may be given as explicit amounts, in which case the homomorphic commitment to the given amount will have blinding factor $ r = 0 $.
+
+
+
+### Asset Commitments and Surjection Proofs
+
+The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point $ H = H_A + rG $, which will be used in place of the generator $ H $ in the Pedersen Commitments. An ASP scheme provides a proof for a set of asset commitments. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
+
+
+
+### The Confidential Asset Scheme
+
+
 
 
 
@@ -108,10 +132,19 @@ Commitments Using Twisted Edwards Curves,
 Franck C. and Großschädl J., 
 University of Luxembourg"
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[[9]] Mimblewimble, Poelstra A., October 2016, http://diyhpl.us/~bryan/papers2/bitcoin/mimblewimble-andytoshi-draft-2016-10-20.pdf, Date accessed: 2018-12-??.
 
-[?]: http://???
-"?"
+[9]: http://diyhpl.us/~bryan/papers2/bitcoin/mimblewimble-andytoshi-draft-2016-10-20.pdf
+"Mimblewimble, 
+Poelstra A., 
+October 2016"
+
+[[10]] Mimblewimble Explained, Poelstra A., November 2016, https://www.weusecoins.com/mimble-wimble-andrew-poelstra/, Date accessed: 2018-09-10.
+
+[10]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra
+"Mimblewimble Explained,
+Poelstra A., 
+November 2016"
 
 [[?]] ?, ?, ?, Date accessed: 2018-12-??.
 
