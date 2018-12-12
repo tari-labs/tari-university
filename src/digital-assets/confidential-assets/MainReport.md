@@ -60,15 +60,15 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ### Asset Commitments and Surjection Proofs
 
-The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point $ H = H_A + rG $, which will be used in place of the generator $ H $ in the Pedersen Commitments. An ASP scheme provides a proof for a set of asset commitments. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
+The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point $ H = H_A + rG $, which will be used in place of the generator $ H $ in the Pedersen Commitments. An ASP scheme provides a proof for a set of asset commitments. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
 
 
 
 ### The Confidential Asset Scheme
 
+Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction. This all happens within one blockchain and can theoretically improve the value of the blockchain by offering a service to more users and can also enable extended functionality like base layer atomic asset trades. The latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction both using a single wallet. In this case no relationship between output asset types can be inferred because all all asset tags are blinded. Privacy can be increased as the blinded asset types brings another dimension that needs to be unraveled in order to obtain user identity and transaction data. Such a confidential asset scheme simplifies verification and complexity and reduces on-chain data. It also prohibits censorship of transactions involving specific asset types, and especially blinds assets with low transaction volume where users could be identified very easily.
 
-
-
+????
 
 ## Conclusions, Observations, Recommendations
 
