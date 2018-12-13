@@ -6,9 +6,7 @@ Confidential assets in the context of blockchain technology and blockchain-based
 
 The basis of confidential assets are confidential transactions as proposed by Maxwell [[4]] and Poelstra et al. [[5]], where the amounts transferred are kept visible only to participants in the transaction (and those they designate). Confidential transactions succeed in making the transaction amounts private, while still preserving the ability of the public blockchain network to verify that the ledger entries and Unspent Transaction Output (UTXO) set still add up. All amounts in the UTXO set are blinded, while preserving public verifiability. Poelstra et al. [[5]] showed how the asset types can also be blinded in conjunction with the output amounts. Multiple asset types can be accommodated within single transactions on the same blockchain.
 
-This report investigates confidential assets as a natural progression of confidential transactions in the context of a [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) ([[9]], [[10]]), a privacy preserving blockchain. 
-
-Bulletproofs could be extended to allow assets that are functions of other assets, i.e. crypto derivatives ???
+This report investigates confidential assets as a natural progression of confidential transactions. 
 
 
 
@@ -42,6 +40,8 @@ The general notation of mathematical expressions when specifically referenced ar
 
 ## The Basis of Confidential Assets
 
+This section is based on the work done by Poelstra et al. [[1]].
+
 ### Confidential Transactions
 
 Confidential transactions are made confidential by replacing each explicit UTXO with a homomorphic commitment, like an (Elliptic Curve) [Pedersen Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments), and made robust against overflow and inflation attacks by using efficient zero-knowledge range proofs, like a [Bulletproof](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#how-do-bulletproofs-work).
@@ -60,15 +60,107 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ### Asset Commitments and Surjection Proofs
 
-The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point $ H = H_A + rG $, which will be used in place of the generator $ H $ in the Pedersen Commitments. An ASP scheme provides a proof for a set of asset commitments. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
+The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point
+$$
+H_0 = H_A + rG
+$$
+$ H_0 $ will then be used in place of the generator $ H $ in the Pedersen Commitment. An ASP scheme provides a proof for a set of asset commitments. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
 
 
 
-### The Confidential Asset Scheme
+## The Confidential Asset Scheme
 
-Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction. This all happens within one blockchain and can theoretically improve the value of the blockchain by offering a service to more users and can also enable extended functionality like base layer atomic asset trades. The latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction both using a single wallet. In this case no relationship between output asset types can be inferred because all all asset tags are blinded. Privacy can be increased as the blinded asset types brings another dimension that needs to be unraveled in order to obtain user identity and transaction data. Such a confidential asset scheme simplifies verification and complexity and reduces on-chain data. It also prohibits censorship of transactions involving specific asset types, and especially blinds assets with low transaction volume where users could be identified very easily.
+This section is based on the work done by Poelstra et al. [[1]].
 
-????
+### Asset Transactions
+
+Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction. This all happens within one blockchain and can theoretically improve the value of the blockchain by offering a service to more users and can also enable extended functionality like base layer atomic asset trades. The latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet. In this case no relationship between output asset types can be inferred because all all asset tags are blinded. Privacy can be increased as the blinded asset types brings another dimension that needs to be unraveled in order to obtain user identity and transaction data by not having multiple single-asset transactions. Such a confidential asset scheme simplifies verification and complexity and reduces on-chain data. It also prohibits censorship of transactions involving specific asset types, and especially blinds assets with low transaction volume where users could be identified very easily.
+
+Assets originate in asset-issuance inputs, which take the place of coinbase transactions in confidential transactions. The asset type to pay fees must be revealed in each transaction, but in practice all fees could be paid in only one asset type, thus preserving privacy. Payment authorization is achieved by means of the input signatures. A confidential asset transaction consist of the following data:
+
+- A list of inputs, each of which can have one of the following forms:
+  - A reference to an output of another transaction, with a signature using that output's verification key, or;
+  - An asset issuance input, which has an explicit amount and asset tag.
+- A list of outputs that contains:
+  - A verification key;
+  - An asset commitment $ H_0 $ with an ASP from all input asset commitments to $ H_0 $;
+  - Pedersen commitment to an amount using generator $ H_0 $ in place of  $ H $, with the associated range proof.
+- A fee, listed explicitly as $ \{ (f_i , H_i) \}_{i=1}^n $, where $ f_i $ is a non-negative scalar amount denominated in the asset with tag $ H_i $. 
+
+Every output has a range proof and ASP associated with it, which are proofs of knowledge of the Pedersen commitment opening information and asset commitment blinding factor. Every range proof can be considered as being with respect to the underlying asset tag $ H_A $, rather than the asset commitment $ H_0 $. The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A $, except that output commitments minus input commitments minus fee sum to a commitment to $ 0 $ instead of to the point $ 0 $ itself.
+
+Confidential assets come at an additional data cost, however. For a transaction with $ m $ outputs and $ n $ inputs, in relation to the units of space used for confidential transactions, the asset commitment has size $ 1$, the ASP has size $ n + 1 $ and the entire transaction therefor has size $ m(n + 2) $.
+
+
+
+### Asset Issuance
+
+It is important to ensure that any auxiliary input $ A $ used to create asset tag $ H_A \in \mathbb G $ only be used once to prevent inflation by means of many independent issuances. Associating a maximum of one issuance with the spend of a specific UTXO can ensure this uniqueness property. Poelstra et al. [[5]] suggest the use of a Ricardian contract [[11]] to be hashed together with the reference to the UTXO being spent. This hash can then be used to generate the auxiliary input $ A $ as follows. Let $I $ be the input being spent (an unambiguous reference to a specific UTXO), $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the asset entropy $ E $ is defined as 
+$$
+E = \mathrm {Hash} ( \mathrm {Hash} (I) \parallel \mathrm {Hash} (\widehat {RC}))
+$$
+The auxiliary input $ A $ is then defined as 
+$$
+A = \mathrm {Hash} ( E \parallel 0)
+$$
+Ricardian contracts warrant a bit more explanation. A Ricardian contract is “*a digital contract that deﬁnes the terms and conditions of an interaction, between two or more peers, that is cryptographically signed and veriﬁed, being both human and machine readable and digitally signed*” [[12]]. The main properties of a Ricardian contract is listed below (also see Figure&nbsp;1):
+
+- Human readable;
+
+- Document is printable;
+- Program parsable;
+- All forms (displayed, printed, parsed) are manifestly equivalent;
+- Signed by issuer;
+- Can be identified securely, where security means that any attempts to change the linkage between a reference and the contract are impractical.
+
+<p align="center"><img src="sources/ricardian_contract.png" width="690" /></p>
+
+<p align="center"><b>Figure&nbsp;1: Ricardian Contract [<a href="https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts" title="Smart vs. Ricardian Contracts: 
+What’s the Difference?, 
+Koteshov D., 
+February 2018">12</a>]</b></p>
+
+Every non-coinbase transaction input can have up to one new asset issuance associated with it. An asset issuance input then consists of the UTXO being spent, the Ricardian contract, either an initial issuance explicit value or a Pedersen commitment, a range proof and a Boolean field indicating whether reissuance is allowed.
+
+
+
+### Asset Reissuance
+
+The confidential asset scheme allows the asset owner to later increase the amount of the asset in circulation if an asset reissuance token is generated together with the initial asset issuance. Given an asset entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{A^*} \in \mathbb G $ obtained using an alternate auxiliary input $ A^* $ defined as
+$$
+A^* = \mathrm {Hash} ( E \parallel 1)
+$$
+The resulting asset tag $ H_{A^*} \in \mathbb G $ is linked to its reissuance capability, and the asset owner can assert their reissuance right by revealing the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. An asset reissuance input then consists of the spend of a UTXO containing an asset reissuance capability, the original asset entropy, the blinding factor for the asset commitment of the UTXO being spent, either an explicit reissuance amount or Pedersen commitment a range proof. The same mechanism can be used to manage capabilities for other restricted operations for example to decrease issuance, or to make the commitment generator the hash of a script that validates the spending transaction.
+
+
+
+### Flexibility
+
+ASPs prove that the asset commitments associated with outputs commit to legitimately issued asset tags. This feature allows compatible blockchains to support indefinitely many asset types, which may be added after the chain has been defined. There is room to adapt this scheme for optimal tradeoff between ASP data size and privacy by introducing a global dynamic list of assets, whereby each transaction selects a subset of asset tags for the corresponding ASPs.
+
+If all the asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. The range proofs used for the development of this scheme were based on the Back-Maxwell range proof scheme (see Definition 9 of [[1]]). Poelstra et al. [[1]] suggests more efficient range proofs, ASPs and use of aggregate range proofs. It is thus an open question if Bulletproofs could fulfill this requirement.
+
+
+
+## Confidential Asset Implementations
+
+### Elements Project
+
+???
+
+https://elementsproject.org/features/confidential-transactions
+
+
+
+### Cloak
+
+???
+
+https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7
+
+https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb
+
+
 
 ## Conclusions, Observations, Recommendations
 
@@ -146,15 +238,22 @@ October 2016"
 Poelstra A., 
 November 2016"
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[[11]] The Ricardian Contract, First IEEE International Workshop on Electronic Contracting. IEEE (2004), Grigg I., http://iang.org/papers/ricardian_contract.html, Date accessed: 2018-12-13.
 
-[?]: http://???
-"?"
+[11]: http://iang.org/papers/ricardian_contract.html
+"The Ricardian Contract, 
+First IEEE International Workshop on 
+Electronic Contracting.
+IEEE (2004), 
+Grigg I."
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[[12]] Smart vs. Ricardian Contracts: What’s the Difference?, Koteshov D., February 2018, https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts/, Date accessed: 2018-12-13.
 
-[?]: http://???
-"?"
+[12]: https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts/
+"Smart vs. Ricardian Contracts: 
+What’s the Difference?, 
+Koteshov D., 
+February 201"
 
 [[?]] ?, ?, ?, Date accessed: 2018-12-??.
 
