@@ -17,7 +17,16 @@ This report investigates confidential assets as a natural progression of confide
   - [Contents](#contents)
   - [Preliminaries](#preliminaries)
   - [The Basis of Confidential Assets](#the-basis-of-confidential-assets)
-  - [?](#?)
+    - [Confidential Transactions](#confidential-transactions)
+    - [Asset Commitments and Surjection Proofs](#asset-commitments-and-surjection-proofs)
+  - [The Confidential Asset Scheme](#the-confidential-asset-scheme)
+    - [Asset Transactions](#asset-transactions)
+    - [Asset Issuance](#asset-issuance)
+    - [Asset Reissuance](#asset-reissuance)
+    - [Flexibility](#flexibility)
+  - [Confidential Asset Implementations](#confidential-asset-implementations)
+    - [Elements Project](#elements-project)
+    - [Cloak](#cloak)
   - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
   - [References](#references)
   - [Appendices](#appendices)
@@ -60,11 +69,11 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ### Asset Commitments and Surjection Proofs
 
-The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point
+The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. An ASP is a cryptographic proof. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point
 $$
 H_0 = H_A + rG
 $$
-$ H_0 $ will then be used in place of the generator $ H $ in the Pedersen Commitment. An ASP scheme provides a proof for a set of asset commitments. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
+$ H_0 $ will then be used in place of the generator $ H $ in the Pedersen Commitment. An ASP scheme provides a proof for a set of asset commitments, that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
 
 
 
@@ -74,7 +83,7 @@ This section is based on the work done by Poelstra et al. [[1]].
 
 ### Asset Transactions
 
-Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction. This all happens within one blockchain and can theoretically improve the value of the blockchain by offering a service to more users and can also enable extended functionality like base layer atomic asset trades. The latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet. In this case no relationship between output asset types can be inferred because all all asset tags are blinded. Privacy can be increased as the blinded asset types brings another dimension that needs to be unraveled in order to obtain user identity and transaction data by not having multiple single-asset transactions. Such a confidential asset scheme simplifies verification and complexity and reduces on-chain data. It also prohibits censorship of transactions involving specific asset types, and especially blinds assets with low transaction volume where users could be identified very easily.
+Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction. This all happens within one blockchain and can theoretically improve the value of the blockchain by offering a service to more users and can also enable extended functionality like base layer atomic asset trades. The latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet. In this case no relationship between output asset types can be established or inferred because all all asset tags are blinded. Privacy can be increased as the blinded asset types brings another dimension that needs to be unraveled in order to obtain user identity and transaction data by not having multiple single-asset transactions. Such a confidential asset scheme simplifies verification and complexity and reduces on-chain data. It also prohibits censorship of transactions involving specific asset types, and especially blinds assets with low transaction volume where users could be identified very easily.
 
 Assets originate in asset-issuance inputs, which take the place of coinbase transactions in confidential transactions. The asset type to pay fees must be revealed in each transaction, but in practice all fees could be paid in only one asset type, thus preserving privacy. Payment authorization is achieved by means of the input signatures. A confidential asset transaction consist of the following data:
 
@@ -91,11 +100,13 @@ Every output has a range proof and ASP associated with it, which are proofs of k
 
 Confidential assets come at an additional data cost, however. For a transaction with $ m $ outputs and $ n $ inputs, in relation to the units of space used for confidential transactions, the asset commitment has size $ 1$, the ASP has size $ n + 1 $ and the entire transaction therefor has size $ m(n + 2) $.
 
+Add example from [[14]] ???
+
 
 
 ### Asset Issuance
 
-It is important to ensure that any auxiliary input $ A $ used to create asset tag $ H_A \in \mathbb G $ only be used once to prevent inflation by means of many independent issuances. Associating a maximum of one issuance with the spend of a specific UTXO can ensure this uniqueness property. Poelstra et al. [[5]] suggest the use of a Ricardian contract [[11]] to be hashed together with the reference to the UTXO being spent. This hash can then be used to generate the auxiliary input $ A $ as follows. Let $I $ be the input being spent (an unambiguous reference to a specific UTXO), $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the asset entropy $ E $ is defined as 
+It is important to ensure that any auxiliary input $ A $ used to create asset tag $ H_A \in \mathbb G $ only be used once to prevent inflation by means of many independent issuances. Associating a maximum of one issuance with the spend of a specific UTXO can ensure this uniqueness property. Poelstra et al. [[5]] suggest the use of a Ricardian contract [[11]] to be hashed together with the reference to the UTXO being spent. This hash can then be used to generate the auxiliary input $ A $ as follows. Let $I $ be the input being spent (an unambiguous reference to a specific UTXO), let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the asset entropy $ E $ is defined as 
 $$
 E = \mathrm {Hash} ( \mathrm {Hash} (I) \parallel \mathrm {Hash} (\widehat {RC}))
 $$
@@ -103,7 +114,7 @@ The auxiliary input $ A $ is then defined as
 $$
 A = \mathrm {Hash} ( E \parallel 0)
 $$
-Ricardian contracts warrant a bit more explanation. A Ricardian contract is “*a digital contract that deﬁnes the terms and conditions of an interaction, between two or more peers, that is cryptographically signed and veriﬁed, being both human and machine readable and digitally signed*” [[12]]. The main properties of a Ricardian contract is listed below (also see Figure&nbsp;1):
+Ricardian contracts warrant a bit more explanation. A Ricardian contract is “*a digital contract that deﬁnes the terms and conditions of an interaction, between two or more peers, that is cryptographically signed and veriﬁed, being both human and machine readable and digitally signed*” [[12]]. The main properties of a Ricardian contract is listed below (also see [Figure&nbsp;1](#fig_rc)):
 
 - Human readable;
 
@@ -113,12 +124,14 @@ Ricardian contracts warrant a bit more explanation. A Ricardian contract is “*
 - Signed by issuer;
 - Can be identified securely, where security means that any attempts to change the linkage between a reference and the contract are impractical.
 
-<p align="center"><img src="sources/ricardian_contract.png" width="690" /></p>
+<p align="center"><a name="fig_rc"> </a><img src="sources/ricardian_contract.png" width="690" /></p>
 
 <p align="center"><b>Figure&nbsp;1: Ricardian Contract [<a href="https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts" title="Smart vs. Ricardian Contracts: 
 What’s the Difference?, 
 Koteshov D., 
 February 2018">12</a>]</b></p>
+
+
 
 Every non-coinbase transaction input can have up to one new asset issuance associated with it. An asset issuance input then consists of the UTXO being spent, the Ricardian contract, either an initial issuance explicit value or a Pedersen commitment, a range proof and a Boolean field indicating whether reissuance is allowed.
 
@@ -126,7 +139,7 @@ Every non-coinbase transaction input can have up to one new asset issuance assoc
 
 ### Asset Reissuance
 
-The confidential asset scheme allows the asset owner to later increase the amount of the asset in circulation if an asset reissuance token is generated together with the initial asset issuance. Given an asset entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{A^*} \in \mathbb G $ obtained using an alternate auxiliary input $ A^* $ defined as
+The confidential asset scheme allows the asset owner to later increase or decrease the amount of the asset in circulation, if an asset reissuance token is generated together with the initial asset issuance. Given an asset entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{A^*} \in \mathbb G $ obtained using an alternate auxiliary input $ A^* $ defined as
 $$
 A^* = \mathrm {Hash} ( E \parallel 1)
 $$
@@ -146,9 +159,7 @@ If all the asset tags are defined at the instantiation of the blockchain it will
 
 ### Elements Project
 
-???
-
-https://elementsproject.org/features/confidential-transactions
+[Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets.
 
 
 
@@ -255,20 +266,27 @@ What’s the Difference?,
 Koteshov D., 
 February 201"
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[[13]] Issued Assets - You can issue your own Confidential Assets on Elements, Elements by Blockstream, https://elementsproject.org/features/issued-assets, Date accessed: 2018-12-14.
 
-[?]: http://???
-"?"
+[13]: https://elementsproject.org/features/issued-assets
+"Issued Assets - You can issue your 
+own Confidential Assets on Elements, 
+Elements by Blockstream"
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[[14]] Issued Assets - Investigation, Principal Investigator: Andrew Poelstra, Elements by Blockstream, https://elementsproject.org/features/issued-assets/investigation, Date accessed: 2018-12-14.
 
-[?]: http://???
-"?"
+[14]: https://elementsproject.org/features/issued-assets/investigation
+"Issued Assets - Investigation, 
+Principal Investigator: Andrew Poelstra, 
+Elements by Blockstream"
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[[15]] Elements code tutorial - Issuing your own assets, Elements by Blockstream, elementsproject.org, https://elementsproject.org/elements-code-tutorial/issuing-assets, Date accessed: 2018-12-14.
 
-[?]: http://???
-"?"
+[15]: https://elementsproject.org/elements-code-tutorial/issuing-assets
+"Elements code tutorial - Issuing your own assets, 
+Elements by Blockstream, 
+elementsproject.org"
+
 
 [[?]] ?, ?, ?, Date accessed: 2018-12-??.
 
