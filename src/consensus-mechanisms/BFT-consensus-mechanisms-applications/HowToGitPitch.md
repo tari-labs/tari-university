@@ -13,7 +13,7 @@ Presentation:   src/consensus-mechanisms/BFT-consensus-mechanisms-applications#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/ks-cms-bft?p=/src/consensus-mechanisms/BFT-consensus-mechanisms-applications#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/consensus-mechanisms/BFT-consensus-mechanisms-applications#/
 
 ## On the trunk
 ### Trunk name
