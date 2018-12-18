@@ -187,9 +187,9 @@ Chain Core implements all native features as defined in [[1]], but were also wor
 
 ### Cloak
 
-Chain/Interstellar [[26]] introduced Cloak, a redesign of Chain Core's Confidential Assets framework to make use of Bulletproof range proofs [[27]].
+Chain/Interstellar [[26]] introduced Cloak, a redesign of Chain Core's Confidential Assets framework to make use of Bulletproof range proofs [[27]]. It is available as an open source project in `Github: interstellar/spacesuit` [[28]]. Cloak is all about confidential asset transactions, called cloaked transactions, which exchange values of different asset types, called flavors. The protocol ensures that values are not transmuted to any other asset types, that quantities do not overflow and that both quantities and asset types are kept secret. 
 
-
+Cloak uses a collection of primitives called gadgets like “shuffle”, “merge”, “split” and “range proof” to build a constraint system for cloaked transactions. All transactions of the same size are indistinguishable because the layout of all the gadgets is only determined by the number of inputs and outputs. Gadgets are analogous with arithmetic circuits. 
 
 
 
@@ -376,10 +376,10 @@ Attacks on Cryptography"
 Interstellar,
 Cathie Yun"
 
-[[?]] ?, ?, https://github.com/interstellar/spacesuit/blob/master/spec.md, Date accessed: 2018-12-??.
+[[28]] Github: interstellar/spacesuit, https://github.com/interstellar/spacesuit/blob/master/spec.md, Date accessed: 2018-12-??.
 
-[?]: https://github.com/interstellar/spacesuit/blob/master/spec.md
-"?"
+[28]: https://github.com/interstellar/spacesuit/blob/master/spec.md
+"Github: interstellar/spacesuit"
 
 [[?]] ?, ?, ?, Date accessed: 2018-12-??.
 
