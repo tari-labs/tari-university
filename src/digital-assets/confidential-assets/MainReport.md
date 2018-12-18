@@ -26,6 +26,7 @@ This report investigates confidential assets as a natural progression of confide
     - [Flexibility](#flexibility)
   - [Confidential Asset Implementations](#confidential-asset-implementations)
     - [Elements Project](#elements-project)
+    - [Chain Core Confidential Assets](#chain-core-confidential-assets)
     - [Cloak](#cloak)
   - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
   - [References](#references)
@@ -69,11 +70,20 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ### Asset Commitments and Surjection Proofs
 
-The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, thus asset commitments and Asset Surjection Proofs (ASP) are defined. An ASP is a cryptographic proof. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point
+The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, and this is made possible by using asset commitments and Asset Surjection Proofs (ASP). An ASP in this context is a cryptographic proof. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point
 $$
 H_0 = H_A + rG
 $$
-$ H_0 $ will then be used in place of the generator $ H $ in the Pedersen Commitment. An ASP scheme provides a proof for a set of asset commitments, that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $.
+$ H_0 $ will then be used in place of the generator $ H $ in the Pedersen Commitments. Such Pedersen Commitments thus commit to the committed amount as well as to the underlying asset tag.
+
+An ASP scheme provides a proof $ \pi $ for a set of input asset commitments $ [ H_i  ] ^n_{i=1} $, an output commitment $ H = H_{\hat i} + rG $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n  $ and blinding factor $ r $, that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
+
+The ASP is based on the *Back-Maxwell* range proof ([[1]] section 3.1) , which uses a variation of the Borromean ring signatures [[18]]. The Borromean ring signatures in turn is a variant of the Abe-Ohkubo-Suzuki (AOS) ring signatures [[19]]. An AOS ASP computes a ring signature  that is equal to the proof $ \pi $ as follows:
+
+- Calculate $ n $ differences $ H - H_{\hat i } $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n  $, one of which will be equal to blinding factor $ r $;
+- Calculate a ring signature $ S $ of an empty message using the $ n $ differences. 
+
+The resulting ring signature $ S $ is equal to the proof $ \pi $, and the ASP consist of this ring signature $ S $.
 
 
 
@@ -99,8 +109,6 @@ Assets originate in asset-issuance inputs, which take the place of coinbase tran
 Every output has a range proof and ASP associated with it, which are proofs of knowledge of the Pedersen commitment opening information and asset commitment blinding factor. Every range proof can be considered as being with respect to the underlying asset tag $ H_A $, rather than the asset commitment $ H_0 $. The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A $, except that output commitments minus input commitments minus fee sum to a commitment to $ 0 $ instead of to the point $ 0 $ itself.
 
 Confidential assets come at an additional data cost, however. For a transaction with $ m $ outputs and $ n $ inputs, in relation to the units of space used for confidential transactions, the asset commitment has size $ 1$, the ASP has size $ n + 1 $ and the entire transaction therefor has size $ m(n + 2) $.
-
-Add example from [[14]] ???
 
 
 
@@ -139,11 +147,11 @@ Every non-coinbase transaction input can have up to one new asset issuance assoc
 
 ### Asset Reissuance
 
-The confidential asset scheme allows the asset owner to later increase or decrease the amount of the asset in circulation, if an asset reissuance token is generated together with the initial asset issuance. Given an asset entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{A^*} \in \mathbb G $ obtained using an alternate auxiliary input $ A^* $ defined as
+The confidential asset scheme allows the asset owner to later increase or decrease the amount of the asset in circulation, given that an asset reissuance token is generated together with the initial asset issuance. Given an asset entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{\hat A} \in \mathbb G $ obtained using an alternate auxiliary input $ \hat A $ defined as
 $$
-A^* = \mathrm {Hash} ( E \parallel 1)
+\hat A = \mathrm {Hash} ( E \parallel 1)
 $$
-The resulting asset tag $ H_{A^*} \in \mathbb G $ is linked to its reissuance capability, and the asset owner can assert their reissuance right by revealing the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. An asset reissuance input then consists of the spend of a UTXO containing an asset reissuance capability, the original asset entropy, the blinding factor for the asset commitment of the UTXO being spent, either an explicit reissuance amount or Pedersen commitment a range proof. The same mechanism can be used to manage capabilities for other restricted operations for example to decrease issuance, or to make the commitment generator the hash of a script that validates the spending transaction.
+The resulting asset tag $ H_{\hat A} \in \mathbb G $ is linked to its reissuance capability, and the asset owner can assert their reissuance right by revealing the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. An asset reissuance input then consists of the spend of a UTXO containing an asset reissuance capability, the original asset entropy, the blinding factor for the asset commitment of the UTXO being spent, either an explicit reissuance amount or Pedersen commitment a range proof. The same mechanism can be used to manage capabilities for other restricted operations for example to decrease issuance, or to make the commitment generator the hash of a script that validates the spending transaction.
 
 
 
@@ -159,17 +167,29 @@ If all the asset tags are defined at the instantiation of the blockchain it will
 
 ### Elements Project
 
-[Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets.
+[Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets (`Github: ElementsProject/elements` [[16]]). It allows digitizable collectables, reward points and attested assets (for example gold coins) to be realized on a blockchain. The main idea behind Elements is to serve as research platform and testbed for changes to the Bitcoin protocol. Their implementation of confidential assets is called Issued Assets ([[13]], [[14]], [[15]]) and is based on their formal publication in [[1]]. 
+
+The Elements project hosts a working demonstration ([Figure&nbsp;2](#fig_eca)) of confidential asset transfers (`Github: ElementsProject/confidential-assets-demo` [[17]]) involving 5 parties. The demonstration depicts a scenario where a coffee shop owner *Dave* charges a customer *Alice* for coffee in an asset called MELON. *Alice* does not hold enough MELON and needs to convert some AIRSKY into MELON making use of an exchange operated by *Charlie*. The coffee shop owner *Dave* has a competitor *Bob* who is trying to gather information about *Dave's* sales. Due to the blockchain's confidential transactions and assets features, he will not be able to see anything useful by processing transactions on the blockchain. *Fred* is a miner and does not care about the detail of the transactions, but he makes blocks on the blockchain when transactions enter his miner mempool. The demonstration also includes generating the different types of assets.
+
+<p align="center"><a name="fig_eca"> </a><img src="sources/elements-tx-example.png" width="650" /></p>
+
+<p align="center"><b>Figure&nbsp;2: Elements Confidential Assets Transfer Demonstration [<a href="https://github.com/ElementsProject/confidential-assets-demo" title="ElementsProject/confidential-assets-demo">17</a>]</b></p>
+
+
+
+### Chain Core Confidential Assets
+
+Chain Core [[20]] is a shared, multi-asset, cryptographic ledger, designed for enterprise financial infrastructure. It supports the coexistence and interoperability of multiple types of assets on the same network in their Confidential Assets framework. Chain Core is based on [[1]] and available as an open source project in `Github: chain/chain` [[21]], which have been archived. It has been succeeded by Sequence, a ledger-as-a-service project, that enables secure tracking and transfer of balances in a token format ([[22]], [[23]]). They offer a free plan for up to 1,000,000 transactions per month.
+
+Chain Core implements all native features as defined in [[1]], but were also working to implement ElGamal commitments to make their Confidential Assets framework quantum secure. ([[24]], [[25]])
 
 
 
 ### Cloak
 
-???
+Chain/Interstellar [[26]] introduced Cloak, a redesign of Chain Core's Confidential Assets framework to make use of Bulletproof range proofs [[27]].
 
-https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7
 
-https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb
 
 
 
@@ -287,10 +307,78 @@ Elements by Blockstream"
 Elements by Blockstream, 
 elementsproject.org"
 
+[[16]] Github: ElementsProject/elements, https://github.com/ElementsProject/elements, Date accessed: 2018-12-18.
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[16]: https://github.com/ElementsProject/elements
+"Github: ElementsProject/elements"
 
-[?]: http://???
+[[17]] Github: ElementsProject/confidential-assets-demo, https://github.com/ElementsProject/confidential-assets-demo, Date accessed: 2018-12-18.
+
+[17]: https://github.com/ElementsProject/confidential-assets-demo
+"ElementsProject/confidential-assets-demo"
+
+[[18]] Borromean ring signatures (2015), Maxwell G. and Poelstra A., http://diyhpl.us/
+~bryan/papers2/bitcoin/Borromean%20ring%20signatures.pdf, Date accessed: 2018-12-18.
+
+[18]: http://diyhpl.us/~bryan/papers2/bitcoin/Borromean%20ring%20signatures.pdf
+"Borromean ring signature (2015), 
+Maxwell G. and Poelstra A."
+
+[[19]] 1-out-of-n Signatures from a Variety of Keys, Abe M., Ohkubo M. and Suzuki K., https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf, Date accessed: 2018-12-18.
+
+[19]: http://???
+"1-out-of-n Signatures from a Variety of Keys, 
+Abe M., Ohkubo M. and Suzuki K"
+
+[[20]] Chain Core, https://chain.com/docs/1.2/core/get-started/introduction, Date accessed: 2018-12-18.
+
+[20]: https://chain.com/docs/1.2/core/get-started/introduction
+"Chain Core"
+
+[[21]] Github: chain/chain, https://github.com/chain/chain, Date accessed: 2018-12-18.
+
+[21]: https://github.com/chain/chain
+"Github: chain/chain"
+
+[[22]] Chain: Sequence, https://chain.com/sequence, Date accessed: 2018-12-18.
+
+[22]: https://chain.com/sequence
+"Chain: Sequence"
+
+[[23]] Sequence Documentation, https://dashboard.seq.com/docs, Date accessed: 2018-12-18.
+
+[23]: https://dashboard.seq.com/docs
+"Sequence Documentation"
+
+[[24]] Hidden in Plain Sight: Transacting Privately on a Blockchain - Introducing Confidential Assets in the Chain Protocol, https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb, Date accessed: 2018-12-??.
+
+[24]: https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb
+"Hidden in Plain Sight: 
+Transacting Privately on a Blockchain - 
+Introducing Confidential Assets in the Chain Protocol"
+
+[[25]] Blockchains in a Quantum Future - Protecting Against Post-Quantum Attacks on Cryptography, https://blog.chain.com/preparing-for-a-quantum-future-45535b316314, Date accessed: 2018-12-??.
+
+[25]: https://blog.chain.com/preparing-for-a-quantum-future-45535b316314
+"Blockchains in a Quantum Future - 
+Protecting Against Post-Quantum 
+Attacks on Cryptography"
+
+[[26]] Inter/stellar website, https://interstellar.com, Date accessed: 2018-11-22.
+
+[26]: https://interstellar.com
+"Inter/stellar Website"
+
+[[27]] Programmable Constraint Systems for Bulletproofs, https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7, Date accessed: 2018-11-22.
+
+[27]: https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7
+"Programmable Constraint Systems for Bulletproofs,
+Interstellar,
+Cathie Yun"
+
+[[?]] ?, ?, https://github.com/interstellar/spacesuit/blob/master/spec.md, Date accessed: 2018-12-??.
+
+[?]: https://github.com/interstellar/spacesuit/blob/master/spec.md
 "?"
 
 [[?]] ?, ?, ?, Date accessed: 2018-12-??.
@@ -313,10 +401,6 @@ elementsproject.org"
 [?]: http://???
 "?"
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
-
-[?]: http://???
-"?"
 
 ## Appendices
 
