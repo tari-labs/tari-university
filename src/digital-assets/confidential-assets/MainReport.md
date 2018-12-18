@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Confidential assets in the context of blockchain technology and blockchain-based cryptocurrencies can have different meanings to different audiences, and can also be something totally different or unique depending on the use case. It is a special type of digital asset and inherits all its properties except that it is also confidential. Confidential assets therefor has value, can be owned but has no physical presence.  The confidentiality aspect implies that the amount of assets owned as well as the asset type can be confidential. A further classification can be made with regards to whether it is fungible (interchangeable) or non-fungible (unique, not interchangeable). Confidential assets can only exist in the form of a cryptographic token or derivative thereof that is also cryptographically secure, at least under the Discrete Logarithmic Problem<sup>[def][dlp~]</sup>  (DLP) assumption. 
+Confidential assets in the context of blockchain technology and blockchain-based cryptocurrencies can have different meanings to different audiences, and can also be something totally different or unique depending on the use case. It is a special type of digital asset and inherits all its properties except that it is also confidential. Confidential assets therefor have value, can be owned but has no physical presence.  The confidentiality aspect implies that the amount of assets owned as well as the asset type can be confidential. A further classification can be made with regards to whether it is fungible (interchangeable) or non-fungible (unique, not interchangeable). Confidential assets can only exist in the form of a cryptographic token or derivative thereof that is also cryptographically secure, at least under the Discrete Logarithmic Problem<sup>[def][dlp~]</sup>  (DLP) assumption. 
 
 The basis of confidential assets are confidential transactions as proposed by Maxwell [[4]] and Poelstra et al. [[5]], where the amounts transferred are kept visible only to participants in the transaction (and those they designate). Confidential transactions succeed in making the transaction amounts private, while still preserving the ability of the public blockchain network to verify that the ledger entries and Unspent Transaction Output (UTXO) set still add up. All amounts in the UTXO set are blinded, while preserving public verifiability. Poelstra et al. [[5]] showed how the asset types can also be blinded in conjunction with the output amounts. Multiple asset types can be accommodated within single transactions on the same blockchain.
 
@@ -70,7 +70,7 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ### Asset Commitments and Surjection Proofs
 
-The different assets needs to be identified and transacted with in a confidential manner and proven to not be inflationary, and this is made possible by using asset commitments and Asset Surjection Proofs (ASP). An ASP in this context is a cryptographic proof. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point
+The different assets need to be identified and transacted with in a confidential manner and proven to not be inflationary, and this is made possible by using asset commitments and Asset Surjection Proofs (ASP). An ASP in this context is a cryptographic proof. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some asset description $ A $, the associated asset tag $ H_A \in \mathbb G $  is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. The asset commitment to asset tag $ H_A $ is then defined as the point
 $$
 H_0 = H_A + rG
 $$
@@ -95,7 +95,7 @@ This section is based on the work done by Poelstra et al. [[1]].
 
 Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction. This all happens within one blockchain and can theoretically improve the value of the blockchain by offering a service to more users and can also enable extended functionality like base layer atomic asset trades. The latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet. In this case no relationship between output asset types can be established or inferred because all all asset tags are blinded. Privacy can be increased as the blinded asset types brings another dimension that needs to be unraveled in order to obtain user identity and transaction data by not having multiple single-asset transactions. Such a confidential asset scheme simplifies verification and complexity and reduces on-chain data. It also prohibits censorship of transactions involving specific asset types, and especially blinds assets with low transaction volume where users could be identified very easily.
 
-Assets originate in asset-issuance inputs, which take the place of coinbase transactions in confidential transactions. The asset type to pay fees must be revealed in each transaction, but in practice all fees could be paid in only one asset type, thus preserving privacy. Payment authorization is achieved by means of the input signatures. A confidential asset transaction consist of the following data:
+Assets originate in asset-issuance inputs, which take the place of coinbase transactions in confidential transactions. The asset type to pay fees must be revealed in each transaction, but in practice all fees could be paid in only one asset type, thus preserving privacy. Payment authorization is achieved by means of the input signatures. A confidential asset transaction consists of the following data:
 
 - A list of inputs, each of which can have one of the following forms:
   - A reference to an output of another transaction, with a signature using that output's verification key, or;
@@ -106,7 +106,7 @@ Assets originate in asset-issuance inputs, which take the place of coinbase tran
   - Pedersen commitment to an amount using generator $ H_0 $ in place of  $ H $, with the associated range proof.
 - A fee, listed explicitly as $ \{ (f_i , H_i) \}_{i=1}^n $, where $ f_i $ is a non-negative scalar amount denominated in the asset with tag $ H_i $. 
 
-Every output has a range proof and ASP associated with it, which are proofs of knowledge of the Pedersen commitment opening information and asset commitment blinding factor. Every range proof can be considered as being with respect to the underlying asset tag $ H_A $, rather than the asset commitment $ H_0 $. The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A $, except that output commitments minus input commitments minus fee sum to a commitment to $ 0 $ instead of to the point $ 0 $ itself.
+Every output has a range proof and ASP associated with it, which are proofs of knowledge of the Pedersen commitment opening information and asset commitment blinding factor. Every range proof can be considered as being with respect to the underlying asset tag $ H_A ​$, rather than the asset commitment $ H_0 ​$. The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A ​$, except that output commitments minus input commitments minus fee sum to a commitment to $ 0 ​$ instead of to the point $ 0 ​$ itself.
 
 Confidential assets come at an additional data cost, however. For a transaction with $ m $ outputs and $ n $ inputs, in relation to the units of space used for confidential transactions, the asset commitment has size $ 1$, the ASP has size $ n + 1 $ and the entire transaction therefor has size $ m(n + 2) $.
 
@@ -187,16 +187,20 @@ Chain Core implements all native features as defined in [[1]], but were also wor
 
 ### Cloak
 
-Chain/Interstellar [[26]] introduced Cloak, a redesign of Chain Core's Confidential Assets framework to make use of Bulletproof range proofs [[27]]. It is available as an open source project in `Github: interstellar/spacesuit` [[28]]. Cloak is all about confidential asset transactions, called cloaked transactions, which exchange values of different asset types, called flavors. The protocol ensures that values are not transmuted to any other asset types, that quantities do not overflow and that both quantities and asset types are kept secret. 
+Chain/Interstellar [[26]] introduced Cloak [[29]], a redesign of Chain Core's Confidential Assets framework to make use of Bulletproof range proofs [[27]]. It is available as an open source project in `Github: interstellar/spacesuit` [[28]]. Cloak is all about confidential asset transactions, called cloaked transactions, which exchange values of different asset types, called flavors. The protocol ensures that values are not transmuted to any other asset types, that quantities do not overflow and that both quantities and asset types are kept secret. 
 
-Cloak uses a collection of primitives called gadgets like “shuffle”, “merge”, “split” and “range proof” to build a constraint system for cloaked transactions. All transactions of the same size are indistinguishable because the layout of all the gadgets is only determined by the number of inputs and outputs. Gadgets are analogous with arithmetic circuits. 
+A traditional Bulletproofs implementation convert an arithmetic circuit into a Rank-1 Constraint System (R1CS); Cloak bypasses arithmetic circuits and provide an Application Programmers Interface (API) for building a [constraint system](../../cryptography/bulletproofs-protocols/MainReport.md#evolving-bulletproof-protocols) directly. The R1CS API consists of a hierarchy of task-specific “gadgets” and is used by the *Prover* and *Verifier* alike to allocate variables and define constraints. Cloak uses a collection of gadgets like “shuffle”, “merge”, “split” and “range proof” to build a constraint system for cloaked transactions. All transactions of the same size are indistinguishable because the layout of all the gadgets is only determined by the number of inputs and outputs.
+
+The Cloak development is still ongoing.
 
 
 
 ## Conclusions, Observations, Recommendations
 
-- ?
-- 
+- The idea to embed a Ricardian contract in the asset tag creation as suggested by Poelstra et al. [[1]] warrants more investigation for a new confidential blockchain protocol like Tari; Ricardian contracts could be used in asset generation in the probable 2nd layer.
+- Asset commitments and ASPs are important cryptographic primitives for confidential asset transactions. The mathematics should not stay behind when developing a 2nd layer confidential asset framework.
+- The Elements project implemented a range of useful confidential asset framework features and should be critically assessed for usability in a probable Tari 2nd layer.
+- Cloak has the potential to take confidential assets implementation to the next level in efficiency and should be closely monitored.
 
 
 
@@ -381,25 +385,10 @@ Cathie Yun"
 [28]: https://github.com/interstellar/spacesuit/blob/master/spec.md
 "Github: interstellar/spacesuit"
 
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
+[[29]] Github: interstellar/spacesuit/spec.md, https://github.com/interstellar/spacesuit/blob/master/spec.md, Date accessed: 2018-12-18.
 
-[?]: http://???
-"?"
-
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
-
-[?]: http://???
-"?"
-
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
-
-[?]: http://???
-"?"
-
-[[?]] ?, ?, ?, Date accessed: 2018-12-??.
-
-[?]: http://???
-"?"
+[29]: https://github.com/interstellar/spacesuit/blob/master/spec.md
+"Github: interstellar/spacesuit/spec.md"
 
 
 ## Appendices
