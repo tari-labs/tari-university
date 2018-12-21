@@ -32,7 +32,7 @@ This report investigates confidential assets as a natural progression of confide
   - [References](#references)
   - [Appendices](#appendices)
     - [Appendix A: Definition of Terms](#appendix-a-definition-of-terms)
-    - [Appendix B: Ricardian Contracts](#appendix-b-ricardian-contracts)
+    - [Appendix B: Ricardian Contracts vs. Smart Contracts](#appendix-b-ricardian-contracts-vs-smart-contracts)
   - [Contributors](#contributors)
 
 
@@ -51,7 +51,7 @@ The general notation of mathematical expressions when specifically referenced ar
 
 ## The Basis of Confidential Assets
 
-Confidential transactions, asset commitments and Asset Surjection Proofs (ASP) are really the basis of confidential assets. 
+Confidential transactions, asset commitments and Asset Surjection Proofs (ASP) are really the basis of confidential assets. These concepts are discussed below.
 
 ### Confidential Transactions
 
@@ -59,7 +59,7 @@ Confidential transactions are made confidential by replacing each explicit UTXO 
 
 Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{64} - 1] $.
 
-Pedersen Commitments are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability). The Elliptic Curve Pedersen Commitment for value $ x \in \mathbb Z_p $ has the following form
+Pedersen Commitments are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability). The Elliptic Curve Pedersen Commitment to value $ x \in \mathbb Z_p $ has the following form
 $$
 C(x,r) = xH + rG
 $$
@@ -71,20 +71,71 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ### Asset Commitments and Surjection Proofs
 
-The different assets need to be identified and transacted with in a confidential manner and proven to not be inflationary, and this is made possible by using asset commitments and Asset Surjection Proofs (ASP). An ASP in this context is a cryptographic proof. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. Given some unique asset description $ A $, the associated asset tag $ H_A \in \mathbb G $ is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. (*Selection of $ A $ is discussed in [Asset Issuance](#asset-issuance).*) The asset commitment to asset tag $ H_A $ is then defined as the point
-$$
-H_0 = H_A + rG
-$$
-Blinding of the the asset tag is necessary to make transactions in the asset, i.e. which asset was transacted in, confidential. $ H_0 $ will then be used in place of the generator $ H $ in the Pedersen Commitments. Such Pedersen Commitments thus commit to the committed amount as well as to the underlying asset tag. [[1]]
+The different assets need to be identified and transacted with in a confidential manner and proven to not be inflationary, and this is made possible by using asset commitments and ASPs. ([[1]], [[14]])
 
-An ASP scheme provides a proof $ \pi $ for a set of input asset commitments $ [ H_i  ] ^n_{i=1} $, an output commitment $ H = H_{\hat i} + rG $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n  $ and blinding factor $ r $, that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. [[1]]
+Given some unique asset description $ A $, the associated asset tag $ H_A \in \mathbb G $ is calculated using the Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. (*Selection of $ A $ is discussed in [Asset Issuance](#asset-issuance).*) Consider a transaction with two inputs and two outputs involving two distinct asset types $ A $ and $ B $:
+$$
+\begin{aligned}
+in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G \\\\
+in_B = y_1H_B + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_B + r_{B_2}G
+\end{aligned}
+\mspace{70mu} (1)
+$$
+For relation (1) to hold the sum of the outputs minus the sum of the inputs must be zero:
+$$
+\begin{aligned}
+(out_A + out_B) - (in_A + in_B) = 0 \\\\
+(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\\\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
+\end{aligned}
+\mspace{70mu} (2)
+$$
+Since $ H_A $ and $ H_B $ are both NUMS asset tags, the only way relation (2) can hold is if the total input and output amounts of asset $ A $ are equal and if the same is true for asset $ B $. This concept can be extended to an unlimited amount of distinct asset types as long as each asset tag can be a unique NUMS generator. The problem with relation (2) is that the asset type of each output is publicly visible, thus the assets that were transacted in are not confidential. This can be solved by replacing each asset tag with a blinded version of itself. The asset commitment to asset tag $ H_A $ (blinded asset tag) is then defined as the point
+$$
+H_{0_A} = H_A + rG
+$$
+Blinding of the the asset tag is necessary to make transactions in the asset, i.e. which asset was transacted in, confidential. The blinded asset tag $ H_{0_A} $ will then be used in place of the generator $ H $ in the Pedersen Commitments. Such Pedersen Commitments thus commit to the committed amount as well as to the underlying asset tag. Inspecting the Pedersen Commitment it is evident that a commitment to the value $ x_1 $ using the blinded asset tag $  H_{0_A}  $ is also a commitment to the the same value using the asset tag $  H_A  $:
 
-The ASP is based on the *Back-Maxwell* range proof (see Definition 9 of [[1]]), which uses a variation of the Borromean ring signatures [[18]]. The Borromean ring signatures in turn is a variant of the Abe-Ohkubo-Suzuki (AOS) ring signatures [[19]]. An AOS ASP computes a ring signature  that is equal to the proof $ \pi $ as follows:
+$$
+x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
+$$
+Using blinded asset tags the transaction in relation (1) then becomes:
+$$
+\begin{aligned}
+in_A = x_1H_{0_A} + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_{0_A} + r_{A_2}G \\\\
+in_B = y_1H_{0_B} + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_{0_B} + r_{B_2}G
+\end{aligned}
+$$
+Correspondingly, the zero sum rule translates to:
+$$
+\begin{aligned}
+(out_A + out_B) - (in_A + in_B) = 0 \\\\
+(x_2H_{0_A} + r_{A_2}G) + (y_2H_{0_B} + r_{B_2}G) - (x_1H_{0_A} + r_{A_1}G) - (y_1H_{0_B} + r_{B_1}G) = 0 \\\\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_{0_A} + (y_2 - y_1)H_{0_B} = 0
+\end{aligned}
+$$
+
+
+However, using only the sum to zero rule it is still possible to introduce negative amounts of an asset type. Consider blinded asset tag
+$$
+H_{0_A} = -H_A + rG
+$$
+Any amount of blinded asset tag $  H_{0_A}  $ will correspond a negative amount of asset $ A $, thereby inflating its supply. To solve this problem an ASP is introduced, which is a cryptographic proof. In mathematics a surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. 
+
+An ASP scheme provides a proof $ \pi $ for a set of input asset commitments $ [ H_i  ] ^n_{i=1} $, an output commitment $ H = H_{\hat i} + rG $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n  $ and blinding factor $ r $. It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. Let $  H_{0_{A1}}  $ and $  H_{0_{A2}}  $ be blinded asset tags that commit to the same asset tag $  H_A  $:
+$$
+H_{0_{A1}} = H_A + r_1G \mspace{15mu} \mathrm{and} \mspace{15mu} H_{0_{A2}} = H_A + r_2G
+$$
+then
+$$
+H_{0_{A1}} - H_{0_{A2}} = (H_A + r_1G) - (H_A + r_2G) = (r_1 - r_2)G
+$$
+will be a signature key with secret key $ r_1 - r_2 $. Thus for an $ n $ distinct multiple asset type transaction, differences can be calculated between each output and all inputs, e.g. $ (out_A - in_A) ,  (out_A - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  (out_A - in_n) $, and so on for all outputs. This has the form of a ring signature, and if $ out_A  $ has the same asset tag as one of the inputs, the transaction signer will know the secret key corresponding to one of these differences, and be able to produce the ring signature. The ASP is based on the *Back-Maxwell* range proof (see Definition 9 of [[1]]), which uses a variation of Borromean ring signatures [[18]]. The Borromean ring signature in turn is a variant of the Abe-Ohkubo-Suzuki (AOS) ring signature [[19]]. An AOS ASP computes a ring signature that is equal to the proof $ \pi $ as follows:
 
 - Calculate $ n $ differences $ H - H_{\hat i } $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n  $, one of which will be equal to the blinding factor $ r $;
 - Calculate a ring signature $ S $ of an empty message using the $ n $ differences. 
 
-The resulting ring signature $ S $ is equal to the proof $ \pi $, and the ASP consist of this ring signature $ S $. [[1]]
+The resulting ring signature $ S $ is equal to the proof $ \pi $, and the ASP consist of this ring signature $ S $. ([[1]], [[14]])
 
 
 
@@ -102,9 +153,9 @@ Assets originate in asset-issuance inputs, which take the place of coinbase tran
   - A reference to an output of another transaction, with a signature using that output's verification key, or;
   - An asset issuance input, which has an explicit amount and asset tag.
 - A list of outputs that contains:
-  - A verification key;
+  - A signature verification key;
   - An asset commitment $ H_0 $ with an ASP from all input asset commitments to $ H_0 $;
-  - Pedersen commitment to an amount using generator $ H_0 $ in place of  $ H $, with the associated range proof.
+  - Pedersen commitment to an amount using generator $ H_0 $ in place of $ H $, with the associated *Back-Maxwell* range proof.
 - A fee, listed explicitly as $ \{ (f_i , H_i) \}_{i=1}^n $, where $ f_i $ is a non-negative scalar amount denominated in the asset with tag $ H_i $. 
 
 Every output has a range proof and ASP associated with it, which are proofs of knowledge of the Pedersen commitment opening information and asset commitment blinding factor. Every range proof can be considered as being with respect to the underlying asset tag $ H_A $, rather than the asset commitment $ H_0 $. The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A $, except that output commitments minus input commitments minus fee sum to a commitment to $ 0 $ instead of to the point $ 0 $ itself. [[1]]
@@ -123,10 +174,10 @@ The auxiliary input $ A $ is then defined as
 $$
 A = \mathrm {Hash} ( E \parallel 0)
 $$
-Note that a Ricardian contract $ \widehat {RC} $ is not crucial for entropy $ E $ generation as some other unique data set could have been used in its stead, but suggested. Ricardian contracts warrant a bit more explanation and is discussed in [Appendix&nbsp;B](#appendix-b-ricardian-contracts).
+Note that a Ricardian contract $ \widehat {RC} $ is not crucial for entropy $ E $ generation as some other unique NUMS value could have been used in its stead, but only suggested. Ricardian contracts warrant a bit more explanation and is discussed in [Appendix&nbsp;B](#appendix-b-ricardian-contracts).
 
 
-Every non-coinbase transaction input can have up to one new asset issuance associated with it. An asset issuance input then consists of the UTXO being spent, the Ricardian contract, either an initial issuance explicit value or a Pedersen commitment, a range proof and a Boolean field indicating whether reissuance is allowed. [[1]]
+Every non-coinbase transaction input can have up to one new asset issuance associated with it. An asset issuance (or asset definition) transaction input then consists of the UTXO being spent, the Ricardian contract, either an initial issuance explicit value or a Pedersen commitment, a range proof and a Boolean field indicating whether reissuance is allowed.  ([[1]], [[13]])
 
 
 
@@ -136,7 +187,9 @@ The confidential asset scheme allows the asset owner to later increase or decrea
 $$
 \hat A = \mathrm {Hash} ( E \parallel 1)
 $$
-The resulting asset tag $ H_{\hat A} \in \mathbb G $ is linked to its reissuance capability, and the asset owner can assert their reissuance right by revealing the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. An asset reissuance input then consists of the spend of a UTXO containing an asset reissuance capability, the original asset entropy, the blinding factor for the asset commitment of the UTXO being spent, either an explicit reissuance amount or Pedersen commitment and a range proof. The same mechanism can be used to manage capabilities for other restricted operations for example to decrease issuance, or to make the commitment generator the hash of a script that validates the spending transaction. [[1]]
+The resulting asset tag $ H_{\hat A} \in \mathbb G $ is linked to its reissuance capability, and the asset owner can assert their reissuance right by revealing the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. An asset reissuance (or asset definition) transaction input then consists of the spend of a UTXO containing an asset reissuance capability, the original asset entropy, the blinding factor for the asset commitment of the UTXO being spent, either an explicit reissuance amount or Pedersen commitment and a range proof. [[1]]
+
+The same mechanism can be used to manage capabilities for other restricted operations for example to decrease issuance, destroy the asset, or to make the commitment generator the hash of a script that validates the spending transaction. It is also possible to change the name of the default asset that is created upon blockchain initialization and the default asset used to pay fees on the network. ([[1]], [[13]])
 
 
 
@@ -187,8 +240,8 @@ The Cloak development is still ongoing.
 - The idea to embed a Ricardian contract in the asset tag creation as suggested by Poelstra et al. [[1]] warrants more investigation for a new confidential blockchain protocol like Tari; Ricardian contracts could be used in asset generation in the probable 2nd layer.
 - Asset commitments and ASPs are important cryptographic primitives for confidential asset transactions.
 - The Elements project implemented a range of useful confidential asset framework features and should be critically assessed for usability in a probable Tari 2nd layer.
-- Cloak has the potential to take confidential assets implementation to the next level in efficiency and should be closely monitored. They are in the process to fully implement and extend Bulletproofs for use in confidential assets.
-- If confidential assets are to be implemented in the Mimblewimble blockchain, all asset tags must be defined at its instantiation, otherwise it will not be compatible. 
+- Cloak has the potential to take confidential assets implementation to the next level in efficiency and should be closely monitored. Interstellar is in the process to fully implement and extend Bulletproofs for use in confidential assets.
+- If confidential assets are to be implemented in a Mimblewimble blockchain, all asset tags must be defined at its instantiation, otherwise it will not be compatible. 
 
 
 
@@ -378,6 +431,11 @@ Cathie Yun"
 [29]: https://github.com/interstellar/spacesuit/blob/master/spec.md
 "Github: interstellar/spacesuit/spec.md"
 
+[[30]] Wikipedia: Ricardian contract, https://en.wikipedia.org/wiki/Ricardian_contract, Date accessed: 2018-12-21.
+
+[30]: https://en.wikipedia.org/wiki/Ricardian_contract
+"Wikipedia: Ricardian contract"
+
 
 ## Appendices
 
@@ -394,9 +452,9 @@ is a number x such that ..."
 
 
 
-### Appendix B: Ricardian Contracts
+### Appendix B: Ricardian Contracts vs. Smart Contracts
 
-A Ricardian contract is “*a digital contract that deﬁnes the terms and conditions of an interaction, between two or more peers, that is cryptographically signed and veriﬁed, being both human and machine readable and digitally signed*” [[12]]. The main properties of a Ricardian contract is listed below (also see [Figure&nbsp;1](#fig_rc)):
+A Ricardian contract is “*a digital contract that deﬁnes the terms and conditions of an interaction, between two or more peers, that is cryptographically signed and veriﬁed, being both human and machine readable and digitally signed*” [[12]]. With a Ricardian contract the information from the legal document is placed in a format that can be read and executed by software. The cryptographic identification offers high levels of security. The main properties of a Ricardian contract are listed below (also see [Figure&nbsp;1](#fig_rc)):
 
 - Human readable;
 - Document is printable;
@@ -407,14 +465,34 @@ A Ricardian contract is “*a digital contract that deﬁnes the terms and condi
 
 <p align="center"><a name="fig_rc"> </a><img src="sources/ricardian_contract.png" width="690" /></p>
 
-<p align="center"><b>Figure&nbsp;1: Ricardian Contract [<a href="https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts" title="Smart vs. Ricardian Contracts: 
+<p align="center"><b>Figure&nbsp;1: Bowtie Diagram of a Ricardian Contract [<a href="https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts" title="Smart vs. Ricardian Contracts: 
 What’s the Difference?, 
 Koteshov D., 
 February 2018">12</a>]</b></p>
+
+Ricardian contracts are robust (due to identification by cryptographic hash functions), transparent (due to readable text for legal prose) and efficient (due to computer markup language to extract essential information). [[30]]
+
+A smart contract is “*a computerized transaction protocol that executes the terms of a contract. The general objectives are to satisfy common contractual conditions*” [[12]].  With smart contracts, digital assets can be exchanged in a transparent and non-conflicting way; it provides trust. The main properties of a smart contract are listed below:
+
+- Self-executing (of course, it means that they don’t run unless someone initiates them)
+
+- Immutable
+- Self-verifying
+- Auto-enforcing
+- Cost saving
+- Removes third parties or escrow agents
+
+
+
+It is possible to implement a Ricardian contract as a smart contract, but not in all instances. A smart contract is a pre-agreed digital agreement that can be executed automatically. A Ricardian contract records “intentions” and “actions” of a particular contract, no matter if it has been executed or not. Hashes of Ricardian contracts can refer to documents or executable code. ([[12]], [[30]])
+
+The Ricardian Contract design pattern has been implemented in several projects and is free of any intellectual property restrictions. [[30]]
+
 
 
 
 ## Contributors
 
 - [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
-- ?
+- [https://github.com/philipr-za](https://github.com/philipr-za)
+- [https://github.com/neonknight64](https://github.com/neonknight64)
