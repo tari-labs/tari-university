@@ -46,7 +46,7 @@ Grin is aiming to be a simple and minimal reference implementation of a Mimblewi
 
 Grin has implemented a method for a node to sync the blockchain very quickly by only downloading a partial history [[11]]. A new node entering the network will query the current head block of the chain and then requests the block header at a horizon, in the example the horizon is initially set at 5000 blocks before the current head. The node then checks if there is enough data to confirm consensus and if there isn't it will increase its horizon until consensus is reached. At that point it will download the full UTXO set of the horizon block. This approach does introduce a few security risks but mitigations are provided and the result is that a node can sync to the network with an order of magnitude less data.
 
-**Update 24-12-2018**: Since the initial writing of this article (October 2018) BEAM has published their solution for fast node synchronization using macroblocks. A macroblock is a complete state of all UTXOs, periodically created by Beam nodes [[12]].
+Since the initial writing of this article (October 2018) BEAM has published their solution for fast node synchronization using macroblocks. A macroblock is a complete state of all UTXOs, periodically created by Beam nodes [[12]].
 
 
 ### BEAM unique features
