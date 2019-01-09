@@ -43,7 +43,7 @@ The general notation of mathematical expressions when specifically referenced ar
 
 - Let $ p $ be a large prime number.
 - Let $ \mathbb G $ denote a cyclic group of prime order $ p $. 
-- let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $.
+- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $.
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field.
 - All references to Pedersen Commitment will imply Elliptic Curve Pedersen Commitment.
 

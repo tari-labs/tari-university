@@ -4,7 +4,7 @@
 
 @div[text-left]
 
-*Confidential assets have value, can be owned (with the right to use) but has no physical presence (intangible). It is stored in digital form or in an online account. The confidentiality aspect implies that the amount of assets owned as well as the asset type that was transacted in can be confidential.*
+*Confidential assets have value, can be owned (right to use), has no physical presence (intangible), stored in digital form/online account. The confidentiality aspect implies that the amount of assets owned & the asset type transacted in can be confidential.*
 
 @divend
 
@@ -29,11 +29,13 @@ Mathematics ????
 
 General notation
 
-- $ p $ will be a large prime number
+- $ p ​$ will be a large prime number
 - $ \mathbb G $ will denote a cyclic group of prime order $ p $ 
 - $ \mathbb Z_p $ will denote the ring of integers $ modulo \mspace{4mu} p $ 
 - $ \mathbb F_p $ will be a group of elliptic curve points over a finite (prime) field
 - Elliptic curve arithmetic: lower case letters -> ordinary numbers (integers), upper case letters -> curve points
+
+<u>DLP:</u> Powers $ b^k \in \mathbb G $ can be defined for all integers $ k \in \mathbb G $, and the discrete logarithm $ \log_ba = k $ such that $ b^k=a $ is hard to guess for carefully chosen $  \mathbb F_p $. 
 
 Ricardian contract ???
 
