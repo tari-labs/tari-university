@@ -1,23 +1,26 @@
 ## Confidential Assets
 
+*Confidential assets have value, can be owned (with the right to use) but has no physical presence (intangible). It is stored in digital form or in an online account. The confidentiality aspect implies that the amount of assets owned as well as the asset type that was transacted in can be confidential.*
+
 - Preliminaries
 - Confidential Transactions Overview
 - Asset Commitments and Surjection Proofs
 - Asset Transactions
 - Asset Issuance, Reissuance
 - Flexibility
-- Implementation: Elements Project
-- Implementation: Chain Core Confidential Assets
-- Implementation: Cloak
+- Implementations
+  - Elements Project
+  - Chain Core Confidential Assets
+  - Cloak
 - Conclusions
-
 
 ---
 
 ## Preliminaries
 
-????
+Mathematics ????
 
+Ricardian contract ???
 
 ---
 
@@ -25,13 +28,11 @@
 
 ???
 
-
 ---
 
 ## Asset Commitments and Surjection Proofs
 
 ???
-
 
 ---
 
@@ -39,13 +40,11 @@
 
 ???
 
-
 ---
 
 ## Asset Issuance, Reissuance
 
 ???
-
 
 ---
 
@@ -53,29 +52,33 @@
 
 ???
 
-
 ---
 
-## Implementation: Elements Project
+## Implementations
+
+  - Elements Project
+  - Chain Core Confidential Assets
+  - Cloak
+
++++
+
+## Elements Project
 
 ???
-
 
 +++
 
 
-## Implementation: Chain Core Confidential Assets
+## Chain Core Confidential Assets
 
 ???
-
 
 +++
 
 
-## Implementation: Cloak
+## Cloak
 
 ???
-
 
 ---
 
