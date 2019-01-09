@@ -49,7 +49,7 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 3 | The MuSig Schnorr Signature Scheme
 4 | The Bulletproof Protocols
 5 | Mimblewimble, Scriptless Scripts & MuSig
-6 | Applications of Byzasntine Consesnsu Mecahnisms Part 2
+6 | Applications of Byzantine Consensus Mechanisms Part 2
 7 | Monero's privacy features: RingCT investigated
 8 | Blockchain propagation/relay network optimization
 9 | Distributed Hash Tables (DHT) Application to Block Chain
