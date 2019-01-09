@@ -1,5 +1,7 @@
 ## Confidential Assets
 
+<br>
+
 @div[text-left]
 
 *Confidential assets have value, can be owned (with the right to use) but has no physical presence (intangible). It is stored in digital form or in an online account. The confidentiality aspect implies that the amount of assets owned as well as the asset type that was transacted in can be confidential.*
@@ -13,7 +15,6 @@
 - Asset Commitments and Surjection Proofs
 - Asset Transactions
 - Asset Issuance, Reissuance
-- Flexibility
 - Implementations
   - Elements Project
   - Chain Core Confidential Assets
