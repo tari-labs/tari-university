@@ -6,7 +6,7 @@
 
 @divend
 
-</p>
+<br>
 
 - Preliminaries
 - Confidential Transactions Overview
