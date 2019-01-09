@@ -1,147 +1,84 @@
 ## Confidential Assets
 
-- Topic 1 ???
-
-- Topic 2 ???
-
-- Topic 3 ???
-
-- Etc. 
-
+- Preliminaries
+- Confidential Transactions Overview
+- Asset Commitments and Surjection Proofs
+- Asset Transactions
+- Asset Issuance, Reissuance
+- Flexibility
+- Implementation: Elements Project
+- Implementation: Chain Core Confidential Assets
+- Implementation: Cloak
 - Conclusions
+
 
 ---
 
-## Topic 1 ???
+## Preliminaries
 
 ????
 
-Sample image below, set at 450 pixels width
-
-@div[s450px]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/src/digital-assets/confidential-assets/sources/sample.png)
-@divend
-
-+++
-
-## Topic 1 ??? (cnt'd)
-
-???
-
-Sample side by side image (set at 250 pixels width, aligned center) and text (aligned left) inside div containers. [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
-
-@div[left-50 s250px text-center]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/src/digital-assets/confidential-assets/sources/sample.png)
-@divend
-
-@div[right-50 text-left]
-
-<p>[Unordered list](https://html.com/tags/ul/) of items below:
-
-<ul>
-<li>???
-<li>???
-</ul>
-@divend
 
 ---
 
-## Topic 2 ???
-
-Sample side by side text inside div containers, with alternating alignment.  [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
-
-@div[left-50]
-
-@div[text-left]
-
-<p>[Paragraph left](https://html.com/tags/p/)
-<p>Paragraph left
-
-
-@divend
-
-@div[text-center]
-
-<ul>
-<li>[Unordered list center](https://html.com/tags/ul/)
-<li>Unordered list center
-</ul>
-
-
-@divend
-
-@div[text-right]
-
-<ol>
-<li>[Ordered list right](https://html.com/tags/ol/)
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
-
-
-
-@div[right-50 text-right]
-
-@div[text-left]
-
-<p>Paragraph left
-<p>Paragraph left
-
-
-@divend
-
-@div[text-center]
-
-<ul>
-<li>Unordered list center
-<li>Unordered list center
-</ul>
-
-
-@divend
-
-@div[text-right]
-
-<ol>
-<li>Ordered list right
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
-
-+++
-
-## Topic 2 ??? (cnt'd)
+## Confidential Transactions Overview
 
 ???
+
 
 ---
 
-## Topic 3 ???
+## Asset Commitments and Surjection Proofs
 
 ???
+
+
+---
+
+## Asset Transactions
+
+???
+
+
+---
+
+## Asset Issuance, Reissuance
+
+???
+
+
+---
+
+## Flexibility
+
+???
+
+
+---
+
+## Implementation: Elements Project
+
+???
+
 
 +++
 
-## Topic 3 ??? (cnt'd)
+
+## Implementation: Chain Core Confidential Assets
 
 ???
+
+
++++
+
+
+## Implementation: Cloak
+
+???
+
 
 ---
 
 ## Conclusions
-
-???
-
-+++
-
-## Conclusions (cnt'd)
 
 ???
