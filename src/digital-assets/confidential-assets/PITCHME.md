@@ -75,7 +75,7 @@
 
 <br>
 
-<br><u>Pedersen Commitment implementation</u> uses three algorithms: <code>Setup()</code> to set up the commitment parameters $ G $ and $ H $; <code>Commit()</code> to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and <code>Open()</code> to open and verify the commitment.
+<br><u>Pedersen Commitment implementation</u> uses three algorithms: <code class="hljs">Setup()</code> to set up the commitment parameters $ G $ and $ H $; <code class="hljs">Commit()</code> to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and <code class="hljs">Open()</code> to open and verify the commitment.
 
 <br>
 
