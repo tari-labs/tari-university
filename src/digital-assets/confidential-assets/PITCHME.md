@@ -29,7 +29,7 @@
 
 **General notation**
 
-<br>
+@divend
 
 - Let $ p $ be a large prime number
 - Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
@@ -39,7 +39,7 @@
 
 <br>
 
-<br>
+@div[text-left]
 
 <u>Discrete Logarithm Problem (DLP):</u> The discrete logarithm $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $  \mathbb F_p $. 
 
@@ -65,11 +65,21 @@
 
 <u>Pedersen Commitments</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
 
-<br>
+@divend
 
-<br>
++++
+
+@div[text-left]
 
 <u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is $ C(x,r) = xH + rG $ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.
+
+<br>
+
+<br><u>Pedersen Commitment implementation</u> uses three algorithms: <code>Setup()</code> to set up the commitment parameters $ G $ and $ H $; <code>Commit()</code> to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and <code>Open()</code> to open and verify the commitment.
+
+<br>
+
+<br>Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
 @divend
 
