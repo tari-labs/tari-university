@@ -110,12 +110,15 @@ Confidential transactions -> replace each UTXO with a homomorphic commitment (i.
 
 “*<u>Ricardian Contract:</u> A digital contract that deﬁnes the terms and conditions of an interaction, between two or more peers, that is cryptographically signed and veriﬁed, being both human and machine readable and digitally signed.*”
 
+<br>
 
 Ricardian contracts are robust (due to identification by cryptographic hash functions), transparent (due to readable text for legal prose) and efficient (due to computer markup language to extract essential information).
 
+<br>
 
-“*<u>Smart Contract</u>: a computerized transaction protocol that executes the terms of a contract. The general objectives are to satisfy common contractual conditions.*”
+“*<u>Smart Contract</u>: A computerized transaction protocol that executes the terms of a contract. The general objectives are to satisfy common contractual conditions.*”
 
+<br>
 
 With smart contracts, digital assets can be exchanged in a transparent and non-conflicting way; it provides trust. 
 
