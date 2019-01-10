@@ -29,15 +29,11 @@
 
 **General notation**
 
-@divend
-
-- $ p ​$ will be a large prime number
-- $ \mathbb G $ will denote a cyclic group of prime order $ p $ 
-- $ \mathbb Z_p $ will denote the ring of integers $ modulo \mspace{4mu} p $ 
-- $ \mathbb F_p $ will be a group of elliptic curve points over a finite (prime) field
+- Let $ p $ be a large prime number
+- Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
+- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $ 
+- Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
 - If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
-
-@div[text-left]
 
 <br>
 
@@ -63,7 +59,7 @@
 
 <br>
 
-<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is $ C(x,r) = xH + rG $ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G ​$.
+<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is $ C(x,r) = xH + rG $ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.
 
 @divend
 
