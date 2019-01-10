@@ -93,7 +93,7 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ## Asset Commitments and Surjection Proofs
 
-@div[text-left]
+
 
 Confidential assets must be confidential and proven to not be inflationary; this is made possible by using asset commitments and Asset Surjection Proofs (ASP).
 
@@ -119,7 +119,7 @@ $$
 
 For this to hold the sum of the outputs minus the sum of the inputs must be zero:
 
-@divend
+
 
 +++
 
