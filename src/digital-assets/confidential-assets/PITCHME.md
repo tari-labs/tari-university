@@ -71,15 +71,15 @@
 
 @div[text-left]
 
-<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is
+<u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ is
 $$
 C(x,r) = xH + rG
 $$
-where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G ​$.
+where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
 <br>
 
-<br><u>Pedersen Commitment implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
+<br>A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
 <br>
 
@@ -91,9 +91,48 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ---
 
-## Asset Commitments and Surjection Proofs
+## Asset Commitments and Asset Surjection Proofs (ASP)
 
-???
+@div[text-left]
+
+Confidential assets must be  transacted with in a confidential manner and proven to not be inflationary; made possible by using asset commitments and ASPs.
+
+<br>
+
+<br>
+
+Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with two inputs and two outputs involving two distinct asset types $ A $ and $ B $ 
+$$
+\begin{aligned}
+in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G \\\\
+in_B = y_1H_B + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_B + r_{B_2}G
+\end{aligned}
+\mspace{70mu} (1)
+$$
+For relation (1) to hold the sum of the outputs minus the sum of the inputs must be zero:
+
+@divend
+
++++
+
+$$
+\begin{aligned}
+(out_A + out_B) - (in_A + in_B) = 0 \\\\
+(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\\\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
+\end{aligned}
+\mspace{70mu} (2)
+$$
+
+Since $ H_A $ and $ H_B $ are both NUMS asset tags, total input and output amounts of assets $ A $ and $ B $ must be equal respectively. However, asset types are publicly visible, thus not confidential. Let's replace each asset tag with blinded version of itself, thus asset commitment to asset tag $ H_A $ (blinded asset tag) is then defined as point
+$$
+H_{0_A} = H_A + rG
+$$
+Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value $ x_1 $ using blinded asset tag $  H_{0_A}  $ is also a commitment to $ x_1 $ using the asset tag $  H_A  ​$ 
+$$
+x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
+$$
+
 
 ---
 
