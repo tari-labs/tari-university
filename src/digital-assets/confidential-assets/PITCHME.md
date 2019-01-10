@@ -141,12 +141,14 @@ With smart contracts, digital assets can be exchanged in a transparent and non-c
 
 <u>Ricardian Contract:</u>
 
-- Human readable;
-- Document is printable;
-- Program parsable;
-- All forms (displayed, printed, parsed) are manifestly equivalent;
-- Signed by issuer;
-- Can be identified securely, where security means that any attempts to change the linkage between a reference and the contract are impractical.
+<ul>
+<li>Human readable;
+<li>Document is printable;
+<li>Program parsable;
+<li>All forms (displayed, printed, parsed) are manifestly equivalent;
+<li>Signed by issuer;
+<li>Can be identified securely, where security means that any attempts to change the linkage between a reference and the contract are impractical.
+</ul>
 
 @divend
 
@@ -154,12 +156,14 @@ With smart contracts, digital assets can be exchanged in a transparent and non-c
 
 <u>Smart Contract</u>
 
-- Self-executing (of course, it means that they don’t run unless someone initiates them)
-- Immutable
-- Self-verifying
-- Auto-enforcing
-- Cost saving
-- Removes third parties or escrow agents
+<ul>
+<li>Self-executing (of course, it means that they don’t run unless someone initiates them)
+<li>Immutable
+<li>Self-verifying
+<li>Auto-enforcing
+<li>Cost saving
+<li>Removes third parties or escrow agents
+</ul>
 
 @divend
 
