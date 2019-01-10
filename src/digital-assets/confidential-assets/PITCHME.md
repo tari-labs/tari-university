@@ -103,9 +103,13 @@ Confidential assets must be confidential and proven to not be inflationary; this
 
 Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with two inputs and two outputs involving two distinct asset types $ A $ and $ B $ 
 $$
-in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G \\\\
+in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G 
+$$
+
+$$
 in_B = y_1H_B + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_B + r_{B_2}G
 $$
+
 For this to hold the sum of the outputs minus the sum of the inputs must be zero:
 
 @divend
@@ -113,8 +117,8 @@ For this to hold the sum of the outputs minus the sum of the inputs must be zero
 +++
 
 $$
-(out_A + out_B) - (in_A + in_B) = 0 \\\\
-(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\\\
+(out_A + out_B) - (in_A + in_B) = 0 \\
+(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\
 (r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
 $$
 
