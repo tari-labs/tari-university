@@ -23,6 +23,8 @@
 
 ## Preliminaries
 
+<br>
+
 @div[text-left]
 
 **General notation**
@@ -33,9 +35,11 @@
 - $ \mathbb G $ will denote a cyclic group of prime order $ p $ 
 - $ \mathbb Z_p $ will denote the ring of integers $ modulo \mspace{4mu} p $ 
 - $ \mathbb F_p $ will be a group of elliptic curve points over a finite (prime) field
-- Lower case letters -> ordinary numbers (integers), upper case letters -> curve points
+- If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
 
 @div[text-left]
+
+<br>
 
 <u>Discrete Logarithm Problem (DLP):</u> The discrete logarithm $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $  \mathbb F_p $. 
 
@@ -45,9 +49,25 @@
 
 ## Confidential Transactions Overview
 
-EC Pedersen Commitment to value $ x \in \mathbb Z_p $ has the following form $ C(x,r) = xH + rG $
+@div[text-left]
 
-Confidential transactions -> replace each UTXO with a homomorphic commitment (i.e. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (i.e. Bulletproofs)
+<u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
+
+<br>
+
+<u>Range proofs</u> provide proof that secret committed value lies in certain interval, prevents numbers coming near magnitude of large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{64} - 1] $.
+
+<br>
+
+<u>Pedersen Commitments</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
+
+<br>
+
+<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is $ C(x,r) = xH + rG $ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G ​$.
+
+@divend
+
+
 
 ---
 
