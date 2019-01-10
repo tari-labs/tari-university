@@ -101,9 +101,10 @@ Confidential assets must be confidential and proven to not be inflationary; this
 
 <br>
 
-Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with two inputs and two outputs involving two distinct asset types $ A $ and $ B $ 
+Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with two inputs and two outputs involving two distinct asset types $ A $ and $ B ​$ <br>
 $$
-in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G 
+in_A = x_1H_A + r_{A_1}G \\
+out_A = x_2H_A + r_{A_2}G
 $$
 
 $$
@@ -122,7 +123,7 @@ $$
 (r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
 $$
 
-Since $ H_A ​$ and $ H_B ​$ are both NUMS asset tags, total input and output amounts of assets $ A ​$ and $ B ​$ must be equal respectively. However, asset types are publicly visible, thus not confidential. Let's replace each asset tag with blinded version of itself, thus asset commitment to asset tag $ H_A ​$ (blinded asset tag) is then defined as point
+Since $ H_A $ and $ H_B $ are both NUMS asset tags, total input and output amounts of assets $ A $ and $ B $ must be equal respectively. However, asset types are publicly visible, thus not confidential. Let's replace each asset tag with blinded version of itself, thus asset commitment to asset tag $ H_A $ (blinded asset tag) is then defined as point
 $$
 H_{0_A} = H_A + rG
 $$
