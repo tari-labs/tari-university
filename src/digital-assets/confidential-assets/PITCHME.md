@@ -71,7 +71,11 @@
 
 @div[text-left]
 
-<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is <br> $ C(x,r) = xH + rG $ <br>where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G ​$.
+<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is
+$$
+C(x,r) = xH + rG
+$$
+where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G ​$.
 
 <br>
 
