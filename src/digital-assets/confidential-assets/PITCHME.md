@@ -71,11 +71,11 @@
 
 @div[text-left]
 
-<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is $ C(x,r) = xH + rG $ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.
+<u>Elliptic Curve (EC) Pedersen Commitment</u> to value $ x \in \mathbb Z_p $ is <br> $ C(x,r) = xH + rG $ <br>where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G ​$.
 
 <br>
 
-<br><u>Pedersen Commitment implementation</u> uses three algorithms: <code class="hljs">Setup()</code> to set up the commitment parameters $ G $ and $ H $; <code class="hljs">Commit()</code> to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and <code class="hljs">Open()</code> to open and verify the commitment.
+<br><u>Pedersen Commitment implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
 <br>
 
