@@ -101,9 +101,13 @@ Confidential assets must be confidential and proven to not be inflationary; this
 
 <br>
 
-Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with two inputs and two outputs involving two distinct asset types $ A $ and $ B ​$ <br>
+Given unique asset description $ A ​$ the associated asset tag $ H_A \in \mathbb G ​$ is calculated using the PC function <code>Setup()</code> with $ A ​$ as auxiliary input.  (*Selection of $ A ​$ is discussed later.*)  Consider a transaction with two inputs and two outputs involving two distinct asset types $ A ​$ and $ B ​$ 
+
+<br>
 
  $ in_A = x_1H_A + r_{A_1}G $ 
+
+<br>
 $$
 in_A = x_1H_A + r_{A_1}G \\
 out_A = x_2H_A + r_{A_2}G
