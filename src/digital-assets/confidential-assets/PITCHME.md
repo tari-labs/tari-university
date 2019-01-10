@@ -29,11 +29,15 @@
 
 **General notation**
 
+<br>
+
 - Let $ p $ be a large prime number
 - Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
 - Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $ 
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
 - If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
+
+<br>
 
 <br>
 
@@ -51,11 +55,17 @@
 
 <br>
 
+<br>
+
 <u>Range proofs</u> provide proof that secret committed value lies in certain interval, prevents numbers coming near magnitude of large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{64} - 1] $.
 
 <br>
 
+<br>
+
 <u>Pedersen Commitments</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
+
+<br>
 
 <br>
 
