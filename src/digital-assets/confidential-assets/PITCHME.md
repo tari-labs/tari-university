@@ -129,8 +129,11 @@ With smart contracts, digital assets can be exchanged in a transparent and non-c
 
 +++
 
-<p align="center"><a name="fig_rc"> </a><img src="https://raw.githubusercontent.com/tari-labs/tari-university/master/src/digital-assets/confidential-assets/sources/ricardian_contract.png" width="1050" /></p>
+@div[left-50 s250px text-center]
 
+![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/digital-assets/confidential-assets/sources/ricardian_contract.png)
+
+@divend
 
 +++
 
