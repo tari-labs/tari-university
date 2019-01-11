@@ -105,7 +105,7 @@ Given unique asset description $ A ​$ the associated asset tag $ H_A \in \math
 
 <br>
 
- \\( in_{A} = x_{1}H_{A} + r_{A1}G \\)
+ \( in_{A} = x_{1}H_{A} + r_{A1}G \)
 
 <br><br>
 $$
