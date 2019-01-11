@@ -29,7 +29,7 @@ div.LineHeight200per {
 
 @divend
 
-<div class="LineHeight20per"> <br></div>
+<div class="LineHeight100per"> <br></div>
 
 - Preliminaries
 - Confidential Transactions Overview
