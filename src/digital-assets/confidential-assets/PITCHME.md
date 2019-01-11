@@ -1,16 +1,16 @@
 <head>
 <style>
-div.a {
+div.LineHeight20per {
   line-height: 20%;
 }
-div.b {
+div.LineHeight50per {
   line-height: 50%;
 }
-div.c {
-  line-height: 80%;
+div.LineHeight75per {
+  line-height: 75%;
 }
-div.n {
-  line-height: normal;
+div.LineHeight100per {
+  line-height: 100%;
 }
 </style>
 </head>
@@ -18,7 +18,7 @@ div.n {
 
 ## Confidential Assets
 
-<br>
+<div class="LineHeight20per"> </div>
 
 @div[text-left]
 
@@ -26,7 +26,7 @@ div.n {
 
 @divend
 
-<br>
+<div class="LineHeight20per"> </div>
 
 - Preliminaries
 - Confidential Transactions Overview
@@ -41,7 +41,7 @@ div.n {
 
 ## Preliminaries
 
-<br>
+<div class="LineHeight20per"> </div>
 
 @div[text-left]
 
@@ -55,7 +55,7 @@ div.n {
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
 - If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
 
-<br>
+<div class="LineHeight20per"> </div>
 
 @div[text-left]
 
@@ -71,15 +71,11 @@ div.n {
 
 <u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
 
-<br>
-
-<br>
+<div class="LineHeight20per"> </div>
 
 <u>Range proofs</u> provide proof that secret committed value lies in certain interval, prevents numbers coming near magnitude of large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{64} - 1] $.
 
-<br>
-
-<br>
+<div class="LineHeight20per"> </div>
 
 <u>Pedersen Commitments</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
 
@@ -91,7 +87,7 @@ div.n {
 
 <u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ with $ r \in  \mathbb Z_p $ a random blinding factor is
 
-<div class="n"> </div>
+<div class="LineHeight20per"> </div>
 
 `
 $$
@@ -99,13 +95,17 @@ C(x,r) = xH + rG
 $$
 `
 
-<div class="n"> </div>
+<div class="LineHeight20per"> </div>
 
 Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
-<br>A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
+<div class="LineHeight20per"> </div>
 
-<br>Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
+A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
+
+<div class="LineHeight20per"> </div>
+
+Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
 @divend
 
@@ -119,9 +119,7 @@ Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p
 
 Confidential assets must be confidential and proven to not be inflationary; this is made possible by using asset commitments and Asset Surjection Proofs (ASP).
 
-<br>
-
-<br>
+<div class="LineHeight20per"> </div>
 
 Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with 2 inputs, 2 outputs involving 2 distinct asset types $ A $ and $ B $ 
 
@@ -194,6 +192,8 @@ $$
 
 ## Implementations
 
+<div class="LineHeight20per"> </div>
+
   - Elements Project
   - Chain Core Confidential Assets
   - Cloak
@@ -227,19 +227,14 @@ $$
 
 “*<u>Ricardian Contract:</u> A digital contract that deﬁnes the terms and conditions of an interaction, between two or more peers, that is cryptographically signed and veriﬁed, being both human and machine readable and digitally signed.*”
 
-<br>
-<br>
+<div class="LineHeight20per"> </div>
 
 Ricardian contracts are robust (due to identification by cryptographic hash functions), transparent (due to readable text for legal prose) and efficient (due to computer markup language to extract essential information).
 
-<br>
-<br>
-
+<div class="LineHeight20per"> </div>
 “*<u>Smart Contract</u>: A computerized transaction protocol that executes the terms of a contract. The general objectives are to satisfy common contractual conditions.*”
 
-<br>
-<br>
-
+<div class="LineHeight20per"> </div>
 With smart contracts, digital assets can be exchanged in a transparent and non-conflicting way; it provides trust. 
 
 @divend
