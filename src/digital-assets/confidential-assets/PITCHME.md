@@ -76,11 +76,11 @@ div.LineHeight200per {
 
 <u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight100per"> <br></div>
 
 <u>Range proofs</u> provide proof that secret committed value lies in certain interval, prevents numbers coming near magnitude of large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{64} - 1] $.
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight100per"> <br></div>
 
 <u>Pedersen Commitments</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
 
@@ -92,7 +92,7 @@ div.LineHeight200per {
 
 <u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ with $ r \in  \mathbb Z_p $ a random blinding factor is
 
-<div class="LineHeight20per"> </div>
+<div class="LineHeight20per"> <br></div>
 
 `
 $$
@@ -100,15 +100,15 @@ C(x,r) = xH + rG
 $$
 `
 
-<div class="LineHeight20per"> </div>
+<div class="LineHeight20per"> <br></div>
 
 Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight100per"> <br></div>
 
 A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight100per"> <br></div>
 
 Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
@@ -124,11 +124,13 @@ Mimblewimble use these confidential transaction primitives, but <u>if confidenti
 
 Confidential assets must be confidential and proven to not be inflationary; this is made possible by using asset commitments and Asset Surjection Proofs (ASP).
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight100per"> <br></div>
 
 Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with 2 inputs, 2 outputs involving 2 distinct asset types $ A $ and $ B $ 
 
 @divend
+
+<div class="LineHeight20per"> <br></div>
 
 `
 $$
@@ -141,6 +143,8 @@ out_B = y_2H_B + r_{B_2}G
 \mspace{70mu} (1)
 $$
 `
+
+<div class="LineHeight20per"> <br></div>
 
 For (1) to hold the sum of the outputs minus the sum of the inputs must be zero:
 
@@ -155,7 +159,6 @@ $$
 (x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\
 (r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
 \end{aligned}
-\mspace{70mu} (2)
 $$
 `
 
