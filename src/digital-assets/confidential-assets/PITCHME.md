@@ -135,7 +135,7 @@ Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p
 
 A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
-<div class="LineHeight1per">&nbsp; <br></div>
+<div class="LineHeight5px">&nbsp; <br></div>
 
 Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
