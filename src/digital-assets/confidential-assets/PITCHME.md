@@ -1,29 +1,5 @@
 <head>
 <style>
-div.LineHeight1px {
-  line-height: 1px;
-}
-div.LineHeight5px {
-  line-height: 5px;
-}
-div.LineHeight10px {
-  line-height: 10px;
-}
-div.LineHeight20px {
-  line-height: 20px;
-}
-div.LineHeight50px {
-  line-height: 50px;
-}
-div.LineHeight100px {
-  line-height: 100px;
-}
-div.LineHeight200px {
-  line-height: 200px;
-}
-div.LineHeight1per {
-  line-height: 1%;
-}
 div.LineHeight5per {
   line-height: 5%;
 }
@@ -75,7 +51,7 @@ div.LineHeight200per {
 
 ## Preliminaries
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> </div>
 
 @div[text-left]
 
@@ -135,7 +111,7 @@ Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p
 
 A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
-<div class="LineHeight5px">&nbsp; <br></div>
+<div class="LineHeight5px"></div>
 
 Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
