@@ -18,6 +18,9 @@ div.LineHeight100px {
 div.LineHeight200px {
   line-height: 200px;
 }
+div.LineHeight5per {
+  line-height: 5%;
+}
 div.LineHeight10per {
   line-height: 10%;
 }
@@ -114,7 +117,7 @@ div.LineHeight200per {
 
 <u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ with $ r \in  \mathbb Z_p $ a random blinding factor is
 
-<div class="LineHeight5px">&nbsp;</div>
+<div class="LineHeight5per">&nbsp;</div>
 
 `
 $$
@@ -122,17 +125,17 @@ C(x,r) = xH + rG
 $$
 `
 
-<div class="LineHeight5px">&nbsp;</div>
+<div class="LineHeight5per">&nbsp;</div>
 
 Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
-<div class="LineHeight5px">&nbsp;</div>
+<div class="LineHeight5per">&nbsp;</div>
 
 A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
-<div class="LineHeight5px">&nbsp;</div>
+<div class="LineHeight5per">&nbsp;</div>
 
-Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
+Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 ​$.
 
 @divend
 
