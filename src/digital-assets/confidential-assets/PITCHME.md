@@ -153,7 +153,6 @@ out_B = y_2H_B + r_{B_2}G
 \end{aligned}
 \mspace{70mu} (1)
 $$
-
 `
 
 For this to hold the sum of the outputs minus the sum of the inputs must be zero:
