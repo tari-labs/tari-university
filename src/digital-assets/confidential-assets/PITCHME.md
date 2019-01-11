@@ -73,6 +73,10 @@ div.LineHeight200per {
 
 <u>Discrete Logarithm Problem (DLP):</u> The discrete logarithm $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $  \mathbb F_p $. 
 
+<div class="LineHeight100per"> <br></div>
+
+<u>Surjection Function:</u> A surjection function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one element $ x $ in the domain $ X $ of function $ f $ such that $ f(x) = y$. 
+
 @divend
 
 ---
@@ -107,11 +111,11 @@ $$
 
 Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
-<div class="LineHeight100per">&nbsp; <br></div>
+<div class="LineHeight100per"> <br></div>
 
 A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
-<div class="LineHeight5px"></div>
+<div class="LineHeight100per"> <br></div>
 
 Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
@@ -127,7 +131,7 @@ Mimblewimble use these confidential transaction primitives, but <u>if confidenti
 
 Confidential assets must be confidential and proven to not be inflationary; this is made possible by using asset commitments and Asset Surjection Proofs (ASP).
 
-<div class="LineHeight20per"> <br></div>
+<div class="LineHeight100per"> <br></div>
 
 Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with 2 inputs & 2 outputs involving 2 asset types $ A $ and $ B $ 
 
@@ -175,6 +179,37 @@ $$
 x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
 $$
 `
+
++++
+
+Correspondingly, the zero sum rule translates to:
+
+`
+$$
+\begin{aligned}
+(out_A + out_B) - (in_A + in_B) = 0 \\
+(x_2H_{0_A} + r_{A_2}G) + (y_2H_{0_B} + r_{B_2}G) - (x_1H_{0_A} + r_{A_1}G) - (y_1H_{0_B} + r_{B_1}G) = 0 \\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_{0_A} + (y_2 - y_1)H_{0_B} = 0
+\end{aligned}
+$$
+
+`
+
+However, using only the sum to zero rule it is still possible to introduce negative amounts of an asset type. Consider blinded asset tag
+
+`
+$$
+H_{0_A} = -H_A + rG
+$$
+`
+
+Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount of asset $ A $, thereby inflating its supply.
+
++++
+
+
+
+
 
 ---
 
