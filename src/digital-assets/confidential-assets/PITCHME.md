@@ -52,13 +52,15 @@ div.LineHeight200per {
 
 @divend
 
+<div class="LineHeight200per"> </div>
+
 - Let $ p $ be a large prime number
 - Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
 - Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $ 
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
 - If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight200per"> </div>
 
 @div[text-left]
 
