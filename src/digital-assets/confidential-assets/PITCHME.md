@@ -21,7 +21,7 @@ div.LineHeight200per {
 
 ## Confidential Assets
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight200per"> </div>
 
 @div[text-left]
 
@@ -29,7 +29,7 @@ div.LineHeight200per {
 
 @divend
 
-<div class="LineHeight100per"> </div>
+<div class="LineHeight200per"> </div>
 
 - Preliminaries
 - Confidential Transactions Overview
