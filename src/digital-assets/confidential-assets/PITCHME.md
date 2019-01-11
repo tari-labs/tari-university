@@ -52,7 +52,7 @@ div.LineHeight200per {
 
 @divend
 
-<div class="LineHeight200per"> </div>
+<div class="LineHeight200per"> <br></div>
 
 - Let $ p $ be a large prime number
 - Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
@@ -60,7 +60,7 @@ div.LineHeight200per {
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
 - If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
 
-<div class="LineHeight200per"> </div>
+<div class="LineHeight200per"> <br></div>
 
 @div[text-left]
 
