@@ -124,13 +124,11 @@ Mimblewimble use these confidential transaction primitives, but <u>if confidenti
 
 Confidential assets must be confidential and proven to not be inflationary; this is made possible by using asset commitments and Asset Surjection Proofs (ASP).
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> <br></div>
 
-Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with 2 inputs, 2 outputs involving 2 distinct asset types $ A $ and $ B $ 
+Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with 2 inputs & 2 outputs involving 2 asset types $ A $ and $ B $ 
 
 @divend
-
-<div class="LineHeight20per"> <br></div>
 
 `
 $$
@@ -140,13 +138,10 @@ out_A = x_2H_A + r_{A_2}G \\
 in_B = y_1H_B + r_{B_1}G \\
 out_B = y_2H_B + r_{B_2}G
 \end{aligned}
-\mspace{70mu} (1)
 $$
 `
 
-<div class="LineHeight20per"> <br></div>
-
-For (1) to hold the sum of the outputs minus the sum of the inputs must be zero:
+For this to hold the sum of the outputs minus the sum of the inputs must be zero:
 
 
 
@@ -162,7 +157,7 @@ $$
 $$
 `
 
-Since $ H_A $ and $ H_B $ are both NUMS asset tags, total input and output amounts of assets $ A $ and $ B $ must be equal respectively. However, asset types are publicly visible, thus not confidential. Let's replace each asset tag with blinded version of itself, thus asset commitment to asset tag $ H_A $ (blinded asset tag) is then defined as point
+Since $ H_A $ and $ H_B $ are both NUMS asset tags, total input and output amounts of assets $ A $ and $ B $ must be equal respectively. However, asset types are publicly visible, thus not confidential. Let's replace each asset tag with blinded version of itself, thus asset commitment to asset tag $ H_A $ (blinded asset tag) is then
 
 `
 $$
@@ -170,7 +165,7 @@ H_{0_A} = H_A + rG
 $$
 `
 
-Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value $ x_1 $ using blinded asset tag $  H_{0_A}  $ is also a commitment to $ x_1 $ using the asset tag $  H_A  $ 
+Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value `$ x_1 $` using blinded asset tag `$  H_{0_A}  $` is also a commitment to `$ x_1 $` using the asset tag `$  H_A  $` 
 
 `
 $$
