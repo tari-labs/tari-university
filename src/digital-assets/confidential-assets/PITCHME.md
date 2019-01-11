@@ -93,7 +93,7 @@ where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $
 
 ## Asset Commitments and Surjection Proofs
 
-
+@div[text-left]
 
 Confidential assets must be confidential and proven to not be inflationary; this is made possible by using asset commitments and Asset Surjection Proofs (ASP).
 
@@ -101,47 +101,9 @@ Confidential assets must be confidential and proven to not be inflationary; this
 
 <br>
 
-Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with two inputs and two outputs involving two distinct asset types $ A $ and $ B $ 
+Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with 2 inputs, 2 outputs involving 2 distinct asset types $ A $ and $ B $ 
 
-+++
-
-$ \bar{X}= \frac{1}{T}\sum^T_{t=1} X_t, \bar{Y}=\frac{1}{T}\sum^T_{t=1} Y_t $
-
-<br>
-
-$ \bar{X}= \frac{1}{T}\sum^T\_{t=1} X\_t, \bar{Y}=\frac{1}{T}\sum^T\_{t=1} Y\_t $
-
-<br>
-
-$ \bar{X}= \frac{1}{T}\sum^T&#95;{t=1} X&#95;t, \bar{Y}=\frac{1}{T}\sum^T&#95;{t=1} Y&#95;t $
-
-+++
-
-<br>
-
- $ in_A = x_1H_A + r_{A_1}G $ 
-
-<br>
-
- $ in _ A = x _ 1H _ A + r _ {A _ 1}G $ 
-
-<br>
-
- `$ in_{A} = x_{1}H_{A} + r_{A1}G $` 
-
-<br>
-
-`$$
-in_{A} = x_{1}H_{A} + r_{A1}G
-$$`
-
- 
-
-<br>
-
- $ in\_{A} = x\_{1}H\_{A} + r\_{A1}G $ 
-
-<br>
+@divend
 
 `
 $$
@@ -155,26 +117,38 @@ out_B = y_2H_B + r_{B_2}G
 $$
 `
 
-For this to hold the sum of the outputs minus the sum of the inputs must be zero:
+For (1) to hold the sum of the outputs minus the sum of the inputs must be zero:
 
 
 
 +++
 
+`
 $$
+\begin{aligned}
 (out_A + out_B) - (in_A + in_B) = 0 \\
 (x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\
 (r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
+\end{aligned}
+\mspace{70mu} (2)
 $$
+`
 
 Since $ H_A $ and $ H_B $ are both NUMS asset tags, total input and output amounts of assets $ A $ and $ B $ must be equal respectively. However, asset types are publicly visible, thus not confidential. Let's replace each asset tag with blinded version of itself, thus asset commitment to asset tag $ H_A $ (blinded asset tag) is then defined as point
+
+`
 $$
 H_{0_A} = H_A + rG
 $$
+`
+
 Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value $ x_1 $ using blinded asset tag $  H_{0_A}  $ is also a commitment to $ x_1 $ using the asset tag $  H_A  $ 
+
+`
 $$
 x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
 $$
+`
 
 ---
 
