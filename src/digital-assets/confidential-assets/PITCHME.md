@@ -1,19 +1,13 @@
 <head>
 <style>
 div.a {
-  line-height: normal;
+  line-height: 25%;
 }
-
 div.b {
-  line-height: 1.6;
+  line-height: 50%;
 }
-
 div.c {
-  line-height: 80%;
-}
-
-div.d {
-  line-height: 200%;
+  line-height: 75%;
 }
 </style>
 </head>
@@ -93,7 +87,7 @@ div.d {
 
 <u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ with $ r \in  \mathbb Z_p $ a random blinding factor is
 
-<div class="c"><br></div>
+<div class="a"><br></div>
 
 `
 $$
@@ -101,7 +95,7 @@ C(x,r) = xH + rG
 $$
 `
 
-<div class="c"><br></div>
+<div class="a"><br></div>
 
 Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
