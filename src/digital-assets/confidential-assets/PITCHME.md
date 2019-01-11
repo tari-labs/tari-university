@@ -1,5 +1,8 @@
 <head>
 <style>
+div.LineHeight10per {
+  line-height: 10%;
+}
 div.LineHeight20per {
   line-height: 20%;
 }
@@ -17,6 +20,7 @@ div.LineHeight200per {
 }
 </style>
 </head>
+
 
 
 ## Confidential Assets
@@ -76,11 +80,11 @@ div.LineHeight200per {
 
 <u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> <br></div>
 
 <u>Range proofs</u> provide proof that secret committed value lies in certain interval, prevents numbers coming near magnitude of large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that a number $ x \in [0,2^{64} - 1] $.
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> <br></div>
 
 <u>Pedersen Commitments</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
 
@@ -104,13 +108,13 @@ $$
 
 Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
-<div class="LineHeight20per"> <br></div>
+<div class="LineHeight10per"> <br></div>
 
-A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
+A <u>PC implementation</u> uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G ​$ and $ H ​$; **<code>Commit()</code>** to commit to the message $ x ​$ using the commitment parameters $ r ​$, $ H ​$ and $ G ​$ and **<code>Open()</code>** to open and verify the commitment.
 
-<div class="LineHeight20per"> <br></div>
+<div class="LineHeight10per"> <br></div>
 
-Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 ​$.
+Mimblewimble use these confidential transaction primitives, but <u>if confidentiality is not sought</u>, the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
 @divend
 
