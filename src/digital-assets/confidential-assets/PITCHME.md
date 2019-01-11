@@ -105,28 +105,25 @@ Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb 
 
 +++
 
- <section>
 $ \bar{X}= \frac{1}{T}\sum^T_{t=1} X_t, \bar{Y}=\frac{1}{T}\sum^T_{t=1} Y_t $
-</section>
-
-
-<section data-markdown  data-separator="^\n===\n$" data-vertical="^\n---\n$">
-<script type="text/template">
-
-$\bar{X}= \frac{1}{T}\sum^T_{t=1} X_t, \bar{Y}=\frac{1}{T}\sum^T_{t=1} Y_t$
 
 ===
 
 $ \bar{X}= \frac{1}{T}\sum^T&#95;{t=1} X&#95;t, \bar{Y}=\frac{1}{T}\sum^T&#95;{t=1} Y&#95;t $
-
-</script>
-</section>
 
 +++
 
 <br>
 
  $ in_{A} = x_{1}H_{A} + r_{A1}G $ 
+
+<br>
+
+ $ in\_{A} = x\_{1}H\_{A} + r\_{A1}G $ 
+
+<br>
+
+ $ in&#95;{A} = x&#95;{1}H&#95;{A} + r&#95;{A1}G $ 
 
 <br><br>
 $$
