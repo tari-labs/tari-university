@@ -182,7 +182,7 @@ $$
 
 @div[text-left]
 
-Such a PC thus commits to the committed amount as well as to the underlying asset tag.
+Thus, such a PC commits to the committed amount as well as to the underlying asset tag.
 
 @divend
 
@@ -250,6 +250,8 @@ An ASP scheme provides a proof $ \pi $ for a set of input asset commitments `$ [
 @div[text-left]
 
 It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
+
+<div class="LineHeight100per"> <br></div>
 
 
 Let `$ H_{0_{A1}} $` and `$ H_{0_{A2}} $` be blinded asset tags that commit to the same asset tag `$ H_A $`:
