@@ -192,7 +192,6 @@ $$
 (r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_{0_A} + (y_2 - y_1)H_{0_B} = 0
 \end{aligned}
 $$
-
 `
 
 However, using only the sum to zero rule it is still possible to introduce negative amounts of an asset type. Consider blinded asset tag
@@ -203,11 +202,11 @@ H_{0_A} = -H_A + rG
 $$
 `
 
-Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount of asset $ A $, thereby inflating its supply. Thus, the ASP is introduced.
+Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount of asset $ A ​$, thereby inflating its supply. Thus, the ASP is introduced.
 
 +++
 
-An ASP scheme provides a proof $ \pi $ for a set of input asset commitments `$ [ H_i ] ^n_{i=1} $`, an output commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ and blinding factor $ r $.
+An ASP scheme provides a proof $ \pi ​$ for a set of input asset commitments `$ [ H_i ] ^n_{i=1} $`, an output commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n ​$ and blinding factor $ r ​$.
 
 It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
 
