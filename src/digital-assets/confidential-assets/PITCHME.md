@@ -155,7 +155,7 @@ Confidential assets prohibits censorship of transactions involving specific asse
 
 @divend
 
-------
++++
 
 @div[text-left]
 
