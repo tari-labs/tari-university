@@ -444,7 +444,7 @@ However, confidential assets come at an additional data cost. For a transaction 
 
 @div[text-left]
 
-It is important to ensure that any auxiliary input used to create an asset tag only be used once to prevent inflation. Given an asset entropy $ E $, the auxiliary input $ A $ for asset issuance is defined as 
+Any auxiliary input used to create an asset tag may only be used once to prevent inflation. Given an asset entropy $ E $, auxiliary input $ A $ for asset issuance defined as 
 
 @divend
 
@@ -456,7 +456,7 @@ $$
 
 @div[text-left]
 
-resulting in asset tag `$ H_A \in \mathbb G $`.  Auxiliary input $ \hat A $ for asset re-issuance for the same asset entropy $ E $ is defined as 
+resulting in asset tag `$ H_A \in \mathbb G $`.  Auxiliary input $ \hat A $ for asset re-issuance for the same asset entropy $ E $ defined as 
 
 @divend
 
@@ -468,7 +468,7 @@ $$
 
 @div[text-left]
 
-resulting in asset tag `$ H_{\hat A} \in \mathbb G $`.  Poelstra et al. suggested the use of a Ricardian contract to be hashed together with the reference to the UTXO being spent, but some other unique NUMS value could have been used in its stead. Let $I $ be the input being spent, let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the asset entropy $ E $ is defined as 
+resulting in asset tag `$ H_{\hat A} \in \mathbb G $`.  Poelstra et al. suggested use of a Ricardian contract to be hashed together with the reference to the UTXO being spent, but any unique NUMS value will do. Let $I $ be the input being spent, let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then asset entropy $ E $ is defined as 
 
 @divend
 
@@ -480,7 +480,7 @@ $$
 
 @div[text-left]
 
-Every non-coinbase transaction input can have up to one new asset issuance associated with it, and asset reissuance token(s) must be generated together with the initial asset issuance.
+Every non-coinbase transaction input thus limited to one new asset issuance. Asset reissuance token(s) must be generated together with initial asset issuance.
 
 @divend
 
