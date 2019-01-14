@@ -430,7 +430,7 @@ Every range proof can be considered as being with respect to the <u>underlying a
 
 <div class="LineHeight100per"> <br></div>
 
-The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A $, except that output commitments minus input commitments minus fee sum to a <u>commitment to</u> $ 0 $ instead of to the point $ 0 $ itself.
+The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A ​$, except that output commitments minus input commitments minus fee sum to a <u>commitment to</u> $ 0 ​$ instead of to the point $ 0 ​$ itself.
 
 <div class="LineHeight100per"> <br></div>
 
@@ -442,7 +442,47 @@ However, confidential assets come at an additional data cost. For a transaction 
 
 ## Asset Issuance, Reissuance
 
-???
+@div[text-left]
+
+It is important to ensure that any auxiliary input used to create an asset tag only be used once to prevent inflation. Given an asset entropy $ E $, the auxiliary input $ A $ for asset issuance is defined as 
+
+@divend
+
+`
+$$
+A = \mathrm {Hash} ( E \parallel 0)
+$$
+`
+
+@div[text-left]
+
+resulting in asset tag `$ H_A \in \mathbb G $`.  Auxiliary input $ \hat A $ for asset re-issuance for the same asset entropy $ E $ is defined as 
+
+@divend
+
+`
+$$
+\hat A = \mathrm {Hash} ( E \parallel 1)
+$$
+`
+
+@div[text-left]
+
+resulting in asset tag `$ H_{\hat A} \in \mathbb G $`.  Poelstra et al. suggested the use of a Ricardian contract to be hashed together with the reference to the UTXO being spent, but some other unique NUMS value could have been used in its stead. Let $I $ be the input being spent, let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the asset entropy $ E $ is defined as 
+
+@divend
+
+`
+$$
+E = \mathrm {Hash} ( \mathrm {Hash} (I) \parallel \mathrm {Hash} (\widehat {RC}))
+$$
+`
+
+@div[text-left]
+
+Every non-coinbase transaction input can have up to one new asset issuance associated with it, and asset reissuance token(s) must be generated together with the initial asset issuance.
+
+@divend
 
 ---
 
