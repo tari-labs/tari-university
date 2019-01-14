@@ -133,7 +133,7 @@ Confidential assets must be confidential and proven to not be inflationary; this
 
 <div class="LineHeight100per"> <br></div>
 
-Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input. (*Selection of $ A $ is discussed later.*) Consider a transaction with 2 inputs & 2 outputs involving 2 asset types $ A $ and $ B $ 
+Given unique asset description $ A ​$ the associated asset tag $ H_A \in \mathbb G ​$ is calculated using the PC function <code>Setup()</code> with $ A ​$ as auxiliary input. (*Selection of $ A ​$ is discussed later.*) Consider a transaction with 2 inputs & 2 outputs involving 2 asset types $ A ​$ and $ B ​$ 
 
 @divend
 
@@ -148,7 +148,11 @@ out_B = y_2H_B + r_{B_2}G
 $$
 `
 
+@div[text-left]
+
 For this to hold the sum of the outputs minus the sum of the inputs must be zero:
+
+@divend
 
 
 
@@ -164,7 +168,11 @@ $$
 $$
 `
 
+@div[text-left]
+
 Since $ H_A $ and $ H_B $ are both NUMS asset tags, total input and output amounts of assets $ A $ and $ B $ must be equal respectively. However, asset types are publicly visible, thus not confidential. Let's replace each asset tag with blinded version of itself, thus asset commitment to asset tag $ H_A $ (blinded asset tag) is then
+
+@divend
 
 `
 $$
@@ -172,7 +180,11 @@ H_{0_A} = H_A + rG
 $$
 `
 
+@div[text-left]
+
 Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value `$ x_1 $` using blinded asset tag `$ H_{0_A} $` is also a commitment to `$ x_1 $` using the asset tag `$ H_A $` as seen below:
+
+@divend
 
 `
 $$
@@ -182,7 +194,11 @@ $$
 
 +++
 
+@div[text-left]
+
 Correspondingly, the zero sum rule translates to:
+
+@divend
 
 `
 $$
@@ -194,7 +210,11 @@ $$
 $$
 `
 
+@div[text-left]
+
 However, using only the sum to zero rule it is still possible to introduce negative amounts of an asset type. Consider blinded asset tag
+
+@divend
 
 `
 $$
@@ -202,15 +222,29 @@ H_{0_A} = -H_A + rG
 $$
 `
 
-Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount of asset $ A ​$, thereby inflating its supply. Thus, the ASP is introduced.
+
+
+@div[text-left]
+
+Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount of asset $ A $, thereby inflating its supply. Thus, the ASP is introduced.
+
+<div class="LineHeight100per"> <br></div>
+
+An ASP scheme provides a proof $ \pi $ for a set of input asset commitments `$ [ H_i ] ^n_{i=1} $`, an output commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ and blinding factor $ r $.
+
+@divend
 
 +++
 
-An ASP scheme provides a proof $ \pi ​$ for a set of input asset commitments `$ [ H_i ] ^n_{i=1} $`, an output commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n ​$ and blinding factor $ r ​$.
+@div[text-left]
 
 It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
 
+<div class="LineHeight100per"> <br></div>
+
 Let `$ H_{0_{A1}} $` and `$ H_{0_{A2}} $` be blinded asset tags that commit to the same asset tag `$ H_A $`:
+
+@divend
 
 `
 $$
@@ -219,9 +253,11 @@ H_{0_{A2}} = H_A + r_2G
 $$
 `
 
-+++
+@div[text-left]
 
 Taking the difference we have
+
+@divend
 
 `
 $$
@@ -233,7 +269,11 @@ $$
 $$
 `
 
+@div[text-left]
+
 This is a signature key with secret key $ r_1 - r_2 $. 
+
+@divend
 
 ---
 
