@@ -161,9 +161,9 @@ For this to hold the sum of the outputs minus the sum of the inputs must be zero
 `
 $$
 \begin{aligned}
-(out_A + out_B) - (in_A + in_B) = 0 \\
-(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\
-(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
+(out_A + out_B) - (in_A + in_B) &= 0 \\
+(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) &= 0 \\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B &= 0
 \end{aligned}
 $$
 `
@@ -182,17 +182,28 @@ $$
 
 @div[text-left]
 
-Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value `$ x_1 $` using blinded asset tag `$ H_{0_A} $` is also a commitment to `$ x_1 $` using the asset tag `$ H_A $` as seen below:
+Such a PC thus commits to the committed amount as well as to the underlying asset tag.
+
+@divend
+
++++
+
+@div[text-left]
+
+A commitment to the value `$ x_1 $` using blinded asset tag `$ H_{0_A} $` is also a commitment to `$ x_1 $` using the asset tag `$ H_A $` as seen below:
 
 @divend
 
 `
 $$
-x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
+\begin{aligned}
+C(x_1, r_{A_1}) &= x_1H_{0_A} + r_{A_1}G \\
+&= x_1(H_A + rG) + r_{A_1}G \\
+&= x_1H_A + (r_{A_1} + x_1r)G \\
+&= C(x_1, r_{A_1} + x_1r)
+\end{aligned}
 $$
 `
-
-+++
 
 @div[text-left]
 
@@ -203,12 +214,14 @@ Correspondingly, the zero sum rule translates to:
 `
 $$
 \begin{aligned}
-(out_A + out_B) - (in_A + in_B) = 0 \\
-(x_2H_{0_A} + r_{A_2}G) + (y_2H_{0_B} + r_{B_2}G) - (x_1H_{0_A} + r_{A_1}G) - (y_1H_{0_B} + r_{B_1}G) = 0 \\
-(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_{0_A} + (y_2 - y_1)H_{0_B} = 0
+(out_A + out_B) - (in_A + in_B) &= 0 \\
+(x_2H_{0_A} + r_{A_2}G) + (y_2H_{0_B} + r_{B_2}G) - (x_1H_{0_A} + r_{A_1}G) - (y_1H_{0_B} + r_{B_1}G) &= 0 \\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_{0_A} + (y_2 - y_1)H_{0_B} &= 0
 \end{aligned}
 $$
 `
+
++++
 
 @div[text-left]
 
@@ -221,8 +234,6 @@ $$
 H_{0_A} = -H_A + rG
 $$
 `
-
-
 
 @div[text-left]
 
@@ -240,7 +251,6 @@ An ASP scheme provides a proof $ \pi $ for a set of input asset commitments `$ [
 
 It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
 
-<div class="LineHeight100per"> <br></div>
 
 Let `$ H_{0_{A1}} $` and `$ H_{0_{A2}} $` be blinded asset tags that commit to the same asset tag `$ H_A $`:
 
