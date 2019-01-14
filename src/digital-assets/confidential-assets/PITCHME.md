@@ -552,7 +552,7 @@ If all asset tags are defined at the instantiation of the blockchain it will be 
 
 ### Elements Project
 
-- Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets.
+- [Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets.
 - The Elements project hosts a working demonstration of confidential asset transfers (`Github: ElementsProject/confidential-assets-demo`) involving 5 parties.
 
 @div[s600px]
@@ -566,14 +566,21 @@ If all asset tags are defined at the instantiation of the blockchain it will be 
 
 ### Chain Core Confidential Assets
 
-???
+- Chain Core is a shared, multi-asset, cryptographic ledger, designed for enterprise financial infrastructure. It supports the coexistence and interoperability of multiple types of assets on the same network in their Confidential Assets framework.
+- Chain Core is based on Elements, and available as an open source project, but have been archived. It has been succeeded by Sequence, a ledger-as-a-service project.
+- Chain Core implements all native features of Elements. They were also working towards implementing ElGamal commitments into Chain Core to make their Confidential Assets framework quantum secure, but it is unclear if this effort was concluded at the time the project was archived.
 
 +++
 
 
 ### Cloak
 
-???
+- Chain/Interstellar introduced Cloak, a redesign of Chain Core's Confidential Assets framework to make use of Bulletproof range proofs.
+- Cloak is all about confidential asset transactions, called cloaked transactions, which exchange values of different asset types, called flavors.
+- The protocol ensures that values are not transmuted to any other asset types, that quantities do not overflow and that both quantities and asset types are kept secret. 
+- A traditional Bulletproofs implementation convert an arithmetic circuit into a Rank-1 Constraint System (R1CS); Cloak bypasses arithmetic circuits and provide an API for building a [constraint system](../../cryptography/bulletproofs-protocols/MainReport.md#evolving-bulletproof-protocols) directly. 
+- The R1CS API consists of a hierarchy of task-specific “gadgets”, used by the *Prover* and *Verifier* to allocate variables and define constraints.
+- The Cloak development is still ongoing. 
 
 ---
 
