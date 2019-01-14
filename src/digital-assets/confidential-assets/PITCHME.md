@@ -649,4 +649,8 @@ With smart contracts, digital assets can be exchanged in a transparent and non-c
 
 ## Conclusions
 
-???
+- Ricardian contract in the asset tag creation warrants more investigation for a new confidential blockchain protocol like Tari; Ricardian contracts could be used in asset generation in the probable 2nd layer.
+- Asset commitments and ASPs are important cryptographic primitives for confidential asset transactions.
+- The Elements project implemented a range of useful confidential asset framework features and should be critically assessed for usability in a probable Tari 2nd layer.
+- Cloak has the potential to take confidential assets implementation to the next level in efficiency and should be closely monitored. Interstellar is in the process to fully implement and extend Bulletproofs for use in confidential assets.
+- If confidential assets are to be implemented in a Mimblewimble blockchain, all asset tags must be defined at its instantiation, otherwise it will not be compatible. 
