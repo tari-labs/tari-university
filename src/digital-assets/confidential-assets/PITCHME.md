@@ -519,6 +519,8 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 </ul>
 @divend
 
+<div class="LineHeight100per"> <br></div>
+
 @div[text-left]
 
 If all the asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. 
