@@ -273,7 +273,11 @@ Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount 
 
 <div class="LineHeight100per"> <br></div>
 
-An ASP scheme provides a proof $ \pi $ for a set of "*input*" asset commitments `$ [ H_i ] ^n_{i=1} $`, an "*output*" asset commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ and blinding factor $ r ​$.
+An ASP scheme provides a proof $ \pi $ for a set of "*input*" asset commitments `$ [ H_i ] ^n_{i=1} $`, an "*output*" asset commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ and blinding factor $ r $.
+
+<div class="LineHeight100per"> <br></div>
+
+It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
 
 @divend
 
@@ -281,14 +285,12 @@ An ASP scheme provides a proof $ \pi $ for a set of "*input*" asset commitments 
 
 @div[text-left]
 
-It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi ​$ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r ​$. 
-
-<div class="LineHeight100per"> <br></div>
-
 
 Let `$ H_{0_{A1}} $` and `$ H_{0_{A2}} $` be blinded asset tags that commit to the same asset tag `$ H_A $`:
 
 @divend
+
+<div class="LineHeight100per"> <br></div>
 
 `
 $$
@@ -299,11 +301,15 @@ H_{0_{A2}} &= H_A + r_2G
 $$
 `
 
+<div class="LineHeight100per"> <br></div>
+
 @div[text-left]
 
 Taking the difference we have
 
 @divend
+
+<div class="LineHeight100per"> <br></div>
 
 `
 $$
@@ -315,9 +321,11 @@ $$
 $$
 `
 
+<div class="LineHeight100per"> <br></div>
+
 @div[text-left]
 
-This is a signature key with secret key $ r_1 - r_2 $. 
+This is a signature key with secret key $ r_1 - r_2 ​$. 
 
 @divend
 
