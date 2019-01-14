@@ -91,30 +91,6 @@ See full report [*here*](https://tlu.tarilabs.com/digital-assets/confidential-as
 
 ## Confidential Transactions Overview
 
-@div[text-left]
-
-Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction within one blockchain.
-
-<div class="LineHeight20per"> <br></div>
-
-It offers private base layer atomic asset trades: Alice pay Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet. No relationship between output asset types can be established or inferred by not having multiple single-asset transactions.
-
-<div class="LineHeight20per"> <br></div>
-
-Confidential assets prohibits censorship of transactions involving specific asset types, and keeps low volume asset transactions private where users could be identified very easily.
-
-<div class="LineHeight20per"> <br></div>
-
-Assets can be issued; associating a maximum of one issuance with the spending of a specific UTXO ensures uniqueness (prevent inflation). Assets can also be re-issued (increased or decreased) if asset reissuance token is generated together with the initial asset issuance.
-
-@divend
-
-+++
-
-@div[text-left]
-
-The asset type to pay fees must be revealed in each transaction, but all fees could be paid in only one asset type, thus preserving privacy. Payment authorization is achieved by means of input signatures.
-
 <div class="LineHeight20per"> <br></div>
 
 <u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
@@ -156,6 +132,50 @@ Mimblewimble use these confidential transaction primitives, but <u>if confidenti
 
 
 ---
+
+## Confidential Asset Properties
+
+<div class="LineHeight100per"> <br></div>
+
+@div[text-left]
+
+Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction within one blockchain.
+
+<div class="LineHeight100per"> <br></div>
+
+It offers private base layer atomic asset trades: Alice pay Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet.
+
+<div class="LineHeight100per"> <br></div>
+
+No relationship between output asset types can be established or inferred by not having multiple single-asset transactions.
+
+<div class="LineHeight100per"> <br></div>
+
+Confidential assets prohibits censorship of transactions involving specific asset types, and keeps low volume asset transactions private where users could be identified very easily.
+
+@divend
+
+------
+
+@div[text-left]
+
+Assets can be issued; associating a maximum of one issuance with the spending of a specific UTXO ensures uniqueness (prevent inflation). 
+
+<div class="LineHeight100per"> <br></div>
+
+Assets can also be re-issued (increased or decreased) if asset reissuance token is generated together with the initial asset issuance.
+
+<div class="LineHeight100per"> <br></div>
+
+The asset type to pay fees must be revealed in each transaction, but all fees could be paid in only one asset type, thus preserving privacy. 
+
+<div class="LineHeight100per"> <br></div>
+
+Payment authorization is achieved by means of input signatures.
+
+@divend
+
++++
 
 ## Asset Commitments and Surjection Proofs
 
