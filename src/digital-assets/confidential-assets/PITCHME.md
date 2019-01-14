@@ -47,6 +47,14 @@ div.LineHeight200per {
 - Ricardian Contracts vs. Smart Contracts
 - Conclusions
 
+<div class="LineHeight100per"> <br></div>
+
+@div[text-left]
+
+See full report [*here*](https://tlu.tarilabs.com/digital-assets/confidential-assets/MainReport.html).
+
+@divend
+
 ---
 
 ## Preliminaries
@@ -84,6 +92,26 @@ div.LineHeight200per {
 ## Confidential Transactions Overview
 
 @div[text-left]
+
+Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction within one blockchain.
+
+<div class="LineHeight20per"> <br></div>
+
+It offers private base layer atomic asset trades: Alice pay Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet. No relationship between output asset types can be established or inferred by not having multiple single-asset transactions.
+
+<div class="LineHeight20per"> <br></div>
+
+Confidential assets prohibits censorship of transactions involving specific asset types, and keeps low volume asset transactions private where users could be identified very easily.
+
+<div class="LineHeight20per"> <br></div>
+
+Assets can be issued; associating a maximum of one issuance with the spending of a specific UTXO ensures uniqueness (prevent inflation). Assets can also be re-issued (increased or decreased) if asset reissuance token is generated together with the initial asset issuance
+
++++
+
+The asset type to pay fees must be revealed in each transaction, but all fees could be paid in only one asset type, thus preserving privacy. Payment authorization is achieved by means of input signatures.
+
+<div class="LineHeight20per"> <br></div>
 
 <u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
 
@@ -241,7 +269,7 @@ Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount 
 
 <div class="LineHeight100per"> <br></div>
 
-An ASP scheme provides a proof $ \pi $ for a set of input asset commitments `$ [ H_i ] ^n_{i=1} $`, an output commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ and blinding factor $ r $.
+An ASP scheme provides a proof $ \pi $ for a set of "*input*" asset commitments `$ [ H_i ] ^n_{i=1} $`, an "*output*" asset commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ and blinding factor $ r ​$.
 
 @divend
 
@@ -249,7 +277,7 @@ An ASP scheme provides a proof $ \pi $ for a set of input asset commitments `$ [
 
 @div[text-left]
 
-It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
+It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi ​$ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r ​$. 
 
 <div class="LineHeight100per"> <br></div>
 
@@ -319,20 +347,20 @@ The ASP is based on the *Back-Maxwell* range proof, a variation of *Borromean* r
 
 @div[text-left]
 
-An AOS ASP computes a ring signature that is equal to the proof $ \pi $ as follows:
+An AOS ASP computes a ring signature that is equal to the proof $ \pi ​$ as follows:
 
 @divend
 
 <div class="LineHeight200per"> <br></div>
 
-- Calculate $ n $ differences $ H - H_{\hat i } $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n  $, one of which will be equal to the blinding factor $ r $;
-- Calculate a ring signature $ S $ of an empty message using the $ n $ differences. 
+- Calculate $ n $ differences $ H - H_{\hat i } $ for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ one of which will be equal to the blinding factor $ r $;
+- Calculate a ring signature $ S ​$ of an empty message using the $ n ​$ differences. 
 
 <div class="LineHeight200per"> <br></div>
 
 @div[text-left]
 
-The resulting ring signature $ S $ is equal to the proof $ \pi $, and the ASP consist of this ring signature $ S $.
+The resulting ring signature $ S ​$ is equal to the proof $ \pi ​$, and the ASP consist of this ring signature $ S ​$.
 
 @divend
 
@@ -340,7 +368,11 @@ The resulting ring signature $ S $ is equal to the proof $ \pi $, and the ASP co
 
 ## Asset Transactions
 
-???
+@div[text-left]
+
+Assets originate in asset-issuance inputs, which take the place of coinbase transactions in confidential transactions.
+
+@divend
 
 ---
 
