@@ -525,15 +525,15 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 
 @div[text-left]
 
-If all asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. 
-
-<div class="LineHeight100per"> <br></div>
-
-Poelstra et al. suggests more efficient range proofs, ASPs and use of aggregate range proofs. 
+Poelstra et al. suggests more efficient range proofs, ASPs and use of aggregate range proofs. The scheme could also be adapted for optimal tradeoff between ASP data size and privacy by introducing a global dynamic list of assets, whereby each transaction selects a subset of asset tags for the corresponding ASPs.
 
 <div class="LineHeight100per"> <br></div>
 
 The Back-Maxwell range proof scheme used for development of this scheme were based on the Back-Maxwell range proof scheme. It is thus an open question if Bulletproofs could fulfill this requirement.
+
+<div class="LineHeight100per"> <br></div>
+
+If all asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. 
 
 @divend
 
@@ -551,7 +551,14 @@ The Back-Maxwell range proof scheme used for development of this scheme were bas
 
 ### Elements Project
 
-???
+- Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets. It allows digitizable collectables, reward points and attested assets (for example gold coins) to be realized on a blockchain. 
+- The Elements project hosts a working demonstration of confidential asset transfers (`Github: ElementsProject/confidential-assets-demo`) involving 5 parties.
+
+@div[s750px]
+
+![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/digital-assets/confidential-assets/sources/elements-tx-example.png)
+
+@divend
 
 +++
 
