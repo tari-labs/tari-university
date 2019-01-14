@@ -140,7 +140,7 @@ Payment authorization is achieved by means of input signatures.
 
 @div[text-left]
 
-<u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
+<u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient Zero-knowledge (ZK) range proofs (e.g. Bulletproofs).
 
 <div class="LineHeight20per"> <br></div>
 
@@ -148,7 +148,7 @@ Payment authorization is achieved by means of input signatures.
 
 <div class="LineHeight20per"> <br></div>
 
-<u>Pedersen Commitments</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
+<u>Pedersen Commitments (PC)</u> are perfectly hiding (an attacker with infinite computing power cannot tell what amount has been committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce fake commitments except with small probability).
 
 @divend
 
@@ -156,7 +156,7 @@ Payment authorization is achieved by means of input signatures.
 
 @div[text-left]
 
-<u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ with $ r \in \mathbb Z_p $ a random blinding factor is
+<u>Elliptic Curve (EC) PC</u> to value $ x \in \mathbb Z_p $ with $ r \in \mathbb Z_p $ a random blinding factor is
 
 `
 $$
@@ -298,7 +298,7 @@ An ASP scheme provides a proof $ \pi $ for a set of "*input*" asset commitments 
 
 <div class="LineHeight100per"> <br></div>
 
-It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
+It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a ZK proof of knowledge for the blinding factor $ r $. 
 
 @divend
 
@@ -407,14 +407,16 @@ Assets originate in asset-issuance inputs, which take the place of coinbase tran
 
 @divend
 
+<div class="LineHeight100per"> <br></div>
+
 - A list of inputs, each of which can have one of the following forms:
   - A reference to an output of another transaction, with a signature using that output's verification key, or;
   - An asset issuance input, which has an explicit amount and asset tag.
 - A list of outputs that contains:
   - A signature verification key;
   - An asset commitment $ H_0 $ with an ASP from all input asset commitments to $ H_0 $;
-  - Pedersen commitment to an amount using generator $ H_0 $ in place of $ H $, with the associated *Back-Maxwell* range proof.
-- A fee, listed explicitly as $ \{ (f_i , H_i) \}_{i=1}^n $, where $ f_i $ is a non-negative scalar amount denominated in the asset with tag $ H_i $. 
+  - Pedersen commitment to an amount using generator $ H_0 ​$ in place of $ H ​$, with the associated *Back-Maxwell* range proof.
+- A fee, listed explicitly as `$ \{ (f_i , H_i) \}_{i=1}^n $`, where `$ f_i $` is a non-negative scalar amount denominated in the asset with tag `$ H_i $`. 
 
 +++
 
