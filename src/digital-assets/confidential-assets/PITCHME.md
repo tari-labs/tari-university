@@ -521,15 +521,19 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 </ul>
 @divend
 
-<div class="LineHeight100per"> <br></div>
++++
 
 @div[text-left]
 
-If all the asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. 
+If all asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. 
 
 <div class="LineHeight100per"> <br></div>
 
-Poelstra et al. suggests more efficient range proofs, ASPs and use of aggregate range proofs. The Back-Maxwell range proof scheme used for development of this scheme were based on the Back-Maxwell range proof scheme. It is thus an open question if Bulletproofs could fulfill this requirement.
+Poelstra et al. suggests more efficient range proofs, ASPs and use of aggregate range proofs. 
+
+<div class="LineHeight100per"> <br></div>
+
+The Back-Maxwell range proof scheme used for development of this scheme were based on the Back-Maxwell range proof scheme. It is thus an open question if Bulletproofs could fulfill this requirement.
 
 @divend
 
