@@ -494,7 +494,7 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 
 @div[left-50 text-left]
 
-<u>An asset issuance transaction input:</u>
+<u>Asset issuance transaction input:</u>
 
 <ul>
 <li>UTXO $I $ being spent
@@ -517,14 +517,17 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 <li>Explicit reissuance amount or Pedersen commitment
 <li>Range proof
 </ul>
-
 @divend
 
----
+@div[text-left]
 
-## Flexibility
+If all the asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. 
 
-???
+<div class="LineHeight100per"> <br></div>
+
+Poelstra et al. suggests more efficient range proofs, ASPs and use of aggregate range proofs. The Back-Maxwell range proof scheme used for development of this scheme were based on the Back-Maxwell range proof scheme. It is thus an open question if Bulletproofs could fulfill this requirement.
+
+@divend
 
 ---
 
