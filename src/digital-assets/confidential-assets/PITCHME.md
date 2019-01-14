@@ -409,14 +409,14 @@ Assets originate in asset-issuance inputs, which take the place of coinbase tran
 
 <div class="LineHeight100per"> <br></div>
 
-- A list of inputs, each of which can have one of the following forms:
-  - A reference to an output of another transaction, with a signature using that output's verification key, or;
+- A list of inputs, each having one of the following forms:
+  - Reference to an output of another transaction, with a signature using that output's verification key, or;
   - An asset issuance input, which has an explicit amount and asset tag.
 - A list of outputs that contains:
   - A signature verification key;
   - An asset commitment $ H_0 $ with an ASP from all input asset commitments to $ H_0 $;
-  - Pedersen commitment to an amount using generator $ H_0 ​$ in place of $ H ​$, with the associated *Back-Maxwell* range proof.
-- A fee, listed explicitly as `$ \{ (f_i , H_i) \}_{i=1}^n $`, where `$ f_i $` is a non-negative scalar amount denominated in the asset with tag `$ H_i $`. 
+  - PC to an amount using generator $ H_0 $ in place of $ H $, with associated *Back-Maxwell* range proof.
+- A fee `$ \{ (f_i , H_i) \}_{i=1}^n $`, where `$ f_i $` is a non-negative scalar amount denominated in the asset with tag `$ H_i $`. 
 
 +++
 
@@ -426,7 +426,7 @@ Every output has a range proof and ASP associated with it, which are proofs of k
 
 <div class="LineHeight100per"> <br></div>
 
-Every range proof can be considered as being with respect to the <u>underlying asset tag</u> $ H_A $, rather than the asset commitment $ H_0 $. 
+Every range proof can be considered as being with respect to the <u>underlying asset tag</u> $ H_A ​$, rather than the asset commitment $ H_0 ​$. 
 
 <div class="LineHeight100per"> <br></div>
 
@@ -434,7 +434,7 @@ The confidential transaction is restricted to only inputs and outputs with asset
 
 <div class="LineHeight100per"> <br></div>
 
-However, confidential assets come at an additional data cost. For a transaction with $ m $ outputs and $ n $ inputs, in relation to the units of space used for confidential transactions, the asset commitment has size $ 1$, the ASP has size $ n + 1 $ and the entire transaction therefor has size $ m(n + 2) $.
+However, confidential assets come at an additional data cost. For a transaction with $ m ​$ outputs and $ n ​$ inputs, in relation to the units of space used for confidential transactions, the asset commitment has size $ 1​$, the ASP has size $ n + 1 ​$ and the entire transaction therefor has size $ m(n + 2) ​$.
 
 @divend
 
