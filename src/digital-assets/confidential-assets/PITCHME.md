@@ -38,6 +38,7 @@ div.LineHeight200per {
 
 <div class="LineHeight100per"> <br></div>
 
+- Confidential Asset Properties
 - Preliminaries
 - Confidential Transactions Overview
 - Asset Commitments and Surjection Proofs
@@ -52,6 +53,50 @@ div.LineHeight200per {
 @div[text-left]
 
 See full report [*here*](https://tlu.tarilabs.com/digital-assets/confidential-assets/MainReport.html).
+
+@divend
+
+---
+
+## Confidential Asset Properties
+
+<div class="LineHeight100per"> <br></div>
+
+@div[text-left]
+
+Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction within one blockchain.
+
+<div class="LineHeight100per"> <br></div>
+
+It offers private base layer atomic asset trades: Alice pay Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet.
+
+<div class="LineHeight100per"> <br></div>
+
+No relationship between output asset types can be established or inferred by not having multiple single-asset transactions.
+
+<div class="LineHeight100per"> <br></div>
+
+Confidential assets prohibits censorship of transactions involving specific asset types, and keeps low volume asset transactions private where users could be identified very easily.
+
+@divend
+
++++
+
+@div[text-left]
+
+Assets can be issued; associating a maximum of one issuance with the spending of a specific UTXO ensures uniqueness (prevent inflation). 
+
+<div class="LineHeight100per"> <br></div>
+
+Assets can also be re-issued (increased or decreased) if asset reissuance token is generated together with the initial asset issuance.
+
+<div class="LineHeight100per"> <br></div>
+
+The asset type to pay fees must be revealed in each transaction, but all fees could be paid in only one asset type, thus preserving privacy. 
+
+<div class="LineHeight100per"> <br></div>
+
+Payment authorization is achieved by means of input signatures.
 
 @divend
 
@@ -129,53 +174,7 @@ Mimblewimble use these confidential transaction primitives, but <u>if confidenti
 
 @divend
 
-
-
 ---
-
-## Confidential Asset Properties
-
-<div class="LineHeight100per"> <br></div>
-
-@div[text-left]
-
-Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single transaction within one blockchain.
-
-<div class="LineHeight100per"> <br></div>
-
-It offers private base layer atomic asset trades: Alice pay Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet.
-
-<div class="LineHeight100per"> <br></div>
-
-No relationship between output asset types can be established or inferred by not having multiple single-asset transactions.
-
-<div class="LineHeight100per"> <br></div>
-
-Confidential assets prohibits censorship of transactions involving specific asset types, and keeps low volume asset transactions private where users could be identified very easily.
-
-@divend
-
-+++
-
-@div[text-left]
-
-Assets can be issued; associating a maximum of one issuance with the spending of a specific UTXO ensures uniqueness (prevent inflation). 
-
-<div class="LineHeight100per"> <br></div>
-
-Assets can also be re-issued (increased or decreased) if asset reissuance token is generated together with the initial asset issuance.
-
-<div class="LineHeight100per"> <br></div>
-
-The asset type to pay fees must be revealed in each transaction, but all fees could be paid in only one asset type, thus preserving privacy. 
-
-<div class="LineHeight100per"> <br></div>
-
-Payment authorization is achieved by means of input signatures.
-
-@divend
-
-+++
 
 ## Asset Commitments and Surjection Proofs
 
@@ -402,7 +401,36 @@ The resulting ring signature $ S ​$ is equal to the proof $ \pi ​$, and the 
 
 @div[text-left]
 
-Assets originate in asset-issuance inputs, which take the place of coinbase transactions in confidential transactions.
+Assets originate in asset-issuance inputs, which take the place of coinbase transactions in confidential transactions. A confidential asset transaction consists of the following data:
+
+@divend
+
+- A list of inputs, each of which can have one of the following forms:
+  - A reference to an output of another transaction, with a signature using that output's verification key, or;
+  - An asset issuance input, which has an explicit amount and asset tag.
+- A list of outputs that contains:
+  - A signature verification key;
+  - An asset commitment $ H_0 $ with an ASP from all input asset commitments to $ H_0 $;
+  - Pedersen commitment to an amount using generator $ H_0 $ in place of $ H $, with the associated *Back-Maxwell* range proof.
+- A fee, listed explicitly as $ \{ (f_i , H_i) \}_{i=1}^n $, where $ f_i $ is a non-negative scalar amount denominated in the asset with tag $ H_i $. 
+
++++
+
+@div[text-left]
+
+Every output has a range proof and ASP associated with it, which are proofs of knowledge of the PC opening information and asset commitment blinding factor. 
+
+<div class="LineHeight100per"> <br></div>
+
+Every range proof can be considered as being with respect to the <u>underlying asset tag</u> $ H_A $, rather than the asset commitment $ H_0 $. 
+
+<div class="LineHeight100per"> <br></div>
+
+The confidential transaction is restricted to only inputs and outputs with asset tag $ H_A $, except that output commitments minus input commitments minus fee sum to a <u>commitment to</u> $ 0 $ instead of to the point $ 0 $ itself.
+
+<div class="LineHeight100per"> <br></div>
+
+However, confidential assets come at an additional data cost. For a transaction with $ m $ outputs and $ n $ inputs, in relation to the units of space used for confidential transactions, the asset commitment has size $ 1$, the ASP has size $ n + 1 $ and the entire transaction therefor has size $ m(n + 2) $.
 
 @divend
 
