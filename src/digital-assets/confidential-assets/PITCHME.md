@@ -71,7 +71,7 @@ div.LineHeight200per {
 
 @div[text-left]
 
-<u>Discrete Logarithm Problem (DLP):</u> The discrete logarithm $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $  \mathbb F_p $. 
+<u>Discrete Logarithm Problem (DLP):</u> The discrete logarithm $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p $. 
 
 <div class="LineHeight100per"> <br></div>
 
@@ -101,7 +101,7 @@ div.LineHeight200per {
 
 @div[text-left]
 
-<u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ with $ r \in  \mathbb Z_p $ a random blinding factor is
+<u>Elliptic Curve (EC) Pedersen Commitment (PC)</u> to value $ x \in \mathbb Z_p $ with $ r \in \mathbb Z_p $ a random blinding factor is
 
 `
 $$
@@ -109,7 +109,7 @@ C(x,r) = xH + rG
 $$
 `
 
-Here $ G \in  \mathbb F_p $ is a random generator point and $ H \in  \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $.  The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
+Here $ G \in \mathbb F_p $ is a random generator point and $ H \in \mathbb F_p $ specially chosen so that $ x_H $ satisfying $ H = x_H G $ cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. 
 
 <div class="LineHeight100per"> <br></div>
 
@@ -133,7 +133,7 @@ Confidential assets must be confidential and proven to not be inflationary; this
 
 <div class="LineHeight100per"> <br></div>
 
-Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input.  (*Selection of $ A $ is discussed later.*)  Consider a transaction with 2 inputs & 2 outputs involving 2 asset types $ A $ and $ B $ 
+Given unique asset description $ A $ the associated asset tag $ H_A \in \mathbb G $ is calculated using the PC function <code>Setup()</code> with $ A $ as auxiliary input. (*Selection of $ A $ is discussed later.*) Consider a transaction with 2 inputs & 2 outputs involving 2 asset types $ A $ and $ B $ 
 
 @divend
 
@@ -172,7 +172,7 @@ H_{0_A} = H_A + rG
 $$
 `
 
-Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value `$ x_1 $` using blinded asset tag `$  H_{0_A}  $` is also a commitment to `$ x_1 $` using the asset tag `$  H_A  $` as seen below:
+Such a PC thus commits to the committed amount as well as to the underlying asset tag. A commitment to the value `$ x_1 $` using blinded asset tag `$ H_{0_A} $` is also a commitment to `$ x_1 $` using the asset tag `$ H_A $` as seen below:
 
 `
 $$
@@ -203,13 +203,38 @@ H_{0_A} = -H_A + rG
 $$
 `
 
-Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount of asset $ A $, thereby inflating its supply.
+Any amount of blinded asset tag `$ H_{0_A} $` will correspond a negative amount of asset $ A $, thereby inflating its supply. Thus, the ASP is introduced.
 
 +++
 
+An ASP scheme provides a proof $ \pi $ for a set of input asset commitments `$ [ H_i ] ^n_{i=1} $`, an output commitment `$ H = H_{\hat i} + rG $` for $ \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n $ and blinding factor $ r $.
 
+It proofs that every output asset type is the same as some input asset type while blinding which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge for the blinding factor $ r $. 
 
+Let `$ H_{0_{A1}} $` and `$ H_{0_{A2}} $` be blinded asset tags that commit to the same asset tag `$ H_A $`:
 
+`
+$$
+H_{0_{A1}} = H_A + r_1G \\
+H_{0_{A2}} = H_A + r_2G
+$$
+`
+
++++
+
+Taking the difference we have
+
+`
+$$
+\begin{aligned}
+\mathrm{difference}_{H_{0}} &= H_{0_{A1}} - H_{0_{A2}} \\
+&= (H_A + r_1G) - (H_A + r_2G) \\
+&= (r_1 - r_2)G
+\end{aligned}
+$$
+`
+
+This is a signature key with secret key $ r_1 - r_2 $. 
 
 ---
 
