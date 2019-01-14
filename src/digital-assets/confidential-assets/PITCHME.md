@@ -494,21 +494,23 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 
 @div[left-50 text-left]
 
+<u>An asset issuance transaction input:</u>
+
 <ul>
-<li><u>An asset issuance transaction input:</u>
-<li> UTXO $I $ being spent
-<li> Ricardian contract $ \widehat {RC} $ (*or similar NUMS*)
-<li> Initial issuance explicit value or a Pedersen commitment
-<li> Range proof
-<li> Boolean field indicating whether reissuance is allowed
+<li>UTXO $I $ being spent
+<li>Ricardian contract $ \widehat {RC} $ (*or similar NUMS*)
+<li>Initial issuance explicit value or a Pedersen commitment
+<li>Range proof
+<li>Boolean field indicating whether reissuance is allowed
 </ul>
+
 
 @divend
 
 @div[right-50 text-left]
 
+<u>Asset reissuance transaction input:</u>
 <ul>
-<li><u>Asset reissuance transaction input:</u>
 <li>Spend of a UTXO containing an asset reissuance capability
 <li>Original asset entropy
 <li>Blinding factor for the asset commitment of the UTXO being spent
