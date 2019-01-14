@@ -444,7 +444,7 @@ However, confidential assets come at an additional data cost. For a transaction 
 
 @div[text-left]
 
-Any auxiliary input used to create an asset tag may only be used once to prevent inflation. Given an asset entropy $ E $, auxiliary input $ A $ for asset issuance defined as 
+Any auxiliary input used to create an asset tag may only be used once to prevent inflation. Given asset entropy $ E $, auxiliary input $ A $ for asset issuance defined as 
 
 @divend
 
@@ -456,7 +456,7 @@ $$
 
 @div[text-left]
 
-resulting in asset tag `$ H_A \in \mathbb G $`.  Auxiliary input $ \hat A $ for asset re-issuance for the same asset entropy $ E $ defined as 
+resulting in asset tag `$ H_A \in \mathbb G $`.  Auxiliary input $ \hat A $ for asset reissuance for the same asset entropy $ E $ defined as 
 
 @divend
 
@@ -468,7 +468,7 @@ $$
 
 @div[text-left]
 
-resulting in asset tag `$ H_{\hat A} \in \mathbb G $`.  Poelstra et al. suggested use of a Ricardian contract to be hashed together with the reference to the UTXO being spent, but any unique NUMS value will do. Let $I $ be the input being spent, let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then asset entropy $ E $ is defined as 
+resulting in asset tag `$ H_{\hat A} \in \mathbb G $`.  Poelstra et al. suggested use of a Ricardian contract to be hashed together with the reference to the UTXO being spent, but any unique NUMS value will do. Let $I ​$ be the input being spent, let $ \widehat {RC} ​$ be the issuer-specified Ricardian contract, then asset entropy $ E ​$ is defined as 
 
 @divend
 
@@ -481,6 +481,38 @@ $$
 @div[text-left]
 
 Every non-coinbase transaction input thus limited to one new asset issuance. Asset reissuance token(s) must be generated together with initial asset issuance.
+
+@divend
+
++++
+
+@div[text-left]
+
+The asset owner can reveal the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. 
+
+<div class="LineHeight100per"> <br></div>
+
+@div[left-50 text-left]
+
+<u>An asset issuance transaction input:</u>
+
+- UTXO $I $ being spent
+- Ricardian contract $ \widehat {RC} $ (*or similar NUMS*)
+- Initial issuance explicit value or a Pedersen commitment
+- Range proof
+- Boolean field indicating whether reissuance is allowed
+
+@divend
+
+@div[right-50 text-left]
+
+<u>Asset reissuance transaction input:</u>
+
+- Spend of a UTXO containing an asset reissuance capability
+- Original asset entropy
+- Blinding factor for the asset commitment of the UTXO being spent
+- Explicit reissuance amount or Pedersen commitment
+- Range proof
 
 @divend
 
