@@ -291,23 +291,27 @@ This is a signature key with secret key $ r_1 - r_2 $.
 
 @div[text-left]
 
-Thus for $ n $ distinct multiple asset type transaction, differences can be calculated between each output and all inputs and so on for all outputs:
+Thus for an $ n $ distinct multiple asset type transaction, differences can be calculated between each output and all inputs:
 
 @divend
 
 `
 $$
-(out_A - in_A) \mspace{3mu} , \mspace{3mu} (out_A - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  (out_A - in_n)
+(out_A - in_A) \mspace{3mu} , \mspace{3mu} (out_A - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  (out_A - in_n) \\
+(out_B - in_A) \mspace{3mu} , \mspace{3mu} (out_B - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  (out_B - in_n) \\
+. \\
+. \\
+(out_n - in_A) \mspace{3mu} , \mspace{3mu} (out_n - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  (out_n - in_n)
 $$
 `
 
 @div[text-left]
 
-This has the form of a ring signature. If $ out_A  ​$ has the same asset tag as an input, the transaction signer will know the secret key corresponding to one of these differences, and able to produce the ring signature. 
+This has the form of a ring signature. If $ out_A  $ has the same asset tag as one of the inputs, the transaction signer will know the secret key corresponding to one of these differences, and able to produce the ring signature. 
 
 <div class="LineHeight100per"> <br></div>
 
-The ASP is based on the *Back-Maxwell* range proof, a variation of *Borromean* ring signatures, in turn is a variant of the *Abe-Ohkubo-Suzuki* (AOS) ring signature. 
+The ASP is based on the *Back-Maxwell* range proof, a variation of *Borromean* ring signatures, in turn a variant of the *Abe-Ohkubo-Suzuki* (AOS) ring signature. 
 
 @divend
 
@@ -319,12 +323,16 @@ An AOS ASP computes a ring signature that is equal to the proof $ \pi $ as follo
 
 @divend
 
+<div class="LineHeight200per"> <br></div>
+
 - Calculate $ n $ differences $ H - H_{\hat i } $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} n  $, one of which will be equal to the blinding factor $ r $;
 - Calculate a ring signature $ S $ of an empty message using the $ n $ differences. 
 
+<div class="LineHeight200per"> <br></div>
+
 @div[text-left]
 
-The resulting ring signature $ S $ is equal to the proof $ \pi $, and the ASP consist of this ring signature $ S ​$.
+The resulting ring signature $ S $ is equal to the proof $ \pi $, and the ASP consist of this ring signature $ S $.
 
 @divend
 
