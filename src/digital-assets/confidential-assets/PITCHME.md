@@ -108,7 +108,7 @@ Payment authorization is achieved by means of input signatures.
 
 @div[text-left]
 
-**General notation**
+<u>General Notation</u>
 
 @divend
 
@@ -137,6 +137,8 @@ Payment authorization is achieved by means of input signatures.
 ## Confidential Transactions Overview
 
 <div class="LineHeight20per"> <br></div>
+
+@div[text-left]
 
 <u>Confidential transactions</u> made confidential by replacing each UTXO with a homomorphic commitment (e.g. Pedersen Commitment), and made robust against overflow and inflation attacks by using efficient ZK range proofs (e.g. Bulletproofs).
 
