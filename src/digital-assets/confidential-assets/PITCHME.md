@@ -480,7 +480,7 @@ $$
 
 @div[text-left]
 
-Every non-coinbase transaction input thus limited to one new asset issuance. Asset reissuance token(s) must be generated together with initial asset issuance.
+Every non-coinbase transaction input thus limited to one new asset issuance.
 
 @divend
 
@@ -488,7 +488,7 @@ Every non-coinbase transaction input thus limited to one new asset issuance. Ass
 
 @div[text-left]
 
-The asset owner can reveal the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. 
+Asset reissuance token(s) must be generated together with initial asset issuance. The asset owner can reveal the blinding factor $ r $ for the reissuance capability along with the original asset entropy $ E $. 
 
 <div class="LineHeight100per"> <br></div>
 
@@ -512,6 +512,7 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 @div[right-50 text-left]
 
 <u>Asset reissuance transaction input:</u>
+
 <ul>
 <li>Spend of a UTXO containing an asset reissuance capability
 <li>Original asset entropy
@@ -551,10 +552,10 @@ If all asset tags are defined at the instantiation of the blockchain it will be 
 
 ### Elements Project
 
-- Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets. It allows digitizable collectables, reward points and attested assets (for example gold coins) to be realized on a blockchain. 
+- Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to advanced features, such as Confidential Transactions and Issued Assets.
 - The Elements project hosts a working demonstration of confidential asset transfers (`Github: ElementsProject/confidential-assets-demo`) involving 5 parties.
 
-@div[s750px]
+@div[s600px]
 
 ![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/digital-assets/confidential-assets/sources/elements-tx-example.png)
 
