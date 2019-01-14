@@ -492,6 +492,8 @@ The asset owner can reveal the blinding factor $ r $ for the reissuance capabili
 
 <div class="LineHeight100per"> <br></div>
 
+@divend
+
 @div[left-50 text-left]
 
 <u>Asset issuance transaction input:</u>
