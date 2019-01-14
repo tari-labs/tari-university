@@ -105,9 +105,13 @@ Confidential assets prohibits censorship of transactions involving specific asse
 
 <div class="LineHeight20per"> <br></div>
 
-Assets can be issued; associating a maximum of one issuance with the spending of a specific UTXO ensures uniqueness (prevent inflation). Assets can also be re-issued (increased or decreased) if asset reissuance token is generated together with the initial asset issuance
+Assets can be issued; associating a maximum of one issuance with the spending of a specific UTXO ensures uniqueness (prevent inflation). Assets can also be re-issued (increased or decreased) if asset reissuance token is generated together with the initial asset issuance.
+
+@divend
 
 +++
+
+@div[text-left]
 
 The asset type to pay fees must be revealed in each transaction, but all fees could be paid in only one asset type, thus preserving privacy. Payment authorization is achieved by means of input signatures.
 
