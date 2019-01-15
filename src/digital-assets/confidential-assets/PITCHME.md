@@ -534,7 +534,7 @@ The Back-Maxwell range proof scheme used for development of this scheme were bas
 
 <div class="LineHeight100per"> <br></div>
 
-If all asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. 
+If all asset tags are defined at the instantiation of the blockchain it will be compatible with the [Mimblewimble](https://tlu.tarilabs.com/protocols/mimblewimble-1/sources/PITCHME.link.html) protocol. 
 
 @divend
 
@@ -578,7 +578,7 @@ If all asset tags are defined at the instantiation of the blockchain it will be 
 - Chain/Interstellar introduced Cloak, a redesign of Chain Core's Confidential Assets framework to make use of Bulletproof range proofs.
 - Cloak is all about confidential asset transactions, called cloaked transactions, which exchange values of different asset types, called flavors.
 - The protocol ensures that values are not transmuted to any other asset types, that quantities do not overflow and that both quantities and asset types are kept secret. 
-- A traditional Bulletproofs implementation convert an arithmetic circuit into a Rank-1 Constraint System (R1CS); Cloak bypasses arithmetic circuits and provide an API for building a [constraint system](../../cryptography/bulletproofs-protocols/MainReport.md#evolving-bulletproof-protocols) directly. 
+- A traditional Bulletproofs implementation convert an arithmetic circuit into a Rank-1 Constraint System (R1CS); Cloak bypasses arithmetic circuits and provide an API for building a [constraint system](https://tlu.tarilabs.com/cryptography/bulletproofs-protocols/MainReport.html#evolving-bulletproof-protocols) directly. 
 - The R1CS API consists of a hierarchy of task-specific “gadgets”, used by the *Prover* and *Verifier* to allocate variables and define constraints.
 - The Cloak development is still ongoing. 
 
