@@ -68,7 +68,7 @@ Confidential assets propose a scheme where multiple non-interchangeable asset ty
 
 <div class="LineHeight100per"> <br></div>
 
-It offers private base layer atomic asset trades: Alice pay Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, both participants using a single wallet.
+It offers private base layer atomic asset trades: Alice pay Bob $ 100 ​$ of asset type $ A ​$ for $ 50 ​$ of asset type $ B ​$ in a single transaction, both participants using a single wallet.
 
 <div class="LineHeight100per"> <br></div>
 
@@ -76,7 +76,7 @@ No relationship between output asset types can be established or inferred by not
 
 <div class="LineHeight100per"> <br></div>
 
-Confidential assets prohibits censorship of transactions involving specific asset types, and keeps low volume asset transactions private where users could be identified very easily.
+Confidential assets prohibit censorship of transactions involving specific asset types, and keeps low volume asset transactions private where users could be identified very easily.
 
 @divend
 
@@ -567,7 +567,7 @@ If all asset tags are defined at the instantiation of the blockchain it will be 
 ### Chain Core Confidential Assets
 
 - Chain Core is a shared, multi-asset, cryptographic ledger, designed for enterprise financial infrastructure. It supports the coexistence and interoperability of multiple types of assets on the same network in their Confidential Assets framework.
-- Chain Core is based on Elements, and available as an open source project, but have been archived. It has been succeeded by Sequence, a ledger-as-a-service project.
+- Chain Core is based on Elements, and available as an open source project, but has been archived. It has been succeeded by Sequence, a ledger-as-a-service project.
 - Chain Core implements all native features of Elements. They were also working towards implementing ElGamal commitments into Chain Core to make their Confidential Assets framework quantum secure, but it is unclear if this effort was concluded at the time the project was archived.
 
 +++
