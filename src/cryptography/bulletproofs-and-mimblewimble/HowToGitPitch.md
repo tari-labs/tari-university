@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:   cryptography/bulletproofs-and-mimblewimble/presentation-01#/
+Presentation:   src/cryptography/bulletproofs-and-mimblewimble#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/cryptography/bulletproofs-and-mimblewimble/presentation-01#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/cryptography/bulletproofs-and-mimblewimble#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    cryptography/bulletproofs-and-mimblewimble/presentation-01#/
+Presentation:    src/cryptography/bulletproofs-and-mimblewimble#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/cryptography/bulletproofs-and-mimblewimble/presentation-01#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/bulletproofs-and-mimblewimble#/

@@ -1,147 +1,152 @@
+<head>
+<style>
+div.LineHeight20per {
+  line-height: 20%;
+}
+div.LineHeight100per {
+  line-height: 100%;
+}
+div.LineHeight200per {
+  line-height: 200%;
+}
+</style>
+</head>
+
 ## Bulletproofs and Mimblewimble
 
-- Topic 1 ???
+@div[text-left]
 
-- Topic 2 ???
+"<i>Short like a bullet with bulletproof security assumptions</i>"
 
-- Topic 3 ???
+@divend
 
-- Etc. 
+<div class="LineHeight200per"> <br></div>
 
+- Introduction
+- Terminology Recap
+- How do Bulletproofs work?
+- Applications for Bulletproofs
+- Comparison to other ZK Proof Systems
+- Interesting Bulletproofs Implementation Snippets
+  - Current & Past Efforts
+  - Security Considerations
+  - Wallet Reconstruction and Switch Commitment - Grin
 - Conclusions
 
----
-
-## Topic 1 ???
-
-????
-
-Sample image below, set at 450 pixels width
-
-@div[s450px]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs/cryptography/bulletproofs-and-mimblewimble/sources/sample.PNG)
-@divend
-
-+++
-
-## Topic 1 ??? (cnt'd)
-
-???
-
-Sample side by side image (set at 250 pixels width, aligned center) and text (aligned left) inside div containers. [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
-
-@div[left-50 s250px text-center]
-![My Sample Image](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs/cryptography/bulletproofs-and-mimblewimble/sources/sample.PNG)
-@divend
-
-@div[right-50 text-left]
-
-<p>[Unordered list](https://html.com/tags/ul/) of items below:
-
-<ul>
-<li>???
-<li>???
-</ul>
-@divend
-
----
-
-## Topic 2 ???
-
-Sample side by side text inside div containers, with alternating alignment.  [HTML tags](https://html.com/tags/) must be used for lists and formatting here.
-
-@div[left-50]
+<div class="LineHeight100per"> <br></div>
 
 @div[text-left]
 
-<p>[Paragraph left](https://html.com/tags/p/)
-<p>Paragraph left
-
+See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-mimblewimble/MainReport.html).
 
 @divend
 
-@div[text-center]
+---
 
-<ul>
-<li>[Unordered list center](https://html.com/tags/ul/)
-<li>Unordered list center
-</ul>
+## Introduction
 
-
-@divend
-
-@div[text-right]
-
-<ol>
-<li>[Ordered list right](https://html.com/tags/ol/)
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
-
-
-
-@div[right-50 text-right]
-
-@div[text-left]
-
-<p>Paragraph left
-<p>Paragraph left
-
-
-@divend
-
-@div[text-center]
-
-<ul>
-<li>Unordered list center
-<li>Unordered list center
-</ul>
-
-
-@divend
-
-@div[text-right]
-
-<ol>
-<li>Ordered list right
-<li>Ordered list right
-</ol>
-
-
-@divend
-
-@divend
+- Bulletproofs form part of the family of distinct Zero-knowledge (ZK) proof systems, like zk-SNARK, STARK and ZKBoo.
+- ZK proofs designed that a *prover* is able to indirectly verify a statement without providing any information beyond the verification of the statement, example to prove a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce.
+- Bulletproofs technology is a Non-interactive ZK (NIZK) proof protocol for general Arithmetic Circuits with very short proofs (arguments of knowledge) without a trusted setup. They rely on the Discrete Logarithm (DLP) assumption and are made non-interactive using the Fiat-Shamir Heuristic.
+- Bulletproofs Multi-party Computation (MPC) protocol: Distributed proofs of multiple *provers* with secret committed values aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, minimizing rounds of communication. Secret committed values stay secret.
 
 +++
 
-## Topic 2 ??? (cnt'd)
+- Essence of Bulletproofs its inner-product algorithm, a proof for two independent *binding* vector Pedersen Commitments (PC). Bulletproofs yield communication-efficient ZK proofs.
+- [Mimblewimble](https://tlu.tarilabs.com/protocols/mimblewimble-1/sources/PITCHME.link.html) (MW) is a blockchain protocol designed for confidential Txs. The essence is that a PC to $ 0 $ can be viewed as an Elliptic Curve (EC) Digital Signature Algorithm (ECDSA) public key, and for a valid confidential Tx the difference between outputs, inputs, and transaction fees must be $ 0 ​$.
+- A *prover* can sign Txs with the difference of outputs and inputs as the public key. Thus a greatly simplified blockchain in which all spent Txs are pruned, and new nodes efficiently validate the entire blockchain without downloading any old spent Txs. 
+- MW blockchain consists only of block-headers, remaining UTXOs with range proofs and an unprunable Tx kernel per Tx. MW allows Txs to be aggregated before being committed to the blockchain.
+
+
+
+---
+
+## Terminology Recap
+
+<div class="LineHeight20per"> <br></div>
+
+- Let $ p $ be a large prime number
+- Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
+- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $ 
+- Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
+- If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
+
+<div class="LineHeight100per"> <br></div>
+
+- A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.The Discrete Logarithm Problem (DLP) with $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p $. 
+
++++
+
+- An <u>arithmetic circuit</u> $ C $ over a field $ F $ and `$ (x_1, ..., x_n) $` is a directed acyclic graph whose vertices are called gates. Linear consistency equations relate the inputs and outputs of the (addition and multiplication) gates. The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below.
+
+  <p align="center"><img src="sources/ArithmiticCircuit.png" width="400" /></p>
+
+  +++
+
+- The <u>Elliptic Curve (EC) PC</u> to value $ x \in \mathbb Z_p $ with $ r \in \mathbb Z_p $ a random blinding factor is
+
+
+`
+$$
+C(x,r) = xH + rG
+$$
+`
+
+@div[text-right]
+
+Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number.
+     
+EC PCs are also additionally homomorphic, such that for messages `$ x, x_0, x_1 $`, blinding factors `$ r, r_0, r_1 $` and scalar $ k $ the following relations hold:
+
+@divend
+
+`
+$$
+\begin{aligned}
+C(x_0,r_0) + C(x_1,r_1) &= C(x_0+x_1,r_0+r_1) \\
+C(k \cdot x, k \cdot r) &= k \cdot C(x, r)
+\end{aligned}
+$$
+`
+
+---
+
+## How do Bulletproofs work?
 
 ???
 
 ---
 
-## Topic 3 ???
+## Applications for Bulletproofs
 
 ???
 
-+++
+---
 
-## Topic 3 ??? (cnt'd)
+## Comparison to other ZK Proof Systems
+
+???
+
+---
+
+## Interesting Bulletproofs Implementation Snippets
+
+### Current & Past Efforts
+
+???
+
+---
+
+### Security Considerations
+
+???
+
+### Wallet Reconstruction and Switch Commitment - Grin
 
 ???
 
 ---
 
 ## Conclusions
-
-???
-
-+++
-
-## Conclusions (cnt'd)
 
 ???
