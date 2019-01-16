@@ -73,17 +73,34 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 <div class="LineHeight100per"> <br></div>
 
-- A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.The Discrete Logarithm Problem (DLP) with $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p $. 
+@div[text-left]
+
+A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.The Discrete Logarithm Problem (DLP) with $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p $.
+
+@divend
 
 +++
 
-- An <u>arithmetic circuit</u> $ C $ over a field $ F $ and `$ (x_1, ..., x_n) $` is a directed acyclic graph whose vertices are called gates. Linear consistency equations relate the inputs and outputs of the (addition and multiplication) gates. The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below.
+@div[text-left]
 
-  <p align="center"><img src="sources/ArithmiticCircuit.png" width="400" /></p>
+An <u>arithmetic circuit</u> $ C $ over a field $ F $ and `$ (x_1, ..., x_n) $` is a directed acyclic graph whose vertices are called gates. Linear consistency equations relate the inputs and outputs of the (addition and multiplication) gates. The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below.
 
-  +++
+@divend
 
-- The <u>Elliptic Curve (EC) PC</u> to value $ x \in \mathbb Z_p $ with $ r \in \mathbb Z_p $ a random blinding factor is
+
+@div[s400px]
+
+  ![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/ArithmiticCircuit.png)
+
+@divend
+
+---
+
+@div[text-left]
+
+The <u>Elliptic Curve (EC) PC</u> to value $ x \in \mathbb Z_p $ with $ r \in \mathbb Z_p $ a random blinding factor is
+
+@divend
 
 
 `
@@ -92,10 +109,12 @@ C(x,r) = xH + rG
 $$
 `
 
-@div[text-right]
+@div[text-left]
 
-Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number.
-     
+Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H ​$ is what is known as a Nothing Up My Sleeve (NUMS) number.
+
+<div class="LineHeight100per"> <br></div>
+
 EC PCs are also additionally homomorphic, such that for messages `$ x, x_0, x_1 $`, blinding factors `$ r, r_0, r_1 $` and scalar $ k $ the following relations hold:
 
 @divend
@@ -108,6 +127,12 @@ C(k \cdot x, k \cdot r) &= k \cdot C(x, r)
 \end{aligned}
 $$
 `
+
+@div[text-left]
+
+A PC implementation uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G ​$ and **<code>Open()</code>** to open and verify the commitment.
+
+@divend
 
 ---
 
