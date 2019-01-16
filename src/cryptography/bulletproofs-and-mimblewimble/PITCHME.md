@@ -77,7 +77,7 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property).
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> </div>
 
 Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
 
@@ -93,13 +93,13 @@ The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ such that $ b^k
 
 An <u>arithmetic circuit</u> $ C $ over a field $ F $ and `$ (x_1, ..., x_n) $` is a directed acyclic graph whose vertices are called gates. Linear consistency equations relate the inputs and outputs of the (addition and multiplication) gates.
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> </div>
 
 The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $.
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> </div>
 
-An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below.
+Arithmetic circuit example with size 6 and depth 2 that calculates a polynomial shown below:
 
 @divend
 
@@ -129,7 +129,7 @@ $$
 
 Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H ​$ is what is known as a Nothing Up My Sleeve (NUMS) number.
 
-<div class="LineHeight100per"> <br></div>
+<div class="LineHeight20per"> </div>
 
 EC PCs are also additionally homomorphic, such that for messages `$ x, x_0, x_1 $`, blinding factors `$ r, r_0, r_1 $` and scalar $ k $ the following relations hold:
 
@@ -146,7 +146,7 @@ $$
 
 @div[text-left]
 
-A PC implementation uses three algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G ​$ and **<code>Open()</code>** to open and verify the commitment.
+Implementation uses 3 algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
 @divend
 
