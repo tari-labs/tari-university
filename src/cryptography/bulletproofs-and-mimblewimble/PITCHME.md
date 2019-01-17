@@ -174,7 +174,7 @@ Implementation uses 3 algorithms: **<code>Setup()</code>** to set up the commitm
 
 @div[text-left]
 
-An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
+An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r ​$ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
 
 @divend
 
@@ -182,7 +182,23 @@ An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r $ to th
 
 ## How do Bulletproofs work?
 
-???
+@div[text-left]
+
+The basis of confidential Txs is to replace input and output amounts with PCs. It is then publicly verifiable that the Txs balance and all outputs are positive, while keeping the specific committed amounts hidden. The Tx amounts are encoded as $ [integers \mspace{4mu} \mod \mspace{4mu} q] $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs.
+
+<div class="LineHeight20per"> </div> 
+
+The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products.
+
+<div class="LineHeight20per"> </div>
+
+The basic idea is to hide all the bits of the amount in a single vector Pedersen Commitment, to prove that each bit satisfies $ x(x-1) = 0 $, that is each $ x $ is either $ 0 $ or $ 1 $, and that they sum to some value $v$.
+
+<div class="LineHeight20per"> </div>
+
+These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen Commitments.
+
+@divend
 
 ---
 
