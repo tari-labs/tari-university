@@ -67,7 +67,7 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 - Let $ p $ be a large prime number
 - Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
-- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $ 
+- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p ​$ 
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
 - If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
 
@@ -75,13 +75,11 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 @div[text-left]
 
-A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property).
+A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
 
-<div class="LineHeight20per"> </div>
+@div[text-left]
 
-Both *binding* and *hiding* properties are then further classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
-
-<div class="LineHeight100per"> <br></div>
+@divend
 
 The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p ​$.
 
@@ -95,11 +93,11 @@ An <u>arithmetic circuit</u> $ C $ over a field $ F $ and `$ (x_1, ..., x_n) $` 
 
 <div class="LineHeight20per"> </div>
 
-The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $.
+The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$.
 
 <div class="LineHeight20per"> </div>
 
-Arithmetic circuit example with size 6 and depth 2 that calculates a polynomial shown below:
+Arithmetic circuit example with size 6 and depth 2 that calculates a polynomial:
 
 @divend
 
@@ -127,7 +125,7 @@ $$
 
 @div[text-left]
 
-Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H ​$ is what is known as a Nothing Up My Sleeve (NUMS) number.
+Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number.
 
 <div class="LineHeight20per"> </div>
 
@@ -149,6 +147,24 @@ $$
 Implementation uses 3 algorithms: **<code>Setup()</code>** to set up the commitment parameters $ G $ and $ H $; **<code>Commit()</code>** to commit to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and **<code>Open()</code>** to open and verify the commitment.
 
 @divend
+
++++
+
+@div[text-left]
+
+An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
+
+<div class="LineHeight20per"> </div>
+
+The <u>Fiat–Shamir Heuristic</u> is a technique in cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a one-message (non-interactive) protocol using a cryptographic hash function.
+
+@divend
+
+- The *prover* will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. The single message sent to the *verifier* then contains the challenge $ c $ and response $ f $.
+- The *verifier* is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and response $ f $. The *verifier* will then use a <code>Verify()</code> algorithm to verify the combination of shared statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
+- A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the commitment $ A $.
+
+
 
 ---
 
