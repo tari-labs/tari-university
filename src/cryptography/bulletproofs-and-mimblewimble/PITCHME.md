@@ -48,14 +48,14 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 - Bulletproofs form part of the family of distinct <u>Zero-knowledge (ZK)</u> proof systems, like zk-SNARK, STARK and ZKBoo.
 - ZK proofs are designed that a *prover* is able to indirectly verify a statement without providing any information beyond the verification of the statement, example to prove a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the <u>nonce</u>.
 - Bulletproofs technology is a Non-interactive ZK (NIZK) proof protocol for general <u>Arithmetic Circuits</u> with very short proofs (arguments of knowledge) without a trusted setup. They rely on the <u>Discrete Logarithm (DLP)</u> assumption and are made non-interactive using the <u>Fiat-Shamir Heuristic</u>.
-- Bulletproofs Multi-party Computation (MPC) protocol: Distributed proofs of multiple *provers* with secret <u>committed values</u> aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, minimizing rounds of communication. Secret committed values stay secret.
+- The Bulletproofs Multi-party Computation (MPC) protocol provides aggregation of distributed proofs from multiple *provers* with secret <u>committed values</u> into a single proof, before the Fiat-Shamir challenge is calculated and sent to the *verifier*, minimizing rounds of communication. Secret committed values stay secret.
 
 +++
 
-- The essence of Bulletproofs is its inner-product algorithm, a proof for two independent *binding* <u>vector Pedersen Commitments (PC)</u>. Bulletproofs yield communication-efficient ZK proofs.
+- The essence of Bulletproofs is its inner-product algorithm, a proof for two independent *<u>binding</u>* <u>vector Pedersen Commitments (PC)</u>. Bulletproofs yield communication-efficient ZK proofs.
 - [Mimblewimble](https://tlu.tarilabs.com/protocols/mimblewimble-1/sources/PITCHME.link.html) (MW) is a blockchain protocol designed for confidential Txs. The essence is that a PC to the number $ 0 $ can be viewed as an Elliptic Curve (EC) Digital Signature Algorithm (ECDSA) public key, and for a valid confidential Tx the difference between outputs, inputs, and transaction fees must be $ 0 $.
-- A *prover* can sign Txs with the difference of outputs and inputs as the public key. Thus a greatly simplified blockchain in which all spent Txs are pruned, and new nodes efficiently validate the entire blockchain without downloading any old spent Txs. 
-- MW blockchain consists only of block-headers, remaining UTXOs with range proofs and an unprunable Tx kernel per Tx. MW allows Txs to be aggregated before being committed to the blockchain.
+- In MW a *prover* can sign Txs with the difference of outputs and inputs as the public key. Thus a greatly simplified blockchain in which all spent Txs are pruned, and new nodes efficiently validate the entire MW blockchain without downloading any old spent Txs. 
+- A MW blockchain consists only of block-headers, remaining UTXOs with range proofs and an unprunable Tx kernel per Tx. MW allows Txs to be aggregated before being committed to the blockchain.
 
 
 
@@ -83,7 +83,7 @@ A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *v
 
 @div[text-left]
 
-A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
+A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*<u>binding</u>* property) while keeping it hidden from a verifier (*<u>hiding</u>* property). Both *binding* and *hiding* properties are classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
 
 <div class="LineHeight20per"> </div>
 
@@ -147,7 +147,7 @@ $$
 
 @div[text-left]
 
-Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number.
+Here `$ G \in \mathbb F_p $` is a random generator point and `$ H \in \mathbb F_p $` specially chosen so that `$ x_H $` satisfying `$ H = x_H G $` cannot be found except if the EC DLP is solved. In secp256k1 $ H $ is the SHA256 hash of simple encoded $ x $-coordinate of generator point $ G $. The number $ H $ is known as a Nothing Up My Sleeve (NUMS) number.
 
 <div class="LineHeight20per"> </div>
 
