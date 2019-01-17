@@ -45,15 +45,15 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 ## Introduction
 
-- Bulletproofs form part of the family of distinct Zero-knowledge (ZK) proof systems, like zk-SNARK, STARK and ZKBoo.
-- ZK proofs designed that a *prover* is able to indirectly verify a statement without providing any information beyond the verification of the statement, example to prove a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the nonce.
-- Bulletproofs technology is a Non-interactive ZK (NIZK) proof protocol for general Arithmetic Circuits with very short proofs (arguments of knowledge) without a trusted setup. They rely on the Discrete Logarithm (DLP) assumption and are made non-interactive using the Fiat-Shamir Heuristic.
-- Bulletproofs Multi-party Computation (MPC) protocol: Distributed proofs of multiple *provers* with secret committed values aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, minimizing rounds of communication. Secret committed values stay secret.
+- Bulletproofs form part of the family of distinct <u>Zero-knowledge (ZK)</u> proof systems, like zk-SNARK, STARK and ZKBoo.
+- ZK proofs are designed that a *prover* is able to indirectly verify a statement without providing any information beyond the verification of the statement, example to prove a number is found that solves a cryptographic puzzle and fits the hash value without having to reveal the <u>nonce</u>.
+- Bulletproofs technology is a Non-interactive ZK (NIZK) proof protocol for general <u>Arithmetic Circuits</u> with very short proofs (arguments of knowledge) without a trusted setup. They rely on the <u>Discrete Logarithm (DLP)</u> assumption and are made non-interactive using the <u>Fiat-Shamir Heuristic</u>.
+- Bulletproofs Multi-party Computation (MPC) protocol: Distributed proofs of multiple *provers* with secret <u>committed values</u> aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent to the *verifier*, minimizing rounds of communication. Secret committed values stay secret.
 
 +++
 
-- Essence of Bulletproofs its inner-product algorithm, a proof for two independent *binding* vector Pedersen Commitments (PC). Bulletproofs yield communication-efficient ZK proofs.
-- [Mimblewimble](https://tlu.tarilabs.com/protocols/mimblewimble-1/sources/PITCHME.link.html) (MW) is a blockchain protocol designed for confidential Txs. The essence is that a PC to $ 0 $ can be viewed as an Elliptic Curve (EC) Digital Signature Algorithm (ECDSA) public key, and for a valid confidential Tx the difference between outputs, inputs, and transaction fees must be $ 0 ​$.
+- The essence of Bulletproofs is its inner-product algorithm, a proof for two independent *binding* <u>vector Pedersen Commitments (PC)</u>. Bulletproofs yield communication-efficient ZK proofs.
+- [Mimblewimble](https://tlu.tarilabs.com/protocols/mimblewimble-1/sources/PITCHME.link.html) (MW) is a blockchain protocol designed for confidential Txs. The essence is that a PC to the number $ 0 $ can be viewed as an Elliptic Curve (EC) Digital Signature Algorithm (ECDSA) public key, and for a valid confidential Tx the difference between outputs, inputs, and transaction fees must be $ 0 $.
 - A *prover* can sign Txs with the difference of outputs and inputs as the public key. Thus a greatly simplified blockchain in which all spent Txs are pruned, and new nodes efficiently validate the entire blockchain without downloading any old spent Txs. 
 - MW blockchain consists only of block-headers, remaining UTXOs with range proofs and an unprunable Tx kernel per Tx. MW allows Txs to be aggregated before being committed to the blockchain.
 
@@ -75,11 +75,23 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 @div[text-left]
 
+A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y $ is true without revealing any information. The proof system must be **complete** (if statement true and *prover* and *verifier* follow protocol *verifier* will accept), **sound** (if statement false and *verifier* follows protocol *verifier* will not accept) and **ZK** (if statement is true and *prover* follows protocol, *verifier* will not learn any confidential information except that statement $ Y $ is true).
+
+@divend
+
++++
+
+@div[text-left]
+
 A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). Both *binding* and *hiding* properties are classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
 
 <div class="LineHeight20per"> </div>
 
 The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p $.
+
+<div class="LineHeight20per"> </div>
+
+<u>Nonce</u> is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks.
 
 @divend
 
@@ -91,7 +103,7 @@ An <u>arithmetic circuit</u> $ C $ over a field $ F $ and `$ (x_1, ..., x_n) $` 
 
 <div class="LineHeight20per"> </div>
 
-The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$.
+The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $.
 
 <div class="LineHeight20per"> </div>
 
@@ -105,6 +117,18 @@ Arithmetic circuit example with size 6 and depth 2 that calculates a polynomial:
   ![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/ArithmiticCircuit.png)
 
 @divend
+
++++
+
+@div[text-left]
+
+The <u>Fiat–Shamir Heuristic</u> is a cryptographic technique to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a non-interactive protocol using a cryptographic hash function.
+
+@divend
+
+- *Prover* uses a <code>Prove()</code> algorithm to calculate commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. Commitment $ A $ is hashed to obtain challenge $ c $, then further processed with <code>Prove()</code> to calculate response $ f $. Single message sent to *verifier* contains challenge $ c $ and response $ f $.
+- *Verifier* is able to compute commitment $ A $ from shared statement $ Y $, challenge $ c $ and response $ f $. *Verifier* then uses a <code>Verify()</code> algorithm to verify combination of $ Y $, $ A $, $ c $ and $ f $.
+- A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to $ A $ and $ Y $ to obtain $ c $ as opposed to only $ A $.
 
 +++
 
@@ -150,27 +174,7 @@ Implementation uses 3 algorithms: **<code>Setup()</code>** to set up the commitm
 
 @div[text-left]
 
-The <u>Fiat–Shamir Heuristic</u> is a cryptographic technique to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a non-interactive protocol using a cryptographic hash function.
-
-@divend
-
-- *Prover* uses a <code>Prove()</code> algorithm to calculate commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. Commitment $ A $ is hashed to obtain challenge $ c $, then further processed with <code>Prove()</code> to calculate response $ f $. Single message sent to *verifier* contains challenge $ c $ and response $ f $.
-- *Verifier* is able to compute commitment $ A $ from shared statement $ Y $, challenge $ c $ and response $ f $. *Verifier* then uses a <code>Verify()</code> algorithm to verify combination of $ Y $, $ A $, $ c $ and $ f ​$.
-- A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to $ A $ and $ Y $ to obtain $ c $ as opposed to only $ A $.
-
-+++
-
-@div[text-left]
-
-An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r ​$ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
-
-<div class="LineHeight20per"> </div>
-
-<u>Nonce</u> is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks.
-
-<div class="LineHeight20per"> </div>
-
-A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y $ is true without revealing any information. The proof system must be **complete** (if statement true and *prover* and *verifier* follow protocol *verifier* will accept), **sound** (if statement false and *verifier* follows protocol *verifier* will not accept) and **ZK** (if statement is true and *prover* follows protocol, *verifier* will not learn any confidential information except that statement $ Y ​$ is true).
+An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
 
 @divend
 
