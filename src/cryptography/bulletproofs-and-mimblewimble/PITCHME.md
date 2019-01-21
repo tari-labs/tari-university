@@ -65,17 +65,32 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 <div class="LineHeight20per"> <br></div>
 
-- Let $ p $ be a large prime number
-- Let $ \mathbb G $ denote a cyclic group of prime order $ p $ 
-- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p ​$ 
-- Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
-- If not otherwise specified, lower case $ x,r,y $ etc. are ordinary numbers (integers), upper case $ H,G $ are curve points
+- Let $ p ​$ be a large prime number
 
-<div class="LineHeight100per"> <br></div>
+- Let $ \mathbb G ​$ denote a cyclic group of prime order $ p ​$ 
+
+- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p ​$ 
+
+- Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
+
+  Let $ \mathbb G^n ​$ be the vector spaces of dimension $ n ​$ over $ \mathbb G ​$ 
+
+- Let $ \mathbf {a} \in \mathbb G^n $ be a vector with elements $ a_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n \in \mathbb G $. 
+
+- Let `$ \langle \mathbf {a}, \mathbf {b} \rangle = \sum _{i=1}^n {a_i \cdot b_i} $` denote the inner-product between two vectors $ \mathbf {a}, \mathbf {b} \in \mathbb G^n $ 
+
+- If not otherwise specified, lower case $ x,r,y ​$ etc. are ordinary numbers (integers), upper case $ H,G ​$ are curve points
+
++++
 
 @div[text-left]
 
 A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y $ is true without revealing any information. The proof system must be **complete** (if statement true and *prover* and *verifier* follow protocol *verifier* will accept), **sound** (if statement false and *verifier* follows protocol *verifier* will not accept) and **ZK** (if statement is true and *prover* follows protocol, *verifier* will not learn any confidential information except that statement $ Y $ is true).
+
+
+<div class="LineHeight20per"> </div>
+
+The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k ​$ such that $ b^k=a ​$ for any integer $ k ​$ where $ a,b \in \mathbb G ​$ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p ​$.
 
 @divend
 
@@ -84,10 +99,6 @@ A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *v
 @div[text-left]
 
 A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*<u>binding</u>* property) while keeping it hidden from a verifier (*<u>hiding</u>* property). Both *binding* and *hiding* properties are classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
-
-<div class="LineHeight20per"> </div>
-
-The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p $.
 
 <div class="LineHeight20per"> </div>
 
@@ -103,7 +114,7 @@ An <u>arithmetic circuit</u> $ C $ over a field $ F $ and `$ (x_1, ..., x_n) $` 
 
 <div class="LineHeight20per"> </div>
 
-The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $.
+The size is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$.
 
 <div class="LineHeight20per"> </div>
 
@@ -186,17 +197,67 @@ An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r ​$ to
 
 The basis of confidential Txs is to replace input and output amounts with PCs. It is then publicly verifiable that the Txs balance and all outputs are positive, while keeping the specific committed amounts hidden. The Tx amounts are encoded as $ [integers \mspace{4mu} \mod \mspace{4mu} q] $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs.
 
-<div class="LineHeight20per"> </div> 
-
-The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products.
-
 <div class="LineHeight20per"> </div>
 
-The basic idea is to hide all the bits of the amount in a single vector Pedersen Commitment, to prove that each bit satisfies $ x(x-1) = 0 $, that is each $ x $ is either $ 0 $ or $ 1 $, and that they sum to some value $v$.
+The basic idea is to hide all the bits of the amount $ x $ to be committed to in a single vector PC, to prove that each bit satisfies $ \omega(\omega-1) = 0 $, that is each $ \omega $ is either $ 0 $ or $ 1 $, and that they sum to $ x $.
 
 <div class="LineHeight20per"> </div>
 
 These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen Commitments.
+
+<div class="LineHeight20per"> </div> 
+
+The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products.
+@divend
+
++++
+
+@div[text-left]
+
+The *prover* $ \mathcal{P} $ must convince the *verifier* $ \mathcal{V} $ that commitment $ C(x,r) = xH + rG $ contains a number $ x \in [0,2^n - 1] $. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x ​$ so then the following must be proven:
+
+@divend
+
+`
+$$
+\langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_R = \mathbf {a}_L - \mathbf {1}^n \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_L \circ \mathbf {a}_R = \mathbf{0}^n \mspace{100mu} (1)
+$$
+`
+
+@div[text-left]
+
+If the *verifier* $ \mathcal{V} $ sends a random random linear combination of the constraints $ y \in \mathbb{Z_p} $ and $ z \in \mathbb{Z_p} $ to the *prover* $ \mathcal{P} $ the following can be constructed for (1):
+
+@divend
+
+`
+$$
+\langle \mathbf {a}_L - z \cdot \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n \circ (\mathbf {a}_R + z \cdot \mathbf {1}^n) +z^2 \cdot \mathbf {2}^n \rangle = z^2 \cdot v + \delta (y,z) \mspace{30mu} (2) \\
+\delta (y,z) = (z-z^2) \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n\rangle -z^3 \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {2}^n\rangle \in \mathbb{Z_p} \mspace{30mu}
+$$
+`
+
+@div[text-left]
+
+Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x $ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $` a vector PCs can be constructed.
+
+@divend
+
++++
+
+@div[text-left]
+
+These vectors have size $ n ​$ that would require many expensive exponentiations. However, they are reduced interactively by the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ into a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 ​$ with a logarithmic number of rounds, each time calculating a new set of PC generators.
+
+<div class="LineHeight20per"> </div> 
+
+The PC scheme allows us to cut a vector in half and compress the two halves together. Applying the same trick repeatedly  $ \log n $ times produces a single value which is easy to send.
+
+@divend
+
+@div[s400px]
+
+![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
 
 @divend
 
