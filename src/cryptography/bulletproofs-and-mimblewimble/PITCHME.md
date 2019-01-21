@@ -284,11 +284,11 @@ Only important thing to note here is that (2) contains a single inner-product id
 
 @div[text-left]
 
-These vectors have size $ n $ that would require many expensive exponentiations. However, they are reduced interactively by the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ into a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $ with a logarithmic number of rounds.
+These vectors have size $ n $ that would require many expensive exponentiations. However, they are reduced interactively by the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ into a single multi-exponentiation (*calculated much faster than $ n $ separate ones*) of size `$ 2n + 2 \log_2(n) + 1 $` with a logarithmic number of rounds.
 
 <div class="LineHeight20per"> </div> 
 
-<u>How this works:</u> The PC scheme allows us to cut a vector in half and compress the two halves together, each time calculating a new set of PC generators. Applying the same trick repeatedly $ \log n ​$ times produces a single value which is easy to send.
+<u>How this works:</u> The PC scheme allows us to cut a vector in half and compress the two halves together, each time calculating a new set of PC generators. Applying the same trick repeatedly `$ \log _2 n $` times produces a single value.
 
 @divend
 
