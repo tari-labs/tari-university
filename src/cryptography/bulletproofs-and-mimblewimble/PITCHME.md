@@ -214,7 +214,7 @@ The essence of Bulletproofs are its ability to calculate proofs, including range
 
 @div[text-left]
 
-The *prover* $ \mathcal{P} $ must convince the *verifier* $ \mathcal{V} $ that commitment $ C(x,r) = xH + rG $ contains a number $ x \in [0,2^n - 1] $. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x ​$ so then the following must be proven:
+The *prover* $ \mathcal{P} $ must convince *verifier* $ \mathcal{V} $ that commitment $ C(x,r) = xH + rG $ contains a number such that $ x \in [0,2^n - 1] $. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x $ so then the following must be proven:
 
 @divend
 
@@ -232,14 +232,16 @@ If the *verifier* $ \mathcal{V} $ sends a random random linear combination of th
 
 `
 $$
-\langle \mathbf {a}_L - z \cdot \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n \circ (\mathbf {a}_R + z \cdot \mathbf {1}^n) +z^2 \cdot \mathbf {2}^n \rangle = z^2 \cdot v + \delta (y,z) \mspace{30mu} (2) \\
-\delta (y,z) = (z-z^2) \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n\rangle -z^3 \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {2}^n\rangle \in \mathbb{Z_p} \mspace{30mu}
+\begin{aligned}
+\langle \mathbf {a}_L - z \cdot \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n \circ (\mathbf {a}_R + z \cdot \mathbf {1}^n) +z^2 \cdot \mathbf {2}^n \rangle = z^2 \cdot v + \delta (y,z) &\mspace{30mu} (2) \\
+\delta (y,z) = (z-z^2) \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n\rangle -z^3 \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {2}^n\rangle \in \mathbb{Z_p} &\mspace{30mu}
+\end{aligned}
 $$
 `
 
 @div[text-left]
 
-Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x $ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $` a vector PCs can be constructed.
+Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x ​$ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $` a vector PCs can be constructed.
 
 @divend
 
@@ -251,11 +253,11 @@ These vectors have size $ n ​$ that would require many expensive exponentiatio
 
 <div class="LineHeight20per"> </div> 
 
-The PC scheme allows us to cut a vector in half and compress the two halves together. Applying the same trick repeatedly  $ \log n $ times produces a single value which is easy to send.
+The PC scheme allows us to cut a vector in half and compress the two halves together. Applying the same trick repeatedly  $ \log n ​$ times produces a single value which is easy to send.
 
 @divend
 
-@div[s400px]
+@div[s500px]
 
 ![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
 
