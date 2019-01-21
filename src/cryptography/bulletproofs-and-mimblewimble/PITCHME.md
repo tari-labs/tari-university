@@ -341,16 +341,11 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 @divend
 
 - Range proofs
-
   - Proof that a secret committed value lies in a certain interval, say $ x \in [0,2^{52} - 1] $), and prevents numbers coming near a large prime, say $ 2^{256} $, to wrap around when adding a small number.
-
 - Merkle proofs
-
   - Hash preimages in a Merkle tree can be leveraged to create zero-knowledge Merkle proofs using Bulletproofs, to create efficient proofs of inclusion in massive data sets.
-
 - Proof of solvency
-
-  - Specialized application of Merkle proofs; coins can be added into a giant Merkle tree with confidential proof that some outputs are in the Merkle tree and that those outputs add up to some amount. A Bitcoin exchange need ~18GB proof of solvency for $ 2,000,000 $ customers; this could be reduced to ~62MB.
+  - Coins can be added into a giant Merkle tree with confidential proof that some outputs are in the Merkle tree and that those outputs add up to some amount. A Bitcoin exchange need ~18GB proof of solvency for $ 2,000,000 $ customers; this could be reduced to ~62MB.
 
 +++
 
@@ -384,7 +379,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 - Verifiable shuffles (*cont'd*)
 
-  - Some other applications are voting, blind signatures for untraceable payments, and solvency proofs. Bulletproofs can be used efficiently to prove verifiable shuffles of size $O \log(n)$ - previously size $O \sqrt{n}$.
+  - Some other applications are voting, blind signatures for untraceable payments, and solvency proofs. Bulletproofs can be used efficiently to prove verifiable shuffles of size $O \log(n)$ - previously size $O \sqrt{n}​$.
 
 @div[s500px]
 
