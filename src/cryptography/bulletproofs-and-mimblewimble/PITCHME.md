@@ -390,7 +390,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 | System                              | Sigma        | zk-SNARK               | STARK                                         | ZKBoo                   | Bulletproofs |
 | ----------------------------------- | ------------ | ---------------------- | --------------------------------------------- | ----------------------- | ------------ |
 | <b>Interactive</b>                  | yes          | ***no***               | ***no***                                      | ***no***                | ***no***     |
-| <b>Proof Size</b>                   | long         | ***short***            | shortish                                      | long                    | *short*      |
+| <b>Proof Size</b>                   | long         | ***short***            | shortish                                      | long                    | ***short***  |
 | <b>Prover Runtime Scalability</b>   | ***linear*** | quasilinear            | quasilinear (big memory requirement)          | ***linear***            | ***linear*** |
 | <b>Verifier Runtime Scalability</b> | linear       | *efficient*            | ***efficient* (*poly-logarithmically*)**      | ***efficient***         | linear       |
 | <b>Trusted</b>                      | ***no***     | required               | ***no***                                      | ***no***                | ***no***     |
@@ -401,15 +401,63 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ## Interesting Bulletproofs Implementation Snippets
 
+@div[text-left]
+
+Bulletproofs development still evolving. Different implementations also offer different levels of efficiency, security and functionality.
+
+@divend
+
 ### Current & Past Efforts
 
-???
+@div[text-left]
+
+Initial work that provided cryptographic support for Mimblewimble mainly done at `GitHub:ElementsProject/secp256k1-zkp`. Fork `GitHub:apoelstra/secp256k1-mw` added Mimblewimble primitives and support for many of the Bulletproof protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits). Current effort also involves MuSig support.
+
+<div class="LineHeight20per"> </div>
+
+The Grin project (Mimblewimble in Rust) forked `GitHub:ElementsProject/secp256k1-zkp` as `GitHub:mimblewimble/secp256k1-zkp`  and added Rust wrappers as `mimblewimble/rust-secp256k1-zkp` for their blockchain. The Beam project (Mimblewimble in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp`.
+
+@divend
+
++++
+
+@div[text-left]
+
+Implementation for Bulletproof range proofs done for the Monero project (CryptoNote in C++) in Java as the pre-cursor and in C++ as the final implementation. Supports single and aggregate range proofs. 
+
+<div class="LineHeight20per"> </div>
+
+Adjoint, Inc. did an implementation of Bulletproofs in Haskell at `GitHub: adjoint-io/bulletproofs`.
+
+<div class="LineHeight20per"> </div>
+
+Chain/Interstellar did an implementation of Bulletproofs in Rust from the ground up at `GitHub:dalek-cryptography/bulletproofs`. They implemented parallel Edwards formulas using Intel® Advanced Vector Extensions 2 (AVX2) to accelerate curve operations. Initial testing suggests approximately 50% speedup (twice as fast) over the original `libsecp256k1`-based Bulletproofs implementation.
+
+@divend
 
 ---
 
 ### Security Considerations
 
-???
+@div[text-left]
+
+Real world implementation of ECC largely based on official standards that try and make the ECDLP hard to solve. Many attacks break real-world ECC without solving ECDLP due to problems in ECC security, where implementations can produce incorrect results and also leak secret data. Some implementation considerations also favor efficiency over security.
+
+<div class="LineHeight20per"> </div>
+
+Grin, Beam and Adjoint use ECC curve secp256k1 for their Bulletproofs, which fails 1 out of the 4 ECDLP security criteria and 3 out of the 4 ECC security criteria. Monero and Chain/Interstellar use the ECC curve Curve25519 for their Bulletproofs, which passes all ECDLP and ECC security criteria.
+
+<div class="LineHeight20per"> </div>
+
+Chain/Interstellar use Ristretto, which allows an existing Curve25519 library to implement a prime-order group with only a thin abstraction layer. Makes it possible for systems using Ed25519 signatures to be safely extended with zero-knowledge protocols.
+
+<div class="LineHeight20per"> </div>
+
+The Monero project had security audits done on their Bulletproofs' that resulted in a number of serious and critical bug fixes as well as some other code improvements. 
+
+@divend
+
++++
 
 ### Wallet Reconstruction and Switch Commitment - Grin
 
