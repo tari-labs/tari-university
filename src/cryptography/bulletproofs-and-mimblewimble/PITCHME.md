@@ -85,7 +85,7 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 @div[text-left]
 
-A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y $ is true without revealing any information. The proof system must be:
+A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y ​$ is true without revealing any information. The proof system must be
 
 <div class="LineHeight20per"> </div>
 
@@ -109,7 +109,7 @@ A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *v
 
 @div[text-left]
 
-The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ and $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (no efficient solution) for carefully chosen $ \mathbb F_p $.
+The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ such that $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (no efficient solution) for carefully chosen $ \mathbb F_p $.
 
 @divend
 
@@ -117,9 +117,13 @@ The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ and $ b^k=a $ f
 
 @div[text-left]
 
-A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*<u>binding</u>* property) while keeping it hidden from a verifier (*<u>hiding</u>* property). Both *binding* and *hiding* properties are classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
+A <u>commitment scheme</u> in a ZK proof is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set without the ability to change it later (*<u>binding</u>* property) while keeping it hidden from a verifier (*<u>hiding</u>* property). 
 
 <div class="LineHeight20per"> </div>
+
+Both *binding* and *hiding* properties are classified in increasing levels of security to be *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and perfectly *hiding*.
+
+<div class="LineHeight100per"> </div>
 
 <u>Nonce</u> is an abbreviation of <i>**n**umber used **once**</i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay attacks.
 
@@ -156,7 +160,7 @@ The <u>Fiat–Shamir Heuristic</u> is a cryptographic technique to convert an in
 
 @divend
 
-- *Prover* uses a <code>Prove()</code> algorithm to calculate commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. Commitment $ A $ is hashed to obtain challenge $ c $, then further processed with <code>Prove()</code> to calculate response $ f $. Single message sent to *verifier* contains challenge $ c $ and response $ f $.
+- *Prover* uses a <code>Prove()</code> algorithm to calculate commitment $ A $ with a statement $ Y $ that is shared with the *verifier* and a secret witness value $ w $ as inputs. Commitment $ A $ is hashed to obtain challenge $ c $, then further processed with <code>Prove()</code> to calculate response $ f $. Single message sent to *verifier* contains challenge $ c $ and response $ f ​$.
 - *Verifier* is able to compute commitment $ A $ from shared statement $ Y $, challenge $ c $ and response $ f $. *Verifier* then uses a <code>Verify()</code> algorithm to verify combination of $ Y $, $ A $, $ c $ and $ f $.
 - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is applied to $ A $ and $ Y $ to obtain $ c $ as opposed to only $ A $.
 
@@ -204,7 +208,11 @@ Implementation uses 3 algorithms: **<code>Setup()</code>** to set up the commitm
 
 @div[text-left]
 
-An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r ​$ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
+An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem.
+
+<div class="LineHeight20per"> </div>
+
+(<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
 
 @divend
 
@@ -214,7 +222,7 @@ An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r ​$ to
 
 @div[text-left]
 
-The basis of confidential Txs is to replace input and output amounts with PCs. It is then publicly verifiable that the Txs balance and all outputs are positive, while keeping the specific committed amounts hidden. The Tx amounts are encoded as $ [integers \mspace{4mu} \mod \mspace{4mu} q] $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs.
+The basis of confidential Txs is to replace input and output amounts with PCs. It is then publicly verifiable that the Txs balance and all outputs are positive, while keeping the specific committed amounts hidden. The Tx amounts are encoded as $ [integers \mod q] ​$, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs.
 
 <div class="LineHeight20per"> </div>
 
@@ -233,9 +241,11 @@ The essence of Bulletproofs are its ability to calculate proofs, including range
 
 @div[text-left]
 
-The *prover* $ \mathcal{P} $ must convince *verifier* $ \mathcal{V} $ that commitment $ C(x,r) = xH + rG $ contains a number such that $ x \in [0,2^n - 1] $. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x $ so then the following must be proven:
+The *prover* $ \mathcal{P} ​$ must convince *verifier* $ \mathcal{V} ​$ that commitment $ C(x,r) = xH + rG ​$ contains a number such that $ x \in [0,2^n - 1] ​$. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x ​$ so then the following must be proven:
 
 @divend
+
+<div class="LineHeight20per"> </div>
 
 `
 $$
@@ -243,11 +253,15 @@ $$
 $$
 `
 
+<div class="LineHeight20per"> </div>
+
 @div[text-left]
 
 If the *verifier* $ \mathcal{V} ​$ sends a random random linear combination of the constraints $ y \in \mathbb{Z_p} ​$ and $ z \in \mathbb{Z_p} ​$ to the *prover* $ \mathcal{P} ​$ the following can be constructed for (1):
 
 @divend
+
+<div class="LineHeight20per"> </div>
 
 `
 $$
@@ -258,9 +272,11 @@ $$
 $$
 `
 
+<div class="LineHeight20per"> </div>
+
 @div[text-left]
 
-Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x $ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $`, vector PCs can be constructed.
+Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x ​$ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $`, vector PCs can be constructed.
 
 @divend
 
@@ -276,7 +292,7 @@ These vectors have size $ n $ that would require many expensive exponentiations.
 
 @divend
 
-@div[s500px]
+@div[s450px]
 
 ![VectorCutNHalf](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
 
