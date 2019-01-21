@@ -399,7 +399,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ---
 
-## Interesting Bulletproofs Implementation Snippets
+## Interesting Bulletproofs Snippets
 
 @div[text-left]
 
@@ -407,15 +407,17 @@ Bulletproofs development still evolving. Different implementations also offer di
 
 @divend
 
+<div class="LineHeight20per"> <br></div>
+
 ### Current & Past Efforts
 
 @div[text-left]
 
-Initial work that provided cryptographic support for Mimblewimble mainly done at `GitHub:ElementsProject/secp256k1-zkp`. Fork `GitHub:apoelstra/secp256k1-mw` added Mimblewimble primitives and support for many of the Bulletproof protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits). Current effort also involves MuSig support.
+Initial work that provided cryptographic support for Mimblewimble mainly done at `ElementsProject/secp256k1-zkp`. Fork `apoelstra/secp256k1-mw` added Mimblewimble primitives and support for many of the Bulletproof protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits). Current effort also involves MuSig support.
 
 <div class="LineHeight20per"> </div>
 
-The Grin project (Mimblewimble in Rust) forked `GitHub:ElementsProject/secp256k1-zkp` as `GitHub:mimblewimble/secp256k1-zkp`  and added Rust wrappers as `mimblewimble/rust-secp256k1-zkp` for their blockchain. The Beam project (Mimblewimble in C++) link directly to `GitHub:ElementsProject/secp256k1-zkp`.
+The Grin project (Mimblewimble in Rust) forked `ElementsProject/secp256k1-zkp` as `mimblewimble/secp256k1-zkp`  and added Rust wrappers as `mimblewimble/rust-secp256k1-zkp` for their blockchain. The Beam project (Mimblewimble in C++) link directly to `ElementsProject/secp256k1-zkp`.
 
 @divend
 
@@ -431,7 +433,7 @@ Adjoint, Inc. did an implementation of Bulletproofs in Haskell at `GitHub: adjoi
 
 <div class="LineHeight20per"> </div>
 
-Chain/Interstellar did an implementation of Bulletproofs in Rust from the ground up at `GitHub:dalek-cryptography/bulletproofs`. They implemented parallel Edwards formulas using Intel® Advanced Vector Extensions 2 (AVX2) to accelerate curve operations. Initial testing suggests approximately 50% speedup (twice as fast) over the original `libsecp256k1`-based Bulletproofs implementation.
+Chain/Interstellar did an implementation of Bulletproofs in Rust from the ground up at `dalek-cryptography/bulletproofs`. They implemented parallel Edwards formulas using Intel® Advanced Vector Extensions 2 (AVX2) to accelerate curve operations. Initial testing suggests approximately 50% speedup (twice as fast) over the original `libsecp256k1`-based Bulletproofs implementation.
 
 @divend
 
@@ -461,10 +463,38 @@ The Monero project had security audits done on their Bulletproofs' that resulted
 
 ### Wallet Reconstruction and Switch Commitment - Grin
 
-???
+@div[text-left]
+
+Grin implemented a switch commitment as part of a Tx output to be ready for the age of quantum adversaries and to pose as defense mechanism. It uses Bulletproof range proof rewinding so that wallets can recognize their own transaction outputs.
+
+<div class="LineHeight20per"> </div>
+
+It looks exactly like the original PC $ vG + bH $ but the blinding factor $ b $ is tweaked to be
+
+`
+$$
+b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J )
+$$
+`
+
+The EC then becomes
+
+`
+$$
+vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
+$$
+`
+
+After activation users can reveal $ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $ and *Verifiers* can check if it's computed correctly and use it as if it were the ElGamal Commitment $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) ​$. 
+
+@divend
 
 ---
 
 ## Conclusions
 
-???
+- Bulletproofs are not Bulletproofs are not Bulletproofs. This is evident by comparing the functionality, security and performance of all the current different Bulletproof implementations as well as the evolving nature of Bulletproofs.
+- The security audit instigated by the Monero project on their Bulletproofs implementation and the resulting findings and corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to the nature of confidential transactions; transacted values and token owners are not public.
+- The growing number of open source Bulletproof implementations should strengthen the development of a new confidential blockchain protocol like Tari.
+- In the pure implementation of Bulletproof range proofs, a discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding  (*i.e. confidential*), but only computationally *binding*  (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. 
+- Bulletproofs are not only about range proofs. All the different Bulletproof use cases have a potential implementation in a new confidential blockchain protocol like Tari; in the base layer as well as in the probable 2nd layer.
