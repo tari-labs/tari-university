@@ -148,7 +148,7 @@ Arithmetic circuit example with size 6 and depth 2 that calculates a polynomial:
 
 @div[s400px]
 
-  ![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/ArithmiticCircuit.png)
+  ![ArithmiticCircuit](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/ArithmiticCircuit.png)
 
 @divend
 
@@ -208,9 +208,13 @@ Implementation uses 3 algorithms: **<code>Setup()</code>** to set up the commitm
 
 @div[text-left]
 
-An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r ​$ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem.
+An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem.
+
+@divend
 
 <div class="LineHeight200per"> <br></div>
+
+@div[text-left]
 
 (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
 
@@ -243,7 +247,7 @@ The essence of Bulletproofs are its ability to calculate proofs, including range
 
 The *prover* $ \mathcal{P} $ must convince *verifier* $ \mathcal{V} $ that commitment $ C(x,r) = xH + rG $ contains a number such that $ x \in [0,2^n - 1] $. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x $ so then the following must be proven:
 
-<div class="LineHeight20per"> </div>
+<div class="LineHeight20per"> <br></div>
 
 @divend
 
@@ -255,13 +259,13 @@ $$
 
 @div[text-left]
 
-<div class="LineHeight20per"> </div>
+<div class="LineHeight20per"> <br></div>
 
 If the *verifier* $ \mathcal{V} ​$ sends a random random linear combination of the constraints $ y \in \mathbb{Z_p} ​$ and $ z \in \mathbb{Z_p} ​$ to the *prover* $ \mathcal{P} ​$ the following can be constructed for (1):
 
 @divend
 
-<div class="LineHeight20per"> </div>
+<div class="LineHeight20per"> <br></div>
 
 `
 $$
@@ -272,11 +276,11 @@ $$
 $$
 `
 
-<div class="LineHeight20per"> </div>
+<div class="LineHeight20per"> <br></div>
 
 @div[text-left]
 
-Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x ​$ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $`, vector PCs can be constructed.
+Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x $ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $`, vector PCs can be constructed.
 
 @divend
 
@@ -284,7 +288,7 @@ Only important thing to note here is that (2) contains a single inner-product id
 
 @div[text-left]
 
-These vectors have size $ n $ that would require many expensive exponentiations. However, they are reduced interactively (*with a logarithmic number of rounds*) by the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ into a single multi-exponentiation of size `$ 2n + 2 \log_2(n) + 1 $` (*can be calculated much faster than $ n ​$ separate ones*).
+These vectors have size $ n $ that would require many expensive exponentiations. However, they are reduced interactively (*with a logarithmic number of rounds*) by the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ into a single multi-exponentiation of size `$ 2n + 2 \log_2(n) + 1 $` (*can be calculated much faster than $ n $ separate ones*).
 
 <div class="LineHeight20per"> </div> 
 
@@ -295,6 +299,34 @@ These vectors have size $ n $ that would require many expensive exponentiations.
 @div[s450px]
 
 ![VectorCutNHalf](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
+
+@divend
+
++++
+
+@div[text-left]
+
+The logarithmic proof size enables the *prover* $ \mathcal{P} $ to aggregate multiple range proofs into a single short proof, and to aggregate multiple range proofs from different parties into one proof.
+
+@divend
+
+@div[s750px]
+
+![AggregateBulletproofsSize](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/AggregateBulletproofsSize.png)
+
+@divend
+
++++
+
+@div[text-left]
+
+Recent implementation of Bulletproofs in Monero on 2018/10/18 saw the average data size on the blockchain per payment reduce by ~73% and the average US$-based fees reduce by ~94.5% for the period 2018/08/30 to 2018/11/28.
+
+@divend
+
+@div[s750px]
+
+![xmr-tx-size](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/xmr-tx-size.png)
 
 @divend
 
