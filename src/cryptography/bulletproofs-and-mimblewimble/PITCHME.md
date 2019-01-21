@@ -494,7 +494,14 @@ After activation users can reveal $ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu
 ## Conclusions
 
 - Bulletproofs are not Bulletproofs are not Bulletproofs. This is evident by comparing the functionality, security and performance of all the current different Bulletproof implementations as well as the evolving nature of Bulletproofs.
+
 - The security audit instigated by the Monero project on their Bulletproofs implementation and the resulting findings and corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to the nature of confidential transactions; transacted values and token owners are not public.
+
 - The growing number of open source Bulletproof implementations should strengthen the development of a new confidential blockchain protocol like Tari.
+
++++
+
+
 - In the pure implementation of Bulletproof range proofs, a discrete-log attacker (*e.g. a bad actor employing a quantum computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly hiding  (*i.e. confidential*), but only computationally *binding*  (*i.e. not quantum resistant*). Unconditional soundness is lost due to the data compression being employed. 
+
 - Bulletproofs are not only about range proofs. All the different Bulletproof use cases have a potential implementation in a new confidential blockchain protocol like Tari; in the base layer as well as in the probable 2nd layer.
