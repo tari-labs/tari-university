@@ -306,7 +306,7 @@ These vectors have size $ n $ that would require many expensive exponentiations.
 
 @div[text-left]
 
-The logarithmic proof size enables the *prover* $ \mathcal{P} $ to aggregate multiple range proofs into a single short proof, and to aggregate multiple range proofs from different parties into one proof.
+The logarithmic proof size enables the *prover* $ \mathcal{P} ​$ to aggregate multiple range proofs into a single short proof, and to aggregate multiple range proofs from different parties into one proof.
 
 @divend
 
@@ -324,7 +324,7 @@ Recent implementation of Bulletproofs in Monero on 2018/10/18 saw the average da
 
 @divend
 
-@div[s750px]
+@div[s700px]
 
 ![xmr-tx-size](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/xmr-tx-size.png)
 
@@ -334,9 +334,67 @@ Recent implementation of Bulletproofs in Monero on 2018/10/18 saw the average da
 
 ## Applications for Bulletproofs
 
-???
+@div[text-left]
+
+Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits, thus have wide application in practice.
+
+@divend
+
+- Range proofs
+
+  - Proof that a secret committed value lies in a certain interval, say $ x \in [0,2^{52} - 1] $), and prevents numbers coming near a large prime, say $ 2^{256} $, to wrap around when adding a small number.
+
+- Merkle proofs
+
+  - Hash preimages in a Merkle tree can be leveraged to create zero-knowledge Merkle proofs using Bulletproofs, to create efficient proofs of inclusion in massive data sets.
+
+- Proof of solvency
+
+  - Specialized application of Merkle proofs; coins can be added into a giant Merkle tree with confidential proof that some outputs are in the Merkle tree and that those outputs add up to some amount. A Bitcoin exchange need ~18GB proof of solvency for $ 2,000,000 $ customers; this could be reduced to ~62MB.
+
++++
+
+- Smart contracts and Crypto-derivatives
+
+  - Traditionally, a new trusted setup is needed for each smart contract when verifying privacy-preserving smart contracts. The Refereed Delegation Model makes use of a specific verification circuit linked to a smart contract. A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts. 
+
+@div[s500px]
+
+![RefereedDelegation](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/RefereedDelegation.png)
+
+@divend
+
++++
+
+- Multi-signatures with deterministic nonces
+
+  - With Bulletproofs every signatory can prove that their nonce was generated deterministically. This will still work if one signatory were to leave the conversation and re-join later, with no memory of interacting.
+
+- Scriptless Scripts
+
+  - ZK Sigma protocols for Scriptless scripts exploiting the linear property of Schnorr signatures can be done with Bulletproofs.
+
+- Verifiable shuffles
+
+  - If proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$.
+  - Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. Possible to create a complex function that evaluates to 1 if all secret inputs are correct and to 0 otherwise. This can be encoded in an arithmetic circuit and can be implemented with Bulletproofs.
+  - A potential use case is to verify that two nodes executed the same list of independent instructions $ [x1,x4,x3,x2] $ and $ [x1,x2,x3,x4] $, that may be in different order, to arrive at the same next state $ N ​$. The nodes don't need to share the actual instructions with a *Verifier*, but the *Verifier* can show that they executed the same set without knowing the instructions.
+
++++
+
+- Verifiable shuffles (*cont'd*)
+
+  - Some other applications are voting, blind signatures for untraceable payments, and solvency proofs. Bulletproofs can be used efficiently to prove verifiable shuffles of size $O \log(n)$ - previously size $O \sqrt{n}$.
+
+@div[s500px]
+
+![VerifiableShuffles](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/VerifiableShuffles.png)
+
+@divend
 
 ---
+
+
 
 ## Comparison to other ZK Proof Systems
 
