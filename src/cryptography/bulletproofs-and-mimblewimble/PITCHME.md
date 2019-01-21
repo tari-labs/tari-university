@@ -208,9 +208,9 @@ Implementation uses 3 algorithms: **<code>Setup()</code>** to set up the commitm
 
 @div[text-left]
 
-An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem.
+An <u>ElGamal Commitment</u> is a PC with an additional commitment $ g^r ​$ to the randomness used. The ElGamal encryption scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem.
 
-<div class="LineHeight20per"> </div>
+<div class="LineHeight200per"> <br></div>
 
 (<i>**Note:** Not the same as the ElGamal signature scheme.</i>)
 
@@ -226,7 +226,7 @@ The basis of confidential Txs is to replace input and output amounts with PCs. I
 
 <div class="LineHeight20per"> </div>
 
-The basic idea is to hide all the bits of the amount $ x $ to be committed to in a single vector PC, to prove that each bit satisfies $ \omega(\omega-1) = 0 $, that is each $ \omega $ is either $ 0 $ or $ 1 $, and that they sum to $ x $.
+The basic idea is to hide all the bits of the amount $ x ​$ to be committed to in a single vector PC, to prove that each bit satisfies $ \omega(\omega-1) = 0 ​$, that is each $ \omega ​$ is either $ 0 ​$ or $ 1 ​$, and that they sum to $ x ​$.
 
 <div class="LineHeight20per"> </div>
 
@@ -241,11 +241,11 @@ The essence of Bulletproofs are its ability to calculate proofs, including range
 
 @div[text-left]
 
-The *prover* $ \mathcal{P} ​$ must convince *verifier* $ \mathcal{V} ​$ that commitment $ C(x,r) = xH + rG ​$ contains a number such that $ x \in [0,2^n - 1] ​$. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x ​$ so then the following must be proven:
-
-@divend
+The *prover* $ \mathcal{P} $ must convince *verifier* $ \mathcal{V} $ that commitment $ C(x,r) = xH + rG $ contains a number such that $ x \in [0,2^n - 1] $. If `$ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n $` is the vector containing the bits of $ x $ so then the following must be proven:
 
 <div class="LineHeight20per"> </div>
+
+@divend
 
 `
 $$
@@ -253,9 +253,9 @@ $$
 $$
 `
 
-<div class="LineHeight20per"> </div>
-
 @div[text-left]
+
+<div class="LineHeight20per"> </div>
 
 If the *verifier* $ \mathcal{V} ​$ sends a random random linear combination of the constraints $ y \in \mathbb{Z_p} ​$ and $ z \in \mathbb{Z_p} ​$ to the *prover* $ \mathcal{P} ​$ the following can be constructed for (1):
 
@@ -284,7 +284,7 @@ Only important thing to note here is that (2) contains a single inner-product id
 
 @div[text-left]
 
-These vectors have size $ n $ that would require many expensive exponentiations. However, they are reduced interactively (*with a logarithmic number of rounds*) by the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ into a single multi-exponentiation of size `$ 2n + 2 \log_2(n) + 1 $` (*can be calculated much faster than $ n $ separate ones*).
+These vectors have size $ n $ that would require many expensive exponentiations. However, they are reduced interactively (*with a logarithmic number of rounds*) by the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ into a single multi-exponentiation of size `$ 2n + 2 \log_2(n) + 1 $` (*can be calculated much faster than $ n ​$ separate ones*).
 
 <div class="LineHeight20per"> </div> 
 
