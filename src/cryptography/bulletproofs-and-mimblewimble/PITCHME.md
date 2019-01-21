@@ -387,15 +387,15 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ## Comparison to other ZK Proof Systems
 
-| Proof System                        | Sigma Protocols | zk-SNARK                                | STARK                                                  | ZKBoo                   | Bulletproofs |
-| ----------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------ | ----------------------- | ------------ |
-| <b>Interactive</b>                  | yes             | ***no***                                | ***no***                                               | ***no***                | ***no***     |
-| <b>Proof Size</b>                   | long            | ***short***                             | shortish                                               | long                    | *short*      |
-| <b>Prover Runtime Scalability</b>   | ***linear***    | quasilinear                             | quasilinear (big memory requirement)                   | ***linear***            | ***linear*** |
-| <b>Verifier Runtime Scalability</b> | linear          | *efficient*                             | ***efficient* (*poly-logarithmically*)**               | ***efficient***         | linear       |
-| <b>Trusted Setup</b>                | ***no***        | required                                | ***no***                                               | ***no***                | ***no***     |
-| <b>Practical</b>                    | ***yes***       | ***yes***                               | not   quite                                            | somewhat                | ***yes***    |
-| <b>Security Assumptions</b>         | ***DL***        | non-falsifiable, but not on par with DL | ***quantum secure One-way Function (better than DL)*** | ***similar to STARKs*** | ***DL***     |
+| System                              | Sigma        | zk-SNARK                             | STARK                                                  | ZKBoo                   | Bulletproofs |
+| ----------------------------------- | ------------ | ------------------------------------ | ------------------------------------------------------ | ----------------------- | ------------ |
+| <b>Interactive</b>                  | yes          | ***no***                             | ***no***                                               | ***no***                | ***no***     |
+| <b>Proof Size</b>                   | long         | ***short***                          | shortish                                               | long                    | *short*      |
+| <b>Prover Runtime Scalability</b>   | ***linear*** | quasilinear                          | quasilinear (big memory requirement)                   | ***linear***            | ***linear*** |
+| <b>Verifier Runtime Scalability</b> | linear       | *efficient*                          | ***efficient* (*poly-logarithmically*)**               | ***efficient***         | linear       |
+| <b>Trusted</b>                      | ***no***     | required                             | ***no***                                               | ***no***                | ***no***     |
+| <b>Practical</b>                    | ***yes***    | ***yes***                            | not   quite                                            | somewhat                | ***yes***    |
+| <b>Security Assumptions</b>         | ***DL***     | non-falsifiable (not on par with DL) | ***quantum secure One-way Function (better than DL)*** | ***similar to STARKs*** | ***DL***     |
 
 ---
 
