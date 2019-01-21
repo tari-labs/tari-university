@@ -87,8 +87,13 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y $ is true without revealing any information. The proof system must be **complete** (if statement true and *prover* and *verifier* follow protocol *verifier* will accept), **sound** (if statement false and *verifier* follows protocol *verifier* will not accept) and **ZK** (if statement is true and *prover* follows protocol, *verifier* will not learn any confidential information except that statement $ Y $ is true).
 
+@divend
 
-<div class="LineHeight20per"> </div>
+@div[s350px]
+
+![ZK](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/ZK.png)
+
+@divend
 
 The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k ​$ such that $ b^k=a ​$ for any integer $ k ​$ where $ a,b \in \mathbb G ​$ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p ​$.
 
@@ -226,7 +231,7 @@ $$
 
 @div[text-left]
 
-If the *verifier* $ \mathcal{V} $ sends a random random linear combination of the constraints $ y \in \mathbb{Z_p} $ and $ z \in \mathbb{Z_p} $ to the *prover* $ \mathcal{P} $ the following can be constructed for (1):
+If the *verifier* $ \mathcal{V} ​$ sends a random random linear combination of the constraints $ y \in \mathbb{Z_p} ​$ and $ z \in \mathbb{Z_p} ​$ to the *prover* $ \mathcal{P} ​$ the following can be constructed for (1):
 
 @divend
 
@@ -241,7 +246,7 @@ $$
 
 @div[text-left]
 
-Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x ​$ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $` a vector PCs can be constructed.
+Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x $ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $`, vector PCs can be constructed.
 
 @divend
 
@@ -249,17 +254,17 @@ Only important thing to note here is that (2) contains a single inner-product id
 
 @div[text-left]
 
-These vectors have size $ n ​$ that would require many expensive exponentiations. However, they are reduced interactively by the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ into a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 ​$ with a logarithmic number of rounds, each time calculating a new set of PC generators.
+These vectors have size $ n $ that would require many expensive exponentiations. However, they are reduced interactively by the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ into a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $ with a logarithmic number of rounds.
 
 <div class="LineHeight20per"> </div> 
 
-The PC scheme allows us to cut a vector in half and compress the two halves together. Applying the same trick repeatedly  $ \log n ​$ times produces a single value which is easy to send.
+<u>How this works:</u> The PC scheme allows us to cut a vector in half and compress the two halves together, each time calculating a new set of PC generators. Applying the same trick repeatedly $ \log n ​$ times produces a single value which is easy to send.
 
 @divend
 
 @div[s500px]
 
-![Ricardian Contract](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
+![VectorCutNHalf](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
 
 @divend
 
