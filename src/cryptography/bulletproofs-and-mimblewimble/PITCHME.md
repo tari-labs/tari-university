@@ -341,7 +341,7 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 @divend
 
 - Range proofs
-  - Proof that a secret committed value lies in a certain interval, say $ x \in [0,2^{52} - 1] $), and prevents numbers coming near a large prime, say $ 2^{256} $, to wrap around when adding a small number.
+  - Proof that a secret committed value lies in a certain interval, say $ x \in [0,2^{52} - 1] $), and prevents numbers coming near a large prime, say $ 2^{256} ​$, to wrap around when adding a small number.
 - Merkle proofs
   - Hash preimages in a Merkle tree can be leveraged to create zero-knowledge Merkle proofs using Bulletproofs, to create efficient proofs of inclusion in massive data sets.
 - Proof of solvency
@@ -363,10 +363,8 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 - Multi-signatures with deterministic nonces
   - With Bulletproofs every signatory can prove that their nonce was generated deterministically. This will still work if one signatory were to leave the conversation and re-join later, with no memory of interacting.
-- Scriptless Scripts
-  - ZK Sigma protocols for Scriptless scripts exploiting the linear property of Schnorr signatures can be done with Bulletproofs.
 - Verifiable shuffles
-  - If proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]​$.
+  - Proof that one list of values $[x_1, ... , x_n]$ is a permutation of a 2nd list $[y_1, ... , y_n]$.
   - Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. Possible to create a complex function that evaluates to 1 if all secret inputs are correct and to 0 otherwise. This can be encoded in an arithmetic circuit and can be implemented with Bulletproofs.
   - A potential use case is to verify that two nodes executed the same list of independent instructions $ [x1,x4,x3,x2] $ and $ [x1,x2,x3,x4] $, that may be in different order, to arrive at the same next state $ N $. The nodes don't need to share the actual instructions with a *Verifier*, but the *Verifier* can show that they executed the same set without knowing the instructions. 
 
@@ -381,6 +379,9 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 ![VerifiableShuffles](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/VerifiableShuffles.png)
 
 @divend
+
+- Scriptless Scripts
+  - ZK Sigma protocols for Scriptless scripts exploiting the linear property of Schnorr signatures can be done with Bulletproofs.
 
 ---
 
