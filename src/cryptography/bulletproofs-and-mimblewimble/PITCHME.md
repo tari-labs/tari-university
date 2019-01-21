@@ -85,7 +85,19 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 @div[text-left]
 
-A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y $ is true without revealing any information. The proof system must be **complete** (if statement true and *prover* and *verifier* follow protocol *verifier* will accept), **sound** (if statement false and *verifier* follows protocol *verifier* will not accept) and **ZK** (if statement is true and *prover* follows protocol, *verifier* will not learn any confidential information except that statement $ Y $ is true).
+A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *verifier* that a statement $ Y $ is true without revealing any information. The proof system must be:
+
+<div class="LineHeight20per"> </div>
+
+**complete** (if statement true and *prover* and *verifier* follow protocol *verifier* will accept), 
+
+<div class="LineHeight20per"> </div>
+
+**sound** (if statement false and *verifier* follows protocol *verifier* will not accept) and
+
+<div class="LineHeight20per"> </div>
+
+**ZK** (if statement is true and *prover* follows protocol, *verifier* will not learn any confidential information except that statement $ Y $ is true).
 
 @divend
 
@@ -95,7 +107,9 @@ A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *v
 
 @divend
 
-The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k ​$ such that $ b^k=a ​$ for any integer $ k ​$ where $ a,b \in \mathbb G ​$ is hard to guess (has no efficient solution) for carefully chosen $ \mathbb F_p ​$.
+@div[text-left]
+
+The <u>Discrete Logarithm Problem</u> (DLP) with $ \log_ba = k $ and $ b^k=a $ for any integer $ k $ where $ a,b \in \mathbb G $ is hard to guess (no efficient solution) for carefully chosen $ \mathbb F_p $.
 
 @divend
 
