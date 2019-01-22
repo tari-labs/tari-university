@@ -10,7 +10,7 @@ Bulletproofs also implement a Multi-party Computation (MPC) protocol whereby dis
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) *binding*<sup>[def][cs~]</sup> vector Pedersen Commitments<sup>[def][ecpc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen Commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
+[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen Commitment to $ 0 ​$ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 ​$. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
 
 
 
@@ -40,17 +40,28 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 
 ## How do Bulletproofs work?
 
-The basis of confidential transactions is to replace the input and output amounts with Pedersen Commitments<sup>[def][ecpc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mspace{4mu} mod \mspace{4mu} q ​$, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products. The basic idea is to hide all the bits of the amount in a single vector Pedersen Commitment, to prove that each bit satisfies $ x(x-1) = 0 ​$, that is each $ x ​$ is either $ 0 ​$ or $ 1 ​$, and that they sum to some value $v​$. These conditions are then expressed as an efficient simple inner product of small size that can work with Pedersen Commitments. ([[1]], [[3]], [[5]])
+The basis of confidential transactions is to replace the input and output amounts with Pedersen Commitments<sup>[def][ecpc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden, thus zero-knowledge. The transaction amounts must be encoded as $ integers \mod q $, which can overflow, but is prevented by making use of range proofs. Enter Bulletproofs. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products.
+
+The *prover* must convince the *verifier* that commitment $ C(x,r) = xH + rG ​$ contains a number such that $ x \in [0,2^n - 1] ​$. If $ \mathbf {a} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n ​$ is the vector containing the bits of $ x ​$, the basic idea is to hide all the bits of the amount in a single vector Pedersen Commitment. It must then be proven that each bit satisfies $ \omega(\omega-1) = 0 ​$, that is each $ \omega ​$ is either $ 0 ​$ or $ 1 ​$, and that they sum to $ x ​$. As part of the ensuing protocol the *verifier* sends random linear combinations of constraints and challenges $ \in \mathbb{Z_p} ​$ to the *prover*. The *prover* is then able to construct a vectorized inner product relation containing the elements of $ \mathbf {a} ​$, the constraints and challenges $ \in \mathbb{Z_p} ​$ and appropriate blinding vectors $ \in \mathbb Z_p^n ​$.
+
+These inner product vectors have size $ n ​$ that would require many expensive exponentiations. The Pedersen Commitment scheme allows us to cut a vector in half and compress the two halves together, each time calculating a new set of Pedersen Commitment generators. Applying the same trick repeatedly $ \log _2 n ​$ times produces a single value. This is applied to the inner product vectors; they are reduced interactively with a logarithmic number of rounds by the *prover* and *verifier* into a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 ​$. This single multi-exponentiation can then be calculated much faster than $ n ​$ separate ones. All of this are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
+
+<p align="center"><img src="sources/VectorCutNHalf.png" width="450" /></p>
+
+<p align="center"><b>Figure&nbsp;1: Vector Pedersen Commitment Cut and Half ([<a href="https://eprint.iacr.org/2016/263.pdf" title="Efficient zero-knowledge arguments for arithmetic 
+circuits in the discrete log setting, Bootle J et al.">12</a>], [<a href="https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb/" title="How to do Zero-Knowledge from Discrete-Logs 
+in under 7kB, Bootle J.">63</a>])</b></p>
 
 
 
-Bulletproofs are made non-interactive using the Fiat-Shamir heuristic and only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] ​$ elements are required for the range proofs and $ [\log_2(n) + 13] ​$ elements for arithmetic circuit proofs with $ n ​$ denoting the multiplicative complexity. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
+Bulletproofs only rely on the discrete logarithm assumption. What this means in practice is that Bulletproofs are compatible with any secure elliptic curve, which makes it extremely versatile. The proof sizes are short; only $ [2 \log_2(n) + 9] $ elements are required for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic circuit proofs with $ n $ denoting the multiplicative complexity. The logarithmic proof size additionally enables the *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from different parties into one proof (see Figure&nbsp;1). ([[1]], [[3]], [[5]])
 
 <p align="center"><img src="sources/AggregateBulletproofsSize.png" width="650" /></p>
 
 <p align="center"><b>Figure&nbsp;1: Logarithmic Aggregate Bulletproofs Proof Sizes [<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bullet Proofs (Slides), 
 Bitcoin Milan Meetup 2018-02-02, 
 Andrew Poelstra">3</a>]</b></p>
+
 
 If all Bitcoin transactions were confidential, approximately 50 million UTXOs from approximately 22 million transactions would result in roughly 160GB of range proof data, when using current/linear proof systems and assuming use of 52-bits to represent any value from 1 satoshi up to 21 million bitcoins. Aggregated Bulletproofs would reduce that data set to less than 17GB. [[1]]
 
@@ -126,7 +137,7 @@ The table below ([[2]], [[5]])  shows a high-level comparison between Sigma prot
 | Proof System                        | Sigma Protocols | zk-SNARK                                | STARK                                                        | ZKBoo                   | Bulletproofs |
 | ----------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------ | ----------------------- | ------------ |
 | <b>Interactive</b>                  | yes             | ***no***                                | ***no***                                                     | ***no***                | ***no***     |
-| <b>Proof Size</b>                   | long            | ***short***                             | shortish                                                     | long                    | *short*      |
+| <b>Proof Size</b>                   | long            | ***short***                             | shortish                                                     | long                    | ***short***  |
 | <b>Prover Runtime Scalability</b>   | ***linear***    | quasilinear                             | quasilinear (big memory requirement)                         | ***linear***            | ***linear*** |
 | <b>Verifier Runtime Scalability</b> | linear          | *efficient*                             | ***efficient* (*poly-logarithmically*)**                     | ***efficient***         | linear       |
 | <b>Trusted Setup</b>                | ***no***        | required                                | ***no***                                                     | ***no***                | ***no***     |
@@ -181,7 +192,7 @@ Grin implemented a switch commitment [[43]] as part of a transaction output to b
 
 The initial Grin implementation ([[21]], [[34]]. [[35]], [[54]]) hides two things in the Bulletproof range proof: a transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly *binding*<sup>[def][cs~]</sup>  later on as opposed to currently being perfectly *hiding*<sup>[def][cs~]</sup>.  *Perfect* in this sense means that a quantum adversary (an attacker with infinite computing power) cannot tell what amount has been committed to and is also unable to produce fake commitments. *Computational*, means that no efficient algorithm running in a practical amount of time can reveal the commitment amount or produce fake commitments except with small probability. The Bulletproof range proofs are stored in the transaction kernel and will thus remain persistent in the blockchain.
 
-In this implementation a Grin transaction output contains the original (Elliptic Curve) Pedersen Commitment<sup>[def][ecpc~]</sup> as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random value $ r $ as input. The transaction output has the following form
+In this implementation a Grin transaction output contains the original (Elliptic Curve) Pedersen Commitment<sup>[def][ecpc~]</sup> as well as the optional switch commitment hash. The switch commitment hash takes the resultant blinding factor $ b ​$, a third cyclic group random generator $ J ​$ and a wallet-seed derived random value $ r ​$ as input. The transaction output has the following form
 
 $$
 (vG + bH \mspace{3mu} , \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r))
@@ -211,17 +222,17 @@ To retrieve the embedded message the process is simply inverted. Notice that the
 
 #### Improved Implementation
 
-The latter Grin implementation ([[56]], [[57]]) uses Bulletproof range proof rewinding so that wallets can recognize their own transaction outputs. This negated the requirement to remember the wallet-seed derived random value $ r $, nonce $ \eta $ for the seed function $ \mathrm S $ and use of the adapted pair $ \tilde{\alpha} , \tilde{\tau_1} $ in the Bulletproof range proof calculation.
+The latter Grin implementation ([[56]], [[57]]) uses Bulletproof range proof rewinding so that wallets can recognize their own transaction outputs. This negated the requirement to remember the wallet-seed derived random value $ r ​$, nonce $ \eta ​$ for the seed function $ \mathrm S ​$ and use of the adapted pair $ \tilde{\alpha} , \tilde{\tau_1} ​$ in the Bulletproof range proof calculation.
 
-In this implementation it is not necessary to remember a hash of the switch commitment as part of the transaction output set and for it to be passed around during a transaction. The switch commitment looks exactly like the original (Elliptic Curve) Pedersen Commitment $ vG + bH $ but in this instance the blinding factor $ b $ is tweaked to be 
+In this implementation it is not necessary to remember a hash of the switch commitment as part of the transaction output set and for it to be passed around during a transaction. The switch commitment looks exactly like the original (Elliptic Curve) Pedersen Commitment $ vG + bH ​$ but in this instance the blinding factor $ b ​$ is tweaked to be 
 $$
 b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J )
 $$
- with $ b^\prime $ being the user generated blinding factor. The (Elliptic Curve) Pedersen Commitment then becomes
+ with $ b^\prime ​$ being the user generated blinding factor. The (Elliptic Curve) Pedersen Commitment then becomes
 $$
 vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
 $$
-After activation of the switch commitment in the age of quantum adversaries, users can reveal $ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $ and *Verifiers* can check if it's computed correctly and use it as if it were the ElGamal Commitment<sup>[def][egc~]</sup>  $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) $. 
+After activation of the switch commitment in the age of quantum adversaries, users can reveal $ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) ​$ and *Verifiers* can check if it's computed correctly and use it as if it were the ElGamal Commitment<sup>[def][egc~]</sup>  $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) ​$. 
 
 
 
@@ -668,6 +679,12 @@ University of Luxembourg"
 Gibson A., 
 July 2018"
 
+[[63]] How to do Zero-Knowledge from Discrete-Logs in under 7kB, Bootle J., October 2016, https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb, Date accessed: 2019-01-18.
+
+[63]: https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb
+"How to do Zero-Knowledge from Discrete-Logs in under 7kB, 
+Bootle J., 
+October 2016"
 
 
 ## Appendices
@@ -676,7 +693,7 @@ July 2018"
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C ​$ over a field $ F ​$ and variables $ (x_1, ..., x_n) ​$ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f ​$ is to find any arithmetic circuit that can calculate $ f ​$, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
 
   <p align="center"><img src="sources/ArithmiticCircuit.png" width="300" /></p>
 
@@ -702,7 +719,7 @@ zero-knowledge proof is a
 cryptographic primitive ..."
 
 
-- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $ , powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
+- <i><u>Discrete Logarithm/Discrete Logarithm Problem (DLP)</u></i>:<a name="dlp"> </a>In the mathematics of real numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $. Analogously, in any group  $ G $, powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of elliptic curves over finite fields has no efficient solution. ([[17]], [[40]])
 
 [dlp~]: #dlp
 "In the mathematics of the real 

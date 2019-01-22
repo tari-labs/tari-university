@@ -73,7 +73,7 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/bulletproofs-and-
 
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field
 
-  Let $ \mathbb G^n ​$ be the vector spaces of dimension $ n ​$ over $ \mathbb G ​$ 
+  Let $ \mathbb G^n $ be the vector spaces of dimension $ n $ over $ \mathbb G $ 
 
 - Let $ \mathbf {a} \in \mathbb G^n $ be a vector with elements $ a_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n \in \mathbb G $. 
 
@@ -230,7 +230,7 @@ The basis of confidential Txs is to replace input and output amounts with PCs. I
 
 <div class="LineHeight20per"> </div>
 
-The basic idea is to hide all the bits of the amount $ x ​$ to be committed to in a single vector PC, to prove that each bit satisfies $ \omega(\omega-1) = 0 ​$, that is each $ \omega ​$ is either $ 0 ​$ or $ 1 ​$, and that they sum to $ x ​$.
+The basic idea is to hide all the bits of the amount $ x $ to be committed to in a single vector PC, to prove that each bit satisfies $ \omega(\omega-1) = 0 $, that is each $ \omega $ is either $ 0 $ or $ 1 $, and that they sum to $ x $.
 
 <div class="LineHeight20per"> </div>
 
@@ -261,7 +261,7 @@ $$
 
 <div class="LineHeight20per"> <br></div>
 
-If the *verifier* $ \mathcal{V} ​$ sends a random random linear combination of the constraints $ y \in \mathbb{Z_p} ​$ and $ z \in \mathbb{Z_p} ​$ to the *prover* $ \mathcal{P} ​$ the following can be constructed for (1):
+If the *verifier* $ \mathcal{V} $ sends a random linear combination of the constraints $ y \in \mathbb{Z_p} $ and $ z \in \mathbb{Z_p} $ to the *prover* $ \mathcal{P} $ the following can be constructed for (1):
 
 @divend
 
@@ -280,7 +280,7 @@ $$
 
 @div[text-left]
 
-Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x $ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_L $`, vector PCs can be constructed.
+Only important thing to note here is that (2) contains a single inner-product identity containing the bits of $ x $ in 2 vectors. Introducing blinding vectors for `$ \mathbf {a}_L $` and `$ \mathbf {a}_R $`, vector PCs can be constructed.
 
 @divend
 
@@ -407,7 +407,7 @@ Bulletproofs development still evolving. Different implementations also offer di
 
 @divend
 
-<div class="LineHeight20per"> <br></div>
+<div class="LineHeight200per"> <br></div>
 
 ### Current & Past Efforts
 
@@ -429,7 +429,7 @@ Implementation for Bulletproof range proofs done for the Monero project (CryptoN
 
 <div class="LineHeight20per"> </div>
 
-Adjoint, Inc. did an implementation of Bulletproofs in Haskell at `GitHub: adjoint-io/bulletproofs`.
+Adjoint, Inc. did an implementation of Bulletproofs in Haskell at `adjoint-io/bulletproofs`.
 
 <div class="LineHeight20per"> </div>
 
@@ -477,7 +477,7 @@ b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\
 $$
 `
 
-The EC then becomes
+The PC then becomes
 
 `
 $$
