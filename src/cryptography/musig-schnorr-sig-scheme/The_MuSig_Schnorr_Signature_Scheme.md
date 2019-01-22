@@ -95,7 +95,7 @@ There are other multi-signature schemes that already exist that provide key aggr
 
 ## Overview of multi-signatures 
 
-Recently the most obvious use case for multi-signatures is with regards to Bitcoin, where it can function as a more efficient replacement of *$n-of-n$* multisig scripts (where the signatures required to spend and the signatures possible are equal in quantity) and other policies that permit a number of possible combinations of keys.
+Recently the most obvious use case for multi-signatures is with regards to Bitcoin, where it can function as a more efficient replacement of *$ n-of-n $* multisig scripts (where the signatures required to spend and the signatures possible are equal in quantity) and other policies that permit a number of possible combinations of keys.
 
 A key aggregation scheme also lets one reduce the number of public keys per input to one, as a user can send coins to the aggregate of all involved keys rather than including them all in the script. This leads to a smaller on-chain footprint, faster validation, and better privacy.
 
@@ -103,7 +103,7 @@ Instead of creating restrictions with one signature per input, one signature can
 
 No non-interactive aggregation scheme is known that only relies on the DL assumption, but interactive schemes are trivial to construct where a multi-signature scheme has every participant sign the concatenation of all messages. Maxwell G., *et al.* [[4]] focused on key aggregation for Schnorr Signatures and showed that this is not always a desirable construction, and gave an IAS variant of BN with better properties instead. [[1]]
 
-### Bitcoin $m-of-n$ multi-signatures 
+### Bitcoin $ m-of-n $ multi-signatures 
 
 Currently, standard transactions on the Bitcoin network can be referred to as single-signature transactions, as they require only one signature, from the owner of the private key associated with the Bitcoin address. However, the Bitcoin network supports much more complicated transactions which can require the signatures of multiple people before the funds can be transferred. These are often referred to as $m-of-n$ transactions, where m represents the amount of signatures required to spend, while n represents the amount of signatures possible. [[5]]
 
