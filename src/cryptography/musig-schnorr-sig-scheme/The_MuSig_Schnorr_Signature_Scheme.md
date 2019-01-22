@@ -141,7 +141,7 @@ For the development of the new Schnorr-based multi-signature scheme [[4]], key-p
 
 #### Rogue attacks 
 
-Please see Key cancellation attack demo in Intro to Digital Signatures, Schnorr Signatures](../digital_signatures/schnorr_signatures.md) 
+Please see [Key cancellation attack demo in Intro to Digital Signatures, Schnorr Signatures](../../../digital_signatures/schnorr_signatures.md) 
 
 Rogue attacks are a significant concern when implementing multi-signature schemes. Here a subset of corrupted signers, manipulate the public keys computed as functions of the public keys of honest users, allowing them to easily produce forgeries for the set of public keys (despite them not knowing the associated secret keys).
 
