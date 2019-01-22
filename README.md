@@ -44,7 +44,6 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 
 \# | Topic 
 ---- | ----
-
 1 | The MuSig Schnorr Signature Scheme
 2 | Mimblewimble, Scriptless Scripts & MuSig
 3 | Applications of Byzantine Consensus Mechanisms Part 2
