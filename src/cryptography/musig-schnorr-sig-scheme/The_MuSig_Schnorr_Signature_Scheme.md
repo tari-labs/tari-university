@@ -103,7 +103,7 @@ Instead of creating restrictions with one signature per input, one signature can
 
 No non-interactive aggregation scheme is known that only relies on the DL assumption, but interactive schemes are trivial to construct where a multi-signature scheme has every participant sign the concatenation of all messages. Maxwell G., *et al.* [[4]] focused on key aggregation for Schnorr Signatures and showed that this is not always a desirable construction, and gave an IAS variant of BN with better properties instead. [[1]]
 
-### Bitcoin $ m-of-n $ multi-signatures 
+### Bitcoin $m-of-n$ multi-signatures 
 
 Currently, standard transactions on the Bitcoin network can be referred to as single-signature transactions, as they require only one signature, from the owner of the private key associated with the Bitcoin address. However, the Bitcoin network supports much more complicated transactions which can require the signatures of multiple people before the funds can be transferred. These are often referred to as $m-of-n$ transactions, where m represents the amount of signatures required to spend, while n represents the amount of signatures possible. [[5]]
 
@@ -140,6 +140,8 @@ The above described is referred to as the so-called "key-prefixed" variant of th
 For the development of the new Schnorr-based multi-signature scheme [[4]], key-prefixing seemed a requirement for the security proof to go through, despite not knowing the form of an attack. The rationale also follows the process in reality, as messages signed in Bitcoin always indirectly commits to the public key.
 
 #### Rogue attacks 
+
+Please see Key cancellation attack demo in Intro to Digital Signatures, Schnorr Signatures](../digital_signatures/schnorr_signatures.md) 
 
 Rogue attacks are a significant concern when implementing multi-signature schemes. Here a subset of corrupted signers, manipulate the public keys computed as functions of the public keys of honest users, allowing them to easily produce forgeries for the set of public keys (despite them not knowing the associated secret keys).
 
