@@ -17,8 +17,8 @@ Multi-signatures are a form of technology used to add multiple participants to c
 		- [MuSig](#musig)
 		- [Key aggregation](#key-aggregation) 
 	- [Overview of multi-signatures](#overview-of-multi-signatures)
-		- [Bitcoin $ m-of-n $ multi-signatures](#bitcoin- $ m-of-n $ -multi-signatures)
-			- [Use cases for $ m-of-n $ multi-signatures](#use-cases-for- $ m-of-n $ -multi-signatures)
+		- [Bitcoin $ m-of-n $ multi-signatures](#bitcoin--m-of-n--multi-signatures)
+			- [Use cases for $ m-of-n $ multi-signatures](#use-cases-for--m-of-n--multi-signatures)
 		- [Recap on the Schnorr signature scheme](#recap-on-the-schnorr-signature-scheme)
 			- [Rogue attacks](#rogue-attacks)
 		- [Design of a Schnorr multi-signature scheme](#design-of-a-schnorr-multi-signature-scheme)
@@ -131,7 +131,7 @@ The Schnorr signature scheme uses:[[6]]
 
 -   A private/public key pair is a pair $ (x,X) \in \{0,...,p-1\} \mspace{6mu} \mathsf{x} \mspace{6mu} \mathbb{G} $ where $ X=g^{x} $ 
 
--   To sign a message $ m $, the signer draws a random integer $ r $ in $ Z_{p}, $ computes $ R=g^{r} $,&nbsp; $ c=\textrm{H}(X,R,m) $, and $ s=r+cx $ 
+-   To sign a message $ m $, the signer draws a random integer $ r $ in $ Z_{p}, $ computes $ R=g^{r} $,&nbsp; $ c=\textrm{H}(X,R,m) $ and $ s=r+cx ​$ 
 
 -   The signature is the pair $ (R,s) ​$, and its validity can be checked by verifying whether $ g^{s}=RX^{c} ​$ 
 
@@ -167,7 +167,7 @@ The naive way to design a Schnorr multi-signature scheme would be as follows:
 
 -   Partial signatures are then combined into a single signature $(R,s)$ where $s=\Sigma_{i=1}^{n}s_i \mod p $
 
--   The validity of a signature $ (R,s) $ on message $ m $ for public keys $ \{X_{1},...X_{n}\} $ is equivalent to $ g^{s}=R\tilde{X}^{c} $ where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} $ and $ c=\textrm{H}(\tilde{X},R,m) $ 
+-   The validity of a signature $ (R,s) ​$ on message $ m ​$ for public keys $ \{X_{1},...X_{n}\} ​$ is equivalent to $ g^{s}=R\tilde{X}^{c} ​$ where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} ​$ and $ c=\textrm{H}(\tilde{X},R,m) ​$ 
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key $ \tilde{X} $, a property termed *key aggregation*
 
@@ -234,11 +234,43 @@ This is where MuSig comes in. It recovers the *key aggregation property without 
 
 So what was needed was to define $ X $ not as a simple sum of the individual public keys $ X_{i} $, but as a sum of multiples of those keys, where the multiplication factor depends on a hash of all participating keys. [[1]]
 
-The new proposed Schnorr-based multi-signature scheme can be seen as a variant of the BN scheme, allowing key aggregation in the *plain public-key model.* This scheme consists of three rounds, the first two being exactly the same as in BN. Challenges $ c_{i}​ $ are changed from $ c_{i}=\textrm{H}(\langle L \rangle, X_{i},R,m) ​ $ to $ c_{i}=\textrm{H}_{agg}(\langle L \rangle X_{i}) \cdot \textrm{H}_{sig}(\tilde{X,}R,m) ​ $, where $ \tilde{X}​ $ is the so-called aggregated public key corresponding to the multi-set of public keys $ L=\{X_{1},...X_{n}\},​ $ defined as $ \tilde{X}=\stackrel[i=1]{n}{\Pi}X_{i}^{a_{i}c}=R\tilde{X}^{c}​ $ where $ c=\textrm{H}_{sig}(\tilde{X},R,m) ​ $.
+The new proposed Schnorr-based multi-signature scheme can be seen as a variant of the BN scheme, allowing key aggregation in the *plain public-key model.* This scheme consists of three rounds, the first two being exactly the same as in BN. Challenges $ c_{i} ​$ are changed from 
 
-Basically , the key aggregation property has been recovered and can now be enjoyed by the naive scheme, which respect to a more complex aggregation key $ \tilde{X}=\stackrel[i=1]{n}{\Pi}X_{i}^{a_{i}c}​ $.
+$$
+c_{i}=\textrm{H}(\langle L \rangle, X_{i},R,m)  
+$$
 
- $ c=H_{sig}(\langle L \rangle,R,m) $ also yields a secure scheme, however does not allow key aggregation since verification is impossible without knowing all the individual singer keys.
+to 
+
+$$
+c_i = \textrm H_{agg} (\langle L \rangle , X_i) \cdot \textrm H _{sig} (\tilde{X},R,m)
+$$
+
+where $ \tilde{X} $ is the so-called aggregated public key corresponding to the multi-set of public keys $ L=\{X_{1},...X_{n}\}, $ defined as 
+
+$$
+\tilde{X} = \prod  ^n_{i=1} X_{i}^{a_i}
+$$
+
+where 
+
+$$
+g^s = R \prod  ^n_{i=1} X_{i}^{a_{i}c} = R \tilde {X} ^ c
+$$
+
+where
+
+$$
+c=\textrm{H}_{sig}(\tilde{X},R,m)  
+$$
+
+Basically , the key aggregation property has been recovered and can now be enjoyed by the naive scheme, which respect to a more complex aggregation key 
+
+$$
+\tilde{X} = \prod  ^n_{i=1} X_{i}^{a_i} 
+$$
+
+Note that $ c=H_{sig}(\langle L \rangle,R,m) $ also yields a secure scheme, however does not allow key aggregation since verification is impossible without knowing all the individual singer keys.
 
 ### Interactive Aggregate Signatures
 
