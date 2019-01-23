@@ -2,7 +2,7 @@
 
 ## Introduction
 
-An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble](../bulletproofs-and-mimblewimble/MainReport.md), which has largely been based on the original work done by Bünz et al. [[1]]. They documented a number of different Bulletproof protocols, but not all of them in an obvious manner. This report chronologically numbers, summarizes and explain the different Bulletproof protocols in as simple terms as possible. It also simplifies the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report concludes with a discussion on an improved Bulletproof zero-knowledge proof protocol by some community members following an evolutionary approach.
+An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble](../bulletproofs-and-mimblewimble/MainReport.md), which has largely been based on the original work done by Bünz et al. [[1]]. They documented a number of different Bulletproof protocols, but not all of them in an obvious manner. This report summarizes and explains the different Bulletproof protocols in as simple terms as possible. It also simplifies the logic and explains the base mathematical concepts in more detail where prior knowledge was assumed. The report concludes with a discussion on an improved Bulletproof zero-knowledge proof protocol by some community members following an evolutionary approach.
 
 
 
