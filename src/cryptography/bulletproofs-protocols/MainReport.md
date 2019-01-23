@@ -197,7 +197,7 @@ The argument presented in Protocol 1 has the following Commitment Scheme propert
 
 #### How the Proof System for Protocol 1 Works
 
-???
+????
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
 
