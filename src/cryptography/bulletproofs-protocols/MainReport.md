@@ -195,15 +195,15 @@ The argument presented in Protocol 1 has the following Commitment Scheme propert
 
 #### How the Proof System for Protocol 1 Works, Shrinking by Recursion
 
-Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. The Pedersen Commitment scheme allows a vector to be cut in half and to compress the two halves together. Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G ​$ be a hash function for commitment $ P ​$, thus $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) ​$. Note that commitment $ P ​$ and thus $ \mathrm H ​$ is additively homomorphic therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  ​$ can be hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p​$. If $ n ^\prime = n/2 ​$ then
+Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $ of size $ n $. The Pedersen Commitment scheme allows a vector to be cut in half and to compress the two halves together. Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G $ be a hash function for commitment $ P $, thus $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) $. Note that commitment $ P $ and thus $ \mathrm H $ is additively homomorphic, therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  $ can be hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p$. If $ n ^\prime = n/2 $ then
 
 $$
 \begin{aligned} 
-\mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) &= 
+\mathrm H(\mathbf a \mspace{3mu} , \mspace{3mu} \mathbf b \mspace{3mu} , \mspace{3mu} \langle \mathbf a , \mathbf b \rangle) &= 
 \mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf a, \mathbf b \rangle}
 \mspace{20mu} \in \mathbb G
 \\
-\mathrm H(\mathbf a_{[: n ^\prime]}, \mathbf a_{[n ^\prime :]}, \mathbf b_{[: n ^\prime]}, \mathbf b_{[n ^\prime :]}, \langle \mathbf {a}, \mathbf {b} \rangle) &= 
+\mathrm H(\mathbf a_{[: n ^\prime]} \mspace{3mu} , \mspace{3mu} \mathbf a_{[n ^\prime :]} \mspace{3mu} , \mspace{3mu} \mathbf b_{[: n ^\prime]} \mspace{3mu} , \mspace{3mu} \mathbf b_{[n ^\prime :]} \mspace{3mu} , \mspace{3mu} \langle \mathbf {a}, \mathbf {b} \rangle) &= 
 \mathbf g ^ {\mathbf a_{[: n ^\prime]}} _{[: n ^\prime]} \cdot \mathbf g ^ {\mathbf a^\prime_{[n ^\prime :]}} _{[n ^\prime :]} \cdot 
 \mathbf h ^ {\mathbf b_{[: n ^\prime]}} _{[: n ^\prime]} \cdot \mathbf h ^ {\mathbf b^\prime_{[n ^\prime :]}} _{[n ^\prime :]} \cdot 
 u^{\langle \mathbf {a}, \mathbf {b} \rangle} 
@@ -211,20 +211,25 @@ u^{\langle \mathbf {a}, \mathbf {b} \rangle}
 \end{aligned}
 $$
 
-Commitment $ P = L \cdot R ​$ can further be split as follows:
+Commitment $ P = L \cdot R $ can further be split as follows:
 
 $$
 \begin{aligned} 
 P &= \mathrm H(\mspace{3mu} \mathbf a_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu} \mathbf a_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} \mathbf b_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu} \mathbf b_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu}
-  \langle \mathbf {a}, \mathbf {b} \rangle \mspace{53mu}) \\
+  \langle \mathbf {a}, \mathbf {b} \rangle \mspace{53mu}) \mspace{20mu} \in \mathbb G \\
 L &= \mathrm H(\mspace{3mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu} \mathbf a_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu} \mathbf b_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu}
-  \langle \mathbf {a_{[: n ^\prime]}} , \mathbf {b_{[n ^\prime :]}} \rangle \mspace{3mu}) \\
+  \langle \mathbf {a_{[: n ^\prime]}} , \mathbf {b_{[n ^\prime :]}} \rangle \mspace{3mu}) \mspace{20mu} \in \mathbb G \\
 R &= \mathrm H(\mspace{3mu} \mathbf a_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu} \mathbf b_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu}
-  \langle \mathbf {a_{[n ^\prime :]}} , \mathbf {b_{[: n ^\prime]}} \rangle \mspace{3mu}) 
+  \langle \mathbf {a_{[n ^\prime :]}} , \mathbf {b_{[: n ^\prime]}} \rangle \mspace{3mu}) \mspace{20mu} \in \mathbb G
 \end{aligned}
 $$
 
+The first reduction step works as follows:
 
+- The *prover* $ \mathcal{P} ​$ calculates $ L,R \in \mathbb G ​$ and sends it to the *verifier* $ \mathcal{V} ​$.
+- The *verifier* $ \mathcal{V} $ chooses a random $ x  \overset{\$}{\gets} \mathbb Z _p $ and sends it to the *prover* $ \mathcal{P} $.
+- The *prover* $ \mathcal{P} $ calculates $ \mathbf a ^\prime = x\mathbf a_{[: n ^\prime]} + x^{-1} \mathbf a_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p$ and $ \mathbf b ^\prime = x^{-1}\mathbf b_{[: n ^\prime]} + x \mathbf b_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p $ and sends $ \mathbf a^\prime , \mathbf b^\prime \in \mathbb Z^{n^\prime}_p $ to the *verifier* $ \mathcal{V} $.
+- 
 
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
