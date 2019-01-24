@@ -179,7 +179,7 @@ $$
 
 A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
 
-Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;1. The element $ u $ is raised to a random power $ x $ (the challenge) chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
+Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;1. The element $ u $ is raised to a random power $ x $ (the challenge) chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2) satisfy $ c = \langle \mathbf {a} , \mathbf {b} \rangle $.
 
 <p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
 <div align="center"><b>Figure&nbsp;1: Bulletproofs' Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -195,9 +195,33 @@ The argument presented in Protocol 1 has the following Commitment Scheme propert
 
 #### How the Proof System for Protocol 1 Works, Shrinking by Recursion
 
-Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. The Pedersen Commitment scheme allows a vector to be cut in half and to compress the two halves together. Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G ​$ be a hash function. Let $ n ^\prime = n/2 ​$. Hashing sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  ​$ and and inner product $ c = \langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle \ \in \mathbb Z_p​$ gives
+Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. The Pedersen Commitment scheme allows a vector to be cut in half and to compress the two halves together. Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G ​$ be a hash function for commitment $ P ​$, thus $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) ​$. Note that commitment $ P ​$ and thus $ \mathrm H ​$ is additively homomorphic therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  ​$ can be hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p​$. If $ n ^\prime = n/2 ​$ then
+
 $$
-\mathrm H() = u^c \mathbb G
+\begin{aligned} 
+\mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) &= 
+\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf a, \mathbf b \rangle}
+\mspace{20mu} \in \mathbb G
+\\
+\mathrm H(\mathbf a_{[: n ^\prime]}, \mathbf a_{[n ^\prime :]}, \mathbf b_{[: n ^\prime]}, \mathbf b_{[n ^\prime :]}, \langle \mathbf {a}, \mathbf {b} \rangle) &= 
+\mathbf g ^ {\mathbf a_{[: n ^\prime]}} _{[: n ^\prime]} \cdot \mathbf g ^ {\mathbf a^\prime_{[n ^\prime :]}} _{[n ^\prime :]} \cdot 
+\mathbf h ^ {\mathbf b_{[: n ^\prime]}} _{[: n ^\prime]} \cdot \mathbf h ^ {\mathbf b^\prime_{[n ^\prime :]}} _{[n ^\prime :]} \cdot 
+u^{\langle \mathbf {a}, \mathbf {b} \rangle} 
+\mspace{20mu} \in \mathbb G
+\end{aligned}
+$$
+
+Commitment $ P = L \cdot R ​$ can further be split as follows:
+
+$$
+\begin{aligned} 
+P &= \mathrm H(\mspace{3mu} \mathbf a_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu} \mathbf a_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} \mathbf b_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu} \mathbf b_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu}
+  \langle \mathbf {a}, \mathbf {b} \rangle \mspace{53mu}) \\
+L &= \mathrm H(\mspace{3mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu} \mathbf a_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu} \mathbf b_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu}
+  \langle \mathbf {a_{[: n ^\prime]}} , \mathbf {b_{[n ^\prime :]}} \rangle \mspace{3mu}) \\
+R &= \mathrm H(\mspace{3mu} \mathbf a_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu} 0 ^ {n ^\prime} \mspace{18mu} , \mspace{6mu} \mathbf b_{[: n ^\prime]} \mspace{6mu} , \mspace{6mu}
+  \langle \mathbf {a_{[n ^\prime :]}} , \mathbf {b_{[: n ^\prime]}} \rangle \mspace{3mu}) 
+\end{aligned}
 $$
 
 
@@ -205,7 +229,7 @@ $$
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
 
-inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $. These vectors have size $ n $ that would require many expensive exponentiations
+inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$. These vectors have size $ n ​$ that would require many expensive exponentiations
 
 Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion, the final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
 $$
