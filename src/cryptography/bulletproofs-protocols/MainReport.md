@@ -161,7 +161,6 @@ A detailed mathematical discussion of the different Bulletproof protocols follow
 #### Inner-product Argument (Protocol 1)
 
 The first and most important building block of the Bulletproofs is its efficient algorithm to calculate an inner-product argument for two independent (not related) binding vector Pedersen Commitments<sup>[def][pc~]</sup>. 
-
 Protocol 1 is an argument of knowledge that the *prover* $ \mathcal{P} $ knows the openings of two binding Pedersen vector commitments that satisfy a given inner product relation. Let inputs to the inner-product argument be independent generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $ and $ P \in \mathbb G $. The argument lets the *prover* $ \mathcal{P} $ convince a *verifier* $ \mathcal{V} $ that the *prover* $ \mathcal{P} $ knows two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ such that
 $$
 P =\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle
@@ -173,15 +172,14 @@ $$
 \{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} P \in \mathbb G , \mspace{12mu} c \in \mathbb Z_p ; \mspace{12mu} \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \mspace{3mu} : \mspace{15mu} P = \mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \mspace{3mu} \wedge \mspace{3mu} c = \langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle \} \mspace{100mu} (1)
 $$
 
-Relation (1) requires sending $ 2n ​$ elements to the *verifier* $ \mathcal{V} ​$. In order to send only $ 2 \log 2 (n) ​$ elements to the *verifier* $ \mathcal{V} ​$ for a given $ P \in \mathbb G ​$ the *prover* $ \mathcal{P} ​$ proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ​$ for which $ P =\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } ​$. Here $ u \in \mathbb G ​$ is a fixed group element with an unknown discrete-log relative to $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$. 
-
+Relation (1) requires sending $ 2n ​$ elements to the *verifier* $ \mathcal{V} ​$. The inner product $ c = \langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle \ ​$ can be made part of the vector commitment $  P \in \mathbb G  ​$. This will enable sending only $ 2 \log 2 (n) ​$ elements to the *verifier* $ \mathcal{V} ​$ (explained in the next section). For a given $ P \in \mathbb G ​$ the *prover* $ \mathcal{P} ​$ proves that it has vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ​$ for which $ P =\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } ​$. Here $ u \in \mathbb G ​$ is a fixed group element with an unknown discrete-log relative to $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$. 
 $$
 \{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} u,P \in \mathbb G ; \mspace{12mu} \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) : \mspace{15mu} P = \mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
 $$
 
 A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for relation (2) is required. 
 
-Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;1. The element $ u ​$ is raised to a random power $ x ​$ (the challenge) chosen by the *verifier* $ \mathcal{V} ​$ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} ​$ from [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle ​$.
+Protocol 1 is then defined as the proof system for relation (2) as shown in Figure&nbsp;1. The element $ u $ is raised to a random power $ x $ (the challenge) chosen by the *verifier* $ \mathcal{V} $ to ensure that the extracted vectors $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2) satisfy $ c = \langle \mathbf {a} \mspace{3mu} , \mspace{3mu} \mathbf {b} \rangle $.
 
 <p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
 <div align="center"><b>Figure&nbsp;1: Bulletproofs' Protocol 1 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions 
@@ -195,11 +193,19 @@ The argument presented in Protocol 1 has the following Commitment Scheme propert
 - <u>Perfect completeness (hiding)</u>: Every validity/truth is provable, also see Definition&nbsp;9 in [[1]];
 - <u>Statistical witness extended emulation (binding)</u>: Robust against either extracting a non-trivial discrete logarithm relation between $ \mathbf {g} , \mathbf {h} , u $ or extracting a valid witness $ \mathbf {a}, \mathbf {b} $.
 
-#### How the Proof System for Protocol 1 Works
+#### How the Proof System for Protocol 1 Works, Shrinking by Recursion
 
-Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $. 
+Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. The Pedersen Commitment scheme allows a vector to be cut in half and to compress the two halves together. Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G ​$ be a hash function. Let $ n ^\prime = n/2 ​$. Hashing sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  ​$ and and inner product $ c = \langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle \ \in \mathbb Z_p​$ gives
+$$
+\mathrm H() = u^c \mathbb G
+$$
+
+
+
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
+
+inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $. These vectors have size $ n $ that would require many expensive exponentiations
 
 Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion, the final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
 $$
@@ -245,7 +251,7 @@ Crate Bulletproofs">22</a>]</b></div>
 
 ##### Inner-Product Range Proof
 
-This protocol provides the ability to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors. The range proof is constructed by exploiting the fact that a Pedersen Commitment $ V $ is an element in the same group $ \mathbb G $ that is used to perform the inner product argument. Let $ v \in \mathbb Z_p $ and let $ V \in \mathbb G $ be a Pedersen Commitment to $ v $ using randomness $ \gamma $. The proof system will convince the *verifier* $ \mathcal{V} $ that commitment $ V $ contains a number $ v \in [0,2^n - 1] $ such that
+This protocol provides the ability to construct a range proof that requires the *verifier* $ \mathcal{V} ​$ to check an inner product between two vectors. The range proof is constructed by exploiting the fact that a Pedersen Commitment $ V ​$ is an element in the same group $ \mathbb G ​$ that is used to perform the inner product argument. Let $ v \in \mathbb Z_p ​$ and let $ V \in \mathbb G ​$ be a Pedersen Commitment to $ v ​$ using randomness $ \gamma ​$. The proof system will convince the *verifier* $ \mathcal{V} ​$ that commitment $ V ​$ contains a number $ v \in [0,2^n - 1] ​$ such that
 
 $$
 \{ (g,h \in \mathbb{G}) , V , n \mspace{3mu} ; \mspace{12mu} v, \gamma \in \mathbb{Z_p} ) \mspace{3mu} : \mspace{3mu} V =h^\gamma g^v \mspace{5mu} \wedge \mspace{5mu} v \in [0,2^n - 1] \} \mspace{100mu} (3)
