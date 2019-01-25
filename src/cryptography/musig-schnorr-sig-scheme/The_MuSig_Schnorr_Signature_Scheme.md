@@ -216,24 +216,6 @@ Bellare and Neven showed that this yields a multi-signature scheme provably secu
 
 ## The formation of MuSig
 
-This is where MuSig comes in. It recovers the *key aggregation property without losing security:*
-
--   Call $ L=\textrm{H}(X_{1},X_{2}...) $ 
-
--   Call $ X $ the sum of all $ \textrm{H}(L,X_{i})X_{i} $ 
-
--   Each signer chooses a random nonce $ r_{i}, $ and shares $ R_{i}=r_{i}G $ with the other signers
-
--   Call $ R $ the sum of the $ R_{i} $ points
-
--   Each signer computes $ s_{i}=r_{i}+\textrm{H}(X,R,m)\textrm{H}(L,X_{i})x_{i} $ 
-
--   The final signature is $ (R,s) $ where $ s $ is the sum of the $ s_{i} $ values
-
--   Verification again satisfies $ sG=R+\textrm{H}(X,R,m)X $ 
-
-So what was needed was to define $ X $ not as a simple sum of the individual public keys $ X_{i} $, but as a sum of multiples of those keys, where the multiplication factor depends on a hash of all participating keys. [[1]]
-
 The new proposed Schnorr-based multi-signature scheme can be seen as a variant of the BN scheme, allowing key aggregation in the *plain public-key model.* This scheme consists of three rounds, the first two being exactly the same as in BN. Challenges $ c_{i} ​$ are changed from 
 
 $$
@@ -270,7 +252,7 @@ $$
 \tilde{X} = \prod  ^n_{i=1} X_{i}^{a_i} 
 $$
 
-Note that $ c=H_{sig}(\langle L \rangle,R,m) $ also yields a secure scheme, however does not allow key aggregation since verification is impossible without knowing all the individual singer keys.
+Note that $ c=H_{sig}(\langle L \rangle,R,m) $ also yields a secure scheme, however does not allow key aggregation since verification is impossible without knowing all the individual singer keys. 
 
 ### Interactive Aggregate Signatures
 
