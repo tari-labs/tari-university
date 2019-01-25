@@ -103,7 +103,7 @@ A <u>ZK proof/protocol</u> is a method by which the *prover* can convince the *v
 
 @div[s350px]
 
-![ZK](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/ZK.png)
+![ZK](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/ZK.png)
 
 @divend
 
@@ -298,7 +298,7 @@ These vectors have size $ n $ that would require many expensive exponentiations.
 
 @div[s450px]
 
-![VectorCutNHalf](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs-and-mw-presentation/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
+![VectorCutNHalf](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/bulletproofs-and-mimblewimble/sources/VectorCutNHalf.png)
 
 @divend
 
