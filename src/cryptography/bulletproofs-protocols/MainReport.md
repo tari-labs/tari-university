@@ -239,27 +239,46 @@ The first reduction step is show below:
 
 $$
 \begin{aligned} 
- \mathbf a ^\prime &= x\mathbf a_{[: n ^\prime]} + x^{-1} \mathbf a_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p \\\
- \mathbf b ^\prime &= x^{-1}\mathbf b_{[: n ^\prime]} + x \mathbf b_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p
+\mathbf a ^\prime &= x\mathbf a \_{[: n ^\prime]} + x^{-1} \mathbf a \_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p \\\\
+\mathbf b ^\prime &= x^{-1}\mathbf b \_{[: n ^\prime]} + x \mathbf b \_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p
 \end{aligned}
 $$
 
-- The *verifier* $ \mathcal{V} $ calculates $ P^\prime = L^{x^2} \cdot P \cdot R^{x^{-2}} ​$ and accepts (verify true) if
+- The *verifier* $ \mathcal{V} ​$ calculates $ P^\prime = L^{x^2} \cdot P \cdot R^{x^{-2}} ​$ and accepts (verify true) if
 
 $$
-P^\prime = \mathrm H ( x^{-1} \mathbf a^\prime \mspace{3mu} , \mspace{3mu} x \mathbf a^\prime \mspace{3mu} \mspace{3mu} , \mspace{3mu} \mspace{3mu} x \mathbf b^\prime \mspace{3mu} , \mspace{3mu} x^{-1} \mathbf b^\prime \mspace{3mu} , \mspace{3mu} \langle \mathbf a^\prime , \mathbf b^\prime \rangle )
+P^\prime = \mathrm H ( x^{-1} \mathbf a^\prime \mspace{3mu} , \mspace{3mu} x \mathbf a^\prime \mspace{3mu} \mspace{3mu} , \mspace{3mu} \mspace{3mu} x \mathbf b^\prime \mspace{3mu} , \mspace{3mu} x^{-1} \mathbf b^\prime \mspace{3mu} , \mspace{3mu} \langle \mathbf a^\prime , \mathbf b^\prime \rangle ) \mspace{100mu} (3)
 $$
 
 <br>
 
-So far the *prover* $ \mathcal{P} $ only sent $ n + 2 $ elements to *verifier* $ \mathcal{V} $, that is the four tuple $ ( L , R , \mathbf a^\prime , \mathbf b^\prime ) $, about half the length compared to sending the complete $   \mathbf a, \mathbf b \in \mathbb Z^n_p   $. 
+So far the *prover* $ \mathcal{P} $ only sent $ n + 2 $ elements to the *verifier* $ \mathcal{V} $, that is the four tuple $ ( L , R , \mathbf a^\prime , \mathbf b^\prime ) $, about half the length compared to sending the complete $   \mathbf a, \mathbf b \in \mathbb Z^n_p   $. The test in relation (3) is the same as testing that
+$$
+P^\prime = 
+(\mathbf g ^ {x^{-1}} \_{[: n ^\prime]} \circ \mathbf g ^ x \_{[n ^\prime :]})^{\mathbf a^\prime} \cdot 
+(\mathbf h ^ x \_{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} \_{[n ^\prime :]})^{\mathbf b^\prime} \cdot 
+u^{\langle \mathbf a^\prime , \mathbf b^\prime \rangle}
+$$
+Thus, the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ can recursively engage in an inner-product argument for $ P^\prime ​$ with respect to generators 
+$$
+(\mathbf g ^ {x^{-1}} \_{[: n ^\prime]} \circ \mathbf g ^ x \_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} 
+\mathbf h ^ x \_{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} \_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu} 
+u )
+$$
+which will result in a $ \log _2 n ​$ round protocol with $ 2 \log _2 n ​$ elements in $ \mathbb G ​$ and $ 2 ​$ elements in $ \mathbb Z _p ​$. The *prover* $ \mathcal{P} ​$ ends up sending the following terms to the *verifier* $ \mathcal{V} ​$:
+$$
+(L_1 , R_1) \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} (L\_{\log _2 n} , R \_{\log _2 n}) \mspace{3mu} , \mspace{3mu} (a , b)
+$$
+where $ a,b \in \mathbb Z _p ​$ are only sent right at the end. This protocol can be made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>.
+
+
 
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
 
-inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $. These vectors have size $ n $ that would require many expensive exponentiations
+inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $. These vectors have size $ n ​$ that would require many expensive exponentiations
 
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion, the final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion, the final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$ as:
 $$
 g = \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
 $$
@@ -306,19 +325,19 @@ Crate Bulletproofs">22</a>]</b></div>
 This protocol provides the ability to construct a range proof that requires the *verifier* $ \mathcal{V} ​$ to check an inner product between two vectors. The range proof is constructed by exploiting the fact that a Pedersen Commitment $ V ​$ is an element in the same group $ \mathbb G ​$ that is used to perform the inner product argument. Let $ v \in \mathbb Z_p ​$ and let $ V \in \mathbb G ​$ be a Pedersen Commitment to $ v ​$ using randomness $ \gamma ​$. The proof system will convince the *verifier* $ \mathcal{V} ​$ that commitment $ V ​$ contains a number $ v \in [0,2^n - 1] ​$ such that
 
 $$
-\{ (g,h \in \mathbb{G}) , V , n \mspace{3mu} ; \mspace{12mu} v, \gamma \in \mathbb{Z_p} ) \mspace{3mu} : \mspace{3mu} V =h^\gamma g^v \mspace{5mu} \wedge \mspace{5mu} v \in [0,2^n - 1] \} \mspace{100mu} (4)
+\{ (g,h \in \mathbb{G}) , V , n \mspace{3mu} ; \mspace{12mu} v, \gamma \in \mathbb{Z_p} ) \mspace{3mu} : \mspace{3mu} V =h^\gamma g^v \mspace{5mu} \wedge \mspace{5mu} v \in [0,2^n - 1] \}
 $$
 
 without revealing $ v ​$. Let $ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n ​$ be the vector containing the bits of $ v, ​$ so that $ \langle \mathbf {a}_L, \mathbf {2}^n \rangle = v ​$. The *prover* $ \mathcal{P} ​$ commits to $ \mathbf {a}_L ​$ using a constant size vector commitment $ A \in \mathbb{G} ​$. It will convince the *verifier* $ \mathcal{V} ​$ that $ v ​$ is in $ [0,2^n - 1] ​$ by proving that it knows an opening $ \mathbf {a}_L \in \mathbb Z_p^n ​$ of $ A ​$ and $ v, \gamma \in \mathbb{Z_p} ​$ such that $ V =h^\gamma g^v ​$ and
 
 $$
-\langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_R = \mathbf {a}_L - \mathbf {1}^n \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_L \circ \mathbf {a}_R = \mathbf{0}^n \mspace{20mu} \mspace{100mu} (5)
+\langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_R = \mathbf {a}_L - \mathbf {1}^n \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_L \circ \mathbf {a}_R = \mathbf{0}^n \mspace{20mu} \mspace{100mu} (6)
 $$
 
-This proves that $ a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n ​$ are all in $ \{0,1\} ​$ and that $ \mathbf {a}_L ​$ is composed of the bits of $ v ​$. However, the $ 2n + 1 ​$ constraints needs to be expressed as a single inner-product constant so that [Protocol&nbsp;1](#protocol-1---inner-product-argument) can be used, by letting the *verifier* $ \mathcal{V} ​$ choose a random linear combination of the constraints. To prove that a committed vector $ \mathbf {b} \in \mathbb Z_p^n ​$ satisfies $ \mathbf {b} = \mathbf{0}^n ​$ it suffices for the *verifier* $ \mathcal{V} ​$ to send a random $ y \in \mathbb{Z_p} ​$ to the *prover* $ \mathcal{P} ​$ and for the *prover* $ \mathcal{P} ​$ to prove that $ \langle \mathbf {b}, \mathbf {y}^n \rangle = 0 ​$, which will convince the *verifier* $ \mathcal{V} ​$ that $ \mathbf {b} = \mathbf{0}^n ​$. The *prover* $ \mathcal{P} ​$ can thus prove relation (5) by proving that
+This proves that $ a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n ​$ are all in $ \{0,1\} ​$ and that $ \mathbf {a}_L ​$ is composed of the bits of $ v ​$. However, the $ 2n + 1 ​$ constraints needs to be expressed as a single inner-product constant so that [Protocol&nbsp;1](#protocol-1---inner-product-argument) can be used, by letting the *verifier* $ \mathcal{V} ​$ choose a random linear combination of the constraints. To prove that a committed vector $ \mathbf {b} \in \mathbb Z_p^n ​$ satisfies $ \mathbf {b} = \mathbf{0}^n ​$ it suffices for the *verifier* $ \mathcal{V} ​$ to send a random $ y \in \mathbb{Z_p} ​$ to the *prover* $ \mathcal{P} ​$ and for the *prover* $ \mathcal{P} ​$ to prove that $ \langle \mathbf {b}, \mathbf {y}^n \rangle = 0 ​$, which will convince the *verifier* $ \mathcal{V} ​$ that $ \mathbf {b} = \mathbf{0}^n ​$. The *prover* $ \mathcal{P} ​$ can thus prove relation (6) by proving that
 
 $$
-\langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v \mspace{20mu} \mathrm{and} \mspace{20mu} \langle \mathbf {a}_L - 1 - \mathbf {a}_R \mspace{3mu} , \mspace{3mu} \mathbf {y}^n \rangle=0 \mspace{20mu} \mathrm{and} \mspace{20mu} \langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n \rangle = \mathbf{0}^n \mspace{20mu} \mspace{100mu} (6)
+\langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v \mspace{20mu} \mathrm{and} \mspace{20mu} \langle \mathbf {a}_L - 1 - \mathbf {a}_R \mspace{3mu} , \mspace{3mu} \mathbf {y}^n \rangle=0 \mspace{20mu} \mathrm{and} \mspace{20mu} \langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n \rangle = \mathbf{0}^n \mspace{20mu}
 $$
 
 Building on this, the *verifier* $ \mathcal{V} ​$ chooses a random $ z \in \mathbb{Z_p} ​$ and let the *prover* $ \mathcal{P} ​$ proves that
@@ -339,7 +358,7 @@ $$
 \delta (y,z) = (z-z^2) \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {y}^n\rangle -z^3 \cdot \langle \mathbf {1}^n \mspace{3mu} , \mspace{3mu} \mathbf {2}^n\rangle \in \mathbb{Z_p}
 $$
 
-can be easily calculated by the *verifier* $ \mathcal{V} ​$. The proof that relation (5) holds was thus reduced to a single inner-product identity.
+can be easily calculated by the *verifier* $ \mathcal{V} ​$. The proof that relation (6) holds was thus reduced to a single inner-product identity.
 
 Relation (8) cannot be used in its current form without revealing information about $ \mathbf {a}_L ​$. Two additional blinding vectors $ \mathbf {s}_L , \mathbf {s}_R \in \mathbb Z_p^n ​$ are introduced with the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ engaging in the following zero-knowledge protocol (Figure&nbsp;4):
 
