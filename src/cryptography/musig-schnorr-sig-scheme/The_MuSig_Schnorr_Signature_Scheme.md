@@ -221,7 +221,7 @@ The naive way to design a Schnorr multi-signature scheme would be as follows:
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key $ \tilde{X} $, a property termed *key aggregation*
 
-However, as mentioned above, [[12]], [[14]], [[15]] and [[17]] these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to $ X_{1}=g^{x_{1}}(\Pi_{i=2}^{n}X_{i})^{-1} ​$, allowing the signer to produce signatures for public keys $ \{X_{1},...X_{n}\} ​$ by themself.
+However, as mentioned above, [[12]], [[14]], [[15]] and [[17]] these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to $ X_{1}=g^{x_{1}}(\Pi_{i=2}^{n}X_{i})^{-1} ​$, allowing the signer to produce signatures for public keys $ \{X_{1},...X_{n}\} ​$ by themselves. 
 
 ### Bellare and Neven signature scheme
 
@@ -277,7 +277,7 @@ $a_{i}=H_{agg}(L,X_{i})$
 
 as well as the "aggregated" public key $\tilde{X}=\prod_{i=1}^{n}X_{i}^{a_{i}}$.
 
-The signer generators a random $r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}}$computes $R_{1}=g^{r_{1}},t_{1}=H_{com}(R_{1})$, and sends $t_{1}$to all other cosigners.
+The signer generators a random $r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}}​$computes $R_{1}=g^{r_{1}},t_{1}=H_{com}(R_{1})​$, and sends $t_{1}​$to all other cosigners.
 
 When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, it sends $R_{1}$
 
@@ -311,9 +311,10 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 In order to change the BN multi-signature scheme into an IAS scheme, P. Wuille *et al* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
-- Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} ​$ be the ordered set of public key/message pairs of all participants, where $ X_{1}=g^{x_{1}} ​$  
-- In practice, if $ X $ is the public key of a specific signer and $ m $ the message he wants to sign, and $ S'=\{(X'_{1}, m'_{1}),..., (X'_{n-1}, m'_{n-1})\} $ is the set of other signers, this specific signer merges $ (X, m) $ and $ S' $ into the ordered set $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} $ and retrieves the resulting message index $ i $ such that $ (X_{1}, m_{i}) = (X, m) $
-- Then, as in the BN multi-signature scheme, each signer draws 
+- Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} ​$ be the ordered set of public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$  
+- In practice, if $ X ​$ is the public key of a specific signer and $ m ​$ the message he wants to sign, and $ S'=\{(X'_{1}, m'_{1}),..., (X'_{n-1}, m'_{n-1})\} ​$ is the set of other signers, this specific signer merges $ (X, m) ​$ and $ S' ​$ into the ordered set $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} ​$ and retrieves the resulting message index $ i ​$ such that $ (X_{1}, m_{i}) = (X, m) ​$
+- Then, as in the BN multi-signature scheme, each signer draws $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, computes $  R_{i} = g^{r_{i}}  ​$, sends commitment $  t_{i} = H'(R_{i}) ​$ in a first round and then $ R_{i} ​$ in a second round, and computes  $ R=\prod_{i=1}^{n}R_{i} ​$. The signer with message index $ i ​$ then computes $  c_{i} = H(R,  \langle S 
+  \rangle, i) ​$ and $  s_{i} = r_{i} + c_{i}x_{i} ​$ mod $ p ​$ and sends $ s_{i} ​$ to other signers. All signers can compute $ R=\prod_{i=1}^{n}R_{i} ​$ 
 
 ## Conclusions, observations and recommendations
 
