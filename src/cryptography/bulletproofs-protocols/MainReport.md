@@ -195,7 +195,7 @@ The argument presented in Protocol 1 has the following Commitment Scheme propert
 
 #### How the Proof System for Protocol 1 Works, Shrinking by Recursion
 
-Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $ of size $ n $. The Pedersen Commitment scheme allows a vector to be cut in half and then to compress the two halves together. Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G $ be a hash function for commitment $ P $, with $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) $. Note that commitment $ P $ and thus $ \mathrm H $ is additively homomorphic, therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  $ can be hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p$. If $ n ^\prime = n/2 $, starting with relation (2), then
+Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. The Pedersen Commitment scheme allows a vector to be cut in half and then to compress the two halves together. Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G ​$ be a hash function for commitment $ P ​$, with $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) ​$. Note that commitment $ P ​$ and thus $ \mathrm H ​$ is additively homomorphic, therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  ​$ can be hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p​$. If $ n ^\prime = n/2 ​$, starting with relation (2), then
 
 $$
 \begin{aligned} 
@@ -233,9 +233,9 @@ $$
 
 The first reduction step is show below:
 
-- The *prover* $ \mathcal{P} ​$ calculates $ L,R \in \mathbb G ​$ and sends it to the *verifier* $ \mathcal{V} ​$.
+- The *prover* $ \mathcal{P} $ calculates $ L,R \in \mathbb G $ and sends it to the *verifier* $ \mathcal{V} $.
 - The *verifier* $ \mathcal{V} $ chooses a random $ x  \overset{\$}{\gets} \mathbb Z _p $ and sends it to the *prover* $ \mathcal{P} $.
-- The *prover* $ \mathcal{P} $ calculates $ \mathbf a^\prime , \mathbf b^\prime \in \mathbb Z^{n^\prime}_p $ and sends it to the *verifier* $ \mathcal{V} $:
+- The *prover* $ \mathcal{P} ​$ calculates $ \mathbf a^\prime , \mathbf b^\prime \in \mathbb Z^{n^\prime}_p ​$ and sends it to the *verifier* $ \mathcal{V} ​$:
 
 $$
 \begin{aligned} 
@@ -244,13 +244,15 @@ $$
 \end{aligned}
 $$
 
-- The *verifier* $ \mathcal{V} $ calculates $ P^\prime = L^{x^2} \cdot P \cdot R^{x^{-2}} $ and accepts (verify true) if
+- The *verifier* $ \mathcal{V} $ calculates $ P^\prime = L^{x^2} \cdot P \cdot R^{x^{-2}} ​$ and accepts (verify true) if
 
 $$
 P^\prime = \mathrm H ( x^{-1} \mathbf a^\prime \mspace{3mu} , \mspace{3mu} x \mathbf a^\prime \mspace{3mu} \mspace{3mu} , \mspace{3mu} \mspace{3mu} x \mathbf b^\prime \mspace{3mu} , \mspace{3mu} x^{-1} \mathbf b^\prime \mspace{3mu} , \mspace{3mu} \langle \mathbf a^\prime , \mathbf b^\prime \rangle )
 $$
 
+<br>
 
+So far the *prover* $ \mathcal{P} $ only sent $ n + 2 $ elements to *verifier* $ \mathcal{V} $, that is the four tuple $ ( L , R , \mathbf a^\prime , \mathbf b^\prime ) $, about half the length compared to sending the complete $   \mathbf a, \mathbf b \in \mathbb Z^n_p   $. 
 
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
