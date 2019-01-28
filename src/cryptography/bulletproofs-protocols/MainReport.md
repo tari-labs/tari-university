@@ -276,20 +276,33 @@ where $ a,b \in \mathbb Z _p ​$ are only sent right at the end. This protocol 
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
 
-inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $. These vectors have size $ n ​$ that would require many expensive exponentiations
+The inner product argument to be calculated is that of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ calculate a new set of generators $ ( \mathbf g ^\prime , \mathbf h ^\prime ) ​$, which would require a total of $ 4n ​$ computationally expensive exponentiations. Multi-exponentiation is a technique to reduce the number of exponentiations for a given calculation. In Protocol 2 the number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. It can also be made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>, providing a further speedup.
 
-Protocol 2 performs inner-product verification through multi-exponentiation, the latter being a technique to reduce the number of computationally expensive exponentiations. The number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ compute a new set of generators. By unrolling the recursion, the final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$ as:
+Let $ g $ and $ h $ be the generators used in the final round of the protocol and $ x_j $ be the challenge from the $ j _{th} $ round. In the last round the *verifier* $ \mathcal{V} $ checks that $ g^a h^b u ^{a \cdot b} = P $, where $ a,  b \in \mathbb Z^n_p $ are given by the *prover* $ \mathcal{P} $. The final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$ by unrolling the recursion as:
 $$
 g = \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
 $$
 
-where $ \mathbf {s} = (s_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} s_n) \in \mathbb Z_p^n $ only depends on the challenges $ (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_{\log_2(n)}) \in \mathbb Z_p^n $ for vectors of size $ n $. The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $:
+where $ \mathbf {s} = (s_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} s_n) \in \mathbb Z_p^n ​$ only depends on the challenges $ (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_{\log_2(n)}) \in \mathbb Z_p^n ​$. The scalars of $ \mathbf {s} ​$ are calculated as follows:
+$$
+s_i = \prod ^{\log _2 (n)} _{j=1} X ^{b(i,j)} _j 
+\mspace{15mu} \mathrm {for} \mspace{15mu} 
+i = 1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} n \\\\
+\\\\
+\mathrm {where} \\\\
+\\\\
+b(i,j) = 
+  \begin{cases}
+    1 \mspace{30mu} \text{if the} \mspace{3mu} j \text{th bit of} \mspace{3mu} i-1 \mspace{3mu} \text{is} \mspace{3mu} 1 \\\\
+    -1 \mspace{15mu} \text{otherwise}
+  \end{cases}
+$$
 
+
+The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 ​$:
 $$
 \mathbf g^{a \cdot \mathbf{s}} \cdot \mathbf h^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \mspace{12mu} \overset{?}{=} \mspace{12mu} P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
 $$
-
-with $ L $ and $R $ as defined in the original reference.
 
 Protocol 2 is shown in Figure&nbsp;2. 
 
