@@ -201,9 +201,9 @@ s &= r+cx
 \end{aligned}
 $$
 
-- The signature is the pair $ (R,s) $, and its validity can be checked by verifying whether $ g^{s}=RX^{c} $ 
+- The signature is the pair $ (R,s) ​$, and its validity can be checked by verifying whether $ g^{s}=RX^{c} ​$ 
 
-The above described is referred to as the so-called "key-prefixed" variant of the scheme, which sees the public key hashed together with $ R $ and $ m $ [[7]]. This variant was thought to have a better multi-user security bound than the classic variant [[8]], however in [[9]] the key-prefixing was seen as unnecessary to enable good multi-user security for Schnorr signatures.
+The above described is referred to as the so-called "key-prefixed" variant of the scheme, which sees the public key hashed together with $ R ​$ and $ m ​$ [[7]]. This variant was thought to have a better multi-user security bound than the classic variant [[8]], however in [[9]] the key-prefixing was seen as unnecessary to enable good multi-user security for Schnorr signatures.
 
 For the development of the new Schnorr-based multi-signature scheme [[4]], key-prefixing seemed a requirement for the security proof to go through, despite not knowing the form of an attack. The rationale also follows the process in reality, as messages signed in Bitcoin always indirectly commits to the public key.
 
@@ -259,7 +259,7 @@ where $ \textrm{H}_{com} ​$ is used in the commitment phase
 
 $ \textrm{H}_{agg} ​$ is used to compute the aggregated key
 
-$ \textrm{H}_{sig} $ is used to compute the signature
+$ \textrm{H}_{sig} ​$ is used to compute the signature
 
 For the signing :
 
@@ -267,13 +267,14 @@ For the signing :
 - Let $ m ​$ be the message that will be signed
 - Let $ X_{1},...,X_{n} ​$ be the public keys of other cosigners
 
-Let $L=\{X_{1},...X_{n\}}​$ be the multiset of all public keys involved in the signing process
+- Let $L=\{X_{1},...X_{n\}}$ be the multiset of all public keys involved in the signing process
+
 
 For $ i\in \{1,...,n\} ​$ , the signer computes the following
 
-$a_{i}=H_{agg}(L,X_{i})​$
+$ a_{i} = \textrm{H}_{agg}(L,X_{i}) ​$
 
-as well as the "aggregated" public key $\tilde{X}=\prod_{i=1}^{n}X_{i}^{a_{i}}$.
+as well as the "aggregated" public key $ \tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​$.
 
 The signer generators a random $r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}}​$computes $R_{1}=g^{r_{1}},t_{1}=H_{com}(R_{1})​$, and sends $t_{1}​$to all other cosigners.
 
@@ -284,20 +285,33 @@ When receiving $R_{2},...,R_{n}$ from other cosigners, it checks that $t_{i}=H_{
 The protocol is aborted if this is not the case. If not the following is computed:
 
 
+$$
+\begin{aligned} 
+R &={\prod}\stackrel{i=1}{n}R_{i} \\
+c &=  \textrm{H}_{sig} (\tilde{X,R,m)} \\
+s_{1} &=r_{1}+ca_{1}x_{1} \textrm {mod}\ p
+\end{aligned}
+$$
 
-$ R=\stackrel[i=1]{n}{\prod}R_{i} ​$
 
-$c=H_{sig}(\tilde{X,R,m)}​$
-
-$s_{1}=r_{1}+ca_{1}x_{1}​$ mod$p​$
 
 $s_{1}​$ is sent to all other cosigners
 
-When receiving $s_{2},...s_{n}$ from other cosigners, the signer can compute $s=\sum_{i=1}^{n}s_{i}$ mod$p$. The signature is $\sigma=(R,s)$.
+When receiving $ s_{2},...s_{n} ​$ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} ​$ mod $p​$. The signature is $ \sigma = (R,s) ​$.
 
-In order to verify, given a multiset of public keys $L=\{X_{1},...X_{n\}}$ , a message $m$ and a signature $\sigma=(R,s)$, the verifier computes:
+In order to verify, given a multiset of public keys $  L = \{X_{1},...X_{n\}} $ , a message $ m $ and a signature $ \sigma = (R,s) $, the verifier computes:
 
-$a_{i}=H_{agg}(L,X_{i})$ for $ i\in \{1,...,n\} $, $\tilde{X}=\prod_{i=1}^{n}X_{i}^{a_{i}}$, $c=H_{sig}(\tilde{X,R,m)}$ and then accepts the signature if $g^{s}=R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}$
+$$
+\begin{aligned} 
+a_{i} &= H_{agg}(L,X_{i}) \textrm {for}\ i\in \{1,...,n\} \\
+\tilde{X}&= \prod_{i=1}^{n}X_{i}^{a_{i}} \\
+s_{1} &=r_{1}+ca_{1}x_{1} \textrm {mod}\ p
+\end{aligned}
+$$
+
+
+
+$c=H_{sig}(\tilde{X,R,m)}$ and then accepts the signature if $g^{s}=R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}$
 
 ### Revisions 
 
