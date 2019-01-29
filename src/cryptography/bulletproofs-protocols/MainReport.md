@@ -17,6 +17,7 @@ An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble](.
     - [Security aspects of (Elliptic Curve) Pedersen Commitments](#security-aspects-of-elliptic-curve-pedersen-commitments)
   - [Bulletproof Protocols](#bulletproof-protocols)
     - [Inner-product Argument (Protocol 1)](#inner-product-argument-protocol-1)
+    - [How the Proof System for Protocol 1 Works, Shrinking by Recursion](#how-the-proof-system-for-protocol-1-works-shrinking-by-recursion)
     - [Inner-Product Verification through Multi-Exponentiation (Protocol 2)](#inner-product-verification-through-multi-exponentiation-protocol-2)
     - [Range Proof Protocol with Logarithmic Size](#range-proof-protocol-with-logarithmic-size)
       - [Inner-Product Range Proof](#inner-product-range-proof)
@@ -252,12 +253,12 @@ $$
 
 <br>
 
-So far the *prover* $ \mathcal{P} $ only sent $ n + 2 $ elements to the *verifier* $ \mathcal{V} $, that is the four tuple $ ( L , R , \mathbf a^\prime , \mathbf b^\prime ) $, about half the length compared to sending the complete $   \mathbf a, \mathbf b \in \mathbb Z^n_p   $. The test in relation (3) is the same as testing that
+So far, the *prover* $ \mathcal{P} $ only sent $ n + 2 $ elements to the *verifier* $ \mathcal{V} $, that is the four tuple $ ( L , R , \mathbf a^\prime , \mathbf b^\prime ) $, about half the length compared to sending the complete $   \mathbf a, \mathbf b \in \mathbb Z^n_p   $. The test in relation (3) is the same as testing that
 $$
 P^\prime = 
 (\mathbf g ^ {x^{-1}} \_{[: n ^\prime]} \circ \mathbf g ^ x \_{[n ^\prime :]})^{\mathbf a^\prime} \cdot 
 (\mathbf h ^ x \_{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} \_{[n ^\prime :]})^{\mathbf b^\prime} \cdot 
-u^{\langle \mathbf a^\prime , \mathbf b^\prime \rangle}
+u^{\langle \mathbf a^\prime , \mathbf b^\prime \rangle} \mspace{100mu} (4)
 $$
 Thus, the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ can recursively engage in an inner-product argument for $ P^\prime ​$ with respect to generators 
 $$
@@ -278,22 +279,22 @@ where $ a,b \in \mathbb Z _p ​$ are only sent right at the end. This protocol 
 
 The inner product argument to be calculated is that of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ calculate a new set of generators $ ( \mathbf g ^\prime , \mathbf h ^\prime ) ​$, which would require a total of $ 4n ​$ computationally expensive exponentiations. Multi-exponentiation is a technique to reduce the number of exponentiations for a given calculation. In Protocol 2 the number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. It can also be made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>, providing a further speedup.
 
-Let $ g $ and $ h $ be the generators used in the final round of the protocol and $ x_j $ be the challenge from the $ j _{th} $ round. In the last round the *verifier* $ \mathcal{V} $ checks that $ g^a h^b u ^{a \cdot b} = P $, where $ a,  b \in \mathbb Z^n_p $ are given by the *prover* $ \mathcal{P} $. The final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$ by unrolling the recursion as:
+Let $ g $ and $ h $ be the generators used in the final round of the protocol and $ x_j $ be the challenge from the $ j _{th} $ round. In the last round the *verifier* $ \mathcal{V} $ checks that $ g^a h^b u ^{a \cdot b} = P $, where $ a,  b \in \mathbb Z^n_p $ are given by the *prover* $ \mathcal{P} $. The final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
 $$
 g = \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
 $$
 
-where $ \mathbf {s} = (s_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} s_n) \in \mathbb Z_p^n ​$ only depends on the challenges $ (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_{\log_2(n)}) \in \mathbb Z_p^n ​$. The scalars of $ \mathbf {s} ​$ are calculated as follows:
+where $ \mathbf {s} = (s_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} s_n) \in \mathbb Z_p^n $ only depends on the challenges $ (x_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} x_{\log_2(n)}) \in \mathbb Z_p^n $. &nbsp;The scalars of $ \mathbf {s} $ are calculated as follows:
 $$
-s_i = \prod ^{\log _2 (n)} _{j=1} X ^{b(i,j)} _j 
+s_i = \prod ^{\log _2 (n)} _{j=1} x ^{b(i,j)} _j 
 \mspace{15mu} \mathrm {for} \mspace{15mu} 
-i = 1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} n \\\\
-\\\\
-\mathrm {where} \\\\
-\\\\
+i = 1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} n
+$$
+where
+$$
 b(i,j) = 
   \begin{cases}
-    1 \mspace{30mu} \text{if the} \mspace{3mu} j \text{th bit of} \mspace{3mu} i-1 \mspace{3mu} \text{is} \mspace{3mu} 1 \\\\
+    \mspace{12mu} 1 \mspace{18mu} \text{if the} \mspace{4mu} j \text{th bit of} \mspace{4mu} i-1 \mspace{4mu} \text{is} \mspace{4mu} 1 \\\\
     -1 \mspace{15mu} \text{otherwise}
   \end{cases}
 $$
@@ -301,7 +302,8 @@ $$
 
 The entire verification check in the protocol reduces to a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 ​$:
 $$
-\mathbf g^{a \cdot \mathbf{s}} \cdot \mathbf h^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \mspace{12mu} \overset{?}{=} \mspace{12mu} P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
+\mathbf g^{a \cdot \mathbf{s}} \cdot \mathbf h^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \mspace{12mu} \overset{?}{=} 
+\mspace{12mu} P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}} \mspace{100mu} (5)
 $$
 
 Protocol 2 is shown in Figure&nbsp;2. 
@@ -587,7 +589,7 @@ A further idea is that multi-exponentiation (steps (98) and (105) in Figure&nbsp
 
 <u>Batch verification</u>
 
-A further important optimization concerns the verification of multiple proofs. The essence of the verification is to calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive exponentiations. This is based on the observation that checking $ g^x = 1 \mspace 3mu \wedge \mspace 3mu g^y = 1 $ can be checked by drawing a random scalar $ \alpha $ from a large enough domain and checking that $ g^{\alpha x + y} = 1 $. With high probability, the latter equation implies the first. When applied to multi-exponentiations, $ 2n $ exponentiations can be saved per additional proof. Verifying $ m $ distinct range proofs of size $ n $ only requires a single multi-exponentiation of size $ 2n+2+m \cdot (2 \cdot \log (n) + 5 ) $ along with $ O ( m \cdot n ) $ scalar operations.
+A further important optimization concerns the verification of multiple proofs. The essence of the verification is to calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive exponentiations. This is based on the observation that checking $ g^x = 1 \mspace 3mu \wedge \mspace 3mu g^y = 1 ​$ can be checked by drawing a random scalar $ \alpha ​$ from a large enough domain and checking that $ g^{\alpha x + y} = 1 ​$. With high probability, the latter equation implies the first. When applied to multi-exponentiations, $ 2n ​$ exponentiations can be saved per additional proof. Verifying $ m ​$ distinct range proofs of size $ n ​$ only requires a single multi-exponentiation of size $ 2n+2+m \cdot (2 \cdot \log (n) + 5 ) ​$ along with $ O ( m \cdot n ) ​$ scalar operations.
 
 
 
