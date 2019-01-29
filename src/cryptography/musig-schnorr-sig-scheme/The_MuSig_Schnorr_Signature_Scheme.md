@@ -289,7 +289,7 @@ For the signing :
 
 For $ i\in \{1,...,n\} ​$ , the signer computes the following
 
-$ a_{i} = \textrm{H}_{agg}(L,X_{i}) ​$
+$ a_{i} = \textrm{H}_{agg}(L,X_{i})  $
 
 as well as the "aggregated" public key $ \tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​$.
 
@@ -306,11 +306,9 @@ $$
 \begin{aligned} 
 R &=\prod_{i=1}^{n}R_{i} \\
 c &=  \textrm{H}_{sig} (\tilde{X},R,m) \\
-s_{1} &=r_{1}+ca_{1}x_{1} \textrm {mod}\ p
+s_{1} &=r_{1}+ca_{1}x_{1} \textrm {mod}\ p \\
 \end{aligned}
 $$
-
-
 
 $s_{1}$ is sent to all other cosigners
 
@@ -343,8 +341,9 @@ Despite this, there is no attack currently known against the 2-round variant of 
 In order to change the BN multi-signature scheme into an IAS scheme, P. Wuille *et al* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
 In practice, if $ X $ is the public key of a specific signer and $ m $ the message he wants to sign, and 
+
 $$
-S'=\{(X'_{1}, m'_{1}),..., (X'_{n-1}, m'_{n-1})\} ​
+S'=\{(X'_{1}, m'_{1}),..., (X'_{n-1}, m'_{n-1})\}
 $$
 
 is the set of other signers, this specific signer merges $ (X, m) $ and $ S' $ into the ordered set 
@@ -365,17 +364,17 @@ $$
 
 The signer with message index $ i $ then computes:
 $$ 
-c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \mathrm{and} \mspace{30mu} $  s_{i} = r_{i} + c_{i}x_{i} $ mod $ p 
+c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \mathrm{and} \mspace{30mu} $  s_{i} = r_{i} + c_{i}x_{i} \textrm{mod} p 
 $$ 
 
 and sends $ s_{i} $ to other signers. All signers can compute 
 $$ 
-s=\prod_{i=1}^{n}s_{i} $ mod $ p 
+s=\prod_{i=1}^{n}s_{i} \textrm{mod} p 
 $$
 
 The signature is $ \sigma = (R, s) $. Given an ordered set $ S = \{(X_{1}, m_{1}),...,(X_{n}, m_{n})\} $ and a signature $ \sigma = (R, s) $ is valid for $ S $ $ iff $  $$ g^s=R\prod_{i=1}^{n}X_{i} ^{H(R,  \langle S \rangle, i)} $$
 
-- Note that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through $ S $ and the message index $ i $. 
+Note that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through $ S $ and the message index $ i $. 
 
 ## Conclusions, observations and recommendations
 
