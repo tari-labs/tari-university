@@ -23,7 +23,7 @@ An overview of Bulletproofs have been given in [Bulletproofs and Mimblewimble](.
       - [Inner-Product Range Proof](#inner-product-range-proof)
       - [Logarithmic Range Proof](#logarithmic-range-proof)
       - [Aggregating Logarithmic Proofs](#aggregating-logarithmic-proofs)
-      - [Non-Interactive Proof through Fiat-Shamir](#non-interactive-proof-through-fiat-shamir)
+      - [Non-Interactive Proof through Fiat-Shamir Heuristic](#non-interactive-proof-through-fiat-shamir-heuristic)
       - [MPC Protocol for Bulletproofs](#mpc-protocol-for-bulletproofs)
     - [Zero-Knowledge Proof for Arithmetic Circuits](#zero-knowledge-proof-for-arithmetic-circuits)
       - [Inner-Product Proof for Arithmetic Circuits (Protocol 3)](#inner-product-proof-for-arithmetic-circuits-protocol-3)
@@ -60,10 +60,10 @@ The general notation of mathematical expressions when specifically referenced ar
 - Let $ \langle l(X),r(X) \rangle = \sum _{i=0}^d { \sum _{j=0}^i { \langle l_i,r_i \rangle \cdot X^{i+j}}} \in \mathbb Z_p [X] $ denote the inner-product between two vector polynomials $ l(X),r(X) $. 
 - Let $ t(X)=\langle l(X),r(X) \rangle $, then the inner-product is defined such that $ t(x)=\langle l(x),r(x) \rangle $ holds for all $ x \in \mathbb{Z_p} $. 
 - Let $ C=g^a = \prod _{i=1}^n g_i^{a_i} \in \mathbb{G} $ be a binding (but not hiding) commitment to the vector $ \mathbf {a} \in \mathbb Z_p^n $ where $ \mathbf {g} = (g_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g_n) \in \mathbb G^n $. Given vector $ \mathbf {b} \in \mathbb Z_p^n $ with non-zero entries, $ \mathbf {a} \circ \mathbf {b} $ is treated as a new commitment to $ C $. For this let $ g_i^\backprime =g_i^{(b_i^{-1})} $ such that $ C= \prod _{i=1}^n (g_i^\backprime)^{a_i \cdot b_i} $. The binding property of this new commitment is inherited from the old commitment.
-- Let $ \mathbf a _{[:l]} = ( a_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_l ) \in \mathbb F ^ l$ and $  \mathbf a _{[l:]} = ( a_{1+1} \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n ) \in \mathbb F ^ {n-l} $ be slices of vectors for $ 0 \le l \le n $ (using Python notation). 
+- Let $ \mathbf a \_{[:l]} = ( a_1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_l ) \in \mathbb F ^ l$ and $  \mathbf a \_{[l:]} = ( a_{1+1} \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} a_n ) \in \mathbb F ^ {n-l} $ be slices of vectors for $ 0 \le l \le n $ (using Python notation). 
 - Let $ \mathbf {k}^n $ denote the vector containing the first $ n $ powers of $ k \in \mathbb Z_p^* $ such that $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb Z_p^*)^n $. 
 - Let $ \mathcal{P} $ and $ \mathcal{V} $ denote the *prover* and *verifier* respectively.
-- Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} $ denote the *prover* and *verifier* in relation to inner-product calculations respectively.
+- Let $ \mathcal{P_{IP}} ​$ and $ \mathcal{V_{IP}} ​$ denote the *prover* and *verifier* in relation to inner-product calculations respectively.
 
 
 
@@ -215,7 +215,7 @@ $$
 
 <br>
 
-Commitment $ P = L \cdot R $ can then further be sliced as follows:
+Commitment $ P = L \cdot R ​$ can then further be sliced as follows:
 
 $$
 \begin{aligned} 
@@ -232,7 +232,7 @@ $$
 
 <br>
 
-The first reduction step is show below:
+The first reduction step is shown below:
 
 - The *prover* $ \mathcal{P} $ calculates $ L,R \in \mathbb G $ and sends it to the *verifier* $ \mathcal{V} $.
 - The *verifier* $ \mathcal{V} $ chooses a random $ x  \overset{\$}{\gets} \mathbb Z _p $ and sends it to the *prover* $ \mathcal{P} $.
@@ -270,16 +270,16 @@ which will result in a $ \log _2 n ​$ round protocol with $ 2 \log _2 n ​$ e
 $$
 (L_1 , R_1) \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} (L\_{\log _2 n} , R \_{\log _2 n}) \mspace{3mu} , \mspace{3mu} (a , b)
 $$
-where $ a,b \in \mathbb Z _p ​$ are only sent right at the end. This protocol can be made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>.
+where $ a,b \in \mathbb Z _p ​$ are only sent right at the end. This protocol can be made non-interactive using the Fiat-Shamir<sup>[def](#fsh)</sup> heuristic.
 
 
 
 
 #### Inner-Product Verification through Multi-Exponentiation (Protocol 2)
 
-The inner product argument to be calculated is that of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ calculate a new set of generators $ ( \mathbf g ^\prime , \mathbf h ^\prime ) ​$, which would require a total of $ 4n ​$ computationally expensive exponentiations. Multi-exponentiation is a technique to reduce the number of exponentiations for a given calculation. In Protocol 2 the number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. It can also be made non-interactive using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup>, providing a further speedup.
+The inner product argument to be calculated is that of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ of size $ n ​$. Protocol 2 has a logarithmic number of rounds and in each round the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ calculate a new set of generators $ ( \mathbf g ^\prime , \mathbf h ^\prime ) ​$, which would require a total of $ 4n ​$ computationally expensive exponentiations. Multi-exponentiation is a technique to reduce the number of exponentiations for a given calculation. In Protocol 2 the number of exponentiations is reduced to a single multi-exponentiation by delaying all the exponentiations until the last round. It can also be made non-interactive using the Fiat-Shamir<sup>[def](#fsh)</sup> heuristic, providing a further speedup.
 
-Let $ g $ and $ h $ be the generators used in the final round of the protocol and $ x_j $ be the challenge from the $ j _{th} $ round. In the last round the *verifier* $ \mathcal{V} $ checks that $ g^a h^b u ^{a \cdot b} = P $, where $ a,  b \in \mathbb Z^n_p $ are given by the *prover* $ \mathcal{P} $. The final $ g $ and $ h $ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+Let $ g ​$ and $ h ​$ be the generators used in the final round of the protocol and $ x_j ​$ be the challenge from the $ j _{th} ​$ round. In the last round the *verifier* $ \mathcal{V} ​$ checks that $ g^a h^b u ^{a \cdot b} = P ​$, where $ a,b \in \mathbb Z_p ​$ are given by the *prover* $ \mathcal{P} ​$. The final $ g ​$ and $ h ​$ can be expressed in terms of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$ as:
 $$
 g = \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
 $$
@@ -319,12 +319,12 @@ Bünz B. et al">1</a>]</b></div>
 
 #### Range Proof Protocol with Logarithmic Size
 
-This rotocol provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts: 
+This protocol provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. It is build up in 5 parts: 
 
 - how to construct a range proof that requires the *verifier* $ \mathcal{V} $ to check an inner product between two vectors;
 - how to replace the inner product argument with an efficient inner-product argument;
 - how to efficiently aggregate $ m $ range proofs into one short proof;
-- how to make interactive public coin protocols non-interactive by using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and 
+- how to make interactive public coin protocols non-interactive by using the Fiat-Shamir<sup>[def](#fsh)</sup> heuristic and 
 - how to allow multiple parties to construct a single aggregate range proof. 
 
 A diagrammatic overview of a range proof protocol implementation using Elliptic Curve Pedersen Commitments<sup>[def][ecpc~]</sup> is given in Figure&nbsp;3.
@@ -385,7 +385,7 @@ Bünz B. et al">1</a>]</b></div>
 
 
 
-Two linear vector polynomials $ l(X), r(X) ​$ in $ \mathbb Z^n_p[X] ​$ are defined as the inner-product terms for relation (8), also containing the blinding vectors $ \mathbf {s}_L ​$ and $ \mathbf {s}_R ​$. A quadratic polynomial $ t(X) \in \mathbb Z_p[X] ​$ is then defined as the inner product between the two vector polynomials $ l(X), r(X) ​$ such that
+Two linear vector polynomials $ l(X), r(X) \in \mathbb Z^n_p[X] $ are defined as the inner-product terms for relation (8), also containing the blinding vectors $ \mathbf {s}_L $ and $ \mathbf {s}_R $. A quadratic polynomial $ t(X) \in \mathbb Z_p[X] $ is then defined as the inner product between the two vector polynomials $ l(X), r(X) ​$ such that
 
 $$
 t(X) = \langle l(X) \mspace{3mu} , \mspace{3mu} r(X) \rangle = t_0 + t_1 \cdot X + t_2 \cdot X^2 \mspace{10mu} \in \mathbb {Z}_p[X]
@@ -457,7 +457,7 @@ The aggregate range proof presented here has the following Commitment Scheme pro
 
 
 
-##### Non-Interactive Proof through Fiat-Shamir
+##### Non-Interactive Proof through Fiat-Shamir Heuristic
 
 So far the *verifier* $ \mathcal{V} $ behaves as an honest verifier and all messages are random elements from $ \mathbb Z_p^* $. These are the pre-requisites needed to convert the protocol presented so far into a non-interactive protocol that is secure and has full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. 
 
@@ -485,7 +485,7 @@ $$
 A = \prod^m_{k=1} A^{(k)} \mspace{15mu} \mathrm{and} \mspace{15mu} \tau_x = \prod^m_{k=1} \tau_x^{(k)}
 $$
 
-In each round, the dealer generates the challenges using the Fiat-Shamir Heuristic<sup>[def](#fsh)</sup> and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ to the dealer who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
+In each round, the dealer generates the challenges using the Fiat-Shamir<sup>[def](#fsh)</sup> heuristic and the combined proof components and sends them to each party. In the end each party send $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} ​$ to the dealer who computes $ \mathbf{l},\mathbf{r} ​$ as the interleaved concatenation of all shares. The dealer runs the inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof component is the (homomorphic) sum of each parties' proof components and each share constitutes part of a separate zero-knowledge proof. An example of the MPC protocol implementation using three rounds with linear communication is shown in Figure&nbsp;7. 
 
 <p align="center"><img src="sources/MPC-diagram.png" width="850" /></p>
 <div align="center"><b>Figure&nbsp;7: MPC Implementation Example [<a href="https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html" title="Dalek Cryptography - 
@@ -555,9 +555,9 @@ The proof system presented here has the following Commitment Scheme properties:
 
 ##### Logarithmic-Sized Non-Interactive Protocol for Arithmetic Circuits
 
-Similar to [Logarithmic Range Proof](#logarithmic-range-proof) the communication cost of [Protocol 3](#inner-product-proof-for-arithmetic-circuits-protocol-3) can be reduced by using the efficient inner product argument. Transmission of vectors $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* $ \mathcal{V} $ (step&nbsp;(82) Figure&nbsp;9) can be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ alone. The *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ engage in an inner product argument on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) $ to check correctness of $ \mathbf {l} $ and $ \mathbf {r} $ (step&nbsp;(92) Figure&nbsp;9) and $ \hat {t} $ (step&nbsp;(88) Figure&nbsp;9); this is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} $ satisfies the inner product of relation. Communication is now reduced to $ 2 \cdot [ \log_22(n)] + 8 $ group elements and $ 5 $ elements in $ \mathbb Z $ instead of $ 2 \cdot n $ elements, thereby archiving a proof size that is logarithmic in $ n $.
+Similar to [Logarithmic Range Proof](#logarithmic-range-proof) the communication cost of [Protocol 3](#inner-product-proof-for-arithmetic-circuits-protocol-3) can be reduced by using the efficient inner product argument. Transmission of vectors $ \mathbf {l} ​$ and $ \mathbf {r} ​$ to the *verifier* $ \mathcal{V} ​$ (step&nbsp;(82) Figure&nbsp;9) can be eliminated and transfer of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) ​$ alone. The *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ engage in an inner product argument on public input $ (\mathbf {g} , \mathbf {h} ^ \backprime , P \cdot h^{-\mu}, \hat t) ​$ to check correctness of $ \mathbf {l} ​$ and $ \mathbf {r} ​$ (step&nbsp;(92) Figure&nbsp;9) and $ \hat {t} ​$ (step&nbsp;(88) Figure&nbsp;9); this is the same as verifying that the witness $ \mathbf {l} , \mathbf {r} ​$ satisfies the inner product of relation. Communication is now reduced to $ 2 \cdot [ \log_22(n)] + 8 ​$ group elements and $ 5 ​$ elements in $ \mathbb Z ​$ instead of $ 2 \cdot n ​$ elements, thereby archiving a proof size that is logarithmic in $ n ​$.
 
-Similar to [Non-Interactive Proof through Fiat-Shamir](#non-interactive-proof-through-fiat-shamir) the protocol presented so far can be turned into an efficient non interactive proof that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
+Similar to [Non-Interactive Proof through Fiat-Shamir](#non-interactive-proof-through-fiat-shamir) the protocol presented so far can be turned into an efficient non-interactive proof that is secure and full zero-knowledge in the random oracle model (thus without a trusted setup) using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
 The proof system presented here has the following Commitment Scheme properties:
 
