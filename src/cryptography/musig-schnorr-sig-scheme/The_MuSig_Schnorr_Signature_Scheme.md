@@ -201,8 +201,8 @@ The Schnorr signature scheme uses:[[6]]
 
 $$
 \begin{aligned} 
-R &= g^{r} \\
-c &= \textrm{H}(X,R,m) \\
+R &= g^{r} \\\\
+c &= \textrm{H}(X,R,m) \\\\
 s &= r+cx 
 \end{aligned}
 $$
@@ -270,7 +270,7 @@ MuSig is parmaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ where,
 
 - $ g $ is the generator of $G$
 
-- hash functions, $ \textrm{H}_{com} $, $ \textrm{H}_{agg} $, $ \textrm{H}_{sig} $ from $ \{0,1\}^{*} $ to $ \{0,1\}^{l} $ (constructed from a single hash, using proper domain separation)
+- hash functions, $ \textrm{H}\_{com} ​$, $ \textrm{H}\_{agg} ​$, $ \textrm{H}\_{sig} ​$ from $ \{0,1\}^{*} ​$ to $ \{0,1\}^{l} ​$ (constructed from a single hash, using proper domain separation)
 
 where $ \textrm{H}_{com} ​$ is used in the commitment phase
 
@@ -289,7 +289,10 @@ For the signing :
 
 For $ i\in \{1,...,n\} ​$ , the signer computes the following
 
-$ a_{i} = \textrm{H}_{agg}(L,X_{i})  $
+$$
+a_{i} = \textrm{H}\_{agg}(L,X\_{i})
+$$
+
 
 as well as the "aggregated" public key $ \tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​$.
 
@@ -304,9 +307,9 @@ The protocol is aborted if this is not the case. If not the following is compute
 
 $$
 \begin{aligned} 
-R &=\prod_{i=1}^{n}R_{i} \\
-c &=  \textrm{H}_{sig} (\tilde{X},R,m) \\
-s_{1} &=r_{1}+ca_{1}x_{1} \textrm {mod}\ p \\
+R &=\prod^{n}\_{i=1}R\_{i} \\\\
+c &=  \textrm{H}\_{sig} (\tilde{X},R,m) \\\\
+s\_{1} &= r\_{1} + ca\_{1} x\_{1} \mod p
 \end{aligned}
 $$
 
@@ -318,9 +321,9 @@ In order to verify, given a multiset of public keys $  L = \{X_{1},...X_{n\}} �
 
 $$
 \begin{aligned} 
-a_{i} &= H_{agg}(L,X_{i}) \textrm {for}\ i\in \{1,...,n\} \\
-\tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\
-c &=  \textrm{H}_{sig} (\tilde{X},R,m) \\
+a_{i} &= H_{agg}(L,X_{i}) \textrm {for}\ i\in \{1,...,n\} \\\\
+\tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\\\
+c &=  \textrm{H}_{sig} (\tilde{X},R,m) 
 \end{aligned}
 $$
 
@@ -332,7 +335,7 @@ then accepts the signature if $g^{s}=R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c
 
 In a previous version of the paper by Maxwell *et al.* [[4]] published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions ([[32]], [[33]]). Drijvers *et al* [[34]] then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
 
-In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys $ X_{2},...,X_{n}) $ can impose the value of $ R=\Pi_{i=1}^{n}R_{i} $ used in signature protocols since he can choose $ R_{2},...,R_{n} $ after having received $ R_{1} $ from the honest signer (controlling public key $ X_{1}=g^{x_{1}} $ ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing $ x_{1} $ by randomly drawing $ s_{1} $ and $ c $, computing
+In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys $ X_{2},...,X_{n} $) can impose the value of $ R=\Pi_{i=1}^{n}R_{i} $ used in signature protocols since he can choose $ R_{2},...,R_{n} $ after having received $ R_{1} $ from the honest signer (controlling public key $ X_{1}=g^{x_{1}} $ ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing $ x_{1} $ by randomly drawing $ s_{1} $ and $ c $, computing
 
 Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques. [[4]]
 
@@ -340,13 +343,13 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 In order to change the BN multi-signature scheme into an IAS scheme, P. Wuille *et al* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
-In practice, if $ X $ is the public key of a specific signer and $ m $ the message he wants to sign, and 
+In practice, if $ X ​$ is the public key of a specific signer and $ m ​$ the message he wants to sign, and 
 
 $$
-S'=\{(X'_{1}, m'_{1}),..., (X'_{n-1}, m'_{n-1})\}
+S^\prime = \{(X^\prime\_{1}, m^\prime\_{1}),..., (X^\prime\_{n-1}, m^\prime\_{n-1})\}
 $$
 
-is the set of other signers, this specific signer merges $ (X, m) $ and $ S' $ into the ordered set 
+is the set of other signers, this specific signer merges $ (X, m) ​$ and $ S' ​$ into the ordered set 
 
 $$
 S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} 
@@ -362,13 +365,14 @@ $$
 R=\prod_{i=1}^{n}R_{i}
 $$
 
-The signer with message index $ i $ then computes:
-$$ 
-c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \mathrm{and} \mspace{30mu} $  s_{i} = r_{i} + c_{i}x_{i} \textrm{mod} p 
-$$ 
+The signer with message index $ i ​$ then computes:
+$$
+c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \mathrm{and} \mspace{30mu} 
+s_{i} = r_{i} + c_{i}x_{i} \mod p
+$$
 
 and sends $ s_{i} $ to other signers. All signers can compute 
-$$ 
+$$
 s=\prod_{i=1}^{n}s_{i} \textrm{mod} p 
 $$
 
@@ -391,14 +395,12 @@ Kevoulee Sardar, Hansie Odendaal, Cayle Sharrock
 [[1]] P. Wuille, “Key Aggregation for Schnorr Signatures,” 2018. Date accessed: 2019-01-20 
 
 [1]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures/
-
 "Key Aggregation for Schnorr Signatures, 
 2018, P. Wuille" 
 
 [[2]] Blockstream, “Schnorr Signatures for Bitcoin - BPASE ’18,” 2018. Date accessed: 2019-01-20 
 
 [2]: https://blockstream.com/2018/02/15/schnorr-signatures-bpase/
-
 "Schnorr Signatures for Bitcoin- BPASE '18, 
 2018, Blockstream"
 
