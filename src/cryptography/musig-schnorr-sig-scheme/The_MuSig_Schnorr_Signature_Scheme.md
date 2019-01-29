@@ -186,17 +186,17 @@ It can be seen that in the case of mulit-signatures across inputs, theft can occ
 The  general notation of mathematical expressions when specifically referenced are listed here. These notations are important pre-knowledge for the remainder of the report. 
 
 - Let  $ p $  a be large prime number.
-- A cyclic group $ G $ of prime order $ p $. 
-- - let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively.
+- Let $ \mathbb{G} ​$ denote cyclic group of the prime order  $ p ​$. 
+- Let $ \mathbb Z_p ​$ denote the ring of integer $ modulo \mspace{4mu} p ​$ 
+- Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} = \{1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1}\}  $ 
+- Let $ \textrm{H} $ denote the hash function 
+- Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} ​$ be the ordered set of public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$  
 
 ### Recap on the Schnorr Signature Scheme 
 
 The Schnorr signature scheme uses:[[6]]
 
-- A cyclic group $ G $ of prime order $ p $ 
-- A generator $ g $ of $ G $ 
-- A hash function $ \textrm{H} ​$ 
-- A private/public key pair is a pair $ (x,X) \in \{0,...,p-1\} \mspace{6mu} \mathsf{x} \mspace{6mu} \mathbb{G} $ where $ X=g^{x} $ 
+- A private/public key pair is a pair $ (x,X) \in \{0,...,p-1\} \mspace{6mu} \mathsf{x} \mspace{6mu} \mathbb{G} ​$ where $ X=g^{x} ​$ 
 - To sign a message $ m $, the signer draws a random integer $ r $ in $ Z_{p}, $ computes
 
 $$
@@ -217,13 +217,24 @@ For the development of the new Schnorr-based multi-signature scheme [[4]], key-p
 
 The naive way to design a Schnorr multi-signature scheme would be as follows:
 
-- A group of $ n $ signers want to cosign a message $ m $ 
-- Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} $ be the multi-set of all public key[^1]
-- Each cosigner randomly generates and communicates to others a share $ R_i = g^{r_{i}} $
-- Each of the cosigners then computes $ R = \prod {i=1}^{n} R_{i} , c = \textrm{H} (\tilde{X},R,m) ​$
-- Where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} ​$ is the product of individual public keys, and a partial signature $ s_{i}=r_{i}+cx_{i} ​$ 
-- Partial signatures are then combined into a single signature $(R,s)$ where $s=\Sigma_{i=1}^{n}s_i \mod p $
-- The validity of a signature $ (R,s) $ on message $ m $ for public keys $ \{X_{1},...X_{n}\} $ is equivalent to $ g^{s}=R\tilde{X}^{c} $ where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} $ and $ c=\textrm{H}(\tilde{X},R,m) $ 
+A group of $ n ​$ signers want to cosign a message $ m ​$ 
+
+Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} $ be the multi-set of all public key[^1]
+
+Each cosigner randomly generates and communicates to others a share $ R_i = g^{r_{i}} $
+
+Each of the cosigners then computes:  
+
+
+$$
+R = \prod {i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
+$$
+
+Where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} $ is the product of individual public keys, and a partial signature $ s_{i}=r_{i}+cx_{i} $ 
+
+Partial signatures are then combined into a single signature $(R,s)$ where $s=\Sigma_{i=1}^{n}s_i \mod p $
+
+The validity of a signature $ (R,s) $ on message $ m $ for public keys $ \{X_{1},...X_{n}\} $ is equivalent to $ g^{s}=R\tilde{X}^{c} $ where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} $ and $ c=\textrm{H}(\tilde{X},R,m) $ 
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key $ \tilde{X} $, a property termed *key aggregation*
 
@@ -301,11 +312,11 @@ $$
 
 
 
-$s_{1}​$ is sent to all other cosigners
+$s_{1}$ is sent to all other cosigners
 
-When receiving $ s_{2},...s_{n} ​$ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} ​$ mod $p​$. The signature is $ \sigma = (R,s) ​$.
+When receiving $ s_{2},...s_{n} $ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} $ mod $p$. The signature is $ \sigma = (R,s) $.
 
-In order to verify, given a multiset of public keys $  L = \{X_{1},...X_{n\}} $ , a message $ m $ and a signature $ \sigma = (R,s) $, the verifier computes:
+In order to verify, given a multiset of public keys $  L = \{X_{1},...X_{n\}} ​$ , a message $ m ​$ and a signature $ \sigma = (R,s) ​$, the verifier computes:
 
 $$
 \begin{aligned} 
@@ -331,11 +342,39 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 In order to change the BN multi-signature scheme into an IAS scheme, P. Wuille *et al* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
-- Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} ​$ be the ordered set of public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$  
-- In practice, if $ X ​$ is the public key of a specific signer and $ m ​$ the message he wants to sign, and $ S'=\{(X'_{1}, m'_{1}),..., (X'_{n-1}, m'_{n-1})\} ​$ is the set of other signers, this specific signer merges $ (X, m) ​$ and $ S' ​$ into the ordered set $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} ​$ and retrieves the resulting message index $ i ​$ such that $ (X_{1}, m_{i}) = (X, m) ​$
-- Then, as in the BN multi-signature scheme, each signer draws $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, computes $  R_{i} = g^{r_{i}}  ​$, sends commitment $  t_{i} = H'(R_{i}) ​$ in a first round and then $ R_{i} ​$ in a second round, and computes  $ R=\prod_{i=1}^{n}R_{i} ​$. The signer with message index $ i ​$ then computes $  c_{i} = H(R,  \langle S 
-  \rangle, i) ​$ and $  s_{i} = r_{i} + c_{i}x_{i} ​$ mod $ p ​$ and sends $ s_{i} ​$ to other signers. All signers can compute $ s=\prod_{i=1}^{n}s_{i} ​$ mod $ p ​$. The signature is $ \sigma = (R, s) ​$. Given an ordered set $ S = \{(X_{1}, m_{1}),...,(X_{n}, m_{n})\} ​$ and a signature $ \sigma = (R, s) ​$ is valid for $ S ​$ $ iff ​$  $$ g^s=R\prod_{i=1}^{n}X_{i} ^{H(R,  \langle S 
-  \rangle, i)} ​$$
+In practice, if $ X $ is the public key of a specific signer and $ m $ the message he wants to sign, and 
+$$
+S'=\{(X'_{1}, m'_{1}),..., (X'_{n-1}, m'_{n-1})\} ​
+$$
+
+is the set of other signers, this specific signer merges $ (X, m) $ and $ S' $ into the ordered set 
+
+$$
+S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} 
+$$
+
+and retrieves the resulting message index $ i $ such that 
+$$
+(X_{1}, m_{i}) = (X, m) 
+$$
+
+Then, as in the BN multi-signature scheme, each signer draws $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $  R_{i} = g^{r_{i}} $, sends commitment $  t_{i} = H'(R_{i}) $ in a first round and then $ R_{i} $ in a second round, and computes  
+$$
+R=\prod_{i=1}^{n}R_{i}
+$$
+
+The signer with message index $ i $ then computes:
+$$ 
+c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \mathrm{and} \mspace{30mu} $  s_{i} = r_{i} + c_{i}x_{i} $ mod $ p 
+$$ 
+
+and sends $ s_{i} $ to other signers. All signers can compute 
+$$ 
+s=\prod_{i=1}^{n}s_{i} $ mod $ p 
+$$
+
+The signature is $ \sigma = (R, s) $. Given an ordered set $ S = \{(X_{1}, m_{1}),...,(X_{n}, m_{n})\} $ and a signature $ \sigma = (R, s) $ is valid for $ S $ $ iff $  $$ g^s=R\prod_{i=1}^{n}X_{i} ^{H(R,  \langle S \rangle, i)} $$
+
 - Note that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through $ S $ and the message index $ i $. 
 
 ## Conclusions, observations and recommendations
