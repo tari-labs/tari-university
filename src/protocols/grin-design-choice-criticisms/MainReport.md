@@ -46,7 +46,7 @@ On the other hand, deflation in traditional fiat systems, produce over time an i
 
 As most inflationary fiat systems are government backed, they are able to control the amount of inflation to help alleviate government debt and finance budget deficits [[13]].  This could result in hyperinflation where the devaluation of currency occur at an extreme pace resulting in many people losing their savings and pensions [[14]]. Cryptocurrencies on the other hand provide a transparent algorithmic monetary inflation that is not controlled by a central authority or government, limiting its misuse. 
 
-Finding a good balance between being a SoV and MoV is an important issue for developing a successful currency. A balance between deflation and inflation need to be selected to motivate saving and at the same time spending of a currency. A low inflationary model where inflation is algorithmically maintained and not controlled by a single authority seem like the safest choice, but only time will tell if the high inflation model proposed by Grin will have the desired effect. 
+Finding a good balance between being a SoV and MoE is an important issue for developing a successful currency. A balance between deflation and inflation need to be selected to motivate saving and at the same time spending of a currency. A low inflationary model where inflation is algorithmically maintained and not controlled by a single authority seem like the safest choice, but only time will tell if the high inflation model proposed by Grin will have the desired effect. 
 
 
 ## From ASIC Resistant to ASIC Friendly
@@ -297,3 +297,4 @@ for InfluxDB, Paul Dix"
 - https://github.com/hansieodendaal
 - https://github.com/SWvheerden
 - https://github.com/philipr-za
+- https://github.com/kim0
