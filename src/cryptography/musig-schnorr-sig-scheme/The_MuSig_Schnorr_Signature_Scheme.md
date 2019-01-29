@@ -14,32 +14,32 @@ Multi-signatures are a form of technology used to add multiple participants to c
   - [Abstract](#abstract)
   - [Contents](#contents)
   - [Introduction](#introduction)
-    - [Schnorr signatures and their attack vectors](#schnorr-signatures-and-their-attack-vectors)
+    - [Schnorr Signatures and their Attack Vectors](#schnorr-signatures-and-their-attack-vectors)
     - [MuSig](#musig)
-    - [Key aggregation](#key-aggregation) 
-  - [Overview of multi-signatures](#overview-of-multi-signatures)
-    - [Bitcoin $ m-of-n $ multi-signatures](#bitcoin--m-of-n--multi-signatures)
-      - [Use cases for $ m-of-n $ multi-signatures](#use-cases-for--m-of-n--multi-signatures)
-    - [Recap on the Schnorr signature scheme](#recap-on-the-schnorr-signature-scheme)
-      - [Rogue attacks](#rogue-attacks)
-    - [Design of a Schnorr multi-signature scheme](#design-of-a-schnorr-multi-signature-scheme)
-      - [Micali-Ohta-Reyzin multi-signature scheme](#micali-ohta-reyzin-multi-signature-scheme)
-      - [The Bagherzandi *et al.* scheme](#the-bagherzandi-*et-al.*-scheme)
-      - [The Ma *et al.* scheme ](#the-ma-*et-al.*-scheme)
-      - [Bellare and Neven signature scheme](#bellare-and-neven-signature-scheme)   
-  - [The formation of MuSig](#the-formation-of-musig)
+    - [Key Aggregation](#key-aggregation) 
+  - [Overview of Multi-Signatures](#overview-of-multi-signatures)
+    - [Bitcoin $ m-of-n $ Multi-Signatures](#bitcoin--m-of-n--multi-signatures)
+      - [Use Cases for $ m-of-n $ Multi-Signatures](#use-cases-for--m-of-n--multi-signatures)
+    - [Recap on the Schnorr Signature Scheme](#recap-on-the-schnorr-signature-scheme)
+      - [Rogue Attacks](#rogue-attacks)
+    - [Design of a Schnorr Multi-Signature Scheme](#design-of-a-schnorr-multi-signature-scheme)
+      - [Micali-Ohta-Reyzin Multi-Signature Scheme](#micali-ohta-reyzin-multi-signature-scheme)
+      - [The Bagherzandi *et al.* Scheme](#the-bagherzandi-*et-al.*-scheme)
+      - [The Ma *et al.* Scheme ](#the-ma-*et-al.*-scheme)
+      - [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme)   
+  - [The Formation of MuSig](#the-formation-of-musig)
     - [Interactive Aggregate Signatures](#interactive-aggregate-signatures)
       - [Application of IAS](#application-of-IAS)
-        - [Native mulit-signature support](#native-multi-signature-support)
-        - [Cross-input multi-signatures](#cross-input-multi-signatures)
-        - [Protection against rogue-key attacks](#protection-against-rogue-key-attacks)
+        - [Native Mulit-Signature Support](#native-multi-signature-support)
+        - [Cross-Input Multi-Signatures](#cross-input-multi-signatures)
+        - [Protection against Rogue-Key Attacks](#protection-against-rogue-key-attacks)
       - [Revisions](#revisions) 
-  - [Conclusions, observations and recommendations](#conclusions,-observations-and-recommendations)
+  - [Conclusions, Observations and Recommendations](#conclusions,-observations-and-recommendations)
   - [Contributors](#contributors)
 
 ## Introduction 
 
-### Schnorr signatures and their attack vectors 
+### Schnorr Signatures and their Attack Vectors 
 
 Schnorr signatures produce a smaller on-chain size, support faster validation and have better privacy. They natively allow for combining multiple signatures into one through aggregation and they permit more complex spending policies.
 
@@ -69,7 +69,7 @@ There are two versions of MuSig, that are provably secure, which differ based on
 1. Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which ECDSA (Elliptic Curve Digital Signature Algorithm) also relies
 2. Two-round MuSig instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption
 
-### Key aggregation
+### Key Aggregation
 
 The term *key aggregation* refers to multi-signatures that look like a single-key signature, but with respect to an aggregated public key that is a function of only the participants' public keys. Thus, verifiers do not require the knowledge of the original participants' public keys- they can just be given the aggregated key. In some use cases, this leads to better privacy and performance. Thus, MuSig is effectively a key aggregation scheme for Schnorr signatures.
 
@@ -86,7 +86,7 @@ This is different to a normal multi-signature scheme where one message is signed
 
 There are other multi-signature schemes that already exist that provide key aggregation for Schnorr signatures, however they come with some limitations, such as needing to verify that participants actually have the private key corresponding to the pubic keys that they claim to have. *Security in the plain public-key model* means that no limitations exist. All that is needed from the participants is their public keys. [[1]]
 
-## Overview of multi-signatures 
+## Overview of Multi-Signatures 
 
 Recently the most obvious use case for multi-signatures is with regards to Bitcoin, where it can function as a more efficient replacement of $ n-of-n $ multisig scripts (where the signatures required to spend and the signatures possible are equal in quantity) and other policies that permit a number of possible combinations of keys.
 
@@ -96,11 +96,11 @@ Instead of creating restrictions with one signature per input, one signature can
 
 No non-interactive aggregation scheme is known that only relies on the DL assumption, but interactive schemes are trivial to construct where a multi-signature scheme has every participant sign the concatenation of all messages. Maxwell G., *et al.* [[4]] focused on key aggregation for Schnorr Signatures and showed that this is not always a desirable construction, and gave an IAS variant of BN with better properties instead. [[1]]
 
-### Bitcoin $ m-of-n $ multi-signatures 
+### Bitcoin $ m-of-n $ Multi-Signatures 
 
 Currently, standard transactions on the Bitcoin network can be referred to as single-signature transactions, as they require only one signature, from the owner of the private key associated with the Bitcoin address. However, the Bitcoin network supports much more complicated transactions which can require the signatures of multiple people before the funds can be transferred. These are often referred to as $ m-of-n $ transactions, where m represents the amount of signatures required to spend, while n represents the amount of signatures possible. [[5]]
 
-#### Use cases for $ m-of-n $ multi-signatures
+#### Use Cases for $ m-of-n $ Multi-Signatures
 
 When $ m=1 $ and $ n>1 $ it is considered a shared wallet, which could be used for small group funds that do not require much security. It is the least secure multi-sig option because it is not multi-factor. Any compromised individual would jeopardize the entire group. Examples of use cases include funds for a weekend or evening event, or a shared wallet for some kind of game. Besides being convenient to spend from, the only benefit of this setup is that all but one of the backup/password pairs could be lost and all of the funds would be recoverable.
 
@@ -112,7 +112,7 @@ When $ m>0.5n $, a consensus account is termed. The classic multi-signature wall
 
 When $ m=0.5n $, it is referred to as a split account, and is an interesting use case, as there would be 3 of 6 where one person holds 3 keys and 3 people hold 1 key. In this way one person could control their own money, but the funds could still be recoverable even if the primary key holder were to disappear with all of his keys. As $ n $ increases, the level of trust in the secondary parties can decrease. A good use case might be a family savings account that would just automatically become an inheritance account if the primary account holder were to die. [[5]]
 
-### Rogue attacks 
+### Rogue Attacks 
 
 Please see [Key cancellation attack](../digital_signatures/schnorr_signatures.md#key-cancellation-attack) demonstration in [Introduction to Schnorr Signatures](../digital_signatures/introduction.md).
 
@@ -151,7 +151,7 @@ While several multi-signature schemes could offer an improvement over the curren
 - The availability of key aggregation removes the need for verifiers to see all the involved key, improving bandwidth, privacy, and validation cost
 - Security under the *plain public-key model* enables multi-signatures across multiple inputs of a transaction, where the choice of signers cannot be committed to in advance. This greatly increases the number of situations in which mulit-signatures are beneficial.
 
-#### Native multi-signature support 
+#### Native Multi-Signature Support 
 
 An improvement is to replace the need for implementing $ n-of-n $ multi-signatures with a constant-size multi-signature primitive like Bellare-Neven. While this is on itself an improvement in terms of size, it still needs to contain all of the signers' public keys. Key aggregation improves upon this further, as a single-key predicate[^2] can be used instead which is both smaller and has lower computational cost for verification. It also improves privacy, as the participant keys and their count remain private to the signers.
 
@@ -161,7 +161,7 @@ Some key aggregation schemes that do not protect against rogue-key attacks can b
 
 Another alternative is to use an algorithm whose key generation requires a trusted setup, for example in the KOSK model. While many of these schemes have been proven secure [[19]][[20]], they rely on mechanisms that are usually not implemented by certification authorities [[21]] [[18]].
 
-#### Cross-input multi-signatures 
+#### Cross-Input Multi-Signatures 
 
 The previous sections explained how the numbers of signatures per input can generally by reduced to one, but one can go further and replace it with a single signature per transaction. Doing so requires a fundamental change in validation semantics, as the validity of separate inputs is no longer independent. As a result, the outputs can no longer be modeled as predicates, where the secret key owner is given access to encrypted data. Instead, they are modeled as functions that return a boolean (data type with only two possible values) plus a set of zero or more public keys.
 
@@ -169,7 +169,7 @@ Overall validity requires all returned booleans to be True and a multi-signature
 
 With regards to Bitcoin, this can be implemented by providing an alternative to the signature checking opcode OP\_CHECKSIG and related opcodes in the Script language. Instead of returning the result of an actual ECDSA verification, they always return True, but additionally add the public key with which the verification would have taken place to a transaction-wide multi-set of keys. Finally, after all inputs are verified, a multi-signature present in the transaction is verified against that multi-set. In case the transaction spends inputs from multiple owners, they will need to collaborate to produce the multi-signature, or choose to only use the original opcodes. Adding these new opcodes is possible in a backward-compatible way. [[4]]
 
-#### Protection against rogue-key Attacks
+#### Protection against Rogue-Key Attacks
 
 In Bitcoin, when taking cross-input signatures into account, there is no published commitment to the set of signers, as each transaction input can independently spend an output that requires authorization from distinct participants. This functionality was not restricted as it would then interfere with fungibility improvements such as CoinJoin [[31]]. Due to the lack of certification, security against rogue-key attacks is of great importance.
 
@@ -177,13 +177,19 @@ If it is assumed that transactions used a single multi-signature that was vulner
 
 It can be seen that in the case of mulit-signatures across inputs, theft can occur through the ability to forge a signature over a set of keys that includes at least one key which is not controlled by the attacker. According to the *plain public-key model* this is considered a win for the attacker. This is in contrast to the single-input multi-signature case where theft is only possible by forging a signature for the exact (aggregated) keys contained in an existing output. As a result, it is no longer possible to rely on proofs of knowledge/possession that are private to the signers.
 
-## The formation of MuSig
+## The Formation of MuSig
 
 ### Preliminaries 
 
-???
+#### Notation Used 
 
-### Recap on the Schnorr signature scheme 
+The  general notation of mathematical expressions when specifically referenced are listed here. These notations are important pre-knowledge for the remainder of the report. 
+
+- Let  $ p $  a be large prime number.
+- A cyclic group $ G $ of prime order $ p $. 
+- - let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and $ modulo \mspace{4mu} q $ respectively.
+
+### Recap on the Schnorr Signature Scheme 
 
 The Schnorr signature scheme uses:[[6]]
 
@@ -207,7 +213,7 @@ The above described is referred to as the so-called "key-prefixed" variant of th
 
 For the development of the new Schnorr-based multi-signature scheme [[4]], key-prefixing seemed a requirement for the security proof to go through, despite not knowing the form of an attack. The rationale also follows the process in reality, as messages signed in Bitcoin always indirectly commits to the public key.
 
-### Design of a Schnorr multi-signature scheme
+### Design of a Schnorr Multi-Signature Scheme
 
 The naive way to design a Schnorr multi-signature scheme would be as follows:
 
@@ -223,7 +229,7 @@ Note that this is exactly the verification equation for a traditional key-prefix
 
 However, as mentioned above, [[12]], [[14]], [[15]] and [[17]] these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to $ X_{1}=g^{x_{1}}(\Pi_{i=2}^{n}X_{i})^{-1} ​$, allowing the signer to produce signatures for public keys $ \{X_{1},...X_{n}\} ​$ by themselves. 
 
-### Bellare and Neven signature scheme
+### Bellare and Neven Signature Scheme
 
 Bellare-Neven (BN) [[21]] proceeded differently in order to avoid any key setup. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature $ s_{i}=r_{i}+c_{i}x_{i} ​$, defined as $ c_{i}=\textrm{H}(LX_{i},R,m) ​$, where $ R=\prod_{i=1}^{n}R_{i} ​$ and $ \langle L 
 \rangle ​$ is a unique encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} ​$. It is a more widely known *plain public-key* multi-signature scheme, that does not support key aggregation. It is possible to use BN multi-signatures where the individual keys are MuSig aggregates. BN multi-signature scheme is secure without such assumptions. Below are details:
@@ -243,7 +249,7 @@ The resulting signature does not satisfy the normal Schnorr equation anymore, no
 
 Bellare and Neven showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} $ and $ \textrm{H}' $ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
 
-### MuSig signature scheme
+### MuSig Signature Scheme
 
 MuSig is parmaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ where,
 
@@ -287,8 +293,8 @@ The protocol is aborted if this is not the case. If not the following is compute
 
 $$
 \begin{aligned} 
-R &={\prod}\stackrel{i=1}{n}R_{i} \\
-c &=  \textrm{H}_{sig} (\tilde{X,R,m)} \\
+R &=\prod_{i=1}^{n}R_{i} \\
+c &=  \textrm{H}_{sig} (\tilde{X},R,m) \\
 s_{1} &=r_{1}+ca_{1}x_{1} \textrm {mod}\ p
 \end{aligned}
 $$
@@ -304,14 +310,14 @@ In order to verify, given a multiset of public keys $  L = \{X_{1},...X_{n\}} $ 
 $$
 \begin{aligned} 
 a_{i} &= H_{agg}(L,X_{i}) \textrm {for}\ i\in \{1,...,n\} \\
-\tilde{X}&= \prod_{i=1}^{n}X_{i}^{a_{i}} \\
-s_{1} &=r_{1}+ca_{1}x_{1} \textrm {mod}\ p
+\tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\
+c &=  \textrm{H}_{sig} (\tilde{X},R,m) \\
 \end{aligned}
 $$
 
 
 
-$c=H_{sig}(\tilde{X,R,m)}$ and then accepts the signature if $g^{s}=R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}$
+then accepts the signature if $g^{s}=R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}​$
 
 ### Revisions 
 
@@ -321,7 +327,7 @@ In more details, it was observed that in the 2-round variant of MuSig, an advers
 
 Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques. [[4]]
 
-### Turning BN’s scheme into a secure IAS
+### Turning BN’s Scheme into a Secure IAS
 
 In order to change the BN multi-signature scheme into an IAS scheme, P. Wuille *et al* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
