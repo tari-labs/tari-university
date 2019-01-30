@@ -153,7 +153,7 @@ While several multi-signature schemes could offer an improvement over the curren
 
 #### Native Multi-Signature Support 
 
-An improvement is to replace the need for implementing $ n-of-n $ multi-signatures with a constant-size multi-signature primitive like Bellare-Neven. While this is on itself an improvement in terms of size, it still needs to contain all of the signers' public keys. Key aggregation improves upon this further, as a single-key predicate[^2] can be used instead which is both smaller and has lower computational cost for verification. It also improves privacy, as the participant keys and their count remain private to the signers.
+An improvement is to replace the need for implementing $ n-of-n ​$ multi-signatures with a constant-size multi-signature primitive like Bellare-Neven. While this is on itself an improvement in terms of size, it still needs to contain all of the signers' public keys. Key aggregation improves upon this further, as a single-key predicate[^1] can be used instead which is both smaller and has lower computational cost for verification. It also improves privacy, as the participant keys and their count remain private to the signers.
 
 When generalizing to the $ m-of-n $ scenario, several options exist. One is to forego key aggregation, and still include all potential signer keys in the predicates while still only producing a single signature for the chosen combination of keys. Alternatively, a Merkle tree [[30]] where the leaves are permitted combinations of public keys (in aggregated form), can be employed. The predicate in this case would take as input an aggregated public key, a signature and a proof. Its validity would depend on the signature being valid with the provided key, and the proof establishing that the key is in fact one of the leaves of the Merkle tree, identified by its root hash. This approach is very generic, as it works for any subset of combinations of keys, and as a result has good privacy as the exact policy is not visible from the proof.
 
@@ -191,11 +191,11 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} = \{1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1}\}  $ 
 - Let $ \textrm{H} $ denote the hash function 
 - Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} $ be the ordered set of public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  $  
-- Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} $ be the multi-set of all public key[^1]
-- Let $ \langle L \rangle ​$ denote a lexicographically encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} ​$. 
+- Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} ​$ be the multi-set of all public key[^2]
+- Let $ \langle L \rangle $ denote a lexicographically encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} $. 
 - Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase
 - Let $ \textrm{H}_{agg} $ denote the hash function used to compute the aggregated key
-- Let $ \textrm{H}_{sig} $ denote the hash function used to compute the signature
+- Let $ \textrm{H}_{sig} ​$ denote the hash function used to compute the signature
 - Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer
 - Let $ m $ be the message that will be signed
 - Let $ X_{2},...,X_{n} $ be the public keys of other cosigners
@@ -663,8 +663,11 @@ Signature Scheme, 2003, M. Bellare *et al.*"
 [[34]] M. Drijvers, K. Edalatnejad, B. Ford, and G. Neven, “Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures,” tech. rep., 2018. Date accessed: 2019-01-20
 
 [34]: https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb
-"Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures
+"Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures"
 
-[^1]: No constraints are imposed on the key setup, the adversary thus can choose corrupted public keys at random, hence the same public key can appear more than once in $ L $ 
-[^2]: Predicate encryption is an encryption paradigm which gives a master secret key owner fine-grained control over access to encrypted data.[[29]]
-[^]: 
+[^1]: Predicate encryption is an encryption paradigm which gives a master secret key owner fine-grained control over access to encrypted data.[[29]]
+[^2]: No constraints are imposed on the key setup, the adversary thus can choose corrupted public keys at random, hence the same public key can appear more than once in $ L $ 
+
+
+
+
