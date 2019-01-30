@@ -1,6 +1,6 @@
 Minimal layout and content standard for Tari Labs University (TLU) reports.
 
-Use the US spelling standard. Reference: Merriam-Webster Online Dictionary, latest edition.
+Use the US spelling standard. Reference: Merriam-Webster Online Dictionary, latest edition.???
 
 If it is necessary to use abbreviations in a report, write the abbreviation out in full at its first occurrence in the text, followed by the abbreviation in brackets (e.g. Tari Labs University (TLU), graphical user interface (GUI). Thereafter, use the abbreviation only.
 
