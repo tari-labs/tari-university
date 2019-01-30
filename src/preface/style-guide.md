@@ -1,4 +1,4 @@
-Minimal layout and content standard for Tari Labs University (TLU) reports 
+Minimal layout and content standard for Tari Labs University (TLU) reports.
 
 Use the US spelling standard. Reference: Merriam-Webster Online Dictionary, latest edition.
 
