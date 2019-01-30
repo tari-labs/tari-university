@@ -190,14 +190,31 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let $ \mathbb Z_p ​$ denote the ring of integer $ modulo \mspace{4mu} p ​$ 
 - Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} = \{1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1}\}  $ 
 - Let $ \textrm{H} $ denote the hash function 
-- Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} ​$ be the ordered set of public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$  
+- Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} $ be the ordered set of public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  $  
+- Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} $ be the multi-set of all public key[^1]
+- Let $ \langle L \rangle ​$ denote a lexicographically encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} ​$. 
+- Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase
+- Let $ \textrm{H}_{agg} $ denote the hash function used to compute the aggregated key
+- Let $ \textrm{H}_{sig} $ denote the hash function used to compute the signature
+- Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer
+- Let $ m $ be the message that will be signed
+- Let $ X_{2},...,X_{n} $ be the public keys of other cosigners
+- Let $ S=\{(X_1,m_1),...,(X_n, m_n)\} ​$ be the multi-set of all public key/message pairs of all participants
+- Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs 
 
 ### Recap on the Schnorr Signature Scheme 
 
 The Schnorr signature scheme uses:[[6]]
 
-- A private/public key pair is a pair $ (x,X) \in \{0,...,p-1\} \mspace{6mu} \mathsf{x} \mspace{6mu} \mathbb{G} ​$ where $ X=g^{x} ​$ 
-- To sign a message $ m $, the signer draws a random integer $ r $ in $ Z_{p}, $ computes
+A private/public key pair is a pair 
+
+$$
+(x,X) \in \{0,...,p-1\} \mspace{6mu} \mathsf{x} \mspace{6mu} \mathbb{G} 
+$$
+
+where $  X=g^{x} $ 
+
+To sign a message $ m $, the signer draws a random integer $ r $ in $ Z_{p}, $ computes
 
 $$
 \begin{aligned} 
@@ -207,7 +224,10 @@ s &= r+cx
 \end{aligned}
 $$
 
-- The signature is the pair $ (R,s) ​$, and its validity can be checked by verifying whether $ g^{s}=RX^{c} ​$ 
+The signature is the pair $ (R,s) $, and its validity can be checked by verifying whether 
+$$
+g^{s} = RX^{c}
+$$
 
 The above described is referred to as the so-called "key-prefixed" variant of the scheme, which sees the public key hashed together with $ R ​$ and $ m ​$ [[7]]. This variant was thought to have a better multi-user security bound than the classic variant [[8]], however in [[9]] the key-prefixing was seen as unnecessary to enable good multi-user security for Schnorr signatures.
 
@@ -217,11 +237,13 @@ For the development of the new Schnorr-based multi-signature scheme [[4]], key-p
 
 The naive way to design a Schnorr multi-signature scheme would be as follows:
 
-A group of $ n ​$ signers want to cosign a message $ m ​$ 
+A group of $ n $ signers want to cosign a message $ m $ 
 
-Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} $ be the multi-set of all public key[^1]
+Each cosigner randomly generates and communicates to others a share 
 
-Each cosigner randomly generates and communicates to others a share $ R_i = g^{r_{i}} $
+$$
+R_i = g^{r_{i}}
+$$
 
 Each of the cosigners then computes:  
 
@@ -230,73 +252,87 @@ $$
 R = \prod {i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
 $$
 
-Where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} $ is the product of individual public keys, and a partial signature $ s_{i}=r_{i}+cx_{i} $ 
+where $$ \tilde{X} = \Pi_{i=1}^{n}X_{i} $$
 
-Partial signatures are then combined into a single signature $(R,s)$ where $s=\Sigma_{i=1}^{n}s_i \mod p $
+is the product of individual public keys, and a partial signature 
 
-The validity of a signature $ (R,s) $ on message $ m $ for public keys $ \{X_{1},...X_{n}\} $ is equivalent to $ g^{s}=R\tilde{X}^{c} $ where $ \tilde{X}=\Pi_{i=1}^{n}X_{i} $ and $ c=\textrm{H}(\tilde{X},R,m) $ 
+$$
+s_{i} = r_{i}+cx_{i}
+$$
+
+Partial signatures are then combined into a single signature $(R,s)​$ where 
+
+$$
+s = \Sigma_{i=1}^{n}s_i \mod p ​
+$$
+
+The validity of a signature $ (R,s) $ on message $ m $ for public keys $ \{X_{1},...X_{n}\} $ is equivalent to 
+
+$$
+g^{s} = R\tilde{X}^{c}
+$$
+
+where 
+
+$$
+\tilde{X} = \Pi_{i=1}^{n}X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m)
+$$
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key $ \tilde{X} $, a property termed *key aggregation*
 
-However, as mentioned above, [[12]], [[14]], [[15]] and [[17]] these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to $ X_{1}=g^{x_{1}}(\Pi_{i=2}^{n}X_{i})^{-1} ​$, allowing the signer to produce signatures for public keys $ \{X_{1},...X_{n}\} ​$ by themselves. 
+However, as mentioned above, [[12]], [[14]], [[15]] and [[17]] these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to 
+
+$$
+X_{1}=g^{x_{1}}(\Pi_{i=2}^{n}X_{i})^{-1} 
+$$
+
+allowing the signer to produce signatures for public keys $ \{X_{1},...X_{n}\} ​$ by themselves. 
 
 ### Bellare and Neven Signature Scheme
 
-Bellare-Neven (BN) [[21]] proceeded differently in order to avoid any key setup. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature $ s_{i}=r_{i}+c_{i}x_{i} ​$, defined as $ c_{i}=\textrm{H}(LX_{i},R,m) ​$, where $ R=\prod_{i=1}^{n}R_{i} ​$ and $ \langle L 
-\rangle ​$ is a unique encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} ​$. It is a more widely known *plain public-key* multi-signature scheme, that does not support key aggregation. It is possible to use BN multi-signatures where the individual keys are MuSig aggregates. BN multi-signature scheme is secure without such assumptions. Below are details:
+Bellare-Neven (BN) [[21]] proceeded differently in order to avoid any key setup. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
 
-- Call $ L=\textrm{H}(X_{1,}X_{2...}) $ 
-- Each signer chooses a random nonce $ r_{i} $ and shares $ R_{i}=r_{i}G $ with the other signers
-- Call R the sum of the $ R_{i} $ points
-- Each signer computes $ s_{i}=r_{i}+\textrm{H}(L,X_{i,}R,m)x_{i} $ 
-- The final signature is $ (R,s) $ where $ s $ is the sum of the $ s_{i} $ values
-- Verification requires $ sG=R+\textrm{H}(L,X_{1,}R,m)X_{2}+... $ 
+$$
+s_{i} = r_{i}+c_{i}x_{i} 
+$$
 
-Technically, BN has a pre-commit round, where the signers initially reveal $ \textrm{H}(R_{i}) $ to each other, prior to revealing the $ R_{i} $ points themselves. This step is a requirement in order to prove security under the DL assumption, but it can be dismissed if instead the OMDL assumption is accepted.
+defined as 
 
-Furthermore, when an IAS is desired (where each signer has their own message), $ L=\textrm{H}((X_{1},m_{1}),(X_{2},m_{2}),...) $ and $ s_{i}=r_{i}+\textrm{H}(L,R,i)x_{i} $ is used for signing (and analogous for verification).
+$$
+c_{i} = \textrm{H}(LX_{i},R,m) 
+$$
 
-The resulting signature does not satisfy the normal Schnorr equation anymore, nor any other equation that can be written as a function of a combination of the public keys; the key aggregation property is lost in order to gain security in the *plain public-key model*.
+where 
 
-Bellare and Neven showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} $ and $ \textrm{H}' $ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
+$$
+R = \prod_{i=1}^{n}R_{i}
+$$
+
+The equation to verify signature $ (R,s) $ on message $ m $ for the public keys $ L $ is 
+
+$$
+g^s = R\prod_{i=1}^{n}X_{i}^{c_{i}}
+$$
+
+A preliminary round is the signature protocol is also added, where each signer commits to its share $ R_i $ by sending $ t_i = \textrm{H}^\prime(R_i) $ to other cosigners first. 
+
+This stops any cosigner from setting $ R = \prod_{i=1}^{n}R_{i}  ​$ to some maliciously chosen value and also allows the reduction to simulate the signature oracle in the security proof. 
+
+Bellare and Neven showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} ​$ and $ \textrm{H}^\prime ​$ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
 
 ### MuSig Signature Scheme
 
-MuSig is parmaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ where,
-
-- $ p $ is the $k$-bit integer
-
-- $ \mathbb{G} ​$ is the cyclic group of order $p​$
-
-- $ g $ is the generator of $G$
-
-- hash functions, $ \textrm{H}\_{com} ​$, $ \textrm{H}\_{agg} ​$, $ \textrm{H}\_{sig} ​$ from $ \{0,1\}^{*} ​$ to $ \{0,1\}^{l} ​$ (constructed from a single hash, using proper domain separation)
-
-where $ \textrm{H}_{com} ​$ is used in the commitment phase
-
-$ \textrm{H}_{agg} ​$ is used to compute the aggregated key
-
-$ \textrm{H}_{sig} ​$ is used to compute the signature
-
-For the signing :
-
-- Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer
-- Let $ m ​$ be the message that will be signed
-- Let $ X_{1},...,X_{n} ​$ be the public keys of other cosigners
-
-- Let $L=\{X_{1},...X_{n\}}$ be the multiset of all public keys involved in the signing process
-
+MuSig is paramaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions, $ \textrm{H}\_{com} $, $ \textrm{H}\_{agg} $, $ \textrm{H}\_{sig} $ from $ \{0,1\}^{*} $ to $ \{0,1\}^{l} $ (constructed from a single hash, using proper domain separation)
 
 For $ i\in \{1,...,n\} ​$ , the signer computes the following
 
 $$
-a_{i} = \textrm{H}\_{agg}(L,X\_{i})
+a_{i} = \textrm{H}\_{agg}(\langle L \rangle,X\_{i})
 $$
-
 
 as well as the "aggregated" public key $ \tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​$.
 
-The signer generators a random $r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}}​$computes $R_{1}=g^{r_{1}},t_{1}=H_{com}(R_{1})​$, and sends $t_{1}​$to all other cosigners.
+The signer generators a random $r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}}​$computes $R_{1} = g^{r_{1}},t_{1} = H_{com}(R_{1})​$, and sends $t_{1}​$to all other cosigners.
 
 When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, it sends $R_{1}$
 
@@ -304,32 +340,33 @@ When receiving $R_{2},...,R_{n}$ from other cosigners, it checks that $t_{i}=H_{
 
 The protocol is aborted if this is not the case. If not the following is computed:
 
-
 $$
 \begin{aligned} 
-R &=\prod^{n}\_{i=1}R\_{i} \\\\
-c &=  \textrm{H}\_{sig} (\tilde{X},R,m) \\\\
+R &= \prod^{n}\_{i=1}R\_{i} \\\\
+c &= \textrm{H}\_{sig} (\tilde{X},R,m) \\\\
 s\_{1} &= r\_{1} + ca\_{1} x\_{1} \mod p
 \end{aligned}
 $$
 
-$s_{1}$ is sent to all other cosigners
+$s_{1}​$ is sent to all other cosigners
 
-When receiving $ s_{2},...s_{n} $ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} $ mod $p$. The signature is $ \sigma = (R,s) $.
+When receiving $ s_{2},...s_{n} ​$ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} \mod p​$. The signature is $ \sigma = (R,s) ​$.
 
-In order to verify, given a multiset of public keys $  L = \{X_{1},...X_{n\}} ​$ , a message $ m ​$ and a signature $ \sigma = (R,s) ​$, the verifier computes:
+In order to verify, given a lexicographically encoded multiset of public keys $ \langle L \rangle ​$ , a message $ m ​$ and a signature $ \sigma = (R,s) ​$, the verifier computes:
 
 $$
 \begin{aligned} 
-a_{i} &= H_{agg}(L,X_{i}) \textrm {for}\ i\in \{1,...,n\} \\\\
+a_{i} &= H_{agg}(\langle L \rangle,X_{i}) \textrm {for}\ i\in \{1,...,n\} \\\\
 \tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\\\
 c &=  \textrm{H}_{sig} (\tilde{X},R,m) 
 \end{aligned}
 $$
 
+then accepts the signature if 
 
-
-then accepts the signature if $g^{s}=R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}​$
+$$
+g^{s} = R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}
+$$
 
 ### Revisions 
 
@@ -343,44 +380,54 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 In order to change the BN multi-signature scheme into an IAS scheme, P. Wuille *et al* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
-In practice, if $ X ​$ is the public key of a specific signer and $ m ​$ the message he wants to sign, and 
+If $ X = g^{x_i} $ is the public key of a specific signer and $ m $ the message he wants to sign, and 
 
 $$
 S^\prime = \{(X^\prime\_{1}, m^\prime\_{1}),..., (X^\prime\_{n-1}, m^\prime\_{n-1})\}
 $$
 
-is the set of other signers, this specific signer merges $ (X, m) ​$ and $ S' ​$ into the ordered set 
+is the set of the public key/message pairs of other signers, this specific signer merges $ (X, m) $ and $ S^\prime $ into the ordered set 
 
 $$
-S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} 
+S = \{(X_{1}, m_{1}),..., (X_{n}, m_{n})\}
 $$
 
-and retrieves the resulting message index $ i $ such that 
+and retrieves the resulting message index $ i ​$ such that 
+
 $$
-(X_{1}, m_{i}) = (X, m) 
+(X_{1}, m_{i}) = (X, m)
 $$
 
-Then, as in the BN multi-signature scheme, each signer draws $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $  R_{i} = g^{r_{i}} $, sends commitment $  t_{i} = H'(R_{i}) $ in a first round and then $ R_{i} $ in a second round, and computes  
+Each signer then draws $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, computes $  R_{i} = g^{r_{i}} ​$ and subsequently sends commitment $  t_{i} = H^\prime(R_{i}) ​$ in a first round and then $ R_{i} ​$ in a second round, and then computes  
+
 $$
-R=\prod_{i=1}^{n}R_{i}
+R = \prod_{i=1}^{n}R_{i}
 $$
 
 The signer with message index $ i ​$ then computes:
+
 $$
 c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \mathrm{and} \mspace{30mu} 
 s_{i} = r_{i} + c_{i}x_{i} \mod p
 $$
 
-and sends $ s_{i} $ to other signers. All signers can compute 
+and then sends $ s_{i} ​$ to other signers. All signers can compute 
+
 $$
-s=\prod_{i=1}^{n}s_{i} \textrm{mod} p 
+s = \prod_{i=1}^{n}s_{i} \mod p
 $$
 
-The signature is $ \sigma = (R, s) $. Given an ordered set $ S = \{(X_{1}, m_{1}),...,(X_{n}, m_{n})\} $ and a signature $ \sigma = (R, s) $ is valid for $ S $ $ iff $  $$ g^s=R\prod_{i=1}^{n}X_{i} ^{H(R,  \langle S \rangle, i)} $$
+The signature is $ \sigma = (R, s) ​$. 
 
-Note that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through $ S $ and the message index $ i $. 
+Given an ordered set $ S = \{(X_{1}, m_{1}),...,(X_{n}, m_{n})\} $ and a signature $ \sigma = (R, s) $  $ \sigma $ is valid for $ S ​$ when 
 
-## Conclusions, observations and recommendations
+$$
+g^s = R\prod_{i=1}^{n}X_{i} ^{H(R, \langle S \rangle, i)}
+$$
+
+It must be noted that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through $ S $ and the message index $ i $. 
+
+## Conclusions, Observations and Recommendations
 
 - MuSig leads to both native and private multi-signature transactions with both signature aggregation.
 - Signature data for multi-signatures can be large and cumbersome. MuSig will allow users to create more complex transactions without burdening the network and revealing compromising information.
@@ -407,14 +454,12 @@ Kevoulee Sardar, Hansie Odendaal, Cayle Sharrock
 [[3]] K. Itakura, “A public-key cryptosystem suitable for digital multisignatures,” NEC J. Res. Dev., vol. 71, 1983. Date accessed: 2019-01-20 
 
 [3]: https://scinapse.io/papers/200023587/
-
 "A public-key cryptosystem suitable for digital multisignatures,
 1983, K. Itakura"
 
 [[4]] G. Maxwell *et al*. , “Simple Schnorr Multi-Signatures with Applications to Bitcoin,” pp. 1–34, 2018. Date accessed: 2019-01-20 
 
 [4]: https://eprint.iacr.org/2018/068.pdf
-
 "Simple Schnorr Multi-Signatures with 
 Applications to Bitcoin, 2018, 
 G. Maxwell *et al*."
@@ -422,34 +467,29 @@ G. Maxwell *et al*."
 [[5]] B. W. Contributors, “Multisignature,” 2017. Date accessed: 2019-01-20 
 
 [5]: https://wiki.bitcoin.com/w/Multisignature
-
 "Multisignature, 2017"
 
 [[6]] C. P. Schnorr, “Efficient signature generation by smart cards,” Journal of cryptology, vol. 4, no. 3, pp. 161–174, 1991. Date accessed: 2019-01-20
 
 [6]: https://link.springer.com/article/10.1007/BF00196725
-
 "Efficient signature generation by smart cards, 
 1991, C. P. Schnorr"
 
 [[7]] D. J. Bernstein *et al.* , “High-speed high-security signatures,” Journal of Cryptographic Engineering, vol. 2, no. 2, pp. 77–89, 2012. Date accessed: 2019-01-20
 
 [7]: https://ed25519.cr.yp.to/ed25519-20110705.pdf
-
 "High-speed high-security signatures, 
 2012, D. J. Bernstein *et al.*"
 
 [[8]] D. J. Bernstein, “Multi-user Schnorr security, revisited.,” IACR Cryptology ePrint Archive, vol. 2015, p. 996, 2015. Date accessed: 2019-01-20
 
 [8]: https://eprint.iacr.org/2015/996.pdf
-
 "Multi-user Schnorr security, revisited,
 2015, D. J. Bernstein" 
 
 [[9]] E. Kiltz *et al.*, “Optimal security proofs for signatures from identification schemes,” in Annual Cryptology Conference, pp. 33–61, Springer, 2016. Date accessed: 2019-01-20
 
 [9]: https://eprint.iacr.org/2016/191.pdf
-
 "Optimal Security Proofs for Signatures from
 Identification Schemes, 2016,
 E. Kiltz *et al.*"
@@ -457,7 +497,6 @@ E. Kiltz *et al.*"
 [[10]] C. M. Li *et al.*, “Threshold-multisignature schemes where suspected forgery implies traceability of adversarial shareholders,” in Workshop on the Theory and Application of Cryptographic Techniques, pp. 194–204, Springer, 1994. Date accessed: 2019-01-20
 
 [10]: https://link.springer.com/content/pdf/10.1007%2FBFb0053435.pdf
-
 "Threshold-multisignature schemes 
 where suspected forgery implies 
 traceability of adversarial shareholders,
@@ -466,7 +505,6 @@ traceability of adversarial shareholders,
 [[11]] L. Harn, “Group-oriented (t, n) threshold digital signature scheme and digital multisignature,” IEE Proceedings-Computers and Digital Techniques, vol. 141, no. 5, pp. 307–313, 1994. Date accessed: 2019-01-20
 
 [11]: https://ieeexplore.ieee.org/abstract/document/326780
-
 "Group-oriented (t, n) threshold digital 
 signature scheme and digital multisignature
 1994, L. Harn"
@@ -474,7 +512,6 @@ signature scheme and digital multisignature
 [[12]] P. Horster *et al.*, “Meta-Multisignature schemes based on the discrete logarithm problem,” in Information Security-the Next Decade, pp. 128–142, Springer, 1995. Date accessed: 2019-01-20
 
 [12]: https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf
-
 "Meta-Multisignature schemes based
 on the discrete logarithm problem, 
 1995, P. Horster *et al.*"
@@ -482,7 +519,6 @@ on the discrete logarithm problem,
 [[13]] K. Ohta and T. Okamoto, “A digital multisignature scheme based on the Fiat-Shamir scheme,” in International Conference on the Theory and Application of Cryptology, pp. 139–148, Springer, 1991. Date accessed: 2019-01-20
 
 [13]: https://link.springer.com/chapter/10.1007/3-540-57332-1_11
-
 "A digital multisignature scheme 
 based on the Fiat-Shamir scheme,
 1991, K. Ohta and T. Okamoto"
@@ -490,7 +526,6 @@ based on the Fiat-Shamir scheme,
 [[14]] S. K. Langford, “Weaknesses in some threshold cryptosystems,” in Annual International Cryptology Conference, pp. 74–82, Springer, 1996. Date accessed: 2019-01-20
 
 [14]: https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf
-
 "Weaknesses in Some Threshold 
 Cryptosystem, 1996, 
 S. K. Langford" 
@@ -498,7 +533,6 @@ S. K. Langford"
 [[15]] M. Michels and P. Horster, “On the risk of disruption in several multiparty signature schemes,” in International Conference on the Theory and Application of Cryptology and Information Security, pp. 334–345, Springer, 1996. Date accessed: 2019-01-20
 
 [15]: https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf
-
 "On the risk of disruption in several 
 multiparty signature schemes, 1996, 
 M. Michels and P. Horster" 
@@ -506,7 +540,6 @@ M. Michels and P. Horster"
 [[16]] K. Ohta and T. Okamoto, “Multi-signature schemes secure against active insider attacks,” IEICE Transactions on Fundamentals of Electronics, Communications and Computer Sciences, vol. 82, no. 1, pp. 21–31, 1999. Date accessed: 2019-01-20
 
 [16]: http://search.ieice.org/bin/summary.php?id=e82-a_1_21&category=A&year=1999&lang=E&abst=
-
 "Multi-signature schemes secure 
 against active insider attacks, 1999, 
 K. Ohta and T. Okamoto" 
@@ -514,14 +547,12 @@ K. Ohta and T. Okamoto"
 [[17]] S. Micali *et al.*, “Accountable-subgroup multisignatures,” in Proceedings of the 8th ACM conference on Computer and Communications Security, pp. 245–254, ACM, 2001. Date accessed: 2019-01-20
 
 [17]: https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf
-
 "Accountable-subgroup multisignatures,
 2001, S. Micali *et al.*" 
 
 [[18]] T. Ristenpart and S. Yilek, “The power of proofs-of-possession: Securing multiparty signatures against rogue-key attacks,” in Annual International Conference on the Theory and Applications of Cryptographic Techniques, pp. 228–245, Springer, 2007. Date accessed: 2019-01-20
 
 [18]: https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf
-
 "The power of proofs-of-possession: 
 Securing multiparty signatures against
 rogue-key attacks, 2007, 
@@ -530,7 +561,6 @@ T. Ristenpart and S. Yilek"
 [[19]] A. Boldyreva, “Threshold signatures, multisignatures and blind signatures based on the gap-Diffie-Hellman-group signature scheme,” in International Workshop on Public Key Cryptography, pp. 31–46, Springer, 2003. Date accessed: 2019-01-20
 
 [19]: https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf
-
 "Threshold Signatures, Multisignatures
 and Blind Signatures Based on the
 Gap-Diffie-Hellman-Group Signature 
@@ -539,7 +569,6 @@ Scheme, 2003, A. Boldyreva"
 [[20]] S. Lu *et al.*, “Sequential aggregate signatures and multisignatures without random oracles,” in Annual International Conference on the Theory and Applications of Cryptographic Techniques, pp. 465–485, Springer, 2006. Date accessed: 2019-01-20
 
 [20]: https://eprint.iacr.org/2006/096.pdf
-
 "Sequential Aggregate Signatures and
 Multisignatures without Random Oracles, 
 2006, S. Lu *et al.*" 
@@ -547,7 +576,6 @@ Multisignatures without Random Oracles,
 [[21]] M. Bellare and G. Neven, “Multi-Signatures in the Plain Public- Key Model and a General Forking Lemma,” Acm Ccs, pp. 390– 399, 2006. Date accessed: 2019-01-20
 
 [21]: https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf
-
 "Multi-Signatures in the Plain Public-Key 
 Modeland a General Forking Lemma,
 2006, M. Bellare and G. Neven"
@@ -555,7 +583,6 @@ Modeland a General Forking Lemma,
 [[22]] A. Bagherzandi *et al.*, “Multisignatures Secure under the Discrete Logarithm Assumption and a Generalized Forking Lemma,” Proceedings of the 15th ACM conference on Computer and communications security - CCS ’08, p. 449, 2008. Date accessed: 2019-01-20
 
 [22]: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.544.2947&rep=rep1&type=pdf
-
 "Multisignatures Secure under the
 Discrete Logarithm Assumption
 and a Generalized Forking Lemma,
@@ -564,7 +591,6 @@ and a Generalized Forking Lemma,
 [[23]] C. Ma *et al.*, “Efficient discrete logarithm based multi-signature scheme in the plain public key model,” Designs, Codes and Cryptography, vol. 54, no. 2, pp. 121–133, 2010. Date accessed: 2019-01-20
 
 [23]: https://link.springer.com/article/10.1007/s10623-009-9313-z
-
 "Efficient discrete logarithm 
 based multi-signature scheme 
 in the plain public key model, 
@@ -573,7 +599,6 @@ in the plain public key model,
 [[24]] E. Syta *et al.*, “Keeping authorities" honest or bust" with decentralized witness cosigning,” in Security and Privacy (SP), 2016 IEEE Symposium on, pp. 526–545, Ieee, 2016. Date accessed: 2019-01-20
 
 [24]: https://arxiv.org/pdf/1503.08768.pdf
-
 "Keeping authorities" honest 
 or bust" with decentralized 
 witness cosigning, 2016, 
@@ -582,7 +607,6 @@ E. Syta *et al.*"
 [[25]] D. Boneh *et al.*, “Aggregate and verifiably encrypted signatures from bilinear maps,” in International Conference on the Theory and Applications of Cryptographic Techniques, pp. 416–432, Springer, 2003. Date accessed: 2019-01-20
 
 [25]: http://crypto.stanford.edu/~dabo/papers/aggreg.pdf
-
 "Aggregate and Verifiably Encrypted 
 Signatures from Bilinear Maps, 
 2003, D. Boneh *et al.*"
@@ -590,14 +614,12 @@ Signatures from Bilinear Maps,
 [[26]] M. Bellare *et al.*, “Unrestricted aggregate signatures,” in International Colloquium on Automata, Languages, and Programming, pp. 411–422, Springer, 2007. Date accessed: 2019-01-20
 
 [26]: https://cseweb.ucsd.edu/~mihir/papers/agg.pdf
-
 "Unrestricted aggregate signatures, 
 2007, M. Bellare *et al.*"
 
 [[27]] A. Lysyanskaya *et al.*, “Sequential aggregate signatures from trapdoor permutations,” in International Conference on the Theory and Applications of Cryptographic Techniques, pp. 74–90, Springer, 2004. Date accessed: 2019-01-20
 
 [27]: https://hovav.net/ucsd/dist/rsaagg.pdf
-
 "Sequential Aggregate Signatures 
 from Trapdoor Permutations, 
 2004, A. Lysyanskaya *et al.*" 
@@ -605,20 +627,17 @@ from Trapdoor Permutations,
 [[28]] G. Andersen, “M-of-N Standard Transactions,” 2011. Date accessed: 2019-01-20
 
 [28]: https://bitcoin.org/en/glossary/multisig
-
 "M-of-N Standard Transactions, 2011"
 
 [[29]] E. Shen *et al.*, “Predicate privacy in encryption systems,” in Theory of Cryptography Conference, pp. 457–473, Springer, 2009. Date accessed: 2019-01-20
 
 [29]: https://www.iacr.org/archive/tcc2009/54440456/54440456.pdf
-
 "Predicate privacy in encryption 
 systems, 2009, E. Shen *et al.*"
 
 [[30]] R. C. Merkle, “A digital signature based on a conventional encryption function,” in Conference on the theory and application of cryptographic techniques, pp. 369–378, Springer, 1987. Date accessed: 2019-01-20
 
 [30]: https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf
-
 "A digital signature based on a 
 conventional encryption function, 
 1987, R. C. Merkle" 
@@ -626,20 +645,17 @@ conventional encryption function,
 [[31]] G. Maxwell, “CoinJoin: Bitcoin privacy for the real world,” 2013. Date accessed: 2019-01-20
 
 [31]: https://bitcointalk.org/index.php?topic=279249.0
-
 "CoinJoin: Bitcoin privacy for the 
 real world, 2013"
 
 [[32]] M. Bellare and A. Palacio, “GQ and Schnorr identification schemes: Proofs of security against impersonation under active and concurrent attacks,” in Annual International Cryptology Conference, pp. 162–177, Springer, 2002. Date accessed: 2019-01-20
 
 [32]: https://cseweb.ucsd.edu/~mihir/papers/gq.pdf
-
 "GQ and Schnorr identification schemes: Proofs of security against impersonation under active and concurrent attacks, 2002, M. Bellare and A. Palacio"
 
 [[33]] M. Bellare *et al.*, “The One-More-RSA Inversion Problems and the Security of Chaum’s Blind Signature Scheme.,” Journal of Cryptology, vol. 16, no. 3, 2003. Date accessed: 2019-01-20
 
 [33]: https://eprint.iacr.org/2001/002.pdf
-
 "The One-More-RSA-Inversion Problems
 and the Security of Chaum’s Blind 
 Signature Scheme, 2003, M. Bellare *et al.*"
@@ -647,7 +663,6 @@ Signature Scheme, 2003, M. Bellare *et al.*"
 [[34]] M. Drijvers, K. Edalatnejad, B. Ford, and G. Neven, “Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures,” tech. rep., 2018. Date accessed: 2019-01-20
 
 [34]: https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb
-
 "Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures
 
 [^1]: No constraints are imposed on the key setup, the adversary thus can choose corrupted public keys at random, hence the same public key can appear more than once in $ L $ 
