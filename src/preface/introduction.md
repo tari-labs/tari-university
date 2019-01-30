@@ -8,6 +8,8 @@ We hope to make this a learning experience for us at Tari Labs: as a means to gr
 
 We would like this platform to be a place of learning- accessible to anyone, irrespective of their degree of expertise. Our aim is to cover a wide range of topics that are relevant to the Tari space, starting at a beginner level, extending down a path of deeper complexity. 
 
+***<u>ToDo*</u>** - add link to [style guide](style-guide.md)
+
 ## Errors, Comments and Contributions 
 
 We want this collection of educational presentations and videos to be collaborative affair.
