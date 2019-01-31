@@ -437,7 +437,7 @@ It must be noted that there is no need to include in the hash computation an enc
 
 ## Contributors 
 
-- [https://github.com/neonknight64](https://github.com/kevoulee
+- [https://github.com/kevoulee](https://github.com/kevoulee)
 - [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
 - [https://github.com/CjS77](https://github.com/CjS77)
 
