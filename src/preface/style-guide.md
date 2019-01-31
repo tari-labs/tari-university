@@ -1,6 +1,7 @@
 # Style Guide for Tari Labs University Reports
 
 - Purpose
+
 - Standards for Content
   - Spelling
   - Units of Measure
@@ -16,7 +17,7 @@
 - Headings
 - Figures and Tables
 - Equations
-- References
+- List of References
 - List of Contributors
 - Appendices 
 
@@ -24,7 +25,7 @@
 
 ## Purpose
 
-The purpose of this style guide is to provide contributors to the Tari Labs University (TLU) reports with standards for content and layout. 
+The purpose of this style guide is to provide contributors to the Tari Labs University (TLU) reports with standards for content and layout. The intention is to improve communication and provide a high-quality learning resource for users. Use of this style guide can assist in ensuring consistency in the content and layout of TLU reports.
 
 
 
@@ -34,7 +35,8 @@ The purpose of this style guide is to provide contributors to the Tari Labs Univ
 
 ### Spelling
 
-Use the United States (US) spelling standard. The applicable dictionary is: (???) Merriam-Webster Online Dictionary, latest edition??? 
+Use the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online, available at
+https://www.merriam-webster.com/. 
 
 
 
@@ -49,7 +51,7 @@ Use the internationally agreed ISO standards (ISO 1000:1992) for expressing unit
 ### Date and Time
 
 - Date format: yyyy-mm-dd (year-month-date).
-- Date format when written in text: 'The document was submitted for approval on 10 March 2019'.
+- Date format when written in text: "The document was submitted for approval on 10 March 2019."
 - Time format (international): 11:00; 15:00.
 
 
@@ -106,7 +108,7 @@ Use the internationally agreed ISO standards (ISO 1000:1992) for expressing unit
 
 ### Quotation Marks
 
-Use single quotation marks for a first quotation. Then use double quotation marks for a quotation within a quotation.
+Use double quotation marks for a first quotation, and single quotation marks for a quotation within a quotation.
 
 
 
@@ -121,7 +123,7 @@ Where a list is a continuation of the preceding text, which is followed by a col
 - it will mitigate the effect of orphaned and lost coins;
 - it will encourage spending rather than holding of coins.
 
-Where a contains complete sentences, each item in the list is followed by a full stop.
+Where a list contains complete sentences, each item in the list is followed by a full stop.
 
 **Example:** According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes:
 
@@ -129,14 +131,17 @@ Where a contains complete sentences, each item in the list is followed by a full
 2. The entire extended data is available, the erasure code is constructed correctly, but the block is invalid.
 3. The entire extended data is available, but the erasure code is constructed incorrectly.
 
+Where a list is not a sentence and does not complete a preceding part of a sen, use no punctuation.
+**Example:** Refer to the list of contents at the start of this style guide.
+
 
 
 ### Cross-referencing
 
 - Insert cross-references between the referenced information in the text and the list of references.
-- Text references appear in square brackets in the text and are listed under 'References' at the end of each section in the order in which they appear in the text.
+- Text references appear in square brackets in the text and are listed under "References" at the end of each section in the order in which they appear in the text.
 - If a text reference appears at the end of a paragraph, it appears after the full stop at the end of the paragraph.
-- Please be specific when referring to text, figures, tables, and references. For clarity, avoid using 'below' or 'above'. Rather give a specific paragraph, figure, table, or reference number.
+- Please be specific when referring to text, figures, tables, and references. For clarity, avoid using "below" or "above". Rather give a specific paragraph, figure, table, or reference number.
 
 
 
@@ -147,7 +152,7 @@ Where a contains complete sentences, each item in the list is followed by a full
 ### Bulleted List of Contents
 
 Every section in a TLU report starts with a bulleted list of all the headings in that section, for quick reference and consistency.
-**Example:** Refer to Section 1.3, Introduction to Scriptless Scripts. The heading 'Contents' is not used before this list. ?? 
+**Example:** Refer to Section 1.3, Introduction to Scriptless Scripts. The heading "Contents" is not used before this list. ?? 
 
 
 
@@ -172,33 +177,49 @@ Every section in a TLU report starts with a bulleted list of all the headings in
 
 
 
-### References 
+### List of References 
+
+TLU uses the IEEE standard as a guide for referencing publications
+(https://guides.lib.monash.edu/citing-referencing/ieee)
 
 List references in the following order, as applicable:
 
-1. Author(s) name and initials (no full stops after initials, leave a space between initials).
-2. Title of the article.
-3. Title of journal.
+1. Author(s) initials or first name and surname (note punctuation).
+2. Title of the report, between double quotation marks. If it is an online report, state this in square brackets as shown in the following example.
+3. Title of journal, in italics.
 4. Publication information (volume, number, etc.).
 5. Page range.
-6. Date you accessed the article (yyyy-mm-dd).
+6. URL address if an online publication. Provide this information as shown in the following example: "Available:..."
+7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
-**Example:** Abe M, Ohkubo M and Suzuki K, 1-out-of-n Signatures from a Variety of Keys,
+**Example:** M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online]. Available:
 https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf. Date accessed: 2018-12-18.
 
-Please note use of punctuation and full stops in the example. No italics are used. (Establish TLU's preference.)
+Please note the use of punctuation and full stops in the example. 
 
 
 
-### List of Contributors (Optional?)
-
-An optional (?) bulleted list of contributors is included at the end of the section content, after the list of references.
+## Conclusion
 
 
 
-### Appendices
+## References
 
-Include any appendices at the very end of the report, after the optional (?) list of contributors.
+
+
+
+
+## Appendices
+
+Include any appendices at the end of the report, before the list of contributors.
+
+
+
+## List of Contributors
+
+Include a bulleted list of contributors at the very end of the section content, after the appendices (if there are any).
+
+
 
 
 
