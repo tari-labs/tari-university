@@ -11,31 +11,33 @@ Multi-signatures are a form of technology used to add multiple participants to c
 ## Contents 
 
 - [The MuSig Schnorr Signature Scheme](#the-musig-schnorr-signature-scheme)
-  - [Abstract](#abstract)
-  - [Contents](#contents)
-  - [Introduction](#introduction)
-    - [Schnorr Signatures and their Attack Vectors](#schnorr-signatures-and-their-attack-vectors)
-    - [MuSig](#musig)
-    - [Key Aggregation](#key-aggregation) 
-  - [Overview of Multi-Signatures](#overview-of-multi-signatures)
-    - [Bitcoin $ m-of-n $ Multi-Signatures](#bitcoin--m-of-n--multi-signatures)
-      - [Use Cases for $ m-of-n $ Multi-Signatures](#use-cases-for--m-of-n--multi-signatures)
-    - [Recap on the Schnorr Signature Scheme](#recap-on-the-schnorr-signature-scheme)
-      - [Rogue Attacks](#rogue-attacks)
-    - [Design of a Schnorr Multi-Signature Scheme](#design-of-a-schnorr-multi-signature-scheme)
-      - [Micali-Ohta-Reyzin Multi-Signature Scheme](#micali-ohta-reyzin-multi-signature-scheme)
-      - [The Bagherzandi *et al.* Scheme](#the-bagherzandi-*et-al.*-scheme)
-      - [The Ma *et al.* Scheme ](#the-ma-*et-al.*-scheme)
-      - [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme)   
-  - [The Formation of MuSig](#the-formation-of-musig)
-    - [Interactive Aggregate Signatures](#interactive-aggregate-signatures)
-      - [Application of IAS](#application-of-IAS)
-        - [Native Mulit-Signature Support](#native-multi-signature-support)
-        - [Cross-Input Multi-Signatures](#cross-input-multi-signatures)
-        - [Protection against Rogue-Key Attacks](#protection-against-rogue-key-attacks)
-      - [Revisions](#revisions) 
-  - [Conclusions, Observations and Recommendations](#conclusions,-observations-and-recommendations)
-  - [Contributors](#contributors)
+	- [Abstract](#abstract)
+	- [Contents](#contents)
+	- [Introduction](#introduction)
+		- [Schnorr Signatures and their Attack Vectors](#schnorr-signatures-and-their-attack-vectors)
+		- [MuSig](#musig)
+		- [Key Aggregation](#key-aggregation) 
+	- [Overview of Multi-Signatures](#overview-of-multi-signatures)
+		- [Bitcoin $ m-of-n $ Multi-Signatures](#bitcoin--m-of-n--multi-signatures)
+			- [Use Cases for $ m-of-n $ Multi-Signatures](#use-cases-for--m-of-n--multi-signatures)
+		- [Rogue Attacks](#rogue-attacks)
+		- [Interactive Aggregate Signatures](#interactive-aggregate-signatures)
+			- [Application of IAS](#application-of-IAS)
+			- [Native Mulit-Signature Support](#native-multi-signature-support)
+			- [Cross-Input Multi-Signatures](#cross-input-multi-signatures)
+			- [Protection against Rogue-Key Attacks](#protection-against-rogue-key-attacks)
+	- [The Formation of MuSig](#the-formation-of-musig)
+		- [Preliminaries](#preliminaries)
+			- [Notation Used](#notation-used)
+		- [Recap on the Schnorr Signature Scheme](#recapon-the-schnorr-signature-scheme)
+		- [Design of the Schnorr Multi-Signature Scheme](#design-of-the-schnorr-signature-scheme)
+		- [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme) 
+		- [MuSig Scheme](#musig-scheme)
+		- [Revisions](#revisions) 
+		- [Turning BN's Scheme into a Secure IAS](#turning-bn's-scheme-into-a-secure-ias)
+	- [Conclusions, Observations and Recommendations](#conclusions,-observations-and-recommendations)
+	- [Contributors](#contributors)
+	- [References](#references)
 
 ## Introduction 
 
@@ -153,7 +155,7 @@ While several multi-signature schemes could offer an improvement over the curren
 
 #### Native Multi-Signature Support 
 
-An improvement is to replace the need for implementing $ n-of-n ​$ multi-signatures with a constant-size multi-signature primitive like Bellare-Neven. While this is on itself an improvement in terms of size, it still needs to contain all of the signers' public keys. Key aggregation improves upon this further, as a single-key predicate[^1] can be used instead which is both smaller and has lower computational cost for verification. It also improves privacy, as the participant keys and their count remain private to the signers.
+An improvement is to replace the need for implementing $ n-of-n $ multi-signatures with a constant-size multi-signature primitive like Bellare-Neven. While this is on itself an improvement in terms of size, it still needs to contain all of the signers' public keys. Key aggregation improves upon this further, as a single-key predicate[^1] can be used instead which is both smaller and has lower computational cost for verification. It also improves privacy, as the participant keys and their count remain private to the signers.
 
 When generalizing to the $ m-of-n $ scenario, several options exist. One is to forego key aggregation, and still include all potential signer keys in the predicates while still only producing a single signature for the chosen combination of keys. Alternatively, a Merkle tree [[30]] where the leaves are permitted combinations of public keys (in aggregated form), can be employed. The predicate in this case would take as input an aggregated public key, a signature and a proof. Its validity would depend on the signature being valid with the provided key, and the proof establishing that the key is in fact one of the leaves of the Merkle tree, identified by its root hash. This approach is very generic, as it works for any subset of combinations of keys, and as a result has good privacy as the exact policy is not visible from the proof.
 
@@ -233,7 +235,7 @@ The above described is referred to as the so-called "key-prefixed" variant of th
 
 For the development of the new Schnorr-based multi-signature scheme [[4]], key-prefixing seemed a requirement for the security proof to go through, despite not knowing the form of an attack. The rationale also follows the process in reality, as messages signed in Bitcoin always indirectly commits to the public key.
 
-### Design of a Schnorr Multi-Signature Scheme
+### Design of the Schnorr Multi-Signature Scheme
 
 The naive way to design a Schnorr multi-signature scheme would be as follows:
 
@@ -320,7 +322,7 @@ This stops any cosigner from setting $ R = \prod_{i=1}^{n}R_{i}  ​$ to some ma
 
 Bellare and Neven showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} ​$ and $ \textrm{H}^\prime ​$ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
 
-### MuSig Signature Scheme
+### MuSig Scheme
 
 MuSig is paramaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions, $ \textrm{H}\_{com} $, $ \textrm{H}\_{agg} $, $ \textrm{H}\_{sig} $ from $ \{0,1\}^{*} $ to $ \{0,1\}^{l} $ (constructed from a single hash, using proper domain separation)
 
@@ -660,10 +662,11 @@ real world, 2013"
 and the Security of Chaum’s Blind 
 Signature Scheme, 2003, M. Bellare *et al.*"
 
-[[34]] M. Drijvers, K. Edalatnejad, B. Ford, and G. Neven, “Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures,” tech. rep., 2018. Date accessed: 2019-01-20
+[[34]] M. Drijvers *et al.*, “Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures,” tech. rep., 2018. Date accessed: 2019-01-20
 
 [34]: https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb
-"Okamoto Beats Schnorr: On the Provable Security of Multi-Signatures"
+"Okamoto Beats Schnorr: On the Provable 
+Security of Multi-Signatures, 2018, *et al.*,"
 
 [^1]: Predicate encryption is an encryption paradigm which gives a master secret key owner fine-grained control over access to encrypted data.[[29]]
 [^2]: No constraints are imposed on the key setup, the adversary thus can choose corrupted public keys at random, hence the same public key can appear more than once in $ L $ 
