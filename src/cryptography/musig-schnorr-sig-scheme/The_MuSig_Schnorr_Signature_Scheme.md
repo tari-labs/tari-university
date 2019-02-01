@@ -239,7 +239,6 @@ For the development of the MuSig Schnorr-based multi-signature scheme [[4]], key
 The naive way to design a Schnorr multi-signature scheme would be as follows:
 
 A group of $ n $ signers want to cosign a message $ m $. 
-
 Each cosigner randomly generates and communicates to others a share 
 
 $$
