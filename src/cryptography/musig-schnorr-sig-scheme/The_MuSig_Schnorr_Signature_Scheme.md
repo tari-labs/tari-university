@@ -96,7 +96,7 @@ A key aggregation scheme also lets one reduce the number of public keys per inpu
 
 Instead of creating restrictions with one signature per input, one signature can be used for the entire transaction. Traditionally key aggregation cannot be used across multiple inputs, as the public keys are committed to by the outputs, and those can be spent independently. MuSig can be used here (with key aggregation done by the verifier).
 
-No non-interactive aggregation scheme is known that only relies on the DL assumption, but interactive schemes are trivial to construct where a multi-signature scheme has every participant sign the concatenation of all messages. Maxwell G., *et al.* [[4]] focused on key aggregation for Schnorr Signatures and showed that this is not always a desirable construction, and gave an IAS variant of BN with better properties instead. [[1]]
+No non-interactive aggregation scheme is known that only relies on the DL assumption, but interactive schemes are trivial to construct where a multi-signature scheme has every participant sign the concatenation of all messages. Maxwell G, *et al.* [[4]] focused on key aggregation for Schnorr Signatures and showed that this is not always a desirable construction, and gave an IAS variant of BN with better properties instead. [[1]]
 
 ### Bitcoin $ m-of-n $ Multi-Signatures 
 
