@@ -387,7 +387,7 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 ### Turning BN’s Scheme into a Secure IAS
 
-In order to change the BN multi-signature scheme into an IAS scheme, P. Wuille *et al* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
+In order to change the BN multi-signature scheme into an IAS scheme, Wuille *et al.* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
 If $ X = g^{x_i} $ is the public key of a specific signer and $ m $ the message he wants to sign, and 
 
