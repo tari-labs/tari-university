@@ -345,7 +345,7 @@ The signer generates a random $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, com
 
 When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, the signer sends $R_{1}$ to all other cosigners.
 
-When receiving $R_{2},...,R_{n}$ from other cosigners, it checks that $t_{i}=H_{com}(R_{i})$ for all $ i\in \{2,...,n\} $
+Upon receiving $R_{2},...,R_{n}$ from other cosigners, the signer verifies that $t_{i}=\textrm{H}_{com}(R_{i})$ for all $ i\in \{2,...,n\} $
 
 The protocol is aborted if this is not the case. If not the following is computed:
 
