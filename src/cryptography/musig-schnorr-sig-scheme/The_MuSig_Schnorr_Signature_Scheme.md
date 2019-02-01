@@ -343,7 +343,7 @@ $$
 
 The signer generates a random $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, computes $ R_{1} = g^{r_{1}} $ ans $ t_{1} = \textrm{H}_{com}(R_{1}) ​$ and sends commitment $t_{1}​$ to all other cosigners.
 
-When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, it sends $R_{1}$
+When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, the signer sends $R_{1}$ to all other cosigners.
 
 When receiving $R_{2},...,R_{n}$ from other cosigners, it checks that $t_{i}=H_{com}(R_{i})$ for all $ i\in \{2,...,n\} $
 
