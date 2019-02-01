@@ -216,7 +216,7 @@ $$
 
 where $  X=g^{x} $ 
 
-To sign a message $ m $, the signer draws a random integer $ r $ in $ Z_{p}, $ computes
+To sign a message $ m $, the signer draws a random integer $ r \in Z_{p} $ and computes
 
 $$
 \begin{aligned} 
