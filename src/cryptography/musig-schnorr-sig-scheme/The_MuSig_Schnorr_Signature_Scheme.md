@@ -84,7 +84,7 @@ To make the traditional approach more effective and without needing a trusted se
 - It must allow each signer to sign the same message
 - It must allow each signer to sign their own message
 
-This is different to a normal multi-signature scheme where one message is signed by all. MuSig provides all of those properties.
+This is different to a normal multi-signature scheme where one message is signed by all. MuSig potentially provides all of those properties.
 
 There are other multi-signature schemes that already exist that provide key aggregation for Schnorr signatures, however they come with some limitations, such as needing to verify that participants actually have the private key corresponding to the pubic keys that they claim to have. *Security in the plain public-key model* means that no limitations exist. All that is needed from the participants is their public keys. [[1]]
 
