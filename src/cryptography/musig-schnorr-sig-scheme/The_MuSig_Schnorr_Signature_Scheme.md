@@ -347,7 +347,11 @@ When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, the s
 
 Upon receiving $R_{2},...,R_{n}$ from other cosigners, the signer verifies that $t_{i}=\textrm{H}_{com}(R_{i})$ for all $ i\in \{2,...,n\} $
 
-The protocol is aborted if this is not the case. If not the following is computed:
+The protocol is aborted if this is not the case. 
+
+#### Round 3
+
+If all commitment and random challenge pairs can be verified with $ \textrm{H}_{agg} $, the following is computed:
 
 $$
 \begin{aligned} 
