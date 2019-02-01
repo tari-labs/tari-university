@@ -124,7 +124,7 @@ Initial proposals from [[10]], [[11]], [[12]], [[13]], [[14]], [[15]] and [[16]]
 
 A means of generically preventing rogue-key attacks is to make it mandatory for users to prove knowledge (or possession) of the secret key during public key registration with a certification authority [[18]]. Certification authority is a setting known as the KOSK assumption. The pairing-based multi-signature schemes by Boldyreva [[19]] and Lu *et al.* [[20]] rely on the KOSK assumption in order to maintain security. However, according to [[21]] and [[18]], the cost of complexity and expense of the scheme and the unrealistic and burdensome assumptions on the Public-key Infrastructure (PKI) have made this solution problematic.
 
-As it stands, the Bellare and Neven [[21]] provides one of the most practical multi-signature schemes, based on the Schnorr signature scheme, which is provably secure that does not contain any assumption on the key setup. Since the only requirement of this scheme is that each potential signer has a public key, this setting is referred to as the *plain-key model.*
+As it stands, the Bellare M. *et al.* [[21]] provides one of the most practical multi-signature schemes, based on the Schnorr signature scheme, which is provably secure that does not contain any assumption on the key setup. Since the only requirement of this scheme is that each potential signer has a public key, this setting is referred to as the *plain-key model.*
 
 The Micali-Ohta-Reyzin multi-signature scheme [[17]] solves the rogue-key attack using a sophisticated interactive key generation protocol.
 
