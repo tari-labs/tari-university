@@ -193,7 +193,7 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} = \{1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1}\}  $ 
 - Let $ \textrm{H} $ denote the hash function 
 - Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} $ be the ordered set of public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  $  
-- Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} ​$ be the multi-set of all public key 
+- Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} ​$ be the multi-set of all public keys. 
 - Let $ \langle L \rangle $ denote a lexicographically encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} $. 
 - Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase
 - Let $ \textrm{H}_{agg} $ denote the hash function used to compute the aggregated key
