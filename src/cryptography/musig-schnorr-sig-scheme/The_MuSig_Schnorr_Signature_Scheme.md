@@ -21,7 +21,7 @@ Multi-signatures are a form of technology used to add multiple participants to c
 		- [Bitcoin $ m-of-n $ Multi-Signatures](#bitcoin--m-of-n--multi-signatures)
 			- [Use Cases for $ m-of-n $ Multi-Signatures](#use-cases-for--m-of-n--multi-signatures)
 		- [Rogue Attacks](#rogue-attacks)
-		- [Interactive Aggregate Signatures](#interactive-aggregate-signatures)
+		- [Interactive Aggregate Signatures (IAS)](#interactive-aggregate-signatures-ias)
 			- [Applications of IAS](#applications-of-ias)
 			- [Native Mulit-Signature Support](#native-multi-signature-support)
 			- [Cross-Input Multi-Signatures](#cross-input-multi-signatures)
