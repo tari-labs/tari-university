@@ -35,7 +35,7 @@ Multi-signatures are a form of technology used to add multiple participants to c
 		- [MuSig Scheme](#musig-scheme)
 		- [Revisions](#revisions) 
 		- [Turning BN's Scheme into a Secure IAS](#turning-bn's-scheme-into-a-secure-ias)
-	- [Conclusions, Observations and Recommendations](#conclusions,-observations-and-recommendations)
+	- [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
 	- [Contributors](#contributors)
 	- [References](#references)
 
