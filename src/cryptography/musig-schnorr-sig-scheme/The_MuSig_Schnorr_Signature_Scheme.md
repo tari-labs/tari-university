@@ -358,7 +358,7 @@ In order to verify, given a lexicographically encoded multiset of public keys $ 
 
 $$
 \begin{aligned} 
-a_{i} &= H_{agg}(\langle L \rangle,X_{i}) \textrm {for}\ i\in \{1,...,n\} \\\\
+a_{i} &= \textrm{H}_{agg}(\langle L \rangle,X_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in \{1,...,n\} \\\\
 \tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\\\
 c &=  \textrm{H}_{sig} (\tilde{X},R,m) 
 \end{aligned}
