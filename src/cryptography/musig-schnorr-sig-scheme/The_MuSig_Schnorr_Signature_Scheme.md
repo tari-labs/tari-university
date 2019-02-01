@@ -49,7 +49,7 @@ Signature aggregation also has its challenges. This includes the rogue-key attac
 
 There is an additional attack, termed the Russel attack, after Russel O'Connor, who has discovered that for multi-party schemes a party could claim ownership of someone else's private key and so spend the other outputs.
 
-Wuille P., [[1]] has been able to address some of these issues and has provided a solution which refines the Bellare-Neven (BN) scheme. He also discussed the performance improvements that were implemented for the scaler multiplication of the BN scheme and how they enable batch validation on the blockchain. [[2]]
+Wuille P. [[1]] has been able to address some of these issues and has provided a solution which refines the Bellare-Neven (BN) scheme. He also discussed the performance improvements that were implemented for the scaler multiplication of the BN scheme and how they enable batch validation on the blockchain. [[2]]
 
 ### MuSig
 
