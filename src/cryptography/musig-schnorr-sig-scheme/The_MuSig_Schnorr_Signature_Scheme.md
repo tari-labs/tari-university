@@ -423,7 +423,7 @@ $$
 and then sends $ s_{i} ​$ to other signers. All signers can compute 
 
 $$
-s = \prod_{i=1}^{n}s_{i} \mod p
+s = \displaystyle\sum_{i=1}^{n}s_{i} \mod p
 $$
 
 The signature is $ \sigma = (R, s) ​$. 
