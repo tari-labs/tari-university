@@ -336,7 +336,7 @@ $$
 a_{i} = \textrm{H}\_{agg}(\langle L \rangle,X\_{i})
 $$
 
-as well as the "aggregated" public key $ \tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​$.
+as well as the "aggregated" public key 
 
 #### Round 2
 
