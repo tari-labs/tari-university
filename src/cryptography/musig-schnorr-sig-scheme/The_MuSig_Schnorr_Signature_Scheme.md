@@ -150,7 +150,7 @@ With regards to digital currency schemes, where all participants have the abilit
 
 While several multi-signature schemes could offer an improvement over the currently available method, two properties increase the possible impact:
 
-- The availability of key aggregation removes the need for verifiers to see all the involved key, improving bandwidth, privacy, and validation cost
+- The availability of key aggregation removes the need for verifiers to see all the involved keys, improving bandwidth, privacy, and validation cost.
 - Security under the *plain public-key model* enables multi-signatures across multiple inputs of a transaction, where the choice of signers cannot be committed to in advance. This greatly increases the number of situations in which mulit-signatures are beneficial.
 
 #### Native Multi-Signature Support 
