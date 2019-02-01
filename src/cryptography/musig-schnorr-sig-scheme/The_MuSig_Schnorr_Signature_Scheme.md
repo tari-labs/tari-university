@@ -429,6 +429,9 @@ $$
 
 It must be noted that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through ordered set $ \langle S \rangle $ and the message index $ i $. 
 
+**Note:** As of writing of this report, the secure IAS scheme presented here still needs to undergo a complete security analysis.
+
+
 ## Conclusions, Observations and Recommendations
 
 - MuSig leads to both native and private multi-signature transactions with both signature aggregation.
