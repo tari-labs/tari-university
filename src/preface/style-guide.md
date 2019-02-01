@@ -1,31 +1,33 @@
 # Style Guide for Tari Labs University Reports
 
-- Purpose
+- [Purpose](#purpose)
 
-- Standards for Content
-  - Spelling
-  - Units of Measure
-  - Date and Time
-  - Abbreviations
-  - Spacing
-  - Decimals and Numbers
-  - Quotation Marks
-  - List Punctuation
-  - Cross-referencing
-- Standards for Layout
-- Bulleted List of Contents
-- Headings
-- Figures and Tables
-- Equations
-- List of References
-- List of Contributors
-- Appendices 
+- [Standards for Content](#standards-for-content)
+  - [Spelling](#spelling)
+  - [Units of Measure](#units-of-measure)
+  - [Date and Time](#date-and-time)
+  - [Abbreviations](#abbreviations)
+  - [Spacing](#spacing)
+  - [Decimals and Numbers](#decimals-and-numbers)
+  - [Quotation Marks](#quotation-marks)
+  - [List Types](#list-types)
+  - [List Punctuation](#list-punctuation)
+  - [Cross-referencing](#cross-referencing)
+- [Standards for Layout](#standards-for-layout)
+  - [Bulleted List of Contents](#bulleted-list-of-contents)
+  - [Headings](#headings)
+  - [Figures and Tables](#figures-and-tables)
+  - [Equations](#equations)
+  - [List of References](#list-of-references)
+- [Appendices](#appendices)
+- [List of Contributors](#list-of-contributors) 
+- [References](#references)
 
 
 
 ## Purpose
 
-The purpose of this style guide is to provide contributors to the Tari Labs University (TLU) reports with standards for content and layout. The intention is to improve communication and provide a high-quality learning resource for users. Use of this style guide can assist in ensuring consistency in the content and layout of TLU reports.
+The purpose of this Style Guide is to provide contributors to the Tari Labs University (TLU) reports with standards for content and layout. The intention is to improve communication and provide a high-quality learning resource for users. Use of this Style Guide can assist in ensuring consistency in the content and layout of TLU reports.
 
 
 
@@ -35,8 +37,7 @@ The purpose of this style guide is to provide contributors to the Tari Labs Univ
 
 ### Spelling
 
-Use the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online, available at
-https://www.merriam-webster.com/. 
+Use the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online [[1]]. 
 
 
 
@@ -59,25 +60,27 @@ Use the internationally agreed ISO standards (ISO 1000:1992) for expressing unit
 ### Abbreviations 
 
 - If it is necessary to use abbreviations in a report, write the abbreviation out in full at its first occurrence in the text, followed by the abbreviation in brackets.
+
   **Example:** Tari Labs University (TLU), graphical user interface (GUI).
-  Thereafter, use the abbreviation only.
+    Thereafter, use the abbreviation only.
 
 - Abbreviations of units should be consistent and not changed in the plural.
+
   **Example:** 10 h and not 10 hrs; 5 min and not 5 mins.
 
 
 
 ### Spacing
 
-- Use only one space after words, commas, full stops, colons, and semicolons.
 - Leave a space between numbers and units of measure.
+
   **Example:** 5 min, 15 s, 120 °C (but 100°, 25%).
 
-- Use a 'non-breaking space' (nbsp) to prevent numbers and units from being split over two lines.
-  **Incorrect example:** The dimensions of the objects are: 2 m x 2 m x 1 m; 3 m x 2 m x 1 m; 1 m x 1 m x 50 mm; 4 m x 2
-  m x 1 m; 1 m x 2 m x 3 m.
-  **Correct example:** The dimensions of the objects are: 2 m x 2 m x 1 m; 3 m x 2 m x 1 m; 1 m x 1 m x 50 mm; 
-  4&nbsp;m&nbsp;x&nbsp;2&nbsp; m&nbsp;x&nbsp;1&nbsp;m; 1 m x 2 m x 3 m.
+- Use an non-breaking space (`&nbsp;`) to prevent numbers and units from being split over two lines.
+
+  **Correct example:** The dimensions of the objects are: 2 m x 2 m x 1 m; 3&nbsp;m x 2 m x 1 m; 1 m x 1 m x 50 mm; 4&nbsp;m&nbsp;x&nbsp;2&nbsp;m&nbsp;x&nbsp;1&nbsp;m; 1&nbsp;m&nbsp;x&nbsp;2&nbsp;m&nbsp;x&nbsp;3&nbsp;m.
+
+  **Incorrect example:** The dimensions of the objects are: 2 m x 2 m x 1 m; 3 m x 2 m x 1 m; 1 m x 1 m x 50 mm; 4&nbsp;m&nbsp;x&nbsp;2&nbsp; m&nbsp;x&nbsp;1&nbsp;m; 1 m x 2 m x 3 m.
 
 - Indicate clearly to which unit a number belongs:
 
@@ -91,7 +94,7 @@ Use the internationally agreed ISO standards (ISO 1000:1992) for expressing unit
 
   **Correct example:** 1 cm to 10 cm
 
-- Use an unbroken space `&nbsp;` space to indicate thousands.
+- Use an non-breaking space (`&nbsp;`) space to indicate thousands.
 
   **Example:** 1&nbsp;000, 20&nbsp;000&nbsp;000, 250&nbsp;000.
 
@@ -109,6 +112,13 @@ Use the internationally agreed ISO standards (ISO 1000:1992) for expressing unit
 ### Quotation Marks
 
 Use double quotation marks for a first quotation, and single quotation marks for a quotation within a quotation.
+
+
+
+### List Types
+
+- TLU uses unordered lists (refer to the first example under [List Punctuation](#list-punctuation) and ordered lists (refer to the second example under [List Punctuation](#list-punctuation).
+- A markdown editor such as Typora can help you to quickly apply list types.
 
 
 
@@ -131,7 +141,8 @@ Where a list contains complete sentences, each item in the list is followed by a
 2. The entire extended data is available, the erasure code is constructed correctly, but the block is invalid.
 3. The entire extended data is available, but the erasure code is constructed incorrectly.
 
-Where a list is not a sentence and does not complete a preceding part of a sen, use no punctuation.
+Where a list is not a sentence and does not complete a preceding part of a sentence, use no punctuation.
+
 **Example:** Refer to the list of contents at the start of this style guide.
 
 
@@ -151,8 +162,9 @@ Where a list is not a sentence and does not complete a preceding part of a sen, 
 
 ### Bulleted List of Contents
 
-Every section in a TLU report starts with a bulleted list of all the headings in that section, for quick reference and consistency.
-**Example:** Refer to Section 1.3, Introduction to Scriptless Scripts. The heading "Contents" is not used before this list. ?? 
+Every section in a TLU report starts with a bulleted list of all the headings in that section, for quick reference and consistency. 
+
+**Example:** Refer to the contents listed at the start of this style guide. The heading "Contents" is not used before this list. 
 
 
 
@@ -160,6 +172,7 @@ Every section in a TLU report starts with a bulleted list of all the headings in
 
 - No numbering is used in the text panel. Numbering appears in the panel to the left of the text panel.
 - Upper and lower-case letters are used for headings at all levels.
+- A markdown editor such as Typora can help you to quickly apply heading numbers.
 
 
 
@@ -173,11 +186,16 @@ Every section in a TLU report starts with a bulleted list of all the headings in
 
 ### Equations
 
-**Note:** Discuss with Hansie. Some equations are centered, others are left justified - establish TLU's required standard.
+Example of an inline equation: $ h \in \mathbb G $ 
+
+Example of a display equation:
+$$
+\mathrm(My example:) \mspace{6mu} s = \prod _0^n s(i)
+$$
 
 
 
-### List of References 
+### Referencing of Source Material
 
 TLU uses the IEEE standard as a guide for referencing publications
 (https://guides.lib.monash.edu/citing-referencing/ieee)
@@ -192,37 +210,39 @@ List references in the following order, as applicable:
 6. URL address if an online publication. Provide this information as shown in the following example: "Available:..."
 7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
-**Example:** M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online]. Available:
-https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf. Date accessed: 2018-12-18.
+**Example:** M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online].
+Available: https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf. Date accessed: 2018-12-18.
 
 Please note the use of punctuation and full stops in the example. 
 
 
 
-## Conclusion
-
-
-
-## References
-
-
-
-
-
-## Appendices
+### Appendices
 
 Include any appendices at the end of the report, before the list of contributors.
 
 
 
-## List of Contributors
+### List of Contributors
 
 Include a bulleted list of contributors at the very end of the section content, after the appendices (if there are any).
 
+**Note:** The following references are the references used in this Style Guide.
 
 
 
+## References
 
+[[1]] Merriam-Webster Online Dictionary [online]. 
+Available: https://www.merriam-webster.com/. Date accessed: 2008-02-01.
+
+[1]: https://www.merriam-webster.com
+"Merriam-Webster Online Dictionary"
+
+[[2]] Citing and Referencing: IEEE [online].
+Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date&nbsp;accessed:&nbsp;2008-02-01.
+
+[2]: https://guides.lib.monash.edu/citing-referencing/ieee
 
 
 
