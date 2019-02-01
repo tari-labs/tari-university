@@ -277,7 +277,7 @@ $$
 where 
 
 $$
-\tilde{X} = \Pi_{i=1}^{n}X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m)
+\tilde{X} = \prod\_{i=1}^{n} X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m)
 $$
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key $ \tilde{X} $, a property termed *key aggregation*
