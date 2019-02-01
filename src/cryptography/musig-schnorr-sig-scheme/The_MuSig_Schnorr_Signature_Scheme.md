@@ -140,7 +140,7 @@ Multi-signature schemes supporting key aggregation are easier to come by in the 
 
 In some situations, it may be useful to allow each participant to sign a different message rather than a single common one. An IAS is one where each signer has its own message $ m_{i} $ to sign, and the joint signature proves that the $ i $ -th signer has signed $ m_{i} $. These schemes are considered to be more general than multi-signature schemes, however they are not as flexible as non-interactive aggregate signatures ([[25]], [[26]]) and sequential aggregate signatures [[27]].
 
-According to Bellare *et al.* [[21]], a generic way to turn any multi-signature scheme into an IAS scheme by the signer running the multi-signature protocol using as message the tuple of all public keys/message pairs involved in the IAS protocol.
+According to Bellare M. *et al.* [[21]], a generic way to turn any multi-signature scheme into an IAS scheme, is if the signer running the multi-signature protocol use the tuple of all public keys/message pairs involved in the IAS protocol as message.
 
 For BN's scheme and Schnorr multi-signatures, this does not increase the number of communication rounds as messages can be sent together with shares $ R_{i} $.
 
