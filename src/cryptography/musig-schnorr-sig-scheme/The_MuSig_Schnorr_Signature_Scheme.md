@@ -73,7 +73,7 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 ### Key Aggregation
 
-The term *key aggregation* refers to multi-signatures that look like a single-key signature, but with respect to an aggregated public key that is a function of only the participants' public keys. Thus, verifiers do not require the knowledge of the original participants' public keys- they can just be given the aggregated key. In some use cases, this leads to better privacy and performance. Thus, MuSig is effectively a key aggregation scheme for Schnorr signatures.
+The term *key aggregation* refers to multi-signatures that look like a single-key signature, but with respect to an aggregated public key that is a function of only the participants' public keys. Thus, verifiers do not require the knowledge of the original participants' public keys, they can just be given the aggregated key. In some use cases, this leads to better privacy and performance. Thus, MuSig is effectively a key aggregation scheme for Schnorr signatures.
 
 To make the traditional approach more effective and without needing a trusted setup, a multi-signature scheme must provide sub-linear signature aggregation along with the following properties:
 
