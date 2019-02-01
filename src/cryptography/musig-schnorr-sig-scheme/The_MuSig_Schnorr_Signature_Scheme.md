@@ -264,7 +264,7 @@ $$
 All partial signatures are then combined into a single signature $(R,s)​$ where 
 
 $$
-s = \Sigma_{i=1}^{n}s_i \mod p ​
+s = \displaystyle\sum_{i=1}^{n}s_i \mod p ​
 $$
 
 The validity of a signature $ (R,s) $ on message $ m $ for public keys $ \{X_{1},...X_{n}\} $ is equivalent to 
