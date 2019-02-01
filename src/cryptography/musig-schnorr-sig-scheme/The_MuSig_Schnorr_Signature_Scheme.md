@@ -198,7 +198,7 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let $ \langle L \rangle $ denote a lexicographically encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} $. 
 - Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase.
 - Let $ \textrm{H}_{agg} $ denote the hash function used to compute the aggregated key.
-- Let $ \textrm{H}_{sig} ​$ denote the hash function used to compute the signature
+- Let $ \textrm{H}_{sig} ​$ denote the hash function used to compute the signature.
 - Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer.
 - Let $ m $ be the message that will be signed
 - Let $ X_{2},...,X_{n} $ be the public keys of other cosigners
