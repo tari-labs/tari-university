@@ -57,7 +57,7 @@ Introduced by Itakura *et al.* [[3]], multi-signature protocols allow a group of
 
 A simple way to change a standard signature scheme into a multi-signature scheme is to have each signer produce a stand-alone signature for $ m $ with its private key and to then concatenate all individual signatures.
 
-The transformation of a standard signature scheme to a multi-signature scheme needs to useful and practical, thus the newly calculated multi-signature scheme must produce signatures where the size is independent of the number of signers and similar to that of the original signature scheme. [[4]]
+The transformation of a standard signature scheme to a multi-signature scheme needs to be useful and practical, thus the newly calculated multi-signature scheme must produce signatures where the size is independent of the number of signers and similar to that of the original signature scheme. [[4]]
 
 A traditional multi-signature scheme is a combination of a signing and verification algorithm, where multiple signers (each with their own private/public key) jointly sign a single message, resulting in a combined signature. This can then be verified by anyone knowing the message and the public keys of the signers, where a trusted setup with KOSK is a requirement.
 
