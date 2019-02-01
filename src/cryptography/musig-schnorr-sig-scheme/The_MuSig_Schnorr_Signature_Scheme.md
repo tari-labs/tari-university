@@ -261,7 +261,7 @@ $$
 s_{i} = r_{i}+cx_{i}
 $$
 
-Partial signatures are then combined into a single signature $(R,s)​$ where 
+All partial signatures are then combined into a single signature $(R,s)​$ where 
 
 $$
 s = \Sigma_{i=1}^{n}s_i \mod p ​
