@@ -44,10 +44,12 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 
 \# | Topic 
 ---- | ----
+=======
 1 | The MuSig Schnorr Signature Scheme
 2 | Mimblewimble, Scriptless Scripts & MuSig
 3 | Applications of Byzantine Consensus Mechanisms Part 2
 4 | Distributed Hash Tables (DHT) Application to Block Chain
 5 | The Application of Howey to token sales on public blockchain networks, Part 1: The Efforts of Others
+
 
 <i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
