@@ -196,7 +196,7 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs in $ S $. 
 - Let $ L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\} ​$ be the multi-set of all public keys. 
 - Let $ \langle L \rangle $ denote a lexicographically encoding of the multiset of public keys $ L=\{X_{1}...X_{n}\} $. 
-- Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase
+- Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase.
 - Let $ \textrm{H}_{agg} $ denote the hash function used to compute the aggregated key
 - Let $ \textrm{H}_{sig} ​$ denote the hash function used to compute the signature
 - Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer
