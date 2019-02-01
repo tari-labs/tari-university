@@ -255,7 +255,7 @@ $$
 
 where $$ \tilde{X} = \prod_{i=1}^{n}X_{i} $$
 
-is the product of individual public keys, and a partial signature 
+is the product of individual public The partial signature is then given by
 
 $$
 s_{i} = r_{i}+cx_{i}
