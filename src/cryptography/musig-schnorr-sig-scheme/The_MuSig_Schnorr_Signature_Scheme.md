@@ -401,7 +401,7 @@ $$
 is the set of the public key/message pairs of other signers, this specific signer merges $ (X, m) $ and $ S^\prime $ into the ordered set 
 
 $$
-S = \{(X_{1}, m_{1}),..., (X_{n}, m_{n})\}
+\langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu}  S = \{(X_{1}, m_{1}),..., (X_{n}, m_{n})\}
 $$
 
 and retrieves the resulting message index $ i ​$ such that 
