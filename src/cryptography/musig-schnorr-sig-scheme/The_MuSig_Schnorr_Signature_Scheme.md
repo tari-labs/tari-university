@@ -421,7 +421,7 @@ $$
 
 The signature is $ \sigma = (R, s) ​$. 
 
-Given an ordered set $ S = \{(X_{1}, m_{1}),...,(X_{n}, m_{n})\} $ and a signature $ \sigma = (R, s) $  $ \sigma $ is valid for $ S ​$ when 
+Given an ordered set $ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S = \{(X_{1}, m_{1}),...,(X_{n}, m_{n})\} $ and a signature $ \sigma = (R, s) $  then $ \sigma $ is valid for $ S ​$ when 
 
 $$
 g^s = R\prod_{i=1}^{n}X_{i} ^{H(R, \langle S \rangle, i)}
