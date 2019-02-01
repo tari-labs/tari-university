@@ -68,7 +68,7 @@ MuSig is a multi-signature scheme that is novel in combining:
 
 There are two versions of MuSig, that are provably secure, which differ based on the number of communication rounds:
 
-1. Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which ECDSA (Elliptic Curve Digital Signature Algorithm) also relies
+1. Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which Elliptic Curve Digital Signature Algorithm (ECDSA) also relies
 2. Two-round MuSig instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption
 
 ### Key Aggregation
