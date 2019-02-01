@@ -615,7 +615,7 @@ in the plain public key model,
 
 [24]: https://arxiv.org/pdf/1503.08768.pdf
 "Keeping authorities honest 
-or bust" with decentralized 
+or bust with decentralized 
 witness cosigning, 2016, 
 E. Syta *et al.*"
 
