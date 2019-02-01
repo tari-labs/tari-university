@@ -202,7 +202,6 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer
 - Let $ m $ be the message that will be signed
 - Let $ X_{2},...,X_{n} $ be the public keys of other cosigners
-- Let $ S=\{(X_1,m_1),...,(X_n, m_n)\} ​$ be the multi-set of all public key/message pairs of all participants
 
 ### Recap on the Schnorr Signature Scheme 
 
