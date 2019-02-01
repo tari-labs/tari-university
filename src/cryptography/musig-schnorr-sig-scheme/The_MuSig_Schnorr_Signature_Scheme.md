@@ -419,7 +419,7 @@ $$
 The signer with message index $ i ​$ then computes:
 
 $$
-c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \mathrm{and} \mspace{30mu} 
+c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \\\\
 s_{i} = r_{i} + c_{i}x_{i} \mod p
 $$
 
