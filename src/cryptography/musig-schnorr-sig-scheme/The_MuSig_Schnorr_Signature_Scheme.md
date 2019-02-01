@@ -190,7 +190,7 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let  $ p $  a be large prime number.
 - Let $ \mathbb{G} ​$ denote cyclic group of the prime order  $ p ​$. 
 - Let $ \mathbb Z_p ​$ denote the ring of integer $ modulo \mspace{4mu} p ​$. 
-- Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} = \{1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1}\}  $ 
+- Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} = \{1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1}\}  $. 
 - Let $ \textrm{H} $ denote the hash function. 
 - Let $ S=\{(X_{1}, m_{1}),..., (X_{n}, m_{n})\} $ be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  $.  
 - Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs in $ S $. 
