@@ -251,7 +251,7 @@ Each of the cosigners then computes:
 
 
 $$
-R = \prod {i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
+R = \prod \_{i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
 $$
 
 where $$ \tilde{X} = \prod_{i=1}^{n}X_{i} $$
