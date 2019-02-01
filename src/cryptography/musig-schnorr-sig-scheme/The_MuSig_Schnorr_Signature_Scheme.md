@@ -434,7 +434,7 @@ It must be noted that there is no need to include in the hash computation an enc
 
 ## Conclusions, Observations and Recommendations
 
-- MuSig leads to both native and private multi-signature transactions with both signature aggregation.
+- MuSig leads to both native and private multi-signature transactions with signature aggregation.
 - Signature data for multi-signatures can be large and cumbersome. MuSig will allow users to create more complex transactions without burdening the network and revealing compromising information.
 - The IAS case where each signer signs their own message must still be proven by a complete security analysis.
 
