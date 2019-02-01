@@ -299,7 +299,7 @@ $$
 defined as 
 
 $$
-c_{i} = \textrm{H}(LX_{i},R,m) 
+c_{i} = \textrm{H}( \langle L \rangle , X_{i},R,m) 
 $$
 
 where 
