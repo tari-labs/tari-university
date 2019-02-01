@@ -30,7 +30,7 @@ Multi-signatures are a form of technology used to add multiple participants to c
 		- [Preliminaries](#preliminaries)
 			- [Notation Used](#notation-used)
 		- [Recap on the Schnorr Signature Scheme](#recap-on-the-schnorr-signature-scheme)
-		- [Design of the Schnorr Multi-Signature Scheme](#design-of-the-schnorr-multi--signature-scheme)
+		- [Design of the Schnorr Multi-Signature Scheme](#design-of-the-schnorr-multi-signature-scheme)
 		- [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme) 
 		- [MuSig Scheme](#musig-scheme)
 		- [Revisions](#revisions) 
