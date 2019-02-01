@@ -136,7 +136,7 @@ However, neither of these two variants allow for key aggregation.
 
 Multi-signature schemes supporting key aggregation are easier to come by in the KOSK model. In particular, Syta *et al.* [[24]] proposed the CoSi scheme which can be seen as the naive Schnorr multi-signature scheme,  where the co-signers are organized in a tree structure for fast signature generation.
 
-### Interactive Aggregate Signatures
+### Interactive Aggregate Signatures (IAS)
 
 In some situations, it may be useful to allow each participant to sign a different message rather than a single common one. An IAS is one where each signer has its own message $ m_{i} $ to sign, and the joint signature proves that the $ i $ -th signer has signed $ m_{i} $. These schemes are considered to be more general than multi-signature schemes, however they are not as flexible as non-interactive aggregate signatures ([[25]], [[26]]) and sequential aggregate signatures [[27]].
 
