@@ -254,7 +254,7 @@ $$
 R = \prod {i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
 $$
 
-where $$ \tilde{X} = \Pi_{i=1}^{n}X_{i} $$
+where $$ \tilde{X} = \prod_{i=1}^{n}X_{i} $$
 
 is the product of individual public keys, and a partial signature 
 
