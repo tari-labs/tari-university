@@ -606,7 +606,7 @@ in the plain public key model,
 [[24]] E. Syta *et al.*, “Keeping authorities" honest or bust" with decentralized witness cosigning,” in Security and Privacy (SP), 2016 IEEE Symposium on, pp. 526–545, Ieee, 2016. Date accessed: 2019-01-20
 
 [24]: https://arxiv.org/pdf/1503.08768.pdf
-"Keeping authorities" honest 
+"Keeping authorities honest 
 or bust" with decentralized 
 witness cosigning, 2016, 
 E. Syta *et al.*"
