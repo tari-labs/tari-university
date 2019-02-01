@@ -314,7 +314,7 @@ $$
 g^s = R\prod_{i=1}^{n}X_{i}^{c_{i}}
 $$
 
-A preliminary round is the signature protocol is also added, where each signer commits to its share $ R_i $ by sending $ t_i = \textrm{H}^\prime(R_i) $ to other cosigners first. 
+A preliminary round is also added to the signature protocol, where each signer commits to its share $ R_i $ by sending $ t_i = \textrm{H}^\prime(R_i) $ to other cosigners first. 
 
 This stops any cosigner from setting $ R = \prod_{i=1}^{n}R_{i}  ​$ to some maliciously chosen value and also allows the reduction to simulate the signature oracle in the security proof. 
 
