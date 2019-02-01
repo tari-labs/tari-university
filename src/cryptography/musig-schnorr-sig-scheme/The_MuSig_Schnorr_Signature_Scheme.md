@@ -202,7 +202,6 @@ The  general notation of mathematical expressions when specifically referenced a
 - Let $ m $ be the message that will be signed
 - Let $ X_{2},...,X_{n} $ be the public keys of other cosigners
 - Let $ S=\{(X_1,m_1),...,(X_n, m_n)\} ​$ be the multi-set of all public key/message pairs of all participants
-- Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs 
 
 ### Recap on the Schnorr Signature Scheme 
 
