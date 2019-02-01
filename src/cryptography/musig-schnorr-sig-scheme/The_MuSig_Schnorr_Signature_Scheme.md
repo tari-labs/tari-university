@@ -324,7 +324,11 @@ Bellare M. *et al.* [[21]] showed that this yields a multi-signature scheme prov
 
 ### MuSig Scheme
 
-MuSig is paramaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions, $ \textrm{H}\_{com} $, $ \textrm{H}\_{agg} $, $ \textrm{H}\_{sig} $ from $ \{0,1\}^{*} $ to $ \{0,1\}^{l} $ (constructed from a single hash, using proper domain separation)
+MuSig is paramaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions $ ( \textrm{H}\_{com}  ,  \textrm{H}\_{agg} ,  \textrm{H}\_{sig} ) $ from $ \{0,1\}^{*} $ to $ \{0,1\}^{l} $ (constructed from a single hash, using proper domain separation).
+
+#### Round 1
+
+A group of $ n $ signers want to cosign a message $ m $. Let $ X_1 $ and $ x_1 $ be the public and private key of a specific signer, let $ X_2 , . . . , X_n $ be the public keys of other cosigners and let $ \langle L \rangle $ be the multiset of all public keys involved in the signing process.
 
 For $ i\in \{1,...,n\} ​$ , the signer computes the following
 
