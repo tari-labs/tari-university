@@ -427,7 +427,7 @@ $$
 g^s = R\prod_{i=1}^{n}X_{i} ^{H(R, \langle S \rangle, i)}
 $$
 
-It must be noted that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through $ S $ and the message index $ i $. 
+It must be noted that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through ordered set $ \langle S \rangle $ and the message index $ i $. 
 
 ## Conclusions, Observations and Recommendations
 
