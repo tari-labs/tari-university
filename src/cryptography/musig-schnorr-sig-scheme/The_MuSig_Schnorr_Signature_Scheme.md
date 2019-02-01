@@ -285,7 +285,7 @@ Note that this is exactly the verification equation for a traditional key-prefix
 However, as mentioned above, [[12]], [[14]], [[15]] and [[17]] these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to 
 
 $$
-X_{1}=g^{x_{1}}(\Pi_{i=2}^{n}X_{i})^{-1} 
+X_{1}=g^{x_{1}} (\prod\_{i=2}^{n} X_{i})^{-1} 
 $$
 
 allowing the signer to produce signatures for public keys $ \{X_{1},...X_{n}\} ​$ by themselves. 
