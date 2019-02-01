@@ -340,6 +340,10 @@ as well as the "aggregated" public key
 
 #### Round 2
 
+$$
+\tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​
+$$
+
 The signer generates a random $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, computes $ R_{1} = g^{r_{1}} $ ans $ t_{1} = \textrm{H}_{com}(R_{1}) ​$ and sends commitment $t_{1}​$ to all other cosigners.
 
 When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, it sends $R_{1}$
