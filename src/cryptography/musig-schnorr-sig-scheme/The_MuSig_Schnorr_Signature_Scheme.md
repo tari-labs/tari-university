@@ -292,7 +292,7 @@ allowing the signer to produce signatures for public keys $ \{X_{1},...X_{n}\} â
 
 ### Bellare and Neven Signature Scheme
 
-Bellare-Neven (BN) [[21]] proceeded differently in order to avoid any key setup. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
+Bellare M. *et al.* [[21]] proceeded differently in order to avoid any key setup. A group of $ n $ signers want to cosign a message $ m $. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
 
 $$
 s_{i} = r_{i}+c_{i}x_{i} 
