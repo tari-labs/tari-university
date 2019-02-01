@@ -320,7 +320,7 @@ A preliminary round is the signature protocol is also added, where each signer c
 
 This stops any cosigner from setting $ R = \prod_{i=1}^{n}R_{i}  ​$ to some maliciously chosen value and also allows the reduction to simulate the signature oracle in the security proof. 
 
-Bellare and Neven showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} ​$ and $ \textrm{H}^\prime ​$ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
+Bellare M. *et al.* [[21]] showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} ​$ and $ \textrm{H}^\prime ​$ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
 
 ### MuSig Scheme
 
