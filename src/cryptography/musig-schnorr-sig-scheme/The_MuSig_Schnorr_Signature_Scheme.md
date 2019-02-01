@@ -360,7 +360,7 @@ $$
 Signature $s_{1}​$ is sent to all other cosigners.
 When receiving $ s_{2},...s_{n} ​$ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} \mod p​$. The signature is $ \sigma = (R,s) ​$.
 
-In order to verify, given a lexicographically encoded multiset of public keys $ \langle L \rangle ​$ , a message $ m ​$ and a signature $ \sigma = (R,s) ​$, the verifier computes:
+In order to verify the aggregated signature $ \sigma = (R,s) ​$, given a lexicographically encoded multiset of public keys $ \langle L \rangle ​$ and message $ m ​$, the verifier computes:
 
 $$
 \begin{aligned} 
