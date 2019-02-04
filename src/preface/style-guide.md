@@ -1,7 +1,6 @@
 # Style Guide for Tari Labs University Reports
 
 - [Purpose](#purpose)
-
 - [Standards for Content](#standards-for-content)
   - [Spelling](#spelling)
   - [Units of Measure](#units-of-measure)
@@ -14,20 +13,25 @@
   - [List Punctuation](#list-punctuation)
   - [Cross-referencing](#cross-referencing)
 - [Standards for Layout](#standards-for-layout)
+- [Proposed Layout](#proposed-layout)
   - [Bulleted List of Contents](#bulleted-list-of-contents)
   - [Headings](#headings)
   - [Figures and Tables](#figures-and-tables)
   - [Equations](#equations)
-  - [List of References](#list-of-references)
-- [Appendices](#appendices)
-- [List of Contributors](#list-of-contributors) 
+  - [Referencing of Source Material](#referencing-of-source-material)
+    - [Referencing Standard](#referencing-standard)
+    - [Markdown Links](#markdown-links)
+  - [List of Contributors](#list-of-contributors)
 - [References](#references)
+- [Contributors](#contributors)
 
 
 
 ## Purpose
 
 The purpose of this Style Guide is to provide contributors to the Tari Labs University (TLU) reports with standards for content and layout. The intention is to improve communication and provide a high-quality learning resource for users. Use of this Style Guide can assist in ensuring consistency in the content and layout of TLU reports.
+
+TLU content is rendered in [mdBook](https://github.com/rust-lang-nursery/mdBook).
 
 
 
@@ -43,7 +47,7 @@ Use the United States (US) spelling standard. The applicable dictionary is Merri
 
 ### Units of Measure
 
-Use the internationally agreed ISO standards (ISO 1000:1992) for expressing units of measure.
+Use the internationally agreed ISO standards [[3]]  for expressing units of measure.
 
 **Example:** min = minute, s = second, h = hour, g = gram. 
 
@@ -111,14 +115,13 @@ Use the internationally agreed ISO standards (ISO 1000:1992) for expressing unit
 
 ### Quotation Marks
 
-Use double quotation marks for a first quotation, and single quotation marks for a quotation within a quotation.
+Use double quotation marks for a first quotation and single quotation marks for a quotation within a quotation.
 
 
 
 ### List Types
 
-- TLU uses unordered lists (refer to the first example under [List Punctuation](#list-punctuation) and ordered lists (refer to the second example under [List Punctuation](#list-punctuation).
-- A markdown editor such as Typora can help you to quickly apply list types.
+TLU uses unordered lists (refer to the first example under [List Punctuation](#list-punctuation) and ordered lists (refer to the second example under [List Punctuation](#list-punctuation).
 
 
 
@@ -150,13 +153,46 @@ Where a list is not a sentence and does not complete a preceding part of a sente
 ### Cross-referencing
 
 - Insert cross-references between the referenced information in the text and the list of references.
-- Text references appear in square brackets in the text and are listed under "References" at the end of each section in the order in which they appear in the text.
+- Text references appear in square brackets in the text and are listed under "References" at the end of each chapter in the order in which they appear in the text.
 - If a text reference appears at the end of a paragraph, it appears after the full stop at the end of the paragraph.
-- Please be specific when referring to text, figures, tables, and references. For clarity, avoid using "below" or "above". Rather give a specific paragraph, figure, table, or reference number.
+- Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text references, include a link. For more information, please refer to the [markdown links](#markdown-links) section in this guide.
 
 
 
 ## Standards for Layout
+
+### Proposed Layout
+
+This section gives the proposed layout for TLU reports. The following headings are provided as a guide to heading levels and content.  
+
+- **Title (as heading level 1)**
+   Table of contents (as embedded links)
+   - **Introduction/Purpose/Background/Overview (as heading level 2)**
+      This section explains the aim of the report and prepares the reader for the content.
+
+   - **Other headings as appropriate (as heading level 2 and lower)**
+      Structure the body of your report by using headings and subheadings. By ordering these headings logically, you can present your information effectively. Headings make it easier for readers to find specific information.
+
+      - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
+
+      - **Bulleted Lists:** Use bulleted lists when the order of the items in the list is not important.
+
+   - **Conclusions, Observations, Recommendations (as heading level 2)**
+      The conclusion complements the purpose of the report. It concisely analyzes the findings of the report and gives a future strategy, if required.
+
+   - **References (as heading level 2)**
+      References acknowledge the work of others and help readers to locate sources. Refer to [Referencing of Source Material](#referencing-of-source-material).
+
+   - **Appendices (as heading level 2)**
+      Appendices contains information that supports the main report. 
+
+      - **Appendix A: Name (as heading level 3)**
+        Instead of putting an entire supporting document into an appendix, provide a text reference and list the reference in the references section.
+      - **Appendix B: Name  (as heading level 3)**
+        If figure and table numbers are used in the document, the figure and table numbering in the appendices follows on from the document numbering.
+
+   - **Contributors (as heading level 2)**
+      Refer to [List of Contributors](#list-of-contributors).
 
 
 
@@ -164,74 +200,89 @@ Where a list is not a sentence and does not complete a preceding part of a sente
 
 Every section in a TLU report starts with a bulleted list of all the headings in that section, for quick reference and consistency. 
 
-**Example:** Refer to the contents listed at the start of this style guide. The heading "Contents" is not used before this list. 
+**Example:** Refer to the contents listed at the start of this style guide. The heading "Contents" is not inserted before this list. 
 
 
 
 ### Headings
 
 - No numbering is used in the text panel. Numbering appears in the panel to the left of the text panel.
-- Upper and lower-case letters are used for headings at all levels.
-- A markdown editor such as Typora can help you to quickly apply heading numbers.
+- For consistency, upper and lower-case (title case) letters are used for headings at all levels.
 
-
+  
 
 ### Figures and Tables
 
-- Figures and tables in each section are numbered sequentially, with the table caption above the table and the figure caption below the figure, in upper and lower-case letters.
-- Figure and table captions are preceded by Figure x: or Table X:, as applicable.
-- Figures and tables are centered on the page.
+The use of captions, as well as figure and table numbering, is optional. If you choose to use numbering and captions, these guidelines will assist in ensuring consistency in TLU layout:
+
+- Number figures and tables in each section sequentially, with the table caption above the table and the figure caption below the figure.
+- Type figure and table captions in upper and lower-case (title case).
+- Type Figure x: or Table X: before the caption, as applicable.
+- Center figures and tables on the page.
+- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps to avoid confusion.
 
 
 
 ### Equations
 
+mdBook has optional support for math [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax. In addition to the delimiters `\[` and `\[`, TLU also supports delimiters `$` and `$$`.
+
+
+
 Example of an inline equation: $ h \in \mathbb G $ 
 
 Example of a display equation:
 $$
-\mathrm(My example:) \mspace{6mu} s = \prod _0^n s(i)
+ \mathbb s = \prod _{i=0}^n s(i)
 $$
 
 
 
 ### Referencing of Source Material
 
-TLU uses the IEEE standard as a guide for referencing publications
-(https://guides.lib.monash.edu/citing-referencing/ieee)
+#### Referencing Standard
+
+TLU uses the IEEE standard [[2]] as a guide for referencing publications.
 
 List references in the following order, as applicable:
 
 1. Author(s) initials or first name and surname (note punctuation).
+
 2. Title of the report, between double quotation marks. If it is an online report, state this in square brackets as shown in the following example.
+
 3. Title of journal, in italics.
+
 4. Publication information (volume, number, etc.).
-5. Page range.
+5. Page range (if applicable).
 6. URL address if an online publication. Provide this information as shown in the following example: "Available:..."
 7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
-**Example:** M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online].
+**Example:** [1] M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online].
 Available: https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf. Date accessed: 2018-12-18.
 
 Please note the use of punctuation and full stops in the example. 
 
 
 
-### Appendices
+#### Markdown Links
 
-Include any appendices at the end of the report, before the list of contributors.
+There are two types of Markdown links: **inline links** and **reference links**.
 
+The **inline link** under the [Equations](#Equations) heading was created as follows:
 
+1. Insert identifying link text within a set of square brackets (see following example).
+2. Create an inline link by placing a set of parentheses (round brackets) immediately after the closing square bracket of the link text (see following example).
+2. Insert the relevant URL link inside the parentheses (round brackets) (see following example).
 
-### List of Contributors
+mdBook has optional support for math [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax.
 
-Include a bulleted list of contributors at the very end of the section content, after the appendices (if there are any).
+**Example:** mdBook has optional support for math [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax.
 
-**Note:** The following references are the references used in this Style Guide.
+A **reference link** has two parts. The first part of a reference link has two sets of square brackets. Inside the inner (second) set of square brackets, insert a label to identify the link.
 
+**Example:** Under the heading [Spelling](#spelling), the text reference is "The applicable dictionary is Merriam-Webster Online [[1]]." Note the double square brackets, and the label 1.
 
-
-## References
+The second part of a reference link is inserted under the heading [References](#references), and appears as follows:
 
 [[1]] Merriam-Webster Online Dictionary [online]. 
 Available: https://www.merriam-webster.com/. Date accessed: 2008-02-01.
@@ -239,17 +290,56 @@ Available: https://www.merriam-webster.com/. Date accessed: 2008-02-01.
 [1]: https://www.merriam-webster.com
 "Merriam-Webster Online Dictionary"
 
+Where the full online reference is inserted after [[1]]; and the pop-up text link (which can be seen by hovering your cursor over the text reference in [Spelling](#spelling) is inserted after [1]. 
+
+For assistance with the layout of references, refer to [Referencing Standard](#referencing-standard).
+
+
+
+### List of Contributors
+
+The contributors are listed in a bulleted list via their github account URLs. The author is listed first, followed by any reviewers or people who contributed via pull requests. Refer to [Contributors](#contributors) for an example.
+
+
+
+## References
+
+[[1]] Merriam-Webster Online Dictionary [online]. 
+Available: https://www.merriam-webster.com/. Date accessed: 2019-02-01.
+
+[1]: https://www.merriam-webster.com
+"Merriam-Webster Online Dictionary"
+
 [[2]] Citing and Referencing: IEEE [online].
-Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date&nbsp;accessed:&nbsp;2008-02-01.
+Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date&nbsp;accessed:&nbsp;2019-02-01.
 
 [2]: https://guides.lib.monash.edu/citing-referencing/ieee
+"Citing and Referencing: IEEE"
+
+[[3]] A. Thompson and B. N. Taylor, " Guide for the Use of the International System of Units (SI)", (1995) – NIST Special Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu/pdf/sp811.pdf. Date accessed: 2019-02-04.
+
+[3]: https://physics.nist.gov/cuu/pdf/sp811.pdf
+"Guide for the Use of the International System of Units (SI)"
+
+
+
+## Contributors
+
+- https://github.com/anselld
+- https://github.com/hansieodendaal
+
+
+
+**Note to Hansie:**
+
+Please comment on the following proposed addition to the Introduction at the start of the TLU content.
+
+You are welcome to contribute to our online content. To help you get started, we've compiled a Style Guide for Tari Labs University Reports. By using this Style Guide you can help us to ensure consistency in the content and layout of TLU reports.
 
 
 
 
 
+```
 
-
-
-
-
+```
