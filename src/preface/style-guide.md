@@ -1,4 +1,4 @@
-# Style Guide for Tari Labs University Reports
+# Style Guide
 
 - [Purpose](#purpose)
 - [Standards for Content](#standards-for-content)
@@ -31,7 +31,8 @@
 
 The purpose of this Style Guide is to provide contributors to the Tari Labs University (TLU) reports with standards for content and layout. The intention is to improve communication and provide a high-quality learning resource for users. Use of this Style Guide can assist in ensuring consistency in the content and layout of TLU reports.
 
-TLU content is rendered in [mdBook](https://github.com/rust-lang-nursery/mdBook).
+TLU content is created in [Markdown](https://www.markdownguide.org/) format and is rendered using 
+[mdBook](https://github.com/rust-lang-nursery/mdBook).
 
 
 
@@ -49,28 +50,33 @@ Use the United States (US) spelling standard. The applicable dictionary is Merri
 
 Use the internationally agreed ISO standards [[3]]  for expressing units of measure.
 
-**Example:** min = minute, s = second, h = hour, g = gram. 
+*Example*
+
+min = minute, s = second, h = hour, g = gram. 
 
 
 
 ### Date and Time
 
 - Date format: yyyy-mm-dd (year-month-date).
-- Date format when written in text: "The document was submitted for approval on 10 March 2019."
+- Date format when written in text: "The document was submitted for approval on 10&nbsp;March&nbsp;2019".
 - Time format (international): 11:00; 15:00.
 
 
 
 ### Abbreviations 
 
-- If it is necessary to use abbreviations in a report, write the abbreviation out in full at its first occurrence in the text, followed by the abbreviation in brackets.
+- If it is necessary to use abbreviations in a report, write the abbreviation out in full at its first occurrence in the text, followed by the abbreviation in brackets. Thereafter, use the abbreviation only.
 
-  **Example:** Tari Labs University (TLU), graphical user interface (GUI).
-    Thereafter, use the abbreviation only.
+  *Example*
+
+  Tari Labs University (TLU), graphical user interface (GUI).
 
 - Abbreviations of units should be consistent and not changed in the plural.
 
-  **Example:** 10 h and not 10 hrs; 5 min and not 5 mins.
+  *Example*
+
+  10&nbsp;h and not 10&nbsp;hrs; 5&nbsp;min and not 5&nbsp;mins.
 
 
 
@@ -78,29 +84,48 @@ Use the internationally agreed ISO standards [[3]]  for expressing units of meas
 
 - Leave a space between numbers and units of measure.
 
-  **Example:** 5 min, 15 s, 120 °C (but 100°, 25%).
+  *Example*
 
-- Use an non-breaking space (`&nbsp;`) to prevent numbers and units from being split over two lines.
+  5&nbsp;min, 15&nbsp;s, 120&nbsp;°C (but 100°, 25%).
 
-  **Correct example:** The dimensions of the objects are: 2 m x 2 m x 1 m; 3&nbsp;m x 2 m x 1 m; 1 m x 1 m x 50 mm; 4&nbsp;m&nbsp;x&nbsp;2&nbsp;m&nbsp;x&nbsp;1&nbsp;m; 1&nbsp;m&nbsp;x&nbsp;2&nbsp;m&nbsp;x&nbsp;3&nbsp;m.
+- Use a non-breaking space (`&nbsp;`) to prevent numbers and units from being split over two lines.
 
-  **Incorrect example:** The dimensions of the objects are: 2 m x 2 m x 1 m; 3 m x 2 m x 1 m; 1 m x 1 m x 50 mm; 4&nbsp;m&nbsp;x&nbsp;2&nbsp; m&nbsp;x&nbsp;1&nbsp;m; 1 m x 2 m x 3 m.
+  *Example*
+
+  ```
+  On Tuesday, we measured a temperature of 34&nbsp;°C at sea level, i.e. 0&nbsp;m altitude, 
+  while on the same day we measured 22&nbsp;°C on top of the mountain, which is 1&nbsp;500&nbsp;m high.
+  ```
+
+  Inserting the non-breaking spaces as shown in the example will result in the following (*play with the browser window to see the result*):
+
+  On Tuesday, we measured a temperature of 34&nbsp;°C at sea level, i.e. 0
+  &nbsp;m altitude, while on the same day we measured 22&nbsp;°C on top of the mountain, which is 1&nbsp;500&nbsp;m high.
 
 - Indicate clearly to which unit a number belongs:
 
-  **Incorrect example:** 11 x 11 x 11 mm
+  *Incorrect example*
 
-  **Correct example:** 11 mm x 11 mm x 11 mm
+  11 x 11 x 11 mm
+
+  *Correct example*
+
+  11&nbsp;mm x 11&nbsp;mm x 11&nbsp;mm
 
 - Use 'to' rather than a dash to indicate a range of values:
 
-  **Incorrect example:** 1 - 10 cm
+  *Incorrect example*
+  1 - 10&nbsp;cm&nbsp;
 
-  **Correct example:** 1 cm to 10 cm
+  *Correct example*
 
-- Use an non-breaking space (`&nbsp;`) space to indicate thousands.
+  1&nbsp;cm to 10&nbsp;cm
 
-  **Example:** 1&nbsp;000, 20&nbsp;000&nbsp;000, 250&nbsp;000.
+- Use a non-breaking space (`&nbsp;`) space to indicate thousands.
+
+  *Example*
+
+  1&nbsp;000, 20&nbsp;000&nbsp;000, 250&nbsp;000.
 
 - Leave a space on either side of signs such as + (plus), - (minus), = (equal to), > (greater than) and < (less than).
 
@@ -115,7 +140,10 @@ Use the internationally agreed ISO standards [[3]]  for expressing units of meas
 
 ### Quotation Marks
 
-Use double quotation marks for a first quotation and single quotation marks for a quotation within a quotation.
+As per American style:
+
+- Use double quotation marks for a first quotation and single quotation marks for a quotation within a quotation.
+- Place commas and full stops inside the quotation marks.  
 
 
 
@@ -129,7 +157,9 @@ TLU uses unordered lists (refer to the first example under [List Punctuation](#l
 
 Where a list is a continuation of the preceding text, which is followed by a colon, use a semicolon between each bullet point, and end the list with a full stop.
 
-**Example:** Their primary motivations for selecting a static emission rate are:
+*Example*
+
+Their primary motivations for selecting a static emission rate are:
 
 - there will be no upper limit on the amount of coins that can be created;
 - the percentage of newly created coins compared to the total coins in circulation will tend toward zero;
@@ -138,7 +168,9 @@ Where a list is a continuation of the preceding text, which is followed by a col
 
 Where a list contains complete sentences, each item in the list is followed by a full stop.
 
-**Example:** According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes:
+*Example*
+
+According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes:
 
 1. The entire extended data is available, the erasure code is constructed correctly, and the block is valid.
 2. The entire extended data is available, the erasure code is constructed correctly, but the block is invalid.
@@ -146,7 +178,9 @@ Where a list contains complete sentences, each item in the list is followed by a
 
 Where a list is not a sentence and does not complete a preceding part of a sentence, use no punctuation.
 
-**Example:** Refer to the list of contents at the start of this style guide.
+*Example*
+
+Refer to the list of contents at the start of this Style Guide.
 
 
 
@@ -155,7 +189,7 @@ Where a list is not a sentence and does not complete a preceding part of a sente
 - Insert cross-references between the referenced information in the text and the list of references.
 - Text references appear in square brackets in the text and are listed under "References" at the end of each chapter in the order in which they appear in the text.
 - If a text reference appears at the end of a paragraph, it appears after the full stop at the end of the paragraph.
-- Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text references, include a link. For more information, please refer to the [markdown links](#markdown-links) section in this guide.
+- Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this Style Guide.
 
 
 
@@ -166,30 +200,28 @@ Where a list is not a sentence and does not complete a preceding part of a sente
 This section gives the proposed layout for TLU reports. The following headings are provided as a guide to heading levels and content.  
 
 - **Title (as heading level 1)**
-   Table of contents (as embedded links)
+   Contents List (as embedded links).
    - **Introduction/Purpose/Background/Overview (as heading level 2)**
       This section explains the aim of the report and prepares the reader for the content.
 
    - **Other headings as appropriate (as heading level 2 and lower)**
-      Structure the body of your report by using headings and subheadings. By ordering these headings logically, you can present your information effectively. Headings make it easier for readers to find specific information.
-
+      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you to present your information effectively. Headings make it easier for readers to find specific information.
       - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
 
       - **Bulleted Lists:** Use bulleted lists when the order of the items in the list is not important.
 
    - **Conclusions, Observations, Recommendations (as heading level 2)**
-      The conclusion complements the purpose of the report. It concisely analyzes the findings of the report and gives a future strategy, if required.
+      The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and gives a future strategy, if required.
 
    - **References (as heading level 2)**
-      References acknowledge the work of others and help readers to locate sources. Refer to [Referencing of Source Material](#referencing-of-source-material).
+      References acknowledge the work of others and help readers to find sources. Refer to [Referencing of Source Material](#referencing-of-source-material).
 
    - **Appendices (as heading level 2)**
-      Appendices contains information that supports the main report. 
-
+      Appendices contains supplementary information that supports the main report. 
       - **Appendix A: Name (as heading level 3)**
-        Instead of putting an entire supporting document into an appendix, provide a text reference and list the reference in the references section.
+        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the reference in the references section.
       - **Appendix B: Name  (as heading level 3)**
-        If figure and table numbers are used in the document, the figure and table numbering in the appendices follows on from the document numbering.
+        If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on from the figure and table numbers used in the report.
 
    - **Contributors (as heading level 2)**
       Refer to [List of Contributors](#list-of-contributors).
@@ -198,9 +230,11 @@ This section gives the proposed layout for TLU reports. The following headings a
 
 ### Bulleted List of Contents
 
-Every section in a TLU report starts with a bulleted list of all the headings in that section, for quick reference and consistency. 
+Every chapter in a TLU report starts with a bulleted list of all the headings in that chapter (with embedded links), for quick reference and consistency. 
 
-**Example:** Refer to the contents listed at the start of this style guide. The heading "Contents" is not inserted before this list. 
+*Example*
+
+Refer to the contents listed at the start of this Style Guide. The heading "Contents" is not inserted before this list. 
 
 
 
@@ -213,13 +247,13 @@ Every section in a TLU report starts with a bulleted list of all the headings in
 
 ### Figures and Tables
 
-The use of captions, as well as figure and table numbering, is optional. If you choose to use numbering and captions, these guidelines will assist in ensuring consistency in TLU layout:
+The use of captions, as well as figure and table numbering, is optional. If you choose to use numbering and captions, these guidelines will help to promote consistency in TLU layout:
 
 - Number figures and tables in each section sequentially, with the table caption above the table and the figure caption below the figure.
 - Type figure and table captions in upper and lower-case (title case).
 - Type Figure x: or Table X: before the caption, as applicable.
 - Center figures and tables on the page.
-- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps to avoid confusion.
+- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure and table numbering is not used, would then be "the following figure..." or "the following table...." This helps to avoid confusion.
 
 
 
@@ -228,6 +262,8 @@ The use of captions, as well as figure and table numbering, is optional. If you 
 mdBook has optional support for math [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax. In addition to the delimiters `\[` and `\[`, TLU also supports delimiters `$` and `$$`.
 
 
+
+*Examples*
 
 Example of an inline equation: $ h \in \mathbb G $ 
 
@@ -257,7 +293,9 @@ List references in the following order, as applicable:
 6. URL address if an online publication. Provide this information as shown in the following example: "Available:..."
 7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
-**Example:** [1] M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online].
+*Example* 
+
+\[1\] M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online].
 Available: https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf. Date accessed: 2018-12-18.
 
 Please note the use of punctuation and full stops in the example. 
@@ -276,11 +314,13 @@ The **inline link** under the [Equations](#Equations) heading was created as fol
 
 mdBook has optional support for math [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax.
 
-**Example:** mdBook has optional support for math [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax.
+*Example*
 
 A **reference link** has two parts. The first part of a reference link has two sets of square brackets. Inside the inner (second) set of square brackets, insert a label to identify the link.
 
-**Example:** Under the heading [Spelling](#spelling), the text reference is "The applicable dictionary is Merriam-Webster Online [[1]]." Note the double square brackets, and the label 1.
+*Example* 
+
+Under the heading [Spelling](#spelling), the text reference is "The applicable dictionary is Merriam-Webster Online [[1]]". Note the double square brackets, and the label 1.
 
 The second part of a reference link is inserted under the heading [References](#references), and appears as follows:
 
@@ -290,7 +330,7 @@ Available: https://www.merriam-webster.com/. Date accessed: 2008-02-01.
 [1]: https://www.merriam-webster.com
 "Merriam-Webster Online Dictionary"
 
-Where the full online reference is inserted after [[1]]; and the pop-up text link (which can be seen by hovering your cursor over the text reference in [Spelling](#spelling) is inserted after [1]. 
+Where the full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor over the text reference in [Spelling](#spelling) is inserted after `[1]:`. 
 
 For assistance with the layout of references, refer to [Referencing Standard](#referencing-standard).
 
@@ -299,7 +339,6 @@ For assistance with the layout of references, refer to [Referencing Standard](#r
 ### List of Contributors
 
 The contributors are listed in a bulleted list via their github account URLs. The author is listed first, followed by any reviewers or people who contributed via pull requests. Refer to [Contributors](#contributors) for an example.
-
 
 
 ## References
@@ -327,19 +366,3 @@ Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date&nbsp;acce
 
 - https://github.com/anselld
 - https://github.com/hansieodendaal
-
-
-
-**Note to Hansie:**
-
-Please comment on the following proposed addition to the Introduction at the start of the TLU content.
-
-You are welcome to contribute to our online content. To help you get started, we've compiled a Style Guide for Tari Labs University Reports. By using this Style Guide you can help us to ensure consistency in the content and layout of TLU reports.
-
-
-
-
-
-```
-
-```
