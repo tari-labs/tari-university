@@ -92,7 +92,7 @@ min = minute, s = second, h = hour, g = gram.
 
   *Example*
 
-  ```
+  ```Text
   On Tuesday, we measured a temperature of 34&nbsp;°C at sea level, i.e. 0&nbsp;m altitude, 
   while on the same day we measured 22&nbsp;°C on top of the mountain, which is 1&nbsp;500&nbsp;m high.
   ```
