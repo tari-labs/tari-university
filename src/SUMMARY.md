@@ -6,6 +6,7 @@
       - [Basics of Schnorr signatures](cryptography/digital_signatures/basics.md)
       - [Signature Aggregation](cryptography/digital_signatures/schnorr_signatures.md)
     - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)
+    - [The MuSig Schnorr Signature Scheme](cryptography/musig-schnorr-sig-scheme/The_MuSig_Schnorr_Signature_Scheme.md)
     - [Fraud Proofs](cryptography/fraud-proofs-1/MainReport.md)
     - [Bulletproofs and Mimblewimble](cryptography/bulletproofs-and-mimblewimble/MainReport.md)
     - [The Bulletproof Protocols](cryptography/bulletproofs-protocols/MainReport.md)
