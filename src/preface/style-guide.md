@@ -192,6 +192,10 @@ Refer to the list of contents at the start of this Style Guide.
 - Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this Style Guide.
 
 
+### Case Formatting
+
+???
+
 
 ## Standards for Layout
 
