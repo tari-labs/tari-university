@@ -12,6 +12,7 @@
   - [List Types](#list-types)
   - [List Punctuation](#list-punctuation)
   - [Cross-referencing](#cross-referencing)
+  - [Case Formatting](#case-formatting)
 - [Standards for Layout](#standards-for-layout)
   - [Proposed Layout](#proposed-layout)
   - [Line Widths](#line-widths)
