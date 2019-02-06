@@ -25,6 +25,8 @@
     - [Markdown Links](#markdown-links)
   - [List of Contributors](#list-of-contributors)
 - [References](#references)
+- [Appendices](#appendices)
+  - [Appendix A: Lower Case Words used in Title Case Formatting](#appendix-a-lower-case-words-used-in-title-case-formatting)
 - [Contributors](#contributors)
 
 
