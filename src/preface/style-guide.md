@@ -345,18 +345,12 @@ TLU uses the IEEE standard [[2]] as a guide for referencing publications.
 List references in the following order, as applicable:
 
 1. Author(s) initials or first name and surname (note punctuation).
-
 2. Title of the report, between double quotation marks. If it is an online report, state this in square brackets, as 
 shown in the following example.
-
 3. Title of journal, in italics.
-
 4. Publication information (volume, number, etc.).
-
 5. Page range (if applicable).
-
 6. URL address if an online publication. Provide this information as shown in the following example: "Available:..."
-
 7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
 *Example* 
@@ -375,9 +369,9 @@ There are two types of Markdown links: **inline links** and **reference links**.
 The **inline link** under the [Equations](#Equations) heading was created as follows:
 
 1. Insert identifying link text within a set of square brackets (refer to the following example).
-2. Create an inline link by placing a set of parentheses (round brackets) immediately after the closing square bracket 
+1. Create an inline link by placing a set of parentheses (round brackets) immediately after the closing square bracket 
 of the link text (refer to the following example).
-2. Insert the relevant URL link inside the parentheses (round brackets) (refer to the following example).
+1. Insert the relevant URL link inside the parentheses (round brackets) (refer to the following example).
 
 mdBook has optional support for math 
 [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax.
