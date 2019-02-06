@@ -238,7 +238,8 @@ This section gives the proposed layout for TLU reports. The following headings a
 
 ### Bulleted List of Contents
 
-Every chapter in a TLU report starts with a bulleted list of all the headings in that chapter (with embedded links), for quick reference and consistency. 
+Every chapter in a TLU report should start with a bulleted list of all the headings in that chapter (with embedded 
+links), for quick reference and consistency. This is optional for chapters with 5 or less lower level headings.
 
 *Example*
 
