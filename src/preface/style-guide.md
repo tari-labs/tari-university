@@ -235,6 +235,28 @@ This section gives the proposed layout for TLU reports. The following headings a
       Refer to [List of Contributors](#list-of-contributors).
 
 
+### Line Widths
+
+Try to keep line widths to a maximum of 120 characters for ease of GitHub reviews. 
+In Markdown a single line break does not constitute the start of a new paragraph
+
+_Example_
+
+This text split over 4 lines:
+
+    `Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo ` 
+    `Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius rei testimonium sigillum nostrum ` 
+    `presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate ` 
+    `Marie virginis.` 
+
+will look like a single paragraph as shown below:
+
+_Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo 
+Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius rei testimonium sigillum nostrum 
+presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate 
+Marie virginis._
+
+
 
 ### Bulleted List of Contents
 
