@@ -127,7 +127,7 @@ min = minute, s = second, h = hour, g = gram.
 
   1&nbsp;000, 20&nbsp;000&nbsp;000, 250&nbsp;000.
 
-- Leave a space on either side of signs such as + (plus), - (minus), = (equal to), > (greater than) and < (less than).
+Mathematical operators should usually be wrapped inside [equation tags](#equations). In plain text, leave a space on either side of signs such as + (plus), - (minus), = (equal to), > (greater than) and < (less than).
 
 
 
