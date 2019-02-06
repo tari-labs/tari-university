@@ -26,7 +26,7 @@
   - [List of Contributors](#list-of-contributors)
 - [References](#references)
 - [Appendices](#appendices)
-  - [Appendix A: Lower Case Words used in Title Case Formatting](#appendix-a-lower-case-words-used-in-title-case-formatting)
+  - [Appendix A: Lower-case Words used in Title Case Formatting](#appendix-a-lower-case-words-used-in-title-case-formatting)
 - [Contributors](#contributors)
 
 
@@ -48,11 +48,9 @@ TLU content is created in [Markdown](https://www.markdownguide.org/) format and 
 
 Use the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online [[1]]. 
 
-
-
 ### Units of Measure
 
-Use the internationally agreed ISO standards [[3]]  for expressing units of measure.
+Use the internationally agreed ISO standards [[3]] for expressing units of measure.
 
 *Example*
 
@@ -86,50 +84,34 @@ min = minute, s = second, h = hour, g = gram.
 
 ### Spacing
 
-- Leave a space between numbers and units of measure.
+**Note:** Due to limitations in Markdown, we deviate from the ISO convention, which requires a space between numbers and units of measure, and also as a thousands separator.
 
-  *Example*
-
-  5&nbsp;min, 15&nbsp;s, 120&nbsp;°C (but 100°, 25%).
-
-- Use a non-breaking space (`&nbsp;`) to prevent numbers and units from being split over two lines.
-
-  *Example*
-
-  ```Text
-  On Tuesday, we measured a temperature of 34&nbsp;°C at sea level, i.e. 0&nbsp;m altitude, 
-  while on the same day we measured 22&nbsp;°C on top of the mountain, which is 1&nbsp;500&nbsp;m high.
-  ```
-
-  Inserting the non-breaking spaces as shown in the example will result in the following (*play with the browser window to see the result*):
-
-  On Tuesday, we measured a temperature of 34&nbsp;°C at sea level, i.e. 0
-  &nbsp;m altitude, while on the same day we measured 22&nbsp;°C on top of the mountain, which is 1&nbsp;500&nbsp;m high.
+- Use of a non-breaking space (`&nbsp;`) can improve readability in the rendered mdbook where required.
 
 - Indicate clearly to which unit a number belongs:
 
-  *Incorrect example*
+  *Incorrect*
 
-  11 x 11 x 11 mm
+  11 x 11 x 11mm
 
-  *Correct example*
+  *Correct*
 
-  11&nbsp;mm x 11&nbsp;mm x 11&nbsp;mm
+  11mm x 11mm x 11mm
 
 - Use 'to' rather than a dash to indicate a range of values:
 
-  *Incorrect example*
-  1 - 10&nbsp;cm&nbsp;
+  *Incorrect*
+  1 - 10cm&nbsp;
 
-  *Correct example*
+  *Correct*
 
-  1&nbsp;cm to 10&nbsp;cm
+  1cm to 10cm
 
-- Use a non-breaking space (`&nbsp;`) space to indicate thousands.
+- Use a comma to indicate thousands.
 
   *Example*
 
-  1&nbsp;000, 20&nbsp;000&nbsp;000, 250&nbsp;000.
+  1,000; 20,000,000; 250,000.
 
 Mathematical operators should usually be wrapped inside [equation tags](#equations). In plain text, leave a space on either side of signs such as + (plus), - (minus), = (equal to), > (greater than) and < (less than).
 
@@ -153,7 +135,7 @@ As per American style:
 
 ### List Types
 
-TLU uses unordered lists (refer to the first example under [List Punctuation](#list-punctuation) and ordered lists (refer to the second example under [List Punctuation](#list-punctuation).
+TLU uses unordered lists (refer to the first example under [List Punctuation](#list-punctuation)) and ordered lists (refer to the second example under [List Punctuation](#list-punctuation).
 
 
 
@@ -191,14 +173,16 @@ Refer to the list of contents at the start of this Style Guide.
 ### Cross-referencing
 
 - Insert cross-references between the referenced information in the text and the list of references.
-- Text references appear in square brackets in the text and are listed under "References" at the end of each chapter in the order in which they appear in the text.
+- Text references appear in square brackets in the text and are listed under "References" at the end of each chapter, in the order in which they appear in the text.
 - If a text reference appears at the end of a paragraph, it appears after the full stop at the end of the paragraph.
-- Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this Style Guide.
+- Please be specific when referring to figures, tables, and sections of text. For clarity, if using figure and table numbering, avoid referring to "below" or "above'" Rather give a specific figure or table number. In the case of text references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this Style Guide.
+
 
 
 ### Case Formatting
 
-???
+[Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting) contains a list of lower-case words used in title case formatting in headings and captions (if used).
+
 
 
 ## Standards for Layout
@@ -210,58 +194,70 @@ This section gives the proposed layout for TLU reports. The following headings a
 - **Title (as heading level 1)**
    Contents List (as embedded links).
    - **Introduction/Purpose/Background/Overview (as heading level 2)**
+
       This section explains the aim of the report and prepares the reader for the content.
 
    - **Other headings as appropriate (as heading level 2 and lower)**
+
       Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you to present your information effectively. Headings make it easier for readers to find specific information.
+
       - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
 
       - **Bulleted Lists:** Use bulleted lists when the order of the items in the list is not important.
 
    - **Conclusions, Observations, Recommendations (as heading level 2)**
+
       The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and gives a future strategy, if required.
 
    - **References (as heading level 2)**
+
       References acknowledge the work of others and help readers to find sources. Refer to [Referencing of Source Material](#referencing-of-source-material).
 
    - **Appendices (as heading level 2)**
-      Appendices contains supplementary information that supports the main report. 
+
+      Appendices contain supplementary information that supports the main report. 
+
       - **Appendix A: Name (as heading level 3)**
+
         Rather than inserting an entire supporting document into an appendix, provide a text reference and list the reference in the references section.
+
       - **Appendix B: Name  (as heading level 3)**
+
         If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on from the figure and table numbers used in the report.
 
    - **Contributors (as heading level 2)**
+
       Refer to [List of Contributors](#list-of-contributors).
+
 
 
 ### Line Widths
 
 Try to keep line widths to a maximum of 120 characters for ease of GitHub reviews. 
-In Markdown a single line break does not constitute the start of a new paragraph
+In Markdown, a single line break does not constitute the start of a new paragraph.
 
 _Example_
 
-This text split over 4 lines:
+This text, which is split over four lines:
 
-    `Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo ` 
-    `Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius rei testimonium sigillum nostrum ` 
-    `presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate ` 
-    `Marie virginis.` 
+  `Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo`  
+  `Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius rei testimonium sigillum nostrum`  
+  `presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate`  
+  `Marie virginis.` 
 
-will look like a single paragraph as shown below:
+will look like a single paragraph, as follows:
 
-_Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo 
+Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo 
 Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius rei testimonium sigillum nostrum 
 presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate 
-Marie virginis._
+Marie virginis.
 
 
 
 ### Bulleted List of Contents
 
 Every chapter in a TLU report should start with a bulleted list of all the headings in that chapter (with embedded 
-links), for quick reference and consistency. This is optional for chapters with 5 or less lower level headings.
+links), for quick reference and consistency. This is optional for chapters that have five or fewer lower-level headings.
 
 *Example*
 
@@ -271,8 +267,19 @@ Refer to the contents listed at the start of this [Style Guide](#style-guide). T
 
 ### Headings
 
-- No numbering is used in the text panel. Numbering appears in the panel to the left of the text panel.
+- Do not include paragraph numbers in headings.
+
 - For consistency, upper and lower-case (title case) letters are used for headings at all levels.
+
+  *Incorrect*
+
+  \##\ 2. OVERVIEW  
+
+  *Correct*
+
+  \##\ Overview
+
+  Refer to [Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting).
 
   
 
@@ -315,7 +322,7 @@ List references in the following order, as applicable:
 
 1. Author(s) initials or first name and surname (note punctuation).
 
-2. Title of the report, between double quotation marks. If it is an online report, state this in square brackets as shown in the following example.
+2. Title of the report, between double quotation marks. If it is an online report, state this in square brackets, as shown in the following example.
 
 3. Title of journal, in italics.
 
@@ -339,9 +346,9 @@ There are two types of Markdown links: **inline links** and **reference links**.
 
 The **inline link** under the [Equations](#Equations) heading was created as follows:
 
-1. Insert identifying link text within a set of square brackets (see following example).
-2. Create an inline link by placing a set of parentheses (round brackets) immediately after the closing square bracket of the link text (see following example).
-2. Insert the relevant URL link inside the parentheses (round brackets) (see following example).
+1. Insert identifying link text within a set of square brackets (refer to the following example).
+2. Create an inline link by placing a set of parentheses (round brackets) immediately after the closing square bracket of the link text (refer to the following example).
+2. Insert the relevant URL link inside the parentheses (round brackets) (refer to the following example).
 
 mdBook has optional support for math [equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax.
 
@@ -361,7 +368,7 @@ Available: https://www.merriam-webster.com/. Date accessed: 2008-02-01.
 [1]: https://www.merriam-webster.com
 "Merriam-Webster Online Dictionary"
 
-Where the full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor over the text reference in [Spelling](#spelling) is inserted after `[1]:`. 
+The full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor over the text reference in [Spelling](#spelling)) is inserted after `[1]:`. 
 
 For assistance with the layout of references, refer to [Referencing Standard](#referencing-standard).
 
@@ -369,7 +376,8 @@ For assistance with the layout of references, refer to [Referencing Standard](#r
 
 ### List of Contributors
 
-The contributors are listed in a bulleted list via their github account URLs. The author is listed first, followed by any reviewers or people who contributed via pull requests. Refer to [Contributors](#contributors) for an example.
+The contributors are listed in a bulleted list via their GitHub account URLs. The author is listed first, followed by any reviewers or people who contributed via pull requests. Refer to [Contributors](#contributors) for an example.
+
 
 
 ## References
@@ -395,9 +403,47 @@ Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date&nbsp;acce
 
 ## Appendices
 
-### Appendix A: Lower Case Words used in Title Case Formatting
+### Appendix A: Lower-case Words used in Title Case Formatting
 
-???
+
+
+
+|  Case Word |  Case Word |  Case Word |  Case Word |
+|    ----    |    ----    |    ----    |    ----    |
+|      a     |    each    |    less    |  therefore |
+|    about   |    equal   |   lesser   |    these   |
+|    above   |   either   |     low    |    they    |
+|    after   |    ever    |    made    |    this    |
+|   against  |    every   |    make    |    those   |
+|    ahead   |   exclude  |    means   |   through  |
+|     am     |  excluding |    more    | throughout |
+|     an     |   follow   |    most    |    thus    |
+|     and    |  following |   neither  |     to     |
+|     any    |   follows  |    next    |     top    |
+|     are    |     for    |     no     |   towards  |
+|     as     |    from    |     nor    |    under   |
+|     at     |   further  |     not    |     up     |
+|     be     |    give    |     of     |    upper   |
+|    been    |    given   |     on     |     use    |
+|   before   |     go     |    only    |     use    |
+|   behind   |    good    |     or     |    used    |
+|    below   |   greater  |    order   |    used    |
+|   beside   |     had    |     our    |    using   |
+|   besides  |     has    |     out    |   versus   |
+|    best    |    have    |    outer   |    very    |
+|   better   |     how    |   outside  |     via    |
+|   between  |   however  |    over    |    were    |
+|   bottom   |    i.e.    |   provide  |    what    |
+|     but    |     in     |   regard   |    when    |
+|     by     |   include  |    since   |    where   |
+|     can    |  including |    such    |    which   |
+|   consist  |    inner   |    than    |    while   |
+| consistent |   inside   |    that    |     who    |
+|consistently|   instead  |     the    |    with    |
+|  consists  |     is     |    their   |   within   |
+|    does    |     it     |    them    |   without  |
+|    down    |     its    |    then    |    worst   |
+|    e.g.    |    least   |    there   |            |
 
 
 
@@ -405,3 +451,5 @@ Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date&nbsp;acce
 
 - https://github.com/anselld
 - https://github.com/hansieodendaal
+- https://github.com/CjS77%5D(https://github.com/CjS77)
+- [https://github.com/kevoulee](https://github.com/kevoulee)
