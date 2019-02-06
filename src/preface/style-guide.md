@@ -242,7 +242,7 @@ Every chapter in a TLU report starts with a bulleted list of all the headings in
 
 *Example*
 
-Refer to the contents listed at the start of this Style Guide. The heading "Contents" is not inserted before this list. 
+Refer to the contents listed at the start of this [Style Guide](#style-guide). The heading "Contents" is not inserted before this list. 
 
 
 
