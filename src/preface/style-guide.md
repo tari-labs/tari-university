@@ -366,6 +366,14 @@ Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date&nbsp;acce
 
 
 
+## Appendices
+
+### Appendix A: Lower Case Words used in Title Case Formatting
+
+???
+
+
+
 ## Contributors
 
 - https://github.com/anselld
