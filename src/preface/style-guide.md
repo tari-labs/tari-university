@@ -286,10 +286,9 @@ before this list.
 ### Headings
 
 - Do not include paragraph numbers in headings.
-
 - For consistency, upper and lower-case (title case) letters are used for headings at all levels.
 
-  *Incorrect*
+*Incorrect*
 
   \## 2. OVERVIEW  
 
@@ -330,6 +329,7 @@ through MathJax. In addition to the delimiters `\[` and `\[`, TLU also supports 
 Example of an inline equation: $ h \in \mathbb G $ 
 
 Example of a display equation:
+
 $$
 \mathbb s = \prod _{i=0}^n s(i)
 $$
@@ -337,19 +337,40 @@ $$
 **Note:** MathJax rendering in mdBook has some caveats to take note of:
 
 - Subscripts
+
   - When using two or more subscripts in inline or display equations, stipulated by a preceding underscore (`_`), the 
     equation rendering does not work as expected. This is due to `_` being a special character for Markdown indicating 
     text in italics. The way around this is to escape each underscore used in the equation as follows: (`\_`). An 
-    example of this is shown below:
-    - Rendering correctly: $ \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} ​$ as 
-      `$  \mathbf a \_{[:l]} = ( a_1 , . . . , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l}  $`
-    - Rendering incorrectly: $  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}  \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $ as 
-      `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $`
-- Superscripts and subscripts order
-  - Some times swapping the order in which an expression's superscript text and subscript text appear may fix 
-    rendering issues, example 
-    - `$ s_i = \prod ^{\log _2 (n)} _{j=1} x ^{b(i,j)} _j $` vs. `$ s_i = \prod _{j=1} ^{\log _2 (n)} x _j ^{b(i,j)} $`
+    example of this is:
 
+    - *Rendering correctly* 
+
+      $ \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $ 
+
+      as 
+
+      `$  \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l}  $`
+
+    - *Rendering incorrectly* 
+
+      $  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}  \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $ 
+
+      as 
+
+      `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $`
+
+      Notice that this part of the (failed) formula, `_{[l:]} = ( a_`, is rendered in italics.
+
+- Superscripts and subscripts order
+
+  - Sometimes swapping the order in which an expression's superscript text and subscript text appear may fix 
+    rendering issues, for example: 
+
+    - `$ s_i = \prod ^{\log _2 (n)} _{j=1} x ^{b(i,j)} _j $` 
+
+       vs. 
+
+      `$ s_i = \prod _{j=1} ^{\log _2 (n)} x _j ^{b(i,j)} $`
 
 
 ### Referencing of Source Material
