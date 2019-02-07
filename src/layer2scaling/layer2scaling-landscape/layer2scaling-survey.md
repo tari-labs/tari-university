@@ -378,7 +378,7 @@ Golem cites TrueBit as a verification mechanism for their forthcoming outsourced
 #### Strengths
 
 - Outsourced computation - anyone in the world can post a computational task, and anyone else can receive a reward for completing it. [[40]](http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf)
-- Scalable - by decoupling verification for miners into a separate protocol, TrueBit can achieve high transaction throughput without facing a Verifier’s Dilemma. [[4]](http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf)
+- Scalable - by decoupling verification for miners into a separate protocol, TrueBit can achieve high transaction throughput without facing a Verifier’s Dilemma. [[40]](http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf)
 
 #### Weaknesses
 
