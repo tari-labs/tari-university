@@ -38,7 +38,7 @@ This will be impossible to do with parent block chain scaling solutions.
 
 
 ## Layer 2 scaling current initiatives
-### #1 Micropayment Channels 
+### Micropayment Channels 
 #### What is it?
 
 A Micropayment Channel is a class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain but an unlimited or nearly unlimited number of payments can be made between the participants. [[11]](https://en.bitcoin.it/wiki/Payment_channels)
@@ -84,7 +84,7 @@ Less than expected as Tari's ticketing use case requires many fast transactions 
 
 None.
 
-### #2 State Channels
+### State Channels
 
 #### What is it?
 
@@ -147,7 +147,7 @@ Less than expected as Tari's ticketing use case requires many fast transactions 
 
 None.
 
-### #3 Off-chain matching engines
+### Off-chain matching engines
 
 #### What is it?
 
@@ -213,7 +213,7 @@ Orders are matched off-chain in matching engine and fulfilled on-chain, allows c
 
 - None.
 
-### #4 Masternodes
+### Masternodes
 #### What is it?
 
 A masternode is a server on a decentralized network. It is utilized to complete unique functions in ways ordinary mining nodes cannot, for example features like direct send, instant transactions and private transactions. Because of their increased capabilities, masternodes typically require an investment in order to run. Masternode operators are incentivized and are rewarded by earning portions of block rewards in the cryptocurrency they are facilitating. Masternodes will get the standard return on their stakes, but will also be entitled to a portion of the transaction fees, allowing for a greater ROI. ([[8]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes), [[10]](https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes))
@@ -265,7 +265,7 @@ Increases incentives for people to be involved with Tari.
 
 None
 
-### #5 Plasma
+### Plasma
 #### What is it?
 
 Plasma block chains are a chain within a block chain, with state transitions enforced by bonded (time to exit) fraud proofs (block header hashes) submitted on the root chain. It enables management of a tiered block chain without a full persistent record of the ledger on the root block chain and without giving custodial trust to any 3rd party. The fraud proofs enforce an interactive protocol of rapid fund withdrawals in case of foul play like block withholding, in cases where bad actors in a lower level tier want to commit blocks to the root chain without broadcasting it to the higher level tiers. [[4]](http://plasma.io/plasma.pdf)
@@ -307,7 +307,7 @@ Must still be proven on other networks apart from Ethereum.
 
 The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year a number of successful and diverse dAppChains have launched. *The next one can easily be for ticket sales...*
 
-### #6 TrueBit
+### TrueBit
 
 #### What is it?
 
