@@ -4,7 +4,7 @@ This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondar
 
 ## Layer 2 scaling current initiatives (updated)
 
-### #1 TumbleBit
+### TumbleBit
 
 #### What is it?
 
