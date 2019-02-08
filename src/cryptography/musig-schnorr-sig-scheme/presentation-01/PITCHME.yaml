@@ -1,0 +1,6 @@
+theme: black
+footnote: © Tari Labs, 2018. Distributed under the Apache 2 license
+mathjax: TeX-AMS_SVG
+theme-override : assets/tari-b.css
+logo: assets/logo/tari_vertical.png
+slide-number: true
