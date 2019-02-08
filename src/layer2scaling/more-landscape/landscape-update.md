@@ -1,5 +1,58 @@
 # Layer 2 Scaling Survey (Part 2)
 
+- [Introduction](#introduction)
+
+- [Layer 2 Scaling Current Initiatives (Updated)](#layer-2-scaling-current-initiatives-updated)
+  - [TumbleBit](#tumblebit)
+  - [What is it?](#what-is-it)
+  - [Who does it?](#who-does-it)
+  - [Strengths](#strengths)
+  - [Weaknesses](#weaknesses)
+  - [Opportunities](#opportunities)
+
+- [Counterparty](#counterparty)
+  - [What is it?](#what-is-it-1)
+  - [Who uses it?](#who-uses-it-1)
+  - [Strengths](#strengths-1)
+  - [Weaknesses](#weaknesses-1)
+  - [Opportunities](#opportunities-1)
+
+- [2-Way Pegged Secondary Block Chains - Sidechains, Drivechains, Federated Pegs](#2-way-pegged-secondary-block-chains-sidechains-drivechains-federated-pegs)
+  - [What are they?](#what-are-they)
+  - [Who does them?](#who-does-them)
+  - [Strengths](#strengths-2)
+  - [Weaknesses](#weaknesses-2)
+  - [Opportunities](#opportunities-2)
+
+- [Lumino](#lumino)
+  - [What is it?](#what-is-it-2)
+  - [Who does it?](#who-does-it-2)
+  - [Strengths](#strengths-3)
+  - [Weaknesses](#weaknesses-3)
+  - [Opportunities](#opportunities-3)
+
+- [Scriptless Scripts](#scriptless-scripts)
+  - [What is it?](#what-is-it-3)
+  - [Who does it?](#who-does-it-2)
+  - [Strengths](#strengths-4)
+  - [Weaknesses](#weaknesses-4)
+  - [Opportunities](#opportunities-4)
+
+- [Directed Acyclic Graph (DAG) Derivative Protocols: Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE](#directed-acyclic-graph-dag-derivative-protocols-greedy-heaviest-observed-sub-tree-ghost-braiding-jute-spectre)
+  - [What is it?](#what-is-it-4)
+  - [Who does it?](#who-does-it-3)
+  - [Strengths](#strengths-5)
+  - [Weaknesses](#weaknesses-5)
+  - [Opportunities](#opportunities-5)
+
+- [Observations](#observations)
+- [References](#references)
+- [Contributors](#contributors)
+
+
+
+## Introduction
+
 This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondary Block Chains, Lumino, Scriptless scripts and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling alternatives, building on [Layer 2 Scaling Survey (part 1)](../layer2scaling-landscape/layer2scaling-survey.md).
 
 ## Layer 2 Scaling Current Initiatives (Updated)
@@ -46,13 +99,9 @@ The Boston University provided a proof-of-concept and reference implementation a
 
 - Equal denominations required. The TumbleBit protocol can only support a common denominator unit value. [2]
 
-#### Opportunities for Tari
+#### Opportunities
 
 Has benefits to Tari as a trustless Masternode matching/batch processing engine with strong privacy features.
-
-#### Threats to Tari
-
-None.
 
 ### Counterparty
 
@@ -91,18 +140,14 @@ COVAL is being developed with a primary purpose of moving value using “off-cha
 - Embedded consensus imposes limitations on the ability of the secondary layer to interact with the primary layer's token. Counterparty was not able to manipulate BTC balances or otherwise utilize BTC directly.
 - With embedded consensus, nodes maintain identical ledgers without using a peer-to-peer network. One could make the claim that this hampers the flexibility of the protocol, and it limits the speed of the protocol to the speed of the underlying blockchain.
 
-#### Opportunities for Tari
+#### Opportunities
 
 - Nodes can implement improved consensus models like Federated Byzantine Agreement [[55]](https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0)
 - See '*Scriptless scripts*'
 
-#### Threats to Tari
+### 2-way Pegged Secondary Block Chains - *Sidechains, Drivechains, Federated Pegs*)
 
-None.
-
-### 2-way Pegged Secondary Block Chains (*Sidechains, Drivechains, Federated Pegs*)
-
-#### What is it?
+#### What are they?
 
 A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain to a secondary block chain and vice-versa at a fixed rate by making use of an appropriate security protocol. The "transfer" actually involves BTC to be locked on the main Bitcoin block chain and unlocked/made available on the secondary block chain. The 2WP promise is concluded when an equivalent amount of tokens on the secondary block chain are locked (in the secondary block chain) so that the original bitcoins can be unlocked. ([[22]](https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design), [[28]](https://blockstream.com/technology/sidechains.pdf))
 
@@ -122,7 +167,7 @@ Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivecha
 
 The locking of BTC on the main Bitcoin block chain is done by using a P2SH transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]](https://en.bitcoin.it/wiki/Pay_to_script_hash)
 
-#### Who does it?
+#### Who does them?
 
 RSK (*formerly Rootstock*) is a 2WP Bitcoin secondary block chain using a hybrid sidechain-drivechain security protocol. RSK is scale-able up to 100 transactions per second (Tx/s) and provides a second layer scaling solution for Bitcoin as it can relieve on-chain Bitcoin transactions. ([[14]](https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1),  [[15]](https://lunyr.com/article/Second-Layer_Scaling), [[16]](https://www.rsk.co))
 
@@ -146,13 +191,9 @@ Blockstream is implementing a Federated Sidechain called Liquid, with the functi
 - <u>51% attacks:</u> 2WP secondary block chains are hugely dependent on merged mining. As such, mining power centralization and 51% attacks are a real threat, as demonstrated for Namecoin and Huntercoin (See [Merged Mining Introduction](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md)).
 - The DMMS provided by mining is not very secure for small systems, while the trust of the federation/notaries is riskier for large systems. [[28]](https://blockstream.com/technology/sidechains.pdf)
 
-#### Opportunities for Tari
+#### Opportunities
 
 None, if enough functionality will be built into the main Tari block chain.
-
-#### Threats to Tari
-
-None
 
 ### Lumino
 
@@ -177,13 +218,9 @@ RSK, which has been newly launched on main net in January 2018. The Lumino Netwo
 - The Lumino Network has not been released yet
 - Details about how the Lumino Network will handle payment channels were not decisive in the white paper [[17]](https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf)
 
-#### Opportunities for Tari
+#### Opportunities
 
 LTCP pruning may be beneficial to Tari
-
-#### Threats to Tari
-
-None.
 
 ### Scriptless Scripts
 
@@ -223,17 +260,13 @@ Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless
 
 In a recent work Maxwell et al. ([[35]](https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html), [[36]](https://eprint.iacr.org/2018/068.pdf)) showed that a naive implementation of Schnorr multi-signatures that satisfies key aggregation is not secure, and that the Bellare and Neven (BN) Schnorr signature scheme loses the key aggregation property in order to gain security in the plain public-key model. They proposed a new Schnorr-based multi-signature scheme with key aggregation called MuSig, which is provably secure in the *plain public-key model*. It has the same key and signature size as standard Schnorr signatures. The joint signature can be verified exactly the same as a standard Schnorr signature with respect to a single “aggregated” public-key, which can be computed from the individual public keys of the signers. Note that the case of interactive signature aggregation where each signer signs their own message must still be proven by a complete security analysis.
 
-#### Opportunities for Tari
+#### Opportunities
 
 Tari plans to implement the Mimblewimble block chain and should implement the *Scriptless Script*s together with the MuSig Schnorr signature scheme. 
 
 However, this in itself will not provide the Layer 2 scaling performance that will be required. Big Neon, the initial business application to be built on top of the Tari block chain, requires to "facilitate 500 tickets in 4 minutes", that is ~2 spectators allowed access every second, with negligible latency. 
 
 The Mimblewimble *Scriptless Script*s could be combined with a federated node (or specialized masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final consolidated state update being written back to the block chain after the event.
-
-#### Threats to Tari
-
-None
 
 ### Directed Acyclic Graph (DAG) Derivative Protocols: Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE
 
@@ -297,14 +330,10 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but offer significan
 
 - The DAG derivative protocols differ on important aspects like miner payment schemes, security models, support for smart contracts, confirmation times, etc. Thus, all DAG derivative protocols are not created equal, beware!
 
-
-#### Opportunities for Tari
+#### Opportunities
 
 Opportunities exist for Tari in applying the basic DAG principles to make a 51% attack harder by virtue of fairness and miner decentralization resistance. Choosing the correct DAG derivative protocol can also significantly improve Layer 1 scaling.
 
-#### Threats to Tari
-
-None.
 
 ## Observations
 
