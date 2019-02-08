@@ -6,7 +6,9 @@ Merged mining is the act of using work done on another block chain (the Parent) 
 
 As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652)
 
-![MergedMiningIntro01](./sources/MergedMiningIntro01.png)
+<p align="center"><img src="sources/MergedMiningIntro01.png" width="700" /></p>
+
+
 
 A transaction set for both block chains are assembled. The hash of the AuxPoW block header is then inserted in the 'free' bytes region (coinbase field) of the coinbase transaction and submitted to the Parent block chain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both block chains the respective block(s) are re-assembled with the completed PoW and submitted to the correct block chain. In case of the Auxiliary block chain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent block chain that meets the difficulty level of the Auxiliary block chain. ([[1]](https://en.bitcoin.it/wiki/Merged_mining_specification), [[2]](https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work), [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
 
