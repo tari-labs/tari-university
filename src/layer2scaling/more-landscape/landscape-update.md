@@ -1,10 +1,10 @@
-# Layer 2 Scaling Survey (part 2)
+# Layer 2 Scaling Survey (Part 2)
 
 This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondary Block Chains, Lumino, Scriptless scripts and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling alternatives, building on [Layer 2 Scaling Survey (part 1)](../layer2scaling-landscape/layer2scaling-survey.md).
 
-## Layer 2 scaling current initiatives (updated)
+## Layer 2 Scaling Current Initiatives (Updated)
 
-### #1 TumbleBit
+### TumbleBit
 
 #### What is it?
 
@@ -22,41 +22,39 @@ The Boston University provided a proof-of-concept and reference implementation a
 
 #### Strengths
 
-<u>Anonymity properties</u> - TumbleBit provides unlinkability without the need to trust the Tumbler service (i.e. untrusted intermediary). [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Anonymity properties. TumbleBit provides unlinkability without the need to trust the Tumbler service (i.e. untrusted intermediary). [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Denial of Service (DoS) and Sybil protection. "TumbleBit uses transaction fees to resist DoS and Sybil attacks." [2]
 
-<u>Denial of Service (DoS) and Sybil protection</u> - "*TumbleBit uses transaction fees to resist DoS and Sybil attacks.*" [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Balance. "The system should not be exploited to print new money or steal money, even when parties collude."  [2]
 
-<u>Balance</u> - "*The system should not be exploited to print new money or steal money, even when parties collude.*"  [[2]](https://eprint.iacr.org/2016/575.pdf)
+- As a classic tumbler. TumbleBit can also be used as a classic Bitcoin tumbler. [2]
 
-<u>As a classic tumbler</u> - TumbleBit can also be used as a classic Bitcoin tumbler. [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Bitcoin compatibility. TumbleBit is fully compatible with the Bitcoin protocol. [2]
 
-<u>Bitcoin compatibility</u> - TumbleBit is fully compatible with the Bitcoin protocol. [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Scale ability. Each TumbleBit user only need to interact with the Tumbler and the corresponding transaction party; this lack of coordination between all TumbleBit users makes scale ability possible for the tumbler mode. [2]
 
-<u>Scale ability</u> - Each TumbleBit user only need to interact with the Tumbler and the corresponding transaction party; this lack of coordination between all TumbleBit users makes scale ability possible for the tumbler mode. [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Batch processing. TumbleBit  supports one-to-one, many-to-one, one-to-many and many-to-many transactions in payment hub mode. [2]
 
-<u>Batch processing</u> - TumbleBit  supports one-to-one, many-to-one, one-to-many and many-to-many transactions in payment hub mode. [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Masternode compatibility. The TumbleBit protocol can be fully implemented as a service in a Masternode. "The Breeze Wallet is now fully capable of providing enhanced privacy to bitcoin transactions through a secure connection. Utilizing Breeze Servers that are pre registered on the network using a secure, trustless registration mechanism that is resistant to manipulation and censorship." ([6], [7], [12])
 
-<u>Masternode compatibility</u> - The TumbleBit protocol can be fully implemented as a service in a Masternode. "*The Breeze Wallet is now fully capable of providing enhanced privacy to bitcoin transactions through a secure connection. Utilizing Breeze Servers that are pre registered on the network using a secure, trustless registration mechanism that is resistant to manipulation and censorship.*" ([[6]](https://stratisplatform.com/2017/07/17/breeze-tumblebit-server-experimental-release), [[7]](https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-privacy-protocol-dev-update), [[12]](https://stratisplatform.com/2017/08/10/bitcoin-privacy-tumblebit-integrated-into-breeze))
-
-<u>Nearly production ready</u> - The NTumbleBit and Breeze implementations have gained testnet status.
+- Nearly production ready. The NTumbleBit and Breeze implementations have gained testnet status.
 
 #### Weaknesses
 
-<u>Privacy not 100% proven</u> - Payees have better privacy than the payers, and theoretically collusion involving payees and the Tumbler can exist to discover the identity of the payer. [[13]](https://www.bitcoinmarketinsider.com/tumblebit-wallet-reaches-one-step-forward)
+- Privacy not 100% proven. Payees have better privacy than the payers, and theoretically collusion involving payees and the Tumbler can exist to discover the identity of the payer. [13]
+- Tumbler service not distributed. More work needs to be done to ensure persistent transaction state in case a Tumbler server goes down.
 
-<u>Tumbler service not distributed</u> - More work needs to be done to ensure persistent transaction state in case a Tumbler server goes down.
-
-<u>Equal denominations required</u> - The TumbleBit protocol can only support a common denominator unit value. [[2]](https://eprint.iacr.org/2016/575.pdf)
+- Equal denominations required. The TumbleBit protocol can only support a common denominator unit value. [2]
 
 #### Opportunities for Tari
 
 Has benefits to Tari as a trustless Masternode matching/batch processing engine with strong privacy features.
 
-#### Threats for Tari
+#### Threats to Tari
 
-None
+None.
 
-### #2 Counterparty
+### Counterparty
 
 #### What is it?
 
@@ -98,11 +96,11 @@ COVAL is being developed with a primary purpose of moving value using “off-cha
 - Nodes can implement improved consensus models like Federated Byzantine Agreement [[55]](https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0)
 - See '*Scriptless scripts*'
 
-#### Threats for Tari
+#### Threats to Tari
 
-None
+None.
 
-### #3 2-Way Pegged Secondary Block Chains (*Sidechains, Drivechains, Federated Pegs*)
+### 2-way Pegged Secondary Block Chains (*Sidechains, Drivechains, Federated Pegs*)
 
 #### What is it?
 
@@ -152,11 +150,11 @@ Blockstream is implementing a Federated Sidechain called Liquid, with the functi
 
 None, if enough functionality will be built into the main Tari block chain.
 
-#### Threats for Tari
+#### Threats to Tari
 
 None
 
-### #4 Lumino
+### Lumino
 
 #### What is it?
 
@@ -183,11 +181,11 @@ RSK, which has been newly launched on main net in January 2018. The Lumino Netwo
 
 LTCP pruning may be beneficial to Tari
 
-#### Threats for Tari
+#### Threats to Tari
 
-None
+None.
 
-### #5 Scriptless scripts
+### Scriptless Scripts
 
 #### What is it?
 
@@ -233,11 +231,11 @@ However, this in itself will not provide the Layer 2 scaling performance that wi
 
 The Mimblewimble *Scriptless Script*s could be combined with a federated node (or specialized masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final consolidated state update being written back to the block chain after the event.
 
-#### Threats for Tari
+#### Threats to Tari
 
 None
 
-### #6 Directed Acyclic Graph (DAG) Derivative Protocols: Greedy Heaviest Observed Sub-Tree (GHOST), Braiding, Jute, SPECTRE
+### Directed Acyclic Graph (DAG) Derivative Protocols: Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE
 
 #### What is it?
 
@@ -304,9 +302,9 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but offer significan
 
 Opportunities exist for Tari in applying the basic DAG principles to make a 51% attack harder by virtue of fairness and miner decentralization resistance. Choosing the correct DAG derivative protocol can also significantly improve Layer 1 scaling.
 
-#### Threats for Tari
+#### Threats to Tari
 
-None
+None.
 
 ## Observations
 
@@ -314,7 +312,9 @@ None
 
 ## References
 
-[1] TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub, http://cs-people.bu.edu/heilman/tumblebit, Date accessed: 2018-07-12.
+[[1]] TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub, http://cs-people.bu.edu/heilman/tumblebit, Date accessed: 2018-07-12.
+
+[1]: http://cs-people.bu.edu/heilman/tumblebit	"TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub"
 
 [2] TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub, Heilman E. et. el., https://eprint.iacr.org/2016/575.pdf, Date accessed: 2018-07-08.
 
