@@ -68,7 +68,7 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 - Let $ \textrm{H} $ denote the hash function. 
 
-- Let $ S= \lbrace (X_{1}, m_{1}),..., (X_{n}, m_{n}) \rbrace  ​$ be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$.  
+- Let '$ S= \lbrace (X_{1}, m_{1}),..., (X_{n}, m_{n}) \rbrace $' be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$.  
 
 - Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs in $ S $. 
 
