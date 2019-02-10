@@ -319,9 +319,13 @@ MuSig is paramaterised by group parameters ``$(\mathbb{G\mathrm{,p,g)}}$`` and t
 
 @divend
 
+@div[text-left]
+
 ### Round 1
 
 A group of $ n $ signers want to cosign a message $ m $. Let $ X_1 $ and $ x_1 $ be the public and private key of a specific signer, let ``$ X_2 , . . . , X_n $`` be the public keys of other cosigners and let $ \langle L \rangle $ be the multiset of all public keys involved in the signing process.
+
+@divend
 
 For ``$ i\in  \lbrace 1,...,n \rbrace  ​$`` , the signer computes the following
 
@@ -337,15 +341,20 @@ $$
 \tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​
 $$
 `
+
 ---
 
 ### Round 2 
 
 @div[text-left]
 
-The signer generates a random ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$ R_{1} = g^{r_{1}} $`` and ``$ t_{1} = \textrm{H}\_{com}(R\_{1}) $`` and sends commitment `$t_{1}$` to all other cosigners.
+The signer generates a random ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$ R_{1} = g^{r_{1}} $`` and ``$ t_{1} = \textrm{H}_{com}(R\_{1}) $`` and sends commitment `$t_{1}$` to all other cosigners.
+
+
 
 When receiving the commitments ``$t_{2},...,t_{n} $`` from the other cosigners, the signer sends ``$ R_{1} $`` to all other cosigners.
+
+
 
 Upon receiving ``$ R_2,...,R_n $`` from other cosigners, the signer verifies that ``$ t\_{i}=\textrm{H}\_{com}(R_{i})$`` for all ``$ i\in  \lbrace 2,...,n \rbrace $``
 
@@ -371,6 +380,7 @@ s\_{1} &= r\_{1} + ca\_{1} x\_{1} \mod p
 $$
 `
 
+
 Signature ``$ s_{1} $`` is sent to all other cosigners.
 When receiving ``$ s_{2},...s_{n} $`` from other cosigners, the signer can compute ``$ s = \sum_{i=1}^{n}s_{i} \mod p $``. The signature is ``$ \sigma = (R,s) $``.
 
@@ -379,12 +389,16 @@ In order to verify the aggregated signature ``$ \sigma = (R,s) $``, given a lexi
 `
 $$
 \begin{aligned} 
-a_{i} &= \textrm{H}\_{agg}(\langle L \rangle,X\_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
+a_{i} &= \textrm{H}_{agg}(\langle L \rangle,X\_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
 \tilde{X} &= \prod\_{i=1}^{n}X\_{i}^{a\_{i}} \\\\
-c &=  \textrm{H}\_{sig} (\tilde{X},R,m) 
+c &=  \textrm{H}_{sig} (\tilde{X},R,m) 
 \end{aligned}
 $$
 `
+
++++
+
+
 
 then accepts the signature if 
 
@@ -401,9 +415,20 @@ $$
 
 @div[text-left]
 
-In a previous version of the paper by Maxwell *et al.* published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. Drijvers *et al.* then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
+- In a previous version of the paper by Maxwell *et al.* published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. 
+- Drijvers *et al.* then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
 
-In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys ``$ X_{2},...,X_{n} $``) can impose the value of ``$ R=\Pi_{i=1}^{n}R_{i} $`` used in signature protocols since he can choose ``$ R_{2},...,R_{n} $`` after having received ``$ R_{1} $`` from the honest signer (controlling public key ``$ X_{1}=g^{x_{1}} $`` ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing ``$ x_{1} $`` by randomly drawing ``$ s_{1} $`` and ``$ c $``, computing ``$ R\_1=g^{s\_1}(X\_1)^{-a\_1c} $``, and later programming ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $`` since the adversary might have made the random oracle query ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) $`` *before*  engaging the corresponding signature protocol.  
+@divend
+
++++
+
+@div[text-left]
+
+In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys ``$ X_{2},...,X_{n} $``) can impose the value of ``$ R=\Pi_{i=1}^{n}R_{i} $`` used in signature protocols since he can choose ``$ R_{2},...,R_{n} $`` after having received ``$ R_{1} $`` from the honest signer (controlling public key ``$ X_{1}=g^{x_{1}} $`` ). 
+
+
+This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing ``$ x_{1} $`` by randomly drawing ``$ s_{1} $`` and ``$ c $``, computing ``$ R\_1=g^{s\_1}(X\_1)^{-a\_1c} $``, and later programming ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $`` since the adversary might have made the random oracle query ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) $`` *before*  engaging the corresponding signature protocol.  
+
 
 Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques.&nbsp;
 
@@ -412,6 +437,8 @@ Despite this, there is no attack currently known against the 2-round variant of 
 ---
 
 ## Turning BN's Scheme into a Secure IAS 
+
+@div[text-left]
 
 In order to change the BN multi-signature scheme into an IAS scheme, Wuille *et al.* proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
@@ -438,10 +465,15 @@ $$
 (X_{1}, m_{i}) = (X, m)
 $$
 `
+@divend
 
 +++
 
+@div[text-left]
+
 Each signer then draws ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$  R_{i} = g^{r_{i}} $`` and subsequently sends commitment ``$  t_{i} = H^\prime(R_{i}) ​$`` in a first round and then ``$ R_{i} $`` in a second round, and then computes  
+
+@divend
 
 `
 $$
@@ -468,6 +500,12 @@ $$
 
 The signature is $ \sigma = (R, s) ​$. 
 
+@divend
+
++++
+
+@div[text-left]
+
 Given an ordered set $ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S =  \lbrace (X_{1}, m_{1}),...,(X_{n}, m_{n}) \rbrace  $ and a signature $ \sigma = (R, s) $  then $ \sigma $ is valid for $ S ​$ when 
 
 `
@@ -480,3 +518,4 @@ It must be noted that there is no need to include ``$ \langle L \rangle $`` in t
 
 **Note:** As of writing of this report, the secure IAS scheme presented here still needs to undergo a complete security analysis.
 
+@divend
