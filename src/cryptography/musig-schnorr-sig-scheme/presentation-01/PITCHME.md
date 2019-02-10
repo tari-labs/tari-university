@@ -52,6 +52,10 @@ MuSig is a multi-signature scheme that is novel in combining:
 
 1. Support for key aggregation;
 
+@divend
+
+@div[text-left]
+
 2. Security in the plain public-key model.
 
 @divend
@@ -65,6 +69,10 @@ There are two versions of MuSig, that are provably secure, which differ based on
 @div[text-left]
 
 1. Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which Elliptic Curve Digital Signature Algorithm (ECDSA) also relies
+
+@divend
+
+@div[text-left]
 
 2. Two-round MuSig instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption
 
@@ -351,7 +359,7 @@ For ``$ i\in  \lbrace 1,...,n \rbrace  ​$`` , the signer computes the followin
 
 `
 $$
-a_{i} = \textrm{H}_{agg}(\langle L \rangle,X\_{i})
+a_{i} = \textrm{H}_{agg}(\langle L \rangle,X_{i})
 $$
 `
 
@@ -368,7 +376,7 @@ $$
 
 @div[text-left]
 
-The signer generates a random ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$ R_{1} = g^{r_{1}} $`` and ``$ t_{1} = \textrm{H}\_{com}(R\_{1}) $`` and sends commitment `$t_{1}$` to all other cosigners.
+The signer generates a random ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$ R_{1} = g^{r_{1}} $`` and ``$ t_{1} = \textrm{H}_{com}(R_{1}) $`` and sends commitment `$t_{1}$` to all other cosigners.
 
 @divend
 
@@ -380,7 +388,7 @@ When receiving the commitments ``$t_{2},...,t_{n} $`` from the other cosigners, 
 
 @div[text-left]
 
-Upon receiving ``$ R_2,...,R_n $`` from other cosigners, the signer verifies that ``$ t\_{i}=\textrm{H}\_{com}(R_{i})$`` for all ``$ i\in  \lbrace 2,...,n \rbrace $``
+Upon receiving ``$ R_2,...,R_n $`` from other cosigners, the signer verifies that ``$ t_{i}=\textrm{H}_{com}(R_{i})$`` for all ``$ i\in  \lbrace 2,...,n \rbrace $``
 
 @divend
 
@@ -424,7 +432,7 @@ In order to verify the aggregated signature ``$ \sigma = (R,s) $``, given a lexi
 `
 $$
 \begin{aligned} 
-a_{i} &= \textrm{H}_{agg}(\langle L \rangle,X\_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
+a_{i} &= \textrm{H}_{agg}(\langle L \rangle,X_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
 \tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\\\
 c &=  \textrm{H}_{sig} (\tilde{X},R,m) 
 \end{aligned}
@@ -574,8 +582,14 @@ It must be noted that there is no need to include ``$ \langle L \rangle $`` in t
 
 @divend
 
+---
+
 ## Conclusions, Observations and Recommendations
+
+@div[text-left]
 
 - MuSig leads to both native and private multi-signature transactions with signature aggregation
 - Signature data for multi-signatures can be large and cumbersome. MuSig will allow users to create more complex transactions without burdening the network and revealing compromising information.
 - The IAS case where each signer signs their own message must still be proven by a complete security analysis.
+
+@divend
