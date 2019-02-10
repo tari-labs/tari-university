@@ -266,6 +266,8 @@ However, these protocols are vulnerable to a rogue-key attack where a corrupted 
 
 @divend
 
++++
+
 `
 $$
 X_{1}=g^{x_{1}} (\prod\_{i=2}^{n} X_{i})^{-1} 
