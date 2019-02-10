@@ -70,21 +70,21 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 <div class="LineHeight20per"> <br></div>
 
-- Let $ p ​$ be a large prime number
+- Let ``$ p ​$`` be a large prime number
 
-- Let $ \mathbb G ​$ denote a cyclic group of prime order $ p ​$ 
+- Let ``$ \mathbb G ​$`` denote a cyclic group of prime order ``$ p ​$`` 
 
-- Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p ​$ 
+- Let ``$ \mathbb Z_p $`` denote the ring of integers ``$ modulo \mspace{4mu} p $`` 
 
-- Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} =  \lbrace 1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1} \rbrace   $. 
+- Let a generator of  ``$ \mathbb{G} $`` be denoted by ``$ g $``. Thus, there exists a number ``$ g \in\mathbb{G}  $`` such that ``$ \mathbb{G} =  \lbrace 1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1} \rbrace   $``. 
 
 - Let $ \textrm{H} $ denote the hash function. 
 
 - Let ``$ S= \lbrace (X_1,m_1),..., (X_n,m_n) \rbrace $`` be the multi-set of all public key/message pairs of all participants, where ``$ X_1=g^{x_1} $``.  
 
-- Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs in $ S $. 
+- Let ``$ \langle S \rangle $`` denote a lexicographically encoding of the multiset of public key/message pairs in ``$ S $``. 
 
-- Let `$ L= \lbrace X_1=g^{x_1},...,X_n=g^{x_n} \rbrace  $` be the multi-set of all public keys. 
+- Let ``$ L= \lbrace X_1=g^{x_1},...,X_n=g^{x_n} \rbrace  $`` be the multi-set of all public keys. 
 
 @divend
 
@@ -92,17 +92,17 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 <div class="LineHeight20per"> <br></div>
 
-- Let $ \langle L \rangle $ denote a lexicographically encoding of the multiset of public keys $ L= \lbrace X_{1}...X_{n} \rbrace  $. 
+- Let ``$ \langle L \rangle $`` denote a lexicographically encoding of the multiset of public keys ``$ L= \lbrace X_{1}...X_{n} \rbrace  $``. 
 
-- Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase.
+- Let ``$ \textrm{H}_{com} $`` denote the hash function in the commitment phase.
 
-- Let $ \textrm{H}_{agg} $ denote the hash function used to compute the aggregated key.
+- Let ``$ \textrm{H}_{agg} $`` denote the hash function used to compute the aggregated key.
 
-- Let $ \textrm{H}_{sig} ​$ denote the hash function used to compute the signature.
+- Let ``$ \textrm{H}_{sig} ​$`` denote the hash function used to compute the signature.
 
 - Let ``$ X_{1} $ and $ x_{1} $`` be the public and private key of a specific signer.
 
-- Let $ m $ be the message that will be signed.
+- Let ``$ m $`` be the message that will be signed.
 
 - Let ``$ X_{2},...,X_{n} $`` be the public keys of other cosigners.
 
@@ -114,7 +114,7 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 @div[text-left]
 
-The Schnorr signature scheme uses group parameters $(\mathbb{G\mathrm{,p,g)}}$ and a hash function $ \textrm{H} $.
+The Schnorr signature scheme uses group parameters ``$ (\mathbb{G\mathrm{,p,g)}} $`` and a hash function ``$ \textrm{H} $``.
 
 A private/public key pair is a pair 
 
@@ -131,9 +131,9 @@ $$
 
 <div class="LineHeight20per"> <br></div>
 
-where `$  X=g^{x} $` 
+where ``$  X=g^{x} $`` 
 
-To sign a message `$ m $`, the signer draws a random integer `$ r \in Z_{p} $` and computes
+To sign a message ``$ m $``, the signer draws a random integer ``$ r \in Z_{p} $`` and computes
 
 @divend
 
@@ -152,7 +152,7 @@ $$
 
 @div[text-left]
 
-The signature is the pair $ (R,s) $, and its validity can be checked by verifying whether 
+The signature is the pair ``$ (R,s) $``, and its validity can be checked by verifying whether 
 
 @divend
 
@@ -169,7 +169,7 @@ $$
 
 @div[text-left]
 
-This scheme is referred to as the "key-prefixed" variant of the scheme, which sees the public key hashed together with $ R ​$ and $ m ​$. This variant was thought to have a better multi-user security bound than the classic variant, however in the key-prefixing was seen as unnecessary to enable good multi-user security for Schnorr signatures.
+This scheme is referred to as the "key-prefixed" variant of the scheme, which sees the public key hashed together with ``$ R ​$`` and ``$ m ​$``. This variant was thought to have a better multi-user security bound than the classic variant, however in the key-prefixing was seen as unnecessary to enable good multi-user security for Schnorr signatures.
 
 For the development of the MuSig Schnorr-based multi-signature scheme, key-prefixing is a requirement for the security proof, despite not knowing the form of an attack. The rationale also follows the process in reality, as messages signed in Bitcoin always indirectly commits to the public key.
 
@@ -181,7 +181,7 @@ For the development of the MuSig Schnorr-based multi-signature scheme, key-prefi
 
 The naive way to design a Schnorr multi-signature scheme would be as follows:
 
-A group of $ n $ signers want to cosign a message $ m $. 
+A group of ``$ n $`` signers want to cosign a message ``$ m $``. 
 Each cosigner randomly generates and communicates to others a share 
 
 <div class="LineHeight20per"> <br></div>
