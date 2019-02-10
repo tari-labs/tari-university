@@ -46,10 +46,16 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/musig-schnorr-sig
 
 MuSig is a multi-signature scheme that is novel in combining:
 
+<div class="LineHeight20per"> <br></div>
+
 1. Support for key aggregation;
 2. Security in the plain public-key model.
 
+@divend
+
 There are two versions of MuSig, that are provably secure, which differ based on the number of communication rounds:
+
+<div class="LineHeight20per"> <br></div>
 
 1. Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which Elliptic Curve Digital Signature Algorithm (ECDSA) also relies
 2. Two-round MuSig instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption
@@ -72,11 +78,11 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 - Let $ \textrm{H} $ denote the hash function. 
 
-- Let $ S= \lbrace(X_1, m_1),..., (X_n, m_n) \rbrace $ be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  $.  
+- Let `$ S= \lbrace (X_1,m_1),..., (X_n,m_n) \rbrace $` be the multi-set of all public key/message pairs of all participants, where $ X_1=g^{x_1} $.  
 
 - Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs in $ S $. 
 
-- Let $ L= \lbrace X_1=g^{x_1},...,X_n=g^{x_n} \rbrace  $ be the multi-set of all public keys. 
+- Let `$ L= \lbrace X_1=g^{x_1},...,X_n=g^{x_n} \rbrace  $` be the multi-set of all public keys. 
 
 @divend
 
@@ -92,11 +98,11 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 - Let $ \textrm{H}_{sig} ​$ denote the hash function used to compute the signature.
 
-- Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer.
+- Let `$ X_{1} $ and $ x_{1} $` be the public and private key of a specific signer.
 
 - Let $ m $ be the message that will be signed.
 
-- Let $ X_{2},...,X_{n} $ be the public keys of other cosigners.
+- Let `$ X_{2},...,X_{n} $` be the public keys of other cosigners.
 
 @divend
 
@@ -197,7 +203,12 @@ $$
 R = \prod \_{i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
 $$
 `
-where $$ \tilde{X} = \prod_{i=1}^{n}X_{i} $$
+where 
+`
+$$
+\tilde{X} = \prod_{i=1}^{n}X_{i} 
+$$
+`
 
 is the product of individual public The partial signature is then given by
 
@@ -209,13 +220,13 @@ $$
 
 All partial signatures are then combined into a single signature $(R,s)​$ where 
 
++++
+
 `
 $$
 s = \displaystyle\sum_{i=1}^{n}s_i \mod p ​
 $$
 `
-
-+++
 
 The validity of a signature $ (R,s) $ on message $ m $ for public keys $  \lbrace X_{1},...X_{n} \rbrace  $ is equivalent to 
 
@@ -234,7 +245,7 @@ $$
 `
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key $ \tilde{X} $, a property termed *key aggregation*. 
-However, these protocols are vulnerable to a rogue-key attack ([[12]], [[14]], [[15]] and [[17]]) where a corrupted signer sets its public key to 
+However, these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to 
 
 `
 $$
@@ -242,7 +253,7 @@ X_{1}=g^{x_{1}} (\prod\_{i=2}^{n} X_{i})^{-1}
 $$
 `
 
-allowing the signer to produce signatures for public keys $  \lbrace X_{1},...X_{n} \rbrace  ​$ by themselves. 
+allowing the signer to produce signatures for public keys `$ \lbrace X_{1},...X_{n} \rbrace ​$` by themselves. 
 
 ---
 
@@ -250,7 +261,7 @@ allowing the signer to produce signatures for public keys $  \lbrace X_{1},...X_
 
 @div[text-left]
 
-Bellare M. *et al.* [[21]] proceeded differently in order to avoid any key setup. A group of $ n $ signers want to cosign a message $ m $. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
+Bellare M. *et al.* proceeded differently in order to avoid any key setup. A group of $ n $ signers want to cosign a message $ m $. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
 
 `
 $$
@@ -281,12 +292,19 @@ $$
 g^s = R\prod_{i=1}^{n}X_{i}^{c_{i}}
 $$
 `
+@divend
+
++++
+
+@div[text-left]
 
 A preliminary round is also added to the signature protocol, where each signer commits to its share $ R_i $ by sending $ t_i = \textrm{H}^\prime(R_i) $ to other cosigners first. 
 
 This stops any cosigner from setting $ R = \prod_{i=1}^{n}R_{i}  ​$ to some maliciously chosen value and also allows the reduction to simulate the signature oracle in the security proof. 
 
 Bellare M. *et al.* [[21]] showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} ​$ and $ \textrm{H}^\prime ​$ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
+
+@divend
 
 ---
 
@@ -295,6 +313,8 @@ Bellare M. *et al.* [[21]] showed that this yields a multi-signature scheme prov
 @div[text-left]
 
 MuSig is paramaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions $ ( \textrm{H}\_{com}  ,  \textrm{H}\_{agg} ,  \textrm{H}\_{sig} ) $ from $  \lbrace 0,1 \rbrace ^{*} $ to $  \lbrace 0,1 \rbrace ^{l} $ (constructed from a single hash, using proper domain separation).
+
+@divend
 
 ### Round 1
 
@@ -320,13 +340,15 @@ $$
 
 @div[text-left]
 
-The signer generates a random $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $ R_{1} = g^{r_{1}} $ and $ t_{1} = \textrm{H}\_{com}(R\_{1}) $ and sends commitment $t_{1}$ to all other cosigners.
+The signer generates a random `$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $`, computes `$ R_{1} = g^{r_{1}} $` and `$ t_{1} = \textrm{H}\_{com}(R\_{1}) $` and sends commitment `$t_{1}$` to all other cosigners.
 
-When receiving the commitments $t_{2},...,t_{n}​$ from the other cosigners, the signer sends $R_{1}​$ to all other cosigners.
+When receiving the commitments `$t_{2},...,t_{n} $` from the other cosigners, the signer sends `$ R_{1} $` to all other cosigners.
 
-Upon receiving $R_{2},...,R_{n}$ from other cosigners, the signer verifies that $t\_{i}=\textrm{H}\_{com}(R_{i})$ for all $ i\in  \lbrace 2,...,n \rbrace  $
+Upon receiving `$ R_2,...,R_n $` from other cosigners, the signer verifies that `$ t\_{i}=\textrm{H}\_{com}(R_{i})$` for all `$ i\in  \lbrace 2,...,n \rbrace $`
 
 The protocol is aborted if this is not the case. 
+
+@divend
 
 ---
 
@@ -340,16 +362,16 @@ If all commitment and random challenge pairs can be verified with $ \textrm{H}_{
 $$
 \begin{aligned} 
 R &= \prod^{n}\_{i=1}R\_{i} \\\\
-c &= \textrm{H}\_{sig} (\tilde{X},R,m) \\\\
+c &= \textrm{H}_{sig} (\tilde{X},R,m) \\\\
 s\_{1} &= r\_{1} + ca\_{1} x\_{1} \mod p
 \end{aligned}
 $$
 `
 
-Signature $s_{1}​$ is sent to all other cosigners.
-When receiving $ s_{2},...s_{n} ​$ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} \mod p​$. The signature is $ \sigma = (R,s) ​$.
+Signature `$ s_{1} $` is sent to all other cosigners.
+When receiving `$ s_{2},...s_{n} $` from other cosigners, the signer can compute `$ s = \sum_{i=1}^{n}s_{i} \mod p $`. The signature is `$ \sigma = (R,s) $`.
 
-In order to verify the aggregated signature $ \sigma = (R,s) ​$, given a lexicographically encoded multiset of public keys $ \langle L \rangle ​$ and message $ m ​$, the verifier computes:
+In order to verify the aggregated signature `$ \sigma = (R,s) $`, given a lexicographically encoded multiset of public keys `$ \langle L \rangle ​$` and message `$ m ​$`, the verifier computes:
 
 `
 $$
@@ -368,6 +390,8 @@ $$
 g^{s} = R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}
 $$
 `
+@divend
+
 ---
 
 ## Revisions 
@@ -376,24 +400,27 @@ $$
 
 In a previous version of the paper by Maxwell *et al.* published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. Drijvers *et al.* then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
 
-In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys $ X_{2},...,X_{n} $) can impose the value of $ R=\Pi_{i=1}^{n}R_{i} $ used in signature protocols since he can choose $ R_{2},...,R_{n} $ after having received $ R_{1} $ from the honest signer (controlling public key $ X_{1}=g^{x_{1}} $ ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing $ x_{1} $ by randomly drawing $ s_{1} $ and $ c $, computing $ R\_1=g^{s\_1}(X\_1)^{-a\_1c}$, and later programming $ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $ since the adversary might have made the random oracle query $ \textrm{H}\_{sig}(\tilde{X}, R, m) $ *before*  engaging the corresponding signature protocol.  
+In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys `$ X_{2},...,X_{n} $`) can impose the value of `$ R=\Pi_{i=1}^{n}R_{i} $` used in signature protocols since he can choose `$ R_{2},...,R_{n} $` after having received `$ R_{1} $` from the honest signer (controlling public key `$ X_{1}=g^{x_{1}} $` ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing `$ x_{1} $` by randomly drawing `$ s_{1} $` and `$ c $`, computing `$ R\_1=g^{s\_1}(X\_1)^{-a\_1c} $`, and later programming `$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $` since the adversary might have made the random oracle query `$ \textrm{H}\_{sig}(\tilde{X}, R, m) $` *before*  engaging the corresponding signature protocol.  
 
-Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques.&nbsp;[[4]]
+Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques.&nbsp;
+
+@divend
 
 ---
 
 ## Turning BN's Scheme into a Secure IAS 
 
-In order to change the BN multi-signature scheme into an IAS scheme, Wuille *et al.* [[4]] proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
+In order to change the BN multi-signature scheme into an IAS scheme, Wuille *et al.* proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
-If $ X = g^{x_i} $ is the public key of a specific signer and $ m $ the message he wants to sign, and 
+If `$ X = g^{x_i} $` is the public key of a specific signer and $ m $ the message he wants to sign, and 
+
 `
 $$
 S^\prime =  \lbrace (X^\prime\_{1}, m^\prime\_{1}),..., (X^\prime\_{n-1}, m^\prime\_{n-1}) \rbrace 
 $$
 `
 
-is the set of the public key/message pairs of other signers, this specific signer merges $ (X, m) $ and $ S^\prime $ into the ordered set 
+is the set of the public key/message pairs of other signers, this specific signer merges `$ (X, m) $` and `$ S^\prime $` into the ordered set 
 
 `
 $$
@@ -409,7 +436,9 @@ $$
 $$
 `
 
-Each signer then draws $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, computes $  R_{i} = g^{r_{i}} ​$ and subsequently sends commitment $  t_{i} = H^\prime(R_{i}) ​$ in a first round and then $ R_{i} ​$ in a second round, and then computes  
++++
+
+Each signer then draws `$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $`, computes `$  R_{i} = g^{r_{i}} $` and subsequently sends commitment `$  t_{i} = H^\prime(R_{i}) ​$` in a first round and then `$ R_{i} $` in a second round, and then computes  
 
 `
 $$
@@ -426,7 +455,7 @@ s_{i} = r_{i} + c_{i}x_{i} \mod p
 $$
 `
 
-and then sends $ s_{i} ​$ to other signers. All signers can compute 
+and then sends `$ s_i $` to other signers. All signers can compute 
 
 `
 $$
@@ -444,7 +473,7 @@ g^s = R\prod_{i=1}^{n}X_{i} ^{H(R, \langle S \rangle, i)}
 $$
 `
 
-It must be noted that there is no need to include $ \langle L \rangle $ in the hash computation nor the public key $ X_i $ of the local signer since they are already "accounted for" through ordered set $ \langle S \rangle $ and the message index $ i $. 
+It must be noted that there is no need to include `$ \langle L \rangle $` in the hash computation nor the public key `$ X_i $` of the local signer since they are already "accounted for" through ordered set `$ \langle S \rangle $` and the message index `$ i $`. 
 
 **Note:** As of writing of this report, the secure IAS scheme presented here still needs to undergo a complete security analysis.
 
