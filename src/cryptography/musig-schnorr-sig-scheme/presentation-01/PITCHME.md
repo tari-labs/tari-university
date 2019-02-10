@@ -42,6 +42,8 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/musig-schnorr-sig
 
 ### MuSig
 
+@div[text-left]
+
 MuSig is a multi-signature scheme that is novel in combining:
 
 1. Support for key aggregation;
@@ -51,6 +53,8 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 1. Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which Elliptic Curve Digital Signature Algorithm (ECDSA) also relies
 2. Two-round MuSig instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption
+
+@divend
 
 ---
 
@@ -74,7 +78,11 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 - Let $ L= \lbrace X_1=g^{x_1},...,X_n=g^{x_n} \rbrace  $ be the multi-set of all public keys. 
 
+@divend
+
 +++
+
+<div class="LineHeight20per"> <br></div>
 
 - Let $ \langle L \rangle $ denote a lexicographically encoding of the multiset of public keys $ L= \lbrace X_{1}...X_{n} \rbrace  $. 
 
@@ -89,6 +97,8 @@ There are two versions of MuSig, that are provably secure, which differ based on
 - Let $ m $ be the message that will be signed.
 
 - Let $ X_{2},...,X_{n} $ be the public keys of other cosigners.
+
+@divend
 
 ---
 
@@ -205,6 +215,8 @@ s = \displaystyle\sum_{i=1}^{n}s_i \mod p ​
 $$
 `
 
++++
+
 The validity of a signature $ (R,s) $ on message $ m $ for public keys $  \lbrace X_{1},...X_{n} \rbrace  $ is equivalent to 
 
 `
@@ -236,29 +248,39 @@ allowing the signer to produce signatures for public keys $  \lbrace X_{1},...X_
 
 ### Bellare and Neven Signature Scheme
 
+@div[text-left]
+
 Bellare M. *et al.* [[21]] proceeded differently in order to avoid any key setup. A group of $ n $ signers want to cosign a message $ m $. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
 
+`
 $$
 s_{i} = r_{i}+c_{i}x_{i} 
 $$
+`
 
 defined as 
 
+`
 $$
 c_{i} = \textrm{H}( \langle L \rangle , X_{i},R,m) 
 $$
+`
 
 where 
 
+`
 $$
 R = \prod_{i=1}^{n}R_{i}
 $$
+`
 
 The equation to verify signature $ (R,s) $ on message $ m $ for the public keys $ L $ is 
 
+`
 $$
 g^s = R\prod_{i=1}^{n}X_{i}^{c_{i}}
 $$
+`
 
 A preliminary round is also added to the signature protocol, where each signer commits to its share $ R_i $ by sending $ t_i = \textrm{H}^\prime(R_i) $ to other cosigners first. 
 
@@ -269,6 +291,8 @@ Bellare M. *et al.* [[21]] showed that this yields a multi-signature scheme prov
 ---
 
 ## MuSig Scheme 
+
+@div[text-left]
 
 MuSig is paramaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions $ ( \textrm{H}\_{com}  ,  \textrm{H}\_{agg} ,  \textrm{H}\_{sig} ) $ from $  \lbrace 0,1 \rbrace ^{*} $ to $  \lbrace 0,1 \rbrace ^{l} $ (constructed from a single hash, using proper domain separation).
 
@@ -294,6 +318,8 @@ $$
 
 ### Round 2 
 
+@div[text-left]
+
 The signer generates a random $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $ R_{1} = g^{r_{1}} $ and $ t_{1} = \textrm{H}\_{com}(R\_{1}) $ and sends commitment $t_{1}$ to all other cosigners.
 
 When receiving the commitments $t_{2},...,t_{n}​$ from the other cosigners, the signer sends $R_{1}​$ to all other cosigners.
@@ -305,6 +331,8 @@ The protocol is aborted if this is not the case.
 ---
 
 ### Round 3
+
+@div[text-left]
 
 If all commitment and random challenge pairs can be verified with $ \textrm{H}_{agg} $, the following is computed:
 
@@ -343,6 +371,8 @@ $$
 ---
 
 ## Revisions 
+
+@div[text-left]
 
 In a previous version of the paper by Maxwell *et al.* published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. Drijvers *et al.* then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
 
