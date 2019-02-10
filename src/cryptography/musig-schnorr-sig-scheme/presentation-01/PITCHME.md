@@ -64,17 +64,19 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 - Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p ​$ 
 
-- Let a generator of  $ \mathbb{G} ​$ be denoted by $ g ​$. Thus, there exists a number $ g \in\mathbb{G}  ​$ such that $ \mathbb{G} =  \lbrace 1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1} \rbrace   ​$. 
+- Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that $ \mathbb{G} =  \lbrace 1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1} \rbrace   $. 
 
 - Let $ \textrm{H} $ denote the hash function. 
 
-- Let ''$ S= \lbrace (X_1, m_1),..., (X_n, m_n) \rbrace $'' be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$.  
+- Let $ S= \lbrace(X_1, m_1),..., (X_n, m_n) \rbrace $ be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  $.  
 
 - Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs in $ S $. 
 
-- Let $ L= \lbrace X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}} \rbrace  ​$ be the multi-set of all public keys. 
+- Let $ L= \lbrace X_1=g^{x_1},...,X_n=g^{x_n} \rbrace  $ be the multi-set of all public keys. 
 
-- Let ''$ \langle L \rangle ​$'' denote a lexicographically encoding of the multiset of public keys $ L= \lbrace X_{1}...X_{n} \rbrace  ​$. 
++++
+
+- Let $ \langle L \rangle $ denote a lexicographically encoding of the multiset of public keys $ L= \lbrace X_{1}...X_{n} \rbrace  $. 
 
 - Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase.
 
@@ -145,11 +147,15 @@ $$
 `
 <div class="LineHeight20per"> <br></div>
 
++++
+
 @div[text-left]
 
 This scheme is referred to as the "key-prefixed" variant of the scheme, which sees the public key hashed together with $ R ​$ and $ m ​$. This variant was thought to have a better multi-user security bound than the classic variant, however in the key-prefixing was seen as unnecessary to enable good multi-user security for Schnorr signatures.
 
 For the development of the MuSig Schnorr-based multi-signature scheme, key-prefixing is a requirement for the security proof, despite not knowing the form of an attack. The rationale also follows the process in reality, as messages signed in Bitcoin always indirectly commits to the public key.
+
+---
 
 ## Design of the Schnorr Multi-Signature Scheme 
 
@@ -226,6 +232,8 @@ $$
 
 allowing the signer to produce signatures for public keys $  \lbrace X_{1},...X_{n} \rbrace  ​$ by themselves. 
 
+---
+
 ### Bellare and Neven Signature Scheme
 
 Bellare M. *et al.* [[21]] proceeded differently in order to avoid any key setup. A group of $ n $ signers want to cosign a message $ m $. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
@@ -258,6 +266,8 @@ This stops any cosigner from setting $ R = \prod_{i=1}^{n}R_{i}  ​$ to some ma
 
 Bellare M. *et al.* [[21]] showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling $ \textrm{H} ​$ and $ \textrm{H}^\prime ​$ as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
 
+---
+
 ## MuSig Scheme 
 
 MuSig is paramaterised by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions $ ( \textrm{H}\_{com}  ,  \textrm{H}\_{agg} ,  \textrm{H}\_{sig} ) $ from $  \lbrace 0,1 \rbrace ^{*} $ to $  \lbrace 0,1 \rbrace ^{l} $ (constructed from a single hash, using proper domain separation).
@@ -280,6 +290,7 @@ $$
 \tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​
 $$
 `
+---
 
 ### Round 2 
 
@@ -290,6 +301,8 @@ When receiving the commitments $t_{2},...,t_{n}​$ from the other cosigners, th
 Upon receiving $R_{2},...,R_{n}$ from other cosigners, the signer verifies that $t\_{i}=\textrm{H}\_{com}(R_{i})$ for all $ i\in  \lbrace 2,...,n \rbrace  $
 
 The protocol is aborted if this is not the case. 
+
+---
 
 ### Round 3
 
@@ -327,6 +340,7 @@ $$
 g^{s} = R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}
 $$
 `
+---
 
 ## Revisions 
 
@@ -335,6 +349,8 @@ In a previous version of the paper by Maxwell *et al.* published on 15 January 2
 In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys $ X_{2},...,X_{n} $) can impose the value of $ R=\Pi_{i=1}^{n}R_{i} $ used in signature protocols since he can choose $ R_{2},...,R_{n} $ after having received $ R_{1} $ from the honest signer (controlling public key $ X_{1}=g^{x_{1}} $ ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing $ x_{1} $ by randomly drawing $ s_{1} $ and $ c $, computing $ R\_1=g^{s\_1}(X\_1)^{-a\_1c}$, and later programming $ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $ since the adversary might have made the random oracle query $ \textrm{H}\_{sig}(\tilde{X}, R, m) $ *before*  engaging the corresponding signature protocol.  
 
 Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques.&nbsp;[[4]]
+
+---
 
 ## Turning BN's Scheme into a Secure IAS 
 
