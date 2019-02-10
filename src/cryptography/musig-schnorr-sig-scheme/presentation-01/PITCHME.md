@@ -589,7 +589,17 @@ It must be noted that there is no need to include ``$ \langle L \rangle $`` in t
 @div[text-left]
 
 - MuSig leads to both native and private multi-signature transactions with signature aggregation
+
+@divend
+
+@div[text-left]
+
 - Signature data for multi-signatures can be large and cumbersome. MuSig will allow users to create more complex transactions without burdening the network and revealing compromising information.
+
+@divend
+
+@div[text-left]
+
 - The IAS case where each signer signs their own message must still be proven by a complete security analysis.
 
 @divend
