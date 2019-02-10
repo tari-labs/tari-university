@@ -78,7 +78,7 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 - Let a generator of  ``$ \mathbb{G} $`` be denoted by ``$ g $``. Thus, there exists a number ``$ g \in\mathbb{G}  $`` such that ``$ \mathbb{G} =  \lbrace 1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, ..., \mspace{3mu}g^{p-1} \rbrace   $``. 
 
-- Let $ \textrm{H} $ denote the hash function. 
+- Let ``$ \textrm{H} $`` denote the hash function. 
 
 - Let ``$ S= \lbrace (X_1,m_1),..., (X_n,m_n) \rbrace $`` be the multi-set of all public key/message pairs of all participants, where ``$ X_1=g^{x_1} $``.  
 
@@ -221,7 +221,7 @@ s_{i} = r_{i}+cx_{i}
 $$
 `
 
-All partial signatures are then combined into a single signature $(R,s)​$ where 
+All partial signatures are then combined into a single signature ``$(R,s)​$`` where 
 
 +++
 
@@ -231,7 +231,7 @@ s = \displaystyle\sum_{i=1}^{n}s_i \mod p ​
 $$
 `
 
-The validity of a signature $ (R,s) $ on message $ m $ for public keys $  \lbrace X_{1},...X_{n} \rbrace  $ is equivalent to 
+The validity of a signature ``$ (R,s) $`` on message ``$ m $`` for public keys ``$  \lbrace X_{1},...X_{n} \rbrace $`` is equivalent to 
 
 `
 $$
@@ -247,7 +247,7 @@ $$
 $$
 `
 
-Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key $ \tilde{X} $, a property termed *key aggregation*. 
+Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key ``$ \tilde{X} $``, a property termed *key aggregation*. 
 However, these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to 
 
 `
@@ -264,7 +264,7 @@ allowing the signer to produce signatures for public keys ``$ \lbrace X_{1},...X
 
 @div[text-left]
 
-Bellare M. *et al.* proceeded differently in order to avoid any key setup. A group of $ n $ signers want to cosign a message $ m $. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
+Bellare M. *et al.* proceeded differently in order to avoid any key setup. A group of ``$ n $`` signers want to cosign a message ``$ m $``. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
 
 `
 $$
@@ -288,7 +288,7 @@ R = \prod_{i=1}^{n}R_{i}
 $$
 `
 
-The equation to verify signature $ (R,s) $ on message $ m $ for the public keys $ L $ is 
+The equation to verify signature ``$ (R,s) $`` on message ``$ m $`` for the public keys ``$ L $`` is 
 
 `
 $$
@@ -321,7 +321,7 @@ MuSig is paramaterised by group parameters ``$(\mathbb{G\mathrm{,p,g)}}$`` and t
 
 ### Round 1
 
-A group of $ n $ signers want to cosign a message $ m $. Let $ X_1 $ and $ x_1 $ be the public and private key of a specific signer, let ``$ X_2 , . . . , X_n $`` be the public keys of other cosigners and let $ \langle L \rangle $ be the multiset of all public keys involved in the signing process.
+A group of ``$ n $`` signers want to cosign a message ``$ m $``. Let ``$ X_1 $`` and ``$ x_1 $`` be the public and private key of a specific signer, let ``$ X_2 , . . . , X_n $`` be the public keys of other cosigners and let ``$ \langle L \rangle $`` be the multiset of all public keys involved in the signing process.
 
 For ``$ i\in  \lbrace 1,...,n \rbrace  ​$`` , the signer computes the following
 
@@ -415,7 +415,7 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 In order to change the BN multi-signature scheme into an IAS scheme, Wuille *et al.* proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
-If ``$ X = g^{x_i} $`` is the public key of a specific signer and $ m $ the message he wants to sign, and 
+If ``$ X = g^{x_i} $`` is the public key of a specific signer and ``$ m $`` the message he wants to sign, and 
 
 `
 $$
@@ -431,7 +431,7 @@ $$
 $$
 `
 
-and retrieves the resulting message index $ i ​$ such that 
+and retrieves the resulting message index ``$ i ​$`` such that 
 
 `
 $$
@@ -449,7 +449,7 @@ R = \prod_{i=1}^{n}R_{i}
 $$
 `
 
-The signer with message index $ i ​$ then computes:
+The signer with message index ``$ i ​$`` then computes:
 
 `
 $$
@@ -466,9 +466,9 @@ s = \displaystyle\sum_{i=1}^{n}s_{i} \mod p
 $$
 `
 
-The signature is $ \sigma = (R, s) ​$. 
+The signature is ``$ \sigma = (R, s) ​$``. 
 
-Given an ordered set $ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S =  \lbrace (X_{1}, m_{1}),...,(X_{n}, m_{n}) \rbrace  $ and a signature $ \sigma = (R, s) $  then $ \sigma $ is valid for $ S ​$ when 
+Given an ordered set ``$ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S =  \lbrace (X_{1}, m_{1}),...,(X_{n}, m_{n}) \rbrace  $`` and a signature ``$ \sigma = (R, s) $``  then ``$ \sigma $`` is valid for ``$ S ​$`` when 
 
 `
 $$
