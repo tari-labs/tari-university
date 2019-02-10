@@ -208,7 +208,7 @@ Each of the cosigners then computes:
 
 `
 $$
-R = \prod \_{i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
+R = \prod_{i=1}^{n}R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
 $$
 `
 where 
@@ -321,9 +321,15 @@ $$
 
 A preliminary round is also added to the signature protocol, where each signer commits to its share ``$ R_i $`` by sending ``$ t_i = \textrm{H}^\prime(R_i) $`` to other cosigners first. 
 
+@divend
+
+@div[text-left]
 
 This stops any cosigner from setting ``$ R = \prod_{i=1}^{n}R_{i} $`` to some maliciously chosen value and also allows the reduction to simulate the signature oracle in the security proof. 
 
+@divend
+
+@div[text-left]
 
 Bellare M. *et al.* showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling ``$ \textrm{H} ​$`` and ``$ \textrm{H}^\prime ​$`` as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
 
@@ -335,7 +341,7 @@ Bellare M. *et al.* showed that this yields a multi-signature scheme provably se
 
 @div[text-left]
 
-MuSig is paramaterised by group parameters ``$(\mathbb{G\mathrm{,p,g)}}$`` and three hash functions ``$ ( \textrm{H}\_{com}  ,  \textrm{H}\_{agg} ,  \textrm{H}\_{sig} ) $`` from ``$  \lbrace 0,1 \rbrace ^{*} $`` to ``$  \lbrace 0,1 \rbrace ^{l} $`` (constructed from a single hash, using proper domain separation).
+MuSig is paramaterised by group parameters ``$(\mathbb{G\mathrm{,p,g)}}$`` and three hash functions ``$ ( \textrm{H}_{com}  ,  \textrm{H}_{agg} , \textrm{H}_{sig} ) $`` from ``$  \lbrace 0,1 \rbrace ^{*} $`` to ``$  \lbrace 0,1 \rbrace ^{l} $`` (constructed from a single hash, using proper domain separation).
 
 @divend
 
@@ -351,7 +357,7 @@ For ``$ i\in  \lbrace 1,...,n \rbrace  ​$`` , the signer computes the followin
 
 `
 $$
-a_{i} = \textrm{H}\_{agg}(\langle L \rangle,X\_{i})
+a_{i} = \textrm{H}_{agg}(\langle L \rangle,X\_{i})
 $$
 `
 
@@ -370,12 +376,21 @@ $$
 
 The signer generates a random ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$ R_{1} = g^{r_{1}} $`` and ``$ t_{1} = \textrm{H}\_{com}(R\_{1}) $`` and sends commitment `$t_{1}$` to all other cosigners.
 
+@divend
+
+@div[text-left]
 
 When receiving the commitments ``$t_{2},...,t_{n} $`` from the other cosigners, the signer sends ``$ R_{1} $`` to all other cosigners.
 
+@divend
+
+@div[text-left]
 
 Upon receiving ``$ R_2,...,R_n $`` from other cosigners, the signer verifies that ``$ t\_{i}=\textrm{H}\_{com}(R_{i})$`` for all ``$ i\in  \lbrace 2,...,n \rbrace $``
 
+@divend
+
+@div[text-left]
 
 The protocol is aborted if this is not the case. 
 
@@ -392,16 +407,17 @@ If all commitment and random challenge pairs can be verified with ``$ \textrm{H}
 `
 $$
 \begin{aligned} 
-R &= \prod_{i=1}^{n}R\_i \\\\
+R &= \prod_{i=1}^{n}R_i \\\\
 c &= \textrm{H}_{sig} (\tilde{X},R,m) \\\\
-s\_1 &= r\_1 + ca\_1 x\_1 \mod p
+s_1 &= r_1 + ca_1 x_1 \mod p
 \end{aligned}
 $$
 `
 
-
 Signature ``$ s_{1} $`` is sent to all other cosigners.
 When receiving ``$ s_{2},...s_{n} $`` from other cosigners, the signer can compute ``$ s = \sum_{i=1}^{n}s_{i} \mod p $``. The signature is ``$ \sigma = (R,s) $``.
+
++++
 
 In order to verify the aggregated signature ``$ \sigma = (R,s) $``, given a lexicographically encoded multiset of public keys ``$ \langle L \rangle ​$`` and message ``$ m $``, the verifier computes:
 
@@ -414,9 +430,6 @@ c &=  \textrm{H}_{sig} (\tilde{X},R,m)
 \end{aligned}
 $$
 `
-
-+++
-
 then accepts the signature if 
 
 `
@@ -434,9 +447,15 @@ $$
 
 In a previous version of the paper by Maxwell *et al.* published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. Drijvers *et al.* then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
 
+@divend
+
+@div[text-left]
 
 In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys ``$ X_{2},...,X_{n} $``) can impose the value of ``$ R=\Pi_{i=1}^{n}R_{i} $`` used in signature protocols since he can choose ``$ R_{2},...,R_{n} $`` after having received ``$ R_{1} $`` from the honest signer (controlling public key ``$ X_{1}=g^{x_{1}} $`` ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing ``$ x_{1} $`` by randomly drawing ``$ s_{1} $`` and ``$ c $``, computing ``$ R\_1=g^{s\_1}(X\_1)^{-a\_1c} $``, and later programming ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $`` since the adversary might have made the random oracle query ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) $`` *before*  engaging the corresponding signature protocol.  
 
+@divend
+
+@div[text-left]
 
 Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques.&nbsp;
 
@@ -456,7 +475,7 @@ If ``$ X = g^{x_i} $`` is the public key of a specific signer and ``$ m $`` the 
 
 `
 $$
-S^\prime =  \lbrace (X^\prime\_{1}, m^\prime\_{1}),..., (X^\prime\_{n-1}, m^\prime\_{n-1}) \rbrace 
+S^\prime =  \lbrace (X^\prime_1, m^\prime_1),..., (X^\prime_{n-1}, m^\prime_{n-1}) \rbrace 
 $$
 `
 
@@ -505,7 +524,7 @@ The signer with message index ``$ i ​$`` then computes:
 
 `
 $$
-c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \\\\
+c_{i} = H(R,  \langle S \rangle, i)\\\\
 s_{i} = r_{i} + c_{i}x_{i} \mod p
 $$
 `
@@ -540,6 +559,16 @@ $$
 
 It must be noted that there is no need to include ``$ \langle L \rangle $`` in the hash computation nor the public key ``$ X_i $`` of the local signer since they are already "accounted for" through ordered set ``$ \langle S \rangle $`` and the message index ``$ i $``. 
 
+@divend
+
+@div[text-left]
+
 **Note:** As of writing of this report, the secure IAS scheme presented here still needs to undergo a complete security analysis.
 
 @divend
+
+## Conclusions, Observations and Recommendations
+
+- MuSig leads to both native and private multi-signature transactions with signature aggregation
+- Signature data for multi-signatures can be large and cumbersome. MuSig will allow users to create more complex transactions without burdening the network and revealing compromising information.
+- The IAS case where each signer signs their own message must still be proven by a complete security analysis.
