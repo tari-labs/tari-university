@@ -68,13 +68,13 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 - Let $ \textrm{H} $ denote the hash function. 
 
-- Let '$ S= \lbrace (X_{1}, m_{1}),..., (X_{n}, m_{n}) \rbrace $' be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$.  
+- Let ''$ S= \lbrace (X_1, m_1),..., (X_n, m_n) \rbrace $'' be the multi-set of all public key/message pairs of all participants, where $  X_{1}=g^{x_{1}}  ​$.  
 
 - Let $ \langle S \rangle $ denote a lexicographically encoding of the multiset of public key/message pairs in $ S $. 
 
 - Let $ L= \lbrace X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}} \rbrace  ​$ be the multi-set of all public keys. 
 
-- Let $ \langle L \rangle ​$ denote a lexicographically encoding of the multiset of public keys $ L= \lbrace X_{1}...X_{n} \rbrace  ​$. 
+- Let ''$ \langle L \rangle ​$'' denote a lexicographically encoding of the multiset of public keys $ L= \lbrace X_{1}...X_{n} \rbrace  ​$. 
 
 - Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase.
 
