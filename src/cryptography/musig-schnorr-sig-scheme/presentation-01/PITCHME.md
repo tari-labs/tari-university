@@ -164,14 +164,14 @@ The signature is the pair ``$ (R,s) $``, and its validity can be checked by veri
 
 <div class="LineHeight20per"> <br></div>
 
++++
+
 `
 $$
 g^{s} = RX^{c}
 $$
 `
 <div class="LineHeight20per"> <br></div>
-
-+++
 
 @div[text-left]
 
@@ -249,13 +249,7 @@ g^{s} = R\tilde{X}^{c}
 $$
 `
 
-where 
-
-`
-$$
-\tilde{X} = \prod\_{i=1}^{n} X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m)
-$$
-`
+where ``$$ \tilde{X} = \prod\_{i=1}^{n} X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m) $$``
 
 @div[text-left]
 
@@ -404,6 +398,8 @@ The protocol is aborted if this is not the case.
 
 If all commitment and random challenge pairs can be verified with ``$ \textrm{H}_{agg} $``, the following is computed:
 
+@divend
+
 `
 $$
 \begin{aligned} 
@@ -419,7 +415,11 @@ When receiving ``$ s_{2},...s_{n} $`` from other cosigners, the signer can compu
 
 +++
 
+@div[text-left]
+
 In order to verify the aggregated signature ``$ \sigma = (R,s) $``, given a lexicographically encoded multiset of public keys ``$ \langle L \rangle ​$`` and message ``$ m $``, the verifier computes:
+
+@divend
 
 `
 $$
@@ -430,7 +430,12 @@ c &=  \textrm{H}_{sig} (\tilde{X},R,m)
 \end{aligned}
 $$
 `
+
+@div[text-left]
+
 then accepts the signature if 
+
+@divend
 
 `
 $$
@@ -451,9 +456,11 @@ In a previous version of the paper by Maxwell *et al.* published on 15 January 2
 
 @div[text-left]
 
-In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys ``$ X_{2},...,X_{n} $``) can impose the value of ``$ R=\Pi_{i=1}^{n}R_{i} $`` used in signature protocols since he can choose ``$ R_{2},...,R_{n} $`` after having received ``$ R_{1} $`` from the honest signer (controlling public key ``$ X_{1}=g^{x_{1}} $`` ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing ``$ x_{1} $`` by randomly drawing ``$ s_{1} $`` and ``$ c $``, computing ``$ R\_1=g^{s\_1}(X\_1)^{-a\_1c} $``, and later programming ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $`` since the adversary might have made the random oracle query ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) $`` *before*  engaging the corresponding signature protocol.  
+In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys ``$ X_{2},...,X_{n} $``) can impose the value of ``$ R=\Pi_{i=1}^{n}R_{i} $`` used in signature protocols since he can choose ``$ R_{2},...,R_{n} $`` after having received ``$ R_{1} $`` from the honest signer (controlling public key ``$ X_{1}=g^{x_{1}} $`` ). This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing ``$ x_{1} $`` by randomly drawing ``$ s_{1} $`` and ``$ c $``, computing ``$ R_1=g^{s_1}(X_1)^{-a_1c} $``, and later programming ``$ \textrm{H}_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c_1 $`` since the adversary might have made the random oracle query ``$ \textrm{H}_{sig}(\tilde{X}, R, m) $`` *before*  engaging the corresponding signature protocol.  
 
 @divend
+
++++
 
 @div[text-left]
 
@@ -524,7 +531,7 @@ The signer with message index ``$ i ​$`` then computes:
 
 `
 $$
-c_{i} = H(R,  \langle S \rangle, i)\\\\
+c_{i} = H(R, \langle S \rangle, i)\\\\
 s_{i} = r_{i} + c_{i}x_{i} \mod p
 $$
 `
