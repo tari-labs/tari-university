@@ -63,7 +63,7 @@ This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondar
 
 The TumbleBit protocol was invented at the Boston University. It is a unidirectional, unlinkable payment hub that is fully compatible with the Bitcoin protocol. TumbleBit allows parties to make fast, anonymous, off-chain payments through an untrusted intermediary called the Tumbler. No-one, not even the Tumbler, can tell which payer paid which payee during a TumbleBit epoch (*i.e. time period of significance*). Two modes of operation are supported; a classic mixing/tumbling/washing mode or as a fully fledged payment hub. TumbleBit consists of two interleaved fair-exchange protocols - *RSA-Puzzle-Solver Protocol* and *Puzzle-Promise Protocol* - that relies on the  Rivest–Shamir–Adleman (RSA) cryptosystem's blinding properties to prevent bad acting from either users or Tumblers and to ensure anonymity. TumbleBit also supports anonymizing through Tor to ensure that the Tumbler server can operate as a hidden service. ([[1]], [[2]], [[8]], [[9]], [[10]])
 
-![TumbleBitOverview](./sources/TumbleBitOverview.PNG)
+<p align="center"><img src="./sources/TumbleBitOverview.PNG" width="500" /></p>
 
 TumbleBit combines off-chain cryptographic computations with standard on-chain Bitcoin scripting functionalities to realize smart contracts [[11]] that is not dependent on Segwit. The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking. [[2]]
 
@@ -114,7 +114,7 @@ Unlike Bitcoin's UTXO model, the Counterparty token protocol utilizes an account
 
 Counterparty uses its own token, XCP, which was created through a "proof of burn"  process during January 2014 [[58]]. In that month, over 2,000 bitcoins were destroyed by various individuals sending them to an unspendable address on the Bitcoin network (`1CounterpartyXXXXXXXXXXXXXXXUWLpVr`), which caused the Counterparty protocol to award the sending address with a corresponding amount of XCP. XCP is used for payment of asset creation fees, collateral for contracts for difference/binary options, and often used as a base token in decentralized exchange transactions (largely due to the complexities of using BTC in such trades).
 
-![CounterpartyStack](./sources/CounterpartyStack.png)
+<p align="center"><img src="./sources/CounterpartyStack.png" width="400" /></p>
 
 Support for the Ethereum Virtual Machine (EVM) was implemented, but never included on the mainnet version [[30]]. With the Counterparty EVM implementation, all published Counterparty smart contracts “live” at Bitcoin addresses that start with a `C`. Counterparty is used to broadcast an `execute` transaction to call a specific function or method in the smart contract code. Once an execution transaction is confirmed by a Bitcoin miner, the Counterparty federated nodes will receive the request and execute that method. The contract state is modified as the smart contract code executes and stored in the Counterparty database. [[56]]
 
@@ -160,8 +160,7 @@ A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain
 
 Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol below [[22]]: 
 
-![RSK_HybridSideDriveChain](./sources/RSK_HybridSideDriveChain.png)
-
+<p align="center"><img src="./sources/RSK_HybridSideDriveChain.png" width="450" /></p>
 
 
 The locking of BTC on the main Bitcoin block chain is done by using a P2SH transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]]
@@ -175,7 +174,8 @@ The locking of BTC on the main Bitcoin block chain is done by using a P2SH trans
 - Blockstream is implementing a Federated Sidechain called Liquid, with the functionaries/notaries being made up of participating exchanges and Bitcoin businesses. [[29]]
 
 
-![Blockstream-Federated-Sidechain](./sources/Blockstream-Federated-Sidechain.PNG)
+<p align="center"><img src="./sources/Blockstream-Federated-Sidechain.PNG" width="700" /></p>
+
 
 #### Strengths
 
@@ -203,7 +203,7 @@ Lumino Transaction Compression Protocol (LTCP) is a technique for transaction co
 
 Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist. [[17]]
 
-![LuminoDataPruning](./sources/LuminoDataPruning.PNG)
+<p align="center"><img src="./sources/LuminoDataPruning.PNG" width="550" /></p>
 
 #### Who does it?
 
@@ -247,7 +247,7 @@ Let's say Alice and Bob each needs to provide half a Schnorr signature for a tra
 
 Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*. [[37]])
 
-![Mimblewimble](./sources/Mimblewimble.PNG)
+<p align="center"><img src="./sources/Mimblewimble.PNG" width="500" /></p>
 
 #### Strengths
 
@@ -274,27 +274,29 @@ The Mimblewimble *Scriptless Script*s could be combined with a federated node (o
 
 In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. A directed graph is acyclic if and only if it has a topological ordering, that is for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering (age). [[42]] 
 
-![DAG](./sources/DAG.PNG)
-
+<p align="center"><img src="./sources/DAG.PNG" width="400" /></p>
 
 
 DAGs in block chain were first proposed as the GHOST protocol ([[44]], [[45]]), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]],  [[41]]), Jute [[43]], SPECTRE [[46]], and PHANTOM [[52]] was presented. The principle of DAG in block chain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed
 
-![DAGTopologicalOrdering](./sources/DAGTopologicalOrdering.PNG)
+<p align="center"><img src="./sources/DAGTopologicalOrdering.png" width="500" /></p>
+
 
 The main problems to be solved by the DAG derivative protocols are **(a)** inclusion of orphaned blocks (decrease the negative effect of slow propagation) and **(b)** mitigation against selfish mining attacks. The underlying concept is still in the research and exploration phase. [[39]]
 
-![GHOST](./sources/GHOST.PNG)
+
+<p align="center"><img src="./sources/GHOST.PNG" width="500" /></p>
 
 In most DAG derivative protocols, blocks containing conflicting transactions (*i.e. conflicting blocks*) are not orphaned. A subsequent block is built on top of both of the conflicting blocks, but the conflicting transactions themselves are thrown out while processing the chain. SPECTRE, for one, provides a scheme whereby blocks vote to decide which transactions are robustly accepted, robustly rejected or stay in an indefinite “pending” state in case of conflicts. Both conflicting blocks become part of the shared history, and both conflicting blocks earn their respective miners a block reward. ([[39]], [[50]], [[51]])
 
 **Note:** Braiding requires that parents and siblings may not contain conflicting transactions.
 
-![SPECTRE](./sources/SPECTRE.PNG)
+<p align="center"><img src="./sources/SPECTRE.PNG" width="700" /></p>
+
 
 Inclusive (DAG derivative) protocols that integrate the contents of traditional off-chain blocks into the ledger results in incentives for behavior changes by the nodes that lead to an increased throughput, and a better payoff for weak miners. [[45]]
 
-![InclusiveProtocolDAG](./sources/InclusiveProtocolDAG.PNG)
+<p align="center"><img src="./sources/InclusiveProtocolDAG.PNG" width="500" /></p>
 
 DAG derivative protocols are not Layer 2 Scaling solutions, but offer significant scaling of the primary block chain.
 
