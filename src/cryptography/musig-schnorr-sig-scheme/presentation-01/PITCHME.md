@@ -560,7 +560,7 @@ $$
 
 @div[text-left]
 
-**Note:** As of writing of this report, the secure IAS scheme presented here still needs to undergo a complete security analysis.
+**Note:** As of writing of this, the secure IAS scheme presented here still needs to undergo a complete security analysis.
 
 @divend
 
