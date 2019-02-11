@@ -8,7 +8,7 @@ We hope to make this a learning experience for us at Tari Labs: as a means to gr
 
 We would like this platform to be a place of learning - accessible to anyone, irrespective of their degree of expertise. Our aim is to cover a wide range of topics that are relevant to the Tari space, starting at a beginner level, and extending down a path of deeper complexity. 
 
-You are welcome to contribute to our online content. To help you get started, we've compiled a [Style Guide](./preface/style-guide.md) for Tari Labs University reports. By using this Style Guide you can help us to ensure consistency in the content and layout of TLU reports.
+You are welcome to contribute to our online content. To help you get started, we've compiled a [Style Guide](../preface/style-guide.md) for Tari Labs University reports. By using this Style Guide you can help us to ensure consistency in the content and layout of TLU reports.
 
 ## Errors, Comments and Contributions 
 
