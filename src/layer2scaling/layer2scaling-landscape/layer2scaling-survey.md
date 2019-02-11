@@ -15,7 +15,7 @@
     - [Opportunities](#opportunities)
   - [State Channels](#state-channels)
     - [What are they?](#what-are-they-1)
-    - [Who uses them?](#who-uses them-1)
+    - [Who uses them?](#who-uses-them-1)
     - [Strengths](#strengths-1)
     - [Weaknesses](#weaknesses-1)
     - [Opportunities](#opportunities-1)
@@ -32,14 +32,14 @@
     - [Weaknesses](#weaknesses-3)
     - [Opportunities](#opportunities-3)
   - [Plasma](#plasma)
-    - [What is it?](#what-is-it-4)
-    - [Who uses it?](#who-uses-it-4)
+    - [What is it?](#what-is-it)
+    - [Who uses it?](#who-uses-it)
     - [Strengths](#strengths-4)
     - [Weaknesses](#weaknesses-4)
     - [Opportunities](#opportunities-4)
   - [TrueBit](#truebit)
-    - [What is it?](#what-is-it-5)
-    - [Who uses it?](#who-uses-it-5)
+    - [What is it?](#what-is-it-1)
+    - [Who uses it?](#who-uses-it-1)
     - [Strengths](#strengths-5)
     - [Weaknesses](#weaknesses-5)
     - [Opportunities](#opportunities-5)
@@ -49,7 +49,7 @@
 
 ## What is Layer 2 Scaling?
 
-In the block chain and cryptocurrency world, transaction processing scaling is a tough problem to solve. This is limited by the average block creation time, the block size limit, and the number of newer blocks needed to confirm a transaction (confirmation time). These factors make '*over the counter*' type transactions similar to Master Card or Visa nearly impossible if done on the main block chain (on-chain).
+In the blockchain and cryptocurrency world, transaction processing scaling is a tough problem to solve. This is limited by the average block creation time, the block size limit, and the number of newer blocks needed to confirm a transaction (confirmation time). These factors make '*over the counter*' type transactions similar to Master Card or Visa nearly impossible if done on the main blockchain (on-chain).
 
 
 
@@ -57,13 +57,13 @@ In the block chain and cryptocurrency world, transaction processing scaling is a
 
 
 
-Let's postulate that block chain and cryptocurrency "take over the world" and are responsible for all global non-cash transactions performed, i.e. 433.1 billion in 2014 to 2015 [[24]]. This means 13,734 transactions per second (tx/s) on average! *(To put this into perspective, VisaNet currently processes 160 billion transactions per year [[25]] and is capable of handling more than 65,000 transaction messages per second [[26]].)* This means that if all of those were simple single-input-single-output non-cash transactions and performed on:
+Let's postulate that blockchain and cryptocurrency "take over the world" and are responsible for all global non-cash transactions performed, i.e. 433.1 billion in 2014 to 2015 [[24]]. This means 13,734 transactions per second (tx/s) on average! *(To put this into perspective, VisaNet currently processes 160 billion transactions per year [[25]] and is capable of handling more than 65,000 transaction messages per second [[26]].)* This means that if all of those were simple single-input-single-output non-cash transactions and performed on:
 
-- SegWit-enabled Bitcoin 'like' block chains that can theoretically handle ~21.31tx/s, we would need ~644 parallel versions, and with a SegWit transaction size of 190 bytes [[27]], the combined block chain growth would be *~210 GB per day*! 
+- SegWit-enabled Bitcoin 'like' blockchains that can theoretically handle ~21.31tx/s, we would need ~644 parallel versions, and with a SegWit transaction size of 190 bytes [[27]], the combined blockchain growth would be *~210GB per day*! 
 
-- Ethereum 'like' block chains, and taking current gas prices into account, Ethereum can theoretically process ~25.4&nbsp;tx/s, then ~541 parallel versions would be needed and, with a transaction size of 109 bytes ([[28]], [[29]]), the combined block chain growth would be *~120 GB per day*!
+- Ethereum 'like' blockchains, and taking current gas prices into account, Ethereum can theoretically process ~25.4tx/s, then ~541 parallel versions would be needed and, with a transaction size of 109 bytes ([[28]], [[29]]), the combined blockchain growth would be *~120GB per day*!
 
-This is why we need a proper scaling solution that would not bloat the block chain.
+This is why we need a proper scaling solution that would not bloat the blockchain.
 
 The Open Systems Interconnection (OSI) model defines seven layers for communication functions of a computing system. Layer 1 refers to the physical layer and Layer 2 to the data link layer. Layer 1 is never concerned with functions of Layer 2 and up; it just delivers transmission and reception of raw data. In turn, Layer 2 only knows about Layer 1 and defines the protocols that deliver node-to-node data transfer. [[1]]
 
@@ -73,7 +73,7 @@ The Open Systems Interconnection (OSI) model defines seven layers for communicat
 
 
 
-Analogous to the OSI layers for communication, in block chain technology, decentralized Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer 2 protocols run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus). Instead of each transaction, only the result of a number of transactions is embedded on-chain. [[2]]
+Analogous to the OSI layers for communication, in blockchain technology, decentralized Layer 2 protocols, also commonly referred to as Layer 2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer 2 protocols run on top of the main blockchain (off-chain), while preserving the attributes of the main blockchain (e.g. crypto economic consensus). Instead of each transaction, only the result of a number of transactions is embedded on-chain. [[2]]
 
 <p align="center"><img src="sources/layer2scaling.png" width="620" /></p>
 
@@ -83,23 +83,23 @@ Analogous to the OSI layers for communication, in block chain technology, decent
 
 Also:
 
-- Does every transaction need every parent block chain node in the world to verify it?
+- Does every transaction need every parent blockchain node in the world to verify it?
 - Would I be willing to have (temporary) lower security guarantees for most of my day-to-day transactions if I could get them validated (whatever we take that to mean) near-instantly?
 
 If you can answer 'no' and 'yes', then you're looking for a Layer 2 scaling solution.
 
 ## How will this be Applicable to Tari?
 
-Tari is a high-throughput protocol that will need to handle real-world transaction volumes. For example, Big Neon, the initial business application to be built on top of the Tari block chain, requires high-volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. Imagine filling an 85,000 seat stadium with 72 entrance queues on match days. Serialized real-world scanning boils down to ~500 tickets in four minutes, or ~2 spectators allowed access per second per queue.
+Tari is a high-throughput protocol that will need to handle real-world transaction volumes. For example, Big Neon, the initial business application to be built on top of the Tari blockchain, requires high-volume transactions in a short time, especially when tickets sales open and when tickets will be redeemed at an event. Imagine filling an 85,000 seat stadium with 72 entrance queues on match days. Serialized real-world scanning boils down to ~500 tickets in four minutes, or ~2 spectators allowed access per second per queue.
 
-This would be impossible to do with parent block chain scaling solutions.
+This would be impossible to do with parent blockchain scaling solutions.
 
 
 ## Layer 2 Scaling Current Initiatives
 ### Micropayment Channels 
 #### What are they?
 
-A micropayment channel is a class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the Bitcoin block chain. In a typical payment channel, only two transactions are added to the block chain, but an unlimited or nearly unlimited number of payments can be made between the participants. [[10]]
+A micropayment channel is a class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the Bitcoin blockchain. In a typical payment channel, only two transactions are added to the blockchain, but an unlimited or nearly unlimited number of payments can be made between the participants. [[10]]
 
 Several channel designs have been proposed or implemented over the years, including:
 - Nakamoto high-frequency transactions; 
@@ -111,11 +111,11 @@ Several channel designs have been proposed or implemented over the years, includ
 - Hashed Time-Locked Contracts (HTLCs).
 
 With specific focus on Hashed Time-Locked Contracts:
-This technique can allow payments to be securely routed across multiple payment channels. HTLCs are integral to the design of more advanced payment channels such as those used by the [Lightning Network](https://gitpitch.com/tari-labs/tari-university/master?p=LightningNetworkForDummies#/). 
+This technique can allow payments to be securely routed across multiple payment channels. HTLCs are integral to the design of more advanced payment channels such as those used by the [Lightning Network](https://gitpitch.com/tari-labs/tari-university/master?p=src/protocols/lightning-network-for-dummies#/). 
 
-The Lightning Network is a second-layer payment protocol that operates on top of a block chain. It enables instant transactions between participating nodes. The Lightning Network features a peer-to-peer system for making micropayments of digital cryptocurrency through a network of bidirectional payment channels without delegating custody of funds and minimizing the trust of third parties. [[11]] 
+The Lightning Network is a second-layer payment protocol that operates on top of a blockchain. It enables instant transactions between participating nodes. The Lightning Network features a peer-to-peer system for making micropayments of digital cryptocurrency through a network of bidirectional payment channels without delegating custody of funds and minimizing the trust of third parties. [[11]] 
 
-Normal use of the Lightning Network consists of opening a payment channel by committing a funding transaction to the relevant block chain. This is followed by making any number of Lightning transactions that update the tentative distribution of the channel's funds without broadcasting to the block chain; and optionally followed by closing the payment channel by broadcasting the final version of the transaction to distribute the channel's funds. 
+Normal use of the Lightning Network consists of opening a payment channel by committing a funding transaction to the relevant blockchain. This is followed by making any number of Lightning transactions that update the tentative distribution of the channel's funds without broadcasting to the blockchain; and optionally followed by closing the payment channel by broadcasting the final version of the transaction to distribute the channel's funds. 
 
 <p align="center"><img src="sources/bitcoin-lightning-network-basic.png" width="920" /></p>
 
@@ -134,7 +134,7 @@ The Lightning Network is spreading across the cryptocurrency landscape. It was o
 
 - Micropayment channels are not suitable for making bulk payment, as the intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along. 
 - Recipients cannot receive money unless their node is connected and online at the time of the transaction.
-- Currently, channels are only bilateral. 
+- Currently, at the time of writing (July 2018), channels are only bilateral. 
 
 #### Opportunities
 
@@ -144,9 +144,9 @@ Opportunities are fewer than expected, as Tari's ticketing use case requires man
 
 #### What are they?
 
-State channels are the more general form of micropayment channels. They can be used not only for payments, but for any arbitrary "state update" on a block chain, such as changes inside a smart contract. [[16]]
+State channels are the more general form of micropayment channels. They can be used not only for payments, but for any arbitrary "state update" on a blockchain, such as changes inside a smart contract. [[16]]
 
-State channels allow multiple transactions to be made within off-chain agreements with very fast processing, and the final settlement on-chain. They keep the operation mode of block chain protocol, but change the way it is used so as to deal with the challenge of scalability.
+State channels allow multiple transactions to be made within off-chain agreements with very fast processing, and the final settlement on-chain. They keep the operation mode of blockchain protocol, but change the way it is used so as to deal with the challenge of scalability.
 
 Any change of state within a state channel requires explicit cryptographic consent from all parties designated as "interested" in that part of the state. [[19]
 
@@ -159,7 +159,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 
   - State channels work with any ERC20-compatible token.
 
-  - State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out. These can be settled on the Ethereum block chain at any time. Raiden Network uses HTLCs in exactly the same manner as the Lightning Network. 
+  - State updates between two parties are done via digitally signed and hash-locked transfers as the consensus mechanism, called balance proofs, which are also secured by a time-out. These can be settled on the Ethereum blockchain at any time. Raiden Network uses HTLCs in exactly the same manner as the Lightning Network. 
 
   - <p align="center"><img src="sources/Raiden.png" width="470" /></p>
 
@@ -179,7 +179,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 
 - Funfair ([[16]], [[23]], [[32]])
   - Uses state channels as a decentralized slot machine gambling platform, but still using centralized server-based random number generation.
-  - Instantiates a normal "Raiden-like" state channel (called *fate channel*) between the player and the casino. Final states are submitted to block chain after the betting game is concluded.
+  - Instantiates a normal "Raiden-like" state channel (called *fate channel*) between the player and the casino. Final states are submitted to blockchain after the betting game is concluded.
   - Investigating the use of threshold cryptography such as Boneh-Lynn-Shacham (BLS) signature schemes to enable truly secure random number generation by a group of participants.
 
 *On NEO:*
@@ -219,7 +219,7 @@ Orders are matched off-chain in a matching engine and fulfilled on-chain. This a
   - Cross-chain support is planned for trading BTC, LTC, and RPX on NEX.
   - The NEX off-chain matching engine will be scalable, distributed, fault-tolerant, and function continuously without downtime.
   - Consensus is achieved using cryptographically signed requests; publicly specified deterministic off-chain matching engine algorithms; and public ledgers of transactions and reward for foul play. The trade method of the exchange smart contract will only accept orders signed by a private key held by the matching engine.
-  - The matching engine matches the orders and submits them to the respective block chain smart contract for execution.
+  - The matching engine matches the orders and submits them to the respective blockchain smart contract for execution.
   - A single invocation transaction on NEO can contain many smart contract calls. Batch commit of matched orders in one on-chain transaction is possible.
 
   <p align="center"><img src="sources/NEX-matching-engine.png" width="350" /></p>
@@ -228,7 +228,7 @@ Orders are matched off-chain in a matching engine and fulfilled on-chain. This a
 
 - 0x ([[33]], [[34]])
   - An Ethereum ERC20-based smart contract token (ZRX).
-  - Provides an open-source protocol to exchange ERC20-compliant tokens on the Ethereum block chain using off-chain matching engines in the form of dApps (*Relayers*) that facilitate transactions between *Makers* and *Takers*.
+  - Provides an open-source protocol to exchange ERC20-compliant tokens on the Ethereum blockchain using off-chain matching engines in the form of dApps (*Relayers*) that facilitate transactions between *Makers* and *Takers*.
   - Off-chain order relay + on-chain settlement.
   - *Maker* chooses *Relayer*, specifies token exchange rate, expiration time, fees to satisfy *Relayer's* fee schedule, and signs order with private key.
   - Consensus is governed with the publicly available DEX smart contract: addresses, token balances, token exchange, fees, signatures, order status, and final transfer.
@@ -258,7 +258,7 @@ Orders are matched off-chain in a matching engine and fulfilled on-chain. This a
 
 #### Weaknesses
 
-- Still in development.
+- At the time of writing (July 2018) both NEX and 0x were still in development.
 - NEX-specific:
   - a certain level of trust is required, similar to a traditional exchange;
   - closed liquidity pool.
@@ -279,7 +279,7 @@ A masternode is a server on a decentralized network. It is utilized to complete 
 
 *Dash Example* [[30]]
 
-Dash was the first cryptocurrency to implement the masternode model into its protocol. Under what Dash calls its proof of service algorithm, a second-tier network of masternodes exists alongside a first-tier network of miners to achieve distributed consensus on the block chain. This two-tiered system ensures that proof of service and proof of work perform symbiotic maintenance of Dash's network. Dash masternodes also enable a decentralized governance system that allows node operators to vote on important developments within the block chain. A masternode for Dash requires a stake of 1,000&nbsp; DASH. Dash and the miners each have 45% of the block rewards. The other 10% goes to the block chain's treasury fund. Operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
+Dash was the first cryptocurrency to implement the masternode model into its protocol. Under what Dash calls its proof of service algorithm, a second-tier network of masternodes exists alongside a first-tier network of miners to achieve distributed consensus on the blockchain. This two-tiered system ensures that proof of service and proof of work perform symbiotic maintenance of Dash's network. Dash masternodes also enable a decentralized governance system that allows node operators to vote on important developments within the blockchain. A masternode for Dash requires a stake of 1,000&nbsp;DASH. Dash and the miners each have 45% of the block rewards. The other 10% goes to the blockchain's treasury fund. Operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
 
 *Dash Deterministic Ordering*
 
@@ -287,7 +287,7 @@ A special deterministic algorithm is used to create a pseudo-random ordering of 
 
 *Dash Trustless Quorums*
 
-The Dash masternode network is trustless where no single entity can control the outcome. N pseudo random masternodes (Quorum A) are selected from the total pool to act as an oracle for N pseudo random masternodes (Quorum B) that are selected to perform the actual task. Quorum A are the closest nodes mathematically to the current block hash, while Quorum B are the furthest. This process is repeated for each new block in the block chain.
+The Dash masternode network is trustless where no single entity can control the outcome. N pseudo random masternodes (Quorum A) are selected from the total pool to act as an oracle for N pseudo random masternodes (Quorum B) that are selected to perform the actual task. Quorum A are the closest nodes mathematically to the current block hash, while Quorum B are the furthest. This process is repeated for each new block in the blockchain.
 
 
 *Dash Proof of Service*
@@ -300,11 +300,11 @@ Bad actors could also run masternodes. To reduce the possibility of bad acting, 
 
 #### Strengths
 
-- Masternodes help to sustain and take care of the ecosystem and can protect block chains from network attacks.
+- Masternodes help to sustain and take care of the ecosystem and can protect blockchains from network attacks.
 - Masternodes can perform decentralized governance of miners by having the power to reject or orphan blocks if required. ([[22]], [[30]])
 - Masternodes can support decentralized exchanges by overseeing transactions and offering fiat currency gateways.
 - Masternodes can be used to facilitate smart contracts such as instant transactions, anonymous transactions, and decentralized payment processor.
-- Masternodes can facilitate a decentralized marketplace such as the block chain equivalent of peer-run commerce sites such as eBay. [[22]]   
+- Masternodes can facilitate a decentralized marketplace such as the blockchain equivalent of peer-run commerce sites such as eBay. [[22]]   
 
 - Masternodes compensate for Proof of Work's limitations; they avoid mining centralization and consume less energy. [[22]]
 - Masternodes promise enhanced stability and network loyalty, as larger dividends and high initial investment costs make it less likely that operators will abandon their position in the network. [[22]]
@@ -317,7 +317,7 @@ Bad actors could also run masternodes. To reduce the possibility of bad acting, 
 
 #### Opportunities
 
-- Masternodes do not have a specific standard or protocol; many different implementations exist. If the Tari protocol employs Masternodes, they can be used to facilitate smart contracts off-chain and to enhance the security of the primary block chain.
+- Masternodes do not have a specific standard or protocol; many different implementations exist. If the Tari protocol employs Masternodes, they can be used to facilitate smart contracts off-chain and to enhance the security of the primary blockchain.
 
 - Masternodes increase the incentives for people to be involved with Tari.
 
@@ -325,15 +325,15 @@ Bad actors could also run masternodes. To reduce the possibility of bad acting, 
 ### Plasma
 #### What is it?
 
-Plasma block chains are a chain within a block chain, with state transitions enforced by bonded (time to exit) fraud proofs (block header hashes) submitted on the root chain. It enables management of a tiered block chain without a full persistent record of the ledger on the root block chain, and without giving custodial trust to any third party. The fraud proofs enforce an interactive protocol of rapid fund withdrawals in case of foul play such as block withholding, and in cases where bad actors in a lower-level tier want to commit blocks to the root chain without broadcasting this to the higher-level tiers. [[4]]
+Plasma blockchains are a chain within a blockchain, with state transitions enforced by bonded (time to exit) fraud proofs (block header hashes) submitted on the root chain. It enables management of a tiered blockchain without a full persistent record of the ledger on the root blockchain, and without giving custodial trust to any third party. The fraud proofs enforce an interactive protocol of rapid fund withdrawals in case of foul play such as block withholding, and in cases where bad actors in a lower-level tier want to commit blocks to the root chain without broadcasting this to the higher-level tiers. [[4]]
 
 <p align="center"><img src="sources/Plasma-example-01.png" width="750" /></p>
 
 
 
-Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format. [[4]]
+Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root blockchain to be able to represent a significant amount of dApps, each employing its own blockchain in a tree format. [[4]]
 
-Plasma relies on two key parts, namely reframing all block chain computations into a set of MapReduce functions, and an optional method to do Proof of Stake (PoS) token bonding on top of existing block chains (enforced in an on-chain smart contract). Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. If a chain is Byzantine, it has the option of going to any of its parents (including the root block chain) to continue operation or exit with the current committed state. [[4]]
+Plasma relies on two key parts, namely reframing all blockchain computations into a set of MapReduce functions, and an optional method to do Proof of Stake (PoS) token bonding on top of existing blockchains (enforced in an on-chain smart contract). Nakamoto Consensus incentives discourage block withholding or other Byzantine behavior. If a chain is Byzantine, it has the option of going to any of its parents (including the root blockchain) to continue operation or exit with the current committed state. [[4]]
 
 <p align="center"><img src="sources/Plasma-example.png" width="750" /></p>
 
@@ -345,37 +345,37 @@ MapReduce is a programming model and an associated implementation for processing
 
 - Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific Side Chains (DAppChains), running on top of Ethereum. ([[4]], [[15]])
 
-- OMG Network (OmiseGO), using PoS consensus and validation, a Plasma block chain scaling solution for finance running on top of Ethereum. ([[6]], [[14]])
+- OMG Network (OmiseGO), using PoS consensus and validation, a Plasma blockchain scaling solution for finance running on top of Ethereum. ([[6]], [[14]])
 
 
 #### Strengths
 
 - Not all participants need to be online to update state.
-- Participants do not need a record of entry on the parent block chain to enable their participation in a Plasma block chain.
-- Minimal data is needed on the parent block chain to confirm transactions when constructing Plasma block chains in a tree format.
-- Private block chain networks can be constructed, enforced by the root block chain. Transactions may occur on a local private block chain and have financial activity bonded by a public parent block chain.
+- Participants do not need a record of entry on the parent blockchain to enable their participation in a Plasma blockchain.
+- Minimal data is needed on the parent blockchain to confirm transactions when constructing Plasma blockchains in a tree format.
+- Private blockchain networks can be constructed, enforced by the root blockchain. Transactions may occur on a local private blockchain and have financial activity bonded by a public parent blockchain.
 - Rapid exit strategies in case of foul play.
 
 #### Weaknesses
 
-Plasma must still be proven on other networks apart from Ethereum.
+At the time of writing (July 2018) Plasma still needed to be proven on other networks apart from Ethereum.
 
 #### Opportunities
 
 - Has opportunities for Tari as an L2 scaling solution.
 
-- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari-specific root block chain?* 
+- *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari-specific root blockchain?* 
 
-  **Note:** This will make the Tari block chain dependent on another block chain.
+  **Note:** This will make the Tari blockchain dependent on another blockchain.
 
-- The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma block chain. In less than a year, a number of successful and diverse dAppChains have launched. *The next one could easily be for ticket sales...*
+- The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma blockchain. In less than a year, a number of successful and diverse dAppChains have launched. *The next one could easily be for ticket sales...*
 
 
 ### TrueBit
 
 #### What is it?
 
-TrueBit is a protocol that provides security and scalability by enabling trustless smart contracts to perform and offload complex computations. This makes it different from state channels and Plasma, which are more useful for increasing the total transaction throughput of the Ethereum block chain. TrueBit relies on solvers (akin to miners), who have to stake their deposits in a smart contract, solve computation and, if correct, get their deposit back. If the computation is incorrect, the solver loses their deposit. TrueBit uses an economic mechanism called the "verification game," where an incentive is created for other parties, called *challengers,* to check the solvers' work. ([[16]], [[40]], [[43]])
+TrueBit is a protocol that provides security and scalability by enabling trustless smart contracts to perform and offload complex computations. This makes it different from state channels and Plasma, which are more useful for increasing the total transaction throughput of the Ethereum blockchain. TrueBit relies on solvers (akin to miners), who have to stake their deposits in a smart contract, solve computation and, if correct, get their deposit back. If the computation is incorrect, the solver loses their deposit. TrueBit uses an economic mechanism called the "verification game," where an incentive is created for other parties, called *challengers,* to check the solvers' work. ([[16]], [[40]], [[43]])
 
 <p align="center"><img src="sources/TrueBit_Diagram.png" width="600" /></p>
 
@@ -392,7 +392,7 @@ Golem cites TrueBit as a verification mechanism for its forthcoming outsourced c
 
 #### Weaknesses
 
-TrueBit is yet to be fully tested. 
+At the time of writing (July 2018) TrueBit was not fully tested yet. 
 
 #### Opportunities
 
@@ -570,10 +570,10 @@ Nothing at the moment as, Tari wouldn't be doing heavy/complex computation, at l
 [33]: https://0xproject.com/
 "0x Protocol Website"
 
-[[34]] "0x: An open protocol for decentralized exchange on the Ethereum block chain" [online]. Available at: https://0xproject.com/pdfs/0x_white_paper.pdf. Date accessed: 2018-06-28.
+[[34]] "0x: An open protocol for decentralized exchange on the Ethereum blockchain" [online]. Available at: https://0xproject.com/pdfs/0x_white_paper.pdf. Date accessed: 2018-06-28.
 
 [34]: https://0xproject.com/pdfs/0x_white_paper.pdf
-"0x: An open protocol for decentralized exchange on the Ethereum block chain"
+"0x: An open protocol for decentralized exchange on the Ethereum blockchain"
 
 [[35]] "NEX/Nash website" [online]. Available at: https://nash.io. Date accessed: 2018-06-28.
 
