@@ -134,7 +134,7 @@ The Lightning Network is spreading across the cryptocurrency landscape. It was o
 
 - Micropayment channels are not suitable for making bulk payment, as the intermediate nodes in the multichannel payment network may not be loaded with money to move the funds along. 
 - Recipients cannot receive money unless their node is connected and online at the time of the transaction.
-- Currently, at the time of writing (July 2018), channels are only bilateral. 
+-At the time of writing (July 2018), channels were only bilateral. 
 
 #### Opportunities
 
@@ -258,7 +258,7 @@ Orders are matched off-chain in a matching engine and fulfilled on-chain. This a
 
 #### Weaknesses
 
-- At the time of writing (July 2018) both NEX and 0x were still in development.
+- At the time of writing (July 2018), both NEX and 0x were still in development.
 - NEX-specific:
   - a certain level of trust is required, similar to a traditional exchange;
   - closed liquidity pool.
@@ -358,7 +358,7 @@ MapReduce is a programming model and an associated implementation for processing
 
 #### Weaknesses
 
-At the time of writing (July 2018) Plasma still needed to be proven on other networks apart from Ethereum.
+At the time of writing (July 2018), Plasma still needed to be proven on other networks apart from Ethereum.
 
 #### Opportunities
 
@@ -392,7 +392,7 @@ Golem cites TrueBit as a verification mechanism for its forthcoming outsourced c
 
 #### Weaknesses
 
-At the time of writing (July 2018) TrueBit was not fully tested yet. 
+At the time of writing (July 2018), TrueBit had not yet been fully tested. 
 
 #### Opportunities
 
@@ -495,7 +495,7 @@ Nothing at the moment as, Tari wouldn't be doing heavy/complex computation, at l
 [18]: https://trinity.tech/#/writepaper
 "Trinity White Paper: Universal Off-chain Scaling Solution"
 
-[[19]] J. Coleman et. al., "Counterfactual: Generalized State Channels" [online]. Available at: https://counterfactual.com/statechannels & https://l4.ventures/papers/statechannels.pdf. Date accessed: 2018-06-15.
+[[19]] Jeff Coleman, Liam Horne, and Li Xuanji, "Counterfactual: Generalized State Channels" [online]. Available at: https://counterfactual.com/statechannels & https://l4.ventures/papers/statechannels.pdf. Date accessed: 2018-06-15.
 
 [19]: https://counterfactual.com/statechannels
 "Counterfactual: Generalized State Channels"
@@ -560,7 +560,7 @@ Nothing at the moment as, Tari wouldn't be doing heavy/complex computation, at l
 [31]: https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6
 "Counterfactual: Generalized State Channels on Ethereum"
 
-[[32]] J. Longley et al., "FunFair Technology Roadmap and Discussion" [online]. Available at: https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf. Date accessed: 2018-06-27.
+[[32]] Jeremy Longley and Oliver Hopton, "FunFair Technology Roadmap and Discussion" [online]. Available at: https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf. Date accessed: 2018-06-27.
 
 [32]: https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf
 "FunFair Technology Roadmap and Discussion"
@@ -600,7 +600,7 @@ Nothing at the moment as, Tari wouldn't be doing heavy/complex computation, at l
 [39]: https://golem.network/crowdfunding/Golemwhitepaper.pdf
 "The Golem WhitePaper (Future Integrations)"
 
-[[40]] J. Teutsch et al., "A Scalable Verification Solution for Block Chains" [online]. Available at:  http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf. Date accessed: 2018-06-22.
+[[40]] Jason Teutsch, and Christian Reitwiessner, "A Scalable Verification Solution for Block Chains" [online]. Available at:  http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf. Date accessed: 2018-06-22.
 
 [40]: http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf
 "A Scalable Verification Solution for Block Chains"
