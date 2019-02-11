@@ -128,25 +128,6 @@ There are two versions of MuSig, that are provably secure, which differ based on
 
 @div[text-left]
 
-The Schnorr signature scheme uses group parameters ``$ (\mathbb{G\mathrm{,p,g)}} $`` and a hash function ``$ \textrm{H} $``.
-
-A private/public key pair is a pair 
-
-<div class="LineHeight20per"> <br></div>
-
-@divend
-
-`
-$$
-(x,X) \in  \lbrace 0,...,p-1 \rbrace  \mspace{6mu} \mathsf{x} \mspace{6mu} \mathbb{G}
-$$
-`
-@div[text-left]
-
-<div class="LineHeight20per"> <br></div>
-
-where ``$  X=g^{x} $`` 
-
 To sign a message ``$ m $``, the signer draws a random integer ``$ r \in Z_{p} $`` and computes
 
 @divend
@@ -164,6 +145,8 @@ $$
 `
 <div class="LineHeight20per"> <br></div>
 
++++
+
 @div[text-left]
 
 The signature is the pair ``$ (R,s) $``, and its validity can be checked by verifying whether 
@@ -171,8 +154,6 @@ The signature is the pair ``$ (R,s) $``, and its validity can be checked by veri
 @divend
 
 <div class="LineHeight20per"> <br></div>
-
-+++
 
 `
 $$
@@ -183,17 +164,13 @@ $$
 
 @div[text-left]
 
-This scheme is referred to as the "key-prefixed" variant of the scheme, which sees the public key hashed together with ``$ R ​$`` and ``$ m ​$``. This variant was thought to have a better multi-user security bound than the classic variant, however in the key-prefixing was seen as unnecessary to enable good multi-user security for Schnorr signatures.
-
-For the development of the MuSig Schnorr-based multi-signature scheme, key-prefixing is a requirement for the security proof, despite not knowing the form of an attack. The rationale also follows the process in reality, as messages signed in Bitcoin always indirectly commits to the public key.
+This scheme is referred to as the "key-prefixed" variant of the scheme, which sees the public key hashed together with ``$ R ​$`` and ``$ m ​$``. 
 
 ---
 
 ## Design of the Schnorr Multi-Signature Scheme 
 
 @div[text-left]
-
-The naive way to design a Schnorr multi-signature scheme would be as follows:
 
 A group of ``$ n $`` signers want to cosign a message ``$ m $``. 
 Each cosigner randomly generates and communicates to others a share 
@@ -227,7 +204,11 @@ $$
 $$
 `
 
-is the product of individual public The partial signature is then given by
+is the product of individual public keys 
+
++++
+
+and a partial signature is then given by
 
 `
 $$
@@ -236,8 +217,6 @@ $$
 `
 
 All partial signatures are then combined into a single signature ``$(R,s)​$`` where 
-
-+++
 
 `
 $$
@@ -262,15 +241,21 @@ where ``$$ \tilde{X} = \prod_{i=1}^{n}X_{i} \mspace{30mu} \mathrm{and} \mspace{3
 @div[text-left]
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key ``$ \tilde{X} $``, a property termed *key aggregation*. 
-However, these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to 
 
 @divend
 
 +++
 
+@div[text-left]
+
+However, these protocols are vulnerable to a rogue-key attack where a corrupted signer sets its public key to 
+
+@divend
+
+
 `
 $$
-X_{1}=g^{x_{1}} (\prod\_{i=2}^{n} X_{i})^{-1} 
+X_{1}=g^{x_{1}} (\prod_{i=2}^{n}X_{i})^{-1} 
 $$
 `
 
@@ -286,7 +271,7 @@ allowing the signer to produce signatures for public keys ``$ \lbrace X_{1},...X
 
 @div[text-left]
 
-Bellare M. *et al.* proceeded differently in order to avoid any key setup. A group of ``$ n $`` signers want to cosign a message ``$ m $``. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
+A group of ``$ n $`` signers want to cosign a message ``$ m $``. Their main idea is to have each cosigner use a distinct "challenge" when computing their partial signature 
 
 `
 $$
@@ -329,13 +314,12 @@ A preliminary round is also added to the signature protocol, where each signer c
 
 @div[text-left]
 
-This stops any cosigner from setting ``$ R = \prod_{i=1}^{n}R_{i} $`` to some maliciously chosen value and also allows the reduction to simulate the signature oracle in the security proof. 
-
+This stops any cosigner from setting ``$ R = \prod_{i=1}^{n}R_{i} $`` to some maliciously chosen value.
 @divend
 
 @div[text-left]
 
-Bellare M. *et al.* showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions, modeling ``$ \textrm{H} ​$`` and ``$ \textrm{H}^\prime ​$`` as random oracles. However, this scheme does not allow key aggregation anymore since the entire list of public keys is required for verification.
+Bellare and Neven showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions. However, this scheme does not allow key aggregation since the entire list of public keys is required for verification.
 
 @divend
 
@@ -345,7 +329,7 @@ Bellare M. *et al.* showed that this yields a multi-signature scheme provably se
 
 @div[text-left]
 
-MuSig is paramaterised by group parameters ``$(\mathbb{G\mathrm{,p,g)}}$`` and three hash functions ``$ ( \textrm{H}_{com}  ,  \textrm{H}_{agg} , \textrm{H}_{sig} ) $`` from ``$  \lbrace 0,1 \rbrace ^{*} $`` to ``$  \lbrace 0,1 \rbrace ^{l} $`` (constructed from a single hash, using proper domain separation).
+MuSig is paramaterised by group parameters ``$(\mathbb{G\mathrm{,p,g)}}$`` and three hash functions ``$ ( \textrm{H}_{com}  ,  \textrm{H}_{agg} , \textrm{H}_{sig} ) $``.
 
 @divend
 
@@ -406,7 +390,7 @@ The protocol is aborted if this is not the case.
 
 @div[text-left]
 
-If all commitment and random challenge pairs can be verified with ``$ \textrm{H}_{agg} $``, the following is computed:
+If all commitment and random challenge pairs can be verified with ``$ \textrm{H}_{com} $``, the following is computed:
 
 @divend
 
@@ -460,7 +444,7 @@ $$
 
 @div[text-left]
 
-In a previous version of the paper by Maxwell *et al.* published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. Drijvers *et al.* then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
+In a previous version of the paper by Maxwell published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. Drijvers then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the OMDL assumption.
 
 @divend
 
@@ -484,7 +468,7 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 @div[text-left]
 
-In order to change the BN multi-signature scheme into an IAS scheme, Wuille *et al.* proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
+In order to change the BN multi-signature scheme into an IAS scheme, Maxwell proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
 
 If ``$ X = g^{x_i} $`` is the public key of a specific signer and ``$ m $`` the message he wants to sign, and 
 
@@ -545,6 +529,7 @@ c_{i} = H(R, \langle S \rangle, i)\\\\
 s_{i} = r_{i} + c_{i}x_{i} \mod p
 $$
 `
+
 @div[text-left]
 
 and then sends ``$ s_i $`` to other signers. All signers can compute 
@@ -572,11 +557,6 @@ $$
 g^s = R\prod_{i=1}^{n}X_{i} ^{H(R, \langle S \rangle, i)}
 $$
 `
-@div[text-left]
-
-It must be noted that there is no need to include ``$ \langle L \rangle $`` in the hash computation nor the public key ``$ X_i $`` of the local signer since they are already "accounted for" through ordered set ``$ \langle S \rangle $`` and the message index ``$ i $``. 
-
-@divend
 
 @div[text-left]
 
