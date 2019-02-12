@@ -13,7 +13,7 @@ Presentation:   cryptography/musig-schnorr-sig-scheme/presentation-01#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/ks-musig-presentation?p=/cryptography/musig-schnorr-sig-scheme/presentation-01#/
+https://gitpitch.com/tari-labs/tari-university/ks-musig-presentation?p=/src/cryptography/musig-schnorr-sig-scheme/presentation-01#/
 
 ## On the trunk
 ### Trunk name
@@ -27,4 +27,4 @@ Presentation:    cryptography/musig-schnorr-sig-scheme/presentation-01#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/cryptography/musig-schnorr-sig-scheme/presentation-01#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/musig-schnorr-sig-scheme/presentation-01#/
