@@ -475,7 +475,7 @@ Available:  http://www.truthcoin.info/blog/drivechain. Date accessed: 2018-07-17
 [[22]] "Sidechains, Drivechains, and RSK 2-Way Peg Design" [online].
 Available:  https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design or https://uploads.strikinglycdn.com/files/27311e59-0832-49b5-ab0e-2b0a73899561/Drivechains_Sidechains_and_Hybrid_2-way_peg_Designs_R9.pdf. Date accessed: 2018-07-18.
 
-[22]: https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design or https://uploads.strikinglycdn.com/files/27311e59-0832-49b5-ab0e-2b0a73899561/Drivechains_Sidechains_and_Hybrid_2-way_peg_Designs_R9.pdf
+[22]: https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design
 "Sidechains, Drivechains, and RSK 2-Way Peg Design"
 
 [[23]] "Pay to Script Hash"[online].
