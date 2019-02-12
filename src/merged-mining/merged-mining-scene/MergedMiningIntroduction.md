@@ -1,8 +1,23 @@
 # Merged Mining Introduction
 
-## What is merged mining? 
+- [What is Merged Mining?](#what-is-merged-mining)
+- [Merged Mining with Multiple Auxiliary Chains](#merged-mining-with-multiple-auxiliary-chains)
+- [Merged Mining - Interesting Facts, Case Studies]()
+  - [Namecoin (#307) with Bitcoin (#1)](#namecoin-307-with-bitcoin-1)
+  - [Dogecoin (#37) with Litecoin (#6)](#dogecoin-37-with-litecoin-6)
+  - [Huntercoin (#779) with Bitcoin (#1) or Litecoin (#6)](#huntercoin-779-with-bitcoin-1-or-litecoin-6)
+  - [Myriad (#510) with Bitcoin (#1) or Litecoin (#6)](#myriad-510-with-bitcoin-1-or-litecoin-6)
+  - [Monero (#12)/DigitalNote (#166) + FantomCoin (#1068)](#monero-12digitalnote-166--fantomcoin-1068)
+  - [Some Statistics]
+  - [Observations]
+  - [Attack Vectors]
 
-Merged mining is the act of using work done on another block chain (the Parent) on one or more Auxiliary block chains and to accept it as valid on its own chain, using Auxiliary Proof-of-Work (AuxPoW), which is the relationship between two block chains for one to trust the other's work as their own. The Parent block chain does not need to be aware of the AuxPoW logic as blocks submitted to it are still valid blocks. [[1]](https://en.bitcoin.it/wiki/Merged_mining_specification)
+- [References](#references)
+- [Contributors]()
+
+## What is Merged Mining? 
+
+Merged mining is the act of using work done on another blockchain (the Parent) on one or more Auxiliary blockchains and to accept it as valid on its own chain, using Auxiliary Proof-of-Work (AuxPoW), which is the relationship between two blockchains for one to trust the other's work as their own. The Parent blockchain does not need to be aware of the AuxPoW logic as blocks submitted to it are still valid blocks. [[1]]
 
 As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652)
 
@@ -10,28 +25,28 @@ As an example the structure of merged mined blocks in Namecoin and Bitcoin is sh
 
 
 
-A transaction set for both block chains are assembled. The hash of the AuxPoW block header is then inserted in the 'free' bytes region (coinbase field) of the coinbase transaction and submitted to the Parent block chain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both block chains the respective block(s) are re-assembled with the completed PoW and submitted to the correct block chain. In case of the Auxiliary block chain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent block chain that meets the difficulty level of the Auxiliary block chain. ([[1]](https://en.bitcoin.it/wiki/Merged_mining_specification), [[2]](https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work), [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
+A transaction set for both blockchains are assembled. The hash of the AuxPoW block header is then inserted in the 'free' bytes region (coinbase field) of the coinbase transaction and submitted to the Parent blockchain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both blockchains the respective block(s) are re-assembled with the completed PoW and submitted to the correct blockchain. In case of the Auxiliary blockchain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent blockchain that meets the difficulty level of the Auxiliary blockchain. ([[1]], [[2]], [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
 
-The propagation of Parent and Auxiliary blocks are totally independent and only governed by each chain's difficulty level. As an example the diagram below shows how this can play out in practice with Namecoin and Bitcoin when the Parent difficulty (D<sub>BTC</sub>) is larger than the Auxiliary difficulty (D<sub>NMC</sub>) . Note that *BTC block 2'* did not become part of the Parent block chain propagation.
+The propagation of Parent and Auxiliary blocks are totally independent and only governed by each chain's difficulty level. As an example the diagram below shows how this can play out in practice with Namecoin and Bitcoin when the Parent difficulty (D<sub>BTC</sub>) is larger than the Auxiliary difficulty (D<sub>NMC</sub>) . Note that *BTC block 2'* did not become part of the Parent blockchain propagation.
 
 
 ![MergedMiningIntro02](./sources/MergedMiningIntro02.png)
 
 
 
-## Merged mining with multiple Auxiliary chains
+## Merged Mining with Multiple Auxiliary Chains
 
-A miner can use a single Parent to perform merged mining on multiple Auxiliary block chains. The Merkle tree root of a Merkle tree that contains the block hashes of the Auxiliary blocks as leaves must then be inserted in the Parent's coinbase field as shown below. To prevent double spending attacks each Auxiliary block chain must specify a unique ID that can be used to derive the leave of the Merkle tree where the respective block hash must be located. [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652)
+A miner can use a single Parent to perform merged mining on multiple Auxiliary blockchains. The Merkle tree root of a Merkle tree that contains the block hashes of the Auxiliary blocks as leaves must then be inserted in the Parent's coinbase field as shown below. To prevent double spending attacks each Auxiliary blockchain must specify a unique ID that can be used to derive the leave of the Merkle tree where the respective block hash must be located. [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652)
 
 ![MergedMiningIntro03](./sources/MergedMiningIntro03.png)
 
 
 
-## Merged mining interesting facts, case studies
+## Merged Mining - Interesting Facts, Case Studies
 
 ### Namecoin (#307) with Bitcoin (#1)
 
-- Namecoin, the first fork of Bitcoin, introduced merged mining with Bitcoin [[1]](https://en.bitcoin.it/wiki/Merged_mining_specification) from block 19,200 onwards [[3]](https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki). Namecoin current block height is >400,500 (@ 2018/05/28) [[4]](https://bchain.info/NMC).
+- Namecoin, the first fork of Bitcoin, introduced merged mining with Bitcoin [[1]](https://en.bitcoin.it/wiki/Merged_mining_specification) from block 19,200 onwards [[3]]. Namecoin current block height is > 400,500 (@ 2018/05/28) [[4]](https://bchain.info/NMC).
 - Over the 5 day period of 23-27/05/2018 only 226 out of 752 blocks posted transaction values over and above the block reward of 25 NMC, with an average transaction value of 159.231 NMC including the block reward. [[4]](https://bchain.info/NMC)
 - Slush Pool merged mining Namecoin with Bitcoin rewards all miners with BTC equivalent to NMC via external exchange service. [[5]](https://slushpool.com/help/first-aid/faq-merged-mining)
 - P2pool, Multipool, Slush Pool, Eligius and F2pool are cited as top Namecoin merged mining pools. [[6]](https://www.prooworld.com/namecoin/best-namecoin-mining-pools)
@@ -63,8 +78,8 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 | @ 2018-06-01                      | Huntercoin     |
 | --------------------------------- | -------------- |
 | Block time target (s)             | 120            |
-| Block chain size (GB)             | 17             |
-| Pruned block chain size (GB)      | 0.5            |
+| blockchain size (GB)              | 17             |
+| Pruned blockchain size (GB)       | 0.5            |
 | Blocks count                      | 2291060        |
 | PoW Algorithm (for merged mining) | SHA256, Scrypt |
 
@@ -76,7 +91,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 | @ 2018-06-01                      | Myriad                       |
 | --------------------------------- | ---------------------------- |
 | Block time target (s)             | 60                           |
-| Block chain size (GB)             | 2.095                        |
+| blockchain size (GB)              | 2.095                        |
 | Blocks count                      | 2442829                      |
 | PoW Algorithm (for merged mining) | SHA256d, Scrypt              |
 | PoW Algorithm (others)            | Myr-Groestl, Skein, Yescrypt |
@@ -87,9 +102,9 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
   - ![Myriad-2](./sources/Myriad-2.png)
   - ![Myriad-3](./sources/Myriad-3.png)
 
-### Monero (#12) / DigitalNote (#166) + FantomCoin (#1068)
+### Monero (#12)/DigitalNote (#166) + FantomCoin (#1068)
 
-- FantamCoin was the 1st CryptoNote based coin to develop merged mining with Monero, but was abandoned until DigitalNote developers became interested in merged mining with Monero and revived FantamCoin in the October 2016 ([[17]](https://minergate.com/blog/merged-mining-with-monero), [[18]](https://bitcointalk.org/index.php?topic=1082745.msg16615346#msg16615346), [[19]](https://github.com/xdn-project)).
+- FantamCoin was the 1st CryptoNote based coin to develop merged mining with Monero, but was abandoned until DigitalNote developers became interested in merged mining with Monero and revived FantamCoin in the October 2016. ([[17]](https://minergate.com/blog/merged-mining-with-monero), [[18]](https://bitcointalk.org/index.php?topic=1082745.msg16615346#msg16615346), [[19]](https://github.com/xdn-project)).
 
 - ```text
   FantamCoin Release notes 2.0.0
@@ -104,7 +119,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
   - Second step to the PoA with the new type of PoW merged mining blocks
   ```
 
-- DigitalNote and FantomCoin merged mining with Monero are now stuck with the recent CryptoNight based Monero forks like Monero Classic and Monero Original after Monero's recent hard fork to CryptoNight v7. (See Attack Vectors)
+- DigitalNote and FantomCoin merged mining with Monero are now stuck with the recent CryptoNight based Monero forks like Monero Classic and Monero Original after Monero's recent hard fork to CryptoNight v7. (See [Attack Vectors](#attack-vectors).)
 
 
 | @ 2018-05-31          | Monero [[16]](https://bitinfocharts.com) | DigitalNote [[16]](https://bitinfocharts.com) | Ratio   |
@@ -119,66 +134,88 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 | Hashrate (Mhash/s)    | 410.804                                  | 19.29                                        | 4.70%   |
 | Blocks count          | 1583869                                  | 2126079                                      | 134.23% |
 
-### Some stats
+### Some Statistics
 
-- Merge-mined blocks in some cryptocurrencies at 2017/06/18 [[24]](https://eprint.iacr.org/2017/791.pdf):
+- Merge-mined blocks in some cryptocurrencies at 2017-06-18 [[24]](https://eprint.iacr.org/2017/791.pdf):
 
   ![MergedMiningStats-1](./sources/MergedMiningStats-1.png)
 
 ### Observations
 
-- The Auxiliary block chain's target block times can be smaller, equal or larger than the Parent block chain.
-- The Auxiliary block chain's hash rate is generally smaller but in the same order of magnitude as that of the Parent block chain.
+- The Auxiliary blockchain's target block times can be smaller, equal or larger than the Parent blockchain.
+- The Auxiliary blockchain's hash rate is generally smaller but in the same order of magnitude as that of the Parent blockchain.
 - A multi PoW algorithm approach may further enhance 51% resistance.
 
 
 
 ## Attack Vectors
 
-- ### 51% attacks
+### 51% Attacks
 
-  - 51% attacks are real and relevant today. Bitcoin Gold (rank #28 @ 2018/05/29) and Verge (rank #33 @ 2018/05/29) suffered recent attacks with double spend transactions following. ([[11]](https://www.ccn.com/bitcoin-gold-hit-by-double-spend-attack-exchanges-lose-millions), [[12]](https://www.ccn.com/privacy-coin-verge-succumbs-to-51-attack-again))
-  - In a conservative analysis, successful attacks on PoW cryptocurrencies are more likely when dishonest entities control more than 25% of the total mining power. [[24]](https://eprint.iacr.org/2017/791.pdf)
-  - Tari tokens are envisaged to be merged mined with Monero [[13]](https://www.tari.com), as such the Monero block chain security is important to the Tari block chain. 
-  - Monero recently (2018-04-06) introduced a hard fork with upgraded PoW algorithm CryptoNight v7 at block height 1546000 to maintain their Application Specific Integrated Circuit (ASIC) resistance and hence guard against 51% attacks. The Monero team proposes changes to their PoW every scheduled fork (i.e. every 6 months) going forward. ([[14]](https://www.ccn.com/monero-hard-forks-to-maintain-asic-resistance-but-classic-hopes-to-spoil-the-party), [[15]](https://getmonero.org/2018/02/11/pow-change-and-key-reuse.html))
-  - An interesting question arises what needs to happen to the Tari block chain if the Monero block chain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediately prior it was ~1,000 MH/s [[20]](https://chainradar.com/xmr/chart). Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
-  - ![MoneroHashRate](./sources/MoneroHashRate.png)
-  - NiceHash statistics for CryptoNight v7 [[21]](https://www.nicehash.com/algorithm/cryptonightv7) shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
-  - ![CryptoNight-v7](./sources/CryptoNight-v7.png) 
-  - The Tari block chain will have to fork together with or just after a scheduled Monero fork. The Tari block chain will be vulnerable to ASIC miners until it has been forked.
+- 51% attacks are real and relevant today. Bitcoin Gold (rank #28 @ 2018/05/29) and Verge (rank #33 @ 2018/05/29) suffered recent attacks with double spend transactions following. ([[11]](https://www.ccn.com/bitcoin-gold-hit-by-double-spend-attack-exchanges-lose-millions), [[12]](https://www.ccn.com/privacy-coin-verge-succumbs-to-51-attack-again))
 
-- ### Double proof
+- In a conservative analysis, successful attacks on PoW cryptocurrencies are more likely when dishonest entities control more than 25% of the total mining power. [[24]](https://eprint.iacr.org/2017/791.pdf)
+- Tari tokens are envisaged to be merged mined with Monero [[13]](https://www.tari.com), as such the Monero blockchain security is important to the Tari blockchain. 
+- Monero recently (2018-04-06) introduced a hard fork with upgraded PoW algorithm CryptoNight v7 at block height 1546000 to maintain their Application Specific Integrated Circuit (ASIC) resistance and hence guard against 51% attacks. The Monero team proposes changes to their PoW every scheduled fork (i.e. every 6 months) going forward. ([[14]](https://www.ccn.com/monero-hard-forks-to-maintain-asic-resistance-but-classic-hopes-to-spoil-the-party), [[15]](https://getmonero.org/2018/02/11/pow-change-and-key-reuse.html))
+- An interesting question arises what needs to happen to the Tari blockchain if the Monero blockchain is hard forked. Since the CryptoNight v7 hard fork the network hash rate for Monero hovers around ~500 MH/s, whereas in the two months immediately prior it was ~1,000 MH/s [[20]](https://chainradar.com/xmr/chart). Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
 
-  - A miner could cheat the PoW system by putting more than one Auxiliary block header into one Parent block [[7]](https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof). 
-  - Multiple Auxiliary blocks can be competing for the same PoW, and could subject your Auxiliary block chain to nothing-at-stake attacks if the chain is forked, maliciously or by accident, with consequent attempts to reverse transactions. ([[7]](https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof), [[26]](https://github.com/ethereum/wiki/wiki/Problems))
-  - More than one Auxiliary block chain will be merged mined with Monero.
+![MoneroHashRate](./sources/MoneroHashRate.png)
 
-- ### Analysis of Mining Power Centralisation Issues ([[24]](https://eprint.iacr.org/2017/791.pdf), [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
+NiceHash statistics for CryptoNight v7 [[21]](https://www.nicehash.com/algorithm/cryptonightv7) shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
 
-  - In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
-  - Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
-  - In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
-  - Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
-  - Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
-  - Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
-    ![MergedMiningStats-2](./sources/MergedMiningStats-2.png)
+![CryptoNight-v7](./sources/CryptoNight-v7.png) 
 
-- ### Introduction of New Attack Vectors ([[24]](https://eprint.iacr.org/2017/791.pdf), [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
+The Tari blockchain will have to fork together with or just after a scheduled Monero fork. The Tari blockchain will be vulnerable to ASIC miners until it has been forked.
 
-  - Miners can generate blocks for the merge-mined child blockchains at almost no additional cost, enabling attacks without risking financial losses.
-  - Merged mining as an attack vector works both ways as parent cryptocurrencies cannot easily prevent being mergemined by auxiliary block chains.
-  - Merged mining can increase the hash rate of auxiliary blockchains, but it is not conclusively successful as a bootstrapping technique.
-  - Empirical evidence suggests that only a small number of mining pools is involved in merged mining and those enjoy block shares beyond the desired security and decentralization goals.
+### Double Proof
+
+- A miner could cheat the PoW system by putting more than one Auxiliary block header into one Parent block [[7]](https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof). 
+- Multiple Auxiliary blocks can be competing for the same PoW, and could subject your Auxiliary blockchain to nothing-at-stake attacks if the chain is forked, maliciously or by accident, with consequent attempts to reverse transactions. ([[7]](https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof), [[26]](https://github.com/ethereum/wiki/wiki/Problems))
+- More than one Auxiliary blockchain will be merged mined with Monero.
+
+### Analysis of Mining Power Centralization Issues ([[24]](https://eprint.iacr.org/2017/791.pdf), [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
+
+- In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
+- Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
+- In Dogecoin F2Pool was responsible for generating more than 33% of the blocks per day for significant periods, even exceeding the 50% threshold around the end of 2016.
+- Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
+- Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
+- Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
+  ![MergedMiningStats-2](./sources/MergedMiningStats-2.png)
+
+### Introduction of New Attack Vectors ([[24]](https://eprint.iacr.org/2017/791.pdf), [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
+
+- Miners can generate blocks for the merge-mined child blockchains at almost no additional cost, enabling attacks without risking financial losses.
+- Merged mining as an attack vector works both ways as parent cryptocurrencies cannot easily prevent being mergemined by auxiliary blockchains.
+- Merged mining can increase the hash rate of auxiliary blockchains, but it is not conclusively successful as a bootstrapping technique.
+- Empirical evidence suggests that only a small number of mining pools is involved in merged mining and those enjoy block shares beyond the desired security and decentralization goals.
 
 ## References
 
-[1] Merged mining specification, https://en.bitcoin.it/wiki/Merged_mining_specification, Accessed: 2018-05-28.
+[[1]] Merged Mining Specification [online).
+Available: https://en.bitcoin.it/wiki/Merged_mining_specification. Date accessed: 2018-05-28.
 
-[2] How does merged mining work?, https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work, Accessed: 2018-05-28.
+[1]: https://en.bitcoin.it/wiki/Merged_mining_specification
 
-[3] Merged-Mining.mediawiki, https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki, Accessed: 2018-05-28.
+"Merged Mining Specification"
 
-[4] Bchain.info - Blockchain Explorer (NMC), https://bchain.info/NMC, Accessed: 2018-05-28.
+
+[[2]] How does Merged Mining Work? [Online.]
+Available: https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work. Date accessed: 2018-05-28.
+
+[2]: https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work
+"How does Merged Mining Work?"
+
+
+[[3]] Merged-Mining.mediawiki [online],
+Available: https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki. Date accessed: 2018-05-28.
+
+[3]: https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki
+"Merged-Mining.mediawiki"
+
+[[4]] Bchain.info - Blockchain Explorer (NMC) [online].
+
+, https://bchain.info/NMC, Accessed: 2018-05-28.
 
 [5] SlushPool merged mining, https://slushpool.com/help/first-aid/faq-merged-mining, Accessed: 2018-05-28.
 
@@ -218,8 +255,16 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 [23] Myriad: A Coin For Everyone, http://myriadcoin.org, Accessed: 2018-06-01.
 
-[24] Merged Mining: Curse or Cure?,  https://eprint.iacr.org/2017/791.pdf, Judmayer et. al., Data Privacy Management, Cryptocurrencies and block chain Technology: ESORICS 2017 International Workshops, DPM 2017 and CBT 2017, Oslo, Norway, September 14-15, 2017, Proceedings (pp.316-333).
+[24] Merged Mining: Curse or Cure?,  https://eprint.iacr.org/2017/791.pdf, Judmayer et. al., Data Privacy Management, Cryptocurrencies and blockchain Technology: ESORICS 2017 International Workshops, DPM 2017 and CBT 2017, Oslo, Norway, September 14-15, 2017, Proceedings (pp.316-333).
 
 [25] Merged Mining: Analysis of Effects and Implications,  http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652, Zamyatin Alexei, MSc Thesis, Faculty of Informatics at the Technische Universität Wien.
 
 [26] Problems - Consensus - 8. Proof of Stake, https://github.com/ethereum/wiki/wiki/Problems, Accessed: 2018-06-05.
+
+
+
+## Contributors
+
+- [https://github.com/hansieodendaal]
+- [https://github.com/anselld]
+
