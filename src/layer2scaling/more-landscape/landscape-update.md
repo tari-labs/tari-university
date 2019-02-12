@@ -191,7 +191,7 @@ The locking of BTC on the main Bitcoin block chain is done by using a P2SH trans
 #### Weaknesses
 
 - Security: Transferring BTC back into the main Bitcoin block chain is not secure enough and can be manipulated because Bitcoin does not support SPV from 2WP secondary block chains. [[21]]
-- 51% attacks: 2WP secondary block chains are hugely dependent on merged mining. As such, mining power centralization and 51% attacks are a real threat, as demonstrated for Namecoin and Huntercoin (See [Merged Mining Introduction](https://github.com/tari-labs/tari-university/blob/master/merged-mining/merged-mining-scene/MergedMiningIntroduction.md)).
+- 51% attacks: 2WP secondary block chains are hugely dependent on merged mining. As such, mining power centralization and 51% attacks are a real threat, as demonstrated for Namecoin and Huntercoin (See [Merged Mining Introduction](../../merged-mining/merged-mining-scene/MergedMiningIntroduction.md)).
 - The DMMS provided by mining is not very secure for small systems, while the trust of the federation/notaries is riskier for large systems. [[28]]
 
 #### Opportunities
