@@ -517,11 +517,16 @@ Available:  https://blockstream.com/technology.Date accessed: 2018-07-19.
 [27]:  https://blockstream.com/technology
 "Blockstream Website [online]"
 
-[[28]] A. Back et al., 2014-10-22, "Enabling Blockchain Innovations with Pegged Sidechains" [online].
-Available: https://blockstream.com/technology/sidechains.pdf. Date accessed: 2018-07-19.
+[[28]] Adam Back, Matt Corallo, Luke Dashjr, Mark Friedenbach, Gregory Maxwell, Andrew Miller, Andrew Poelstra,
+Jorge Timón, and Pieter Wuille, 2014-10-22. "Enabling Blockchain Innovations with Pegged Sidechains" [online].
 
-[28]: https://blockstream.com/technology/sidechains.pdf
+Available: https://blockstream.com/sidechains.pdf. Date accessed: 2018-07-19.
+
+[28]: https://blockstream.com/sidechains.pdf
+
 "Enabling Blockchain Innovations with Pegged Sidechains"
+
+
 
 [[29]] Johnny Dilley,  Andrew Poelstra, Jonathan Wilkins, Marta Piekarska, Ben Gorlick, and Mark Friedenbachet, "Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks" [online].
 Available: https://blockstream.com/strong-federations.pdf. Date accessed: 2018-07-19.
@@ -688,15 +693,37 @@ Available: https://counterparty.io/docs/faq. Date accessed: 2018-09-14.
 [56]: https://counterparty.io/docs/faq
 "Counterparty Documentation: Frequently Asked Questions"
 
-[[57]] "Counterparty Documentation: Protocol Specification" [online]. Available: https://counterparty.io/docs/protocol_specification. Date accessed: 2018-09-14.
+[[57]] "Counterparty Documentation: Protocol Specification" [online].
+
+Available: https://counterparty.io/docs/protocol_specification. Date accessed: 2018-09-14.
 
 [57]: https://counterparty.io/docs/protocol_specification
 "Counterparty Documentation: Protocol Specification"
 
-[[58]] "Counterparty News: Why Proof-of-Burn, March 23, 2014" [online]. Available: https://counterparty.io/news/why-proof-of-burn. Date accessed: 2018-09-14.
+[[58]] "Counterparty News: Why Proof-of-Burn, March 23, 2014" [online].
+
+Available: https://counterparty.io/news/why-proof-of-burn. Date accessed: 2018-09-14.
 
 [58]: https://counterparty.io/news/why-proof-of-burn
 "Counterparty News: Why Proof-of-Burn"
+
+[[59]] "????????" [online].
+
+Available: https://web.archive.org/web/20170810043640. Date accessed: 2018-09-14.
+
+[59]: https://web.archive.org/web/20170810043640
+
+"????????"
+
+[[60]] "??????????" [online].
+
+Available: https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf. Date accessed: 2018-09-14.
+
+[60]: https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf
+
+"??????????"
+
+
 
 
 ## Contributors
