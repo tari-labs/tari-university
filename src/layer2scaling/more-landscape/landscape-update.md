@@ -17,7 +17,7 @@
   - [Weaknesses](#weaknesses-1)
   - [Opportunities](#opportunities-1)
 
-- [2-Way Pegged Secondary Block Chains - Sidechains, Drivechains, Federated Pegs](#2-way-pegged-secondary-block-chains-sidechains-drivechains-federated-pegs)
+- [2-Way Pegged Secondary Blockchains - Sidechains, Drivechains, Federated Pegs](#2-way-pegged-secondary-block-chains-sidechains-drivechains-federated-pegs)
   - [What are they?](#what-are-they)
   - [Who does them?](#who-does-them)
   - [Strengths](#strengths-2)
@@ -38,7 +38,7 @@
   - [Weaknesses](#weaknesses-4)
   - [Opportunities](#opportunities-4)
 
-- [Directed Acyclic Graph (DAG) Derivative Protocols: Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE](#directed-acyclic-graph-dag-derivative-protocols-greedy-heaviest-observed-sub-tree-ghost-braiding-jute-spectre)
+- [Directed Acyclic Graph (DAG) Derivative Protocols - Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE](#directed-acyclic-graph-dag-derivative-protocols-greedy-heaviest-observed-sub-tree-ghost-braiding-jute-spectre)
   - [What is it?](#what-is-it-4)
   - [Who does it?](#who-does-it-3)
   - [Strengths](#strengths-5)
@@ -53,7 +53,7 @@
 
 ## Introduction
 
-This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondary Block Chains, Lumino, Scriptless scripts and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling alternatives, building on [Layer 2 Scaling Survey (part 1)](../layer2scaling-landscape/layer2scaling-survey.md).
+This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondary Blockchains, Lumino, Scriptless Scripts, and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling alternatives, building on [Layer 2 Scaling Survey (Part 1)](../layer2scaling-landscape/layer2scaling-survey.md).
 
 ## Layer 2 Scaling Current Initiatives (Updated)
 
@@ -61,21 +61,33 @@ This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondar
 
 #### What is it?
 
-The TumbleBit protocol was invented at the Boston University. It is a unidirectional, unlinkable payment hub that is fully compatible with the Bitcoin protocol. TumbleBit allows parties to make fast, anonymous, off-chain payments through an untrusted intermediary called the Tumbler. No-one, not even the Tumbler, can tell which payer paid which payee during a TumbleBit epoch (*i.e. time period of significance*). Two modes of operation are supported; a classic mixing/tumbling/washing mode or as a fully fledged payment hub. TumbleBit consists of two interleaved fair-exchange protocols - *RSA-Puzzle-Solver Protocol* and *Puzzle-Promise Protocol* - that relies on the  Rivest–Shamir–Adleman (RSA) cryptosystem's blinding properties to prevent bad acting from either users or Tumblers and to ensure anonymity. TumbleBit also supports anonymizing through Tor to ensure that the Tumbler server can operate as a hidden service. ([[1]], [[2]], [[8]], [[9]], [[10]])
+The TumbleBit protocol was invented at the Boston University. It is a unidirectional, unlinkable payment hub that is fully compatible with the Bitcoin protocol. TumbleBit allows parties to make fast, anonymous, off-chain payments through an untrusted intermediary called the Tumbler. No-one, not even the Tumbler, can tell which payer paid which payee during a TumbleBit epoch, i.e. time period of significance.
 
-<p align="center"><img src="./sources/TumbleBitOverview.PNG" width="500" /></p>
+Two modes of operation are supported:
 
-TumbleBit combines off-chain cryptographic computations with standard on-chain Bitcoin scripting functionalities to realize smart contracts [[11]] that is not dependent on Segwit. The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking. [[2]]
+- a classic mixing/tumbling/washing mode; and
+- a fully-fledged payment hub mode.
+
+TumbleBit consists of two interleaved fair-exchange protocols that rely on the  Rivest–Shamir–Adleman (RSA) cryptosystem's blinding properties to prevent bad acting from either users or Tumblers, and to ensure anonymity:
+
+- RSA-Puzzle-Solver Protocol; and
+- Puzzle-Promise Protocol.
+
+TumbleBit also supports anonymizing through Tor to ensure that the Tumbler server can operate as a hidden service. ([[1]], [[2]], [[8]], [[9]], [[10]])
+
+<p align="center"><img src="./sources/TumbleBitOverview.PNG" width="600" /></p>
+
+TumbleBit combines off-chain cryptographic computations with standard on-chain Bitcoin scripting functionalities to realize smart contracts [[11]] that are not dependent on Segwit. The most important Bitcoin functionality used here includes hashing conditions, signing conditions, conditional execution, 2-of-2 multi-signatures, and timelocking. [[2]]
 
 #### Who does it?
 
-The Boston University provided a proof-of-concept and reference implementation alongside the white paper [[4]]. NTumbleBit [[5]] is being developed as a C# production implementation of the TumbleBit protocol that is currently being deployed by Stratis with their Breeze implementation [[6]], currently at alpha/experimental release level in testnet.
+The Boston University provided a proof-of-concept and reference implementation alongside the white paper [[4]]. NTumbleBit [[5]] is being developed as a C# production implementation of the TumbleBit protocol that at the time of writing (February 2019) was being deployed by Stratis with its Breeze implementation [[6]], at alpha/experimental release level in testnet.
 
-*"NTumbleBit will be a cross-platform framework, server and client for the TumbleBit payment scheme. TumbleBit is separated into two modes, tumbler mode and payment hub mode. The tumbler mode improves transaction fungibility and offers risk free unlinkable transactions. Payment hub mode is a way of making off-chain payments possible without requiring implementations like Segwit or the Lightning Network."* [[3]]
+*"NTumbleBit will be a cross-platform framework, server and client for the TumbleBit payment scheme. TumbleBit is separated into two modes, tumbler mode and payment hub mode. The tumbler mode improves transaction fungibility and offers risk free unlinkable transactions. Payment hub mode is a way of making off-chain payments possible without requiring implementations like Segwit or the lightning network."* [[3]]
 
 #### Strengths
 
-- Anonymity properties. TumbleBit provides unlinkability without the need to trust the Tumbler service (i.e. untrusted intermediary). [[2]]
+- Anonymity properties. TumbleBit provides unlinkability without the need to trust the Tumbler service, i.e. untrusted intermediary. [[2]]
 - Denial of Service (DoS) and Sybil protection. "TumbleBit uses transaction fees to resist DoS and Sybil attacks." [[2]]
 
 - Balance. "The system should not be exploited to print new money or steal money, even when parties collude." [[2]]
@@ -84,41 +96,41 @@ The Boston University provided a proof-of-concept and reference implementation a
 
 - Bitcoin compatibility. TumbleBit is fully compatible with the Bitcoin protocol. [[2]]
 
-- Scale ability. Each TumbleBit user only need to interact with the Tumbler and the corresponding transaction party; this lack of coordination between all TumbleBit users makes scale ability possible for the tumbler mode. [[2]]
+- Scalability. Each TumbleBit user only needs to interact with the Tumbler and the corresponding transaction party; this lack of coordination between all TumbleBit users makes scalability possible for the tumbler mode. [[2]]
 
 - Batch processing. TumbleBit  supports one-to-one, many-to-one, one-to-many and many-to-many transactions in payment hub mode. [[2]]
 
-- Masternode compatibility. The TumbleBit protocol can be fully implemented as a service in a Masternode. "The Breeze Wallet is now fully capable of providing enhanced privacy to bitcoin transactions through a secure connection. Utilizing Breeze Servers that are pre registered on the network using a secure, trustless registration mechanism that is resistant to manipulation and censorship." ([[6]], [[7]], [[12]])
+- Masternode compatibility. The TumbleBit protocol can be fully implemented as a service in a Masternode. "The Breeze Wallet is now fully capable of providing enhanced privacy to bitcoin transactions through a secure connection. Utilizing Breeze Servers that are preregistered on the network using a secure, trustless registration mechanism that is resistant to manipulation and censorship." ([[6]], [[7]], [[12]])
 
 - Nearly production ready. The NTumbleBit and Breeze implementations have gained testnet status.
 
 #### Weaknesses
 
-- Privacy not 100% proven. Payees have better privacy than the payers, and theoretically collusion involving payees and the Tumbler can exist to discover the identity of the payer. [[13]]
-- Tumbler service not distributed. More work needs to be done to ensure persistent transaction state in case a Tumbler server goes down.
-- Equal denominations required. The TumbleBit protocol can only support a common denominator unit value. [[2]]
+- Privacy is not 100% proven. Payees have better privacy than the payers, and theoretically collusion involving payees and the Tumbler can exist to discover the identity of the payer. [[13]]
+- The Tumbler service is not distributed. More work needs to be done to ensure a persistent transaction state in case a Tumbler server goes down.
+- Equal denominations are required. The TumbleBit protocol can only support a common denominator unit value. [[2]]
 
 #### Opportunities
 
-Has benefits to Tari as a trustless Masternode matching/batch processing engine with strong privacy features.
+TumbleBit has benefits for Tari as a trustless Masternode matching/batch processing engine with strong privacy features.
 
 ### Counterparty
 
 #### What is it?
 
-Counterparty is NOT a block chain. Counterparty is a token protocol released in January 2014 that operates on Bitcoin. It has a fully functional Decentralized Exchange (DEX), as well as several hardcoded smart contracts defined that include contracts for difference and binary options ("bets"). To operate, Counterparty utilizes "embedded consensus", which means that a Counterparty transaction is created and embedded into a Bitcoin transaction, using encoding such as 1-of-3 multi-signature (multisig), Pay to Script Hash (P2SH) or Pay To Public Key Hash (P2PKH). Counterparty nodes, i.e. nodes that run both `bitcoind` and the `counterparty-server` applications, will receive Bitcoin transactions as normal (from `bitcoind`), and then `counterparty-server` will scan each, and decode and parse any embedded Counterparty transactions it finds. In effect, Counterparty is a ledger within the larger Bitcoin ledger, and the functioning of embedded consensus can be thought of similar to the fitting of one Russian stacking doll inside another.  ([[30]], [[31]], [[32]])
+Counterparty is NOT a blockchain. Counterparty is a token protocol released in January 2014 that operates on Bitcoin. It has a fully functional Decentralized Exchange (DEX), as well as several hardcoded smart contracts defined that include contracts for difference and binary options ("bets"). To operate, Counterparty utilizes "embedded consensus," which means that a Counterparty transaction is created and embedded into a Bitcoin transaction, using encoding such as 1-of-3 multi-signature (multisig), Pay to Script Hash (P2SH) or Pay To Public Key Hash (P2PKH). Counterparty nodes, i.e. nodes that run both `bitcoind` and the `counterparty-server` applications, will receive Bitcoin transactions as normal (from `bitcoind`), and then `counterparty-server` will scan each, and decode and parse any embedded Counterparty transactions it finds. In effect, Counterparty is a ledger within the larger Bitcoin ledger, and the functioning of embedded consensus can be thought of as similar to the fitting of one Russian stacking doll inside another. ([[30]], [[31]], [[32]])
 
-Embedded consensus also means that the nodes maintain identical ledgers without using a separate peer-to-peer network, solely using the Bitcoin block chain for all communication (i.e. timestamping, transaction ordering and transaction propagation). Unlike Bitcoin, which has the concept of both a soft fork and a hard fork, a change to the protocol or "consensus" code of Counterparty always has the potential to create a hard fork. In practice, this means that each Counterparty node must run the same version of `counterparty-server` (or at least the same minor version, e.g. the "3" in 2.3.0) so that the protocol code matches up across all nodes. ([[56]], [[57]])
+Embedded consensus also means that the nodes maintain identical ledgers without using a separate peer-to-peer network, solely using the Bitcoin blockchain for all communication (i.e. timestamping, transaction ordering, and transaction propagation). Unlike Bitcoin, which has the concept of both a soft fork and a hard fork, a change to the protocol or "consensus" code of Counterparty always has the potential to create a hard fork. In practice, this means that each Counterparty node must run the same version of `counterparty-server` (or at least the same minor version, e.g. the "3" in 2.3.0) so that the protocol code matches up across all nodes. ([[56]], [[57]])
 
-Unlike Bitcoin's UTXO model, the Counterparty token protocol utilizes an accounts system where each Bitcoin address is an account, and Counterparty credit and debit transactions for a specific token type affect account balances of that token for that given address. The decentralized exchange allows for low-friction exchanging of different tokens between addresses, utilizing the concept of "orders", which are individual transactions made by Counterparty clients, and "order matches", which the Counterparty protocol itself will generate as it parses new orders which overlap existing active orders in the system. It is the Counterparty protocol code itself which manages the escrow of tokens when an order is created, the exchange of tokens between two addresses that have overlapping orders, and the release of those assets from escrow post-exchange.
+Unlike Bitcoin's UTXO model, the Counterparty token protocol utilizes an accounts system where each Bitcoin address is an account, and Counterparty credit and debit transactions for a specific token type affect account balances of that token for that given address. The decentralized exchange allows for low-friction exchanging of different tokens between addresses, utilizing the concept of "orders," which are individual transactions made by Counterparty clients, and "order matches," which the Counterparty protocol itself will generate as it parses new orders that overlap existing active orders in the system. It is the Counterparty protocol code itself that manages the escrow of tokens when an order is created, the exchange of tokens between two addresses that have overlapping orders, and the release of those assets from escrow post-exchange.
 
-Counterparty uses its own token, XCP, which was created through a "proof of burn"  process during January 2014 [[58]]. In that month, over 2,000 bitcoins were destroyed by various individuals sending them to an unspendable address on the Bitcoin network (`1CounterpartyXXXXXXXXXXXXXXXUWLpVr`), which caused the Counterparty protocol to award the sending address with a corresponding amount of XCP. XCP is used for payment of asset creation fees, collateral for contracts for difference/binary options, and often used as a base token in decentralized exchange transactions (largely due to the complexities of using BTC in such trades).
+Counterparty uses its own token, XCP, which was created through a "proof of burn" process during January 2014 [[58]]. In that month, over 2,000 bitcoins were destroyed by various individuals sending them to an unspendable address on the Bitcoin network (`1CounterpartyXXXXXXXXXXXXXXXUWLpVr`), which caused the Counterparty protocol to award the sending address with a corresponding amount of XCP. XCP is used for payment of asset creation fees, collateral for contracts for difference/binary options, and often as a base token in decentralized exchange transactions (largely due to the complexities of using Bitcoin (BTC) in such trades).
 
-<p align="center"><img src="./sources/CounterpartyStack.png" width="400" /></p>
+<p align="center"><img src="./sources/CounterpartyStack.png" width="500" /></p>
 
 Support for the Ethereum Virtual Machine (EVM) was implemented, but never included on the mainnet version [[30]]. With the Counterparty EVM implementation, all published Counterparty smart contracts “live” at Bitcoin addresses that start with a `C`. Counterparty is used to broadcast an `execute` transaction to call a specific function or method in the smart contract code. Once an execution transaction is confirmed by a Bitcoin miner, the Counterparty federated nodes will receive the request and execute that method. The contract state is modified as the smart contract code executes and stored in the Counterparty database. [[56]]
 
-General consensus has it that a *federated network* is a *distributed network of centralized networks*. The Ripple blockchain implements a Federated Byzantine Agreement (FBA) consensus mechanism. Federated sidechains implements a security protocol using a trusted federation of mutually distrusting functionaries/notaries. Counterparty utilizes a "full stack" packaging system for its components and all dependencies called the "federated node" system,  but this meaning refers to federated in the general definition (i.e. "set up as a single centralized unit within which each state or division keeps some internal autonomy"). ([[54]], [[55]], [[28]])
+General consensus is that a *federated network* is a *distributed network of centralized networks*. The Ripple blockchain implements a Federated Byzantine Agreement (FBA) consensus mechanism. Federated sidechains implements a security protocol using a trusted federation of mutually distrusting functionaries/notaries. Counterparty utilizes a "full stack" packaging system for its components and all dependencies, called the "federated node" system. However,  this meaning refers to federated in the general definition, i.e. "set up as a single centralized unit within which each state or division keeps some internal autonomy." ([[54]], [[55]], [[28]])
 
 #### Who uses it?
 
@@ -127,181 +139,179 @@ The most notable projects built on top of Counterparty are [Age of Chains](https
 [IndieBoard](https://indiesquare.me/), [LTBCoin - Letstalkbitcoin.com](https://letstalkbitcoin.com/), [Mafia Wars](https://mafiawars.io/), [NVO](https://nvo.io/), [Proof of Visit](https://proofofvisit.com/), [Rarepepe.party](http://rarepepe.party), [SaruTobi Island](http://mandelduck.com/sarutobiisland/), 
 [Spells of Genesis](http://www.spellsofgenesis.com), [Takara](https://mandelduck.com/#portfolio), [The Scarab Experiment](https://www.thescarabexperiment.org/), [Token.FM](https://token.fm/), [Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM). [[32]]
 
-In the past, projects like [Storj](https://storj.io/) and [SWARM](https://counterparty.io/news/swarm-crowdfunding/) also built on Counterparty. 
+In the past, projects such as [Storj](https://storj.io/) and [SWARM](https://counterparty.io/news/swarm-crowdfunding/) also built on Counterparty. 
 
-COVAL is being developed with a primary purpose of moving value using “off-chain” methods. They use their own set of node runners to manage various "off-chain" distributed ledgers and ledger assigned wallets to implement an extended transaction value system, whereby tokens as well as containers of tokens can be securely transacted. Scaling within the COVAL eco system is thus achievable because they are not only reliant on the Counterparty federated nodes to execute smart contracts. [[33]]
+COVAL is being developed with the primary purpose of moving value using “off-chain” methods. It uses its own set of node runners to manage various "off-chain" distributed ledgers and ledger assigned wallets to implement an extended transaction value system, whereby tokens as well as containers of tokens can be securely transacted. Scaling within the COVAL ecosystem is thus achievable, because it is not only reliant on the Counterparty federated nodes to execute smart contracts. [[33]]
 
 #### Strengths
 
-- Counterparty provides a simple way to add "layer 2" functionality (i.e. hard coded smart contracts) to an already existing blockchain implementation that supports basic data embedding
-- Counterparty's embedded consensus model utilizes "permissionless innovation", meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
+- Counterparty provides a simple way to add "layer 2" functionality, i.e. hard-coded smart contracts, to an already existing blockchain implementation that supports basic data embedding.
+- Counterparty's embedded consensus model utilizes "permissionless innovation," meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
 
 #### Weaknesses
 
 - Embedded consensus requires lockstep upgrades from network nodes to avoid forks.
-- Embedded consensus imposes limitations on the ability of the secondary layer to interact with the primary layer's token. Counterparty was not able to manipulate BTC balances or otherwise utilize BTC directly.
-- With embedded consensus, nodes maintain identical ledgers without using a peer-to-peer network. One could make the claim that this hampers the flexibility of the protocol, and it limits the speed of the protocol to the speed of the underlying blockchain.
+- Embedded consensus imposes limitations on the ability of the secondary layer to interact with the primary layer's token. Counterparty was not able to manipulate BTC balances or otherwise directly utilize BTC.
+- With embedded consensus, nodes maintain identical ledgers without using a peer-to-peer network. One could claim that this hampers the flexibility of the protocol. It also limits the speed of the protocol to the speed of the underlying blockchain.
 
 #### Opportunities
 
-- Nodes can implement improved consensus models like Federated Byzantine Agreement. [[55]]
-- See '*Scriptless scripts*'
+- Nodes can implement improved consensus models such as Federated Byzantine Agreement. [[55]]
+- Refer to [Scriptless Scripts](#scriptless-scripts).
 
-### 2-way Pegged Secondary Block Chains - *Sidechains, Drivechains, Federated Pegs*)
+### 2-way Pegged Secondary Blockchains - Sidechains, Drivechains, Federated Pegs)
 
 #### What are they?
 
-A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin block chain to a secondary block chain and vice-versa at a fixed rate by making use of an appropriate security protocol. The "transfer" actually involves BTC to be locked on the main Bitcoin block chain and unlocked/made available on the secondary block chain. The 2WP promise is concluded when an equivalent amount of tokens on the secondary block chain are locked (in the secondary block chain) so that the original bitcoins can be unlocked. ([[22]], [[28]])
+A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin blockchain to a secondary blockchain and vice versa at a fixed rate by making use of an appropriate security protocol. The "transfer" actually involves BTC being locked on the main Bitcoin blockchain and unlocked/made available on the secondary blockchain. The 2WP promise is concluded when an equivalent number of tokens on the secondary blockchain are locked (in the secondary blockchain) so that the original bitcoins can be unlocked. ([[22]], [[28]])
+- Sidechain: When the security protocol is implemented using Simplified Payment Verification (SPV) proofs - blockchain transaction verification without downloading the entire blockchain - the secondary blockchain is referred to as a Sidechain. [[22]]
+- Drivechain: When the security protocol is implemented by giving custody of the BTC to miners - where miners vote when to unlock BTC and where to send them - the secondary blockchain is referred to as a Drivechain. In this scheme, the miners will sign the block header using a Dynamic Membership Multiparty Signature (DMMS). ([[22]], [[28]]
+- Federated Peg/Sidechain: When the security protocol is implemented by having a trusted federation of mutually distrusting functionaries/notaries, the secondary blockchain is referred to as a Federated Peg/Sidechain. In this scheme, the DMMS is replaced with a traditional multi-signature scheme. ([[22]], [[28]])
+- Hybrid Sidechain-Drivechain-Federated Peg: When the security protocol is implemented by SPV proofs going to the secondary blockchain and dynamic mixture of miner DMMS and functionaries/notaries multi-signatures going back to the main Bitcoin blockchain, the secondary blockchain is referred to as a Hybrid Sidechain-Drivechain-Federated Peg. ([[22]], [[28]], [[29]]
 
-*Sidechain: When the security protocol is implemented using Simplified Payment Verification (SPV) proofs - block chain transaction verification without downloading the entire block chain - the secondary block chain are referred to as a Sidechain.* [[22]]
+The following figure shows an example of a 2WP Bitcoin secondary blockchain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol [[22]]: 
 
-*Drivechain: When the security protocol is implemented by giving custody of the BTC to miners - where miners vote when to unlock BTC and where to send them - the secondary block chain are referred to as a Drivechain. In this scheme the miners will sign the block header using a Dynamic Membership Multi-party Signature (DMMS).* ([[22]], [[28]]
-
-*Federated Peg/Sidechain: When the security protocol is implemented by having a trusted federation of mutually distrusting functionaries/notaries - the secondary block chain are referred to as a Federated Peg/Sidechain. In this scheme the DMMS is replaced with a traditional multi-signature scheme.* ([[22]], [[28]])
-
-*Hybrid Sidechain-Drivechain-Federated Peg: When the security protocol is implemented by SPV proofs going to the secondary block chain and dynamic mixture of miner DMMS and functionaries/notaries multi-signatures going back to the main Bitcoin block chain  - the secondary block chain are referred to as a Hybrid Sidechain-Drivechain-Federated Peg.* ([[22]], [[28]], [[29]]
-
-Example of a 2WP Bitcoin secondary block chain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol below [[22]]: 
-
-<p align="center"><img src="./sources/RSK_HybridSideDriveChain.png" width="450" /></p>
+<p align="center"><img src="./sources/RSK_HybridSideDriveChain.png" width="550" /></p>
 
 
-The locking of BTC on the main Bitcoin block chain is done by using a P2SH transaction where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data which makes the script evaluate to true. [[23]]
+BTC on the main Bitcoin blockchain are locked by using a P2SH transaction, where BTC can be sent to a script hash instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching the script hash and data, which makes the script evaluate to true. [[23]]
 
 #### Who does them?
 
-- RSK (formerly Rootstock) is a 2WP Bitcoin secondary block chain using a hybrid sidechain-drivechain security protocol. RSK is scale-able up to 100 transactions per second (Tx/s) and provides a second layer scaling solution for Bitcoin as it can relieve on-chain Bitcoin transactions. ([[14]],  [[15]], [[16]])
+- RSK (formerly Rootstock) is a 2WP Bitcoin secondary blockchain using a hybrid sidechain-drivechain security protocol. RSK is scalable up to 100&nbsp;transactions per second (Tx/s) and provides a second-layer scaling solution for Bitcoin, as it can relieve on-chain Bitcoin transactions. ([[14]],  [[15]], [[16]])
 
-- Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol which absorbs accurate data into a block chain so that Bitcoin users can speculate in Prediction Markets. [[24]]
+- Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol that absorbs accurate data into a blockchain so that Bitcoin users can speculate in Prediction Markets. [[24]]
 
 - Blockstream is implementing a Federated Sidechain called Liquid, with the functionaries/notaries being made up of participating exchanges and Bitcoin businesses. [[29]]
 
-
-<p align="center"><img src="./sources/Blockstream-Federated-Sidechain.PNG" width="700" /></p>
+<p align="center"><img src="./sources/Blockstream-Federated-Sidechain.PNG" width="800" /></p>
 
 
 #### Strengths
 
-- Permissionless Innovation: Anyone can create a new block chain project that uses the underlying strengths of the main Bitcoin block chain using real BTC as the currency [[20]]
-- New Features: Sidechains/Drivecahains can be used to test or implement new features without risk to the main Bitcoin block chain or without having to change its protocol, like Schnorr signatures and zero-knowledge proofs. ([[20]], [[25]])
-- Chains-as-a-Service (CaaS) : It is possible to create a CaaS with data storage 2WP secondary block chains. [[25]]
-- Smart Contracts: 2WP secondary block chains make it easier to implement smart contracts. [[25]]
-- Scalability: 2WP secondary block chains can support larger block sizes and more transactions per second, thus scaling the Bitcoin main block chain. [[25]]
+- Permissionless innovation: Anyone can create a new blockchain project that uses the underlying strengths of the main Bitcoin blockchain using real BTC as the currency. [[20]]
+- New features: Sidechains/Drivechains can be used to test or implement new features without risk to the main Bitcoin blockchain or without having to change its protocol, such as Schnorr signatures and zero-knowledge proofs. ([[20]], [[25]])
+- Chains-as-a-Service (CaaS) : It is possible to create a CaaS with data storage 2WP secondary blockchains. [[25]]
+- Smart Contracts: 2WP secondary blockchains make it easier to implement smart contracts. [[25]]
+- Scalability: 2WP secondary blockchains can support larger block sizes and more transactions per second, thus scaling the Bitcoin main blockchain. [[25]]
 
 #### Weaknesses
 
-- Security: Transferring BTC back into the main Bitcoin block chain is not secure enough and can be manipulated because Bitcoin does not support SPV from 2WP secondary block chains. [[21]]
-- 51% attacks: 2WP secondary block chains are hugely dependent on merged mining. As such, mining power centralization and 51% attacks are a real threat, as demonstrated for Namecoin and Huntercoin (See [Merged Mining Introduction](../../merged-mining/merged-mining-scene/MergedMiningIntroduction.md)).
+- Security: Transferring BTC back into the main Bitcoin blockchain is not secure enough and can be manipulated because Bitcoin does not support SPV from 2WP secondary blockchains. [[21]]
+- 51% attacks: 2WP secondary blockchains are hugely dependent on merged mining. Mining power centralization and 51% attacks are thus a real threat, as demonstrated for Namecoin and Huntercoin (refer to [Merged Mining Introduction](../../merged-mining/merged-mining-scene/MergedMiningIntroduction.md)).
 - The DMMS provided by mining is not very secure for small systems, while the trust of the federation/notaries is riskier for large systems. [[28]]
 
 #### Opportunities
 
-None, if enough functionality will be built into the main Tari block chain.
+There will be no opportunities if enough functionality is built into the main Tari blockchain.
 
 ### Lumino
 
 #### What is it?
 
-Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows processing a higher volume of transactions but storing much less information. The Lumino network is a lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner are done by using aggregate signing of previous transactions so previous signatures can be disposed. [[17]]
+Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows the processing of a higher volume of transactions, but the storing of much less information. The Lumino network is a lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner is done by using aggregate signing of previous transactions so that previous signatures can be disposed of. [[17]]
 
-Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees - one containing all PTIs and the other all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the block chain if valid linked PTI information exist. [[17]]
+Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees: one containing all PTIs; and the other containing all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the blockchain if valid linked PTI information exists. [[17]]
 
-<p align="center"><img src="./sources/LuminoDataPruning.PNG" width="550" /></p>
+<p align="center"><img src="./sources/LuminoDataPruning.PNG" width="650" /></p>
 
 #### Who does it?
 
-RSK, which has been newly launched on main net in January 2018. The Lumino Network must still be launched in test net. ([[18]], [[19]])
+RSK, which was newly launched on main net in January 2018. The Lumino Network must still be launched in test net. ([[18]], [[19]])
 
 #### Strengths
 
-- The Lumino Network promises high efficiency in pruning the RSK block chain
+The Lumino Network promises high efficiency in pruning the RSK blockchain.
 
 #### Weaknesses
 
-- The Lumino Network has not been released yet
-- Details about how the Lumino Network will handle payment channels were not decisive in the white paper [[17]]
+- The Lumino Network has not yet been released. 
+- Details about how the Lumino Network will handle payment channels were not decisive in the white paper. [[17]]
 
 #### Opportunities
 
-LTCP pruning may be beneficial to Tari
+LTCP pruning may be beneficial to Tari.
 
 ### Scriptless Scripts
 
 #### What is it?
 
-*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra whereby scripting functionality is offered without actual scripts on the block chain to implement smart contracts. Currently it can only work on the Mimblewimble block chain and makes use of a specific Schnorr signature scheme [[38]] that allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the *plain public-key model* where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks. ([[35]], [[36]])
+*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra. It entails offering scripting functionality without actual scripts on the blockchain to implement smart contracts. At the time of writing (February 2019) it can only work on the Mimblewimble blockchain and makes use of a specific Schnorr signature scheme [[38]] that allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the *plain public-key model*, where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks. ([[35]], [[36]])
 
 Signature aggregation properties sought here are ([[35]], [[36]]):
 
-- Must be provably secure in the *plain public-key model*;
-- Must satisfy the normal Schnorr equation, whereby the resulting signature can be written as a function of a combination of the public keys; 
-- Must allow for Interactive Aggregate Signatures (IAS) where the signers are required to cooperate;
-- Must allow for Non-interactive Aggregate Signatures (NAS) where the aggregation can be done by anyone;
-- Must allow each signer to sign the same message;
-- Must allow each signer to sign their own message.
+- must be provably secure in the *plain public-key model*;
+- must satisfy the normal Schnorr equation, whereby the resulting signature can be written as a function of a combination of the public keys; 
+- must allow for Interactive Aggregate Signatures (IAS), where the signers are required to cooperate;
+- must allow for Non-interactive Aggregate Signatures (NAS), where the aggregation can be done by anyone;
+- must allow each signer to sign the same message;
+- must allow each signer to sign their own message.
 
 This is different to a normal multi-signature scheme where one message is signed by all.
 
-Let's say Alice and Bob each needs to provide half a Schnorr signature for a transaction whereby Alice promises to reveal a secret to Bob in exchange for 1 crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as Zero-Knowledge Contingent payments. ([[34]], [[37]])
+Let's say Alice and Bob each needs to provide half a Schnorr signature for a transaction, whereby Alice promises to reveal a secret to Bob in exchange for one crypto coin. Alice can calculate the difference between her half Schnorr signature and the Schnorr signature of the secret (adaptor signature) and hand it over to Bob. Bob then has the ability to verify the correctness of the adaptor signature without knowing the original signatures. Bob can then provide his half Schnorr signature to Alice so she can broadcast the full Schnorr signature to claim the crypto coin. By broadcasting the full Schnorr signature, Bob has access to Alice's half Schnorr signature and he can then calculate the Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also known as Zero-Knowledge Contingent payments. ([[34]], [[37]])
 
 #### Who does it?
 
 [grin-tech.org](https://grin-tech.org/)
 
-Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*. [[37]])
+Mimblewimble is being cited by Andrew Poelstra as being the ultimate *Scriptless Script*. [[37]]
 
 <p align="center"><img src="./sources/Mimblewimble.PNG" width="500" /></p>
 
 #### Strengths
 
-- <u>Data savings:</u> Signature aggregation provides data compression on the block chain
-- <u>Privacy:</u> Nothing about the *Scriptless Script* smart contract, other than the settlement transaction,  is ever recorded on the block chain. No one will ever know that an underlying smart contract was executed.
-- <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement transaction.
-- <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction. Transactions are only broadcasted to the block chain once all preconditions are met.
+- Data savings: Signature aggregation provides data compression on the blockchain.
+- Privacy: Nothing about the Scriptless Script smart contract, other than the settlement transaction, is ever recorded on the blockchain. No one will ever know that an underlying smart contract was executed.
+- Multiplicity: Multiple digital assets can be transferred between two parties in a single settlement transaction.
+- Implicit scalability: Scalability on the blockchain is achieved by virtue of compressing multiple transactions into a single settlement transaction. Transactions are only broadcast to the blockchain once all preconditions are met.
 
 #### Weaknesses
 
-In a recent work Maxwell et al. ([[35]], [[36]]) showed that a naive implementation of Schnorr multi-signatures that satisfies key aggregation is not secure, and that the Bellare and Neven (BN) Schnorr signature scheme loses the key aggregation property in order to gain security in the plain public-key model. They proposed a new Schnorr-based multi-signature scheme with key aggregation called MuSig, which is provably secure in the *plain public-key model*. It has the same key and signature size as standard Schnorr signatures. The joint signature can be verified exactly the same as a standard Schnorr signature with respect to a single “aggregated” public-key, which can be computed from the individual public keys of the signers. Note that the case of interactive signature aggregation where each signer signs their own message must still be proven by a complete security analysis.
+Recent work by Maxwell et al. ([[35]], [[36]]) showed that a naive implementation of Schnorr multi-signatures that satisfies key aggregation is not secure, and that the Bellare and Neven (BN) Schnorr signature scheme loses the key aggregation property in order to gain security in the plain public-key model. They proposed a new Schnorr-based multi-signature scheme with key aggregation called MuSig, which is provably secure in the *plain public-key model*. It has the same key and signature size as standard Schnorr signatures. The joint signature can be verified in exactly the same way as a standard Schnorr signature with respect to a single “aggregated” public-key, which can be computed from the individual public keys of the signers. Note that the case of interactive signature aggregation where each signer signs their own message must still be proven by a complete security analysis.
 
 #### Opportunities
 
-Tari plans to implement the Mimblewimble block chain and should implement the *Scriptless Script*s together with the MuSig Schnorr signature scheme. 
+Tari plans to implement the Mimblewimble blockchain and should implement the *Scriptless Script*s together with the MuSig Schnorr signature scheme. 
 
-However, this in itself will not provide the Layer 2 scaling performance that will be required. Big Neon, the initial business application to be built on top of the Tari block chain, requires to "facilitate 500 tickets in 4 minutes", that is ~2 spectators allowed access every second, with negligible latency. 
+However, this in itself will not provide the Layer 2 scaling performance that will be required. Big Neon, the initial business application to be built on top of the Tari blockchain, requires to "facilitate 500 tickets in 4 minutes", i.e. approximately two spectators allowed access every second, with negligible latency. 
 
-The Mimblewimble *Scriptless Script*s could be combined with a federated node (or specialized masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final consolidated state update being written back to the block chain after the event.
+The Mimblewimble *Scriptless Script*s could be combined with a federated node (or specialized masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final consolidated state update being written back to the blockchain after the event.
 
-### Directed Acyclic Graph (DAG) Derivative Protocols: Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE
+### Directed Acyclic Graph (DAG) Derivative Protocols - Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE
 
 #### What is it?
 
-In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. A directed graph is acyclic if and only if it has a topological ordering, that is for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering (age). [[42]] 
+In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. A directed graph is acyclic if and only if it has a topological ordering, i.e. for every directed edge *uv* from vertex *u* to vertex *v*, *u* comes before *v* in the ordering (age). [[42]] 
 
 <p align="center"><img src="./sources/DAG.PNG" width="400" /></p>
 
 
-DAGs in block chain were first proposed as the GHOST protocol ([[44]], [[45]]), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]],  [[41]]), Jute [[43]], SPECTRE [[46]], and PHANTOM [[52]] was presented. The principle of DAG in block chain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed
+DAGs in blockchain were first proposed as the GHOST protocol ([[44]], [[45]]), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]],  [[41]]), Jute [[43]], SPECTRE [[46]], and PHANTOM [[52]] were presented. The principle of DAG in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed:
 
-<p align="center"><img src="./sources/DAGTopologicalOrdering.png" width="500" /></p>
+<p align="center"><img src="./sources/DAGTopologicalOrdering.png" width="550" /></p>
 
+The main problems to be solved by the DAG derivative protocols are:
 
-The main problems to be solved by the DAG derivative protocols are **(a)** inclusion of orphaned blocks (decrease the negative effect of slow propagation) and **(b)** mitigation against selfish mining attacks. The underlying concept is still in the research and exploration phase. [[39]]
+1. inclusion of orphaned blocks (decrease the negative effect of slow propagation); and
+2. mitigation against selfish mining attacks.
 
+The underlying concept is still in the research and exploration phase. [[39]]
 
-<p align="center"><img src="./sources/GHOST.PNG" width="500" /></p>
+<p align="center"><img src="./sources/GHOST.PNG" width="550" /></p>
 
-In most DAG derivative protocols, blocks containing conflicting transactions (*i.e. conflicting blocks*) are not orphaned. A subsequent block is built on top of both of the conflicting blocks, but the conflicting transactions themselves are thrown out while processing the chain. SPECTRE, for one, provides a scheme whereby blocks vote to decide which transactions are robustly accepted, robustly rejected or stay in an indefinite “pending” state in case of conflicts. Both conflicting blocks become part of the shared history, and both conflicting blocks earn their respective miners a block reward. ([[39]], [[50]], [[51]])
+In most DAG derivative protocols, blocks containing conflicting transactions, i.e. conflicting blocks, are not orphaned. A subsequent block is built on top of both of the conflicting blocks, but the conflicting transactions themselves are thrown out while processing the chain. SPECTRE, for one, provides a scheme whereby blocks vote to decide which transactions are robustly accepted, robustly rejected or stay in an indefinite “pending” state in case of conflicts. Both conflicting blocks become part of the shared history, and both conflicting blocks earn their respective miners a block reward. ([[39]], [[50]], [[51]])
 
 **Note:** Braiding requires that parents and siblings may not contain conflicting transactions.
 
-<p align="center"><img src="./sources/SPECTRE.PNG" width="700" /></p>
+<p align="center"><img src="./sources/SPECTRE.PNG" width="750" /></p>
 
 
-Inclusive (DAG derivative) protocols that integrate the contents of traditional off-chain blocks into the ledger results in incentives for behavior changes by the nodes that lead to an increased throughput, and a better payoff for weak miners. [[45]]
+Inclusive (DAG derivative) protocols that integrate the contents of traditional off-chain blocks into the ledger result in incentives for behavior changes by the nodes, which leads to an increased throughput, and a better payoff for weak miners. [[45]]
 
-<p align="center"><img src="./sources/InclusiveProtocolDAG.PNG" width="500" /></p>
+<p align="center"><img src="./sources/InclusiveProtocolDAG.PNG" width="550" /></p>
 
-DAG derivative protocols are not Layer 2 Scaling solutions, but offer significant scaling of the primary block chain.
+DAG derivative protocols are not Layer 2 Scaling solutions, but they offer significant scaling of the primary blockchain.
 
 #### Who does it?
 
@@ -323,17 +333,17 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but offer significan
 
 #### Strengths
 
-- <u>Layer 1 scaling:</u> Increased transaction throughput on the main block chain
-- <u>Fairness:</u> Better payoff for weak miners
-- <u>Decentralization mitigation:</u> Weaker miners also get profits
-- <u>Transaction confirmation times:</u> Confirmation times of several seconds (SPECTRE)
-- <u>Smart contracts:</u> Support smart contracts (PHANTOM)
+- Layer 1 scaling: Increased transaction throughput on the main blockchain.
+- Fairness: Better payoff for weak miners.
+- Decentralization mitigation: Weaker miners also get profits.
+- Transaction confirmation times: Confirmation times of several seconds (SPECTRE).
+- Smart contracts: Support smart contracts (PHANTOM).
 
 #### Weaknesses
 
 - Still not proven 100%, development continuing.
 
-- The DAG derivative protocols differ on important aspects like miner payment schemes, security models, support for smart contracts, confirmation times, etc. Thus, all DAG derivative protocols are not created equal, beware!
+- The DAG derivative protocols differ on important aspects such as miner payment schemes, security models, support for smart contracts, and confirmation times. Thus, all DAG derivative protocols are not created equal - beware!
 
 #### Opportunities
 
@@ -342,7 +352,7 @@ Opportunities exist for Tari in applying the basic DAG principles to make a 51% 
 
 ## Observations
 
-- Although not all technologies covered here are Layer 2 Scaling solutions, the strengths should be considered as building blocks for the Tari protocol.
+Although not all technologies covered here are Layer 2 Scaling solutions, the strengths should be considered as building blocks for the Tari protocol.
 
 ## References
 
@@ -352,7 +362,7 @@ Available: http://cs-people.bu.edu/heilman/tumblebit. Date accessed: 2018-07-12.
 [1]: http://cs-people.bu.edu/heilman/tumblebit
 "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub"
 
-[[2]] E. Heilman et al., "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub" [online].
+[[2]] Ethan Heilman, Leen AlShenibr, Foteini Baldimtsi, Alessandra Scafuro, and Sharon Goldberg, "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub" [online].
 Available: https://eprint.iacr.org/2016/575.pdf. Date accessed: 2018-07-08.
 
 [2]: https://eprint.iacr.org/2016/575.pdf
@@ -388,7 +398,7 @@ Available: https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-priv
 [7]: https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-privacy-protocol-dev-update
 "Breeze Wallet with Breeze Privacy Protocol"
 
-[[8]] E. Heilman et al., "Blindly Signed Contracts - Anonymous On-chain and Off-chain Bitcoin Transactions" [online].
+[[8]] Ethan Heilman,  Foteini Baldimtsi, and Sharon Goldberg, "Blindly Signed Contracts - Anonymous On-chain and Off-chain Bitcoin Transactions" [online].
 Available: https://eprint.iacr.org/2016/056.pdf. Date accessed: 2018-07-12.
 
 [8]: https://eprint.iacr.org/2016/056.pdf
@@ -513,7 +523,7 @@ Available: https://blockstream.com/technology/sidechains.pdf. Date accessed: 201
 [28]: https://blockstream.com/technology/sidechains.pdf
 "Enabling Blockchain Innovations with Pegged Sidechains"
 
-[[29]] J. Dilley et al. "Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks" [online].
+[[29]] Johnny Dilley,  Andrew Poelstra, Jonathan Wilkins, Marta Piekarska, Ben Gorlick, and Mark Friedenbachet, "Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks" [online].
 Available: https://blockstream.com/strong-federations.pdf. Date accessed: 2018-07-19.
 
 [29]: https://blockstream.com/strong-federations.pdf
@@ -554,7 +564,7 @@ Available: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-sign
 [35]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
 "Key Aggregation for Schnorr Signatures"
 
-[[36]] G. Maxwell et al, "Simple Schnorr Multi-signatures with Applications to Bitcoin" [online].
+[[36]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin, and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" [online].
 Available: 20 May 2018, https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-07-24.
 
 [36]: https://eprint.iacr.org/2018/068.pdf
@@ -601,18 +611,18 @@ Available: https://en.wikipedia.org/wiki/Directed_acyclic_graph. Date accessed: 
 [43]: https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf
 "Braiding Techniques to Improve Security and Scaling"
 
-[[44]] Y. Sompolinsky et al, "GHOST: Secure High-rate Transaction Processing in Bitcoin" [online].
+[[44]] Yonatan Sompolinsky and Aviv Zohar, "GHOST: Secure High-rate Transaction Processing in Bitcoin" [online].
 Available:  https://eprint.iacr.org/2013/881.pdf. Date accessed: 2018-07-30.
 
 [44]: https://eprint.iacr.org/2013/881.pdf
 "GHOST: Secure High-rate Transaction Processing in Bitcoin"
 
-[[45]] Y. Lewenberg et al, "Inclusive Block Chain Protocols" [online]. Available: http://fc15.ifca.ai/preproceedings/paper_101.pdf. Date accessed: 2018-07-30.
+[[45]] Yoad Lewenberg, Yonatan Sompolinsky, and Aviv Zohar, "Inclusive blockchain Protocols" [online]. Available: http://fc15.ifca.ai/preproceedings/paper_101.pdf. Date accessed: 2018-07-30.
 
 [45]: http://fc15.ifca.ai/preproceedings/paper_101.pdf
-"Inclusive Block Chain Protocols"
+"Inclusive blockchain Protocols"
 
-[[46]] Y. Sompolinsky et al, "SPECTRE: A Fast and Scalable Cryptocurrency Protocol" [online].
+[[46]] Yonatan Sompolinsky, Yoad Lewenberg, and Aviv Zohar, "SPECTRE: A Fast and Scalable Cryptocurrency Protocol" [online].
 Available: http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf. Date accessed: 2018-07-30.
 
 [46]: http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf
@@ -642,13 +652,13 @@ Available: https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b. Date 
 [50]: https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b
 "SPECTRE: Serialization of Proof-of-work Events, Confirming Transactions via Recursive Elections"
 
-[[51]] Y. Sompolinsky et al., "SPECTRE: Serialization of Proof-of-work Events: Confirming Transactions via Recursive Elections" [online].
+[[51]] Yonatan Sompolinsky, Yoad Lewenberg, and Aviv Zohar, "SPECTRE: Serialization of Proof-of-work Events: Confirming Transactions via Recursive Elections" [online].
 Available: https://eprint.iacr.org/2016/1159.pdf. Date accessed: 2018-07-30.
 
 [51]: https://eprint.iacr.org/2016/1159.pdf
 "SPECTRE: Serialization of Proof-of-work Events: Confirming Transactions via Recursive Elections"
 
-[[52]] Y. Sompolinsky et al., "PHANTOM: A Scalable BlockDAG Protocol" [online].
+[[52]] Yonatan Sompolinsky and Aviv Zohar, "PHANTOM: A Scalable BlockDAG Protocol" [online].
 Available: https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf. Date accessed: 2018-07-30.
 
 [52]: https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf
@@ -694,3 +704,4 @@ Available: https://counterparty.io/docs/faq. Date accessed: 2018-09-14.
 - [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
 - [https://github.com/ksloven](https://github.com/ksloven)
 - [https://github.com/robby-dermody](https://github.com/robby-dermody)
+- [https://github.com/anselld](https://github.com/anselld)
