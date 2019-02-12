@@ -11,7 +11,10 @@ Tree location:   MyBranchName?p=/
 
 Presentation:   cryptography/musig-schnorr-sig-scheme/presentation-01#/
 
-Final URL:
+Final URL: 
+
+https://gitpitch.com/tari-labs/tari-university/ks-musig-presentation?p=/src/cryptography/musig-schnorr-sig-scheme/presentation-01#/
+
 ## On the trunk
 ### Trunk name
 e.g. master
