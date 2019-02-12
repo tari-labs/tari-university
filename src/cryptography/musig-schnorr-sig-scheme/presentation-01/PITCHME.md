@@ -367,17 +367,6 @@ $$
 
 @div[text-left]
 
-<<<<<<< HEAD
-The signer generates a random ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$ R_{1} = g^{r_{1}} $`` and ``$ t_{1} = \textrm{H}_{com}(R\_{1}) $`` and sends commitment `$t_{1}$` to all other cosigners.
-
-
-
-When receiving the commitments ``$t_{2},...,t_{n} $`` from the other cosigners, the signer sends ``$ R_{1} $`` to all other cosigners.
-
-
-
-Upon receiving ``$ R_2,...,R_n $`` from other cosigners, the signer verifies that ``$ t\_{i}=\textrm{H}\_{com}(R_{i})$`` for all ``$ i\in  \lbrace 2,...,n \rbrace $``
-=======
 The signer generates a random ``$ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $``, computes ``$ R_{1} = g^{r_{1}} $`` and ``$ t_{1} = \textrm{H}_{com}(R_{1}) $`` and sends commitment `$t_{1}$` to all other cosigners.
 
 @divend
@@ -395,7 +384,6 @@ Upon receiving ``$ R_2,...,R_n $`` from other cosigners, the signer verifies tha
 @divend
 
 @div[text-left]
->>>>>>> 9fb8c935cf343c1bd6c2395ff55a953a5b5ef999
 
 The protocol is aborted if this is not the case. 
 
@@ -436,25 +424,14 @@ In order to verify the aggregated signature ``$ \sigma = (R,s) $``, given a lexi
 `
 $$
 \begin{aligned} 
-<<<<<<< HEAD
-a_{i} &= \textrm{H}_{agg}(\langle L \rangle,X\_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
-\tilde{X} &= \prod\_{i=1}^{n}X\_{i}^{a\_{i}} \\\\
-=======
 a_{i} &= \textrm{H}_{agg}(\langle L \rangle,X_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
 \tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\\\
->>>>>>> 9fb8c935cf343c1bd6c2395ff55a953a5b5ef999
 c &=  \textrm{H}_{sig} (\tilde{X},R,m) 
 \end{aligned}
 $$
 `
 
-<<<<<<< HEAD
-+++
-
-
-=======
 @div[text-left]
->>>>>>> 9fb8c935cf343c1bd6c2395ff55a953a5b5ef999
 
 then accepts the signature if 
 
@@ -473,22 +450,6 @@ $$
 
 @div[text-left]
 
-<<<<<<< HEAD
-- In a previous version of the paper by Maxwell *et al.* published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. 
-- Drijvers *et al.* then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the DL or OMDL assumption.
-
-@divend
-
-+++
-
-@div[text-left]
-
-In more details, it was observed that in the 2-round variant of MuSig, an adversary (controlling public keys ``$ X_{2},...,X_{n} $``) can impose the value of ``$ R=\Pi_{i=1}^{n}R_{i} $`` used in signature protocols since he can choose ``$ R_{2},...,R_{n} $`` after having received ``$ R_{1} $`` from the honest signer (controlling public key ``$ X_{1}=g^{x_{1}} $`` ). 
-
-
-This prevents one to use the initial method of simulating the honest signer in the Random Oracle model without knowing ``$ x_{1} $`` by randomly drawing ``$ s_{1} $`` and ``$ c $``, computing ``$ R\_1=g^{s\_1}(X\_1)^{-a\_1c} $``, and later programming ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $`` since the adversary might have made the random oracle query ``$ \textrm{H}\_{sig}(\tilde{X}, R, m) $`` *before*  engaging the corresponding signature protocol.  
-
-=======
 In a previous version of the paper by Maxwell published on 15 January 2018 they proposed a 2-round variant of MuSig, where the initial commitment round is omitted claiming a security proof under the One More Discrete Logarithm (OMDL) assumptions. Drijvers then discovered a flaw in the security proof and showed that through a meta-reduction the initial multi-signature scheme cannot be proved secure using an algebraic black box reduction under the OMDL assumption.
 
 @divend
@@ -502,7 +463,6 @@ In more details, it was observed that in the 2-round variant of MuSig, an advers
 +++
 
 @div[text-left]
->>>>>>> 9fb8c935cf343c1bd6c2395ff55a953a5b5ef999
 
 Despite this, there is no attack currently known against the 2-round variant of MuSig and that it might be secure, although this is not provable under standard assumptions from existing techniques.&nbsp;
 
@@ -514,11 +474,7 @@ Despite this, there is no attack currently known against the 2-round variant of 
 
 @div[text-left]
 
-<<<<<<< HEAD
-In order to change the BN multi-signature scheme into an IAS scheme, Wuille *et al.* proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
-=======
 In order to change the BN multi-signature scheme into an IAS scheme, Maxwell proposed the scheme described below, which includes a fix to make the execution of the signing algorithm dependent on the message index. 
->>>>>>> 9fb8c935cf343c1bd6c2395ff55a953a5b5ef999
 
 If ``$ X = g^{x_i} $`` is the public key of a specific signer and ``$ m $`` the message he wants to sign, and 
 
@@ -597,21 +553,11 @@ $$
 
 The signature is ``$ \sigma = (R, s) ​$``. 
 
-<<<<<<< HEAD
-@divend
-
-+++
-
-@div[text-left]
-
-Given an ordered set $ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S =  \lbrace (X_{1}, m_{1}),...,(X_{n}, m_{n}) \rbrace  $ and a signature $ \sigma = (R, s) $  then $ \sigma $ is valid for $ S ​$ when 
-=======
 Given an ordered set ``$ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S =  \lbrace (X_{1}, m_{1}),...,(X_{n}, m_{n}) \rbrace  $`` and a signature ``$ \sigma = (R, s) $``  then ``$ \sigma $`` is valid for ``$ S ​$`` when 
 
 @divend
 
 +++
->>>>>>> 9fb8c935cf343c1bd6c2395ff55a953a5b5ef999
 
 `
 $$
@@ -623,9 +569,6 @@ $$
 
 **Note:** As of writing of this, the secure IAS scheme presented here still needs to undergo a complete security analysis.
 
-<<<<<<< HEAD
-@divend
-=======
 @divend
 
 ---
@@ -649,4 +592,3 @@ $$
 - The IAS case where each signer signs their own message must still be proven by a complete security analysis.
 
 @divend
->>>>>>> 9fb8c935cf343c1bd6c2395ff55a953a5b5ef999
