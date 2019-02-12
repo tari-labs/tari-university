@@ -359,7 +359,7 @@ Available: https://eprint.iacr.org/2016/575.pdf. Date accessed: 2018-07-08.
 "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub"
 
 [[3]] "Anonymous Transactions Coming to Stratis" [online].
-Available: [https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e](https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e). Date accessed: 2018-07-08.
+Available: https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e. Date accessed: 2018-07-08.
 
 [3]: https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e
 "Anonymous Transactions Coming to Stratis"
