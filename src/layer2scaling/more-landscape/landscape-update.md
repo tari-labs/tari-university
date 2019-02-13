@@ -17,7 +17,7 @@
   - [Weaknesses](#weaknesses-1)
   - [Opportunities](#opportunities-1)
 
-- [2-Way Pegged Secondary Blockchains - Sidechains, Drivechains, Federated Pegs](#2-way-pegged-secondary-block-chains-sidechains-drivechains-federated-pegs)
+- [2-Way Pegged Secondary Blockchains](#2-way-pegged-secondary-block-chains)
   - [What are they?](#what-are-they)
   - [Who does them?](#who-does-them)
   - [Strengths](#strengths-2)
@@ -38,7 +38,7 @@
   - [Weaknesses](#weaknesses-4)
   - [Opportunities](#opportunities-4)
 
-- [Directed Acyclic Graph (DAG) Derivative Protocols - Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE](#directed-acyclic-graph-dag-derivative-protocols-greedy-heaviest-observed-sub-tree-ghost-braiding-jute-spectre)
+- [Directed Acyclic Graph (DAG) Derivative Protocols](#directed-acyclic-graph-dag-derivative-protocols)
   - [What is it?](#what-is-it-4)
   - [Who does it?](#who-does-it-3)
   - [Strengths](#strengths-5)
@@ -53,7 +53,7 @@
 
 ## Introduction
 
-This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondary Blockchains, Lumino, Scriptless Scripts, and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling alternatives, building on [Layer 2 Scaling Survey (Part 1)](../layer2scaling-landscape/layer2scaling-survey.md).
+This report provides a survey of TumbleBit , Counterparty, 2-Way Pegged Secondary Blockchains, Lumino, Scriptless Scripts and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling alternatives, building on [Layer 2 Scaling Survey (Part 1)](../layer2scaling-landscape/layer2scaling-survey.md).
 
 ## Layer 2 Scaling Current Initiatives (Updated)
 
@@ -77,11 +77,11 @@ TumbleBit also supports anonymizing through Tor to ensure that the Tumbler serve
 
 <p align="center"><img src="./sources/TumbleBitOverview.png" width="600" /></p>
 
-TumbleBit combines off-chain cryptographic computations with standard on-chain Bitcoin scripting functionalities to realize smart contracts [[11]] that are not dependent on Segwit. The most important Bitcoin functionality used here includes hashing conditions, signing conditions, conditional execution, 2-of-2 multi-signatures, and timelocking. [[2]]
+TumbleBit combines off-chain cryptographic computations with standard on-chain Bitcoin scripting functionalities to realize smart contracts [[11]] that are not dependent on Segwit. The most important Bitcoin functionality used here includes hashing conditions, signing conditions, conditional execution, 2-of-2 multi-signatures and timelocking. [[2]]
 
 #### Who does it?
 
-The Boston University provided a proof-of-concept and reference implementation alongside the white paper [[4]]. NTumbleBit [[5]] is being developed as a C# production implementation of the TumbleBit protocol that at the time of writing (February 2019) was being deployed by Stratis with its Breeze implementation [[6]], at alpha/experimental release level in testnet.
+The Boston University provided a proof-of-concept and reference implementation alongside the white paper [[4]]. NTumbleBit [[5]] is being developed as a C# production implementation of the TumbleBit protocol that at the time of writing (July 2018) was being deployed by Stratis with its Breeze implementation [[6]], at alpha/experimental release level in testnet.
 
 *"NTumbleBit will be a cross-platform framework, server and client for the TumbleBit payment scheme. TumbleBit is separated into two modes, tumbler mode and payment hub mode. The tumbler mode improves transaction fungibility and offers risk free unlinkable transactions. Payment hub mode is a way of making off-chain payments possible without requiring implementations like Segwit or the lightning network."* [[3]]
 
@@ -118,11 +118,11 @@ TumbleBit has benefits for Tari as a trustless Masternode matching/batch process
 
 #### What is it?
 
-Counterparty is NOT a blockchain. Counterparty is a token protocol released in January 2014 that operates on Bitcoin. It has a fully functional Decentralized Exchange (DEX), as well as several hardcoded smart contracts defined that include contracts for difference and binary options ("bets"). To operate, Counterparty utilizes "embedded consensus," which means that a Counterparty transaction is created and embedded into a Bitcoin transaction, using encoding such as 1-of-3 multi-signature (multisig), Pay to Script Hash (P2SH) or Pay To Public Key Hash (P2PKH). Counterparty nodes, i.e. nodes that run both `bitcoind` and the `counterparty-server` applications, will receive Bitcoin transactions as normal (from `bitcoind`), and then `counterparty-server` will scan each, and decode and parse any embedded Counterparty transactions it finds. In effect, Counterparty is a ledger within the larger Bitcoin ledger, and the functioning of embedded consensus can be thought of as similar to the fitting of one Russian stacking doll inside another. ([[30]], [[31]], [[32]])
+Counterparty is NOT a blockchain. Counterparty is a token protocol released in January 2014 that operates on Bitcoin. It has a fully functional Decentralized Exchange (DEX), as well as several hardcoded smart contracts defined that include contracts for difference and binary options ("bets"). To operate, Counterparty utilizes "embedded consensus", which means that a Counterparty transaction is created and embedded into a Bitcoin transaction, using encoding such as 1-of-3 multi-signature (multisig), Pay to Script Hash (P2SH) or Pay To Public Key Hash (P2PKH). Counterparty nodes, i.e. nodes that run both `bitcoind` and the `counterparty-server` applications, will receive Bitcoin transactions as normal (from `bitcoind`). The `counterparty-server` will then scan each, and decode and parse any embedded Counterparty transactions it finds. In effect, Counterparty is a ledger within the larger Bitcoin ledger, and the functioning of embedded consensus can be thought of as similar to the fitting of one Russian stacking doll inside another. ([[30]], [[31]], [[32]])
 
-Embedded consensus also means that the nodes maintain identical ledgers without using a separate peer-to-peer network, solely using the Bitcoin blockchain for all communication (i.e. timestamping, transaction ordering, and transaction propagation). Unlike Bitcoin, which has the concept of both a soft fork and a hard fork, a change to the protocol or "consensus" code of Counterparty always has the potential to create a hard fork. In practice, this means that each Counterparty node must run the same version of `counterparty-server` (or at least the same minor version, e.g. the "3" in 2.3.0) so that the protocol code matches up across all nodes. ([[56]], [[57]])
+Embedded consensus also means that the nodes maintain identical ledgers without using a separate peer-to-peer network, solely using the Bitcoin blockchain for all communication (i.e. timestamping, transaction ordering and transaction propagation). Unlike Bitcoin, which has the concept of both a soft fork and a hard fork, a change to the protocol or "consensus" code of Counterparty always has the potential to create a hard fork. In practice, this means that each Counterparty node must run the same version of `counterparty-server` (or at least the same minor version, e.g. the "3" in 2.3.0) so that the protocol code matches up across all nodes. ([[56]], [[57]])
 
-Unlike Bitcoin's UTXO model, the Counterparty token protocol utilizes an accounts system where each Bitcoin address is an account, and Counterparty credit and debit transactions for a specific token type affect account balances of that token for that given address. The decentralized exchange allows for low-friction exchanging of different tokens between addresses, utilizing the concept of "orders," which are individual transactions made by Counterparty clients, and "order matches," which the Counterparty protocol itself will generate as it parses new orders that overlap existing active orders in the system. It is the Counterparty protocol code itself that manages the escrow of tokens when an order is created, the exchange of tokens between two addresses that have overlapping orders, and the release of those assets from escrow post-exchange.
+Unlike Bitcoin's UTXO model, the Counterparty token protocol utilizes an accounts system where each Bitcoin address is an account, and Counterparty credit and debit transactions for a specific token type affect account balances of that token for that given address. The decentralized exchange allows for low-friction exchanging of different tokens between addresses, utilizing the concept of "orders", which are individual transactions made by Counterparty clients, and "order matches", which the Counterparty protocol itself will generate as it parses new orders that overlap existing active orders in the system. It is the Counterparty protocol code itself that manages the escrow of tokens when an order is created, the exchange of tokens between two addresses that have overlapping orders, and the release of those assets from escrow post-exchange.
 
 Counterparty uses its own token, XCP, which was created through a "proof of burn" process during January 2014 [[58]]. In that month, over 2,000 bitcoins were destroyed by various individuals sending them to an unspendable address on the Bitcoin network (`1CounterpartyXXXXXXXXXXXXXXXUWLpVr`), which caused the Counterparty protocol to award the sending address with a corresponding amount of XCP. XCP is used for payment of asset creation fees, collateral for contracts for difference/binary options, and often as a base token in decentralized exchange transactions (largely due to the complexities of using Bitcoin (BTC) in such trades).
 
@@ -130,7 +130,7 @@ Counterparty uses its own token, XCP, which was created through a "proof of burn
 
 Support for the Ethereum Virtual Machine (EVM) was implemented, but never included on the mainnet version [[30]]. With the Counterparty EVM implementation, all published Counterparty smart contracts “live” at Bitcoin addresses that start with a `C`. Counterparty is used to broadcast an `execute` transaction to call a specific function or method in the smart contract code. Once an execution transaction is confirmed by a Bitcoin miner, the Counterparty federated nodes will receive the request and execute that method. The contract state is modified as the smart contract code executes and stored in the Counterparty database. [[56]]
 
-General consensus is that a *federated network* is a *distributed network of centralized networks*. The Ripple blockchain implements a Federated Byzantine Agreement (FBA) consensus mechanism. Federated sidechains implements a security protocol using a trusted federation of mutually distrusting functionaries/notaries. Counterparty utilizes a "full stack" packaging system for its components and all dependencies, called the "federated node" system. However,  this meaning refers to federated in the general definition, i.e. "set up as a single centralized unit within which each state or division keeps some internal autonomy." ([[54]], [[55]], [[28]])
+General consensus is that a *federated network* is a *distributed network of centralized networks*. The Ripple blockchain implements a Federated Byzantine Agreement (FBA) consensus mechanism. Federated sidechains implements a security protocol using a trusted federation of mutually distrusting functionaries/notaries. Counterparty utilizes a "full stack" packaging system for its components and all dependencies, called the "federated node" system. However,  this meaning refers to federated in the general definition, i.e. "set up as a single centralized unit within which each state or division keeps some internal autonomy". ([[54]], [[55]], [[28]])
 
 #### Who uses it?
 
@@ -146,7 +146,7 @@ COVAL is being developed with the primary purpose of moving value using “off-c
 #### Strengths
 
 - Counterparty provides a simple way to add "layer 2" functionality, i.e. hard-coded smart contracts, to an already existing blockchain implementation that supports basic data embedding.
-- Counterparty's embedded consensus model utilizes "permissionless innovation," meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
+- Counterparty's embedded consensus model utilizes "permissionless innovation", meaning that even the Bitcoin core developers could not stop the use of the protocol layer without seriously crippling the network.
 
 #### Weaknesses
 
@@ -159,15 +159,15 @@ COVAL is being developed with the primary purpose of moving value using “off-c
 - Nodes can implement improved consensus models such as Federated Byzantine Agreement. [[55]]
 - Refer to [Scriptless Scripts](#scriptless-scripts).
 
-### 2-way Pegged Secondary Blockchains - Sidechains, Drivechains, Federated Pegs)
+### 2-way Pegged Secondary Blockchains
 
 #### What are they?
 
 A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin blockchain to a secondary blockchain and vice versa at a fixed rate by making use of an appropriate security protocol. The "transfer" actually involves BTC being locked on the main Bitcoin blockchain and unlocked/made available on the secondary blockchain. The 2WP promise is concluded when an equivalent number of tokens on the secondary blockchain are locked (in the secondary blockchain) so that the original bitcoins can be unlocked. ([[22]], [[28]])
 - Sidechain: When the security protocol is implemented using Simplified Payment Verification (SPV) proofs - blockchain transaction verification without downloading the entire blockchain - the secondary blockchain is referred to as a Sidechain. [[22]]
-- Drivechain: When the security protocol is implemented by giving custody of the BTC to miners - where miners vote when to unlock BTC and where to send them - the secondary blockchain is referred to as a Drivechain. In this scheme, the miners will sign the block header using a Dynamic Membership Multiparty Signature (DMMS). ([[22]], [[28]]
+- Drivechain: When the security protocol is implemented by giving custody of the BTC to miners - where miners vote when to unlock BTC and where to send them - the secondary blockchain is referred to as a Drivechain. In this scheme, the miners will sign the block header using a Dynamic Membership Multiparty Signature (DMMS). ([[22]], [[28]])
 - Federated Peg/Sidechain: When the security protocol is implemented by having a trusted federation of mutually distrusting functionaries/notaries, the secondary blockchain is referred to as a Federated Peg/Sidechain. In this scheme, the DMMS is replaced with a traditional multi-signature scheme. ([[22]], [[28]])
-- Hybrid Sidechain-Drivechain-Federated Peg: When the security protocol is implemented by SPV proofs going to the secondary blockchain and dynamic mixture of miner DMMS and functionaries/notaries multi-signatures going back to the main Bitcoin blockchain, the secondary blockchain is referred to as a Hybrid Sidechain-Drivechain-Federated Peg. ([[22]], [[28]], [[29]]
+- Hybrid Sidechain-Drivechain-Federated Peg: When the security protocol is implemented by SPV proofs going to the secondary blockchain and dynamic mixture of miner DMMS and functionaries/notaries multi-signatures going back to the main Bitcoin blockchain, the secondary blockchain is referred to as a Hybrid Sidechain-Drivechain-Federated Peg. ([[22]], [[28]], [[29]])
 
 The following figure shows an example of a 2WP Bitcoin secondary blockchain using a Hybrid Sidechain-Drivechain-Federated Peg security protocol [[22]]: 
 
@@ -178,7 +178,7 @@ BTC on the main Bitcoin blockchain are locked by using a P2SH transaction, where
 
 #### Who does them?
 
-- RSK (formerly Rootstock) is a 2WP Bitcoin secondary blockchain using a hybrid sidechain-drivechain security protocol. RSK is scalable up to 100&nbsp;transactions per second (Tx/s) and provides a second-layer scaling solution for Bitcoin, as it can relieve on-chain Bitcoin transactions. ([[14]],  [[15]], [[16]])
+- RSK (formerly Rootstock) is a 2WP Bitcoin secondary blockchain using a hybrid sidechain-drivechain security protocol. RSK is scalable up to 100&nbsp;transactions per second (Tx/s) and provides a second-layer scaling solution for Bitcoin, as it can relieve on-chain Bitcoin transactions. ([[14]], [[15]], [[16]])
 
 - Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol that absorbs accurate data into a blockchain so that Bitcoin users can speculate in Prediction Markets. [[24]]
 
@@ -209,7 +209,7 @@ There will be no opportunities if enough functionality is built into the main Ta
 
 #### What is it?
 
-Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows the processing of a higher volume of transactions, but the storing of much less information. The Lumino network is a lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner is done by using aggregate signing of previous transactions so that previous signatures can be disposed of. [[17]]
+Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows the processing of a higher volume of transactions, but the storing of much less information. The Lumino network is a Lightning-like extension of the RSK platform that uses LTCP. Delta (difference) compression of selected fields of transactions from the same owner is done by using aggregate signing of previous transactions so that previous signatures can be disposed of. [[17]]
 
 Each transaction contains a set of persistent fields called the Persistent Transaction Information (PTI) and a compound record of user transaction data called the SigRec. A Lumino block stores two Merkle trees: one containing all PTIs; and the other containing all transaction IDs (hash of the signed SigRec). This second Merkle tree is conceptually similar to the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be pruned from the blockchain if valid linked PTI information exists. [[17]]
 
@@ -278,7 +278,7 @@ However, this in itself will not provide the Layer 2 scaling performance that wi
 
 The Mimblewimble *Scriptless Script*s could be combined with a federated node (or specialized masternode), similar to that being developed by Counterparty. The secrets that are revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the federated node, with the final consolidated state update being written back to the blockchain after the event.
 
-### Directed Acyclic Graph (DAG) Derivative Protocols - Greedy Heaviest Observed Sub-tree (GHOST), Braiding, Jute, SPECTRE
+### Directed Acyclic Graph (DAG) Derivative Protocols
 
 #### What is it?
 
@@ -287,7 +287,7 @@ In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite 
 <p align="center"><img src="./sources/DAG.png" width="400" /></p>
 
 
-DAGs in blockchain were first proposed as the GHOST protocol ([[44]], [[45]]), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto ([[59]], [[60]])). Then Braiding ([[40]],  [[41]]), Jute [[43]], SPECTRE [[46]], and PHANTOM [[52]] were presented. The principle of DAG in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed:
+DAGs in blockchain were first proposed as the GHOST protocol ([[44]], [[45]]), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto ([[59]], [[60]])). Then Braiding ([[40]], [[41]]), Jute [[43]], SPECTRE [[46]], and PHANTOM [[52]] were presented. The principle of DAG in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed:
 
 <p align="center"><img src="./sources/DAGTopologicalOrdering.png" width="550" /></p>
 
@@ -398,13 +398,13 @@ Available: https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-priv
 [7]: https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-privacy-protocol-dev-update
 "Breeze Wallet with Breeze Privacy Protocol"
 
-[[8]] Ethan Heilman,  Foteini Baldimtsi, and Sharon Goldberg, "Blindly Signed Contracts - Anonymous On-chain and Off-chain Bitcoin Transactions" [online].
+[[8]] Ethan Heilman,  Foteini Baldimtsi and Sharon Goldberg, "Blindly Signed Contracts - Anonymous On-chain and Off-chain Bitcoin Transactions" [online].
 Available: https://eprint.iacr.org/2016/056.pdf. Date accessed: 2018-07-12.
 
 [8]: https://eprint.iacr.org/2016/056.pdf
 "Blindly Signed Contracts - Anonymous On-chain and Off-chain Bitcoin Transactions"
 
-[[9]] Ethan Heilman and Leen AlShenibr, "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub - 08 October 2016," in Conference: *Scaling Bitcoin 2016 Milan*.
+[[9]] Ethan Heilman and Leen AlShenibr, "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub - 08 October 2016", in Conference: *Scaling Bitcoin 2016 Milan*.
 Available: https://www.youtube.com/watch?v=8BLWUUPfh2Q&feature=youtu.be&t=1h3m10s. Date accessed: 2018-07-13.
 
 [9]: https://www.youtube.com/watch?v=8BLWUUPfh2Q&feature=youtu.be&t=1h3m10s
@@ -518,13 +518,13 @@ Available:  https://blockstream.com/technology. Date accessed: 2018-07-19.
 "Blockstream Website [online]"
 
 [[28]] Adam Back, Matt Corallo, Luke Dashjr, Mark Friedenbach, Gregory Maxwell, Andrew Miller, Andrew Poelstra,
-Jorge Timón, and Pieter Wuille, 2014-10-22. "Enabling Blockchain Innovations with Pegged Sidechains" [online].
+Jorge Timón and Pieter Wuille, 2014-10-22. "Enabling Blockchain Innovations with Pegged Sidechains" [online].
 Available: https://blockstream.com/sidechains.pdf. Date accessed: 2018-07-19.
 
 [28]: https://blockstream.com/sidechains.pdf
 "Enabling Blockchain Innovations with Pegged Sidechains"
 
-[[29]] Johnny Dilley,  Andrew Poelstra, Jonathan Wilkins, Marta Piekarska, Ben Gorlick, and Mark Friedenbachet, "Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks" [online].
+[[29]] Johnny Dilley,  Andrew Poelstra, Jonathan Wilkins, Marta Piekarska, Ben Gorlick and Mark Friedenbachet, "Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks" [online].
 Available: https://blockstream.com/strong-federations.pdf. Date accessed: 2018-07-19.
 
 [29]: https://blockstream.com/strong-federations.pdf
@@ -565,7 +565,7 @@ Available: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-sign
 [35]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
 "Key Aggregation for Schnorr Signatures"
 
-[[36]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin, and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" [online].
+[[36]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" [online].
 Available: 20 May 2018, https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-07-24.
 
 [36]: https://eprint.iacr.org/2018/068.pdf
@@ -589,7 +589,7 @@ Available: https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish
 [39]: https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153
 "If There is an Answer to Selfish Mining, Braiding could be It"
 
-[[40]] B. McElrath, "Braiding the Blockchain," in Conference: S*caling Bitcoin, Hong Kong, 7 Dec 2015* [online].
+[[40]] B. McElrath, "Braiding the Blockchain", in Conference: *Scaling Bitcoin, Hong Kong, 7 Dec 2015* [online].
 Available: https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf. Date accessed: 2018-07-27.
 
 [40]: https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf
@@ -618,12 +618,12 @@ Available:  https://eprint.iacr.org/2013/881.pdf. Date accessed: 2018-07-30.
 [44]: https://eprint.iacr.org/2013/881.pdf
 "GHOST: Secure High-rate Transaction Processing in Bitcoin"
 
-[[45]] Yoad Lewenberg, Yonatan Sompolinsky, and Aviv Zohar, "Inclusive blockchain Protocols" [online]. Available: http://fc15.ifca.ai/preproceedings/paper_101.pdf. Date accessed: 2018-07-30.
+[[45]] Yoad Lewenberg, Yonatan Sompolinsky and Aviv Zohar, "Inclusive Blockchain Protocols" [online]. Available: http://fc15.ifca.ai/preproceedings/paper_101.pdf. Date accessed: 2018-07-30.
 
 [45]: http://fc15.ifca.ai/preproceedings/paper_101.pdf
-"Inclusive blockchain Protocols"
+"Inclusive Blockchain Protocols"
 
-[[46]] Yonatan Sompolinsky, Yoad Lewenberg, and Aviv Zohar, "SPECTRE: A Fast and Scalable Cryptocurrency Protocol" [online].
+[[46]] Yonatan Sompolinsky, Yoad Lewenberg and Aviv Zohar, "SPECTRE: A Fast and Scalable Cryptocurrency Protocol" [online].
 Available: http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf. Date accessed: 2018-07-30.
 
 [46]: http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf
@@ -653,7 +653,7 @@ Available: https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b. Date 
 [50]: https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b
 "SPECTRE: Serialization of Proof-of-work Events, Confirming Transactions via Recursive Elections"
 
-[[51]] Yonatan Sompolinsky, Yoad Lewenberg, and Aviv Zohar, "SPECTRE: Serialization of Proof-of-work Events: Confirming Transactions via Recursive Elections" [online].
+[[51]] Yonatan Sompolinsky, Yoad Lewenberg and Aviv Zohar, "SPECTRE: Serialization of Proof-of-work Events: Confirming Transactions via Recursive Elections" [online].
 Available: https://eprint.iacr.org/2016/1159.pdf. Date accessed: 2018-07-30.
 
 [51]: https://eprint.iacr.org/2016/1159.pdf
@@ -696,22 +696,23 @@ Available: https://counterparty.io/docs/protocol_specification. Date accessed: 2
 "Counterparty Documentation: Protocol Specification"
 
 [[58]] "Counterparty News: Why Proof-of-Burn, March 23, 2014" [online].
-Available: https://counterparty.io/news/why-proof-of-burn. Date accessed: 2018-09-14.
+Available: https://counterparty.io/news/why-proof-of-burn.
+Date accessed: 2018-09-14.
 
 [58]: https://counterparty.io/news/why-proof-of-burn
 "Counterparty News: Why Proof-of-Burn"
 
 [[59]] Vitalik Buterin, "Dagger: A Memory-Hard to Compute, Memory-Easy to Verify Scrypt Alternative" [online].
-Available: http://www.hashcash.org/papers/dagger.html. Date accessed: 2019-02-12.
+Available: http://www.hashcash.org/papers/dagger.html. Date #nbsp; accessed: 2019-02-12.
 
 [59]: http://www.hashcash.org/papers/dagger.html
 "Dagger: A Memory-Hard to Compute, Memory-Easy to Verify Scrypt Alternative"
 
-[[60]] Thaddeus Dryja, "Hashimoto: I/O bound proof of work" [online].
+[[60]] Thaddeus Dryja, "Hashimoto: I/O Bound Proof of Work" [online].
 Available: https://web.archive.org/web/20170810043640/https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf. Date accessed: 2019-02-12.
 
 [60]: https://web.archive.org/web/20170810043640/https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf
-"Hashimoto: I/O bound proof of work,
+"Hashimoto: I/O Bound Proof of Work,
 Thaddeus Dryja"
 
 
