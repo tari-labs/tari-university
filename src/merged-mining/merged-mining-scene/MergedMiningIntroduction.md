@@ -17,8 +17,8 @@
 
 - [51% Attacks](#attack-vectors)
 - [Double Proof](#double-proof)
-- [Analysis of Mining Power Centralization Issues ([24], [25])](#analysis-of-mining-power-centralization-issues-a-hrefhttpseprintiacrorg2017791pdf24a-a-hrefhttprepositumtuwienacatobvutwhsdownloadpdf231565225a)
-- [Introduction of New Attack Vectors ([24], [25])](#introduction-of-new-attack-vectors-a-hrefhttpseprintiacrorg2017791pdf24a-a-hrefhttprepositumtuwienacatobvutwhsdownloadpdf231565225a)
+- [Analysis of Mining Power Centralization Issues](#analysis-of-mining-power-centralization-issues)
+- [Introduction of New Attack Vectors ](#introduction-of-new-attack-vectors)
 
 [References](#references)
 
@@ -31,8 +31,6 @@ Merged mining is the act of using work done on another blockchain (the Parent) o
 As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652)
 
 <p align="center"><img src="sources/MergedMiningIntro01.png" width="700" /></p>
-
-
 
 A transaction set for both blockchains are assembled. The hash of the AuxPoW block header is then inserted in the 'free' bytes region (coinbase field) of the coinbase transaction and submitted to the Parent blockchain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both blockchains the respective block(s) are re-assembled with the completed PoW and submitted to the correct blockchain. In case of the Auxiliary blockchain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent blockchain that meets the difficulty level of the Auxiliary blockchain. ([[1]], [[2]], [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
 
@@ -182,7 +180,9 @@ The Tari blockchain will have to fork together with or just after a scheduled Mo
 - Multiple Auxiliary blocks can be competing for the same PoW, and could subject your Auxiliary blockchain to nothing-at-stake attacks if the chain is forked, maliciously or by accident, with consequent attempts to reverse transactions. ([[7]], [[26]])
 - More than one Auxiliary blockchain will be merged mined with Monero.
 
-### Analysis of Mining Power Centralization Issues ([[24]], [[25]])
+### Analysis of Mining Power Centralization Issues
+
+With reference to [[24]] and [[25]]:
 
 - In Namecoin F2Pool reached and maintained a majority of the mining power for prolonged periods.
 - Litecoin has experienced slight centralisation since mid-2014, among others caused by Clevermining and F2Pool.
@@ -192,7 +192,9 @@ The Tari blockchain will have to fork together with or just after a scheduled Mo
 - Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
   ![MergedMiningStats-2](./sources/MergedMiningStats-2.png)
 
-### Introduction of New Attack Vectors ([[24]], [[25]])
+### Introduction of New Attack Vectors
+
+ With reference to [[24]] and [[25]]:
 
 - Miners can generate blocks for the merge-mined child blockchains at almost no additional cost, enabling attacks without risking financial losses.
 - Merged mining as an attack vector works both ways as parent cryptocurrencies cannot easily prevent being mergemined by auxiliary blockchains.
