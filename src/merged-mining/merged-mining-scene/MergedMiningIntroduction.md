@@ -4,7 +4,7 @@
 
 [Merged Mining with Multiple Auxiliary Chains](#merged-mining-with-multiple-auxiliary-chains)
 
-[Merged Mining - Interesting Facts, Case Studies](#merged-mining-interesting-facts-case-studies)
+[Merged Mining - Interesting Facts, Case Studies](#merged-mining---interesting-facts-case-studies)
 - [Namecoin (#307) with Bitcoin (#1)](#namecoin-307-with-bitcoin-1)
 - [Dogecoin (#37) with Litecoin (#6)](#dogecoin-37-with-litecoin-6)
 - [Huntercoin (#779) with Bitcoin (#1) or Litecoin (#6)](#huntercoin-779-with-bitcoin-1-or-litecoin-6)
