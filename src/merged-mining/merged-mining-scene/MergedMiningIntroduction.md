@@ -28,16 +28,15 @@
 
 Merged mining is the act of using work done on another blockchain (the Parent) on one or more Auxiliary blockchains and to accept it as valid on its own chain, using Auxiliary Proof-of-Work (AuxPoW), which is the relationship between two blockchains for one to trust the other's work as their own. The Parent blockchain does not need to be aware of the AuxPoW logic as blocks submitted to it are still valid blocks. [[1]]
 
-As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652)
+As an example the structure of merged mined blocks in Namecoin and Bitcoin is shown below. [[25]]
 
 <p align="center"><img src="sources/MergedMiningIntro01.png" width="700" /></p>
 
-A transaction set for both blockchains are assembled. The hash of the AuxPoW block header is then inserted in the 'free' bytes region (coinbase field) of the coinbase transaction and submitted to the Parent blockchain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both blockchains the respective block(s) are re-assembled with the completed PoW and submitted to the correct blockchain. In case of the Auxiliary blockchain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent blockchain that meets the difficulty level of the Auxiliary blockchain. ([[1]], [[2]], [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652))
+A transaction set for both blockchains are assembled. The hash of the AuxPoW block header is then inserted in the 'free' bytes region (coinbase field) of the coinbase transaction and submitted to the Parent blockchain's Proof-of-Work (PoW). If the merge miner solves the block at the difficulty level of either or both blockchains the respective block(s) are re-assembled with the completed PoW and submitted to the correct blockchain. In case of the Auxiliary blockchain the Parent's block hash, Merkle tree branch and coinbase transaction are inserted in the Auxiliary block's AuxPoW header. This is to prove that enough work was done on the Parent blockchain that meets the difficulty level of the Auxiliary blockchain. ([[1]], [[2]], [[25]])
 
 The propagation of Parent and Auxiliary blocks are totally independent and only governed by each chain's difficulty level. As an example the diagram below shows how this can play out in practice with Namecoin and Bitcoin when the Parent difficulty (D<sub>BTC</sub>) is larger than the Auxiliary difficulty (D<sub>NMC</sub>) . Note that *BTC block 2'* did not become part of the Parent blockchain propagation.
 
-
-![MergedMiningIntro02](./sources/MergedMiningIntro02.png)
+<p align="center"><img src="./sources/MergedMiningIntro02.png" width="1100" /></p>
 
 
 
@@ -45,7 +44,7 @@ The propagation of Parent and Auxiliary blocks are totally independent and only 
 
 A miner can use a single Parent to perform merged mining on multiple Auxiliary blockchains. The Merkle tree root of a Merkle tree that contains the block hashes of the Auxiliary blocks as leaves must then be inserted in the Parent's coinbase field as shown below. To prevent double spending attacks each Auxiliary blockchain must specify a unique ID that can be used to derive the leave of the Merkle tree where the respective block hash must be located. [[25]](http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652)
 
-![MergedMiningIntro03](./sources/MergedMiningIntro03.png)
+<p align="center"><img src="./sources/MergedMiningIntro03.png" width="750" /></p>
 
 
 
@@ -145,8 +144,8 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 - Merge-mined blocks in some cryptocurrencies at 2017-06-18 [[24]]:
 
-  ![MergedMiningStats-1](./sources/MergedMiningStats-1.png)
-
+  <p align="center"><img src="./sources/MergedMiningStats-1.png" width="350" /></p>
+  
 ### Observations
 
 - The Auxiliary blockchain's target block times can be smaller, equal or larger than the Parent blockchain.
@@ -170,7 +169,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 NiceHash statistics for CryptoNight v7 [[21]](https://www.nicehash.com/algorithm/cryptonightv7) shows a lag of 2 days for ~ 100,600 miners to get up to speed with providing the new hashing power after the Monero hard fork.
 
-![CryptoNight-v7](./sources/CryptoNight-v7.png) 
+ <p align="center"><img src="./sources/CryptoNight-v7.png" width="750" /></p>
 
 The Tari blockchain will have to fork together with or just after a scheduled Monero fork. The Tari blockchain will be vulnerable to ASIC miners until it has been forked.
 
@@ -190,7 +189,8 @@ With reference to [[24]] and [[25]]:
 - Huntercoin was instantly dominated by F2Pool and remained in this state until mid-2016.
 - Myriadcoin appears to have experienced only a moderate impact.  Multi-merge-mined blockchains allow for more than one parent cryptocurrency and have a greater chance to acquire a higher difficulty per PoW algorithm, in comparison to the respective parent blockchain.
 - Distribution of overall percentage of days below/above the centralization indicator thresholds at 2017/06/18:
-  ![MergedMiningStats-2](./sources/MergedMiningStats-2.png)
+
+<p align="center"><img src="./sources/MergedMiningStats-2.png" width="350" /></p>
 
 ### Introduction of New Attack Vectors
 
@@ -357,18 +357,6 @@ Available:  https://eprint.iacr.org/2017/791.pdf. Date accessed: 2019-02-12.
 
 [26]: https://github.com/ethereum/wiki/wiki/Problems
 "Problems - Consensus - 8. Proof of Stake"
-
-[[27]] Judmayer et al., Data Privacy Management, Cryptocurrencies and Blockchain Technology: ESORICS 2017 International Workshops, DPM 2017 and CBT 2017, Oslo, Norway, September 14-15, 2017, Proceedings (pp.316-333).
-
-[27]: ?????
-"Data Privacy Management, Cryptocurrencies and Blockchain Technology"
-
-[[28]] Zamyatin Alexei, MSc Thesis, Faculty of Informatics at the Technische Universität Wien.
-
-[28]: ?????
-"?????"
-
-
 
 ## Contributors
 
