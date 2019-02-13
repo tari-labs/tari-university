@@ -287,7 +287,7 @@ In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite 
 <p align="center"><img src="./sources/DAG.png" width="400" /></p>
 
 
-DAGs in blockchain were first proposed as the GHOST protocol ([[44]], [[45]]), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto). Then Braiding ([[40]],  [[41]]), Jute [[43]], SPECTRE [[46]], and PHANTOM [[52]] were presented. The principle of DAG in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed:
+DAGs in blockchain were first proposed as the GHOST protocol ([[44]], [[45]]), a version of which is implemented in Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto ([[59]], [[60]])). Then Braiding ([[40]],  [[41]]), Jute [[43]], SPECTRE [[46]], and PHANTOM [[52]] were presented. The principle of DAG in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is simultaneously an ancestor of another parent is disallowed:
 
 <p align="center"><img src="./sources/DAGTopologicalOrdering.png" width="550" /></p>
 
@@ -512,18 +512,16 @@ Available:  http://drivechains.org/what-are-drivechains/what-does-it-enable. Dat
 "Bloq’s Paul Sztorc on the 4 Main Benefits of Sidechains"
 
 [[27]] Blockstream Website [online].
-Available:  https://blockstream.com/technology.Date accessed: 2018-07-19.
+Available:  https://blockstream.com/technology. Date accessed: 2018-07-19.
 
 [27]:  https://blockstream.com/technology
 "Blockstream Website [online]"
 
 [[28]] Adam Back, Matt Corallo, Luke Dashjr, Mark Friedenbach, Gregory Maxwell, Andrew Miller, Andrew Poelstra,
 Jorge Timón, and Pieter Wuille, 2014-10-22. "Enabling Blockchain Innovations with Pegged Sidechains" [online].
-
 Available: https://blockstream.com/sidechains.pdf. Date accessed: 2018-07-19.
 
 [28]: https://blockstream.com/sidechains.pdf
-
 "Enabling Blockchain Innovations with Pegged Sidechains"
 
 [[29]] Johnny Dilley,  Andrew Poelstra, Jonathan Wilkins, Marta Piekarska, Ben Gorlick, and Mark Friedenbachet, "Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks" [online].
@@ -573,11 +571,11 @@ Available: 20 May 2018, https://eprint.iacr.org/2018/068.pdf. Date accessed: 201
 [36]: https://eprint.iacr.org/2018/068.pdf
 "Simple Schnorr Multi-signatures with Applications to Bitcoin"
 
-[[37] A. Poelstra, 4 March 2017, "Scriptless Scripts" [online].
+[[37]] A. Poelstra, 4 March 2017, "Scriptless Scripts" [online].
 Available:  https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf. Date accessed: 2018-07-24.
 
 [37]: https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf
-Scriptless Scripts
+"Scriptless Scripts"
 
 [[38]] bip-schnorr.mediawiki [online].
 Available: https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki. Date accessed: 2018-07-26.
@@ -692,34 +690,29 @@ Available: https://counterparty.io/docs/faq. Date accessed: 2018-09-14.
 "Counterparty Documentation: Frequently Asked Questions"
 
 [[57]] "Counterparty Documentation: Protocol Specification" [online].
-
 Available: https://counterparty.io/docs/protocol_specification. Date accessed: 2018-09-14.
 
 [57]: https://counterparty.io/docs/protocol_specification
 "Counterparty Documentation: Protocol Specification"
 
 [[58]] "Counterparty News: Why Proof-of-Burn, March 23, 2014" [online].
-
 Available: https://counterparty.io/news/why-proof-of-burn. Date accessed: 2018-09-14.
 
 [58]: https://counterparty.io/news/why-proof-of-burn
 "Counterparty News: Why Proof-of-Burn"
 
-[[59]] "????????" [online].
+[[59]] Vitalik Buterin, "Dagger: A Memory-Hard to Compute, Memory-Easy to Verify Scrypt Alternative" [online].
+Available: http://www.hashcash.org/papers/dagger.html. Date accessed: 2019-02-12.
 
-Available: https://web.archive.org/web/20170810043640. Date accessed: 2018-09-14.
+[59]: http://www.hashcash.org/papers/dagger.html
+"Dagger: A Memory-Hard to Compute, Memory-Easy to Verify Scrypt Alternative"
 
-[59]: https://web.archive.org/web/20170810043640
+[[60]] Thaddeus Dryja, "Hashimoto: I/O bound proof of work" [online].
+Available: https://web.archive.org/web/20170810043640/https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf. Date accessed: 2019-02-12.
 
-"????????"
-
-[[60]] "??????????" [online].
-
-Available: https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf. Date accessed: 2018-09-14.
-
-[60]: https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf
-
-"??????????"
+[60]: https://web.archive.org/web/20170810043640/https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf
+"Hashimoto: I/O bound proof of work,
+Thaddeus Dryja"
 
 
 
