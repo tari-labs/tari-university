@@ -360,7 +360,7 @@ Available:  https://eprint.iacr.org/2017/791.pdf. Date accessed: 2019-02-12.
 
 ## Contributors
 
-- [https://github.com/hansieodendaal]
+- [https://github.com/hansieodendaal](https://github,com/hansieodendaal)
 - [https://github.com/CjS77](https://github.com/CjS77)
 - [https://github.com/anselld](https://github.com/anselld)
 
