@@ -53,7 +53,7 @@ A miner can use a single Parent to perform merged mining on multiple Auxiliary b
 
 ### Namecoin (#307) with Bitcoin (#1)
 
-- Namecoin, the first fork of Bitcoin, introduced merged mining with Bitcoin [[1]] from block 19,200 onwards [[3]]. At the time of writing (May&nbsp;2018), the block height of Namecoin was >&nbsp; 400,500 [[4]].
+- Namecoin, the first fork of Bitcoin, introduced merged mining with Bitcoin [[1]] from block 19,200 onwards [[3]]. At the time of writing (May&nbsp;2018), the block height of Namecoin was >&nbsp;400,500 [[4]].
 - Over the five-day period from 23 May 2018 to 27 May 2018, only 226 out of 752 blocks posted transaction values over and above the block reward of 25 NMC, with an average transaction value of 159.231 NMC including the block reward. [[4]]
 - Slush Pool merged mining Namecoin with Bitcoin rewards all miners with BTC equivalent to NMC via an external exchange service. [[5]]
 - P2pool, Multipool, Slush Pool, Eligius and F2pool are cited as top Namecoin merged mining pools. [[6]]
