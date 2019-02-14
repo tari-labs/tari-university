@@ -12,12 +12,12 @@
 
 - [Counterparty](#counterparty)
   - [What is it?](#what-is-it-1)
-  - [Who uses it?](#who-uses-it-1)
+  - [Who uses it?](#who-uses-it)
   - [Strengths](#strengths-1)
   - [Weaknesses](#weaknesses-1)
   - [Opportunities](#opportunities-1)
 
-- [2-Way Pegged Secondary Blockchains](#2-way-pegged-secondary-block-chains)
+- [2-Way Pegged Secondary Blockchains](#a2-way-pegged-secondary-blockchains)
   - [What are they?](#what-are-they)
   - [Who does them?](#who-does-them)
   - [Strengths](#strengths-2)
@@ -203,7 +203,8 @@ BTC on the main Bitcoin blockchain are locked by using a P2SH transaction, where
 
 #### Opportunities
 
-There will be no opportunities if enough functionality is built into the main Tari blockchain.
+2WP secondary blockchains may present interesting opportunities to scale multiple payments that would be associated with multiple non-fungible assets living on a secondary layer. 
+However, take care with privacy and security of funds as well as with transferring funds into and out of the 2WP secondary blockchains.
 
 ### Lumino
 
@@ -236,7 +237,7 @@ LTCP pruning may be beneficial to Tari.
 
 #### What is it?
 
-*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra. It entails offering scripting functionality without actual scripts on the blockchain to implement smart contracts. At the time of writing (February 2019) it can only work on the Mimblewimble blockchain and makes use of a specific Schnorr signature scheme [[38]] that allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the *plain public-key model*, where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks. ([[35]], [[36]])
+*Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra. It entails offering scripting functionality without actual scripts on the blockchain to implement smart contracts. At the time of writing (July 2018) it can only work on the Mimblewimble blockchain and makes use of a specific Schnorr signature scheme [[38]] that allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the *plain public-key model*, where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks. ([[35]], [[36]])
 
 Signature aggregation properties sought here are ([[35]], [[36]]):
 
