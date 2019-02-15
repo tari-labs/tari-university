@@ -55,7 +55,8 @@ MuSig is a multi-signature scheme that is novel in combining:
 
 <div class="LineHeight100per"> <br></div>
 
-There are two versions of MuSig, that are provably secure, which differ based on the number of communication rounds:
+There are two versions of MuSig, that are provably secure, which 
+differ based on the number of communication rounds:
 
 <div class="LineHeight20per"> <br></div>
 
