@@ -79,7 +79,7 @@ The following code snippet demonstrates this:
 
 #### Approach Taken
 
-Reversing ECC math multiplication (i.e. division) is pretty much infeasible when using properly chosen random values for your scalars ([5], [6]).
+Reversing ECC math multiplication (i.e. division) is pretty much infeasible when using properly chosen random values for your scalars ([[5]], [[6]]).
  This property is called the _Discrete Log Problem_ and is used as the principle behind a lot of cryptography and digital signatures. 
  A valid digital signature is evidence that the person providing the signature knows the private key corresponding to the public key the message
 is associated with, or that they have solved the Discrete Log Problem. 
@@ -365,62 +365,60 @@ and so his cancellation attack is defeated.
 
 ## References
 
-[[1]] RSA (Cryptosystem) [online]. Available: https://en.wikipedia.org/wiki/RSA_(cryptosystem). Date accessed: 2018-10-11.
+[[1]] "RSA (Cryptosystem)" [online]. Available: https://en.wikipedia.org/wiki/RSA_(cryptosystem). Date accessed: 2018-10-11.
 
 [1]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 "Wikipedia RSA Cryptography"
 
 
-[[2]] Elliptic Curve Digital Signature Algorithm, Wikipedia [online]. Available: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm.
+[[2]] "Elliptic Curve Digital Signature Algorithm", Wikipedia [online]. Available: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm.
 Date accessed: 2018-10-11.
 
 [2]: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
 "Wikipedia: ECDSA"
 
-[[3]] BOLT #8: Encrypted and Authenticated Transport, Lightning RFC, Github [online].
+[[3]] "BOLT #8: Encrypted and Authenticated Transport, Lightning RFC", Github [online].
 Available: https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md. Date accessed: 2018-10-11.
 
 [3]: https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md
 "BOLT #8: Encrypted and Authenticated Transport"
 
-[[4]] Man in the Middle Attack, Wikipedia [online].
+[[4]] "Man in the Middle Attack", Wikipedia [online].
 Available: https://en.wikipedia.org/wiki/Man-in-the-middle_attack. Date accessed: 2018-10-11.
 
 [4]: https://en.wikipedia.org/wiki/Man-in-the-middle_attack
 "Wikipedia: Man in the Middle Attack"
 
-[[5]] How does a cryptographically Secure Random Number Generator Work?, StackOverflow [online].
+[[5]] "How does a Cryptographically Secure Random Number Generator Work?" StackOverflow" [online].
 Available:
 https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work. Date accessed: 2018-10-11.
 
 [5]: https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work
 "StackOverflow: How does a Cryptographically Secure Random Number Generator Work?"
 
-[[6]] Cryptographically Secure Pseudorandom Number Generator, Wikipedia [online].
+[[6]] "Cryptographically Secure Pseudorandom Number Generator", Wikipedia [online].
 Available: https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator. Date accessed: 2018-10-11.
 
 [6]: https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator
 "Cryptographically secure pseudorandom number generator"
 
-[[7]] Schnorr Signature, Wikipedia [online]. Available: _https://en.wikipedia.org/wiki/Schnorr_signature_.
+[[7]] "Schnorr Signature", Wikipedia [online]. Available: _https://en.wikipedia.org/wiki/Schnorr_signature_.
 Date accessed: 2018-09-19.
 
 [7]: https://en.wikipedia.org/wiki/Schnorr_signature
 "Wikipedia: Schnorr Signature"
 
-[[8]] Key Aggregation for Schnorr Signatures, Blockstream [online]. Available: _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_.
-
-Date accessed: 2018-09-19.
+[[8]] "Key Aggregation for Schnorr Signatures", Blockstream [online]. Available: _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_. Date accessed: 2018-09-19.
 
 [8]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
 "Blockstream: Key Aggregation for Schnorr Signatures"
 
-[[9]] Maxwell et. al Simple Schnorr Multi-signatures with Applications to Bitcoin [online]. Available: https://eprint.iacr.org/2018/068.pdf.
+[[9]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" [online]. Available: https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-09-19.?
 
-Date accessed: ?
 
 [9]: https://eprint.iacr.org/2018/068.pdf
-"Maxwell et. al., Simple Schnorr Multi-signatures with Applications to Bitcoin"
+
+"Simple Schnorr Multi-signatures with Applications to Bitcoin".
 
 ## Contributors
 
