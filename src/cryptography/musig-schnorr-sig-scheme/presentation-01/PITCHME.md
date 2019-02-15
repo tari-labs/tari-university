@@ -238,13 +238,13 @@ $$
 
 where ``$$ \tilde{X} = \prod_{i=1}^{n}X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m) $$``
 
++++
+
 @div[text-left]
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to public key ``$ \tilde{X} $``, a property termed *key aggregation*. 
 
 @divend
-
-+++
 
 @div[text-left]
 
@@ -551,6 +551,8 @@ s = \displaystyle\sum_{i=1}^{n}s_{i} \mod p
 $$
 `
 
++++
+
 @div[text-left]
 
 The signature is ``$ \sigma = (R, s) ​$``. 
@@ -558,8 +560,6 @@ The signature is ``$ \sigma = (R, s) ​$``.
 Given an ordered set ``$ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S =  \lbrace (X_{1}, m_{1}),...,(X_{n}, m_{n}) \rbrace  $`` and a signature ``$ \sigma = (R, s) $``  then ``$ \sigma $`` is valid for ``$ S ​$`` when 
 
 @divend
-
-+++
 
 `
 $$
