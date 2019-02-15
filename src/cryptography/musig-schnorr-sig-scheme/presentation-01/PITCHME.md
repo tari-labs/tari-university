@@ -46,35 +46,19 @@ See full report [*here*](https://tlu.tarilabs.com/cryptography/musig-schnorr-sig
 
 MuSig is a multi-signature scheme that is novel in combining:
 
-@divend
+<ol>
+<li>Support for key aggregation;
+<li>Security in the plain public-key model.
+</ol>
 
-@div[text-left]
-
-1. Support for key aggregation;
-
-@divend
-
-@div[text-left]
-
-2. Security in the plain public-key model.
-
-@divend
-
-@div[text-left]
+<div class="LineHeight100per"> <br></div>
 
 There are two versions of MuSig, that are provably secure, which differ based on the number of communication rounds:
 
-@divend
-
-@div[text-left]
-
-1. Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which Elliptic Curve Digital Signature Algorithm (ECDSA) also relies
-
-@divend
-
-@div[text-left]
-
-2. Two-round MuSig instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption
+<ol>
+<li>Three-round MuSig only relies on the Discrete Logarithm (DL) assumption, on which Elliptic Curve Digital Signature Algorithm (ECDSA) also relies
+<li>Two-round MuSig instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption
+</ol>
 
 @divend
 
