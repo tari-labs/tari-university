@@ -342,11 +342,11 @@ $$
 
 #### Round 2
 
-The signer generates a random $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $ R_{1} = g^{r_{1}} $ and $ t_{1} = \textrm{H}\_{com}(R\_{1}) $ and sends commitment $t_{1}$ to all other cosigners.
+The signer generates a random private nonce $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $ R_{1} = g^{r_{1}} $ (the public nonce) and commitment $ t_{1} = \textrm{H}\_{com}(R\_{1}) $ and sends $t_{1}​$ to all other cosigners.
 
-When receiving the commitments $t_{2},...,t_{n}​$ from the other cosigners, the signer sends $R_{1}​$ to all other cosigners.
+When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, the signer sends $R_{1}$ to all other cosigners. This ensures that the public nonce is not exposed until all commitments have been received. 
 
-Upon receiving $R_{2},...,R_{n}$ from other cosigners, the signer verifies that $t\_{i}=\textrm{H}\_{com}(R_{i})$ for all $ i\in  \lbrace 2,...,n \rbrace  $
+Upon receiving $R_{2},...,R_{n}​$ from other cosigners, the signer verifies that $t\_{i}=\textrm{H}\_{com}(R_{i})​$ for all $ i\in  \lbrace 2,...,n \rbrace  ​$
 
 The protocol is aborted if this is not the case. 
 
