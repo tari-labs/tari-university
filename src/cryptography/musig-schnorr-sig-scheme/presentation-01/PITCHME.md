@@ -329,11 +329,10 @@ Bellare and Neven showed that this yields a multi-signature scheme provably secu
 
 @div[text-left]
 
-MuSig is paramaterised by group parameters ``$(\mathbb{G\mathrm{,p,g)}}$`` and three hash functions ``$ ( \textrm{H}_{com}  ,  \textrm{H}_{agg} , \textrm{H}_{sig} ) $``.
+MuSig is paramaterised by group parameters `$(\mathbb{G\mathrm{,p,g)}}$` and three hash functions `$ ( \textrm{H}_{com}  ,  \textrm{H}_{agg} , \textrm{H}_{sig} ) $`.
 
 @divend
 
-@div[text-left]
 
 ### Round 1
 
