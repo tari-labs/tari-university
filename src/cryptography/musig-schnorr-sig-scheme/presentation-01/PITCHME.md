@@ -532,8 +532,10 @@ The signer with message index ``$ i ​$`` then computes:
 
 `
 $$
-c_{i} = H(R, \langle S \rangle, i)\\\\
-s_{i} = r_{i} + c_{i}x_{i} \mod p
+\begin{aligned} 
+c_{i} &= H(R, \langle S \rangle, i)\\\\
+s_{i} &= r_{i} + c_{i}x_{i} \mod p
+\end{aligned} 
 $$
 `
 
