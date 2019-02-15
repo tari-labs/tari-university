@@ -310,14 +310,11 @@ $$
 
 A preliminary round is also added to the signature protocol, where each signer commits to its share ``$ R_i $`` by sending ``$ t_i = \textrm{H}^\prime(R_i) $`` to other cosigners first. 
 
-@divend
-
-@div[text-left]
+<div class="LineHeight20per"> <br></div>
 
 This stops any cosigner from setting ``$ R = \prod_{i=1}^{n}R_{i} $`` to some maliciously chosen value.
-@divend
 
-@div[text-left]
+<div class="LineHeight20per"> <br></div>
 
 Bellare and Neven showed that this yields a multi-signature scheme provably secure in the *plain public-key* model under the Discrete Logarithm assumptions. However, this scheme does not allow key aggregation since the entire list of public keys is required for verification.
 
