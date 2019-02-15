@@ -1,6 +1,25 @@
-# Introduction to Schnorr signatures
+# Introduction to Schnorr Signatures
 
-## Introduction
+- [Overview](#overview)
+- [Let's get Started](#lets-get-started)
+- [Basics of Schnorr Signatures](#basics-of-schnorr-signatures)
+  - [Public and Private Keys](#public-and-private-keys)
+  - [Creating a Signature](#creating-a-signature)
+    - [Approach Taken](#approach-taken)
+    - [Why do we Need the Nonce?](#why-do-we-need-the-nonce)
+    - [ECDH](#ecdh)
+- [Schnorr Signatures](#schnorr-signatures)
+  - [So Why All the Fuss?](l#so-why-all-the-fuss)
+  - [Naïve Signature Aggregation](#naïve-signature-aggregation)
+  - [Key Cancellation Attack](#key-cancellation-attack)
+  - [Better Approaches to Aggregation](#better-approaches-to-aggregation)
+- [MuSig](#musig)
+  - [MuSig Demonstration](#musig-demonstration)
+  - [Security Demonstration](#security-demonstration)
+- [References](#references)
+- [Contributors](#contributors)
+
+## Overview
 
 Private-public key pairs are the cornerstone of much of the
 cryptographic security underlying everything from secure web browsing to banking to cryptocurrencies. Private-public key pairs
@@ -14,12 +33,12 @@ key; and _encryption_ where messages can be encoded and only the person possessi
 
 In this introduction on digital signatures, we'll be talking about a particular class of keys: those derived from 
 elliptic curves. There are other asymmetric schemes, not least of which those based on products of prime numbers, 
-including RSA keys [[1]].
+including RSA keys. [[1]]
 
 We're going to assume you know the basics of elliptic curve cryptography (ECC). If not, don't stress, there's a
 [gentle introduction](../crypto-1/sources/PITCHME.link.md) in a previous chapter.
 
-### Let's get started
+## Let's get Started
 
 This is an interactive introduction to digital signatures. It uses Rust code to demonstrate some of 
 the idea presented here, so you can see them at work. The code for this introduction makes use 
@@ -33,19 +52,11 @@ operators so that the Rust code looks a lot more like mathematical formulae. Thi
 to play with the ideas we'll be exploring.
 
 **WARNING!** _Don't use this library in production code_. It hasn't been battle-hardened, so [use this one in
-production instead](https://github.com/rust-bitcoin/rust-secp256k1)
-
-### References rrrr
-
-[1]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)	"Wikipedia RSA cryptography"
-
-[[1]]: RSA (cryptosystem). https://en.wikipedia.org/wiki/RSA_(cryptosystem). Accessed 11 Oct 2018.
-
-
+production instead](https://github.com/rust-bitcoin/rust-secp256k1).
 
 ## Basics of Schnorr Signatures
 
-### Public and Private keys
+### Public and Private Keys
 
 The first thing we'll do is create a public and private key from an elliptic curve.
 
@@ -64,9 +75,11 @@ The following code snippet demonstrates this:
 
 {{#playpen src/pubkey.rs}}
 
-### Creating a signature
+### Creating a Signature
 
-Reversing ECC math multiplication (i.e. division) is pretty much infeasible when using properly chosen random values for your scalars [[4], [5]].
+#### Approach Taken
+
+Reversing ECC math multiplication (i.e. division) is pretty much infeasible when using properly chosen random values for your scalars ([5], [6]).
  This property is called the _Discrete Log Problem_ and is used as the principle behind a lot of cryptography and digital signatures. 
  A valid digital signature is evidence that the person providing the signature knows the private key corresponding to the public key the message
 is associated with, or that they have solved the Discrete Log Problem. 
@@ -91,7 +104,7 @@ $$
 Now Bob can also calculate _e_, since he already knows _m, R, P_. But he doesn't know your private key, or nonce.
 
 **Note:** When you construct the signature like this, it's known as a _Schnorr signature_, which we'll discuss in more 
-detail in the next section. There are other ways of constructing _s_, such as ECDSA [[1]], which is used in Bitcoin.
+detail in the next section. There are other ways of constructing _s_, such as ECDSA [[2]], which is used in Bitcoin.
 
 But see this:
 
@@ -107,7 +120,7 @@ $$ sG = R + Pe $$
 So Bob must just calculate the public key corresponding to the signature (_s.G_) and check that it equals the RHS of the last
 equation above (_R + P.e_), all of which Bob already knows.
 
-#### Why do we need the nonce?
+#### Why do we Need the Nonce?
 
 Why do we need a nonce in the standard signature?
 
@@ -133,12 +146,12 @@ We can show that leaving off the nonce is indeed highly insecure:
 
 {{#playpen src/no-nonce.rs}}
 
-ECDH
+#### ECDH
 
 How do parties that want to communicate securely generate a shared secret for encrypting messages? One way is called
 the Elliptic Curve Diffie-Hellmam exchange (ECDH) which is a simple method for doing just this.
 
-ECDH is used in many places, including the Lightning Network during channel negotiation [[2]].
+ECDH is used in many places, including the Lightning Network during channel negotiation [[3]].
 
 Here's how it works. Alice and Bob want to communicate securely. A simple way to do this is to use each other's public keys and
 calculate
@@ -153,37 +166,21 @@ $$
 
 For security reasons, the private keys are usually chosen at random for each session (you'll see the term
 _ephemeral_ keys being used), but then we have the problem of not being sure the other party is who they say they
-are (perhaps due to a man-in-the-middle attack [[3]]).
+are (perhaps due to a man-in-the-middle attack [[4]]).
 
 Various additional authentication steps can be employed to resolve this problem, which we won't get into here. 
 
-[1]: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm	"Wikipedia: ECDSA"
-[2]: https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md	"BOLT #8: Encrypted and Authenticated Transport"
-[3]: https://en.wikipedia.org/wiki/Man-in-the-middle_attack	"Wikipedia: Man in the Middle Attack"
-[4]: https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work	"StackOverflow: How does a cryptographically secure random number generator work?"
-[5]: https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator	"Cryptographically secure pseudorandom number generator"
-
-### References rrrr
-
-- [[1]] Elliptic Curve Digital Signature Algorithm, Wikipedia, https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm. Accessed 11/10/18.
-- [[2]] BOLT #8: Encrypted and Authenticated Transport, Lightning RFC, Github. https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md. Accessed 11/10/18.
-- [[3]] Man in the Middle Attack, Wikipedia, https://en.wikipedia.org/wiki/Man-in-the-middle_attack. Accessed 11/10/18.
-- [[4]] How does a cryptographically secure random number generator work?, StackOverflow, https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work. Accessed 11/10/18.
-- [[5]] Cryptographically secure pseudorandom number generator, Wikipedia, https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator. Accessed 11/10/18.
-
-
-
-## Schnorr signatures
+## Schnorr Signatures
 
 If you follow the crypto news, you'll know that that new hotness in Bitcoin is Schnorr Signatures.
 
-![schnorr](C:/Users/Denise/Documents/Tari/tari-university/src/cryptography/digital_signatures/img/schnorr-meme.jpg)
+<p align="center"><img src="./img/schnorr-meme.jpg" width="600" /></p>
 
 But in actual fact, they're old news! The Schnorr signature is considered the simplest digital signature scheme 
 to be provably secure in a random oracle model. It is efficient and generates short signatures. 
-It was covered by U.S. Patent 4,995,082 which expired in February 2008 [[1]].
+It was covered by U.S. Patent 4,995,082 which expired in February 2008 [[7]].
 
-### So why all the fuss?
+### So Why All the Fuss?
 
 What makes Schnorr signatures so interesting, and [potentially dangerous](#key-cancellation-attack), is their simplicity. 
 Schnorr signatures are _linear_, so you have some nice properties.
@@ -197,13 +194,13 @@ Schnorr signatures are of the form \\( s = r + e.k \\). This construction is lin
 the linearity of elliptic curve math.
 
 You saw this property in the previous section, when we were verifying the signature. Schnorr signatures' linearity 
-makes it very attractive for things like
+makes it very attractive for things like;
 
-- signature aggregation
-- [atomic swaps](../../protocols/atomic-swaps/AtomicSwaps.md)
-- ['scriptless' scripts](../scriptless-scripts/introduction-to-scriptless-scripts.md)
+- signature aggregation;
+- [atomic swaps](../../protocols/atomic-swaps/AtomicSwaps.md);
+- ['scriptless' scripts](../scriptless-scripts/introduction-to-scriptless-scripts.md).
 
-### (Naïve) Signature aggregation
+### (Naïve) Signature Aggregation
 
 Let's see how the linearity property of Schnorr signatures can be used to construct a 2-of-2 multi-signature.
 
@@ -229,7 +226,7 @@ from the sum of the _Rs_ and public keys. This does work:
 
 But this scheme is not secure!
 
-### Key cancellation attack
+### Key Cancellation Attack
 
 Let's take the previous scenario again, but this time, Bob knows Alice's public key and nonce ahead of time, by
 waiting until she reveals them. 
@@ -252,7 +249,7 @@ $$
 $$
 {{#playpen src/cancellation.rs}}
 
-### Better approaches to aggregation
+### Better Approaches to Aggregation
 
 In the key attack above, Bob didn't know the private keys for his published _R_ and _P_ values. We could defeat Bob
 by asking him to sign a message proving that he _does_ know the private keys.
@@ -270,13 +267,15 @@ A better approach would be one that incorporates one or more of the following fe
 
 ## MuSig
 
-MuSig is a recently proposed [[2]],[[3]] simple signature aggregation scheme that satisfies all of the properties above.
+MuSig is a recently proposed ([[8]],[[9]]) simple signature aggregation scheme that satisfies all of the properties above.
+
+### MuSig Demonstration
 
 We'll demonstrate the interactive MuSig scheme here, where each signatory signs the same message. 
 The scheme works as follows:
 
 1. Each signer has a public-private key pair as before.
-2. Each signer publishes the public key of their nonce, \\( R_i \\),
+2. Each signer publishes the public key of their nonce, \\( R_i \\).
 3. Everyone calculates the same "shared public key", _X_ as follows: 
 
 $$
@@ -291,8 +290,8 @@ Note that in the ordering of public keys above, some deterministic convention sh
 order of the serialised keys.
 
 1. Everyone also calculates the shared nonce, \\( R = \sum R_i \\).
-2. The challenge, _e_ is \\( H(R || X || m) \\)
-3. Each signer provides their contribution to the signature as
+2. The challenge, _e_ is \\( H(R || X || m) \\).
+3. Each signer provides their contribution to the signature as:
 
 $$
     s_i = r_i + k_i a_i e
@@ -322,7 +321,7 @@ Let's demonstrate this using a three-of-three multisig:
 
 {{#playpen src/musig.rs}}
 
-### Security demonstration
+### Security Demonstration
 
 As a final demonstration, let's show how MuSig defeats the cancellation attack from the naïve signature scheme described
 above. Using the same idea as in [the previous section](#key-cancellation-attack), Bob has provided fake values for his
@@ -364,21 +363,64 @@ In the previous attack, Bob had all the information he needed on the right-hand 
 Bob must somehow know Alice's private key and the faked private key (the terms don't cancel anymore) in order to create a unilateral signature
 and so his cancellation attack is defeated.
 
-### References rrr
-
-[1]: https://en.wikipedia.org/wiki/Schnorr_signature	"Wikipedia:Schnorr signature"
-[2]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html	"Blockstream: Key Aggregation for Schnorr Signatures"
-[3]: https://eprint.iacr.org/2018/068.pdf	"Maxwell et. al., Simple Schnorr Multi-Signatures with Applications to Bitcoin"
-
-- [[1]]: Schnorr signature, Wikipedia, _https://en.wikipedia.org/wiki/Schnorr_signature_, Date accessed: 19 September 2018
-- [[2]]: Key Aggregation for Schnorr Signatures, Blockstream, _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_, Date accessed: 19 September 2018
-- [[3]]: Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell _et. al._, _https://eprint.iacr.org/2018/068.pdf_
-
-
-
 ## References
 
+[[1]] RSA (Cryptosystem) [online]. Available: https://en.wikipedia.org/wiki/RSA_(cryptosystem). Date accessed: 2018-10-11.
 
+[1]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+"Wikipedia RSA Cryptography"
+
+
+[[2]] Elliptic Curve Digital Signature Algorithm, Wikipedia [online]. Available: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm.
+Date accessed: 2018-10-11.
+
+[2]: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
+"Wikipedia: ECDSA"
+
+[[3]] BOLT #8: Encrypted and Authenticated Transport, Lightning RFC, Github [online].
+Available: https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md. Date accessed: 2018-10-11.
+
+[3]: https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md
+"BOLT #8: Encrypted and Authenticated Transport"
+
+[[4]] Man in the Middle Attack, Wikipedia [online].
+Available: https://en.wikipedia.org/wiki/Man-in-the-middle_attack. Date accessed: 2018-10-11.
+
+[4]: https://en.wikipedia.org/wiki/Man-in-the-middle_attack
+"Wikipedia: Man in the Middle Attack"
+
+[[5]] How does a cryptographically Secure Random Number Generator Work?, StackOverflow [online].
+Available:
+https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work. Date accessed: 2018-10-11.
+
+[5]: https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work
+"StackOverflow: How does a Cryptographically Secure Random Number Generator Work?"
+
+[[6]] Cryptographically Secure Pseudorandom Number Generator, Wikipedia [online].
+Available: https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator. Date accessed: 2018-10-11.
+
+[6]: https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator
+"Cryptographically secure pseudorandom number generator"
+
+[[7]] Schnorr Signature, Wikipedia [online]. Available: _https://en.wikipedia.org/wiki/Schnorr_signature_.
+Date accessed: 2018-09-19.
+
+[7]: https://en.wikipedia.org/wiki/Schnorr_signature
+"Wikipedia: Schnorr Signature"
+
+[[8]] Key Aggregation for Schnorr Signatures, Blockstream [online]. Available: _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_.
+
+Date accessed: 2018-09-19.
+
+[8]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
+"Blockstream: Key Aggregation for Schnorr Signatures"
+
+[[9]] Maxwell et. al Simple Schnorr Multi-signatures with Applications to Bitcoin [online]. Available: https://eprint.iacr.org/2018/068.pdf.
+
+Date accessed: ?
+
+[9]: https://eprint.iacr.org/2018/068.pdf
+"Maxwell et. al., Simple Schnorr Multi-signatures with Applications to Bitcoin"
 
 ## Contributors
 
