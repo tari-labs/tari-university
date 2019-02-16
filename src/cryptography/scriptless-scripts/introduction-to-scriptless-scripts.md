@@ -1,21 +1,33 @@
 # Introduction to Scriptless Scripts 
 
 - [Definition of Scriptless Scripts](#definition-of-scriptless-scripts) 
+
 - [Benefit of Scriptless Scripts](#benefit-of-scriptless-scripts)
+
 - [List of Scriptless Scripts](#list-of-scriptless-scripts)
+
 - [Role of Schnorr Signatures](#role-of-schnorr-signatures)
+
 - [Schnorr Multi-signatures](#schnorr-multi-signatures)
+
 - [Adaptor Signatures](#adaptor-signatures)
+
 - [Simultaneous Scriptless Scripts](#simultaneous-scriptless-scripts)
   - [Preimages](#preimages)
   - [Difference of Two Schnorr Signatures](#difference-of-two-schnorr-signatures)
+
 - [Atomic (Cross-chain Swaps) Example with Adaptor Signatures](#atomic-cross-chain-swaps-example-with-adaptor-signatures)
+
 - [Zero Knowledge Contingent Payments](#zero-knowledge-contingent-payments)
+
 - [Mimblewimble's Core Scriptless Script](#mimblewimbles-core-scriptless-script)
+
 - [References](#references)
+
 - [Contributors](#contributors)
 
----
+  
+
 
 ## Definition of Scriptless Scripts 
 
@@ -25,7 +37,8 @@ The concept of Scriptless Scripts was borne from Mimblewimble, which is a block 
 
 A brief introduction is also given in [#5 Scriptless scripts, Layer 2 Scaling Survey (Part 2)](../../layer2scaling/more-landscape/landscape-update.md#a5-scriptless-scripts) 
 
----
+
+
 
 ## Benefit of Scriptless Scripts 
 
@@ -37,7 +50,8 @@ With regards to privacy, moving the specification and execution of smart contrac
 
 With regards to efficiency, Scriptless Scripts minimize the amount of data that requires verification and storage on-chain. By moving smart contracts off-chain, there are less overheads for full nodes and lower transaction fees for users. [[1]]   
 
----
+
+
 
 ## List of Scriptless Scripts 
 
@@ -45,8 +59,8 @@ In this report various forms of Scripts will be covered. These include [[3]]:
 - Simultaneous Scriptless Scripts
 - Adaptor Signatures 
 - Zero Knowledge Contingent Payments
+- 
 
----
 
 ## Role of Schnorr Signatures 
 
@@ -74,9 +88,10 @@ $$
 sG=rG+exG
 $$
 
-ECDSA signatures (used in Bitcoin) are not linear in *x* and *r*, and thus less useful [[2]] 
+ECDSA signatures (used in Bitcoin) are not linear in *x* and *r*, and thus less useful. [[2]] 
 
----
+
+
 
 ## Schnorr Multi-signatures
 
@@ -92,7 +107,8 @@ $$
 
 It can therefore be seen that these signatures are essentially scriptless scripts. Independent public keys of several participants are joint to form a single key and signature, which when published do not divulge the details as to the number of participants involved or the original public keys. 
 
----
+
+
 
 ## Adaptor Signatures  
 
@@ -148,7 +164,8 @@ $$
 
 The above is very general however, by attaching auxiliary proofs too one can derive an adaptor signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
 
----
+
+
 
 ## Simultaneous Scriptless Scripts 
 
@@ -178,7 +195,8 @@ The *d* value provides an interesting property with regards to atomicity. It is 
 
 This is a critical feature for Mimblewimble, which was previously thought to be unable to support atomic swaps or lightning channels. [[4]]
 
----
+
+
 
 ## Atomic (Cross-chain Swaps) Example with Adaptor Signatures
 
@@ -190,13 +208,15 @@ Using adaptor signatures, the same result can be achieved through simpler means.
 
 Thus it can be seen that atomicity is achieved. One is still able to exchange information but now there are no explicit hashes or preimages on the block chain: No script properties are necessary and privacy is achieved. [[4]]
 
----
+
+
 
 ## Zero Knowledge Contingent Payments 
 
 ZKCP is a transaction protocol. This protocol allows a buyer to purchase information from a seller using coins in a manner which is private, scalable, secure, and importantly in a trustless environment. The expected information is transferred only when  payment is made. The buyer and seller do not need to trust each other or depend on arbitration by a third party. [[6]]
 
----
+
+
 
 ## Mimblewimble's Core Scriptless Script
 
@@ -206,56 +226,57 @@ Mimblewimble blocks will only have a list of new inputs, a list of new outputs a
 
 Since the values are homomorphically encrypted, nodes can verify that no coin are being created or destroyed. 
 
----
+
+
 
 ## References 
 
-[[1]] "Crypto Innovation Spotlight 2: Scriptless Scripts" [online]. Available:  https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8. Date accessed: 2018-02-27. 
+[[1]] "Crypto Innovation Spotlight 2: Scriptless Scripts" [online].  
+Available:  https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8. Date accessed: 2018-02-27. 
 
 [1]: https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8
 (Crypto Innovation Spotlight 2: Scriptless Scripts)
 
-
-[[2]]  Andrew Poelstra, "Mimblewimble and Scriptless Scripts". Presented at Real World Crypto, 2018 [online]. Available: https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s. Date accessed: 2018-01-11. 
+[[2]]  Andrew Poelstra, "Mimblewimble and Scriptless Scripts". Presented at Real World Crypto, 2018 [online]. 
+Available: https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s. Date accessed: 2018-01-11. 
 
 [2]: https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s
 (Mimblewimble and Scriptless Scripts)
 
-
-
-[[3]]  Andrew Poelstra, "Scriptless Scripts". Presented at Layer 2 Summit Hosted by MIT DCI and Fidelity Labs on 18 May 2018 [online]. Available:https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m. Date Accessed: 2018-05-25
+[[3]]  Andrew Poelstra, "Scriptless Scripts". Presented at Layer 2 Summit Hosted by MIT DCI and Fidelity Labs on 18 May 2018 [online].
+Available: https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m. Date Accessed: 2018-05-25
 
 [3]: https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m
 (Scriptless Scripts)
 
-
-
 [[4]]  Andrew Poelstra, "Mimblewimble and Scriptless Scripts". Presented at MIT Bitcoin Expo 2017 Day 1 [online]. Available: https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20. Date accessed: 4 March 2017.
 
 [4]: https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20
-(Title of Presentation?)
+(Mimblewimble and Scriptless Scripts)
 
-
-
-[[5]]  "Flipping the Scriptless Script on Schnorr" [online]. Available: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/. Date accessed: November 2017.
+[[5]]  "Flipping the Scriptless Script on Schnorr" [online]. 
+Available: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/. Date accessed: November 2017.
 
 [5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/
 (Flipping the Scriptless Script on Schnorr)
 
-
-[[6]]  "The First Successful Zero-knowledge Contingent Payment" [online]. Available: https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/. Date accessed: 2016-02-26
+[[6]]  "The First Successful Zero-knowledge Contingent Payment" [online]. 
+Available: https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/. Date accessed: 2016-02-26
 
 [6]: https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/
 (The First Successful Zero-knowledge Contingent Payment, 26 Feb 2016)
 
-
-[[7]]  "What is Mimblewimble?" [Online.] Available: https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/. Date accessed: 2018-06-30.
+[[7]]  "What is Mimblewimble?" [Online.]
+Available: https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/. Date accessed: 2018-06-30.
 
 [7]: https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/
 (What is Mimblewimble?)
 
 
 
+
 ## Contributors
 
 https://github.com/kevoulee
+
+https://github.com/anselld
