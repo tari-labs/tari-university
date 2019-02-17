@@ -3,12 +3,12 @@
 - [Purpose](#purpose)
 - [Standards for Content](#standards-for-content)
   - [Spelling](#spelling)
+  - [Quotation Marks](#quotation-marks)
   - [Units of Measure](#units-of-measure)
   - [Date and Time](#date-and-time)
   - [Abbreviations](#abbreviations)
   - [Spacing](#spacing)
   - [Decimals and Numbers](#decimals-and-numbers)
-  - [Quotation Marks](#quotation-marks)
   - [List Types](#list-types)
   - [List Punctuation](#list-punctuation)
   - [Cross-referencing](#cross-referencing)
@@ -27,6 +27,7 @@
 - [References](#references)
 - [Appendices](#appendices)
   - [Appendix A: Lower-case Words used in Title Case Formatting](#appendix-a-lower-case-words-used-in-title-case-formatting)
+  - [Appendix B: Tari Labs University Terminology Conventions](#appendix-b-tari-labs-university-terminology-conventions)
 - [Contributors](#contributors)
 
 
@@ -48,7 +49,7 @@ TLU content is created in [Markdown](https://www.markdownguide.org/) format and 
 
 ### Spelling
 
-Use the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online [[1]]. 
+As per the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online [[1]]. 
 
 ### Quotation Marks
 
@@ -56,7 +57,7 @@ As per the American style. Use double quotation marks for a first quotation and 
 
 ### Punctuation
 
-As per the United Kingdom (UK) punctuation standard. Place commas and full stops inside the quotation marks. 
+As per the United Kingdom (UK) punctuation standard. Place commas and full stops as advised in [[4]]. 
 
 ### Units of Measure
 
@@ -384,7 +385,7 @@ A **reference link** has two parts. The first part of a reference link has two s
 *Example* 
 
 Under the heading [Spelling](#spelling), the text reference is "The applicable dictionary is Merriam-Webster Online [[1]]". 
-Note the double square brackets, and the label 1.
+In the markdown text, note the double square brackets and the label 1. The rendered text shows [1].
 
 The second part of a reference link is inserted under the heading [References](#references), and appears as follows:
 
@@ -422,6 +423,15 @@ Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu
 [3]: https://physics.nist.gov/cuu/pdf/sp811.pdf
 "Guide for the Use of the International System of Units (SI)"
 
+[[4]] The Oxford Guide to Style [online]. 
+Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
+
+[4]: https://www.merriam-webster.com
+
+"http://www.eng-lang.co.uk/ogs.htm"
+
+
+
 ## Appendices
 
 ### Appendix A: Lower-case Words used in Title Case Formatting
@@ -429,42 +439,87 @@ Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu
 
 
 
-|  Case Word |  Case Word |  Case Word |  Case Word |
-|    ----    |    ----    |    ----    |    ----    |
-|      a     |    each    |    less    |  therefore |
-|    about   |    equal   |   lesser   |    these   |
-|    above   |   either   |     low    |    they    |
-|    after   |    ever    |    made    |    this    |
-|   against  |    every   |    make    |    those   |
-|    ahead   |   exclude  |    means   |   through  |
-|     am     |  excluding |    more    | throughout |
-|     an     |   follow   |    most    |    thus    |
-|     and    |  following |   neither  |     to     |
-|     any    |   follows  |    next    |     top    |
-|     are    |     for    |     no     |   towards  |
-|     as     |    from    |     nor    |    under   |
-|     at     |   further  |     not    |     up     |
-|     be     |    give    |     of     |    upper   |
-|    been    |    given   |     on     |     use    |
-|   before   |     go     |    only    |     use    |
-|   behind   |    good    |     or     |    used    |
-|    below   |   greater  |    order   |    used    |
-|   beside   |     had    |     our    |    using   |
-|   besides  |     has    |     out    |   versus   |
-|    best    |    have    |    outer   |    very    |
-|   better   |     how    |   outside  |     via    |
-|   between  |   however  |    over    |    were    |
-|   bottom   |    i.e.    |   provide  |    what    |
-|     but    |     in     |   regard   |    when    |
-|     by     |   include  |    since   |    where   |
-|     can    |  including |    such    |    which   |
-|   consist  |    inner   |    than    |    while   |
-| consistent |   inside   |    that    |     who    |
-|consistently|   instead  |     the    |    with    |
-|  consists  |     is     |    their   |   within   |
-|    does    |     it     |    them    |   without  |
-|    down    |     its    |    then    |    worst   |
-|    e.g.    |    least   |    there   |            |
+| Case Word    | Case Word | Case Word | Case Word  |
+| ------------ | --------- | --------- | ---------- |
+| a            | each      | less      | therefore  |
+| about        | either    | lesser    | these      |
+| above        | equal     | low       | they       |
+| after        | ever      | made      | this       |
+| against      | every     | make      | those      |
+| ahead        | exclude   | means     | through    |
+| am           | excluding | more      | throughout |
+| an           | follow    | most      | thus       |
+| and          | following | neither   | to         |
+| any          | follows   | next      | top        |
+| are          | for       | no        | towards    |
+| as           | from      | nor       | under      |
+| at           | further   | not       | up         |
+| be           | give      | of        | upper      |
+| been         | given     | on        | use        |
+| before       | go        | only      | use        |
+| behind       | good      | or        | used       |
+| below        | greater   | order     | used       |
+| beside       | had       | our       | using      |
+| besides      | has       | out       | versus     |
+| best         | have      | outer     | very       |
+| better       | how       | outside   | via        |
+| between      | however   | over      | were       |
+| bottom       | i.e.      | provide   | what       |
+| but          | in        | regard    | when       |
+| by           | include   | since     | where      |
+| can          | including | such      | which      |
+| consist      | inner     | than      | while      |
+| consistent   | inside    | that      | who        |
+| consistently | instead   | the       | with       |
+| consists     | is        | their     | within     |
+| does         | it        | them      | without    |
+| down         | its       | then      | worst      |
+| e.g.         | least     | there     |            |
+
+
+
+
+
+### Appendix B: Tari Labs University Terminology Conventions
+
+**Note:** This list is a work in progress.
+
+| Term         | Term | Term | Term |
+| ------------ | ---- | ---- | ---- |
+| blockchain   |      |      |      |
+| Mimblewimble |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
+|              |      |      |      |
 
 
 
