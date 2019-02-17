@@ -50,7 +50,7 @@ In the original Bitcoin whitepaper, Satoshi recognized this and introduced the c
 
 <p align="center"><img src="sources/proofofworkchain.png" width="700" /></p>
 
-<div align="right"><i>Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System</i></div>
+<div align="center"><i>Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System</i></div>
 
 In this system, the full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected. The SPV clients would then be prompted to download the full block and alerted transactions to
 confirm the inconsistency. [[2]]
@@ -127,7 +127,7 @@ Their proposition is to generalize the entire blockchain as a state transition s
 
 <p align="center"><img src="sources/stateroot.png" width="500" /></p>
 
-<div align="right"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
+<div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
 
 In the case of the Bitcoin blockchain, representing the entire blockchain as a key-value store Sparse Merkle tree would mean:
 * `Key = UTXO ID`
@@ -149,7 +149,7 @@ So a full node would send a light client/SPV this data to proof a valid fraud pr
 
 <p align="center"><img src="sources/fraudproof.png" width="500" /></p>
 
-<div align="right"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
+<div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
 
 The post-state root can be excluded in order to save block space but that does, however, increase the fraud proof size. This works with the assumption that the SPV client is connected to a minimum of one honest node.
 
@@ -158,11 +158,11 @@ SPV clients make use of Bloom filters to receive transactions that are relevant 
 
 <p align="center"><img src="sources/spv.png" width="600" /></p>
 
-<div align="right"><i>Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight Bitcoin Clients [[7]]</i></div>
+<div align="center"><i>Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight Bitcoin Clients</i></div>
 
 In addition to Bloom filters, SPV clients rely on Merkle trees [[26]] - binary structures that have a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network [[8]].
 
-<p align="center"><img src="sources/merkle-tree.png" width="800" /></p>
+<p align="center"><img src="sources/merkle-tree.png" width="1000" /></p>
 
 Fraud proofs are integral to the security of SPV clients, however, the other components in SPV clients are not without issues. 
 
