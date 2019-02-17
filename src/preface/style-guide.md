@@ -153,7 +153,7 @@ Where a list contains complete sentences, each item in the list is followed by a
 
 According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes:
 
-1. The entire extended data is available, the erasure code is constructed correctly, and the block is valid.
+1. The entire extended data is available, the erasure code is constructed correctly and the block is valid.
 2. The entire extended data is available, the erasure code is constructed correctly, but the block is invalid.
 3. The entire extended data is available, but the erasure code is constructed incorrectly.
 
@@ -169,21 +169,20 @@ Refer to the list of contents at the start of this Style Guide.
 - Text references appear in square brackets in the text and are listed under "References" at the end of each chapter.
 - If a text reference appears at the end of a paragraph, it appears after the full stop at the end of the paragraph.
 - Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table 
-numbering, avoid referring to "below" or "above'" Rather give a specific figure or table number. In the case of text 
+numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text 
 references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this 
 Style Guide.
 
 ### Case Formatting
 
-[Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting) contains a list of lower-case words used in 
-title case formatting in headings and captions (if used).
+[Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting) contains a list of lower-case words used in title case formatting in headings and captions (if used).
 
 ## Standards for Layout
 
 ### Proposed Layout
 
 This section gives the proposed layout for TLU reports. The following headings are provided as a guide to heading 
-levels and content.  
+levels and content:  
 
 - **Title (as heading level 1)**
    Contents List (as embedded links).
@@ -274,13 +273,11 @@ before this list.
 The use of captions, as well as figure and table numbering, is optional. If you choose to use numbering and captions, 
 these guidelines will help to promote consistency in TLU layout:
 
-- Number figures and tables in each section sequentially, with the table caption above the table and the figure caption 
-below the figure.
+- Number figures and tables in each section sequentially, with the table caption above the table and the figure caption below the figure.
 - Type figure and table captions in upper and lower-case (title case).
 - Type Figure x: or Table X: before the caption, as applicable.
 - Center figures and tables on the page.
-- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure 
-  and table numbering is not used, would then be "the following figure..." or "the following table...". This helps to avoid confusion.
+- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps to avoid confusion.
 
 ### Equations
 
@@ -292,9 +289,10 @@ through MathJax. In addition to the delimiters `\[` and `\[`, TLU also supports 
 
 *Examples*
 
-Example of an inline equation: $ h \in \mathbb G $ 
+- Example of an inline equation: $ h \in \mathbb G $ 
 
-Example of a display equation:
+- Example of a display equation:
+
 
 $$
 \mathbb s = \prod _{i=0}^n s(i)
@@ -353,7 +351,7 @@ shown in the following example.
 3. Title of journal, in italics (if applicable).
 4. Publication information (volume, number, etc.).
 5. Page range (if applicable).
-6. URL address if an online publication. Provide this information as shown in the following example: "Available:..".
+6. URL address if an online publication. Provide this information as shown in the following example: "Available: ..".
 7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
 *Example* 
