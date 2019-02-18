@@ -246,7 +246,6 @@ Date accessed: 2018-09-10.
 [2]: https://www.bitcoin.com/bitcoin.pdf
 "Bitcoin: A Peer-to-Peer Electronic Cash System"
 
-
 [[3]] "Simple Payment Verification" [online]. Available: http://docs.electrum.org/en/latest/spv.html. Date accessed: 2018-09-10.
 
 [3]: http://docs.electrum.org/en/latest/spv.html "Simple Payment Verification"
@@ -255,8 +254,8 @@ Date accessed: 2018-09-10.
 
 [4]: https://multibit.org/hd0.4/how-spv-works.html "SPV, Bloom Filters and Checkpoints"
 
-[[5]] "Improving the Ability of SPV Clients to Detect Invalid Chains" [online]. Available: https://gist.github.com/justusranvier/451616fa4697b5f25f60.  
-Date accessed: 2018-09-10.
+[[5]] "Improving the Ability of SPV Clients to Detect Invalid Chains" [online].  
+Available: https://gist.github.com/justusranvier/451616fa4697b5f25f60. Date accessed: 2018-09-10.
 
 [5]: https://gist.github.com/justusranvier/451616fa4697b5f25f60 "Improving the ability of SPV clients to detect invalid chains"
 
@@ -272,15 +271,18 @@ Date accessed: 2018-09-10.
 
 [8]: https://multibit.org/hd0.4/how-spv-works.html "SPV, Bloom Filters and Checkpoints"
 
-[[9]] "A Case of False Positives in Bloom Filters" [online]. Available: https://medium.com/blockchain-musings/a-case-of-false-positives-in-bloom-filters-da09ec487ff0. Date accessed: 2018-09-11.
+[[9]] "A Case of False Positives in Bloom Filters" [online].
+vailable: https://medium.com/blockchain-musings/a-case-of-false-positives-in-bloom-filters-da09ec487ff0. Date accessed: 2018-09-11.
 
 [9]: https://medium.com/blockchain-musings/a-case-of-false-positives-in-bloom-filters-da09ec487ff0 "A Case of False Positives in Bloom Filters,"
 
-[[10]] "The Design of Bitcoin Merkle Trees Reduces the Security of SPV Clients" [online]. Available: https://media.rsk.co/the-design-of-bitcoin-merkle-trees-reduces-the-security-of-spv-clients/. Date accessed: 2018-09-11.
+[[10]] "The Design of Bitcoin Merkle Trees Reduces the Security of SPV Clients" [online].  
+Available: https://media.rsk.co/the-design-of-bitcoin-merkle-trees-reduces-the-security-of-spv-clients/. Date accessed: 2018-09-11.
 
 [10]: https://media.rsk.co/the-design-of-bitcoin-merkle-trees-reduces-the-security-of-spv-clients/ "The Design of Bitcoin Merkle Trees Reduces the Security of SPV Clients"
 
-[[11]] "Leaf-node Weakness in Bitcoin Merkle Tree Design" [online]. Available: https://bitslog.wordpress.com/2018/06/09/leaf-node-weakness-in-bitcoin-merkle-tree-design/. Date accessed: 2018-09-11.
+[[11]] "Leaf-node Weakness in Bitcoin Merkle Tree Design" [online].  
+Available: https://bitslog.wordpress.com/2018/06/09/leaf-node-weakness-in-bitcoin-merkle-tree-design/. Date accessed: 2018-09-11.
 
 [11]: https://bitslog.wordpress.com/2018/06/09/leaf-node-weakness-in-bitcoin-merkle-tree-design/ "Leaf-node Weakness in Bitcoin Merkle Tree Design"
 
@@ -292,7 +294,8 @@ Date accessed: 2018-09-10.
 
 [13]: https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki "bip-0037.mediawiki"
 
-[[14]] "Committed Bloom Filters for Improved Wallet Performance and SPV Security" [online]. Available: https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2016-May/012636.html. Date accessed: 2018-09-11.
+[[14]] "Committed Bloom Filters for Improved Wallet Performance and SPV Security" [online].  
+Available: https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2016-May/012636.html. Date accessed: 2018-09-11.
 
 [14]: https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2016-May/012636.html "Committed Bloom Filters for Improved Wallet Performance and SPV Security"
 
@@ -300,7 +303,8 @@ Date accessed: 2018-09-10.
 
 [15]: https://github.com/petertodd/bloom-io-attack "Bloom-io-attack"
 
-[[16]] "Committed Bloom Filters versus BIP37 SPV" [online]. Available: https://www.newsbtc.com/2016/05/10/developers-introduce-bloom-filters-improve-bitcoin-wallet-security/. Date accessed: 2018-09-12.
+[[16]] "Committed Bloom Filters versus BIP37 SPV" [online].  
+Available: https://www.newsbtc.com/2016/05/10/developers-introduce-bloom-filters-improve-bitcoin-wallet-security/ Date accessed: 2018-09-12.
 
 [16]: https://www.newsbtc.com/2016/05/10/developers-introduce-bloom-filters-improve-bitcoin-wallet-security/ "Committed Bloom Filters versus BIP37 SPV"
 
@@ -309,8 +313,7 @@ Date accessed: 2018-09-12.
 
 [17]: https://www.linkedin.com/pulse/peter-todds-fraud-proofs-talk-mit-bitcoin-expo-2016-mark-morris/ "Fraud Proofs"
 
-[[18]] "New Satoshi Nakamoto E-mails Revealed" [online]. Available:
-, https://www.trustnodes.com/2017/08/12/new-satoshi-nakamoto-e-mails-revealed. Date accessed: 2018-09-12.
+[[18]] "New Satoshi Nakamoto E-mails Revealed" [online]. Available: https://www.trustnodes.com/2017/08/12/new-satoshi-nakamoto-e-mails-revealed. Date accessed: 2018-09-12.
 
 [18]: https://www.trustnodes.com/2017/08/12/new-satoshi-nakamoto-e-mails-revealed "New Satoshi Nakamoto E-mails Revealed"
 
@@ -319,19 +322,23 @@ Date accessed: 2018-09-13.
 
 [19]: https://plasma.io/plasma.pdf "Plasma: Scalable Autonomous Smart Contracts"
 
-[[20]] "A Note on Data Availability and Erasure Coding" [online]. Available: https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding. Date accessed: 2018-09-13.
+[[20]] "A Note on Data Availability and Erasure Coding" [online].  
+Available: https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding. Date accessed: 2018-09-13.
 
 [20]: https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding "A Note on Data Availability and Erasure Coding"
 
-[[21]] "Vitalik Buterin and Peter Todd Go Head to Head in the Crypto Culture Wars" [online]. Available: https://www.trustnodes.com/2017/08/14/vitalik-buterin-peter-todd-go-head-head-crypto-culture-wars. Date accessed: 2018-09-14.
+[[21]] "Vitalik Buterin and Peter Todd Go Head to Head in the Crypto Culture Wars" [online].  
+Available: https://www.trustnodes.com/2017/08/14/vitalik-buterin-peter-todd-go-head-head-crypto-culture-wars. Date accessed: 2018-09-14.
 
 [21]: https://www.trustnodes.com/2017/08/14/vitalik-buterin-peter-todd-go-head-head-crypto-culture-wars "Vitalik Buterin and Peter Todd Go Head to Head in the Crypto Culture Wars"
 
-[[22]] "Introducing Merklix Tree as an Unordered Merkle Tree on Steroid" [online]. Available: https://www.deadalnix.me/2016/09/24/introducing-merklix-tree-as-an-unordered-merkle-tree-on-steroid/. Date accessed 2018-09-14.
+[[22]] "Introducing Merklix Tree as an Unordered Merkle Tree on Steroid" [online].  
+Available: https://www.deadalnix.me/2016/09/24/introducing-merklix-tree-as-an-unordered-merkle-tree-on-steroid/. Date accessed 2018-09-14.
 
 [22]: https://www.deadalnix.me/2016/09/24/introducing-merklix-tree-as-an-unordered-merkle-tree-on-steroid/ "Introducing Merklix Tree as an Unordered Merkle Tree on Steroid"
 
-[[23]] Using Merklix Tree to Shard Block Validation" [online]. Available: https://www.deadalnix.me/2016/11/06/using-merklix-tree-to-shard-block-validation/. Date accessed: 2018-09-14.
+[[23]] Using Merklix Tree to Shard Block Validation" [online].  
+Available: https://www.deadalnix.me/2016/11/06/using-merklix-tree-to-shard-block-validation/. Date accessed: 2018-09-14.
 
 [23]: https://www.deadalnix.me/2016/11/06/using-merklix-tree-to-shard-block-validation/ "Using Merklix Tree to Shard Block Validation"
 
@@ -349,7 +356,8 @@ Available: https://www.reddit.com/r/Bitcoin/comments/3c3zn4/whats_the_difference
 
 [26]: https://arxiv.org/pdf/1809.09044.pdf "Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities"
 
-[[27]] "Bitcoin Integration/Staging Tree" [online]. Available: https://github.com/petertodd/bitcoin/tree/2016-02-lie-to-spv. Date accessed: 2018-10-12.
+[[27]] "Bitcoin Integration/Staging Tree" [online]. Available: https://github.com/petertodd/bitcoin/tree/2016-02-lie-to-spv.  
+Date accessed: 2018-10-12.
 
 [27]: https://github.com/petertodd/bitcoin/tree/2016-02-lie-to-spv "Bitcoin Integration/Staging Tree"
 
