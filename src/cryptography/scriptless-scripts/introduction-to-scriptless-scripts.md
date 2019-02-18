@@ -33,38 +33,45 @@
 
 Scriptless Scripts are a means to execute smart contracts off-chain, through the use of Schnorr signatures. [[1]]  
 
-The concept of Scriptless Scripts was borne from Mimblewimble, which is a block chain design that with the exception of kernels and their signatures does not store permanent data. \\( \eta=\gamma \\) Fundamental properties of Mimblewimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. [[2]]
+The concept of Scriptless Scripts was born from Mimblewimble, which is a blockchain design that with the exception of kernels and their signatures, does not store permanent data. \\( \eta=\gamma \\) Fundamental properties of Mimblewimble include both privacy and scaling, both of which require the implementation of Scriptless Scripts. [[2]]
 
-A brief introduction is also given in [#5 Scriptless scripts, Layer 2 Scaling Survey (Part 2)](../../layer2scaling/more-landscape/landscape-update.md#a5-scriptless-scripts) 
-
-
+A brief introduction is also given in [Scriptless Scripts, Layer 2 Scaling Survey (Part 2)](../../layer2scaling/more-landscape/landscape-update.md#a5-scriptless-scripts). 
 
 
-## Benefit of Scriptless Scripts 
 
-The benefit of Scriptless Scripts are functionality, privacy and efficiency. 
 
-With regards to functionality, Scriptless Scripts are said to increase the range and complexity of smart contracts. Currently, as within Bitcoin Script limitations stem from the number of ```OP_CODES``` that have been enabled by the network. Scriptless scripts move the specification and execution of smart contractions from the network to a discussion that only involves the participants of the smart contract. 
+## Benefits of Scriptless Scripts 
 
-With regards to privacy, moving the specification and execution of smart contracts from on-chain to off-chain increases privacy. When on-chain, many details of the smart contract are shared to the entire network including the number and addresses of participants and the amounts transferred. By moving smart contracts off-chain, the network only knows that the participants agree that the terms of their contract have been satisfied and that the transaction in question is valid. 
+The benefits of Scriptless Scripts are functionality, privacy and efficiency. 
 
-With regards to efficiency, Scriptless Scripts minimize the amount of data that requires verification and storage on-chain. By moving smart contracts off-chain, there are less overheads for full nodes and lower transaction fees for users. [[1]]   
+### Functionality
+
+With regard to functionality, Scriptless Scripts are said to increase the range and complexity of smart contracts. Currently, as within Bitcoin Script, limitations stem from the number of ```OP_CODES``` that have been enabled by the network. Scriptless Scripts move the specification and execution of smart contractions from the network to a discussion that only involves the participants of the smart contract. 
+
+### Privacy
+
+With regard to privacy, moving the specification and execution of smart contracts from on-chain to off-chain increases privacy. When on-chain, many details of the smart contract are shared to the entire network. These details include the number and addresses of participants, and the amounts transferred. By moving smart contracts off-chain, the network only knows that the participants agree that the terms of their contract have been satisfied and that the transaction in question is valid. 
+
+### Efficiency
+
+With regard to efficiency, Scriptless Scripts minimize the amount of data that requires verification and storage on-chain. By moving smart contracts off-chain, there are fewer overheads for full nodes and lower transaction fees for users. [[1]]   
 
 
 
 
 ## List of Scriptless Scripts 
 
-In this report various forms of Scripts will be covered. These include [[3]]: 
+In this report, various forms of scripts will be covered, including [[3]]: 
 - Simultaneous Scriptless Scripts
 - Adaptor Signatures 
 - Zero Knowledge Contingent Payments
-- 
+
+  
 
 
 ## Role of Schnorr Signatures 
 
-To begin with, the fundamentals of Schnorr signatures must be defined . The signer has a private key *x*, random nonce *r*, and *G* is the generator of a discreet log hard group. *P* is the public key. [[4]]
+To begin with, the fundamentals of Schnorr signatures must be defined. The signer has a private key *x* and random nonce *r*. *G* is the generator of a discrete log hard group, and *P* is the public key. [[4]]
 
 s, the signature, can then be computed as a simple linear transaction
 
@@ -82,22 +89,22 @@ $$
 P=xG
 $$
 
-The position on the line chosen is taken as the hash of all the data that one needs to commit to, the digital signature. The verification equation involves the multiplication of each of the terms in the equation by G and takes in account the cryptographic assumption (discrete log) where G can be multiplied in but not divided out, thus preventing deciphering. 
+The position on the line chosen is taken as the hash of all the data that one needs to commit to, the digital signature. The verification equation involves the multiplication of each of the terms in the equation by G and takes into account the cryptographic assumption (discrete log) where G can be multiplied in but not divided out, thus preventing deciphering. 
 
 $$
 sG=rG+exG
 $$
 
-ECDSA signatures (used in Bitcoin) are not linear in *x* and *r*, and thus less useful. [[2]] 
+Elliptic Curve Digital Signature Algorithm (ECDSA) signatures (used in Bitcoin) are not linear in x and r, and thus less useful. [[2]] 
 
 
 
 
 ## Schnorr Multi-signatures
 
-First, a mulit-signature (mulitsig) has multiple participants that produce a signature. Every participant might product a separate signature and concatenate them forming a mulitsig. 
+A multi-signature (mulitsig) has multiple participants that produce a signature. Every participant might product a separate signature and concatenate them, forming a mulitsig. 
 
-With Schnorr Signatures, one can have a single public key, which is the sum of many different people's public keys. the resulting key is one that signatures will be verifiable against. [[5]]
+With Schnorr Signatures, one can have a single public key, which is the sum of many different people's public keys. The resulting key is one against which signatures will be verifiable. [[5]]
 
 The formulation of a mulitsig involves taking the sum of all components; thus all nonces and *s* values result in the formulation of a mulitsig. [[4]]
 
@@ -105,20 +112,20 @@ $$
 s=Σs(i)
 $$
 
-It can therefore be seen that these signatures are essentially scriptless scripts. Independent public keys of several participants are joint to form a single key and signature, which when published do not divulge the details as to the number of participants involved or the original public keys. 
+It can therefore be seen that these signatures are essentially Scriptless Scripts. Independent public keys of several participants are joint to form a single key and signature, which, when published, do not divulge the details as to the number of participants involved or the original public keys. 
 
 
 
 
 ## Adaptor Signatures  
 
-This mulitsig protocol can be modified to produce an adaptor signature, which serves as the building block for all scriptless script functions. [[5]] 
+This mulitsig protocol can be modified to produce an adaptor signature, which serves as the building block for all Scriptless Script functions. [[5]] 
 
 Instead of functioning as full valid signature on a message with a key, an adaptor signature is a promise that a signature agreed to be published, will reveal a secret. 
 
-This concept is similar to that of atomic swaps, however no scrips are implemented. Since this is elliptic curve cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, like a hash function, elliptic curve function in one way, so an elliptic curve point (*T*), can simply be shared and the secret will be it's corresponding private key.  
+This concept is similar to that of atomic swaps. However, no scrips are implemented. Since this is elliptic curve cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, like a hash function, elliptic curves function in one way, so an elliptic curve point (*T*), can simply be shared and the secret will be its corresponding private key.  
 
-If two parties are considered: rather than providing their nonce *R* in the mulitsig protocol, a blinding factor, taken as an elliptic curve point *T* is conceived and sent in addition to *R* (ie. *R+T*). So it can be seen that *R* is not blinded, it has instead been offset by the secret value *T*. 
+If two parties are considered: rather than providing their nonce *R* in the mulitsig protocol, a blinding factor, taken as an elliptic curve point *T* is conceived and sent in addition to *R* (ie. *R+T*). So it can be seen that *R* is not blinded; it has instead been offset by the secret value *T*. 
 
 Here, the Schnorr mulitsig construction is modified such that the first party generates 
 
@@ -126,9 +133,9 @@ $$
 T=tG, R=rG
 $$
 
-where *t* is the shared secret, *G* is the generator of discreet log hard group and *r* the random nonce 
+where *t* is the shared secret, *G* is the generator of discrete log hard group and *r* is the random nonce. 
 
-Using this information the second party generates 
+Using this information, the second party generates 
 
 $$
 H(P||R+T||message)x
@@ -152,17 +159,17 @@ $$
 s'G =? R+H(P||R+T||message)P
 $$
 
-However this is not a valid signature as the hashed nonce point is *R+T* and not *R*
+However, this is not a valid signature, as the hashed nonce point is *R+T* and not *R*.
 
 The second party cannot retrieve a valid signature from this and requires ECDLP solving to recover *s'+t*, which is virtually impossible. 
 
-After the first party broadcasts *s* to claim the coins within *message* the second party can calculate the secret *t* from 
+After the first party broadcasts *s* to claim the coins within *message*, the second party can calculate the secret *t* from 
 
 $$
 t=s-s'
 $$
 
-The above is very general however, by attaching auxiliary proofs too one can derive an adaptor signature that will let one translate correct movement of the auxiliary protocol into a valid signature. 
+The above is very general. However, by attaching auxiliary proofs too, an adaptor signature can be derived that will allow the translation of correct movement of the auxiliary protocol into a valid signature. 
 
 
 
@@ -171,7 +178,7 @@ The above is very general however, by attaching auxiliary proofs too one can der
 
 ### Preimages
 
-The execution of separate transactions in an atomic fashion is achieved through preimages. If two transactions require the preimage to the same hash, once one is executed, the preimage is exposed so that the other one can be too. Atomic Swaps and Lightning channels use this construction. [[4]]
+The execution of separate transactions in an atomic fashion is achieved through preimages. If two transactions require the preimage to the same hash, once one is executed, the preimage is exposed so that the other one can be as well. Atomic swaps and Lightning channels use this construction. [[4]]
 
 ### Difference of Two Schnorr Signatures
 
@@ -187,44 +194,44 @@ $$
 dG=kG-k'G+exG-e'x'G
 $$
 
-It must be noted that the Schnorr signature itself is not being verified, but instead the difference *d*. *d* functions as the translating key between two separate independent Schnorr signatures. Given *d* and either *s* or *s'*, the other can be computed. So possession of *d* makes these two signatures atomic. This scheme does not link the two signatures or compromise their security. 
+It must be noted that the difference *d* is being verified, and not the Schnorr signature itself. *d* functions as the translating key between two separate independent Schnorr signatures. Given *d* and either *s* or *s'*, the other can be computed. So possession of *d* makes these two signatures atomic. This scheme does not link the two signatures or compromise their security. 
 
-For an atomic transaction, during the setup stage, someone provides the opposing party with the value *d*, and asserts it as the correct value. Once the transaction is signed it can be adjusted to complete the other transaction. Atomicity is achieved; but can only be used by the person who possesses this *d* value. Generally the party that stands to lose money requires the *d* value. 
+For an atomic transaction, during the setup stage, someone provides the opposing party with the value *d*, and asserts it as the correct value. Once the transaction is signed, it can be adjusted to complete the other transaction. Atomicity is achieved, but can only be used by the person who possesses this *d* value. Generally, the party that stands to lose money requires the *d* value. 
 
-The *d* value provides an interesting property with regards to atomicity. It is shared before signatures are public, which in turn allows the two transactions to be atomic once the transactions are published. By taking difference of any two Schnorr signatures one is able to construct transcripts, such as an atomic swap multisig contract. 
+The *d* value provides an interesting property with regard to atomicity. It is shared before signatures are public, which in turn allows the two transactions to be atomic once the transactions are published. By taking difference of any two Schnorr signatures, one is able to construct transcripts, such as an atomic swap multisig contract. 
 
-This is a critical feature for Mimblewimble, which was previously thought to be unable to support atomic swaps or lightning channels. [[4]]
+This is a critical feature for Mimblewimble, which was previously thought to be unable to support atomic swaps or Lightning channels. [[4]]
 
 
 
 
 ## Atomic (Cross-chain Swaps) Example with Adaptor Signatures
 
-Alice has a certain number of coins on a particular block chain; Bob also has a certain number of coins on another block chain. Alice and Bob want to engage in an atomic exchange, however neither of the block chains are aware of each other nor are they able to verify each others transactions. 
+Alice has a certain number of coins on a particular blockchain; Bob also has a certain number of coins on another blockchain. Alice and Bob want to engage in an atomic exchange. However, neither blockchain is aware of the other, nor are they able to verify each other's transactions. 
 
-The  classical way of achieving this involves the use of the block chain's script system to put a hash preimage challenge and then reveal the same preimage on both sides: Once Alice knows the preimage, she reveals it to take her coins; Bob then copies it of one chain to the other chain to take his coins. 
+The  classical way of achieving this involves the use of the blockchain's script system to put a hash preimage challenge and then reveal the same preimage on both sides. Once Alice knows the preimage, she reveals it to take her coins; Bob then copies it off one chain to the other chain to take his coins. 
 
-Using adaptor signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each block chain. They sign the mulitsig protocols in parallel, where Bob then gives Alice the adaptor signatures for each side using the same value *T* ; Meaning that for Bob to take his coins he needs to reveal *t* and for Alice to take her coins she needs to reveal *T*. Bob then replaces one of the signatures and publishes *t*, taking his coins. Alice computes *t*  from the final signature, visible on the block chain and uses that to reveal another signature, giving her her coins. 
+Using adaptor signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put up their coins on two of two outputs on each blockchain. They sign the mulitsig protocols in parallel, where Bob then gives Alice the adaptor signatures for each side using the same value *T* . This means that for Bob to take his coins, he needs to reveal *t*; and for Alice to take her coins, she needs to reveal *T*. Bob then replaces one of the signatures and publishes *t*, taking his coins. Alice computes *t*  from the final signature, visible on the blockchain, and uses that to reveal another signature, giving her her coins. 
 
-Thus it can be seen that atomicity is achieved. One is still able to exchange information but now there are no explicit hashes or preimages on the block chain: No script properties are necessary and privacy is achieved. [[4]]
+Thus it can be seen that atomicity is achieved. One is still able to exchange information, but now there are no explicit hashes or preimages on the blockchain. No script properties are necessary and privacy is achieved. [[4]]
 
 
 
 
 ## Zero Knowledge Contingent Payments 
 
-ZKCP is a transaction protocol. This protocol allows a buyer to purchase information from a seller using coins in a manner which is private, scalable, secure, and importantly in a trustless environment. The expected information is transferred only when  payment is made. The buyer and seller do not need to trust each other or depend on arbitration by a third party. [[6]]
+Zero Knowledge Contingent Payments (ZKCP) is a transaction protocol. This protocol allows a buyer to purchase information from a seller using coins in a manner that is private, scalable, secure and, importantly, in a trustless environment. The expected information is transferred only when  payment is made. The buyer and seller do not need to trust each other or depend on arbitration by a third party. [[6]]
 
 
 
 
 ## Mimblewimble's Core Scriptless Script
 
-As previously stated, Mimblewimble is a block chain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a confidential transaction commitment. Confidential commitments have an interesting property where in a valid balanced transaction one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
+As previously stated, Mimblewimble is a blockchain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a confidential transaction commitment. Confidential commitments have an interesting property where, in a valid balanced transaction, one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
 
-Mimblewimble blocks will only have a list of new inputs, a list of new outputs and a list of signatures which are created from the aforementioned excess value. [[7]]
+Mimblewimble blocks will only have a list of new inputs, a list of new outputs and a list of signatures that are created from the aforementioned excess value. [[7]]
 
-Since the values are homomorphically encrypted, nodes can verify that no coin are being created or destroyed. 
+Since the values are homomorphically encrypted, nodes can verify that no coins are being created or destroyed. 
 
 
 
