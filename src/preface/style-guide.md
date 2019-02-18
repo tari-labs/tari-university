@@ -4,6 +4,7 @@
 - [Standards for Content](#standards-for-content)
   - [Spelling](#spelling)
   - [Quotation Marks](#quotation-marks)
+  - [Punctuation](#punctuation)
   - [Units of Measure](#units-of-measure)
   - [Date and Time](#date-and-time)
   - [Abbreviations](#abbreviations)
@@ -57,7 +58,7 @@ As per the American style. Use double quotation marks for a first quotation and 
 
 ### Punctuation
 
-As per the United Kingdom (UK) punctuation standard. Place commas and full stops as advised in [[4]]. 
+As per the United Kingdom (UK) punctuation standard. Place commas and full stops outside the closing quotation marks as advised in [[4]]. 
 
 ### Units of Measure
 
@@ -175,7 +176,8 @@ Style Guide.
 
 ### Case Formatting
 
-[Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting) contains a list of lower-case words used in title case formatting in headings and captions (if used).
+[Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting) contains a list of lower-case words used in 
+title case formatting in headings and captions (if used).
 
 ## Standards for Layout
 
@@ -192,7 +194,9 @@ levels and content:
 
    - **Other headings as appropriate (as heading level 2 and lower)**
 
-      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you to present your information effectively. Headings make it easier for readers to find specific information.
+      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you to 
+present your information effectively. Headings make it easier for 
+readers to find specific information.
 
       - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
 
@@ -212,7 +216,8 @@ levels and content:
 
       - **Appendix A: Name (as heading level 3)**
 
-        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the reference in the references section.
+        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the reference
+in the references section.
 
       - **Appendix B: Name  (as heading level 3)**
 
@@ -273,11 +278,13 @@ before this list.
 The use of captions, as well as figure and table numbering, is optional. If you choose to use numbering and captions, 
 these guidelines will help to promote consistency in TLU layout:
 
-- Number figures and tables in each section sequentially, with the table caption above the table and the figure caption below the figure.
+- Number figures and tables in each section sequentially, with the table caption above the table and the figure caption
+below the figure.
 - Type figure and table captions in upper and lower-case (title case).
 - Type Figure x: or Table X: before the caption, as applicable.
 - Center figures and tables on the page.
-- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps to avoid confusion.
+- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps to avoid
+confusion.
 
 ### Equations
 
@@ -393,13 +400,15 @@ Available: https://www.merriam-webster.com/. Date accessed: 2019-02-01.
 [1]: https://www.merriam-webster.com
 "Merriam-Webster Online Dictionary"
 
-The full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor over the text reference in [Spelling](#spelling)) is inserted after `[1]:`. 
+The full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor
+over the text reference in [Spelling](#spelling)) is inserted after `[1]:`. 
 
 For assistance with the layout of references, refer to [Referencing Standard](#referencing-standard).
 
 ### List of Contributors
 
-The contributors are listed in a bulleted list via their GitHub account URLs. The author is listed first, followed by any reviewers or people who contributed via pull requests. Refer to [Contributors](#contributors) for an example.
+The contributors are listed in a bulleted list via their GitHub account URLs. The author is listed first, followed by any reviewers or people who contributed via pull requests.
+Refer to [Contributors](#contributors) for an example.
 
 ## References
 
@@ -424,9 +433,9 @@ Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu
 [[4]] The Oxford Guide to Style [online]. 
 Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 
-[4]: https://www.merriam-webster.com
+[4]: http://www.eng-lang.co.uk/ogs.htm
 
-"http://www.eng-lang.co.uk/ogs.htm"
+"The Oxford Guide to Style"
 
 
 
@@ -480,44 +489,13 @@ Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 
 ### Appendix B: Tari Labs University Terminology Conventions
 
+With new concepts being formed daily and words changing over time, it is useful to establish terminology conventions. Different conventions (upper-case, lower-case, one word, two words, etc.) are used by different sources. This appendix contains suggested terminology for use in TLU reports. 
+
 **Note:** This list is a work in progress.
 
-| Term         | Term | Term | Term |
-| ------------ | ---- | ---- | ---- |
-| blockchain   |      |      |      |
-| Mimblewimble |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
-|              |      |      |      |
+| Term       |
+| ---------- |
+| blockchain |
 
 
 
