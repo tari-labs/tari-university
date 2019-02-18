@@ -3,16 +3,18 @@
 - [Purpose](#purpose)
 - [Standards for Content](#standards-for-content)
   - [Spelling](#spelling)
+  - [Quotation Marks](#quotation-marks)
+  - [Punctuation](#punctuation)
   - [Units of Measure](#units-of-measure)
   - [Date and Time](#date-and-time)
   - [Abbreviations](#abbreviations)
   - [Spacing](#spacing)
   - [Decimals and Numbers](#decimals-and-numbers)
-  - [Quotation Marks](#quotation-marks)
   - [List Types](#list-types)
   - [List Punctuation](#list-punctuation)
   - [Cross-referencing](#cross-referencing)
   - [Case Formatting](#case-formatting)
+  - [Terminology](#terminology)
 - [Standards for Layout](#standards-for-layout)
   - [Proposed Layout](#proposed-layout)
   - [Line Widths](#line-widths)
@@ -27,6 +29,7 @@
 - [References](#references)
 - [Appendices](#appendices)
   - [Appendix A: Lower-case Words used in Title Case Formatting](#appendix-a-lower-case-words-used-in-title-case-formatting)
+  - [Appendix B: Tari Labs University Terminology Conventions](#appendix-b-tari-labs-university-terminology-conventions)
 - [Contributors](#contributors)
 
 
@@ -48,7 +51,17 @@ TLU content is created in [Markdown](https://www.markdownguide.org/) format and 
 
 ### Spelling
 
-Use the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online [[1]]. 
+As per the United States (US) spelling standard. The applicable dictionary is Merriam-Webster Online [[1]]. 
+
+### Quotation Marks
+
+As per the American style. Use double quotation marks for a first quotation and single quotation marks for a quotation 
+within a quotation.
+
+### Punctuation
+
+As per the United Kingdom (UK) punctuation standard. Place commas and full stops outside the closing quotation marks as 
+advised in [[4]]. 
 
 ### Units of Measure
 
@@ -58,15 +71,11 @@ Use the internationally agreed ISO standards [[3]] for expressing units of measu
 
 min = minute, s = second, h = hour, g = gram. 
 
-
-
 ### Date and Time
 
 - Date format: yyyy-mm-dd (year-month-date).
 - Date format when written in text: "The document was submitted for approval on 10&nbsp;March&nbsp;2019".
 - Time format (international): 11:00; 15:00.
-
-
 
 ### Abbreviations 
 
@@ -82,8 +91,6 @@ the text, followed by the abbreviation in brackets. Thereafter, use the abbrevia
   *Example*
 
   10h and not 10hrs; 5min and not 5mins.
-
-
 
 ### Spacing
 
@@ -120,35 +127,20 @@ and units of measure, and also as a thousands separator.
 Mathematical operators should usually be wrapped inside [equation tags](#equations). In plain text, leave a space on 
 either side of signs such as + (plus), - (minus), = (equal to), > (greater than) and < (less than).
 
-
-
 ### Decimals and Numbers
 
 - Use the decimal point and not the decimal comma.
 - Write out numbers from one to nine in full in text; use Arabic numerals for 10 onwards.
-
-
-
-### Quotation Marks
-
-As per American style:
-
-- Use double quotation marks for a first quotation and single quotation marks for a quotation within a quotation.
-- Place commas and full stops inside the quotation marks.  
-
-
 
 ### List Types
 
 TLU uses unordered lists (refer to the first example under [List Punctuation](#list-punctuation)) and ordered lists 
 (refer to the second example under [List Punctuation](#list-punctuation).
 
-
-
 ### List Punctuation
 
 Where a list is a continuation of the preceding text, which is followed by a colon, use a semicolon between each 
-bullet point, and end the list with a full stop.
+bullet point and end the list with a full stop.
 
 *Example*
 
@@ -165,7 +157,7 @@ Where a list contains complete sentences, each item in the list is followed by a
 
 According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes:
 
-1. The entire extended data is available, the erasure code is constructed correctly, and the block is valid.
+1. The entire extended data is available, the erasure code is constructed correctly and the block is valid.
 2. The entire extended data is available, the erasure code is constructed correctly, but the block is invalid.
 3. The entire extended data is available, but the erasure code is constructed incorrectly.
 
@@ -175,34 +167,31 @@ Where a list is not a sentence and does not complete a preceding part of a sente
 
 Refer to the list of contents at the start of this Style Guide.
 
-
-
 ### Cross-referencing
 
 - Insert cross-references between the referenced information in the text and the list of references.
-- Text references appear in square brackets in the text and are listed under "References" at the end of each chapter, 
-in the order in which they appear in the text.
+- Text references appear in square brackets in the text and are listed under "References" at the end of each chapter.
 - If a text reference appears at the end of a paragraph, it appears after the full stop at the end of the paragraph.
-- Please be specific when referring to figures, tables, and sections of text. For clarity, if using figure and table 
-numbering, avoid referring to "below" or "above'" Rather give a specific figure or table number. In the case of text 
+- Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table 
+numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text 
 references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this 
 Style Guide.
-
-
 
 ### Case Formatting
 
 [Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting) contains a list of lower-case words used in 
 title case formatting in headings and captions (if used).
 
+### Terminology
 
+With new concepts being formed daily and words changing over time, it is useful to establish terminology conventions. Different conventions (upper-case, lower-case, one word, two words, etc.) are used by different sources. [Appendix B](#appendix-b-tari-labs-university-terminology-conventions) contains suggested terminology for use in TLU reports.
 
 ## Standards for Layout
 
 ### Proposed Layout
 
 This section gives the proposed layout for TLU reports. The following headings are provided as a guide to heading 
-levels and content.  
+levels and content:  
 
 - **Title (as heading level 1)**
    Contents List (as embedded links).
@@ -212,8 +201,9 @@ levels and content.
 
    - **Other headings as appropriate (as heading level 2 and lower)**
 
-      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you to 
-      present your information effectively. Headings make it easier for readers to find specific information.
+      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you 
+to present your information effectively. Headings make it easier for 
+readers to find specific information.
 
       - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
 
@@ -221,12 +211,13 @@ levels and content.
 
    - **Conclusions, Observations, Recommendations (as heading level 2)**
 
-      The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and gives a 
-      future strategy, if required.
+      The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and 
+      gives a future strategy, if required.
 
    - **References (as heading level 2)**
 
-      References acknowledge the work of others and help readers to find sources. Refer to [Referencing of Source Material](#referencing-of-source-material).
+      References acknowledge the work of others and help readers to find sources. Refer to 
+      [Referencing of Source Material](#referencing-of-source-material).
 
    - **Appendices (as heading level 2)**
 
@@ -234,19 +225,17 @@ levels and content.
 
       - **Appendix A: Name (as heading level 3)**
 
-        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the reference 
-        in the references section.
+        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the 
+        reference in the references section.
 
       - **Appendix B: Name  (as heading level 3)**
 
-        If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on from 
-        the figure and table numbers used in the report.
+        If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on
+        from the figure and table numbers used in the report.
 
    - **Contributors (as heading level 2)**
 
       Refer to [List of Contributors](#list-of-contributors).
-
-
 
 ### Line Widths
 
@@ -269,8 +258,6 @@ Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius
 presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate 
 Marie virginis.
 
-
-
 ### Bulleted List of Contents
 
 Every chapter in a TLU report should start with a bulleted list of all the headings in that chapter (with embedded 
@@ -280,8 +267,6 @@ links), for quick reference and consistency. This is optional for chapters that 
 
 Refer to the contents listed at the start of this [Style Guide](#style-guide). The heading "Contents" is not inserted 
 before this list. 
-
-
 
 ### Headings
 
@@ -298,23 +283,19 @@ before this list.
 
   Also refer to [Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting).
 
-  
-
 ### Figures and Tables
 
 The use of captions, as well as figure and table numbering, is optional. If you choose to use numbering and captions, 
 these guidelines will help to promote consistency in TLU layout:
 
-- Number figures and tables in each section sequentially, with the table caption above the table and the figure caption 
+- Number figures and tables in each section sequentially, with the table caption above the table and the figure caption
 below the figure.
 - Type figure and table captions in upper and lower-case (title case).
 - Type Figure x: or Table X: before the caption, as applicable.
 - Center figures and tables on the page.
-- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure 
-and table numbering is not used, would then be "the following figure..." or "the following table...." This helps to avoid 
-confusion.
-
-
+- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if 
+figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps 
+to avoid confusion.
 
 ### Equations
 
@@ -326,9 +307,10 @@ through MathJax. In addition to the delimiters `\[` and `\[`, TLU also supports 
 
 *Examples*
 
-Example of an inline equation: $ h \in \mathbb G $ 
+- Example of an inline equation: $ h \in \mathbb G $ 
 
-Example of a display equation:
+- Example of a display equation:
+
 
 $$
 \mathbb s = \prod _{i=0}^n s(i)
@@ -345,19 +327,23 @@ $$
 
     - *Rendering correctly* 
 
-      $ \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $ 
+      $ \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} 
+      \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $ 
 
       as 
 
-      `$  \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l}  $`
+      `$  \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} 
+      \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l}  $`
 
     - *Rendering incorrectly* 
 
-      $  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}  \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $ 
+      $  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}  
+      \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $ 
 
       as 
 
-      `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $`
+      `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} 
+      \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $`
 
       Notice that this part of the (failed) formula, `_{[l:]} = ( a_`, is rendered in italics.
 
@@ -381,13 +367,13 @@ TLU uses the IEEE standard [[2]] as a guide for referencing publications.
 
 List references in the following order, as applicable:
 
-1. Author(s) initials or first name and surname (note punctuation).
+1. Author(s) initials or first name and surname (note punctuation in the following example).
 2. Title of the report, between double quotation marks. If it is an online report, state this in square brackets, as 
 shown in the following example.
-3. Title of journal, in italics.
+3. Title of journal, in italics (if applicable).
 4. Publication information (volume, number, etc.).
 5. Page range (if applicable).
-6. URL address if an online publication. Provide this information as shown in the following example: "Available:..."
+6. URL address if an online publication. Provide this information as shown in the following example: "Available: ..".
 7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
 *Example* 
@@ -396,8 +382,6 @@ shown in the following example.
 Available: https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf. Date accessed: 2018-12-18.
 
 Please note the use of punctuation and full stops in the example. 
-
-
 
 #### Markdown Links
 
@@ -421,29 +405,26 @@ A **reference link** has two parts. The first part of a reference link has two s
 *Example* 
 
 Under the heading [Spelling](#spelling), the text reference is "The applicable dictionary is Merriam-Webster Online [[1]]". 
-Note the double square brackets, and the label 1.
+In the markdown text, note the double square brackets and the label 1. The rendered text shows [1].
 
 The second part of a reference link is inserted under the heading [References](#references), and appears as follows:
 
 [[1]] Merriam-Webster Online Dictionary [online]. 
-Available: https://www.merriam-webster.com/. Date accessed: 2008-02-01.
+Available: https://www.merriam-webster.com/. Date accessed: 2019-02-01.
 
 [1]: https://www.merriam-webster.com
 "Merriam-Webster Online Dictionary"
 
-The full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor 
+The full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor
 over the text reference in [Spelling](#spelling)) is inserted after `[1]:`. 
 
 For assistance with the layout of references, refer to [Referencing Standard](#referencing-standard).
 
-
-
 ### List of Contributors
 
-The contributors are listed in a bulleted list via their GitHub account URLs. The author is listed first, followed by any 
-reviewers or people who contributed via pull requests. Refer to [Contributors](#contributors) for an example.
-
-
+The contributors are listed in a bulleted list via their GitHub account URLs. The author is listed first, followed by 
+any reviewers or people who contributed via pull requests.
+Refer to [Contributors](#contributors) for an example.
 
 ## References
 
@@ -465,6 +446,12 @@ Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu
 [3]: https://physics.nist.gov/cuu/pdf/sp811.pdf
 "Guide for the Use of the International System of Units (SI)"
 
+[[4]] The Oxford Guide to Style [online]. 
+Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
+
+[4]: http://www.eng-lang.co.uk/ogs.htm
+"The Oxford Guide to Style"
+
 
 
 ## Appendices
@@ -474,43 +461,55 @@ Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu
 
 
 
-|  Case Word |  Case Word |  Case Word |  Case Word |
-|    ----    |    ----    |    ----    |    ----    |
-|      a     |    each    |    less    |  therefore |
-|    about   |    equal   |   lesser   |    these   |
-|    above   |   either   |     low    |    they    |
-|    after   |    ever    |    made    |    this    |
-|   against  |    every   |    make    |    those   |
-|    ahead   |   exclude  |    means   |   through  |
-|     am     |  excluding |    more    | throughout |
-|     an     |   follow   |    most    |    thus    |
-|     and    |  following |   neither  |     to     |
-|     any    |   follows  |    next    |     top    |
-|     are    |     for    |     no     |   towards  |
-|     as     |    from    |     nor    |    under   |
-|     at     |   further  |     not    |     up     |
-|     be     |    give    |     of     |    upper   |
-|    been    |    given   |     on     |     use    |
-|   before   |     go     |    only    |     use    |
-|   behind   |    good    |     or     |    used    |
-|    below   |   greater  |    order   |    used    |
-|   beside   |     had    |     our    |    using   |
-|   besides  |     has    |     out    |   versus   |
-|    best    |    have    |    outer   |    very    |
-|   better   |     how    |   outside  |     via    |
-|   between  |   however  |    over    |    were    |
-|   bottom   |    i.e.    |   provide  |    what    |
-|     but    |     in     |   regard   |    when    |
-|     by     |   include  |    since   |    where   |
-|     can    |  including |    such    |    which   |
-|   consist  |    inner   |    than    |    while   |
-| consistent |   inside   |    that    |     who    |
-|consistently|   instead  |     the    |    with    |
-|  consists  |     is     |    their   |   within   |
-|    does    |     it     |    them    |   without  |
-|    down    |     its    |    then    |    worst   |
-|    e.g.    |    least   |    there   |            |
+| Case Word    | Case Word | Case Word | Case Word  |
+| ------------ | --------- | --------- | ---------- |
+| a            | each      | less      | therefore  |
+| about        | either    | lesser    | these      |
+| above        | equal     | low       | they       |
+| after        | ever      | made      | this       |
+| against      | every     | make      | those      |
+| ahead        | exclude   | means     | through    |
+| am           | excluding | more      | throughout |
+| an           | follow    | most      | thus       |
+| and          | following | neither   | to         |
+| any          | follows   | next      | top        |
+| are          | for       | no        | towards    |
+| as           | from      | nor       | under      |
+| at           | further   | not       | up         |
+| be           | give      | of        | upper      |
+| been         | given     | on        | use        |
+| before       | go        | only      | use        |
+| behind       | good      | or        | used       |
+| below        | greater   | order     | used       |
+| beside       | had       | our       | using      |
+| besides      | has       | out       | versus     |
+| best         | have      | outer     | very       |
+| better       | how       | outside   | via        |
+| between      | however   | over      | were       |
+| bottom       | i.e.      | provide   | what       |
+| but          | in        | regard    | when       |
+| by           | include   | since     | where      |
+| can          | including | such      | which      |
+| consist      | inner     | than      | while      |
+| consistent   | inside    | that      | who        |
+| consistently | instead   | the       | with       |
+| consists     | is        | their     | within     |
+| does         | it        | them      | without    |
+| down         | its       | then      | worst      |
+| e.g.         | least     | there     |            |
 
+
+
+
+
+### Appendix B: Tari Labs University Terminology Conventions
+
+With new concepts being formed daily and words changing over time, it is useful to establish terminology conventions. 
+Different conventions (upper-case, lower-case, one word, two words, etc.) are used by different sources. This appendix 
+contains suggested terminology for use in TLU reports. 
+
+- blockchain
+- Mimblewimble
 
 
 ## Contributors
