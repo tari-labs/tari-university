@@ -426,7 +426,7 @@ Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 
 [4]: https://www.merriam-webster.com
 
-"http://www.eng-lang.co.uk/ogs.htm"
+"The Oxford Guide to Style"
 
 
 
