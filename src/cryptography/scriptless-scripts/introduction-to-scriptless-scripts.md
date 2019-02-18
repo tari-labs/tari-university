@@ -261,7 +261,7 @@ Available: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-sch
 (Flipping the Scriptless Script on Schnorr)
 
 [[6]]  "The First Successful Zero-knowledge Contingent Payment" [online]. 
-Available: https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/. Date accessed: 2016-02-26
+Available: https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/. Date accessed: 2016-02-26.
 
 [6]: https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/
 (The First Successful Zero-knowledge Contingent Payment, 26 Feb 2016)
