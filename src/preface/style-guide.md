@@ -424,7 +424,7 @@ Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu
 [[4]] The Oxford Guide to Style [online]. 
 Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 
-[4]: https://www.merriam-webster.com
+[4]: http://www.eng-lang.co.uk/ogs.htm
 
 "The Oxford Guide to Style"
 
