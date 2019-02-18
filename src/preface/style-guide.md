@@ -14,6 +14,7 @@
   - [List Punctuation](#list-punctuation)
   - [Cross-referencing](#cross-referencing)
   - [Case Formatting](#case-formatting)
+  - [Terminology](#terminology)
 - [Standards for Layout](#standards-for-layout)
   - [Proposed Layout](#proposed-layout)
   - [Line Widths](#line-widths)
@@ -54,11 +55,13 @@ As per the United States (US) spelling standard. The applicable dictionary is Me
 
 ### Quotation Marks
 
-As per the American style. Use double quotation marks for a first quotation and single quotation marks for a quotation within a quotation.
+As per the American style. Use double quotation marks for a first quotation and single quotation marks for a quotation 
+within a quotation.
 
 ### Punctuation
 
-As per the United Kingdom (UK) punctuation standard. Place commas and full stops outside the closing quotation marks as advised in [[4]]. 
+As per the United Kingdom (UK) punctuation standard. Place commas and full stops outside the closing quotation marks as 
+advised in [[4]]. 
 
 ### Units of Measure
 
@@ -179,6 +182,10 @@ Style Guide.
 [Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting) contains a list of lower-case words used in 
 title case formatting in headings and captions (if used).
 
+### Terminology
+
+With new concepts being formed daily and words changing over time, it is useful to establish terminology conventions. Different conventions (upper-case, lower-case, one word, two words, etc.) are used by different sources. [Appendix B](#appendix-b-tari-labs-university-terminology-conventions) contains suggested terminology for use in TLU reports.
+
 ## Standards for Layout
 
 ### Proposed Layout
@@ -194,8 +201,8 @@ levels and content:
 
    - **Other headings as appropriate (as heading level 2 and lower)**
 
-      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you to 
-present your information effectively. Headings make it easier for 
+      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you 
+to present your information effectively. Headings make it easier for 
 readers to find specific information.
 
       - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
@@ -204,11 +211,13 @@ readers to find specific information.
 
    - **Conclusions, Observations, Recommendations (as heading level 2)**
 
-      The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and gives a future strategy, if required.
+      The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and 
+      gives a future strategy, if required.
 
    - **References (as heading level 2)**
 
-      References acknowledge the work of others and help readers to find sources. Refer to [Referencing of Source Material](#referencing-of-source-material).
+      References acknowledge the work of others and help readers to find sources. Refer to 
+      [Referencing of Source Material](#referencing-of-source-material).
 
    - **Appendices (as heading level 2)**
 
@@ -216,12 +225,13 @@ readers to find specific information.
 
       - **Appendix A: Name (as heading level 3)**
 
-        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the reference
-in the references section.
+        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the 
+        reference in the references section.
 
       - **Appendix B: Name  (as heading level 3)**
 
-        If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on from the figure and table numbers used in the report.
+        If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on
+        from the figure and table numbers used in the report.
 
    - **Contributors (as heading level 2)**
 
@@ -283,8 +293,9 @@ below the figure.
 - Type figure and table captions in upper and lower-case (title case).
 - Type Figure x: or Table X: before the caption, as applicable.
 - Center figures and tables on the page.
-- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps to avoid
-confusion.
+- Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if 
+figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps 
+to avoid confusion.
 
 ### Equations
 
@@ -316,19 +327,23 @@ $$
 
     - *Rendering correctly* 
 
-      $ \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $ 
+      $ \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} 
+      \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $ 
 
       as 
 
-      `$  \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l}  $`
+      `$  \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} 
+      \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l}  $`
 
     - *Rendering incorrectly* 
 
-      $  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}  \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $ 
+      $  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}  
+      \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $ 
 
       as 
 
-      `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $`
+      `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu} 
+      \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $`
 
       Notice that this part of the (failed) formula, `_{[l:]} = ( a_`, is rendered in italics.
 
@@ -407,7 +422,8 @@ For assistance with the layout of references, refer to [Referencing Standard](#r
 
 ### List of Contributors
 
-The contributors are listed in a bulleted list via their GitHub account URLs. The author is listed first, followed by any reviewers or people who contributed via pull requests.
+The contributors are listed in a bulleted list via their GitHub account URLs. The author is listed first, followed by 
+any reviewers or people who contributed via pull requests.
 Refer to [Contributors](#contributors) for an example.
 
 ## References
@@ -434,7 +450,6 @@ Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu
 Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 
 [4]: http://www.eng-lang.co.uk/ogs.htm
-
 "The Oxford Guide to Style"
 
 
@@ -489,14 +504,12 @@ Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 
 ### Appendix B: Tari Labs University Terminology Conventions
 
-With new concepts being formed daily and words changing over time, it is useful to establish terminology conventions. Different conventions (upper-case, lower-case, one word, two words, etc.) are used by different sources. This appendix contains suggested terminology for use in TLU reports. 
+With new concepts being formed daily and words changing over time, it is useful to establish terminology conventions. 
+Different conventions (upper-case, lower-case, one word, two words, etc.) are used by different sources. This appendix 
+contains suggested terminology for use in TLU reports. 
 
-**Note:** This list is a work in progress.
-
-| Term       |
-| ---------- |
-| blockchain |
-
+- blockchain
+- Mimblewimble
 
 
 ## Contributors
