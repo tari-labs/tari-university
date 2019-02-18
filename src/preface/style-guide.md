@@ -57,7 +57,7 @@ As per the American style. Use double quotation marks for a first quotation and 
 
 ### Punctuation
 
-As per the United Kingdom (UK) punctuation standard. Place commas and full stops as advised in [[4]]. 
+As per the United Kingdom (UK) punctuation standard. Place commas and full stops outside the quotation marks as advised in [[4]]. 
 
 ### Units of Measure
 
