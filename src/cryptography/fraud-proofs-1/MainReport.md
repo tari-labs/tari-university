@@ -223,7 +223,7 @@ In this way, the use of payment channels can help with incentivizing full nodes 
 
 Fraud proofs can be complex [[6]] and hard to implement. However, they appear to be necessary for scalability of blockchains and the security and privacy for SPV clients, since not everyone can or should want to run a full node to participate in the network. The current SPV implementations are working on improving the security and privacy of these SPV clients. Furthermore, for current blockchains, a hard or soft fork would need to be done in order to accommodate the data in the block headers.
 
-Based on [three different fraud proof proposals](#suggested-fraud-proof-improvements) that suggest some sort of incentive for nodes that issue alert/fraud proofs, it seems likely that some sort of fraud proof provider and consumer marketplace will have to emerge.
+Based on the [payment channels](#payment-channels) fraud proof proposal that suggests some sort of incentive for nodes that issue alert/fraud proofs, it seems likely that some sort of fraud proof provider and consumer marketplace will have to emerge.
 
 Where Tari is concerned, it would appear that the universal fraud proof proposals or something similar would need to be looked into, as undoubtedly end-users of the protocol/network will mostly be using light clients. However, since these fraud proofs work on the assumption of a minimum of one honest node, in the case of a digital issuer (which may be one or more), a fraud proof will not be viable on this assumption, as the digital issuer could be the sole node.
 
