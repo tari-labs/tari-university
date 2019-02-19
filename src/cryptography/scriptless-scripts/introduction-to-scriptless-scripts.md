@@ -95,7 +95,7 @@ $$
 sG=rG+exG
 $$
 
-Elliptic Curve Digital Signature Algorithm (ECDSA) signatures (used in Bitcoin) are not linear in x and r, and thus less useful. [[2]] 
+Elliptic Curve Digital Signature Algorithm (ECDSA) signatures (used in Bitcoin) are not linear in *x* and *r*, and thus less useful. [[2]] 
 
 
 
