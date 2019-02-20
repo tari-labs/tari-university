@@ -9,8 +9,8 @@
 - [What are Fraud Proofs?](#what-are-fraud-proofs)
 
 - [Fraud Proofs Possible within Existing Bitcoin Protocol](#fraud-proofs-possible-within-existing-bitcoin-protocol)
-  - [Invalid Transaction due to Stateless Criteria Violation](#invalid-transaction-due-to-stateless-criteria-violation-correct-syntax-input-scripts-conditions-satisfiedetc)
-  - [Invalid Transaction due to Input Already Spent](#invalid-transaction-due-to-input-already-been-spent)
+  - [Invalid Transaction due to Stateless Criteria Violation](#invalid-transaction-due-to-stateless-criteria-violation-correct-syntax-input-scripts-conditions-satisfied-etc)
+  - [Invalid Transaction due to Input Already Spent](#invalid-transaction-due-to-input-already-spent)
   - [Invalid Transaction due to Incorrect Generation Output Value](#invalid-transaction-due-to-incorrect-generation-output-value)
   - [Invalid Transaction if Input does not Exist](#invalid-transaction-if-input-does-not-exist)
 - [Fraud Proofs Requiring Changes to Bitcoin Protocol](#fraud-proofs-requiring-changes-to-bitcoin-protocol)
@@ -26,7 +26,7 @@
   - [Erasure Codes](#erasure-codes)
   - [Merklix Trees](#merklix-trees)
   - [Payment Channels](#payment-channels)
-- [Conclusions, Observations and Recommendations](#conclusions-observations-recommendations)
+- [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
 - [References](#references)
 - [Contributors](#contributors)
 
