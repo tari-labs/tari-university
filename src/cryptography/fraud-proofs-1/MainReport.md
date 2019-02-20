@@ -32,10 +32,21 @@
 
 
 ## Background
-The bitcoin blockchain was, as of June 2018, approximately 173 Gigabytes in size [[1]]. This makes it nearly impossible for everyone to run a full bitcoin node. Lightweight/Simplified Payment Verification (SPV) clients will have to be used by users, since not everyone can run full nodes due to the computational power, bandwidth and cost needed to run a full bitcoin node. 
+The bitcoin blockchain was, as of June 2018, approximately 173 Gigabytes in size [[1]].
+This makes it nearly impossible for everyone to run a full bitcoin node.
+Lightweight/Simplified Payment Verification (SPV) clients will have to be used by users,
+since not everyone can run full nodes due to the computational power,
+bandwidth and cost needed to run a full bitcoin node. 
 
-SPV clients will believe everything miners or nodes tell them, as evidenced by Peter Todd in the following screenshot of an Android client showing millions of bitcoins. The wallet was sent a transaction of 2.1 million BTC outputs [[17]]. 
-Peter Todd modified the code for his node in order to deceive the bitcoin wallet, since the wallets cannot verify coin amounts [[27]] (code can be found in the "Quick-n-dirty hack to lie to SPV wallets" branch on his GitHub repository).
+SPV clients will believe everything miners or nodes tell them,
+as evidenced by Peter Todd in the following screenshot
+of an Android client showing millions of bitcoins.
+The wallet was sent a transaction of 2.1 million BTC outputs [[17]]. 
+Peter Todd modified the code for his node
+in order to deceive the bitcoin wallet,
+since the wallets cannot verify coin amounts [[27]]
+(code can be found in the "Quick-n-dirty hack to lie to SPV wallets"
+branch on his GitHub repository).
 
 <p align="center"><img src="sources/todd-btc-spv.jpg" width="301" /></p>
 
@@ -45,16 +56,29 @@ Peter Todd modified the code for his node in order to deceive the bitcoin wallet
 
 ## Introduction
 
-In the original bitcoin whitepaper [[2]], Satoshi recognized the limitations described in [Background](#background), and introduced the concept of a Simplified Payment Verification (SPV). This concept allows verification of payments using a lightweight client that does not need to download the entire bitcoin blockchain. It only downloads block headers with the longest proof-of-work chain, which are achieved by obtaining the Merkle branch linking a transaction to a block [[3]]. The existence of the Merkle root in the chain, along with blocks added after the block containing the Merkle root, provides confirmation of the legitimacy of that chain.
+In the original bitcoin whitepaper [[2]],
+Satoshi recognized the limitations described in [Background](#background),
+and introduced the concept of a Simplified Payment Verification (SPV).
+This concept allows verification of payments using a lightweight client
+that does not need to download the entire bitcoin blockchain.
+It only downloads block headers with the longest proof-of-work chain,
+which are achieved by obtaining the Merkle branch linking a transaction to a block&nbsp;[[3]].
+The existence of the Merkle root in the chain,
+along with blocks added after the block containing the Merkle root,
+provides confirmation of the legitimacy of that chain.
 
 <p align="center"><img src="sources/proofofworkchain.png" width="700" /></p>
 
 <div align="center"><i>Courtesy: Bitcoin: A Peer-to-Peer Electronic Cash System</i></div>
 
-In this system, the full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected. The SPV clients would then be prompted to download the full block and alerted transactions to
-confirm the inconsistency. [[2]]
+In this system, the full nodes would need to provide an alert
+(known as a fraud proof) to SPV clients when an invalid block is detected.
+The SPV clients would then be prompted to download the full block
+and alerted transactions to confirm the inconsistency. [[2]]
 
-An invalid block need not be of malicious intent, but could be as a result of other accounting errors (whether by accident or by malicious intent).
+An invalid block need not be of malicious intent,
+but could be as a result of other accounting errors
+(whether by accident or by malicious intent).
 
 ## Full Node vs SPV Client
 
@@ -64,20 +88,30 @@ A full bitcoin node contains the following details:
   * all the unspent transaction outputs (UTXOs) [[4]].
 
 An SPV client, however, contains:
-* a block header with transaction data relative to the client, including other transactions required to compute the Merkle root; or 
-* just a block header with no transactions.
+* a block header with transaction data relative to the client, including other transactions required to compute the Merkle root; or
+*  just a block header with no transactions.
 
 ## What are Fraud Proofs?
 
-Fraud proofs are a way to improve the security of SPV clients [[5]] by providing a mechanism for full nodes to prove that a chain is invalid, irrespective of the amount of proof of work it has [[5]]. Fraud proofs could also help with the bitcoin scaling debate, as SPV clients are easier to run and could thus help with bitcoin scalability issues. ([[6]],[[18]])
+Fraud proofs are a way to improve the security of SPV clients [[5]]
+by providing a mechanism for full nodes to prove that a chain is invalid,
+irrespective of the amount of proof of work it has [[5]].
+Fraud proofs could also help with the bitcoin scaling debate,
+as SPV clients are easier to run and
+could thus help with bitcoin scalability issues. ([[6]],[[18]])
 
 ## Fraud Proofs Possible within Existing Bitcoin Protocol
-At the time of writing (February 2019), various proofs are needed to prove fraud in the bitcoin blockchain based on various actions.
+At the time of writing (February 2019),
+various proofs are needed to prove fraud in the bitcoin blockchain
+based on various actions.
 
-The following are the types of proofs needed to prove fraud based on specific fraud cases within the existing bitcoin protocol [[5]]:
+The following are the types of proofs needed to prove fraud
+based on specific fraud cases within the existing bitcoin protocol [[5]]:
 
 ### Invalid Transaction due to Stateless Criteria Violation (Correct Syntax, Input Scripts Conditions Satisfied, etc.)
-In the case of an invalid transaction, the fraud proofs consist of:
+In the case of an invalid transaction,
+the fraud proofs consist of:
+
 * the header of invalid block;
 * the invalid transaction;
 * an invalid block's Merkle tree containing the minimum number of nodes needed to prove the existence of the invalid transaction in the tree.
@@ -118,8 +152,12 @@ In this case, the fraud proof consists of:
 
 ## Universal Fraud Proofs (Suggested Improvement)
 
-As can be seen, requiring different fraud proof constructions for different fraud proofs can get cumbersome. Al-Bassam, et al. [[26]] proposed a general, universal fraud-proof construction for most cases.
-Their proposition is to generalize the entire blockchain as a state transition system and represent the entire state as a Merkle root using a Sparse Merkle tree, with each transaction changing the state root of the blockchain. This can be simplified by this function: 
+As can be seen, requiring different fraud proof constructions for different fraud proofs can get cumbersome.
+Al-Bassam, et al. [[26]] proposed a general, universal fraud-proof construction for most cases.
+Their proposition is to generalize the entire blockchain as a state transition system
+and represent the entire state as a Merkle root using a Sparse Merkle tree,
+with each transaction changing the state root of the blockchain.
+This can be simplified by this function: 
 
 * `transaction(state,tx) = State or Error`
 
@@ -127,11 +165,15 @@ Their proposition is to generalize the entire blockchain as a state transition s
 
 <div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
 
-In the case of the bitcoin blockchain, representing the entire blockchain as a key-value store Sparse Merkle tree would mean:
+In the case of the bitcoin blockchain,
+representing the entire blockchain as a key-value store Sparse Merkle tree would mean:
+
 * `Key = UTXO ID`
 * `Value = 1 if unspent or 0 if spent`
 
-Each transaction will change the state root of the blockchain and can be represented with this function:
+Each transaction will change the state root of the blockchain
+and can be represented with this function:
+
 * `TransitionRoot(stateRoot,tx,Witnesses) = stateRoot or Error`
 
 In this proposition, a valid fraud proof construction will consist of:
@@ -143,65 +185,125 @@ In this proposition, a valid fraud proof construction will consist of:
 Also expressed as this function:
 * `rootTransition(stateRoot, tx, witnesses) != stateRoot`
 
-So a full node would send a light client/SPV this data to prove a valid fraud proof. The SPV would compute this function and, if the transition root of the state root is different to the state root in the block, then the block is rejected.
+So a full node would send a light client/SPV this data to prove a valid fraud proof.
+The SPV would compute this function and,
+if the transition root of the state root is different to the state root in the block,
+then the block is rejected.
 
 <p align="center"><img src="sources/fraudproof.png" width="500" /></p>
 
 <div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
 
-The post-state root can be excluded in order to save block space. However, this does increase the fraud proof size. This works with the assumption that the SPV client is connected to a minimum of one honest node.
+The post-state root can be excluded in order to save block space.
+However, this does increase the fraud proof size.
+This works with the assumption that the SPV client is connected to a minimum of one honest node.
 
 ## How SPV Clients Work
-SPV clients make use of Bloom filters to receive transactions that are relevant to the user [[7]]. Bloom filters are probabilistic data structures used to check the existence of an element in a set quicker by responding with a Boolean answer. [[9]]
+SPV clients make use of Bloom filters to receive transactions that are relevant to the user [[7]].
+Bloom filters are probabilistic data structures used to check
+the existence of an element in a set quicker by responding with a Boolean answer. [[9]]
 
 <p align="center"><img src="sources/spv.png" width="600" /></p>
 
 <div align="center"><i>Courtesy: On the Privacy Provisions of Bloom Filters in Lightweight Bitcoin Clients</i></div>
 
-In addition to Bloom filters, SPV clients rely on Merkle trees [[26]] - binary structures that have a list of all the hashes between the block (apex) and the transaction (leaf). With Merkle trees, one only needs to check a small part of the block, called a Merkle root, to prove that the transaction has been accepted in the network. [[8]]
+In addition to Bloom filters, SPV clients rely on Merkle trees [[26]] - binary structures
+that have a list of all the hashes between the block (apex)and the transaction (leaf).
+With Merkle trees, one only needs to check a small part of the block,
+called a Merkle root, to prove that the transaction has been accepted in the network. [[8]]
 
 <p align="center"><img src="sources/merkle-tree.png" width="1000" /></p>
 
-Fraud proofs are integral to the security of SPV clients. However, the other components in SPV clients are not without issues. 
+Fraud proofs are integral to the security of SPV clients.
+However, the other components in SPV clients are not without issues. 
 
 
 ## Security and Privacy Issues with SPV Clients
 ### Weak Bloom Filters and Merkle Tree Designs
 
-In August 2017, a weakness in the bitcoin Merkle tree design was found to reduce the security of SPV clients. This weakness could allow an attacker to simulate a payment of an arbitrary amount to a victim using an SPV wallet, and trick the victim into accepting it as valid [[10]]. The bitcoin Merkle tree makes no distinction between inner and leaf nodes, and could thus be manipulated by an attack that could reinterpret transactions as nodes and nodes as transactions [[11]]. This weakness is due to inner nodes having no format and only requiring the length to be 64 bytes.
+In August 2017, a weakness in the bitcoin Merkle tree design was found to reduce
+the security of SPV clients. This weakness could allow an attacker
+to simulate a payment of an arbitrary amount to a victim using an SPV wallet,
+and trick the victim into accepting it as valid [[10]].
+The bitcoin Merkle tree makes no distinction between inner and leaf nodes,
+and could thus be manipulated by an attack
+that could reinterpret transactions as nodes and nodes as transactions [[11]].
+This weakness is due to inner nodes having no format
+and only requiring the length to be 64 bytes.
 
-A brute-force attack particularly affects systems that automatically accept SPV proofs and could be carried out with an investment of approximately USD3&nbsp;million. One proposed solution is to ensure that no internal, 64-bit node is ever accepted as a valid transaction by SPV wallets/clients. [[11]]
+A brute-force attack particularly affects systems
+that automatically accept SPV proofs and
+could be carried out with an investment of approximately USD3&nbsp;million.
+One proposed solution is to ensure that no internal,
+64-bit node is ever accepted as a valid transaction
+by SPV wallets/clients. [[11]]
 
-The BIP37 SPV [[13]] Bloom filters do not have relevant privacy features [[7]]. They leak information such as IP addresses of the user, and whether multiple addresses belong to a single owner [[12]] (if Tor or Virtual Private Networks (VPNs) are not used).
+The BIP37 SPV [[13]] Bloom filters do not have relevant privacy features [[7]].
+They leak information such as IP addresses of the user,
+and whether multiple addresses belong to a single owner [[12]]
+(if Tor or Virtual Private Networks (VPNs) are not used).
 
-Furthermore, SPV clients face the risk of a denial of service attack against full nodes due to processing load (80&nbsp;GB disk reads) when SPV clients sync and full nodes themselves can cause a denial of service for SPV clients by returning NULL filter responses to requests [[14]]. Peter Todd [[15]] aptly demonstrates the risk of SPV denial of service.
+Furthermore, SPV clients face the risk of a denial of service attack against full nodes
+due to processing load (80&nbsp;GB disk reads) when SPV clients sync and full nodes themselves
+can cause a denial of service for SPV clients by returning NULL filter responses to requests [[14]].
+Peter Todd [[15]] aptly demonstrates the risk of SPV denial of service.
 
 ### Improvements
 
-To address these issues, a new concept called committed Bloom filters was introduced to improve the performance and security of SPV clients. In this concept, which can be used in lieu of BIP37 [[16]], a Bloom filter digest (BFD) of every block's inputs, outputs and transactions is created with a filter that consists of a small size of the overall block size [[14]].
+To address these issues, a new concept called committed Bloom filters
+was introduced to improve the performance and security of SPV clients.
+In this concept, which can be used in lieu of BIP37 [[16]],
+a Bloom filter digest (BFD) of every block's inputs, outputs
+and transactions is created with a filter
+that consists of a small size of the overall block size [[14]].
 
-A second Bloom filter is created with all transactions and a binary comparison is made to determine matching transactions. This BFD allows the caching of filters by SPV clients without the need to recompute [[16]]. It also introduces semi-trusted oracles to improve the security and privacy of SPV clients by allowing SPV clients to download block data via any out of band method. [[14]]
+A second Bloom filter is created with all transactions
+and a binary comparison is made to determine matching transactions.
+This BFD allows the caching of filters by SPV clients without the need to recompute [[16]].
+It also introduces semi-trusted oracles
+to improve the security and privacy of SPV clients
+by allowing SPV clients to download block data via any out of band method. [[14]]
 
 ## Examples of SPV Implementations
-There are two well-known SPV implementations for bitcoin: bitcoinj and electrum. The latter does SPV-level validation, comparing multiple electrum servers against each other. It has very similar security to bitcoinj, but potentially better privacy [[25]] due to bitcoinj's implementation of Bloom filters [[7]].
+There are two well-known SPV implementations for bitcoin: bitcoinj and electrum.
+The latter does SPV-level validation,
+comparing multiple electrum servers against each other.
+It has very similar security to bitcoinj,
+but potentially better privacy [[25]] due to bitcoinj's implementation of Bloom filters [[7]].
 
 
 ## Other Suggested Fraud-proof Improvements
 
 ### Erasure Codes
-Along with the proposed universal fraud-proof solution, another data availability issue with fraud proofs is erasure coding. Erasure coding allows a piece of data M chunks long to be expanded into a piece of data N chunks long (“chunks” can be of arbitrary size), such that any M of the N chunks can be used to recover the original data. Blocks are then required to commit the Merkle root of this extended data and have light clients probabilistically check that the majority of the extended data is available. [[21]]
+Along with the proposed universal fraud-proof solution,
+another data availability issue with fraud proofs is erasure coding.
+Erasure coding allows a piece of data M chunks long to be expanded
+into a piece of data N chunks long (“chunks” can be of arbitrary size),
+such that any M of the N chunks can be used to recover the original data.
+Blocks are then required to commit the Merkle root of this extended data
+and have light clients probabilistically check
+that the majority of the extended data is available. [[21]]
 
-According to the proposed solution, one of three conditions will be true for the SPV client when using erasure codes [[20]]:
+According to the proposed solution,
+one of three conditions will be true for the SPV client when using erasure codes [[20]]:
 
 1. The entire extended data is available, the erasure code is constructed correctly and the block is valid.
 2. The entire extended data is available, the erasure code is constructed correctly, but the block is invalid.
 3. The entire extended data is available, but the erasure code is constructed incorrectly.
 
-In case (1), the block is valid and the light client can accept it. In case (2), it is expected that some other node will quickly construct and relay a fraud proof. In case (3), it is also expected that some other node will quickly construct and relay a specialized kind of fraud proof that shows that the erasure code is constructed incorrectly.
+In case (1), the block is valid and the light client can accept it.
+In case (2), it is expected that some other node will quickly construct
+and relay a fraud proof.
+In case (3), it is also expected that some other node will quickly construct
+and relay a specialized kind of fraud proof
+that shows that the erasure code is constructed incorrectly.
 
 ### Merklix Trees
-Another suggested fraud proof improvement for the bitcoin blockchain is by means of block sharding and validation using Merklix trees. Merklix trees are essentially Merkle trees that use unordered set [[22]].
-This also assumes that there is at least one honest node per shard. Using Merklix proofs, the following can be proven [[23]]:
+Another suggested fraud proof improvement for the bitcoin blockchain
+is by means of block sharding and validation using Merklix trees.
+Merklix trees are essentially Merkle trees that use unordered set [[22]].
+This also assumes that there is at least one honest node per shard.
+Using Merklix proofs, the following can be proven [[23]]:
 
 1. A transaction is in the block.
 
@@ -210,8 +312,10 @@ This also assumes that there is at least one honest node per shard. Using Merkli
 In this scenario, SPV clients can be made aware of any invalidity in blocks and cannot be lied to about the UTXO set.
 
 ### Payment Channels
-Bitcoin is made to be resilient to denial of service (DoS) attacks. However, the same cannot be said for SPV clients. This could be an issue if malicious alerting nodes spam with false fraud proofs.
-A proposed solution to this is payment channels [[6]] due to them:
+Bitcoin is made to be resilient to denial of service (DoS) attacks.
+However, the same cannot be said for SPV clients.
+This could be an issue if malicious alerting nodes spam with false fraud proofs.
+A proposed solution to this is payment channels [[6]], due to them:
 
 1. operating at near instant speeds, thus allowing quick alerting of fraud proofs;
 2. facilitating micro-transactions;
@@ -221,11 +325,28 @@ In this way, the use of payment channels can help with incentivizing full nodes 
 
 ## Conclusions, Observations and Recommendations
 
-Fraud proofs can be complex [[6]] and hard to implement. However, they appear to be necessary for scalability of blockchains and the security and privacy for SPV clients, since not everyone can or should want to run a full node to participate in the network. The current SPV implementations are working on improving the security and privacy of these SPV clients. Furthermore, for current blockchains, a hard or soft fork would need to be done in order to accommodate the data in the block headers.
+Fraud proofs can be complex [[6]] and hard to implement.
+However, they appear to be necessary for scalability of blockchains
+and the security and privacy for SPV clients,
+since not everyone can or should want to run a full node to participate in the network.
+The current SPV implementations are working on improving
+the security and privacy of these SPV clients.
+Furthermore, for current blockchains, a hard or soft fork
+would need to be done in order to accommodate the data in the block headers.
 
-Based on the [payment channels](#payment-channels) fraud proof proposal that suggests some sort of incentive for nodes that issue alert/fraud proofs, it seems likely that some sort of fraud proof provider and consumer marketplace will have to emerge.
+Based on the [payment channels](#payment-channels) fraud proof proposal
+that suggests some sort of incentive for nodes that issue alert/fraud proofs,
+it seems likely that some sort of fraud proof provider
+and consumer marketplace will have to emerge.
 
-Where Tari is concerned, it would appear that the universal fraud proof proposals or something similar would need to be looked into, as undoubtedly end-users of the protocol/network will mostly be using light clients. However, since these fraud proofs work on the assumption of a minimum of one honest node, in the case of a digital issuer (which may be one or more), a fraud proof will not be viable on this assumption, as the digital issuer could be the sole node.
+Where Tari is concerned, it would appear that the universal fraud proof proposals
+or something similar would need to be looked into,
+as undoubtedly end-users of the protocol/
+network will mostly be using light clients.
+However, since these fraud proofs work on the assumption of
+a minimum of one honest node, in the case of a digital issuer
+(which may be one or more), a fraud proof will not be viable on this assumption,
+as the digital issuer could be the sole node.
 
 
 ## References
