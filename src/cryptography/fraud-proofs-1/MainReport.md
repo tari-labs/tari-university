@@ -74,24 +74,29 @@ A full bitcoin node contains the following details:
   * all the unspent transaction outputs (UTXOs) [[4]].
 
 An SPV client, however, contains:
-  * a block header with transaction data relative to the client, including other transactions required to compute the Merkle root; or
+  * a block header with transaction data relative to the client, including other transactions required to compute the 
+  Merkle root; or
   * just a block header with no transactions.
 
 ## What are Fraud Proofs?
 
 Fraud proofs are a way to improve the security of SPV clients [[5]] by providing a mechanism for full nodes to prove 
-that a chain is invalid, irrespective of the amount of proof of work it has [[5]]. Fraud proofs could also help with the bitcoin scaling debate, as SPV clients are easier to run and could thus help with bitcoin scalability issues.
+that a chain is invalid, irrespective of the amount of proof of work it has [[5]]. Fraud proofs could also help with 
+the bitcoin scaling debate, as SPV clients are easier to run and could thus help with bitcoin scalability issues.
 ([[6]],[[18]])
 
 ## Fraud Proofs Possible within Existing Bitcoin Protocol
-At the time of writing (February 2019), various proofs are needed to prove fraud in the bitcoin blockchain based on various actions. The following are the types of proofs needed to prove fraud based on specific fraud cases within the existing bitcoin protocol [[5]]:
+At the time of writing (February 2019), various proofs are needed to prove fraud in the bitcoin blockchain based on 
+various actions. The following are the types of proofs needed to prove fraud based on specific fraud cases within the 
+existing bitcoin protocol [[5]]:
 
 ### Invalid Transaction due to Stateless Criteria Violation (Correct Syntax, Input Scripts Conditions Satisfied, etc.)
 In the case of an invalid transaction, the fraud proofs consist of:
 
 * the header of invalid block;
 * the invalid transaction;
-* an invalid block's Merkle tree containing the minimum number of nodes needed to prove the existence of the invalid transaction in the tree.
+* an invalid block's Merkle tree containing the minimum number of nodes needed to prove the existence of the invalid 
+transaction in the tree.
 
 ### Invalid Transaction due to Input Already Spent
 In this case, the fraud proof would consist of the following:
@@ -132,13 +137,15 @@ In this case, the fraud proof consists of:
 As can be seen, requiring different fraud proof constructions for different fraud proofs can get cumbersome.
 Al-Bassam, et al. [[26]] proposed a general, universal fraud-proof construction for most cases. Their proposition is to
 generalize the entire blockchain as a state transition system and represent the entire state as a Merkle root using a
-Sparse Merkle tree, with each transaction changing the state root of the blockchain. This can be simplified by this function: 
+Sparse Merkle tree, with each transaction changing the state root of the blockchain. This can be simplified by this 
+function: 
 
 * `transaction(state,tx) = State or Error`
 
 <p align="center"><img src="sources/stateroot.png" width="500" /></p>
 
-<div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
+<div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with 
+Dishonest Majorities</i></div>
 
 In the case of the bitcoin blockchain, representing the entire blockchain as a key-value store Sparse Merkle tree would
 mean:
@@ -165,7 +172,8 @@ is rejected.
 
 <p align="center"><img src="sources/fraudproof.png" width="500" /></p>
 
-<div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities</i></div>
+<div align="center"><i>Courtesy: Fraud Proofs: Maximising Light Client Security and Scaling Blockchains with 
+Dishonest Majorities</i></div>
 
 The post-state root can be excluded in order to save block space. However, this does increase the fraud proof size.
 This works with the assumption that the SPV client is connected to a minimum of one honest node.
