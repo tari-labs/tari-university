@@ -1,23 +1,27 @@
 # Introduction to Schnorr Signatures
 
+[TOC levels=4 bullet]:#  " "
+
 - [Overview](#overview)
 - [Let's get Started](#lets-get-started)
 - [Basics of Schnorr Signatures](#basics-of-schnorr-signatures)
-  - [Public and Private Keys](#public-and-private-keys)
-  - [Creating a Signature](#creating-a-signature)
-    - [Approach Taken](#approach-taken)
-    - [Why do we Need the Nonce?](#why-do-we-need-the-nonce)
-    - [ECDH](#ecdh)
+    - [Public and Private Keys](#public-and-private-keys)
+    - [Creating a Signature](#creating-a-signature)
+        - [Approach Taken](#approach-taken)
+        - [Why do we Need the Nonce?](#why-do-we-need-the-nonce)
+        - [ECDH](#ecdh)
 - [Schnorr Signatures](#schnorr-signatures)
-  - [So Why All the Fuss?](l#so-why-all-the-fuss)
-  - [Naïve Signature Aggregation](#naïve-signature-aggregation)
-  - [Key Cancellation Attack](#key-cancellation-attack)
-  - [Better Approaches to Aggregation](#better-approaches-to-aggregation)
+    - [So Why All the Fuss?](#so-why-all-the-fuss)
+    - [(Naïve) Signature Aggregation](#naïve-signature-aggregation)
+    - [Key Cancellation Attack](#key-cancellation-attack)
+    - [Better Approaches to Aggregation](#better-approaches-to-aggregation)
 - [MuSig](#musig)
-  - [MuSig Demonstration](#musig-demonstration)
-  - [Security Demonstration](#security-demonstration)
+    - [MuSig Demonstration](#musig-demonstration)
+    - [Security Demonstration](#security-demonstration)
+    - [Replay attacks!](#replay-attacks)
 - [References](#references)
 - [Contributors](#contributors)
+
 
 ## Overview
 
@@ -275,8 +279,10 @@ We'll demonstrate the interactive MuSig scheme here, where each signatory signs 
 The scheme works as follows:
 
 1. Each signer has a public-private key pair as before.
-2. Each signer publishes the public key of their nonce, \\( R_i \\).
-3. Everyone calculates the same "shared public key", _X_ as follows: 
+2. Each signer shares a commitment to their public nonce (we'll skip this step in this demonstration). This step is
+   necessary to prevent certain kinds of rogue key attacks [[10]].
+3. Each signer publishes the public key of their nonce, \\( R_i \\).
+4. Everyone calculates the same "shared public key", _X_ as follows:
 
 $$
     \begin{align}
@@ -363,62 +369,98 @@ In the previous attack, Bob had all the information he needed on the right-hand 
 Bob must somehow know Alice's private key and the faked private key (the terms don't cancel anymore) in order to create a unilateral signature
 and so his cancellation attack is defeated.
 
+
+### Replay attacks!
+
+It's critical that a new nonce be chosen for every signing ceremony. The best way to do this is to make use of a
+cryptographically secure (pseudo-)random number generator (CSPRNG).
+
+But even if this is the case, let's say an attacker can trick us into signing a new message by "rewinding" the signing
+ceremony to the point where partial signatures are generated. At this point, the attacker provides a different message,
+\\( e' = H(...||m') \\) to sign. Not suspecting any foul play, each party calculates their partial signature:
+
+$$ s'_i = r_i + a_i k_i e' $$
+
+However, the attacker still has access to the first set of signatures: \\( s_i = r_i + a_i k_i e \\). He now simply
+subtracts them:
+
+$$
+  \begin{align}
+  s'_i - s_i &= (r_i + a_i k_i e') - (r_i + a_i k_i e) \\\\
+             &= a_i k_i (e' - e) \\\\
+  \therefore k_i &= \frac{s'_i - s_i}{a_i(e' - e)}
+  \end{align}
+$$
+
+Everything on the RHS of the final equation is known by the attacker and thus he can trivially extract everybody's private key.
+
+It's difficult to protect against this kind of attack. One way to is make it difficult (or impossible) to stop and
+restart signing ceremonies. If a multi-sig ceremony gets interrupted, then you need to start from step one again. This
+is fairly unergonomic, but until a more robust solution comes along, may be the best we have!
+
+
 ## References
 
-[[1]] "RSA (Cryptosystem)" [online]. Available: https://en.wikipedia.org/wiki/RSA_(cryptosystem). Date accessed: 2018-10-11.
+[[1]] "RSA (Cryptosystem)" \[online\]. Available: https://en.wikipedia.org/wiki/RSA_(cryptosystem). Date accessed:
+2018-10-11.
 
 [1]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 "Wikipedia RSA Cryptography"
 
 
-[[2]] "Elliptic Curve Digital Signature Algorithm", Wikipedia [online]. Available: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm.
-Date accessed: 2018-10-11.
+[[2]] "Elliptic Curve Digital Signature Algorithm", Wikipedia \[online\]. Available:
+https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm. Date accessed: 2018-10-11.
 
 [2]: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
 "Wikipedia: ECDSA"
 
-[[3]] "BOLT #8: Encrypted and Authenticated Transport, Lightning RFC", Github [online].
+[[3]] "BOLT #8: Encrypted and Authenticated Transport, Lightning RFC", Github \[online\].
 Available: https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md. Date accessed: 2018-10-11.
 
 [3]: https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md
 "BOLT #8: Encrypted and Authenticated Transport"
 
-[[4]] "Man in the Middle Attack", Wikipedia [online].
+[[4]] "Man in the Middle Attack", Wikipedia \[online\].
 Available: https://en.wikipedia.org/wiki/Man-in-the-middle_attack. Date accessed: 2018-10-11.
 
 [4]: https://en.wikipedia.org/wiki/Man-in-the-middle_attack
 "Wikipedia: Man in the Middle Attack"
 
-[[5]] "How does a Cryptographically Secure Random Number Generator Work?" StackOverflow" [online].
+[[5]] "How does a Cryptographically Secure Random Number Generator Work?" StackOverflow" \[online\].
 Available:
 https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work. Date accessed: 2018-10-11.
 
 [5]: https://stackoverflow.com/questions/2449594/how-does-a-cryptographically-secure-random-number-generator-work
 "StackOverflow: How does a Cryptographically Secure Random Number Generator Work?"
 
-[[6]] "Cryptographically Secure Pseudorandom Number Generator", Wikipedia [online].
+[[6]] "Cryptographically Secure Pseudorandom Number Generator", Wikipedia \[online\].
 Available: https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator. Date accessed: 2018-10-11.
 
 [6]: https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator
 "Cryptographically secure pseudorandom number generator"
 
-[[7]] "Schnorr Signature", Wikipedia [online]. Available: _https://en.wikipedia.org/wiki/Schnorr_signature_.
+[[7]] "Schnorr Signature", Wikipedia \[online\]. Available: _https://en.wikipedia.org/wiki/Schnorr_signature_.
 Date accessed: 2018-09-19.
 
 [7]: https://en.wikipedia.org/wiki/Schnorr_signature
 "Wikipedia: Schnorr Signature"
 
-[[8]] "Key Aggregation for Schnorr Signatures", Blockstream [online]. Available: _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_. Date accessed: 2018-09-19.
+[[8]] "Key Aggregation for Schnorr Signatures", Blockstream \[online\]. Available: _https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html_. Date accessed: 2018-09-19.
 
 [8]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
 "Blockstream: Key Aggregation for Schnorr Signatures"
 
-[[9]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" [online]. Available: https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-09-19.?
-
+[[9]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" \[online\]. Available: https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-09-19.
 
 [9]: https://eprint.iacr.org/2018/068.pdf
+"Simple Schnorr Multi-signatures with Applications to Bitcoin"
 
-"Simple Schnorr Multi-signatures with Applications to Bitcoin".
+
+[10]: https://eprint.iacr.org/2018/417.pdf "On the Security of Two-Round Multi-Signatures"
+[[10]] Manu Drijvers, Kasra Edalatnejad, Bryan Ford, Eike Kiltz, Julian Loss, Gregory Neven, and Igors Stepanovs, 
+"On the Security of Two-Round Multi-Signatures", Cryptology ePrint Archive, Report 2018/417, \[online\]. 
+Available: https://eprint.iacr.org/2018/417.pdf. Date accessed: 2019-02-21.
+
 
 ## Contributors
 
@@ -426,3 +468,4 @@ Date accessed: 2018-09-19.
 - [SWvHeerden](https://github.com/SWvHeerden)
 - [hansieodendaal](https://github.com/hansieodendaal)
 - [neonknight64](https://github.com/neonknight64)
+- [anselld](https://github.com/anselld)
