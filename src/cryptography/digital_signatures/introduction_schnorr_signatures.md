@@ -9,7 +9,7 @@
     - [Why do we Need the Nonce?](#why-do-we-need-the-nonce)
     - [ECDH](#ecdh)
 - [Schnorr Signatures](#schnorr-signatures)
-  - [So Why All the Fuss?](l#so-why-all-the-fuss)
+  - [So why all the Fuss?](l#so-why-all-the-fuss)
   - [Naïve Signature Aggregation](#naïve-signature-aggregation)
   - [Key Cancellation Attack](#key-cancellation-attack)
   - [Better Approaches to Aggregation](#better-approaches-to-aggregation)
@@ -90,7 +90,7 @@ The approach to creating signatures always follows this recipe:
 
 1. Generate a secret once-off number (called a _nonce_), _r_.
 2. Create a public key, _R_ from _r_ (where _R = r.G_).
-3. Send the following to Bob, your recipient: your message (_m_), _R_, and your public key (_P = k.G_).
+3. Send the following to Bob, your recipient - your message (_m_), _R_, and your public key (_P = k.G_).
 
 The actual signature is created by hashing the combination of all the public information above to create a _challenge_, e:
 $$
@@ -105,8 +105,7 @@ $$
 $$
 Bob can now also calculate _e_, since he already knows _m, R, P_. But he doesn't know your private key, or nonce.
 
-**Note:** When you construct the signature like this, it's known as a [Schnorr signature](#schnorr-signatures), which we'll discuss in more 
-detail in a following section. There are other ways of constructing _s_, such as ECDSA [[2]], which is used in Bitcoin.
+**Note:** When you construct the signature like this, it's known as a [Schnorr signature](#schnorr-signatures), which is discussed in a following section. There are other ways of constructing _s_, such as ECDSA [[2]], which is used in Bitcoin.
 
 But see this:
 
@@ -183,7 +182,7 @@ But in fact, they're old news! The Schnorr signature is considered the simplest 
 to be provably secure in a random oracle model. It is efficient and generates short signatures. 
 It was covered by U.S. Patent 4,995,082, which expired in February 2008 [[7]].
 
-### So Why All the Fuss?
+### So why all the Fuss?
 
 What makes Schnorr signatures so interesting and [potentially dangerous](#key-cancellation-attack), is their simplicity. 
 Schnorr signatures are _linear_, so you have some nice properties.
@@ -199,13 +198,13 @@ the linearity of elliptic curve math.
 You saw this property in the previous section (??? unclear which section), when we were verifying the signature. Schnorr signatures' linearity 
 makes it very attractive for, among others:
 
-- signature aggregation (is there a link?);
+- signature aggregation;
 - [atomic swaps](../../protocols/atomic-swaps/AtomicSwaps.md);
 - ['scriptless' scripts](../scriptless-scripts/introduction-to-scriptless-scripts.md).
 
 ### Naïve Signature Aggregation
 
-Let's see how the linearity property of Schnorr signatures can be used to construct a 2-of-2 multi-signature.
+Let's see how the linearity property of Schnorr signatures can be used to construct a two-of-two multi-signature.
 
 Alice and Bob want to cosign something (a Tari transaction, say) without having to trust each other; 
 i.e. they need to be able to prove ownership of their respective keys, and the aggregate signature is
