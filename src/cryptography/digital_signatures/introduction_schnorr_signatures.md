@@ -450,16 +450,16 @@ Date accessed: 2018-09-19.
 [8]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
 "Blockstream: Key Aggregation for Schnorr Signatures"
 
-[[9]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" \[online\]. Available: https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-09-19.?
-
+[[9]] Gregory Maxwell, Andrew Poelstra, Yannick Seurin and Pieter Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" \[online\]. Available: https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-09-19.
 
 [9]: https://eprint.iacr.org/2018/068.pdf
-
-"Simple Schnorr Multi-signatures with Applications to Bitcoin".
+"Simple Schnorr Multi-signatures with Applications to Bitcoin"
 
 
 [10]: https://eprint.iacr.org/2018/417.pdf "On the Security of Two-Round Multi-Signatures"
-[[10]] Manu Drijvers et. al., "On the Security of Two-Round Multi-Signatures", Cryptology ePrint Archive, Report 2018/417
+[[10]] Manu Drijvers, Kasra Edalatnejad, Bryan Ford, Eike Kiltz, Julian Loss, Gregory Neven, and Igors Stepanovs, 
+"On the Security of Two-Round Multi-Signatures", Cryptology ePrint Archive, Report 2018/417, \[online\]. 
+Available: https://eprint.iacr.org/2018/417.pdf. Date accessed: 2019-02-21.
 
 
 ## Contributors
@@ -468,3 +468,4 @@ Date accessed: 2018-09-19.
 - [SWvHeerden](https://github.com/SWvHeerden)
 - [hansieodendaal](https://github.com/hansieodendaal)
 - [neonknight64](https://github.com/neonknight64)
+- [anselld](https://github.com/anselld)
