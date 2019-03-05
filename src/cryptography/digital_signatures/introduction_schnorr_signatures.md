@@ -131,9 +131,9 @@ equation above (_R + P.e_), all of which Bob already knows.
 
 Why do we need a nonce in the standard signature?
 
-Let's say we naïvely sign a message m with
+Let's say we naïvely sign a message _m_ with
 $$
-    e = H(R || m)
+e = H(P || m)
 $$
 and then the signature would be \\(s = ek \\). 
 
@@ -146,7 +146,7 @@ $$
 $$
 So far so good. But anyone can read your private key now because _s_ is a scalar, so \\(k = \frac{s}{e} \\)
 is not hard to do.
-With the nonce you have to solve \\( k = (s - r)/e \\), but r is unknown, so this is not a feasible calculation as long
+With the nonce you have to solve \\( k = (s - r)/e \\), but _r_ is unknown, so this is not a feasible calculation as long
 as _r_ has been chosen randomly.
 
 We can show that leaving off the nonce is indeed highly insecure:
