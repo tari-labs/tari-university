@@ -25,6 +25,7 @@
   - [Merged Mining](./merged-mining/merged-mining.md)
     - [Merged Mining Introduction](merged-mining/merged-mining-scene/MergedMiningIntroduction.md)
   - [Digital Assets](./digital-assets/digital-assets.md)
+    - [Application of *Howey* to Blockchain Network Token Sales](regulatory/howey-application-to-blockchain/MainReport.md)
     - [Non-fungible Tokens Survey](digital-assets/nft-landscape-1/sources/PITCHME.link.md)
     - [Confidential Assets](digital-assets/confidential-assets/MainReport.md)
   - [Protocols](protocols/protocols.md)
