@@ -1,4 +1,4 @@
-# **Application of *Howey* to Blockchain network token sales**
+# **Application of *Howey* to Blockchain Network Token Sales**
 
 [Introduction](#introduction)
 
@@ -77,7 +77,7 @@ In the Framework [[2]], the SEC Staff similarly focuses attention on whether a p
 ### **Decentralization** 
 
 
-The Framework [[2]] reinforces that the degree and nature of a promoter’s involvement will have a bearing on the *Howey* analysis. The facts and circumstances relating to a promoter are key. If a promoter does not play a significant role in the “development, improvement (or enhancement), operation, or promotion of the network” (Section 3 of [[2]]) underlying the tokens, it cuts against finding the “efforts of others” prong has been met. A promoter may seek to play a more limited role in these areas. Or, along similar lines, influence over the “essential tasks and responsibilities” of the network may be widely dispersed, i.e. decentralized, among many unaffiliated network stakeholders so that there is no identifiable “person or group” that continues to play a significant role, especially as compared to the role that the dispersed stakeholders play (Section 4 of [[2]].<sup>[f10][footnote_10~]</sup>
+The Framework [[2]] reinforces that the degree and nature of a promoter’s involvement will have a bearing on the *Howey* analysis. The facts and circumstances relating to a promoter are key. If a promoter does not play a significant role in the “development, improvement (or enhancement), operation, or promotion of the network” (Section 3 of [[2]]) underlying the tokens, it cuts against finding the “efforts of others” prong has been met. A promoter may seek to play a more limited role in these areas. Or, along similar lines, influence over the “essential tasks and responsibilities” of the network may be widely dispersed, i.e. decentralized, among many unaffiliated network stakeholders so that there is no identifiable “person or group” that continues to play a significant role, especially as compared to the role that the dispersed stakeholders play (Section 4 of [[2]]).<sup>[f10][footnote_10~]</sup>
 
 The SEC has also focused on a promoter's efforts to use the proceeds from a token offering to create an ecosystem that will drive demand for the tokens once the network is functional.<sup>[f11][footnote_11~]</sup> Further, the SEC has singled out promoter efforts to maintain a token’s price by intervening in the buying and selling of tokens, separate from developing and maintaining the underlying network.<sup>[f12][footnote_12~]</sup>
 
@@ -193,7 +193,7 @@ f16:&nbsp;&nbsp;&nbsp;<a name="footnote_16"> </a>For examples, refer to Section 
 [footnote_16~]: #footnote_16
 "For examples, refer to Section 9 of [[2]], which states that..."
 
-f17:&nbsp;&nbsp;&nbsp;<a name="footnote_17"> </a>For example, refer to paragraph 17 of the *Munchee* Order: “Munchee made public statements or endorsed other people’s public statements that touted the opportunity to profit. For example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote ‘199% GAINS on MUN token at ICO price! Sign up for PRE-SALE NOW!’ The linked video featured a person who said ‘Today we are going to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you’ll probably most likely get a return on it.’ This person… ‘speculate[d]’ that a $1,000 investment could create a $94,000 return.”
+f17: For example, refer to paragraph 17 of the Munchee Order: “Munchee made public statements or endorsed other people’s public statements that touted the opportunity to profit. For example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote ‘199% GAINS on MUN token at ICO price! Sign up for PRE-SALE NOW!’ The linked video featured a person who said ‘Today we are going to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you’ll probably most likely get a return on it.’ This person… ‘speculate[d]’ that a $1,000 investment could create a $94,000 return.”
 
 [footnote_17~]: #footnote_17
 "For example, refer to paragraph 17 of the *Munchee* Order:..." 
