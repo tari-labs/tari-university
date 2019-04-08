@@ -224,7 +224,7 @@ sale of digital assets.
 
 ## Footnotes 
 
-f1:&nbsp;&nbsp;&nbsp;<a name="footnote_1"> </a>Refer to the following Orders: Order Instituting Cease-and-Desist 
+**f1:**&nbsp;&nbsp;&nbsp;<a name="footnote_1"> </a>Refer to the following Orders: Order Instituting Cease-and-Desist 
 Proceedings Pursuant to Section 8A of [[1]], Making Findings, and Imposing a Cease-and-Desist Order against Munchee Inc. 
 (the *Munchee* Order); Order Instituting Cease-and-Desist Proceedings Pursuant to Section 8A of [[1]], Making Findings, 
 and Imposing Penalties and a Cease-and-Desist Order against CarrierEQ, Inc., D/B/A/ Airfox (the *Airfox* Order); Order 
@@ -238,33 +238,32 @@ Network LLC (the *Gladius* Order).
 Instituting Cease-and-Desist Proceedings
 Pursuant to Section 8A ..."
 
-f2:&nbsp;&nbsp;&nbsp;<a name="footnote_2"> </a>The 'Framework' [[2]] represents the views of SEC Staff. It is not a 
+**f2:**&nbsp;&nbsp;&nbsp;<a name="footnote_2"> </a>The 'Framework' [[2]] represents the views of SEC Staff. It is not a 
 rule, regulation or statement of the SEC, and it is not binding on the Divisions of the SEC or the SEC itself.
 
 [footnote_2~]: #footnote_2
 "The 'Framework'[[2]] represents the views of SEC Staff..."
 
-f3:&nbsp;&nbsp;&nbsp;<a name="footnote_3"> </a>Section 21(a) of [[4]] authorizes the SEC to investigate violations of the federal 
+**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_3"> </a>Section 21(a) of [[4]] authorizes the SEC to investigate violations of the federal 
 securities laws and, in its discretion, to "publish information concerning any such violations". The Report does not constitute an adjudication of any fact or issue, nor does it make any findings of violations by any individual or entity.
 
 [footnote_3~]: #footnote_3
 "Section 21(a) of [[4]] authorizes the SEC to investigate violations of the federal 
 securities laws and, in its discretion..."
 
-
-f4:&nbsp;&nbsp;&nbsp;<a name="footnote_4"> </a>For examples, refer to the *Munchee* Order and the *Airfox* Order in 
+**f4:**&nbsp;&nbsp;&nbsp;<a name="footnote_4"> </a>For examples, refer to the *Munchee* Order and the *Airfox* Order in 
 <sup>[f6][footnote_6~]</sup>.
 
 [footnote_4~]: #footnote_4
 "For examples, refer to the *Munchee* Order and the *Airfox* Order in 
 [footnote_6~]: #footnote_6."
 
-f5:&nbsp;&nbsp;&nbsp;<a name="footnote_5"> </a>15 U.S.C., Section 78a.
+**f5:**&nbsp;&nbsp;&nbsp;<a name="footnote_5"> </a>15 U.S.C., Section 78a.
 
 [footnote_5~]: #footnote_4
 "15 U.S.C., Section 78a."
 
-f6:&nbsp;&nbsp;&nbsp;<a name="footnote_6"> </a>For examples, refer to paragraph 32 of the *Munchee* Order: "MUN token 
+**f6:**&nbsp;&nbsp;&nbsp;<a name="footnote_6"> </a>For examples, refer to paragraph 32 of the *Munchee* Order: "MUN token 
 purchasers had a reasonable expectation of profits from their investment in the Munchee enterprise. The proceeds of the 
 MUN token offering were intended to be used by Munchee to build an "ecosystem" that would create demand for MUN tokens 
 and make MUN tokens more valuable"); and paragraph 21 of the *Airfox* Order: "AirFox told investors that the company 
@@ -276,13 +275,13 @@ value of AirTokens".
 [footnote_6~]: #footnote_6
 "For examples, refer to paragraph 32 of the *Munchee* Order: 'MUN token purchasers...'"
 
-f7:&nbsp;&nbsp;&nbsp;<a name="footnote_7"> </a>William Hinman, Director of the Division of Corp. Fin., SEC, Remarks 
+**f7:**&nbsp;&nbsp;&nbsp;<a name="footnote_7"> </a>William Hinman, Director of the Division of Corp. Fin., SEC, Remarks 
 at the Yahoo Finance All Markets Summit: Crypto: Digital Asset Transactions: When Howey Met Gary (Plastic) (14 June 2018).
 
 [footnote_7~]: #footnote_7
 "William Hinman, Director of the Division of Corp. Fin., SEC..."
 
-f8:&nbsp;&nbsp;&nbsp;<a name="footnote_8"> </a>The six questions Hinman posed were: (1) Is there a person or group that 
+**f8:**&nbsp;&nbsp;&nbsp;<a name="footnote_8"> </a>The six questions Hinman posed were: (1) Is there a person or group that 
 has sponsored or promoted the creation and sale of the digital asset, the efforts of whom play a significant role in the 
 development and maintenance of the asset and its potential increase in value? (2) Has this person or group retained a 
 stake or other interest in the digital asset such that it would be motivated to expend efforts to cause an increase in 
@@ -302,24 +301,24 @@ or meaningful influence?
 [footnote_8~]: #footnote_8
 "The six questions Hinman posed were:..."
 
-f9:&nbsp;&nbsp;&nbsp;<a name="footnote_9"> </a>Hinman also posed a separate set of seven questions exploring "contractual or technical ways to structure digital assets so they function more like a consumer item and less like a security".
+**f9:**&nbsp;&nbsp;&nbsp;<a name="footnote_9"> </a>Hinman also posed a separate set of seven questions exploring "contractual or technical ways to structure digital assets so they function more like a consumer item and less like a security".
 
 [footnote_9~]: #footnote_9
 "Hinman also posed a separate set of seven questions exploring..."
 
-f10:&nbsp;&nbsp;&nbsp;<a name="footnote_10"> </a>Section 4 of [[2]] states that it is more likely that the purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an unaffiliated, dispersed community of network users".
+**f10:**&nbsp;&nbsp;&nbsp;<a name="footnote_10"> </a>Section 4 of [[2]] states that it is more likely that the purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an unaffiliated, dispersed community of network users".
 
 [footnote_10~]: #footnote_10
 "Section 4 of [[2]] states that it is more likely that the purchaser of
 a digital asset is relying on the efforts of others if..."
 
-f11:&nbsp;&nbsp;&nbsp;<a name="footnote_11"> </a>For example, refer to <sup>[f6][footnote_6~]</sup> and accompanying
+**f11:**&nbsp;&nbsp;&nbsp;<a name="footnote_11"> </a>For example, refer to <sup>[f6][footnote_6~]</sup> and accompanying
 text.
 
 [footnote_11~]: #footnote_11
 "For example, refer to [footnote_6~]: #footnote_6 and accompanying text."
 
-f12:&nbsp;&nbsp;&nbsp;<a name="footnote_12"> </a>For examples, refer to paragraph 27 of the *Paragon* Order: "Paragon 
+**f12:**&nbsp;&nbsp;&nbsp;<a name="footnote_12"> </a>For examples, refer to paragraph 27 of the *Paragon* Order: "Paragon 
 also maintained… a 'Controlled Reserve Fund' to keep the price of PRG 'stable'. If the price of PRG tokens were 
 to drop significantly, the Controlled Reserve Fund would 'intervene by buying back PRG in an effort to stabilize the 
 market price'. Conversely, the Controlled Reserve Fund would '[r]elease PRG to the markets if PRG deflates too fast 
@@ -334,19 +333,19 @@ time, [that] might be getting into the land of securities").
 [footnote_12~]: #footnote_12
 "For examples, refer to paragraph 27 of the *Paragon* Order:..."
 
-f13:&nbsp;&nbsp;&nbsp;<a name="footnote_13"> </a>*What We Do*, SEC, https://www.sec.gov/Article/whatwedo.html#intro (last visited Mar. 7, 2018).
+**f13:**&nbsp;&nbsp;&nbsp;<a name="footnote_13"> </a>*What We Do*, SEC, https://www.sec.gov/Article/whatwedo.html#intro (last visited Mar. 7, 2018).
 
 [footnote_13~]: #footnote_13
 "*What We Do*, SEC, https://www.sec.gov/Article/whatwedo.html#intro 
 (last visited Mar. 7, 2018)."
 
-f14:&nbsp;&nbsp;&nbsp;<a name="footnote_14"> </a>
+**f14:**&nbsp;&nbsp;&nbsp;<a name="footnote_14"> </a>
 Refer to <sup>[f10][footnote_10~]</sup>.
 
 [footnote_14~]: #footnote_14
 "Refer to [footnote_10~]: #footnote_10."
 
-f15:&nbsp;&nbsp;&nbsp;<a name="footnote_15"> </a>For examples, refer to paragraph 18 of the *Munchee* Order: "[The] 
+**f15:**&nbsp;&nbsp;&nbsp;<a name="footnote_15"> </a>For examples, refer to paragraph 18 of the *Munchee* Order: "[The] 
 marketing did not use the Munchee App or otherwise specifically target current users of the Munchee App to promote how 
 purchasing MUN tokens might let them qualify for higher tiers and bigger payments on future reviews... Instead, Munchee 
 and its agents promoted the MUN token offering in forums aimed at people interested in investing in Bitcoin and other 
@@ -356,7 +355,7 @@ initial coin offering at digital token investors rather than anticipated users o
 [footnote_15~]: #footnote_15
 "For examples, refer to paragraph 18 of the *Munchee* Order:..."
 
-f16:&nbsp;&nbsp;&nbsp;<a name="footnote_16"> </a>For examples, refer to Section 9 of [[2]], which states that it is less 
+**f16:**&nbsp;&nbsp;&nbsp;<a name="footnote_16"> </a>For examples, refer to Section 9 of [[2]], which states that it is less 
 likely the *Howey* test is met if various characteristics are present, including "[h]olders of the digital asset are 
 immediately able to use it for its intended functionality on the network"); and paragraph 7 of the *Airfox* Order, which 
 states "The terms of AirFox's initial coin offering purported to require purchasers to agree that they were buying 
@@ -368,18 +367,18 @@ through AirFox's future managerial and entrepreneurial efforts."
 [footnote_16~]: #footnote_16
 "For examples, refer to Section 9 of [[2]], which states that..."
 
-f17:&nbsp;&nbsp;&nbsp;<a name="footnote_17"> </a>For example, refer to paragraph 17 of the *Munchee* Order: "Munchee 
+**f17:**&nbsp;&nbsp;&nbsp;<a name="footnote_17"> </a>For example, refer to paragraph 17 of the *Munchee* Order: "Munchee 
 made public statements or endorsed other people's public statements that touted the opportunity to profit. For 
 example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote '199% GAINS 
 on MUN token at ICO price! Sign up for PRE-SALE NOW!' The linked video featured a person who said 'Today we are 
 going to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you'll probably 
-most likely get a return on it.' This person… 'speculate[d]' that a \$1,000 investment could create a \$94,000 
+most likely get a return on it.' This person… 'speculate[d]' that a \\$1,000 investment could create a \\$94,000 
 return."
 
 [footnote_17~]: #footnote_17
 "For example, refer to paragraph 17 of the *Munchee* Order:..." 
 
-f18:&nbsp;&nbsp;&nbsp;<a name="footnote_18"> </a>For examples, refer to paragraph 13 of the *Munchee* Order: "Munchee 
+**f18:**&nbsp;&nbsp;&nbsp;<a name="footnote_18"> </a>For examples, refer to paragraph 13 of the *Munchee* Order: "Munchee 
 stated it would work to ensure that MUN holders would be able to sell their MUN tokens on secondary markets, saying that 
 'Munchee will ensure that MUN token is available on a number of exchanges in varying jurisdictions to ensure that this 
 is an option for all token-holders.'"); paragraph 22 of the *Gladius* Order: "During and following the offering, 
@@ -394,7 +393,7 @@ otherwise support a trading market for the digital asset".
 [footnote_18~]: #footnote_18
 "For example, refer to paragraph 18 of the *Munchee* Order:..." 
 
-f19:&nbsp;&nbsp;&nbsp;<a name="footnote_19"> </a>Section 6 of [[2]] states that it is more likely there is a reasonable 
+**f19:**&nbsp;&nbsp;&nbsp;<a name="footnote_19"> </a>Section 6 of [[2]] states that it is more likely there is a reasonable 
 expectation of profit if various characteristics are present, including if "the digital asset is offered broadly to 
 potential purchasers as compared to being targeted to expected users of the goods or services or those who have a need 
 for the functionality of the network", and/or "[t]he digital asset is offered and purchased in quantities indicative of 
@@ -439,7 +438,7 @@ Securities Exchanges, 15 U.S.C.
 
 ## Contributors
 
-- Louis Willacy
+- https://github.com/willacy
 - <https://github.com/anselld>
 - <https://github.com/hansieodendaal>
 - <https://github.com/kevoulee>
