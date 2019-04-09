@@ -19,7 +19,7 @@
       - [Lookup Procedure](#lookup-procedure)
       - [Data Storage and Retrieval Procedure](#data-storage-and-retrieval-procedure)
       - [Routing Table](#routing-table)
-      - [$k$-bucket Ordering](#$k​$-bucket-ordering)
+      - [$k$-bucket Ordering](#k-bucket-ordering)
     - [Kademlia Attacks](#kademlia-attacks)
       - [Node Insertion Attack](#node-insertion-attack)
       - [Eclipse Attack](#eclipse-attack)
