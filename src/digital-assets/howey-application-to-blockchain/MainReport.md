@@ -53,14 +53,14 @@ quite unique. Many who seek to undertake token offerings and sales struggle to a
 offerings and sales must be registered under the [[1]] or have to fit within an exemption from the Act's registration 
 requirements. As a result, there is significant regulatory uncertainty surrounding the offering and sale of tokens.
 
-The SEC recognizes the need for more guidance in this area and continues to assist those seeking to achieve a greater 
-understanding of whether these laws apply to the offer or sale of a particular digital asset. This report reviews how 
+The Commission recognizes the need for more guidance in this area and continues to assist those seeking to achieve a greater 
+understanding of whether the U.S. federal securities laws apply to the offer or sale of a particular digital asset. This report reviews how 
 [[2]] (the "Framework"<sup>[f2][footnote_2~]</sup>), which was recently published by the SEC's Strategic Hub for 
-Innovation and Financial Technology, and recent statements by William Hinman, the Director of the SEC's Division of 
+Innovation and Financial Technology, along with previous statements by William Hinman, the Director of the SEC's Division of 
 Corporation Finance, are indicative of the SEC's approach to applying to digital assets the investment contract test 
-laid out in [[3]]. The SEC adopted this test, commonly referred to as the *Howey* test [[4]], and has applied the test<sup>[f3][footnote_3~]</sup> in subsequent actions<sup>[f6][footnote_6~]</sup>.
+laid out in [[3]]. The SEC adopted this test, commonly referred to as the *Howey* test [[4]], and has applied the test<sup>[f3][footnote_3~]</sup> in subsequent actions involving digital assets<sup>[f6][footnote_6~]</sup>.
 
-In particular, this report examines some of the Framework's statements relating to the fourth prong of the *Howey* test, 
+In particular, this report examines some of the SEC Staff's statements relating to the fourth prong of the *Howey* test, 
 i.e. the "efforts of others", and discusses factors for promoters of token offerings to consider when assessing whether 
 a token purchaser may have a reasonable expectation of earning profits from the significant efforts of others. It 
 should be noted that this report is in no way intended to constitute or be relied upon as legal advice or to substitute 
@@ -153,7 +153,7 @@ the network may be widely dispersed, i.e. decentralized, among many unaffiliated
 no identifiable "person or group" that continues to play a significant role, especially as compared to the role that the 
 dispersed stakeholders play [[2], Section 4]<sup>[f10][footnote_10~]</sup>.
 
-The SEC has also focused on a promoter's efforts to use the proceeds from a token offering to create an ecosystem that will drive demand for the tokens once the network is functional.<sup>[f6][footnote_6~]</sup> Further, the SEC has singled out promoter efforts to maintain a token's price by intervening in the buying and selling of tokens, separate from developing and maintaining the underlying network.<sup>[f12][footnote_12~]</sup>
+The SEC has placed particular attention on promoter efforts to impact a token's supply and/or demand.  It has also focused on a promoter's efforts to use the proceeds from a token offering to create an ecosystem that will drive demand for the tokens once the network is functional.<sup>[f6][footnote_6~]</sup> Further, the SEC has singled out promoter efforts to maintain a token's price by intervening in the buying and selling of tokens, separate from developing and maintaining the underlying network.<sup>[f12][footnote_12~]</sup>
 
 In contrast to the kinds of efforts that meet *Howey*'s fourth prong, to the extent that a token's value is driven 
 by market forces (supply and demand conditions), it suggests that the value of the token is attributable to factors 
@@ -180,10 +180,10 @@ Token purchasers who plan to use their tokens to access a network's functionalit
 the tokens will increase in value. The finding that a token was offered to potential purchasers in a manner inconsistent 
 with a consumptive purpose has been a factor in several of the SEC's recent orders.<sup>[f15][footnote_15~]</sup> 
 Accordingly, a promoter may seek to limit the offering and sale of tokens to prospective network users. A promoter may 
-also seek to ensure that the marketing, and other communication related to the token offer, is consistent with 
-consumption being the reason for purchasing tokens both in content and audience. The argument that purchasers are 
-acquiring tokens for consumption may be stronger once the network is functional and tokens can actually be used to 
-purchase goods or access services through the network.<sup>[f16][footnote_16~]</sup> Promoters may consider whether 
+also seek to ensure that, in both its content and intended audience, the marketing, and other communication related to the token offering, is consistent with 
+consumption being the reason for purchasing tokens. The SEC Staff has indicated that the argument that purchasers are 
+acquiring tokens for consumption will be stronger once the network is functional and tokens can actually be used to 
+purchase goods or access services through the network.<sup>[f16][footnote_16~]</sup> Promoters may also consider whether 
 "restrictions on the transferability of the digital asset are consistent with the asset's use and not facilitating a speculative market". [[2], Section 10]
 
 ### Priming Purchasers' Expectations
@@ -192,20 +192,19 @@ The SEC has given much attention to whether token purchasers were led to expect 
 increase token value. In this respect, in bringing enforcement actions, the SEC has highlighted statements made by 
 promoters that specifically tout the opportunity to profit from purchasing a token.<sup>[f17][footnote_17~]</sup> 
 Promotional statements explaining that tokens would be listed on digital asset exchanges for secondary trading also draw 
-attention.<sup>[f18][footnote_18~]</sup> Secondary trading on exchanges offers token holders an alternative to using the 
+attention.<sup>[f18][footnote_18~]</sup> Secondary trading on exchanges provides token holders an alternative to using the 
 token on the network and, especially when facilitated and highlighted by the promoter, can support a finding of 
 investment intent for token purchasers, i.e. buying with an eye on reselling for a profit instead of consuming goods or 
-services on the network [[2], Section 6].<sup>[f19][footnote_19~]</sup>
+services through the network [[2], Section 6].<sup>[f19][footnote_19~]</sup>
 
 The Framework [[2]] notes that purchasers may have an expectation that the promoter will "undertake efforts to promote 
 its own interests and enhance the value of the network or digital assets" [[2], Section 5]. Token purchasers who are 
 not aware of the promoter's interest in the network's success, such as through the promoter having retained a stake 
-in the tokens, would not have any reason to believe the promoter will undertake any efforts to drive token value. 
-Instead, they should understand that supply and demand alone will determine the token's price over time.
+in the tokens, should not have any reason to expect the promoter to undertake any efforts to drive token value in order to increase its own profits.
 
 ## **Conclusion**
 
-Parties seeking to undertake offerings and sales of tokens in compliance with federal securities laws may look to the 
+Parties seeking to undertake offerings and sales of tokens in compliance with U.S. securities laws may look to the 
 various actions and statements of the SEC for guidance as to whether the token is a security under the Act. As tokens 
 are not specifically enumerated under the definition of "security", the analysis hinges on the application of the 
 *Howey* test to determine if the token is an "investment contract" under the Act, and therefore a security. The 
