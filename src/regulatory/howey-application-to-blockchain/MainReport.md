@@ -85,7 +85,7 @@ definition of "security" under the Act, courts have abstracted the common elemen
 included in the definition of "security" under Section 2(a)(1) (and Section 3(a)(10) of the Exchange Act of 1934, which 
 is contained in [[3]]), to establish a "flexible rather than a static principle, one that 
 is capable of adaptation to meet the countless and variable schemes devised by those who seek the use of the money of 
-others on the promise of profits". (Reference [[3]], paragraph 299.)
+others on the promise of profits". [[3], paragraph 299]
 
 Accordingly, a determination of whether an instrument not specifically enumerated under Section 2(a)(1) of the Act may 
 be deemed to be a security that implicates the federal securities laws must include an analysis of whether it is an 
@@ -146,12 +146,12 @@ participants seek a greater understanding of whether or not a digital asset is a
 
 The Framework [[2]] reinforces that the degree and nature of a promoter's involvement will have a bearing on the 
 *Howey* analysis. The facts and circumstances relating to a promoter are key. If a promoter does not play a significant 
-role in the "development, improvement (or enhancement), operation, or promotion of the network" (Section 3 of [[2]]) 
+role in the "development, improvement (or enhancement), operation, or promotion of the network" [[2], Section 3] 
 underlying the tokens, it cuts against finding the "efforts of others" prong has been met. A promoter may seek to play a 
 more limited role in these areas. Or, along similar lines, influence over the "essential tasks and responsibilities" of 
 the network may be widely dispersed, i.e. decentralized, among many unaffiliated network stakeholders so that there is 
 no identifiable "person or group" that continues to play a significant role, especially as compared to the role that the 
-dispersed stakeholders play (Section 4 of [[2]].<sup>[f10][footnote_10~]</sup>
+dispersed stakeholders play [[2], Section 4]<sup>[f10][footnote_10~]</sup>.
 
 The SEC has also focused on a promoter's efforts to use the proceeds from a token offering to create an ecosystem that will drive demand for the tokens once the network is functional.<sup>[f6][footnote_6~]</sup> Further, the SEC has singled out promoter efforts to maintain a token's price by intervening in the buying and selling of tokens, separate from developing and maintaining the underlying network.<sup>[f12][footnote_12~]</sup>
 
@@ -184,7 +184,7 @@ also seek to ensure that the marketing, and other communication related to the t
 consumption being the reason for purchasing tokens both in content and audience. The argument that purchasers are 
 acquiring tokens for consumption may be stronger once the network is functional and tokens can actually be used to 
 purchase goods or access services through the network.<sup>[f16][footnote_16~]</sup> Promoters may consider whether 
-"[r]estrictions on the transferability of the digital asset are consistent with the asset's use and not facilitating a speculative market". (Section 10 of [[2]].)
+"restrictions on the transferability of the digital asset are consistent with the asset's use and not facilitating a speculative market". [[2], Section 10]
 
 ### Priming Purchasers' Expectations
 
@@ -195,10 +195,10 @@ Promotional statements explaining that tokens would be listed on digital asset e
 attention.<sup>[f18][footnote_18~]</sup> Secondary trading on exchanges offers token holders an alternative to using the 
 token on the network and, especially when facilitated and highlighted by the promoter, can support a finding of 
 investment intent for token purchasers, i.e. buying with an eye on reselling for a profit instead of consuming goods or 
-services on the network (Section 6 of [[2]]).<sup>[f19][footnote_19~]</sup>
+services on the network [[2], Section 6].<sup>[f19][footnote_19~]</sup>
 
 The Framework [[2]] notes that purchasers may have an expectation that the promoter will "undertake efforts to promote 
-its own interests and enhance the value of the network or digital assets". (Section 5 of [[2]].) Token purchasers who are 
+its own interests and enhance the value of the network or digital assets" [[2], Section 5]. Token purchasers who are 
 not aware of the promoter's interest in the network's success, such as through the promoter having retained a stake 
 in the tokens, would not have any reason to believe the promoter will undertake any efforts to drive token value. 
 Instead, they should understand that supply and demand alone will determine the token's price over time.
