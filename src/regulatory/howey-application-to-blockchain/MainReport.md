@@ -6,14 +6,14 @@
 
 [What is an Investment Contract (i.e. *Howey* Test)?](#what-is-an-investment-contract-ie-howey-test)
 
-[Fourth Prong of Howey Test - Efforts of Others](#fourth-prong-of-howey-test-efforts-of-others)
+[Fourth Prong of Howey Test - Efforts of Others](#fourth-prong-of-howey-test---efforts-of-others)
 
 [Decentralization, Consumptive Purpose and Priming Purchasers' Expectations](#decentralization-consumptive-purpose-and-priming-purchasers-expectations)
 
 - [Background](#background)
 - [Decentralization](#decentralization)
 - [Consumptive Purpose](#consumptive-purpose)
-- [Priming Purchasers' Expectations](#priming-purchasers'-expectations)
+- [Priming Purchasers' Expectations](#priming-purchasers-expectations)
 
 [Conclusion](#conclusion)
 
@@ -32,7 +32,7 @@ or to gain access to certain goods, services or other network functionality. Som
 tokens, or the right to receive tokens once the network has launched. They then use the sales proceeds to finance 
 development and maintenance of the networks.
 
-TThe U.S. Securities and Exchange Commission (SEC) has determined that many of the token offerings and sales over the 
+The U.S. Securities and Exchange Commission (SEC) has determined that many of the token offerings and sales over the 
 past few years have been in violation of federal securities laws. In some cases, the SEC has taken action against the 
 promoters of the offerings.<sup>[f1][footnote_1~]</sup> In each case, the SEC's decision to take action has been 
 underpinned by its determination that the digital assets that were offered and sold were securities pursuant to Section 
@@ -58,7 +58,7 @@ understanding of whether these laws apply to the offer or sale of a particular d
 [[2]] (the "Framework"<sup>[f2][footnote_2~]</sup>), which was recently published by the SEC's Strategic Hub for 
 Innovation and Financial Technology, and recent statements by William Hinman, the Director of the SEC's Division of 
 Corporation Finance, are indicative of the SEC's approach to applying to digital assets the investment contract test 
-laid out in [[3]]. The SEC adopted this test, commonly referred to as the *Howey* test, in [[4]]<sup>[f3][footnote_3~]</sup> and has applied the test in subsequent actions<sup>[f4][footnote_4~]</sup>.
+laid out in [[3]]. The SEC adopted this test, commonly referred to as the *Howey* test [[4]], and has applied the test<sup>[f3][footnote_3~]</sup> in subsequent actions<sup>[f6][footnote_6~]</sup>.
 
 In particular, this report examines some of the Framework's statements relating to the fourth prong of the *Howey* test, 
 i.e. the "efforts of others", and discusses factors for promoters of token offerings to consider when assessing whether 
@@ -83,7 +83,7 @@ Section 2(a)(1) of the Securities Act defines a security as follows:
 While blockchain network tokens (as well as a wide variety of other instruments) are not explicitly included in the 
 definition of "security" under the Act, courts have abstracted the common elements of an "investment contract", which is 
 included in the definition of "security" under Section 2(a)(1) (and Section 3(a)(10) of the Exchange Act of 1934, which 
-is contained in [[5]] <sup>[f5][footnote_5~]</sup>), to establish a "flexible rather than a static principle, one that 
+is contained in [[3]]), to establish a "flexible rather than a static principle, one that 
 is capable of adaptation to meet the countless and variable schemes devised by those who seek the use of the money of 
 others on the promise of profits". (Reference [[3]], paragraph 299.)
 
@@ -153,7 +153,7 @@ the network may be widely dispersed, i.e. decentralized, among many unaffiliated
 no identifiable "person or group" that continues to play a significant role, especially as compared to the role that the 
 dispersed stakeholders play (Section 4 of [[2]].<sup>[f10][footnote_10~]</sup>
 
-The SEC has also focused on a promoter's efforts to use the proceeds from a token offering to create an ecosystem that will drive demand for the tokens once the network is functional.<sup>[f11][footnote_11~]</sup> Further, the SEC has singled out promoter efforts to maintain a token's price by intervening in the buying and selling of tokens, separate from developing and maintaining the underlying network.<sup>[f12][footnote_12~]</sup>
+The SEC has also focused on a promoter's efforts to use the proceeds from a token offering to create an ecosystem that will drive demand for the tokens once the network is functional.<sup>[f6][footnote_6~]</sup> Further, the SEC has singled out promoter efforts to maintain a token's price by intervening in the buying and selling of tokens, separate from developing and maintaining the underlying network.<sup>[f12][footnote_12~]</sup>
 
 In contrast to the kinds of efforts that meet *Howey*'s fourth prong, to the extent that a token's value is driven 
 by market forces (supply and demand conditions), it suggests that the value of the token is attributable to factors 
@@ -162,16 +162,16 @@ token supply or demand in order to maintain a token's price.
 
 In addition, decentralization of control calls into question whether the application of the Securities Act [[1]] makes 
 sense to begin with. A main purpose of [[1]] is to ensure that securities issuers "tell the public the truth about their 
-businesses, the securities they are selling, and the risks involved in investing". <sup>[f13][footnote_13~]</sup> 
+businesses, the securities they are selling, and the risks involved in investing" [[5]].
 Typically, the issuer of a security plays a key role in the success of the enterprise. Investors rely on the experience, 
 judgment and skill of the enterprise's management team and board of directors to drive profits. The disclosure 
 requirements of [[1]] focus primarily on issuers of securities. A&nbsp;decentralized network, where no central person or 
 entity plays a key role, however, challenges both identification of a party who should be subject to the disclosure 
 obligations of [[1]], and the information expected to be disclosed. Indeed, speaking about Bitcoin, Hinman acknowledged 
 as much, stating he "[does] not see a central third party whose efforts are a key determining factor in the enterprise. 
-The network on which Bitcoin functions is operational and appears to have been decentralized for some time…. Applying 
+The network on which Bitcoin functions is operational and appears to have been decentralized for some time. Applying 
 the disclosure regime of the federal securities laws to the offer and resale of Bitcoin would seem to add little 
-value".<sup>[f14][footnote_14~]</sup> Decentralization ultimately invokes consideration of whether application of [[1]] 
+value".<sup>[f10][footnote_10~]</sup> Decentralization ultimately invokes consideration of whether application of [[1]] 
 truly serves its purpose. as well as the practical realities of how doing so would even work.
 
 ### Consumptive Purpose
@@ -242,38 +242,28 @@ Pursuant to Section 8A ..."
 rule, regulation or statement of the SEC, and it is not binding on the Divisions of the SEC or the SEC itself.
 
 [footnote_2~]: #footnote_2
-"The 'Framework'[[2]] represents the views of SEC Staff..."
+"The 'Framework'[2] represents the views of SEC Staff..."
 
-**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_3"> </a>Section 21(a) of [[4]] authorizes the SEC to investigate violations of the federal 
+**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_3"> </a>Section 21(a) of [[3]] authorizes the SEC to investigate violations of the federal 
 securities laws and, in its discretion, to "publish information concerning any such violations". The Report does not constitute an adjudication of any fact or issue, nor does it make any findings of violations by any individual or entity.
 
 [footnote_3~]: #footnote_3
-"Section 21(a) of [[4]] authorizes the SEC to investigate violations of the federal 
+"Section 21(a) of [3] authorizes the SEC to investigate violations of the federal 
 securities laws and, in its discretion..."
 
-**f4:**&nbsp;&nbsp;&nbsp;<a name="footnote_4"> </a>For examples, refer to the *Munchee* Order and the *Airfox* Order in 
-<sup>[f6][footnote_6~]</sup>.
-
-[footnote_4~]: #footnote_4
-"For examples, refer to the *Munchee* Order and the *Airfox* Order in 
-[footnote_6~]: #footnote_6."
-
-**f5:**&nbsp;&nbsp;&nbsp;<a name="footnote_5"> </a>15 U.S.C., Section 78a.
-
-[footnote_5~]: #footnote_4
-"15 U.S.C., Section 78a."
-
-**f6:**&nbsp;&nbsp;&nbsp;<a name="footnote_6"> </a>For examples, refer to paragraph 32 of the *Munchee* Order: "MUN token 
+**f6:**&nbsp;&nbsp;&nbsp;<a name="footnote_6"> </a>For examples, refer to paragraph 32 of the *Munchee* Order and paragraph 21 of the *Airfox* Order and accompanying text.
+<u>Paragraph 32 of the *Munchee* Order</u>: "MUN token 
 purchasers had a reasonable expectation of profits from their investment in the Munchee enterprise. The proceeds of the 
 MUN token offering were intended to be used by Munchee to build an "ecosystem" that would create demand for MUN tokens 
-and make MUN tokens more valuable"); and paragraph 21 of the *Airfox* Order: "AirFox told investors that the company 
+and make MUN tokens more valuable". <u>Paragraph 21 of the *Airfox* Order</u>: "AirFox told investors that the company 
 would improve the AirFox App, add new functionality, enter into agreements with third-party telecommunication companies, 
 and take other steps to encourage the use of AirTokens and foster the growth of the ecosystem. Investors reasonably 
 expected they would profit from the success of AirFox's efforts to grow the ecosystem and the concomitant rise in the 
 value of AirTokens".
 
 [footnote_6~]: #footnote_6
-"For examples, refer to paragraph 32 of the *Munchee* Order: 'MUN token purchasers...'"
+"For examples, refer to paragraph 32 of the *Munchee* Order 
+and paragraph 21 of the *Airfox* Order and accompanying text...'"
 
 **f7:**&nbsp;&nbsp;&nbsp;<a name="footnote_7"> </a>William Hinman, Director of the Division of Corp. Fin., SEC, Remarks 
 at the Yahoo Finance All Markets Summit: Crypto: Digital Asset Transactions: When Howey Met Gary (Plastic) (14 June 2018).
@@ -309,14 +299,8 @@ or meaningful influence?
 **f10:**&nbsp;&nbsp;&nbsp;<a name="footnote_10"> </a>Section 4 of [[2]] states that it is more likely that the purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an unaffiliated, dispersed community of network users".
 
 [footnote_10~]: #footnote_10
-"Section 4 of [[2]] states that it is more likely that the purchaser of
+"Section 4 of [2] states that it is more likely that the purchaser of
 a digital asset is relying on the efforts of others if..."
-
-**f11:**&nbsp;&nbsp;&nbsp;<a name="footnote_11"> </a>For example, refer to <sup>[f6][footnote_6~]</sup> and accompanying
-text.
-
-[footnote_11~]: #footnote_11
-"For example, refer to [footnote_6~]: #footnote_6 and accompanying text."
 
 **f12:**&nbsp;&nbsp;&nbsp;<a name="footnote_12"> </a>For examples, refer to paragraph 27 of the *Paragon* Order: "Paragon 
 also maintained… a 'Controlled Reserve Fund' to keep the price of PRG 'stable'. If the price of PRG tokens were 
@@ -332,18 +316,6 @@ time, [that] might be getting into the land of securities").
 
 [footnote_12~]: #footnote_12
 "For examples, refer to paragraph 27 of the *Paragon* Order:..."
-
-**f13:**&nbsp;&nbsp;&nbsp;<a name="footnote_13"> </a>*What We Do*, SEC, https://www.sec.gov/Article/whatwedo.html#intro (last visited Mar. 7, 2018).
-
-[footnote_13~]: #footnote_13
-"*What We Do*, SEC, https://www.sec.gov/Article/whatwedo.html#intro 
-(last visited Mar. 7, 2018)."
-
-**f14:**&nbsp;&nbsp;&nbsp;<a name="footnote_14"> </a>
-Refer to <sup>[f10][footnote_10~]</sup>.
-
-[footnote_14~]: #footnote_14
-"Refer to [footnote_10~]: #footnote_10."
 
 **f15:**&nbsp;&nbsp;&nbsp;<a name="footnote_15"> </a>For examples, refer to paragraph 18 of the *Munchee* Order: "[The] 
 marketing did not use the Munchee App or otherwise specifically target current users of the Munchee App to promote how 
@@ -365,14 +337,14 @@ the time of the ICO, investors purchased AirTokens based upon anticipation that 
 through AirFox's future managerial and entrepreneurial efforts."
 
 [footnote_16~]: #footnote_16
-"For examples, refer to Section 9 of [[2]], which states that..."
+"For examples, refer to Section 9 of [2], which states that..."
 
 **f17:**&nbsp;&nbsp;&nbsp;<a name="footnote_17"> </a>For example, refer to paragraph 17 of the *Munchee* Order: "Munchee 
 made public statements or endorsed other people's public statements that touted the opportunity to profit. For 
 example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote '199% GAINS 
 on MUN token at ICO price! Sign up for PRE-SALE NOW!' The linked video featured a person who said 'Today we are 
 going to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you'll probably 
-most likely get a return on it.' This person… 'speculate[d]' that a \\$1,000 investment could create a \\$94,000 
+most likely get a return on it.' This person… 'speculate[d]' that a \\$1,000 investment could create a \\​$94,000 
 return."
 
 [footnote_17~]: #footnote_17
@@ -400,9 +372,8 @@ for the functionality of the network", and/or "[t]he digital asset is offered an
 investment intent instead of quantities indicative of a user of the network".
 
 [footnote_19~]: #footnote_19
-"For example, refer to paragraph 18 of the *Munchee* Order:... 
-Section 6 of [[2]] states 
-that it is more likely there is a reasonable expectation of profit if..."
+"Section 6 of [2] states that it is more likely 
+there is a reasonable expectation of profit if..."
 
 ## References
 
@@ -420,25 +391,29 @@ Available: https://www.sec.gov/corpfin/framework-investment-contract-analysis-di
 [2]: https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets
 "Framework for 'Investment Contract' Analysis of Digital Assets."
 
-[[3]] "SEC v. W. J. Howey Co., 328 U.S. 293 (1946)" [online]. 
-Available: (https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.). Date accessed: 2019-04-05. 
-
-[3]: https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.
-"SEC v. W. J. Howey Co., 328 U.S. 293 (1946)."
-
-[[4]] "U.S. Congress. United States Code: Securities Exchanges, 15 U.S.C. §§ 78a-78jj, 1964"  [online]. 
+[[3]] "U.S. Congress. United States Code: Securities Exchanges, 15 U.S.C. §§ 78a-78jj, 1964"  [online]. 
 Available: https://www.loc.gov/item/uscode1964-003015002b/. Date accessed: 2019-03-07.
 
-[4]: https://www.loc.gov/item/uscode1964-003015002b/
+[3]: https://www.loc.gov/item/uscode1964-003015002b/
 "U.S. Congress. United States Code: 
 Securities Exchanges, 15 U.S.C. 
 §§ 78a-78jj. 1964."
 
+[[4]] "SEC v. W. J. Howey Co., 328 U.S. 293 (1946)" [online]. 
+Available: (https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.). Date accessed: 2019-04-05. 
+
+[4]: https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.
+"SEC v. W. J. Howey Co., 328 U.S. 293 (1946)."
+
+[[5]] "U.S. Securities and Exchange Commission, What We Do"  [online]. Available: https://www.sec.gov/Article/whatwedo.html Date accessed: 2018-03-07.
+
+[5]: https://www.sec.gov/Article/whatwedo.html
+"U.S. Securities and Exchange Commission, What We Do"
 
 
 ## Contributors
 
-- https://github.com/willacy
+- <https://github.com/willacy>
 - <https://github.com/anselld>
 - <https://github.com/hansieodendaal>
 - <https://github.com/kevoulee>
