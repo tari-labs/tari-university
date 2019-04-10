@@ -90,6 +90,8 @@ the other [[2]]. Specifically, if _G_ is the base generator, then there exists s
 If anyone is able to figure out this _k_, the whole security of Confidential Transactions falls apart. It's left as an
 exercise for the reader to figure out why.
 
+For a semi-gentle introduction to these concepts, Adam Gibson's paper on the subject is excellent [[5]].
+
 </div>
 
 
@@ -146,7 +148,7 @@ any of the accounting of Tari.
 <div class="note info">
 
  In Tari and Grin, the excess value is actually split into two values for added privacy. The Grin team has a good
- explanation of why this is necessary [[4]]. We leave off this step to keep the explanation simple(r).
+ explanation of why this `offset` value is necessary [[4]]. We leave off this step to keep the explanation simple(r).
 
 </div>
 
@@ -191,7 +193,7 @@ $$P_b = k_b.G$$
 
 and generates a range proof for the commitment.
 
-Bob then needs to sign that he's happy that everything is complete to his satisfaction. He creates a
+Bob then needs to sign that he's happy that everything is complete to his satisfaction. He creates a partial
 [Schnorr Signature](../../cryptography/digital_signatures/introduction_schnorr_signatures.md) with the challenge,
 
 $$ e = H(R_a + R_b \Vert X + P_b \Vert f \Vert m) $$
@@ -217,7 +219,7 @@ First, she can now use Bob's public nonce and public key to independently calcul
 
 $$ e = H(R_a + R_b \Vert X + P_b \Vert f \Vert m) $$
 
-Alice then creates both her own signature,
+Alice then creates both her own partial signature,
 
 $$ s_a = r_a + e.x_s $$
 
@@ -325,3 +327,7 @@ Number"
 [4]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets "Kernel Offsets"
 [[4]]. Kernel Offsets, in Introduction to MimbleWimble and Grin,
 <https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets>, Accessed: 9 April 2019.
+
+[5]: https://joinmarket.me/static/FromZK2BPs_v1.pdf "From Zero-knowledge to BulletProofs"
+[[5]]: A. Gibson, "From Zero-knowledge to BulletProofs", https://joinmarket.me/static/FromZK2BPs_v1.pdf. Date accessed:
+10 April 2019
