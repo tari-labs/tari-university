@@ -39,5 +39,6 @@
     - [The RGB Protocol - An Introduction](protocols/rgb-introduction/sources/PITCHME.link.md)
   - [Labs](labs/introduction.md)
     - [Mermaid Demonstration](labs/mermaid-demo.md)
+    - [Notes and info boxes](labs/notes.md)
 - [Style Guide](./preface/style-guide.md)
 
