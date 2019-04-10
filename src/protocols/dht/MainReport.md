@@ -19,7 +19,7 @@
       - [Lookup Procedure](#lookup-procedure)
       - [Data Storage and Retrieval Procedure](#data-storage-and-retrieval-procedure)
       - [Routing Table](#routing-table)
-      - [$k$-bucket Ordering](#$k​$-bucket-ordering)
+      - [$k$-bucket Ordering](#k-bucket-ordering)
     - [Kademlia Attacks](#kademlia-attacks)
       - [Node Insertion Attack](#node-insertion-attack)
       - [Eclipse Attack](#eclipse-attack)
@@ -281,15 +281,15 @@ and one for all the others.
 
 This guarantees that for bucket $j$, where $0 <= j < k$, there is at least one node $N$ in node $A$'s routing table for which
 
-$$ 2^j <= distance(A, N) < 2^{(j+1)} ​$$.
+$$ 2^j <= distance(A, N) < 2^{(j+1)} $$
 
 ##### **$k$-bucket ordering**
 
 Peers within $k​$-buckets are sorted from least to most recently seen.
 
 Once a node receives a request or reply from a peer, it checks to see if the peer is contained in the
-appropriate $k$-bucket. Depending on whether or not the peer already exists, the entry is either moved or appended to the
-tail of the list (most recently seen). If a particular bucket is already size $k$, the node tries to `PING` the first
+appropriate $k​$-bucket. Depending on whether or not the peer already exists, the entry is either moved or appended to the
+tail of the list (most recently seen). If a particular bucket is already size $k​$, the node tries to `PING` the first
 peer in the list (least recently seen). If the peer does not respond, it is evicted and the new peer is
 appended to the bucket, otherwise the new peer is discarded. In this way, the algorithm is biased towards peers
 that are long-lived and highly available.
