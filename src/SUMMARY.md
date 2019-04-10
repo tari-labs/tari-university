@@ -28,7 +28,8 @@
     - [Non-fungible Tokens Survey](digital-assets/nft-landscape-1/sources/PITCHME.link.md)
     - [Confidential Assets](digital-assets/confidential-assets/MainReport.md)
   - [Protocols](protocols/protocols.md)
-    - [Mimblewimble](protocols/mimblewimble-1/sources/PITCHME.link.md)
+    - [Mimblewimble Transactions (presentation)](protocols/mimblewimble-1/sources/PITCHME.link.md)
+    - [Tari Transactions - A simple explanation](protocols/mimblewimble-1/MainReport.md)
     - [Mimblewimble-Grin Block Chain Protocol Overview](protocols/grin-protocol-overview/MainReport.md)
     - [Grin vs. BEAM; a Comparison](protocols/grin-beam-comparison/MainReport.md)
     - [Grin Design Choice Criticisms - Truth or Fiction](protocols/grin-design-choice-criticisms/MainReport.md)
@@ -39,5 +40,6 @@
     - [DHT](./protocols/dht/MainReport.md)
   - [Labs](labs/introduction.md)
     - [Mermaid Demonstration](labs/mermaid-demo.md)
+    - [Notes and info boxes](labs/notes.md)
 - [Style Guide](./preface/style-guide.md)
 
