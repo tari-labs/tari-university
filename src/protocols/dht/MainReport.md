@@ -283,7 +283,7 @@ This guarantees that for bucket $j$, where $0 <= j < k$, there is at least one n
 
 $$ 2^j <= distance(A, N) < 2^{(j+1)} $$
 
-##### **$k$-bucket ordering**
+##### $k$-bucket ordering
 
 Peers within $k​$-buckets are sorted from least to most recently seen.
 
@@ -298,12 +298,12 @@ that are long-lived and highly available.
 
 Some notable attacks in the Kademlia scheme:
 
-##### **Node Insertion Attack**
+##### Node Insertion Attack
 
 Since there is no verification of a node's ID, an attacker can select their ID to occupy a particular keyspace in the network.
 Once an attacker has inserted themselves in this way, they may censor or manipulate content in that keyspace, or eclipse nodes [[9]].
 
-##### **Eclipse Attack**
+##### Eclipse Attack
 
 An attacker takes advantage of the fact that in practice, there are relatively few nodes in most parts of a 160-bit keyspace.
 An attacker injects themselves closer to the target than other peers and eventually could achieve a dominating position.
