@@ -63,14 +63,6 @@ within a quotation.
 As per the United Kingdom (UK) punctuation standard. Place commas and full stops outside the closing quotation marks as 
 advised in [[4]]. 
 
-### Quotation Marks
-
-As per the American style. Use double quotation marks for a first quotation and single quotation marks for a quotation within a quotation.
-
-### Punctuation
-
-As per the United Kingdom (UK) punctuation standard. Place commas and full stops inside the quotation marks. 
-
 ### Units of Measure
 
 Use the internationally agreed ISO standards [[3]] for expressing units of measure.
