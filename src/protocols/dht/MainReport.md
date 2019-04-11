@@ -444,7 +444,7 @@ Date accessed: 2019-04-04.
 
 ## Contributors
 
-- https://github.com/sdbondi
+- <https://github.com/sdbondi>
 - https://github.com/neonknight64
 - <https://github.com/anselld>
 
