@@ -354,7 +354,7 @@ Available: (https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.). Date accessed
 
 [[6]] Guillermo Jimenez, SEC's Crypto Czar: "Stablecoins might be violating securities laws", Decrypt (2019) [online]. Available: <https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-laws>. Date accessed: 2019-03-19.
 
-[6]: https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-lawsquot;Stablecoins might be violating securities laws
+[6]: https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-lawsquot
 
 "Stablecoins might be violating securities laws"
 
