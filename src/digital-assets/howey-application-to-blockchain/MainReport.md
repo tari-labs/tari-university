@@ -319,22 +319,21 @@ a digital asset is relying on the efforts of others if..."
 
 ## References
 
-[[1]] "U.S. Congress. United States Code: Securities Act of, 15 U.S.C. §§&nbsp; 77a-77mm 1934" [online]. 
-Available: https://www.loc.gov/item/uscode1934-001015002a/. Date accessed: 2019-03-07.
+[[1]] "U.S. Congress. United States Code: Securities Act of, 15 U.S.C. §§&nbsp; 77a-77mm 1934" [online]. <br>Available: <https://www.loc.gov/item/uscode1934-001015002a/>. Date accessed: 2019-03-07.
 
 [1]: https://www.loc.gov/item/uscode1934-001015002a/
 "U.S. Congress. United States Code: 
 Securities Act of, 15 U.S.C. 
 §§ 77a-77mm 1934."
 
-[[2]] "Framework for 'Investment Contract' Analysis of Digital Assets" [online]. 
-Available: https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets
+[[2]] "Framework for 'Investment Contract' Analysis of Digital Assets" [online].<br>
+Available: <https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets>>. Date accessed: 2019-03-10.
 
 [2]: https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets
 "Framework for 'Investment Contract' Analysis of Digital Assets."
 
-[[3]] "U.S. Congress. United States Code: Securities Exchanges, 15 U.S.C. §§ 78a-78jj, 1964"  [online]. 
-Available: https://www.loc.gov/item/uscode1964-003015002b/. Date accessed: 2019-03-07.
+[[3]] "U.S. Congress. United States Code: Securities Exchanges, 15 U.S.C. §§ 78a-78jj, 1964"  [online].<br>
+Available: <https://www.loc.gov/item/uscode1964-003015002b/>. Date accessed: 2019-03-07.
 
 [3]: https://www.loc.gov/item/uscode1964-003015002b/
 "U.S. Congress. United States Code: 
@@ -342,18 +341,19 @@ Securities Exchanges, 15 U.S.C.
 §§ 78a-78jj. 1964."
 
 [[4]] "SEC v. W. J. Howey Co., 328 U.S. 293 (1946)" [online]. 
-Available: (https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.). Date accessed: 2019-04-05. 
+Available: <https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.)>. Date accessed: 2019-04-05. 
 
 [4]: https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.
 "SEC v. W. J. Howey Co., 328 U.S. 293 (1946)."
 
-[[5]] "U.S. Securities and Exchange Commission, What We Do"  [online]. Available: https://www.sec.gov/Article/whatwedo.html. Date accessed: 2018-03-07.
+[[5]] "U.S. Securities and Exchange Commission, What We Do"  [online]. Available: <https://www.sec.gov/Article/whatwedo.html>.<br>Date accessed: 2018-03-07.
 
 [5]: https://www.sec.gov/Article/whatwedo.html
 "U.S. Securities and Exchange Commission, What We Do"
 
 [[6]] Guillermo Jimenez, SEC's Crypto Czar: "Stablecoins might be violating securities laws", Decrypt (2019) [online]. 
-Available: https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-laws. Date accessed: 2019-03-19.
+Available: <https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-laws>.<br> 
+Date accessed: 2019-03-19.  
 
 [6]: https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-lawsquot
 "Stablecoins might be violating securities laws"
