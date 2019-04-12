@@ -152,12 +152,7 @@ He posed a set of six questions directly related to the application of the "effo
 
 (He also posed a separate set of seven questions exploring "contractual or technical ways to structure digital assets so they function more like a consumer item and less like a security").
 
-Hinman noted two cases where he believed this was indeed possible:
-
-- "where there is no longer any central enterprise being invested in", e.g. purchases of the digital assets related to a decentralized enterprise or network; and
-- "where the digital asset is sold only to be used to purchase a good or service available through the network on which it was created", e.g. purchases of digital assets for a consumptive purpose.
-
-Hinman also noted that these questions are useful to consider when assessing the facts and circumstances surrounding 
+Hinman noted that these questions are useful to consider when assessing the facts and circumstances surrounding 
 offerings and sales of digital assets to determine "whether a third party - be it a person, entity or coordinated group 
 of actors - drives the expectation of a return". If such a party does drive an expectation of a return on a purchased 
 digital asset, i.e. priming purchasers' expectations, there is a greater likelihood that the asset will be deemed to 
@@ -186,10 +181,10 @@ for the tokens once the network is functional.<sup>[f1][footnote_1~]</sup> Furth
 
 Further, the SEC's Senior Advisor for Digital Assets, Valerie Szczepanik, noted promoter efforts in this area may implicate U.S. securities law, recently stating she has "seen stablecoins that purport to control price through some kind of pricing mechanism… controlled through supply and demand in some way to keep the price within a certain band", and "[W]here there is one central party controlling the price fluctuation over time, [that] might be getting into the land of securities" [[6]].
 
-> In contrast to the kinds of efforts that meet *Howey*'s fourth prong, to the extent that a token's value is driven by 
-> market forces (supply and demand conditions), it suggests that the value of the token is attributable to factors other 
-> than the promoter's efforts. This is assuming that the promoter does not put some mechanism in place to manage token 
-> supply or demand in order to maintain a token's price. 
+In contrast to the kinds of efforts that meet *Howey*'s fourth prong, to the extent that a token's value is driven by 
+market forces (supply and demand conditions), it suggests that the value of the token is attributable to factors other 
+than the promoter's efforts. This is assuming that the promoter does not put some mechanism in place to manage token 
+supply or demand in order to maintain a token's price. 
 
 In addition, decentralization of control calls into question whether the application of the Securities Act [[1]] makes 
 sense to begin with. A main purpose of&nbsp;[[1]] is to ensure that securities issuers "tell the public the truth about their 
@@ -242,13 +237,9 @@ For example, from paragraph 17 of the *Munchee* Order [[1, Section 8A]:
 Promotional statements explaining that tokens would be listed on digital asset exchanges for secondary trading also draw 
 attention. Refer to the following examples. 
 
-- From paragraph 13 of the *Munchee* Order [[1, Section 8A]:
+- From paragraph 13 of the *Munchee* Order [[1, Section 8A]: Munchee stated it would work to ensure that MUN holders would be able to sell their MUN tokens on secondary markets, saying that 'Munchee will ensure that MUN token is available on a number of exchanges in varying jurisdictions to ensure that this is an option for all token-holders.');
 
-> Munchee stated it would work to ensure that MUN holders would be able to sell their MUN tokens on secondary markets, saying that 'Munchee will ensure that MUN token is available on a number of exchanges in varying jurisdictions to ensure that this is an option for all token-holders.');
-
-- From paragraph 22 of the *Gladius* Order [[1, Section 8A]:
-
-  > During and following the offering, Gladius attempted to make GLA Tokens available for trading on major digital asset trading platforms. On Gladius Web Pages, Gladius principals and agents stated that '[w]e've been approached by some of the largest exchanges, they're very interested,' and represented that the GLA Token would be available to trade on 'major' trading platforms after the ICO.
+- From paragraph 22 of the *Gladius* Order [[1, Section 8A]: During and following the offering, Gladius attempted to make GLA Tokens available for trading on major digital asset trading platforms. On Gladius Web Pages, Gladius principals and agents stated that '[w]e've been approached by some of the largest exchanges, they're very interested,' and represented that the GLA Token would be available to trade on 'major' trading platforms after the ICO.
 
 - From [[2], page 5], which states that it is more likely that there is a reasonable expectation of profit if various characteristics are present, including if the digital asset is marketed using "[t]he availability of a market for the trading of the digital asset, particularly where the [promoter] implicitly or explicitly promises to create or otherwise support a trading market for the digital asset".
 
