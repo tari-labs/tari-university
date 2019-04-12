@@ -36,7 +36,7 @@ The U.S. Securities and Exchange Commission (SEC) has determined that many of th
 past few years have been in violation of federal securities laws. In some cases, the SEC has taken action against the 
 promoters of the offerings.
 
-<a name="footnote_1"> </a>Refer to the following Orders under the Order Instituting Cease-and-Desist Proceedings Pursuant to [[1, Section 8A]:
+<a name="footnote_1"> </a>Refer to the following Orders under the Order Instituting Cease-and-Desist Proceedings Pursuant to [[1], Section 8A]:
 
 - Making Findings, and Imposing a Cease-and-Desist Order against Munchee Inc. (the *Munchee* Order);
 - Making Findings, and Imposing Penalties and a Cease-and-Desist Order against CarrierEQ, Inc., D/B/A/ Airfox (the *Airfox* Order);
@@ -69,7 +69,7 @@ asset. This report:
 - Reviews [[2]] (the "Framework", which was recently published by the SEC's Strategic Hub for Innovation and Financial Technology, along with previous statements by William Hinman, the Director of the SEC's Division of Corporation Finance. **Note:** "The Framework" represents the views of SEC Staff. It is not a rule, regulation or statement of the SEC, and it is not binding on the Divisions of the SEC or the SEC itself.
 - Explains how [[2]] is indicative of the SEC's approach to applying the investment contract test laid out in [[3]] to digital assets. The SEC adopted this test, 
   commonly referred to as the *Howey* test [[4]], and has applied the test in subsequent actions involving digital 
-  assets.<sup>[f1][footnote_1~]</sup> **Note:** Section 21(a) of [[3]] authorizes the SEC to investigate violations of the 
+  assets.<sup>[f1][footnote_1~]</sup> **Note:** [[3], Section 21(a)] authorizes the SEC to investigate violations of the 
   federal securities laws and, in its discretion, to "publish information concerning any such violations". The Report does 
   not constitute an adjudication of any fact or issue, nor does it make any findings of violations by any individual or 
   entity. 
@@ -140,7 +140,7 @@ a security", and noted two cases where he believed this was indeed possible:
 - "where there is no longer any central enterprise being invested in", e.g. purchases of the digital assets related to a decentralized enterprise or network; and
 - "where the digital asset is sold only to be used to purchase a good or service available through the network on which it was created", e.g. purchases of digital assets for a consumptive purpose. a set of six questions directly related to the application of the "efforts of others" prong of the *Howey* test to offerings and sales of digital assets.
 
-He posed a set of six questions directly related to the application of the "efforts of others" prong of the Howey test to offerings and sales of digital assets.
+He posed a set of six questions directly related to the application of the "efforts of others" prong of the Howey test to offerings and sales of digital assets:
 
 > 1. Is there a person or group that has sponsored or promoted the creation and sale of the digital asset, the efforts of whom play a significant role in the development and maintenance of the asset and its potential increase in value?
 > 2. Has this person or group retained a stake or other interest in the digital asset such that it would be motivated to expend efforts to cause an increase in value in the digital asset? Would purchasers reasonably believe such efforts will be undertaken and may result in a return on their investment in the digital asset?
@@ -206,8 +206,8 @@ Token purchasers who plan to use their tokens to access a network's functionalit
 the tokens will increase in value. The finding that a token was offered to potential purchasers in a manner inconsistent 
 with a consumptive purpose has been a factor in several of the SEC's recent orders, for example:
 
-- From paragraph 18 of the *Munchee* Order [[1, Section 8A]: "[The] marketing did not use the Munchee App or otherwise specifically target current users of the Munchee App to promote how purchasing MUN tokens might let them qualify for higher tiers and bigger payments on future reviews... Instead, Munchee and its agents promoted the MUN token offering in forums aimed at people interested in investing in Bitcoin and other digital assets").
-- From paragraph 16 of the *Airfox* Order [[1, Section 8A]: "AirFox primarily aimed its promotional efforts for the initial coin offering at digital token investors rather than anticipated users of AirTokens").
+- From paragraph 18 of the *Munchee* Order [[1], Section 8A]: "[The] marketing did not use the Munchee App or otherwise specifically target current users of the Munchee App to promote how purchasing MUN tokens might let them qualify for higher tiers and bigger payments on future reviews... Instead, Munchee and its agents promoted the MUN token offering in forums aimed at people interested in investing in Bitcoin and other digital assets").
+- From paragraph 16 of the *Airfox* Order [[1], Section 8A]: "AirFox primarily aimed its promotional efforts for the initial coin offering at digital token investors rather than anticipated users of AirTokens").
 
 Accordingly, a promoter may seek to limit the offering and sale of tokens to prospective network users. A promoter may 
 also seek to ensure that, in both its content and intended audience, the marketing, and other communication related to 
@@ -217,8 +217,8 @@ and tokens can actually be used to purchase goods or access services through the
 
 For example:
 
-- Reference [[2, Section 9]] states that it is less likely the *Howey* test is met if various characteristics are present, including "[h]olders of the digital asset are immediately able to use it for its intended functionality on the network").
-- Paragraph 7 of the *Airfox* Order [[1, Section 8A] states "The terms of AirFox's initial coin offering purported to require purchasers to agree that they were buying AirTokens for their utility as a medium of exchange for mobile airtime, and not as an investment or a security. At the time of the ICO, this functionality was not available… Despite the reference to AirTokens as a medium of exchange, at the time of the ICO, investors purchased AirTokens based upon anticipation that the value of the tokens would rise through AirFox's future managerial and entrepreneurial efforts."
+- Reference [[2], Section 9] states that it is less likely the *Howey* test is met if various characteristics are present, including "[h]olders of the digital asset are immediately able to use it for its intended functionality on the network").
+- Paragraph 7 of the *Airfox* Order [[1], Section 8A] states "The terms of AirFox's initial coin offering purported to require purchasers to agree that they were buying AirTokens for their utility as a medium of exchange for mobile airtime, and not as an investment or a security. At the time of the ICO, this functionality was not available… Despite the reference to AirTokens as a medium of exchange, at the time of the ICO, investors purchased AirTokens based upon anticipation that the value of the tokens would rise through AirFox's future managerial and entrepreneurial efforts."
 
 Promoters may also consider whether "restrictions on the transferability of the digital asset are consistent with the 
 asset's use and not facilitating a speculative market" [[2], Section 10]. 
@@ -227,19 +227,19 @@ asset's use and not facilitating a speculative market" [[2], Section 10].
 
 The SEC has given much attention to whether token purchasers were led to expect that the promoter would make efforts to 
 increase token value. In this respect, in bringing enforcement actions, the SEC has highlighted statements made by 
-promoters that specifically tout the opportunity to profit from purchasing a token.<sup>[f17][footnote_17~]</sup>
+promoters that specifically tout the opportunity to profit from purchasing a token.
 
 For example, from paragraph 17 of the *Munchee* Order [[1, Section 8A]:
 
-> Munchee made public statements or endorsed other people's public statements that touted the opportunity to profit. For example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote '199% GAINS on MUN token at ICO price! Sign up for PRE-SALE NOW!' The linked video featured a person who said 'Today we are going to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you'll probably most likely get a return on it.' This person… 'speculate[d]' that a \\$1,000 investment could create a \\$94,000 return.
+> Munchee made public statements or endorsed other people's public statements that touted the opportunity to profit. For example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote '199% GAINS on MUN token at ICO price! Sign up for PRE-SALE NOW!' The linked video featured a person who said 'Today we are going to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you'll probably most likely get a return on it.' This person… 'speculate[d]' that a \\$1,000 investment could create a \$94,000 return.
 >
 
 Promotional statements explaining that tokens would be listed on digital asset exchanges for secondary trading also draw 
 attention. Refer to the following examples. 
 
-- From paragraph 13 of the *Munchee* Order [[1, Section 8A]: Munchee stated it would work to ensure that MUN holders would be able to sell their MUN tokens on secondary markets, saying that 'Munchee will ensure that MUN token is available on a number of exchanges in varying jurisdictions to ensure that this is an option for all token-holders.');
+- From paragraph 13 of the *Munchee* Order [[1], Section 8A]: Munchee stated it would work to ensure that MUN holders would be able to sell their MUN tokens on secondary markets, saying that 'Munchee will ensure that MUN token is available on a number of exchanges in varying jurisdictions to ensure that this is an option for all token-holders.');
 
-- From paragraph 22 of the *Gladius* Order [[1, Section 8A]: During and following the offering, Gladius attempted to make GLA Tokens available for trading on major digital asset trading platforms. On Gladius Web Pages, Gladius principals and agents stated that '[w]e've been approached by some of the largest exchanges, they're very interested,' and represented that the GLA Token would be available to trade on 'major' trading platforms after the ICO.
+- From paragraph 22 of the *Gladius* Order [[1], Section 8A]: During and following the offering, Gladius attempted to make GLA Tokens available for trading on major digital asset trading platforms. On Gladius Web Pages, Gladius principals and agents stated that '[w]e've been approached by some of the largest exchanges, they're very interested,' and represented that the GLA Token would be available to trade on 'major' trading platforms after the ICO.
 
 - From [[2], page 5], which states that it is more likely that there is a reasonable expectation of profit if various characteristics are present, including if the digital asset is marketed using "[t]he availability of a market for the trading of the digital asset, particularly where the [promoter] implicitly or explicitly promises to create or otherwise support a trading market for the digital asset".
 
@@ -280,11 +280,11 @@ sale of digital assets.
 
 ## Footnotes 
 
-**f1:**&nbsp;&nbsp;&nbsp;<a name="footnote_1"> </a>For examples, refer to paragraph 32 of the *Munchee* Order and paragraph 21 of the *Airfox* Order and accompanying text.
-<u>**<u>Paragraph 32 of *Munchee* Order:**</u> "MUN token 
+**f1:**&nbsp;&nbsp;&nbsp;<a name="footnote_1"> </a>For examples, refer to paragraph 32 of the *Munchee* Order and paragraph 21 of the *Airfox* Order and accompanying text. <br>
+**Paragraph 32 of *Munchee* Order:** "MUN token 
 purchasers had a reasonable expectation of profits from their investment in the Munchee enterprise. The proceeds of the 
 MUN token offering were intended to be used by Munchee to build an "ecosystem" that would create demand for MUN tokens 
-and make MUN tokens more valuable". **Paragraph 21 of *Airfox* Order:**</u> "AirFox told investors that the company 
+and make MUN tokens more valuable".<br> **Paragraph 21 of *Airfox* Order:** "AirFox told investors that the company 
 would improve the AirFox App, add new functionality, enter into agreements with third-party telecommunication companies, 
 and take other steps to encourage the use of AirTokens and foster the growth of the ecosystem. Investors reasonably 
 expected they would profit from the success of AirFox's efforts to grow the ecosystem and the concomitant rise in the 
@@ -300,7 +300,7 @@ at the Yahoo Finance All Markets Summit: Crypto: Digital Asset Transactions: Whe
 [footnote_2~]: #footnote_2
 "William Hinman, Director of the Division of Corp. Fin., SEC..."
 
-**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_10"> </a>Section 4 of [[2]] states that it is more likely that the purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an unaffiliated, dispersed community of network users".
+**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_10"> </a>Reference [[2], Section 4] states that it is more likely that the purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an unaffiliated, dispersed community of network users".
 
 [footnote_3~]: #footnote_3
 "This section states that it is more likely that the purchaser of
@@ -357,7 +357,8 @@ Date accessed: 2019-03-19.
 - <https://github.com/willacy>
 - <https://github.com/anselld>
 - <https://github.com/hansieodendaal>
-- <https://github.com/kevoulee>
+
+  
 
 
 
