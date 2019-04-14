@@ -5,7 +5,7 @@
 - [Permissioned Byzantine Fault-tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
   - [Background](#background)
   - [Protocols](#protocols)
-    - [Hyperledger Fabric)](#hyperledger-fabric)
+    - [Hyperledger Fabric](#hyperledger-fabric)
     - [Tendermint](#tendermint)
       - [Overview](#overview)
       - [Sentry Nodes](#sentry-nodes)
@@ -70,15 +70,23 @@ When considering the how Tari will potentially build its second layer, an analys
 
 Important to consider is the "scalability trilemma". This phrase, referred to by Vitalik Buterin [[19]], takes into account the potential trade-offs regarding decentralization, security and scalability: 
 
-- **Decentralization** : a core principle on which the majority of the systems are built, taking into account censorship-resistance and ensuring that everyone, without prejudice, is permitted to partake in the decentralized system. 
-- **Scalability** : encompasses the ability of the network to process transactions. Thus, if a public block chain is deemed to be efficient, effective and usable, it should be designed to handle millions of users on the network. 
-- **Security** : refers to the immutability of the ledger and takes into account threats of 51% attacks, Sybil attacks and DDoS attacks etc. 
+- **Decentralization:** a core principle on which the majority of the systems are built, taking into account censorship-resistance and ensuring that everyone, without prejudice, is permitted to partake in the decentralized system. 
+- **Scalability:** encompasses the ability of the network to process transactions. Thus, if a public block chain is deemed to be efficient, effective and usable, it should be designed to handle millions of users on the network. 
+- **Security:** refers to the immutability of the ledger and takes into account threats of 51% attacks, Sybil attacks, DDoS attacks, etc. 
 
 Through the recent development of this ecosystem, most block chains have focused on two of the three factors, namely decentralization and security, at the expense of scalability. The primary reason for this is that nodes must reach consensus before transactions can be processed [[19]].
 
-This report examines proposals considering Byzantine Fault-tolerant (BFT) consensus mechanisms and considers their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. In each instance, the protocol assumptions, reference implementations and discernment on whether the protocol may be used for Tari as a means to maintain the distributed asset state, will be assessed. 
+This report examines proposals considering Byzantine Fault-tolerant (BFT) consensus mechanisms, and considers their feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. In each instance, the following is assessed:
 
-This report discusses several terms and concepts related to consensus mechanisms. These include definitions of [Consensus](./Appendix.md#consensus), [Binary Consensus](./Appendix.md#binary-consensus), [Byzantine Fault Tolerance](./Appendix.md#byzantine-fault-tolerance), [Practical Byzantine Fault-tolerant Variants](./Appendix.md#practical-byzantine-fault-tolerant-variants), [Deterministic and Non-deterministic Protocols](./Appendix.md#deterministic-and-non-deterministic-protocols) and [Scalability-performance trade off](./Appendix.md#scalability-performance-trade-off). An important characteristic of consensus mechanisms is degrees of synchrony, which range from [Synchrony](./Appendix.md#synchrony), [Partial Synchrony](./Appendix.md#partial-synchrony), [Weak Synchrony](./Appendix.md#weak-synchrony), [Random Synchrony](./Appendix.md#random-synchrony) and [Asynchrony](./Appendix.md#asynchrony), as well as [The Problem with Timing Assumptions](./Appendix.md#the-problem-with-timing-assumptions). Definitions of [Denial of Service Attack](./Appendix.md#denial-of-service-attack), [The FLP Impossibility](./Appendix.md#the-flp-impossibility) and [Randomized Agreement](./Appendix.md#randomized-agreement) are also provided.
+- protocol assumptions;
+
+- reference implementations; and
+
+- discernment regarding whether the protocol may be used for Tari as a means to maintain the distributed asset state, will be assessed. 
+
+[Appendix A](#appendix-a-terminology) of contains terminology related to consensus mechanisms, including definitions of [Consensus](./Appendix.md#consensus); [Binary Consensus](./Appendix.md#binary-consensus); [Byzantine Fault Tolerance](./Appendix.md#byzantine-fault-tolerance); [Practical Byzantine Fault-tolerant Variants](./Appendix.md#practical-byzantine-fault-tolerant-variants); [Deterministic and Non-deterministic Protocols](./Appendix.md#deterministic-and-non-deterministic-protocols); and [Scalability-Performance trade off](./Appendix.md#scalability-performance-trade-off).
+
+[Appendix B](##appendix-b-timing-assumptions) discusses timing assumptions, including degrees of synchrony, which range from [Synchrony](./Appendix.md#synchrony) and [Partial Synchrony](./Appendix.md#partial-synchrony) to  [Weak Synchrony](./Appendix.md#weak-synchrony), [Random Synchrony](./Appendix.md#random-synchrony) and [Asynchrony](./Appendix.md#asynchrony); as well as the problem with timing assumptions, including [denial of service attack](./Appendix.md#denial-of-service-attack), [the FLP impossibility](./Appendix.md#the-flp-impossibility) and [randomized agreement](./Appendix.md#randomized-agreement).
 
 ## Brief Survey of Byzantine Fault-tolerant Consensus Mechanisms
 
@@ -94,9 +102,9 @@ Byzantine agreement schemes are considered well suited for permissioned block ch
 
 #### Hyperledger Fabric
 
-Hyperledger Fabric (HLF) began as a project under the LinX Foundation in early 2016 [[13]], with the aim of creating an open-source, cross-industry, standard platform for distributed ledgers. HLF is an implementation of a distributed ledger platform for running smart contracts, leveraging familiar and proven technologies, with a modular architecture allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. The fabric distinguishes peers as validating peers (they run the consensus algorithm, thus validating the transactions) and non-validating peers (they act as a proxy that helps in connecting clients to validating peers). The validating peers run a BFT consensus protocol for executing a replicated state machine that accepts deploy, invoke and query transactions as operations [[11]].
+Hyperledger Fabric (HLF) began as a project under the LinX Foundation in early 2016 [[13]]. The aim was to create an open-source, cross-industry, standard platform for distributed ledgers. HLF is an implementation of a distributed ledger platform for running smart contracts and leveraging familiar and proven technologies. It has a modular architecture, allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the peers. The fabric distinguishes peers as **validating peers** (they run the consensus algorithm, thus validating the transactions) and **non-validating peers** (they act as a proxy that helps in connecting clients to validating peers). The validating peers run a BFT consensus protocol for executing a replicated state machine that accepts deploy, invoke and query transactions as operations [[11]].
 
-The block chain's hash chain is computed based on the executed transactions and resulting persistent stat. The replicated execution of chaincode (the transaction which involves accepting the code of the smart contract to be deployed) is used for validating the transactions. They assume that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF proposes to follow a Practical Byzantine Fault-tolerant (PBFT) consensus protocol, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent states. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers [[11]].
+The block chain's hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode (the transaction that involves accepting the code of the smart contract to be deployed) is used for validating the transactions. It is assumed that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF proposes to follow a Practical Byzantine Fault-tolerant (PBFT) consensus protocol, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent states. The SIEVE protocol is used to filter out the non-deterministic transactions, thus assuring a unique persistent state among peers [[11]].
 
 While being redesigned for a v1.0 release, the format's goal was to achieve extensibility. This version allowed for modules such as membership and consensus mechanism to be exchanged. Being permissioned, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single order for testing purposes, and a crash-tolerant ordering service based on Apache Kafka [[9]].
 
