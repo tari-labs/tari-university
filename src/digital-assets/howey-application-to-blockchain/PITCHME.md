@@ -51,7 +51,9 @@ See full report [*here*](https://tlu.tarilabs.com/digital-assets/howey-applicati
 
 @divend
 
+
 ---
+
 
 ## Topic 1 ??
 
@@ -75,7 +77,9 @@ Some text ???
 
 @divend
 
+
 +++
+
 
 @div[text-left]
 
@@ -95,9 +99,11 @@ Some text ???
 
 @divend
 
+
 ---
 
-## Topic 2 ??
+
+## Topic 1 ??
 
 <div class="LineHeight100per"> <br></div>
 
@@ -119,7 +125,9 @@ Some text ???
 
 @divend
 
+
 +++
+
 
 @div[text-left]
 
@@ -139,9 +147,11 @@ Some text ???
 
 @divend
 
+
 ---
 
-## Etc. ??
+
+## Topic 1 ??
 
 <div class="LineHeight100per"> <br></div>
 
@@ -163,7 +173,9 @@ Some text ???
 
 @divend
 
+
 +++
+
 
 @div[text-left]
 
@@ -183,7 +195,9 @@ Some text ???
 
 @divend
 
+
 ---
+
 
 ## Conclusion
 
