@@ -2,7 +2,7 @@
 
 ## Abstract
 
-<!--Test--> This report investigates Schnorr Multi-Signature Schemes (MuSig), which makes use of key aggregation and is provably secure in the *plain public-key model*.
+<!--Test--> <!--Test 2--> This report investigates Schnorr Multi-Signature Schemes (MuSig), which makes use of key aggregation and is provably secure in the *plain public-key model*.
 
 Signature aggregation involves mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the *plain public-key model* where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks.
 
