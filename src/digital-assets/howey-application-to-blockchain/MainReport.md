@@ -36,7 +36,7 @@ The U.S. Securities and Exchange Commission (SEC) has determined that many of th
 past few years have been in violation of federal securities laws. In some cases, the SEC has taken action against the 
 promoters of the offerings.
 
-<a name="footnote_1"> </a>Refer to the following Orders under the Order Instituting Cease-and-Desist Proceedings Pursuant to [[1], Section 8A]:
+Refer to the following Orders under the Order Instituting Cease-and-Desist Proceedings Pursuant to [[1], Section 8A]:
 
 - Making Findings, and Imposing a Cease-and-Desist Order against Munchee Inc. (the *Munchee* Order);
 - Making Findings, and Imposing Penalties and a Cease-and-Desist Order against CarrierEQ, Inc., D/B/A/ Airfox (the *Airfox* Order);
@@ -294,13 +294,13 @@ value of AirTokens".
 "For examples, refer to paragraph 32 of the *Munchee* Order 
 and paragraph 21 of the *Airfox* Order and accompanying text...'"
 
-**f2:**&nbsp;&nbsp;&nbsp;<a name="footnote_7"> </a>William Hinman, Director of the Division of Corp. Fin., SEC, Remarks 
+**f2:**&nbsp;&nbsp;&nbsp;<a name="footnote_2"> </a>William Hinman, Director of the Division of Corp. Fin., SEC, Remarks 
 at the Yahoo Finance All Markets Summit: Crypto: Digital Asset Transactions: When Howey Met Gary (Plastic) (14 June 2018).
 
 [footnote_2~]: #footnote_2
 "William Hinman, Director of the Division of Corp. Fin., SEC..."
 
-**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_10"> </a>Reference [[2], Section 4] states that it is more likely that the purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an unaffiliated, dispersed community of network users".
+**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_3"> </a>Reference [[2], Section 4] states that it is more likely that the purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an unaffiliated, dispersed community of network users".
 
 [footnote_3~]: #footnote_3
 "This section states that it is more likely that the purchaser of
