@@ -119,7 +119,7 @@ Some text ???
 
 @divend
 
-------
++++
 
 @div[text-left]
 
@@ -163,7 +163,7 @@ Some text ???
 
 @divend
 
-------
++++
 
 @div[text-left]
 
