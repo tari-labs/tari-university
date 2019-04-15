@@ -1,19 +1,6 @@
 # The MuSig Schnorr Signature Scheme 
 
-## Abstract
-
-<!--Test--> <!--Test 2--> This report investigates Schnorr Multi-Signature Schemes (MuSig), which makes use of key aggregation and is provably secure in the *plain public-key model*.
-
-Signature aggregation involves mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the *plain public-key model* where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks.
-
-Multi-signatures are a form of technology used to add multiple participants to cryptocurrency transactions. A traditional multi-signature protocol allows a group of signers to produce a joint multi-signature on a common message.
-
-## Contents 
-
-- [The MuSig Schnorr Signature Scheme](#the-musig-schnorr-signature-scheme)
-  - [Abstract](#abstract)
-  - [Contents](#contents)
-  - [Introduction](#introduction)
+- - [Introduction](#introduction)
     - [Schnorr Signatures and their Attack Vectors](#schnorr-signatures-and-their-attack-vectors)
     - [MuSig](#musig)
     - [Key Aggregation](#key-aggregation) 
@@ -38,6 +25,12 @@ Multi-signatures are a form of technology used to add multiple participants to c
   - [Contributors](#contributors)
 
 ## Introduction 
+
+This report investigates Schnorr Multi-Signature Schemes (MuSig), which makes use of key aggregation and is provably secure in the *plain public-key model*.
+
+Signature aggregation involves mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). This is known as the *plain public-key model* where the only requirement is that each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority, and is one way to generically prevent rogue-key attacks.
+
+Multi-signatures are a form of technology used to add multiple participants to cryptocurrency transactions. A traditional multi-signature protocol allows a group of signers to produce a joint multi-signature on a common message.
 
 ### Schnorr Signatures and their Attack Vectors 
 
