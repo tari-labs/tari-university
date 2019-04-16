@@ -373,7 +373,7 @@ The signature is $ \sigma = (R, s) $. Given an ordered set $ S = \{(X_{1}, m_{1}
 
 Note that there is no need to include in the hash computation an encoding of the multiset $ L=\{X_{1},..., X_{n}\} $ of public keys more the public key $ X_i $ of the local signer since they are already "accounted for" through $ S $ and the message index $ i $. 
 
-## Conclusions, observations and recommendations
+## Conclusions, Observations and Recommendations
 
 - MuSig leads to both native and private multi-signature transactions with both signature aggregation.
 - Signature data for multi-signatures can be large and cumbersome. MuSig will allow users to create more complex transactions without burdening the network and revealing compromising information.
@@ -645,4 +645,4 @@ Signature Scheme, 2003, M. Bellare *et al.*"
 
 [^1]: No constraints are imposed on the key setup, the adversary thus can choose corrupted public keys at random, hence the same public key can appear more than once in $ L $ 
 [^2]: Predicate encryption is an encryption paradigm which gives a master secret key owner fine-grained control over access to encrypted data.[[29]]
-[^]: 
+ 
