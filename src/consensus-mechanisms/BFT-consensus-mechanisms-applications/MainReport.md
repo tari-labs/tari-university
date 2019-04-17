@@ -44,11 +44,11 @@
     - [Practical Byzantine Fault-tolerant Variants](#practical-byzantine-fault-tolerant-variants)
     - [Deterministic and Non-deterministic Protocols](#deterministic-and-non-deterministic-protocols)
     - [Scalability-Performance Trade-off](#scalability-performance-trade-off)
-  - [Appendix B: Timing Assumptions](#timing-assumptions)
-    - [Forms of Timing Assumptions (Degrees of Synchrony)](#forms-of-timing-assumptions-(degrees-of-synchrony))
+  - [Appendix B: Timing Assumptions](#appendix-b-timing-assumptions)
+    - [Forms of Timing Assumptions (Degrees of Synchrony)](#forms-of-timing-assumptions---degrees-of-synchrony)
       - [Synchrony](#synchrony)
       - [Partial Synchrony](#partial-synchrony)
-        - [Unknown-△T Model](#unknown-△t-model)
+        - [Unknown-△T Model](#unknown-t-model)
         - [Eventually Synchronous](#eventually-synchronous)
     - [Weak Synchrony](#weak-synchrony)
     - [Random Synchrony](#random-synchrony)
@@ -120,9 +120,7 @@ Hyperledger Fabric (HLF) began as a project under the LinX Foundation in early 2
 
 The validating peers run a BFT consensus protocol for executing a replicated state machine that accepts deploy, invoke and query transactions as operations [[5]].
 
-The blockchain's hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode (the transaction that involves accepting the code of the smart contract to be deployed) is used for validating the transactions. It is assumed that among *n* validating peers, at most *f<n/3* 
-
-(where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF proposes to follow a Practical Byzantine Fault-tolerant (PBFT) consensus protocol, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent states. The SIEVE protocol is used to filter out the 
+The blockchain's hash chain is computed based on the executed transactions and resulting persistent state. The replicated execution of chaincode (the transaction that involves accepting the code of the smart contract to be deployed) is used for validating the transactions. It is assumed that among *n* validating peers, at most *f<n/3* (where *f* is the number of faulty nodes and *n* is the number of nodes present in the network) may behave arbitrarily, while others will execute correctly, thus adapting to concept BFT consensus. Since HLF proposes to follow a Practical Byzantine Fault-tolerant (PBFT) consensus protocol, the chaincode transactions must be deterministic in nature, otherwise different peers might have different persistent states. The SIEVE protocol is used to filter out the 
 non-deterministic transactions, thus assuring a unique persistent state among peers [[5]].
 
 While being redesigned for a v1.0 release, the format's goal was to achieve extensibility. This version allowed for modules such as membership and consensus mechanism to be exchanged. Being permissioned, this consensus mechanism is mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So far, these pluggable consensus modules include a centralized, single order for testing purposes, and a crash-tolerant ordering service based on Apache Kafka [[3]].
@@ -141,7 +139,7 @@ Critics have argued that Tendermint is not decentralized, and that one can disti
 
 ##### Sentry Nodes 
 
-Sentry nodes are guardians of a validator node and provide validator nodes with access to the rest of the network. Sentry nodes are well connected to other full nodes on the network. Sentry nodes may be dynamic, but should maintain persistent connections to some evolving random subset of each other. They should always expect to have direct incoming connections from the validator node and its backup(s). They do not report the validator node's address in the Peer Exchange Reactor (PEX) and they may be more strict about the quality of peers they keep.
+Sentry nodes are guardians of a validator node and provide validator nodes with access to the rest of the network. They are well connected to other full nodes on the network. Sentry nodes may be dynamic, but should maintain persistent connections to some evolving random subset of each other. They should always expect to have direct incoming connections from the validator node and its backup(s). They do not report the validator node's address in the Peer Exchange Reactor (PEX) and may be more strict about the quality of peers they keep.
 
 Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual Private Network (VPN) with one another, but only report each other sparingly in the PEX [[7]].
 
@@ -212,7 +210,7 @@ The basic idea behind the gossip protocol is the following: A node wants to shar
 
 The _cycle_ is the number of rounds to spread the information. The _fanout_ is the number of nodes a node gossips with in each cycle.
 
-With a fanout = 1, $O(LogN)​$ cycles are necessary for the update to reach all the nodes. 
+With a fanout = 1, $O(LogN)$ cycles are necessary for the update to reach all the nodes. 
 
 In this way, information spreads throughout the network in an exponential fashion [[12]].
 
@@ -369,7 +367,6 @@ Figure 3 illustrates SINTRA's modular design. Modularity greatly simplifies the 
 <p align="center"><b>Figure 3: Design of SINTRA </b></p>
 
 
-
 #### HoneyBadgerBFT
 
 HoneyBadgerBFT was released in November 2016 and is seen as the first practical **asynchronous** BFT consensus 
@@ -412,7 +409,7 @@ signature and verifiable random functions.
 
 This is clearly optimal, in that disseminating a block already takes *O(n)* transmissions. 
 
-LinBFT is designed to be implemented for permissionless, public blockchain systems and takes into account anonymous participants without a public-key infrastructure, PoS, rotating leader and a dynamic participant set [[31]].
+LinBFT is designed to be implemented for permissionless, public blockchain systems and takes into account anonymous participants without a public-key infrastructure, PoS, rotating leader and dynamic participant set [[31]].
 
 For instance, participants can be anonymous, without a centralized public key infrastructure (PKI) public key among themselves, and participate in a distributed key generation (DKG) protocol required to create threshold signatures, both of which are communication-heavy processes. 
 
@@ -439,9 +436,9 @@ It can be applied in permissionless networks using PoW. Network robustness and "
 
 #### Snowflake to Avalanche
 
-This consensus protocol was first seen in the white paper called "Snowflake to Avalanche". Outlined in the paper are four protocols that are building blocks forming a protocol family. These leaderless BFT protocols are built on a metastable mechanism and are called Slush, Snowflake, Snowball and Avalanche.
+This consensus protocol was first seen in [[39]]. The paper outlines four protocols that are building blocks forming a protocol family. These leaderless BFT protocols, published by Team Rocket, are built on a metastable mechanism. They are called Slush, Snowflake, Snowball and Avalanche.
 
-The protocols published by Team Rocket differ from the traditional consensus protocols and the Nakamoto consensus protocols by not requiring an elected leader. Instead, the protocol simply guides all the nodes to consensus. 
+The protocols differ from the traditional consensus protocols and the Nakamoto consensus protocols by not requiring an elected leader. Instead, the protocol simply guides all the nodes to consensus. 
 
 These four protocols are described as a new family of protocols due to this concept of metastability: a means to establish consensus by guiding all nodes towards an emerging consensus without requiring leaders, while still maintaining the same level of security and inducing a speed that exceeding current protocols. 
 
@@ -497,8 +494,8 @@ When a node receives a gossip request, it creates a new event and sends a respon
 3. The other-parent (a hash of another gossip event created by a different node).
 4. The _Cause_ for creation, which can be a Request for information, a *Response* to another node’s request, or an 
    _Observation_. An observation is when a node creates a gossip event to record an observation that the node made themselves.
-5. Creator ID (public key).
-6. Signature – signing the preceding information.
+5. The creator ID (public key).
+6. The signature – signing the preceding information.
 
 The self-parent and other-parent prevent tampering because they are signed and related to other gossip events [[24]].
 
@@ -518,7 +515,7 @@ The resulting algorithm assumes partial synchrony; is resilience and time optima
 
 Moving away from the impossibility of solving consensus in asynchronous message systems, where processes can be faulty or Byzantine, the technique of randomization or additional synchrony is adopted. 
 
-Randomized algorithms can use per-process "local" coins, or a shared *common coin* to solve consensus probabilistically among *n* processes despite $t<n/3$ Byzantine processes. When based on local coins, the existing algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
+Randomized algorithms can use per-process "local" coins, or a shared *common coin* to solve consensus probabilistically among *n* processes despite $t<n/3​$ Byzantine processes. When based on local coins, the existing algorithms converge *O(n*<sup>2.5</sup>*)* expected time. 
 
 A recent randomized algorithm that does not contain a signature solves consensus in *O*(1) expected time under a fair scheduler, where _O_ is the binary.  
 
@@ -539,13 +536,13 @@ The validation of protocol was conducted similarly to that of the HoneyBadger bl
 
 ## Summary of Findings
 
-Table 1 highlights the characteristics of the above-mentioned BFT Protocols. Asymptotic Security, Permissionless Blockchain, Timing Assumptions, Decentralized Control, Low Latency and Flexible Trust form part of the value system. 
+[Table 1](#table_bft) highlights the characteristics of the above-mentioned BFT Protocols. Asymptotic Security, Permissionless Blockchain, Timing Assumptions, Decentralized Control, Low Latency and Flexible Trust form part of the value system. 
 
 - Asymptotic Security - this depends only on digital signatures (and hash functions) for security.
 
 - Permissionless Protocol - this allows anybody to create an address and begin interacting with the protocol.
 
-- Timing Assumptions - refer to [Many Forms of Timing Assumptions (Degrees of Synchrony)](./Appendix.md#many-forms-of-timing-assumptions-degrees-of-synchrony).
+- Timing Assumptions - refer to [Forms of Timing Assumptions - Degrees of Synchrony](#forms-of-timing-assumptions---degrees-of-synchrony).
 
 - Decentralized Control - consensus is achieved and defended by protecting the identity of that node until its job is done, through a leaderless node. 
 
@@ -553,7 +550,7 @@ Table 1 highlights the characteristics of the above-mentioned BFT Protocols. Asy
 
 - Flexible Trust - where users have the freedom to trust any combinations of parties they see fit.
 
-  <center>**Table 1: Characteristics of BFT Protocols**
+  <center><a name="table_bft"> </a>**Table 1: Characteristics of BFT Protocols**
 
 | Protocol                   | Permissionless Protocol |  Timing Assumptions   | Decentralized Control | Low Latency | Flexible Trust | Asymptotic Security |
 | -------------------------- | :---------------------: | :-------------------: | :-------------------: | :---------: | :------------: | :-----------------: |
@@ -660,7 +657,7 @@ on the Internet"
 
 [[19]] J. Chen and S. Micali, "Algorand" White Paper [online]. Available: <https://arxiv.org/pdf/1607.01341.pdf>. <br>Date accessed: 2018-09-13.
 
-[19]: https://arxiv.org/pdf/1607.01341.pdf "Algorand" White Paper"
+[19]:  https://arxiv.org/pdf/1607.01341.pdf "Algorand White Paper"
 
 [[20]] R. Pass and E. Shi, "Thunderella: Blockchains with Optimistic Instant Confirmation" White Paper [online]. <br>Available: <https://eprint.iacr.org/2017/913.pdf>. Date accessed: 2018-09-13.
 
@@ -738,13 +735,18 @@ Secure and Efficient Consensus (PARSEC)"
 with a Weak Coordinator and its Application 
 to Consortium Blockchains"
 
-[[37]] Wikipedia: "Byzantine Fault Tolerance" [online]. Available: <https://en.wikipedia.org/wiki/Byzantine_fault_tolerance>. Date accessed: 2019-09-30.
+[[37]] Wikipedia: "Byzantine Fault Tolerance" [online]. Available: <https://en.wikipedia.org/wiki/Byzantine_fault_tolerance>. Date accessed: 2018-09-30.
 
 [37]: https://en.wikipedia.org/wiki/Byzantine_fault_tolerance "Byzantine Fault Tolerance, Wikipedia"
 
 [[38]] Wikipedia: "Liveness" [online]. Available: <https://en.wikipedia.org/wiki/Liveness>. Date accessed: 2018-09-30.
 
 [38]: https://en.wikipedia.org/wiki/Liveness "Liveness, Wikipedia"
+
+[[39]] Team Rocket, "Snowflake to Avalanche: A Novel Metastable Consensus Protocol Family for
+Cryptocurrencies" [online]. Available: <https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV>. Date accessed: 2018-09-30.
+
+[39]: https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV "Snowflake to Avalanche..."
 
 
 
@@ -823,7 +825,7 @@ Several approaches have been employed to remedy these problems, e.g. threshold c
 
 ### Appendix B: Timing Assumptions
 
-#### Forms of Timing Assumptions (Degrees of Synchrony)
+#### Forms of Timing Assumptions - Degrees of Synchrony
 
 ##### Synchrony
 
@@ -869,7 +871,7 @@ In an asynchronous network, the adversary can deliver messages in any order and 
 
 An asynchronous protocol requires a different means to decide when all nodes are able to come to a consensus.  
 
-As will be discussed in [The FLP Impossibility](#the-flp-impossibility), FLP result rules out the possibility of the deterministic asynchronous protocols for atomic broadcast and many other tasks. A deterministic protocol must therefore make some stronger timing assumptions [[6]].
+As will be discussed in [FLP Impossibility](#flp-impossibility), FLP result rules out the possibility of the deterministic asynchronous protocols for atomic broadcast and many other tasks. A deterministic protocol must therefore make some stronger timing assumptions [[6]].
 
 ###### Counting Rounds in Asynchronous Networks
 
@@ -898,3 +900,9 @@ This kind of failure detection is not possible in an asynchronous setting, as th
 #### Randomized Agreement 
 
 The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for the reliable processes to agree on a binary value. Every protocol for this problem has the possibility of nontermination [[22]]. While the vast majority of PBFT protocols steer clear of this impossibility result by making timing assumptions, randomness (and, in particular, cryptography) provides an alternative route. Asynchronous BFT protocols have been used for a variety of tasks such as binary agreement (ABA), reliable broadcast (RBC) and more [[6]].
+
+## Contributors
+
+- <https://github.com/kevoulee>
+- <https://github.com/hansieodendaal>
+- <https://github.com/anselld>
