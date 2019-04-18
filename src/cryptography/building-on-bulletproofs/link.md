@@ -2,15 +2,17 @@
 
 <div>
   <p style="float: left;">
-    <a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8"><img src="profile-pic.png" width="125" /></a>
+    <a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8"><img src="profile-pic.png" width="90" /></a>
   </p>
   <p>
-    <br><br>
+    <br>
     &nbsp;&nbsp;&nbsp;&nbsp;<strong>Cathie Yun</strong><br>
     &nbsp;&nbsp;&nbsp;&nbsp;Cryptographer
-    <br><br>
+    <br>
   </p>
 </div>
+
+
 
 ## Summary
 
