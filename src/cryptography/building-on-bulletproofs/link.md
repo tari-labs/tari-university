@@ -23,3 +23,7 @@ confidential smart contract language called ZkVM.
 
 <p align="center"><img src="bulletproofs-summary.png" width="1100" /></p>
 
+
+
+<p align="center"><img src="bulletproofs-summary2.png" width="1100" /></p>
+

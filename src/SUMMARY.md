@@ -7,7 +7,7 @@
     - [The MuSig Schnorr Signature Scheme](cryptography/musig-schnorr-sig-scheme/The_MuSig_Schnorr_Signature_Scheme.md)
     - [Fraud Proofs](cryptography/fraud-proofs-1/MainReport.md)
     - [Bulletproofs and Mimblewimble](cryptography/bulletproofs-and-mimblewimble/MainReport.md)
-    - [Building on Bulletproofs](cryptography/building-on-bulletproofs/building-on-bulletproofs.md)
+    - [Building on Bulletproofs](cryptography/building-on-bulletproofs/link.md)
     - [The Bulletproof Protocols](cryptography/bulletproofs-protocols/MainReport.md)
     - [Pure-Rust Elliptic Curve Cryptography](cryptography/pure-rust-ecc/pure-rust-ecc.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
