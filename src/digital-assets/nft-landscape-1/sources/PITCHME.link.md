@@ -1,6 +1,6 @@
 # Non-Fungible Tokens
 
-<iframe width=750 height=600 src="https://gitpitch.com/tari-labs/tari-university/master?p=/src/non-fungible-tokens/nft-landscape-1#/"></iframe>
+<iframe width=750 height=600 src="https://gitpitch.com/tari-labs/tari-university/master?p=/src/digital-assets/nft-landscape-1#/"></iframe>
 
 ### Having trouble viewing this presentation?
 
