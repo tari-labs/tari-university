@@ -1,7 +1,7 @@
 # Introduction to Applications of Byzantine Consensus Mechanisms 
 
 - [Introduction](#introduction)
-- [Brief Survey of Byzantine Fault-tolerant Consensus Mechanisms](#Brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms)
+- [Brief Survey of Byzantine Fault-tolerant Consensus Mechanisms](#brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms)
 - [Permissioned Byzantine Fault-tolerant Protocols](#permissioned-byzantine-fault-tolerant-protocols)
   - [Background](#background)
   - [Protocols](#protocols)
@@ -16,7 +16,7 @@
     - [Paxos](#paxos)
     - [Chandra Toueg](#chandra-toueg)
     - [Raft](#raft)
-    - [Hashgraph](#Hashgraph)
+    - [Hashgraph](#hashgraph)
       - [Background](#background)
       - [Gossip Protocol](#gossip-protocol)
       - [Ancestors](#ancestors)
@@ -58,7 +58,7 @@
     - [Problem with Timing Assumptions](#problem-with-timing-assumptions)
       - [General](#general)
       - [Denial of Service Attack](#denial-of-service-attack)
-    - [FLP Impossibility](#the-flp-impossibility)
+    - [FLP Impossibility](#flp-impossibility)
     - [Randomized Agreement](#randomized-agreement)
 - [Contributors](#contributors)
 
@@ -86,7 +86,7 @@ This report examines proposals considering Byzantine Fault-tolerant (BFT) consen
 - discernment regarding whether the protocol may be used for Tari as a means to maintain the distributed asset state. 
 
 [Appendix A](#appendix-a-terminology) contains terminology related to consensus mechanisms, including definitions of 
-[Consensus](#consensus); [Binary Consensus](binary-consensus); [Byzantine Fault Tolerance](#byzantine-fault-tolerance); 
+[Consensus](#consensus); [Binary Consensus](#binary-consensus); [Byzantine Fault Tolerance](#byzantine-fault-tolerance); 
 [Practical Byzantine Fault-tolerant Variants](#practical-byzantine-fault-tolerant-variants); [Deterministic and 
 Non-deterministic Protocols](#deterministic-and-non-deterministic-protocols); and 
 [Scalability-Performance Trade-off](#scalability-performance-trade-off).
@@ -94,8 +94,8 @@ Non-deterministic Protocols](#deterministic-and-non-deterministic-protocols); an
 [Appendix B](#appendix-b-timing-assumptions) discusses timing assumptions, including degrees of synchrony, which range 
 from [Synchrony](#synchrony) and [Partial Synchrony](#partial-synchrony) to  [Weak Synchrony](#weak-synchrony), 
 [Random Synchrony](#random-synchrony) and [Asynchrony](#asynchrony); as well as the problem with timing assumptions, 
-including [Denial of Service (DoS) Attack](#denial-of-service-attack), [the FLP Impossibility](#the-flp-impossibility) 
-and [Randomized Agreement](#randomized-agreement).
+including [Denial of Service (DoS) Attack](#denial-of-service-attack), [FLP Impossibility](#flp-impossibility) 
+and [Randomized Agreement](#randomized-agreem#the-flp-impossibilityent).
 
 ## Brief Survey of Byzantine Fault-tolerant Consensus Mechanisms
 
@@ -705,7 +705,7 @@ Algorithm"
 
 [[30]] J. Kwon, "TenderMint: Consensus without Mining"  [online]. Available: <http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf>. <br>Date accessed: 2018-09-20.
 
-[30]: http://tendermint.com/static/docs/tendermint.pdf "Tendermint: Consensus without Mining"
+[30]: http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf "Tendermint: Consensus without Mining"
 
 [[31]] Y. Yang, "LinBFT: Linear-Communication Byzantine Fault Tolerance for Public Blockchains" [online]. <br>Available: <https://arxiv.org/pdf/1807.01829.pdf>. Date accessed: 2018-09-20.
 
