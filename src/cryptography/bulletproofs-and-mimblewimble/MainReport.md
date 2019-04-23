@@ -30,7 +30,7 @@ Bulletproofs also implement a Multi-party Computation (MPC) protocol whereby dis
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not related) *binding*<sup>[def][cs~]</sup> vector Pedersen Commitments<sup>[def][ecpc~]</sup> that satisfied the given inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient zero-knowledge proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of three. ([[1]], [[29]])
 
-[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen Commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
+[Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen Commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
 
 ## How do Bulletproofs Work?
 
@@ -38,7 +38,7 @@ The basis of confidential transactions is to replace the input and output amount
 
 The *prover* must convince the *verifier* that commitment $ C(x,r) = xH + rG ​$ contains a number such that $ x \in [0,2^n - 1] ​$. If $ \mathbf {a} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n ​$ is the vector containing the bits of $ x ​$, the basic idea is to hide all the bits of the amount in a single vector Pedersen Commitment. It must then be proven that each bit satisfies $ \omega(\omega-1) = 0 ​$, that is each $ \omega ​$ is either $ 0 ​$ or $ 1 ​$, and that they sum to $ x ​$. As part of the ensuing protocol the *verifier* sends random linear combinations of constraints and challenges $ \in \mathbb{Z_p} ​$ to the *prover*. The *prover* is then able to construct a vectorized inner product relation containing the elements of $ \mathbf {a} ​$, the constraints and challenges $ \in \mathbb{Z_p} ​$, and appropriate blinding vectors $ \in \mathbb Z_p^n ​$.
 
-These inner product vectors have size $ n $ that would require many expensive exponentiations. The Pedersen Commitment scheme, shown in Figure 1, allows a vector to be cut in half and to compress the two halves together, each time calculating a new set of Pedersen Commitment generators. Applying the same trick repeatedly, $ \log _2 n $ times, produces a single value. This is applied to the inner product vectors; they are reduced interactively with a logarithmic number of rounds by the *prover* and *verifier* into a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $. This single multi-exponentiation can then be calculated much faster than $ n $ separate ones. All of this are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
+These inner product vectors have size $ n $ that would require many expensive exponentiations. The Pedersen Commitment scheme, shown in Figure&nbsp;1, allows a vector to be cut in half and to compress the two halves together, each time calculating a new set of Pedersen Commitment generators. Applying the same trick repeatedly, $ \log _2 n $ times, produces a single value. This is applied to the inner product vectors; they are reduced interactively with a logarithmic number of rounds by the *prover* and *verifier* into a single multi-exponentiation of size $ 2n + 2 \log_2(n) + 1 $. This single multi-exponentiation can then be calculated much faster than $ n $ separate ones. All of this are made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
 <p align="center"><img src="sources/VectorCutNHalf.png" width="450" /></p>
 
@@ -128,9 +128,9 @@ Bulletproofs were designed for range proofs but they also generalize to arbitrar
 
 ## Comparison to other Zero-knowledge Proof Systems
 
-Table 1 ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown in ***bold italics***.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
+Table&nbsp;1 ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown in ***bold italics***.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
 
-<div align="center"><b>Table 1: Comparison to other Zero-knowledge Proof Systems</b></div>
+<div align="center"><b>Table&nbsp;1: Comparison to other Zero-knowledge Proof Systems</b></div>
 
 
 | Proof System                        | Sigma Protocols | zk-SNARK                                | STARK                                                        | ZKBoo                   | Bulletproofs |
@@ -370,7 +370,7 @@ Circuits in the Discrete Log Setting"
 "Linear Algebra with Sub-linear Zero-knowledge 
 Arguments"
 
-[[14]] T. Perrin, "The XEdDSA and VXEdDSA Signature Schemes", 2016-10-20 [online]. Available: <https://signal.org/docs/specifications/xeddsa and https://signal.org/docs/specifications/xeddsa/xeddsa.pdf>. Date accessed: 2018-10-23.
+[[14]] T. Perrin, "The XEdDSA and VXEdDSA Signature Schemes", 2016-10-20 [online]. Available: <https://signal.org/docs/specifications/xeddsa> and <https://signal.org/docs/specifications/xeddsa/xeddsa.pdf>. Date accessed: 2018-10-23.
 
 [14]: https://signal.org/docs/specifications/xeddsa
 "The XEdDSA and VXEdDSA Signature Schemes"
@@ -688,7 +688,7 @@ is a number x such that ..."
 
 
 - <u><i>Elliptic Curve Pedersen Commitment</i></u>:<a name="ecpc"> </a>An efficient implementation of the Pedersen Commitment ([[15]], [[22]]) will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers (integers) and upper case letters for curve points. ([[60]], [[61]], [[62]])
-  - The generalized Elliptic Curve Pedersen Commitment definition follows (*refer to [Appendix B: Notations Used](#appendix-b-notations-used)*):
+  - The generalized Elliptic Curve Pedersen Commitment definition follows (*refer to [Appendix B: Notation Used](#appendix-b-notation-used)*):
     - Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.
 
     - Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) is solved. 
