@@ -1,0 +1,2579 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+The MuSig Schnorr Signature Scheme
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+This report investigates Schnorr Multi-Signature Schemes (MuSig), which
+ makes use of key aggregation and is provably secure in the 
+\emph on
+plain public-key model
+\emph default
+.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Signature aggregation involves mathematically combining several signatures
+ into a single signature, without having to prove Knowledge of Secret Keys
+ (KOSK).
+ This is known as the 
+\emph on
+plain public-key model
+\emph default
+ where the only requirement is that each potential signer has a public key.
+ The KOSK scheme requires that users prove knowledge (or possession) of
+ the secret key during public key registration with a certification authority,
+ and is one way to generically prevent rogue-key attacks.
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Multi-signatures are a form of technology used to add multiple participants
+ to cryptocurrency transactions.
+ A traditional multi-signature protocol allows a group of signers to produce
+ a joint multi-signature on a common message.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction 
+\end_layout
+
+\begin_layout Subsection
+Schnorr signatures and their attack vectors 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Schnorr signatures produce a smaller on-chain size, support faster validation
+ and have better privacy.
+ They natively allow for combining multiple signatures into one through
+ aggregation and they permit more complex spending policies.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Signature aggregation also has its challenges.
+ This includes the rogue-key attack, where a participant steals funds using
+ a specifically constructed key.
+ Although this is easily solved for simple multi-signatures through an enrollmen
+t procedure which involves the keys signing themselves, supporting it across
+ multiple inputs of a transaction requires 
+\emph on
+plain public-key security
+\emph default
+, meaning there is no setup.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+There is an additional attack, termed the Russel attack, after Russel O'Connor,
+ who has discovered that for multi-party schemes a party could claim ownership
+ of someone else's private key and so spend the other outputs.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Wuille P., 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wuille2018"
+literal "false"
+
+\end_inset
+
+ has been able to address some of these issues and has provided a solution
+ which refines the Bellare-Neven (BN) scheme.
+ He also discussed the performance improvements that were implemented for
+ the scaler multiplication of the BN scheme and how they enable batch validation
+ on the blockchain.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blocks2018"
+literal "false"
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+MuSig
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Introduced by Itakura 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Itakura1983"
+literal "false"
+
+\end_inset
+
+, multi-signature protocols allow a group of signers (that individually
+ possess their own private/public key pair) to produce a single signature
+ 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ on a message 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ Verification of the given signature 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ can be publicly performed given the message and the set of public keys
+ of all signers.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+A simple way to change a standard signature scheme into a multi-signature
+ scheme is to have each signer produce a stand-alone signature for 
+\begin_inset Formula $m$
+\end_inset
+
+ with its private key and to then concatenate all individual signatures.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The transformation of a standard signature scheme to a multi-signature scheme
+ needs to useful and practical, thus the newly calculated multi-signature
+ scheme must produce signatures where the size is independent of the number
+ of signers and similar to that of the original signature scheme.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+A traditional multi-signature scheme is a combination of a signing and verificat
+ion algorithm, where multiple signers (each with their own private/public
+ key) jointly sign a single message, resulting in a combined signature.
+ This can then be verified by anyone knowing the message and the public
+ keys of the signers, where a trusted setup with KOSK is a requirement.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+MuSig is a multi-signature scheme is novel in combining:
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\align left
+Support for key aggregation; 
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\align left
+Security in the 
+\emph on
+plain public-key model
+\emph default
+.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+There are two versions of MuSig, that are provably secure, which differ
+ based on the number of communication rounds:
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\align left
+Three-round MuSig only relies on the Discrete Logarithm (DL) assumption,
+ on which ECDSA (Elliptic Curve Digital Signature Algorithm) also relies
+ 
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\align left
+Two-round MuSig instead relies on the slightly stronger One-More Discrete
+ Logarithm (OMDL) assumption
+\end_layout
+
+\begin_layout Subsection
+Key aggregation
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The term 
+\emph on
+key aggregation
+\emph default
+ refers to multi-signatures that look like a single-key signature, but with
+ respect to an aggregated public key that is a function of only the participants
+' public keys.
+ Thus, verifiers do not require the knowledge of the original participants'
+ public keys- they can just be given the aggregated key.
+ In some use cases, this leads to better privacy and performance.
+ Thus, MuSig is effectively a key aggregation scheme for Schnorr signatures.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+To make the traditional approach more effective and without needing a trusted
+ setup, a multi-signature scheme must provide sub-linear signature aggregation
+ along with the following properties: 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+It must be provably secure in the 
+\emph on
+plain public-key model 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+It must satisfy the normal Schnorr equation, whereby the resulting signature
+ can be written as a function of a combination of the public keys
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+It must allow for Interactive Aggregate Signatures (IAS) where the signers
+ are required to cooperate
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+It must allow for Non-interactive Aggregate Signatures (NAS) where the aggregati
+on can be done by anyone
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+It must allow each signer to sign the same message
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+It must allow each signer to sign their own message
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+This is different to a normal multi-signature scheme where one message is
+ signed by all.
+ MuSig provides all of those properties.
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+There are other multi-signature schemes that already exist that provide
+ key aggregation for Schnorr signatures, however they come with some limitations
+, such as needing to verify that participants actually have the private
+ key corresponding to the pubic keys that they claim to have.
+ 
+\emph on
+Security in the plain public-key model 
+\emph default
+means that no limitations exist.
+ All that is needed from the participants is their public keys.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wuille2018"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Section
+Overview of multi-signatures 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Recently the most obvious use case for multi-signatures is with regards
+ to Bitcoin, where it can function as a more efficient replacement of 
+\emph on
+
+\begin_inset Formula $n-of-n$
+\end_inset
+
+
+\emph default
+ multisig scripts (where the signatures required to spend and the signatures
+ possible are equal in quantity) and other policies that permit a number
+ of possible combinations of keys.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+A key aggregation scheme also lets one reduce the number of public keys
+ per input to one, as a user can send coins to the aggregate of all involved
+ keys rather than including them all in the script.
+ This leads to smaller on-chain footprint, faster validation, and better
+ privacy.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Instead of creating restrictions with one signature per input, one signature
+ can be used for the entire transaction.
+ Traditionally key aggregation cannot be used across multiple inputs, as
+ the public keys are committed to by the outputs, and those can be spent
+ independently.
+ MuSig can be used here (with key aggregation done by the verifier).
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+No non-interactive aggregation scheme is known that only relies on the DL
+ assumption, but interactive schemes are trivial to construct where a multi-sign
+ature scheme has every participant sign the concatenation of all messages.
+ Maxwell G., 
+\emph on
+et al.
+ 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+ focusing on key aggregation for Schnorr Signatures and shows that this
+ is not always a desirable construction, and gives an IAS variant of BN
+ with better properties instead.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wuille2018"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Bitcoin 
+\begin_inset Formula $m-of-n$
+\end_inset
+
+ multi-signatures 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Currently, standard transactions on the Bitcoin network can be referred
+ to as single-signature transactions, as they require only one signature,
+ from the owner of the private key associated with the Bitcoin address.
+ However, the Bitcoin network supports much more complicated transactions
+ which can require the signatures of multiple people before the funds can
+ be transferred.
+ These are often referred to as 
+\begin_inset Formula $m-of-n$
+\end_inset
+
+ transactions, where m represents the amount of signatures required to spend,
+ while n represents the amount of signatures possible.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Contributors2017"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Use cases for 
+\begin_inset Formula $m-of-n$
+\end_inset
+
+ multi-signatures
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+When 
+\begin_inset Formula $m=1$
+\end_inset
+
+ and 
+\begin_inset Formula $n>1$
+\end_inset
+
+ it is considered a shared wallet, which could be used for small group funds
+ that do not require much security.
+ It is the least secure multi-sig option because it is not multi-factor.
+ Any compromised individual would jeopardize the entire group.
+ Examples of use cases include funds for a weekend or evening event, or
+ a shared wallet for some kind of game.
+ Besides being convenient to spend from, the only benefit of this setup
+ is that all but one of the backup/password pairs could be lost and all
+ of the funds would be recoverable.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+When 
+\begin_inset Formula $m=n$
+\end_inset
+
+, it is considered a partner wallet, which brings with it some nervousness
+ as no keys can be lost.
+ As the number of signatures required increases, the risk also increases.
+ This type of multi-signature can be considered as a hard multi-factor authentic
+ation.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+When 
+\begin_inset Formula $m<0.5n$
+\end_inset
+
+, it is considered a buddy account, which could be used for spending from
+ corporate group funds.
+ Consequence for the colluding minority need to greater than possible benefits.
+ It is considered less convenient than a shared wallet, but much more secure.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+When 
+\begin_inset Formula $m>0.5n$
+\end_inset
+
+, a consensus account is termed.
+ The classic multi-signature wallet is a 2 of 3 and is a special case of
+ a consensus account.
+ A 2 of 3 scheme has the best characteristics for creating new bitcoin addresses
+ and for secure storing and spending.
+ One compromised signatory does not compromise the funds.
+ A single secret key can be lost and the funds can still be recovered.
+ If done correctly, off-site backups are created during wallet setup.
+ The way to recover funds is known by more than one party.
+ The balance of power with a multi-signature wallet can be shifted by having
+ one party control more keys than the other parties.
+ If one party controls multiple keys, there is a greater risk of those keys
+ not remaining as multiple factors.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+When 
+\begin_inset Formula $m=0.5n$
+\end_inset
+
+, it is referred to as a split account, and is an interesting use case,
+ as there would be 3 of 6 where one person holds 3 keys and 3 people hold
+ 1 key.
+ In this way one person could control their own money, but the funds could
+ still be recoverable even if the primary key holder were to disappear with
+ all of his key.
+ As 
+\begin_inset Formula $n$
+\end_inset
+
+ increases, the level of trust in the secondary parties can decrease.
+ A good use case might be a family savings account that would just automatically
+ become an inheritance account if the primary account holder were to die.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Contributors2017"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Recap on the Schnorr signature scheme 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The Schnorr signature scheme uses:
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schnorr1991"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+A cyclic group 
+\begin_inset Formula $G$
+\end_inset
+
+ of prime order 
+\begin_inset Formula $p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+A generator 
+\begin_inset Formula $g$
+\end_inset
+
+of 
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+A hash function 
+\begin_inset Formula $\textrm{H}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+A private/public key pair is a pair 
+\begin_inset Formula $(x,X)$
+\end_inset
+
+
+\begin_inset Formula $\epsilon\{0,...,p-1\}$
+\end_inset
+
+
+\begin_inset Formula $\mathsf{x}$
+\end_inset
+
+
+\begin_inset Formula $G$
+\end_inset
+
+ where 
+\begin_inset Formula $X=g^{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+To sign a message 
+\begin_inset Formula $m$
+\end_inset
+
+, the signer draws a random integer 
+\begin_inset Formula $r$
+\end_inset
+
+ in 
+\begin_inset Formula $Z_{p},$
+\end_inset
+
+ computes 
+\begin_inset Formula $R=g^{r}$
+\end_inset
+
+, 
+\begin_inset Formula $c=\textrm{H}(X,R,m)$
+\end_inset
+
+, and 
+\begin_inset Formula $s=r+cx$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+The signature is the pair 
+\begin_inset Formula $(R,s)$
+\end_inset
+
+ , and its validity can be checked by verifying whether 
+\begin_inset Formula $g^{s}=RX^{c}$
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The above described is referred to as the so-called 
+\begin_inset Quotes eld
+\end_inset
+
+key-prefixed
+\begin_inset Quotes erd
+\end_inset
+
+ variant of the scheme, which sees the public key hashed together with 
+\begin_inset Formula $R$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bernstein2012"
+literal "false"
+
+\end_inset
+
+.
+ This variant was thought to have a better multi-user security bound than
+ the classic variant 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bernstein2015"
+literal "false"
+
+\end_inset
+
+, however in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kiltz2016"
+literal "false"
+
+\end_inset
+
+ the key-prefixing was seen as unnecessary to enable good multi-user security
+ for Schnorr signatures.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+For the development of the new Schnorr-based multi-signature scheme 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+, key-prefixing seemed a requirement for the security proof to go through,
+ despite not knowing the form of an attack.
+ The rationale also follows the process in reality, as messages signed in
+ Bitcoin always indirectly commits to the public key.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Rogue attacks 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Rogue attacks are a significant concern when implementing multi-signature
+ schemes.
+ Here a subset of corrupted singers, manipulate the public keys computed
+ as functions of the public keys of honest users, allowing them to easily
+ produce forgeries for the set of public keys (despite them not knowing
+ the associated secret keys).
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Initial proposals from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li1994"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Harn1994"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Horster1995"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ohta1991"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Langford1996"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Michels1996"
+literal "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ohta1999"
+literal "false"
+
+\end_inset
+
+ were thus undone before a formal model was put forward along with a provably
+ secure scheme from Micali 
+\emph on
+et al
+\emph default
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Micali2001"
+literal "false"
+
+\end_inset
+
+.
+ Unfortunately, despite being provably secure their scheme is costly and
+ an impractical interactive key generation protocol.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+A means of generically preventing rogue-key attacks is to make it mandatory
+ for users to prove knowledge (or possession) of the secret key during public
+ key registration with a certification authority 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ristenpart2007"
+literal "false"
+
+\end_inset
+
+.
+ Certification authority is a setting known as the KOSK assumption.
+ The pairing-based multi-signature schemes by Boldyreva 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boldyreva2003"
+literal "false"
+
+\end_inset
+
+ and Lu 
+\emph on
+et al
+\emph default
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lu2006"
+literal "false"
+
+\end_inset
+
+ rely on the KOSK assumption in order to maintain security.
+ However according to
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2006"
+literal "false"
+
+\end_inset
+
+ and
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ristenpart2007"
+literal "false"
+
+\end_inset
+
+ the cost of complexity and expense of the scheme and the unrealistic and
+ burdensome assumptions on the public-key infrastructure (PKI) have made
+ this solution problematic.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+As it stands, the Bellare and Neven 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2006"
+literal "false"
+
+\end_inset
+
+ provides one of the most practical multi-signature schemes, based on the
+ Schnorr signature scheme, which is provably secure that does not contain
+ any assumption on the key setup.
+ Since the only requirement of this scheme is that each potential signer
+ has a public key, this setting is referred to as the 
+\emph on
+plain-key model.
+ 
+\end_layout
+
+\begin_layout Subsection
+Design of a Schnorr multi-signature scheme
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The naive way to design a Schnorr multi-signature scheme would be as follows:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+A group of 
+\begin_inset Formula $n$
+\end_inset
+
+ signers want to cosign a message 
+\begin_inset Formula $m$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Let 
+\begin_inset Formula $L=\{X_{1}=g^{x_{1}},...,X_{n}=g^{x_{n}}\}$
+\end_inset
+
+ be the multi-set of all public key
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+No constraints are imposed on the key setup, the adversary thus can choose
+ corrupted public keys at random, hence the same public key can appear more
+ than once in 
+\begin_inset Formula $L$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Each cosigner randomly generates and communicates to others a share 
+\begin_inset Formula $R_{i=}$
+\end_inset
+
+
+\begin_inset Formula $g^{r_{i}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Each of the cosigners then computes 
+\begin_inset Formula $R=$
+\end_inset
+
+
+\begin_inset Formula $\Pi_{_{i=1}}^{n}$
+\end_inset
+
+
+\begin_inset Formula $R_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $c=\textrm{H}(\tilde{X},R,m)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Where 
+\begin_inset Formula $\tilde{X}=\Pi_{i=1}^{n}X_{i}$
+\end_inset
+
+ is the product of individual public keys, and a partial signature 
+\begin_inset Formula $s_{i}=r_{i}+cx_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Partial signatures are then combined into a single signature 
+\begin_inset Formula $(R,s)$
+\end_inset
+
+ where 
+\begin_inset Formula $s=\Sigma_{i=1}^{n}si$
+\end_inset
+
+ mod 
+\begin_inset Formula $p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+The validity of a signature 
+\begin_inset Formula $(R,s)$
+\end_inset
+
+ on message 
+\begin_inset Formula $m$
+\end_inset
+
+ for public keys 
+\begin_inset Formula $\{X_{1},...X_{n}\}$
+\end_inset
+
+ is equivalent to 
+\begin_inset Formula $g^{s}=R\tilde{X}^{c}$
+\end_inset
+
+ where 
+\begin_inset Formula $\tilde{X}=\Pi_{i=1}^{n}X_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $c=\textrm{H}(\tilde{X},R,m)$
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Note that this is exactly the verification equation for a traditional key-prefix
+ed Schnorr signature with respect to public key 
+\begin_inset Formula $\tilde{X}$
+\end_inset
+
+, a property termed 
+\emph on
+key aggregation 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+However, as mentioned above, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Horster1995"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Langford1996"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Michels1996"
+literal "false"
+
+\end_inset
+
+ and
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Micali2001"
+literal "false"
+
+\end_inset
+
+ these protocols are vulnerable to a rogue-key attack where a corrupted
+ signer sets its public key to 
+\begin_inset Formula $X_{1}=g^{x_{1}}(\Pi_{i=2}^{n}X_{i})^{-1}$
+\end_inset
+
+, allowing the signer to produce signatures for public keys 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\{X_{1},...X_{n}\}$
+\end_inset
+
+ by themself.
+\end_layout
+
+\begin_layout Subsubsection
+Micali-Ohta-Reyzin Multi-signature scheme 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The Micali-Ohta-Reyzin multi-signature scheme 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Micali2001"
+literal "false"
+
+\end_inset
+
+ solves the rogue-key attack using a sophisticated interactive key generation
+ protocol.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+The Bagherzandi 
+\emph on
+et al.
+ 
+\emph default
+scheme
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Bagherzandi 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bagherzandi2008"
+literal "false"
+
+\end_inset
+
+ reduced the number of rounds from three to two using an homomorphic commitment
+ scheme.
+ Unfortunately, this increases the signature size and the computational
+ cost of signing and verification.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+The Ma 
+\emph on
+et al.
+
+\emph default
+ scheme 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Ma 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ma2010"
+literal "false"
+
+\end_inset
+
+ proposed a signature scheme that involved the 
+\begin_inset Quotes eld
+\end_inset
+
+double hashing
+\begin_inset Quotes erd
+\end_inset
+
+ technique, which sees the reduction of the signature size compared to Bagherzan
+di 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bagherzandi2008"
+literal "false"
+
+\end_inset
+
+ while using only two rounds.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+However, neither of these two variants allow for key aggregation.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Multi-signature schemes supporting key aggregation are easier to come by
+ in the KOSK model.
+ In particular, Syta 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Syta2016"
+literal "false"
+
+\end_inset
+
+ proposed
+\emph on
+ 
+\emph default
+the CoSi scheme which can be seen as the naive Schnorr multi-signature scheme
+ described earlier where the co-signers are organized in a tree structure
+ for fast signature generation.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Bellare and Neven signature scheme
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Bellare-Neven (BN) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2006"
+literal "false"
+
+\end_inset
+
+ proceeded differently in order to avoid any key setup.
+ Their main idea is to have each cosigner use a distinct 
+\begin_inset Quotes eld
+\end_inset
+
+challenge
+\begin_inset Quotes erd
+\end_inset
+
+ when computing their partial signature 
+\begin_inset Formula $s_{i}=r_{i}+c_{i}x_{i},$
+\end_inset
+
+ defined as 
+\begin_inset Formula $c_{i}=\textrm{H}(<L>X_{i},R,m)$
+\end_inset
+
+, where 
+\begin_inset Formula $R=\prod_{i=1}^{n}R_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $<L>$
+\end_inset
+
+ is a unique encoding of the multiset of public keys 
+\begin_inset Formula $L=\{X_{1}...X_{n}\}$
+\end_inset
+
+.
+ It is a more widely known 
+\emph on
+plain public-key 
+\emph default
+multi-signature scheme, that does not support key aggregation.
+ It is possible to use BN multi-signatures where the individual keys are
+ MuSig aggregates.
+ BN multi-signature scheme is secure without such assumptions.
+ Below are details:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Call 
+\begin_inset Formula $L=\textrm{H}(X_{1,}X_{2...})$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Each signer chooses a random nonce 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ and shares 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset Formula $_{i}=r_{i}G$
+\end_inset
+
+ with the other signers
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Call R the sum of the 
+\begin_inset Formula $R_{i}$
+\end_inset
+
+ points 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Each signer computes 
+\begin_inset Formula $s_{i}=r_{i}+\textrm{H}(L,X_{i,}R,m)x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+The final signature is 
+\begin_inset Formula $(R,s)$
+\end_inset
+
+ where 
+\begin_inset Formula $s$
+\end_inset
+
+is the sum of the 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ values 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Verification requires 
+\begin_inset Formula $sG=R+\textrm{H}(L,X_{1,}R,m)X_{2}+...$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Technically, BN has a pre-commit round, where the signers initially reveal
+ 
+\begin_inset Formula $\textrm{H}(R_{i})$
+\end_inset
+
+ to each other, prior to revealing the 
+\begin_inset Formula $R_{i}$
+\end_inset
+
+ points themselves.
+ This step is a requirement in order to prove security under the DL assumption,
+ but it can be dismissed if instead the OMDL assumption is accepted.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Furthermore, when an IAS is desired (where each signer has their own message),
+ 
+\begin_inset Formula $L=\textrm{H}((X_{1},m_{1}),(X_{2},m_{2}),...)$
+\end_inset
+
+ and 
+\begin_inset Formula $s_{i}=r_{i}+\textrm{H}(L,R,i)x_{i}$
+\end_inset
+
+ is used for signing (and analogous for verification).
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The resulting signature does not satisfy the normal Schnorr equation anymore,
+ nor any other equation that can be written as a function of a combination
+ of the public keys; the key aggregation property is lost in order to gain
+ security in the 
+\emph on
+plain public-key model
+\emph default
+.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Bellare and Neven showed that this yields a multi-signature scheme provably
+ secure in the 
+\emph on
+plain public-key 
+\emph default
+model under the Discrete Logarithm assumptions, modeling 
+\begin_inset Formula $\textrm{H}$
+\end_inset
+
+ and 
+\begin_inset Formula $\textrm{H}'$
+\end_inset
+
+ as random oracles.
+ However, this scheme does not allow key aggregation anymore since the entire
+ list of public keys is required for verification.
+ 
+\end_layout
+
+\begin_layout Section
+The formation of MuSig 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+This is where MuSig comes in.
+ It recovers the 
+\emph on
+key aggregation property without losing security:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Call 
+\begin_inset Formula $L=\textrm{H}(X_{1},X_{2}...)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Call 
+\begin_inset Formula $X$
+\end_inset
+
+ the sum of all 
+\begin_inset Formula $\textrm{H}(L,X_{i})X_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Each signer chooses a random nonce 
+\begin_inset Formula $r_{i},$
+\end_inset
+
+ and shares 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset Formula $_{i}=r_{i}G$
+\end_inset
+
+ with the other signers 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Call 
+\begin_inset Formula $R$
+\end_inset
+
+ the sum of the 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset Formula $_{i}$
+\end_inset
+
+ points 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Each signer computes 
+\begin_inset Formula $s_{i}=r_{i}+\textrm{H}(X,R,m)\textrm{H}(L,X_{i})x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+The final signature is 
+\begin_inset Formula $(R,s)$
+\end_inset
+
+ where 
+\begin_inset Formula $s$
+\end_inset
+
+ is the sum of the 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ values 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Verification again satisfies 
+\begin_inset Formula $sG=R+\textrm{H}(X,R,m)X$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+So what was needed was to define 
+\begin_inset Formula $X$
+\end_inset
+
+ not as a simple sum of the individual public keys 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+, but as a sum of multiples of those keys, where the multiplication factor
+ depends on a hash of all participating keys.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wuille2018"
+literal "false"
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The new proposed Schnorr-based multi-signature scheme can be seen as a variant
+ of the BN scheme, allowing key aggregation in the 
+\emph on
+plain public-key model.
+ 
+\emph default
+This scheme consists of three rounds, the first two being exactly the same
+ as in BN.
+ Challenges 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ are changed from 
+\begin_inset Formula $c_{i}=\textrm{H}(<L>X_{i},R,m)$
+\end_inset
+
+ to 
+\begin_inset Formula $c_{i}=\textrm{H}_{agg}(<L>X_{i}).\textrm{H}_{sig}(\tilde{X,}R,m)$
+\end_inset
+
+] , where 
+\begin_inset Formula $\tilde{X}$
+\end_inset
+
+ is the so-called aggregated public key corresponding to the multi-set of
+ public keys 
+\begin_inset Formula $L=\{X_{1},...X_{n}\},$
+\end_inset
+
+ defined as 
+\begin_inset Formula $\tilde{X}=\stackrel[i=1]{n}{\Pi}X_{i}^{a_{i}c}=R\tilde{X}^{c}$
+\end_inset
+
+ where 
+\begin_inset Formula $c=\textrm{H}_{sig}(\tilde{X},R,m).$
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Basically , the key aggregation property has been recovered and can now
+ be enjoyed by the naive scheme, which respect to a more complex aggregation
+ key 
+\begin_inset Formula $\tilde{X}=\stackrel[i=1]{n}{\Pi}X_{i}^{a_{i}c}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Formula $c=H_{sig}(<L>,R,m)$
+\end_inset
+
+ yields a secure scheme, however does not allow key aggregation since verificati
+on is impossible without knowing all the individual singer keys.
+ 
+\end_layout
+
+\begin_layout Subsection
+Interactive Aggregate Signatures
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+In some situations, it may be useful to allow each participant to sign a
+ different message rather than a single common one.
+ An IAS is one where each signer has its own message 
+\emph on
+
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ 
+\emph default
+to sign, and the joint signature proves that the 
+\begin_inset Formula $i$
+\end_inset
+
+-th signer has signed 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ .
+ These schemes are considered to be more general than multi-signature schemes,
+ however they are not as flexible as non-interactive aggregate signatures
+ (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boneh2003"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2007"
+literal "false"
+
+\end_inset
+
+) and sequential aggregate signatures 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lysyanskaya2004"
+literal "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+According to Bellare 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2006"
+literal "false"
+
+\end_inset
+
+, a generic way to turn any multi-signature scheme into an IAS scheme by
+ the signer running the multi-signature protocol using as message the tuple
+ of all public keys/message pairs involved in the IAS protocol.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+For BN's scheme and Schnorr multi-signatures, this does not increase the
+ number of communication rounds as messages can be sent together with shares
+ 
+\begin_inset Formula $R_{i}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Applications of IAS
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+With regards to digital currency schemes, where all participants have the
+ ability to validate transactions, these transactions consist of outputs
+ (which have a verification key and amount) and inputs (which are references
+ to outputs of earlier transactions).
+ Each input contains a signature of a modified version of the transaction
+ to be validated with its referenced output's key.
+ Some outputs may require multiple signatures to be spent.
+ Transactions spending such an output are referred to as 
+\emph on
+m
+\emph default
+-of-
+\emph on
+n 
+\emph default
+multi-signature transactions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Andersen2011"
+literal "false"
+
+\end_inset
+
+, and the current implementation corresponds to the trivial way of building
+ a multi-signature scheme by concatenating individual signatures.
+ Additionally, a threshold policy can be enforced where only 
+\begin_inset Formula $m$
+\end_inset
+
+ valid signatures out of the 
+\begin_inset Formula $n$
+\end_inset
+
+ possible ones are needed to redeem the transaction (again this is the most
+ straightforward way to turn a multi-signature scheme into some kind of
+ basic threshold signature scheme).
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+While several multi-signature schemes could offer an improvement over the
+ currently available method, two properties increase the possible impact:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+The availability of key aggregation removes the need for verifiers to see
+ all the involved key, improving bandwidth, privacy, and validation cost
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Security under the 
+\emph on
+plain public-key model 
+\emph default
+enables multi-signatures across multiple inputs of a transaction, where
+ the choice of signers cannot be committed to in advance.
+ This greatly increases the number of situations in which mulit-signatures
+ are beneficial.
+\end_layout
+
+\begin_layout Subsubsection
+Native multi-signature support 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+An improvement is to replace the need for implementing 
+\emph on
+
+\begin_inset Formula $n-of-n$
+\end_inset
+
+ 
+\emph default
+multi-signatures with a constant-size multi-signature primitive like Bellare-Nev
+en.
+ While this is on itself an improvement in terms of size, it still needs
+ to contain all of the signers' public keys.
+ Key aggregation improves upon this further, as a single-key predicate
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Predicate encryption is an encryption paradigm which gives a master secret
+ key owner fine-grained control over access to encrypted data.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Shen2009"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+ can be used instead which is both smaller and has lower computational cost
+ for verification.
+ It also improves privacy, as the participant keys and their count remain
+ private to the signers.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+When generalizing to the 
+\begin_inset Formula $m-of-n$
+\end_inset
+
+ scenario, several options exist.
+ One is to forego key aggregation, and still include all potential signer
+ keys in the predicates while still only producing a single signature for
+ the chosen combination of keys.
+ Alternatively, a Merkle tree 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Merkle1987"
+literal "false"
+
+\end_inset
+
+ where the leaves are permitted combinations of public keys (in aggregated
+ form), can be employed.
+ The predicate in this case would take as input an aggregated public key,
+ a signature and a proof.
+ Its validity would depend on the signature being valid with the provided
+ key, and the proof establishing that the key is in fact one of the leaves
+ of the Merkle tree, identified by its root hash.
+ This approach is very generic, as it works for any subset of combinations
+ of keys, and as a result has good privacy as the exact policy is not visible
+ from the proof.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Some key aggregation schemes that do not protect against rogue-key attacks
+ can be used instead in the above cases, under the assumption that the sender
+ is given a proof of knowledge/possession for the receivers' private keys.
+ However, these schemes are difficult to prove secure except by using very
+ large proofs of knowledge.
+ As those proofs of knowledge/possession do not need to be seen by verifiers,
+ they are effectively certified by the senders's validation.
+ However, passing them around to senders is inconvenient, and easy to get
+ wrong.
+ Using a scheme that is secure in the 
+\emph on
+plain public-key model 
+\emph default
+categorically avoids these concerns.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Another alternative is to use an algorithm whose key generation requires
+ a trusted setup, for example in the KOSK model.
+ While many of these schemes have been proven secure 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boldyreva2003"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lu2006"
+literal "false"
+
+\end_inset
+
+, they rely on mechanisms that are usually not implemented by certification
+ authorities 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2006"
+literal "false"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ristenpart2007"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Cross-input multi-signatures 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+The previous sections explained how the numbers of signatures per input
+ can generally by reduced to one, but one can go further and replace it
+ with a single signature per transaction.
+ Doing so requires a fundamental change in validation semantics, as the
+ validity of separate inputs is no longer independent.
+ As a result, the outputs can no longer be modeled as predicates, where
+ the secret key owner is given access to encrypted data.
+ Instead, they are modeled as functions that return a boolean (data type
+ with only two possible values) plus a set of zero or more public keys.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Overall validity requires all returned booleans to be True and a multi-signature
+ of the transaction with 
+\begin_inset Formula $L$
+\end_inset
+
+ the union of all returned keys.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+With regards to Bitcoin, this can be implemented by providing an alternative
+ to the signature checking opcode OP_CHECKSIG and related opcodes in the
+ Script language.
+ Instead of returning the result of an actual ECDSA verification, they always
+ return True, but additionally add the public key with which the verification
+ would have taken place to a transaction-wide multi-set of keys.
+ Finally, after all inputs are verified, a multi-signature present in the
+ transaction is verified against that multi-set.
+ In case the transaction spends inputs from multiple owners, they will need
+ to collaborate to produce the multi-signature, or choose to only use the
+ original opcodes.
+ Adding these new opcodes is possible in a backward-compatible way.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Protection against rogue-key Attacks
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+In Bitcoin, when taking cross-input signatures into account, there is no
+ published commitment to the set of signers, as each transaction input can
+ independently spend an output that requires authorization from distinct
+ participants.
+ This functionality was not restricted as it would then interfere with fungibili
+ty improvements such as CoinJoin 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2013"
+literal "false"
+
+\end_inset
+
+.
+ Due to the lack of certification, security against rogue-key attacks is
+ of great importance.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+If it is assumed that transactions used a single multi-signature that was
+ vulnerable to rogue-attacks, an attacker could identify an arbitrary number
+ of outputs he wants to steal, with the public keys 
+\begin_inset Formula $X_{1},...,X_{n-t}$
+\end_inset
+
+ and then use the rogue-key attack to determine 
+\begin_inset Formula $X_{n-t+1},...,X_{n}$
+\end_inset
+
+ such that he can sign for the aggregated key 
+\begin_inset Formula $\tilde{X}.$
+\end_inset
+
+ He would then send a small amount of his own money to outputs with predicates
+ corresponding to the keys 
+\begin_inset Formula $X_{n-t+1},...,X_{n}$
+\end_inset
+
+.
+ Finally, he can create a transaction that spends all of the victim coins
+ together with the ones he just created by forging a multi-signature for
+ the whole transaction.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+It can be seen that in the case of mulit-signatures across inputs, theft
+ can occur through the ability to forge a signature over a set of keys that
+ includes at least one key which is not controlled by the attacker.
+ According to the 
+\emph on
+plain public-key model 
+\emph default
+this is considered a win for the attacker.
+ This is in contrast to the single-input multi-signature case where theft
+ is only possible by forging a signature for the exact (aggregated) keys
+ contained in an existing output.
+ As a result, it is no longer possible to rely on proofs of knowledge/possession
+ that are private to the signers.
+ 
+\end_layout
+
+\begin_layout Subsection
+Revisions 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+In a previous version of the paper by Maxwell 
+\emph on
+et al.
+
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+
+\emph on
+ 
+\emph default
+published on 15 January 2018 they proposed a 2-round variant of MuSig, where
+ the initial commitment round is omitted claiming a security proof under
+ the One More Discrete Logarithm (OMDL) assumptions (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2002"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare2003"
+literal "false"
+
+\end_inset
+
+).
+ Drijvers 
+\emph on
+et al 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Drijvers2018"
+literal "false"
+
+\end_inset
+
+ then discovered a flaw in the security proof and showed that through a
+ meta-reduction the initial multi-signature scheme cannot be proved secure
+ using an algebraic black box reduction under the DL or OMDL assumption.
+ 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+In more details, it was observed that in the 2-round variant of MuSig, an
+ adversary (controlling public keys 
+\begin_inset Formula $X_{2},...,X_{n})$
+\end_inset
+
+ can impose the value of 
+\begin_inset Formula $R=\Pi_{i=1}^{n}R_{i}$
+\end_inset
+
+ used in signature protocols since he can choose 
+\begin_inset Formula $R_{2},...,R_{n}$
+\end_inset
+
+ after having received 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+ from the honest signer (controlling public key 
+\begin_inset Formula $X_{1}=g^{x_{1}}$
+\end_inset
+
+).
+ This prevents one to use the initial method of simulating the honest signer
+ in the Random Oracle model without knowing 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ by randomly drawing 
+\begin_inset Formula $s_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+, computing 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Despite this, there is no attack currently known against the 2-round variant
+ of MuSig and that it might be secure, although this is not provable under
+ standard assumptions from existing techniques.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maxwell2018"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusions, Observations and Recommendations
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+MuSig leads to both native and private multi-signature transactions with
+ both signature aggregation.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+Signature data for multi-signatures can be large and cumbersome.
+ MuSig will allow users to create more complex transactions without burdening
+ the network and revealing compromising information.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align left
+However, the case of interactive signature aggregation where each signer
+ signs their own message must still be proven by a complete security analysis.
+ 
+\end_layout
+
+\begin_layout Section
+Contributors 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Kevoulee Sardar, Hansie Odendaal 
+\end_layout
+
+\begin_layout Paragraph*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "MuSig/musig"
+options "ieeetr"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
