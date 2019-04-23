@@ -4,4 +4,4 @@
 
 ### Having trouble viewing this presentation?
 
-View it in a [separate window](https://gitpitch.com/tari-labs/tari-university/master?p=/src/non-fungible-tokens/nft-landscape-1#/).
+View it in a [separate window](https://gitpitch.com/tari-labs/tari-university/master?p=/src/digital-assets/nft-landscape-1#/).
