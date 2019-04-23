@@ -1,7 +1,7 @@
 # Bulletproofs and Mimblewimble
 
 - [Introduction](#introduction)
-- [How do Bulletproofs work?](#how-do-bulletproofs-work)
+- [How do Bulletproofs Work?](#how-do-bulletproofs-work)
 - [Applications for Bulletproofs](#applications-for-bulletproofs)
 - [Comparison to other Zero-knowledge Proof Systems](#comparison-to-other-zero-knowledge-proof-systems)
 - [Interesting Bulletproofs Implementation Snippets](#interesting-bulletproofs-implementation-snippets)
@@ -32,7 +32,7 @@ The essence of Bulletproofs is its inner-product algorithm originally presented 
 
 [Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) is a blockchain protocol designed for confidential transactions. The essence is that a Pedersen Commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature Algorithm (ECDSA) public key, and that for a valid confidential transaction the difference between outputs, inputs, and transaction fees must be $ 0 $. A *prover* constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows transactions to be aggregated before being committed to the blockchain. ([[1]], [[20]])
 
-## How do Bulletproofs work?
+## How do Bulletproofs Work?
 
 The basis of confidential transactions is to replace the input and output amounts with Pedersen Commitments<sup>[def][ecpc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the specific committed amounts hidden. This makes it a zero-knowledge transaction. The transaction amounts must be encoded as $ integers \mod q $, which can overflow, but is prevented by making use of range proofs. This is where Bulletproofs come in. The essence of Bulletproofs are its ability to calculate proofs, including range proofs, from inner-products.
 
@@ -72,60 +72,66 @@ The recent implementation of Bulletproofs in Monero on 18 October 2018 saw the a
 
 Bulletproofs were designed for range proofs but they also generalize to arbitrary arithmetic circuits. What this means in practice is that Bulletproofs have wide application and can be efficiently used for many types of proofs. Use cases of Bulletproofs are listed below, but this list may not be exhaustive as use cases for Bulletproofs continue to evolve. ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]) 
 
-- Range proofs
+1. Range proofs
 
-  - Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
+   Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wrap around when adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] $.
 
-- Merkle proofs
+2. Merkle proofs
 
-  - Hash preimages in a Merkle tree [[7]] can be leveraged to create zero-knowledge Merkle proofs using Bulletproofs, to create efficient proofs of inclusion in massive data sets.
+   Hash preimages in a Merkle tree [[7]] can be leveraged to create zero-knowledge Merkle proofs using Bulletproofs, to create efficient proofs of inclusion in massive data sets.
 
-- Proof of solvency
+3. Proof of solvency
 
-  - Proofs of solvency are a specialized application of Merkle proofs; coins can be added into a giant Merkle tree. It can then be proven that some outputs are in the Merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol [[58]]. Using Bulletproofs and its variant protocols proposed in [[1]], this size could be reduced to approximately 62MB.
+   Proofs of solvency are a specialized application of Merkle proofs; coins can be added into a giant Merkle tree. It can then be proven that some outputs are in the Merkle tree and that those outputs add up to some amount that the cryptocurrency exchange claims they have control over without revealing any private information. A Bitcoin exchange with 2 million customers need approximately 18GB to prove solvency in a confidential manner using the Provisions protocol [[58]]. Using Bulletproofs and its variant protocols proposed in [[1]], this size could be reduced to approximately 62MB.
 
-- Multi-signatures with deterministic nonces
+4. Multi-signatures with deterministic nonces
 
-  - With Bulletproofs every signatory can prove that their nonce was generated deterministically. A SHA256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and re-join later, with no memory of interacting with the other parties they were previously interacting with.
+   With Bulletproofs every signatory can prove that their nonce was generated deterministically. A SHA256 arithmetic circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically. This will still work if one signatory were to leave the conversation and re-join later, with no memory of interacting with the other parties they were previously interacting with.
 
-- Scriptless Scripts
+5. Scriptless scripts
 
-  - Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a Sigma protocol. This can all be done with Bulletproofs, which could be extended to allow assets that are functions of other assets, i.e. crypto derivatives.
+   Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an older form of zero-knowledge proofs called a Sigma protocol. This can all be done with Bulletproofs, which could be extended to allow assets that are functions of other assets, i.e. crypto derivatives.
 
-- Smart contracts and Crypto-derivatives
-  - Traditionally, a new trusted setup is needed for each smart contract when verifying privacy-preserving smart contracts, but with Bulletproofs no trusted setup is needed. Verification time however is linear, and it might be too complex to prove every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with public verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract.
+6. Smart contracts and crypto-derivatives
 
-    A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then used to identify the gate where the proof turns invalid, and hence the smart contract must only check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (refer to Figure&nbsp;4). 
+   Traditionally, a new trusted setup is needed for each smart contract when verifying privacy-preserving smart contracts, but with Bulletproofs no trusted setup is needed. Verification time however is linear, and it might be too complex to prove every step in a smart contract. The Refereed Delegation Model [[33]] has been proposed as an efficient protocol to verify smart contracts with public verifiability in the offline stage, by making use of a specific verification circuit linked to a smart contract.
 
-    <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
-    <div align="center"><b>Figure&nbsp;4: Bulletproofs for Refereed Delegation Model [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions 
-    and More (Slides), Blockchain Protocol Analysis and 
-    Security Engineering 2018, 
-    Bünz B. et al">5</a>]</b></div>
+   A *challenger* will input the proof to the verification circuit and get a binary response as to the validity of the proof. The *challenger* can then complain to the smart contract and claim the proof is invalid and sends the proof together with the output from a chosen gate in the verification circuit to the smart contract. Interactive binary searches are then used to identify the gate where the proof turns invalid, and hence the smart contract must only check a single gate in the verification procedure, to decide whether the *challenger* or *prover* was correct. The cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract, thereby creating privacy-preserving smart contracts (refer to Figure&nbsp;4). 
 
-- Verifiable shuffles
+  <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
+  <div align="center"><b>Figure&nbsp;4: Bulletproofs for Refereed Delegation Model [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions 
+  and More (Slides), Blockchain Protocol Analysis and 
+  Security Engineering 2018, 
+  Bünz B. et al">5</a>]</b></div>
 
-  - Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with Bulletproofs to proof that the transaction is valid.
+7. Verifiable shuffles
 
-  - When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$ as shown in Figure&nbsp;5. 
+   Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with Bulletproofs to proof that the transaction is valid.
 
-    <p align="center"><img src="sources/VerifiableShuffles.png" width="600" /></p>
-    <div align="center"><b>Figure&nbsp;5: Bulletproofs for Verifiable Shuffles [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions 
-    and More (Slides), Blockchain Protocol Analysis and 
-    Security Engineering 2018, 
-    Bünz B. et al">5</a>]</b></div>
+   When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values  $[y_1, ... , y_n]$ it is called a verifiable shuffle. It has many applications for example voting, blind signatures for untraceable payments, and solvency proofs. Currently the most efficient shuffle has size $O \sqrt{n}$. Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$ as shown in Figure&nbsp;5.
 
-  - Another potential use case is to verify that two nodes executed the same list of independent instructions $ [x1,x4,x3,x2] $ and $ [x1,x2,x3,x4] $, that may be in different order, to arrive at the same next state $ N $. The nodes don't need to share the actual instructions with a *Verifier*, but the *Verifier* can show that they executed the same set without having knowledge of the instructions.
+   Another potential use case is to verify that two nodes executed the same list of independent instructions $ [x1,x4,x3,x2] $ and $ [x1,x2,x3,x4] $, that may be in different order, to arrive at the same next state $ N $. The nodes don't need to share the actual instructions with a *Verifier*, but the *Verifier* can show that they executed the same set without having knowledge of the instructions.
 
-- Batch verifications
+  <p align="center"><img src="sources/VerifiableShuffles.png" width="600" /></p>
+  <div align="center"><b>Figure&nbsp;5: Bulletproofs for Verifiable Shuffles [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions 
+  and More (Slides), Blockchain Protocol Analysis and 
+  Security Engineering 2018, 
+  Bünz B. et al">5</a>]</b></div>
 
-  - Batch verifications can be done using one of the Bulletproofs derivative protocols. This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a blockchain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
+
+
+8. Batch verifications
+
+   Batch verifications can be done using one of the Bulletproofs derivative protocols. This has application where the *Verifier* needs to verify multiple (separate) range proofs at once, for example a blockchain full node receiving a block of transactions needs to verify all transactions as well as range proofs. This batch verification is then implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
 
 
 
 ## Comparison to other Zero-knowledge Proof Systems
 
-The table below ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown in ***bold italics***.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
+Table 1 ([[2]], [[5]])  shows a high-level comparison between Sigma protocols (i.e. interactive public-coin protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for each measurement are shown in ***bold italics***.) The aim will be to have a proof system that is not interactive, has short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
+
+<div align="center"><b>Table 1: Comparison to other Zero-knowledge Proof Systems</b></div>
+
 
 | Proof System                        | Sigma Protocols | zk-SNARK                                | STARK                                                        | ZKBoo                   | Bulletproofs |
 | ----------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------ | ----------------------- | ------------ |
@@ -401,7 +407,7 @@ Fiat-Shamir Heuristic and Applications to Helios"
 [20]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra
 "Mimblewimble Explained"
 
-[[21]] Message Hiding in Bulletproofs #721[online]. Available:  <https://github.com/mimblewimble/grin/issues/721>, Date accessed: 2018-09-10.
+[[21]] Message Hiding in Bulletproofs #721 [online]. Available:  <https://github.com/mimblewimble/grin/issues/721>, Date accessed: 2018-09-10.
 
 [21]: https://github.com/mimblewimble/grin/issues/721
 "Message Hiding in Bulletproofs #721"
@@ -491,12 +497,12 @@ Switch Commits / Bulletproofs - Status #734"
 [35]: https://github.com/mimblewimble/grin/issues/273
 "GitHub: mimblewimble/grin, Bulletproofs #273"
 
-[[36]] Wikipedia: Commitment scheme [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. Date accessed: 2018-09-26.
+[[36]] Wikipedia: "Commitment Scheme [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. Date accessed: 2018-09-26.
 
 [36]: https://en.wikipedia.org/wiki/Commitment_scheme
 "Wikipedia: Commitment Scheme"
 
-[[37]] Cryptography Wikia: Commitment scheme [online]. Available: <http://cryptography.wikia.com/wiki/Commitment_scheme>. Date accessed: 2018-09-26.
+[[37]] Cryptography Wikia: Commitment Scheme [online]. Available: <http://cryptography.wikia.com/wiki/Commitment_scheme>. Date accessed: 2018-09-26.
 
 [37]: http://cryptography.wikia.com/wiki/Commitment_scheme
 "Cryptography Wikia: Commitment Scheme"
@@ -507,138 +513,138 @@ Switch Commits / Bulletproofs - Status #734"
 "Curve25519: New Diﬃe-Hellman 
 Speed Records"
 
-[[39]] Twisted Edwards Curves Revisited, Hisil H. et al., Information Security Institute, Queensland University of Technolog, [online]. Available:https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf, Date accessed: 2018-09-26.
+[[39]] H. Hisil, K. Koon-Ho Wong, G. Carter and E. Dawson, "Twisted Edwards Curves Revisited", Information Security Institute, Queensland University of Technology [online]. Available: <https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf>. Date accessed: 2018-09-26.
 
 [39]: https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf
 "Twisted Edwards Curves Revisited"
 
-[[40]] Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference, Sadeghi A et al.,[online]. Available: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf, Date accessed: 2018-09-24.
+[[40]] A. Sadeghi and M. Steiner, "Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference"[online]. Available: <http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf>. Date accessed: 2018-09-24.
 
 [40]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf
 "Assumptions Related to Discrete Logarithms: 
 Why Subtleties Make a Real Difference" 
 
-[[41]] Crypto Wiki: Cryptographic nonce, [online]. Available:http://cryptography.wikia.com/wiki/Cryptographic_nonce, Date accessed: 2018-10-08.
+[[41]] Crypto Wiki: "Cryptographic Nonce" [online]. Available: <http://cryptography.wikia.com/wiki/Cryptographic_nonce>. Date accessed: 2018-10-08.
 
 [41]: http://cryptography.wikia.com/wiki/Cryptographic_nonce
-"Crypto Wiki: Cryptographic nonce"
+"Crypto Wiki: Cryptographic Nonce"
 
-[[42]] Wikipedia: Cryptographic nonce, [online]. Available:https://en.wikipedia.org/wiki/Cryptographic_nonce, Date accessed: 2018-10-08.
+[[42]] Wikipedia: "Cryptographic Nonce" [online]. Available: <https://en.wikipedia.org/wiki/Cryptographic_nonce>. Date accessed: 2018-10-08.
 
 [42]: https://en.wikipedia.org/wiki/Cryptographic_nonce
-"Wikipedia: Cryptographic nonce"
+"Wikipedia: Cryptographic Nonce"
 
-[[43]] Switch Commitments: A Safety Switch for Confidential Transactions, Ruffing T. et al., Saarland University,[online]. Available: https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf, Date accessed: 2018-10-08.
+[[43]] T. Ruffing and G. Malavolta, " Switch Commitments: A Safety Switch for Confidential Transactions", Saarland University [online]. Available: <https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf>. Date accessed: 2018-10-08.
 
 [43]: https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf
 "Switch Commitments: A Safety Switch 
 for Confidential Transactions"
 
-[[44]] BLAKE2 — fast secure hashing,[online]. Available: https://blake2.net, Date accessed: 2018-10-08.
+[[44]] BLAKE2 — Fast Secure Hashing [online]. Available: <https://blake2.net>. Date accessed: 2018-10-08.
 
 [44]: https://blake2.net
-"BLAKE2 — fast secure hashing"
+"BLAKE2 — Fast Secure Hashing"
 
-[[45]] GitHub: mimblewimble/rust-secp256k1-zkp,[online]. Available: https://github.com/mimblewimble/rust-secp256k1-zkp, Date accessed: 2018-11-16.
+[[45]] GitHub: mimblewimble/rust-secp256k1-zkp [online]. Available: <https://github.com/mimblewimble/rust-secp256k1-zkp>. Date accessed: 2018-11-16.
 
 [45]: https://github.com/mimblewimble/rust-secp256k1-zkp
 "GitHub: mimblewimble/rust-secp256k1-zkp"
 
-[[46]] GitHub: monero-project/monero,[online]. Available: https://github.com/monero-project/monero/tree/master/src/ringct, Date accessed: 2018-11-16.
+[[46]] GitHub: monero-project/monero [online]. Available: <https://github.com/monero-project/monero/tree/master/src/ringct>. Date accessed: 2018-11-16.
 
 [46]: https://github.com/monero-project/monero/tree/master/src/ringct
 "GitHub: monero-project/monero"
 
-[[47]] Wikipedia: Arithmetic circuit complexity,[online]. Available: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity, Date accessed: 2018-11-08.
+[[47]] Wikipedia: Arithmetic Circuit Complexity [online]. Available: <https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity>. Date accessed: 2018-11-08.
 
 [47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity
-"Wikipedia: Arithmetic circuit complexity"
+"Wikipedia: Arithmetic Circuit Complexity"
 
-[[48]] Simple Schnorr Multi-Signatures with Applications to Bitcoin, Maxwell G. et al., 20 May 2018,[online]. Available: https://eprint.iacr.org/2018/068.pdf, Date accessed: 2018-07-24.
+[[48]] G. Maxwell, A. Poelstra1, Y. Seurin and P. Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin", 20 May 2018 [online]. Available: <https://eprint.iacr.org/2018/068.pdf>. Date accessed: 2018-07-24.
 
 [48]: https://eprint.iacr.org/2018/068.pdf
-"Simple Schnorr Multi-Signatures with 
+"Simple Schnorr Multi-signatures with 
 Applications to Bitcoin"
 
-[[49]] GitHub: b-g-goodell/research-lab, [online]. Available:https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java, Date accessed: 2018-11-16.
+[[49]] GitHub: b-g-goodell/research-lab [online]. Available: <https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java>. Date accessed: 2018-11-16.
 
 [49]: https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java
 "GitHub: b-g-goodell/research-lab"
 
-[[50]] Wikipedia: One-way function, [online]. Available:https://en.wikipedia.org/wiki/One-way_function, Date accessed: 2018-11-27.
+[[50]] Wikipedia: "One-way Function [online]. Available: <https://en.wikipedia.org/wiki/One-way_function>. Date accessed: 2018-11-27.
 
 [50]: https://en.wikipedia.org/wiki/One-way_function
-"Wikipedia: One-way function"
+"Wikipedia: One-way Function"
 
-[[51]] Intensified ElGamal Cryptosystem (IEC), Sharma P. et al., International Journal of Advances in Engineering & Technology, Jan 2012, [online]. Available:http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf, Date accessed: 2018-10-09.
+[[51]] P. Sharma, A. K. Gupta and S. Sharma, "Intensified ElGamal Cryptosystem (IEC)", *International Journal of Advances in Engineering & Technology*, January 2012 [online]. Available: <http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf>. Date accessed: 2018-10-09.
 
 [51]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf
 "Intensified ElGamal Cryptosystem (IEC)"
 
-[[52]] On the Security of ElGamal Based Encryption, Tsiounis Y. et al.,[online]. Available: https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view, Date accessed: 2018-10-09.
+[[52]] Y. Tsiounis and M Yung, "On the Security of ElGamal Based Encryption" [online]. Available: <https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view>. Date accessed: 2018-10-09.
 
 [52]: https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view
 "On the Security of ElGamal Based Encryption"
 
-[[53]] Wikipedia: Decisional Diffie–Hellman assumption,[online]. Available: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption, Date accessed: 2018-10-09.
+[[53]] Wikipedia: "Decisional Diffie–Hellman Assumption" [online]. Available: <https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption>. Date accessed: 2018-10-09.
 
 [53]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption
-"Wikipedia: Decisional Diffie–Hellman assumption"
+"Wikipedia: Decisional Diffie–Hellman Assumption"
 
-[[54]] GitHub: mimblewimble/grin, Bulletproof messages #730, [online]. Available:https://github.com/mimblewimble/grin/pull/730, Date  accessed: 2018-11-29.
+[[54]] GitHub: mimblewimble/grin, Bulletproof messages #730 [online]. Available: <https://github.com/mimblewimble/grin/pull/730>. Date  accessed: 2018-11-29.
 
 [54]: https://github.com/mimblewimble/grin/pull/730
 "GitHub: mimblewimble/grin, Bulletproof messages #730"
 
-[[55]] GitHub: mimblewimble/grin, Removed all switch commitment usages, including restore #841,[online]. Available: https://github.com/mimblewimble/grin/pull/841, Date  accessed: 2018-11-29.
+[[55]] GitHub: mimblewimble/grin, Removed all switch commitment usages, including restore #841 [online]. Available: <https://github.com/mimblewimble/grin/pull/841>. Date  accessed: 2018-11-29.
 
 [55]: https://github.com/mimblewimble/grin/pull/841
 "GitHub: mimblewimble/grin, Removed all switch 
 commitment usages, including restore #841"
 
-[[56]] GitHub: mimblewimble/grin, switch commitment discussion #998, [online]. Available:https://github.com/mimblewimble/grin/issues/998, Date  accessed: 2018-11-29.
+[[56]] GitHub: mimblewimble/grin, switch commitment discussion #998 [online]. Available: <https://github.com/mimblewimble/grin/issues/998>. Date  accessed: 2018-11-29.
 
 [56]: https://github.com/mimblewimble/grin/issues/998
 "GitHub: mimblewimble/grin, 
 switch commitment discussion #998"
 
-[[57]] GitHub: mimblewimble/grin, [DNM] Switch commitments #2007,[online]. Available: https://github.com/mimblewimble/grin/pull/2007, Date  accessed: 2018-11-29.
+[[57]] GitHub: mimblewimble/grin, [DNM] Switch commitments #2007 [online]. Available: <https://github.com/mimblewimble/grin/pull/2007>. Date  accessed: 2018-11-29.
 
 [57]: https://github.com/mimblewimble/grin/pull/2007
 "GitHub: mimblewimble/grin, 
 [DNM] Switch commitments #2007"
 
-[[58]] Provisions: Privacy-preserving proofs of solvency for Bitcoin exchanges, Dagher G. et al., Oct 2015,[online]. Available: https://eprint.iacr.org/2015/1008.pdf, Date  accessed: 2018-11-29.
+[[58]] G. G. Dagher, B. Bünz, J. Bonneauy, J. Clark and D. Boneh1, "Provisions: Privacy-preserving Proofs of Solvency for Bitcoin Exchanges", October 2015 [online]. Available: <https://eprint.iacr.org/2015/1008.pdf>. Date  accessed: 2018-11-29.
 
 [58]: https://eprint.iacr.org/2015/1008.pdf
-"Provisions: Privacy-preserving proofs of 
-solvency for Bitcoin exchanges"
+"Provisions: Privacy-preserving Proofs of 
+Solvency for Bitcoin Exchanges"
 
-[[59]] Bulletproofs: Faster Rangeproofs and Much More, Poelstra A., February 2018, [online]. Available: https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/, Date  accessed: 2018-11-30.
+[[59]] A. Poelstra, "Bulletproofs: Faster Rangeproofs and Much More", February 2018 [online]. Available: <https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/>. Date  accessed: 2018-11-30.
 
 [59]: https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/
 "Bulletproofs: Faster Rangeproofs and Much More"
 
-[[60]] Homomorphic Mini-blockchain Scheme, Franca B., April 2015,[online]. Available: http://cryptonite.info/files/HMBC.pdf, Date accessed: 2018-11-22.
+[[60]] B. Franca, "Homomorphic Mini-blockchain Scheme", April 2015 [online]. Available: <http://cryptonite.info/files/HMBC.pdf>. Date accessed: 2018-11-22.
 
 [60]: http://cryptonite.info/files/HMBC.pdf
 "Homomorphic Mini-blockchain Scheme"
 
-[[61]] Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves, Franck C. and Großschädl J., University of Luxembourg,[online]. Available: http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf, Date accessed: 2018-11-22.
+[[61]] C. Franck and J. Großschädl, "Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves", University of Luxembourg [online]. Available: <http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf>. Date accessed: 2018-11-22..
 
 [61]: http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf
 "Efficient Implementation of Pedersen 
 Commitments Using Twisted Edwards Curves"
 
-[[62]] An investigation into Confidential Transactions, Gibson A., July 2018,[online]. Available: https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf, Date accessed: 2018-11-22.
+[[62]] A. Gibson, "An Investigation into Confidential Transactions", July 2018 [online]. Available: <https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf>. Date accessed: 2018-11-22.
 
 [62]: https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf
-"An investigation into Confidential Transactions"
+"An Investigation into Confidential Transactions"
 
-[[63]] How to do Zero-Knowledge from Discrete-Logs in under 7kB, Bootle J., October 2016,[online]. Available: https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb, Date accessed: 2019-01-18.
+[[63]] J. Bootle, "How to do Zero-knowledge from Discrete-Logs in under 7kB", October 2016 [online]. Available: <https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb>. Date accessed: 2019-01-18.
 
 [63]: https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb
-"How to do Zero-Knowledge from Discrete-Logs in under 7kB"
+"How to do Zero-knowledge from Discrete-Logs in under 7kB"
 
 
 ## Appendices
@@ -647,7 +653,7 @@ Commitments Using Twisted Edwards Curves"
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C ​$ over a field $ F ​$ and variables $ (x_1, ..., x_n) ​$ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f ​$ is to find any arithmetic circuit that can calculate $ f ​$, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f ​$. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
+- <u><i>Arithmetic Circuits</i></u>:<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be described as a list of addition and multiplication gates with a collection of linear consistency equations relating the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown below. ([[29]], [[47]])
 
   <p align="center"><img src="sources/ArithmiticCircuit.png" width="300" /></p>
 
