@@ -55,22 +55,20 @@ Disadvantages:
  * Does not stop interceptors from knowing you using Tor
  * Tor network not user friendly, due to be secure and hidden nature
  * Nodes (relay/bridge) are run by volunteers
+  
+Further investigation:  
+Onion Services - Tor services that don’t leave the Tor network https://2019.www.torproject.org/docs/onion-services.html.en  
+  
+Links of interest:  
+https://metrics.torproject.org/  
+https://blog.torproject.org/new-release-onionshare-2  
+https://onionshare.org/  
+https://2019.www.torproject.org/projects/projects.html.en  
+https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf  
+  
+Reference:  
+https://www.torproject.org/  
+https://en.wikipedia.org/wiki/Tor_(anonymity_network)  
+https://www.le-vpn.com/what-is-tor-browser/  
+https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/  
 
-Further investigation:
-Onion Services - Tor services that don’t leave the Tor network https://2019.www.torproject.org/docs/onion-services.html.en
-
-Links of interest:
-https://metrics.torproject.org/
-https://blog.torproject.org/new-release-onionshare-2
-https://onionshare.org/
-https://2019.www.torproject.org/projects/projects.html.en
-https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf
-
-Reference:
-https://www.torproject.org/
-https://en.wikipedia.org/wiki/Tor_(anonymity_network)
-https://www.le-vpn.com/what-is-tor-browser/
-https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/
-
-# RustConf 2018 - Integrating Rust into Tor... by Isis Lovecruft & Chelsea Komlo
-https://www.youtube.com/watch?v=WI4ApeHH9QE
