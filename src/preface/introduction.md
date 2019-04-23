@@ -74,7 +74,7 @@ Here we have a set of introductory level presentations:
 - [Crypto101](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/) - An introduction to elliptic curve math and digital signatures.
 - [Mimblewimble](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/) - An introduction to Mimblewimble, a protocol that focuses on scalability and privacy through the implementation of confidential transactions.
 - [Lightning Network for Dummies](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/) - An introduction to the Lightning Network, including examples of its workings, pros and cons.
-- [Non-Fungible Tokens](https://gitpitch.com/tari-labs/tari-university/master?p=/src/non-fungible-tokens/nft-landscape-1#/) - An introduction to non-fungible tokens (NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry.
+- [Non-Fungible Tokens](https://gitpitch.com/tari-labs/tari-university/master?p=/src/digital-assets/nft-landscape-1#/) - An introduction to non-fungible tokens (NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry.
 - [Byzantine Fault Tolerance and Consensus Mechanisms](https://gitpitch.com/tari-labs/tari-university/master?p=/src/consensus-mechanisms/BFT-consensusmechanisms#/) - Understanding Byzantine Generals Problem and how consensus is achieved in cryptocurrencies.
 
 #### Step-up from Beginners  
