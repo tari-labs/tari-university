@@ -45,7 +45,7 @@ We have put the presentations and reports into categories of difficulty, interes
 
 #### Presentations
 
-- [Non-Fungible Tokens](https://gitpitch.com/tari-labs/tari-university/master?p=/src/non-fungible-tokens/nft-landscape-1#/) - An introduction to non-fungible tokens (NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry.
+- [Non-Fungible Tokens](digital-assets/nft-landscape-1/sources/PITCHME.link.md) - An introduction to non-fungible tokens (NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry.
 - [Crypto101](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/) - An introduction to elliptic curve math and digital signatures.
 - [Mimblewimble](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/) - An introduction to Mimblewimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions.
 - [Lightning Network for Dummies](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/) - An introduction to the Lightning Network, including examples of its workings, pros and cons.
