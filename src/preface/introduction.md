@@ -45,11 +45,11 @@ We have put the presentations and reports into categories of difficulty, interes
 
 #### Presentations
 
-- [Non-Fungible Tokens](digital-assets/nft-landscape-1/sources/PITCHME.link.md) - An introduction to non-fungible tokens (NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry.
+- [Non-Fungible Tokens](https://gitpitch.com/tari-labs/tari-university/master?p=/src/digital-assets/nft-landscape-1#/) - An introduction to non-fungible tokens (NFTs), including the implementation of NFTs, Ethereum standards, and players in the Blockchain-based ticketing industry.
 - [Crypto101](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/) - An introduction to elliptic curve math and digital signatures.
 - [Mimblewimble](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/) - An introduction to Mimblewimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions.
 - [Lightning Network for Dummies](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/) - An introduction to the Lightning Network, including examples of its workings, pros and cons.
-- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/) - An overview of different layer 2 scaling solutions being worked at today, as well as a basic SWOT analysis of each.
+- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/layer2scaling-landscape#/) - An overview of different layer 2 scaling solutions being worked at today, as  well as a basic strengths, weaknesses, opportunities, and threats (SWOT) analysis of each.
 - [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/) - An overview of different layer 2 scaling solutions being worked at today, as  well as a basic strengths, weaknesses, opportunities, and threats (SWOT) analysis of each.
 - [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/) - An overview of the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari, and what viable scaling alternatives exist for Tari.
 - [RGB Protocol](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/) - An introduction to the RGB protocol.
@@ -64,10 +64,8 @@ We have put the presentations and reports into categories of difficulty, interes
 - [Layer 2 Scaling Survey (Part 1)](../layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
 - [Layer 2 Scaling Survey (Part 2)](../layer2scaling/more-landscape/landscape-update.md) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
 - [Atomic Swaps](../protocols/atomic-swaps/AtomicSwaps.md) - Presents the basics of Atomic Swaps.
-- [Basics of Scriptless Scripts](../cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) - Presents the basics of Scriptless Scripts.
-- [Introduction to Schnorr Signatures](../cryptography/digital_signatures/introduction.md) - Presents the basics of Schnorr Signatures and Signature Aggregation.
-  - [Basics of Schnorr Signatures](../cryptography/digital_signatures/basics.md) 
-  - [Signature Aggregation](../cryptography/digital_signatures/schnorr_signatures.md)
+- [Basics of Scriptless Scripts](../cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) - Presents the basics of Scriptless Scripts. 
+- [Introduction to Schnorr Signatures](../cryptography/digital_signatures/introduction_schnorr_signatures.md) - Presents the basics of Schnorr Signatures and Signature Aggregation.
 
 #### Beginners
 
@@ -84,13 +82,11 @@ Here we have a set of introductory level presentations:
 A small jump...
 
 - [Basics of Scriptless Scripts](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/scriptless-scripts#/) - Basics of Scriptless Scripts.
-- [Introduction to Schnorr Signatures](../cryptography/digital_signatures/introduction.md) - Basics of Schnorr Signatures and Signature Aggregation.
-  - [Basics of Schnorr Signatures](../cryptography/digital_signatures/basics.md) 
-  - [Signature Aggregation](../cryptography/digital_signatures/schnorr_signatures.md)
-  
+- [Introduction to Schnorr Signatures](../cryptography/digital_signatures/introduction_schnorr_signatures.md) - Basics of Schnorr Signatures and Signature Aggregation.
+
 #### Lay of the Land   
 
-- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
+- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/layer2scaling-landscape#/) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
 - [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/) - Presents an overview of different layer 2 scaling solutions being worked on today, as   well as a basic SWOT analysis of each.
 - [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/) - Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari, and what viable scaling alternatives exist for Tari.
 
