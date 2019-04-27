@@ -18,7 +18,6 @@
 
   - [Formation of MuSig](#formation-of-musig)
     - [Notation Used](#notation-used)
-
     - [Recap on Schnorr Signature Scheme](#recap-on-schnorr-signature-scheme)
     - [Design of Schnorr Multi-signature Scheme](#design-of-schnorr-multi-signature-scheme)
     - [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme)   
