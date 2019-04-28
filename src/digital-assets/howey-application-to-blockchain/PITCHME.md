@@ -10,6 +10,8 @@
 
 - Fourth Prong of Howey Test - Efforts of Others
 
++++
+
 - Decentralization, Consumptive Purpose and Priming Purchasers' Expectations
   - Background
   - Decentralization
@@ -93,6 +95,8 @@
     - Indirect efforts (e.g. creating ecosystem)
   - If the value of a token is driven by market forces, it suggests its value is attributable to factors other than the promoter's efforts
   
++++
+
   - "Essential tasks and responsibilities" widely dispersed
   
 - Does it make sense to apply U.S. federal securities laws to a particular token offering or sale?
@@ -100,7 +104,7 @@
   - Who should be subject to the disclosure obligations?
   - What information is expected to be disclosed?
   
-  ---
+ ---
 
 ## Consumptive Purpose
 
@@ -133,6 +137,8 @@
 - Analysis hinges on the application of the Howey test to determine if the token is an "investment contract" under the Act, and therefore a security.
 
 - Decentralization of control many public blockchain projects seek to foster places Howey's "efforts of others" prong as a key area of focus. Questions regarding the application of this prong generally relate to:
+
++++
 
   - Decentralization of the enterprise underlying the tokens;
   - Consumptive purpose of token purchasers; and
