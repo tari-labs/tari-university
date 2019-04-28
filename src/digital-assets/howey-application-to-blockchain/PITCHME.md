@@ -18,6 +18,8 @@
 
 - Conclusion
 
+---
+
 ## Recent Events
 
 - Illegal token offerings and sales (as determined by the SEC):
@@ -35,11 +37,15 @@
 
 - June 14, 2018 Speech by William Hinman, Director of SEC's Division of Corporation Finance
 
+---
+
 ## What is a Security?
 
 - Section 2(a)(1) of the Securities Act
 
 - Investment Contract
+
+---
 
 ## What is an Investment Contract (i.e. Howey Test)?
 
@@ -54,12 +60,16 @@
 
 - For an instrument to be an investment contract, each element of the Howey test must be met.
 
+---
+
 ## Fourth Prong of Howey Test - Efforts of Others
 
 - Relevant for public blockchain networks
 
   - Decentralization of control
   - Does the kind and degree of decentralization that exists mean that any expectation of profits token purchasers may have does not come from the efforts of others for purposes of Howey?
+
+---
 
 ## Decentralization, Consumptive Purpose and Priming Purchasers' Expectations
 
@@ -71,6 +81,8 @@
 - Hinman: Noted questions to consider when seeking to determine "whether a third party - be it a person, entity or coordinated group of actors - drives the expectation of a return" (e.g. priming purchasers' expectations)
   
 - Framework: Similarly focuses attention on whether a purchaser of a digital asset has a reasonable expectation of profits derived from the efforts of others
+
+---
 
 ## Decentralization
 
@@ -87,6 +99,8 @@
 
   - Who should be subject to the disclosure obligations?
   - What information is expected to be disclosed?
+  
+  ---
 
 ## Consumptive Purpose
 
@@ -100,6 +114,7 @@
   
 - Argument that purchasers are acquiring tokens for consumption will be stronger once the network is functional and tokens can actually be used to purchase goods or access services through the network
   
+---
 
 ## Priming Purchasers' Expectations
 
@@ -108,6 +123,8 @@
   - SEC has highlighted promoter statements made that specifically tout the opportunity to profit from purchasing a token
   - Promotional statements relating to tokens being listed on digital asset exchanges for secondary trading also draw attention
   - Framework: Purchasers may have an expectation that the promoter will undertake efforts to promote its own interests and enhance the value of the network or digital assets.  Promotional statements that create such an expectation have also been a focus of attention
+
+---
 
 ## Conclusion
   
