@@ -103,7 +103,7 @@
 
   - Who should be subject to the disclosure obligations?
   - What information is expected to be disclosed?
-
+  
 ---
 
 ## Consumptive Purpose
