@@ -68,7 +68,7 @@
 ## Decentralization
 
 - Degree and nature of a promoter's involvement has a bearing on the Howey analysis
-  -  If a promoter does not play a significant role in the "development, improvement (or enhancement), operation, or promotion of the network" [2, Section 3] underlying the tokens, it cuts against finding the "efforts of others" prong has been met.
+  -  If a promoter does not play a significant role in the "development, improvement (or enhancement), operation, or promotion of the network" underlying the tokens, it cuts against finding the "efforts of others" prong has been met.
     - Direct efforts to impact a token's supply and/or demand (e.g. buying and selling)
     - Indirect efforts (e.g. creating ecosystem)
   - If the value of a token is driven by market forces, it suggests its value is attributable to factors other than the promoter's efforts
