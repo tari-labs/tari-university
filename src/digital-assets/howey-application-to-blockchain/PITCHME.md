@@ -1,23 +1,15 @@
 ## Application of *Howey* to Blockchain network token sales
 
 - Recent Events
-  - SEC Actions
-  - Other Guidance
-
+ 
 - What is a Security?
 
 - What is an Investment Contract (i.e. Howey Test)?
 
 - Fourth Prong of Howey Test - Efforts of Others
 
-+++
-
 - Decentralization, Consumptive Purpose and Priming Purchasers' Expectations
-  - Background
-  - Decentralization
-  - Consumptive Purpose
-  - Priming Purchasers' Expectations
-
+  
 - Conclusion
 
 ---
@@ -94,8 +86,6 @@
     - Direct efforts to impact a token's supply and/or demand (e.g. buying and selling)
     - Indirect efforts (e.g. creating ecosystem)
   - If the value of a token is driven by market forces, it suggests its value is attributable to factors other than the promoter's efforts
-  
-+++
 
   - "Essential tasks and responsibilities" widely dispersed
   
@@ -138,10 +128,8 @@
 
 - Decentralization of control many public blockchain projects seek to foster places Howey's "efforts of others" prong as a key area of focus. Questions regarding the application of this prong generally relate to:
 
-+++
-
   - Decentralization of the enterprise underlying the tokens;
   - Consumptive purpose of token purchasers; and
   - Whether token purchasers were led to have an expectation that the promoter would take efforts to drive token value.
   
-- This report has offers insight into some of the factors promoters of token offerings may consider in assessing whether any expectation of profits token purchasers may have may come from the efforts of others and is indicative of the SEC's approach to evaluating the offer and sale of digital assets.
+- Indicative of the SEC's approach to evaluating the offer and sale of digital assets.
