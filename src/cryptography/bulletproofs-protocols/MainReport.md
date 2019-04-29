@@ -6,7 +6,7 @@
   - [Notation Used](#notation-used)
   - [Pedersen Commitments and Elliptic Curve Pedersen Commitments](#pedersen-commitments-and-elliptic-curve-pedersen-commitments)
   - [Security Aspects of (Elliptic Curve) Pedersen Commitments](#security-aspects-of-elliptic-curve-pedersen-commitments)
-- [Bulletproof Protocols](#bulletproof-protocols)
+- [Bulletproof Protocols](#bulletproof-protocols-1)
   - [Inner-product Argument (Protocol 1)](#inner-product-argument-protocol-1)
   - [How Proof System for Protocol 1 Works, Shrinking by Recursion](#how-proof-system-for-protocol-1-works-shrinking-by-recursion)
   - [Inner-product Verification through Multi-exponentiation (Protocol 2)](#inner-product-verification-through-multi-exponentiation-protocol-2)
@@ -20,6 +20,8 @@
     - [Inner-product Proof for Arithmetic Circuits (Protocol 3)](#inner-product-proof-for-arithmetic-circuits-protocol-3)
     - [Logarithmic-sized Non-interactive Protocol for Arithmetic Circuits](#logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
   - [Optimized Verifier using Multi-exponentiation and Batch Verification](#optimized-verifier-using-multi-exponentiation-and-batch-verification)
+    - [Multi-exponentiation](#multi-exponentiation)
+    - [Batch Verification](#batch-verification)
 - [Evolving Bulletproof Protocols](#evolving-bulletproof-protocols)
 - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
 - [References](#references)
@@ -30,8 +32,8 @@
 
 ## Introduction
 
-The overview of Bulletproofs given in [Bulletproofs and Mimblewimble](../bulletproofs-and-mimblewimble/
-MainReport.md) was largely based on the original work done by Bünz et al. [[1]]. They documented a number of 
+The overview of Bulletproofs given in [Bulletproofs and Mimblewimble](../bulletproofs-and-mimblewimble/MainReport.md) 
+was largely based on the original work done by Bünz et al. [[1]]. They documented a number of 
 different Bulletproof protocols, but not all of them in an obvious manner. This report summarizes and explains the 
 different Bulletproof protocols as simply as possible. It also simplifies the logic and explains the base 
 mathematical concepts in more detail where prior knowledge was assumed. The report concludes with a discussion on an 
@@ -128,7 +130,7 @@ No commitment scheme can simultaneously be perfectly *binding* and perfectly *hi
 Two variations of the Pedersen Commitment scheme share the same security attributes:
 
 
-- **Pedersen Commitment:** The Pedersen Commitment is a system for making a blinded, 
+- **Pedersen Commitment:**<a name="pc"> </a>The Pedersen Commitment is a system for making a blinded, 
   non-interactive commitment to a value ([[1]], [[3]], [[8]], [[14]], [[15]]).
   - The generalized Pedersen Commitment definition follows (refer to [Notation Used](#notation-used)):
     - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $. 
@@ -532,7 +534,7 @@ $$
 
 This proves that $ a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n $ are all in $ \{0,1\} $ and that 
 $ \mathbf {a}_L $ is composed of the bits of $ v $. However, the $ 2n + 1 $ constraints need to be expressed as a 
-single inner-product constant so that [Protocol&nbsp;1](#protocol-1---inner-product-argument) can be used, by letting 
+single inner-product constant so that [Protocol&nbsp;1](#inner-product-argument-protocol-1) can be used, by letting 
 the *verifier* $ \mathcal{V} $ choose a random linear combination of the constraints. To prove that a committed vector 
 $ \mathbf {b} \in \mathbb Z_p^n $ satisfies $ \mathbf {b} = \mathbf{0}^n $, it suffices for the 
 *verifier* $ \mathcal{V} $ to send a random $ y \in \mathbb{Z_p} $ to the *prover* $ \mathcal{P} $ and for the 
@@ -744,7 +746,7 @@ $$
 In each round, the dealer generates the challenges using the Fiat-Shamir<sup>[def](#fsh)</sup> heuristic and the 
 combined proof components, and sends them to each party. In the end, each party sends $ \mathbf{l}^{(k)},\mathbf{r}^{(k)} $ 
 to the dealer, who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concatenation of all shares. The dealer runs the 
-inner product argument ([Protocol&nbsp;1](#protocol-1---inner-product-argument)) to generate the final proof. Each proof 
+inner product argument ([Protocol&nbsp;1](#inner-product-argument-protocol-1)) to generate the final proof. Each proof 
 component is the (homomorphic) sum of each party's proof components and each share constitutes part of a separate 
 zero-knowledge proof. Figure&nbsp;7 shows an example of the MPC protocol implementation using three rounds with linear communication: 
 
@@ -881,7 +883,7 @@ the *verifier's* runtime is of particular interest. This protocol presents optim
 is also extendable to [aggregate range proofs](#aggregating-logarithmic-proofs) and the 
 [arithmetic circuit protocol](#zero-knowledge-proof-for-arithmetic-circuits).
 
-**Multi-exponentiation**
+##### Multi-exponentiation
 
 In [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2), verification of the inner-product 
 is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single 
@@ -911,7 +913,7 @@ $ A = 1 \mspace 3mu \wedge \mspace 3mu B = 1 $. Various algorithms are known to 
 scalar quantities (steps 101 and 102 in Figure&nbsp;10) efficiently (sub-linearly), thereby further improving the 
 speed and efficiency of the protocol.
 
-**Batch verification**
+##### Batch verification
 
 A further important optimization concerns the verification of multiple proofs. The essence of the verification is to 
 calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive 
@@ -988,7 +990,7 @@ Cathie Yun">24</a>]</b></div>
 
 - Bulletproofs have many potential use cases or 
 [applications](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs), 
-but are still under [development](../bulletproofs-and-mimblewimble/MainReport.md#current--past-efforts). A new 
+but are still under [development](../bulletproofs-and-mimblewimble/MainReport.md#current-and-past-efforts). A new 
 confidential blockchain protocol such as Tari should carefully consider expanded use of Bulletproofs to maximally leverage 
 functionality of the code base.
 - Bulletproofs are not done yet, as illustrated in [Evolving Bulletproof Protocols](#evolving-bulletproof-protocols), 
@@ -1221,9 +1223,8 @@ July 2018"
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available 
 in the cited references. 
 
-- **Arithmetic Circuits:<a name="ac">** </a>An arithmetic circuit. 
-- $ C $ over a field $ F $ and variables 
-  $ (x_1, ..., x_n) $: This is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively 
+- **Arithmetic Circuits:**<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables 
+  $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively 
   be described as a list of addition and multiplication gates with a collection of linear consistency equations relating 
   the inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth 
   being the length of the longest directed path. *Upper bounding* the complexity of a polynomial $ f $ is to find any 
@@ -1239,7 +1240,7 @@ field F and variables (x_1, ..., x_n)
 is a directed acyclic graph ..."
 
 
-- **Discrete Logarithm/Discrete Logarithm Problem (DLP):** In the mathematics of real 
+- **Discrete Logarithm/Discrete Logarithm Problem (DLP):**<a name="dlp"> </a>In the mathematics of real 
 numbers, the logarithm $ \log_b^a $ is a number $ x $ such that 
 $ b^x=a $​, for given numbers $ a $ and $ b ​$. 
 Analogously, in any group $ G $ , powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm 
@@ -1253,7 +1254,7 @@ numbers, the logarithm log_b(a)
 is a number x such that ..."
 
 
-- **ElGamal Commitment/Encryption:** An ElGamal commitment is a Pedersen 
+- **ElGamal Commitment/Encryption:**<a name="egc"> </a>An ElGamal commitment is a Pedersen 
 Commitmentdef with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption 
 scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The 
 DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH 
@@ -1267,7 +1268,7 @@ Pedersen Commitment with
 additional commitment ..."
 
 
-- **Fiat–Shamir Heuristic/Transformation:** The Fiat–Shamir heuristic is a technique in 
+- **Fiat–Shamir Heuristic/Transformation:**<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in 
 cryptography to convert an interactive public-coin protocol (Sigma protocol) between a prover and a verifier into a 
 one-message (non-interactive) protocol using a cryptographic hash function ([[6]], [[7]]).
   - The *prover* will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that 
@@ -1289,7 +1290,7 @@ technique in cryptography to
 convert an interactive ..."
 
 
-- **Hadamard Product:** In mathematics, the Hadamard product is a binary operation that takes 
+- **Hadamard Product:**<a name="hdmp"> </a>In mathematics, the Hadamard product is a binary operation that takes 
 two matrices $ \mathbf {A} , \mathbf {B} $ of the same dimensions, and produces another matrix of the same dimensions 
 where each element $ i,j $ is the product of elements $ i,j $ of the original two matrices. The Hadamard product 
 $ \mathbf {A} \circ \mathbf {B} $ is different from normal matrix multiplication, most notably because it is also 
@@ -1310,7 +1311,7 @@ is a binary operation that takes two
 matrices A,B of the same dimensions ..."
 
 
-- **Zero-knowledge Proof/Protocol:** In cryptography, a zero-knowledge proof/protocol is a 
+- **Zero-knowledge Proof/Protocol:**<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a 
 method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without 
 conveying any information apart from the fact that the prover knows the value of $ Y​ $. The proof system must be 
 complete, sound and zero-knowledge ([[4]], [[9]]).
