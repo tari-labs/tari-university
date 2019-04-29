@@ -321,7 +321,7 @@ logarithm relation between $ \mathbf {g} , \mathbf {h} , u $ or extracting a val
 
 Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $ of size $ n $. 
 The Pedersen Commitment scheme allows a vector to be cut in half and the two halves to then be compressed together. 
-Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G $ be a hash function for commitment $ P $, with 
+Let $ \mathrm H : \mathbb Z^{2n+1}\_p \to \mathbb G $ be a hash function for commitment $ P $, with 
 $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) $. Note that commitment $ P $ and thus 
 $ \mathrm H $ is additively homomorphic, therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  $ can be 
 hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p$. If $ n ^\prime = n/2 ​$, 
@@ -1001,8 +1001,8 @@ hiding property as a drawback and slow down all proof calculations. In the Bünz
 Commitments will be replaced with ElGamal Commitments<sup>[def][egc~]</sup> to move from computationally binding to 
 perfectly binding. They also gave further ideas about how the ElGamal commitments can possibly be enhanced to improve 
 the hiding property to be statistical or perfect. 
-(*Refer to the Grin projects' implementation [here]
-(../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).*)
+(Refer to the Grin projects' implementation 
+[here](../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).)
 - It is important that developers understand more about the fundamental underlying mathematics when implementing 
 something like Bulletproofs, even if they just reuse libraries developed by someone else.
 
@@ -1240,10 +1240,10 @@ is a directed acyclic graph ..."
 
 
 - **Discrete Logarithm/Discrete Logarithm Problem (DLP):** In the mathematics of real 
-numbers, the logarithm  \log_b^a ​ is a number  x ​ such that 
- b^x=a ​, for given numbers  a ​ and  b ​. 
-Analogously, in any group  G ​ , powers  b^k ​ can be defined for all integers  k ​, and the discrete logarithm 
- \log_ba ​ is an integer  k ​ such that  b^k=a ​. Algorithms in public-key cryptography base their security on the 
+numbers, the logarithm $ \log_b^a $ is a number $ x $ such that 
+$ b^x=a $​, for given numbers $ a $ and $ b ​$. 
+Analogously, in any group $ G $ , powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm 
+$ \log\_ba $ is an integer $ k $ such that $ b^k=a $​. Algorithms in public-key cryptography base their security on the 
 assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of 
 elliptic curves over finite fields has no efficient solution ([[5]], [[16]]).
 
@@ -1254,7 +1254,7 @@ is a number x such that ..."
 
 
 - **ElGamal Commitment/Encryption:** An ElGamal commitment is a Pedersen 
-Commitmentdef with an additional commitment  g^r  to the randomness used. The ElGamal encryption 
+Commitmentdef with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption 
 scheme is based on the Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The 
 DDH assumption states that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH 
 problem ([[1]], [[17]], [[18]], [[19]]). 
@@ -1290,13 +1290,13 @@ convert an interactive ..."
 
 
 - **Hadamard Product:** In mathematics, the Hadamard product is a binary operation that takes 
-two matrices  \mathbf {A} , \mathbf {B} ​ of the same dimensions, and produces another matrix of the same dimensions 
-where each element  i,j ​ is the product of elements  i,j ​ of the original two matrices. The Hadamard product 
- \mathbf {A} \circ \mathbf {B} ​ is different from normal matrix multiplication, most notably because it is also 
-commutative  [ \mathbf {A} \circ \mathbf {B} = \mathbf {B} \circ \mathbf {A} ] ​along with being associative 
- [ \mathbf {A} \circ ( \mathbf {B} \circ \mathbf {C} ) = ( \mathbf {A} \circ \mathbf {B} ) \circ \mathbf {C} ] ​ and 
-distributive over addition  [ \mathbf {A} \circ ( \mathbf {B} + \mathbf {C} ) = \mathbf {A} \circ \mathbf {B} + 
-\mathbf {A} \circ \mathbf {C} ] ([[21]]).
+two matrices $ \mathbf {A} , \mathbf {B} $ of the same dimensions, and produces another matrix of the same dimensions 
+where each element $ i,j $ is the product of elements $ i,j $ of the original two matrices. The Hadamard product 
+$ \mathbf {A} \circ \mathbf {B} $ is different from normal matrix multiplication, most notably because it is also 
+commutative $ [ \mathbf {A} \circ \mathbf {B} = \mathbf {B} \circ \mathbf {A} ] $ ​along with being associative 
+$ [ \mathbf {A} \circ ( \mathbf {B} \circ \mathbf {C} ) = ( \mathbf {A} \circ \mathbf {B} ) \circ \mathbf {C} ] $ and 
+distributive over addition $ [ \mathbf {A} \circ ( \mathbf {B} + \mathbf {C} ) = \mathbf {A} \circ \mathbf {B} + 
+\mathbf {A} \circ \mathbf {C} ] $ ([[21]]).
 
 $$
 \mathbf {A} \circ \mathbf {B} = \mathbf {C} = (a_{11} \cdot b_{11} \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , 
@@ -1311,8 +1311,8 @@ matrices A,B of the same dimensions ..."
 
 
 - **Zero-knowledge Proof/Protocol:** In cryptography, a zero-knowledge proof/protocol is a 
-method by which one party (the prover) can convince another party (the verifier) that a statement  Y ​ is true, without 
-conveying any information apart from the fact that the prover knows the value of  Y​. The proof system must be 
+method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without 
+conveying any information apart from the fact that the prover knows the value of $ Y​ $. The proof system must be 
 complete, sound and zero-knowledge ([[4]], [[9]]).
   - Complete: If the statement is true, and both the prover and verifier follow the protocol, the verifier will accept.
   - Sound: If the statement is false, and the verifier follows the protocol, the verifier will not be convinced.
