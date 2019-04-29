@@ -38,8 +38,6 @@
 
 - [Contributors](#contributors)
 
-  
-
 ## Introduction
 
 A hash table is a data structure that maps keys to values. A hashing function is used to compute keys that are inserted into a table
@@ -47,7 +45,7 @@ from which values can later be retrieved. As the name suggests, a distributed ha
 many linked nodes, which cooperate to form a single cohesive hash table service. Nodes are linked in what is called an [overlay network](https://en.wikipedia.org/wiki/Overlay_network).
 An overlay network is simply a communication network built on top of another network. The Internet is an example, as it began as an overlay network on the public switched telephone network.
 
-$\langle key, value \rangle$ pairs are stored on a subset of the network, usually by some notion of "closeness" to that key. 
+$\langle key, value \rangle$ pairs are stored on a subset of the network, usually by some notion of "closeness" to that key.
 
 A DHT network design allows the network to tolerate nodes coming and going without failure, and allows the network size to increase indefinitely.
 
@@ -64,7 +62,7 @@ These systems employed different methods of locating resources on the network:
 - Napster used a central index server, which was a single point of failure and left it vulnerable to attacks.
 - FreeNet used a key-based routing. However, it was less structured than a DHT and did not guarantee that data could be found.
 
-In 2001, four DHT projects were introduced: CAN, Chord, Pastry and Tapestry. They aimed to have a lookup efficiency 
+In 2001, four DHT projects were introduced: CAN, Chord, Pastry and Tapestry. They aimed to have a lookup efficiency
 
 ($O(log(n))$) similar to that of a centralized index, while having the benefits of a decentralized network.
 
@@ -77,8 +75,6 @@ of aspects in common:
 - Communication need only occur between neighbors that are decided on by some algorithm.
 
 In this report we'll go over some of the aspects common to all DHTs and dive deeper into a popular DHT implementation, called [Kademlia](#kademlia).
-
-
 
 ## Characterization of DHT networks
 
@@ -100,6 +96,11 @@ have a massive number of nodes (in the case of BitTorrent millions of nodes) wit
 know about every other participant in the network.
 
 In this way, DHTs are inherently more resilient against hostile attackers then a typical centralized system [[1]].
+
+Bittorrent is one of the largest decentralized networks in existence, containing in the order of tens of millions
+of concurrent users and hundreds of millions of active users. It is estimated that there are a quarter of a billion
+distinct monthly users of the BitTorrent network [[10]]. As of 2019, Tor has around 9000 relay servers and
+over 2 million users [[11]].
 
 ### Distributed Data Storage
 
@@ -140,7 +141,7 @@ It has a number of core features that are not simultaneously offered by other DH
 
 #### NodeID
 
-A node selects an $n$-bit ID, which is opaque to other nodes on the network. The network design
+A node selects an $n$-bit ID, which is given to other nodes on the network. The network design
 relies on node IDs being uniformly distributed by some random procedure. A node's position is
 determined by the shortest unique prefix of its ID, which forms a tree structure with node IDs
 as leaves [[2]]. This ID should be reused when the node rejoins the network. The following figure shows a binary tree structure in a three-bit key space:
@@ -166,7 +167,7 @@ The bit length of the Node ID should be sufficiently large to make collisions ex
 
 #### Bootstrapping a Node
 
-A node wishing to join the network for the first time has no contacts in its $k$-buckets. In order for the node to establish
+A node wishing to join the network for the first time has no known contacts. In order for the node to establish
 itself on the network, it must contact one, or more than one, bootstrap node. These nodes are not special in any way other than
 being listed in some predefined list. They simply serve as a first point of contact for the requesting node to become
 known to more of the network and to find their closest peers.
@@ -213,13 +214,13 @@ peer discovery and data storage/retrieval.
 The following RPC messages are part of the Kademlia protocol:
 
 - Peer discovery
-  - `PING`/`PONG` - used to determine liveness of a peer.
-- - `FIND_NODE` - returns at most $k$ nodes, which are closer to a given query value.
 
+  - `PING`/`PONG` - used to determine liveness of a peer.
+  - `FIND_NODE` - returns a number of nodes which are closer to a given query value.
 
 - Data storage and retrieval
   - `STORE` - request to store a $\langle key, value \rangle$ pair.
-  - `FIND_VALUE` - behaves the same as `FIND_NODE` by returning the $k$ closest nodes. If a node has the requested $\langle key, value \rangle$ pair,
+  - `FIND_VALUE` - behaves the same as `FIND_NODE` by returning closer nodes. If a node has the requested $\langle key, value \rangle$ pair,
     it will instead return the stored value.
 
 Notably, there is no `JOIN` message. This is because there is no explicit join in Kademlia. Each peer has a chance of being added to a
@@ -234,16 +235,12 @@ querying closer and closer nodes until it has found the node. In the process, bo
 
 ##### Data Storage and Retrieval Procedure
 
-The storage and retrieval procedure ensures that $\langle key, value \rangle$ pairs are reliably stored and able to be 
-
+The storage and retrieval procedure ensures that $\langle key, value \rangle$ pairs are reliably stored and able to be
 retrieved by participants in the network.
 
-The storage procedure uses the [lookup procedure](#lookup-procedure) to locate the closest nodes to the key, at which 
-
-point it issues a `STORE` RPC message to those nodes. Each node republishes the $\langle key, value \rangle$ pairs to 
-
-increase the availability of t he data. Depending on the implementation, the data may eventually expire (say 24 hours). 
-
+The storage procedure uses the [lookup procedure](#lookup-procedure) to locate the closest nodes to the key, at which
+point it issues a `STORE` RPC message to those nodes. Each node republishes the $\langle key, value \rangle$ pairs to
+increase the availability of t he data. Depending on the implementation, the data may eventually expire (say 24 hours).
 Therefore, the original publisher may be required to republish the data before that period expires.
 
 The retrieval procedure follows the same logic as storage, except a `FIND_VALUE` RPC is issued and the data received.
@@ -251,8 +248,11 @@ The retrieval procedure follows the same logic as storage, except a `FIND_VALUE`
 ##### Routing Table
 
 Each node organizes contacts into a list called a routing table. A routing table is a binary tree
-where the leaves are buckets that contain a maximum of $k$ nodes, aptly named $k$-buckets.
-These are nodes with some common node ID prefix, which is captured by the [XOR metric](#xor-metric).
+where the leaves are 'buckets' that contain a maximum of $k$ nodes. $k$ is a network-wide parameter that
+should be large enough to ensure that lookups and data will be available with high probability.
+These buckets are aptly named $k$-buckets, and contain nodes with some common node ID prefix.
+
+It should be noted that this is captured by the [XOR metric](#xor-metric).
 
 For instance, given node $A(1100)$ with peers $B(1110)$, $C(1101)$, $D(0111)$ and $E(0101)$:
 
@@ -266,10 +266,8 @@ $A \oplus D = 1011 (11)$
 
 $A \oplus E = 1001 (9)$
 
-$A$, $B$ and $C$ share the same prefix up to the first two most significant bits (MSBs). However, $A$, $C$ and $D$ share 
-
-no prefixed bits and are therefore further apart. In this example, $A$, $B$ and $C$ would in the same bucket and 
-
+$A$, $B$ and $C$ share the same prefix up to the first two most significant bits (MSBs). However, $A$, $C$ and $D$ share
+no prefixed bits and are therefore further apart. In this example, $A$, $B$ and $C$ would be in the same bucket and
 $D$, $E$ in their own bucket.
 
 Initially, a node's routing table is not populated with $k​$-buckets, but may contain a single node in a
@@ -305,9 +303,7 @@ Once an attacker has inserted themselves in this way, they may censor or manipul
 
 ##### Eclipse Attack
 
-An attacker takes advantage of the fact that in practice, there are relatively few nodes in most parts of a 160-bit keyspace.
-An attacker injects themselves closer to the target than other peers and eventually could achieve a dominating position.
-This can be done cheaply if the network rules allow many peers to come from the same IP address.
+Kademlia is vulnerable to eclipse attacks which is discussed in the following section.
 
 ## DHT Vulnerabilities and Attacks
 
@@ -315,6 +311,10 @@ This can be done cheaply if the network rules allow many peers to come from the 
 
 An Eclipse attack is an attack that allows adversarial nodes to isolate the victim from the rest of its peers and filter its view of the rest of the
 network. If the attacker is able to occupy all peer connections, the victim is eclipsed.
+
+An attacker takes advantage of the fact that in practice, there are relatively few nodes in most parts of a 160-bit keyspace.
+An attacker injects themselves closer to the target than other peers and eventually could achieve a dominating position.
+This can be done cheaply if the network rules allow many peers to come from the same IP address.
 
 The cost of executing an eclipse attack is highly dependent on the architecture of the network and can range from a small number of machines
 (e.g. with hundreds of node instances on a single machine) to requiring a full-fledged botnet. Reference [[6]] shows that an eclipse attack on Ethereum's Kademlia-based DHT can be
@@ -327,7 +327,7 @@ Mitigations include:
 
 ### Sybil Attack
 
-Sybil attacks are an attempt by colluding nodes to gain disproportionate control of a network. and are often used as a vector
+Sybil attacks are an attempt by colluding nodes to gain disproportionate control of a network and are often used as a vector
 for other attacks. Many, if not all, DHTs have been designed under the assumption that a low fraction of nodes are malicious.
 A Sybil attack attempts to break this assumption by increasing the number of malicious nodes.
 
@@ -363,7 +363,8 @@ Given:
 - $I$ - keyspace group in $[0,1)$;
 - $n$ - number of honest nodes;
 - $ \epsilon n$ - number adversarial nodes for constant $\epsilon < 1$;
-- therefore, the network size $N$ is $n + \epsilon n$;
+- therefore, the network size $N$ is $n + \epsilon n$. Put another way, as $\epsilon$ approaches 1, bad nodes occupy less than $1/2$
+  of the total network.
 - $k$-region is a region in $[0,1)$ of size $k/n$;
 - $R_k(x)$ is a unique $k$-region containing $x$.
 
@@ -378,16 +379,15 @@ The cuckoo rule states:
 > all nodes in $R_k(x)​$ to points in $[0, 1)​$ chosen uniformly and independently at random (without replacing any
 > further nodes) [[5]].
 
-It is concluded that for a constant fraction of adversarial peers, where $\epsilon < 1 - 1/k$ for any constant, $k > 1$ 
-
+It is concluded that for a constant fraction of adversarial peers, where $\epsilon < 1 - 1/k$ for any constant, $k > 1$
 is sufficient to prevent adaptive join-leave attacks with high probability.
 
 Sen, Freedman [[7]] modelled and analysed the Cuckoo Rule and found that, in practice, it tolerates very few adversarial nodes.
 
-|                                                              |      |                                                              |
-| :----------------------------------------------------------: | :--: | :----------------------------------------------------------: |
-| ![Commensal Cuckoo Figure1](./assets/Commensal-Cuckoo-Figure1.png) |      | ![Commensal Cuckoo Figure2](./assets/Commensal-Cuckoo-Figure2.png) |
-| (Cuckoo rule) Minimum group size <br>needed to tolerate different $\epsilon$ for 100,000 rounds.<br>Groups must be large (i.e. 100s to 1,000s of nodes) to guarantee correctness [[7]] |      | (Cuckoo rule) Number of rounds the system maintained correctness with an average group<br> size of 64 nodes, varied. Simulation was halted<br> after 100,000 rounds. Failure rates drop dramatically past a certain threshold for different N [[7]] |
+|                                                                                                                                                                                        |     |                                                                                                                                                                                                                                                     |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                           ![Commensal Cuckoo Figure1](./assets/Commensal-Cuckoo-Figure1.png)                                                           |     |                                                                                         ![Commensal Cuckoo Figure2](./assets/Commensal-Cuckoo-Figure2.png)                                                                                          |
+| (Cuckoo rule) Minimum group size <br>needed to tolerate different $\epsilon$ for 100,000 rounds.<br>Groups must be large (i.e. 100s to 1,000s of nodes) to guarantee correctness [[7]] |     | (Cuckoo rule) Number of rounds the system maintained correctness with an average group<br> size of 64 nodes, varied. Simulation was halted<br> after 100,000 rounds. Failure rates drop dramatically past a certain threshold for different N [[7]] |
 
 Notably, they show that rounds to failure (i.e. more than one-third of nodes in a given group are adversarial) decreases dramatically
 with an increasing but small global fraction of adversarial nodes. An amendment rule is proposed, which allows smaller group sizes
@@ -407,45 +407,50 @@ especially important when control of a network may mean monetary losses, loss of
 
 [[1]] Wikipedia: "Distributed Hash Table" [online]. Available: https://en.wikipedia.org/wiki/Distributed_hash_table. Date accessed: 2019-03-08.
 
-[1]: https://en.wikipedia.org/wiki/Distributed_hash_table. "Wikipedia: Distributed Hash Table"
+[1]: https://en.wikipedia.org/wiki/Distributed_hash_table. 'Wikipedia: Distributed Hash Table'
 
 [[2]] Kademlia: A Peer-to-Peer Information System" [online]. Available: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf. Date accessed: 2019-03-08.
 
-[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf "Original Kademlia paper"
+[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf 'Original Kademlia paper'
 
 [[3]] Ethereum Wiki [online]. Available: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection#lookup. Date accessed: 2019-03-12.
 
-[3]: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection "Kademlia Peer Selection"
+[3]: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection 'Kademlia Peer Selection'
 
 [[4]] Wikipedia: "Tapestry (DHT)" [online]. Available: https://www.wikiwand.com/en/Tapestry_(DHT). Date accessed: 2019-03-12.
 
-[4]: https://www.wikiwand.com/en/Tapestry_(DHT) "Tapestry (DHT)"
+[4]: https://www.wikiwand.com/en/Tapestry_(DHT) 'Tapestry (DHT)'
 
 [[5]] Towards a Scalable and Robust DHT [online]. Available: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf. Date accessed: 2019-03-12.
 
-[5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf "Towards a Scalable and Robust DHT"
+[5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf 'Towards a Scalable and Robust DHT'
 
-[[6]] Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network [online]. Available:  https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf. Date accessed: 2019-03-15.
+[[6]] Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network [online]. Available: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf. Date accessed: 2019-03-15.
 
-[6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf "Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network"
+[6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf 'Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network'
 
 [[7]]: Commensal Cuckoo: Secure Group Partitioning for Large-scale Services [online]. Available: http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf. Date accessed: 2019-03-15.
 
-[7]: http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf "Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services"
+[7]: http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf 'Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services'
 
-[[8]]: Overlay and P2P Networks [online]. Available: https://www.cs.Nhelsinki.fi/webfm_send/1339. 
-Date accessed: 2019-04-04.
+[[8]]: Overlay and P2P Networks [online]. Available: https://www.cs.Nhelsinki.fi/webfm_send/1339. Date accessed: 2019-04-04.
 
-[8]: https://www.cs.helsinki.fi/webfm_send/1339 "Overlay and P2P networks"
+[8]: https://www.cs.helsinki.fi/webfm_send/1339 'Overlay and P2P networks'
 
-[[9]]: Poisoning the Kad Networ" [online]. Available: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf. Date accessed: 2019-04-04.
+[[9]]: Poisoning the Kad Network [online]. Available: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf. Date accessed: 2019-04-04.
 
-[9]: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf "Poisoning the Kad Network"
+[9]: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf 'Poisoning the Kad Network'
+
+[[10]]: BitTorrent [online]. https://en.wikipedia.org/wiki/BitTorrent. Date accessed: 2019-04-04.
+
+[10]: https://en.wikipedia.org/wiki/BitTorrent 'BitTorrent'
+
+[[11]]: Servers - Tor Metrics [online]. https://metrics.torproject.org/networksize.html Date accessed: 2019-04-29.
+
+[11]: https://en.wikipedia.org/wiki/BitTorrent 'Servers - Tor Metrics'
 
 ## Contributors
 
 - <https://github.com/sdbondi>
 - <https://github.com/neonknight64>
 - <https://github.com/anselld>
-
-
