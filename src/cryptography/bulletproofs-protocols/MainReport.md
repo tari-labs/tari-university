@@ -913,7 +913,7 @@ $ A = 1 \mspace 3mu \wedge \mspace 3mu B = 1 $. Various algorithms are known to 
 scalar quantities (steps 101 and 102 in Figure&nbsp;10) efficiently (sub-linearly), thereby further improving the 
 speed and efficiency of the protocol.
 
-##### Batch verification
+##### Batch Verification
 
 A further important optimization concerns the verification of multiple proofs. The essence of the verification is to 
 calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive 
