@@ -1,17 +1,5 @@
 # Confidential Assets
 
-## Introduction
-
-Confidential assets in the context of blockchain technology and blockchain-based cryptocurrencies can have different meanings to different audiences, and can also be something totally different or unique depending on the use case. It is a special type of digital asset and inherits all its properties except that it is also confidential. Confidential assets therefore have value, can be owned but has no physical presence. The confidentiality aspect implies that the amount of assets owned as well as the asset type that was transacted in can be confidential. A further classification can be made with regards to whether it is fungible (interchangeable) or non-fungible (unique, not interchangeable). Confidential assets can only exist in the form of a cryptographic token or derivative thereof that is also cryptographically secure, at least under the Discrete Logarithmic Problem<sup>[def][dlp~]</sup>  (DLP) assumption. 
-
-The basis of confidential assets are confidential transactions as proposed by Maxwell [[4]] and Poelstra et al. [[5]], where the amounts transferred are kept visible only to participants in the transaction (and those they designate). Confidential transactions succeed in making the transaction amounts private, while still preserving the ability of the public blockchain network to verify that the ledger entries and Unspent Transaction Output (UTXO) set still add up. All amounts in the UTXO set are blinded, while preserving public verifiability. Poelstra et al. [[5]] showed how the asset types can also be blinded in conjunction with the output amounts. Multiple asset types can be accommodated within single transactions on the same blockchain.
-
-This report investigates confidential assets as a natural progression of confidential transactions. 
-
-
-
-## Contents
-
 - [Confidential Assets](#confidential-assets)
   - [Introduction](#introduction)
   - [Contents](#contents)
@@ -34,6 +22,16 @@ This report investigates confidential assets as a natural progression of confide
     - [Appendix A: Definition of Terms](#appendix-a-definition-of-terms)
     - [Appendix B: Ricardian Contracts vs. Smart Contracts](#appendix-b-ricardian-contracts-vs-smart-contracts)
   - [Contributors](#contributors)
+
+
+
+## Introduction
+
+Confidential assets in the context of blockchain technology and blockchain-based cryptocurrencies can have different meanings to different audiences, and can also be something totally different or unique depending on the use case. It is a special type of digital asset and inherits all its properties except that it is also confidential. Confidential assets therefore have value, can be owned but has no physical presence. The confidentiality aspect implies that the amount of assets owned as well as the asset type that was transacted in can be confidential. A further classification can be made with regards to whether it is fungible (interchangeable) or non-fungible (unique, not interchangeable). Confidential assets can only exist in the form of a cryptographic token or derivative thereof that is also cryptographically secure, at least under the Discrete Logarithmic Problem<sup>[def][dlp~]</sup>  (DLP) assumption. 
+
+The basis of confidential assets are confidential transactions as proposed by Maxwell [[4]] and Poelstra et al. [[5]], where the amounts transferred are kept visible only to participants in the transaction (and those they designate). Confidential transactions succeed in making the transaction amounts private, while still preserving the ability of the public blockchain network to verify that the ledger entries and Unspent Transaction Output (UTXO) set still add up. All amounts in the UTXO set are blinded, while preserving public verifiability. Poelstra et al. [[5]] showed how the asset types can also be blinded in conjunction with the output amounts. Multiple asset types can be accommodated within single transactions on the same blockchain.
+
+This report investigates confidential assets as a natural progression of confidential transactions. 
 
 
 
