@@ -1,32 +1,24 @@
 # Confidential Assets
 
 - [Introduction](#introduction)
-
 - [Preliminaries](#preliminaries)
-- [Basis of Confidential Assets](#-basis-of-confidential-assets)
-
+- [Basis of Confidential Assets](#basis-of-confidential-assets)
   - [Confidential Transactions](#confidential-transactions)
   - [Asset Commitments and Surjection Proofs](#asset-commitments-and-surjection-proofs)
-
   - [Confidential Asset Scheme](#confidential-asset-scheme)
     - [Asset Transactions](#asset-transactions)
     - [Asset Issuance](#asset-issuance)
     - [Asset Reissuance](#asset-reissuance)
     - [Flexibility](#flexibility)
-
 - [Confidential Asset Implementations](#confidential-asset-implementations)
-
   - [Elements Project](#elements-project)
   - [Chain Core Confidential Assets](#chain-core-confidential-assets)
   - [Cloak](#cloak)
 - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
-
 - [References](#references)
-
 - [Appendices](#appendices)
   - [Appendix A: Definition of Terms](#appendix-a-definition-of-terms)
   - [Appendix B: Ricardian Contracts vs. Smart Contracts](#appendix-b-ricardian-contracts-vs-smart-contracts)
-
 - [Contributors](#contributors)
 
 
@@ -59,7 +51,7 @@ This report investigates confidential assets as a natural progression of confide
 The general notation of mathematical expressions when specifically referenced are listed here. These notations are 
 important pre-knowledge for the remainder of the report.
 
-- Let $ p $ be a large prime number.
+- Let $ p ​$ be a large prime number.
 - Let $ \mathbb G $ denote a cyclic group of prime order $ p $. 
 - Let $ \mathbb Z_p $ denote the ring of integers $ modulo \mspace{4mu} p $.
 - Let $ \mathbb F_p $ be a group of elliptic curve points over a finite (prime) field.
@@ -87,9 +79,11 @@ Pedersen Commitments are perfectly hiding (an attacker with infinite computing p
 committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce 
 fake commitments except with small probability). The Elliptic Curve Pedersen Commitment to value $ x \in \mathbb Z_p $ 
 has the following form
+
 $$
 C(x,r) = xH + rG
 $$
+
 where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and 
 $ H \in  \mathbb F_p $ is specially chosen so that the value $ x_H $ satisfying $ H = x_H G $ cannot be found except 
 if the Elliptic Curve DLP<sup>[def][dlp~]</sup> (ECDLP) is solved. The number $ H $ is what is known as a Nothing Up 
@@ -99,7 +93,7 @@ algorithms: <code>Setup()</code> to set up the commitment parameters $ G $ and $
 to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $ and <code>Open()</code> to open and verify 
 the commitment. ([[5]], [[6]], [[7]], [[8]])
 
-[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) ([[9]], [[10]]) is based on and achieves 
+[Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) ([[9]], [[10]]) is based on and achieves 
 confidentiality using these confidential transaction primitives. If confidentiality is not sought, inputs may be given 
 as explicit amounts, in which case the homomorphic commitment to the given amount will have a blinding factor $ r = 0 $.
 
@@ -114,6 +108,7 @@ Given some unique asset description $ A $, the associated asset tag $ H_A \in \m
 Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. (*Selection of $ A $ is discussed 
 in [Asset Issuance](#asset-issuance).*) Consider a transaction with two inputs and two outputs involving two distinct 
 asset types $ A $ and $ B $:
+
 $$
 \begin{aligned}
 in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G \\\\
@@ -121,7 +116,9 @@ in_B = y_1H_B + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_B +
 \end{aligned}
 \mspace{70mu} (1)
 $$
+
 For relation (1) to hold the sum of the outputs minus the sum of the inputs must be zero:
+
 $$
 \begin{aligned}
 (out_A + out_B) - (in_A + in_B) = 0 \\\\
@@ -130,15 +127,18 @@ $$
 \end{aligned}
 \mspace{70mu} (2)
 $$
+
 Since $ H_A $ and $ H_B $ are both NUMS asset tags, the only way relation (2) can hold is if the total input and 
 output amounts of asset $ A $ are equal and if the same is true for asset $ B $. This concept can be extended to an 
 unlimited amount of distinct asset types as long as each asset tag can be a unique NUMS generator. The problem with 
 relation (2) is that the asset type of each output is publicly visible, thus the assets that were transacted in are 
 not confidential. This can be solved by replacing each asset tag with a blinded version of itself. The asset commitment 
 to asset tag $ H_A $ (blinded asset tag) is then defined as the point
+
 $$
 H_{0_A} = H_A + rG
 $$
+
 Blinding of the the asset tag is necessary to make transactions in the asset, i.e. which asset was transacted in, 
 confidential. The blinded asset tag $ H_{0_A} $ will then be used in place of the generator $ H $ in the Pedersen 
 Commitments. Such Pedersen Commitments thus commit to the committed amount as well as to the underlying asset tag. 
@@ -148,14 +148,18 @@ tag $  H_{0_A}  $ is also a commitment to the the same value using the asset tag
 $$
 x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
 $$
+
 Using blinded asset tags the transaction in relation (1) then becomes:
+
 $$
 \begin{aligned}
 in_A = x_1H_{0_A} + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_{0_A} + r_{A_2}G \\\\
 in_B = y_1H_{0_B} + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_{0_B} + r_{B_2}G
 \end{aligned}
 $$
+
 Correspondingly, the zero sum rule translates to:
+
 $$
 \begin{aligned}
 (out_A + out_B) - (in_A + in_B) = 0 \\\\
@@ -164,12 +168,13 @@ $$
 \end{aligned}
 $$
 
-
 However, using only the sum to zero rule it is still possible to introduce negative amounts of an asset type. Consider 
 blinded asset tag
+
 $$
 H_{0_A} = -H_A + rG
 $$
+
 Any amount of blinded asset tag $  H_{0_A}  $ will correspond a negative amount of asset $ A $, thereby inflating its 
 supply. To solve this problem an ASP is introduced, which is a cryptographic proof. In mathematics a surjection 
 function simply means that for every element $ y $ in the codomain $ Y $ of function $ f $ there is at least one 
@@ -181,20 +186,25 @@ and blinding factor $ r $. It proofs that every output asset type is the same as
 which outputs correspond to which inputs. Such a proof $ \pi $ is secure if it is a zero-knowledge proof of knowledge 
 for the blinding factor $ r $. Let $  H_{0_{A1}}  $ and $  H_{0_{A2}}  $ be blinded asset tags that commit to the same 
 asset tag $  H_A  $:
+
 $$
 H_{0_{A1}} = H_A + r_1G \mspace{15mu} \mathrm{and} \mspace{15mu} H_{0_{A2}} = H_A + r_2G
 $$
+
 then
+
 $$
 H_{0_{A1}} - H_{0_{A2}} = (H_A + r_1G) - (H_A + r_2G) = (r_1 - r_2)G
 $$
+
 will be a signature key with secret key $ r_1 - r_2 $. Thus for an $ n $ distinct multiple asset type transaction, 
 differences can be calculated between each output and all inputs, e.g. $ (out_A - in_A) ,  (out_A - in_B)  \mspace{3mu} ,
  \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  (out_A - in_n) $, and so on for all outputs. This has the form of a 
  ring signature, and if $ out_A  $ has the same asset tag as one of the inputs, the transaction signer will know the 
  secret key corresponding to one of these differences, and be able to produce the ring signature. The ASP is based on 
- the *Back-Maxwell* range proof (see Definition 9 of [[1]]), which uses a variation of Borromean ring signatures [[18]]. The Borromean ring signature in turn is a variant of the Abe-Ohkubo-Suzuki (AOS) ring signature [[19]]. An AOS ASP computes a ring signature that is equal to the proof $ \pi $ 
- as follows:
+ the *Back-Maxwell* range proof (see Definition 9 of [[1]]), which uses a variation of Borromean ring signatures [[18]]. 
+ The Borromean ring signature in turn is a variant of the Abe-Ohkubo-Suzuki (AOS) ring signature [[19]]. An AOS ASP 
+ computes a ring signature that is equal to the proof $ \pi $ as follows:
 
 - Calculate $ n $ differences $ H - H_{\hat i } $ for $  \hat i = 1 \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , 
 \mspace{3mu} n  $, one of which will be equal to the blinding factor $ r $;
@@ -207,7 +217,7 @@ $ S $. ([[1]], [[14]])
 
 ## Confidential Asset Scheme
 
-Using the building blocks discussed in [The Basis of Confidential Assets](#the-basis-of-confidential-assets), asset 
+Using the building blocks discussed in [Basis of Confidential Assets](#basis-of-confidential-assets), asset 
 issuance, asset transactions and asset re-issuance can be performed in a confidential manner.
 
 ### Asset Transactions
@@ -215,7 +225,7 @@ issuance, asset transactions and asset re-issuance can be performed in a confide
 Confidential assets propose a scheme where multiple non-interchangeable asset types can be supported within a single 
 transaction. This all happens within one blockchain and can theoretically improve the value of the blockchain by 
 offering a service to more users and can also enable extended functionality like base layer atomic asset trades. The 
-latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B $ in a single transaction, 
+latter implies Alice can offer Bob $ 100 $ of asset type $ A $ for $ 50 $ of asset type $ B ​$ in a single transaction, 
 both participants using a single wallet. In this case no relationship between output asset types can be established or 
 inferred because all asset tags are blinded. Privacy can be increased as the blinded asset types brings another 
 dimension that needs to be unraveled in order to obtain user identity and transaction data by not having multiple 
@@ -260,17 +270,20 @@ contract [[11]] to be hashed together with the reference to the UTXO being spent
 generate the auxiliary input $ A $ as follows. Let $I $ be the input being spent (an unambiguous reference to a 
 specific UTXO used to create the asset), let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the 
 asset entropy $ E $ is defined as 
+
 $$
 E = \mathrm {Hash} ( \mathrm {Hash} (I) \parallel \mathrm {Hash} (\widehat {RC}))
 $$
+
 The auxiliary input $ A $ is then defined as 
+
 $$
 A = \mathrm {Hash} ( E \parallel 0)
 $$
+
 Note that a Ricardian contract $ \widehat {RC} $ is not crucial for entropy $ E $ generation as some other unique NUMS 
 value could have been used in its stead, but only suggested. Ricardian contracts warrant a bit more explanation and is 
-discussed in [Appendix&nbsp;B](#appendix-b-ricardian-contracts).
-
+discussed in [Appendix&nbsp;B](#appendix-b-ricardian-contracts-vs-smart-contracts).
 
 Every non-coinbase transaction input can have up to one new asset issuance associated with it. An asset issuance (or 
 asset definition) transaction input then consists of the UTXO being spent, the Ricardian contract, either an initial 
@@ -285,9 +298,11 @@ The confidential asset scheme allows the asset owner to later increase or decrea
 circulation, given that an asset reissuance token is generated together with the initial asset issuance. Given an asset 
 entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{\hat A} \in \mathbb G $ obtained using 
 an alternate auxiliary input $ \hat A $ defined as
+
 $$
 \hat A = \mathrm {Hash} ( E \parallel 1)
 $$
+
 The resulting asset tag $ H_{\hat A} \in \mathbb G $ is linked to its reissuance capability, and the asset owner can 
 assert their reissuance right by revealing the blinding factor $ r $ for the reissuance capability along with the 
 original asset entropy $ E $. An asset reissuance (or asset definition) transaction input then consists of the spend 
@@ -309,7 +324,7 @@ defined. There is room to adapt this scheme for optimal tradeoff between ASP dat
 global dynamic list of assets, whereby each transaction selects a subset of asset tags for the corresponding ASPs. [[1]]
 
 If all the asset tags are defined at the instantiation of the blockchain it will be compatible with the 
-[Mimblewimble](../../protocols/mimblewimble-1/sources/PITCHME.link.md) protocol. The range proofs used for the 
+[Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) protocol. The range proofs used for the 
 development of this scheme were based on the Back-Maxwell range proof scheme (see Definition 9 of [[1]]). Poelstra 
 et al. [[1]] suggests more efficient range proofs, ASPs and use of aggregate range proofs. It is thus an open question 
 if Bulletproofs could fulfill this requirement.
@@ -324,7 +339,7 @@ confidential assets.
 
 ### Elements Project
 
-[Elements](https://elementsproject.org) is an open source, sidechain-capable blockchain platform, providing access to 
+Elements [[31]] is an open source, sidechain-capable blockchain platform, providing access to 
 advanced features, such as Confidential Transactions and Issued Assets (`Github: ElementsProject/elements` [[16]]). 
 It allows digitizable collectables, reward points and attested assets (for example gold coins) to be realized on a 
 blockchain. The main idea behind Elements is to serve as research platform and testbed for changes to the Bitcoin 
@@ -402,8 +417,8 @@ instantiation, otherwise it will not be compatible.
 
 ## References
 
-[[1]] A. Poelstra, A. Back, M. Friedenbach, G. Maxwell and P, Wuille, "Confidential Assets", Blockstream [online].
-<br>Available: <https://blockstream.com/bitcoin17-final41.pdf>. Date accessed: 2018-09-25.
+[[1]] A. Poelstra, A. Back, M. Friedenbach, G. Maxwell and P, Wuille, "Confidential Assets", Blockstream [online]. 
+Available: <https://blockstream.com/bitcoin17-final41.pdf>. Date accessed: 2018&#8209;12&#8209;25.
 
 [1]: https://blockstream.com/bitcoin17-final41.pdf
 "Confidential Assets,
@@ -411,13 +426,13 @@ A. Poelstra et al.,
 Blockstream"
 
 [[2]] Wikipedia: "Discrete Logarithm" [online]. Available: <https://en.wikipedia.org/wiki/Discrete_logarithm>. 
-Date accessed: 2018-09-20.
+Date accessed: 2018&#8209;12&#8209;20.
 
 [2]: https://en.wikipedia.org/wiki/Discrete_logarithm
 "Wikipedia: Discrete Logarithm"
 
 [[3]] A. Sadeghi and M. Steiner, "Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real Difference" 
-[online].<br>Available: <http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf>. Date accessed: 2018-09-24.
+[online]. Available: <http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf>. Date accessed: 2018&#8209;12&#8209;24.
 
 [3]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf
 "Assumptions Related to Discrete Logarithms: 
@@ -425,30 +440,30 @@ Why Subtleties Make a Real Difference,
 A. Sadeghi et al." 
 
 [[4]] G. Maxwell, "Confidential Transactions Write up" [online]. 
-Available: <https://people.xiph.org/~greg/confidential_values.txt>.<br>Date accessed: 2018-12-10.
+Available: <https://people.xiph.org/~greg/confidential_values.txt>. Date accessed: 2018&#8209;12&#8209;10.
 
 [4]: https://people.xiph.org/~greg/confidential_values.txt
 "Confidential Transactions write up,
 G. Maxwell"
 
-[[5]] A. Gibson, "An Investigation into Confidential Transactions", July 2018 [online].
-<br>Available: <https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf>. 
-Date accessed: 2018-11-22.
+[[5]] A. Gibson, "An Investigation into Confidential Transactions", July 2018 [online]. 
+Available: <https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf>. 
+Date accessed: 2018&#8209;12&#8209;22.
 
 [5]: https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf
 "An Investigation into Confidential Transactions, 
 A. Gibson, 
 July 2018"
 
-[[6]] Pedersen-commitment: An Implementation of Pedersen Commitment Schemes [online].
-<br>Available: <https://hackage.haskell.org/package/pedersen-commitment>. Date accessed: 2018-09-25.
+[[6]] Pedersen-commitment: An Implementation of Pedersen Commitment Schemes [online]. 
+Available: <https://hackage.haskell.org/package/pedersen-commitment>. Date accessed: 2018&#8209;12&#8209;25.
 
 [6]: https://hackage.haskell.org/package/pedersen-commitment
 "Pedersen-commitment: An Implementation
 of Pedersen Commitment Schemes"
 
 [[7]] B. Franca, "Homomorphic Mini-blockchain Scheme", April 2015 [online]. 
-Available: <http://cryptonite.info/files/HMBC.pdf>.<br>Date accessed: 2018-11-22.
+Available: <http://cryptonite.info/files/HMBC.pdf>. Date accessed: 2018&#8209;12&#8209;22.
 
 [7]: http://cryptonite.info/files/HMBC.pdf
 "Homomorphic Mini-blockchain Scheme, 
@@ -457,7 +472,7 @@ April 2015"
 
 [[8]] C. Franck and J. Großschädl, "Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves", 
 University of Luxembourg [online]. Available: <http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf>. 
-Date accessed: 2018-11-22.
+Date accessed: 2018&#8209;12&#8209;22.
 
 [8]: http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf
 "Efficient Implementation of Pedersen 
@@ -465,9 +480,9 @@ Commitments Using Twisted Edwards Curves,
 C. Franck and J. Großschädl, 
 University of Luxembourg"
 
-[[9]] A. Poelstra, "Mimblewimble", October 2016 [online].<br>
+[[9]] A. Poelstra, "Mimblewimble", October 2016 [online]. 
 Available: <http://diyhpl.us/~bryan/papers2/bitcoin/mimblewimble-andytoshi-draft-2016-10-20.pdf>. 
-Date accessed: 2018-12-13.
+Date accessed: 2018&#8209;12&#8209;13.
 
 [9]: http://diyhpl.us/~bryan/papers2/bitcoin/mimblewimble-andytoshi-draft-2016-10-20.pdf
 "Mimblewimble, 
@@ -476,7 +491,7 @@ October 2016"
 
 [[10]] A. Poelstra, "Mimblewimble Explained", November 2016 [online]. 
 Available: <https://www.weusecoins.com/mimble-wimble-andrew-poelstra/>. 
-Date accessed: 2018-09-10.
+Date accessed: 2018&#8209;12&#8209;10.
 
 [10]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra
 "Mimblewimble Explained,
@@ -484,7 +499,7 @@ A. Poelstra,
 November 2016"
 
 [[11]] I. Grigg, "The Ricardian Contract", *First IEEE International Workshop on Electronic Contracting.* IEEE (2004) 
-[online].<br>Available: <http://iang.org/papers/ricardian_contract.html>. Date accessed: 2018-12-13.
+[online]. Available: <http://iang.org/papers/ricardian_contract.html>. Date accessed: 2018&#8209;12&#8209;13.
 
 [11]: http://iang.org/papers/ricardian_contract.html
 "The Ricardian Contract, 
@@ -493,7 +508,8 @@ Electronic Contracting.
 IEEE (2004), 
 I. Grigg"
 
-[[12]] D. Koteshov, "Smart vs. Ricardian Contracts: What’s the Difference?" February 2018 [online].<br>Available: <https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts/>. Date accessed: 2018-12-13.
+[[12]] D. Koteshov, "Smart vs. Ricardian Contracts: What’s the Difference?" February 2018 [online]. Available: 
+<https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts/>. Date accessed: 2018&#8209;12&#8209;13.
 
 [12]: https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts/
 "Smart vs. Ricardian Contracts: 
@@ -502,15 +518,15 @@ D. Koteshov,
 February 201"
 
 [[13]] Issued Assets - You can Issue your own Confidential Assets on Elements, Elements by Blockstream 
-[online].<br>Available: <https://elementsproject.org/features/issued-assets>. Date accessed: 2018-12-14.
+[online]. Available: <https://elementsproject.org/features/issued-assets>. Date accessed: 2018&#8209;12&#8209;14.
 
 [13]: https://elementsproject.org/features/issued-assets
 "Issued Assets - You can Issue your 
 own Confidential Assets on Elements, 
 Elements by Blockstream"
 
-[[14]] Issued Assets - Investigation, Principal Investigator: Andrew Poelstra, Elements by Blockstream [online].
-<br>Available: <https://elementsproject.org/features/issued-assets/investigation>. Date accessed: 2018-12-14.
+[[14]] Issued Assets - Investigation, Principal Investigator: Andrew Poelstra, Elements by Blockstream [online]. 
+Available: <https://elementsproject.org/features/issued-assets/investigation>. Date accessed: 2018&#8209;12&#8209;14.
 
 [14]: https://elementsproject.org/features/issued-assets/investigation
 "Issued Assets - Investigation, 
@@ -518,7 +534,7 @@ Principal Investigator: Andrew Poelstra,
 Elements by Blockstream"
 
 [[15]] Elements Code Tutorial - Issuing your own Assets, Elements by Blockstream, elementsproject.org 
-[online].<br>Available: <https://elementsproject.org/elements-code-tutorial/issuing-assets>. Date accessed: 2018-12-14.
+[online]. Available: <https://elementsproject.org/elements-code-tutorial/issuing-assets>. Date accessed: 2018&#8209;12&#8209;14.
 
 [15]: https://elementsproject.org/elements-code-tutorial/issuing-assets
 "Elements Code Tutorial - Issuing your own Assets, 
@@ -526,79 +542,78 @@ Elements by Blockstream,
 elementsproject.org"
 
 [[16]] Github: ElementsProject/elements [online]. Available: <https://github.com/ElementsProject/elements>. 
-Date accessed: 2018-12-18.
+Date accessed: 2018&#8209;12&#8209;18.
 
 [16]: https://github.com/ElementsProject/elements
 "Github: ElementsProject/elements"
 
 [[17]] Github: ElementsProject/confidential-assets-demo [online]. 
-Available: <https://github.com/ElementsProject/confidential-assets-demo>.<br>Date accessed: 2018-12-18.
+Available: <https://github.com/ElementsProject/confidential-assets-demo>. Date accessed: 2018&#8209;12&#8209;18.
 
 [17]: https://github.com/ElementsProject/confidential-assets-demo
 "ElementsProject/confidential-assets-demo"
 
-[[18]] G. Maxwell and A. Poelstra, "Borromean Ring Signatures" (2015) [online].
-<br>Available: <http://diyhpl.us/~bryan/papers2/bitcoin/Borromean%20ring%20signatures.pdf>. Date accessed: 2018-12-18.
+[[18]] G. Maxwell and A. Poelstra, "Borromean Ring Signatures" (2015) [online]. 
+Available: <http://diyhpl.us/~bryan/papers2/bitcoin/Borromean%20ring%20signatures.pdf>. Date accessed: 2018&#8209;12&#8209;18.
 
 [18]: http://diyhpl.us/~bryan/papers2/bitcoin/Borromean%20ring%20signatures.pdf
 "Borromean Ring Signatures (2015), 
 G. Maxwell and A. Poelstra"
 
-[[19]] M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online].
-<br>Available: <https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf>. Date accessed: 2018-12-18.
+[[19]] M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online]. 
+Available: <https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf>. Date accessed: 2018&#8209;12&#8209;18.
 
 [19]: https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf
 "1-out-of-n Signatures from a Variety of Keys, 
 M. Abe, M. Ohkubo and K. Suzuki"
 
 [[20]] Chain Core [online]. Available: <https://chain.com/docs/1.2/core/get-started/introduction>. 
-Date accessed: 2018-12-18.
+Date accessed: 2018&#8209;12&#8209;18.
 
 [20]: https://chain.com/docs/1.2/core/get-started/introduction
 "Chain Core"
 
-[[21]] Github: chain/chain [online]. Available: <https://github.com/chain/chain>. Date accessed: 2018-12-18.
+[[21]] Github: chain/chain [online]. Available: <https://github.com/chain/chain>. Date accessed: 2018&#8209;12&#8209;18.
 
 [21]: https://github.com/chain/chain
 "Github: chain/chain"
 
-[[22]] Chain: Sequence [online]. Available: <https://chain.com/sequence>. Date accessed: 2018-12-18.
+[[22]] Chain: Sequence [online]. Available: <https://chain.com/sequence>. Date accessed: 2018&#8209;12&#8209;18.
 
 [22]: https://chain.com/sequence
 "Chain: Sequence"
 
-[[23]] Sequence Documentation [online]. Available: <https://dashboard.seq.com/docs>. Date accessed: 2018-12-18.
+[[23]] Sequence Documentation [online]. Available: <https://dashboard.seq.com/docs>. Date accessed: 2018&#8209;12&#8209;18.
 
 [23]: https://dashboard.seq.com/docs
 "Sequence Documentation"
 
 [[24]] Hidden in Plain Sight: Transacting Privately on a Blockchain - Introducing Confidential Assets in the Chain 
-Protocol [online].
-<br>Available: <https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb>. 
-Date accessed: 2018-12-18.
+Protocol [online]. 
+Available: <https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb>. 
+Date accessed: 2018&#8209;12&#8209;18.
 
 [24]: https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb
 "Hidden in Plain Sight: 
 Transacting Privately on a Blockchain - 
 Introducing Confidential Assets in the Chain Protocol"
 
-[[25]] Blockchains in a Quantum Future - Protecting Against Post-Quantum Attacks on Cryptography [online].
-<br>Available: 
-<https://blog.chain.com/preparing-for-a-quantum-future-45535b316314>. Date accessed: 2018-12-18.
+[[25]] Blockchains in a Quantum Future - Protecting Against Post-Quantum Attacks on Cryptography [online]. 
+Available: <https://blog.chain.com/preparing-for-a-quantum-future-45535b316314>. Date accessed: 2018&#8209;12&#8209;18.
 
 [25]: https://blog.chain.com/preparing-for-a-quantum-future-45535b316314
 "Blockchains in a Quantum Future - 
 Protecting Against Post-Quantum 
 Attacks on Cryptography"
 
-[[26]] Inter/stellar website [online]. Available: <https://interstellar.com>. Date accessed: 2018-11-22.
+[[26]] Inter/stellar website [online]. Available: <https://interstellar.com>. Date accessed: 2018&#8209;12&#8209;22.
 
 [26]: https://interstellar.com
 "Inter/stellar Website"
 
-[[27]] C. Yun, "Programmable Constraint Systems for Bulletproofs" [online].<br>Available: 
+[[27]] C. Yun, "Programmable Constraint Systems for Bulletproofs" [online]. Available: 
 <https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7>. 
-Date accessed: 2018-11-22.
+Date accessed: 2018&#8209;12&#8209;22.
 
 [27]: https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7
 "Programmable Constraint Systems for Bulletproofs,
@@ -607,23 +622,28 @@ C. Yun"
 
 [[28]] Github: interstellar/spacesuit [online]. 
 Available: <https://github.com/interstellar/spacesuit/blob/master/spec.md>. 
-Date accessed: 2018-12-18.
+Date accessed: 2018&#8209;12&#8209;18.
 
 [28]: https://github.com/interstellar/spacesuit/blob/master/spec.md
 "Github: interstellar/spacesuit"
 
 [[29]] Github: interstellar/spacesuit/spec.md [online]. 
-Available: <https://github.com/interstellar/spacesuit/blob/master/spec.md>.<br>Date accessed: 2018-12-18.
+Available: <https://github.com/interstellar/spacesuit/blob/master/spec.md>. Date accessed: 2018&#8209;12&#8209;18.
 
 [29]: https://github.com/interstellar/spacesuit/blob/master/spec.md
 "Github: interstellar/spacesuit/spec.md"
 
 [[30]] Wikipedia: "Ricardian Contract" [online]. Available: <https://en.wikipedia.org/wiki/Ricardian_contract>.
-<br>Date accessed: 2018-12-21.
+Date accessed: 2018&#8209;12&#8209;21.
 
 [30]: https://en.wikipedia.org/wiki/Ricardian_contract
 "Wikipedia: Ricardian Contract"
 
+[[31]] Wikipedia: "Elements by Blockstream" [online]. Available: <https://elementsproject.org>. 
+Date accessed: 2018&#8209;12&#8209;21.
+
+[31]: https://elementsproject.org/
+"Elements by Blockstream"
 
 ## Appendices
 
