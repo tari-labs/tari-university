@@ -7,7 +7,7 @@
 
   - [Overview of Multi-signatures](#overview-of-multi-signatures)
     - [Bitcoin $m-of-n$ Multi-signatures](#bitcoin--m-of-n--multi-signatures)
-      - [What are $m-of-n$ Transactions?](#what-are-$-m-of-n-$-transactions)
+      - [What are $m-of-n$ Transactions?](#what-are--m-of-n--transactions)
       - [Use Cases for $m-of-n $ Multi-signatures](#use-cases-for--m-of-n--multi-signatures)
     - [Rogue Attacks](#rogue-attacks)
     - [Interactive Aggregate Signatures](#interactive-aggregate-signatures)
@@ -18,7 +18,6 @@
 
   - [Formation of MuSig](#formation-of-musig)
     - [Notation Used](#notation-used)
-
     - [Recap on Schnorr Signature Scheme](#recap-on-schnorr-signature-scheme)
     - [Design of Schnorr Multi-signature Scheme](#design-of-schnorr-multi-signature-scheme)
     - [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme)   

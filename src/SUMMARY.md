@@ -32,7 +32,6 @@
     - [Lightning Network for Dummies](protocols/lightning-network-for-dummies/sources/PITCHME.link.md)
     - [Introduction to SPV, Merkle Trees and Bloom Filters](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)
     - [The RGB Protocol - An Introduction](protocols/rgb-introduction/sources/PITCHME.link.md)
-    - [DHT](./protocols/dht/MainReport.md)
   - [Labs](labs/introduction.md)
     - [Mermaid Demonstration](labs/mermaid-demo.md)
     - [Notes and info boxes](labs/notes.md)
