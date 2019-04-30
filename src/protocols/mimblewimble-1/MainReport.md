@@ -1,5 +1,22 @@
 # Mimblewimble Transactions Explained
 
+- [High-level Overview](#high-level-overview)
+- [Transactions Explained](#transactions-explained)
+  - [Basic Transaction](#basic-transaction)
+  - [Blinding Factors](#blinding-factors)
+  - [Alice Prepares a Transaction](#alice-prepares-a-transaction)
+  - [Bob Prepares his Response](#bob-prepares-his-response)
+  - [Alice Completes and Broadcasts the Transaction](#alice-completes-and-broadcasts-the-transaction)
+
+- [Transaction Verification and Propagation](#transaction-verification-and-propagation)
+- [Stopping Fraud](#stopping-fraud)
+- [Transaction Summary](#transaction-summary)
+- [References](#references)
+- [Contributors](#contributors)
+
+
+
+
 ## High-level Overview
 
 Mimblewimble is a privacy-oriented, cryptocurrency technology. It differs from Bitcoin in some key areas:
@@ -31,11 +48,10 @@ Let's say Alice has 300 µT and she wants to send 200 µT to Bob.
 
 Here’s the basic transaction:
 
-| Inputs       | Outputs |        |     |
-|:-------------|:--------|:-------|:----|
-| 300          | 200     | 90     | 10  |
-| Alice's UTXO | To Bob  | Change | fee |
-
+| Inputs       | Outputs |        |      |
+|:-------------|:------- |:-------|:-----|
+| 300          | 200     | 90     | 10   |
+| Alice's UTXO | To Bob  | Change | fee  |
 
 If we write this as a mathematical equation, where outputs are positive and inputs are negative, we should be able to
 balance things out so that there's no creation of coins out of thin air:
@@ -45,12 +61,11 @@ $$ -300 + 200 + 90 + 10 = 0 $$
 This is basically the information that sits in the Bitcoin blockchain. Anyone can audit anyone else's transactions
 simply by inspecting the global ledger's transaction history. This isn't great for privacy.
 
-Here is where confidential transactions come in. We can start by multiplying both sides of the preceding equation by 
-some
+Here is where confidential transactions come in. We can start by multiplying both sides of the preceding equation by some
 generator point _H_ on the elliptic curve (for an introduction to elliptic curve math, refer to
 [this presentation](../../cryptography/crypto-1/sources/PITCHME.link.md)):
 
-$$ 300.H = 200.H + 90.H + 10.H $$
+$$ 300.H = 200.H + 90.H + 10.H ​$$
 
 Since _H_ is a constant, the math above still holds, so we can validate that Alice is not stealing by checking that
 
@@ -172,8 +187,7 @@ Alice then sends the following information to Bob:
 | Public excess      | X         |
 | Metadata           | m         |
 
-The message metadata is some extra bits of information that pertains to the transaction (such as when the output can 
-be spent).
+The message metadata is some extra bits of information that pertains to the transaction (such as when the output can be spent).
 
 ### Bob Prepares his Response
 
@@ -230,8 +244,8 @@ Alice can now broadcast this transaction to the network. The final transaction l
 | Transaction Kernel        |                |
 |:--------------------------|:---------------|
 | Public excess             | $$ X + P_b $$  |
-| Signature,                | $$ (s, R) $$   |
-| fee                       | 10             |
+| Signature                 | $$ (s, R) $$   |
+| Fee                       | 10             |
 | Transaction metadata      | m              |
 
 | Transaction Body          |                |
@@ -314,35 +328,28 @@ To sum up: a Tari/MimbleWimble transaction includes the following:
 
 ## References
 
-[[1]] Confidential Transactions [online]. Available: <https://www.mycryptopedia.com/what-are-confidential-transactions/> 
+[1]: https://www.mycryptopedia.com/what-are-confidential-transactions/ "What are Bitcoin Confidential Transactions?"
+[[1]] What are Bitcoin Confidential Transactions? [Online.] Available: <https://www.mycryptopedia.com/what-are-confidential-transactions/> 
 Date accessed: 2019-04-09.
 
-[1]: https://www.mycryptopedia.com/what-are-confidential-transactions/ "Confidential Transactions"
-
-
-[[2]] Nothing-Up-My_Sleeve Numbers [online].<br>Available:
+[2]: https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749 "Nothing-Up-My_Sleeve Number"
+[[2]] Nothing-Up-My_Sleeve Number [online].<br>Available:
 <https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749>. Date accessed: 2019-04-09.
 
-[2]: https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749 "Nothing-Up-My_Sleeve
-Number"
-
-
-[[3]] Wikipedia: "Commitment Schemes" [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. 
+[3]: https://en.wikipedia.org/wiki/Commitment_scheme "Commitment Scheme"
+[[3]] Wikipedia: "Commitment Scheme" [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. 
 Date accessed: 2019-04-09.
 
-[3]: https://en.wikipedia.org/wiki/Commitment_scheme "Commitment Schemes"
-
-
+[4]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets "Kernel Offsets"
 [[4]] Kernel Offsets, in Introduction to MimbleWimble and Grin [online].<br>Available:
 <https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets>. Date accessed: 2019-04-09.
 
-[4]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets "Kernel Offsets"
-
-
-[[5]] A. Gibson, "From Zero-knowledge to BulletProofs" [online]. 
+[5]: https://joinmarket.me/static/FromZK2BPs_v1.pdf "From Zero (Knowledge) to BulletProofs"
+[[5]] A. Gibson, "From Zero (Knowledge) to BulletProofs" [online]. 
 Available: <https://joinmarket.me/static/FromZK2BPs_v1.pdf>.<br>Date accessed: 2019-04-10.
 
-[5]: https://joinmarket.me/static/FromZK2BPs_v1.pdf "From Zero-knowledge to BulletProofs"
-
 ## Contributors
+
+- [https://github.com/CjS77](https://github.com/CjS77)
+- [https://github.com/anselld](https://github.com/anselld)
 
