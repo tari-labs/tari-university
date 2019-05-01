@@ -331,14 +331,14 @@ Sybil attacks are an attempt by colluding nodes to gain disproportionate control
 for other attacks. Many, if not all, DHTs have been designed under the assumption that a low fraction of nodes are malicious.
 A Sybil attack attempts to break this assumption by increasing the number of malicious nodes.
 
-Mitigations include:
+Mitigations include: [[12]]
 
 - Associating a cost with adding new identifiers to the network.
 - Reliably joining real-world identifiers (IP address, MAC address, etc.) to the node identifier, and rejecting a threshold of duplicates.
-- Having a trusted central authority that issues identities.
+- Having a trusted central authority or secure decentralized scheme that issues identities.
 - Using social information and trust relationships.
 
-### Adaptive Join-Leave Attack
+### Adaptive Join-Leave Attack [[5]] [[7]]
 
 An adversary wants to populate a particular keyspace interval $I$ with bad nodes in order to prevent a particular file
 from being shared. Let's suppose that we have a network with node IDs chosen completely at random through some random oracle.
@@ -346,7 +346,7 @@ An adversary starts by executing join/leaves until it has nodes in that keyspace
 keeping the nodes that are in $I$ and rejoining the nodes that aren't, until control is gained over the interval.
 
 It should be noted that if there is a large enough cost for rejoining the network, there is a disincentive for this attack.
-In the absence of this disincentive, the [cuckoo rule](#cuckoo-rule) is proposed as a defence.
+In the absence of this disincentive, the [cuckoo rule](#cuckoo-rule) [[5]] is proposed as a defence.
 
 ## Cuckoo Rule
 
@@ -391,8 +391,7 @@ Sen, Freedman [[7]] modelled and analysed the Cuckoo Rule and found that, in pra
 
 Notably, they show that rounds to failure (i.e. more than one-third of nodes in a given group are adversarial) decreases dramatically
 with an increasing but small global fraction of adversarial nodes. An amendment rule is proposed, which allows smaller group sizes
-while maintaining Byzantine correctness. Reference [[7]] warrants more
-investigation, but is out of the scope of this report.
+while maintaining Byzantine correctness. Reference [[7]] warrants more investigation, but is out of the scope of this report.
 
 ## Conclusion
 
@@ -448,6 +447,10 @@ especially important when control of a network may mean monetary losses, loss of
 [[11]]: Servers - Tor Metrics [online]. https://metrics.torproject.org/networksize.html Date accessed: 2019-04-29.
 
 [11]: https://en.wikipedia.org/wiki/BitTorrent 'Servers - Tor Metrics'
+
+[[12]]: A Survey of DHT Security Techniques [online]. https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques Date accessed: 2019-04-29.
+
+[12]: https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques 'A Survey of DHT Security Techniques'
 
 ## Contributors
 
