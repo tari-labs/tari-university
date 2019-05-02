@@ -1,15 +1,11 @@
 # Distributed Hash Tables
 
 - [Introduction](#introduction)
-
 - [Characterization of DHT Networks](#characterization-of-dht-networks)
-
   - [Peer Discovery](#peer-discovery)
   - [Scalability and Fault-tolerance](#scalability-and-fault-tolerance)
   - [Distributed Data Storage](#distributed-data-storage)
-
 - [DHT Algorithms](#dht-algorithms)
-
   - [Overview](#overview)
   - [Kademlia](#kademlia)
     - [NodeID](#nodeid)
@@ -23,19 +19,13 @@
     - [Kademlia Attacks](#kademlia-attacks)
       - [Node Insertion Attack](#node-insertion-attack)
       - [Eclipse Attack](#eclipse-attack)
-
 - [DHT Vulnerabilities and Attacks](#dht-vulnerabilities-and-attacks)
-
   - [Eclipse Attack](#eclipse-attack)
   - [Sybil Attack](#sybil-attack)
   - [Adaptive Join-Leave Attack](#adaptive-join-leave-attack)
-
 - [Cuckoo Rule](#cuckoo-rule)
-
 - [Conclusion](#conclusion)
-
 - [References](#references)
-
 - [Contributors](#contributors)
 
 ## Introduction
@@ -99,7 +89,7 @@ In this way, DHTs are inherently more resilient against hostile attackers then a
 
 Bittorrent is one of the largest decentralized networks in existence, containing in the order of tens of millions
 of concurrent users and hundreds of millions of active users. It is estimated that there are a quarter of a billion
-distinct monthly users of the BitTorrent network [[10]]. As of 2019, Tor has around 9000 relay servers and
+distinct monthly users of the BitTorrent network [[10]]. As of 2019, Tor has around 9,000 relay servers and
 over 2 million users [[11]].
 
 ### Distributed Data Storage
@@ -125,7 +115,7 @@ The following graph is replicated and simplified from [[8]]. Degree is the numbe
 | Routing performance (network size $n$) | $O(dn^{(2/d)})$                         | $O(log(n))$             | $O(log(n)) + c$ $c$ is small                              | Between $O(log(log(n)))$ and $O(log(n))$ | $O(log(n))$                        | $O(log(n))$               | $O(log(n))$                     |
 | Degree                                 | $2d$                                    | $O(log(n))$             | $O(log(n))$                                               | Between constant to $log(n)$             | $O(2log(n))$                       | $O(log(n))$               | Constant                        |
 | Join/Leaves                            | $2d$                                    | $log(n)^2$              | $O(log(n)) + c$ $c$ is small                              | $O(log(n))$                              | $O(log(n))$                        | $O(log(n))$               | $O(log(n))$                     |
-| Implementations                        | \-\-                                    | OpenChord, OverSIM      | Ethereum [3], Mainline DHT (BitTorrent), I2P, Kad Network | \-\-                                     | FreePastry                         | OceanStore, Mnemosyne [4] | \-\-                            |
+| Implementations                        | \-\-                                    | OpenChord, OverSIM      | Ethereum [[3]], Mainline DHT (BitTorrent), I2P, Kad Network | \-\-                                     | FreePastry                         | OceanStore, Mnemosyne [[4]] | \-\-                            |
 
 The popularity of Kademlia over other DHTs is likely due to its relative simplicity and performance. The rest of this section dives deeper into Kademlia.
 
@@ -163,6 +153,7 @@ A10 --- |1| A101[Node 101]
 A11 --- |0| A110[Node 110]
 A11 --- |1| A111[Node 111]
 </div>
+
 The bit length of the Node ID should be sufficiently large to make collisions extremely unlikely when using a uniformly distributed random number generator [[2]].
 
 #### Bootstrapping a Node
@@ -185,9 +176,9 @@ The joining process is described as follows [[2]]:
    is unable to locate any closer nodes.
 
 This _self-lookup_ has two effects: it allows the node to learn about nodes closer to itself; and it populates other nodes'
-routing tables with the node's ID. [[1]]
+routing tables with the node's ID [[1]].
 
-#### XOR metric
+#### XOR Metric
 
 The Kademlia paper published in 2002 [[2]] offered the novel idea of using the XOR ($\oplus​$) operator
 to determine the distance and therefore the arrangement of peers within the network.
@@ -214,7 +205,6 @@ peer discovery and data storage/retrieval.
 The following RPC messages are part of the Kademlia protocol:
 
 - Peer discovery
-
   - `PING`/`PONG` - used to determine liveness of a peer.
   - `FIND_NODE` - returns a number of nodes which are closer to a given query value.
 
@@ -240,7 +230,7 @@ retrieved by participants in the network.
 
 The storage procedure uses the [lookup procedure](#lookup-procedure) to locate the closest nodes to the key, at which
 point it issues a `STORE` RPC message to those nodes. Each node republishes the $\langle key, value \rangle$ pairs to
-increase the availability of t he data. Depending on the implementation, the data may eventually expire (say 24 hours).
+increase the availability of the data. Depending on the implementation, the data may eventually expire (say 24 hours).
 Therefore, the original publisher may be required to republish the data before that period expires.
 
 The retrieval procedure follows the same logic as storage, except a `FIND_VALUE` RPC is issued and the data received.
@@ -248,7 +238,7 @@ The retrieval procedure follows the same logic as storage, except a `FIND_VALUE`
 ##### Routing Table
 
 Each node organizes contacts into a list called a routing table. A routing table is a binary tree
-where the leaves are 'buckets' that contain a maximum of $k$ nodes. $k$ is a network-wide parameter that
+where the leaves are "buckets" that contain a maximum of $k$ nodes. $k$ is a network-wide parameter that
 should be large enough to ensure that lookups and data will be available with high probability.
 These buckets are aptly named $k$-buckets, and contain nodes with some common node ID prefix.
 
@@ -275,7 +265,7 @@ single $k​$-bucket. As more nodes become known, they are added to the $k​$-b
 At this point, the node splits the bucket in two: one for nodes that share the same prefix as itself
 and one for all the others.
 
-![Kad-Routing-table](./assets/Kad-Evolution-Routing-Table.png)
+<p align="center"><img src="assets/Kad-Evolution-Routing-Table.png" width="450" /></p>
 
 This guarantees that for bucket $j$, where $0 <= j < k$, there is at least one node $N$ in node $A$'s routing table for which
 
@@ -303,7 +293,7 @@ Once an attacker has inserted themselves in this way, they may censor or manipul
 
 ##### Eclipse Attack
 
-Kademlia is vulnerable to eclipse attacks which is discussed in the following section.
+Kademlia is vulnerable to eclipse attacks. This is discussed in the following section.
 
 ## DHT Vulnerabilities and Attacks
 
@@ -331,19 +321,19 @@ Sybil attacks are an attempt by colluding nodes to gain disproportionate control
 for other attacks. Many, if not all, DHTs have been designed under the assumption that a low fraction of nodes are malicious.
 A Sybil attack attempts to break this assumption by increasing the number of malicious nodes.
 
-Mitigations include: [[12]]
+Mitigations include [[12]]:
 
 - Associating a cost with adding new identifiers to the network.
 - Reliably joining real-world identifiers (IP address, MAC address, etc.) to the node identifier, and rejecting a threshold of duplicates.
 - Having a trusted central authority or secure decentralized scheme that issues identities.
 - Using social information and trust relationships.
 
-### Adaptive Join-Leave Attack [[5]] [[7]]
+### Adaptive Join-Leave Attack
 
 An adversary wants to populate a particular keyspace interval $I$ with bad nodes in order to prevent a particular file
 from being shared. Let's suppose that we have a network with node IDs chosen completely at random through some random oracle.
 An adversary starts by executing join/leaves until it has nodes in that keyspace. After that they proceed in rounds,
-keeping the nodes that are in $I$ and rejoining the nodes that aren't, until control is gained over the interval.
+keeping the nodes that are in $I$ and rejoining the nodes that aren't, until control is gained over the interval ([[5]], [[7]]).
 
 It should be noted that if there is a large enough cost for rejoining the network, there is a disincentive for this attack.
 In the absence of this disincentive, the [cuckoo rule](#cuckoo-rule) [[5]] is proposed as a defence.
@@ -404,51 +394,51 @@ especially important when control of a network may mean monetary losses, loss of
 
 ## References
 
-[[1]] Wikipedia: "Distributed Hash Table" [online]. Available: https://en.wikipedia.org/wiki/Distributed_hash_table. Date accessed: 2019-03-08.
+[[1]] Wikipedia: "Distributed Hash Table" [online]. Available: <https://en.wikipedia.org/wiki/Distributed_hash_table>. Date accessed: 2019&#8209;03&#8209;08.
 
 [1]: https://en.wikipedia.org/wiki/Distributed_hash_table. 'Wikipedia: Distributed Hash Table'
 
-[[2]] Kademlia: A Peer-to-Peer Information System" [online]. Available: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf. Date accessed: 2019-03-08.
+[[2]] Kademlia: A Peer-to-Peer Information System" [online]. Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>. Date accessed: 2019&#8209;03&#8209;08.
 
 [2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf 'Original Kademlia paper'
 
-[[3]] Ethereum Wiki [online]. Available: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection#lookup. Date accessed: 2019-03-12.
+[[3]] Ethereum Wiki [online]. Available: <https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection#lookup>. Date accessed: 2019&#8209;03&#8209;12.
 
 [3]: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection 'Kademlia Peer Selection'
 
-[[4]] Wikipedia: "Tapestry (DHT)" [online]. Available: https://www.wikiwand.com/en/Tapestry_(DHT). Date accessed: 2019-03-12.
+[[4]] Wikipedia: "Tapestry (DHT)" [online]. Available: <https://www.wikiwand.com/en/Tapestry_(DHT)>. Date accessed: 2019&#8209;03&#8209;12.
 
 [4]: https://www.wikiwand.com/en/Tapestry_(DHT) 'Tapestry (DHT)'
 
-[[5]] Towards a Scalable and Robust DHT [online]. Available: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf. Date accessed: 2019-03-12.
+[[5]] Towards a Scalable and Robust DHT [online]. Available: <http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf>. Date accessed: 2019&#8209;03&#8209;12.
 
 [5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf 'Towards a Scalable and Robust DHT'
 
-[[6]] Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network [online]. Available: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf. Date accessed: 2019-03-15.
+[[6]] Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network [online]. Available: <https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf>. Date accessed: 2019&#8209;03&#8209;15.
 
 [6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf 'Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network'
 
-[[7]]: Commensal Cuckoo: Secure Group Partitioning for Large-scale Services [online]. Available: http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf. Date accessed: 2019-03-15.
+[[7]]: Commensal Cuckoo: Secure Group Partitioning for Large-scale Services [online]. Available: <http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed: 2019&#8209;03&#8209;15.
 
 [7]: http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf 'Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services'
 
-[[8]]: Overlay and P2P Networks [online]. Available: https://www.cs.Nhelsinki.fi/webfm_send/1339. Date accessed: 2019-04-04.
+[[8]]: Overlay and P2P Networks [online]. Available: <https://www.cs.Nhelsinki.fi/webfm_send/1339>. Date accessed: 2019&#8209;04&#8209;04.
 
 [8]: https://www.cs.helsinki.fi/webfm_send/1339 'Overlay and P2P networks'
 
-[[9]]: Poisoning the Kad Network [online]. Available: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf. Date accessed: 2019-04-04.
+[[9]]: Poisoning the Kad Network [online]. Available: <https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf>. Date accessed: 2019&#8209;04&#8209;04.
 
 [9]: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf 'Poisoning the Kad Network'
 
-[[10]]: BitTorrent [online]. https://en.wikipedia.org/wiki/BitTorrent. Date accessed: 2019-04-04.
+[[10]]: BitTorrent [online]. <https://en.wikipedia.org/wiki/BitTorrent>. Date accessed: 2019&#8209;04&#8209;04.
 
 [10]: https://en.wikipedia.org/wiki/BitTorrent 'BitTorrent'
 
-[[11]]: Servers - Tor Metrics [online]. https://metrics.torproject.org/networksize.html Date accessed: 2019-04-29.
+[[11]]: Servers - Tor Metrics [online]. <https://metrics.torproject.org/networksize.html>. Date accessed: 2019&#8209;04&#8209;29.
 
 [11]: https://en.wikipedia.org/wiki/BitTorrent 'Servers - Tor Metrics'
 
-[[12]]: A Survey of DHT Security Techniques [online]. https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques Date accessed: 2019-04-29.
+[[12]]: A Survey of DHT Security Techniques [online]. <https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques>. Date accessed: 2019&#8209;04&#8209;29.
 
 [12]: https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques 'A Survey of DHT Security Techniques'
 
@@ -456,4 +446,5 @@ especially important when control of a network may mean monetary losses, loss of
 
 - <https://github.com/sdbondi>
 - <https://github.com/neonknight64>
+- <https://github.com/philipr-za>
 - <https://github.com/anselld>
