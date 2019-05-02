@@ -1,27 +1,28 @@
 # Mimblewimble-Grin Blockchain Protocol Overview
 
+- [Introduction](#introduction)
+- [Contents](#contents)
+- [Mimblewimble protocol overview](#mimblewimble-protocol-overview)
+  - [Commitments](#commitments)
+  - [Cut-through and pruning](#cut-through-and-pruning)
+  - [Grin blocks](#grin-blocks)
+- [Trustless transactions](#trustless-transactions)
+- [Contracts](#contracts)
+  - [Time-locked](#time-locked)
+  - [Multisig](#multisig)
+- [Atomic swaps](#atomic-swaps)
+- [References](#references)
+- [Appendices](#appendices)
+  - [Appendix A: Example of Grin Block](#example-of-grin-block)
+- [Contributors](#contributors)
+
+
+
 ## Introduction
 
 Depending on who you ask, Mimblewimble is either a tongue-tying curse or blockchain protocol designed to be private and scalable. The transactions in Mimblewimble is derived from confidential transactions by Greg Maxwell [[1]], that is in turn based on the Pedersen commitment scheme. On 19 July 2016 someone with the name Tom Elvis Jedusor left a whitepaper on the tor network describing how Mimblewimble could work. As the potential for this was realized work was done to make this a reality. One of these projects is Grin, which is a minimalistic implementation of Mimblewimble.  Further information could be found on [Grin at Grin vs. BEAM, a Comparison](../grin-beam-comparison/MainReport.md) [[2]] and [Grin design choice criticisms - Truth or Fiction](../grin-design-choice-criticisms/MainReport.md) [[3]]. 
 
-## Contents
 
-- [Mimblewimble-Grin Blockchain Protocol Overview](#mimblewimble-grin-blockchain-protocol-overview)
-  - [Introduction](#introduction)
-  - [Contents](#contents)
-  - [Mimblewimble protocol overview](#mimblewimble-protocol-overview)
-    - [Commitments](#commitments)
-    - [Cut-through and pruning](#cut-through-and-pruning)
-    - [Grin blocks](#grin-blocks)
-  - [Trustless transactions](#trustless-transactions)
-  - [Contracts](#contracts)
-    - [Time-locked](#time-locked)
-    - [Multisig](#multisig)
-  - [Atomic swaps](#atomic-swaps)
-  - [References](#references)
-  - [Contributors](#contributors)
-  - [Appendices](#appendices)
-    - [Appendix A: Example of Grin Block](#appendix-a-example-of-grin-block)
 
 ## Mimblewimble protocol overview
 
