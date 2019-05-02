@@ -80,6 +80,7 @@ Pedersen Commitments are perfectly hiding (an attacker with infinite computing p
 committed to) and computationally binding (no efficient algorithm running in a practical amount of time can produce 
 fake commitments, except with small probability). The Elliptic Curve Pedersen Commitment to value $ x \in \mathbb Z_p $ 
 has the following form:
+
 $$
 C(x,r) = xH + rG
 $$
@@ -87,8 +88,8 @@ $$
 where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and 
 $ H \in  \mathbb F_p $ is specially chosen so that the value $ x_H $ satisfying $ H = x_H G $ cannot be found, except 
 if the Elliptic Curve DLP<sup>[def][dlp~]</sup> (ECDLP) is solved. The number $ H $ is what is known as a Nothing Up 
-My Sleeve (NUMS) number. With secp256k1, the value of $ H $ is the SHA256 hash of a simple encoding of the  
-$ x $-coordinate of the generator point $ G $. The Pedersen Commitment scheme is implemented with three 
+My Sleeve (NUMS) number. With secp256k1, the value of $ H $ is the SHA256 hash of a simple encoding of the  $ x $-coordinate 
+of the generator point $ G $. The Pedersen Commitment scheme is implemented with three 
 algorithms: <code>Setup()</code> to set up the commitment parameters $ G $ and $ H $; <code>Commit()</code> to commit 
 to the message $ x $ using the commitment parameters $ r $, $ H $ and $ G $; and <code>Open()</code> to open and verify 
 the commitment ([[5]], [[6]], [[7]], [[8]]).
@@ -108,6 +109,7 @@ Given some unique asset description $ A $, the associated asset tag $ H_A \in \m
 Pedersen Commitment function <code>Setup()</code> using $ A $ as auxiliary input. (Selection of $ A $ is discussed 
 in [Asset Issuance](#asset-issuance).) Consider a transaction with two inputs and two outputs involving two distinct 
 asset types $ A $ and $ B $:
+
 $$
 \begin{aligned}
 in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G \\\\
@@ -133,6 +135,7 @@ unlimited amount of distinct asset types, as long as each asset tag can be a uni
 relation (2) is that the asset type of each output is publicly visible, thus the assets that were transacted in are 
 not confidential. This can be solved by replacing each asset tag with a blinded version of itself. The asset commitment 
 to asset tag $ H_A ​$ (blinded asset tag) is then defined as the point
+
 $$
 H_{0_A} = H_A + rG
 $$
@@ -142,6 +145,7 @@ confidential. The blinded asset tag $ H_{0_A} $ will then be used in place of th
 Commitments. Such Pedersen Commitments thus commit to the committed amount as well as to the underlying asset tag. 
 Inspecting the Pedersen Commitment, it is evident that a commitment to the value $ x_1 $ using the blinded asset 
 tag $  H_{0_A}  $ is also a commitment to the same value using the asset tag $  H_A  $:
+
 $$
 x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
 $$
@@ -167,6 +171,7 @@ $$
 
 However, using only the sum to zero rule, it is still possible to introduce negative amounts of an asset type. Consider 
 blinded asset tag
+
 $$
 H_{0_A} = -H_A + rG
 $$
@@ -182,6 +187,7 @@ and blinding factor $ r ​$. It proves that every output asset type is the same
 which outputs correspond to which inputs. Such a proof $ \pi ​$ is secure if it is a zero-knowledge proof of knowledge 
 for the blinding factor $ r ​$. Let $  H_{0_{A1}}  ​$ and $  H_{0_{A2}}  ​$ be blinded asset tags that commit to the same 
 asset tag $  H_A  ​$:
+
 $$
 H_{0_{A1}} = H_A + r_1G \mspace{15mu} \mathrm{and} \mspace{15mu} H_{0_{A2}} = H_A + r_2G
 $$
@@ -335,14 +341,14 @@ confidential assets.
 ### Elements Project
 
 Elements [[31]] is an open source, sidechain-capable blockchain platform, providing access to 
-advanced features such as Confidential Transactions and Issued Assets (`Github: ElementsProject/elements` [[16]]). 
+advanced features such as Confidential Transactions and Issued Assets in `Github: ElementsProject/elements` [[16]]. 
 It allows digitizable collectables, reward points and attested assets (e.g. gold coins) to be realized on a 
 blockchain. The main idea behind Elements is to serve as a research platform and testbed for changes to the Bitcoin 
-protocol. The Elements project's implementation of confidential assets is called Issued Assets ([[13]], [[14]], [[15]]) and is based 
-on its formal publication in [[1]]. 
+protocol. The Elements project's implementation of confidential assets is called Issued Assets ([[13]], [[14]], [[15]]) 
+and is based on its formal publication in [[1]]. 
 
 The Elements project hosts a working demonstration (shown in [Figure&nbsp;2](#fig_eca)) of confidential asset transfers 
-(`Github: ElementsProject/confidential-assets-demo` [[17]]) involving five parties. The demonstration depicts a scenario 
+involving five parties in `Github: ElementsProject/confidential-assets-demo` [[17]]. The demonstration depicts a scenario 
 where a coffee shop owner *Dave* charges a customer *Alice* for coffee in an asset called MELON. *Alice* does not hold 
 enough MELON and needs to convert some AIRSKY into MELON, making use of an exchange operated by *Charlie*. The coffee 
 shop owner *Dave* has a competitor, *Bob*, who is trying to gather information about *Dave's* sales. Due to the 
@@ -390,7 +396,7 @@ allocate variables and define constraints. Cloak uses a collection of gadgets su
 “range proof” to build a constraint system for cloaked transactions. All transactions of the same size are 
 indistinguishable, because the layout of all the gadgets is only determined by the number of inputs and outputs.
 
-The Cloak development is still ongoing.
+At the time of writing this report the Cloak development was still ongoing.
 
 
 
