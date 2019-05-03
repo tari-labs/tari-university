@@ -1,5 +1,19 @@
 # Grin vs. BEAM, a Comparison
 
+- [Introduction](#introduction)
+- [Comparison of Features and Implementation in Grin vs BEAM](#comparison-of-features-and-implementation-in-grin-vs-beam)
+  - [Grin Unique features](#grin-unique-features)
+  - [BEAM Unique features](#beam-unique-features)
+- [Proof of Work Mining Algorithm](#proof-of-work-mining-algorithm)
+- [Governance Models and Monetary Policy](#governance-models-and-monetary-policy)
+- [Conclusions, Observations and Recommendations](#conclusions-observations-recommendations)
+- [References](#references)
+- [Contributors](#contributors)
+- [Appendices](#appendices)
+  - [Appendix A: Cuckoo/Cuckatoo Cycle PoW algorithm](#appendix-a-cuckoocuckatoo-cycle-pow-algorithm)
+
+
+
 ## Introduction
 
 Grin and BEAM are two open-source cryptocurrency projects based on the Mimblewimble protocol. The Mimblewimble protocol was first proposed by a anonymous user using the pseudonym Tom Elvis Jedusor (the french translation of Voldemort's name from the Harry Potter series of books). This user logged onto a bitcoin research IRC channel and posted a link to a text article hosted on a Tor hidden service [[1]]. This article provided the basis for a new way to construct blockchain style transactions that provided inherent privacy and the ability to dramatically reduce the size of the blockchain by compressing the transaction history of the chain. This initial article presented the main ideas of the protocol, but it left out a number of critical elements required for a practical implementation and even contained a mistake in the cryptographic formulation. Andrew Poelstra published a follow-up paper that addresses many of these issues and refines the core concepts of Mimblewimble [[2]] which have been applied to the practical implementations of this protocol in both the Grin [[3]] and BEAM [[4]] projects.
@@ -10,21 +24,7 @@ Grin and BEAM both implement the Mimblewimble protocol but each has been built f
 
 The remainder of this report will be structured as follows: Firstly, some implementation details and unique features of the project will be discussed. Secondly, we will examine the difference in the proof-of-work algorithms employed and finally we will discuss the different governance models the projects are using.
 
-## Contents
 
-- [Grin vs. BEAM, a Comparison](#grin-vs-beam-a-comparison)
-  - [Introduction](#introduction)
-  - [Contents](#contents)
-  - [Comparison of Features and Implementation in Grin vs BEAM](#comparison-of-features-and-implementation-in-grin-vs-beam)
-    - [Grin unique features](#grin-unique-features)
-    - [BEAM unique features](#beam-unique-features)
-  - [Proof of Work Mining Algorithm](#proof-of-work-mining-algorithm)
-  - [Governance Models and Monetary Policy](#governance-models-and-monetary-policy)
-  - [Conclusions, Observations, Recommendations](#conclusions-observations-recommendations)
-  - [References](#references)
-  - [Contributors](#contributors)
-  - [Appendices](#appendices)
-    - [Appendix A: Cuckoo/Cuckatoo Cycle PoW algorithm](#appendix-a-cuckoocuckatoo-cycle-pow-algorithm)
 
 
 ## Comparison of Features and Implementation in Grin vs BEAM
@@ -40,7 +40,7 @@ Both Grin and BEAM have incorporated a version of the Dandelion relay protocol t
 
 Both projects have adapted this approach to work with Mimblewimble transactions. Grin's implementation allows for transaction aggregation and cut-through in the stem phase of propagation which provides even greater anonymity to the transactions before they spread during the fluff phase [[10]]. In addition to transaction aggregation and cut-through, Beam introduces “dummy” transactions that are added in the stem phase to compensate for situations when real transactions are not available [[33]].
 
-### Grin unique features
+### Grin Unique Features
 
 Grin is aiming to be a simple and minimal reference implementation of a Mimblewimble blockchain so they are not aiming to include many features extending the core Mimblewimble functionality as discussed. However, the Grin implementation does include some interesting implementation choices which they have documented in depth on their growing Github repository's wiki.
 
@@ -49,7 +49,7 @@ Grin has implemented a method for a node to sync the blockchain very quickly by 
 Since the initial writing of this article (October 2018) BEAM has published their solution for fast node synchronization using macroblocks. A macroblock is a complete state of all UTXOs, periodically created by Beam nodes [[12]].
 
 
-### BEAM unique features
+### BEAM Unique Features
 
 BEAM has set out to extend the feature set of Mimblewimble in a number of ways. BEAM supports setting an explicit incubation period on a UTXO which limits its ability to be spent to a specific number of blocks after its creation [[13]]. This is different to a timelock which prevents a transaction from being added to a block before a certain time. BEAM also supports the traditional timelock feature but includes the ability to also specify an upper time limit after which the transaction can no longer be included in a block [[13]]. This feature means that a party can be sure that if a transaction is not included in a block on the main blockchain after a certain time that it will never appear.
 
