@@ -361,11 +361,11 @@ Accessed: 2018&#8209;10&#8209;27.
 
 | No.  | Output Type   |Commit                                    | Spent |
 | ---- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| 1    | Transaction |0898a4b53964ada66aa16de3d44ff02228c168a23c0bd71b162f4366ce0dae24b0|False|
-| 2    | Transaction |09a173023e9c39c923e626317ffd384c7bce44109fea91a9c142723bfa700fce27|False|
-| 3    | Coinbase |086e0d164fe92d837b5365465a6b37af496a4f8520a2c1fccbb9f736521631ba96|False|
-| 4    | Transaction |087a00d61f8ada399f170953c6cc7336c6a0b22518a8b02fd8dd3e28c01ee51fdb|False|
-| 5    | Transaction |087a00d61f8ada399f170953c6cc7336c6a0b22518a8b02fd8dd3e28c01ee51fdb|False|
+| 1    | Transaction |09eac33dfdeb84da698c6c17329e4a06020238d9bb31435a4abd9d2ffc122f6879|False|
+| 2    | Transaction |0860e9cf37a94668c842738a5acc8abd628c122608f48a50bbb7728f46a3d50673|False|
+| 3    | Coinbase |08324cdbf7443b6253bb0cdf314fce39117dcafbddda36ed37f2c209fc651802d6|False|
+| 4    | Transaction |0873f0da4ce164e2597800bf678946aad1cd2d7e2371c4eed471fecf9571942b4f|False|
+| 5    | Transaction |09774ee77edaaa81b3c6ee31f471f014db86c4b3345f739472cb12ecc8f40401df|False|
 
 `3 x Kernels`
 
@@ -382,10 +382,10 @@ Apart from the header information we can only see that this block contains 2 tra
 
 ## Contributors
 
-- [https://github.com/SWvheerden](https://github.com/SWvheerden)
-- [https://github.com/neonknight64](https://github.com/neonknight64)
-- [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
-- [https://github.com/anselld](https://github.com/anselld)
+- <https://github.com/SWvheerden>
+- <https://github.com/neonknight64>
+- <https://github.com/hansieodendaal>
+- <https://github.com/anselld>
 
 
 
