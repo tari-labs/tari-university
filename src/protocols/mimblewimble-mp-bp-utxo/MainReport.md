@@ -102,16 +102,16 @@ In the event that Bob can convince Alice that she must create a fund that both o
 Alice, Bob and Carol agree to set up a multi-party $ 3\text{-of-}3 $ multisig fund that they can control together. The transaction they need to set up looks like this:
 $$
 \begin{aligned} 
-C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\
+C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\\\
 (v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
-In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset that will be added to their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. Each of them will use their total excess to sign the transaction. 
+In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset $ o_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. Each of calculates their total excess that will be used to sign the transaction: 
 $$
 \begin{aligned} 
-x_{sa} &= k_a + offset_a \\
-x_{sb} &= k_b + offset_b \\
-x_{sc} &= k_c + offset_c
+x_{sa} &= k_a - o_a \\\\
+x_{sb} &= k_b - o_b \\\\
+x_{sc} &= k_c - o_c
 \end{aligned}
 $$
 Consequently they share the public value of the excess with each other:
@@ -125,18 +125,18 @@ $$
 They now have enough information to calculate the same challenge for the signature,
 $$
 \begin{aligned} 
-m &= fee||height \\
+m &= fee||height \\\\
 e &= \text{Hash}(R_{agg} || P_{agg} || m)
 \end{aligned}
 $$
 and proceed to calculate a combined signature for the transaction. Each use their own private nonce $ r_n $ and secret shared blinding factor $ k_n $ and calculate partial a signatures $ s_n $ that will be shared and aggregated:
 $$
 \begin{aligned} 
-s_a = r_a + e \cdot k_1 \\
-s_b = r_b + e \cdot k_2 \\
-s_c = r_c + e \cdot k_3
+s\_a &= r_a + e \cdot k\_1 \\\\
+s\_b &= r_b + e \cdot k\_2 \\\\
+s\_c &= r_c + e \cdot k\_3 \\\\
+s\_{agg} &= s\_a + s\_b + s\_c
 \end{aligned}
-\mspace{18mu} \} \mspace{18mu} s_{agg} = s_a + s_b + s_c
 $$
 The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, all publicly shared values will be needed:
 $$
@@ -144,17 +144,17 @@ s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
 $$
 In order to validate that no funds are created the total offset must also be shared and stored in the transaction kernel:
 $$
-offset_{tot} = offset_a + offset_b + offset_c
+o_{tot} = o_a + o_b + o_c
 $$
-The transaction is then validated to be equal to a commitment to the value of $ 0 $ as follows:
+The transaction is then validated to be equal to a commitment to the value $ 0 $ as follows:
 $$
-(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + offset_{tot}G)
+(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + o_{tot}G)
 $$
 
 
 ### Creating the Multi-party Bulletproof
 
-One crucial aspect of in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now Alice, Bob and Carol could each keep their portion of the shared blinding factor secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor.
+One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now Alice, Bob and Carol could each keep their portion of the shared blinding factor secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor.
 
 ???
 
