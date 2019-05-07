@@ -259,7 +259,7 @@ Available: <https://cryptobriefing.com/how-inflationary-should-cryptocurrency-be
 Available: <https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/>. 
 Date accessed: 2018&#8209;11&#8209;06.
 
-[10]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/	
+[10]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/
 "Debtcoin: Credit, Debt, and Cryptocurrencies, Landon Mutch"
 [[11]] Brian Curran, "Inflation vs Deflation: A Guide to Bitcoin & Cryptocurrencies Deflationary Nature" [online]. 
 Available: <https://blockonomi.com/bitcoin-deflation/>. Date accessed: 2018&#8209;11&#8209;06.
@@ -362,7 +362,7 @@ Available: <http://safecurves.cr.yp.to/>. Date accessed: 2018&#8209;10&#8209;10.
 <https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/>. 
 Date accessed: 2018&#8209;10&#8209;15.
 
-[27]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/	
+[27]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/
 "LevelDB"
 [[28]] HyperLevelDB [online]. Available: <http://hyperdex.org/>. Date accessed: 2018&#8209;10&#8209;15.
 
