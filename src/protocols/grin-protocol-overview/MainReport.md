@@ -168,7 +168,7 @@ When Alice wants to pay Bob, the transaction will be performed using the followi
 2. Alice picks a random nonce ks and sends her partial transaction, $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
 
 3. Bob picks his own random nonce $ k_r $ and the blinding factor for his output $ r_r $. Using $ r_r $, Bob adds his 
-  output to the transaction.
+    output to the transaction.
 
 4. Bob computes the following:
 
@@ -186,8 +186,8 @@ When Alice wants to pay Bob, the transaction will be performed using the followi
 7. Alice sends her side of the signature, $ s_s = k_s + e\cdot r_s $,  to Bob.
 
 8. Bob validates $ s_s\cdot G $, just like Alice did for $ s_r\cdot G $ in step 5, and can produce the final signature 
-  $ s = s_s + s_r , k_s\cdot G + k_s\cdot G$ as well as the final transaction kernel, including $ s $ and the public key 
-  $ r_r\cdot G + r_s\cdot G$. 
+    $ s = s_s + s_r , k_s\cdot G + k_s\cdot G$ as well as the final transaction kernel, including $ s $ and the public key 
+    $ r_r\cdot G + r_s\cdot G$. 
 
 
 
