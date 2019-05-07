@@ -79,22 +79,84 @@ Bitcoin transactions are allowed to have multiple recipients, and one of the rec
 
 ## Formation of the Multiparty Bulletproof UTXO
 
-???
+### Security of the Mimblewimble Blockchain
 
+A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complimenting aspects to provide security; [Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect, and range proofs provide assurance that the currency cannot be inflated and that 3<sup>rd</sup> parties cannot lock away ones funds. Due to the fact that Mimblewimble commitments are totally confidential and that ownership cannot be proofed, anyone can try to spend or mess with unspent coins embedded in those commitments. Fortunately any new UTXO requires a range proof, and this is impossible to create if the input commitment cannot be opened.
 
-
-## Security of the Mimblewimble Blockchain
-
-A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complimenting aspects to provide security; [Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect, and range proofs provide assurance that the currency cannot be inflated and that 3<sup>rd</sup> parties cannot lock away ones funds. Due to the fact that Mimblewimble commitments are totally confidential and that ownership cannot be proofed, anyone can try to spend or mess with unspent coins embedded in those commitments. Fortunately any new UTXO requires a range proof, and this is impossible to create if the input commitment cannot be opened. This is demonstrated below.
-
-Let $ (v_{in} H + k_{in} G) $ be the "closed" input UTXO commitment that someone is trying to lock away by adding an additional blinding factor $ k_{x} $ to the commitment. A valid Mimblewimble transaction would have the following form
+The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let $ C_{A}(v_1 , k_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by adding an additional blinding factor $ k_{x} $ to the commitment. A valid Mimblewimble transaction would have the following form
 $$
 \begin{aligned} 
-C_{locked}(v_1 , k_1 + k_x) - C_{in}(v_1 , k_1) - C_{fee}(v_2 , k_2) + fee &= (\mathbf{0}) \\\\
+C_{locked}(v_1 , k_1 + k_x) - C_{A}(v_1 , k_1) - C_{fee}(v_2 , k_2) + fee &= (\mathbf{0}) \\\\
 (v_1 H + (k_1 + k_x) G) -  (v_1 H + k_1 G) - (v_2 H + k_2 G) + fee &= (\mathbf{0})
 \end{aligned}
+\mspace{70mu} (1)
 $$
-where the attacker tries to lock away the unspent-hiding-blinding commitment $ (v_1 H + k_1 G) $ and the value of $ (v_2 H + k_2 G) $ is equal to $ fee $ to be paid to the miner. In this example the commitment $ (v_1 H + (k_1 + k_x) G) $ will be equally unspendable by the attacker as well as the owner because neither of them will know the total blinding factor $ k_1 + k_x $. Fortunately, in order to construct a Bulletproof range proof for the new output $ (v_1 H + (k_1 + k_x) G) $, the values of $ v_1 $ and $ k_1 + k_x $ must be known otherwise the prover (i.e. attacker) cannot convince an honest verifier that $ v_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
+where the unspent-hiding-blinding commitment from Alice is $ (v_1 H + k_1 G) $ and the value of $ (v_2 H + k_2 G) $ is equal to $ fee $ to be paid to the miner. The newly created commitment $ (v_1 H + (k_1 + k_x) G) $ would be equally unspendable by the Alice and Bob because neither of them will know the total blinding factor $ k_1 + k_x $. Fortunately, in order to construct a Bulletproof range proof for the new output $ (v_1 H + (k_1 + k_x) G) $ as required by transaction validation rules, the values of $ v_1 $ and $ k_1 + k_x $ must be known otherwise the prover (i.e. Bob) cannot convince an honest verifier (i.e. the miner) that $ v_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
+
+In the event that Bob can convince Alice that she must create a fund that both of them have signing powers over ($ 2\text{-of-}2 $ multisig), it would theoretically be possible to create the required Bulletproof range proof for relation (1) if they work together to create it.
+
+
+
+### Setting up the Multi-party Funding Transaction
+
+Alice, Bob and Carol agree to set up a multi-party $ 3\text{-of-}3 $ multisig fund that they can control together. The transaction they need to set up looks like this:
+$$
+\begin{aligned} 
+C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\
+(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee &= (\mathbf{0})
+\end{aligned}
+$$
+In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset that will be added to their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. Each of them will use their total excess to sign the transaction. 
+$$
+\begin{aligned} 
+x_{sa} &= k_a + offset_a \\
+x_{sb} &= k_b + offset_b \\
+x_{sc} &= k_c + offset_c
+\end{aligned}
+$$
+Consequently they share the public value of the excess with each other:
+$$
+P_{agg} = x_{sa}G + x_{sb}G + x_{sc}G
+$$
+In order for them to sign the transaction, they also need to share the public values of their shared blinding factor with each other:
+$$
+R_{agg} = k_1G + k_2G + k_3G
+$$
+They now have enough information to calculate the same challenge for the signature,
+$$
+\begin{aligned} 
+m &= fee||height \\
+e &= \text{Hash}(R_{agg} || P_{agg} || m)
+\end{aligned}
+$$
+and proceed to calculate a combined signature for the transaction. Each use their own private nonce $ r_n $ and secret shared blinding factor $ k_n $ and calculate partial a signatures $ s_n $ that will be shared and aggregated:
+$$
+\begin{aligned} 
+s_a = r_a + e \cdot k_1 \\
+s_b = r_b + e \cdot k_2 \\
+s_c = r_c + e \cdot k_3
+\end{aligned}
+\mspace{18mu} \} \mspace{18mu} s_{agg} = s_a + s_b + s_c
+$$
+The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, all publicly shared values will be needed:
+$$
+s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
+$$
+In order to validate that no funds are created the total offset must also be shared and stored in the transaction kernel:
+$$
+offset_{tot} = offset_a + offset_b + offset_c
+$$
+The transaction is then validated to be equal to a commitment to the value of $ 0 $ as follows:
+$$
+(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + offset_{tot}G)
+$$
+
+
+### Creating the Multi-party Bulletproof
+
+One crucial aspect of in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now Alice, Bob and Carol could each keep their portion of the shared blinding factor secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor.
+
+???
 
 
 
