@@ -33,6 +33,7 @@ This section gives the general notation of mathematical expressions used. It pro
 - All Pederson Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
 - Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
 - A Pederson Commitments to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
+- Let $ \text{H}_{s}(arg) $ be a generic hash function used in a sharing protocol where $ arg $ is the value being committed to.
 
 
 
@@ -117,7 +118,7 @@ C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee 
 (v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
-In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. Each of calculates their total excess that will be used to sign the transaction: 
+In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. They then calculate their total excess that will be used to sign the transaction: 
 $$
 \begin{aligned} 
 x_{sa} &= k_a - \phi_a \\\\
@@ -125,7 +126,7 @@ x_{sb} &= k_b - \phi_b \\\\
 x_{sc} &= k_c - \phi_c
 \end{aligned}
 $$
-ToDo: Reference the RFC or other that discusses a sharing protocol.
+At this point in time the parties also need to agree on a secure sharing protocol. They decide to use the sharing hash function $ val_H = \text{H}_{s}(arg) $ for all information they need to share. The 1<sup>st</sup> step is to calculate ??? The value $ arg $ will only be shared when all commitments have been received for every round. This ensures that each party's public value is not exposed until all commitments have been received.
 
 Consequently they share the public value of the excess $ x_{sn}G $ with each other:
 $$
@@ -167,7 +168,7 @@ $$
 
 ### Creating the Multiparty Bulletproof
 
-One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor.
+One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now, Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.
 
 #### Using Bulletproofs MPC Protocol
 
@@ -190,6 +191,10 @@ Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ p
 ### Shamir's Secret Sharing
 
 ???
+
+<<https://iancoleman.io/shamir/>>
+
+
 
 ### Multi-rounds Scheme
 
