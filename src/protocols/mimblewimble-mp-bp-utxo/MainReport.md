@@ -2,7 +2,12 @@
 
 - [Introduction](#introduction)
 - [Notation Used](#notation-used)
-- [Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell](#bitcoin--mtext-of-n--multisig-in-a-nutshell)
+- [Background](#background)
+  - [Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell](#bitcoin--mtext-of-n--multisig-in-a-nutshell)
+  - [Security of the Mimblewimble Blockchain](#security-of-the-mimblewimble-blockchain)
+- [Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo)
+  - [Setting up the Multiparty Funding Transaction](#setting-up-the-multiparty-funding-transaction)
+  - [Creating the Multiparty Bulletproof](#creating-the-multiparty-bulletproof)
 - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
 - [References](#references)
 - [Appendices](#appendices)
@@ -17,7 +22,7 @@ In [Mimblewimble](../mimblewimble-1/MainReport.md) the concept of a Bitcoin type
 
 In Bitcoin, multisig payments are usually combined with Pay to Script Hash (P2SH) functionality as a means to send funds to a P2SH payment address and then to manage its expenditure from there. The redeem script itself sets the conditions that must be fulfilled in order for the UTXOs linked to the P2SH payment address to be spent [[[1]], [[2]]). 
 
-Unlike Bitcoin, Mimblewimble transactions do not involve payment addresses as all transactions are confidential. The only requirement for a Mimblewimble UTXO to be spent is the ability to open (or unlock) the [Pederson Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and does not require an "owner" signature.
+Unlike Bitcoin, Mimblewimble transactions do not involve payment addresses as all transactions are confidential. The only requirement for a Mimblewimble UTXO to be spent is the ability to open (or unlock) the [Pederson Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and does not require an "owner" signature. Another fundamental difference is that for any Mimblewimble transaction all parties, that is all senders and all receivers, must interact to conclude the transaction.
 
 
 
@@ -31,7 +36,11 @@ This section gives the general notation of mathematical expressions used. It pro
 
 
 
-## Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell
+## Background
+
+
+
+### Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell
 
 Multiple use cases of $ m\text{-of-}n $ multisig applications exist, for example a $ 1\text{-of-}2 $ petty cash account, or a $ 2\text{-of-}2 $ two-factor authentication wallet, or a $ 2\text{-of-}3 $ board of directors account, etc [[3]]. A typical 2-of-3 Bitcoin P2SH multisig redeem script (where any 2 of the 3 predefined public keys must sign the transaction) has the following form:
 
@@ -77,8 +86,6 @@ Bitcoin transactions are allowed to have multiple recipients, and one of the rec
 
 
 
-## Formation of the Multiparty Bulletproof UTXO
-
 ### Security of the Mimblewimble Blockchain
 
 A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complimenting aspects to provide security; [Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect, and range proofs provide assurance that the currency cannot be inflated and that 3<sup>rd</sup> parties cannot lock away ones funds. Due to the fact that Mimblewimble commitments are totally confidential and that ownership cannot be proofed, anyone can try to spend or mess with unspent coins embedded in those commitments. Fortunately any new UTXO requires a range proof, and this is impossible to create if the input commitment cannot be opened.
@@ -97,28 +104,34 @@ In the event that Bob can convince Alice that she must create a fund that both o
 
 
 
-### Setting up the Multi-party Funding Transaction
+## Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO
 
-Alice, Bob and Carol agree to set up a multi-party $ 3\text{-of-}3 $ multisig fund that they can control together. The transaction they need to set up looks like this:
+
+
+### Setting up the Multiparty Funding Transaction
+
+Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. The transaction they need to set up looks like this:
 $$
 \begin{aligned} 
 C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\\\
 (v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
-In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset $ o_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. Each of calculates their total excess that will be used to sign the transaction: 
+In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. Each of calculates their total excess that will be used to sign the transaction: 
 $$
 \begin{aligned} 
-x_{sa} &= k_a - o_a \\\\
-x_{sb} &= k_b - o_b \\\\
-x_{sc} &= k_c - o_c
+x_{sa} &= k_a - \phi_a \\\\
+x_{sb} &= k_b - \phi_b \\\\
+x_{sc} &= k_c - \phi_c
 \end{aligned}
 $$
-Consequently they share the public value of the excess with each other:
+ToDo: Reference the RFC or other that discusses a sharing protocol.
+
+Consequently they share the public value of the excess $ x_{sn}G $ with each other:
 $$
 P_{agg} = x_{sa}G + x_{sb}G + x_{sc}G
 $$
-In order for them to sign the transaction, they also need to share the public values of their shared blinding factor with each other:
+In order for them to sign the transaction, they also need to share the public values of their shared blinding factor $ k_nG $ with each other:
 $$
 R_{agg} = k_1G + k_2G + k_3G
 $$
@@ -129,7 +142,7 @@ m &= fee||height \\\\
 e &= \text{Hash}(R_{agg} || P_{agg} || m)
 \end{aligned}
 $$
-and proceed to calculate a combined signature for the transaction. Each use their own private nonce $ r_n $ and secret shared blinding factor $ k_n $ and calculate partial a signatures $ s_n $ that will be shared and aggregated:
+and proceed to calculate a combined signature for the transaction. Each use their own private nonce $ r_n $ and secret shared blinding factor $ k_n $ and calculate partial signatures $ s_n $ that will be shared with each other and aggregated:
 $$
 \begin{aligned} 
 s\_a &= r_a + e \cdot k\_1 \\\\
@@ -144,7 +157,7 @@ s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
 $$
 In order to validate that no funds are created the total offset must also be shared and stored in the transaction kernel:
 $$
-o_{tot} = o_a + o_b + o_c
+\phi_{tot} = \phi_a + \phi_b + \phi_c
 $$
 The transaction is then validated to be equal to a commitment to the value $ 0 $ as follows:
 $$
@@ -152,9 +165,9 @@ $$
 $$
 
 
-### Creating the Multi-party Bulletproof
+### Creating the Multiparty Bulletproof
 
-One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now Alice, Bob and Carol could each keep their portion of the shared blinding factor secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor.
+One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor.
 
 ???
 
@@ -168,37 +181,36 @@ One crucial aspect in validating the transaction is still missing, that is each 
 
 ## References
 
-[[1]] "The Best Step-by-Step Bitcoin Script Guide Part 2" [online]. Available: https://blockgeeks.com/guides/bitcoin-script-guide-part-2. Date accessed: 2019&#8209;05&#8209;02.
+[[1]] "The Best Step-by-Step Bitcoin Script Guide Part 2" [online]. Available: <https://blockgeeks.com/guides/bitcoin-script-guide-part-2>. Date accessed: 2019&#8209;05&#8209;02.
 
 [1]: https://blockgeeks.com/guides/bitcoin-script-guide-part-2
 "The Best Step-by-Step Bitcoin Script Guide Part 2"
 
-[[2]] "Script" [online]. Available: https://en.bitcoin.it/wiki/Script. Date accessed: 2019&#8209;05&#8209;06.
+[[2]] "Script" [online]. Available: <https://en.bitcoin.it/wiki/Script>. Date accessed: 2019&#8209;05&#8209;06.
 
 [2]: https://en.bitcoin.it/wiki/Script
 "Script"
 
-[[3]] "Multisignature" [online]. Available: https://en.bitcoin.it/wiki/Multisignature. Date accessed: 2019&#8209;05&#8209;06.
+[[3]] "Multisignature" [online]. Available: <https://en.bitcoin.it/wiki/Multisignature>. Date accessed: 2019&#8209;05&#8209;06.
 
 [3]: https://en.bitcoin.it/wiki/Multisignature
 "Multisignature"
 
-[[4]] "Transaction" [online]. Available: https://en.bitcoin.it/wiki/Transaction. Date accessed: 2019&#8209;05&#8209;06.
+[[4]] "Transaction" [online]. Available: <https://en.bitcoin.it/wiki/Transaction>. Date accessed: 2019&#8209;05&#8209;06.
 
 [4]: https://en.bitcoin.it/wiki/Transaction
 "Transaction"
 
-[[5]] S. Pour, "Bitcoin multisig the hard way: Understanding raw P2SH multisig transactions" [online]. Available: https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions. Date accessed: 2019&#8209;05&#8209;06.
+[[5]] S. Pour, "Bitcoin multisig the hard way: Understanding raw P2SH multisig transactions" [online]. Available: <https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions>. Date accessed: 2019&#8209;05&#8209;06.
 
 [5]: https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions
 "Bitcoin multisig the hard way: 
 Understanding raw P2SH multisig transactions"
 
-[[6]] "GitHub: gavinandresen/TwoOfThree.sh" [online]. Available: https://gist.github.com/gavinandresen/3966071. Date accessed: 2019&#8209;05&#8209;06.
+[[6]] "GitHub: gavinandresen/TwoOfThree.sh" [online]. Available: <https://gist.github.com/gavinandresen/3966071>. Date accessed: 2019&#8209;05&#8209;06.
 
 [6]: https://gist.github.com/gavinandresen/3966071
 "GitHub: gavinandresen/TwoOfThree.sh"
-
 
 
 
