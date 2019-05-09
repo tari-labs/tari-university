@@ -169,6 +169,30 @@ $$
 
 One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor.
 
+#### Using Bulletproofs MPC Protocol
+
+???
+
+#### Using Grin's Shared Bulletproof Computation
+
+???
+
+
+
+## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
+
+Shamir's Secret Sharing is needed
+
+Amount of rounds can be pre-determined
+
+Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ parties can confirm its correctness
+
+### Shamir's Secret Sharing
+
+???
+
+### Multi-rounds Scheme
+
 ???
 
 
