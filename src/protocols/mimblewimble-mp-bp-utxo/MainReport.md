@@ -28,9 +28,15 @@
 
 In [Mimblewimble](../mimblewimble-1/MainReport.md) the concept of a Bitcoin type multi-signature (multisig) applied to an Unspent Transaction Output (UTXO) does not really exist. 
 
-In Bitcoin, multisig payments are usually combined with Pay to Script Hash (P2SH) functionality as a means to send funds to a P2SH payment address and then to manage its expenditure from there. The redeem script itself sets the conditions that must be fulfilled in order for the UTXOs linked to the P2SH payment address to be spent [[[1]], [[2]]). 
+In Bitcoin, multisig payments are usually combined with Pay to Script Hash (P2SH) functionality as a means to send funds to a P2SH payment address, and then to manage its expenditure from there. The redeem script itself sets the conditions that must be fulfilled in order for the UTXOs linked to the P2SH payment address to be spent [[[1]], [[2]]). 
 
-Unlike Bitcoin, Mimblewimble transactions do not involve payment addresses as all transactions are confidential. The only requirement for a Mimblewimble UTXO to be spent is the ability to open (or unlock) the [Pederson Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and does not require an "owner" signature. Another fundamental difference is that for any Mimblewimble transaction all parties, that is all senders and all receivers, must interact to conclude the transaction.
+Unlike Bitcoin, Mimblewimble transactions do not involve payment addresses, as all transactions are confidential. The only requirement for a Mimblewimble UTXO to be spent is the ability to open (or unlock) the [Pederson Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) that contain the tokens, and it does not require an "owner" signature. A typical Mimblewimble UTXO looks like this [[9]]:
+
+```Text
+08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc
+```
+
+Another fundamental difference is that for any Mimblewimble transaction all parties, that is all senders and all receivers, must interact to conclude the transaction.
 
 
 
@@ -40,8 +46,8 @@ This section gives the general notation of mathematical expressions used. It pro
 
 - All Pederson Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
 - Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
-- A Pederson Commitments to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
-- Let $ \text{H}_{s}(arg) $ be a generic hash function used in a sharing protocol where $ arg $ is the value being committed to.
+- A Pederson Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
+- Let $ \text{H}_{s}(arg) $ be a collision-resistant hash function used in a sharing protocol where $ arg $ is the value being committed to.
 
 
 
@@ -125,20 +131,26 @@ Multiple parties working together to create a single transaction that involves m
 
 ### Simple Sharing Protocol
 
-Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They decide to use a sharing hash function $ val_H = \text{H}_{s}(arg) $ as a handshaking mechanism for all information they need to share. The 1<sup>st</sup> step is to calculate the hash $ val_H $ for the value $ arg $ they want to commit to in sharing and to distribute it to all parties. They then wait until all other parties' commitments have been received. The 2<sup>nd</sup> step is to send the actual value they committed to to all parties and to then verify each value against its commitment. If everything match up they proceed, otherwise they stop.
+Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They decide to use a sharing hash function $ val_H = \text{H}_{s}(arg) $ as a handshaking mechanism for all information they need to share. The 1<sup>st</sup> step is to calculate the hash $ val_H $ for the value $ arg $ they want to commit to in sharing and to distribute it to all parties. They then wait until all other parties' commitments have been received. The 2<sup>nd</sup> step is to send the actual value they committed to to all parties and to then verify each value against its commitment. If everything match up they proceed, otherwise they stop and discard everything they have done. 
+
+This ensures that public values for each step is not exposed until all commitments have been received. They will apply this simple sharing protocol to all information they need to share with each other.
 
 
 
 ### Setting up the Multiparty Funding Transaction
 
-The transaction Alice, Bob and Carol need to set up looks like this:
+In the transaction Alice, Bob and Carol want to set up, $ C_m $ is the multiparty shared commitment that contains the funds, and $ C_a $, $ C_b $ and $ C_c $ are their respective input contributions. This transaction looks as follows:
 $$
 \begin{aligned} 
 C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\\\
 (v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
-In order for this to work, they have to keep their portion of the shared blinding factor secret, so each of them creates their private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group. In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. They then calculate their total excess that will be used to sign the transaction: 
+In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, and have to keep their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group.
+$$
+R_{agg} = k_1G + k_2G + k_3G
+$$
+In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. They then calculate their own total excess that will be used to partially sign the transaction: 
 $$
 \begin{aligned} 
 x_{sa} &= k_a - \phi_a \\\\
@@ -146,41 +158,35 @@ x_{sb} &= k_b - \phi_b \\\\
 x_{sc} &= k_c - \phi_c
 \end{aligned}
 $$
-will only be shared when all commitments have been received for every round. This ensures that each party's public value is not exposed until all commitments have been received.
-
 Consequently they share the public value of the excess $ x_{sn}G $ with each other:
 $$
 P_{agg} = x_{sa}G + x_{sb}G + x_{sc}G
 $$
-In order for them to sign the transaction, they also need to share the public values of their shared blinding factor $ k_nG $ with each other:
+They now have enough information to calculate the same challenge $ e $ as
 $$
-R_{agg} = k_1G + k_2G + k_3G
+e = \text{Hash}(R_{agg} || P_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
 $$
-They now have enough information to calculate the same challenge for the signature,
-$$
-\begin{aligned} 
-m &= fee||height \\\\
-e &= \text{Hash}(R_{agg} || P_{agg} || m)
-\end{aligned}
-$$
-and proceed to calculate a combined signature for the transaction. Each use their own private nonce $ r_n $ and secret shared blinding factor $ k_n $ and calculate partial signatures $ s_n $ that will be shared with each other and aggregated:
+for a combined (aggregated) signature for the transaction. Each use their own private nonce $ r_n $ and secret blinding factor $ k_n $, calculate their partial Schnorr signature $ s_n $ and share it with each other:
 $$
 \begin{aligned} 
 s\_a &= r_a + e \cdot k\_1 \\\\
 s\_b &= r_b + e \cdot k\_2 \\\\
-s\_c &= r_c + e \cdot k\_3 \\\\
-s\_{agg} &= s\_a + s\_b + s\_c
+s\_c &= r_c + e \cdot k\_3
 \end{aligned}
 $$
-The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, all publicly shared values will be needed:
+The aggregated Schnorr signature is then simply calculated as
+$$
+s\_{agg} = s\_a + s\_b + s\_c
+$$
+The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, the publicly shared aggregated values $ R_{agg} $ and $ P_{agg} $ will be needed:
 $$
 s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
 $$
-In order to validate that no funds are created the total offset must also be shared and stored in the transaction kernel:
+In order to validate that no funds are created the total offset must also be stored in the transaction kernel, so the parties also share the offset they calculated:
 $$
 \phi_{tot} = \phi_a + \phi_b + \phi_c
 $$
-The transaction is then validated to be equal to a commitment to the value $ 0 $ as follows:
+The transaction balance is then validated to be equal to a commitment to the value $ 0 $ as follows:
 $$
 (v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + o_{tot}G)
 $$
@@ -193,7 +199,18 @@ One crucial aspect in validating the transaction is still missing, that is each 
 
 #### Utilizing Bulletproofs MPC Protocol
 
-???
+The [Bulletproofs Multiparty Computation Protocol](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) can be used in special way to construct a Bulletproof range proof that can be validated by the miners. This scheme involves coloring the UTXO to enable attachment of additional proof data and a flag to let the miners know that they have to employ a different set of validation rules. For this scheme the simple information sharing protocol will not be adequate; an efficient robust implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
+
+This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for the combined multiparty funds, but each using their own secret blinding factor in the commitment. They therefor construct fake commitments that will be used to calculate fake Bulletproof range proofs as follows:
+$$
+\begin{aligned} 
+\text{Alice:} \mspace{18mu} C_1(v_1,k_1) &= v_1H + k_1G \\\\
+\text{Bob:} \mspace{18mu} C_2(v_1,k_2) &= v_1H + k_2G \\\\
+\text{Carol:} \mspace{18mu} C_3(v_1,k_3) &= v_1H + k_3G
+\end{aligned}
+$$
+
+
 
 #### Utilizing Grin's Shared Bulletproof Computation
 
@@ -215,7 +232,7 @@ Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ p
 
 <<https://iancoleman.io/shamir/>>
 
-
+[[8]]
 
 ### Multiple Rounds Scheme
 
@@ -271,11 +288,28 @@ Understanding raw P2SH multisig transactions"
 [[7]] H.de Valence, I. Lovecruft and O. Andreev, "Merlin Transcripts" [online]. Available: <https://merlin.cool/index.html> and <https://doc-internal.dalek.rs/merlin/index.html>. Date accessed: 2019&#8209;05&#8209;10.
 
 [7]: https://doc-internal.dalek.rs/merlin/index.html
-
 "Merlin Transcripts" 
 
+[[8]] T. Pedersen. "Non-interactive and Information-theoretic Secure Verifiable Secret Sharing" 
+[online]. Available: <https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf>. Date accessed: 
+2018-09-27.
 
+[8]: https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf
+"Non-interactive and information-theoretic
+secure verifiable secret sharing, 
+Pedersen T."
 
+[[9]] "GrinExplorer, Block 164,690" [online]. Available: <https://grinexplorer.net/block/0000016c1ceb1cf588a45d0c167dbfb15d153c4d1d33a0fbfe0c55dbf7635410>. Date accessed: 2019&#8209;05&#8209;10.
+
+[9]: https://grinexplorer.net/block/0000016c1ceb1cf588a45d0c167dbfb15d153c4d1d33a0fbfe0c55dbf7635410
+"GitHub: gavinandresen/TwoOfThree.sh"
+
+[[10]] Dalek Cryptography - Crate Bulletproofs [online]. Available: <https://doc.dalek.rs/bulletproofs/index.html>. 
+Date accessed: 2018-11-12.
+
+[10]: https://doc.dalek.rs/bulletproofs/index.html
+"Dalek Cryptography - 
+Crate Bulletproofs"
 
 
 
