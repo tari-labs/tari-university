@@ -48,6 +48,8 @@ This section gives the general notation of mathematical expressions used. It pro
 - Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
 - A Pederson Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
 - Let $ \text{H}_{s}(arg) $ be a collision-resistant hash function used in a sharing protocol where $ arg $ is the value being committed to.
+- Let $  RP_{m}  $ be Bulletproof range proof data for commitment $ C_m $.
+- Let $  RP_{agg} $ be aggregated Bulletproof range proof data for a set of commitments $ \lbrace C_1, C_2, ... , C_n \rbrace $.
 
 
 
@@ -219,10 +221,10 @@ C_m(v_1, k_1 + k_2 + k_3) &= C_1(\frac{v_1}{3},k_1) + C_2(\frac{v_1}{3},k_2) + C
 $$
 
 
-Running the Bulletproof MPC range proof will result in a proof share $ PS_n(C_n) $ for each party for their fake commitments, which will be aggregated by the dealer according to the protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \{ C_1, C_2, C_3 \} $ be depicted by $ RP_{m_{agg}} $. The UTXO will then consist of the tuple $ (C_m , RP_{m_{agg}}) $ and meta data $ flag, C_1, C_2, C_3 $. Validation by miners will involve
+Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C_1, C_2, C_3 \rbrace $ be depicted by $ RP_{agg} $. The UTXO will then consist of the tuple $ (C_m , RP_{agg}) $ and meta data $ \lbrace flag, C_1, C_2, C_3 \rbrace $. Validation by miners will involve
 $$
 C_m \overset{?}{=} C_1 + C_2 + C_3 \\\\
-\text{verify }  RP_{m_{agg}}  \text{ for set }  \{ C_1, C_2, C_3 \}
+\text{verify }  RP_{agg}  \text{ for set }  \{ C_1, C_2, C_3 \}
 $$
 instead of 
 $$
