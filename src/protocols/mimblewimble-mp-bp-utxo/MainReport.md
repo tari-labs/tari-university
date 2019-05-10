@@ -199,17 +199,35 @@ One crucial aspect in validating the transaction is still missing, that is each 
 
 #### Utilizing Bulletproofs MPC Protocol
 
-The [Bulletproofs Multiparty Computation Protocol](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) can be used in special way to construct a Bulletproof range proof that can be validated by the miners. This scheme involves coloring the UTXO to enable attachment of additional proof data and a flag to let the miners know that they have to employ a different set of validation rules. For this scheme the simple information sharing protocol will not be adequate; an efficient robust implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
+This scheme involves coloring the UTXO to enable attachment of additional proof data and a flag to let the miners know that they have to employ a different set of validation rules. The [Bulletproofs Multiparty Computation](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) protocol can be used in special way to construct a range proof that can be validated by the miners. Aggregating the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 672 bytes, whereas 10 only consist of 928 bytes. For this scheme the simple information sharing protocol will not be adequate; an efficient robust implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
 
-This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for the combined multiparty funds, but each using their own secret blinding factor in the commitment. They therefor construct fake commitments that will be used to calculate fake Bulletproof range proofs as follows:
+This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for the combined multiparty funds, but each using their own secret blinding factor in the commitment. They therefor construct fake commitments that will be used to calculate fake range proofs as follows:
 $$
 \begin{aligned} 
-\text{Alice:} \mspace{18mu} C_1(v_1,k_1) &= v_1H + k_1G \\\\
-\text{Bob:} \mspace{18mu} C_2(v_1,k_2) &= v_1H + k_2G \\\\
-\text{Carol:} \mspace{18mu} C_3(v_1,k_3) &= v_1H + k_3G
+\text{Alice's fake commitment:} \mspace{18mu} C_1(\frac{v_1}{3},k_1) &= (\frac{v_1}{3}H + k_1G) \\\\
+\text{Bob's fake commitment:} \mspace{18mu} C_2(\frac{v_1}{3},k_2) &= (\frac{v_1}{3}H + k_2G) \\\\
+\text{Carol's fake commitment:} \mspace{18mu} C_3(\frac{v_1}{3},k_3) &= (\frac{v_1}{3}H + k_3G)
 \end{aligned}
 $$
 
+Notice that 
+$$
+\begin{aligned} 
+C_m(v_1, k_1 + k_2 + k_3) &= C_1(\frac{v_1}{3},k_1) + C_2(\frac{v_1}{3},k_2) + C_3(\frac{v_1}{3},k_3) \\\\
+(v_1H + (k_1 + k_2 + k_3)G) &= (\frac{v_1}{3}H + k_1G) + (\frac{v_1}{3}H + k_1G) + (\frac{v_1}{3}H + k_1G)
+\end{aligned}
+$$
+
+
+Running the Bulletproof MPC range proof will result in a proof share $ PS_n(C_n) $ for each party for their fake commitments, which will be aggregated by the dealer according to the protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \{ C_1, C_2, C_3 \} $ be depicted by $ RP_{m_{agg}} $. The UTXO will then consist of the tuple $ (C_m , RP_{m_{agg}}) $ and meta data $ flag, C_1, C_2, C_3 $. Validation by miners will involve
+$$
+C_m \overset{?}{=} C_1 + C_2 + C_3 \\\\
+\text{verify }  RP_{m_{agg}}  \text{ for set }  \{ C_1, C_2, C_3 \}
+$$
+instead of 
+$$
+\text{verify }  RP_{m}  \text{ for }  C_m 
+$$
 
 
 #### Utilizing Grin's Shared Bulletproof Computation
@@ -304,12 +322,12 @@ Pedersen T."
 [9]: https://grinexplorer.net/block/0000016c1ceb1cf588a45d0c167dbfb15d153c4d1d33a0fbfe0c55dbf7635410
 "GitHub: gavinandresen/TwoOfThree.sh"
 
-[[10]] Dalek Cryptography - Crate Bulletproofs [online]. Available: <https://doc.dalek.rs/bulletproofs/index.html>. 
+[[10]] "Dalek Cryptography - Crate Bulletproofs - Module bulletproofs::range_proof_mpc" [online]. Available: <https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html>. 
 Date accessed: 2018-11-12.
 
-[10]: https://doc.dalek.rs/bulletproofs/index.html
-"Dalek Cryptography - 
-Crate Bulletproofs"
+[10]: https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html
+"Dalek Cryptography - Crate Bulletproofs
+Module bulletproofs::range_proof_mpc"
 
 
 
