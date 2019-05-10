@@ -5,9 +5,17 @@
 - [Background](#background)
   - [Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell](#bitcoin--mtext-of-n--multisig-in-a-nutshell)
   - [Security of the Mimblewimble Blockchain](#security-of-the-mimblewimble-blockchain)
+  - [Secure Sharing Protocol](#secure-sharing-protocol)
 - [Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo)
+  - [Simple Sharing Protocol](#simple-sharing-protocol)
   - [Setting up the Multiparty Funding Transaction](#setting-up-the-multiparty-funding-transaction)
   - [Creating the Multiparty Bulletproof](#creating-the-multiparty-bulletproof)
+    - [Utilizing Bulletproofs MPC Protocol](#utilizing-bulletproofs-mpc-protocol)
+    - [Utilizing Grin's Shared Bulletproof Computation](#utilizing-grins-shared-bulletproof-computation)
+- [Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--mtext-of-n--multiparty-bulletproof-utxo)
+  - [Utilizing Shamir's Secret Sharing](#utilizing-shamirs-secret-sharing)
+  - [Multiple Rounds Scheme](#multiple-rounds-scheme)
+- [Comparison to Bitcoin](#comparison-to-bitcoin)
 - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
 - [References](#references)
 - [Appendices](#appendices)
@@ -99,9 +107,15 @@ C_{locked}(v_1 , k_1 + k_x) - C_{A}(v_1 , k_1) - C_{fee}(v_2 , k_2) + fee &= (\m
 \end{aligned}
 \mspace{70mu} (1)
 $$
-where the unspent-hiding-blinding commitment from Alice is $ (v_1 H + k_1 G) $ and the value of $ (v_2 H + k_2 G) $ is equal to $ fee $ to be paid to the miner. The newly created commitment $ (v_1 H + (k_1 + k_x) G) $ would be equally unspendable by the Alice and Bob because neither of them will know the total blinding factor $ k_1 + k_x $. Fortunately, in order to construct a Bulletproof range proof for the new output $ (v_1 H + (k_1 + k_x) G) $ as required by transaction validation rules, the values of $ v_1 $ and $ k_1 + k_x $ must be known otherwise the prover (i.e. Bob) cannot convince an honest verifier (i.e. the miner) that $ v_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
+where the unspent-hiding-blinding commitment from Alice is $ (v_1 H + k_1 G) $ and the value of $ (v_2 H + k_2 G) $ is equal to $ fee $ to be paid to the miner. The newly created commitment $ (v_1 H + (k_1 + k_x) G) $ would be equally unspendable by Alice and Bob because neither of them will know the total blinding factor $ k_1 + k_x $. Fortunately, in order to construct a Bulletproof range proof for the new output $ (v_1 H + (k_1 + k_x) G) $ as required by transaction validation rules, the values of $ v_1 $ and $ k_1 + k_x $ must be known otherwise the prover (i.e. Bob) cannot convince an honest verifier (i.e. the miner) that $ v_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
 
 In the event that Bob can convince Alice that she must create a fund that both of them have signing powers over ($ 2\text{-of-}2 $ multisig), it would theoretically be possible to create the required Bulletproof range proof for relation (1) if they work together to create it.
+
+
+
+### Secure Sharing Protocol
+
+Multiple parties working together to create a single transaction that involves multiple steps, need to share information in such a way that what they shared cannot work against them. Each step require a proof, and it should not be possible to replay an individual step's proof in a different context. Merlin transcripts [[7]] is an excellent example of a protocol implementation that achieves just that. For the purposes of this report a simple information sharing protocol is proposed that can be implemented with Merlin transcripts [[7]]. 
 
 
 
@@ -109,9 +123,15 @@ In the event that Bob can convince Alice that she must create a fund that both o
 
 
 
+### Simple Sharing Protocol
+
+Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They decide to use a sharing hash function $ val_H = \text{H}_{s}(arg) $ as a handshaking mechanism for all information they need to share. The 1<sup>st</sup> step is to calculate the hash $ val_H $ for the value $ arg $ they want to commit to in sharing and to distribute it to all parties. They then wait until all other parties' commitments have been received. The 2<sup>nd</sup> step is to send the actual value they committed to to all parties and to then verify each value against its commitment. If everything match up they proceed, otherwise they stop.
+
+
+
 ### Setting up the Multiparty Funding Transaction
 
-Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. The transaction they need to set up looks like this:
+The transaction Alice, Bob and Carol need to set up looks like this:
 $$
 \begin{aligned} 
 C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\\\
@@ -126,7 +146,7 @@ x_{sb} &= k_b - \phi_b \\\\
 x_{sc} &= k_c - \phi_c
 \end{aligned}
 $$
-At this point in time the parties also need to agree on a secure sharing protocol. They decide to use the sharing hash function $ val_H = \text{H}_{s}(arg) $ for all information they need to share. The 1<sup>st</sup> step is to calculate ??? The value $ arg $ will only be shared when all commitments have been received for every round. This ensures that each party's public value is not exposed until all commitments have been received.
+will only be shared when all commitments have been received for every round. This ensures that each party's public value is not exposed until all commitments have been received.
 
 Consequently they share the public value of the excess $ x_{sn}G $ with each other:
 $$
@@ -166,15 +186,16 @@ $$
 $$
 
 
+
 ### Creating the Multiparty Bulletproof
 
 One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now, Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.
 
-#### Using Bulletproofs MPC Protocol
+#### Utilizing Bulletproofs MPC Protocol
 
 ???
 
-#### Using Grin's Shared Bulletproof Computation
+#### Utilizing Grin's Shared Bulletproof Computation
 
 ???
 
@@ -188,7 +209,7 @@ Amount of rounds can be pre-determined
 
 Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ parties can confirm its correctness
 
-### Shamir's Secret Sharing
+### Utilizing Shamir's Secret Sharing
 
 ???
 
@@ -196,7 +217,13 @@ Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ p
 
 
 
-### Multi-rounds Scheme
+### Multiple Rounds Scheme
+
+???
+
+
+
+## Comparison to Bitcoin
 
 ???
 
@@ -240,6 +267,16 @@ Understanding raw P2SH multisig transactions"
 
 [6]: https://gist.github.com/gavinandresen/3966071
 "GitHub: gavinandresen/TwoOfThree.sh"
+
+[[7]] H.de Valence, I. Lovecruft and O. Andreev, "Merlin Transcripts" [online]. Available: <https://merlin.cool/index.html> and <https://doc-internal.dalek.rs/merlin/index.html>. Date accessed: 2019&#8209;05&#8209;10.
+
+[7]: https://doc-internal.dalek.rs/merlin/index.html
+
+"Merlin Transcripts" 
+
+
+
+
 
 
 
