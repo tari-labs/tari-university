@@ -47,8 +47,8 @@ This section gives the general notation of mathematical expressions used. It pro
 - All Pederson Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
 - Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
 - A Pederson Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
-- Let $ \text{H}_{s}(arg) $ be a collision-resistant hash function used in a sharing protocol where $ arg $ is the value being committed to.
-- Let $  RP_{m}  $ be Bulletproof range proof data for commitment $ C_m $.
+- Let $ \text{H}_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where $ arg $ is the value being committed to.
+- Let $  RP_{n}  $ be Bulletproof range proof data for commitment $ C_n $.
 - Let $  RP_{agg} $ be aggregated Bulletproof range proof data for a set of commitments $ \lbrace C_1, C_2, ... , C_n \rbrace $.
 
 
@@ -201,7 +201,7 @@ One crucial aspect in validating the transaction is still missing, that is each 
 
 #### Utilizing Bulletproofs MPC Protocol
 
-This scheme involves coloring the UTXO to enable attachment of additional proof data and a flag to let the miners know that they have to employ a different set of validation rules. The [Bulletproofs Multiparty Computation](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) protocol can be used in special way to construct a range proof that can be validated by the miners. Aggregating the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 672 bytes, whereas 10 only consist of 928 bytes. For this scheme the simple information sharing protocol will not be adequate; an efficient robust implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
+This scheme involves coloring the UTXO to enable attachment of additional proof data and a flag to let the miners know that they have to employ a different set of validation rules. The [Bulletproofs Multiparty Computation](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) protocol can be used in a special way to construct a range proof that can be validated by the miners. Aggregating the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 672 bytes, whereas aggregating 16 only consist of 928 bytes [[11]]. For this scheme the simple information sharing protocol will not be adequate; an efficient, robust and secure implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
 
 This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for the combined multiparty funds, but each using their own secret blinding factor in the commitment. They therefor construct fake commitments that will be used to calculate fake range proofs as follows:
 $$
@@ -221,7 +221,7 @@ C_m(v_1, k_1 + k_2 + k_3) &= C_1(\frac{v_1}{3},k_1) + C_2(\frac{v_1}{3},k_2) + C
 $$
 
 
-Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C_1, C_2, C_3 \rbrace $ be depicted by $ RP_{agg} $. The UTXO will then consist of the tuple $ (C_m , RP_{agg}) $ and meta data $ \lbrace flag, C_1, C_2, C_3 \rbrace $. Validation by miners will involve
+Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C_1, C_2, C_3 \rbrace $ be depicted by $ RP_{agg} $. The UTXO will then consist of the tuple $ (C_m , RP_{agg}) $ and meta data $ \lbrace flag, C_1, C_2, C_3 \rbrace $. Range proof validation by miners will involve
 $$
 C_m \overset{?}{=} C_1 + C_2 + C_3 \\\\
 \text{verify }  RP_{agg}  \text{ for set }  \{ C_1, C_2, C_3 \}
@@ -234,7 +234,11 @@ $$
 
 #### Utilizing Grin's Shared Bulletproof Computation
 
-???
+[[12]], [[13]]
+$$
+C_m = v_1H + \sum _{j=1}^3 k^{(j)}G
+$$
+
 
 
 
@@ -312,7 +316,7 @@ Understanding raw P2SH multisig transactions"
 
 [[8]] T. Pedersen. "Non-interactive and Information-theoretic Secure Verifiable Secret Sharing" 
 [online]. Available: <https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf>. Date accessed: 
-2018-09-27.
+2019&#8209;05&#8209;10.
 
 [8]: https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf
 "Non-interactive and information-theoretic
@@ -325,12 +329,30 @@ Pedersen T."
 "GitHub: gavinandresen/TwoOfThree.sh"
 
 [[10]] "Dalek Cryptography - Crate Bulletproofs - Module bulletproofs::range_proof_mpc" [online]. Available: <https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html>. 
-Date accessed: 2018-11-12.
+Date accessed: 2019&#8209;05&#8209;10.
 
 [10]: https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html
 "Dalek Cryptography - Crate Bulletproofs
 Module bulletproofs::range_proof_mpc"
 
+[[11]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for 
+Confidential Transactions and More" (Slides) [online]. Available: 
+<https://cyber.stanford.edu/sites/default/files/bpase18.pptx>. Date accessed: 2019&#8209;05&#8209;11. 
+
+[11]: https://cyber.stanford.edu/sites/default/files/bpase18.pptx
+"Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)"
+
+[[12]] "Grin Multiparty Bulletproof - jaspervdm" [online]. Available: <https://i.imgur.com/s7exNSf.png>. 
+Date accessed: 2019&#8209;05&#8209;10.
+
+[12]: https://i.imgur.com/s7exNSf.png
+"Grin Multiparty Bulletproof - jaspervdm"
+
+[[13]] "GitHub: Multi-party bulletproof PR#24" [online]. Available: <https://github.com/mimblewimble/secp256k1-zkp/pull/24>. 
+Date accessed: 2019&#8209;05&#8209;10.
+
+[13]: https://github.com/mimblewimble/secp256k1-zkp/pull/24
+"GitHub: Multi-party bulletproof PR#24"
 
 
 
