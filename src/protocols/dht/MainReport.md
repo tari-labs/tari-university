@@ -53,7 +53,6 @@ These systems employed different methods of locating resources on the network:
 - FreeNet used a key-based routing. However, it was less structured than a DHT and did not guarantee that data could be found.
 
 In 2001, four DHT projects were introduced: CAN, Chord, Pastry and Tapestry. They aimed to have a lookup efficiency
-
 ($O(log(n))$) similar to that of a centralized index, while having the benefits of a decentralized network.
 
 DHTs use varying techniques to achieve this, depending on the given algorithm. However, they have a number
@@ -134,7 +133,8 @@ It has a number of core features that are not simultaneously offered by other DH
 A node selects an $n$-bit ID, which is given to other nodes on the network. The network design
 relies on node IDs being uniformly distributed by some random procedure. A node's position is
 determined by the shortest unique prefix of its ID, which forms a tree structure with node IDs
-as leaves [[2]]. This ID should be reused when the node rejoins the network. The following figure shows a binary tree structure in a three-bit key space:
+as leaves [[2]]. This ID should be reused when the node rejoins the network. The following figure
+shows a binary tree structure in a three-bit key space:
 
 <div class="mermaid">
 graph TD
@@ -154,7 +154,8 @@ A11 --- |0| A110[Node 110]
 A11 --- |1| A111[Node 111]
 </div>
 
-The bit length of the Node ID should be sufficiently large to make collisions extremely unlikely when using a uniformly distributed random number generator [[2]].
+The bit length of the Node ID should be sufficiently large to make collisions extremely unlikely when using a uniformly
+distributed random number generator [[2]].
 
 #### Bootstrapping a Node
 
@@ -190,10 +191,10 @@ This works, because XOR exhibits the same mathematical properties as any distanc
 
 Specifically, [[1]]
 
-- $a \oplus a = 0$
-- $a \oplus b > 0$ for $a \neq b$
-- $a \oplus b = b \oplus a$
-- Triangle property: $a \oplus b + b \oplus c \geq a \oplus c$
+- Identity: $a \oplus a = 0$
+- Non-negativity: $a \oplus b > 0$ for $a \neq b$
+- Symmetry: $a \oplus b = b \oplus a$
+- Triangle inequality: $a \oplus b + b \oplus c \geq a \oplus c$
 
 The XOR metric implicitly captures a notion of distance in the preceding tree structure [[2]].
 
