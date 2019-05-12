@@ -9,9 +9,10 @@
 - [Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo)
   - [Simple Sharing Protocol](#simple-sharing-protocol)
   - [Setting up the Multiparty Funding Transaction](#setting-up-the-multiparty-funding-transaction)
-  - [Creating the Multiparty Bulletproof](#creating-the-multiparty-bulletproof)
+  - [Creating the Multiparty Bulletproof Range Proof](#creating-the-multiparty-bulletproof-range-proof)
     - [Utilizing Bulletproofs MPC Protocol](#utilizing-bulletproofs-mpc-protocol)
     - [Utilizing Grin's Shared Bulletproof Computation](#utilizing-grins-shared-bulletproof-computation)
+    - [Comparison of the two Bulletproof Methods](#comparison-of-the-two-bulletproof-methods)
 - [Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--mtext-of-n--multiparty-bulletproof-utxo)
   - [Utilizing Shamir's Secret Sharing](#utilizing-shamirs-secret-sharing)
   - [Multiple Rounds Scheme](#multiple-rounds-scheme)
@@ -144,7 +145,7 @@ This ensures that public values for each step is not exposed until all commitmen
 In the transaction Alice, Bob and Carol want to set up, $ C_m $ is the multiparty shared commitment that contains the funds, and $ C_a $, $ C_b $ and $ C_c $ are their respective input contributions. This transaction looks as follows:
 $$
 \begin{aligned} 
-C_m(v_1, k_1 + k_2 + k_3) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\\\
+C_m(v_1, \sum _{j=1}^3 k_jG) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\\\
 (v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
@@ -195,7 +196,7 @@ $$
 
 
 
-### Creating the Multiparty Bulletproof
+### Creating the Multiparty Bulletproof Range Proof
 
 One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now, Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.
 
@@ -236,8 +237,12 @@ $$
 
 [[12]], [[13]]
 $$
-C_m = v_1H + \sum _{j=1}^3 k^{(j)}G
+C_m = v_1H + \sum _{j=1}^3 k_jG
 $$
+
+#### Comparison of the two Bulletproof Methods
+
+???
 
 
 
