@@ -2,7 +2,7 @@
 
 - [Introduction](#introduction)
 
-- [Characterization of DHT Networks](#characterization-of-dht-networks)
+- [An Introduction to the i2P network](#characterization-of-dht-networks)
 
   - [Peer Discovery](#peer-discovery)
   - [Scalability and Fault-tolerance](#scalability-and-fault-tolerance)
