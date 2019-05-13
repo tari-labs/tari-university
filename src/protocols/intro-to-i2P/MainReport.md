@@ -1,36 +1,31 @@
-# Distributed Hash Tables
+# The I2P Network - An introduction and Comparison to Tor and VPNs.
 
 - [Introduction](#introduction)
 
-- [An Introduction to the i2P network](#characterization-of-dht-networks)
+- [An Introduction to the i2P network](#Introduction)
 
-  - [Peer Discovery](#peer-discovery)
-  - [Scalability and Fault-tolerance](#scalability-and-fault-tolerance)
-  - [Distributed Data Storage](#distributed-data-storage)
+  - [What is I2P](#peer-discovery)
+  - [Characteristics of the Network](#scalability-and-fault-tolerance)
+  - [Understanding Routers](#distributed-data-storage)
 
-- [DHT Algorithms](#dht-algorithms)
+- [Anonymity & Encrption](#dht-algorithms)
 
-  - [Overview](#overview)
-  - [Kademlia](#kademlia)
-    - [NodeID](#nodeid)
-    - [Bootstrapping a Node](#bootstrapping-a-node)
-    - [XOR Metric](#xor-metric)
-    - [Protocol](#protocol)
-      - [Lookup Procedure](#lookup-procedure)
-      - [Data Storage and Retrieval Procedure](#data-storage-and-retrieval-procedure)
-      - [Routing Table](#routing-table)
-      - [$k$-bucket Ordering](#k-bucket-ordering)
-    - [Kademlia Attacks](#kademlia-attacks)
-      - [Node Insertion Attack](#node-insertion-attack)
-      - [Eclipse Attack](#eclipse-attack)
+  - [Factors that Affect Security](#overview)
+  - [Types of Attacks and Protections in I2-](#kademlia)
+    - [Brute Force](#nodeid)
+    - [Timing Attacks](#bootstrapping-a-node)
+    - [Denial of Service](#xor-metric)
+    - [External Tagging Attacks](#protocol)
+    - [Partitioning Attacks](#protocol)
+    - [Traffic Analysis Attacks](#protocol)
+    - [- Central Resource Attacks](#protocol)
 
-- [DHT Vulnerabilities and Attacks](#dht-vulnerabilities-and-attacks)
+- [Comparisons with Other Networks](#dht-vulnerabilities-and-attacks)
 
-  - [Eclipse Attack](#eclipse-attack)
-  - [Sybil Attack](#sybil-attack)
-  - [Adaptive Join-Leave Attack](#adaptive-join-leave-attack)
+  - [I2P vs Tor](#eclipse-attack)
+  - [I2P vs VPNs](#sybil-attack)
 
-- [Cuckoo Rule](#cuckoo-rule)
+- [I2P Use Cases in Blockchain](#dht-vulnerabilities-and-attacks)
 
 - [Conclusion](#conclusion)
 
