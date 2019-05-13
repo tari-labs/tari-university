@@ -4,7 +4,7 @@
 
 - [An Introduction to the i2P network](#Introduction)
 
-  - [What is I2P](#peer-discovery)
+  - [What is I2P](#what-is-I2P)
   - [Characteristics of the Network](#scalability-and-fault-tolerance)
   - [Understanding Routers](#distributed-data-storage)
 
@@ -37,45 +37,14 @@
 
 ## Introduction
 
-A hash table is a data structure that maps keys to values. A hashing function is used to compute keys that are inserted into a table
-from which values can later be retrieved. As the name suggests, a distributed hash table (DHT) is a hash table that is distributed across
-many linked nodes, which cooperate to form a single cohesive hash table service. Nodes are linked in what is called an [overlay network](https://en.wikipedia.org/wiki/Overlay_network).
-An overlay network is simply a communication network built on top of another network. The Internet is an example, as it began as an overlay network on the public switched telephone network.
+I2P, Tor and VPNs are known anonymity networks used my millions of users across the world to protect online privacy. Each has been built for different purposes and proves the client with a specific set of needs. However the three networks do share some similarities that we we will investigate in tis report. On an overview I2P uses a peer to peer distributed network while networks like Tor and VPN's use central directory server(s) to transfer the data. Obtaining a view of the entire I2P network is generally challenging compared compared to the others and it has been estimated that there are currently around 32K active I2P peers in the network on a daily basis. [[1]] Tor and VPNs have users that range in the millions due to better funding and earning an income for each service respectively.
 
-$\langle key, value \rangle$ pairs are stored on a subset of the network, usually by some notion of "closeness" to that key.
-
-A DHT network design allows the network to tolerate nodes coming and going without failure, and allows the network size to increase indefinitely.
-
-![XKCD-Network](./assets/xkcd-network.png)
-
-Image from [XKCD #350 - Network](https://xkcd.com/350/) - [License](https://xkcd.com/license.html)
-
-The need for DHTs arose from early file-sharing networks such as Gnutella, Napster, FreeNet and BitTorrent, which were able to make use of distributed resources across
-the Internet to provide a single cohesive service [[1]].
-
-These systems employed different methods of locating resources on the network:
-
-- Gnutella searches were inefficient, because queries would result in messages flooding the network.
-- Napster used a central index server, which was a single point of failure and left it vulnerable to attacks.
-- FreeNet used a key-based routing. However, it was less structured than a DHT and did not guarantee that data could be found.
-
-In 2001, four DHT projects were introduced: CAN, Chord, Pastry and Tapestry. They aimed to have a lookup efficiency
-
-($O(log(n))$) similar to that of a centralized index, while having the benefits of a decentralized network.
-
-DHTs use varying techniques to achieve this, depending on the given algorithm. However, they have a number
-of aspects in common:
-
-- Each participant has some unique network identifier.
-- They perform peer lookup, data storage and retrieval services.
-- There is some implicit or explicit joining procedure.
-- Communication need only occur between neighbors that are decided on by some algorithm.
-
-In this report we'll go over some of the aspects common to all DHTs and dive deeper into a popular DHT implementation, called [Kademlia](#kademlia).
+In this report we'll go over what the I2P network is, it's characteristics and how it's generally used.
 
 
+## What is I2P
+I2P is a network layer that runs on a distributed network of computers on a global network infrastructure. The layer provides a set of functions that run on each computer and  provide encrypted, one-way connections to and from other users within the network. These function are wrapped in a Router that is installed on on each computer.
 
-## Characterization of DHT networks
 
 ### Peer Discovery
 
