@@ -20,7 +20,7 @@ Run the Tor Browser and visit an ```.onion``` site like the DuckDuckGo Search en
 Check if you running Tor - https://check.torproject.org/
 
 ## When to use Tor?
-As Tor Browser is an anonymity tool, which blocks tracking and hides some of your details and aims to make all Tor users look the same to average users, Tor Browser could be used to anonymise whistleblowing or journalist reporting on sensitive topics where they might be persecuted for their views.
+As Tor Browser is an anonymity tool, which blocks tracking and hides some of your details and aims to make all Tor users look the same to average users, Tor Browser could be used to anonymize whistle-blowing or journalist reporting on sensitive topics where they might be persecuted for their views.
 
 ## When not to use Tor?
 Don’t use the Tor Browser if you want an End to End Encryption too a none .onion site like your banking site, as the ```Exit Node``` ends encryption and can be intercepted between the Exit Node and the destination server.
@@ -34,21 +34,21 @@ Further detailed information can be found at https://2019.www.torproject.org/abo
 
 ## Is Tor broken?
 Correctly setup Tor services and Tor Browser, used correctly, Tor is not broken, but it's very easy to do something that would make Tor seem broken.
-If you login into a remote services, like FaceBook or GMail, your ```Anonymity``` at this site is lost. Thou, recent release of the Tor Browser package would keep both sites isolcated from one another.
-Older Tor setups needed a user to know how to configure their proxy settings in their OS, to use Tor services. This was very easy to get wrong or incomplete, and some of your information or details could be leaked. Newer releases of Tor as a single package, preconfured and shipped with a secure browser resolved many of these problems.  
-Keeping the Tor Browser package up to date, so as to address any security issues discoved helps with keeping your ```Anonymity```.
-Tor by it's self has weaknesses, like if you are the only person using Tor on your  (home/office/school) network, you would be discovered - This is called a time/traffic correcltion attack.
-  
+If you login into a remote services, like FaceBook or GMail, your ```Anonymity``` at this site is lost. Thou, recent release of the Tor Browser package would keep both sites isolated from one another.
+Older Tor setups needed a user to know how to configure their proxy settings in their OS, to use Tor services. This was very easy to get wrong or incomplete, and some of your information or details could be leaked. Newer releases of Tor as a single package, preconfigure and shipped with a secure browser resolved many of these problems.
+Keeping the Tor Browser package up to date, so as to address any security issues discovered helps with keeping your ```Anonymity```.
+Tor by it's self has weaknesses, like if you are the only person using Tor on your  (home/office/school) network, you would be discovered - This is called a time/traffic correlation attack.
+
   Interesting talk about some of the Tor attacks - https://www.youtube.com/watch?v=7G1LjQSYM5Q
-  
+
 ## Conclusion:
-Would I recommend Tor? Maybe not, as Tor by it's self does not guarantee Anonymity. I like the goals that Tor is trying to address and think they making great progress, but total anonymity has many obstacles not just the technolgy related, but the human component.  
-  
+Would I recommend Tor? Maybe not, as Tor by itself does not guarantee Anonymity. I like the goals that Tor is trying to address and think they making great progress, but total anonymity has many obstacles not just the technology related, but the human component.
+
 ## Notes:
-Anonymity is not Confidentiality  
-Tor is not a VPN  
-Tor data leaving the Tor network can be intercepted  
-  
+Anonymity is not Confidentiality
+Tor is not a VPN
+Tor data leaving the Tor network can be intercepted
+
 Advantages:
  * Free and Open Source
  * Supports Linux, OSX and Windows
@@ -59,24 +59,23 @@ Advantages:
 Disadvantages:
  * Slow
  * Data leaving ```Exit Node``` is not necessarily encrypted by Tor - can be intercepted
- * Does not stop somebody from deanonymities themselves
+ * Does not stop somebody from de-anonymizing themselves
  * Does not stop interceptors from knowing you using Tor
  * Tor network not user friendly, due to be secure and hidden nature
  * Nodes (relay/bridge) are run by volunteers
-  
-Further investigation:  
-Onion Services - Tor services that don’t leave the Tor network https://2019.www.torproject.org/docs/onion-services.html.en  
-  
-### Links of interest:  
- * Metrics of the Tor Project - https://metrics.torproject.org  
- * Sharing files using Tor - https://onionshare.org
- * Blog post about OnionShare2 and it's release - https://blog.torproject.org/new-release-onionshare-2  
- * List of Tor Projects - https://2019.www.torproject.org/projects/projects.html.en 
- * Isis Lovecruft's PDF coving Privacy and anonymity - https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf  
-  
-### References:  
-https://www.torproject.org/  
-https://en.wikipedia.org/wiki/Tor_(anonymity_network)  
-https://www.le-vpn.com/what-is-tor-browser/  
-https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/  
 
+## Further investigation:
+Onion Services - Tor services that don’t leave the Tor network https://2019.www.torproject.org/docs/onion-services.html.en
+
+## Links of interest:
+ * Metrics of the Tor Project - https://metrics.torproject.org
+ * Sharing files using Tor - https://onionshare.org
+ * Blog post about OnionShare2 and it's release - https://blog.torproject.org/new-release-onionshare-2
+ * List of Tor Projects - https://2019.www.torproject.org/projects/projects.html.en
+ * Isis Lovecruft's PDF covering Privacy and anonymity - https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf
+
+## References:
+https://www.torproject.org/
+https://en.wikipedia.org/wiki/Tor_(anonymity_network)
+https://www.le-vpn.com/what-is-tor-browser/
+https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/
