@@ -112,6 +112,7 @@ The role that Bulletproof range proofs play in securing the blockchain can be de
 $$
 \begin{aligned} 
 C_{locked}(v_1 , k_1 + k_x) - C_{A}(v_1 , k_1) - C_{fee}(v_2 , k_2) + fee &= (\mathbf{0}) \\\\
+\\\\
 (v_1 H + (k_1 + k_x) G) -  (v_1 H + k_1 G) - (v_2 H + k_2 G) + fee &= (\mathbf{0})
 \end{aligned}
 \mspace{70mu} (1)
@@ -145,8 +146,8 @@ This ensures that public values for each step is not exposed until all commitmen
 In the transaction Alice, Bob and Carol want to set up, $ C_m $ is the multiparty shared commitment that contains the funds, and $ C_a $, $ C_b $ and $ C_c $ are their respective input contributions. This transaction looks as follows:
 $$
 \begin{aligned} 
-C_m(v_1, \sum _{j=1}^3 k_jG) - C_a(v_a, k_a) - C_b(v_b, k_b) - C_c(v_c, k_c) + fee &= (\mathbf{0}) \\\\
-(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee &= (\mathbf{0})
+C_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + fee &= (\mathbf{0}) \\\\
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
 In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, and have to keep their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group.
@@ -195,7 +196,6 @@ $$
 $$
 
 
-
 ### Creating the Multiparty Bulletproof Range Proof
 
 One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now, Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.
@@ -205,6 +205,7 @@ One crucial aspect in validating the transaction is still missing, that is each 
 This scheme involves coloring the UTXO to enable attachment of additional proof data and a flag to let the miners know that they have to employ a different set of validation rules. The [Bulletproofs Multiparty Computation](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) protocol can be used in a special way to construct a range proof that can be validated by the miners. Aggregating the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 672 bytes, whereas aggregating 16 only consist of 928 bytes [[11]]. For this scheme the simple information sharing protocol will not be adequate; an efficient, robust and secure implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
 
 This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for the combined multiparty funds, but each using their own secret blinding factor in the commitment. They therefor construct fake commitments that will be used to calculate fake range proofs as follows:
+
 $$
 \begin{aligned} 
 \text{Alice's fake commitment:} \mspace{18mu} C_1(\frac{v_1}{3},k_1) &= (\frac{v_1}{3}H + k_1G) \\\\
@@ -214,6 +215,7 @@ $$
 $$
 
 Notice that 
+
 $$
 \begin{aligned} 
 C_m(v_1, k_1 + k_2 + k_3) &= C_1(\frac{v_1}{3},k_1) + C_2(\frac{v_1}{3},k_2) + C_3(\frac{v_1}{3},k_3) \\\\
@@ -222,25 +224,60 @@ C_m(v_1, k_1 + k_2 + k_3) &= C_1(\frac{v_1}{3},k_1) + C_2(\frac{v_1}{3},k_2) + C
 $$
 
 
-Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C_1, C_2, C_3 \rbrace $ be depicted by $ RP_{agg} $. The UTXO will then consist of the tuple $ (C_m , RP_{agg}) $ and meta data $ \lbrace flag, C_1, C_2, C_3 \rbrace $. Range proof validation by miners will involve
+Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the MPC protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C_1, C_2, C_3 \rbrace $ be depicted by $ RP_{agg} $. The UTXO will then consist of the tuple $ (C_m , RP_{agg}) $ and meta data $ \lbrace flag, C_1, C_2, C_3 \rbrace $. Range proof validation by miners will involve
+
 $$
 C_m \overset{?}{=} C_1 + C_2 + C_3 \\\\
 \text{verify }  RP_{agg}  \text{ for set }  \{ C_1, C_2, C_3 \}
 $$
+
 instead of 
+
 $$
-\text{verify }  RP_{m}  \text{ for }  C_m 
+\text{verify }  RP_{m}  \text{ for }  C_m
 $$
 
 
 #### Utilizing Grin's Shared Bulletproof Computation
 
-[[12]], [[13]]
+Grin extended the [Inner-product Range Proof](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) implementation to allow for multiple parties to jointly construct a single Bulletproof range proof $ RP_{m} $ for a known value $ v $, where each party can keep their partial blinding factor secret [[12]], [[13]]. The parties have to share committed values deep within the inner-product range proof protocol. 
+
+In order to construct the shared Bulletproof range proof $ RP_{m} $, each party start to calculate their own range proof for commitment $ C_m(v_1, \sum _{j=1}^3 k_jG) $ as follows:
+
 $$
-C_m = v_1H + \sum _{j=1}^3 k_jG
+\begin{aligned} 
+\text{Alice:} \mspace{18mu} C_1(v_1,k_1) &= (v_1H + k_1G) \\\\
+\text{Bob:} \mspace{18mu} C_2(0,k_2) &= (0H + k_2G) \\\\
+\text{Carol:} \mspace{18mu} C_3(0,k_3) &= (0H + k_3G)
+\end{aligned}
 $$
 
+With this implementation Alice needs to act as the dealer. When they get to [steps (53) to (61) in Figure 5](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) of the inner-product range proof protocol, they introduce the following changes:
+
+1. Each party share $ T_{1_j} $ and $ T_{2_j} $ with all other parties.
+2. Each party calculate $ T\_1 = \sum\_{j=1}^k T\_{1\_j} $ and $ T_2 = \sum\_{j=1}^k T\_{2\_j} $.
+3. Each party calculate $ \tau_{x_j} $ based on $ T_1 $ and $ T_2 $.
+4. The dealer calculates $\tau\_x = \sum\_{j=1}^k \tau\_{x\_j} $.
+5. The dealer completes the protocol using $ k\_1 $ where a further blinding factor is required and calculates $ RP\_{m} $.
+
+Using this approach the resulting shared commitment for Alice, Bob and Carol is
+
+$$
+C_m(v_1, \sum _{j=1}^3 k_jG) = (v_1H + \sum _{j=1}^3 k_jG) = (v_1H + (k_1 + k_2 + k_3)G)
+$$
+
+with the UTXO tuple being $ (C_m ,  RP_{m}) $. 
+
+
+
+
 #### Comparison of the two Bulletproof Methods
+
+???
+
+
+
+#### Spending the Multiparty UTXO
 
 ???
 
