@@ -13,6 +13,7 @@
     - [Utilizing Bulletproofs MPC Protocol](#utilizing-bulletproofs-mpc-protocol)
     - [Utilizing Grin's Shared Bulletproof Computation](#utilizing-grins-shared-bulletproof-computation)
     - [Comparison of the two Bulletproof Methods](#comparison-of-the-two-bulletproof-methods)
+  - [Spending the Multiparty UTXO](#spending-the-multiparty-utxo)
 - [Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--mtext-of-n--multiparty-bulletproof-utxo)
   - [Utilizing Shamir's Secret Sharing](#utilizing-shamirs-secret-sharing)
   - [Multiple Rounds Scheme](#multiple-rounds-scheme)
@@ -240,7 +241,7 @@ $$
 
 #### Utilizing Grin's Shared Bulletproof Computation
 
-Grin extended the [Inner-product Range Proof](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) implementation to allow for multiple parties to jointly construct a single Bulletproof range proof $ RP_{m} $ for a known value $ v $, where each party can keep their partial blinding factor secret [[12]], [[13]]. The parties have to share committed values deep within the inner-product range proof protocol. 
+Grin extended the [Inner-product Range Proof](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) implementation to allow for multiple parties to jointly construct a single Bulletproof range proof $ RP_{m} $ for a known value $ v $, where each party can keep their partial blinding factor secret. The parties have to share committed values deep within the inner-product range proof protocol ([[12]], [[13]], [[14]]). 
 
 In order to construct the shared Bulletproof range proof $ RP_{m} $, each party start to calculate their own range proof for commitment $ C_m(v_1, \sum _{j=1}^3 k_jG) $ as follows:
 
@@ -258,7 +259,7 @@ With this implementation Alice needs to act as the dealer. When they get to [ste
 2. Each party calculate $ T\_1 = \sum\_{j=1}^k T\_{1\_j} $ and $ T_2 = \sum\_{j=1}^k T\_{2\_j} $.
 3. Each party calculate $ \tau_{x_j} $ based on $ T_1 $ and $ T_2 $.
 4. The dealer calculates $\tau\_x = \sum\_{j=1}^k \tau\_{x\_j} $.
-5. The dealer completes the protocol using $ k\_1 $ where a further blinding factor is required and calculates $ RP\_{m} $.
+5. The dealer completes the protocol, using their own private $ k\_1 $ where a further blinding factor is required, and calculates $ RP\_{m} $.
 
 Using this approach the resulting shared commitment for Alice, Bob and Carol is
 
@@ -266,7 +267,7 @@ $$
 C_m(v_1, \sum _{j=1}^3 k_jG) = (v_1H + \sum _{j=1}^3 k_jG) = (v_1H + (k_1 + k_2 + k_3)G)
 $$
 
-with the UTXO tuple being $ (C_m ,  RP_{m}) $. 
+with the UTXO tuple being $ (C_m ,  RP_{m}) $. Range proof validation by miners will involve verifying $ RP_{m} $ for $ C_m $.
 
 
 
@@ -277,9 +278,19 @@ with the UTXO tuple being $ (C_m ,  RP_{m}) $.
 
 
 
+
+
 #### Spending the Multiparty UTXO
 
-???
+Alice, Bob and Carol had a private bet going that Carol won, and they agree to spend the Multiparty UTXO to pay Carol her winnings, with the change being used to set up a consecutive Multiparty UTXO. This transaction looks as follows:
+
+$$
+\begin{aligned} 
+C\_{c^{'}}(v\_{c^{'}}, k\_{c^{'}}) + C_{m^{'}}(v\_{1^{'}}, \sum \_{j=1}^3 k\_{j^{'}}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + fee &= (\mathbf{0}) \\\\
+(v\_{c^{'}}H + k\_{c^{'}}G) + (v\_{1^{'}}H + (k\_{1^{'}} + k\_{2^{'}} + k\_{3^{'}})G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee &= (\mathbf{0})
+\end{aligned}
+$$
+
 
 
 
@@ -395,6 +406,15 @@ Date accessed: 2019&#8209;05&#8209;10.
 
 [13]: https://github.com/mimblewimble/secp256k1-zkp/pull/24
 "GitHub: Multi-party bulletproof PR#24"
+
+[[14]] "GitHub: secp256k1-zkp/src/modules/bulletproofs/tests_impl.h, test_multi_party_bulletproof" [online]. Available: 
+<https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/bulletproofs/tests_impl.h>. 
+Date accessed: 2019&#8209;05&#8209;10.
+
+[14]: https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/bulletproofs/tests_impl.h
+"GitHub: secp256k1-zkp/src/modules/bulletproofs/tests_impl.h, 
+test_multi_party_bulletproof"
+
 
 
 
