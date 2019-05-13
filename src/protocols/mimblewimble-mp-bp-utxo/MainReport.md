@@ -151,7 +151,7 @@ C_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_
 (v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
-In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, and have to keep their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group.
+In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, and have to keep their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group:
 $$
 R_{agg} = k_1G + k_2G + k_3G
 $$
@@ -195,6 +195,7 @@ The transaction balance is then validated to be equal to a commitment to the val
 $$
 (v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + o_{tot}G)
 $$
+
 
 
 ### Creating the Multiparty Bulletproof Range Proof
@@ -291,6 +292,67 @@ C\_{c^{'}}(v\_{c^{'}}, k\_{c^{'}}) + C_{m^{'}}(v\_{1^{'}}, \sum \_{j=1}^3 k\_{j^
 \end{aligned}
 $$
 
+Similar to the initial transaction, each of them create their own private blinding factor $ k_{n^{'}} $ for the new Multiparty UTXO and shares the public blinding factor $ k_{n^{'}}G $ with the group. Carol also share the public blinding factor $ k\_{c^{'}}G $ for her winnings:
+
+$$
+R_{agg} = k_{1^{'}}G + k_{2^{'}}G + (k_{3^{'}}G + k_{c^{'}}G)
+$$
+
+As before, each of them create an offset $ \phi_n $ that will be subtracted from the input commitment's blinding factor, and calculate their own total excess: 
+
+$$
+\begin{aligned} 
+x_{sa} &= k_1 - \phi_a \\\\
+x_{sb} &= k_2 - \phi_b \\\\
+x_{sc} &= k_3 - \phi_c
+\end{aligned}
+$$
+
+They share the public value of the excess $ x_{sn}G $ with each other
+
+$$
+P_{agg} = x_{sa}G + x_{sb}G + x_{sc}G
+$$
+
+and proceed to calculate the same challenge $ e $ as
+
+$$
+e = \text{Hash}(R_{agg} || P_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+$$
+
+for the aggregated transaction signature. Next up is to calculate their partial Schnorr signature $ s_n $ using their private nonce $ r_n $ and secret blinding factor $ k_n $, and to share it with each other. Carol also adds her winnings' bliding factor to her signature:
+
+$$
+\begin{aligned} 
+s\_a &= r_a + e \cdot k\_{1^{'}} \\\\
+s\_b &= r_b + e \cdot k\_{2^{'}} \\\\
+s\_c &= r_c + e \cdot (k\_{3^{'}} + k\_{c^{'}})
+\end{aligned}
+$$
+
+The aggregated Schnorr signature is then simply calculated as
+
+$$
+s\_{agg} = s\_a + s\_b + s\_c
+$$
+
+The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. The signature is again validated as previous using the publicly shared aggregated values $ R_{agg} $ and $ P_{agg} $:
+
+$$
+s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
+$$
+
+Again the parties also share their own personal offset so that the total offset can be calculated:
+
+$$
+\phi_{tot} = \phi_a + \phi_b + \phi_c
+$$
+
+Lastly, the transaction balance is validated to be equal to a commitment to the value $ 0 $:
+
+$$
+(v\_{c^{'}}H + k\_{c^{'}}G) + (v\_{1^{'}}H + (k\_{1^{'}} + k\_{2^{'}} + k\_{3^{'}})G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee \overset{?}{=} (0H + o_{tot}G)
+$$
 
 
 
