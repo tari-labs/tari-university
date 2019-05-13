@@ -251,7 +251,7 @@ $$
 
 Shamir's Secret Sharing is needed
 
-Amount of rounds can be pre-determined
+Amount of rounds can be pre-determined      
 
 Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ parties can confirm its correctness
 
