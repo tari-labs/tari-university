@@ -13,7 +13,7 @@ The distributed networks we know and loved have some major flaws
 +++
 
 @snap[center span-100]
-![flooding](https://raw.githubusercontent.com/tari-labs/tari-university/sb_dht-presentation/src/protocols/dht/assets/presentation/flooding.jpeg)
+![flooding](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/dht/assets/presentation/flooding.jpeg)
 
 ### Flooding
 
@@ -23,7 +23,7 @@ The distributed networks we know and loved have some major flaws
 +++
 
 @snap[center span-100]
-![unstructured](https://raw.githubusercontent.com/tari-labs/tari-university/sb_dht-presentation/src/protocols/dht/assets/presentation/unstructured.jpg)
+![unstructured](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/dht/assets/presentation/unstructured.jpg)
 
 ### Unstructured
 
@@ -33,7 +33,7 @@ The distributed networks we know and loved have some major flaws
 +++
 
 @snap[center span-100]
-![single point of failure](https://raw.githubusercontent.com/tari-labs/tari-university/sb_dht-presentation/src/protocols/dht/assets/presentation/single-point-of-failure.jpg)
+![single point of failure](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/dht/assets/presentation/single-point-of-failure.jpg)
 
 ### Single Point of Failure
 
@@ -43,7 +43,7 @@ The distributed networks we know and loved have some major flaws
 
 +++
 
-![Something had to be done](https://raw.githubusercontent.com/tari-labs/tari-university/sb_dht-presentation/src/protocols/dht/assets/presentation/something-had-to-be-done.jpg)
+![Something had to be done](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/dht/assets/presentation/something-had-to-be-done.jpg)
 
 ---
 
@@ -86,7 +86,7 @@ The various DHT schemes achieve this in different ways. However, they have a num
 
 ## Put it on the blockchain!
 
-![best blockchain dev](https://raw.githubusercontent.com/tari-labs/tari-university/sb_dht-presentation/src/protocols/dht/assets/presentation/best-blockchain-dev.jpg)
+![best blockchain dev](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/dht/assets/presentation/best-blockchain-dev.jpg)
 
 +++
 
@@ -380,7 +380,7 @@ A Sybil attack attempts to break this assumption.
 
 ## Cuckoo Rule
 
-![Cuckoo rule](https://raw.githubusercontent.com/tari-labs/tari-university/sb_dht-presentation/src/protocols/dht/assets/presentation/cuckoo-rule.png)
+![Cuckoo rule](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/dht/assets/presentation/cuckoo-rule.png)
 
 <p>Proposed by Awerbuch and Schneider</p>
 
