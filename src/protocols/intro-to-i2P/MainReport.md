@@ -8,31 +8,6 @@
   - [How it Works](#scalability-and-fault-tolerance)
   - [Understanding Routers](#distributed-data-storage)
 
-- [Anonymity & Encrption](#dht-algorithms)
-
-  - [Factors that Affect Security](#overview)
-  - [Types of Attacks and Protections in I2-](#kademlia)
-    - [Brute Force](#nodeid)
-    - [Timing Attacks](#bootstrapping-a-node)
-    - [Denial of Service](#xor-metric)
-    - [External Tagging Attacks](#protocol)
-    - [Partitioning Attacks](#protocol)
-    - [Traffic Analysis Attacks](#protocol)
-    - [- Central Resource Attacks](#protocol)
-
-- [Comparisons with Other Networks](#dht-vulnerabilities-and-attacks)
-
-  - [I2P vs Tor](#eclipse-attack)
-  - [I2P vs VPNs](#sybil-attack)
-
-- [I2P Use Cases in Blockchain](#dht-vulnerabilities-and-attacks)
-
-- [Conclusion](#conclusion)
-
-- [References](#references)
-
-- [Contributors](#contributors)
-
 
 
 ## Introduction
@@ -43,23 +18,30 @@ In this report we'll examine what the I2P network is, the paradigms of how it wo
 
 
 ## What is I2P
-I2P (known as the Invisible Internet Project and founded in 2003) is a network layer that runs on a distributed network of computers on a global network infrastructure. This network layer provides a set of functions that runs on each computer and provides encrypted, one-way connections to and from other computers within the network. These functions are wrapped in a router that is installed during setup and configuration.
+I2P (known as the Invisible Internet Project and founded in 2003) is a network layer that runs on a distributed network of computers on a global network infrastructure. This network layer provides a set of functions that runs on each computer and provides encrypted, one-way connections to and from other computers within the network. These functions are wrapped in a *"router"* that is installed during setup and configuration.
 
 
-### How Does It Work
-The first concept to understand about I2P is that it's primary an enclosed network that run within the Internet infrastructure (refered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works within a decentralised network of it's own that operates within the Internet. Interaction with the internet using I2P is possible though it's greately limited and rarely done.
+## How Does It Work
+The first concept to understand about I2P is that it's primary an enclosed network that runs within the Internet infrastructure (reffered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works as a decentralised network of that operates within the Internet - i.e. an Internet within the internet. Interaction is done on a peer to peer level and there is no centralised authority that handles the network or keeps track of the active peers. Tor and VPNs, on the other hand have centralised authorities where the message/data and network is managed. Since I2P works within it's own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within the network and are only accessible to people using I2P. These can be easily created using an **I2PTunnel** service that uses a standard web server. Another concept of note is I2P is not inherently an "outproxy" network i.e. it's not intended for accessing the internet. This is because the client you send a message to is the cryptographic identifier, not some IP address, so the message must be addressed to someone running I2P. Browsing the internet is however possible through opening an outproxy that allows creating an anonymous internet connection. (ref https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work) ref: https://geti2p.net/en/docs/api/i2ptunnel
 
 
 #### The Infrastructure
-1. **Anonymity:** To protect a users  To trannI2P's software is made up of functions that operate at the network layer of the  the Router and Destinations associated with individual clients in the network. When you connect to the I2P network, a "router" (software containing the network instructions) is installed into your computer, and it creates two relays (an outbound channel and an inbound channel for data transferring). These functions also contain encryption instructions that anonymise your data as it moves through the network.
+1. **Routing Infrastructure & Anonymity:** To protect a users' anonymity within the network, I2P works by installing an I2P routing service within a user's device. This router creates temporary, encrypted, one way connections with other I2P routers on other computers. These one-way connections are comprised of an *Outbound Tunnel* and an *Inbound Tunnel* that is contained within each device. When communication is occurring, data leaves the user's devices via the outbound tunnels and is received on other devices through the device's inbound tunnels.
+Therefore, a single round-trip request message and its response between two parties needs four tunnels. (reference https://censorbib.nymity.ch/pdf/Hoang2018a.pdf).
+Messages that leave one device do not travel directly to the inbound tunnel of the router intended. Instead, the outbound gateway router queries a distributed network database  to get the address of the inbound router. The first time a client wants to contact another client, they make a query against the fully distributed "network database" - comprised of a custom structured distributed hash table (DHT) based off the Kademlia algorithm. This is done to find the other client's inbound tunnels efficiently, but subsequent messages between them usually includes that data so no further network database lookups are required. This distributed network database means no one knows the other's address. ref: https://geti2p.net/en/about/intro
 
-2. **Networking:** The second concept to understand is the "Tunnel". A tunnel is a directed path through an explicitly selected list of routers. Layered encryption is used, so each of the routers can only decrypt a single layer. The decrypted information contains the IP of the next router, along with the encrypted information to be forwarded. Each tunnel has a starting point (the first router, also known as "gateway") and an end point. Messages can be sent only in one way. To send messages back, another tunnel is required. [[2]]
+*Diagram of Inbound and Outbound Tunnels.*
+
+2. **Networking & Network Database:** Messages that travel through the network are protected using a technique known as *Onion Routing*.  A tunnel is a directed path through an explicitly selected list of routers. Layered encryption is used, so each of the routers can only decrypt a single layer. The decrypted information contains the IP of the next router, along with the encrypted information to be forwarded. Each tunnel has a starting point (the first router, also known as "gateway") and an end point. Messages can be sent only in one way. To send messages back, another tunnel is required. [[2]]
+
+//  Image Of Network
+
 
 3. **Encryption:**
 The way it all works is the message creator (client in the network) explicitly defines the path that messages will be sent out (the outbound tunnel), and the message recipient explicitly defines the path that messages will be received on (the inbound tunnel).
 
 
-### Distributed Data Storage
+## Understanding Routing - *Onion Routing*
 
 Arbitrary data may be stored and replicated by a subset of nodes for later retrieval. Data is hashed using a
 consistent hashing function (such as SHA256) to produce a key for the data. That data is propagated and
@@ -69,9 +51,32 @@ function.
 Partitioned data storage has limited usefulness to a typical blockchain, as each full node is required to keep a copy
 of all transactions and blocks for verification.
 
-## DHT Algorithms
 
-### Overview
+## Message Types
+
+Arbitrary data may be stored and replicated by a subset of nodes for later retrieval. Data is hashed using a
+consistent hashing function (such as SHA256) to produce a key for the data. That data is propagated and
+eventually stored on the node or nodes whose node IDs are "closer" to the key for that data for some distance
+function.
+
+Partitioned data storage has limited usefulness to a typical blockchain, as each full node is required to keep a copy
+of all transactions and blocks for verification.
+
+## Threat Model, Security and Vulnerability Attacks
+
+
+
+## Comparisons to Tor & VPNs
+
+
+
+
+## Usage within the Blockchain Domain
+
+
+
+
+## Conclusions
 
 The following graph is replicated and simplified from [[8]]. Degree is the number of neighbors with which a node must maintain in contact.
 
