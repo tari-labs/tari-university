@@ -5,7 +5,7 @@
 - [An Introduction to the i2P network](#Introduction)
 
   - [What is I2P](#what-is-I2P)
-  - [Characteristics of the Network](#scalability-and-fault-tolerance)
+  - [How it Works](#scalability-and-fault-tolerance)
   - [Understanding Routers](#distributed-data-storage)
 
 - [Anonymity & Encrption](#dht-algorithms)
@@ -37,33 +37,27 @@
 
 ## Introduction
 
-I2P, Tor and VPNs are known anonymity networks used my millions of users across the world to protect online privacy. Each has been built for different purposes and proves the client with a specific set of needs. However the three networks do share some similarities that we we will investigate in tis report. On an overview I2P uses a peer to peer distributed network while networks like Tor and VPN's use central directory server(s) to transfer the data. Obtaining a view of the entire I2P network is generally challenging compared compared to the others and it has been estimated that there are currently around 32K active I2P peers in the network on a daily basis. [[1]] Tor and VPNs have users that range in the millions due to better funding and earning an income for each service respectively.
+I2P (Invisible Internet Project), Tor and VPNs (Virtual Private Networks) are well known anonymity networks used by millions of users across the world. Most people use them as ways to securely transfer data over the internet with their identities concealed. These networks have very similar characteristics but are also very big differences and hence work in very specific ways.
 
-In this report we'll go over what the I2P network is, it's characteristics and how it's generally used.
+In this report we'll examine what the I2P network is, the paradigms of how it works, its security infrastructure and its usefulness in the blockchain domain.
 
 
 ## What is I2P
-I2P is a network layer that runs on a distributed network of computers on a global network infrastructure. The layer provides a set of functions that run on each computer and  provide encrypted, one-way connections to and from other users within the network. These function are wrapped in a Router that is installed on on each computer.
+I2P (known as the Invisible Internet Project and founded in 2003) is a network layer that runs on a distributed network of computers on a global network infrastructure. This network layer provides a set of functions that runs on each computer and provides encrypted, one-way connections to and from other computers within the network. These functions are wrapped in a router that is installed during setup and configuration.
 
 
-### Peer Discovery
+### How Does It Work
+The first concept to understand about I2P is that it's primary an enclosed network that run within the Internet infrastructure (refered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works within a decentralised network of it's own that operates within the Internet. Interaction with the internet using I2P is possible though it's greately limited and rarely done.
 
-Peer discovery is the process of locating nodes in a distributed network for data communication.
-This is facilitated by every node maintaining a list of peers and sharing that list with other nodes
-on the network. A new participant would seek to find their peers on the network by first contacting a
-set of predefined bootstrap nodes. These nodes are normal network participants who happen to part of
-some dynamic or static list. It is the job of every node on the network to facilitate peer discovery.
 
-As peers come and go, these lists are repeatedly updated to ensure network integrity.
+#### The Infrastructure
+1. **Anonymity:** To protect a users  To trannI2P's software is made up of functions that operate at the network layer of the  the Router and Destinations associated with individual clients in the network. When you connect to the I2P network, a "router" (software containing the network instructions) is installed into your computer, and it creates two relays (an outbound channel and an inbound channel for data transferring). These functions also contain encryption instructions that anonymise your data as it moves through the network.
 
-### Scalability and Fault-tolerance
+2. **Networking:** The second concept to understand is the "Tunnel". A tunnel is a directed path through an explicitly selected list of routers. Layered encryption is used, so each of the routers can only decrypt a single layer. The decrypted information contains the IP of the next router, along with the encrypted information to be forwarded. Each tunnel has a starting point (the first router, also known as "gateway") and an end point. Messages can be sent only in one way. To send messages back, another tunnel is required. [[2]]
 
-A DHT network efficiently distributes responsibility for the replicated storage and retrieval of routing information
-and data. This distribution allows nodes to join and leave with minimal or no disruption. The network can
-have a massive number of nodes (in the case of BitTorrent millions of nodes) without each node having to
-know about every other participant in the network.
+3. **Encryption:**
+The way it all works is the message creator (client in the network) explicitly defines the path that messages will be sent out (the outbound tunnel), and the message recipient explicitly defines the path that messages will be received on (the inbound tunnel).
 
-In this way, DHTs are inherently more resilient against hostile attackers then a typical centralized system [[1]].
 
 ### Distributed Data Storage
 
