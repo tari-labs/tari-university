@@ -428,11 +428,11 @@ Date accessed: 2019&#8209;03&#8209;08.
 
 [6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf "Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network"
 
-[[7]]: Commensal Cuckoo: Secure Group Partitioning for Large-scale Services [online]. Available: <http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed: 2019&#8209;03&#8209;15.
+[[7]]: Commensal Cuckoo: Secure Group Partitioning for Large-scale Services [online]. Available: <https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed: 2019&#8209;03&#8209;15.
 
 [7]: https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf "Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services"
 
-[[8]]: Overlay and P2P Networks [online]. Available: <https://www.cs.Nhelsinki.fi/webfm_send/1339>. Date accessed: 2019&#8209;04&#8209;04.
+[[8]]: Overlay and P2P Networks [online]. Available: <https://www.cs.helsinki.fi/webfm_send/1339>. Date accessed: 2019&#8209;04&#8209;04.
 
 [8]: https://www.cs.helsinki.fi/webfm_send/1339 "Overlay and P2P networks"
 
