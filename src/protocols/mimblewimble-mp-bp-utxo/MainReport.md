@@ -151,39 +151,55 @@ C_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_
 (v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
-In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, and have to keep their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group:
+In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while keeping their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group:
 $$
-R_{agg} = k_1G + k_2G + k_3G
+\text{share:} \mspace{9mu} \lbrace k_1G, k_2G, k_3G \rbrace
 $$
-In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. They then calculate their own total excess that will be used to partially sign the transaction: 
+In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. They proceed to calculate their own total excess
 $$
 \begin{aligned} 
-x_{sa} &= k_a - \phi_a \\\\
-x_{sb} &= k_b - \phi_b \\\\
-x_{sc} &= k_c - \phi_c
+x_{sa} &= -k_a - \phi_a \\\\
+x_{sb} &= -k_b - \phi_b \\\\
+x_{sc} &= -k_c - \phi_c
 \end{aligned}
 $$
-Consequently they share the public value of the excess $ x_{sn}G $ with each other:
+and consequently share the public value of the excess $ x_{sn}G $ with each other: 
 $$
-P_{agg} = x_{sa}G + x_{sb}G + x_{sc}G
+\text{share:} \mspace{9mu} \lbrace x_{sa}G, x_{sb}G, x_{sc}G \rbrace
 $$
-They now have enough information to calculate the same challenge $ e $ as
+They now have enough information to calculate the aggregated public key for the signature:
+$$
+P_{agg} = (k_1G + x_{sa}G) + (k_2G + x_{sb}G) + (k_3G + x_{sc}G)
+$$
+Each party also selects a private nonce $ r_n $, share the public value $  r_nG $ with the group,
+$$
+\text{share:} \mspace{9mu} \lbrace r_aG, r_bG, r_cG \rbrace
+$$
+and calculates the aggregated public nonce for the signature:
+$$
+R_{agg} = r_aG + r_bG + r_cG
+$$
+The signature challenge $ e $ can now be calculated:
 $$
 e = \text{Hash}(R_{agg} || P_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
 $$
-for a combined (aggregated) signature for the transaction. Each use their own private nonce $ r_n $ and secret blinding factor $ k_n $, calculate their partial Schnorr signature $ s_n $ and share it with each other:
+Each party now use their private nonce $ r_n $, secret blinding factor $ k_n $ and excess $ x_{sn} $ to calculate a partial Schnorr signature $ s_n $:
 $$
 \begin{aligned} 
-s\_a &= r_a + e \cdot k\_1 \\\\
-s\_b &= r_b + e \cdot k\_2 \\\\
-s\_c &= r_c + e \cdot k\_3
+s\_a &= r_a + e \cdot (k\_1 + x\_{sa}) \\\\
+s\_b &= r_b + e \cdot (k\_2 + x\_{sb}) \\\\
+s\_c &= r_c + e \cdot (k\_3 + x\_{sc})
 \end{aligned}
 $$
-The aggregated Schnorr signature is then simply calculated as
+These partial signatures are now shared with the group:
+$$
+\text{share:} \mspace{9mu} \lbrace s_a, s_b, s_c \rbrace
+$$
+The aggregated Schnorr signature for the transaction is then simply calculated as
 $$
 s\_{agg} = s\_a + s\_b + s\_c
 $$
-The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, the publicly shared aggregated values $ R_{agg} $ and $ P_{agg} $ will be needed:
+The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, publicly shared aggregated values $ R_{agg} $ and $ P_{agg} $ will be needed:
 $$
 s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
 $$
@@ -376,6 +392,17 @@ Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ p
 ### Multiple Rounds Scheme
 
 ???
+
+| Round | Alice                                                        | Bob                                                          | Carol                                                        |
+| ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1     | shard $ k_{1_{A}} $ <br />shard $ k_{2_{A}} $<br />shard $ k_{3_{A}} $ | shard $ k_{1_{B}} $<br />shard $ k_{2_{B}} $<br />shard $ k_{3_{B}} $ | shard $ k_{1_{C}} $<br />shard $ k_{2_{C}} $<br />shard $ k_{3_{C}} $ |
+| 2     |                                                              |                                                              |                                                              |
+| 3     |                                                              |                                                              |                                                              |
+| 4     |                                                              |                                                              |                                                              |
+
+All parties must always know who shared shards when - all parties must be included in all communication (parties that who are offline must be able to receive this communication)
+
+All reconstructions must rely on the party with the least amount (or 1st on list) of reconstructed keys to reconstruct the next key
 
 
 
