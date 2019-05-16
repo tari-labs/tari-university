@@ -423,7 +423,7 @@ b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\
 $$
 
 with $ b^\prime $ being the user generated blinding factor. The (Elliptic Curve) Pedersen Commitment then becomes
- 
+
 $$
 vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
 $$
@@ -540,24 +540,24 @@ More"
 [[2]] A. Poelstra, "Bulletproofs" (Transcript), Bitcoin Milan Meetup 2018-02-02 [online]. Available: 
 <https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-Bulletproofs>. Date accessed: 2018-09-10. 
 
-[2]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bulletproofs (Transcript)" 
+[2]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bulletproofs (Transcript)"
 
 [[3]] A. Poelstra, "Bulletproofs" (Slides), Bitcoin Milan Meetup 2018-02-02 [online]. Available: 
 <https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view>. Date accessed: 2018-09-10. 
 
-[3]: https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view "Bulletproofs (Slides)" 
+[3]: https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view "Bulletproofs (Slides)"
 
 [[4]] B. Feng, "Decoding zk-SNARKs" [online]. Available: 
 <https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040>. Date accessed: 2018-09-17. 
 
-[4]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 "Decoding zk-SNARKs" 
+[4]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 "Decoding zk-SNARKs"
 
 [[5]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for 
 Confidential Transactions and More" (Slides) [online]. Available: 
 <https://cyber.stanford.edu/sites/default/files/bpase18.pptx>. Date accessed: 2018-09-18. 
 
 
-[5]: https://cyber.stanford.edu/sites/default/files/bpase18.pptx 
+[5]: https://cyber.stanford.edu/sites/default/files/bpase18.pptx
 "Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)"
 
 [[6]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for 
@@ -572,7 +572,7 @@ Confidential Transactions and More (Transcripts)" [online]. Available:
 [[7]] Merkle Root and Merkle Proofs [online]. Available: 
 <https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs>. Date accessed: 2018-10-10. 
 
-[7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs "Merkle Root and Merkle Proofs" 
+[7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs "Merkle Root and Merkle Proofs"
 
 [[8]] Bulletproofs Audit: Fundraising [online]. Available: 
 <https://forum.getmonero.org/22/completed-tasks/90007/Bulletproofs-audit-fundraising>. Date accessed: 2018-10-23. 
@@ -619,22 +619,22 @@ Zero-knowledge Arguments"
 <https://signal.org/docs/specifications/xeddsa> and <https://signal.org/docs/specifications/xeddsa/xeddsa.pdf>. Date 
 accessed: 2018-10-23. 
 
-[14]: https://signal.org/docs/specifications/xeddsa "The XEdDSA and VXEdDSA Signature Schemes" 
+[14]: https://signal.org/docs/specifications/xeddsa "The XEdDSA and VXEdDSA Signature Schemes"
 
 [[15]] A. Poelstra, A. Back, M. Friedenbach, G. Maxwell and P. Wuille, "Confidential Assets", Blockstream [online]. 
 Available: <https://blockstream.com/bitcoin17-final41.pdf>. Date accessed: 2018-09-25. 
 
-[15]: https://blockstream.com/bitcoin17-final41.pdf "Confidential Assets" 
+[15]: https://blockstream.com/bitcoin17-final41.pdf "Confidential Assets"
 
 [[16]] Wikipedia: "Zero-knowledge Proof" [online]. Available: <https://en.wikipedia.org/wiki/Zero-knowledge_proof>. Date 
 accessed: 2018-09-18. 
 
-[16]: https://en.wikipedia.org/wiki/Zero-knowledge_proof "Wikipedia - Zero-knowledge Proof" 
+[16]: https://en.wikipedia.org/wiki/Zero-knowledge_proof "Wikipedia - Zero-knowledge Proof"
 
 [[17]] Wikipedia: "Discrete Logarithm" [online]. Available: <https://en.wikipedia.org/wiki/Discrete_logarithm>. Date 
 accessed: 2018-09-20. 
 
-[17]: https://en.wikipedia.org/wiki/Discrete_logarithm "Wikipedia: Discrete Logarithm" 
+[17]: https://en.wikipedia.org/wiki/Discrete_logarithm "Wikipedia: Discrete Logarithm"
 
 [[18]] A. Fiat and A. Shamir, "How to Prove Yourself: Practical Solutions to Identification and Signature Problems". 
 CRYPTO 1986: pp. 186-194 [online]. Available: <https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf>. 
@@ -653,12 +653,12 @@ the Fiat-Shamir Heuristic and Applications to Helios"
 [[20]] Mimblewimble Explained [online]. Available: <https://www.weusecoins.com/mimble-wimble-andrew-poelstra/>. Date 
 accessed: 2018-09-10. 
 
-[20]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra "Mimblewimble Explained" 
+[20]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra "Mimblewimble Explained"
 
 [[21]] Message Hiding in Bulletproofs #721 [online]. Available: <https://github.com/mimblewimble/grin/issues/721>, Date 
 accessed: 2018-09-10. 
 
-[21]: https://github.com/mimblewimble/grin/issues/721 "Message Hiding in Bulletproofs #721" 
+[21]: https://github.com/mimblewimble/grin/issues/721 "Message Hiding in Bulletproofs #721"
 
 [[22]] Pedersen-commitment: "An Implementation of Pedersen Commitment Schemes" [online]. Available: 
 <https://hackage.haskell.org/package/pedersen-commitment>. Date accessed: 2018-09-25. 
@@ -669,7 +669,7 @@ Commitment Schemes"
 [[23]] Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative [online]. Available: 
 <https://zkproof.org/documents.html>. Date accessed: 2018-09-26. 
 
-[23]: https://zkproof.org/documents.html "Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative" 
+[23]: https://zkproof.org/documents.html "Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative"
 
 [[24]] SEC 2: Recommended Elliptic Curve Domain Parameters, Standards for Efficient Cryptography, 20 September 2000 
 [online]. Available: <http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf>. Date accessed: 2018-09-26. 
@@ -715,17 +715,17 @@ Grin/MimbleWimble project"
 
 [[31]] The Ristretto Group [online]. Available: <https://ristretto.group/ristretto.html>. Date accessed: 2018-10-23. 
 
-[31]: https://ristretto.group/ristretto.html "The Ristretto Group" 
+[31]: https://ristretto.group/ristretto.html "The Ristretto Group"
 
 [[32]] SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography [online]. Available: 
 <http://safecurves.cr.yp.to/>. Date accessed: 2018-10-23. 
 
-[32]: http://safecurves.cr.yp.to/ "SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography" 
+[32]: http://safecurves.cr.yp.to/ "SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography"
 
 [[33]] R. Canetti, B. Riva and G. N. Rothblum, "Two 1-Round Protocols for Delegation of Computation" [online]. 
 Available: <https://eprint.iacr.org/2011/518.pdf>, Date accessed: 2018-10-11. 
 
-[33]: https://eprint.iacr.org/2011/518.pdf "Two 1-Round Protocols for Delegation of Computation" 
+[33]: https://eprint.iacr.org/2011/518.pdf "Two 1-Round Protocols for Delegation of Computation"
 
 [[34]] GitHub: mimblewimble/grin, Switch Commits / Bulletproofs - Status #734 [online]. Available: 
 <https://github.com/mimblewimble/grin/issues/734>. Date accessed: 2018-09-10. 
@@ -736,28 +736,28 @@ Available: <https://eprint.iacr.org/2011/518.pdf>, Date accessed: 2018-10-11.
 [[35]] GitHub: mimblewimble/grin, Bulletproofs #273 [online]. Available: 
 <https://github.com/mimblewimble/grin/issues/273>. Date accessed: 2018-09-10. 
 
-[35]: https://github.com/mimblewimble/grin/issues/273 "GitHub: mimblewimble/grin, Bulletproofs #273" 
+[35]: https://github.com/mimblewimble/grin/issues/273 "GitHub: mimblewimble/grin, Bulletproofs #273"
 
 [[36]] Wikipedia: "Commitment Scheme [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. Date 
 accessed: 2018-09-26. 
 
-[36]: https://en.wikipedia.org/wiki/Commitment_scheme "Wikipedia: Commitment Scheme" 
+[36]: https://en.wikipedia.org/wiki/Commitment_scheme "Wikipedia: Commitment Scheme"
 
 [[37]] Cryptography Wikia: Commitment Scheme [online]. Available: 
 <http://cryptography.wikia.com/wiki/Commitment_scheme>. Date accessed: 2018&#8209;09&#8209;26. 
 
-[37]: http://cryptography.wikia.com/wiki/Commitment_scheme "Cryptography Wikia: Commitment Scheme" 
+[37]: http://cryptography.wikia.com/wiki/Commitment_scheme "Cryptography Wikia: Commitment Scheme"
 
 [[38]] D. J. Bernstein, "Curve25519: New Diﬃe-Hellman Speed Records" [online]. Available: 
 <https://cr.yp.to/ecdh/curve25519-20060209.pdf>. Date accessed: 2018-09-26. 
 
-[38]: https://cr.yp.to/ecdh/curve25519-20060209.pdf "Curve25519: New Diﬃe-Hellman Speed Records" 
+[38]: https://cr.yp.to/ecdh/curve25519-20060209.pdf "Curve25519: New Diﬃe-Hellman Speed Records"
 
 [[39]] H. Hisil, K. Koon-Ho Wong, G. Carter and E. Dawson, "Twisted Edwards Curves Revisited", Information Security 
 Institute, Queensland University of Technology [online]. Available: 
 <https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf>. Date accessed: 2018-09-26. 
 
-[39]: https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf "Twisted Edwards Curves Revisited" 
+[39]: https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf "Twisted Edwards Curves Revisited"
 
 [[40]] A. Sadeghi and M. Steiner, "Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real 
 Difference"[online]. Available: <http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf>. Date accessed: 
@@ -769,12 +769,12 @@ Subtleties Make a Real Difference"
 [[41]] Crypto Wiki: "Cryptographic Nonce" [online]. Available: <http://cryptography.wikia.com/wiki/Cryptographic_nonce>. 
 Date accessed: 2018-10-08. 
 
-[41]: http://cryptography.wikia.com/wiki/Cryptographic_nonce "Crypto Wiki: Cryptographic Nonce" 
+[41]: http://cryptography.wikia.com/wiki/Cryptographic_nonce "Crypto Wiki: Cryptographic Nonce"
 
 [[42]] Wikipedia: "Cryptographic Nonce" [online]. Available: <https://en.wikipedia.org/wiki/Cryptographic_nonce>. Date 
 accessed: 2018-10-08. 
 
-[42]: https://en.wikipedia.org/wiki/Cryptographic_nonce "Wikipedia: Cryptographic Nonce" 
+[42]: https://en.wikipedia.org/wiki/Cryptographic_nonce "Wikipedia: Cryptographic Nonce"
 
 [[43]] T. Ruffing and G. Malavolta, " Switch Commitments: A Safety Switch for Confidential Transactions", Saarland 
 University [online]. Available: <https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf>. Date 
@@ -785,27 +785,27 @@ for Confidential Transactions"
 
 [[44]] BLAKE2 — Fast Secure Hashing [online]. Available: <https://blake2.net>. Date accessed: 2018-10-08. 
 
-[44]: https://blake2.net "BLAKE2 — Fast Secure Hashing" 
+[44]: https://blake2.net "BLAKE2 — Fast Secure Hashing"
 
 [[45]] GitHub: mimblewimble/rust-secp256k1-zkp [online]. Available: 
 <https://github.com/mimblewimble/rust-secp256k1-zkp>. Date accessed: 2018&#8209;11&#8209;16. 
 
-[45]: https://github.com/mimblewimble/rust-secp256k1-zkp "GitHub: mimblewimble/rust-secp256k1-zkp" 
+[45]: https://github.com/mimblewimble/rust-secp256k1-zkp "GitHub: mimblewimble/rust-secp256k1-zkp"
 
 [[46]] GitHub: monero-project/monero [online]. Available: 
 <https://github.com/monero-project/monero/tree/master/src/ringct>. Date accessed: 2018&#8209;11&#8209;16. 
 
-[46]: https://github.com/monero-project/monero/tree/master/src/ringct "GitHub: monero-project/monero" 
+[46]: https://github.com/monero-project/monero/tree/master/src/ringct "GitHub: monero-project/monero"
 
 [[47]] Wikipedia: Arithmetic Circuit Complexity [online]. Available: 
 <https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity>. Date accessed: 2018&#8209;11&#8209;08. 
 
-[47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity "Wikipedia: Arithmetic Circuit Complexity" 
+[47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity "Wikipedia: Arithmetic Circuit Complexity"
 
 [[48]] G. Maxwell, A. Poelstra1, Y. Seurin and P. Wuille, "Simple Schnorr Multi-signatures with Applications to 
 Bitcoin", 20 May 2018 [online]. Available: <https://eprint.iacr.org/2018/068.pdf>. Date accessed: 2018-07-24. 
 
-[48]: https://eprint.iacr.org/2018/068.pdf "Simple Schnorr Multi-signatures with Applications to Bitcoin" 
+[48]: https://eprint.iacr.org/2018/068.pdf "Simple Schnorr Multi-signatures with Applications to Bitcoin"
 
 [[49]] GitHub: b-g-goodell/research-lab [online]. Available: 
 <https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java>. Date accessed: 2018-11-16. 
@@ -816,13 +816,13 @@ b-g-goodell/research-lab"
 [[50]] Wikipedia: "One-way Function [online]. Available: <https://en.wikipedia.org/wiki/One-way_function>. Date 
 accessed: 2018-11-27. 
 
-[50]: https://en.wikipedia.org/wiki/One-way_function "Wikipedia: One-way Function" 
+[50]: https://en.wikipedia.org/wiki/One-way_function "Wikipedia: One-way Function"
 
 [[51]] P. Sharma, A. K. Gupta and S. Sharma, "Intensified ElGamal Cryptosystem (IEC)", *International Journal of 
 Advances in Engineering & Technology*, January&nbsp;2012 [online]. Available: 
 <http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf>. Date accessed: 2018-10-09. 
 
-[51]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf "Intensified ElGamal Cryptosystem (IEC)" 
+[51]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf "Intensified ElGamal Cryptosystem (IEC)"
 
 [[52]] Y. Tsiounis and M Yung, "On the Security of ElGamal Based Encryption" [online]. Available: 
 <https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view>. Date accessed: 2018-10-09. 
@@ -839,7 +839,7 @@ Assumption"
 [[54]] GitHub: mimblewimble/grin, Bulletproof messages #730 [online]. Available: 
 <https://github.com/mimblewimble/grin/pull/730>. Date accessed: 2018-11-29. 
 
-[54]: https://github.com/mimblewimble/grin/pull/730 "GitHub: mimblewimble/grin, Bulletproof messages #730" 
+[54]: https://github.com/mimblewimble/grin/pull/730 "GitHub: mimblewimble/grin, Bulletproof messages #730"
 
 [[55]] GitHub: mimblewimble/grin, Removed all switch commitment usages, including restore #841 [online]. Available: 
 <https://github.com/mimblewimble/grin/pull/841>. Date accessed: 2018-11-29. 
@@ -850,18 +850,18 @@ including restore #841"
 [[56]] GitHub: mimblewimble/grin, switch commitment discussion #998 [online]. Available: 
 <https://github.com/mimblewimble/grin/issues/998>. Date accessed: 2018-11-29. 
 
-[56]: https://github.com/mimblewimble/grin/issues/998 "GitHub: mimblewimble/grin, switch commitment discussion #998" 
+[56]: https://github.com/mimblewimble/grin/issues/998 "GitHub: mimblewimble/grin, switch commitment discussion #998"
 
 [[57]] GitHub: mimblewimble/grin, [DNM] Switch commitments #2007 [online]. Available: 
 <https://github.com/mimblewimble/grin/pull/2007>. Date accessed: 2018-11-29. 
 
-[57]: https://github.com/mimblewimble/grin/pull/2007 "GitHub: mimblewimble/grin, [DNM] Switch commitments #2007" 
+[57]: https://github.com/mimblewimble/grin/pull/2007 "GitHub: mimblewimble/grin, [DNM] Switch commitments #2007"
 
 [[58]] G. G. Dagher, B. Bünz, J. Bonneauy, J. Clark and D. Boneh1, "Provisions: Privacy-preserving Proofs of Solvency 
 for Bitcoin Exchanges", October 2015 [online]. Available: <https://eprint.iacr.org/2015/1008.pdf>. Date accessed: 
 2018-11-29. 
 
-[58]: https://eprint.iacr.org/2015/1008.pdf "Provisions: Privacy-preserving Proofs of Solvency for Bitcoin Exchanges" 
+[58]: https://eprint.iacr.org/2015/1008.pdf "Provisions: Privacy-preserving Proofs of Solvency for Bitcoin Exchanges"
 
 [[59]] A. Poelstra, "Bulletproofs: Faster Rangeproofs and Much More", February 2018 [online]. Available: 
 <https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/>. Date accessed: 2018-11-30. 
@@ -872,7 +872,7 @@ Rangeproofs and Much More"
 [[60]] B. Franca, "Homomorphic Mini-blockchain Scheme", April 2015 [online]. Available: 
 <http://cryptonite.info/files/HMBC.pdf>. Date accessed: 2018&#8209;11&#8209;22. 
 
-[60]: http://cryptonite.info/files/HMBC.pdf "Homomorphic Mini-blockchain Scheme" 
+[60]: http://cryptonite.info/files/HMBC.pdf "Homomorphic Mini-blockchain Scheme"
 
 [[61]] C. Franck and J. Großschädl, "Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves", 
 University of Luxembourg [online]. Available: <http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf>. Date 
