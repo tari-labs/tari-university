@@ -139,14 +139,14 @@ related, but also the human component.
 [[1]] Download for Tor Browser [online]. Available: <https://www.torproject.org/>. Date accessed: 2019-05-16.
 
 [1]: https://www.torproject.org/
-
+"Download for Tor Browser"
 
 
 [[2]] Wikipedia: "Tor (Anonymity Network)" [online]. Available: <https://en.wikipedia.org/wiki/Tor_(anonymity_network)>. 
 Date accessed: 2019-05-16.
 
 [2]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
-
+"Wikipedia: Tor (Anonymity Network)"
 
 
 [[3]] DuckDuckGo Search Engine [online]. Available: https://3g2upl4pq6kufc4m.onion/. Date accessed: 2019-05-16.
@@ -201,8 +201,8 @@ Onion Services - Tor services that don’t leave the Tor network:
 
 ### Appendix B: Links of Interest
 
-- Metrics of the Tor Project - https://metrics.torproje<ct.org
-- Sharing files using Tor - https://onionshare.org
+- [Metrics of the Tor Project](https://metrics.torproject.org)
+- [Sharing files using Tor](https://onionshare.org)
 - Blog post about OnionShare2 and its release - https://blog.torproject.org/new-release-onionshare-2
 - List of Tor Projects - https://2019.www.torproject.org/projects/projects.html.en
 - Isis Lovecruft's PDF covering Privacy and anonymity - https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf
