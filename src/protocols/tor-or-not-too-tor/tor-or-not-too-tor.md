@@ -180,7 +180,7 @@ Onion Services - Tor services that don’t leave the Tor network: <https://2019.
 
 ## Contributors
 
-- <https://github.com/leenx>
+- <https://github.com/leet4tari>
 - <https://github.com/kevoulee>
 - <https://github.com/anselld>
 
