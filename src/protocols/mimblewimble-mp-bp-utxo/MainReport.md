@@ -110,6 +110,7 @@ Bitcoin transactions are allowed to have multiple recipients, and one of the rec
 A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complimenting aspects to provide security; [Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect, and range proofs provide assurance that the currency cannot be inflated and that 3<sup>rd</sup> parties cannot lock away ones funds. Due to the fact that Mimblewimble commitments are totally confidential and that ownership cannot be proofed, anyone can try to spend or mess with unspent coins embedded in those commitments. Fortunately any new UTXO requires a range proof, and this is impossible to create if the input commitment cannot be opened.
 
 The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let $ C_{A}(v_1 , k_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by adding an additional blinding factor $ k_{x} $ to the commitment. A valid Mimblewimble transaction would have the following form
+
 $$
 \begin{aligned} 
 C_{locked}(v_1 , k_1 + k_x) - C_{A}(v_1 , k_1) - C_{fee}(v_2 , k_2) + fee &= (\mathbf{0}) \\\\
@@ -118,6 +119,7 @@ C_{locked}(v_1 , k_1 + k_x) - C_{A}(v_1 , k_1) - C_{fee}(v_2 , k_2) + fee &= (\m
 \end{aligned}
 \mspace{70mu} (1)
 $$
+
 where the unspent-hiding-blinding commitment from Alice is $ (v_1 H + k_1 G) $ and the value of $ (v_2 H + k_2 G) $ is equal to $ fee $ to be paid to the miner. The newly created commitment $ (v_1 H + (k_1 + k_x) G) $ would be equally unspendable by Alice and Bob because neither of them will know the total blinding factor $ k_1 + k_x $. Fortunately, in order to construct a Bulletproof range proof for the new output $ (v_1 H + (k_1 + k_x) G) $ as required by transaction validation rules, the values of $ v_1 $ and $ k_1 + k_x $ must be known otherwise the prover (i.e. Bob) cannot convince an honest verifier (i.e. the miner) that $ v_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
 
 In the event that Bob can convince Alice that she must create a fund that both of them have signing powers over ($ 2\text{-of-}2 $ multisig), it would theoretically be possible to create the required Bulletproof range proof for relation (1) if they work together to create it.
@@ -145,45 +147,63 @@ This ensures that public values for each step is not exposed until all commitmen
 ### Setting up the Multiparty Funding Transaction
 
 In the transaction Alice, Bob and Carol want to set up, $ C_m $ is the multiparty shared commitment that contains the funds, and $ C_a $, $ C_b $ and $ C_c $ are their respective input contributions. This transaction looks as follows:
+
 $$
 \begin{aligned} 
 C_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + fee &= (\mathbf{0}) \\\\
 (v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
-In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while keeping their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ and shares the public blinding factor $ k_nG $ with the group:
+
+In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while keeping their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ for the multiparty shared commitment and shares the public blinding factor $ k_nG $ with the group:
+
 $$
 \text{share:} \mspace{9mu} \lbrace k_1G, k_2G, k_3G \rbrace
 $$
-In addition, each of them create an offset $ \phi_n $ that will be subtracted from their input commitments' blinding factors to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block. They proceed to calculate their own total excess
+
+They proceed to calculate their own total excess blinding factors as the difference between their change, which is zero, and input minus an offset $ \phi_n $: 
+
 $$
 \begin{aligned} 
-x_{sa} &= -k_a - \phi_a \\\\
-x_{sb} &= -k_b - \phi_b \\\\
-x_{sc} &= -k_c - \phi_c
+x_{sa} &= 0 - k_a - \phi_a \\\\
+x_{sb} &= 0 - k_b - \phi_b \\\\
+x_{sc} &= 0 - k_c - \phi_c
 \end{aligned}
 $$
-and consequently share the public value of the excess $ x_{sn}G $ with each other: 
+
+The offset $ \phi_n $ is introduced to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block, and will be used later on to balance the transaction. They consequently share the public value of the excess $ x_{sn}G $ with each other: 
+
 $$
 \text{share:} \mspace{9mu} \lbrace x_{sa}G, x_{sb}G, x_{sc}G \rbrace
 $$
+
 They now have enough information to calculate the aggregated public key for the signature:
+
 $$
-P_{agg} = (k_1G + x_{sa}G) + (k_2G + x_{sb}G) + (k_3G + x_{sc}G)
+P_{agg} = (k_1G + x_{sa}G) + (k_2G + x_{sb}G) + (k_3G + x_{sc}G) \\\\
+P_{agg} = (k_1G - (k_a + \phi_a)G) + (k_2G - (k_b + \phi_b)G) + (k_3G - (k_ca + \phi_c)G)
 $$
+
 Each party also selects a private nonce $ r_n $, share the public value $  r_nG $ with the group,
+
 $$
 \text{share:} \mspace{9mu} \lbrace r_aG, r_bG, r_cG \rbrace
 $$
+
 and calculates the aggregated public nonce for the signature:
+
 $$
 R_{agg} = r_aG + r_bG + r_cG
 $$
+
 The signature challenge $ e $ can now be calculated:
+
 $$
 e = \text{Hash}(R_{agg} || P_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
 $$
+
 Each party now use their private nonce $ r_n $, secret blinding factor $ k_n $ and excess $ x_{sn} $ to calculate a partial Schnorr signature $ s_n $:
+
 $$
 \begin{aligned} 
 s\_a &= r_a + e \cdot (k\_1 + x\_{sa}) \\\\
@@ -191,27 +211,37 @@ s\_b &= r_b + e \cdot (k\_2 + x\_{sb}) \\\\
 s\_c &= r_c + e \cdot (k\_3 + x\_{sc})
 \end{aligned}
 $$
-These partial signatures are now shared with the group:
+
+These partial signatures are then shared with the group to be aggregated:
+
 $$
 \text{share:} \mspace{9mu} \lbrace s_a, s_b, s_c \rbrace
 $$
+
 The aggregated Schnorr signature for the transaction is then simply calculated as
+
 $$
 s\_{agg} = s\_a + s\_b + s\_c
 $$
+
 The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, publicly shared aggregated values $ R_{agg} $ and $ P_{agg} $ will be needed:
+
 $$
 s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
 $$
-In order to validate that no funds are created the total offset must also be stored in the transaction kernel, so the parties also share the offset they calculated:
+
+In order to validate that no funds are created the total offset must also be stored in the transaction kernel, so the parties also share their offset and calculate the total:
+
 $$
+\text{share:} \mspace{9mu} \lbrace \phi_a, \phi_b, \phi_c \rbrace \\\\
 \phi_{tot} = \phi_a + \phi_b + \phi_c
 $$
-The transaction balance is then validated to be equal to a commitment to the value $ 0 $ as follows:
-$$
-(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + o_{tot}G)
-$$
 
+The transaction balance can then be validated to be equal to a commitment to the value $ 0 $ as follows:
+
+$$
+(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + ( P_{agg} + \phi_{tot})G)
+$$
 
 
 ### Creating the Multiparty Bulletproof Range Proof
