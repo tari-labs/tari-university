@@ -49,9 +49,9 @@ This section gives the general notation of mathematical expressions used. It pro
 - All Pederson Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
 - Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
 - A Pederson Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
-- Let $ \text{H}_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where $ arg $ is the value being committed to.
-- Let $  RP_{n}  $ be Bulletproof range proof data for commitment $ C_n $.
-- Let $  RP_{agg} $ be aggregated Bulletproof range proof data for a set of commitments $ \lbrace C_1, C_2, ... , C_n \rbrace $.
+- Let $ \text{H}\_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where $ arg $ is the value being committed to.
+- Let $  RP\_n  $ be Bulletproof range proof data for commitment $ C\_n $.
+- Let $  RP\_{agg} $ be aggregated Bulletproof range proof data for a set of commitments $ \lbrace C\_1, C\_2, ... , C\_n \rbrace $.
 
 
 
@@ -109,18 +109,18 @@ Bitcoin transactions are allowed to have multiple recipients, and one of the rec
 
 A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complimenting aspects to provide security; [Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect, and range proofs provide assurance that the currency cannot be inflated and that 3<sup>rd</sup> parties cannot lock away ones funds. Due to the fact that Mimblewimble commitments are totally confidential and that ownership cannot be proofed, anyone can try to spend or mess with unspent coins embedded in those commitments. Fortunately any new UTXO requires a range proof, and this is impossible to create if the input commitment cannot be opened.
 
-The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let $ C_{A}(v_1 , k_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by adding an additional blinding factor $ k_{x} $ to the commitment. A valid Mimblewimble transaction would have the following form
+The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let $ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by adding an additional blinding factor $ k\_{x} $ to the commitment. A valid Mimblewimble transaction would have the following form
 
 $$
 \begin{aligned} 
-C_{locked}(v_1 , k_1 + k_x) - C_{A}(v_1 , k_1) - C_{fee}(v_2 , k_2) + fee &= (\mathbf{0}) \\\\
+C\_{locked}(v\_1 , k\_1 + k\_x) - C\_a(v\_1 , k\_1) - C\_{fee}(v\_2 , k\_2) + fee &= (\mathbf{0}) \\\\
 \\\\
-(v_1 H + (k_1 + k_x) G) -  (v_1 H + k_1 G) - (v_2 H + k_2 G) + fee &= (\mathbf{0})
+(v\_1 H + (k\_1 + k\_x) G) -  (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + fee &= (\mathbf{0})
 \end{aligned}
 \mspace{70mu} (1)
 $$
 
-where the unspent-hiding-blinding commitment from Alice is $ (v_1 H + k_1 G) $ and the value of $ (v_2 H + k_2 G) $ is equal to $ fee $ to be paid to the miner. The newly created commitment $ (v_1 H + (k_1 + k_x) G) $ would be equally unspendable by Alice and Bob because neither of them will know the total blinding factor $ k_1 + k_x $. Fortunately, in order to construct a Bulletproof range proof for the new output $ (v_1 H + (k_1 + k_x) G) $ as required by transaction validation rules, the values of $ v_1 $ and $ k_1 + k_x $ must be known otherwise the prover (i.e. Bob) cannot convince an honest verifier (i.e. the miner) that $ v_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
+where the unspent-hiding-blinding commitment from Alice is $ (v\_1 H + k\_1 G) $ and the value of $ (v\_2 H + k\_2 G) $ is equal to $ fee $ to be paid to the miner. The newly created commitment $ (v\_1 H + (k\_1 + k\_x) G) $ would be equally unspendable by Alice and Bob because neither of them will know the total blinding factor $ k\_1 + k\_x $. Fortunately, in order to construct a Bulletproof range proof for the new output $ (v\_1 H + (k\_1 + k\_x) G) $ as required by transaction validation rules, the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known otherwise the prover (i.e. Bob) cannot convince an honest verifier (i.e. the miner) that $ v\_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
 
 In the event that Bob can convince Alice that she must create a fund that both of them have signing powers over ($ 2\text{-of-}2 $ multisig), it would theoretically be possible to create the required Bulletproof range proof for relation (1) if they work together to create it.
 
@@ -138,7 +138,7 @@ Multiple parties working together to create a single transaction that involves m
 
 ### Simple Sharing Protocol
 
-Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They decide to use a sharing hash function $ val_H = \text{H}_{s}(arg) $ as a handshaking mechanism for all information they need to share. The 1<sup>st</sup> step is to calculate the hash $ val_H $ for the value $ arg $ they want to commit to in sharing and to distribute it to all parties. They then wait until all other parties' commitments have been received. The 2<sup>nd</sup> step is to send the actual value they committed to to all parties and to then verify each value against its commitment. If everything match up they proceed, otherwise they stop and discard everything they have done. 
+Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They decide to use a sharing hash function $ val\_H = \text{H}\_{s}(arg) $ as a handshaking mechanism for all information they need to share. The 1<sup>st</sup> step is to calculate the hash $ val\_H $ for the value $ arg $ they want to commit to in sharing and to distribute it to all parties. They then wait until all other parties' commitments have been received. The 2<sup>nd</sup> step is to send the actual value they committed to to all parties and to then verify each value against its commitment. If everything match up they proceed, otherwise they stop and discard everything they have done. 
 
 This ensures that public values for each step is not exposed until all commitments have been received. They will apply this simple sharing protocol to all information they need to share with each other.
 
@@ -146,63 +146,63 @@ This ensures that public values for each step is not exposed until all commitmen
 
 ### Setting up the Multiparty Funding Transaction
 
-In the transaction Alice, Bob and Carol want to set up, $ C_m $ is the multiparty shared commitment that contains the funds, and $ C_a $, $ C_b $ and $ C_c $ are their respective input contributions. This transaction looks as follows:
+In the transaction Alice, Bob and Carol want to set up, $ C\_m $ is the multiparty shared commitment that contains the funds, and $ C\_a $, $ C\_b $ and $ C\_c $ are their respective input contributions. This transaction looks as follows:
 
 $$
 \begin{aligned} 
-C_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + fee &= (\mathbf{0}) \\\\
+C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + fee &= (\mathbf{0}) \\\\
 (v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee &= (\mathbf{0})
 \end{aligned}
 $$
 
-In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while keeping their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k_n $ for the multiparty shared commitment and shares the public blinding factor $ k_nG $ with the group:
+In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while keeping their portion of the shared blinding factor secret. Each of them creates their own private blinding factor $ k\_n $ for the multiparty shared commitment and shares the public blinding factor $ k\_nG $ with the group:
 
 $$
-\text{share:} \mspace{9mu} \lbrace k_1G, k_2G, k_3G \rbrace
+\text{share:} \mspace{9mu} \lbrace k\_1G, k\_2G, k\_3G \rbrace
 $$
 
-They proceed to calculate their own total excess blinding factors as the difference between their change, which is zero, and input minus an offset $ \phi_n $: 
+They proceed to calculate their own total excess blinding factors as $ x\_{sn} = \sum k\_{n(change)} - \sum k\_{n(inputs)} - \phi\_n $ with $ \phi_n\ $ being a random offset of their own choosing (in this example there is no change): 
 
 $$
 \begin{aligned} 
-x_{sa} &= 0 - k_a - \phi_a \\\\
-x_{sb} &= 0 - k_b - \phi_b \\\\
-x_{sc} &= 0 - k_c - \phi_c
+x\_{sa} &= 0 - k\_a - \phi\_a \\\\
+x\_{sb} &= 0 - k\_b - \phi\_b \\\\
+x\_{sc} &= 0 - k\_c - \phi\_c
 \end{aligned}
 $$
 
-The offset $ \phi_n $ is introduced to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block, and will be used later on to balance the transaction. They consequently share the public value of the excess $ x_{sn}G $ with each other: 
+The offset $ \phi\_n $ is introduced to prevent someone else linking this transaction's inputs and outputs when analyzing the Mimblewimble block, and will be used later on to balance the transaction. They consequently share the public value of the excess $ x\_{sn}G $ with each other: 
 
 $$
-\text{share:} \mspace{9mu} \lbrace x_{sa}G, x_{sb}G, x_{sc}G \rbrace
+\text{share:} \mspace{9mu} \lbrace x\_{sa}G, x\_{sb}G, x\_{sc}G \rbrace
 $$
 
 They now have enough information to calculate the aggregated public key for the signature:
 
 $$
-P_{agg} = (k_1G + x_{sa}G) + (k_2G + x_{sb}G) + (k_3G + x_{sc}G) \\\\
-P_{agg} = (k_1G - (k_a + \phi_a)G) + (k_2G - (k_b + \phi_b)G) + (k_3G - (k_ca + \phi_c)G)
+P\_{agg} = (k\_1G + x\_{sa}G) + (k\_2G + x\_{sb}G) + (k\_3G + x\_{sc}G) \\\\
+P\_{agg} = (k\_1G - (k\_a + \phi\_a)G) + (k\_2G - (k\_b + \phi\_b)G) + (k\_3G - (k\_ca + \phi\_c)G)
 $$
 
-Each party also selects a private nonce $ r_n $, share the public value $  r_nG $ with the group,
+Each party also selects a private nonce $ r\_n $, share the public value $  r\_nG $ with the group,
 
 $$
-\text{share:} \mspace{9mu} \lbrace r_aG, r_bG, r_cG \rbrace
+\text{share:} \mspace{9mu} \lbrace r\_aG, r\_bG, r\_cG \rbrace
 $$
 
 and calculates the aggregated public nonce for the signature:
 
 $$
-R_{agg} = r_aG + r_bG + r_cG
+R\_{agg} = r\_aG + r\_bG + r\_cG
 $$
 
 The signature challenge $ e $ can now be calculated:
 
 $$
-e = \text{Hash}(R_{agg} || P_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+e = \text{Hash}(R\_{agg} || P\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
 $$
 
-Each party now use their private nonce $ r_n $, secret blinding factor $ k_n $ and excess $ x_{sn} $ to calculate a partial Schnorr signature $ s_n $:
+Each party now use their private nonce $ r\_n $, secret blinding factor $ k\_n $ and excess $ x\_{sn} $ to calculate a partial Schnorr signature $ s\_n $:
 
 $$
 \begin{aligned} 
@@ -215,7 +215,7 @@ $$
 These partial signatures are then shared with the group to be aggregated:
 
 $$
-\text{share:} \mspace{9mu} \lbrace s_a, s_b, s_c \rbrace
+\text{share:} \mspace{9mu} \lbrace s\_a, s\_b, s\_c \rbrace
 $$
 
 The aggregated Schnorr signature for the transaction is then simply calculated as
@@ -224,29 +224,29 @@ $$
 s\_{agg} = s\_a + s\_b + s\_c
 $$
 
-The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. In order to validate the signature, publicly shared aggregated values $ R_{agg} $ and $ P_{agg} $ will be needed:
+The resulting signature for the transaction is the tuple $ (s\_{agg},R\_{agg}) $. In order to validate the signature, publicly shared aggregated values $ R\_{agg} $ and $ P\_{agg} $ will be needed:
 
 $$
-s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
+s\_{agg}G \overset{?}{=} R\_{agg} + e \cdot P\_{agg}
 $$
 
 In order to validate that no funds are created the total offset must also be stored in the transaction kernel, so the parties also share their offset and calculate the total:
 
 $$
-\text{share:} \mspace{9mu} \lbrace \phi_a, \phi_b, \phi_c \rbrace \\\\
-\phi_{tot} = \phi_a + \phi_b + \phi_c
+\text{share:} \mspace{9mu} \lbrace \phi\_a, \phi\_b, \phi\_c \rbrace \\\\
+\phi\_{tot} = \phi\_a + \phi\_b + \phi\_c
 $$
 
 The transaction balance can then be validated to be equal to a commitment to the value $ 0 $ as follows:
 
 $$
-(v_1H + (k_1 + k_2 + k_3)G) - (v_aH + k_aG) - (v_bH + k_bG) - (v_cH + k_cG) + fee \overset{?}{=} (0H + ( P_{agg} + \phi_{tot})G)
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee \overset{?}{=} (0H + ( P\_{agg} + \phi\_{tot})G)
 $$
 
 
 ### Creating the Multiparty Bulletproof Range Proof
 
-One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now, Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $ secret. The new combined commitment they created, $ (v_1H + (k_1 + k_2 + k_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.
+One crucial aspect in validating the transaction is still missing, that is each new UTXO must also include a Bulletproof range proof. Up to now, Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k\_n $ secret. The new combined commitment they created, $ (v\_1H + (k\_1 + k\_2 + k\_3)G) $, cannot be used as is to calculate the Bulletproof range proof, otherwise the three parties will have to give up their portion of the shared blinding factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.
 
 #### Utilizing Bulletproofs MPC Protocol
 
@@ -256,9 +256,9 @@ This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggre
 
 $$
 \begin{aligned} 
-\text{Alice's fake commitment:} \mspace{18mu} C_1(\frac{v_1}{3},k_1) &= (\frac{v_1}{3}H + k_1G) \\\\
-\text{Bob's fake commitment:} \mspace{18mu} C_2(\frac{v_1}{3},k_2) &= (\frac{v_1}{3}H + k_2G) \\\\
-\text{Carol's fake commitment:} \mspace{18mu} C_3(\frac{v_1}{3},k_3) &= (\frac{v_1}{3}H + k_3G)
+\text{Alice's fake commitment:} \mspace{18mu} C\_1(\frac{v\_1}3,k\_1) &= (\frac{v\_1}3H + k\_1G) \\\\
+\text{Bob's fake commitment:} \mspace{18mu} C\_2(\frac{v\_1}3,k\_2) &= (\frac{v\_1}3H + k\_2G) \\\\
+\text{Carol's fake commitment:} \mspace{18mu} C\_3(\frac{v\_1}3,k\_3) &= (\frac{v\_1}3H + k\_3G)
 \end{aligned}
 $$
 
@@ -266,62 +266,69 @@ Notice that
 
 $$
 \begin{aligned} 
-C_m(v_1, k_1 + k_2 + k_3) &= C_1(\frac{v_1}{3},k_1) + C_2(\frac{v_1}{3},k_2) + C_3(\frac{v_1}{3},k_3) \\\\
-(v_1H + (k_1 + k_2 + k_3)G) &= (\frac{v_1}{3}H + k_1G) + (\frac{v_1}{3}H + k_1G) + (\frac{v_1}{3}H + k_1G)
+C\_m(v\_1, k\_1 + k\_2 + k\_3) &= C\_1(\frac{v\_1}3,k\_1) + C\_2(\frac{v\_1}3,k\_2) + C\_3(\frac{v\_1}3,k\_3) \\\\
+(v\_1H + (k\_1 + k\_2 + k\_3)G) &= (\frac{v\_1}3H + k\_1G) + (\frac{v\_1}3H + k\_1G) + (\frac{v\_1}3H + k\_1G)
 \end{aligned}
 $$
 
+and that rounding implementation of $ ^{v\_1} / \_3  $ can ensure that adding these components for all parties will produce the original value $ v\_1 $.
 
-Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the MPC protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C_1, C_2, C_3 \rbrace $ be depicted by $ RP_{agg} $. The UTXO will then consist of the tuple $ (C_m , RP_{agg}) $ and meta data $ \lbrace flag, C_1, C_2, C_3 \rbrace $. Range proof validation by miners will involve
-
+Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the MPC protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C\_1, C\_2, C\_3 \rbrace $ be depicted by $ RP\_{agg} $. The UTXO will then consist of the tuple $ (C\_m , RP\_{agg}) $ and meta data $ \lbrace flag, C\_1, C\_2, C\_3 \rbrace $. Range proof validation by miners will involve
 $$
-C_m \overset{?}{=} C_1 + C_2 + C_3 \\\\
-\text{verify }  RP_{agg}  \text{ for set }  \{ C_1, C_2, C_3 \}
+C\_m \overset{?}{=} C\_1 + C\_2 + C\_3 \\\\
+\text{verify: }  RP\_{agg}  \text{ for set }  \{ C\_1, C\_2, C\_3 \}
 $$
 
 instead of 
 
 $$
-\text{verify }  RP_{m}  \text{ for }  C_m
+\text{verify: }  RP\_m  \text{ for }  C\_m
 $$
 
 
 #### Utilizing Grin's Shared Bulletproof Computation
 
-Grin extended the [Inner-product Range Proof](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) implementation to allow for multiple parties to jointly construct a single Bulletproof range proof $ RP_{m} $ for a known value $ v $, where each party can keep their partial blinding factor secret. The parties have to share committed values deep within the inner-product range proof protocol ([[12]], [[13]], [[14]]). 
+Grin extended the [Inner-product Range Proof](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) implementation to allow for multiple parties to jointly construct a single Bulletproof range proof $ RP\_m $ for a known value $ v $, where each party can keep their partial blinding factor secret. The parties have to share committed values deep within the inner-product range proof protocol ([[12]], [[13]], [[14]]). 
 
-In order to construct the shared Bulletproof range proof $ RP_{m} $, each party start to calculate their own range proof for commitment $ C_m(v_1, \sum _{j=1}^3 k_jG) $ as follows:
+In order to construct the shared Bulletproof range proof $ RP\_m $, each party start to calculate their own range proof for commitment $ C\_m(v\_1, \sum \_{j=1}^3 k\_jG) $ as follows:
 
 $$
 \begin{aligned} 
-\text{Alice:} \mspace{18mu} C_1(v_1,k_1) &= (v_1H + k_1G) \\\\
-\text{Bob:} \mspace{18mu} C_2(0,k_2) &= (0H + k_2G) \\\\
-\text{Carol:} \mspace{18mu} C_3(0,k_3) &= (0H + k_3G)
+\text{Alice:} \mspace{18mu} C\_1(v\_1,k\_1) &= (v\_1H + k\_1G) \\\\
+\text{Bob:} \mspace{18mu} C\_2(0,k\_2) &= (0H + k\_2G) \\\\
+\text{Carol:} \mspace{18mu} C\_3(0,k\_3) &= (0H + k\_3G)
 \end{aligned}
 $$
 
 With this implementation Alice needs to act as the dealer. When they get to [steps (53) to (61) in Figure 5](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) of the inner-product range proof protocol, they introduce the following changes:
 
-1. Each party share $ T_{1_j} $ and $ T_{2_j} $ with all other parties.
+1. Each party share $ T\_{1\_j} $ and $ T\_{2\_j} $ with all other parties.
 2. Each party calculate $ T\_1 = \sum\_{j=1}^k T\_{1\_j} $ and $ T_2 = \sum\_{j=1}^k T\_{2\_j} $.
-3. Each party calculate $ \tau_{x_j} $ based on $ T_1 $ and $ T_2 $.
-4. The dealer calculates $\tau\_x = \sum\_{j=1}^k \tau\_{x\_j} $.
-5. The dealer completes the protocol, using their own private $ k\_1 $ where a further blinding factor is required, and calculates $ RP\_{m} $.
+3. Each party calculate $ \tau\_{x\_j} $ based on $ T\_1 $ and $ T\_2 $.
+4. Each party share $ \tau\_{x\_j} $ with the dealer.
+5. The dealer calculates $\tau\_x = \sum\_{j=1}^k \tau\_{x\_j} $.
+6. The dealer completes the protocol, using their own private $ k\_1 $ where a further blinding factor is required, and calculates $ RP\_m $.
 
 Using this approach the resulting shared commitment for Alice, Bob and Carol is
 
 $$
-C_m(v_1, \sum _{j=1}^3 k_jG) = (v_1H + \sum _{j=1}^3 k_jG) = (v_1H + (k_1 + k_2 + k_3)G)
+C\_m(v\_1, \sum \_{j=1}^3 k\_jG) = (v\_1H + \sum \_{j=1}^3 k\_jG) = (v\_1H + (k\_1 + k\_2 + k\_3)G)
 $$
 
-with the UTXO tuple being $ (C_m ,  RP_{m}) $. Range proof validation by miners will involve verifying $ RP_{m} $ for $ C_m $.
+with the UTXO tuple being $ (C\_m ,  RP\_m) $. Range proof validation by miners will involve verifying $ RP\_m $ for $ C\_m $.
 
 
 
 
 #### Comparison of the two Bulletproof Methods
 
-???
+
+
+| Consideration           | Dalek's Bulletproofs MPC Protocol                            | Grin's Multiparty Bulletproof                    |
+| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
+| Rounds of communication | 3                                                            | 2                                                |
+| Security                | Use of Merlin transcripts makes this method more secure      | No specific sharing protocol suggested           |
+| Size of the Bulletproof | Logarithmic size range proof, 672 bytes up to ?? for 16 range proofs | Single Bulletproof range proof size of 672 bytes |
 
 
 
@@ -333,71 +340,86 @@ Alice, Bob and Carol had a private bet going that Carol won, and they agree to s
 
 $$
 \begin{aligned} 
-C\_{c^{'}}(v\_{c^{'}}, k\_{c^{'}}) + C_{m^{'}}(v\_{1^{'}}, \sum \_{j=1}^3 k\_{j^{'}}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + fee &= (\mathbf{0}) \\\\
-(v\_{c^{'}}H + k\_{c^{'}}G) + (v\_{1^{'}}H + (k\_{1^{'}} + k\_{2^{'}} + k\_{3^{'}})G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee &= (\mathbf{0})
+C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + fee &= (\mathbf{0}) \\\\
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee &= (\mathbf{0})
 \end{aligned}
 $$
 
-Similar to the initial transaction, each of them create their own private blinding factor $ k_{n^{'}} $ for the new Multiparty UTXO and shares the public blinding factor $ k_{n^{'}}G $ with the group. Carol also share the public blinding factor $ k\_{c^{'}}G $ for her winnings:
-
+Similar to the initial transaction, each of them create their own private blinding factor $ k^{'}\_n $ for the new Multiparty UTXO and shares the public blinding factor $ k^{'}\_nG $ with the group. Carol also shares the public blinding factor $ k^{'}\_cG $ for her winnings:
 $$
-R_{agg} = k_{1^{'}}G + k_{2^{'}}G + (k_{3^{'}}G + k_{c^{'}}G)
+\begin{aligned} 
+\text{share:} \mspace{9mu} &\lbrace k^{'}\_1G, k^{'}\_2G, k^{'}\_3G \rbrace \\\\
+\text{share:} \mspace{9mu} &\lbrace  k^{'}\_cG \rbrace
+\end{aligned}
+$$
+As before, they calculate their own total excess blinding factors as $ x^{'}\_{sn} = \sum k^{'}\_{n(change)} - \sum k^{'}\_{n(inputs)} - \phi^{'}\_n $: 
+$$
+\begin{aligned} 
+x^{'}\_{sa} &= 0 - k\_1 - \phi^{'}\_a \\\\
+x^{'}\_{sb} &= 0 - k\_2 - \phi^{'}\_b \\\\
+x^{'}\_{sc} &= 0 - k\_3 - \phi^{'}\_c
+\end{aligned}
 $$
 
-As before, each of them create an offset $ \phi_n $ that will be subtracted from the input commitment's blinding factor, and calculate their own total excess: 
+They share the public value of the excess $ x^{'}\_{sn}G $ with each other: 
+$$
+\text{share:} \mspace{9mu} \lbrace x^{'}\_{sa}G, x^{'}\_{sb}G, x^{'}\_{sc}G \rbrace
+$$
+The aggregated public key for the signature can then be calculated as:
+$$
+P^{'}\_{agg} = (k^{'}\_1G + x^{'}\_{sa}G) + (k^{'}\_2G + x^{'}\_{sb}G) + (k^{'}\_3G + x^{'}\_{sc}G + k^{'}\_cG) \\\\
+P^{'}\_{agg} = (k^{'}\_1G - (k\_1 + \phi^{'}\_a)) + (k^{'}\_2G - (k\_2 + \phi^{'}\_a)) + (k^{'}\_3G - (k\_3 + \phi^{'}\_a) + k^{'}\_cG)
+$$
+
+Each party again selects a private nonce $ r^{'}\_n $, share the public value $  r^{'}\_nG $ with the group,
+$$
+\text{share:} \mspace{9mu} \lbrace r^{'}\_aG, r^{'}\_bG, r^{'}\_cG \rbrace
+$$
+and calculates the aggregated public nonce for the signature:
+$$
+R^{'}\_{agg} = r^{'}\_aG + r^{'}\_bG + r^{'}\_cG
+$$
+The new signature challenge $ e^{'} $ is then calculated as:
+$$
+e^{'} = \text{Hash}(R^{'}\_{agg} || P^{'}\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+$$
+
+Each party now calculate their partial Schnorr signature $ s^{'}\_n $ as before, except that Carol also adds her winnings' blinding factor $ k^{'}\_c $ to her signature:
 
 $$
 \begin{aligned} 
-x_{sa} &= k_1 - \phi_a \\\\
-x_{sb} &= k_2 - \phi_b \\\\
-x_{sc} &= k_3 - \phi_c
+s^{'}\_a &= r^{'}\_a + e^{'} \cdot (k^{'}\_1 + x^{'}\_{sa})\\\\
+s^{'}\_b &= r^{'}\_b + e^{'} \cdot (k^{'}\_2 + x^{'}\_{sa})\\\\
+s^{'}\_c &= r^{'}\_c + e^{'} \cdot (k^{'}\_3 + x^{'}\_{sa} + k^{'}\_c)
 \end{aligned}
 $$
 
-They share the public value of the excess $ x_{sn}G $ with each other
-
+These partial signatures are then shared with the group 
 $$
-P_{agg} = x_{sa}G + x_{sb}G + x_{sc}G
+\text{share:} \mspace{9mu} \lbrace s^{'}\_a, s^{'}\_b, s^{'}\_c \rbrace
 $$
-
-and proceed to calculate the same challenge $ e $ as
-
+to enable calculation of the aggregated Schnorr signature as
 $$
-e = \text{Hash}(R_{agg} || P_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+s^{'}\_{agg} = s^{'}\_a + s^{'}\_b + s^{'}\_c
 $$
 
-for the aggregated transaction signature. Next up is to calculate their partial Schnorr signature $ s_n $ using their private nonce $ r_n $ and secret blinding factor $ k_n $, and to share it with each other. Carol also adds her winnings' bliding factor to her signature:
+The resulting signature for the transaction is the tuple $ (s^{'}\_{agg},R^{'}\_{agg}) $. The signature is again validated as previous using the publicly shared aggregated values $ R^{'}\_{agg} $ and $ P^{'}\_{agg} $:
 
 $$
-\begin{aligned} 
-s\_a &= r_a + e \cdot k\_{1^{'}} \\\\
-s\_b &= r_b + e \cdot k\_{2^{'}} \\\\
-s\_c &= r_c + e \cdot (k\_{3^{'}} + k\_{c^{'}})
-\end{aligned}
-$$
-
-The aggregated Schnorr signature is then simply calculated as
-
-$$
-s\_{agg} = s\_a + s\_b + s\_c
-$$
-
-The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. The signature is again validated as previous using the publicly shared aggregated values $ R_{agg} $ and $ P_{agg} $:
-
-$$
-s_{agg}G \overset{?}{=} R_{agg} + e \cdot P_{agg}
+s^{'}\_{agg}G \overset{?}{=} R^{'}\_{agg} + e^{'} \cdot P^{'}\_{agg}
 $$
 
 Again the parties also share their own personal offset so that the total offset can be calculated:
 
 $$
-\phi_{tot} = \phi_a + \phi_b + \phi_c
+\text{share:} \mspace{9mu} \lbrace \phi^{'}\_a, \phi^{'}\_b, \phi^{'}\_c \rbrace \\\\
+\phi^{'}\_{tot} = \phi^{'}\_a + \phi^{'}\_b + \phi^{'}\_c
 $$
 
-Lastly, the transaction balance is validated to be equal to a commitment to the value $ 0 $:
+Lastly, the transaction balance can then be validated to be equal to a commitment to the value $ 0 $:
 
 $$
-(v\_{c^{'}}H + k\_{c^{'}}G) + (v\_{1^{'}}H + (k\_{1^{'}} + k\_{2^{'}} + k\_{3^{'}})G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee \overset{?}{=} (0H + o_{tot}G)
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee \overset{?}{=} (0H + (P^{'}\_{agg} + \phi^{'}\_{tot}G))
 $$
 
 
@@ -425,7 +447,7 @@ Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ p
 
 | Round | Alice                                                        | Bob                                                          | Carol                                                        |
 | ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1     | shard $ k_{1_{A}} $ <br />shard $ k_{2_{A}} $<br />shard $ k_{3_{A}} $ | shard $ k_{1_{B}} $<br />shard $ k_{2_{B}} $<br />shard $ k_{3_{B}} $ | shard $ k_{1_{C}} $<br />shard $ k_{2_{C}} $<br />shard $ k_{3_{C}} $ |
+| 1     | shard $ k\_{1\_a} $ <br />shard $ k\_{2\_a} $<br />shard $ k\_{3\_a} $ | shard $ k\_{1\_b} $<br />shard $ k\_{2\_b} $<br />shard $ k\_{3\_b} $ | shard $ k\_{1\_c} $<br />shard $ k\_{2\_c} $<br />shard $ k\_{3\_c} $ |
 | 2     |                                                              |                                                              |                                                              |
 | 3     |                                                              |                                                              |                                                              |
 | 4     |                                                              |                                                              |                                                              |
