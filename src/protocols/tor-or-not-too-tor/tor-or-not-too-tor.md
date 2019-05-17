@@ -2,6 +2,7 @@
 
 - [Introduction](#introduction)
   - [What is Tor?](#what-is-tor)
+  - [Purpose of this Report](#purpose-of-this-report)
   - [Installation Instructions](#installation-instructions)
 - [Using Tor](#using-tor)
   - [How to use Tor](#how-to-use-tor)
@@ -29,6 +30,11 @@ of encryption, similar to the layers of an onion. Tor uses a unique system that 
 government intelligence communications. It is part of the ```Tor Browser``` package, where the Tor Browser has been 
 configured to proxy request via the Tor network.
 
+### Purpose of this Report
+
+This report gives an overview of Tor. The author, a programmer, comes to a conclusion regarding whether or not to 
+recommend Tor: "to Tor || !2 Tor" (to Tor or not to Tor).
+
 
 ### Installation Instructions
 With reference to [[1]]:
@@ -43,8 +49,6 @@ With reference to [[1]]:
 
 - Run the Tor Browser and visit an ```.onion``` site such as the DuckDuckGo Search engine [[3]].
 - Check if you are running Tor [[4]].
-
-
 
 ### When to use Tor
 
@@ -151,18 +155,6 @@ Date accessed: 2019&#8209;05&#8209;16.
 [6]: https://www.youtube.com/watch?v=7G1LjQSYM5Q
 "YouTube: Dropping Docs on Darknets: How People Got Caught"
 
-[[7]] What is Tor Browser [online]. Available: <https://www.le-vpn.com/what-is-tor-browser/>. 
-Date accessed: 2019&#8209;05&#8209;16.
-
-[7]: https://www.le-vpn.com/what-is-tor-browser/
-"What is Tor Browser"
-
-[[8]] The Ultimate Guide to Tor Browser (with Important Tips) 201 [online]. 
-Available: <https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/>. Date accessed: 2019&#8209;05&#8209;16.
-
-[8]: https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/
-"The Ultimate Guide to Tor Browser"
-
 
 ## Appendices
 
@@ -172,11 +164,14 @@ Onion Services - Tor services that don’t leave the Tor network: <https://2019.
 
 ### Appendix B: Links of Interest
 
-- [Metrics of the Tor Project](https://metrics.torproject.org)
+- [What is Tor Browser?](https://www.le-vpn.com/what-is-tor-browser/)
+- [The Ultimate Guide to Tor Browser (with Important Tips) 2019](https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/)
+-  [Metrics of the Tor Project](https://metrics.torproject.org)
 - [Sharing files using Tor](https://onionshare.org)
 - [Blog post about OnionShare2 and its release](https://blog.torproject.org/new-release-onionshare-2)
 - [List of Tor Projects](https://2019.www.torproject.org/projects/projects.html.en)
 - [Isis Lovecruft's PDF covering Privacy and Anonymity](https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf)
+
 
 ## Contributors
 
