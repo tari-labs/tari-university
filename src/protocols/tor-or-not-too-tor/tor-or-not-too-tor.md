@@ -26,14 +26,16 @@
 Tor is a free and open source anonymity/privacy tool, meant to protect your location and identity.
 The name is derived from the acronym for the original software project name, ```The Onion Router``` ([[1]], [[2]]). This 
 refers to the way in which Tor protects your data, by wrapping it in multiple layers 
-of encryption, similar to the layers of an onion. Tor uses a unique system that was developed by the US Navy to protect 
+of encryption, similar to the layers of an onion.
+
+Tor uses a unique system that was developed by the US Navy to protect 
 government intelligence communications. It is part of the ```Tor Browser``` package, where the Tor Browser has been 
 configured to proxy request via the Tor network.
 
 ### Purpose of this Report
 
-This report gives an overview of Tor. The author, a programmer, comes to a conclusion regarding whether or not to 
-recommend Tor: "to Tor || !2 Tor" (to Tor or not to Tor).
+This report gives an overview of Tor. The author reaches a conclusion regarding whether or not to 
+recommend Tor, i.e. "to Tor || !2 Tor", which means "to Tor or not to Tor" in programming language.
 
 
 ### Installation Instructions
@@ -41,6 +43,7 @@ With reference to [[1]]:
 * Download the package for your operating system and language.
 * Verify the package.
 * Install the downloaded and verified package.
+
 
 
 ## Using Tor
@@ -63,11 +66,12 @@ Do not use the Tor Browser if you want end-to-end encryption to a non-```.onion`
 the ```Exit Node``` ends encryption and your data can be intercepted between the Exit Node and the destination server.
 
 
+
 ## How does Tor Network Work?
 
 Before Tor data enters the Tor network, it is bundled into layers of encrypted packets that are the same size. These 
-packets are then routed through a series of volunteer-operated servers called nodes, relays or bridges. Each time the Tor 
-data passes through one of these relays, a layer of encryption is removed to reveal the location of the next relay. 
+packets are then routed through a series of volunteer-operated servers called nodes, relays or bridges. Each time the 
+Tor data passes through one of these relays, a layer of encryption is removed to reveal the location of the next relay. 
 When the data reaches the final relay on its path, known as the ```Exit Node```, the last layer of encryption is removed 
 and the data is sent to its final destination.
 
@@ -82,16 +86,17 @@ Tor is not broken if Tor services are correctly set up and if the Tor Browser is
 easy to do something that would make Tor appear to be broken. If you login into a remote service such as Facebook or 
 Gmail, your ```anonymity``` at this site is lost. However, the recent release of the Tor Browser package would keep 
 both sites isolated from one another.
+
 Older Tor setups needed a user to know how to configure their proxy settings in their operating system, in order to use 
 Tor services. This was very easy to get wrong or incomplete, and some user information or details could be leaked. 
-Newer releases of Tor as a single package, preconfigured and shipped with a secure browser, resolved many of these problems.
-Keeping the Tor Browser package up to date, thereby addressing any new security issues, helps to keep your 
+Newer releases of Tor as a single package, preconfigured and shipped with a secure browser, resolved many of these 
+problems. Keeping the Tor Browser package up to date, thereby addressing any new security issues, helps to keep your 
 ```anonymity```.
 
 Tor has weaknesses. For example, if you are the only person using Tor on your home, office or school 
-network, you will be discovered. This is called a time/traffic correlation attack.
+network, you will be discovered. This is called a time/traffic correlation attack. For an interesting talk about some 
+of the Tor attacks, refer to [[6]].
 
-For an interesting talk about some of the Tor attacks, refer to [[6]].
 
 
 ## Conclusion
@@ -116,12 +121,14 @@ Disadvantages of Tor:
 - Its network is not user-friendly, due to its secure and hidden nature.
 - Its nodes (relay/bridge) are run by volunteers.
 
-Would I recommend Tor? Perhaps not, as Tor by itself does not guarantee anonymity. I like the goals that Tor is trying 
-to address and think it is making great progress. However, total anonymity has many obstacles, not just technology 
-related, but also the human component.
+Would the author of this report recommend Tor? Perhaps not, as Tor by itself does not guarantee anonymity. I like the 
+goals that Tor is trying to address and think it is making great progress. However, total anonymity has many obstacles, 
+not just technology related, but also the human component.
+
 
 
 ## References
+
 [[1]] Download for Tor Browser [online]. Available: <https://www.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16.
 
 [1]: https://www.torproject.org/
@@ -133,15 +140,15 @@ Date accessed: 2019&#8209;05&#8209;16.
 [2]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
 "Wikipedia: Tor (Anonymity Network)"
 
-[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. Date accessed: 2019&#8209;05&#8209;16.
+[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
 
 [3]: https://3g2upl4pq6kufc4m.onion/
-"DuckDuckGo Search Engine"
+"DuckDuckGo Search Engine - link will not work unless Tor Browser is used"
 
-[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16
+[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16
 
 [4]: https://check.torproject.org/
-"Tor Project: Check"
+"Tor Project: Check - link will not work unless Tor Browser is used"
 
 [[5]] Tor Project: Overview [online]. Available: <https://2019.www.torproject.org/about/overview.html.en>. 
 Date accessed: 2019&#8209;05&#8209;16.
@@ -156,11 +163,12 @@ Date accessed: 2019&#8209;05&#8209;16.
 "YouTube: Dropping Docs on Darknets: How People Got Caught"
 
 
+
 ## Appendices
 
 ### Appendix A: Further Investigation
 
-Onion Services - Tor services that don’t leave the Tor network: <https://2019.www.torproject.org/docs/onion-services.html.en>
+Onion Services - Tor services that don’t leave the Tor network: <https://2019.www.torproject.org/docs/onion-services.html.en>.
 
 ### Appendix B: Links of Interest
 
@@ -171,6 +179,7 @@ Onion Services - Tor services that don’t leave the Tor network: <https://2019.
 - [Blog post about OnionShare2 and its release](https://blog.torproject.org/new-release-onionshare-2)
 - [List of Tor Projects](https://2019.www.torproject.org/projects/projects.html.en)
 - [Isis Lovecruft's PDF covering Privacy and Anonymity](https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf)
+
 
 
 ## Contributors
