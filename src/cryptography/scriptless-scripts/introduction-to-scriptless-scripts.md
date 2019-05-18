@@ -1,7 +1,7 @@
 # Introduction to Scriptless Scripts 
 
 - [Definition of Scriptless Scripts](#definition-of-scriptless-scripts) 
-- [Benefit of Scriptless Scripts](#benefit-of-scriptless-scripts)
+- [Benefits of Scriptless Scripts](#benefits-of-scriptless-scripts)
 - [List of Scriptless Scripts](#list-of-scriptless-scripts)
 - [Role of Schnorr Signatures](#role-of-schnorr-signatures)
 - [Schnorr Multi-signatures](#schnorr-multi-signatures)
@@ -56,6 +56,8 @@ With regard to efficiency, Scriptless Scripts minimize the amount of data that r
 on-chain. By moving smart contracts off-chain, there are fewer overheads for full nodes and lower transaction fees for 
 users [[1]].   
 
+
+
   ## List of Scriptless Scripts 
 
 In this report, various forms of scripts will be covered, including [[3]]: 
@@ -69,7 +71,7 @@ In this report, various forms of scripts will be covered, including [[3]]:
 To begin with, the fundamentals of Schnorr signatures must be defined. The signer has a private key *x* and random 
 nonce *r*. *G* is the generator of a discrete log hard group, and *P* is the public key [[4]].
 
-s, the signature, can then be computed as a simple linear transaction
+The signature, *s*,  can then be computed as a simple linear transaction
 $$
 s=r+ex  Where:
 $$
@@ -86,12 +88,16 @@ P=xGThe position on the line chosen is taken as the hash of all the data that on
 $$
 
 The position on the line chosen is taken as the hash of all the data that one needs to commit to, the digital signature. 
-The verification equation involves the multiplication of each of the terms in the equation by G and takes into account the cryptographic assumption(discrete log)where G can be multiplied in but not divided out, thus preventing deciphering. 
+The verification equation involves the multiplication of each of the terms in the equation by *G* and takes into account 
+the cryptographic assumption (discrete log) where *G* can be multiplied in but not divided out, thus preventing 
+deciphering. 
 $$
   sG=rG+exG
 $$
 Elliptic Curve Digital Signature Algorithm (ECDSA) signatures (used in Bitcoin) are not linear in *x* and *r*, and are 
 thus less useful [[2]]. 
+
+
 
   ## Schnorr Multi-signatures
 
@@ -107,24 +113,27 @@ $$
   s=Σs(i)
 $$
 It can therefore be seen that these signatures are essentially Scriptless Scripts. Independent public keys of several 
-participants are joint to form a single key and signature, which, when published, do not divulge the details as to the 
+participants are joint to form a single key and signature, which, when published, do not divulge details of the 
 number of participants involved or the original public keys. 
+
+
 
   ## Adaptor Signatures  
 
 This mulitsig protocol can be modified to produce an adaptor signature, which serves as the building block for all 
 Scriptless Script functions [[5]]. 
 
-Instead of functioning as full valid signature on a message with a key, an adaptor signature is a promise that a 
+Instead of functioning as a full valid signature on a message with a key, an adaptor signature is a promise that a 
 signature agreed to be published, will reveal a secret. 
 
-This concept is similar to that of atomic swaps. However, no scrips are implemented. Since this is elliptic curve 
-cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, like a hash function, elliptic 
-curves function in one way, so an elliptic curve point (*T*), can simply be shared and the secret will be its 
+This concept is similar to that of atomic swaps. However, no scripts are implemented. Since this is elliptic curve 
+cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, similar to a hash function, 
+elliptic curves function in one way, so an elliptic curve point (*T*), can simply be shared and the secret will be its 
 corresponding private key.  
 
-If two parties are considered: rather than providing their nonce *R* in the mulitsig protocol, a blinding factor, taken 
-as an elliptic curve point *T* is conceived and sent in addition to *R* (i.e. *R+T*). So it can be seen that *R* is not 
+If two parties are considered, rather than providing their nonce *R* in the mulitsig protocol, a blinding factor, taken 
+as an elliptic curve point *T*, is conceived and sent in addition to *R* (i.e. *R+T*). It can therefore be seen that 
+*R* is not 
 blinded; it has instead been offset by the secret value *T*. 
 
 Here, the Schnorr mulitsig construction is modified such that the first party generates 
@@ -173,8 +182,6 @@ The execution of separate transactions in an atomic fashion is achieved through 
 the preimage to the same hash, once one is executed, the preimage is exposed so that the other one can be as well. 
 Atomic swaps and Lightning channels use this construction [[4]].
 
-
-
   ### Difference of Two Schnorr Signatures
 
 If we consider the difference of two Schnorr signatures: 
@@ -182,7 +189,7 @@ $$
   d=s-s'=k-k'+ex-e'x'
 $$
 The above equation can be verified in a similar manner to that of a single Schnorr signature, by multiplying each term 
-by G and confirming algebraic correctness: 
+by *G* and confirming algebraic correctness: 
 $$
   dG=kG-k'G+exG-e'x'G
 $$
@@ -203,6 +210,8 @@ any two Schnorr signatures, one is able to construct transcripts, such as an ato
 This is a critical feature for Mimblewimble, which was previously thought to be unable to support atomic swaps or 
 Lightning channels [[4]].
 
+
+
   ## Atomic (Cross-chain Swaps) Example with Adaptor Signatures
 
 Alice has a certain number of coins on a particular blockchain; Bob also has a certain number of coins on another 
@@ -210,8 +219,8 @@ blockchain. Alice and Bob want to engage in an atomic exchange. However, neither
 are they able to verify each other's transactions. 
 
 The  classical way of achieving this involves the use of the blockchain's script system to put a hash preimage challenge 
-and then reveal the same preimage on both sides. Once Alice knows the preimage, she reveals it to take her coins; 
-Bob then copies it off one chain to the other chain to take his coins. 
+and then reveal the same preimage on both sides. Once Alice knows the preimage, she reveals it to take her coins. Bob 
+then copies it off one chain to the other chain to take his coins. 
 
 Using adaptor signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put 
 up their coins on two of two outputs on each blockchain. They sign the mulitsig protocols in parallel, where Bob then 
@@ -222,6 +231,8 @@ and uses that to reveal another signature, giving Alice her coins.
 
 Thus it can be seen that atomicity is achieved. One is still able to exchange information, but now there are no explicit 
 hashes or preimages on the blockchain. No script properties are necessary and privacy is achieved [[4]].
+
+
 
   ## Zero Knowledge Contingent Payments 
 
@@ -240,10 +251,11 @@ property where, in a valid balanced transaction, one can subtract the input from
 all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the 
 mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
 
-Mimblewimble blocks will only have a list of new inputs, a list of new outputs and a list of signatures that are created 
+Mimblewimble blocks will only have a list of new inputs, new outputs and signatures that are created 
 from the aforementioned excess value [[7]].
 
 Since the values are homomorphically encrypted, nodes can verify that no coins are being created or destroyed. 
+
 
 
   ## References 
@@ -267,14 +279,14 @@ Available: <https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s>. Date accessed: 20
 [3]: https://www.youtube.com/watch?v=jzoS0tPUAiQ&t=3h36m
 "Scriptless Scripts"
 
-[[4]] A. Poelstra, "Mimblewimble and Scriptless Scripts". Presented at MIT Bitcoin Expo 2017 Day 1 [online]. 
+[[4]] A. Poelstra, "Mimblewimble and Scriptless Scripts". Presented at MIT Bitcoin Expo&nbsp;2017 Day&nbsp;1 [online]. 
 Available: <https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20>. Date accessed: 2017&#8209;03&#8209;04.
 
 [4]: https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20
 "Mimblewimble and Scriptless Scripts"
 
 [[5]] "Flipping the Scriptless Script on Schnorr" [online]. 
-  Available: <https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: November 2017.
+  Available: <https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: November&nbsp;2017.
 
 [5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/
 "Flipping the Scriptless Script on Schnorr"
@@ -284,7 +296,7 @@ Available: <https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-paym
 2016&#8209;02&#8209;26.
 
 [6]: https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/
-"The First Successful Zero-knowledge Contingent Payment, 26 Feb 2016"
+"The First Successful Zero-knowledge Contingent Payment, 26&nbsp;Feb&nbsp;2016"
 
 [[7]] "What is Mimblewimble?" [Online.]
   Available: <https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/>. Date accessed: 2018&#8209;06&#8209;30.
