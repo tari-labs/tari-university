@@ -250,7 +250,7 @@ One crucial aspect in validating the transaction is still missing, that is each 
 
 #### Utilizing Bulletproofs MPC Protocol
 
-This scheme involves coloring the UTXO to enable attachment of additional proof data and a flag to let the miners know that they have to employ a different set of validation rules. The [Bulletproofs Multiparty Computation](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) protocol can be used in a special way to construct a range proof that can be validated by the miners. Aggregating the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 672 bytes, whereas aggregating 16 only consist of 928 bytes [[11]]. For this scheme the simple information sharing protocol will not be adequate; an efficient, robust and secure implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
+This scheme involves coloring the UTXO to enable attachment of additional proof data, a flag to let the miners know that they have to employ a different set of validation rules and a hash of the UTXO and all meta data. The [Bulletproofs Multiparty Computation](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) (MPC) protocol can be used in a special way to construct a range proof that can be validated by the miners. Aggregating the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 672 bytes, whereas aggregating 16 only consist of 928 bytes [[11]]. For this scheme the simple information sharing protocol will not be adequate; an efficient, robust and secure implementation of the Bulletproof MPC range proof like that done by Dalek Cryptography [[10]] is suggested. 
 
 This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for the combined multiparty funds, but each using their own secret blinding factor in the commitment. They therefor construct fake commitments that will be used to calculate fake range proofs as follows:
 
@@ -273,10 +273,19 @@ $$
 
 and that rounding implementation of $ ^{v\_1} / \_3  $ can ensure that adding these components for all parties will produce the original value $ v\_1 $.
 
-Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the MPC protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C\_1, C\_2, C\_3 \rbrace $ be depicted by $ RP\_{agg} $. The UTXO will then consist of the tuple $ (C\_m , RP\_{agg}) $ and meta data $ \lbrace flag, C\_1, C\_2, C\_3 \rbrace $. Range proof validation by miners will involve
+Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which will be aggregated by the dealer according to the MPC protocol. Any one of the party members can be the dealer as the objective here is just to create the aggregated range proof. Let the aggregated range proof for the set $ \lbrace C\_1, C\_2, C\_3 \rbrace $ be depicted by $ RP\_{agg} $. The UTXO will then consist of the tuple $ (C\_m , RP\_{agg}) $ and meta data $ \lbrace flag, C\_1, C\_2, C\_3, hash_{C_{m}} \rbrace $. The hash that will secure the meta data is proposed as: 
 $$
-C\_m \overset{?}{=} C\_1 + C\_2 + C\_3 \\\\
-\text{verify: }  RP\_{agg}  \text{ for set }  \{ C\_1, C\_2, C\_3 \}
+hash_{C\_m} = \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_2 || C\_3)
+$$
+
+
+ Range proof validation by miners will involve
+$$
+\begin{aligned} 
+hash_{C\_m} &\overset{?}{=} \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_2 || C\_3) \\\\
+C\_m &\overset{?}{=} C\_1 + C\_2 + C\_3 \\\\
+\text{verify: }  &RP\_{agg}  \text{ for set }  \{ C\_1, C\_2, C\_3 \}
+\end{aligned}
 $$
 
 instead of 
@@ -324,11 +333,14 @@ with the UTXO tuple being $ (C\_m ,  RP\_m) $. Range proof validation by miners 
 
 
 
-| Consideration           | Dalek's Bulletproofs MPC Protocol                            | Grin's Multiparty Bulletproof                    |
-| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
-| Rounds of communication | 3                                                            | 2                                                |
-| Security                | Use of Merlin transcripts makes this method more secure      | No specific sharing protocol suggested           |
-| Size of the Bulletproof | Logarithmic size range proof, 672 bytes up to ?? for 16 range proofs | Single Bulletproof range proof size of 672 bytes |
+| Consideration                 | Using Dalek's Bulletproofs MPC Protocol                      | Using Grin's Multiparty Bulletproof                          |
+| ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Rounds of communication       | 3                                                            | 2                                                            |
+| Security                      | Use of Merlin transcripts makes this method more secure against replay attacks. | No specific sharing protocol suggested.                      |
+| Size of the Bulletproof       | Logarithmic Bulletproof range proof size, i.e. 672 bytes up to 928 bytes for 16 range proofs. | Single Bulletproof range proof size of 672 bytes.            |
+| Colored coin                  | Coins are colored, i.e. distinguishable form normal commitments in the blockchain due to additional meta data. | Coins do not need to be colored, i.e. it may look exactly like any other commitment. |
+| Wallet reconstruct ability    | Each individual range proof's data is accessible within the aggregated range proof. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with [Bulletproof range proof rewinding](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#improved-implementation). | The wallet cannot be reconstructed as a single party's blinding factor cannot be distinguished from the combined range proof. Even if these coins are colored with a flag to make them identifiable, it will not help. |
+| Hiding and binding commitment | The main commitment and additional commitments in the UTXO's meta data retain all hiding and binding security aspects of the Pederson Commitment. | The commitment retain all hiding and binding security aspects of the Pederson Commitment. |
 
 
 
@@ -427,7 +439,7 @@ $$
 
 ## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
 
-Shamir's Secret Sharing is needed
+As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty Bulletproof UTXO, Shamir's Secret Sharing Scheme will be used.
 
 Amount of rounds can be pre-determined      
 
@@ -555,6 +567,16 @@ Date accessed: 2019&#8209;05&#8209;10.
 [14]: https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/bulletproofs/tests_impl.h
 "GitHub: secp256k1-zkp/src/modules/bulletproofs/tests_impl.h, 
 test_multi_party_bulletproof"
+
+[[15]] "MATH3024 Elementary Cryptography and Protocols: Lecture 11, Secret Sharing", University of Sydney, School of Mathematics and Statistics [online]. Available: <http://iml.univ-mrs.fr/~kohel/tch/MATH3024/Lectures/lectures_11.pdf>. Date accessed: 2018&#8209;09&#8209;18.
+
+[15]: http://iml.univ-mrs.fr/~kohel/tch/MATH3024/Lectures/lectures_11.pdf
+"MATH3024 Elementary Cryptography and Protocols: 
+Lecture 11, Secret Sharing" 
+
+
+
+
 
 
 
