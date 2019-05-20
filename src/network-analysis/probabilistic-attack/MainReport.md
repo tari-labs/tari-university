@@ -1,10 +1,10 @@
-# Probabilistic Attack Vector
+# Probabilistic Attack Vector Analysis Building Blocks
 
 - [Introduction](#introduction)
 	- [Question](#question) 
 	- [Aim](#aim)
 	- [The Tari Digital Assets Network](#the-tari-digital-assets-network) 
-- [Literature Review](#literature review)
+- [Literature Review](#literature-review)
 	- [Types of Distribution](#types-of-distribution)
 		- [Hypergeometric Distribution](#hypergeometric-distribution)
 		- [Binomial Distribution](#binomial-distribution)
