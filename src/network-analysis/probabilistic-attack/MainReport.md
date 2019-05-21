@@ -5,6 +5,8 @@
 	- [Aim](#aim)
 	- [The Tari Digital Assets Network](#the-tari-digital-assets-network) 
 - [Literature Review](#literature-review)
+	- [The Use of Python](#the-use-of-python)
+	- [Monte Carlo Simulations](#monte-carlo-simulations)
 	- [Types of Distribution](#types-of-distribution)
 		- [Hypergeometric Distribution](#hypergeometric-distribution)
 		- [Binomial Distribution](#binomial-distribution)
@@ -56,6 +58,16 @@ Where was the idea borne from?
 
 ## Literature Review 
 (Other relevant research in this area)
+
+### The Use of Python 
+
+### Monte Carlo Simulations 
+
+Monte Carlo (MC) approch is a computer based analytical method and was developed in the 1940s. It employs statistical sampling techniques for obtaining a probabilistic approximation to the solution of a mathematical equation or model by utilising sequences of random numbers as inputs into a model which yields results that are indicationd of the performance of the developed model. 
+
+It was developed as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to model the random diffusion of neurtrons. The name was given after the city in Monaco and its many casions. Monte Carlo simulstion are used in a wide array of applications, including physics, finance and system reliability. 
+
+Monte Carlo analysis utlizes statical tools to mathematically model a real life system or process and tehn it estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled must be determined first before Monte Carlo simulation can be applied. 
 
 ### Malicious Node
 
@@ -124,8 +136,6 @@ $$
 
 Once the formula was mapped out, preliminary calculations could be solved using Excel. 
 
-### The Use of Python 
-
 ## Results 
 (What you found)
 
@@ -172,14 +182,6 @@ From a plot of committee size versus probability of bad actors controlling the n
 
 It has come to light, that in addition to further analysis within the Python environment, research into using the Monte Carlo simulations must be considered. 
 
-### Monte Carlo Simulations 
-
-Monte Carlo (MC) approch is a computer based analytical method and was developed in the 1940s. It employs statistical sampling techniques for obtaining a probabilistic approximation to the solution of a mathematical equation or model by utilising sequences of random numbers as inputs into a model which yields results that are indicationd of the performance of the developed model. 
-
-It was developed as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to model the random diffusion of neurtrons. The name was given after the city in Monaco and its many casions. Monte Carlo simulstion are used in a wide array of applications, including physics, finance and system reliability. 
-
-Monte Carlo analysis utlizes statical tools to mathematically model a real life system or process and tehn it estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled must be determined first before Monte Carlo simulation can be applied. 
-
 ## References
 
 [[1]] B. W. Contributors, “List of probability distributions”, 2019. Available: <https://en.wikipedia.org/wiki/List_of_probability_distributions>. 
@@ -210,6 +212,6 @@ Date accessed: 2019-05-13.
 
 
 
-##Contributions
+## Contributions
 
 - <https://github.com/kevoulee>
