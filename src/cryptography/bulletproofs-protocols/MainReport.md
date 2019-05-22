@@ -1,4 +1,4 @@
-# Bulletproof Protocols
+# The Bulletproof Protocols
 
 
 - [Introduction](#introduction)
@@ -115,9 +115,9 @@ calculations respectively.
 
 The basis of confidential transactions is the Pedersen Commitment scheme defined in [[15]]. 
 
-A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a *prover* to 
+A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> is a cryptographic primitive that allows a *prover* $ \mathcal{P} $ to 
 commit to only a single chosen value/statement from a finite set without the ability to change it later (*binding* 
-property), while keeping it hidden from a *verifier* (*hiding* property). Both *binding* and *hiding* properties are then 
+property), while keeping it hidden from a *verifier* $ \mathcal{V} $ (*hiding* property). Both *binding* and *hiding* properties are then 
 further classified in increasing levels of security to be *computational*, *statistical* or *perfect*:
 
 - *Computational* means that no efficient algorithm running in a practical amount of time can reveal the commitment 
@@ -240,18 +240,18 @@ The following list links these use cases to the different Bulletproof protocols:
 - Verifiable shuffles and multi-signatures with deterministic nonces can be implemented with 
   [Protocol&nbsp;3](#inner-product-proof-for-arithmetic-circuits-protocol-3).
 
-  - Bulletproofs present an efficient and short zero-knowledge proof for arbitrary Arithmetic 
+- Bulletproofs present an efficient and short zero-knowledge proof for arbitrary Arithmetic 
   Circuits<sup>[def][ac~]</sup> using [Zero-knowledge Proof for Arithmetic Circuits](#zero-knowledge-proof-for-arithmetic-circuits).
 
-  - Various Bulletproof protocols can be applied to scriptless scripts, to make them non-interactive and not have to use 
+- Various Bulletproof protocols can be applied to scriptless scripts, to make them non-interactive and not have to use 
   Sigma protocols.
 
-  - Batch verifications can be done using [Optimized Verifier using Multi-exponentiation and Batch Verification](#optimized-verifier-using-multi-exponentiation-and-batch-verification), e.g. a blockchain full node receiving a 
-  block of transactions needs to verify all transactions as well as range proofs.
+- Batch verifications can be done using 
+[Optimized Verifier using Multi-exponentiation and Batch Verification](#optimized-verifier-using-multi-exponentiation-and-batch-verification), 
+e.g. a blockchain full node receiving a block of transactions needs to verify all transactions as well as range proofs.
 
 A detailed mathematical discussion of the different Bulletproof protocols follows. Protocols 1, 2 and 3 are numbered 
-consistently with [[1]], whereas the rest of the protocols are numbered to fit chronologically with a faculty sign "!" 
-to differentiate them. Refer to [Notation Used](#notation-used).
+consistently with [[1]]. Refer to [Notation Used](#notation-used).
 
 **Note:** Full mathematical definitions and terms not defined are available in [[1]].
 <br>
@@ -960,7 +960,7 @@ The constraint system has three kinds of variables:
   - folding all instance variables into a single constant parameter internally.
 
 Instance variables can select the constraint system out of a family for each proof. The constraint system becomes a 
-challenge from a *verifier* $ \mathcal{V} ​$ to a&nbsp;*prover*&nbsp;$ \mathcal{P} ​$, where some constraints are generated randomly 
+challenge from a *verifier* $ \mathcal{V} ​$ to a *prover* $ \mathcal{P} ​$, where some constraints are generated randomly 
 in response to the *prover*'s $ \mathcal{P} ​$ commitments. Challenges to parametrize constraint systems make the 
 resulting proof smaller, requiring only $ O(n) ​$ multiplications instead of 
 $ O(n^2) ​$ in the case of verifiable 
@@ -1299,15 +1299,15 @@ additional commitment ..."
 
 
 - **Fiat–Shamir Heuristic/Transformation:**<a name="fsh"> </a>The Fiat–Shamir heuristic is a technique in 
-cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* and a *verifier* into a 
-one-message (non-interactive) protocol using a cryptographic hash function ([[6]], [[7]]).
-  - The *prover* will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that 
-  is shared with the *verifier* and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to 
+cryptography to convert an interactive public-coin protocol (Sigma protocol) between a *prover* $ \mathcal{P} $ and a 
+*verifier* $ \mathcal{V} $ into a one-message (non-interactive) protocol using a cryptographic hash function ([[6]], [[7]]).
+  - The *prover* $ \mathcal{P} $ will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that 
+  is shared with the *verifier* $ \mathcal{V} $ and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to 
   obtain the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the 
-  response $ f $. The single message sent to the *verifier* then contains the challenge $ c $ and response $ f $.
+  response $ f $. The single message sent to the *verifier* $ \mathcal{V} $ then contains the challenge $ c $ and response $ f $.
 
-  - The *verifier* is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and 
-  response $ f $. The *verifier* will then use a <code>Verify()</code> algorithm to verify the combination of shared 
+  - The *verifier* $ \mathcal{V} $ is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and 
+  response $ f $. The *verifier* $ \mathcal{V} $ will then use a <code>Verify()</code> algorithm to verify the combination of shared 
   statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
 
   - A weak Fiat–Shamir transformation can be turned into a strong Fiat–Shamir transformation if the hashing function is 
@@ -1342,14 +1342,15 @@ matrices A,B of the same dimensions ..."
 
 
 - **Zero-knowledge Proof/Protocol:**<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a 
-method by which one party (the *prover*) can convince another party (the *verifier*) that a statement $ Y $ is true, without 
-conveying any information apart from the fact that the *prover* knows the value of $ Y $. The proof system must be 
+method by which one party (the *prover* $ \mathcal{P} $) can convince another party (the *verifier* $ \mathcal{V} $) that a statement $ Y $ is true, without 
+conveying any information apart from the fact that the *prover* $ \mathcal{P} $ knows the value of $ Y $. The proof system must be 
 complete, sound and zero-knowledge ([[4]], [[9]]).
-  - Complete: If the statement is true, and both the *prover* and *verifier* follow the protocol, the verifier will accept.
-  - Sound: If the statement is false, and the *verifier* follows the protocol, the *verifier* will not be convinced.
+  - Complete: If the statement is true, and both the *prover* $ \mathcal{P} $ and *verifier* $ \mathcal{V} $ follow the protocol, the verifier will accept.
+  
+  - Sound: If the statement is false, and the *verifier* $ \mathcal{V} $ follows the protocol, the *verifier* $ \mathcal{P} $ will not be convinced.
 
-  - Zero-knowledge: If the statement is true, and the *prover* follows the protocol, the *verifier* will not learn any 
-  confidential information from the interaction with the *prover* apart from the fact that the statement is true.
+  - Zero-knowledge: If the statement is true, and the *prover* $ \mathcal{P} $ follows the protocol, the *verifier* $ \mathcal{V} $ will not learn any 
+  confidential information from the interaction with the *prover* $ \mathcal{P} $ apart from the fact that the statement is true.
 
 [zk~]: #zk
 "In cryptography, a zero-knowledge 
