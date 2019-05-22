@@ -968,13 +968,10 @@ of numbers. Note that traditionally in elliptic curve arithmetic lower case lett
   - The generalized Elliptic Curve Pedersen Commitment definition follows 
   (refer to [Appendix B: Notation Used](#appendix-b-notation-used)):
     - Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.
-
     - Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially 
     chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) 
     is solved. 
-
     - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p $.
-
     - The commitment to value $ x \in \mathbb Z_p $ is then determined by calculating $ C(x,r) = rH + xG $, which is 
     called the Elliptic Curve Pedersen Commitment.
 
@@ -1024,9 +1021,11 @@ one-message (non-interactive) protocol using a cryptographic hash function ([[18
   is shared with the *verifier* and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain 
   the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. 
   The single message sent to the *verifier* then contains the challenge $ c $ and response $ f $.
+  
   - The *verifier* is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and 
   response $ f $. The *verifier* will then use a <code>Verify()</code> algorithm to verify the combination of shared 
   statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
+  
   - A weak Fiat&#8209;Shamir transformation can be turned into a strong Fiat&#8209;Shamir transformation if the hashing function 
   is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the 
   commitment $ A ​$.
