@@ -336,7 +336,7 @@ signers.
 
 #### Notation Used 
 
-This section contains the  general notation of mathematical expressions when specifically referenced. This information 
+This section gives the  general notation of mathematical expressions when specifically referenced. This information 
 is important pre-knowledge for the remainder of the report. 
 
 - Let  $ p $  be a large prime number.
