@@ -1,4 +1,4 @@
-# MuSig Schnorr Signature Scheme 
+# The MuSig Schnorr Signature Scheme 
 
 - - [Introduction](#introduction)
     - [Schnorr Signatures and their Attack Vectors](#schnorr-signatures-and-their-attack-vectors)
