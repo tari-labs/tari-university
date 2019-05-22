@@ -23,22 +23,20 @@
 - [Contributors](#contributors)
 
 
-
 ## Overview
 
 Private-public key pairs are the cornerstone of much of the
-cryptographic security underlying everything from secure web browsing to banking to cryptocurrencies. Private-public 
-key pairs are _asymmetric_. This means that given one of the numbers (the private key), it's possible to derive the 
-other one the public key). However, doing the reverse is not feasible. It's this asymmetry that allows one to share the 
-public key, uh, publicly and be confident that no one can figure out our private key (which we keep very secret and 
-secure).
+cryptographic security underlying everything from secure web browsing to banking to cryptocurrencies. Private-public key pairs
+are _asymmetric_. This means that given one of the numbers (the private key), it's possible to derive the other one 
+(the public key). However, doing the reverse is not feasible. 
+It's this asymmetry that allows one to share the public key, uh, publicly and be confident that no one can
+figure out our private key (which we keep very secret and secure).
 
 Asymmetric key pairs are employed in two main applications:
 
 - in _authentication_, where you prove that you have knowledge of the private
   key; and
-- in _encryption_, where messages can be encoded and only the person possessing the private key can decrypt and read 
-the message.
+- in _encryption_, where messages can be encoded and only the person possessing the private key can decrypt and read the message.
 
 In this introduction to digital signatures, we'll be talking about a particular class of keys: those derived from 
 elliptic curves. There are other asymmetric schemes, not least of which are those based on products of prime numbers, 
@@ -46,8 +44,6 @@ including RSA keys [[1]].
 
 We're going to assume you know the basics of elliptic curve cryptography (ECC). If not, don't stress, there's a
 [gentle introduction](../crypto-1/sources/PITCHME.link.md) in a previous chapter.
-
-
 
 ## Let's get Started
 
@@ -64,8 +60,6 @@ to play with the ideas we'll be exploring.
 
 **WARNING!** _Don't use this library in production code_. It hasn't been battle-hardened, so [use this one in
 production instead](https://github.com/rust-bitcoin/rust-secp256k1).
-
-
 
 ## Basics of Schnorr Signatures
 
@@ -92,19 +86,18 @@ The following code snippet demonstrates this:
 
 #### Approach Taken
 
-Reversing ECC math multiplication (i.e. division) is pretty much infeasible when using properly chosen random values 
-for your scalars ([[5]], [[6]]). This property is called the _Discrete Log Problem_, and is used as the principle behind 
-many cryptography and digital signatures. 
-A valid digital signature is evidence that the person providing the signature knows the private key corresponding to 
-the public key with which the message is associated, or that they have solved the Discrete Log Problem. 
+Reversing ECC math multiplication (i.e. division) is pretty much infeasible when using properly chosen random values for your scalars ([[5]],[[6]]).
+This property is called the _Discrete Log Problem_, and is used as the principle behind many cryptography and digital signatures. 
+A valid digital signature is evidence that the person providing the signature knows the private key corresponding to the public key with which the message
+is associated, or that they have solved the Discrete Log Problem. 
 
 The approach to creating signatures always follows this recipe:
 
-1. Generate a secret once-off number (called a _nonce_), _r_.
-2. Create a public key, _R_ from _r_ (where _R = r.G_).
-3. Send the following to Bob, your recipient - your message (_m_), _R_, and your public key (_P = k.G_).
+1. Generate a secret once-off number (called a _nonce_), $r$.
+2. Create a public key, $R$ from $r$ (where $R = r.G$).
+3. Send the following to Bob, your recipient - your message ($m$), $R$, and your public key ($P = k.G$).
 
-The actual signature is created by hashing the combination of all the public information above to create a _challenge_, *e*:
+The actual signature is created by hashing the combination of all the public information above to create a _challenge_, $e$:
 $$
     e = H(R || P || m)
 $$
@@ -115,11 +108,10 @@ Now the signature is constructed using your private information:
 $$
     s = r + ke 
 $$
-Bob can now also calculate _e_, since he already knows _m, R, P_. But he doesn't know your private key, or nonce.
+Bob can now also calculate $e$, since he already knows $m, R, P$. But he doesn't know your private key, or nonce.
 
-**Note:** When you construct the signature like this, it's known as a [Schnorr signature](#schnorr-signatures), which 
-is discussed in a following section. There are other ways of constructing _s_, such as ECDSA [[2]], which is used in 
-Bitcoin.
+**Note:** When you construct the signature like this, it's known as a [Schnorr signature](#schnorr-signatures), which is discussed in 
+a following section. There are other ways of constructing $s$, such as ECDSA [[2]], which is used in Bitcoin.
 
 But see this:
 
@@ -132,14 +124,14 @@ $$ sG = rG + (kG)e ​$$
 Substitute \\(R = rG \\) and \\(P = kG \\) and we have:
 $$ sG = R + Pe ​$$
 
-So Bob must just calculate the public key corresponding to the signature (_s.G_) and check that it equals the right-hand 
-side of the last equation above (_R&nbsp;+&nbsp;P.e_), all of which Bob already knows.
+So Bob must just calculate the public key corresponding to the signature $\text{(}s.G\text{)}$ and check that it equals the right-hand side of the last
+equation above $\text{(}R + P.e\text{)}$, all of which Bob already knows.
 
 #### Why do we Need the Nonce?
 
 Why do we need a nonce in the standard signature?
 
-Let's say we naïvely sign a message _m_ with
+Let's say we naïvely sign a message $m$ with
 $$
 e = H(P || m)
 $$
@@ -152,10 +144,10 @@ $$
      &= e(kG) = eP
 \end{align}
 $$
-So far so good. But anyone can read your private key now because _s_ is a scalar, so \\(k = \frac{s}{e} \\)
+So far so good. But anyone can read your private key now because $s$ is a scalar, so \\(k = {s}/{e} \\)
 is not hard to do.
-With the nonce you have to solve \\( k = (s - r)/e \\), but _r_ is unknown, so this is not a feasible calculation as long
-as _r_ has been chosen randomly.
+With the nonce you have to solve \\( k = (s - r)/e \\), but $r$ is unknown, so this is not a feasible calculation as long
+as $r$ has been chosen randomly.
 
 We can show that leaving off the nonce is indeed highly insecure:
 
@@ -168,8 +160,8 @@ the Elliptic Curve Diffie-Hellmam exchange (ECDH), which is a simple method for 
 
 ECDH is used in many places, including the Lightning Network during channel negotiation [[3]].
 
-Here's how it works. Alice and Bob want to communicate securely. A simple way to do this is to use each other's public 
-keys and calculate
+Here's how it works. Alice and Bob want to communicate securely. A simple way to do this is to use each other's public keys and
+calculate
 $$
 \begin{align}
   S_a &= k_a P_b \tag{Alice} \\\\
@@ -184,8 +176,6 @@ _ephemeral_ keys being used), but then we have the problem of not being sure the
 are (perhaps due to a man-in-the-middle attack [[4]]).
 
 Various additional authentication steps can be employed to resolve this problem, which we won't get into here. 
-
-
 
 ## Schnorr Signatures
 
@@ -202,7 +192,7 @@ It was covered by U.S. Patent 4,995,082, which expired in February&nbsp;2008 [[7
 What makes Schnorr signatures so interesting and [potentially dangerous](#key-cancellation-attack), is their simplicity. 
 Schnorr signatures are _linear_, so you have some nice properties.
 
-Elliptic curves have the multiplicative property. So if you have two scalars _x, y_ with corresponding points _X, Y_, 
+Elliptic curves have the multiplicative property. So if you have two scalars $x, y$ with corresponding points $X, Y$, 
 the following holds:
 $$
   (x + y)G = xG + yG = X + Y 
@@ -210,8 +200,8 @@ $$
 Schnorr signatures are of the form \\( s = r + e.k \\). This construction is linear too, so it fits nicely with
 the linearity of elliptic curve math.
 
-You saw this property in a [previous section](#creating-a-signature), when we were verifying the signature. Schnorr 
-signatures' linearity makes it very attractive for, among others:
+You saw this property in a [previous section](#creating-a-signature), when we were verifying the signature. Schnorr signatures' linearity 
+makes it very attractive for, among others:
 
 - signature aggregation;
 - [atomic swaps](../../protocols/atomic-swaps/AtomicSwaps.md);
@@ -236,8 +226,8 @@ $$
         &= s_a + s_b
 \end{align}
 $$
-So it looks like Alice and Bob can supply their own _R_, and anyone can construct the two-of-two signature 
-from the sum of the _Rs_ and public keys. This does work:
+So it looks like Alice and Bob can supply their own $R$, and anyone can construct the two-of-two signature 
+from the sum of the $Rs$ and public keys. This does work:
 
 {{#playpen src/aggregation_1.rs}}
 
@@ -268,28 +258,23 @@ $$
 
 ### Better Approaches to Aggregation
 
-In the [Key Cancellation Attack](#key-cancellation-attack), Bob didn't know the private keys for his published _R_ and 
-_P_ values. We could defeat Bob by asking him to sign a message proving that he _does_ know the private keys.
+In the [Key Cancellation Attack](#key-cancellation-attack), Bob didn't know the private keys for his published $R$ and $P$ values. We could defeat Bob
+by asking him to sign a message proving that he _does_ know the private keys.
 
 This works, but it requires another round of messaging between parties, which is not conducive to a great user experience.
 
 A better approach would be one that incorporates one or more of the following features:
 
-- It must be provably secure in the plain public-key model, without having to prove knowledge of secret keys, as we 
-might have asked Bob to do in the [naïve](#naïve-signature-aggregation) approach.
-- It should satisfy the normal Schnorr equation, i.e. the resulting signature can be verified with an expression of the 
-form \\( R + e X \\).
+- It must be provably secure in the plain public-key model, without having to prove knowledge of secret keys, as we might have asked Bob to do in the [naïve](#naïve-signature-aggregation) approach.
+- It should satisfy the normal Schnorr equation, i.e. the resulting signature can be verified with an expression of the form \\( R + e X \\).
 - It allows for Interactive Aggregate Signatures (IAS), where the signers are required to cooperate.
 - It allows for Non-interactive Aggregate Signatures (NAS), where the aggregation can be done by anyone.
-- It allows each signer to sign the same message, _m_.
+- It allows each signer to sign the same message, $m$.
 - It allows each signer to sign their own message, \\( m_i \\).
-
-
 
 ## MuSig
 
-MuSig is a recently proposed ([[8]], [[9]]) simple signature aggregation scheme that satisfies all of the properties in 
-the preceding section.
+MuSig is a recently proposed ([[8]],[[9]]) simple signature aggregation scheme that satisfies all of the properties in the preceding section.
 
 ### MuSig Demonstration
 
@@ -300,7 +285,7 @@ The scheme works as follows:
 2. Each signer shares a commitment to their public nonce (we'll skip this step in this demonstration). This step is
    necessary to prevent certain kinds of rogue key attacks [[10]].
 3. Each signer publishes the public key of their nonce, \\( R_i \\).
-4. Everyone calculates the same "shared public key", _X_ as follows: 
+4. Everyone calculates the same "shared public key", $X$ as follows: 
 
 $$
     \begin{align}
@@ -310,11 +295,11 @@ $$
     \end{align}
 $$
 
-Note that in the preceding ordering of public keys, some deterministic convention should be used, such as the 
-lexicographical order of the serialized keys.
+Note that in the preceding ordering of public keys, some deterministic convention should be used, such as the lexicographical
+order of the serialized keys.
 
 1. Everyone also calculates the shared nonce, \\( R = \sum R_i \\).
-2. The challenge, _e_ is \\( H(R || X || m) \\).
+2. The challenge, $e$ is \\( H(R || X || m) \\).
 3. Each signer provides their contribution to the signature as:
 
 $$
@@ -347,9 +332,9 @@ Let's demonstrate this using a three-of-three multisig:
 
 ### Security Demonstration
 
-As a final demonstration, let's show how MuSig defeats the cancellation attack from the [naïve](#naïve-signature-aggregation) 
-signature scheme. Using the same idea as in the [Key Cancellation Attack](#key-cancellation-attack) section, Bob has 
-provided fake values for his nonce and public keys:
+As a final demonstration, let's show how MuSig defeats the cancellation attack from the [naïve](#naïve-signature-aggregation) signature scheme. 
+Using the same idea as in the [Key Cancellation Attack](#key-cancellation-attack) section, Bob has provided fake values for his
+nonce and public keys:
 $$
 \begin{align}
   R_f &= R_b - R_a \\\\
@@ -383,9 +368,9 @@ $$
   k_s &= a_a k_a + a_f k_b - a_f k_a \\\\              
 \end{align}
 $$
-In the previous attack, Bob had all the information he needed on the right-hand side of the analogous calculation. In 
-MuSig, Bob must somehow know Alice's private key and the faked private key (the terms don't cancel anymore) in order to 
-create a unilateral signature, and so his cancellation attack is defeated.
+In the previous attack, Bob had all the information he needed on the right-hand side of the analogous calculation. In MuSig,
+Bob must somehow know Alice's private key and the faked private key (the terms don't cancel anymore) in order to create a unilateral signature,
+and so his cancellation attack is defeated.
 
 
 ### Replay Attacks!
@@ -407,17 +392,16 @@ $$
   \therefore k_i &= \frac{s'_i - s_i}{a_i(e' - e)}
   \end{align}
 $$
-Everything on the right-hand side of the final equation is known by the attacker and thus he can trivially extract 
-everybody's private key. It's difficult to protect against this kind of attack. One way to is make it difficult (or 
-impossible) to stop and restart signing ceremonies. If a multi-sig ceremony gets interrupted, then you need to start 
-from step one again. This is not very ergonomic, but until a more robust solution comes along, it may be the best we have!
-
+Everything on the right-hand side of the final equation is known by the attacker and thus he can trivially extract everybody's private key.
+It's difficult to protect against this kind of attack. One way to is make it difficult (or impossible) to stop and
+restart signing ceremonies. If a multi-sig ceremony gets interrupted, then you need to start from step one again. This
+is fairly unergonomic, but until a more robust solution comes along, it may be the best we have!
 
 
 ## References
 
-[[1]] Wikipedia: "RSA (Cryptosystem)" \[online\]. Available: <https://en.wikipedia.org/wiki/RSA_(cryptosystem)>. Date 
-accessed: 2018&#8209;10&#8209;11.
+[[1]] Wikipedia: "RSA (Cryptosystem)" \[online\]. Available: <https://en.wikipedia.org/wiki/RSA_(cryptosystem)>. Date accessed: 
+2018&#8209;10&#8209;11.
 
 [1]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 "Wikipedia RSA Cryptography"
@@ -465,8 +449,7 @@ Date accessed: 2018&#8209;09&#8209;19.
 [8]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
 "Blockstream: Key Aggregation for Schnorr Signatures"
 
-[[9]] G. Maxwell, A. Poelstra, Y. Seurin and P. Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" 
-\[online\]. Available: <https://eprint.iacr.org/2018/068.pdf>. Date accessed: 2018&#8209;09&#8209;19.
+[[9]] G. Maxwell, A. Poelstra, Y. Seurin and P. Wuille, "Simple Schnorr Multi-signatures with Applications to Bitcoin" \[online\]. Available: <https://eprint.iacr.org/2018/068.pdf>. Date accessed: 2018&#8209;09&#8209;19.
 
 [9]: https://eprint.iacr.org/2018/068.pdf
 "Simple Schnorr Multi-signatures with Applications to Bitcoin"
