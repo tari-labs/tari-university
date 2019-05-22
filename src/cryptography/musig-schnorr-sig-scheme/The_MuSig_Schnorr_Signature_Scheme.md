@@ -669,13 +669,15 @@ transactions without burdening the network and revealing compromising informatio
 Available: <https://scinapse.io/papers/200023587/>. Date accessed: 2019&#8209;01&#8209;20. 
 
 [3]: https://scinapse.io/papers/200023587/
-"A Public-key Cryptosystem Suitable for Digital Multisignatures"
+"A Public-key Cryptosystem Suitable for 
+Digital Multisignatures"
 
 [[4]] G. Maxwell, A. Poelstra, Y. Seurin and P. Wuille, “Simple Schnorr Multi-signatures with Applications to Bitcoin”, 
 pp.&nbsp;1–34, 2018. Available: <https://eprint.iacr.org/2018/068.pdf>. Date accessed: 2019&#8209;01&#8209;20. 
 
 [4]: https://eprint.iacr.org/2018/068.pdf
-"Simple Schnorr Multi-signatures with Applications to Bitcoin"
+"Simple Schnorr Multi-signatures 
+with Applications to Bitcoin"
 
 [[5]] B. W. Contributors, “Multisignature”, 2017. Available: <https://wiki.bitcoin.com/w/Multisignature>. 
 Date accessed: 2019&#8209;01&#8209;20. 
@@ -683,88 +685,94 @@ Date accessed: 2019&#8209;01&#8209;20.
 [5]: https://wiki.bitcoin.com/w/Multisignature
 "Multisignature"
 
-[[6]] C. P. Schnorr, “Efficient Signature Generation by Smart Cards”, in *Journal of Cryptology*, Vol.&nbsp;4, No.&nbsp;3, 
+[[6]] C. P. Schnorr, “Efficient Signature Generation by Smart Cards”, *Journal of Cryptology*, Vol.&nbsp;4, No.&nbsp;3, 
 pp.&nbsp;161&#8209;174, 1991. Available: <https://link.springer.com/article/10.1007/BF00196725>. Date accessed: 
 2019&#8209;01&#8209;20.
 
 [6]: https://link.springer.com/article/10.1007/BF00196725
 "Efficient Signature Generation by Smart Cards"
 
-[[7]] D. J. Bernstein, N. Duif, T. Lange, P. Schwabe and B. Yang, “High-speed High-security Signatures”, in *Journal of 
+[[7]] D. J. Bernstein, N. Duif, T. Lange, P. Schwabe and B. Yang, “High-speed High-security Signatures”, *Journal of 
 Cryptographic Engineering*, Vol.&nbsp;2, No.&nbsp;2, pp.&nbsp;77&#8209;89, 2012. Available: 
 <https://ed25519.cr.yp.to/ed25519-20110705.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [7]: https://ed25519.cr.yp.to/ed25519-20110705.pdf
 "High-speed High-security Signatures"
 
-[[8]] D. J. Bernstein, “Multi-user Schnorr Security, Revisited”, in *IACR Cryptology ePrint Archive*, Vol.&nbsp;2015, 
+[[8]] D. J. Bernstein, “Multi-user Schnorr Security, Revisited”, *IACR Cryptology ePrint Archive*, Vol.&nbsp;2015, 
 p.&nbsp;996, 2015. 
 Available: <https://eprint.iacr.org/2015/996.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [8]: https://eprint.iacr.org/2015/996.pdf
 "Multi-user Schnorr Security, Revisited" 
 
-[[9]] E. Kiltz, D. Masny and J. Pan,  “Optimal Security Proofs for Signatures from Identification Schemes”, in *Annual 
+[[9]] E. Kiltz, D. Masny and J. Pan,  “Optimal Security Proofs for Signatures from Identification Schemes”, *Annual 
 Cryptology Conference*, pp.&nbsp;33&#8209;61, Springer, 2016. Available: <https://eprint.iacr.org/2016/191.pdf>. Date 
 accessed: 
 2019&#8209;01&#8209;20.
 
 [9]: https://eprint.iacr.org/2016/191.pdf
-"Optimal Security Proofs for Signatures from Identification Schemes"
+"Optimal Security Proofs for Signatures 
+from Identification Schemes"
 
 [[10]] C. M. Li, T. Hwang and N. Y. Lee, “Threshold-multisignature Schemes where Suspected Forgery Implies Traceability 
-of Adversarial Shareholders”, in *Workshop on the Theory and Application of Cryptographic Techniques*, 
+of Adversarial Shareholders”, *Workshop on the Theory and Application of Cryptographic Techniques*, 
 pp.&nbsp;194&#8209;204, Springer, 1994. Available: <https://link.springer.com/content/pdf/10.1007%2FBFb0053435.pdf>. 
 Date accessed: 2019&#8209;01&#8209;20.
 
 [10]: https://link.springer.com/content/pdf/10.1007%2FBFb0053435.pdf
-"Threshold-multisignature Schemes where Suspected Forgery Implies Traceability of Adversarial Shareholders"
+"Threshold-multisignature Schemes 
+where Suspected Forgery Implies 
+Traceability of Adversarial Shareholders"
 
-[[11]] L. Harn, “Group-oriented (t, n) Threshold Digital Signature Scheme and Digital Multisignature”, in *IEEE* 
+[[11]] L. Harn, “Group-oriented (t, n) Threshold Digital Signature Scheme and Digital Multisignature”, *IEEE* 
 *Proceedings-Computers and Digital Techniques*, Vol.&nbsp;141, No.&nbsp;5, pp.&nbsp;307&#8209;313, 1994. 
 Available: <https://ieeexplore.ieee.org/abstract/document/326780>. Date accessed: 2019&#8209;01&#8209;20.
 
 [11]: https://ieeexplore.ieee.org/abstract/document/326780
 "Group-oriented (t, n) Threshold Digital Signature Scheme and Digital Multisignature"
 
-[[12]] P. Horster, M. Michels and H. Petersen, “Meta-Multisignature Schemes Based on the Discrete Logarithm Problem”, in 
-*Information Security-the Next Decade*, pp.&nbsp;128&#8209;142, Springer, 1995. 
+[[12]] P. Horster, M. Michels and H. Petersen, “Meta-Multisignature Schemes Based on the Discrete Logarithm Problem”, *Information Security-the Next Decade*, pp.&nbsp;128&#8209;142, Springer, 1995. 
 Available: <https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [12]: https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf
-"Meta-Multisignature Schemes Based on the Discrete Logarithm Problem"
+"Meta-Multisignature Schemes 
+Based on the Discrete Logarithm Problem"
 
-[[13]] K. Ohta and T. Okamoto, “A Digital Multisignature Scheme Based on the Fiat-Shamir Scheme,” in *International 
+[[13]] K. Ohta and T. Okamoto, “A Digital Multisignature Scheme Based on the Fiat-Shamir Scheme,” *International 
 Conference on the Theory and Application of Cryptology*, pp.&nbsp;139&#8209;148, Springer, 1991. 
 Available: <https://link.springer.com/chapter/10.1007/3-540-57332-1_11>. Date accessed: 2019&#8209;01&#8209;20.
 
 [13]: https://link.springer.com/chapter/10.1007/3-540-57332-1_11
-"A Digital Multisignature Scheme Based on the Fiat-Shamir Scheme"
+"A Digital Multisignature Scheme 
+Based on the Fiat-Shamir Scheme"
 
-[[14]] S. K. Langford, “Weaknesses in Some Threshold Cryptosystems”, in *Annual International Cryptology Conference*, 
+[[14]] S. K. Langford, “Weaknesses in Some Threshold Cryptosystems”, *Annual International Cryptology Conference*, 
 pp.&nbsp;74&#8209;82, Springer, 1996. Available: <https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf>. 
 Date accessed: 2019&#8209;01&#8209;20.
 
 [14]: https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf
 "Weaknesses in Some Threshold Cryptosystem" 
 
-[[15]] M. Michels and P. Horster, “On the Risk of Disruption in Several Multiparty Signature Schemes”, in *International 
+[[15]] M. Michels and P. Horster, “On the Risk of Disruption in Several Multiparty Signature Schemes”, *International 
 Conference on the Theory and Application of Cryptology and Information Security*, pp.&nbsp;334&#8209;345, Springer, 1996. 
 Available: <https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf>. Date accessed: 
 2019&#8209;01&#8209;20.
 
 [15]: https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf
-"On the Risk of Disruption in Several Multiparty Signature Schemes" 
+"On the Risk of Disruption in 
+Several Multiparty Signature Schemes" 
 
-[[16]] K. Ohta and T. Okamoto, “Multi-signature Schemes Secure Against Active Insider Attacks”, in *IEICE Transactions on* 
+[[16]] K. Ohta and T. Okamoto, “Multi-signature Schemes Secure Against Active Insider Attacks”, *IEICE Transactions on* 
 *Fundamentals of Electronics, Communications and Computer Sciences*, Vol.&nbsp;82, No.&nbsp;1, pp.&nbsp;21&#8209;31, 1999. 
 Available: <http://search.ieice.org/bin/summary.php?id=e82-a_1_21&category=A&year=1999&lang=E&abst=>. 
 Date accessed: 2019&#8209;01&#8209;20.
 
 [16]: http://search.ieice.org/bin/summary.php?id=e82-a_1_21&category=A&year=1999&lang=E&abst=
-"Multi-signature Schemes Secure Against Active Insider Attacks" 
+"Multi-signature Schemes Secure 
+Against Active Insider Attacks" 
 
-[[17]] S. Micali, K. Ohtaz and L. Reyzin, “Accountable-subgroup Multisignatures”, in *Proceedings of the 8th ACM C
+[[17]] S. Micali, K. Ohtaz and L. Reyzin, “Accountable-subgroup Multisignatures”, *Proceedings of the 8th ACM C
 onference on Computer and Communications Security*, pp.&nbsp;245#8209;254, ACM, 2001. 
 Available: <https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf>. Date accessed: 
 2019&#8209;01&#8209;20.
@@ -773,38 +781,45 @@ Available: <https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de473
 "Accountable-subgroup Multisignatures" 
 
 [[18]] T. Ristenpart and S. Yilek, “The Power of Proofs-of-possession: Securing Multiparty Signatures Against Rogue-key 
-Attacks”, in *Annual International Conference on the Theory and Applications of Cryptographic Techniques*, 
+Attacks”, *Annual International Conference on the Theory and Applications of Cryptographic Techniques*, 
 pp.&nbsp;228&#8209;245, 
 Springer, 2007. Available: <https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf>. 
 Date accessed: 2019&#8209;01&#8209;20.
 
 [18]: https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf
-"The Power of Proofs-of-possession: Securing Multiparty Signatures Against Rogue-key Attacks" 
+"The Power of Proofs-of-possession: 
+Securing Multiparty Signatures 
+Against Rogue-key Attacks" 
 
 [[19]] A. Boldyreva, “Threshold Signatures, Multisignatures and Blind Signatures Based on the Gap-Diffie-Hellman-group 
-Signature Scheme”, in *International Workshop on Public Key Cryptography*, pp.&nbsp;31&#8209;46, Springer, 2003. 
+Signature Scheme”, *International Workshop on Public Key Cryptography*, pp.&nbsp;31&#8209;46, Springer, 2003. 
 Available: <https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [19]: https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf
-"Threshold Signatures, Multisignatures and Blind Signatures Based on the Gap-Diffie-Hellman-Group Signature Scheme"
+"Threshold Signatures, Multisignatures 
+and Blind Signatures Based on the 
+Gap-Diffie-Hellman-Group Signature Scheme"
 
 [[20]] S. Lu, R. Ostrovsky, A. Sahai, H. Shacham and B. Waters, “Sequential Aggregate Signatures and Multisignatures 
-without Random Oracles,” in *Annual International Conference on the Theory and Applications of Cryptographic Techniques*, 
+without Random Oracles,” *Annual International Conference on the Theory and Applications of Cryptographic Techniques*, 
 pp.&nbsp;465&#8209;485, Springer, 2006. Available: <https://eprint.iacr.org/2006/096.pdf>. Date accessed: 
 2019&#8209;01&#8209;20.
 
 [20]: https://eprint.iacr.org/2006/096.pdf
-"Sequential Aggregate Signatures and Multisignatures without Random Oracles" 
+"Sequential Aggregate Signatures and 
+Multisignatures without Random Oracles" 
 
-[[21]] M. Bellare and G. Neven, “Multi-Signatures in the Plain Public-Key Model and a General Forking Lemma”, in *Acm 
+[[21]] M. Bellare and G. Neven, “Multi-Signatures in the Plain Public-Key Model and a General Forking Lemma”, *Acm 
 Ccs*, pp.&nbsp;390&#8209;399, 2006. Available: <https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf>. 
 Date accessed: 2019&#8209;01&#8209;20.
 
 [21]: https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf
-"Multi-Signatures in the Plain Public-Key Modeland a General Forking Lemma"
+"Multi-Signatures in the Plain 
+Public-Key Modeland a General 
+Forking Lemma"
 
 [[22]] A. Bagherzandi, J. H. Cheon and S. Jarecki, “Multisignatures Secure under the Discrete Logarithm Assumption and a 
-Generalized Forking Lemma”, in *Proceedings of the 15th ACM Conference on Computer and Communications Security - CCS&nbsp;'08*, 
+Generalized Forking Lemma”, *Proceedings of the 15th ACM Conference on Computer and Communications Security - CCS&nbsp;'08*, 
 p.&nbsp;449, 2008. Available: <http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.544.2947&rep=rep1&type=pdf>. 
 Date accessed: 2019&#8209;01&#8209;20.
 
@@ -812,14 +827,16 @@ Date accessed: 2019&#8209;01&#8209;20.
 "Multisignatures Secure under the Discrete Logarithm Assumption and a Generalized Forking Lemma"
 
 [[23]] C. Ma, J. Weng, Y. Li and R. Deng, “Efficient Discrete Logarithm Based Multi-signature Scheme in the Plain Public 
-Key Model”, in *Designs, Codes and Cryptography*, Vol.&nbsp;54, No.&nbsp;2, pp.&nbsp;121&#8209;133, 2010. 
+Key Model”, *Designs, Codes and Cryptography*, Vol.&nbsp;54, No.&nbsp;2, pp.&nbsp;121&#8209;133, 2010. 
 Available: <https://link.springer.com/article/10.1007/s10623-009-9313-z>. Date accessed: 2019&#8209;01&#8209;20.
 
 [23]: https://link.springer.com/article/10.1007/s10623-009-9313-z
-"Efficient Discrete Logarithm Based Multi-signature Scheme in the Plain Public Key Model"
+"Efficient Discrete Logarithm 
+Based Multi-signature Scheme in the 
+Plain Public Key Model"
 
 [[24]] E. Syta, I. Tamas, D. Visher, D. I. Wolinsky, P. Jovanovic, L. Gasser, N. Gailly, I. Khoffi and B. Ford, “Keeping 
-Authorities 'Honest or Bust' with Decentralized Witness Cosigning”, in *Security and Privacy (SP), 2016 IEEE Symposium* 
+Authorities 'Honest or Bust' with Decentralized Witness Cosigning”, *Security and Privacy (SP), 2016 IEEE Symposium* 
 on pp.&nbsp;526&#8209;545, IEEE, 2016. Available: <https://arxiv.org/pdf/1503.08768.pdf>. 
 Date accessed: 2019&#8209;01&#8209;20.
 
@@ -832,9 +849,10 @@ Springer, 2003.
 Available: <http://crypto.stanford.edu/~dabo/papers/aggreg.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [25]: http://crypto.stanford.edu/~dabo/papers/aggreg.pdf
-"Aggregate and Verifiably Encrypted Signatures from Bilinear Maps"
+"Aggregate and Verifiably Encrypted 
+Signatures from Bilinear Maps"
 
-[[26]] M. Bellare, C. Namprempre and G. Neven,  “Unrestricted Aggregate Signatures”, in *International Colloquium on 
+[[26]] M. Bellare, C. Namprempre and G. Neven,  “Unrestricted Aggregate Signatures”, *International Colloquium on 
 Automata, Languages, and Programming*, pp.&nbsp;411&#8209;422, Springer, 2007. Available: 
 <https://cseweb.ucsd.edu/~mihir/papers/agg.pdf>. 
 Date accessed: 2019&#8209;01&#8209;20.
@@ -847,7 +865,8 @@ in *International Conference on the Theory and Applications of Cryptographic Tec
 Springer, 2004. Available: <https://hovav.net/ucsd/dist/rsaagg.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [27]: https://hovav.net/ucsd/dist/rsaagg.pdf
-"Sequential Aggregate Signatures from Trapdoor Permutations" 
+"Sequential Aggregate Signatures 
+from Trapdoor Permutations" 
 
 [[28]] G. Andersen, “M-of-N Standard Transactions”, 2011. Available: <https://bitcoin.org/en/glossary/multisig>. 
 Date accessed: 2019&#8209;01&#8209;20.
@@ -855,19 +874,20 @@ Date accessed: 2019&#8209;01&#8209;20.
 [28]: https://bitcoin.org/en/glossary/multisig
 "M-of-N Standard Transactions"
 
-[[29]] E. Shen, E. Shi and B. Waters, “Predicate Privacy in Encryption Systems”, in *Theory of Cryptography Conference*, 
+[[29]] E. Shen, E. Shi and B. Waters, “Predicate Privacy in Encryption Systems”, *Theory of Cryptography Conference*, 
 pp.&nbsp;457&#8209;473, Springer, 2009. Available: <https://www.iacr.org/archive/tcc2009/54440456/54440456.pdf>. Date 
 accessed: 2019&#8209;01&#8209;20.
 
 [29]: https://www.iacr.org/archive/tcc2009/54440456/54440456.pdf
 "Predicate Privacy in Encryption Systems"
 
-[[30]] R. C. Merkle, “A Digital Signature Based on a Conventional Encryption Function”, in *Conference on the Theory and 
+[[30]] R. C. Merkle, “A Digital Signature Based on a Conventional Encryption Function”, *Conference on the Theory and 
 Application of Cryptographic Techniques*, pp.&nbsp;369&#8209;378, Springer, 1987. 
 Available: <https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [30]: https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf
-"A Digital Signature Based on a Conventional Encryption Function" 
+"A Digital Signature Based on 
+a Conventional Encryption Function" 
 
 [[31]] G. Maxwell, “CoinJoin: Bitcoin Privacy for the Real World”, 2013. 
 Available: <https://bitcointalk.org/index.php?topic=279249.0>. Date accessed: 2019&#8209;01&#8209;20.
@@ -876,14 +896,16 @@ Available: <https://bitcointalk.org/index.php?topic=279249.0>. Date accessed: 20
 "CoinJoin: Bitcoin Privacy for the Real World"
 
 [[32]] M. Bellare and A. Palacio, “GQ and Schnorr Identification Schemes: Proofs of Security against Impersonation under 
-Active and Concurrent Attacks”, in *Annual International Cryptology Conference*, pp.&nbsp;162–177, Springer, 2002. 
+Active and Concurrent Attacks”, *Annual International Cryptology Conference*, pp.&nbsp;162–177, Springer, 2002. 
 Available: <https://cseweb.ucsd.edu/~mihir/papers/gq.pdf>. Date accessed: 2019-01-20.
 
 [32]: https://cseweb.ucsd.edu/~mihir/papers/gq.pdf
-"GQ and Schnorr Identification Schemes: Proofs of Security Against Impersonation Under Active and Concurrent Attacks"
+"GQ and Schnorr Identification Schemes: 
+Proofs of Security Against Impersonation 
+Under Active and Concurrent Attacks"
 
 [[33]] M. Bellare, C. Namprempre,  D. Pointcheval and M. Semanko, “The One-More-RSA Inversion Problems and the Security 
-of Chaum’s Blind Signature Scheme”, in *Journal of Cryptology*, Vol.&nbsp;16, No.&nbsp;3, 2003. Available: 
+of Chaum’s Blind Signature Scheme”, *Journal of Cryptology*, Vol.&nbsp;16, No.&nbsp;3, 2003. Available: 
 <https://eprint.iacr.org/2001/002.pdf>. Date accessed: 2019&#8209;01&#8209;20.
 
 [33]: https://eprint.iacr.org/2001/002.pdf
@@ -895,7 +917,8 @@ Multi-signatures”, Tech. Rep., 2018. Available:
 Date accessed: 2019&#8209;01&#8209;20.
 
 [34]: https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb
-"Okamoto Beats Schnorr: On the Provable Security of Multi-signatures"
+"Okamoto Beats Schnorr: On the 
+Provable Security of Multi-signatures"
 
 
 
