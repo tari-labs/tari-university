@@ -1,81 +1,190 @@
-# Tor || !2 Tor
+# Tor - an Overview
 
-## What is Tor?
-Tor is an anonymity/privacy tool, meant to protect your location and identity, which is Free and Open Source.
-The name is derived from an acronym for the original software project name ```The Onion Router``` - https://www.torproject.org/
-This refers to the way that Tor protects your data by wrapping it in multiple layers of encryption like an onion.
-Tor uses a unique system that was developed by the US Navy to protect government intelligence communications.
-Tor is part of the ```Tor Browser``` package, where the Tor Browser has been configured to proxy request via the Tor network.
+- [Introduction](#introduction)
+  - [What is Tor?](#what-is-tor)
+  - [Purpose of this Report](#purpose-of-this-report)
+  - [Installation Instructions](#installation-instructions)
+- [Using Tor](#using-tor)
+  - [How to use Tor](#how-to-use-tor)
+  - [When to use Tor](#when-to-use-tor)
+  - [When not to use Tor](#when-not-to-use-tor)
+- [How does Tor Network Work?](#how-does-tor-network-work)
+- [Is Tor Broken?](#is-tor-broken)
+- [Conclusion](#conclusion)
+- [References](#references)
+- [Appendices](#appendices)
+  - [Appendix A: Further Investigation](#appendix-a-further-investigation)
+  - [Appendix B: Links of Interest](#appendix-b-links-of-interest)
+- [Contributors](#contributors)
 
-## How to install ...
-Visit https://www.torproject.org/download/
 
-* Download the package for your OS and language
-* Verify the package
-* Install the downloaded and verified package
 
-## How to use ...
-Run the Tor Browser and visit an ```.onion``` site like the DuckDuckGo Search engine https://3g2upl4pq6kufc4m.onion/
+## Introduction
 
-Check if you running Tor - https://check.torproject.org/
+### What is Tor?
 
-## When to use Tor?
-As Tor Browser is an anonymity tool, which blocks tracking and hides some of your details and aims to make all Tor users look the same to average users, Tor Browser could be used to anonymize whistle-blowing or journalist reporting on sensitive topics where they might be persecuted for their views.
+Tor is a free and open source anonymity/privacy tool, meant to protect your location and identity.
+The name is derived from the acronym for the original software project name, ```The Onion Router``` ([[1]], [[2]]). This 
+refers to the way in which Tor protects your data, by wrapping it in multiple layers 
+of encryption, similar to the layers of an onion.
 
-## When not to use Tor?
-Don’t use the Tor Browser if you want an End to End Encryption too a none .onion site like your banking site, as the ```Exit Node``` ends encryption and can be intercepted between the Exit Node and the destination server.
+Tor uses a unique system that was developed by the US Navy to protect 
+government intelligence communications. It is part of the ```Tor Browser``` package, where the Tor Browser has been 
+configured to proxy request via the Tor network.
 
-## How does Tor Network work?
-Tor data is bundled into layers of same size encrypted packets before it enters the Tor network. This is routed through a series of volunteer-operated servers called nodes, relays or bridges.
-Each time the Tor data passes through one of these relays, a layer of encryption is removed to reveal the location of the next relay. When you reach the final relay on your path, known as the ```Exit Node```, the last layer of encryption is removed and your data is sent to its final destination.
-Each relay only decrypts enough data to know the location of the previous and next relays. Since each path is randomly generated and none of the relays keep records, it’s nearly impossible for your activity to be traced back to you through Tor’s complex network.
+### Purpose of this Report
 
-Further detailed information can be found at https://2019.www.torproject.org/about/overview.html.en
+This report gives an overview of Tor. The author reaches a conclusion regarding whether or not to 
+recommend Tor, i.e. "to Tor || !2 Tor", which means "to Tor or not to Tor" in programming language.
+
+
+### Installation Instructions
+With reference to [[1]]:
+* Download the package for your operating system and language.
+* Verify the package.
+* Install the downloaded and verified package.
+
+
+
+## Using Tor
+
+### How to use Tor
+
+- Run the Tor Browser and visit an ```.onion``` site such as the DuckDuckGo Search engine [[3]].
+- Check if you are running Tor [[4]].
+
+### When to use Tor
+
+The Tor Browser is an anonymity tool that blocks tracking, hides some user details and aims to make all Tor 
+users look the same to average users. It could therefore be used to anonymize whistle-blowers or journalists reporting 
+on sensitive topics.
+
+
+### When not to use Tor
+
+Do not use the Tor Browser if you want end-to-end encryption to a non-```.onion``` site such as your banking site, as 
+the ```Exit Node``` ends encryption and your data can be intercepted between the Exit Node and the destination server.
+
+
+
+## How does Tor Network Work?
+
+Before Tor data enters the Tor network, it is bundled into layers of encrypted packets that are the same size. These 
+packets are then routed through a series of volunteer-operated servers called nodes, relays or bridges. Each time the 
+Tor data passes through one of these relays, a layer of encryption is removed to reveal the location of the next relay. 
+When the data reaches the final relay on its path, known as the ```Exit Node```, the last layer of encryption is removed 
+and the data is sent to its final destination.
+
+Each relay only decrypts enough data to learn the location of the previous and next relays. Since each path is randomly 
+generated and the relays do not keep records, it is nearly impossible for your activity to be traced back to you 
+through Tor’s complex network. Refer to [[5]] for more detailed information.
+
 
 ## Is Tor broken?
-Correctly setup Tor services and Tor Browser, used correctly, Tor is not broken, but it's very easy to do something that would make Tor seem broken.
-If you login into a remote services, like FaceBook or GMail, your ```Anonymity``` at this site is lost. Thou, recent release of the Tor Browser package would keep both sites isolated from one another.
-Older Tor setups needed a user to know how to configure their proxy settings in their OS, to use Tor services. This was very easy to get wrong or incomplete, and some of your information or details could be leaked. Newer releases of Tor as a single package, preconfigure and shipped with a secure browser resolved many of these problems.
-Keeping the Tor Browser package up to date, so as to address any security issues discovered helps with keeping your ```Anonymity```.
-Tor by it's self has weaknesses, like if you are the only person using Tor on your  (home/office/school) network, you would be discovered - This is called a time/traffic correlation attack.
 
-  Interesting talk about some of the Tor attacks - https://www.youtube.com/watch?v=7G1LjQSYM5Q
+Tor is not broken if Tor services are correctly set up and if the Tor Browser is used correctly. However, it is very 
+easy to do something that would make Tor appear to be broken. If you login into a remote service such as Facebook or 
+Gmail, your ```anonymity``` at this site is lost. However, the recent release of the Tor Browser package would keep 
+both sites isolated from one another.
 
-## Conclusion:
-Would I recommend Tor? Maybe not, as Tor by itself does not guarantee Anonymity. I like the goals that Tor is trying to address and think they making great progress, but total anonymity has many obstacles not just the technology related, but the human component.
+Older Tor setups needed a user to know how to configure their proxy settings in their operating system, in order to use 
+Tor services. This was very easy to get wrong or incomplete, and some user information or details could be leaked. 
+Newer releases of Tor as a single package, preconfigured and shipped with a secure browser, resolved many of these 
+problems. Keeping the Tor Browser package up to date, thereby addressing any new security issues, helps to keep your 
+```anonymity```.
 
-## Notes:
-Anonymity is not Confidentiality
-Tor is not a VPN
-Tor data leaving the Tor network can be intercepted
+Tor has weaknesses. For example, if you are the only person using Tor on your home, office or school 
+network, you will be discovered. This is called a time/traffic correlation attack. For an interesting talk about some 
+of the Tor attacks, refer to [[6]].
 
-Advantages:
- * Free and Open Source
- * Supports Linux, OSX and Windows
- * Easy to install for supported OS
- * ```.onion``` sites are securely accessible only using Tor Browser
- * Not controlled by Corporation or Government agencies
 
-Disadvantages:
- * Slow
- * Data leaving ```Exit Node``` is not necessarily encrypted by Tor - can be intercepted
- * Does not stop somebody from de-anonymizing themselves
- * Does not stop interceptors from knowing you using Tor
- * Tor network not user friendly, due to be secure and hidden nature
- * Nodes (relay/bridge) are run by volunteers
 
-## Further investigation:
-Onion Services - Tor services that don’t leave the Tor network https://2019.www.torproject.org/docs/onion-services.html.en
+## Conclusion
 
-## Links of interest:
- * Metrics of the Tor Project - https://metrics.torproject.org
- * Sharing files using Tor - https://onionshare.org
- * Blog post about OnionShare2 and it's release - https://blog.torproject.org/new-release-onionshare-2
- * List of Tor Projects - https://2019.www.torproject.org/projects/projects.html.en
- * Isis Lovecruft's PDF covering Privacy and anonymity - https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf
+The following should be kept in mind:
+- Anonymity is not confidentiality.
+- Tor is not a Virtual Private Network (VPN).
+- Tor data leaving the Tor network can be intercepted.
 
-## References:
-https://www.torproject.org/
-https://en.wikipedia.org/wiki/Tor_(anonymity_network)
-https://www.le-vpn.com/what-is-tor-browser/
-https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/
+Advantages of Tor:
+- It is free and open source.
+- It supports Linux, OSX and Windows.
+- It is easy to install for supported operating systems.
+- Its browser is the only browser that provides secure accessibility to ```.onion``` sites.
+- It is not controlled by corporation or government agencies.
+
+Disadvantages of Tor:
+- It is slow.
+- It does not necessarily encrypt data leaving ```Exit Node```. This data can be intercepted.
+- It does not stop somebody from de-anonymizing themselves.
+- It does not stop interceptors from knowing you are using Tor.
+- Its network is not user-friendly, due to its secure and hidden nature.
+- Its nodes (relay/bridge) are run by volunteers.
+
+Would the author of this report recommend Tor? Perhaps not, as Tor by itself does not guarantee anonymity. I like the 
+goals that Tor is trying to address and think it is making great progress. However, total anonymity has many obstacles, 
+not just technology related, but also the human component.
+
+
+
+## References
+
+[[1]] Download for Tor Browser [online]. Available: <https://www.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16.
+
+[1]: https://www.torproject.org/
+"Download for Tor Browser"
+
+[[2]] Wikipedia: "Tor (Anonymity Network)" [online]. Available: <https://en.wikipedia.org/wiki/Tor_(anonymity_network)>. 
+Date accessed: 2019&#8209;05&#8209;16.
+
+[2]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
+"Wikipedia: Tor (Anonymity Network)"
+
+[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
+
+[3]: https://3g2upl4pq6kufc4m.onion/
+"DuckDuckGo Search Engine - link will not work unless Tor Browser is used"
+
+[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16
+
+[4]: https://check.torproject.org/
+"Tor Project: Check - link will not work unless Tor Browser is used"
+
+[[5]] Tor Project: Overview [online]. Available: <https://2019.www.torproject.org/about/overview.html.en>. 
+Date accessed: 2019&#8209;05&#8209;16.
+
+[5]: https://2019.www.torproject.org/about/overview.html.en
+"Tor Project: Overview"
+
+[[6]] YouTube: "Dropping Docs on Darknets: How People Got Caught" [online]. Available: 
+<https://www.youtube.com/watch?v=7G1LjQSYM5Q>. Date accessed: 2019&#8209;05&#8209;16.
+
+[6]: https://www.youtube.com/watch?v=7G1LjQSYM5Q
+"YouTube: Dropping Docs on Darknets: How People Got Caught"
+
+
+
+## Appendices
+
+### Appendix A: Further Investigation
+
+Onion Services - Tor services that don’t leave the Tor network: <https://2019.www.torproject.org/docs/onion-services.html.en>.
+
+### Appendix B: Links of Interest
+
+- [What is Tor Browser?](https://www.le-vpn.com/what-is-tor-browser/)
+- [The Ultimate Guide to Tor Browser (with Important Tips) 2019](https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/)
+-  [Metrics of the Tor Project](https://metrics.torproject.org)
+- [Sharing files using Tor](https://onionshare.org)
+- [Blog post about OnionShare2 and its release](https://blog.torproject.org/new-release-onionshare-2)
+- [List of Tor Projects](https://2019.www.torproject.org/projects/projects.html.en)
+- [Isis Lovecruft's PDF covering Privacy and Anonymity](https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf)
+
+
+
+## Contributors
+
+- <https://github.com/leet4tari>
+- <https://github.com/kevoulee>
+- <https://github.com/anselld>
+
