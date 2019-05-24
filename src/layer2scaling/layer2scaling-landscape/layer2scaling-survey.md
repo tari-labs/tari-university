@@ -186,7 +186,8 @@ State channels are the more general form of micropayment channels. They can be u
 arbitrary "state update" on a blockchain, such as changes inside a smart contract. [[16]]
 
 State channels allow multiple transactions to be made within off-chain agreements with very fast processing, and the 
-final settlement on-chain. They keep the operation mode of blockchain protocol, but change the way it is used so as to deal with the challenge of scalability.
+final settlement on-chain. They keep the operation mode of blockchain protocol, but change the way it is used so as to 
+deal with the challenge of scalability.
 
 Any change of state within a state channel requires explicit cryptographic consent from all parties designated as 
 "interested" in that part of the state. [[19]
@@ -353,7 +354,11 @@ allowing for a greater return on investment (ROI). ([[7]], [[9]])
 
 Dash was the first cryptocurrency to implement the masternode model into its protocol. Under what Dash calls its proof 
 of service algorithm, a second-tier network of masternodes exists alongside a first-tier network of miners to achieve 
-distributed consensus on the blockchain. This two-tiered system ensures that proof of service and proof of work perform symbiotic maintenance of Dash's network. Dash masternodes also enable a decentralized governance system that allows node operators to vote on important developments within the blockchain. A masternode for Dash requires a stake of 1,000&nbsp;DASH. Dash and the miners each have 45% of the block rewards. The other 10% goes to the blockchain's treasury fund. Operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
+distributed consensus on the blockchain. This two-tiered system ensures that proof of service and proof of work perform 
+symbiotic maintenance of Dash's network. Dash masternodes also enable a decentralized governance system that allows node 
+operators to vote on important developments within the blockchain. A masternode for Dash requires a stake of 
+1,000&nbsp;DASH. Dash and the miners each have 45% of the block rewards. The other 10% goes to the blockchain's treasury 
+fund. Operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
 
 *Dash Deterministic Ordering*
 
