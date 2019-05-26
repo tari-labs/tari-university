@@ -42,19 +42,6 @@ Another fundamental difference is that for any Mimblewimble transaction all part
 
 
 
-## Notation Used
-
-This section gives the general notation of mathematical expressions used. It provides important pre-knowledge for the remainder of the report.
-
-- All Pederson Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
-- Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
-- A Pederson Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
-- Let $ \text{H}\_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where $ arg $ is the value being committed to.
-- Let $  RP\_n  $ be Bulletproof range proof data for commitment $ C\_n $.
-- Let $  RP\_{agg} $ be aggregated Bulletproof range proof data for a set of commitments $ \lbrace C\_1, C\_2, ... , C\_n \rbrace $.
-
-
-
 ## Background
 
 
@@ -439,13 +426,13 @@ $$
 
 ## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
 
-As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty Bulletproof UTXO, Shamir's Secret Sharing Scheme will be used.
+As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS) will be used to enable $ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry shares $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message.
 
-Amount of rounds can be pre-determined      
 
-Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ parties can confirm its correctness
 
-### Utilizing Shamir's Secret Sharing
+### Utilizing Shamir's Secret Sharing Scheme
+
+Hash of the secret can be shared together with the shares so $ m\text{-of-}n $ parties can confirm its correctness
 
 ???
 
@@ -453,7 +440,11 @@ Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ p
 
 [[8]]
 
+
+
 ### Multiple Rounds Scheme
+
+Amount of rounds can be pre-determined   
 
 ???
 
@@ -464,7 +455,7 @@ Hash of the secret can be shared together with the shards so $ m\text{-of-}n $ p
 | 3     |                                                              |                                                              |                                                              |
 | 4     |                                                              |                                                              |                                                              |
 
-All parties must always know who shared shards when - all parties must be included in all communication (parties that who are offline must be able to receive this communication)
+All parties must always know who shared shares when - all parties must be included in all communication (parties that who are offline must be able to receive this communication)
 
 All reconstructions must rely on the party with the least amount (or 1st on list) of reconstructed keys to reconstruct the next key
 
@@ -592,9 +583,55 @@ More"
 
 ## Appendices
 
-### Appendix A: ???
 
-??? 
+
+### Appendix A: Notation Used
+
+This section gives the general notation of mathematical expressions used. It provides important pre-knowledge for the remainder of the report.
+
+- All Pederson Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
+- Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
+- A Pederson Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
+- Let $ \text{H}\_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where $ arg $ is the value being committed to.
+- Let $  RP\_n  $ be Bulletproof range proof data for commitment $ C\_n $.
+- Let $  RP\_{agg} $ be aggregated Bulletproof range proof data for a set of commitments $ \lbrace C\_1, C\_2, ... , C\_n \rbrace $.
+
+
+
+### Appendix B: Definition of Terms
+
+Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references.
+
+- **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for $ n $ parties to carry shares $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message [[15]]. 
+  
+  - The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shares provides no information regarding $ s $. 
+  - Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme using Lagrange interpolation. 
+  - Given $ m $ distinct points $ (x\_i, y\_i) $ of the form $ (x\_i, f(x\_i)) $, where $ f(x) $ is a polynomial of degree less that $ m $, then $ f(x) $ is determined by
+  
+  $$
+  f ( x ) = \sum \_ { i = 1 } ^ { m } y \_ { i } \prod \_ { 1 \leq j \leq m \atop i \neq j } \frac { x - x \_ { j } } { x \_ { i } - x \_ { j } }
+  $$
+  
+  - Shamir’s scheme is defined for a secret $ s \in \mathbb{Z}/p\mathbb{Z} $ with $ p $ prime, by setting $ a\_0 = s$, and choosing $ a\_1, . . . , a\_{m−1} $ at random in $ \mathbb{Z}/p\mathbb{Z} $. The trusted party computes $ f(i) $ for all $ 1 \leq i \leq n $ where
+  
+  $$
+  f ( x ) = \sum \_ { k = 0 } ^ { m - 1 } a \_ { k } x ^ { k }
+  $$
+  
+  - The shares $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term $ s = a\_0 = f(0) $, the secret is recovered from any $ m $ shares $ (i, f(i)) $ for $ I \subset \{ 1 , \ldots , n \} $ by
+  
+  $$
+  s = \sum _ { i \in I } c _ { i } f ( i ) , \text { where each } c _ { i } = \prod _ { j \in I \atop j \neq i } \frac { i } { j - i }
+  $$
+
+[ssss~]: #ssss
+"The ..."
+
+
+
+### Appendix C: Shamir's Secret Sharing Example
+
+
 
 
 
