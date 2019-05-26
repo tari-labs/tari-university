@@ -485,24 +485,31 @@ BEAM discussion.
 
 ### Appendix A: Cuckoo/Cuckatoo Cycle Proof of Work Algorithm
 
-The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edges in a bipartite graph of N nodes and M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from one set to the other. As an example, let's consider nodes with even indices to be in one group and nodes with odd indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N = 8 and M = 4. So if we are looking for cycles of length&nbsp;4, we can easily confirm that none exist in Figure 2. By adjusting the number of edges present in  the graph vs. the number of nodes we can control, the probability that a cycle of a certain length exists in the graph. When looking for cycles of length&nbsp;4, the difficulty illustrated in Figure 2 a 4/8 (M/N) graph would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
+The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edges in a bipartite graph of N nodes and 
+M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from 
+one set to the other. As an example, let's consider nodes with even indices to be in one group and nodes with odd 
+indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N = 8 and M = 4. So if 
+we are looking for cycles of length&nbsp;4, we can easily confirm that none exist in Figure 2. By adjusting the number 
+of edges present in  the graph vs. the number of nodes we can control, the probability that a cycle of a certain length 
+exists in the graph. When looking for cycles of length&nbsp;4, the difficulty illustrated in Figure 2 a 4/8 (M/N) graph 
+would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges.png" width="250"/></p>
 <center><strong>Figure 2: Eight Nodes with Four Edges, no Solution 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
 
 If we increase the number of edges in the graph relative to the number of nodes, we adjust the probability of a cycle 
-occurring in the randomly chosen set of edges. Figure&nbsp;3 shows an example of M&nbsp;=&nbsp;7 and N&nbsp;=&nbsp;8, and it can be seen 
-that a four-edge cycle appeared. Thus, we can control the probability of a cycle of a certain length occurring by 
-adjusting the ratio of M/N [[29]].
+occurring in the randomly chosen set of edges. Figure&nbsp;3 shows an example of M&nbsp;=&nbsp;7 and N&nbsp;=&nbsp;8, 
+and it can be seen that a four-edge cycle appeared. Thus, we can control the probability of a cycle of a certain length 
+occurring by adjusting the ratio of M/N [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges_cycle.png" width="250"/></p>
 <center><strong>Figure 3: Cycle Found from 0-5-4-1-0 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
 
 Detecting that a cycle of a certain length has occurred in a graph with randomly selected edges becomes significantly 
-more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22-node graph with 14&nbsp;random edges in it. Can 
-you determine if a cycle of eight edges is present? [[29]]
+more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22-node graph with 14&nbsp;random edges in it. 
+Can you determine if a cycle of eight edges is present? [[29]]
 
 <p align="center"><img src="sources/cuckoo_base_numbered_many_edges.png" width="650"/></p>
 <center><strong>Figure 4: 22 Nodes with 14 Edges, can you find a Cycle Eight Edges Long? 
