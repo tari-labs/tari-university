@@ -426,38 +426,41 @@ $$
 
 ## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
 
-As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS) will be used to enable $ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry shares $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message.
+As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS)  ([[8]], [[15]]) will be used to enable $ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry shards (shares) $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message.
 
 
 
-### Utilizing Shamir's Secret Sharing Scheme
+### Secret Sharing
 
-Hash of the secret can be shared together with the shares so $ m\text{-of-}n $ parties can confirm its correctness
+Our friends Alice, Bob and Carol decide to set up a $ 2\text{-of-}3 $ scheme whereby any two of them can authorize a spend of their multiparty UTXO. They also want to be able to set up the scheme such that they can perform $ 3 $ rounds of spending, with the last round being the closing round. They have heard of SSSS and decide to use that. 
+
+
+
+### Multiple Rounds' Data
+
+They will each pre-calculate $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and $ 3 $ shards $ k\_{n\text{-}party\text{-}i} $ for each round according to the SSSS. In addition to the shards, they will hash each round's private blinding factor $ \text{H}\_{s}( k\_{n\text{-}i}) $ and share that as well so that its correctness can be verified in each round. They continue to do this until they have all their information set up and ready and stored in their wallets:
+
+| Round | $ \text{H}\_{s}( k\_{n\text{-}i}) $                          | Alice's <br />Shards                                         | Bob's <br />Shards                                           | Carol's <br />Shards                                         |
+| ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1     | $ \text{H}\_{s}( k\_{1\text{-}1}) $ <br />$ \text{H}\_{s}( k\_{2\text{-}1}) $ <br />$\text{H}\_{s}( k\_{3\text{-}1}) $ | $ k\_{1\text{-}a1} $ <br />$ k\_{2\text{-}a1} $<br />$ k\_{3\text{-}a1} $ | $ k\_{1\text{-}b1} $ <br />$ k\_{2\text{-}b1} $<br />$ k\_{3\text{-}b1} $ | $ k\_{1\text{-}c1} $ <br />$ k\_{2\text{-}c1} $<br />$ k\_{3\text{-}c1} $ |
+| 2     | $ \text{H}\_{s}( k\_{1\text{-}2}) $ <br />$ \text{H}\_{s}( k\_{2\text{-}2}) $ <br />$\text{H}\_{s}( k\_{3\text{-}2}) $ | $ k\_{1\text{-}a2} $ <br />$ k\_{2\text{-}a2} $<br />$ k\_{3\text{-}a2} $ | $ k\_{1\text{-}b2} $ <br />$ k\_{2\text{-}b2} $<br />$ k\_{3\text{-}b2} $ | $ k\_{1\text{-}c2} $ <br />$ k\_{2\text{-}c2} $<br />$ k\_{3\text{-}c2} $ |
+| 3     | $ \text{H}\_{s}( k\_{1\text{-}3}) $ <br />$ \text{H}\_{s}( k\_{2\text{-}3}) $ <br />$\text{H}\_{s}( k\_{3\text{-}3}) $ | $ k\_{1\text{-}a3} $ <br />$ k\_{2\text{-}a3} $<br />$ k\_{3\text{-}a3} $ | $ k\_{1\text{-}b3} $ <br />$ k\_{2\text{-}b3} $<br />$ k\_{3\text{-}b3} $ | $ k\_{1\text{-}c3} $ <br />$ k\_{2\text{-}c3} $<br />$ k\_{3\text{-}c3} $ |
+
+
+
+### How it Works
 
 ???
 
-<<https://iancoleman.io/shamir/>>
-
-[[8]]
 
 
+### Spending Protocol
 
-### Multiple Rounds Scheme
-
-Amount of rounds can be pre-determined   
-
-???
-
-| Round | Alice                                                        | Bob                                                          | Carol                                                        |
-| ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1     | shard $ k\_{1\_a} $ <br />shard $ k\_{2\_a} $<br />shard $ k\_{3\_a} $ | shard $ k\_{1\_b} $<br />shard $ k\_{2\_b} $<br />shard $ k\_{3\_b} $ | shard $ k\_{1\_c} $<br />shard $ k\_{2\_c} $<br />shard $ k\_{3\_c} $ |
-| 2     |                                                              |                                                              |                                                              |
-| 3     |                                                              |                                                              |                                                              |
-| 4     |                                                              |                                                              |                                                              |
-
-All parties must always know who shared shares when - all parties must be included in all communication (parties that who are offline must be able to receive this communication)
+All parties must always know who shared shards when - all parties must be included in all communication (parties that who are offline must be able to receive this communication)
 
 All reconstructions must rely on the party with the least amount (or 1st on list) of reconstructed keys to reconstruct the next key
+
+???
 
 
 
@@ -571,7 +574,6 @@ Lecture 11, Secret Sharing"
 
 
 
-
 [[?]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential Transactions and More", Blockchain Protocol Analysis and Security Engineering 2018 [online]. Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed: 2018&#8209;09&#8209;18.
 
 [?]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and 
@@ -602,9 +604,9 @@ This section gives the general notation of mathematical expressions used. It pro
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references.
 
-- **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for $ n $ parties to carry shares $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message [[15]]. 
+- **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for $ n $ parties to carry shards/shares $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message [[15]]. 
   
-  - The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shares provides no information regarding $ s $. 
+  - The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shards provides no information regarding $ s $. 
   - Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme using Lagrange interpolation. 
   - Given $ m $ distinct points $ (x\_i, y\_i) $ of the form $ (x\_i, f(x\_i)) $, where $ f(x) $ is a polynomial of degree less that $ m $, then $ f(x) $ is determined by
   
@@ -618,7 +620,7 @@ Definitions of terms presented here are high level and general in nature. Full m
   f ( x ) = \sum \_ { k = 0 } ^ { m - 1 } a \_ { k } x ^ { k }
   $$
   
-  - The shares $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term $ s = a\_0 = f(0) $, the secret is recovered from any $ m $ shares $ (i, f(i)) $ for $ I \subset \{ 1 , \ldots , n \} $ by
+  - The shards $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term $ s = a\_0 = f(0) $, the secret is recovered from any $ m $ shards $ (i, f(i)) $ for $ I \subset \{ 1 , \ldots , n \} $ by
   
   $$
   s = \sum _ { i \in I } c _ { i } f ( i ) , \text { where each } c _ { i } = \prod _ { j \in I \atop j \neq i } \frac { i } { j - i }
