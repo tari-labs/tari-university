@@ -23,7 +23,7 @@
 
 ## Introduction
 
-Depending on who you ask, Mimblewimble is either a tongue-tying curse or a blockchain protocol designed to be private 
+Depending on whom you ask, Mimblewimble is either a tongue-tying curse or a blockchain protocol designed to be private 
 and scalable. The transactions in Mimblewimble are derived from confidential transactions by Greg Maxwell [[1]], which 
 in turn are based on the Pedersen commitment scheme. On 19&nbsp;July&nbsp;2016, Tom Elvis Jedusor left a white paper 
 on the tor network describing how Mimblewimble could work. As the potential for this was realized, work was done to make 
@@ -108,13 +108,13 @@ allows the ledger to be small and scalable. According to the Grin team [[3]], as
 
 - 128GB transaction data (inputs and outputs);
 - 1GB transaction proof data;
-- 250MB of block headers.
+- 250MB block headers.
 
 The total storage requirements can be reduced if cut-through and pruning are applied. The ledger will shrink to 
 approximately 1.8GB and will result in the following:
 
 - 1GB transaction proof data;
-- UTXO size of 520MB;
+- UTXO size 520MB;
 - 250MB block headers.
 
 ### Grin Blocks
@@ -142,7 +142,7 @@ The Grin header:
 | Cuckoo Solution     | The wining cuckoo solution                |
 | Difficulty          | Difficulty of the solved cuckoo           |
 | Target Difficulty   | Difficulty of this block                  |
-| Total difficulty    | Total difficulty of mined chain up to age |
+| Total Difficulty    | Total difficulty of mined chain up to age |
 | Total Kernel Offset | Kernel offset                             |
 | Nonce               | Random number for cuckoo                  |
 | Block Reward        | Coinbase + fee reward for block           |
@@ -172,18 +172,15 @@ When Alice wants to pay Bob, the transaction will be performed using the followi
 
 4. Bob computes the following:
 
-   - the message $ M= fee \Vert lock_-height ​$; 
+   - message $ M= fee \Vert lock_-height $; 
+   - Schnorr challenge $ e = SHA256(M \Vert K_r \cdot G + K_s\cdot  G \Vert r_r\cdot G + r_s\cdot G) $; and 
+   - his side of the signature, $ s_r = k_r + e\cdot G $.
 
-   - the Schnorr challenge $ e = SHA256(M \Vert K_r \cdot G + K_s\cdot  G \Vert r_r\cdot G + r_s\cdot G) $; and 
+5. Bob sends $ s_r $ and $ k_r\cdot G $ and $ r_r\cdot G $  to Alice.
 
+6. Alice computes $ e $, just like Bob did, and can check that $ s_r\cdot G = k_r\cdot G + e\cdot r_r \cdot G $.
 
-   - finally, his side of the signature, $ s_r = k_r + e\cdot G $.
-
-5. Bob sends $ s_r $ and $ k_r\cdot G $ and $ r_r\cdot G ​$  to Alice.
-
-6. Alice computes $ e $ just like Bob did, and can check that $ s_r\cdot G = k_r\cdot G + e\cdot r_r \cdot G $.
-
-7. Alice sends her side of the signature, $ s_s = k_s + e\cdot r_s $,  to Bob.
+7. Alice sends her side of the signature, $ s_s = k_s + e\cdot r_s $, to Bob.
 
 8. Bob validates $ s_s\cdot G $, just like Alice did for $ s_r\cdot G $ in step 5, and can produce the final signature 
     $ s = s_s + s_r , k_s\cdot G + k_s\cdot G$ as well as the final transaction kernel, including $ s $ and the public key 
@@ -223,8 +220,8 @@ steps:
 1. Bob picks a blinding factor $ r_b ​$ and sends $ r_b\cdot G ​$ to Alice.
 2. Alice picks a blinding factor $ r_a $ and builds the commitment $ C= r_a\cdot G + r_b\cdot G + v\cdot H $; she 
 sends the commitment to Bob.
-3. Bob creates a range proof for $ v ​$ using $ C ​$  and $ r_b ​$ and sends it to Alice.
-4. Alice generates her own range proof, aggregates it with Bob, finalizing the multiparty output $ O_{ab} $. 
+3. Bob creates a range proof for $ v $ using $ C $ and $ r_b $, and sends it to Alice.
+4. Alice generates her own range proof and aggregates it with Bob, finalizing the multiparty output $ O_{ab} $. 
 5. The kernel is built following the same procedure as used with [Trustless Transactions](#trustless-transactions).
 
 We observe that the output $ O_{ab} ​$ is unknown to both parties, because neither knows the whole blinding factor. To be 
@@ -241,14 +238,14 @@ TLU has a section about [Atomic Swaps](../atomic-swaps/AtomicSwaps.md) [[7]].
 
 Atomic swaps work with 2&#8209;of&#8209;2 multisig contracts, one public key being Alice's, the other being the hash of 
 a preimage 
-that Bob has to reveal. Consider public key derivation $ x\cdot G $ to be the hash function and by Bob revealing 
-$ x $, Alice can then produce an adequate signature, proving she knows $ x $ (in addition to her own private key).
+that Bob has to reveal. Consider public key derivation $ x\cdot G ​$ to be the hash function and by Bob revealing 
+$ x ​$, Alice can then produce an adequate signature, proving she knows $ x ​$ (in addition to her own private key).
 
 Alice will swap Grin with Bob for Bitcoin. We assume Bob created an output on the Bitcoin blockchain that allows 
 spending by Alice if she learns a hash preimage $ x $, or by Bob after time $ T_b $. Alice is ready to send her Grin 
 to Bob if he reveals $ x ​$.
 
-Alice will send her Grin to a multiparty timelock contract with a refund time $ T_a < T_b ​$. To send the 
+Alice will send her Grin to a multiparty timelock contract with a refund time $ T_a < T_b $. To send the 
 2&#8209;of&#8209;2 output 
 to Bob and execute the swap, Alice and Bob start as if they were building a normal trustless transaction:
 
@@ -270,8 +267,8 @@ should be
 wrapped in an `OP_IF` so Bob can get his money back after an agreed-upon time. All of this can even be wrapped in a 
 Pays To Script Hash (P2SH). Here, `secret_pubkey` is $x\cdot G​$ from the previous section.
 
-To verify the output, Alice would take $x\cdot G​$, recreate the bitcoin script, hash it and check that her hash matches 
-what's in theP2SH (step&nbsp;2 in the [Multisig](#multisig) section). Once she gets $x​$ (step&nbsp;6), she can build the 
+To verify the output, Alice would take $x\cdot G$, recreate the bitcoin script, hash it and check that her hash matches 
+what's in theP2SH (step&nbsp;2 in the [Multisig](#multisig) section). Once she gets $x$ (step&nbsp;6), she can build the 
 two signatures necessary 
 to spend the 2&#8209;of&#8209;2, having both private keys, and get her bitcoin.
 
@@ -382,7 +379,6 @@ Accessed: 2018&#8209;10&#8209;27.
 | 1    | DEFAULT_KERNEL |6 mg|7477|
 | 2    | DEFAULT_KERNEL |8 mg|7477|
 | 3    | COINBASE_KERNEL |0 grin|7482|
-
 
 Apart from the header information, we can only see that this block contains two transactions from the two kernels 
 present. Between these two transactions, we only know that there were four inputs and four outputs. Because of the way 
