@@ -31,8 +31,8 @@ Messages that leave one device do not travel directly to the inbound tunnel of t
 
 *Diagram of Inbound and Outbound Tunnels.*
 
-2. **Networking & Network Database:** The Distributed Database in I2P contains two types of data - the router information and destination information. When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the the other router.
-This RouterInfo is stored in the Network Database with the router's identity as the Key. The Router structure is:
+2. **Networking & Network Database:** The Distributed Database in I2P (called netDb) contains two types of data - the router information and destination information. When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the the other router.
+This RouterInfo is stored in the Network Database with the router's identity as the Key. These keys indexing the routers and hidden services are calculated by a SHA256 hash function of a 32-byte binary search key which is concatenated with a UTC date string. As a result, these hash values change every day at UTC 00:00. The Router structure is: (ref: https://censorbib.nymity.ch/pdf/Hoang2018a.pdf)
 - The router's identity (an encryption key, a signing key, and a certificate)
 - The contact addresses at which it can be reached
 - When this was created/published
@@ -42,11 +42,7 @@ This RouterInfo is stored in the Network Database with the router's identity as 
 The Arbitrary text options are used by other routers for basic decisions. Should we connect to this router? Should we attempt to route a tunnel through this router? Does the router meet a minimum threshold for routing tunnels.
 
 
-3. **Encryption:**
-The way it all works is the message creator (client in the network) explicitly defines the path that messages will be sent out (the outbound tunnel), and the message recipient explicitly defines the path that messages will be received on (the inbound tunnel).
-
-
-## Understanding Routing - *Onion Routing*
+## Understanding Onion Routing
 
 Arbitrary data may be stored and replicated by a subset of nodes for later retrieval. Data is hashed using a
 consistent hashing function (such as SHA256) to produce a key for the data. That data is propagated and
@@ -68,7 +64,10 @@ Partitioned data storage has limited usefulness to a typical blockchain, as each
 of all transactions and blocks for verification.
 
 ## Threat Model, Security and Vulnerability Attacks
+One of the disadvantages and limitations of the of the Tor network is it's in ability to scale and Vulnerability to attacks. By design, it works by routing information through a number of intermediate nodes that eventually connect to exit nodes that work as trusted authority servers. Each of these servers keeps track of all the nodes in the network and their performance. These exit nodes also act as proxies, allowing Tor users to access the clearnet without revealing their identity.
+As there are only few trusted authority servers, the integrity of these nodes is essential for the entire network, making them a valuable target for attacks. reference: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
 
+Instead of storing the network's metadata in a group of trusted authority servers, I2P keeps this data in the Distributed Hash Table. 
 
 
 ## Comparisons to Tor & VPNs
