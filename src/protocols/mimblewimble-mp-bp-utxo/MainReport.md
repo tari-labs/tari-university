@@ -1,7 +1,21 @@
+<head>
+<style>
+div.mywrap {
+  width: 95%; 
+  word-wrap: break-word;
+  background: #f1f1f1;
+  font-size: 0.875em;
+  font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
+  padding: 2.0em;
+  color: #6e6b5e;
+}
+</style>
+</head>
+
+
 # Mimblewimble Multiparty Bulletproof UTXO
 
 - [Introduction](#introduction)
-- [Notation Used](#notation-used)
 - [Background](#background)
   - [Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell](#bitcoin--mtext-of-n--multisig-in-a-nutshell)
   - [Security of the Mimblewimble Blockchain](#security-of-the-mimblewimble-blockchain)
@@ -15,13 +29,17 @@
     - [Comparison of the two Bulletproof Methods](#comparison-of-the-two-bulletproof-methods)
   - [Spending the Multiparty UTXO](#spending-the-multiparty-utxo)
 - [Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--mtext-of-n--multiparty-bulletproof-utxo)
-  - [Utilizing Shamir's Secret Sharing](#utilizing-shamirs-secret-sharing)
-  - [Multiple Rounds Scheme](#multiple-rounds-scheme)
+  - [Secret Sharing](#secret-sharing)
+  - [Multiple Rounds' Data](#multiple-rounds-data)
+  - [How it Works](#how-it-works)
+  - [Spending Protocol](#spending-protocol)
 - [Comparison to Bitcoin](#comparison-to-bitcoin)
 - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
 - [References](#references)
 - [Appendices](#appendices)
-  - [Appendix A: ???](#appendix-a-???)
+  - [Appendix A: Notation Used](#appendix-a-notation-used)
+  - [Appendix B: Definition of Terms](#appendix-b-definition-of-terms)
+  - [Appendix C: Shamir's Secret Sharing Example](#appendix-c-shamirs-secret-sharing-example)
 - [Contributors](#contributors)
 
 
@@ -34,9 +52,7 @@ In Bitcoin, multisig payments are usually combined with Pay to Script Hash (P2SH
 
 Unlike Bitcoin, Mimblewimble transactions do not involve payment addresses, as all transactions are confidential. The only requirement for a Mimblewimble UTXO to be spent is the ability to open (or unlock) the [Pederson Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) that contain the tokens, and it does not require an "owner" signature. A typical Mimblewimble UTXO looks like this [[9]]:
 
-```Text
-08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc
-```
+<div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
 
 Another fundamental difference is that for any Mimblewimble transaction all parties, that is all senders and all receivers, must interact to conclude the transaction.
 
@@ -67,7 +83,6 @@ Multiple payments can now be sent to the P2SH payment address. A generic funding
 scriptPubKey      =     OP_HASH160 <redeemScriptHash> OP_EQUAL
 ```
 
-
 with `OP_HASH160` being the combination of SHA-256 and RIPEMD-160. The 2-of-3 multisig redeem transaction's input script would the have the following form
 
 ```Text
@@ -96,7 +111,7 @@ Bitcoin transactions are allowed to have multiple recipients, and one of the rec
 
 A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complimenting aspects to provide security; [Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect, and range proofs provide assurance that the currency cannot be inflated and that 3<sup>rd</sup> parties cannot lock away ones funds. Due to the fact that Mimblewimble commitments are totally confidential and that ownership cannot be proofed, anyone can try to spend or mess with unspent coins embedded in those commitments. Fortunately any new UTXO requires a range proof, and this is impossible to create if the input commitment cannot be opened.
 
-The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let $ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by adding an additional blinding factor $ k\_{x} $ to the commitment. A valid Mimblewimble transaction would have the following form
+The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let $ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by adding an additional blinding factor $ k\_{x} $ to the commitment. (See [Appendix A](#appendix-a-notation-used) for all notation used.) A valid Mimblewimble transaction would have the following form
 
 $$
 \begin{aligned} 
@@ -333,7 +348,7 @@ with the UTXO tuple being $ (C\_m ,  RP\_m) $. Range proof validation by miners 
 
 
 
-#### Spending the Multiparty UTXO
+### Spending the Multiparty UTXO
 
 Alice, Bob and Carol had a private bet going that Carol won, and they agree to spend the Multiparty UTXO to pay Carol her winnings, with the change being used to set up a consecutive Multiparty UTXO. This transaction looks as follows:
 
@@ -428,17 +443,15 @@ $$
 
 As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS)  ([[8]], [[15]]) will be used to enable $ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry shards (shares) $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message.
 
-
-
 ### Secret Sharing
 
-Our friends Alice, Bob and Carol decide to set up a $ 2\text{-of-}3 $ scheme whereby any two of them can authorize a spend of their multiparty UTXO. They also want to be able to set up the scheme such that they can perform $ 3 $ rounds of spending, with the last round being the closing round. They have heard of SSSS and decide to use that. 
+Our friends Alice, Bob and Carol decide to set up a $ 2\text{-of-}3 $ scheme whereby any two of them can authorize a spend of their multiparty UTXO. They also want to be able to set up the scheme such that they can perform $ 3 $ rounds of spending, with the last round being the closing round. They have heard of the SSSS and decide to use that. 
 
 
 
 ### Multiple Rounds' Data
 
-They will each pre-calculate $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and $ 3 $ shards $ k\_{n\text{-}party\text{-}i} $ for each round according to the SSSS. In addition to the shards, they will hash each round's private blinding factor $ \text{H}\_{s}( k\_{n\text{-}i}) $ and share that as well so that its correctness can be verified in each round. They continue to do this until they have all their information set up and ready and stored in their wallets:
+They will each pre-calculate $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and $ 3 $ shards $ k\_{n\text{-}party\text{-}i} $ for each round according to the SSSS. ([Appendix C](#appendix-c-shamirs-secret-sharing-example) shows an example of Alice's shards for one private blinding factor.) In addition to the shards, they will hash each round's private blinding factor $ \text{H}\_{s}( k\_{n\text{-}i}) $ and share that as well so that its correctness can be verified in each round. They continue to do this until they have all their information set up, ready and stored in their wallets.
 
 | Round | Blinding<br />Factor                                         | $ \text{H}\_{s}( k\_{n\text{-}i}) $                          | Alice's <br />Shards                                         | Bob's <br />Shards                                           | Carol's <br />Shards                                         |
 | ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -450,17 +463,31 @@ They will each pre-calculate $ 3 $ private blinding factors $ k\_{n\text{-}i} $ 
 
 ### How it Works
 
-???
+The three parties set up the initial multiparty [funding transaction](#setting-up-the-multiparty-funding-transaction) and [Bulletproof range proof](#creating-the-multiparty-bulletproof-range-proof) exactly the way they did for the $ 3\text{-of-}3 $ case. For that they use the private blinding factors they pre-calculated for round&nbsp;1. Now, when they decide to spend the multiparty UTXO, only two of them needs to be present.
 
+Bob and Carol decide to spend funds, exactly [like before](#spending-the-multiparty-utxo), and for this they need to reconstruct Alice's private blinding factor for round&nbsp;1 and round&nbsp;2. Because Alice did not win anything, she does not need to be present to set up private blinding factor for an output UTXO the way Carol need to do. Bob and Carol consequently share the shards Alice gave them: 
+$$
+\text{share:} \mspace{9mu} \lbrace  k\_{1\text{-}b1},  k\_{1\text{-}c1},  k\_{1\text{-}b2},  k\_{1\text{-}c2}   \rbrace
+$$
+They are now able to reconstruct the blinding factors and verify the hashes. If the verification does not succeed, they stop the protocol and schedule a meeting with Alice to have a word with her. With all three together they will be able to identify the source of the misinformation.
+$$
+\text{reconstruct:} \mspace{9mu} k\_{1\text{-}1}, k\_{1\text{-}2} \\\\
+\text{verify:} \mspace{9mu} \text{H}\_{s}( k\_{1\text{-}1})\_{shared} \overset{?}{=} \text{H}\_{s}( k\_{1\text{-}1})\_{calculated} \\\\
+\text{verify:} \mspace{9mu} \text{H}\_{s}( k\_{1\text{-}2})\_{shared} \overset{?}{=} \text{H}\_{s}( k\_{1\text{-}2})\_{calculated}
+$$
+For this round they choose Bob to play Alice's part when they set up and conclude the transaction. Bob is able to do that because he now have Alice's private blinding factors $ k\_{1\text{-}1} $ and $ k\_{1\text{-}2} $. When constructing the signature on Alice's behalf, he choose a private nonce $ r^{'}\_n $ she does not know, as it will only be used to construct the signature and then never again. Bob and Carol conclude the transaction, let Alice know this and inform her that a consecutive multi-spend need to start at round&nbsp;2.
 
+The next time two of our friends want to spend some or all of the remainder of their multiparty UTXO, they will just repeat these steps starting at round&nbsp;2. The only thing that will be different will be the person nominated to play the part of the party that is absent; they have to take turns at this.
 
 ### Spending Protocol
 
-All parties must always know who shared shards when - all parties must be included in all communication (parties that who are offline must be able to receive this communication)
+Alice, Bob and Carol are now seasoned at setting up their $ 2\text{-of-}3 $ scheme and spending the UTXO until all funds are depleted. They have come to an agreement on simple spending protocol, something to help keep all of them honest:
 
-All reconstructions must rely on the party with the least amount (or 1st on list) of reconstructed keys to reconstruct the next key
+- All parties must always know who shared shards when - all parties must be included in all communication (parties that are offline must be able to receive this communication)
+- All reconstructions must rely on the party with the least amount (or 1st on list) of reconstructed keys to reconstruct the next key
 
-???
+- ???
+
 
 
 
@@ -568,15 +595,19 @@ test_multi_party_bulletproof"
 "MATH3024 Elementary Cryptography and Protocols: 
 Lecture 11, Secret Sharing" 
 
+[[16]] I. Coleman, "Online Tool: Shamir Secret Sharing Scheme", [online]. Available: <https://iancoleman.io/shamir>. Date accessed: 2019&#8209;05&#8209;27.
+
+[16]: https://iancoleman.io/shamir
+"Online Tool: Shamir Secret Sharing Scheme" 
 
 
 
 
 
+[[?]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential Transactions and More", Blockchain Protocol Analysis and Security Engineering 2018 [online]. Available: <https://iancoleman.io/shamir>. Date accessed: 2018&#8209;09&#8209;18.
 
-[[?]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential Transactions and More", Blockchain Protocol Analysis and Security Engineering 2018 [online]. Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed: 2018&#8209;09&#8209;18.
-
-[?]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and 
+[?]: https://iancoleman.io/shamir
+"Bulletproofs: Short Proofs for Confidential Transactions and 
 More" 
 
 
@@ -604,7 +635,7 @@ This section gives the general notation of mathematical expressions used. It pro
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references.
 
-- **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for $ n $ parties to carry shards/shares $ s\_i $ of a message $ s $ such that any $ m $ of the them can reconstruct the message [[15]]. 
+- **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for $ n $ parties to carry shards/shares $ s\_i $ of a secret message $ s $ such that any $ m $ of the them can reconstruct the message [[15]]. 
   
   - The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shards provides no information regarding $ s $. 
   - Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme using Lagrange interpolation. 
@@ -614,7 +645,7 @@ Definitions of terms presented here are high level and general in nature. Full m
   f ( x ) = \sum \_ { i = 1 } ^ { m } y \_ { i } \prod \_ { 1 \leq j \leq m \atop i \neq j } \frac { x - x \_ { j } } { x \_ { i } - x \_ { j } }
   $$
   
-  - Shamir’s scheme is defined for a secret $ s \in \mathbb{Z}/p\mathbb{Z} $ with $ p $ prime, by setting $ a\_0 = s$, and choosing $ a\_1, . . . , a\_{m−1} $ at random in $ \mathbb{Z}/p\mathbb{Z} $. The trusted party computes $ f(i) $ for all $ 1 \leq i \leq n $ where
+  - Shamir’s scheme is defined for a secret message $ s \in \mathbb{Z}/p\mathbb{Z} $ with prime $ p $, by setting $ a\_0 = s$, and choosing $ a\_1, . . . , a\_{m−1} $ at random in $ \mathbb{Z}/p\mathbb{Z} $. The trusted party computes $ f(i) $ for all $ 1 \leq i \leq n $ where
   
   $$
   f ( x ) = \sum \_ { k = 0 } ^ { m - 1 } a \_ { k } x ^ { k }
@@ -633,6 +664,25 @@ Definitions of terms presented here are high level and general in nature. Full m
 
 ### Appendix C: Shamir's Secret Sharing Example
 
+One of the private blinding factors Alice calculated and wants to share with Bob and Carol is
+
+<div class="mywrap">29bb078b7b2b01e62dd684cd20742b510ece6175fa58d7a79cceeefe5297a804</div>
+
+Alice's shard:
+
+<div class="mywrap">80168f0598f73bc29f90aaeb0d87caf44a8f6baaaeabcf15af20dd1d27e28f30b7afb6c889da2eefc6cca9a1505a92d8b65f968f554dede39a23b293aa7ddd4d50499d0fbfe86d60b4ff87938609cda5d3aecf37d7fc8ff54f777e26ad2dc4d1268a7a4ba0c94706a017e0a1e3fd969e7c2627e28dc3e8ecb7f73426ffe2c5b72467905d072528f060c29f9d221a93dfb213add323fee3373ff11cace1a87f0b095029b32f0fcf6735ce8611f823c9b697452b728a34f0dee13d2b2a5f30f70d096cd7ba6cf9f7b0431673373ffa1e358d9d8c02f9bec54b53f66ec76069499cd21d95099f826a91d92665a6709f607793c1b2548ccb1f6b46c3cbc0af6ed55b02a</div>
+
+Bob's shard:
+
+<div class="mywrap">802d0fdb203e66552ef14417dadf843884df16949c965ffb4f91abfb9fc50fb16f4ebd80d2759c1e5d889292a0a4f5a0bcaefd0f7a8a1a1725976527453a7b5b7082fbdebe111b1169eedf270c025a9ba74c5fbfafe8de3a8f3eed9d4b9a59a24d05355691835e0d402fc143c7eafd2d399c4fc50a57c018bfee684dee158b6e48ff256bdb4a44b0cbb52b6b9094f2ceb1d740864d4c1c9e64c2226819113587d7c0472645ee5a8e614cd8a3e467888d242a42c50029e49c17cb9d6575e1e4fbd6187a551dc23500834ce3ae6ba5f8bb0f9ad315e8ec5f47736cc9feca035838714affa2f424c1c3a69cc12ce44f1a8f22136ec90cd7fa8758878c31457c7e17d02</div>
+
+Carol's shard:
+
+<div class="mywrap">803b80deb8c95d97b161eefcd7584eccce507d3e323d90eee0b176e6b8278081d8e10b485bafb2f19b443b33f0fe67780af16b802fc7f7f4bfb4d7b4ef47a61620cb66d101f97671dd1158b48a0b973e74e29088781451cfc04993bbe6b79d736b8f4f1d314a190be03821e224176bb345ba6827879428f408195c6b11f74ed96c88b676df6f6fc0ad67b786b11e62310094eb0568d2f9f95d633894fe894cbcdd006de56cf1969952c25d321f14472bb50f6ae7896d1752f596b01f2ce115a6dc74aeff726bc490c37a93d9572fe58e812759571762994c231aa459ac2a17e4a07769cb6df6a8427cbaa2aa97f07cd8b2a2dabd839ce69c1d4441d1ec32a8dcd1a</div>
+
+Using any two of these shards with the tool provided in [[16]], Alice's original private blinding factor can be recreated. Try it out!
+
+**Note:** This example shows blinding factor shards created with the SSSS tool developed by Coleman [[16]]. It was merely developed for demonstration purposes and does not make any claims to meet cryptographic security rules other than using secure randomness.
 
 
 
