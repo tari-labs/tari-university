@@ -1245,5 +1245,6 @@ protocols have been used for a variety of tasks such as binary agreement (ABA), 
 ## Contributors
 
 - <https://github.com/kevoulee>
+- <https://github.com/CjS77>
 - <https://github.com/hansieodendaal>
 - <https://github.com/anselld>
