@@ -92,7 +92,7 @@ know about every other participant in the network.
 
 In this way, DHTs are inherently more resilient against hostile attackers than a typical centralized system [[1]].
 
-Bittorrent is one of the largest decentralized networks in existence, containing in the order of tens of millions
+BitTorrent is one of the largest decentralized networks in existence, containing in the order of tens of millions
 of concurrent users and hundreds of millions of active users. It is estimated that there are a quarter of a billion
 distinct monthly users of the BitTorrent network [[10]]. As of 2019, Tor has approximately 9,000 relay servers and
 over 2 million users [[11]].
@@ -168,7 +168,7 @@ distributed random number generator [[2]].
 A node wishing to join the network for the first time has no known contacts. In order for the node to establish
 itself on the network, it must contact one, or more than one, bootstrap node. These nodes are not special in any way 
 other than being listed in some predefined list. They simply serve as a first point of contact for the requesting node 
-to become known to more of the network and to find their closest peers.
+to become known to more of the network and to find its closest peers.
 
 There are a number of ways that bootstrap nodes can be obtained, including adding addresses to a configuration and using 
 [DNS seeds](https://bitcoin.org/en/glossary/dns-seed).
@@ -379,7 +379,7 @@ The cuckoo rule states:
 It is concluded that for a constant fraction of adversarial peers, where $\epsilon < 1 - 1/k$ for any constant, $k > 1$
 is sufficient to prevent adaptive join-leave attacks with high probability.
 
-Sen, Freedman [[7]] modelled and analysed the Cuckoo Rule and found that, in practice, it tolerates very few 
+Sen, Freedman [[7]] modelled and analysed the cuckoo rule and found that, in practice, it tolerates very few 
 adversarial nodes.
 
 |                                                                                                                                                                                        |     |                                                                                                                                                                                                                                                     |
@@ -420,35 +420,35 @@ Date accessed: 2019&#8209;03&#8209;08.
 
 [4]: https://www.wikiwand.com/en/Tapestry_(DHT) "Tapestry (DHT)"
 
-[[5]] Towards a Scalable and Robust DHT [online]. Available: <http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf>. Date accessed: 2019&#8209;03&#8209;12.
+[[5]] "Towards a Scalable and Robust DHT" [online]. Available: <http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf>. Date accessed: 2019&#8209;03&#8209;12.
 
 [5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf "Towards a Scalable and Robust DHT"
 
-[[6]] Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network [online]. Available: <https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf>. Date accessed: 2019&#8209;03&#8209;15.
+[[6]] "Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network" [online]. Available: <https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf>. Date accessed: 2019&#8209;03&#8209;15.
 
 [6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf "Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network"
 
-[[7]]: Commensal Cuckoo: Secure Group Partitioning for Large-scale Services [online]. Available: <https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed: 2019&#8209;03&#8209;15.
+[[7]]: "Commensal Cuckoo: Secure Group Partitioning for Large-scale Services" [online]. Available: <https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed: 2019&#8209;03&#8209;15.
 
 [7]: https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf "Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services"
 
-[[8]]: Overlay and P2P Networks [online]. Available: <https://www.cs.helsinki.fi/webfm_send/1339>. Date accessed: 2019&#8209;04&#8209;04.
+[[8]]: "Overlay and P2P Networks" [online]. Available: <https://www.cs.helsinki.fi/webfm_send/1339>. Date accessed: 2019&#8209;04&#8209;04.
 
 [8]: https://www.cs.helsinki.fi/webfm_send/1339 "Overlay and P2P networks"
 
-[[9]]: Poisoning the Kad Network [online]. Available: <https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf>. Date accessed: 2019&#8209;04&#8209;04.
+[[9]]: "Poisoning the Kad Network" [online]. Available: <https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf>. Date accessed: 2019&#8209;04&#8209;04.
 
 [9]: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf "Poisoning the Kad Network"
 
-[[10]]: BitTorrent [online]. <https://en.wikipedia.org/wiki/BitTorrent>. Date accessed: 2019&#8209;04&#8209;04.
+[[10]]: "BitTorrent" [online]. <https://en.wikipedia.org/wiki/BitTorrent>. Date accessed: 2019&#8209;04&#8209;04.
 
 [10]: https://en.wikipedia.org/wiki/BitTorrent "BitTorrent"
 
-[[11]]: Servers - Tor Metrics [online]. <https://metrics.torproject.org/networksize.html>. Date accessed: 2019&#8209;04&#8209;29.
+[[11]]: "Servers - Tor Metrics" [online]. <https://metrics.torproject.org/networksize.html>. Date accessed: 2019&#8209;04&#8209;29.
 
 [11]: https://en.wikipedia.org/wiki/BitTorrent "Servers - Tor Metrics"
 
-[[12]]: A Survey of DHT Security Techniques [online]. <https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques>. Date accessed: 2019&#8209;04&#8209;29.
+[[12]]: "A Survey of DHT Security Techniques" [online]. <https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques>. Date accessed: 2019&#8209;04&#8209;29.
 
 [12]: https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques "A Survey of DHT Security Techniques"
 

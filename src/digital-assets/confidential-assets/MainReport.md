@@ -129,13 +129,12 @@ $$
 \mspace{70mu} (2)
 $$
 
-Since $ H_A ​$ and $ H_B ​$ are both NUMS asset tags, the only way relation (2) can hold is if the total input and 
-output amounts of asset $ A ​$ are equal and if the same is true for asset $ B ​$. This concept can be extended to an 
+Since $ H_A $ and $ H_B $ are both NUMS asset tags, the only way relation (2) can hold is if the total input and 
+output amounts of asset $ A $ are equal and if the same is true for asset $ B $. This concept can be extended to an 
 unlimited amount of distinct asset types, as long as each asset tag can be a unique NUMS generator. The problem with 
 relation (2) is that the asset type of each output is publicly visible, thus the assets that were transacted in are 
 not confidential. This can be solved by replacing each asset tag with a blinded version of itself. The asset commitment 
-to asset tag $ H_A ​$ (blinded asset tag) is then defined as the point
-
+to asset tag $ H_A $ (blinded asset tag) is then defined as the point
 $$
 H_{0_A} = H_A + rG
 $$
@@ -258,7 +257,7 @@ to a commitment to $ 0 ​$ instead of to the point $ 0 ​$ itself [[1]].
 
 However, confidential assets come at an additional data cost. For a transaction with $ m $ outputs and $ n $ inputs, in 
 relation to the units of space used for confidential transactions, the asset commitment has size $ 1$, the ASP has size 
-$ n + 1 $ and the entire transaction therefor has size $ m(n + 2) $ [[1]].
+$ n + 1 $ and the entire transaction therefore has size $ m(n + 2) $ [[1]].
 
 
 
@@ -271,7 +270,6 @@ contract [[11]] to be hashed together with the reference to the UTXO being spent
 generate the auxiliary input $ A $ as follows. Let $I $ be the input being spent (an unambiguous reference to a 
 specific UTXO used to create the asset), let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the 
 asset entropy $ E $ is defined as 
-
 $$
 E = \mathrm {Hash} ( \mathrm {Hash} (I) \parallel \mathrm {Hash} (\widehat {RC}))
 $$
@@ -298,8 +296,7 @@ allowed ([[1]], [[13]]).
 The confidential asset scheme allows the asset owner to later increase or decrease the amount of the asset in 
 circulation, given that an asset reissuance token is generated together with the initial asset issuance. Given an asset 
 entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{\hat A} \in \mathbb G $ obtained using 
-an alternate auxiliary input $ \hat A $ defined as
-
+an alternative auxiliary input $ \hat A $ defined as
 $$
 \hat A = \mathrm {Hash} ( E \parallel 1)
 $$
@@ -349,9 +346,9 @@ and is based on its formal publication in [[1]].
 
 The Elements project hosts a working demonstration (shown in [Figure&nbsp;2](#fig_eca)) of confidential asset transfers 
 involving five parties in `Github: ElementsProject/confidential-assets-demo` [[17]]. The demonstration depicts a scenario 
-where a coffee shop owner *Dave* charges a customer *Alice* for coffee in an asset called MELON. *Alice* does not hold 
+where a coffee shop owner, *Dave,* charges a customer, *Alice,* for coffee in an asset called MELON. *Alice* does not hold 
 enough MELON and needs to convert some AIRSKY into MELON, making use of an exchange operated by *Charlie*. The coffee 
-shop owner *Dave* has a competitor, *Bob*, who is trying to gather information about *Dave's* sales. Due to the 
+shop owner, *Dave,* has a competitor, *Bob*, who is trying to gather information about *Dave's* sales. Due to the 
 blockchain's confidential transactions and assets features, he will not be able to see anything useful by processing 
 transactions on the blockchain. *Fred* is a miner and does not care about the detail of the transactions, but he makes 
 blocks on the blockchain when transactions enter his miner mempool. The demonstration also includes generating the 
@@ -396,7 +393,7 @@ allocate variables and define constraints. Cloak uses a collection of gadgets su
 “range proof” to build a constraint system for cloaked transactions. All transactions of the same size are 
 indistinguishable, because the layout of all the gadgets is only determined by the number of inputs and outputs.
 
-At the time of writing this report the Cloak development was still ongoing.
+At the time of writing this report, the Cloak development was still ongoing.
 
 
 
@@ -522,7 +519,7 @@ What’s the Difference?,
 D. Koteshov, 
 February 2018"
 
-[[13]] Issued Assets - You can Issue your own Confidential Assets on Elements, Elements by Blockstream 
+[[13]] Elements by Blockstream: "Issued Assets - You can Issue your own Confidential Assets on Elements"  
 [online]. Available: <https://elementsproject.org/features/issued-assets>. Date accessed: 2018&#8209;12&#8209;14.
 
 [13]: https://elementsproject.org/features/issued-assets
@@ -530,7 +527,7 @@ February 2018"
 own Confidential Assets on Elements, 
 Elements by Blockstream"
 
-[[14]] Issued Assets - Investigation, Principal Investigator: Andrew Poelstra, Elements by Blockstream [online]. 
+[[14]] Elements by Blockstream: "Issued Assets - Investigation, Principal Investigator: Andrew Poelstra" [online]. 
 Available: <https://elementsproject.org/features/issued-assets/investigation>. Date accessed: 2018&#8209;12&#8209;14.
 
 [14]: https://elementsproject.org/features/issued-assets/investigation
@@ -538,13 +535,12 @@ Available: <https://elementsproject.org/features/issued-assets/investigation>. D
 Principal Investigator: Andrew Poelstra, 
 Elements by Blockstream"
 
-[[15]] Elements Code Tutorial - Issuing your own Assets, Elements by Blockstream, elementsproject.org 
+[[15]] Elements by Blockstream: "Elements Code Tutorial - Issuing your own Assets"  
 [online]. Available: <https://elementsproject.org/elements-code-tutorial/issuing-assets>. Date accessed: 2018&#8209;12&#8209;14.
 
 [15]: https://elementsproject.org/elements-code-tutorial/issuing-assets
 "Elements Code Tutorial - Issuing your own Assets, 
-Elements by Blockstream, 
-elementsproject.org"
+Elements by Blockstream""
 
 [[16]] Github: ElementsProject/elements [online]. Available: <https://github.com/ElementsProject/elements>. 
 Date accessed: 2018&#8209;12&#8209;18.
@@ -583,7 +579,7 @@ Date accessed: 2018&#8209;12&#8209;18.
 [21]: https://github.com/chain/chain
 "Github: chain/chain"
 
-[[22]] Chain: Sequence [online]. Available: <https://chain.com/sequence>. Date accessed: 2018&#8209;12&#8209;18.
+[[22]] Chain: "Sequence" [online]. Available: <https://chain.com/sequence>. Date accessed: 2018&#8209;12&#8209;18.
 
 [22]: https://chain.com/sequence
 "Chain: Sequence"
@@ -593,15 +589,16 @@ Date accessed: 2018&#8209;12&#8209;18.
 [23]: https://dashboard.seq.com/docs
 "Sequence Documentation"
 
-[[24]] Hidden in Plain Sight: Transacting Privately on a Blockchain - Introducing Confidential Assets in the Chain 
-Protocol [online]. 
+[[24]] O Andreev: "Hidden in Plain Sight: Transacting Privately on a Blockchain - Introducing Confidential Assets in the Chain 
+Protocol", Chain [online]. 
 Available: <https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb>. 
 Date accessed: 2018&#8209;12&#8209;18.
 
 [24]: https://blog.chain.com/hidden-in-plain-sight-transacting-privately-on-a-blockchain-835ab75c01cb
 "Hidden in Plain Sight: 
 Transacting Privately on a Blockchain - 
-Introducing Confidential Assets in the Chain Protocol"
+Introducing Confidential Assets in the Chain Protocol
+O. Andreev"
 
 [[25]] Blockchains in a Quantum Future - Protecting Against Post-Quantum Attacks on Cryptography [online]. 
 Available: <https://blog.chain.com/preparing-for-a-quantum-future-45535b316314>. Date accessed: 2018&#8209;12&#8209;18.

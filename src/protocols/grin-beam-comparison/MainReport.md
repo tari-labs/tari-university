@@ -18,11 +18,11 @@
 
 Grin and BEAM are two open-source cryptocurrency projects based on the Mimblewimble protocol. The Mimblewimble protocol 
 was first proposed by an anonymous user using the pseudonym Tom Elvis Jedusor (the French translation of Voldemort's 
-name from the Harry Potter series of books). This user logged onto a bitcoin research Internet Relay Chat (IRC) channel and posted a link to 
-a text article hosted on a Tor hidden service [[1]]. This article provided the basis for a new way to construct 
-blockchain-style transactions that provided inherent privacy and the ability to dramatically reduce the size of the 
-blockchain by compressing the transaction history of the chain. The initial article presented the main ideas of the 
-protocol, but left out a number of critical elements required for a practical implementation and even contained a 
+name from the Harry Potter series of books). This user logged onto a bitcoin research Internet Relay Chat (IRC) channel 
+and posted a link to a text article hosted on a Tor hidden service [[1]]. This article provided the basis for a new way 
+to construct blockchain-style transactions that provided inherent privacy and the ability to dramatically reduce the 
+size of the blockchain by compressing the transaction history of the chain. The initial article presented the main ideas 
+of the protocol, but left out a number of critical elements required for a practical implementation and even contained a 
 mistake in the cryptographic formulation. Andrew Poelstra published a follow-up paper that addresses many of these 
 issues and refines the core concepts of Mimblewimble [[2]], which have been applied to the practical implementation of 
 this protocol in both the Grin [[3]] and BEAM [[4]] projects.
@@ -38,12 +38,12 @@ proposed the concept of Scriptless scripts, which make use of Schnorr signatures
 allow for encoding of many of the behaviors that scripts are traditionally used to achieve. Scriptless scripts enable 
 functionality such as payment channels (e.g. Lightning Network) and atomic swaps [[5]].
 
-The Grin and BEAM projects both implement the Mimblewimble protocol, but both have been built from scratch. Grin is written in RUST 
-and BEAM in C++. This report describes some of the aspects of each project that set 
-them apart. Both projects are still early in their development cycle and many of these details are changing on a daily 
-basis. Furthermore, the BEAM project documentation is mostly available only in Russian. As of the writing of 
-this report, not all the technical details are available for English readers. Therefore the discussion in this report will 
-most likely become outdated as the projects evolve.
+The Grin and BEAM projects both implement the Mimblewimble protocol, but both have been built from scratch. Grin is 
+written in RUST and BEAM in C++. This report describes some of the aspects of each project that set them apart. Both 
+projects are still early in their development cycle and many of these details are changing on a daily basis. Furthermore, 
+the BEAM project documentation is mostly available only in Russian. As of the writing of this report, not all the 
+technical details are available for English readers. Therefore the discussion in this report will most likely become 
+outdated as the projects evolve.
 
 This report is structured as follows:
 
@@ -59,9 +59,9 @@ This report is structured as follows:
 
 The two projects are being independently built from scratch by different teams in different languages (Rust [[6]] and 
 C++ [[7]]), so there will be many differences in the raw implementations. For example, Grin uses LMDB for its embedded 
-database and BEAM uses SQLite. Although they have performance differences, they are functionally similar. Grin uses a Directed 
-Acyclic Graph (DAG) to represent its mempool to avoid transaction reference loops [[8]], while BEAM uses a multiset 
-key-value data structure with logic to enable some of its extended features [[7]].
+database and BEAM uses SQLite. Although they have performance differences, they are functionally similar. Grin uses a 
+Directed Acyclic Graph (DAG) to represent its mempool to avoid transaction reference loops [[8]], while BEAM uses a 
+multiset key-value data structure with logic to enable some of its extended features [[7]].
 
 From the perspective of features, the two projects exhibit all the features inherent to Mimblewimble. Grin's stated 
 goal is to produce a simple and easy to maintain implementation of the Mimblewimble protocol [[3]]. BEAM's 
@@ -73,9 +73,9 @@ Both Grin and BEAM have incorporated a version of the Dandelion relay protocol t
 One of the major outstanding challenges for privacy that cryptocurrencies face is that it is possible to track 
 transactions as they are added to the mempool and propagate across the network, and to link those transactions to their 
 originating IP addresses. This information can be used to deanonymize users, even on networks with strong transaction 
-privacy. The Dandelion network propagation 
-scheme was proposed to improve privacy during the propagation of transactions to the network [[9]]. In this scheme, transactions are propagated in two phases: the Anonymity (or "stem") 
-phase and the Spreading (or "fluff") phase, as illustrated in Figure&nbsp;1.
+privacy. The Dandelion network propagation scheme was proposed to improve privacy during the propagation of transactions 
+to the network [[9]]. In this scheme, transactions are propagated in two phases: the Anonymity (or "stem") phase and the 
+Spreading (or "fluff") phase, as illustrated in Figure&nbsp;1.
 
 - In the **stem** (anonymity) phase, a transaction is 
   propagated to only a single randomly selected peer from the current node's peer list. After a random number of hops 
@@ -83,9 +83,9 @@ phase and the Spreading (or "fluff") phase, as illustrated in Figure&nbsp;1.
 
   
 
--  During the **fluff** (spreading) phase, the transaction is propagated using a full flood/diffusion method, as found in most 
-  networks. This approach means that the transaction has first propagated to a random point in the network before 
-  flooding the network, thereby making it much more difficult to track its origin.
+-  During the **fluff** (spreading) phase, the transaction is propagated using a full flood/diffusion method, as found 
+in most   networks. This approach means that the transaction has first propagated to a random point in the network 
+before flooding the network, thereby making it much more difficult to track its origin.
 
 <p align="center"><img src="sources/dandelion-stem-fluff.png" width="450" /></p>
 <center><strong>Figure 1: Two Phases of Dandelion Peer-to-peer Transaction Propagation 
@@ -163,10 +163,10 @@ and a kernel that compensates for their blinding factor, which **must** be inclu
 transaction [[13]]. BEAM has indicated that this feature will be part of the initial release.
 
 Both projects make use of a number of Merkle tree structures to keep track of various aspects of the respective 
-blockchains. Details of the exact trees and what they record are documented for both projects ([[16]], [[17]]). BEAM, however, makes 
-use of a Radix-Hash tree structure for some of its trees. This structure is a modified Merkle tree that is also a binary search 
-tree. This provides a number of features that the standard Merkle trees do not have, and which BEAM exploits in its
-implementation [[17]].
+blockchains. Details of the exact trees and what they record are documented for both projects ([[16]], [[17]]). BEAM, 
+however, makes use of a Radix-Hash tree structure for some of its trees. This structure is a modified Merkle tree that 
+is also a binary search tree. This provides a number of features that the standard Merkle trees do not have, and which 
+BEAM exploits in its implementation [[17]].
 
 The features discussed here can all be seen in the code at the time of writing, although this is not a guarantee that 
 they are working. A couple of features that have been mentioned in the literature as planned for the future, 
@@ -178,50 +178,52 @@ to record contract text [[13]], and issuing confidential assets [[18]].
 BEAM has announced that it will employ the Equihash Proof of Work (PoW) mining algorithm with the parameters set to 
 n=150, k=5 [[32]]. Equihash was proposed in 2016 as a memory-hard PoW algorithm that relied heavily on memory usage to 
 achieve Application Specific Integrated Circuit (ASIC) resistance [[19]]. The goal was to produce an algorithm that 
-would be more efficient to run on consumer Graphics Processing Units (GPUs) as opposed to the growing field of ASIC miners, mainly produced by 
-Bitmain at the time. It was hoped this would assist cryptocurrencies that used this 
-algorithm, to decentralize the mining power. The idea behind Equihash's ASIC resistance was that at the time, implementing memory in an ASIC was expensive 
-and GPUs were more efficient at calculating the Equihash PoW. This ASIC resistance lasted for a while, but in 
-early 2018, Bitmain released an ASIC for Equihash that was significantly more efficient than GPUs for the Equihash 
-configurations used by Zcash, Bitcoin Gold and Zencash, to name a few. It is possible to tweak the parameters of the 
-Equihash algorithm to make it more memory intensive and thus make current ASICs and the older GPU mining farms 
-obsolete, but it remains to be seen if BEAM will do this. No block time has been published as of the time of writing of this report.
+would be more efficient to run on consumer Graphics Processing Units (GPUs) as opposed to the growing field of ASIC 
+miners, mainly produced by Bitmain at the time. It was hoped this would assist cryptocurrencies that used this 
+algorithm, to decentralize the mining power. The idea behind Equihash's ASIC resistance was that at the time, 
+implementing memory in an ASIC was expensive and GPUs were more efficient at calculating the Equihash PoW. This ASIC 
+resistance lasted for a while, but in early 2018, Bitmain released an ASIC for Equihash that was significantly more 
+efficient than GPUs for the Equihash configurations used by Zcash, Bitcoin Gold and Zencash, to name a few. It is 
+possible to tweak the parameters of the Equihash algorithm to make it more memory intensive and thus make current ASICs 
+and the older GPU mining farms obsolete, but it remains to be seen if BEAM will do this. No block time has been published 
+as of the time of writing of this report.
 
 Grin initially opted to use the new Cuckoo Cycle PoW algorithm, also purported to be ASIC resistant due to being memory 
 latency bound [[20]]. This means that the algorithm is bound by memory bandwidth rather than raw processor speed, with 
 the hope that it will make mining possible on commodity hardware.
 
-In August 2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely that an ASIC would be available for the Cuckoo cycle algorithm [[21]]. While acknowledging that ASIC mining is 
+In August 2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely that an 
+ASIC would be available for the Cuckoo cycle algorithm [[21]]. While acknowledging that ASIC mining is 
 inevitable, Grin is concerned that the current ASIC market is very centralized (i.e. Bitmain), and it wants to 
-foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that ASICs will have become more of a commodity and thus decentralized.
+foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that 
+ASICs will have become more of a commodity and thus decentralized.
 
 To address this, it was proposed to use two PoW algorithms initially: one that is ASIC Friendly (AF) and one that is 
 ASIC Resistant (AR), and then to select which PoW is used per block to balance the mining rewards between 
-the two algorithms, over a 24-hour period. The Governance committee resolved on 25&nbsp;September&nbsp;2018 to go ahead with this approach, using a modified 
-version of the Cuckoo Cycle algorithm, called the Cuckatoo Cycle. The AF algorithm at launch will be Cuckatoo32+, which will 
-gradually increase its memory requirements to make older single-chip ASICs obsolete over time. The AR algorithm is 
-still not defined [[23]].
+the two algorithms, over a 24-hour period. The Governance committee resolved on 25&nbsp;September&nbsp;2018 to go ahead 
+with this approach, using a modified version of the Cuckoo Cycle algorithm, called the Cuckatoo Cycle. The AF algorithm 
+at launch will be Cuckatoo32+, which will gradually increase its memory requirements to make older single-chip ASICs 
+obsolete over time. The AR algorithm is still not defined [[23]].
 
 ## Governance Models and Monetary Policy
 
 Both the Grin and BEAM projects are open-source and available on Github ([[6]], [[7]]). The Grin project has 75&nbsp;
-contributors, eight of which have contributed the vast majority of the code. BEAM has 10&nbsp;contributors, four of which have 
-contributed the vast majority of the code (at the time of writing). The two projects have opted for different models of 
-governance. BEAM has opted to set up a foundation that includes the core developers, to manage the project. 
+contributors, eight of which have contributed the vast majority of the code. BEAM has 10&nbsp;contributors, four of 
+which have contributed the vast majority of the code (at the time of writing). The two projects have opted for different 
+models of governance. BEAM has opted to set up a foundation that includes the core developers, to manage the project. 
 This is the route taken by the majority of cryptocurrency projects in this space. The Grin community has decided 
 against setting up a central foundation and has compiled an interesting discussion of the pros and cons of a 
 centralized foundation [[22]]. This document contains a very in-depth discussion that weighs up the various governance 
 functions that a foundation might serve and evaluates each use case. The Grin community came to the 
 conclusion that while foundations are useful, they do not provide the only solution to governance problems, and 
-have therefore opted to remain a completely decentralized community-driven project. Currently, decisions are made at periodic 
-governance meetings that are convened on Gitter with community members, where an agenda is discussed and decisions are 
-ratified. These meeting agendas and minutes can be found in the Grin Forums governance section. An example of the 
-outcomes of such a meeting can be seen in [[23]].
+have therefore opted to remain a completely decentralized community-driven project. Currently, decisions are made at 
+periodic governance meetings that are convened on Gitter with community members, where an agenda is discussed and 
+decisions are ratified. These meeting agendas and minutes can be found in the Grin Forums governance section. An example 
+of the outcomes of such a meeting can be seen in [[23]].
 
-Neither project will engage in an Initial Coin Offering (ICO) or pre-mine, but the two projects also have different funding models. BEAM set up a 
-Limited Liability Company (LLC) and has attracted investors to it for its initial round of funding. For sustainability, BEAM will put 20% of each 
-mining block rewards into a treasury to be used to fund further development and promotion of BEAM, as well as to fund a 
-non-profit BEAM Foundation that will take over the management of the protocol during the first year after launch [[24]]. 
+Neither project will engage in an Initial Coin Offering (ICO) or pre-mine, but the two projects also have different 
+funding models. BEAM set up a Limited Liability Company (LLC) and has attracted investors to it for its initial round of 
+\ non-profit BEAM Foundation that will take over the management of the protocol during the first year after launch [[24]]. 
 The goal of the Foundation will be to support maintenance and further development of BEAM; promote relevant 
 cryptographic research; support awareness and education in the areas of financial privacy; and support academic work in 
 adjacent areas. In the industry, this treasury mechanism is called a *dev tax*. Grin will not levy a *dev tax* on the 
@@ -229,8 +231,9 @@ mining rewards, and will rely on community participation and community funding. 
 support, but these funding campaigns are conducted according to their "Community Funding Principles" [[25]], which will 
 be conducted on a "need-by-need" basis. A campaign will specify a specific need it aims to fulfill (e.g. "Hosting 
 fees for X for the next year") and the funding will be received by the community member who ran the campaign. This will 
-provide 100% visibility regarding who is responsible for the received funds. An example of a funding campaign is the Developer 
-Funding Campaign run by Yeastplume to fund his full-time involvement in the project from October&nbsp;2018 to February&nbsp;2019. Refer to [[26]].
+provide 100% visibility regarding who is responsible for the received funds. An example of a funding campaign is the 
+Developer Funding Campaign run by Yeastplume to fund his full-time involvement in the project from October&nbsp;2018 to 
+February&nbsp;2019. Refer to [[26]].
 
 In terms of the monetary policy of the two projects, BEAM has stated that it will be using a deflationary model with 
 periodic halving of its mining reward and a maximum supply of BEAM of ~262&nbsp;million coins. BEAM will start with 
@@ -239,8 +242,8 @@ periodic halving of its mining reward and a maximum supply of BEAM of ~262&nbsp;
 for this approach in [[27]]. This approach will asymptotically tend towards a zero percent dilution as the supply 
 increases, instead of enforcing a set supply [[28]]. Grin has not yet specified its mining reward or fees structure, 
 but based on its current documentation, it is planning on a 60&nbsp;grin per block reward. Neither project has made a 
-final decision regarding how to structure fees, but the Grin project has started to explore how to set a fee baseline by using 
-a metric of "fees per reward per minute" [[28]].
+final decision regarding how to structure fees, but the Grin project has started to explore how to set a fee baseline by 
+using a metric of "fees per reward per minute" [[28]].
 
 ## Conclusions, Observations and Recommendations
 
@@ -298,7 +301,8 @@ to see how their various decisions play out, both technically and in terms of th
 [4]: https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf
 "BEAM: The Scalable Confidential Cryptocurrency"
 
-[[5]] A. Gibson, "Flipping the Scriptless Script on Schnorr" [online]. Available:&nbsp;<https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: 2018&#8209;09&#8209;30.
+[[5]] A. Gibson, "Flipping the Scriptless Script on Schnorr" [online]. 
+Available:&nbsp;<https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: 2018&#8209;09&#8209;30.
 
 [5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/
 "Flipping the Scriptless Script on Schnorr"
@@ -481,24 +485,31 @@ BEAM discussion.
 
 ### Appendix A: Cuckoo/Cuckatoo Cycle Proof of Work Algorithm
 
-The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edges in a bipartite graph of N nodes and M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from one set to the other. As an example, let's consider nodes with even indices to be in one group and nodes with odd indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N = 8 and M = 4. So if we are looking for cycles of length&nbsp;4, we can easily confirm that none exist in Figure 2. By adjusting the number of edges present in  the graph vs. the number of nodes we can control, the probability that a cycle of a certain length exists in the graph. When looking for cycles of length&nbsp;4, the difficulty illustrated in Figure 2 a 4/8 (M/N) graph would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
+The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edges in a bipartite graph of N nodes and 
+M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from 
+one set to the other. As an example, let's consider nodes with even indices to be in one group and nodes with odd 
+indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N = 8 and M = 4. So if 
+we are looking for cycles of length&nbsp;4, we can easily confirm that none exist in Figure 2. By adjusting the number 
+of edges present in  the graph vs. the number of nodes we can control, the probability that a cycle of a certain length 
+exists in the graph. When looking for cycles of length&nbsp;4, the difficulty illustrated in Figure 2 a 4/8 (M/N) graph 
+would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges.png" width="250"/></p>
 <center><strong>Figure 2: Eight Nodes with Four Edges, no Solution 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
 
 If we increase the number of edges in the graph relative to the number of nodes, we adjust the probability of a cycle 
-occurring in the randomly chosen set of edges. Figure&nbsp;3 shows an example of M&nbsp;=&nbsp;7 and N&nbsp;=&nbsp;8, and it can be seen 
-that a four-edge cycle appeared. Thus, we can control the probability of a cycle of a certain length occurring by 
-adjusting the ratio of M/N [[29]].
+occurring in the randomly chosen set of edges. Figure&nbsp;3 shows an example of M&nbsp;=&nbsp;7 and N&nbsp;=&nbsp;8, 
+and it can be seen that a four-edge cycle appeared. Thus, we can control the probability of a cycle of a certain length 
+occurring by adjusting the ratio of M/N [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges_cycle.png" width="250"/></p>
 <center><strong>Figure 3: Cycle Found from 0-5-4-1-0 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
 
 Detecting that a cycle of a certain length has occurred in a graph with randomly selected edges becomes significantly 
-more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22-node graph with 14&nbsp;random edges in it. Can 
-you determine if a cycle of eight edges is present? [[29]]
+more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22-node graph with 14&nbsp;random edges in it. 
+Can you determine if a cycle of eight edges is present? [[29]]
 
 <p align="center"><img src="sources/cuckoo_base_numbered_many_edges.png" width="650"/></p>
 <center><strong>Figure 4: 22 Nodes with 14 Edges, can you find a Cycle Eight Edges Long? 
@@ -511,8 +522,8 @@ functions. Nonces are enumerated for the hashing functions until a cycle of the 
 algorithm has two main control parameters. It is difficult to establish the M/N ratio and the number of nodes in the 
 graph. There are a number of variants of this algorithm that make speed/memory trade-offs [[20]]. In Grin, a third 
 difficulty parameter was introduced to more finely tune the difficulty of the PoW algorithm to ensure a one minute block 
-time in the face of changing network hash rates. This was done by taking a Blake2b hash of the set of nonces and ensuring that 
-the result is above a difficulty threshold [[29]].
+time in the face of changing network hash rates. This was done by taking a Blake2b hash of the set of nonces and 
+ensuring that the result is above a difficulty threshold [[29]].
 
 
 
