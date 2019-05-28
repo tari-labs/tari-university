@@ -108,8 +108,8 @@ and the combined spending and funding transaction script (validation script) wou
 validationScript    = OP_0 <A sig> <C sig> <redeemScript> OP_HASH160 <redeemScriptHash> OP_EQUAL
 ```
 
-When `validationScript` is executed, all values are added to the execution stack in sequence. When opcode `OP_HASH160` is 
-encountered, the preceding value `<redeemScript>` is hashed and added to the stack; and when opcode `OP_EQUAL` is 
+When `validationScript` is executed, all values are added to the execution stack in sequence. When opcode `OP_HASH160` 
+is encountered, the preceding value `<redeemScript>` is hashed and added to the stack; and when opcode `OP_EQUAL` is 
 encountered, the previous two values, hash of the `<redeemScript>` and `<redeemScriptHash>`, are compared and removed 
 from the stack if equal. The top of the stack then contains `<redeemScript>`, which is evaluated with the two entries on 
 top of that, `<A sig>` and `<C sig>`. The last value in the stack, `OP_0`, is needed for a glitch in the `OP_CHECKMULTISIG` 
@@ -139,15 +139,17 @@ but this would be more complex to manage [[4]].
 A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complementary aspects to provide security: 
 [Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
 and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). 
-Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect. Range proofs provide assurance that the currency cannot be inflated and that third parties cannot lock away 
+Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect. 
+Range proofs provide assurance that the currency cannot be inflated and that third parties cannot lock away 
 one's funds. Since Mimblewimble commitments are totally confidential and ownership cannot be proved, anyone can try 
 to spend or mess with unspent coins embedded in those commitments. Fortunately, any new UTXO requires a range proof, and 
 this is impossible to create if the input commitment cannot be opened.
 
 The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let 
 $ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by 
-adding an additional blinding factor $ k\_{x} $ to the commitment. (Refer to [Appendix A](#appendix-a-notation-used) for all 
-notation used.) A valid Mimblewimble transaction would have the following form:
+adding an additional blinding factor $ k\_{x} $ to the commitment. (Refer to [Appendix A](#appendix-a-notation-used) for 
+all notation used.) A valid Mimblewimble transaction would have the following form:
+
 $$
 \begin{aligned} 
 C\_{locked}(v\_1 , k\_1 + k\_x) - C\_a(v\_1 , k\_1) - C\_{fee}(v\_2 , k\_2) + fee &= (\mathbf{0}) \\\\
@@ -197,7 +199,7 @@ have done.
 
 This ensures that public values for each step are not exposed until all commitments have been received. They will apply 
 this simple sharing protocol to all information they need to share with each other. This will be denoted by 
-$ \text{share:} ​$.
+$ \text{share:} $.
 
 
 
@@ -215,14 +217,16 @@ $$
 
 In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while 
 keeping their portion of the shared blinding factor secret. Each of them creates their own private blinding factor 
-$ k\_n ​$ for the multiparty shared commitment and shares the public blinding factor $ k\_nG ​$ with the group:
+$ k\_n $ for the multiparty shared commitment and shares the public blinding factor $ k\_nG $ with the group:
+
 $$
 \text{share:} \mspace{9mu} \lbrace k\_1G, k\_2G, k\_3G \rbrace
 $$
 
 They proceed to calculate their own total excess blinding factors as 
-$ x\_{sn} = \sum k\_{n(change)} - \sum k\_{n(inputs)} - \phi\_n $, with $ \phi_n\ ​$ being a random offset of their own 
+$ x\_{sn} = \sum k\_{n(change)} - \sum k\_{n(inputs)} - \phi\_n $, with $ \phi_n\ $ being a random offset of their own 
 choosing (in this example there is no change): 
+
 $$
 \begin{aligned} 
 x\_{sa} &= 0 - k\_a - \phi\_a \\\\
@@ -266,6 +270,7 @@ $$
 
 Each party now uses their private nonce $ r\_n $, secret blinding factor $ k\_n $ and excess $ x\_{sn} $ to calculate a 
 partial Schnorr signature $ s\_n $:
+
 $$
 \begin{aligned} 
 s\_a &= r_a + e \cdot (k\_1 + x\_{sa}) \\\\
@@ -295,6 +300,7 @@ $$
 
 To validate that no funds are created, the total offset must also be stored in the transaction kernel, so the parties 
 also share their offset and calculate the total:
+
 $$
 \text{share:} \mspace{9mu} \lbrace \phi\_a, \phi\_b, \phi\_c \rbrace \\\\
 \phi\_{tot} = \phi\_a + \phi\_b + \phi\_c
@@ -323,13 +329,15 @@ This scheme involves coloring the UTXO to enable attachment of additional proof 
 they must employ a different set of validation rules and a hash of the UTXO and all metadata. The 
 [Bulletproofs Multiparty Computation](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs) 
 (MPC) protocol can be used in a special way to construct a range proof that can be validated by the miners. Aggregating 
-the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 672&nbsp;bytes, whereas aggregating 16 only consists of 928&nbsp;bytes [[11]]. For this scheme, the simple information sharing protocol 
-will not be adequate; an efficient, robust and secure implementation of the Bulletproof MPC range proof such as that done 
-by Dalek Cryptography [[10]] is suggested. 
+the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of 
+672&nbsp;bytes, whereas aggregating 16 only consists of 928&nbsp;bytes [[11]]. For this scheme, the simple information 
+sharing protocol will not be adequate; an efficient, robust and secure implementation of the Bulletproof MPC range proof 
+such as that done by Dalek Cryptography [[10]] is suggested. 
 
 This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for 
 the combined multiparty funds, but with each using their own secret blinding factor in the commitment. They therefore 
 construct fake commitments that will be used to calculate fake range proofs as follows:
+
 $$
 \begin{aligned} 
 \text{Alice's fake commitment:} \mspace{18mu} C\_1(\frac{v\_1}3,k\_1) &= (\frac{v\_1}3H + k\_1G) \\\\
@@ -356,17 +364,19 @@ objective here is just to create the aggregated range proof. Let the aggregated 
 $ \lbrace C\_1, C\_2, C\_3 \rbrace $ be depicted by $ RP\_{agg} $. The UTXO will then consist of the tuple 
 $ (C\_m , RP\_{agg}) $ and metadata $ \lbrace flag, C\_1, C\_2, C\_3, hash_{C_{m}} \rbrace $. The hash that will secure 
 the metadata is proposed as: 
+
 $$
 hash_{C\_m} = \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_2 || C\_3)
 $$
 
 
- Range proof validation by miners will involve
+Range proof validation by miners will involve
+
 $$
 \begin{aligned} 
 hash_{C\_m} &\overset{?}{=} \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_2 || C\_3) \\\\
 C\_m &\overset{?}{=} C\_1 + C\_2 + C\_3 \\\\
-\text{verify: }  &RP\_{agg}  \text{ for set }  \{ C\_1, C\_2, C\_3 \}
+\text{verify: }  &RP\_{agg}  \text{ for set }  \lbrace  C\_1, C\_2, C\_3 \rbrace 
 \end{aligned}
 $$
 
@@ -387,6 +397,7 @@ deep within the inner-product range proof protocol ([[12]], [[13]], [[14]]).
 
 In order to construct the shared Bulletproof range proof $ RP\_m $, each party starts to calculate their own range proof 
 for commitment $ C\_m(v\_1, \sum \_{j=1}^3 k\_jG) $ as follows:
+
 $$
 \begin{aligned} 
 \text{Alice:} \mspace{18mu} C\_1(v\_1,k\_1) &= (v\_1H + k\_1G) \\\\
@@ -412,8 +423,8 @@ $$
 C\_m(v\_1, \sum \_{j=1}^3 k\_jG) = (v\_1H + \sum \_{j=1}^3 k\_jG) = (v\_1H + (k\_1 + k\_2 + k\_3)G)
 $$
 
-with the UTXO tuple being $ (C\_m ,  RP\_m) ​$. Range proof validation by miners will involve verifying $ RP\_m ​$ for 
-$ C\_m ​$.
+with the UTXO tuple being $ (C\_m ,  RP\_m) $. Range proof validation by miners will involve verifying $ RP\_m $ for 
+$ C\_m $.
 
 
 
@@ -436,6 +447,7 @@ $ C\_m ​$.
 
 Alice, Bob and Carol had a private bet going that Carol won, and they agree to spend the multiparty UTXO to pay Carol 
 her winnings, with the change being used to set up a consecutive multiparty UTXO. This transaction looks as follows:
+
 $$
 \begin{aligned} 
 C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + fee &= (\mathbf{0}) \\\\
@@ -446,6 +458,7 @@ $$
 Similar to the initial transaction, they each create their own private blinding factor $ k^{'}\_n $ for the new 
 multiparty UTXO and share the public blinding factor $ k^{'}\_nG $ with the group. Carol also shares the public 
 blinding factor $ k^{'}\_cG $ for her winnings:
+
 $$
 \begin{aligned} 
 \text{share:} \mspace{9mu} &\lbrace k^{'}\_1G, k^{'}\_2G, k^{'}\_3G \rbrace \\\\
@@ -497,6 +510,7 @@ $$
 
 Each party now calculates their partial Schnorr signature $ s^{'}\_n $ as before, except that Carol also adds her 
 winnings' blinding factor $ k^{'}\_c $ to her signature:
+
 $$
 \begin{aligned} 
 s^{'}\_a &= r^{'}\_a + e^{'} \cdot (k^{'}\_1 + x^{'}\_{sa})\\\\
@@ -506,16 +520,20 @@ s^{'}\_c &= r^{'}\_c + e^{'} \cdot (k^{'}\_3 + x^{'}\_{sa} + k^{'}\_c)
 $$
 
 These partial signatures are then shared with the group 
+
 $$
 \text{share:} \mspace{9mu} \lbrace s^{'}\_a, s^{'}\_b, s^{'}\_c \rbrace
 $$
+
 to enable calculation of the aggregated Schnorr signature as
+
 $$
 s^{'}\_{agg} = s^{'}\_a + s^{'}\_b + s^{'}\_c
 $$
 
 The resulting signature for the transaction is the tuple $ (s^{'}\_{agg},R^{'}\_{agg}) $. The signature is again 
 validated as done previously, using the publicly shared aggregated values $ R^{'}\_{agg} $ and $ P^{'}\_{agg} $:
+
 $$
 s^{'}\_{agg}G \overset{?}{=} R^{'}\_{agg} + e^{'} \cdot P^{'}\_{agg}
 $$
@@ -538,10 +556,10 @@ $$
 ## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
 
 As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the 
-form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n ​$ multiparty 
+form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty 
 Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS)  ([[8]], [[15]]) will be used to enable 
-$ m\text{-of-}n ​$ parties to complete a transaction. The SSSS is a method for $ n ​$ parties to carry shards (shares) 
-$ s\_i ​$ of a message $ s ​$ such that any $ m ​$ of them can reconstruct the message.
+$ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry shards (shares) 
+$ s\_i $ of a message $ s $ such that any $ m $ of them can reconstruct the message.
 
 
 ### Secret Sharing
@@ -556,7 +574,7 @@ of spending, with the last round being the closing round. They have heard of the
 They will each pre-calculate three $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and $ 3 $ shards 
 $ k\_{n\text{-}party\text{-}i} $ for each round according to the SSSS. ([Appendix C](#appendix-c-shamirs-secret-sharing-example) 
 shows an example of Alice's shards for one private blinding factor.) In addition to the shards, they will hash each 
-round's private blinding factor $ \text{H}\_{s}( k\_{n\text{-}i}) ​$ and share that as well so that its correctness can 
+round's private blinding factor $ \text{H}\_{s}( k\_{n\text{-}i}) $ and share that as well so that its correctness can 
 be verified in each round. They continue to do this until they have all their information set up, ready and stored in 
 their wallets.
 
@@ -576,8 +594,9 @@ they decide to spend the multiparty UTXO, only two of them need to be present.
 
 Bob and Carol decide to spend funds, exactly [like before](#spending-the-multiparty-utxo), and for this they need to 
 reconstruct Alice's private blinding factor for round&nbsp;1 and round&nbsp;2. Because Alice did not win anything, she 
-does not need to be present to set up a private blinding factor for an output UTXO the way Carol needs to do. Bob and Carol 
-consequently share the shards Alice gave them: 
+does not need to be present to set up a private blinding factor for an output UTXO the way Carol needs to do. Bob and 
+Carol consequently share the shards Alice gave them: 
+
 $$
 \text{share:} \mspace{9mu} \lbrace  k\_{1\text{-}b1},  k\_{1\text{-}c1},  k\_{1\text{-}b2},  k\_{1\text{-}c2}   \rbrace
 $$
@@ -585,6 +604,7 @@ $$
 They are now able to reconstruct the blinding factors and verify the hashes. If the verification fails, they stop the 
 protocol and schedule a meeting with Alice to have a word with her. With all three together, they will be able to 
 identify the source of the misinformation.
+
 $$
 \text{reconstruct:} \mspace{9mu} k\_{1\text{-}1}, k\_{1\text{-}2} \\\\
 \text{verify:} \mspace{9mu} \text{H}\_{s}( k\_{1\text{-}1})\_{shared} \overset{?}{=} \text{H}\_{s}( k\_{1\text{-}1})\_{calculated} \\\\
@@ -633,8 +653,8 @@ multiparty payment scheme introduced here, the following observations can be mad
    addition, they also validate the public keys used in the transaction.
 
    With Mimblewimble multiparty transactions, miners cannot validate who may be part of a multiparty transaction, only 
-   that the transaction itself complies with basic Mimblewimble rules and that all Bulletproof range proofs are valid. The onus 
-   is on the parties themselves to enforce basic spending protocol validation rules.
+   that the transaction itself complies with basic Mimblewimble rules and that all Bulletproof range proofs are valid. 
+   The onus is on the parties themselves to enforce basic spending protocol validation rules.
 
 1. $ m\text{-of-}n $
 
@@ -809,8 +829,8 @@ $ \lbrace C\_1, C\_2, ... , C\_n \rbrace $.
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in 
 the cited references.
 
-- **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) ​$ threshold secret sharing scheme is a method for 
-$ n ​$ parties to carry shards/shares $ s\_i ​$ of a secret message $ s ​$ such that any $ m ​$ of them can reconstruct 
+- **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for 
+$ n $ parties to carry shards/shares $ s\_i $ of a secret message $ s $ such that any $ m $ of them can reconstruct 
 the message [[15]]. 
   
   - The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shards provides no information regarding $ s $. 
@@ -819,7 +839,7 @@ the message [[15]].
   degree less than $ m $, then $ f(x) $ is determined by
   
   $$
-  f ( x ) = \sum \_ { i = 1 } ^ { m } y \_ { i } \prod \_ { 1 \leq j \leq m \atop i \neq j } \frac { x - x \_ { j } } { x \_ { i } - x \_ { j } }
+  f(x) = \sum \_{i=1}^{m} y \_{i} \prod \_{1 \leq j \leq m \atop i \neq j} \frac{x - x \_{j}}{x \_{i} - x \_{j}}
   $$
   
   - Shamir’s scheme is defined for a secret message $ s \in \mathbb{Z}/p\mathbb{Z} $ with prime $ p $, by setting 
@@ -827,22 +847,22 @@ the message [[15]].
   computes $ f(i) $ for all $ 1 \leq i \leq n $, where
   
   $$
-  f ( x ) = \sum \_ { k = 0 } ^ { m - 1 } a \_ { k } x ^ { k }
+  f(x) = \sum \_{k=0}^{m - 1} a \_{k} x^{k}
   $$
   
-  - The shards $ (i, f(i)) ​$ are distributed to the $ n ​$ distinct parties. Since the secret is the constant term 
-  $ s = a\_0 = f(0) ​$, the secret is recovered from any $ m ​$ shards $ (i, f(i)) ​$ for $ I \subset \{ 1 , \ldots , n \} ​$ 
+  - The shards $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term 
+  $ s = a\_0 = f(0) $, the secret is recovered from any $ m $ shards $ (i, f(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace  $ 
   by
   
   $$
-  s = \sum _ { i \in I } c _ { i } f ( i ) , \text { where each } c _ { i } = \prod _ { j \in I \atop j \neq i } \frac { i } { j - i }
+  s = \sum \_{i \in I} c \_{i} f(i) , \text{ where each } c \_{i} = \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
   $$
 
 [ssss~]: #ssss
 "Shamir's Secret Sharing Scheme is an (m, n) 
 threshold scheme for n parties to carry shares 
-of a secret message such that any m of the 
-them can reconstruct the message."
+of a secret message such that any m of them 
+can reconstruct the message."
 
 
 ### Appendix C: Shamir's Secret Sharing Example
