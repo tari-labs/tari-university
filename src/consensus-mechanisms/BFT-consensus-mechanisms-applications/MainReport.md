@@ -1013,7 +1013,7 @@ certain terms and concepts need to be defined and fleshed out.
 
 #### Consensus
 
-Distributed agents (these could be computers, generals coordinating an attack, or sensors in a nuclear plant)that 
+Distributed agents (these could be computers, generals coordinating an attack, or sensors in a nuclear plant) that 
 communicate via a network (be it digital, courier or mechanical) need to agree on facts in order to act
 as a coordinated whole.
 
