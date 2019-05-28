@@ -195,8 +195,8 @@ the hope that it will make mining possible on commodity hardware.
 In August 2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely that an 
 ASIC would be available for the Cuckoo cycle algorithm [[21]]. While acknowledging that ASIC mining is 
 inevitable, Grin is concerned that the current ASIC market is very centralized (i.e. Bitmain), and it wants to 
-foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that A
-SICs will have become more of a commodity and thus decentralized.
+foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that 
+ASICs will have become more of a commodity and thus decentralized.
 
 To address this, it was proposed to use two PoW algorithms initially: one that is ASIC Friendly (AF) and one that is 
 ASIC Resistant (AR), and then to select which PoW is used per block to balance the mining rewards between 
