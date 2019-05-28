@@ -19,6 +19,7 @@ div.mywrap {
 - [Background](#background)
   - [Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell](#bitcoin--mtext-of-n--multisig-in-a-nutshell)
   - [Security of the Mimblewimble Blockchain](#security-of-the-mimblewimble-blockchain)
+  - [The importance of Range Proofs](#the-importance-of-range-proofs)
   - [Secure Sharing Protocol](#secure-sharing-protocol)
 - [Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO](#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo)
   - [Simple Sharing Protocol](#simple-sharing-protocol)
@@ -55,7 +56,7 @@ that must be fulfilled for the UTXOs linked to the P2SH payment address to be sp
 
 Unlike Bitcoin, Mimblewimble transactions do not involve payment addresses, as all transactions are confidential. The 
 only requirement for a Mimblewimble UTXO to be spent is the ability to open (or unlock) the 
-[Pederson Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
+[Pedersen Commitment](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
 that contains the tokens; it does not require an "owner" signature. A typical Mimblewimble UTXO looks like this [[9]]:
 
 <div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
@@ -137,35 +138,47 @@ but this would be more complex to manage [[4]].
 ### Security of the Mimblewimble Blockchain
 
 A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complementary aspects to provide security: 
-[Pederson Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
+[Pedersen Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
 and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). 
-Pederson Commitments provide perfectly hiding and computationally binding commitments, i.e. the confidentiality aspect. 
-Range proofs provide assurance that the currency cannot be inflated and that third parties cannot lock away 
-one's funds. Since Mimblewimble commitments are totally confidential and ownership cannot be proved, anyone can try 
-to spend or mess with unspent coins embedded in those commitments. Fortunately, any new UTXO requires a range proof, and 
-this is impossible to create if the input commitment cannot be opened.
+Pedersen Commitments provide perfectly hiding and computationally binding commitments. In Mimblewimble, this means that 
+an adversary cannot determine the value of a transaction, even with infinite computing power (perfectly binding) while 
+he could, with an infeasible large amount of processing power, determine the blinding factor (computationally binding). 
+In addition to range proofs assuring that all values are positive and not too large, strictly in the range $ [0,2^{64} - 1] $, it 
+also prohibits third parties locking away one's funds as demonstrated in the next section. Since Mimblewimble 
+commitments are totally confidential and ownership cannot be proved, anyone can try to spend or mess with unspent coins 
+embedded in those commitments. Fortunately, any new UTXO requires a range proof, and this is impossible to create if the 
+input commitment cannot be opened.
 
-The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let 
-$ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away by 
-adding an additional blinding factor $ k\_{x} $ to the commitment. (Refer to [Appendix A](#appendix-a-notation-used) for 
-all notation used.) A valid Mimblewimble transaction would have the following form:
+
+
+### The importance of Range Proofs
+
+The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. (Refer to 
+[Appendix A](#appendix-a-notation-used) for all notation used.) Let $ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO 
+commitment from Alice that a bad actor, Bob, is trying to lock away. Bob knows that all commitments in a Mimblewimble 
+blockchain are additionally homomorphic. This means that he can theoretically use Alice's commitment as input and create 
+a new opposing output in a transaction that sums to a commitment of the value $ 0 $, i.e. $ (\mathbf{0}) $. For this 
+opposing output Bob will attempt to add an additional blinding factor $ k\_{x} $ to the commitment in such a way that 
+the miners validating the transactions will not complain. 
+
+A valid Mimblewimble transaction would have the following form:
 
 $$
 \begin{aligned} 
-C\_{locked}(v\_1 , k\_1 + k\_x) - C\_a(v\_1 , k\_1) - C\_{fee}(v\_2 , k\_2) + fee &= (\mathbf{0}) \\\\
+C\_\mathrm{locked}(v\_1 , k\_1 + k\_x) - C\_a(v\_1 , k\_1) - C\_b(v\_2 , k\_2) + \mathrm{fee} \cdot H &= (\mathbf{0}) \\\\
 \\\\
-(v\_1 H + (k\_1 + k\_x) G) -  (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + fee &= (\mathbf{0})
+(v\_1 H + (k\_1 + k\_x) G) -  (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0})
 \end{aligned}
-\mspace{70mu} (1)
+\tag{1}
 $$
 
 where the unspent-hiding-blinding commitment from Alice is $ (v\_1 H + k\_1 G) $ and the value of $ (v\_2 H + k\_2 G) $ 
-is equal to $ fee $ to be paid to the miner. The newly created commitment $ (v\_1 H + (k\_1 + k\_x) G) $ would be 
-equally unspendable by Alice and Bob, because neither of them would know the total blinding factor $ k\_1 + k\_x $. 
+is equal to $ \mathrm{fee} \cdot H  $ to be paid to the miner. The newly created commitment $ (v\_1 H + (k\_1 + k\_x) G) $ would 
+be equally unspendable by Alice and Bob, because neither of them would know the total blinding factor $ k\_1 + k\_x $. 
 Fortunately, in order to construct a Bulletproof range proof for the new output $ (v\_1 H + (k\_1 + k\_x) G) $ as 
 required by transaction validation rules, the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known, otherwise the prover 
-(i.e. Bob) would not be able to convince an honest verifier (i.e. the miner) that $ v\_1 $ is non-negative (i.e. in the range 
-$ [0,2^n - 1] $).
+(i.e. Bob) would not be able to convince an honest verifier (i.e. the miner) that $ v\_1 $ is non-negative (i.e. in the 
+range $ [0,2^n - 1] $).
 
 If Bob can convince Alice that she must create a fund over which both of them have signing powers ($ 2\text{-of-}2 $ 
 multisig), it would theoretically be possible to create the required Bulletproof range proof for relation (1) if they 
@@ -210,8 +223,8 @@ funds, and $ C\_a $, $ C\_b $ and $ C\_c $ are their respective input contributi
 
 $$
 \begin{aligned} 
-C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + fee &= (\mathbf{0}) \\\\
-(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee &= (\mathbf{0})
+C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + \mathrm{fee} \cdot H  &= (\mathbf{0}) \\\\
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H  &= (\mathbf{0})
 \end{aligned}
 $$
 
@@ -265,7 +278,7 @@ $$
 The signature challenge $ e $ can now be calculated:
 
 $$
-e = \text{Hash}(R\_{agg} || P\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+e = \text{Hash}(R\_{agg} || P\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H ||height
 $$
 
 Each party now uses their private nonce $ r\_n $, secret blinding factor $ k\_n $ and excess $ x\_{sn} $ to calculate a 
@@ -309,7 +322,7 @@ $$
 The transaction balance can then be validated to be equal to a commitment to the value $ 0 $ as follows:
 
 $$
-(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee \overset{?}{=} 
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H  \overset{?}{=} 
 (0H + ( P\_{agg} + \phi\_{tot})G)
 $$
 
@@ -450,8 +463,8 @@ her winnings, with the change being used to set up a consecutive multiparty UTXO
 
 $$
 \begin{aligned} 
-C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + fee &= (\mathbf{0}) \\\\
-(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee &= (\mathbf{0})
+C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + \mathrm{fee} \cdot H  &= (\mathbf{0}) \\\\
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H  &= (\mathbf{0})
 \end{aligned}
 $$
 
@@ -505,7 +518,7 @@ $$
 The new signature challenge $ e^{'} $ is then calculated as:
 
 $$
-e^{'} = \text{Hash}(R^{'}\_{agg} || P^{'}\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+e^{'} = \text{Hash}(R^{'}\_{agg} || P^{'}\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H ||height
 $$
 
 Each party now calculates their partial Schnorr signature $ s^{'}\_n $ as before, except that Carol also adds her 
@@ -548,7 +561,7 @@ $$
 Lastly, the transaction balance can then be validated to be equal to a commitment to the value $ 0 $:
 
 $$
-(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee \overset{?}{=} 
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H  \overset{?}{=} 
 (0H + (P^{'}\_{agg} + \phi^{'}\_{tot}G))
 $$
 
@@ -808,12 +821,12 @@ Date accessed: 2019&#8209;05&#8209;27.
 This section gives the general notation of mathematical expressions used. It provides important pre-knowledge for the 
 remainder of the report.
 
-- All Pederson Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) 
+- All Pedersen Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) 
 depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
 
 - Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
 
-- A Pederson Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
+- A Pedersen Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
 
 - Let $ \text{H}\_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where 
 $ arg $ is the value being committed to.
