@@ -173,7 +173,7 @@ C\_\mathrm{locked}(v\_1 , k\_1 + k\_x) - C\_a(v\_1 , k\_1) - C\_b(v\_2 , k\_2) +
 $$
 
 where the unspent-hiding-blinding commitment from Alice is $ (v\_1 H + k\_1 G) $ and the value of $ (v\_2 H + k\_2 G) $ 
-is equal to $ \mathrm{fee} $ to be paid to the miner. The newly created commitment $ (v\_1 H + (k\_1 + k\_x) G) $ would 
+is equal to $ \mathrm{fee} \cdot H  $ to be paid to the miner. The newly created commitment $ (v\_1 H + (k\_1 + k\_x) G) $ would 
 be equally unspendable by Alice and Bob, because neither of them would know the total blinding factor $ k\_1 + k\_x $. 
 Fortunately, in order to construct a Bulletproof range proof for the new output $ (v\_1 H + (k\_1 + k\_x) G) $ as 
 required by transaction validation rules, the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known, otherwise the prover 
@@ -223,8 +223,8 @@ funds, and $ C\_a $, $ C\_b $ and $ C\_c $ are their respective input contributi
 
 $$
 \begin{aligned} 
-C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + fee &= (\mathbf{0}) \\\\
-(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee &= (\mathbf{0})
+C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + \mathrm{fee} \cdot H  &= (\mathbf{0}) \\\\
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H  &= (\mathbf{0})
 \end{aligned}
 $$
 
@@ -278,7 +278,7 @@ $$
 The signature challenge $ e $ can now be calculated:
 
 $$
-e = \text{Hash}(R\_{agg} || P\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+e = \text{Hash}(R\_{agg} || P\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H ||height
 $$
 
 Each party now uses their private nonce $ r\_n $, secret blinding factor $ k\_n $ and excess $ x\_{sn} $ to calculate a 
@@ -322,7 +322,7 @@ $$
 The transaction balance can then be validated to be equal to a commitment to the value $ 0 $ as follows:
 
 $$
-(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + fee \overset{?}{=} 
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H  \overset{?}{=} 
 (0H + ( P\_{agg} + \phi\_{tot})G)
 $$
 
@@ -463,8 +463,8 @@ her winnings, with the change being used to set up a consecutive multiparty UTXO
 
 $$
 \begin{aligned} 
-C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + fee &= (\mathbf{0}) \\\\
-(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee &= (\mathbf{0})
+C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + \mathrm{fee} \cdot H  &= (\mathbf{0}) \\\\
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H  &= (\mathbf{0})
 \end{aligned}
 $$
 
@@ -518,7 +518,7 @@ $$
 The new signature challenge $ e^{'} $ is then calculated as:
 
 $$
-e^{'} = \text{Hash}(R^{'}\_{agg} || P^{'}\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = fee||height
+e^{'} = \text{Hash}(R^{'}\_{agg} || P^{'}\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H ||height
 $$
 
 Each party now calculates their partial Schnorr signature $ s^{'}\_n $ as before, except that Carol also adds her 
@@ -561,7 +561,7 @@ $$
 Lastly, the transaction balance can then be validated to be equal to a commitment to the value $ 0 $:
 
 $$
-(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + fee \overset{?}{=} 
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H  \overset{?}{=} 
 (0H + (P^{'}\_{agg} + \phi^{'}\_{tot}G))
 $$
 
