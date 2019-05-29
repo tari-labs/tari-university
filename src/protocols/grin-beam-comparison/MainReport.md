@@ -106,13 +106,13 @@ repository's wiki.
 
 For example, Grin has implemented a method for a node to sync the blockchain very quickly by only downloading a partial 
 history [[11]]. A new node entering the network will query the current head block of the chain and then request the 
-block header at a horizon. In the example, the horizon is initially set at 5,000 blocks before the current head. The 
+block header at a horizon. In the example, the horizon is initially set at 5,000&nbsp;blocks before the current head. The 
 node then checks if there is enough data to confirm consensus. If there isn't consensus, the node will increase its horizon until 
 consensus is reached. At that point, it will download the full UTXO set of the horizon block. This approach does 
 introduce a few security risks, but mitigations are provided and the result is that a node can sync to the network with 
 an order of magnitude less data.
 
-Since the initial writing of this article (October 2018), BEAM has published its solution for fast node 
+Since the initial writing of this article (October&nbsp;2018), BEAM has published its solution for fast node 
 synchronization using macroblocks. A macroblock is a complete state of all UTXOs, periodically created by BEAM 
 nodes [[12]].
 
@@ -168,7 +168,7 @@ however, makes use of a Radix-Hash tree structure for some of its trees. This st
 is also a binary search tree. This provides a number of features that the standard Merkle trees do not have, and which 
 BEAM exploits in its implementation [[17]].
 
-The features discussed here can all be seen in the code at the time of writing, although this is not a guarantee that 
+The features discussed here can all be seen in the code at the time of writing (May&nbsp;2019), although this is not a guarantee that 
 they are working. A couple of features that have been mentioned in the literature as planned for the future, 
 have not yet been implemented. These include embedding signed textual content into transactions that can be used 
 to record contract text [[13]], and issuing confidential assets [[18]].
@@ -186,13 +186,13 @@ resistance lasted for a while, but in early 2018, Bitmain released an ASIC for E
 efficient than GPUs for the Equihash configurations used by Zcash, Bitcoin Gold and Zencash, to name a few. It is 
 possible to tweak the parameters of the Equihash algorithm to make it more memory intensive and thus make current ASICs 
 and the older GPU mining farms obsolete, but it remains to be seen if BEAM will do this. No block time has been published 
-as of the time of writing of this report.
+as of the time of writing of this report (May&nbsp;2019).
 
 Grin initially opted to use the new Cuckoo Cycle PoW algorithm, also purported to be ASIC resistant due to being memory 
 latency bound [[20]]. This means that the algorithm is bound by memory bandwidth rather than raw processor speed, with 
 the hope that it will make mining possible on commodity hardware.
 
-In August 2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely that an 
+In August&nbsp;2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely that an 
 ASIC would be available for the Cuckoo cycle algorithm [[21]]. While acknowledging that ASIC mining is 
 inevitable, Grin is concerned that the current ASIC market is very centralized (i.e. Bitmain), and it wants to 
 foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that 
@@ -200,7 +200,7 @@ ASICs will have become more of a commodity and thus decentralized.
 
 To address this, it was proposed to use two PoW algorithms initially: one that is ASIC Friendly (AF) and one that is 
 ASIC Resistant (AR), and then to select which PoW is used per block to balance the mining rewards between 
-the two algorithms, over a 24-hour period. The Governance committee resolved on 25&nbsp;September&nbsp;2018 to go ahead 
+the two algorithms, over a 24&#8209;hour period. The Governance committee resolved on 25&nbsp;September&nbsp;2018 to go ahead 
 with this approach, using a modified version of the Cuckoo Cycle algorithm, called the Cuckatoo Cycle. The AF algorithm 
 at launch will be Cuckatoo32+, which will gradually increase its memory requirements to make older single-chip ASICs 
 obsolete over time. The AR algorithm is still not defined [[23]].
@@ -223,7 +223,7 @@ of the outcomes of such a meeting can be seen in [[23]].
 
 Neither project will engage in an Initial Coin Offering (ICO) or pre-mine, but the two projects also have different 
 funding models. BEAM set up a Limited Liability Company (LLC) and has attracted investors to it for its initial round of 
-\ non-profit BEAM Foundation that will take over the management of the protocol during the first year after launch [[24]]. 
+non-profit BEAM Foundation that will take over the management of the protocol during the first year after launch [[24]]. 
 The goal of the Foundation will be to support maintenance and further development of BEAM; promote relevant 
 cryptographic research; support awareness and education in the areas of financial privacy; and support academic work in 
 adjacent areas. In the industry, this treasury mechanism is called a *dev tax*. Grin will not levy a *dev tax* on the 
@@ -270,7 +270,7 @@ BEAM project. The following list summarizes the functional similarities and diff
   - Incentives to consume old UTXOs in order to keep the blockchain compact
   - Use of Radix-Hash trees
 
-Both projects are still very young. As of the writing of this report, both are still in the testnet phase, and many of 
+Both projects are still very young. As of the writing of this report (May&nbsp;2019), both are still in the testnet phase, and many of 
 their core design choices have not yet been built or tested. Much of the BEAM wiki is still in Russian, so it is likely 
 that there are details to which we are not yet privy. It will be interesting to keep an eye on these projects 
 to see how their various decisions play out, both technically and in terms of their monetary policy and governance models.
@@ -295,7 +295,7 @@ to see how their various decisions play out, both technically and in terms of th
 [3]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md
 "Introduction to Mimblewimble and Grin"
 
-[[4]] BEAM: The Scalable Confidential Cryptocurrency [online]. Available: 
+[[4]] "BEAM: The Scalable Confidential Cryptocurrency" [online]. Available: 
 <https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf>. Date accessed: 2018&#8209;09&#8209;28.
 
 [4]: https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf
@@ -307,18 +307,18 @@ Available:&nbsp;<https://joinmarket.me/blog/blog/flipping-the-scriptless-script-
 [5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/
 "Flipping the Scriptless Script on Schnorr"
 
-[[6]] Grin Github Repository [online]. Available: <https://github.com/mimblewimble/grin>. 
+[[6]] "Grin Github Repository" [online]. Available: <https://github.com/mimblewimble/grin>. 
 Date accessed: 2018&#8209;09&#8209;30.
 
 [6]: https://github.com/mimblewimble/grin
 "Grin Github Repository"
 
-[[7]] BEAM Github Repository [online]. Available: <https://github.com/beam-mw/beam>. Date accessed: 2018&#8209;09&#8209;30.
+[[7]] "BEAM Github Repository" [online]. Available: <https://github.com/beam-mw/beam>. Date accessed: 2018&#8209;09&#8209;30.
 
 [7]: https://github.com/beam-mw/beam
 "BEAM Github Repository"
 
-[[8]] Grin - Transaction Pool [online]. Available: 
+[[8]] "Grin - Transaction Pool" [online]. Available: 
 <https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md>. Date accessed: 2018&#8209;10&#8209;22.
 
 [8]: https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md
@@ -329,58 +329,59 @@ Date accessed: 2018&#8209;09&#8209;30.
 Date accessed: 2018&#8209;10&#8209;22.
 
 [9]: https://arxiv.org/abs/1701.04439
-"Dandelion: Redesigning the Bitcoin Network for Anonymity"
+"Dandelion: Redesigning the Bitcoin 
+Network for Anonymity"
 
-[[10]] Dandelion in Grin: Privacy-Preserving Transaction Aggregation and Propagation [online]. Available: 
+[[10]] "Dandelion in Grin: Privacy-Preserving Transaction Aggregation and Propagation" [online]. Available: 
 <https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md>. Date accessed: 2018&#8209;09&#8209;30.
 
 [10]: https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md
 "Dandelion in Grin: Privacy-Preserving Transaction Aggregation and Propagation"
 
-[[11]] Grin - Blockchain Syncing [online]. Available: 
+[[11]] "Grin - Blockchain Syncing" [online]. Available: 
 <https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md>. Date accessed: 2018&#8209;10&#8209;22.
 
 [11]: https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md
 "Grin - Blockchain Syncing"
 
-[[12]] BEAM - Node Initialization Synchronization [online]. Available: 
+[[12]] "BEAM - Node Initialization Synchronization" [online]. Available: 
 <https://github.com/beam-mw/beam/wiki/Node-initial-synchronization>. Date accessed: 2018&#8209;12&#8209;24.
 
 [12]: https://github.com/beam-mw/beam/wiki/Node-initial-synchronization
 "BEAM - Node Initialization Synchronization"
 
-[[13]] BEAM Description. Comparison with Classical MW [online]. Available: 
+[[13]] "BEAM Description. Comparison with Classical MW" [online]. Available: 
 <https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW>. Date accessed: 2018&#8209;10&#8209;18.
 
 [13]: https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW
 "BEAM Description. Comparison with Classical MW"
 
-[[14]] BEAM - Wallet Audit [online]. Available: <https://github.com/beam-mw/beam/wiki/Wallet-audit>. 
+[[14]] "BEAM - Wallet Audit" [online]. Available: <https://github.com/beam-mw/beam/wiki/Wallet-audit>. 
 Date accessed: 2018&#8209;09&#8209;30.
 
 [14]: https://github.com/beam-mw/beam/wiki/Wallet-audit
 "BEAM - Wallet Audit"
 
-[[15]] Beam's Offline Transaction using Secure BBS System [online]. Available: 
+[[15]] "Beam's Offline Transaction using Secure BBS System" [online]. Available: 
 <https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system>. 
 Date accessed: 2018&#8209;10&#8209;22.
 
 [15]: https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system/
 "Beam's Offline Transaction using Secure BBS System"
 
-[[16]] GRIN - Merkle Structures [online]. Available: <https://github.com/mimblewimble/grin/blob/master/doc/merkle.md>. 
+[[16]] "GRIN - Merkle Structures" [online]. Available: <https://github.com/mimblewimble/grin/blob/master/doc/merkle.md>. 
 Date accessed: 2018&#8209;10&#8209;22.
 
 [16]: https://github.com/mimblewimble/grin/blob/master/doc/merkle.md
 "GRIN - Merkle Structures"
 
-[[17]] BEAM - Merkle Trees [online]. Available: <https://github.com/beam-mw/beam/wiki/Merkle-trees>. 
+[[17]] "BEAM - Merkle Trees" [online]. Available: <https://github.com/beam-mw/beam/wiki/Merkle-trees>. 
 Date accessed: 2018&#8209;10&#8209;22.
 
 [17]: https://github.com/beam-mw/beam/wiki/Merkle-trees
 "BEAM - Merkle Trees"
 
-[[18]] BEAM - Confidential Assets [online]. Available: <https://github.com/beam-mw/beam/wiki/Confidential-assets>. 
+[[18]] "BEAM - Confidential Assets" [online]. Available: <https://github.com/beam-mw/beam/wiki/Confidential-assets>. 
 Date accessed: 2018&#8209;10&#8209;22.
 
 [18]: https://github.com/beam-mw/beam/wiki/Confidential-assets
@@ -391,9 +392,10 @@ Date accessed: 2018&#8209;10&#8209;22.
 Date accessed: 2018&#8209;09&#8209;30.
 
 [19]: https://www.cryptolux.org/images/b/b9/Equihash.pdf
-"Equihash: Asymmetric Proof-of-work based on the Generalized Birthday Problem"
+"Equihash: Asymmetric Proof-of-work 
+based on the Generalized Birthday Problem"
 
-[[20]] Cuckoo Cycle [online]. Available: <https://github.com/tromp/cuckoo>. Date accessed: 2018&#8209;09&#8209;30.
+[[20]] "Cuckoo Cycle" [online]. Available: <https://github.com/tromp/cuckoo>. Date accessed: 2018&#8209;09&#8209;30.
 
 [20]: https://github.com/tromp/cuckoo
 "Cuckoo Cycle"
@@ -404,48 +406,48 @@ Date accessed: 2018&#8209;09&#8209;30.
 [21]: https://www.grin-forum.org/t/proof-of-work-update/713
 "Proof of Work Update"
 
-[[22]] Regarding Foundations [online]. Available: <https://github.com/mimblewimble/docs/wiki/Regarding-Foundations>. 
+[[22]] "Regarding Foundations" [online]. Available: <https://github.com/mimblewimble/docs/wiki/Regarding-Foundations>. 
 Date accessed: 2018&#8209;09&#8209;30.
 
 [22]: https://github.com/mimblewimble/docs/wiki/Regarding-Foundations
 "Regarding Foundations"
 
-[[23]] Meeting Notes: Governance, Sep 25 2018 [online]. Available: 
+[[23]] "Meeting Notes: Governance, Sep 25 2018" [online]. Available: 
 <https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874>. Date accessed: 2018&#8209;09&#8209;30.
 
 [23]: https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874
 "Meeting Notes: Governance, Sep 25 2018"
 
-[[24]] BEAM Features [online]. Available: <https://www.beam-mw.com/features>. Date accessed: 2018&#8209;09&#8209;30.
+[[24]] "BEAM Features" [online]. Available: <https://www.beam-mw.com/features>. Date accessed: 2018&#8209;09&#8209;30.
 
 [24]: https://www.beam-mw.com/features
 "BEAM Features"
 
-[[25]] Grin's Community Funding Principles [online]. Available: <https://grin-tech.org/funding.html>. 
+[[25]] "Grin's Community Funding Principles" [online]. Available: <https://grin-tech.org/funding.html>. 
 Date accessed: 2018&#8209;09&#8209;28.
 
 [25]: https://grin-tech.org/funding.html
 "Grin's Community Funding Principles"
 
-[[26]] Oct 2018 - Feb 2019 Developer Funding - Yeastplume [online]. Available: <https://grin-tech.org/yeastplume.html>. 
+[[26]] "Oct 2018 - Feb 2019 Developer Funding - Yeastplume" [online]. Available: <https://grin-tech.org/yeastplume.html>. 
 Date accessed: 2018&#8209;09&#8209;30.
 
 [26]: https://grin-tech.org/yeastplume.html
 "Oct 2018 - Feb 2019 Developer Funding - Yeastplume"
 
-[[27]] Monetary Policy [online]. Available: <https://github.com/mimblewimble/docs/wiki/Monetary-Policy>. 
+[[27]] "Monetary Policy" [online]. Available: <https://github.com/mimblewimble/docs/wiki/Monetary-Policy>. 
 Date accessed: 2018&#8209;09&#8209;30.
 
 [27]: https://github.com/mimblewimble/docs/wiki/Monetary-Policy
 "Monetary Policy"
 
-[[28]] Economic Policy: Fees and Mining Reward [online]. Available: <https://github.com/mimblewimble/grin/wiki/fees-mining>. 
+[[28]] "Economic Policy: Fees and Mining Reward" [online]. Available: <https://github.com/mimblewimble/grin/wiki/fees-mining>. 
 Date accessed: 2018&#8209;09&#8209;30.
 
 [28]: https://github.com/mimblewimble/grin/wiki/fees-mining
 "Economic Policy: Fees and Mining Reward"
 
-[[29]] Grin's Proof-of-Work [online]. Available: <https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md>. 
+[[29]] "Grin's Proof-of-Work" [online]. Available: <https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md>. 
 Date accessed: 2018&#8209;09&#8209;30.
 
 [29]: https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md
@@ -456,21 +458,22 @@ Date accessed: 2018&#8209;09&#8209;30.
 Date accessed: 2018&#8209;12&#8209;24.
 
 [30]: https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919
-"The Secure Bulletin Board System (SBBS) Implementation in Beam"
+"The Secure Bulletin Board 
+System (SBBS) Implementation in Beam"
 
-[[31]]: Secure Bulletin Board System (SBBS) [online]. Available: 
+[[31]]: "Secure Bulletin Board System (SBBS)" [online]. Available: 
 <https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)>. Date accessed: 2018&#8209;12&#8209;24.
 
 [31]: https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)
 "Beam's SBBS Specification"
 
-[[32]]: Beam’s Mining Specification [online]. Available: <https://github.com/BeamMW/beam/wiki/BEAM-Mining>. 
+[[32]]: "Beam’s Mining Specification" [online]. Available: <https://github.com/BeamMW/beam/wiki/BEAM-Mining>. 
 Date accessed: 2018&#8209;12&#8209;24.
 
 [32]: https://github.com/BeamMW/beam/wiki/BEAM-Mining
 "Beam's Mining Specification"
 
-[[33]]: Beam’s Transaction Graph Obfuscation [online]. Available: 
+[[33]]: "Beam’s Transaction Graph Obfuscation" [online]. Available: 
 <https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation>. Date accessed: 2018&#8209;12&#8209;24.
 
 [33]: https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation
@@ -488,33 +491,30 @@ BEAM discussion.
 The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edges in a bipartite graph of N nodes and 
 M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from 
 one set to the other. As an example, let's consider nodes with even indices to be in one group and nodes with odd 
-indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N = 8 and M = 4. So if 
-we are looking for cycles of length&nbsp;4, we can easily confirm that none exist in Figure 2. By adjusting the number 
+indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N&nbsp;=&nbsp;8 and M&nbsp;=&nbsp;4. So if 
+we are looking for cycles of length&nbsp;4, we can easily confirm that none exist in Figure&nbsp;2. By adjusting the number 
 of edges present in  the graph vs. the number of nodes we can control, the probability that a cycle of a certain length 
-exists in the graph. When looking for cycles of length&nbsp;4, the difficulty illustrated in Figure 2 a 4/8 (M/N) graph 
+exists in the graph. When looking for cycles of length&nbsp;4, the difficulty, as illustrated in Figure 2, is that a 4/8 (M/N) graph 
 would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges.png" width="250"/></p>
 <center><strong>Figure 2: Eight Nodes with Four Edges, no Solution 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
-
 If we increase the number of edges in the graph relative to the number of nodes, we adjust the probability of a cycle 
 occurring in the randomly chosen set of edges. Figure&nbsp;3 shows an example of M&nbsp;=&nbsp;7 and N&nbsp;=&nbsp;8, 
-and it can be seen that a four-edge cycle appeared. Thus, we can control the probability of a cycle of a certain length 
+and it can be seen that a four-edged cycle appeared. Thus, we can control the probability of a cycle of a certain length 
 occurring by adjusting the ratio of M/N [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges_cycle.png" width="250"/></p>
 <center><strong>Figure 3: Cycle Found from 0-5-4-1-0 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
-
 Detecting that a cycle of a certain length has occurred in a graph with randomly selected edges becomes significantly 
-more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22-node graph with 14&nbsp;random edges in it. 
+more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22&#8209;node graph with 14&nbsp;random edges in it. 
 Can you determine if a cycle of eight edges is present? [[29]]
 
 <p align="center"><img src="sources/cuckoo_base_numbered_many_edges.png" width="650"/></p>
 <center><strong>Figure 4: 22 Nodes with 14 Edges, can you find a Cycle Eight Edges Long? 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
-
 The Cuckoo cycle PoW algorithm is built to solve this problem. The bipartite graph that is analyzed is called a "Cuckoo 
 Hashtable", where a key is inserted into two arrays, each with its own hash function, into a location based on the 
 hash of the key. Each key inserted in this way produces an edge between the locations generated by the two hashing 

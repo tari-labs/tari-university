@@ -17,7 +17,7 @@ Grin is a cryptocurrency, implemented in Rust, that makes use of Mimblewimble tr
 perform Proof-of-Work (PoW) calculations. The main design goals of the Grin project are privacy, transaction scaling 
 and design simplicity to promote long-term maintenance of the Grin source code [[1]].
 
-During the development of the Grin project, the developers have been critcized by the community regarding a number of 
+During the development of the Grin project, the developers have been criticized by the community regarding a number of 
 their design and implementation decisions. This report will look at some of this criticism 
 and determine if there is any truth to these concerns, or if they are unwarranted or invalid. Some suggestions 
 will be made as to how these problems could be mitigated or addressed.
@@ -29,7 +29,7 @@ This report will also investigate Grin's selected emission scheme, PoW algorithm
 
 ## Monetary Policy due to Choice of Static Emission Scheme
 
-Bitcoin has a limited and finite supply of coins. It makes use of 10-minute block times, where the initial reward for 
+Bitcoin has a limited and finite supply of coins. It makes use of 10&#8209;minute block times, where the initial reward for 
 solving the first block was 50&nbsp;BTC. This reward is reduced every four years, by halving it, until a maximum of 
 21&nbsp;million coins are in circulation [[2]]. During this process, the transaction fees and newly minted coins are 
 paid to miners and used as an incentive for miners to maintain the blockchain. Once all 21&nbsp;million Bitcoins 
@@ -52,7 +52,7 @@ Grin's primary motivation for selecting a static emission rate is:
 - it will encourage spending rather than holding of coins.
 
 The selected emission rate will result in Grin becoming a high inflationary currency with more than 10% inflation for 
-the first 10 years, which is higher than most competing cryptocurrencies or successful fiat systems. This is in 
+the first 10&nbsp;years, which is higher than most competing cryptocurrencies or successful fiat systems. This is in 
 comparison to other cryptocurrencies such as Monero, which will have less than 1% inflation after the first eight years 
 in circulation, and a decreasing 0.87% inflation with the start of its tail emissions [[5]]. Monero will have a 
 better potential of being used as a Store of Value (SoV) in the long run.
@@ -63,15 +63,15 @@ high. The high inflation rate may encourage Grin to rather be used as a Medium o
 take approximately 50&nbsp;years for the inflation to drop below 2%. The Grin team believes that the inflation rate is 
 not that high, as many coins are lost and become unusable on a blockchain. These lost coins, which the team believes can 
 be as much as 2% per year of the total supply, should be excluded from the inflation rate calculation [[7]]. The total 
-percentage of lost transactional coins is difficult to estimate [[8]]. It appears that this value is higher for low-
-value coins than for high-value coins, where users tend to be more careful. The Grin team believes that by selecting 
-a high inflation rate, it will improve the distribution of coins, as holding of coins will be discouraged. It also hopes 
+percentage of lost transactional coins is difficult to estimate [[8]]. It appears that this value is higher for low&#8209;
+value coins than for high-value coins, where users tend to be more careful. The Grin team believes that selecting 
+a high inflation rate will improve the distribution of coins, as holding of coins will be discouraged. It also hopes 
 that a high inflation rate will produce natural pricing and limit price manipulation by large coin holders [[7]]. 
 
 Most economists for traditional fiat systems agree that deflation is bad, as it increases debt; and some inflation is 
 good, as it stimulates the economy of a country [[9]]. With inflation, the purchasing power of savings decreases over 
 time. This encourages the purchasing of goods and services, resulting in the currency being used as an MoE rather than 
-as an SoV.  People with debt such as study loans, vehicle loans and home loans, also benefit from inflation, as it 
+as an SoV.  People with debt such as study loans, vehicle loans and home loans also benefit from inflation, as it 
 produces an eroding effect on the total debt for long periods of repayment. Currently, this benefit does not apply to 
 cryptocurrencies, as not much debt exists. This is because it is difficult to maintain successful borrower-lender 
 relationships due to the anonymous nature of cryptocurrencies [[10]].
@@ -149,7 +149,7 @@ security compared to other Public-key cryptography techniques such as RSA [[19]]
 <p align="center"><img src="sources/publickey.png" width="700" /></p>
 
 Secp256k1 is an elliptic curve defined in the Standards for Efficient Cryptography [[20]] and is used for digital 
-signatures in a number of cryptocurrencies such as Bitcoin, Ethereum, EOS and Litecoin. [[21]]. Grin also makes use 
+signatures in a number of cryptocurrencies such as Bitcoin, Ethereum, EOS and Litecoin [[21]]. Grin also makes use 
 of this same elliptic curve [[22]]. Some security experts recommend not using the secp256k1 curve, as some issues have 
 been uncovered, but not necessarily exploited. One of these problems is that the complex-multiplication field 
 discriminant is not high enough to be secure. This could result in potential future exploits, as curves with low 
@@ -190,7 +190,7 @@ good idea, as LMDB seem to be the best key-value store library for blockchain-re
 
 - Selecting the correct emission rate to create a sustainable monetary policy is an important decision. Care should 
 be taken to ensure that the right balance is found between being an SoV and/or an MoE.
-- Weighing the benefits and potential issues of being ASIC friendly compared to ASIC resistant need to be carefully 
+- Weighing the benefits and potential issues of being ASIC friendly compared to ASIC resistant needs to be carefully 
 evaluated.
 - Tools such as SafeCurves can be used to select a secure elliptic curve for an application. Cryptographic curves with 
 even potential security vulnerabilities should rather be ignored.
@@ -204,40 +204,44 @@ misleading.
 Available: <https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d>. Date accessed: 2018&#8209;10&#8209;05.
 
 [1]: https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d
-"Grin: A Lightweight Implementation of the MimbleWimble Protocol, Mattia Franzoni"
+"Grin: A Lightweight Implementation of 
+the MimbleWimble Protocol, Mattia Franzoni"
 
 [[2]] S. Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System" [online]. 
 Available: <<https://bitcoin.org/bitcoin.pdf>. Date accessed: 2018&#8209;10&#8209;05.
 
 [2]: https://bitcoin.org/bitcoin.pdf
-"Bitcoin: A Peer-to-Peer Electronic Cash System, Satoshi Nakamoto"
+"Bitcoin: A Peer-to-Peer Electronic 
+Cash System, Satoshi Nakamoto"
 
 [[3]] A. Barone, "What Happens to Bitcoin after all 21 Million are Mined?" [Online.] 
 Available: <https://www.investopedia.com/tech/what-happens-bitcoin-after-21-million-mined/>. Date accessed: 2018&#8209;10&#8209;07.
 
 [3]: https://www.investopedia.com/tech/what-happens-bitcoin-after-21-million-mined/
-"What Happens to Bitcoin after all 21 Million are Mined? Adam Barone"
+"What Happens to Bitcoin after 
+all 21 Million are Mined? Adam Barone"
 
-[[4]] Emission Rate of Grin [online]. Available: htt<ps://www.grin-forum.org/t/emmission-rate-of-grin/171>. 
+[[4]] "Emission Rate of Grin" [online]. Available: htt<ps://www.grin-forum.org/t/emmission-rate-of-grin/171>. 
 Date accessed: 2018&#8209;10&#8209;15.
 
 [4]: https://www.grin-forum.org/t/emmission-rate-of-grin/171
 "Emission Rate of Grin"
 
-[[5]] Coin Emission and Block Reward Schedules: Bitcoin vs. Monero [online]. Available: <https://www.reddit.com/r/Monero/comments/512kwh/useful_for_learning_about_monero_coin_emission/d78tpgi>. 
+[[5]] "Coin Emission and Block Reward Schedules: Bitcoin vs. Monero" [online]. Available: <https://www.reddit.com/r/Monero/comments/512kwh/useful_for_learning_about_monero_coin_emission/d78tpgi>. 
 Date accessed: 2018&#8209;10&#8209;15.
 
 [5]: https://www.reddit.com/r/Monero/comments/512kwh/useful_for_learning_about_monero_coin_emission/d78tpgi
-"Coin Emission and Block Reward Schedules: Bitcoin vs. Monero"
+"Coin Emission and Block Reward 
+Schedules: Bitcoin vs. Monero"
 
-[[6]] On Grin, MimbleWimble, and Monetary Policy [online]. 
+[[6]] "On Grin, MimbleWimble, and Monetary Policy" [online]. 
 Available: <https://www.reddit.com/r/grincoin/comments/91g1nx/on_grin_mimblewimble_and_monetary_policy/>. 
 Date accessed: 2018&#8209;10&#8209;07.
 
 [6]:  https://www.reddit.com/r/grincoin/comments/91g1nx/on_grin_mimblewimble_and_monetary_policy/
 "On Grin, MimbleWimble, and Monetary Policy"
 
-[[7]] Grin - Monetary Policy, <https://github.com/mimblewimble/docs/wiki/Monetary-Policy>. 
+[[7]] "Grin - Monetary Policy" [online]. Available: <https://github.com/mimblewimble/docs/wiki/Monetary-Policy>. 
 Date accessed: 2018&#8209;10&#8209;08.
 
 [7]: https://github.com/mimblewimble/docs/wiki/Monetary-Policy
@@ -247,64 +251,75 @@ Date accessed: 2018&#8209;10&#8209;08.
 Available: <http://fortune.com/2017/11/25/lost-bitcoins/>. Date accessed: 2018&#8209;10&#8209;08.
 
 [8]: http://fortune.com/2017/11/25/lost-bitcoins/
-"Exclusive: Nearly 4 Million Bitcoin Lost Forever, New Study Says, Jeff J. Roberts and Nicolas Rapp"
+"Exclusive: Nearly 4 Million Bitcoin 
+Lost Forever, New Study Says, 
+Jeff J. Roberts and Nicolas Rapp"
 
 [[9]] Andrew Ancheta, "How Inflationary should Cryptocurrency really be?" [Online.]. 
 Available: <https://cryptobriefing.com/how-inflationary-should-cryptocurrency-be/>. Date accessed: 2018&#8209;11&#8209;06.
 
 [9]: https://cryptobriefing.com/how-inflationary-should-cryptocurrency-be/
-"How Inflationary should Cryptocurrency really be? Andrew Ancheta"
+"How Inflationary should 
+Cryptocurrency really be? Andrew Ancheta"
 
 [[10]] L. Mutch, "Debtcoin: Credit, Debt, and Cryptocurrencies" [online]. 
 Available: <https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/>. 
 Date accessed: 2018&#8209;11&#8209;06.
 
 [10]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/
-"Debtcoin: Credit, Debt, and Cryptocurrencies, Landon Mutch"
+"Debtcoin: Credit, Debt, 
+and Cryptocurrencies, Landon Mutch"
+
 [[11]] Brian Curran, "Inflation vs Deflation: A Guide to Bitcoin & Cryptocurrencies Deflationary Nature" [online]. 
 Available: <https://blockonomi.com/bitcoin-deflation/>. Date accessed: 2018&#8209;11&#8209;06.
 
 [11]: https://blockonomi.com/bitcoin-deflation/
-"Inflation vs Deflation: A Guide to Bitcoin & Cryptocurrencies Deflationary Nature, Brian Curran"
+"Inflation vs Deflation: 
+A Guide to Bitcoin & Cryptocurrencies 
+Deflationary Nature, Brian Curran"
 
 [[12]] A. Hayes, "Why is Deflation Bad for the Economy?" [Online.] 
 Available: <https://www.investopedia.com/articles/personal-finance/030915/why-deflation-bad-economy.asp>. 
 Date accessed: 2018&#8209;11&#8209;06.
 
 [12]: https://www.investopedia.com/articles/personal-finance/030915/why-deflation-bad-economy.asp
-"Why is Deflation Bad for the Economy? Adam Hayes"
+"Why is Deflation Bad 
+for the Economy? Adam Hayes"
 
 [[13]] J. H. Cochrane, "Inflation and Debt" [online]. 
 Available: <https://www.nationalaffairs.com/publications/detail/inflation-and-debt>. Date accessed: 2018&#8209;11&#8209;07.
 
 [13]: https://www.nationalaffairs.com/publications/detail/inflation-and-debt
-"Inflation and Debt, John H. Cochrane"
+"Inflation and Debt, 
+John H. Cochrane"
 
 [[14]] L. Ziyuan, "Think Piece: Fighting Hyperinflation with Cryptocurrencies" [online]. 
 Available: <https://medium.com/@Digix/think-piece-fighting-hyperinflation-with-cryptocurrencies-a08fe86bb66a>. 
 Date accessed: 2018&#8209;11&#8209;07.
 
 [14]: https://medium.com/@Digix/think-piece-fighting-hyperinflation-with-cryptocurrencies-a08fe86bb66a
-"Think Piece: Fighting Hyperinflation with Cryptocurrencies, Lucia Ziyuan"
+"Think Piece: Fighting Hyperinflation 
+with Cryptocurrencies, Lucia Ziyuan"
 
-[[15]] Grin - Proof of Work Update [online]. Available: <https://www.grin-forum.org/t/proof-of-work-update/713>. 
+[[15]] "Grin - Proof of Work Update" [online]. Available: <https://www.grin-forum.org/t/proof-of-work-update/713>. 
 Date accessed: 2018&#8209;10&#8209;15.
 
 [15]: https://www.grin-forum.org/t/proof-of-work-update/713
 "Grin - Proof of Work Update"
 
-[[16]] Grin - Meeting Notes: Governance, Sep 25 2018 [online]. 
+[[16]] "Grin - Meeting Notes: Governance, Sep 25 2018" [online]. 
 Available: <https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874>. Date accessed: 2018&#8209;10&#8209;15.
 
 [16]: https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874
-"Grin - Meeting Notes: Governance, Sep 25 2018"
+"Grin - Meeting Notes: 
+Governance, Sep 25 2018"
 
-[[17]] Cuck(at)oo Cycle [online]. Available: <https://github.com/tromp/cuckoo>. Date accessed: 2018&#8209;10&#8209;15.
+[[17]] "Cuck(at)oo Cycle" [online]. Available: <https://github.com/tromp/cuckoo>. Date accessed: 2018&#8209;10&#8209;15.
 
 [17]: https://github.com/tromp/cuckoo
 "Cuck(at)oo Cycle"
 
-[[18]] 51% Attack [online]. Available: <https://www.investopedia.com/terms/1/51-attack.asp>. Date accessed: 
+[[18]] "51% Attack" [online]. Available: <https://www.investopedia.com/terms/1/51-attack.asp>. Date accessed: 
 2018&#8209;10&#8209;11.
 
 [18]: https://www.investopedia.com/terms/1/51-attack.asp
@@ -315,27 +330,30 @@ Available: <https://hackernoon.com/what-is-the-math-behind-elliptic-curve-crypto
 Date accessed: 2018&#8209;10&#8209;14.
 
 [19]: https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3
-"What is the Math behind Elliptic Curve Cryptography? Hans Knutson"
+"What is the Math behind 
+Elliptic Curve Cryptography? Hans Knutson"
 
-[[20]] Standards for Efficient Cryptography Group [online]. Available: <http://www.secg.org/>. Date accessed: 
+[[20]] "Standards for Efficient Cryptography Group" [online]. Available: <http://www.secg.org/>. Date accessed: 
 2018&#8209;10&#8209;11.
 
 [20]: http://www.secg.org/
-"Standards for Efficient Cryptography Group"
+"Standards for Efficient 
+Cryptography Group"
 
 [[21]] Secp256k1 [online]. Available: <https://en.bitcoin.it/wiki/Secp256k1>. Date accessed: 2018&#8209;10&#8209;15.
 
 [21]: https://en.bitcoin.it/wiki/Secp256k1
 "Secp256k1"
 
-[[22]] Grin - Schnorr Signatures in Grin & Information [online]. 
+[[22]] "Grin - Schnorr Signatures in Grin & Information" [online]. 
 Available: <https://www.grin-forum.org/t/schnorr-signatures-in-grin-information/730>. Date accessed: 
 2018&#8209;10&#8209;08.
 
 [22]: https://www.grin-forum.org/t/schnorr-signatures-in-grin-information/730
-"Grin - Schnorr Signatures in Grin & Information"
+"Grin - Schnorr Signatures 
+in Grin & Information"
 
-[[23]] SafeCurves - CM Field Discriminants [online]. Available: <http://safecurves.cr.yp.to/disc.html>. 
+[[23]] "SafeCurves - CM Field Discriminants" [online]. Available: <http://safecurves.cr.yp.to/disc.html>. 
 Date accessed: 2018&#8209;10&#8209;15.
 
 [23]: http://safecurves.cr.yp.to/disc.html
@@ -345,31 +363,34 @@ Date accessed: 2018&#8209;10&#8209;15.
 Available: <https://cr.yp.to/ecdh/curve25519-20060209.pdf>. Date accessed: 2018&#8209;10&#8209;15.
 
 [24]: https://cr.yp.to/ecdh/curve25519-20060209.pdf
-"Curve25519: New Diffie-Hellman Speed Records, Daniel J. Bernstein"
+"Curve25519: New Diffie-Hellman 
+Speed Records, Daniel J. Bernstein"
 
-[[25]] SafeCurves - Choosing Safe Curves for Elliptic-curve Cryptography [online]. 
+[[25]] "SafeCurves - Choosing Safe Curves for Elliptic-curve Cryptography" [online]. 
 Available: <http://safecurves.cr.yp.to/>. Date accessed: 2018&#8209;10&#8209;10.
 
 [25]: http://safecurves.cr.yp.to/
-"SafeCurves - Choosing Safe Curves for Elliptic-curve Cryptography"
+"SafeCurves - Choosing Safe Curves 
+for Elliptic-curve Cryptography"
 
-[[26]] RocksDB [online]. Available: <https://rocksdb.org/>. Date accessed: 2018&#8209;10&#8209;10.
+[[26]] "RocksDB" [online]. Available: <https://rocksdb.org/>. Date accessed: 2018&#8209;10&#8209;10.
 
 [26]: https://rocksdb.org/
 "RocksDB"
 
-[[27]] LevelDB [online]. Available: 
+[[27]] "LevelDB" [online]. Available: 
 <https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/>. 
 Date accessed: 2018&#8209;10&#8209;15.
 
 [27]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/
 "LevelDB"
-[[28]] HyperLevelDB [online]. Available: <http://hyperdex.org/>. Date accessed: 2018&#8209;10&#8209;15.
+
+[[28]] "HyperLevelDB" [online]. Available: <http://hyperdex.org/>. Date accessed: 2018&#8209;10&#8209;15.
 
 [28]: http://hyperdex.org/
 "HyperLevelDB"
 
-[[29]] LMDB [online]. Available: <https://github.com/LMDB>. Date accessed: 2018&#8209;10&#8209;29.
+[[29]] "LMDB" [online]. Available: <https://github.com/LMDB>. Date accessed: 2018&#8209;10&#8209;29.
 
 [29]: https://github.com/LMDB
 "LMDB"
@@ -379,23 +400,26 @@ Date accessed: 2018&#8209;10&#8209;15.
 Date accessed: 2018&#8209;10&#8209;15.
 
 [30]: https://www.influxdata.com/blog/benchmarking-leveldb-vs-rocksdb-vs-hyperleveldb-vs-lmdb-performance-for-influxdb/
-"Benchmarking LevelDB vs. RocksDB vs. HyperLevelDB vs. LMDB Performance for InfluxDB, Paul Dix"
+"Benchmarking LevelDB vs. RocksDB 
+vs. HyperLevelDB vs. LMDB 
+Performance for InfluxDB, Paul Dix"
 
 [[31]] B. Alex, "Lmdbjava - Benchmarks" [online]. 
 Available: <https://github.com/lmdbjava/benchmarks/blob/master/results/20160630/README.md>. Date accessed: 
 2018&#8209;10&#8209;14.
 
 [31]: https://github.com/lmdbjava/benchmarks/blob/master/results/20160630/README.md
-"Lmdbjava - benchmarks, Ben Alex"
+"Lmdbjava - Benchmarks, Ben Alex"
 
 [[32]] H. Chu, "Lies, Damn Lies, Statistics, and Benchmarks" [online]. 
 Available: <https://www.linkedin.com/pulse/lies-damn-statistics-benchmarks-howard-chu>. Date accessed: 
 2018&#8209;10&#8209;29.
 
 [32]: https://www.linkedin.com/pulse/lies-damn-statistics-benchmarks-howard-chu
-"Lies, Damn Lies, Statistics, and Benchmarks, Howard Chu"
+"Lies, Damn Lies, Statistics, 
+and Benchmarks, Howard Chu"
 
-[[33]] HyperDex Benchmark, Symas Corp [online]. Available: <http://www.lmdb.tech/bench/hyperdex/>. 
+[[33]] "HyperDex Benchmark, Symas Corp" [online]. Available: <http://www.lmdb.tech/bench/hyperdex/>. 
 Date accessed: 2018&#8209;10&#8209;29.
 
 [33]: http://www.lmdb.tech/bench/hyperdex/

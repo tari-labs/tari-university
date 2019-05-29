@@ -1,4 +1,4 @@
-# **Application of *Howey* to Blockchain network token sales**
+# **Application of *Howey* to Blockchain Network Token Sales**
 
 [Introduction](#introduction)
 
@@ -27,7 +27,7 @@
 ## Introduction
 
 Many blockchain networks use, or intend to use, cryptographic tokens ("tokens" or "digital assets") for various 
-purposes. These purposes include as an incentive for network participants to contribute computing power to the network; 
+purposes. These purposes include an incentive for network participants to contribute computing power to the network; 
 or to gain access to certain goods, services or other network functionality. Some promoters of such a network sell 
 tokens, or the right to receive tokens once the network has launched. They then use the sales proceeds to finance 
 development and maintenance of the networks.
@@ -41,7 +41,7 @@ Refer to the following Orders under the Order Instituting Cease-and-Desist Proce
 - Making Findings, and Imposing a Cease-and-Desist Order against Munchee Inc. (the *Munchee* Order);
 - Making Findings, and Imposing Penalties and a Cease-and-Desist Order against CarrierEQ, Inc., 
 D/B/A/ Airfox (the *Airfox* Order);
-- Making Findings, and Imposing Penalties and a Cease-and-Desist Order against Para gon Coin, Inc. (the *Paragon* Order); and
+- Making Findings, and Imposing Penalties and a Cease-and-Desist Order against Paragon Coin, Inc. (the *Paragon* Order); and
 - Making Findings, and Imposing a Cease-and-Desist Order against GladiusNetwork LLC (the *Gladius* Order).
 
 In each case, the SEC's decision to take action has been underpinned by its determination that the digital assets that 
@@ -60,7 +60,7 @@ While the Securities Act [[1]]; relevant case law and administrative proceedings
 the SEC and its officials shed much light on many of the considerations involved in an analysis of whether a given 
 digital asset is a security, the facts and circumstances relating to each token, token offering and sale are typically 
 quite unique. Many who seek to undertake token offerings and sales struggle to achieve clarity regarding whether such 
-offerings and sales must be registered under [[1]] or have to fit within an exemption from the Act's registration 
+offerings and sales must be registered under [[1]], or have to fit within an exemption from the Act's registration 
 requirements. As a result, there is significant regulatory uncertainty surrounding the offering and sale of tokens. 
 
 The Commission recognizes the need for more guidance in this area and continues to assist those seeking to achieve a 
@@ -68,20 +68,23 @@ greater understanding of whether the U.S. federal securities laws apply to the o
 asset. This report: 
 
 - Reviews [[2]] (the "Framework", which was recently published by the SEC's Strategic Hub for Innovation and Financial 
-Technology, along with previous statements by William Hinman, the Director of the SEC's Division of Corporation Finance. 
-**Note:** "The Framework" represents the views of SEC Staff. It is not a rule, regulation or statement of the SEC, and 
-it is not binding on the Divisions of the SEC or the SEC itself.
+  Technology, along with previous statements by William Hinman, the Director of the SEC's Division of Corporation Finance. 
+  **Note:** "The Framework" represents the views of SEC Staff. It is not a rule, regulation or statement of the SEC, and 
+  it is not binding on the Divisions of the SEC or the SEC itself.
+
+  
+
 - Explains how [[2]] is indicative of the SEC's approach to applying the investment contract test laid out in [[3]] to 
-digital assets. The SEC adopted this test, commonly referred to as the *Howey* test [[4]], and has applied the test in 
-subsequent actions involving digital assets.<sup>[f1][footnote_1~]</sup> **Note:** [[3], Section 21(a)] authorizes the 
-SEC to investigate violations of the federal securities laws and, in its discretion, to "publish information concerning 
-any such violations". The Report does not constitute an adjudication of any fact or issue, nor does it make any findings 
-of violations by any individual or entity. 
+  digital assets. The SEC adopted this test, commonly referred to as the *Howey* test [[4]], and has applied the test in 
+  subsequent actions involving digital assets.<sup>[f1][footnote_1~]</sup> **Note:** [[3], Section 21(a)] authorizes the 
+  SEC to investigate violations of the federal securities laws and, in its discretion, to "publish information concerning 
+  any such violations". The Report does not constitute an adjudication of any fact or issue, nor does it make any findings 
+  of violations by any individual or entity. 
 
 In particular, this report examines some of the SEC Staff's statements relating to the fourth prong of the *Howey* test, 
 i.e. the "efforts of others", and discusses factors for promoters of token offerings to consider when assessing whether 
 a token purchaser may have a reasonable expectation of earning profits from the significant efforts of others. It 
-should be noted that this report is in no way intended to constitute or be relied upon as legal advice or to substitute 
+should be noted that this report is in no way intended to constitute or be relied upon as legal advice, or to substitute 
 for obtaining competent legal advice from an experienced attorney.
 
 ## What is a Security?
@@ -128,8 +131,7 @@ is not met, the instrument is not an investment contract.
 While the "efforts of others" prong of the *Howey* test is, at some level, no more important in an application of 
 *Howey* than any of the other prongs, it is frequently the prong on which the most uncertainty hangs. The "efforts of 
 others" is often the focus when it comes to public blockchain networks. This is because the decentralization of control 
-that many such projects seek to foster prompts the following question: does the kind and degree of decentralization that 
-exists mean that any expectation of profits token purchasers may have does not come from the efforts of others for 
+that many such projects seek to foster prompts the following question: do the kind and degree of the existing decentralization mean that any expectation of profits token purchasers may have does not come from the efforts of others for 
 purposes of *Howey*? The determination that token purchasers reasonably expected profits to come from the efforts of a 
 centralized (or at least coordinated) person or group has been central in the SEC's findings that the tokens were 
 securities in each of the recent SEC enforcement actions relating to token offerings and 
@@ -139,35 +141,52 @@ sales.<sup>[f1][footnote_1~]</sup>
 
 ### Background
 
-On 14 June 2018, Hinman delivered a speech<sup>[f2][footnote_2~]</sup> addressing whether "a digital asset that was 
+On 14&nbsp;June&nbsp;2018, Hinman delivered a speech<sup>[f2][footnote_2~]</sup> addressing whether "a digital asset that was 
 originally offered in a securities offering [can] ever later be sold in a manner that does not constitute an offering of 
 a security", and noted two cases where he believed this was indeed possible:
 
 - "where there is no longer any central enterprise being invested in", e.g. purchases of the digital assets related to a 
-decentralized enterprise or network; and
+  decentralized enterprise or network; and
+
+  
+
 - "where the digital asset is sold only to be used to purchase a good or service available through the network on which 
-it was created", e.g. purchases of digital assets for a consumptive purpose. a set of six questions directly related to 
-the application of the "efforts of others" prong of the *Howey* test to offerings and sales of digital assets.
+  it was created", e.g. purchases of digital assets for a consumptive purpose. 
 
 He posed a set of six questions directly related to the application of the "efforts of others" prong of the Howey test 
 to offerings and sales of digital assets:
 
 > 1. Is there a person or group that has sponsored or promoted the creation and sale of the digital asset, the efforts 
-of whom play a significant role in the development and maintenance of the asset and its potential increase in value?
+>   of whom play a significant role in the development and maintenance of the asset and its potential increase in value?
+>
+>   
+>
 > 2. Has this person or group retained a stake or other interest in the digital asset such that it would be motivated to 
-expend efforts to cause an increase in value in the digital asset? Would purchasers reasonably believe such efforts will 
-be undertaken and may result in a return on their investment in the digital asset?
+>   expend efforts to cause an increase in value in the digital asset? Would purchasers reasonably believe such efforts will 
+>   be undertaken and may result in a return on their investment in the digital asset?
+>
+>   
+>
 > 3. Has the promoter raised an amount of funds in excess of what may be needed to establish a functional network, and, 
-if so, has it indicated how those funds may be used to support the value of the tokens or to increase the value of the 
-enterprise? Does the promoter continue to expend funds from proceeds or operations to enhance the functionality and/or 
-value of the system within which the tokens operate?
+>   if so, has it indicated how those funds may be used to support the value of the tokens or to increase the value of the 
+>   enterprise? Does the promoter continue to expend funds from proceeds or operations to enhance the functionality and/or 
+>   value of the system within which the tokens operate?
+>
+>   
+>
 > 4. Are purchasers 'investing', that is seeking a return? In that regard, is the instrument marketed and sold to the 
-general public instead of to potential users of the network for a price that reasonably correlates with the market value 
-of the good or service in the network?
+>   general public instead of to potential users of the network for a price that reasonably correlates with the market value 
+>   of the good or service in the network?
+>
+>   
+>
 > 5. Does application of the Securities Act protections make sense? Is there a person or entity others are relying on 
-that plays a key role in the profit-making of the enterprise such that disclosure of their activities and plans would be 
-important to investors? Do informational asymmetries exist between the promoters and potential purchasers/investors in 
-the digital asset?
+>   that plays a key role in the profit-making of the enterprise such that disclosure of their activities and plans would be 
+>   important to investors? Do informational asymmetries exist between the promoters and potential purchasers/investors in 
+>   the digital asset?
+>
+>   
+>
 > 6. Do persons or entities other than the promoter exercise governance rights or meaningful influence?
 
 (He also posed a separate set of seven questions exploring "contractual or technical ways to structure digital assets so 
@@ -233,12 +252,15 @@ Token purchasers who plan to use their tokens to access a network's functionalit
 the tokens will increase in value. The finding that a token was offered to potential purchasers in a manner inconsistent 
 with a consumptive purpose has been a factor in several of the SEC's recent orders, for example:
 
-- From paragraph 18 of the *Munchee* Order [[1], Section 8A]: "[The] marketing did not use the Munchee App or otherwise 
-specifically target current users of the Munchee App to promote how purchasing MUN tokens might let them qualify for 
-higher tiers and bigger payments on future reviews... Instead, Munchee and its agents promoted the MUN token offering in 
-forums aimed at people interested in investing in Bitcoin and other digital assets").
-- From paragraph 16 of the *Airfox* Order [[1], Section 8A]: "AirFox primarily aimed its promotional efforts for the 
-initial coin offering at digital token investors rather than anticipated users of AirTokens").
+- From paragraph&nbsp;18 of the *Munchee* Order [[1], Section&nbsp;8A]: "[The] marketing did not use the Munchee App or otherwise 
+  specifically target current users of the Munchee App to promote how purchasing MUN tokens might let them qualify for 
+  higher tiers and bigger payments on future reviews... Instead, Munchee and its agents promoted the MUN token offering in 
+  forums aimed at people interested in investing in Bitcoin and other digital assets").
+
+  
+
+- From paragraph&nbsp;16 of the *Airfox* Order [[1], Section&nbsp;8A]: "AirFox primarily aimed its promotional efforts for the 
+  initial coin offering at digital token investors rather than anticipated users of AirTokens").
 
 Accordingly, a promoter may seek to limit the offering and sale of tokens to prospective network users. A promoter may 
 also seek to ensure that, in both its content and intended audience, the marketing, and other communication related to 
@@ -248,17 +270,20 @@ and tokens can actually be used to purchase goods or access services through the
 
 For example:
 
-- Reference [[2], Section 9] states that it is less likely the *Howey* test is met if various characteristics are 
-present, including "[h]olders of the digital asset are immediately able to use it for its intended functionality on the 
-network").
-- Paragraph 7 of the *Airfox* Order [[1], Section 8A] states "The terms of AirFox's initial coin offering purported to 
-require purchasers to agree that they were buying AirTokens for their utility as a medium of exchange for mobile airtime, 
-and not as an investment or a security. At the time of the ICO, this functionality was not available… Despite the 
-reference to AirTokens as a medium of exchange, at the time of the ICO, investors purchased AirTokens based upon 
-anticipation that the value of the tokens would rise through AirFox's future managerial and entrepreneurial efforts."
+- Reference [[2], Section&nbsp;9] states that it is less likely the *Howey* test is met if various characteristics are 
+  present, including "[h]olders of the digital asset are immediately able to use it for its intended functionality on the 
+  network").
+
+  
+
+- Paragraph&nbsp;7 of the *Airfox* Order [[1], Section&nbsp;8A] states "The terms of AirFox's initial coin offering purported to 
+  require purchasers to agree that they were buying AirTokens for their utility as a medium of exchange for mobile airtime, 
+  and not as an investment or a security. At the time of the ICO, this functionality was not available… Despite the 
+  reference to AirTokens as a medium of exchange, at the time of the ICO, investors purchased AirTokens based upon 
+  anticipation that the value of the tokens would rise through AirFox's future managerial and entrepreneurial efforts."
 
 Promoters may also consider whether "restrictions on the transferability of the digital asset are consistent with the 
-asset's use and not facilitating a speculative market" [[2], Section 10]. 
+asset's use and not facilitating a speculative market" [[2], Section&nbsp;10]. 
 
 ### Priming Purchasers' Expectations
 
@@ -266,28 +291,27 @@ The SEC has given much attention to whether token purchasers were led to expect 
 increase token value. In this respect, in bringing enforcement actions, the SEC has highlighted statements made by 
 promoters that specifically tout the opportunity to profit from purchasing a token.
 
-For example, from paragraph 17 of the *Munchee* Order [[1, Section 8A]:
+For example, from paragraph&nbsp;17 of the *Munchee* Order [[1](https://www.loc.gov/item/uscode1934-001015002a/), Section&nbsp;8A]]:
 
 > Munchee made public statements or endorsed other people's public statements that touted the opportunity to profit. 
-For example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote '199% GAINS 
-on MUN token at ICO price! Sign up for PRE-SALE NOW!' The linked video featured a person who said 'Today we are going 
-to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you'll probably most likely 
-get a return on it.' This person… 'speculate[d]' that a \\$1,000 investment could create a \$94,000 return.
->
+> For example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote '199% GAINS 
+> on MUN token at ICO price! Sign up for PRE&#8209;SALE NOW!' The linked video featured a person who said 'Today we are going 
+> to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you'll probably most likely 
+> get a return on it.' This person… 'speculate[d]' that a \\$1,000 investment could create a \$94,000 return.
 
 Promotional statements explaining that tokens would be listed on digital asset exchanges for secondary trading also draw 
 attention. Refer to the following examples. 
 
-- From paragraph 13 of the *Munchee* Order [[1], Section 8A]: Munchee stated it would work to ensure that MUN holders 
-would be able to sell their MUN tokens on secondary markets, saying that 'Munchee will ensure that MUN token is available 
-on a number of exchanges in varying jurisdictions to ensure that this is an option for all token-holders.');
+- From paragraph&nbsp;13 of the *Munchee* Order [[1], Section&nbsp;8A]: Munchee stated it would work to ensure that MUN holders 
+would be able to sell their MUN tokens on secondary markets, saying that "Munchee will ensure that MUN token is available 
+on a number of exchanges in varying jurisdictions to ensure that this is an option for all token-holders.");
 
-- From paragraph 22 of the *Gladius* Order [[1], Section 8A]: During and following the offering, Gladius attempted to 
+- From paragraph&nbsp;22 of the *Gladius* Order [[1], Section 8A]: During and following the offering, Gladius attempted to 
 make GLA Tokens available for trading on major digital asset trading platforms. On Gladius Web Pages, Gladius principals 
-and agents stated that '[w]e've been approached by some of the largest exchanges, they're very interested,' and 
+and agents stated that "[w]e've been approached by some of the largest exchanges, they're very interested," and 
 represented that the GLA Token would be available to trade on 'major' trading platforms after the ICO.
 
-- From [[2], page 5], which states that it is more likely that there is a reasonable expectation of profit if various 
+- From [[2], page&nbsp;5], which states that it is more likely that there is a reasonable expectation of profit if various 
 characteristics are present, including if the digital asset is marketed using "[t]he availability of a market for the 
 trading of the digital asset, particularly where the [promoter] implicitly or explicitly promises to create or otherwise 
 support a trading market for the digital asset".
@@ -296,14 +320,14 @@ Secondary trading on exchanges provides token holders an alternative to using th
 when facilitated and highlighted by the promoter, can support a finding of investment intent for token purchasers, i.e. 
 buying with an eye on reselling for a profit instead of consuming goods or services through the network. 
 
-The Framework [[2], Section 6] states that it is more likely there is a reasonable expectation of profit if various 
+The Framework [[2], Section&nbsp;6] states that it is more likely there is a reasonable expectation of profit if various 
 characteristics are present, including if "the digital asset is offered broadly to potential purchasers as compared to 
 being targeted to expected users of the goods or services or those who have a need for the functionality of the 
 network", and/or "[t]he digital asset is offered and purchased in quantities indicative of investment intent instead of 
 quantities indicative of a user of the network". 
 
 The Framework [[2]] also notes that purchasers may have an expectation that the promoter will "undertake efforts to 
-promote its own interests and enhance the value of the network or digital assets" [[2], Section 5]. Token purchasers who 
+promote its own interests and enhance the value of the network or digital assets" [[2], Section&nbsp;5]. Token purchasers who 
 are not aware of the promoter's interest in the network's success, such as through the promoter having retained a stake 
 in the tokens, should not have any reason to expect the promoter to undertake any efforts to drive token value in order 
 to increase its own profits. 
@@ -329,9 +353,9 @@ sale of digital assets.
 
 ## Footnotes 
 
-**f1:**&nbsp;&nbsp;&nbsp;<a name="footnote_1"> </a>For examples, refer to paragraph 32 of the *Munchee* Order and 
-paragraph 21 of the *Airfox* Order and accompanying text. <br>
-**Paragraph 32 of *Munchee* Order:** "MUN token 
+**f1:**&nbsp;&nbsp;&nbsp;<a name="footnote_1"> </a>For examples, refer to paragraph&nbsp;32 of the *Munchee* Order and 
+paragraph&nbsp;21 of the *Airfox* Order and accompanying text. <br>
+**Paragraph&nbsp;32 of *Munchee* Order:** "MUN token 
 purchasers had a reasonable expectation of profits from their investment in the Munchee enterprise. The proceeds of the 
 MUN token offering were intended to be used by Munchee to build an "ecosystem" that would create demand for MUN tokens 
 and make MUN tokens more valuable".<br> **Paragraph 21 of *Airfox* Order:** "AirFox told investors that the company 
@@ -341,16 +365,16 @@ expected they would profit from the success of AirFox's efforts to grow the ecos
 value of AirTokens".
 
 [footnote_1~]: #footnote_1
-"For examples, refer to paragraph 32 of the *Munchee* Order 
-and paragraph 21 of the *Airfox* Order and accompanying text...'"
+"For examples, refer to paragraph&nbsp;32 of the *Munchee* Order 
+and paragraph&nbsp;21 of the *Airfox* Order and accompanying text...'"
 
 **f2:**&nbsp;&nbsp;&nbsp;<a name="footnote_2"> </a>William Hinman, Director of the Division of Corp. Fin., SEC, Remarks 
-at the Yahoo Finance All Markets Summit: Crypto: Digital Asset Transactions: When Howey Met Gary (Plastic) (14 June 2018).
+at the Yahoo Finance All Markets Summit: Crypto: Digital Asset Transactions: When Howey Met Gary (Plastic) (14&nbsp;June&nbsp;2018).
 
 [footnote_2~]: #footnote_2
 "William Hinman, Director of the Division of Corp. Fin., SEC..."
 
-**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_3"> </a>Reference [[2], Section 4] states that it is more likely that the 
+**f3:**&nbsp;&nbsp;&nbsp;<a name="footnote_3"> </a>Reference [[2], Section&nbsp;4] states that it is more likely that the 
 purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes 
 "[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an 
 unaffiliated, dispersed community of network users".
@@ -375,9 +399,10 @@ Securities Act of, 15 U.S.C.
 Available: <https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets>>. Date accessed: 2019-03-10.
 
 [2]: https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets
-"Framework for 'Investment Contract' Analysis of Digital Assets."
+"Framework for 'Investment Contract'
+Analysis of Digital Assets."
 
-[[3]] "U.S. Congress. United States Code: Securities Exchanges, 15 U.S.C. §§ 78a-78jj, 1964"  [online].
+[[3]] "U.S. Congress. United States Code: Securities Exchanges, 15 U.S.C. §§ 78a-78jj, 1964" [online].
 Available: <https://www.loc.gov/item/uscode1964-003015002b/>. Date accessed: 2019-03-07.
 
 [3]: https://www.loc.gov/item/uscode1964-003015002b/
@@ -391,18 +416,17 @@ Date accessed: 2019-04-05.
 [4]: https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.
 "SEC v. W. J. Howey Co., 328 U.S. 293 (1946)."
 
-[[5]] "U.S. Securities and Exchange Commission, What We Do"  [online]. Available: <https://www.sec.gov/Article/whatwedo.html>.
-Date accessed: 2018-03-07.
+[[5]] "U.S. Securities and Exchange Commission, What We Do" [online]. Available: <https://www.sec.gov/Article/whatwedo.html>. Date accessed: 2018&#8209;03&#8209;07.
 
 [5]: https://www.sec.gov/Article/whatwedo.html
 "U.S. Securities and Exchange Commission, What We Do"
 
-[[6]] Guillermo Jimenez, SEC's Crypto Czar: "Stablecoins might be violating securities laws", Decrypt (2019) [online]. 
+[[6]] Guillermo Jimenez, SEC's Crypto Czar: "Stablecoins might be Violating Securities Laws", Decrypt (2019) [online]. 
 Available: <https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-laws>.
 Date accessed: 2019-03-19.  
 
 [6]: https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-lawsquot
-"Stablecoins might be violating securities laws"
+"Stablecoins might be Violating Securities Laws"
 
 
 
@@ -410,8 +434,12 @@ Date accessed: 2019-03-19.
 ## Contributors
 
 - <https://github.com/willacy>
+
+- https://github.com/hansieodendaal
+
 - <https://github.com/anselld>
-- <https://github.com/hansieodendaal>
+
+  
 
   
 
