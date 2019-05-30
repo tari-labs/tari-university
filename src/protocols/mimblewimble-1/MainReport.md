@@ -44,7 +44,7 @@ be by email, Instant Messaging (IM) or carrier pigeon.
 We'll explain how Alice can send Tari to Bob using a two-party protocol for Mimblewimble. Multiparty transactions are
 similar, but the flow of information is a bit different and takes place over additional communication rounds.
 
-Let's say Alice has 300&nbsp;µT and she wants to send 200 &nbsp;µT to Bob.
+Let's say Alice has 300 µT and she wants to send 200 µT to Bob.
 
 Here’s the basic transaction:
 
@@ -143,7 +143,7 @@ $$ x_s = k_2 - k_1 $$
 A simple way for Alice to calculate her excess (and how the Tari wallet software does it) is to sum
 her output blinding factors and minus the sum of her input blinding factors.
 
-Let's say Alice was trying to create some money for herself and made the change 100&nbsp;µT instead of 90. In this instance,
+Let's say Alice was trying to create some money for herself and made the change 100 µT instead of 90. In this instance,
 the sum of the outputs and inputs would not cancel on _H_ and we would have
 
 $$X^* = 10.H + x_s.G$$
@@ -289,8 +289,8 @@ be added to the blockchain.
 
 ## Stopping Fraud
 
-Now let's say Alice tried to be sneaky and used \\( X^* \\) as her excess; the one where she gave herself 100&nbsp;µT change
-instead of 90&nbsp;µT. Now the values won't balance. The sum of outputs, inputs and fees will look something like this:
+Now let's say Alice tried to be sneaky and used \\( X^* \\) as her excess; the one where she gave herself 100 µT change
+instead of 90 µT. Now the values won't balance. The sum of outputs, inputs and fees will look something like this:
 
 $$ 10.H + (x_s + k_b).G ​$$
 

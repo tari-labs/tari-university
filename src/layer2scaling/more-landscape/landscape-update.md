@@ -1,50 +1,13 @@
 # Layer 2 Scaling Survey (Part 2)
 
 - [Introduction](#introduction)
-
 - [Layer 2 Scaling Current Initiatives (Updated)](#layer-2-scaling-current-initiatives-updated)
   - [TumbleBit](#tumblebit)
-  - [What is it?](#what-is-it)
-  - [Who does it?](#who-does-it)
-  - [Strengths](#strengths)
-  - [Weaknesses](#weaknesses)
-  - [Opportunities](#opportunities)
-
-- [Counterparty](#counterparty)
-  - [What is it?](#what-is-it-1)
-  - [Who uses it?](#who-uses-it)
-  - [Strengths](#strengths-1)
-  - [Weaknesses](#weaknesses-1)
-  - [Opportunities](#opportunities-1)
-
-- [2-Way Pegged Secondary Blockchains](#a2-way-pegged-secondary-blockchains)
-  - [What are they?](#what-are-they)
-  - [Who does them?](#who-does-them)
-  - [Strengths](#strengths-2)
-  - [Weaknesses](#weaknesses-2)
-  - [Opportunities](#opportunities-2)
-
-- [Lumino](#lumino)
-  - [What is it?](#what-is-it-2)
-  - [Who does it?](#who-does-it-2)
-  - [Strengths](#strengths-3)
-  - [Weaknesses](#weaknesses-3)
-  - [Opportunities](#opportunities-3)
-
-- [Scriptless Scripts](#scriptless-scripts)
-  - [What is it?](#what-is-it-3)
-  - [Who does it?](#who-does-it-2)
-  - [Strengths](#strengths-4)
-  - [Weaknesses](#weaknesses-4)
-  - [Opportunities](#opportunities-4)
-
-- [Directed Acyclic Graph (DAG) Derivative Protocols](#directed-acyclic-graph-dag-derivative-protocols)
-  - [What is it?](#what-is-it-4)
-  - [Who does it?](#who-does-it-3)
-  - [Strengths](#strengths-5)
-  - [Weaknesses](#weaknesses-5)
-  - [Opportunities](#opportunities-5)
-
+  - [Counterparty](#counterparty)
+  - [2-Way Pegged Secondary Blockchains](#a2-way-pegged-secondary-blockchains)
+  - [Lumino](#lumino)
+  - [Scriptless Scripts](#scriptless-scripts)
+  - [Directed Acyclic Graph (DAG) Derivative Protocols](#directed-acyclic-graph-dag-derivative-protocols)
 - [Observations](#observations)
 - [References](#references)
 - [Contributors](#contributors)
@@ -61,7 +24,7 @@ Scripts and Directed Acyclic Graph (DAG) Derivative Protocols as layer 2 scaling
 
 ### TumbleBit
 
-#### What is it?
+*What is it?*
 
 The TumbleBit protocol was invented at the Boston University. It is a unidirectional, unlinkable payment hub that is 
 fully compatible with the Bitcoin protocol. TumbleBit allows parties to make fast, anonymous, off-chain payments through 
@@ -88,7 +51,7 @@ TumbleBit combines off-chain cryptographic computations with standard on-chain B
 realize smart contracts [[11]] that are not dependent on Segwit. The most important Bitcoin functionality used here 
 includes hashing conditions, signing conditions, conditional execution, 2-of-2 multi-signatures and timelocking. [[2]]
 
-#### Who does it?
+*Who does it?*
 
 The Boston University provided a proof-of-concept and reference implementation alongside the white paper [[4]]. 
 NTumbleBit [[5]] is being developed as a C# production implementation of the TumbleBit protocol that at the time of 
@@ -100,7 +63,7 @@ separated into two modes, tumbler mode and payment hub mode. The tumbler mode im
 offers risk free unlinkable transactions. Payment hub mode is a way of making off-chain payments possible without 
 requiring implementations like Segwit or the lightning network."* [[3]]
 
-#### Strengths
+*Strengths*
 
 - Anonymity properties. TumbleBit provides unlinkability without the need to trust the Tumbler service, i.e. untrusted 
 intermediary. [[2]]
@@ -125,7 +88,7 @@ to manipulation and censorship." ([[6]], [[7]], [[12]])
 
 - Nearly production ready. The NTumbleBit and Breeze implementations have gained testnet status.
 
-#### Weaknesses
+*Weaknesses*
 
 - Privacy is not 100% proven. Payees have better privacy than the payers, and theoretically collusion involving payees 
 and the Tumbler can exist to discover the identity of the payer. [[13]]
@@ -133,13 +96,13 @@ and the Tumbler can exist to discover the identity of the payer. [[13]]
 Tumbler server goes down.
 - Equal denominations are required. The TumbleBit protocol can only support a common denominator unit value. [[2]]
 
-#### Opportunities
+*Opportunities*
 
 TumbleBit has benefits for Tari as a trustless Masternode matching/batch processing engine with strong privacy features.
 
 ### Counterparty
 
-#### What is it?
+*What is it?*
 
 Counterparty is NOT a blockchain. Counterparty is a token protocol released in January 2014 that operates on Bitcoin. 
 It has a fully functional Decentralized Exchange (DEX), as well as several hardcoded smart contracts defined that 
@@ -191,7 +154,7 @@ security protocol using a trusted federation of mutually distrusting functionari
 this meaning refers to federated in the general definition, i.e. "set up as a single centralized unit within which each 
 state or division keeps some internal autonomy". ([[54]], [[55]], [[28]])
 
-#### Who uses it?
+*Who uses it?*
 
 The most notable projects built on top of Counterparty are [Age of Chains](https://www.ageofchains.com), 
 [Age of Rust](http://spacepirate.io), [Augmentors](https://www.augmentorsgame.com/), [Authparty](http://authparty.io/), 
@@ -215,14 +178,14 @@ transaction value system, whereby tokens as well as containers of tokens can be 
 COVAL ecosystem is thus achievable, because it is not only reliant on the Counterparty federated nodes to execute smart 
 contracts. [[33]]
 
-#### Strengths
+*Strengths*
 
 - Counterparty provides a simple way to add "layer 2" functionality, i.e. hard-coded smart contracts, to an already 
 existing blockchain implementation that supports basic data embedding.
 - Counterparty's embedded consensus model utilizes "permissionless innovation", meaning that even the Bitcoin core 
 developers could not stop the use of the protocol layer without seriously crippling the network.
 
-#### Weaknesses
+*Weaknesses*
 
 - Embedded consensus requires lockstep upgrades from network nodes to avoid forks.
 - Embedded consensus imposes limitations on the ability of the secondary layer to interact with the primary layer's 
@@ -231,14 +194,14 @@ token. Counterparty was not able to manipulate BTC balances or otherwise directl
 this hampers the flexibility of the protocol. It also limits the speed of the protocol to the speed of the underlying 
 blockchain.
 
-#### Opportunities
+*Opportunities*
 
 - Nodes can implement improved consensus models such as Federated Byzantine Agreement. [[55]]
 - Refer to [Scriptless Scripts](#scriptless-scripts).
 
 ### 2-way Pegged Secondary Blockchains
 
-#### What are they?
+*What are they?*
 
 A 2-way peg (2WP) allows the "transfer" of BTC from the main Bitcoin blockchain to a secondary blockchain and vice 
 versa at a fixed rate by making use of an appropriate security protocol. The "transfer" actually involves BTC being 
@@ -269,7 +232,7 @@ BTC on the main Bitcoin blockchain are locked by using a P2SH transaction, where
 instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching 
 the script hash and data, which makes the script evaluate to true. [[23]]
 
-#### Who does them?
+*Who does them?*
 
 - RSK (formerly Rootstock) is a 2WP Bitcoin secondary blockchain using a hybrid sidechain-drivechain security protocol. 
 RSK is scalable up to 100&nbsp;transactions per second (Tx/s) and provides a second-layer scaling solution for Bitcoin, 
@@ -284,7 +247,7 @@ participating exchanges and Bitcoin businesses. [[29]]
 <p align="center"><img src="./sources/Blockstream-Federated-Sidechain.png" width="800" /></p>
 
 
-#### Strengths
+*Strengths*
 
 - Permissionless innovation: Anyone can create a new blockchain project that uses the underlying strengths of the main 
 Bitcoin blockchain using real BTC as the currency. [[20]]
@@ -295,7 +258,7 @@ blockchain or without having to change its protocol, such as Schnorr signatures 
 - Scalability: 2WP secondary blockchains can support larger block sizes and more transactions per second, thus scaling 
 the Bitcoin main blockchain. [[25]]
 
-#### Weaknesses
+*Weaknesses*
 
 - Security: Transferring BTC back into the main Bitcoin blockchain is not secure enough and can be manipulated because 
 Bitcoin does not support SPV from 2WP secondary blockchains. [[21]]
@@ -304,7 +267,7 @@ Bitcoin does not support SPV from 2WP secondary blockchains. [[21]]
 - The DMMS provided by mining is not very secure for small systems, while the trust of the federation/notaries is 
 riskier for large systems. [[28]]
 
-#### Opportunities
+*Opportunities*
 
 2WP secondary blockchains may present interesting opportunities to scale multiple payments that would be associated with 
 multiple non-fungible assets living on a secondary layer. 
@@ -313,7 +276,7 @@ secondary blockchains.
 
 ### Lumino
 
-#### What is it?
+*What is it?*
 
 Lumino Transaction Compression Protocol (LTCP) is a technique for transaction compression that allows the processing of 
 a higher volume of transactions, but the storing of much less information. The Lumino network is a Lightning-like 
@@ -329,27 +292,27 @@ pruned from the blockchain if valid linked PTI information exists. [[17]]
 
 <p align="center"><img src="./sources/LuminoDataPruning.png" width="650" /></p>
 
-#### Who does it?
+*Who does it?*
 
 RSK, which was newly launched on main net in January 2018. The Lumino Network must still be launched in test net. 
 ([[18]], [[19]])
 
-#### Strengths
+*Strengths*
 
 The Lumino Network promises high efficiency in pruning the RSK blockchain.
 
-#### Weaknesses
+*Weaknesses*
 
 - The Lumino Network has not yet been released. 
 - Details about how the Lumino Network will handle payment channels were not decisive in the white paper. [[17]]
 
-#### Opportunities
+*Opportunities*
 
 LTCP pruning may be beneficial to Tari.
 
 ### Scriptless Scripts
 
-#### What is it?
+*What is it?*
 
 *Scriptless Scripts* was coined and invented by mathematician Andrew Poelstra. It entails offering scripting 
 functionality without actual scripts on the blockchain to implement smart contracts. At the time of writing (July 2018) 
@@ -381,7 +344,7 @@ broadcasting the full Schnorr signature, Bob has access to Alice's half Schnorr 
 Schnorr signature of the secret because he already knows the adaptor signature, thereby claiming his prize. This is also 
 known as Zero-Knowledge Contingent payments. ([[34]], [[37]])
 
-#### Who does it?
+*Who does it?*
 
 [grin-tech.org](https://grin-tech.org/)
 
@@ -389,7 +352,7 @@ Mimblewimble is being cited by Andrew Poelstra as being the ultimate *Scriptless
 
 <p align="center"><img src="./sources/Mimblewimble.png" width="500" /></p>
 
-#### Strengths
+*Strengths*
 
 - Data savings: Signature aggregation provides data compression on the blockchain.
 - Privacy: Nothing about the Scriptless Script smart contract, other than the settlement transaction, is ever recorded 
@@ -398,7 +361,7 @@ on the blockchain. No one will ever know that an underlying smart contract was e
 - Implicit scalability: Scalability on the blockchain is achieved by virtue of compressing multiple transactions into a 
 single settlement transaction. Transactions are only broadcast to the blockchain once all preconditions are met.
 
-#### Weaknesses
+*Weaknesses*
 
 Recent work by Maxwell et al. ([[35]], [[36]]) showed that a naive implementation of Schnorr multi-signatures that 
 satisfies key aggregation is not secure, and that the Bellare and Neven (BN) Schnorr signature scheme loses the key 
@@ -409,7 +372,7 @@ the same way as a standard Schnorr signature with respect to a single “aggrega
 from the individual public keys of the signers. Note that the case of interactive signature aggregation where each 
 signer signs their own message must still be proven by a complete security analysis.
 
-#### Opportunities
+*Opportunities*
 
 Tari plans to implement the Mimblewimble blockchain and should implement the *Scriptless Script*s together with the 
 MuSig Schnorr signature scheme. 
@@ -425,7 +388,7 @@ back to the blockchain after the event.
 
 ### Directed Acyclic Graph (DAG) Derivative Protocols
 
-#### What is it?
+*What is it?*
 
 In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite directed graph with no directed cycles. 
 A directed graph is acyclic if and only if it has a topological ordering, i.e. for every directed edge *uv* from vertex 
@@ -471,7 +434,7 @@ miners. [[45]]
 
 DAG derivative protocols are not Layer 2 Scaling solutions, but they offer significant scaling of the primary blockchain.
 
-#### Who does it?
+*Who does it?*
 
 - The School of Engineering and Computer Science, The Hebrew University of Jerusalem ([[44]], [[45]], [[46]], [[50]], [[51]])
   - GHOST, SPECTRE, PHANTOM
@@ -494,7 +457,7 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but they offer signi
   - Nano [[48]]
   - Byteball [[49]]
 
-#### Strengths
+*Strengths*
 
 - Layer 1 scaling: Increased transaction throughput on the main blockchain.
 - Fairness: Better payoff for weak miners.
@@ -502,14 +465,14 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but they offer signi
 - Transaction confirmation times: Confirmation times of several seconds (SPECTRE).
 - Smart contracts: Support smart contracts (PHANTOM).
 
-#### Weaknesses
+*Weaknesses*
 
 - Still not proven 100%, development continuing.
 
 - The DAG derivative protocols differ on important aspects such as miner payment schemes, security models, support for 
 smart contracts, and confirmation times. Thus, all DAG derivative protocols are not created equal - beware!
 
-#### Opportunities
+*Opportunities*
 
 Opportunities exist for Tari in applying the basic DAG principles to make a 51% attack harder by virtue of fairness and 
 miner decentralization resistance. Choosing the correct DAG derivative protocol can also significantly improve Layer 1 

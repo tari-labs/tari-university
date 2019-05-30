@@ -70,7 +70,7 @@ located [[25]].
 ### Namecoin (#307) with Bitcoin (#1)
 
 - Namecoin, the first fork of Bitcoin, introduced merged mining with Bitcoin [[1]] from block 19,200 onwards [[3]]. At 
-the time of writing (May&nbsp;2018), the block height of Namecoin was greater than&nbsp;400,500 [[4]].
+the time of writing (May&nbsp;2018), the block height of Namecoin was greater than 400,500 [[4]].
 - Over the five-day period from 23 May 2018 to 27 May 2018, only 226 out of 752 blocks posted transaction values over 
 and above the block reward of 25 NMC, with an average transaction value of 159.231 NMC including the block reward. [[4]]
 - Slush Pool merged mining Namecoin with Bitcoin rewards all miners with BTC equivalent to NMC via an external exchange 
@@ -86,7 +86,7 @@ service [[5]].
 ### Dogecoin (#37) with Litecoin (#6)
 
 - Dogecoin introduced merged mining with Litecoin [[8]] from block 371,337 onwards [[9]]. At the time of writing 
-(May&nbsp;2018), the block height of Dogecoin was greater than&nbsp;2,240,000  [[10]].
+(May&nbsp;2018), the block height of Dogecoin was greater than 2,240,000  [[10]].
 - Many in the Dogecoin user community believe merged mining with Litecoin saved Dogecoin from a 51% attack [[8]].
 
 | @ 2018-05-30          | Litecoin [[16]] | Dogecoin [[16]] | Ratio   |
@@ -197,13 +197,13 @@ to the Tari blockchain.
 1,546,000 to maintain its Application Specific Integrated Circuit (ASIC) resistance and hence guard against 51% attacks. 
 The Monero team proposes changes to their PoW every scheduled fork (i.e. every six months) ([[14]], [[15]]).
 - An interesting question arises regarding what needs to happen to the Tari blockchain if the Monero blockchain is hard 
-forked. Since the CryptoNight v7 hard fork, the network hash rate for Monero hovers around approximately 500&nbsp;MH/s, 
-whereas in the two months immediately prior it was approximately 1,000&nbsp;MH/s [[20]](https://chainradar.com/xmr/chart). 
+forked. Since the CryptoNight v7 hard fork, the network hash rate for Monero hovers around approximately 500MH/s, 
+whereas in the two months immediately prior it was approximately 1,000MH/s [[20]](https://chainradar.com/xmr/chart). 
 Thus 50% of the hash power can be ascribed to ASICS and botnet miners.
 
 ![MoneroHashRate](./sources/MoneroHashRate.png)
 
-NiceHash statistics for CryptoNight v7 [[21]] show a lag of two days for approximately 100,600&nbsp;miners to get up to speed 
+NiceHash statistics for CryptoNight v7 [[21]] show a lag of two days for approximately 100,600 miners to get up to speed 
 with providing the new hashing power after the Monero hard fork.
 
  <p align="center"><img src="./sources/CryptoNight-v7.png" width="750" /></p>

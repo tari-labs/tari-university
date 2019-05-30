@@ -11,7 +11,7 @@
   - [Masternodes](#masternodes)
   - [Plasma](#plasma)
   - [TrueBit](#truebit)
-  - [Observations](#observations)
+- [Observations](#observations)
 - [References](#references)
 - [Contributors](#contributors)
 
@@ -22,55 +22,42 @@ by the average block creation time, the block size limit, and the number of newe
 (confirmation time). These factors make '*over the counter*' type transactions similar to Master Card or Visa nearly 
 impossible if done on the main blockchain (on-chain).
 
-
-
 <p align="center"><img src="sources/waiting.png" width="470" /></p>
 
-
-
 Let's postulate that blockchain and cryptocurrency "take over the world" and are responsible for all global non-cash 
-transactions performed, i.e. 433.1&nbsp;billion in 2014 to 2015 [[24]]. This means 13,734&nbsp;transactions per second (tx/s) on 
-average! *(To put this into perspective, VisaNet currently processes 160&nbsp;billion transactions per year [[25]] and is 
-capable of handling more than 65,000&nbsp;transaction messages per second [[26]].)* This means that if all of those were 
+transactions performed, i.e. 433.1 billion in 2014 to 2015 [[24]]. This means 13,734 transactions per second (tx/s) on 
+average! *(To put this into perspective, VisaNet currently processes 160 billion transactions per year [[25]] and is 
+capable of handling more than 65,000 transaction messages per second [[26]].)* This means that if all of those were 
 simple single-input-single-output non-cash transactions and performed on:
 
 - SegWit-enabled Bitcoin 'like' blockchains that can theoretically handle ~21.31tx/s, we would need ~644 parallel 
-versions, and with a SegWit transaction size of 190&nbsp;bytes [[27]], the combined blockchain growth would be *~210GB per 
-day*! 
+  versions, and with a SegWit transaction size of 190 bytes [[27]], the combined blockchain growth would be *~210GB per 
+  day*! 
 
 - Ethereum 'like' blockchains, and taking current gas prices into account, Ethereum can theoretically process ~25.4tx/s, 
-then ~541 parallel versions would be needed and, with a transaction size of 109 bytes ([[28]], [[29]]), the combined 
-blockchain growth would be *~120GB per day*!
+  then ~541 parallel versions would be needed and, with a transaction size of 109 bytes ([[28]], [[29]]), the combined 
+  blockchain growth would be *~120GB per day*!
 
 This is why we need a proper scaling solution that would not bloat the blockchain.
 
 The Open Systems Interconnection (OSI) model defines seven layers for communication functions of a computing system. 
-Layer 1 refers to the physical layer and Layer&nbsp;2 to the data link layer. Layer&nbsp;1 is never concerned with functions of 
-Layer&nbsp;2 and up; it just delivers transmission and reception of raw data. In turn, Layer&nbsp;2 only knows about Layer&nbsp;1 and 
-defines the protocols that deliver node-to-node data transfer [[1]].
-
-
+Layer 1 refers to the physical layer and Layer&nbsp;2 to the data link layer. Layer&nbsp;1 is never concerned with 
+functions of Layer&nbsp;2 and up; it just delivers transmission and reception of raw data. In turn, Layer&nbsp;2 only 
+knows about Layer&nbsp;1 and defines the protocols that deliver node-to-node data transfer [[1]].
 
 <p align="center"><img src="sources/OSI_Model.png" width="770" /></p>
 
-
-
 Analogous to the OSI layers for communication, in blockchain technology, decentralized Layer&nbsp;2 protocols, also commonly 
-referred to as Layer&nbsp;2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer&nbsp;2 protocols run 
-on top of the main blockchain (off-chain), while preserving the attributes of the main blockchain (e.g. crypto-economic 
-consensus). Instead of each transaction, only the result of a number of transactions is embedded on-chain [[2]].
+referred to as Layer&nbsp;2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer&nbsp;2 
+protocols run on top of the main blockchain (off-chain), while preserving the attributes of the main blockchain 
+(e.g. crypto-economic consensus). Instead of each transaction, only the result of a number of transactions is embedded 
+on-chain [[2]].
 
 <p align="center"><img src="sources/layer2scaling.png" width="620" /></p>
-
-
-
-
 
 Also:
 
 - Does every transaction need every parent blockchain node in the world to verify it?
-
-  
 
 - Would I be willing to have (temporary) lower security guarantees for most of my day-to-day transactions if I could get 
   them validated (whatever we take that to mean) near-instantly?
@@ -81,15 +68,17 @@ If you can answer "no" and "yes", then you're looking for a Layer&nbsp;2 scaling
 
 Tari is a high-throughput protocol that will need to handle real-world transaction volumes. For example, Big Neon, the 
 initial business application to be built on top of the Tari blockchain, requires high-volume transactions in a short 
-time, especially when tickets sales open and when tickets will be redeemed at an event. Imagine filling an 85,000&nbsp;seat 
-stadium with 72&nbsp;entrance queues on match days. Serialized real-world scanning boils down to approximately 500&nbsp;tickets in four minutes, 
+time, especially when tickets sales open and when tickets will be redeemed at an event. Imagine filling an 85,000 seat 
+stadium with 72 entrance queues on match days. Serialized real-world scanning boils down to approximately 500 tickets in four minutes, 
 or approximately two spectators allowed access per second per queue.
 
 This would be impossible to do with parent blockchain scaling solutions.
 
 
 ## Layer 2 Scaling Current Initiatives
+
 ### Micropayment Channels 
+
 *What are they?*
 
 A micropayment channel is a class of techniques designed to allow users to make multiple Bitcoin transactions without 
@@ -121,8 +110,6 @@ payment channel by broadcasting the final version of the transaction to distribu
 
 <p align="center"><img src="sources/bitcoin-lightning-network-basic.png" width="920" /></p>
 
-
-
 *Who uses them?*
 
 The Lightning Network is spreading across the cryptocurrency landscape. It was originally designed for Bitcoin. However, 
@@ -140,9 +127,9 @@ accessible to the new owner.
 *Weaknesses*
 
 - Micropayment channels are not suitable for making bulk payment, as the intermediate nodes in the multichannel payment 
-network may not be loaded with money to move the funds along. 
+  network may not be loaded with money to move the funds along. 
 - Recipients cannot receive money unless their node is connected and online at the time of the transaction.
-At the time of writing (July&nbsp;2018), channels were only bilateral. 
+  At the time of writing (July&nbsp;2018), channels were only bilateral. 
 
 *Opportunities*
 
@@ -175,39 +162,32 @@ Any change of state within a state channel requires explicit cryptographic conse
     mechanism, called balance proofs, which are also secured by a time-out. These can be settled on the Ethereum 
     blockchain at any time. Raiden Network uses HTLCs in exactly the same manner as the Lightning Network. 
 
- 
-
 <p align="center"><img src="sources/Raiden.png" width="470" /></p>
 
-​      
-
-
-
 - Counterfactual ([[16]], [[19]], [[31]])
-    - Uses state channels as a generalized framework for the integration of native state channels into Ethereum-based 
-        decentralized applications.
-    - A generalized state channel generalized framework is one where state is deposited once, and is then used afterwards 
-        by any application or set of applications.
-    - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain. It is achieved 
-        by making users sign and share commitments to the multisig wallet.
-    - When a contract is counterfactually instantiated, all parties in the channel act as though it has been deployed, 
-        even though it has not.
-    - A global registry is introduced. This is an on-chain contract that maps unique deterministic addresses for any 
-        Counterfactual contract to actual on-chain deployed addresses. The hashing function used to produce the deterministic 
-        address can be any function that takes into account the bytecode, its owner (i.e. the multisig wallet address), and a 
-        unique identifier.
-    - A typical Counterfactual state channel is composed of counterfactually instantiated objects.
+  - Uses state channels as a generalized framework for the integration of native state channels into Ethereum-based 
+    decentralized applications.
+  - A generalized state channel generalized framework is one where state is deposited once, and is then used afterwards 
+    by any application or set of applications.
+  - Counterfactual instantiation means to instantiate a contract without actually deploying it on-chain. It is achieved 
+     by making users sign and share commitments to the multisig wallet.
+  - When a contract is counterfactually instantiated, all parties in the channel act as though it has been deployed, 
+    even though it has not.
+  - A global registry is introduced. This is an on-chain contract that maps unique deterministic addresses for any 
+    Counterfactual contract to actual on-chain deployed addresses. The hashing function used to produce the deterministic 
+    address can be any function that takes into account the bytecode, its owner (i.e. the multisig wallet address), and a 
+    unique identifier.
+  - A typical Counterfactual state channel is composed of counterfactually instantiated objects.
 
-    
 <p align="center"><img src="sources/Counterfactual.png" width="900" /></p>
 
 - Funfair ([[16]], [[23]], [[32]])
   - Uses state channels as a decentralized slot machine gambling platform, but still using centralized server-based 
-        random number generation.
+  random number generation.
   - Instantiates a normal "Raiden-like" state channel (called *fate channel*) between the player and the casino. Final 
-        states are submitted to blockchain after the betting game is concluded.
+  states are submitted to blockchain after the betting game is concluded.
   - Investigating the use of threshold cryptography such as Boneh-Lynn-Shacham (BLS) signature schemes to enable truly 
-        secure random number generation by a group of participants.
+  secure random number generation by a group of participants.
 
 **On NEO:**
 
@@ -243,6 +223,7 @@ Off-chain matching engines make use of a token representation smart contract tha
 contract tokens and vice versa. [[5]]
 
 *Who uses them?*
+
 - Neon Exchange (NEX) ( [[5]], [[35]])
   - NEX uses a NEO decentralized application (dApp) with tokens.
   - Initial support is planned for NEO, ETH, NEP5, and ERC20 tokens.
@@ -269,8 +250,6 @@ contract tokens and vice versa. [[5]]
     fees, signatures, order status and final transfer.
 
   <p align="center"><img src="sources/0xSequence.png" width="620" /></p>
-
-  
 
 *Strengths*
 
@@ -311,6 +290,7 @@ contract tokens and vice versa. [[5]]
 Matching engines in general have opportunities for Tari; the specific scheme is to be investigated further.
 
 ### Masternodes
+
 *What are they?*
 
 A masternode is a server on a decentralized network. It is utilized to complete unique functions in ways ordinary mining 
@@ -320,26 +300,30 @@ incentivized and are rewarded by earning portions of block rewards in the crypto
 Masternodes will get the standard return on their stakes, but will also be entitled to a portion of the transaction fees, 
 allowing for a greater return on investment (ROI) ([[7]], [[9]]).
 
-- Dash Example [[30]]. Dash was the first cryptocurrency to implement the masternode model in its protocol. Under what Dash calls its proof 
-  of service algorithm, a second-tier network of masternodes exists alongside a first-tier network of miners to achieve 
-  distributed consensus on the blockchain. This two-tiered system ensures that proof of service and proof of work perform 
-  symbiotic maintenance of Dash's network. Dash masternodes also enable a decentralized governance system that allows node 
-  operators to vote on important developments within the blockchain. A masternode for Dash requires a stake of 
-  1,000nbsp;DASH. Dash and the miners each have 45% of the block rewards. The other 10% goes to the blockchain's treasury 
-  fund. Operators are in charge of voting on proposals for how these funds will be allocated to improve the network.
+- Dash Example [[30]]. Dash was the first cryptocurrency to implement the masternode model in its protocol. Under what 
+  Dash calls its proof of service algorithm, a second-tier network of masternodes exists alongside a first-tier network 
+  of miners to achieve distributed consensus on the blockchain. This two-tiered system ensures that proof of service and 
+  proof of work perform symbiotic maintenance of Dash's network. Dash masternodes also enable a decentralized governance 
+  system that allows node operators to vote on important developments within the blockchain. A masternode for Dash 
+  requires a stake of 1,000 DASH. Dash and the miners each have 45% of the block rewards. The other 10% goes to the 
+  blockchain's treasury fund. Operators are in charge of voting on proposals for how these funds will be allocated to 
+  improve the network.
 
-- Dash Deterministic Ordering. A special deterministic algorithm is used to create a pseudorandom ordering of the masternodes. By using the hash from 
-  the proof-of-work for each block, security of this functionality is provided by the mining network. 
+- Dash Deterministic Ordering. A special deterministic algorithm is used to create a pseudorandom ordering of the 
+  masternodes. By using the hash from the proof-of-work for each block, security of this functionality is provided by 
+  the mining network. 
 
-- Dash Trustless Quorums. The Dash masternode network is trustless, where no single entity can control the outcome. N&nbsp;pseudorandom masternodes 
-  (Quorum&nbsp;A) are selected from the total pool to act as an oracle for N&nbsp;pseudorandom masternodes (Quorum&nbsp;B) that are 
-  selected to perform the actual task. Quorum&nbsp;A nodes are the nodes that are the closest, mathematically, to the current block hash, while 
-  Quorum&nbsp;B nodes are the furthest. This process is repeated for each new block in the blockchain.
+- Dash Trustless Quorums. The Dash masternode network is trustless, where no single entity can control the outcome. 
+  N pseudorandom masternodes (Quorum&nbsp;A) are selected from the total pool to act as an oracle for 
+  N pseudorandom masternodes (Quorum&nbsp;B) that are selected to perform the actual task. Quorum&nbsp;A nodes are 
+  the nodes that are the closest, mathematically, to the current block hash, while Quorum&nbsp;B nodes are the furthest. 
+  This process is repeated for each new block in the blockchain.
 
-- Dash Proof of Service. Bad actors could also run masternodes. To reduce the possibility of bad acting, nodes must ping the rest of the network 
-  to ensure they remain active. All masternode verification is done randomly via the Quorum system by the masternode 
-  network itself. Approximately 1% of the network is verified each block. This results in the entire masternode network 
-  being verified approximately six times per day. Six consecutive violations result in the deactivation of a masternode.
+- Dash Proof of Service. Bad actors could also run masternodes. To reduce the possibility of bad acting, nodes must ping 
+  the rest of the network to ensure they remain active. All masternode verification is done randomly via the Quorum 
+  system by the masternode network itself. Approximately 1% of the network is verified each block. This results in the 
+  entire masternode network being verified approximately six times per day. Six consecutive violations result in the 
+  deactivation of a masternode.
 
 *Who uses them?*
 
@@ -370,8 +354,8 @@ and if they are randomly chosen to get paid.
 *Opportunities*
 
 - Masternodes do not have a specific standard or protocol; many different implementations exist. If the Tari protocol 
-employs Masternodes, they can be used to facilitate smart contracts off-chain and to enhance the security of the primary 
-blockchain.
+  employs Masternodes, they can be used to facilitate smart contracts off-chain and to enhance the security of the primary 
+  blockchain.
 - Masternodes increase the incentives for people to be involved with Tari.
 
 
@@ -383,7 +367,7 @@ proofs (block header hashes) submitted on the root chain. Plasma enables managem
 persistent record of the ledger on the root blockchain, and without giving custodial trust to any third party. The fraud 
 proofs enforce an interactive protocol of rapid fund withdrawals in case of foul play such as block withholding, and in 
 cases where bad actors in a lower-level tier want to commit blocks to the root chain without broadcasting this to the 
-higher-level tiers&nbsp;[[4]].
+higher-level tiers [[4]].
 
 <p align="center"><img src="sources/Plasma-example-01.png" width="750" /></p>
 
@@ -410,19 +394,19 @@ transition in the reduce step when returning the result [[4]].
 *Who uses it?*
 
 - Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific 
-Side Chains (DAppChains), running on top of Ethereum. ([[4]], [[15]])
+  Side Chains (DAppChains), running on top of Ethereum. ([[4]], [[15]])
 - OMG Network (OmiseGO), using PoS consensus and validation, a Plasma blockchain scaling solution for finance running on 
-top of Ethereum ([[6]], [[14]]).
+  top of Ethereum ([[6]], [[14]]).
 
 *Strengths*
 
 - Not all participants need to be online to update state.
 - Participants do not need a record of entry on the parent blockchain to enable their participation in a Plasma 
-blockchain.
+  blockchain.
 - Minimal data is needed on the parent blockchain to confirm transactions when constructing Plasma blockchains in a tree 
-format.
+  format.
 - Private blockchain networks can be constructed, enforced by the root blockchain. Transactions may occur on a local 
-private blockchain and have financial activity bonded by a public parent blockchain.
+  private blockchain and have financial activity bonded by a public parent blockchain.
 - Rapid exit strategies in case of foul play.
 
 *Weaknesses*
@@ -433,10 +417,11 @@ At the time of writing (Julynbsp;2018), Plasma still needed to be proven on othe
 
 - Has opportunities for Tari as an L2 scaling solution.
 - *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari-specific root 
-blockchain?* 
+  blockchain?* 
   **Note:** This will make the Tari blockchain dependent on another blockchain.
 - The Loom Network's Software Development Kit (SDK) makes it extremely easy for anyone to create a new Plasma blockchain. 
-In less than a year, a number of successful and diverse dAppChains have launched. *The next one could easily be for ticket sales...*
+  In less than a year, a number of successful and diverse dAppChains have launched. *The next one could easily be for 
+  ticket sales...*
 
 
 ### TrueBit

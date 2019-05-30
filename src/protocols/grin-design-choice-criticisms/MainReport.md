@@ -30,9 +30,9 @@ This report will also investigate Grin's selected emission scheme, PoW algorithm
 ## Monetary Policy due to Choice of Static Emission Scheme
 
 Bitcoin has a limited and finite supply of coins. It makes use of 10&#8209;minute block times, where the initial reward for 
-solving the first block was 50&nbsp;BTC. This reward is reduced every four years, by halving it, until a maximum of 
-21&nbsp;million coins are in circulation [[2]]. During this process, the transaction fees and newly minted coins are 
-paid to miners and used as an incentive for miners to maintain the blockchain. Once all 21&nbsp;million Bitcoins 
+solving the first block was 50 BTC. This reward is reduced every four years, by halving it, until a maximum of 
+21 million coins are in circulation [[2]]. During this process, the transaction fees and newly minted coins are 
+paid to miners and used as an incentive for miners to maintain the blockchain. Once all 21 million Bitcoins 
 are released, only transaction fees will be paid to miners. Many fear that paying miners only transaction fees in the 
 future will not be sufficient to maintain a large network of miners. This would result in the centralization of the 
 network, as only large mining farms would be able to perform the mining task in a profitable manner. Others believe that 
@@ -40,8 +40,8 @@ in time, mining fees will increase and hardware costs for miners will decrease, 
 profitable, and maintaining the bitcoin blockchain [[3]].
 
 Grin has decided on a different approach, where its number of coins will not be capped at a fixed supply. It will 
-make use of a static emission rate, where a constant 60&nbsp;Grin is released as a reward for solving every block. This
-algorithm makes use of a block goal of 60&nbsp;seconds. This will result in approximately one coin being created every 
+make use of a static emission rate, where a constant 60 Grin is released as a reward for solving every block. This
+algorithm makes use of a block goal of 60 seconds. This will result in approximately one coin being created every 
 second for as long as the blockchain is being maintained [[4]].
 
 Grin's primary motivation for selecting a static emission rate is: 
@@ -52,7 +52,7 @@ Grin's primary motivation for selecting a static emission rate is:
 - it will encourage spending rather than holding of coins.
 
 The selected emission rate will result in Grin becoming a high inflationary currency with more than 10% inflation for 
-the first 10&nbsp;years, which is higher than most competing cryptocurrencies or successful fiat systems. This is in 
+the first 10 years, which is higher than most competing cryptocurrencies or successful fiat systems. This is in 
 comparison to other cryptocurrencies such as Monero, which will have less than 1% inflation after the first eight years 
 in circulation, and a decreasing 0.87% inflation with the start of its tail emissions [[5]]. Monero will have a 
 better potential of being used as a Store of Value (SoV) in the long run.
@@ -60,7 +60,7 @@ better potential of being used as a Store of Value (SoV) in the long run.
 The fixed emission rate of Grin, on the other hand, will limit its use as an SoV, as it will experience constant price 
 pressure. This might make it difficult for Grin to maintain a high value initially, while the inflation rate remains 
 high. The high inflation rate may encourage Grin to rather be used as a Medium of Exchange (MoE) [[6]], as it will 
-take approximately 50&nbsp;years for the inflation to drop below 2%. The Grin team believes that the inflation rate is 
+take approximately 50 years for the inflation to drop below 2%. The Grin team believes that the inflation rate is 
 not that high, as many coins are lost and become unusable on a blockchain. These lost coins, which the team believes can 
 be as much as 2% per year of the total supply, should be excluded from the inflation rate calculation [[7]]. The total 
 percentage of lost transactional coins is difficult to estimate [[8]]. It appears that this value is higher for low&#8209;

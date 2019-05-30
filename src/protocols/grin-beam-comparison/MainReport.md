@@ -106,7 +106,7 @@ repository's wiki.
 
 For example, Grin has implemented a method for a node to sync the blockchain very quickly by only downloading a partial 
 history [[11]]. A new node entering the network will query the current head block of the chain and then request the 
-block header at a horizon. In the example, the horizon is initially set at 5,000&nbsp;blocks before the current head. The 
+block header at a horizon. In the example, the horizon is initially set at 5,000 blocks before the current head. The 
 node then checks if there is enough data to confirm consensus. If there isn't consensus, the node will increase its horizon until 
 consensus is reached. At that point, it will download the full UTXO set of the horizon block. This approach does 
 introduce a few security risks, but mitigations are provided and the result is that a node can sync to the network with 
@@ -207,8 +207,8 @@ obsolete over time. The AR algorithm is still not defined [[23]].
 
 ## Governance Models and Monetary Policy
 
-Both the Grin and BEAM projects are open-source and available on Github ([[6]], [[7]]). The Grin project has 75&nbsp;
-contributors, eight of which have contributed the vast majority of the code. BEAM has 10&nbsp;contributors, four of 
+Both the Grin and BEAM projects are open-source and available on Github ([[6]], [[7]]). The Grin project has 75 
+contributors, eight of which have contributed the vast majority of the code. BEAM has 10 contributors, four of 
 which have contributed the vast majority of the code (at the time of writing). The two projects have opted for different 
 models of governance. BEAM has opted to set up a foundation that includes the core developers, to manage the project. 
 This is the route taken by the majority of cryptocurrency projects in this space. The Grin community has decided 
@@ -236,12 +236,12 @@ Developer Funding Campaign run by Yeastplume to fund his full-time involvement i
 February&nbsp;2019. Refer to [[26]].
 
 In terms of the monetary policy of the two projects, BEAM has stated that it will be using a deflationary model with 
-periodic halving of its mining reward and a maximum supply of BEAM of ~262&nbsp;million coins. BEAM will start with 
-100&nbsp;coins emitted per block. The first halving will occur after one year. Halving will then happen every four years 
+periodic halving of its mining reward and a maximum supply of BEAM of ~262 million coins. BEAM will start with 
+100 coins emitted per block. The first halving will occur after one year. Halving will then happen every four years 
 [[32]]. Grin has opted for an inflationary model where the block reward will remain constant, making its arguments 
 for this approach in [[27]]. This approach will asymptotically tend towards a zero percent dilution as the supply 
 increases, instead of enforcing a set supply [[28]]. Grin has not yet specified its mining reward or fees structure, 
-but based on its current documentation, it is planning on a 60&nbsp;grin per block reward. Neither project has made a 
+but based on its current documentation, it is planning on a 60 grin per block reward. Neither project has made a 
 final decision regarding how to structure fees, but the Grin project has started to explore how to set a fee baseline by 
 using a metric of "fees per reward per minute" [[28]].
 
@@ -302,7 +302,7 @@ to see how their various decisions play out, both technically and in terms of th
 "BEAM: The Scalable Confidential Cryptocurrency"
 
 [[5]] A. Gibson, "Flipping the Scriptless Script on Schnorr" [online]. 
-Available:&nbsp;<https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: 2018&#8209;09&#8209;30.
+Available: <https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: 2018&#8209;09&#8209;30.
 
 [5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/
 "Flipping the Scriptless Script on Schnorr"
@@ -492,9 +492,9 @@ The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edg
 M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from 
 one set to the other. As an example, let's consider nodes with even indices to be in one group and nodes with odd 
 indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N&nbsp;=&nbsp;8 and M&nbsp;=&nbsp;4. So if 
-we are looking for cycles of length&nbsp;4, we can easily confirm that none exist in Figure&nbsp;2. By adjusting the number 
+we are looking for cycles of length 4, we can easily confirm that none exist in Figure&nbsp;2. By adjusting the number 
 of edges present in  the graph vs. the number of nodes we can control, the probability that a cycle of a certain length 
-exists in the graph. When looking for cycles of length&nbsp;4, the difficulty, as illustrated in Figure 2, is that a 4/8 (M/N) graph 
+exists in the graph. When looking for cycles of length 4, the difficulty, as illustrated in Figure&nbsp;2, is that a 4/8 (M/N) graph 
 would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges.png" width="250"/></p>
@@ -509,7 +509,7 @@ occurring by adjusting the ratio of M/N [[29]].
 <center><strong>Figure 3: Cycle Found from 0-5-4-1-0 
 [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]</center></strong>
 Detecting that a cycle of a certain length has occurred in a graph with randomly selected edges becomes significantly 
-more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22&#8209;node graph with 14&nbsp;random edges in it. 
+more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22&#8209;node graph with 14 random edges in it. 
 Can you determine if a cycle of eight edges is present? [[29]]
 
 <p align="center"><img src="sources/cuckoo_base_numbered_many_edges.png" width="650"/></p>

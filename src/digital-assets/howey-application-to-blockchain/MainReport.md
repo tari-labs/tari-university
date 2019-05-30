@@ -72,8 +72,6 @@ asset. This report:
   **Note:** "The Framework" represents the views of SEC Staff. It is not a rule, regulation or statement of the SEC, and 
   it is not binding on the Divisions of the SEC or the SEC itself.
 
-  
-
 - Explains how [[2]] is indicative of the SEC's approach to applying the investment contract test laid out in [[3]] to 
   digital assets. The SEC adopted this test, commonly referred to as the *Howey* test [[4]], and has applied the test in 
   subsequent actions involving digital assets.<sup>[f1][footnote_1~]</sup> **Note:** [[3], Section 21(a)] authorizes the 
@@ -131,7 +129,8 @@ is not met, the instrument is not an investment contract.
 While the "efforts of others" prong of the *Howey* test is, at some level, no more important in an application of 
 *Howey* than any of the other prongs, it is frequently the prong on which the most uncertainty hangs. The "efforts of 
 others" is often the focus when it comes to public blockchain networks. This is because the decentralization of control 
-that many such projects seek to foster prompts the following question: do the kind and degree of the existing decentralization mean that any expectation of profits token purchasers may have does not come from the efforts of others for 
+that many such projects seek to foster prompts the following question: do the kind and degree of the existing 
+decentralization mean that any expectation of profits token purchasers may have does not come from the efforts of others for 
 purposes of *Howey*? The determination that token purchasers reasonably expected profits to come from the efforts of a 
 centralized (or at least coordinated) person or group has been central in the SEC's findings that the tokens were 
 securities in each of the recent SEC enforcement actions relating to token offerings and 
@@ -148,8 +147,6 @@ a security", and noted two cases where he believed this was indeed possible:
 - "where there is no longer any central enterprise being invested in", e.g. purchases of the digital assets related to a 
   decentralized enterprise or network; and
 
-  
-
 - "where the digital asset is sold only to be used to purchase a good or service available through the network on which 
   it was created", e.g. purchases of digital assets for a consumptive purpose. 
 
@@ -159,33 +156,23 @@ to offerings and sales of digital assets:
 > 1. Is there a person or group that has sponsored or promoted the creation and sale of the digital asset, the efforts 
 >   of whom play a significant role in the development and maintenance of the asset and its potential increase in value?
 >
->   
->
 > 2. Has this person or group retained a stake or other interest in the digital asset such that it would be motivated to 
 >   expend efforts to cause an increase in value in the digital asset? Would purchasers reasonably believe such efforts will 
 >   be undertaken and may result in a return on their investment in the digital asset?
->
->   
 >
 > 3. Has the promoter raised an amount of funds in excess of what may be needed to establish a functional network, and, 
 >   if so, has it indicated how those funds may be used to support the value of the tokens or to increase the value of the 
 >   enterprise? Does the promoter continue to expend funds from proceeds or operations to enhance the functionality and/or 
 >   value of the system within which the tokens operate?
 >
->   
->
 > 4. Are purchasers 'investing', that is seeking a return? In that regard, is the instrument marketed and sold to the 
 >   general public instead of to potential users of the network for a price that reasonably correlates with the market value 
 >   of the good or service in the network?
->
->   
 >
 > 5. Does application of the Securities Act protections make sense? Is there a person or entity others are relying on 
 >   that plays a key role in the profit-making of the enterprise such that disclosure of their activities and plans would be 
 >   important to investors? Do informational asymmetries exist between the promoters and potential purchasers/investors in 
 >   the digital asset?
->
->   
 >
 > 6. Do persons or entities other than the promoter exercise governance rights or meaningful influence?
 
@@ -257,8 +244,6 @@ with a consumptive purpose has been a factor in several of the SEC's recent orde
   higher tiers and bigger payments on future reviews... Instead, Munchee and its agents promoted the MUN token offering in 
   forums aimed at people interested in investing in Bitcoin and other digital assets").
 
-  
-
 - From paragraph&nbsp;16 of the *Airfox* Order [[1], Section&nbsp;8A]: "AirFox primarily aimed its promotional efforts for the 
   initial coin offering at digital token investors rather than anticipated users of AirTokens").
 
@@ -273,8 +258,6 @@ For example:
 - Reference [[2], Section&nbsp;9] states that it is less likely the *Howey* test is met if various characteristics are 
   present, including "[h]olders of the digital asset are immediately able to use it for its intended functionality on the 
   network").
-
-  
 
 - Paragraph&nbsp;7 of the *Airfox* Order [[1], Section&nbsp;8A] states "The terms of AirFox's initial coin offering purported to 
   require purchasers to agree that they were buying AirTokens for their utility as a medium of exchange for mobile airtime, 
@@ -434,9 +417,7 @@ Date accessed: 2019-03-19.
 ## Contributors
 
 - <https://github.com/willacy>
-
-- https://github.com/hansieodendaal
-
+- <https://github.com/hansieodendaal>
 - <https://github.com/anselld>
 
   
