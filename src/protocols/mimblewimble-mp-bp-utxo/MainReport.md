@@ -13,6 +13,7 @@ div.mywrap {
 </head>
 
 
+
 # Mimblewimble Multiparty Bulletproof UTXO
 
 - [Introduction](#introduction)
@@ -140,26 +141,31 @@ but this would be more complex to manage [[4]].
 A [Mimblewimble](../mimblewimble-1/MainReport.md) blockchain relies on two complementary aspects to provide security: 
 [Pedersen Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
 and range proofs (in the form of [Bulletproof range proofs](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md)). 
-Pedersen Commitments provide perfectly hiding and computationally binding commitments. In Mimblewimble, this means that 
-an adversary cannot determine the value of a transaction, even with infinite computing power (perfectly binding) while 
-he could, with an infeasible large amount of processing power, determine the blinding factor (computationally binding). 
-In addition to range proofs assuring that all values are positive and not too large, strictly in the range $ [0,2^{64} - 1] $, it 
-also prohibits third parties locking away one's funds as demonstrated in the next section. Since Mimblewimble 
-commitments are totally confidential and ownership cannot be proved, anyone can try to spend or mess with unspent coins 
-embedded in those commitments. Fortunately, any new UTXO requires a range proof, and this is impossible to create if the 
-input commitment cannot be opened.
+Pedersen Commitments, example $ C(v,k) = (vH + kG) $, provide perfectly hiding and computationally binding commitments. 
+(Refer to [Appendix A](#appendix-a-notation-used) for all notation used.) 
+
+In Mimblewimble this means that an adversary, with infinite computing power, can determine alternate pairs 
+$ v ^\prime , k ^\prime $ such that $ C(v,k) = C(v ^\prime , k ^\prime) $ in a reasonable time, to open the commitment 
+to another value when challenged (computationally binding). However, it will be impossible to determine the specific 
+pair $ v, k $ used to create the commitment, because there are multiple pairs that can produce the same $ C $ (perfectly 
+hiding).
+
+In addition to range proofs assuring that all values are positive and not too large, strictly in the range 
+$ [0,2^{64} - 1] $, it also prohibits third parties locking away one's funds as demonstrated in the next section. Since 
+Mimblewimble commitments are totally confidential and ownership cannot be proved, anyone can try to spend or mess with 
+unspent coins embedded in those commitments. Fortunately, any new UTXO requires a range proof, and this is impossible to 
+create if the input commitment cannot be opened.
 
 
 
 ### The importance of Range Proofs
 
-The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. (Refer to 
-[Appendix A](#appendix-a-notation-used) for all notation used.) Let $ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO 
-commitment from Alice that a bad actor, Bob, is trying to lock away. Bob knows that all commitments in a Mimblewimble 
-blockchain are additionally homomorphic. This means that he can theoretically use Alice's commitment as input and create 
-a new opposing output in a transaction that sums to a commitment of the value $ 0 $, i.e. $ (\mathbf{0}) $. For this 
-opposing output Bob will attempt to add an additional blinding factor $ k\_{x} $ to the commitment in such a way that 
-the miners validating the transactions will not complain. 
+The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let 
+$ C\_a(v\_1 , k\_1) $ be the "closed" input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away. 
+Bob knows that all commitments in a Mimblewimble blockchain are additionally homomorphic. This means that he can 
+theoretically use Alice's commitment as input and create a new opposing output in a transaction that sums to a 
+commitment of the value $ 0 $, i.e. $ (\mathbf{0}) $. For this opposing output Bob will attempt to add an additional 
+blinding factor $ k\_{x} $ to the commitment in such a way that the miners validating the transactions will not complain. 
 
 A valid Mimblewimble transaction would have the following form:
 
@@ -167,18 +173,18 @@ $$
 \begin{aligned} 
 C\_\mathrm{locked}(v\_1 , k\_1 + k\_x) - C\_a(v\_1 , k\_1) - C\_b(v\_2 , k\_2) + \mathrm{fee} \cdot H &= (\mathbf{0}) \\\\
 \\\\
-(v\_1 H + (k\_1 + k\_x) G) -  (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0})
+(v\_1 H + (k\_1 + k\_x) G) - (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0})
 \end{aligned}
 \tag{1}
 $$
 
 where the unspent-hiding-blinding commitment from Alice is $ (v\_1 H + k\_1 G) $ and the value of $ (v\_2 H + k\_2 G) $ 
-is equal to $ \mathrm{fee} \cdot H  $ to be paid to the miner. The newly created commitment $ (v\_1 H + (k\_1 + k\_x) G) $ would 
-be equally unspendable by Alice and Bob, because neither of them would know the total blinding factor $ k\_1 + k\_x $. 
-Fortunately, in order to construct a Bulletproof range proof for the new output $ (v\_1 H + (k\_1 + k\_x) G) $ as 
-required by transaction validation rules, the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known, otherwise the prover 
-(i.e. Bob) would not be able to convince an honest verifier (i.e. the miner) that $ v\_1 $ is non-negative (i.e. in the 
-range $ [0,2^n - 1] $).
+is equal to $ \mathrm{fee} \cdot H $ to be paid to the miner. The newly created commitment 
+$ (v\_1 H + (k\_1 + k\_x) G) $ would be equally unspendable by Alice and Bob, because neither of them would know the 
+total blinding factor $ k\_1 + k\_x $. Fortunately, in order to construct a Bulletproof range proof for the new output 
+$ (v\_1 H + (k\_1 + k\_x) G) $ as required by transaction validation rules, the values of $ v\_1 $ and $ k\_1 + k\_x $ 
+must be known, otherwise the prover (i.e. Bob) would not be able to convince an honest verifier (i.e. the miner) that 
+$ v\_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).
 
 If Bob can convince Alice that she must create a fund over which both of them have signing powers ($ 2\text{-of-}2 $ 
 multisig), it would theoretically be possible to create the required Bulletproof range proof for relation (1) if they 
@@ -223,8 +229,8 @@ funds, and $ C\_a $, $ C\_b $ and $ C\_c $ are their respective input contributi
 
 $$
 \begin{aligned} 
-C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + \mathrm{fee} \cdot H  &= (\mathbf{0}) \\\\
-(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H  &= (\mathbf{0})
+C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + \mathrm{fee} \cdot H &= (\mathbf{0}) \\\\
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H &= (\mathbf{0})
 \end{aligned}
 $$
 
@@ -263,7 +269,7 @@ P\_{agg} = (k\_1G + x\_{sa}G) + (k\_2G + x\_{sb}G) + (k\_3G + x\_{sc}G) \\\\
 P\_{agg} = (k\_1G - (k\_a + \phi\_a)G) + (k\_2G - (k\_b + \phi\_b)G) + (k\_3G - (k\_ca + \phi\_c)G)
 $$
 
-Each party also selects a private nonce $ r\_n $, shares the public value $  r\_nG $ with the group,
+Each party also selects a private nonce $ r\_n $, shares the public value $ r\_nG $ with the group,
 
 $$
 \text{share:} \mspace{9mu} \lbrace r\_aG, r\_bG, r\_cG \rbrace
@@ -322,9 +328,10 @@ $$
 The transaction balance can then be validated to be equal to a commitment to the value $ 0 $ as follows:
 
 $$
-(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H  \overset{?}{=} 
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H \overset{?}{=} 
 (0H + ( P\_{agg} + \phi\_{tot})G)
 $$
+
 
 
 ### Creating the Multiparty Bulletproof Range Proof
@@ -334,6 +341,7 @@ range proof. Up to now, Alice, Bob and Carol could each keep their portion of th
 secret. The new combined commitment they created, $ (v\_1H + (k\_1 + k\_2 + k\_3)G) $, cannot be used as is to calculate 
 the Bulletproof range proof, otherwise the three parties would have to give up their portion of the shared blinding 
 factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.
+
 
 
 #### Utilizing Bulletproofs MPC Protocol
@@ -368,7 +376,7 @@ C\_m(v\_1, k\_1 + k\_2 + k\_3) &= C\_1(\frac{v\_1}3,k\_1) + C\_2(\frac{v\_1}3,k\
 \end{aligned}
 $$
 
-and that rounding implementation of $ ^{v\_1} / \_3  $ can ensure that adding these components for all parties will 
+and that rounding implementation of $ ^{v\_1} / \_3 $ can ensure that adding these components for all parties will 
 produce the original value $ v\_1 $.
 
 Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which 
@@ -382,22 +390,22 @@ $$
 hash_{C\_m} = \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_2 || C\_3)
 $$
 
-
 Range proof validation by miners will involve
 
 $$
 \begin{aligned} 
 hash_{C\_m} &\overset{?}{=} \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_2 || C\_3) \\\\
 C\_m &\overset{?}{=} C\_1 + C\_2 + C\_3 \\\\
-\text{verify: }  &RP\_{agg}  \text{ for set }  \lbrace  C\_1, C\_2, C\_3 \rbrace 
+\text{verify: } &RP\_{agg} \text{ for set } \lbrace C\_1, C\_2, C\_3 \rbrace 
 \end{aligned}
 $$
 
 instead of 
 
 $$
-\text{verify: }  RP\_m  \text{ for }  C\_m
+\text{verify: } RP\_m \text{ for } C\_m
 $$
+
 
 
 #### Utilizing Grin's Shared Bulletproof Computation
@@ -423,11 +431,11 @@ With this implementation, Alice needs to act as the dealer. When they get to [st
 protocol, they introduce the following changes:
 
 1. Each party shares $ T\_{1\_j} $ and $ T\_{2\_j} $ with all other parties.
-2. Each party calculates $ T\_1 = \sum\_{j=1}^k T\_{1\_j} $ and $ T_2 = \sum\_{j=1}^k T\_{2\_j} $.
-3. Each party calculates $ \tau\_{x\_j} $ based on $ T\_1 $ and $ T\_2 $.
-4. Each party shares $ \tau\_{x\_j} $ with the dealer.
-5. The dealer calculates $\tau\_x = \sum\_{j=1}^k \tau\_{x\_j} $.
-6. The dealer completes the protocol, using their own private $ k\_1 $, where a further blinding factor is required, and 
+1. Each party calculates $ T\_1 = \sum\_{j=1}^k T\_{1\_j} $ and $ T_2 = \sum\_{j=1}^k T\_{2\_j} $.
+1. Each party calculates $ \tau\_{x\_j} $ based on $ T\_1 $ and $ T\_2 $.
+1. Each party shares $ \tau\_{x\_j} $ with the dealer.
+1. The dealer calculates $\tau\_x = \sum\_{j=1}^k \tau\_{x\_j} $.
+1. The dealer completes the protocol, using their own private $ k\_1 $, where a further blinding factor is required, and 
 calculates $ RP\_m $.
 
 Using this approach, the resulting shared commitment for Alice, Bob and Carol is
@@ -436,7 +444,7 @@ $$
 C\_m(v\_1, \sum \_{j=1}^3 k\_jG) = (v\_1H + \sum \_{j=1}^3 k\_jG) = (v\_1H + (k\_1 + k\_2 + k\_3)G)
 $$
 
-with the UTXO tuple being $ (C\_m ,  RP\_m) $. Range proof validation by miners will involve verifying $ RP\_m $ for 
+with the UTXO tuple being $ (C\_m , RP\_m) $. Range proof validation by miners will involve verifying $ RP\_m $ for 
 $ C\_m $.
 
 
@@ -463,8 +471,8 @@ her winnings, with the change being used to set up a consecutive multiparty UTXO
 
 $$
 \begin{aligned} 
-C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + \mathrm{fee} \cdot H  &= (\mathbf{0}) \\\\
-(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H  &= (\mathbf{0})
+C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + \mathrm{fee} \cdot H &= (\mathbf{0}) \\\\
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H &= (\mathbf{0})
 \end{aligned}
 $$
 
@@ -475,7 +483,7 @@ blinding factor $ k^{'}\_cG $ for her winnings:
 $$
 \begin{aligned} 
 \text{share:} \mspace{9mu} &\lbrace k^{'}\_1G, k^{'}\_2G, k^{'}\_3G \rbrace \\\\
-\text{share:} \mspace{9mu} &\lbrace  k^{'}\_cG \rbrace
+\text{share:} \mspace{9mu} &\lbrace k^{'}\_cG \rbrace
 \end{aligned}
 $$
 
@@ -503,7 +511,7 @@ P^{'}\_{agg} = (k^{'}\_1G + x^{'}\_{sa}G) + (k^{'}\_2G + x^{'}\_{sb}G) + (k^{'}\
 P^{'}\_{agg} = (k^{'}\_1G - (k\_1 + \phi^{'}\_a)) + (k^{'}\_2G - (k\_2 + \phi^{'}\_a)) + (k^{'}\_3G - (k\_3 + \phi^{'}\_a) + k^{'}\_cG)
 $$
 
-Each party again selects a private nonce $ r^{'}\_n $, share the public value $  r^{'}\_nG $ with the group,
+Each party again selects a private nonce $ r^{'}\_n $, share the public value $ r^{'}\_nG $ with the group,
 
 $$
 \text{share:} \mspace{9mu} \lbrace r^{'}\_aG, r^{'}\_bG, r^{'}\_cG \rbrace
@@ -561,41 +569,54 @@ $$
 Lastly, the transaction balance can then be validated to be equal to a commitment to the value $ 0 $:
 
 $$
-(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H  \overset{?}{=} 
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H \overset{?}{=} 
 (0H + (P^{'}\_{agg} + \phi^{'}\_{tot}G))
 $$
+
 
 
 ## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
 
 As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the 
 form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty 
-Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS)  ([[8]], [[15]]) will be used to enable 
-$ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry shards (shares) 
-$ s\_i $ of a message $ s $ such that any $ m $ of them can reconstruct the message.
+Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS) ([[8]], [[15]]) will be used to enable 
+$ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry one shard (share) 
+$ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ each of a secret $ s $, such that any $ m $ of them can 
+reconstruct the message. The shards will be distributed according to Pedersen’s Verifiable Secret 
+Sharing<sup>[def][pvss~]</sup> (VSS) scheme, which extends the SSSS, where the dealer commits to the secret $ s $ itself 
+and the coefficients of the sharing polynomial $ f(x) $. This is broadcasted to all parties, who each also receives a 
+blinding factor shard $ g(i) $ corresponding to their secret shard $ f(i) $. This will enable each party to verify that 
+their shard is correct.
+
 
 
 ### Secret Sharing
 
 Our friends Alice, Bob and Carol decide to set up a $ 2\text{-of-}3 $ scheme, whereby any two of them can authorize a 
 spend of their multiparty UTXO. They also want to be able to set up the scheme such that they can perform three rounds 
-of spending, with the last round being the closing round. They have heard of the SSSS and decide to use that. 
+of spending, with the last round being the closing round. Something they were all thinking about was how to share pieces 
+of their blinding factor to each other in a secure and reconstructable fashion. They have heard of Pedersen's VSS scheme 
+and decide to use that. 
+
 
 
 ### Multiple Rounds' Data
 
-They will each pre-calculate three $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and $ 3 $ shards 
-$ k\_{n\text{-}party\text{-}i} $ for each round according to the SSSS. ([Appendix C](#appendix-c-shamirs-secret-sharing-example) 
-shows an example of Alice's shards for one private blinding factor.) In addition to the shards, they will hash each 
-round's private blinding factor $ \text{H}\_{s}( k\_{n\text{-}i}) $ and share that as well so that its correctness can 
-be verified in each round. They continue to do this until they have all their information set up, ready and stored in 
-their wallets.
+The parties will each pre-calculate three $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and shard it according to 
+Pedersen's VSS<sup>[def][pvss~]</sup> scheme. The scheme requires $ 3 $ shard tuples 
+$ (k\_{n\text{-}party\text{-}i}, b\_{n\text{-}party\text{-}i}) $ and $ 3 $ vectors of commitments 
+$\mathbf{C}\_{2}( k\_{party\text{-}1})$ for each round. ([Appendix C](#appendix-c-shamirs-secret-sharing-example) 
+shows an example of Alice's sharing shards for one private blinding factor.) Whenever a set of information for each 
+blinding factor is shared, the parties immediately verify the correctness of the shards they received by following the 
+verification step in Pedersen's VVS protocol. They continue to do this until they have all their information set up, 
+ready and stored in their wallets.
 
-| Round | Blinding<br />Factor                                         | $ \text{H}\_{s}( k\_{n\text{-}i}) $                          | Alice's <br />Shards                                         | Bob's <br />Shards                                           | Carol's <br />Shards                                         |
+| Round | Blinding<br />Factor                                         | Vectors of <br />Commitments                                 | Alice's <br />Shards                                         | Bob's <br />Shards                                           | Carol's <br />Shards                                         |
 | ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1     | Alice: $ k\_{1\text{-}1} $ <br />Bob:&nbsp;&nbsp; $ k\_{2\text{-}1} $ <br />Carol: $ k\_{3\text{-}1} $ | $ \text{H}\_{s}( k\_{1\text{-}1}) $ <br />$ \text{H}\_{s}( k\_{2\text{-}1}) $ <br />$\text{H}\_{s}( k\_{3\text{-}1}) $ | $ k\_{1\text{-}a1} $ <br />$ k\_{2\text{-}a1} $<br />$ k\_{3\text{-}a1} $ | $ k\_{1\text{-}b1} $ <br />$ k\_{2\text{-}b1} $<br />$ k\_{3\text{-}b1} $ | $ k\_{1\text{-}c1} $ <br />$ k\_{2\text{-}c1} $<br />$ k\_{3\text{-}c1} $ |
-| 2     | Alice: $ k\_{1\text{-}2} $ <br />Bob:&nbsp;&nbsp; $ k\_{2\text{-}2} $ <br />Carol: $ k\_{3\text{-}2} $ | $ \text{H}\_{s}( k\_{1\text{-}2}) $ <br />$ \text{H}\_{s}( k\_{2\text{-}2}) $ <br />$\text{H}\_{s}( k\_{3\text{-}2}) $ | $ k\_{1\text{-}a2} $ <br />$ k\_{2\text{-}a2} $<br />$ k\_{3\text{-}a2} $ | $ k\_{1\text{-}b2} $ <br />$ k\_{2\text{-}b2} $<br />$ k\_{3\text{-}b2} $ | $ k\_{1\text{-}c2} $ <br />$ k\_{2\text{-}c2} $<br />$ k\_{3\text{-}c2} $ |
-| 3     | Alice: $ k\_{1\text{-}3} $ <br />Bob:&nbsp;&nbsp; $ k\_{2\text{-}3} $ <br />Carol: $ k\_{3\text{-}3} $ | $ \text{H}\_{s}( k\_{1\text{-}3}) $ <br />$ \text{H}\_{s}( k\_{2\text{-}3}) $ <br />$\text{H}\_{s}( k\_{3\text{-}3}) $ | $ k\_{1\text{-}a3} $ <br />$ k\_{2\text{-}a3} $<br />$ k\_{3\text{-}a3} $ | $ k\_{1\text{-}b3} $ <br />$ k\_{2\text{-}b3} $<br />$ k\_{3\text{-}b3} $ | $ k\_{1\text{-}c3} $ <br />$ k\_{2\text{-}c3} $<br />$ k\_{3\text{-}c3} $ |
+| 1     | Alice: $ (k\_{1\text{-}1}, b\_{1\text{-}1}) $ <br />Bob:&nbsp;&nbsp; $ (k\_{2\text{-}1}, b\_{2\text{-}1}) $ <br />Carol: $ (k\_{3\text{-}1}, b\_{3\text{-}1})$ | $\mathbf{C\_{2}}( k\_{1\text{-}1})$ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}1}) $ <br />$\mathbf{C\_{2}}( k\_{3\text{-}1}) $ | $ (k\_{1\text{-}a1}, b\_{1\text{-}a1}) $ <br />$ (k\_{2\text{-}a1}, b\_{2\text{-}a1}) $ <br />$ (k\_{3\text{-}a1}, b\_{3\text{-}a1}) $ | $ (k\_{1\text{-}b1}, b\_{1\text{-}b1}) $ <br />$ (k\_{2\text{-}b1}, b\_{2\text{-}b1}) $ <br />$ (k\_{3\text{-}b1}, b\_{3\text{-}b1}) $ | $ (k\_{1\text{-}c1}, b\_{1\text{-}c1}) $ <br />$ (k\_{2\text{-}c1}, b\_{2\text{-}c1}) $ <br />$ (k\_{3\text{-}c1}, b\_{3\text{-}c1}) $ |
+| 2     | Alice: $ (k\_{1\text{-}2}, b\_{1\text{-}2}) $ <br />Bob:&nbsp;&nbsp; $ (k\_{2\text{-}2}, b\_{2\text{-}2}) $ <br />Carol: $ (k\_{3\text{-}2}, b\_{3\text{-}2}) $ | $ \mathbf{C\_{2}}( k\_{1\text{-}2}) $ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}2}) $ <br />$ \mathbf{C\_{2}}( k\_{3\text{-}2}) $ | $ (k\_{1\text{-}a2}, b\_{1\text{-}a2}) $ <br />$ (k\_{2\text{-}a2}, b\_{2\text{-}a2}) $ <br />$ (k\_{3\text{-}a2}, b\_{3\text{-}a2}) $ | $ (k\_{1\text{-}b2}, b\_{1\text{-}b2}) $ <br />$ (k\_{2\text{-}}b2, b\_{2\text{-}b2}) $ <br />$ (k\_{3\text{-}},b2 b\_{3\text{-}b2}) $ | $ (k\_{1\text{-}c2}, b\_{1\text{-}c2}) $ <br />$ (k\_{2\text{-}}c2, b\_{2\text{-}c2}) $ <br />$ (k\_{3\text{-}},c2 b\_{3\text{-}c2}) $ |
+| 3     | Alice: $ (k\_{1\text{-}3}, b\_{1\text{-}3}) $ <br />Bob:&nbsp;&nbsp; $ (k\_{2\text{-}3}, b\_{2\text{-}3}) $ <br />Carol: $ (k\_{3\text{-}3}, b\_{3\text{-}3}) $ | $ \mathbf{C\_{2}}( k\_{1\text{-}3}) $ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}3}) $ <br />$ \mathbf{C\_{2}}( k\_{3\text{-}3}) $ | $ (k\_{1\text{-}a3}, b\_{1\text{-}a3}) $ <br />$ (k\_{2\text{-}a3}, b\_{2\text{-}a3}) $ <br />$ (k\_{3\text{-}a3}, b\_{3\text{-}a3}) $ | $ (k\_{1\text{-}b3}, b\_{1\text{-}b3}) $ <br />$ (k\_{2\text{-}}b3, b\_{2\text{-}b3}) $ <br />$ (k\_{3\text{-}},b3 b\_{3\text{-}b3}) $ | $ (k\_{1\text{-}c3}, b\_{1\text{-}c3}) $ <br />$ (k\_{2\text{-}}c3, b\_{2\text{-}c3}) $ <br />$ (k\_{3\text{-}},c3 b\_{3\text{-}c3}) $ |
+
 
 
 ### How it Works
@@ -611,7 +632,8 @@ does not need to be present to set up a private blinding factor for an output UT
 Carol consequently share the shards Alice gave them: 
 
 $$
-\text{share:} \mspace{9mu} \lbrace  k\_{1\text{-}b1},  k\_{1\text{-}c1},  k\_{1\text{-}b2},  k\_{1\text{-}c2}   \rbrace
+\text{share:} \mspace{9mu} \lbrace (k\_{1\text{-}b1}, b\_{1\text{-}b1}),  (k\_{1\text{-}c1}, b\_{1\text{-}c1}), 
+ (k\_{1\text{-}b2}, b\_{1\text{-}b2}) ,  (k\_{1\text{-}c2}, b\_{1\text{-}c2}) \rbrace
 $$
 
 They are now able to reconstruct the blinding factors and verify the hashes. If the verification fails, they stop the 
@@ -619,9 +641,9 @@ protocol and schedule a meeting with Alice to have a word with her. With all thr
 identify the source of the misinformation.
 
 $$
-\text{reconstruct:} \mspace{9mu} k\_{1\text{-}1}, k\_{1\text{-}2} \\\\
-\text{verify:} \mspace{9mu} \text{H}\_{s}( k\_{1\text{-}1})\_{shared} \overset{?}{=} \text{H}\_{s}( k\_{1\text{-}1})\_{calculated} \\\\
-\text{verify:} \mspace{9mu} \text{H}\_{s}( k\_{1\text{-}2})\_{shared} \overset{?}{=} \text{H}\_{s}( k\_{1\text{-}2})\_{calculated}
+\text{reconstruct:} \mspace{9mu} (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) \\\\
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{calculated} \\\\
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{calculated}
 $$
 
 For this round they choose Bob to play Alice's part when they set up and conclude the transaction. Bob is able to do 
@@ -633,6 +655,7 @@ that a consecutive multi-spend needs to start at round&nbsp;2.
 The next time two of our friends want to spend some or all of the remainder of their multiparty UTXO, they will just 
 repeat these steps, starting at round&nbsp;2. The only thing that will be different will be the person nominated to play 
 the part of the party that is absent; they have to take turns at this.
+
 
 
 ### Spending Protocol
@@ -652,7 +675,9 @@ present.
 must take turns.
 
 
+
 ## Conclusions, Observations and Recommendations
+
 
 
 ### Comparison to Bitcoin
@@ -681,7 +706,8 @@ multiparty payment scheme introduced here, the following observations can be mad
 1. Complexity
 
    Implementing $ m\text{-of-}n $ multiparty transactions in Mimblewimble will involve wallets to store more data and 
-   implement more functionality than when compared to Bitcoin, e.g. the SSSS.
+   implement more functionality than when compared to Bitcoin, e.g. Pedersen's VSS scheme.
+
 
 
 ### General
@@ -705,6 +731,7 @@ multiparty payment scheme introduced here, the following observations can be mad
 1. Generalization
 
    Although all examples presented here were for three parties, this could be easily generalized.
+
 
 
 ## References
@@ -812,8 +839,16 @@ Date accessed: 2019&#8209;05&#8209;27.
 [16]: https://iancoleman.io/shamir
 "Online Tool: Shamir Secret Sharing Scheme" 
 
+[[17]] P. Laud, "Cryptographic Protocols (MTAT.07.005): Secret Sharing", Cybernetica [online]. Available: <https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf>. 
+Date accessed: 2019&#8209;05&#8209;29.
+
+[17]: https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf
+"Cryptographic Protocols (MTAT.07.005): Secret Sharing" 
+
+
 
 ## Appendices
+
 
 
 ### Appendix A: Notation Used
@@ -822,19 +857,21 @@ This section gives the general notation of mathematical expressions used. It pro
 remainder of the report.
 
 - All Pedersen Commitments will be of the [elliptic derivative]((../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)) 
-depicted by $  C(v,k) = (vH + kG)  $ with $ v $ being the value committed to and $ k $ being the blinding factor.
+depicted by $ C(v,k) = (vH + kG) $ with $ v $ being the value committed to and $ k $ being the blinding factor.
 
-- Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG  $.
+- Scalar multiplication will be depicted by "$ \cdot $", as an example $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG $.
 
 - A Pedersen Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
 
 - Let $ \text{H}\_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where 
 $ arg $ is the value being committed to.
 
-- Let $  RP\_n  $ be Bulletproof range proof data for commitment $ C\_n $.
+- Let $ RP\_n $ be Bulletproof range proof data for commitment $ C\_n $.
 
-- Let $  RP\_{agg} $ be aggregated Bulletproof range proof data for a set of commitments 
+- Let $ RP\_{agg} $ be aggregated Bulletproof range proof data for a set of commitments 
 $ \lbrace C\_1, C\_2, ... , C\_n \rbrace $.
+
+- Let $ \mathbf {C\_{m}}(v) $ be a vector of commitments $ (C\_0 , \ldots , C\_{m-1}) $ for value $ v $.
 
 
 ### Appendix B: Definition of Terms
@@ -843,30 +880,31 @@ Definitions of terms presented here are high level and general in nature. Full m
 the cited references.
 
 - **Shamir's Secret Sharing Scheme:**<a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for 
-$ n $ parties to carry shards/shares $ s\_i $ of a secret message $ s $ such that any $ m $ of them can reconstruct 
-the message [[15]]. 
-  
-  - The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shards provides no information regarding $ s $. 
-  - Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme using Lagrange interpolation. 
+$ n $ parties to carry shards/shares of a secret message $ s $ such that any $ m $ of them can reconstruct the message. 
+The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shards provides no information regarding $ s $. 
+Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme using Lagrange interpolation 
+([[8]], [[15]], [[17]). 
+
   - Given $ m $ distinct points $ (x\_i, y\_i) $ of the form $ (x\_i, f(x\_i)) $, where $ f(x) $ is a polynomial of 
-  degree less than $ m $, then $ f(x) $ is determined by
-  
+  degree less than $ m $, then according to the Lagrange interpolation formula $ f(x) $ and $ f(0) $ is determined by
+
   $$
-  f(x) = \sum \_{i=1}^{m} y \_{i} \prod \_{1 \leq j \leq m \atop i \neq j} \frac{x - x \_{j}}{x \_{i} - x \_{j}}
+  f(x) = \sum \_{i=1}^{m} y \_{i} \prod \_{1 \leq j \leq m \atop i \neq j} \frac{x - x \_{j}}{x \_{i} - x \_{j}} \\\\
+  f(0) = \sum \_{i=1}^{m} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
   $$
-  
+
   - Shamir’s scheme is defined for a secret message $ s \in \mathbb{Z}/p\mathbb{Z} $ with prime $ p $, by setting 
-  $ a\_0 = s$, and choosing $ a\_1, . . . , a\_{m−1} $ at random in $ \mathbb{Z}/p\mathbb{Z} $. The trusted party 
-  computes $ f(i) $ for all $ 1 \leq i \leq n $, where
-  
+  $ a\_0 = f(0) = s$ for a polynomial $ f(x) $, and choosing the other coefficients $ a\_1, \ldots , a\_{m−1} $ at 
+  random in $ \mathbb{Z}/p\mathbb{Z} $. The trusted party computes $ f(i) $ for all $ 1 \leq i \leq n $, where
+
   $$
-  f(x) = \sum \_{k=0}^{m - 1} a \_{k} x^{k}
+  f(x) = \sum \_{k=0}^{m - 1} a \_{k} x^{k} = a\_0 + a\_1x^1 + a\_2x^2 + \ldots + a\_{m-1}x^{m-1}
   $$
-  
+
   - The shards $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term 
-  $ s = a\_0 = f(0) $, the secret is recovered from any $ m $ shards $ (i, f(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace  $ 
+  $ s = a\_0 = f(0) $, it is recovered from any $ m $ shards $ (i, f(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace $ 
   by
-  
+
   $$
   s = \sum \_{i \in I} c \_{i} f(i) , \text{ where each } c \_{i} = \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
   $$
@@ -876,6 +914,58 @@ the message [[15]].
 threshold scheme for n parties to carry shares 
 of a secret message such that any m of them 
 can reconstruct the message."
+
+- **Pedersen Verifiable Secret Sharing:**<a name="pvss"> </a>The Pedersen Verifiable Secret Sharing scheme is a 
+non-interactive $ (m, n) $ threshold VSS scheme that combines Pedersen commitments and Shamir's Secret Sharing 
+Scheme ([[8]], [[15]], [[17]).
+
+  - The dealer creates a commitment to the secret $ s $ for a randomly chosen blinding factor $ r $ as 
+  $ C\_0(s,r) = (sH + rG) $.
+
+  - The dealer constructs the SSSS sharing polynomial $ f(x) $ as before by setting $ a\_0 = s $, and randomly 
+  choosing $ a\_1, \ldots , a\_{m−1} $.
+
+  - The dealer also constructs a blinding factor polynomial $ g(x) $, similar to the SSSS polynomial, by setting 
+  $ b\_0 = r $, and randomly choosing $ b\_1, \ldots , b\_{m−1} $. 
+
+  - The dealer constructs commitments to the secret coefficients of $ f(x) $ as $ C\_i(a\_i,b\_i) = (a\_iH + b\_iG) $ 
+  for $ i \in \lbrace 1, \ldots, m-1 \rbrace $.
+
+  - The dealer broadcasts the vector of commitments $ \mathbf {C\_{m}} = (C\_0 , \ldots , C\_{m-1}) $ to all parties.
+
+  - The dealer calculates $ (f(i), g(i)) $ from polynomials $ f(x), g(x) $ for $ i \in \lbrace 1, \ldots, n \rbrace $ 
+  and distribute the individual shards $ (i, f(i), g(i)) $ to the $ n $ distinct parties.
+
+  - Upon reception of their shard $ (i, f(i), g(i)) $ each party calculates their own commitment $ (f(i)H + g(i)G) $ and 
+  verifies that:
+
+  $$
+  (f(i)H + g(i)G) \overset{?}{=} \prod \_{i=0}^{m-1} C\_i
+  $$
+
+  - The secret $ s $ is recovered as before from any $ m $ shards.
+
+  - Since the blinding factor is the constant term 
+  $ r = b\_0 = g(0) $, the blinding factor is recovered from any $ m $ shards $ (i, g(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace $ 
+  by
+
+  $$
+  r = \sum \_{i \in I} c \_{i} g(i) , \text{ where each } c \_{i} = \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+  $$
+
+  - Since $ C\_0 $ is the first entry in the vector of commitments $ \mathbf {C\_{m}} $, the parties can verify the 
+  correctness of the secret $ s $ when the shards are shared as:
+
+  $$
+   C\_0(s,r) \overset{?}{=} (sH + rG)
+  $$
+
+[pvss~]: #pvss
+"The Pedersen Verifiable Secret Sharing scheme 
+is a non-interactive (m, n) threshold scheme 
+that combines Pedersen commitments and Shamir's 
+Secret Sharing Scheme."
+
 
 
 ### Appendix C: Shamir's Secret Sharing Example
@@ -907,7 +997,10 @@ Using any two of these shards with the tool provided in [[16]], Alice's original
 **Note:** This example shows blinding factor shards created with the SSSS tool developed by Coleman [[16]]. It was merely developed for demonstration purposes and does not make any claims to meet cryptographic security rules other than using secure randomness.
 
 
+
 ## Contributors
 
 - <https://github.com/hansieodendaal>
 - <https://github.com/anselld>
+- <https://github.com/SWvheerden>
+- <https://github.com/CjS77>
