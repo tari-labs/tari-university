@@ -1,6 +1,6 @@
 
 
-# Layer 2 Scaling Survey
+# Layer 2 Scaling Survey (Part 1)
 
 - [What is Layer 2 Scaling?](#what-is-layer-2-scaling)
 - [How will this be Applicable to Tari?](#how-will-this-be-applicable-to-tari)
@@ -19,7 +19,7 @@
 
 In the blockchain and cryptocurrency world, transaction processing scaling is a tough problem to solve. This is limited 
 by the average block creation time, the block size limit, and the number of newer blocks needed to confirm a transaction 
-(confirmation time). These factors make '*over the counter*' type transactions similar to Master Card or Visa nearly 
+(confirmation time). These factors make "*over the counter*" type transactions similar to Master Card or Visa nearly 
 impossible if done on the main blockchain (on-chain).
 
 <p align="center"><img src="sources/waiting.png" width="470" /></p>
@@ -30,18 +30,18 @@ average! *(To put this into perspective, VisaNet currently processes 160 billion
 capable of handling more than 65,000 transaction messages per second [[26]].)* This means that if all of those were 
 simple single-input-single-output non-cash transactions and performed on:
 
-- SegWit-enabled Bitcoin 'like' blockchains that can theoretically handle ~21.31tx/s, we would need ~644 parallel 
+- SegWit-enabled Bitcoin "like" blockchains that can theoretically handle ~21.31tx/s, we would need ~644 parallel 
   versions, and with a SegWit transaction size of 190 bytes [[27]], the combined blockchain growth would be *~210GB per 
   day*! 
 
-- Ethereum 'like' blockchains, and taking current gas prices into account, Ethereum can theoretically process ~25.4tx/s, 
+- Ethereum "like" blockchains, and taking current gas prices into account, Ethereum can theoretically process ~25.4tx/s, 
   then ~541 parallel versions would be needed and, with a transaction size of 109 bytes ([[28]], [[29]]), the combined 
   blockchain growth would be *~120GB per day*!
 
 This is why we need a proper scaling solution that would not bloat the blockchain.
 
 The Open Systems Interconnection (OSI) model defines seven layers for communication functions of a computing system. 
-Layer 1 refers to the physical layer and Layer&nbsp;2 to the data link layer. Layer&nbsp;1 is never concerned with 
+Layer&nbsp;1 refers to the physical layer and Layer&nbsp;2 to the data link layer. Layer&nbsp;1 is never concerned with 
 functions of Layer&nbsp;2 and up; it just delivers transmission and reception of raw data. In turn, Layer&nbsp;2 only 
 knows about Layer&nbsp;1 and defines the protocols that deliver node-to-node data transfer [[1]].
 
@@ -113,12 +113,12 @@ payment channel by broadcasting the final version of the transaction to distribu
 *Who uses them?*
 
 The Lightning Network is spreading across the cryptocurrency landscape. It was originally designed for Bitcoin. However, 
-Litecoin, Zcash, Ethereum, and Ripple are just a few of the many cryptocurrencies planning to implement or test some 
-form of the network. [[12]]
+Litecoin, Zcash, Ethereum and Ripple are just a few of the many cryptocurrencies planning to implement or test some 
+form of the network [[12]].
 
 *Strengths*
 
-- Micropayment channels are one of the leading solutions that has been presented to scale Bitcoin, which does not require 
+- Micropayment channels are one of the leading solutions that have been presented to scale Bitcoin, which do not require 
 a change to the underlying protocol.
 - Transactions are processed instantly, the account balances of the nodes are updated, and the money is immediately 
 accessible to the new owner.
@@ -220,14 +220,14 @@ private between two parties.
 Orders are matched off-chain in a matching engine and fulfilled on-chain. This allows complex orders, supports 
 cross-chain transfers, and maintains a public record of orders as well as a deterministic specification of behavior. 
 Off-chain matching engines make use of a token representation smart contract that converts global assets into smart 
-contract tokens and vice versa. [[5]]
+contract tokens and vice versa [[5]].
 
 *Who uses them?*
 
 - Neon Exchange (NEX) ( [[5]], [[35]])
   - NEX uses a NEO decentralized application (dApp) with tokens.
-  - Initial support is planned for NEO, ETH, NEP5, and ERC20 tokens.
-  - Cross-chain support is planned for trading BTC, LTC, and RPX on NEX.
+  - Initial support is planned for NEO, ETH, NEP5 and ERC20 tokens.
+  - Cross-chain support is planned for trading BTC, LTC and RPX on NEX.
   - The NEX off-chain matching engine will be scalable, distributed, fault-tolerant, and function continuously without 
   downtime.
   - Consensus is achieved using cryptographically signed requests; publicly specified deterministic off-chain matching 
@@ -327,7 +327,7 @@ allowing for a greater return on investment (ROI) ([[7]], [[9]]).
 
 *Who uses them?*
 
-Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash, and XtraBytes [[8]].
+Block, Bata, Crown, Chaincoin, Dash, Diamond, ION, Monetary Unit, Neutron, PIVX, Vcash and XtraBytes [[8]].
 
 *Strengths*
 
@@ -336,7 +336,7 @@ Masternodes:
 - can perform decentralized governance of miners by having the power to reject or orphan blocks if 
   required ([[22]], [[30]]);
 - can support decentralized exchanges by overseeing transactions and offering fiat currency gateways;
-- can be used to facilitate smart contracts such as instant transactions, anonymous transactions, and 
+- can be used to facilitate smart contracts such as instant transactions, anonymous transactions and 
   decentralized payment processor;
 - can facilitate a decentralized marketplace such as the blockchain equivalent of peer-run commerce sites 
   such as eBay [[22]];   
@@ -394,7 +394,7 @@ transition in the reduce step when returning the result [[4]].
 *Who uses it?*
 
 - Loom Network, using Delegated Proof of Stake (DPoS) consensus and validation, enabling scalable Application Specific 
-  Side Chains (DAppChains), running on top of Ethereum. ([[4]], [[15]])
+  Side Chains (DAppChains), running on top of Ethereum ([[4]], [[15]]).
 - OMG Network (OmiseGO), using PoS consensus and validation, a Plasma blockchain scaling solution for finance running on 
   top of Ethereum ([[6]], [[14]]).
 
@@ -411,11 +411,11 @@ transition in the reduce step when returning the result [[4]].
 
 *Weaknesses*
 
-At the time of writing (Julynbsp;2018), Plasma still needed to be proven on other networks apart from Ethereum.
+At the time of writing (July&nbsp;2018), Plasma still needed to be proven on other networks apart from Ethereum.
 
 *Opportunities*
 
-- Has opportunities for Tari as an L2 scaling solution.
+- Has opportunities for Tari as a Layer&nbsp;2 scaling solution.
 - *Possibility to create a Tari ticketing Plasma dAppChain running of Monero without creating a Tari-specific root 
   blockchain?* 
   **Note:** This will make the Tari blockchain dependent on another blockchain.
@@ -583,7 +583,7 @@ Date accessed: 2018-06-14.
 "Trinity White Paper: Universal 
 Off-chain Scaling Solution"
 
-[[19]] Jeff Coleman, Liam Horne, and Li Xuanji, "Counterfactual: Generalized State Channels" [online]. 
+[[19]] J. Coleman, L. Horne, and L. Xuanji, "Counterfactual: Generalized State Channels" [online]. 
 Available at: https://counterfactual.com/statechannels & https://l4.ventures/papers/statechannels.pdf. Date accessed: 2018-06-15.
 
 [19]: https://counterfactual.com/statechannels
@@ -666,7 +666,7 @@ https://medium.com/statechannels/counterfactual-generalized-state-channels-on-et
 [31]: https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6
 "Counterfactual: Generalized State Channels on Ethereum"
 
-[[32]] Jeremy Longley and Oliver Hopton, "FunFair Technology Roadmap and Discussion" [online]. 
+[[32]] J. Longley and O. Hopton, "FunFair Technology Roadmap and Discussion" [online]. 
 Available: https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf. Date accessed: 2018-06-27.
 
 [32]: https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf
@@ -717,7 +717,7 @@ Date accessed: 2018-06-22.
 [39]: https://golem.network/crowdfunding/Golemwhitepaper.pdf
 "The Golem WhitePaper (Future Integrations)"
 
-[[40]] Jason Teutsch, and Christian Reitwiessner, "A Scalable Verification Solution for Block Chains" [online]. 
+[[40]] J. Teutsch, and C. Reitwiessner, "A Scalable Verification Solution for Block Chains" [online]. 
 Available: http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf. Date accessed: 2018-06-22.
 
 [40]: http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf
