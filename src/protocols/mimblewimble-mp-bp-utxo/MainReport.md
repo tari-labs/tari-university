@@ -579,11 +579,11 @@ $$
 
 As mentioned in the [Introduction](#introduction), Mimblewimble transactions cannot utilize a smart/redeem script in the 
 form of a P2SH, but similar functionality can be implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty 
-Bulletproof UTXO, Shamir's Secret Sharing Scheme<sup>[def][ssss~]</sup> (SSSS) ([[8]], [[15]]) will be used to enable 
+Bulletproof UTXO, [Shamir's Secret Sharing Scheme][ssss~] (SSSS) ([[8]], [[15]]) will be used to enable 
 $ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry one shard (share) 
 $ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ each of a secret $ s $, such that any $ m $ of them can 
-reconstruct the message. The shards will be distributed according to Pedersen’s Verifiable Secret 
-Sharing<sup>[def][pvss~]</sup> (VSS) scheme, which extends the SSSS, where the dealer commits to the secret $ s $ itself 
+reconstruct the message. The shards will be distributed according to [Pedersen’s Verifiable Secret Sharing][pvss~] 
+(VSS) scheme, which extends the SSSS, where the dealer commits to the secret $ s $ itself 
 and the coefficients of the sharing polynomial $ f(x) $. This is broadcasted to all parties, who each also receives a 
 blinding factor shard $ g(i) $ corresponding to their secret shard $ f(i) $. This will enable each party to verify that 
 their shard is correct.
@@ -603,7 +603,7 @@ and decide to use that.
 ### Multiple Rounds' Data
 
 The parties will each pre-calculate three $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and shard it according to 
-Pedersen's VSS<sup>[def][pvss~]</sup> scheme. The scheme requires $ 3 $ shard tuples 
+[Pedersen's VSS][pvss~] scheme. The scheme requires $ 3 $ shard tuples 
 $ (k\_{n\text{-}party\text{-}i}, b\_{n\text{-}party\text{-}i}) $ and $ 3 $ vectors of commitments 
 $\mathbf{C}\_{2}( k\_{party\text{-}1})$ for each round. ([Appendix C](#appendix-c-shamirs-secret-sharing-example) 
 shows an example of Alice's sharing shards for one private blinding factor.) Whenever a set of information for each 
@@ -636,14 +636,14 @@ $$
  (k\_{1\text{-}b2}, b\_{1\text{-}b2}) ,  (k\_{1\text{-}c2}, b\_{1\text{-}c2}) \rbrace
 $$
 
-They are now able to reconstruct the blinding factors and verify the hashes. If the verification fails, they stop the 
-protocol and schedule a meeting with Alice to have a word with her. With all three together, they will be able to 
-identify the source of the misinformation.
+They are now able to reconstruct the blinding factors and verify the commitments to it. If the verification fails, they 
+stop the protocol and schedule a meeting with Alice to have a word with her. With all three together, they will be able 
+to identify the source of the misinformation.
 
 $$
 \text{reconstruct:} \mspace{9mu} (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) \\\\
-\text{verify:} \mspace{9mu} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{calculated} \\\\
-\text{verify:} \mspace{9mu} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{calculated}
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} (k\_{1\text{-}1}H + b\_{1\text{-}1}G) \\\\
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} (k\_{1\text{-}2}H + b\_{1\text{-}2}G)
 $$
 
 For this round they choose Bob to play Alice's part when they set up and conclude the transaction. Bob is able to do 
@@ -910,14 +910,16 @@ Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme us
   $$
 
 [ssss~]: #ssss
-"Shamir's Secret Sharing Scheme is an (m, n) 
+"Appendix B:
+Shamir's Secret Sharing Scheme is an (m, n) 
 threshold scheme for n parties to carry shares 
 of a secret message such that any m of them 
 can reconstruct the message."
 
 - **Pedersen Verifiable Secret Sharing:**<a name="pvss"> </a>The Pedersen Verifiable Secret Sharing scheme is a 
-non-interactive $ (m, n) $ threshold VSS scheme that combines Pedersen commitments and Shamir's Secret Sharing 
-Scheme ([[8]], [[15]], [[17]).
+non-interactive $ (m, n) $ threshold VSS scheme that combines 
+[Pedersen Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
+and [Shamir's Secret Sharing Scheme][ssss~] ([[8]], [[15]], [[17]).
 
   - The dealer creates a commitment to the secret $ s $ for a randomly chosen blinding factor $ r $ as 
   $ C\_0(s,r) = (sH + rG) $.
@@ -940,28 +942,31 @@ Scheme ([[8]], [[15]], [[17]).
   verifies that:
 
   $$
-  (f(i)H + g(i)G) \overset{?}{=} \prod \_{i=0}^{m-1} C\_i
+  (f(i)H + g(i)G) \overset{?}{=} \sum \_{i=0}^{m-1} C\_i
   $$
 
-  - The secret $ s $ is recovered as before from any $ m $ shards.
+  - The secret $ s $ is recovered as before as per the SSSS from any $ m $ shards.
 
-  - Since the blinding factor is the constant term 
-  $ r = b\_0 = g(0) $, the blinding factor is recovered from any $ m $ shards $ (i, g(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace $ 
-  by
+  - In addition to reconstructing the secret $ s $, the following can be done:
 
-  $$
-  r = \sum \_{i \in I} c \_{i} g(i) , \text{ where each } c \_{i} = \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
-  $$
+    - Since the blinding factor is the constant term $ r = b\_0 = g(0) $, the blinding factor is recovered from any 
+    $ m $ shards $ (i, g(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace $ by
 
-  - Since $ C\_0 $ is the first entry in the vector of commitments $ \mathbf {C\_{m}} $, the parties can verify the 
-  correctness of the secret $ s $ when the shards are shared as:
+    $$
+    r = \sum \_{i \in I} c \_{i} g(i) , \text{ where each } c \_{i} = \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+    $$
 
-  $$
-   C\_0(s,r) \overset{?}{=} (sH + rG)
-  $$
+    - Since $ C\_0 $ is the first entry in the vector of commitments $ \mathbf {C\_{m}} $, the parties can verify the 
+    correctness of the original secret $ s $ that was committed to in the first place when the shards have been shared 
+    among the parties as:
+
+    $$
+    C\_0(s,r) \overset{?}{=} (sH + rG)
+    $$
 
 [pvss~]: #pvss
-"The Pedersen Verifiable Secret Sharing scheme 
+"Appendix B:
+The Pedersen Verifiable Secret Sharing scheme 
 is a non-interactive (m, n) threshold scheme 
 that combines Pedersen commitments and Shamir's 
 Secret Sharing Scheme."
