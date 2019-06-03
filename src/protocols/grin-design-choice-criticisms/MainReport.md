@@ -221,7 +221,7 @@ Available: <https://www.investopedia.com/tech/what-happens-bitcoin-after-21-mill
 "What Happens to Bitcoin after 
 all 21 Million are Mined? Adam Barone"
 
-[[4]] "Emission Rate of Grin" [online]. Available: htt<ps://www.grin-forum.org/t/emmission-rate-of-grin/171>. 
+[[4]] "Emission Rate of Grin" [online]. Available: <https://www.grin-forum.org/t/emmission-rate-of-grin/171>. 
 Date accessed: 2018&#8209;10&#8209;15.
 
 [4]: https://www.grin-forum.org/t/emmission-rate-of-grin/171
@@ -340,7 +340,7 @@ Elliptic Curve Cryptography? Hans Knutson"
 "Standards for Efficient 
 Cryptography Group"
 
-[[21]] Secp256k1 [online]. Available: <https://en.bitcoin.it/wiki/Secp256k1>. Date accessed: 2018&#8209;10&#8209;15.
+[[21]] "Secp256k1" [online]. Available: <https://en.bitcoin.it/wiki/Secp256k1>. Date accessed: 2018&#8209;10&#8209;15.
 
 [21]: https://en.bitcoin.it/wiki/Secp256k1
 "Secp256k1"
@@ -395,7 +395,7 @@ Date accessed: 2018&#8209;10&#8209;15.
 [29]: https://github.com/LMDB
 "LMDB"
 
-[[30]] P. Dix, "Benchmarking LevelDB vs. RocksDB vs. HyperLevelDB vs. LMDB Performance for InfluxDB' [online]. Available: 
+[[30]] P. Dix, "Benchmarking LevelDB vs. RocksDB vs. HyperLevelDB vs. LMDB Performance for InfluxDB" [online]. Available: 
 <https://www.influxdata.com/blog/benchmarking-leveldb-vs-rocksdb-vs-hyperleveldb-vs-lmdb-performance-for-influxdb/> 
 Date accessed: 2018&#8209;10&#8209;15.
 

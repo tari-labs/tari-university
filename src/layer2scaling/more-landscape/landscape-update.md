@@ -12,8 +12,6 @@
 - [References](#references)
 - [Contributors](#contributors)
 
-
-
 ## Introduction
 
 This report provides a survey of TumbleBit, Counterparty, 2-Way Pegged Secondary Blockchains, Lumino, Scriptless 
@@ -37,7 +35,8 @@ Two modes of operation are supported:
 - a fully-fledged payment hub mode.
 
 TumbleBit consists of two interleaved fair-exchange protocols that rely on the  Rivest–Shamir–Adleman (RSA) 
-cryptosystem's blinding properties to prevent bad acting from either users or Tumblers, and to ensure anonymity. These protocols are:
+cryptosystem's blinding properties to prevent bad acting from either users or Tumblers, and to ensure anonymity. These 
+protocols are:
 
 - RSA-Puzzle-Solver Protocol; and
 - Puzzle-Promise Protocol.
@@ -55,7 +54,8 @@ includes hashing conditions, signing conditions, conditional execution, 2&#8209;
 
 The Boston University provided a proof-of-concept and reference implementation alongside the white paper [[4]]. 
 NTumbleBit [[5]] is being developed as a C# production implementation of the TumbleBit protocol that at the time of 
-writing (July 2018) was being deployed by Stratis with its Breeze implementation [[6]], at alpha/experimental release level in TestNet.
+writing (July 2018) was being deployed by Stratis with its Breeze implementation [[6]], at alpha/experimental release 
+level in TestNet.
 
 *NTumbleBit will be a cross-platform framework, server and client for the TumbleBit payment scheme. TumbleBit is 
 separated into two modes, tumbler mode and payment hub mode. The tumbler mode improves transaction fungibility and 
@@ -67,24 +67,17 @@ requiring implementations like Segwit or the lightning network.* [[3]]
 - Anonymity properties. TumbleBit provides unlinkability without the need to trust the Tumbler service, i.e. untrusted 
 intermediary [[2]].
 - Denial of Service (DoS) and Sybil protection. "TumbleBit uses transaction fees to resist DoS and Sybil attacks." [[2]]
-
 - Balance. "The system should not be exploited to print new money or steal money, even when parties collude." [[2]]
-
 - As a classic tumbler. TumbleBit can also be used as a classic Bitcoin tumbler [[2]].
-
 - Bitcoin compatibility. TumbleBit is fully compatible with the Bitcoin protocol [[2]].
-
 - Scalability. Each TumbleBit user only needs to interact with the Tumbler and the corresponding transaction party; this 
 lack of coordination between all TumbleBit users makes scalability possible for the tumbler mode [[2]].
-
 - Batch processing. TumbleBit  supports one-to-one, many-to-one, one-to-many and many-to-many transactions in payment 
 hub mode [[2]].
-
 - Masternode compatibility. The TumbleBit protocol can be fully implemented as a service in a Masternode. "The Breeze 
 Wallet is now fully capable of providing enhanced privacy to bitcoin transactions through a secure connection. Utilizing 
 Breeze Servers that are preregistered on the network using a secure, trustless registration mechanism that is resistant 
 to manipulation and censorship." ([[6]], [[7]], [[12]])
-
 - Nearly production ready. The NTumbleBit and Breeze implementations have gained TestNet status.
 
 *Weaknesses*
@@ -166,9 +159,8 @@ The most notable projects built on top of Counterparty are [Age of Chains](https
 [Rarepepe.party](http://rarepepe.party), [SaruTobi Island](http://mandelduck.com/sarutobiisland/), 
 [Spells of Genesis](http://www.spellsofgenesis.com), [Takara](https://mandelduck.com/#portfolio), 
 [The Scarab Experiment](https://www.thescarabexperiment.org/), [Token.FM](https://token.fm/), 
-[Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM) [[32]].
-
-In the past, projects such as [Storj](https://storj.io/) and [SWARM](https://counterparty.io/news/swarm-crowdfunding/) 
+[Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM) [[32]]. In the past, 
+projects such as [Storj](https://storj.io/) and [SWARM](https://counterparty.io/news/swarm-crowdfunding/) 
 also built on Counterparty. 
 
 COVAL is being developed with the primary purpose of moving value using “off-chain” methods. It uses its own set of node 
@@ -236,15 +228,12 @@ the script hash and data, which makes the script evaluate to true [[23]].
 - RSK (formerly Rootstock) is a 2WP Bitcoin secondary blockchain using a hybrid sidechain-drivechain security protocol. 
 RSK is scalable up to 100&nbsp;transactions per second (Tx/s) and provides a second-layer scaling solution for Bitcoin, 
 as it can relieve on-chain Bitcoin transactions ([[14]], [[15]], [[16]]).
-
 - Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol that absorbs accurate data into a 
 blockchain so that Bitcoin users can speculate in Prediction Markets [[24]].
-
 - Blockstream is implementing a Federated Sidechain called Liquid, with the functionaries/notaries being made up of 
 participating exchanges and Bitcoin businesses [[29]].
 
 <p align="center"><img src="./sources/Blockstream-Federated-Sidechain.png" width="800" /></p>
-
 
 *Strengths*
 
@@ -374,9 +363,8 @@ signer signs their own message must still be proven by a complete security analy
 *Opportunities*
 
 Tari plans to implement the Mimblewimble blockchain and should implement the *Scriptless Script*s together with the 
-MuSig Schnorr signature scheme. 
-
-However, this in itself will not provide the Layer 2 scaling performance that will be required. Big Neon, the initial 
+MuSig Schnorr signature scheme. However, this in itself will not provide the Layer 2 scaling performance that will be 
+required. Big Neon, the initial 
 business application to be built on top of the Tari blockchain, requires to "facilitate 500 tickets in 4 minutes", i.e. 
 approximately two spectators allowed access every second, with negligible latency. 
 
@@ -465,7 +453,6 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but they offer signi
 *Weaknesses*
 
 - Still not proven 100%, development continuing.
-
 - The DAG derivative protocols differ on important aspects such as miner payment schemes, security models, support for 
 smart contracts, and confirmation times. Thus, all DAG derivative protocols are not created equal - beware!
 
@@ -475,7 +462,6 @@ Opportunities exist for Tari in applying the basic DAG principles to make a 51% 
 miner decentralization resistance. Choosing the correct DAG derivative protocol can also significantly improve Layer 1 
 scaling.
 
-
 ## Observations
 
 Although not all technologies covered here are Layer 2 Scaling solutions, the strengths should be considered as building 
@@ -484,7 +470,7 @@ blocks for the Tari protocol.
 ## References
 
 [[1]] "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub" [online].
-Available: http://cs-people.bu.edu/heilman/tumblebit. Date accessed: 2018-07-12.
+Available: <http://cs-people.bu.edu/heilman/tumblebit>. Date accessed: 2018&#8209;07&#8209;12.
 
 [1]: http://cs-people.bu.edu/heilman/tumblebit
 "TumbleBit: An Untrusted Bitcoin-compatible 
@@ -492,47 +478,48 @@ Anonymous Payment Hub"
 
 [[2]] E. Heilman, L. AlShenibr, F. Baldimtsi, A. Scafuro and S. Goldberg, "TumbleBit: An 
 Untrusted Bitcoin-compatible Anonymous Payment Hub" [online].
-Available: https://eprint.iacr.org/2016/575.pdf. Date accessed: 2018-07-08.
+Available: <https://eprint.iacr.org/2016/575.pdf>. Date accessed: 2018&#8209;07&#8209;08.
 
 [2]: https://eprint.iacr.org/2016/575.pdf
 "TumbleBit: An Untrusted Bitcoin-compatible
  Anonymous Payment Hub"
 
 [[3]] "Anonymous Transactions Coming to Stratis" [online].
-Available: https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e. Date accessed: 
-2018-07-08.
+Available: <https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e>. Date accessed: 
+2018&#8209;07&#8209;08.
 
 [3]: https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e
 "Anonymous Transactions Coming to Stratis"
 
 [[4]] "TumbleBit Proof of Concept GitHub Repository" [online].
-Available: https://github.com/BUSEC/TumbleBit. Date accessed: 2018-07-08.
+Available: <https://github.com/BUSEC/TumbleBit>. Date accessed: 2018&#8209;07&#8209;08.
 
 [4]: https://github.com/BUSEC/TumbleBit
 "TumbleBit Proof of Concept GitHub Repository"
 
 [[5]] "NTumbleBit GitHub Repository" [online].
-Available: https://github.com/nTumbleBit/nTumbleBit. Date accessed: 2018-07-12.
+Available: <https://github.com/nTumbleBit/nTumbleBit>. Date accessed: 2018&#8209;07&#8209;12.
 
 [5]: https://github.com/nTumbleBit/nTumbleBit
 "NTumbleBit GitHub Repository"
 
 [[6]] "Breeze Tumblebit Server Experimental Release" [online].
-Available: https://stratisplatform.com/2017/07/17/breeze-tumblebit-server-experimental-release. Date accessed: 2018-07-12.
+Available: <https://stratisplatform.com/2017/07/17/breeze-tumblebit-server-experimental-release>. Date accessed: 
+2018&#8209;07&#8209;12.
 
 [6]: https://stratisplatform.com/2017/07/17/breeze-tumblebit-server-experimental-release
 "Breeze Tumblebit Server Experimental Release"
 
 [[7]] "Breeze Wallet with Breeze Privacy Protocol (Dev. Update)" [online].
-Available: https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-privacy-protocol-dev-update. 
-Date accessed: 2018-07-12.
+Available: <https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-privacy-protocol-dev-update>. 
+Date accessed: 2018&#8209;07&#8209;12.
 
 [7]: https://stratisplatform.com/2017/09/20/breeze-wallet-with-breeze-privacy-protocol-dev-update
 "Breeze Wallet with Breeze Privacy Protocol"
 
 [[8]] E. Heilman,  F. Baldimtsi and S. Goldberg, "Blindly Signed Contracts - Anonymous On-chain and 
 Off-chain Bitcoin Transactions" [online].
-Available: https://eprint.iacr.org/2016/056.pdf. Date accessed: 2018-07-12.
+Available: <https://eprint.iacr.org/2016/056.pdf>. Date accessed: 2018&#8209;07&#8209;12.
 
 [8]: https://eprint.iacr.org/2016/056.pdf
 "Blindly Signed Contracts - 
@@ -540,30 +527,30 @@ Anonymous On-chain and
 Off-chain Bitcoin Transactions"
 
 [[9]] E. Heilman and L. AlShenibr, "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub - 
-08 October 2016", in Conference: *Scaling Bitcoin 2016 Milan*.
-Available: https://www.youtube.com/watch?v=8BLWUUPfh2Q&feature=youtu.be&t=1h3m10s. Date accessed: 2018-07-13.
+08&nbsp;October&nbsp; 2016", in Conference: *Scaling Bitcoin 2016 Milan*.
+Available: <https://www.youtube.com/watch?v=8BLWUUPfh2Q&feature=youtu.be&t=1h3m10s>. Date accessed: 2018&#8209;07&#8209;13.
 
 [9]: https://www.youtube.com/watch?v=8BLWUUPfh2Q&feature=youtu.be&t=1h3m10s
 "TumbleBit: An Untrusted Bitcoin-compatible 
 Anonymous Payment Hub"
 
 [[10]] "Better Bitcoin Privacy, Scalability: Developers Making TumbleBit a Reality" [online].
-Available: https://bitcoinmagazine.com/articles/better-bitcoin-privacy-scalability-developers-are-making-tumblebit-reality. 
-Date accessed: 2018-07-13.
+Available: <https://bitcoinmagazine.com/articles/better-bitcoin-privacy-scalability-developers-are-making-tumblebit-reality>. 
+Date accessed: 2018&#8209;07&#8209;13.
 
 [10]: https://bitcoinmagazine.com/articles/better-bitcoin-privacy-scalability-developers-are-making-tumblebit-reality
 "Better Bitcoin Privacy, Scalability: 
 Developers Making TumbleBit a Reality"
 
 [[11]] Bitcoinwiki: "Contract" [online].
-Available: https://en.bitcoin.it/wiki/Contract. Date accessed: 2018-07-13.
+Available: <https://en.bitcoin.it/wiki/Contract>. Date accessed: 2018&#8209;07&#8209;13.
 
 [11]: https://en.bitcoin.it/wiki/Contract
 "Bitcoinwiki: Contract"
 
 [[12]] "Bitcoin Privacy is a Breeze: TumbleBit Successfully Integrated Into Breeze" [online].
-Available: https://stratisplatform.com/2017/08/10/bitcoin-privacy-tumblebit-integrated-into-breeze. Date accessed: 
-2018-07-13.
+Available: <https://stratisplatform.com/2017/08/10/bitcoin-privacy-tumblebit-integrated-into-breeze>. Date accessed: 
+2018-07&#8209;13.
 
 [12]: https://stratisplatform.com/2017/08/10/bitcoin-privacy-tumblebit-integrated-into-breeze
 "Bitcoin Privacy is a Breeze: 
@@ -571,15 +558,16 @@ TumbleBit Successfully Integrated
 Into Breeze"
 
 [[13]] "TumbleBit Wallet Reaches One Step Forward" [online].
-Available: https://www.bitcoinmarketinsider.com/tumblebit-wallet-reaches-one-step-forward. Date accessed: 2018-07-13.
+Available: <https://www.bitcoinmarketinsider.com/tumblebit-wallet-reaches-one-step-forward>. Date accessed: 
+2018&#8209;07&#8209;13.
 
 [13]: https://www.bitcoinmarketinsider.com/tumblebit-wallet-reaches-one-step-forward
 "TumbleBit Wallet Reaches 
 One Step Forward"
 
 [[14]] "A Survey of Second Layer Solutions for Blockchain Scaling Part 1" [online].
-Available: https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1. Date accessed: 
-2018-07-16.
+Available: <https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1>. Date accessed: 
+2018&#8209;07&#8209;16.
 
 [14]: https://www.ethnews.com/a-survey-of-second-layer-solutions-for-blockchain-scaling-part-1
 "A Survey of Second Layer 
@@ -587,93 +575,93 @@ Solutions for Blockchain Scaling
 Part 1"
 
 [[15]] "Second-layer Scaling" [online].
-Available: https://lunyr.com/article/Second-Layer_Scaling. Date accessed: 2018-07-16.
+Available: <https://lunyr.com/article/Second-Layer_Scaling>. Date accessed: 2018&#8209;07&#8209;16.
 
 [15]: https://lunyr.com/article/Second-Layer_Scaling
 "Second-layer Scaling"
 
 [[16]] "RSK Website" [online].
-Available: https://www.rsk.co. Date accessed: 2018-07-16.
+Available: <https://www.rsk.co>. Date accessed: 2018&#8209;07&#8209;16.
 
 [16]: https://www.rsk.co
 "RSK Website"
 
 [[17]] S. D. Lerner, "Lumino Transaction Compression Protocol (LTCP)" [online].
-Available: https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf. 
-Date accessed: 2018-07-16.
+Available: <https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf>. 
+Date accessed: 2018&#8209;07&#8209;16.
 
 [17]: https://uploads.strikinglycdn.com/files/ec5278f8-218c-407a-af3c-ab71a910246d/LuminoTransactionCompressionProtocolLTCP.pdf
 "Lumino Transaction Compression Protocol (LTCP)"
 
 [[18]] "Bitcoin-based Ethereum Rival RSK Set to Launch Next Month" [online].
-Available:  https://cryptonewsmonitor.com/2017/11/11/bitcoin-based-ethereum-rival-rsk-set-to-launch-next-month. 
-Date accessed: 2018-07-16.
+Available:  <https://cryptonewsmonitor.com/2017/11/11/bitcoin-based-ethereum-rival-rsk-set-to-launch-next-month>. 
+Date accessed: 2018&#8209;07&#8209;16.
 
 [18]: https://cryptonewsmonitor.com/2017/11/11/bitcoin-based-ethereum-rival-rsk-set-to-launch-next-month
 "Bitcoin-based Ethereum Rival 
 RSK Set to Launch Next Month"
 
 [[19]] "RSK Blog Website" [online].
-Available:  https://media.rsk.co/. Date accessed: 2018-07-16.
+Available:  <https://media.rsk.co/>. Date accessed: 2018&#8209;07&#8209;16.
 
 [19]: https://media.rsk.co/
 "RSK Blog Website"
 
 [[20]] "Drivechain: Enabling Bitcoin Sidechain" [online].
-Available: http://www.drivechain.info. Date accessed: 2018-07-17.
+Available: <http://www.drivechain.info>>. Date accessed: 2018&#8209;07&#8209;17.
 
 [20]: http://www.drivechain.info
 "Drivechain: Enabling Bitcoin Sidechain"
 
 [[21]] "Drivechain - The Simple Two Way Peg" [online].
-Available: http://www.truthcoin.info/blog/drivechain. Date accessed: 2018-07-17.
+Available: <http://www.truthcoin.info/blog/drivechain>. Date accessed: 2018&#8209;07&#8209;17.
 
 [21]: http://www.truthcoin.info/blog/drivechain
 "Drivechain - The Simple Two Way Peg"
 
 [[22]] "Sidechains, Drivechains, and RSK 2-Way Peg Design" [online].
-Available:  https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design or https://uploads.strikinglycdn.com/files/27311e59-0832-49b5-ab0e-2b0a73899561/Drivechains_Sidechains_and_Hybrid_2-way_peg_Designs_R9.pdf. 
-Date accessed: 2018-07-18.
+Available: <https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design> or <https://uploads.strikinglycdn.com/files/27311e59-0832-49b5-ab0e-2b0a73899561/Drivechains_Sidechains_and_Hybrid_2-way_peg_Designs_R9.pdf>. 
+Date accessed: 2018&#8209;07&#8209;18.
 
 [22]: https://www.rsk.co/blog/sidechains-drivechains-and-rsk-2-way-peg-design
 "Sidechains, Drivechains, 
 and RSK 2-Way Peg Design"
 
 [[23]] "Pay to Script Hash" [online].
-Available: https://en.bitcoin.it/wiki/Pay_to_script_hash. Date accessed: 2018-07-18.
+Available: <https://en.bitcoin.it/wiki/Pay_to_script_hash>. Date accessed: 2018&#8209;07&#8209;18.
 
 [23]:  https://en.bitcoin.it/wiki/Pay_to_script_hash
 "Pay to Script Hash"
 
 [[24]] Hivemind Website [online].
-Available: http://bitcoinhivemind.com. Date accessed: 2018-07-18.
+Available: <http://bitcoinhivemind.com>. Date accessed: 2018&#8209;07&#8209;18.
 
 [24]: http://bitcoinhivemind.com
 "Hivemind Website"
 
 [[25]] "Drivechains: What do they Enable? Cloud 3.0 Services Smart Contracts and Scalability" [online].
-Available: http://drivechains.org/what-are-drivechains/what-does-it-enable. Date accessed: 2018-07-19.
+Available: <http://drivechains.org/what-are-drivechains/what-does-it-enable>>. Date accessed: 2018&#8209;07&#8209;19.
 
 [25]: http://drivechains.org/what-are-drivechains/what-does-it-enable
 "Drivechains: What do they Enable? 
 Cloud 3.0 Services Smart Contracts 
 and Scalability"
 
-[[26]] "Bloq’s Paul Sztorc on the 4 Main Benefits of Sidechains" [online]. Available:  https://bitcoinmagazine.com/articles/bloq-s-paul-sztorc-on-the-main-benefits-of-sidechains-1463417446. Date accessed: 2018-07-19.
+[[26]] "Bloq’s Paul Sztorc on the 4 Main Benefits of Sidechains" [online]. Available:  <https://bitcoinmagazine.com/articles/bloq-s-paul-sztorc-on-the-main-benefits-of-sidechains-1463417446>. Date accessed: 2018&#8209;07&#8209;19.
 
 [26]:https://bitcoinmagazine.com/articles/bloq-s-paul-sztorc-on-the-main-benefits-of-sidechains-1463417446
 "Bloq’s Paul Sztorc on the 
 4 Main Benefits of Sidechains"
 
 [[27]] Blockstream Website [online].
-Available: https://blockstream.com/technology. Date accessed: 2018-07-19.
+Available: <https://blockstream.com/technology>. Date accessed: 2018&#8209;07&#8209;19.
 
 [27]:  https://blockstream.com/technology
 "Blockstream Website [online]"
 
 [[28]] A. Back, M. Corallo, L. Dashjr, M. Friedenbach, G. Maxwell, A. Miller, A. Poelstra,
 J. Timón and P. Wuille, 2014-10-22. "Enabling Blockchain Innovations with Pegged Sidechains" [online].
-Available: https://blockstream.com/sidechains.pdf. Date accessed: 2018-07-19.
+Available: <https://blockstream.com/sidechains.pdf>. Date accessed: 2018&#8209;07&#8209;19.
 
 [28]: https://blockstream.com/sidechains.pdf
 "Enabling Blockchain Innovations 
@@ -681,7 +669,7 @@ with Pegged Sidechains"
 
 [[29]] J. Dilley, A. Poelstra, J. Wilkins, M. Piekarska, B. Gorlick and M. Friedenbachet, "Strong 
 Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks" [online].
-Available: https://blockstream.com/strong-federations.pdf. Date accessed: 2018-07-19.
+Available: <https://blockstream.com/strong-federations.pdf>. Date accessed: 2018&#8209;07&#8209;19.
 
 [29]: https://blockstream.com/strong-federations.pdf
 "Strong Federations: An Interoperable 
@@ -689,32 +677,33 @@ Blockchain Solution to Centralized
 Third Party Risks"
 
 [[30]] "CounterpartyXCP/Documentation/Smart Contracts/EVM FAQ" [online]. 
-Available: https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md. Date accessed: 2018-07-23.
+Available: <https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md>. Date accessed: 
+2018&#8209;07&#8209;23.
 
 [30]: https://github.com/CounterpartyXCP/Documentation/blob/master/Basics/FAQ-SmartContracts.md
 "CounterpartyXCP/Documentation/Smart Contracts/EVM FAQ"
 
 [[31]] "Counterparty Development 101" [online].
-Available: https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3. Date accessed: 2018-07-23.
+Available: <https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3>. Date accessed: 2018&#8209;07&#8209;23.
 
 [31]: https://medium.com/@droplister/counterparty-development-101-2f4d9b0c8df3
 "Counterparty Development 101"
 
 [[32]]  "Counterparty Website" [online].
-Available: https://counterparty.io. Date accessed: 2018-07-24.
+Available: <https://counterparty.io>. Date accessed: 2018&#8209;07&#8209;24.
 
 [32]: https://counterparty.io
 " Counterparty Website"
 
 [[33]] "COVAL Website" [online].
-Available: https://coval.readme.io/docs. Date accessed: 2018-07-24.
+Available: <https://coval.readme.io/docs>. Date accessed: 2018&#8209;07&#8209;24.
 
 [33]: https://coval.readme.io/docs
 "COVAL Website"
 
 [[34]] "Scriptless Scripts: How Bitcoin Can Support Smart Contracts Without Smart Contracts" [online].
-Available: https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts. 
-Date accessed: 2018-07-24.
+Available: <https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts>. 
+Date accessed: 2018&#8209;07-24.
 
 [34]: https://bitcoinmagazine.com/articles/scriptless-scripts-how-bitcoin-can-support-smart-contracts-without-smart-contracts
 "Scriptless Scripts: How Bitcoin 
@@ -722,94 +711,97 @@ Can Support Smart Contracts
 Without Smart Contracts"
 
 [[35]] "Key Aggregation for Schnorr Signatures" [online].
-Available: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html. Date accessed: 2018-07-24.
+Available: <https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html>. Date accessed: 
+2018&#8209;07&#8209;24.
 
 [35]: https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html
 "Key Aggregation for Schnorr Signatures"
 
 [[36]] G. Maxwell, A. Poelstra, Y. Seurin and P. Wuille, "Simple Schnorr Multi-signatures with 
-Applications to Bitcoin" [online]. Available: 20 May 2018, https://eprint.iacr.org/2018/068.pdf. Date accessed: 2018-07-24.
+Applications to Bitcoin" [online]. Available: 20&nbsp;May&nbsp;2018, <https://eprint.iacr.org/2018/068.pdf>. Date 
+accessed: 2018&#8209;07&#8209;24.
 
 [36]: https://eprint.iacr.org/2018/068.pdf
 "Simple Schnorr Multi-signatures 
 with Applications to Bitcoin"
 
 [[37]] A. Poelstra, 4 March 2017, "Scriptless Scripts" [online].
-Available: https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf. Date 
-accessed: 2018-07-24.
+Available: <https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf>. Date 
+accessed: 2018&#8209;07&#8209;24.
 
 [37]: https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf
 "Scriptless Scripts"
 
 [[38]] "bip-schnorr.mediawiki" [online].
-Available: https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki. Date accessed: 2018-07-26.
+Available: <https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki>. Date accessed: 2018&#8209;07&#8209;26.
 
 [38]: https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki
 "bip-schnorr.mediawiki"
 
 [[39]] "If There is an Answer to Selfish Mining, Braiding could be It" [online].
-Available: https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153. 
-Date accessed: 2018-07-27.
+Available: <https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153>. 
+Date accessed: 2018&#8209;07&#8209;27.
 
 [39]: https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153
 "If There is an Answer 
 to Selfish Mining, 
 Braiding could be It"
 
-[[40]] B. McElrath, "Braiding the Blockchain", in Conference: *Scaling Bitcoin, Hong Kong, 7 Dec 2015* [online].
-Available: https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf. Date 
-accessed: 2018-07-27.
+[[40]] B. McElrath, "Braiding the Blockchain", in Conference: *Scaling Bitcoin, Hong Kong, 7&nbsp;Dec&nbsp;2015* [online].
+Available: <https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf>. Date 
+accessed: 2018&#8209;07&#8209;27.
 
 [40]: https://scalingbitcoin.org/hongkong2015/presentations/DAY2/2_breaking_the_chain_1_mcelrath.pdf
 "Braiding the Blockchain"
 
 [[41]] "Braid Examples" [online].
-Available: https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html. Date accessed: 2018-07-27.
+Available: <https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html>. Date accessed: 2018&#8209;07&#8209;27.
 
 [41]: https://rawgit.com/mcelrath/braidcoin/master/Braid%2BExamples.html
 "Braid Examples"
 
 [[42]] "Directed Acyclic Graph" [online].
-Available: https://en.wikipedia.org/wiki/Directed_acyclic_graph. Date accessed: 2018-07-30.
+Available: <https://en.wikipedia.org/wiki/Directed_acyclic_graph>. Date accessed: 2018&#8209;07&#8209;30.
 
 [42]: https://en.wikipedia.org/wiki/Directed_acyclic_graph
 "Directed Acyclic Graph"
 
 [[43]] "Braiding Techniques to Improve Security and Scaling" [online]. 
-Available: https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf. Date accessed: 2018-07-30.
+Available: <https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf>. Date accessed: 
+2018&#8209;07&#8209;30.
 
 [43]: https://scalingbitcoin.org/milan2016/presentations/D2%20-%209%20-%20David%20Vorick.pdf
 "Braiding Techniques to 
 Improve Security and Scaling"
 
 [[44]] Y. Sompolinsky and A. Zohar, "GHOST: Secure High-rate Transaction Processing in Bitcoin" [online].
-Available:  https://eprint.iacr.org/2013/881.pdf. Date accessed: 2018-07-30.
+Available:  <https://eprint.iacr.org/2013/881.pdf>. Date accessed: 2018&#8209;07&#8209;30.
 
 [44]: https://eprint.iacr.org/2013/881.pdf
 "GHOST: Secure High-rate 
 Transaction Processing in Bitcoin"
 
 [[45]] Y. Lewenberg, Y. Sompolinsky and A. Zohar, "Inclusive Blockchain Protocols" [online]. 
-Available: http://fc15.ifca.ai/preproceedings/paper_101.pdf. Date accessed: 2018-07-30.
+Available: <http://fc15.ifca.ai/preproceedings/paper_101.pdf>. Date accessed: 2018&#8209;07&#8209;30.
 
 [45]: http://fc15.ifca.ai/preproceedings/paper_101.pdf
 "Inclusive Blockchain Protocols"
 
 [[46]] Y. Sompolinsky, Y. Lewenberg and A. Zohar, "SPECTRE: A Fast and Scalable Cryptocurrency Protocol" [online].
-Available: http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf. Date accessed: 2018-07-30.
+Available: <http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf>. Date accessed: 2018&#8209;07&#8209;30.
 
 [46]: http://www.cs.huji.ac.il/~yoni_sompo/pubs/16/SPECTRE_complete.pdf
 "SPECTRE: A Fast and Scalable 
 Cryptocurrency Protocol"
 
 [[47]] "IOTA Website" [online].
-Available: https://www.iota.org/. Date accessed: 2018-07-30.
+Available: <https://www.iota.org/>. Date accessed: 2018&#8209;07&#8209;30.
 
 [47]: https://www.iota.org/
 "IOTA Website"
 
 [[48]] NANO: "Digital Currency for the Real World – the fast and free way to pay for everything in life" [online].
-Available: https://nano.org/en. Date accessed: 2018-07-30.
+Available: <https://nano.org/en>. Date accessed: 2018&#8209;07&#8209;30.
 
 [48]: https://nano.org/en
 "Digital Currency for the Real World – 
@@ -817,13 +809,13 @@ the fast and free way to pay for
 everything in life"
 
 [[49]] "Byteball" [online].
-Available: https://byteball.org/. Date accessed: 2018-07-30.
+Available: <https://byteball.org/>. Date accessed: 2018&#8209;07&#8209;30.
 
 [49]: https://byteball.org/
 "Byteball"
 
 [[50]] "SPECTRE: Serialization of Proof-of-work Events, Confirming Transactions via Recursive Elections" [online].
-Available: https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b. Date accessed: 2018-07-30.
+Available: <https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b>. Date accessed: 2018&#8209;07&#8209;30.
 
 [50]: https://medium.com/@avivzohar/the-spectre-protocol-7dbbebb707b
 "SPECTRE: Serialization of Proof-of-work 
@@ -832,7 +824,7 @@ Recursive Elections"
 
 [[51]] Y. Sompolinsky, Y. Lewenberg and A. Zohar, "SPECTRE: Serialization of Proof-of-work Events: Confirming 
 Transactions via Recursive Elections" [online].
-Available: https://eprint.iacr.org/2016/1159.pdf. Date accessed: 2018-07-30.
+Available: <https://eprint.iacr.org/2016/1159.pdf>. Date accessed: 2018&#8209;07&#8209;30.
 
 [51]: https://eprint.iacr.org/2016/1159.pdf
 "SPECTRE: Serialization of Proof-of-work 
@@ -840,65 +832,62 @@ Events: Confirming Transactions via
 Recursive Elections"
 
 [[52]] Y. Sompolinsky and A. Zohar, "PHANTOM: A Scalable BlockDAG Protocol" [online].
-Available: https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf. Date accessed: 2018-07-30.
+Available: <https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf>. Date accessed: 2018&#8209;07&#8209;30.
 
 [52]: https://docs.wixstatic.com/ugd/242600_92372943016c47ecb2e94b2fc07876d6.pdf
 "PHANTOM: A Scalable BlockDAG Protocol"
 
 [[53]] "DAGLabs Website" [online].
-Available: https://www.daglabs.com. Date accessed: 2018-07-30.
+Available: <https://www.daglabs.com>. Date accessed: 2018&#8209;07&#8209;30.
 
 [53]: https://www.daglabs.com
 "DAGLabs Website"
 
 [[54]] "Beyond Distributed and Decentralized: what is a federated network?" [Online.]
-Available: http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network. Date accessed: 2018-08-13.
+Available: <http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network>>. Date accessed: 2018&#8209;08&#8209;13.
 
 [54]: http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network
 "Beyond Distributed and Decentralized: 
 what is a federated network?"
 
 [[55]] "Federated Byzantine Agreement" [online].
-Available: https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0. Date accessed: 2018-08-13.
+Available: <https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0>. Date accessed: 2018&#8209;08&#8209;13.
 
 [55]: https://towardsdatascience.com/federated-byzantine-agreement-24ec57bf36e0
 "Federated Byzantine Agreement"
 
 [[56]] "Counterparty Documentation: Frequently Asked Questions" [online].
-Available: https://counterparty.io/docs/faq. Date accessed: 2018-09-14.
+Available: <https://counterparty.io/docs/faq>. Date accessed: 2018&#8209;09&#8209;14.
 
 [56]: https://counterparty.io/docs/faq
 "Counterparty Documentation: Frequently Asked Questions"
 
 [[57]] "Counterparty Documentation: Protocol Specification" [online].
-Available: https://counterparty.io/docs/protocol_specification. Date accessed: 2018-09-14.
+Available: <https://counterparty.io/docs/protocol_specification>. Date accessed: 2018&#8209;09&#8209;14.
 
 [57]: https://counterparty.io/docs/protocol_specification
 "Counterparty Documentation: Protocol Specification"
 
-[[58]] "Counterparty News: Why Proof-of-Burn, March 23, 2014" [online].
-Available: https://counterparty.io/news/why-proof-of-burn.
-Date accessed: 2018-09-14.
+[[58]] "Counterparty News: Why Proof-of-Burn, March&nbsp;23,&nbsp;2014" [online].
+Available: <https://counterparty.io/news/why-proof-of-burn>.
+Date accessed: 2018&#8209;09&#8209;14.
 
 [58]: https://counterparty.io/news/why-proof-of-burn
 "Counterparty News: Why Proof-of-Burn"
 
 [[59]] V. Buterin, "Dagger: A Memory-Hard to Compute, Memory-Easy to Verify Scrypt Alternative" [online].
-Available: http://www.hashcash.org/papers/dagger.html. Date accessed: 2019-02-12.
+Available: <http://www.hashcash.org/papers/dagger.html>. Date accessed: 2019&#8209;02&#8209;12.
 
 [59]: http://www.hashcash.org/papers/dagger.html
 "Dagger: A Memory-Hard to Compute, 
 Memory-Easy to Verify Scrypt Alternative"
 
 [[60]] T. Dryja, "Hashimoto: I/O Bound Proof of Work" [online].
-Available: https://web.archive.org/web/20170810043640/https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf. 
-Date accessed: 2019-02-12.
+Available: <https://web.archive.org/web/20170810043640/https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf>. 
+Date accessed: 2019&#8209;02&#8209;12.
 
 [60]: https://web.archive.org/web/20170810043640/https://pdfs.semanticscholar.org/3b23/7cc60c1b9650e260318d33bec471b8202d5e.pdf
 "Hashimoto: I/O Bound Proof of Work"
-
-
-
 
 ## Contributors
 

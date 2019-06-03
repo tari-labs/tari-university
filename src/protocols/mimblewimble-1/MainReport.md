@@ -7,14 +7,11 @@
   - [Alice Prepares a Transaction](#alice-prepares-a-transaction)
   - [Bob Prepares his Response](#bob-prepares-his-response)
   - [Alice Completes and Broadcasts the Transaction](#alice-completes-and-broadcasts-the-transaction)
-
 - [Transaction Verification and Propagation](#transaction-verification-and-propagation)
 - [Stopping Fraud](#stopping-fraud)
 - [Transaction Summary](#transaction-summary)
 - [References](#references)
 - [Contributors](#contributors)
-
-
 
 
 ## High-level Overview
@@ -326,27 +323,27 @@ To sum up: a Tari/MimbleWimble transaction includes the following:
 
 [1]: https://www.mycryptopedia.com/what-are-confidential-transactions/ "What are Bitcoin Confidential Transactions?"
 [[1]] "What are Bitcoin Confidential Transactions?" [Online.] Available: <https://www.mycryptopedia.com/what-are-confidential-transactions/> 
-Date accessed: 2019-04-09.
+Date accessed: 2019&#8209;04&#8209;09.
 
 [2]: https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749 "Nothing-Up-My_Sleeve Number"
 [[2]] "Nothing-Up-My_Sleeve Number" [online].<br>Available:
-<https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749>. Date accessed: 2019-04-09.
+<https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749>. Date accessed: 2019&#8209;04&#8209;09.
 
 [3]: https://en.wikipedia.org/wiki/Commitment_scheme "Commitment Scheme"
 [[3]] Wikipedia: "Commitment Scheme" [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. 
-Date accessed: 2019-04-09.
+Date accessed: 2019&#8209;04&#8209;09.
 
 [4]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets "Kernel Offsets"
 [[4]] "Kernel Offsets, in Introduction to MimbleWimble and Grin" [online]. Available:
-<https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets>. Date accessed: 2019-04-09.
+<https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets>. Date accessed: 2019&#8209;04&#8209;09.
 
 [5]: https://joinmarket.me/static/FromZK2BPs_v1.pdf "From Zero (Knowledge) to BulletProofs"
 [[5]] A. Gibson, "From Zero (Knowledge) to BulletProofs" [online]. 
 Available: <https://joinmarket.me/static/FromZK2BPs_v1.pdf>.
-Date accessed: 2019-04-10.
+Date accessed: 2019&#8209;04&#8209;10.
 
 ## Contributors
 
-- [https://github.com/CjS77](https://github.com/CjS77)
-- [https://github.com/anselld](https://github.com/anselld)
+- <https://github.com/CjS77>
+- <https://github.com/anselld>
 

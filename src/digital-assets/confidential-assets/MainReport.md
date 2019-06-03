@@ -448,7 +448,7 @@ Available: <https://people.xiph.org/~greg/confidential_values.txt>. Date accesse
 "Confidential Transactions Write up,
 G. Maxwell"
 
-[[5]] A. Gibson, "An Investigation into Confidential Transactions", July 2018 [online]. 
+[[5]] A. Gibson, "An Investigation into Confidential Transactions", July&nbsp;2018 [online]. 
 Available: <https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf>. 
 Date accessed: 2018&#8209;12&#8209;22.
 
@@ -464,7 +464,7 @@ Available: <https://hackage.haskell.org/package/pedersen-commitment>. Date acces
 "Pedersen-commitment: An Implementation
 of Pedersen Commitment Schemes"
 
-[[7]] B. Franca, "Homomorphic Mini-blockchain Scheme", April 2015 [online]. 
+[[7]] B. Franca, "Homomorphic Mini-blockchain Scheme", April&nbsp;2015 [online]. 
 Available: <http://cryptonite.info/files/HMBC.pdf>. Date accessed: 2018&#8209;12&#8209;22.
 
 [7]: http://cryptonite.info/files/HMBC.pdf
@@ -482,7 +482,7 @@ Commitments Using Twisted Edwards Curves,
 C. Franck and J. Großschädl, 
 University of Luxembourg"
 
-[[9]] A. Poelstra, "Mimblewimble", October 2016 [online]. 
+[[9]] A. Poelstra, "Mimblewimble", October&nbsp;2016 [online]. 
 Available: <http://diyhpl.us/~bryan/papers2/bitcoin/mimblewimble-andytoshi-draft-2016-10-20.pdf>. 
 Date accessed: 2018&#8209;12&#8209;13.
 
@@ -491,7 +491,7 @@ Date accessed: 2018&#8209;12&#8209;13.
 A. Poelstra, 
 October 2016"
 
-[[10]] A. Poelstra, "Mimblewimble Explained", November 2016 [online]. 
+[[10]] A. Poelstra, "Mimblewimble Explained", November&nbsp;2016 [online]. 
 Available: <https://www.weusecoins.com/mimble-wimble-andrew-poelstra/>. 
 Date accessed: 2018&#8209;12&#8209;10.
 
@@ -510,7 +510,7 @@ Electronic Contracting.
 IEEE (2004), 
 I. Grigg"
 
-[[12]] D. Koteshov, "Smart vs. Ricardian Contracts: What’s the Difference?" February 2018 [online]. Available: 
+[[12]] D. Koteshov, "Smart vs. Ricardian Contracts: What’s the Difference?" February&nbsp;2018 [online]. Available: 
 <https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts/>. Date accessed: 2018&#8209;12&#8209;13.
 
 [12]: https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts/
@@ -535,12 +535,12 @@ Available: <https://elementsproject.org/features/issued-assets/investigation>. D
 Principal Investigator: Andrew Poelstra, 
 Elements by Blockstream"
 
-[[15]] Elements by Blockstream: "Elements Code Tutorial - Issuing your own Assets"  
-[online]. Available: <https://elementsproject.org/elements-code-tutorial/issuing-assets>. Date accessed: 2018&#8209;12&#8209;14.
+[[15]] Elements by Blockstream: "Elements Code Tutorial - Issuing your own Assets" [online].
+Available: <https://elementsproject.org/elements-code-tutorial/issuing-assets>. Date accessed: 2018&#8209;12&#8209;14.
 
 [15]: https://elementsproject.org/elements-code-tutorial/issuing-assets
 "Elements Code Tutorial - Issuing your own Assets, 
-Elements by Blockstream""
+Elements by Blockstream"
 
 [[16]] Github: ElementsProject/elements [online]. Available: <https://github.com/ElementsProject/elements>. 
 Date accessed: 2018&#8209;12&#8209;18.
@@ -692,8 +692,9 @@ Ricardian Contracts:
 What’s the Difference?, 
 Koteshov D., 
 February 2018">12</a>]</b></p>
+
 Ricardian contracts are robust (due to identification by cryptographic hash functions), transparent (due to readable 
-text for legal prose) and efficient (due to computer markup language to extract essential information) [[30]].
+text for legal prose) and efficient (due to computer markup language to extract essential information [[30]].
 
 A **smart contract** is “a computerized transaction protocol that executes the terms of a contract. The general objectives 
 are to satisfy common contractual conditions” [[12]].  With smart contracts, digital assets can be exchanged in a 
@@ -705,8 +706,6 @@ transparent and non-conflicting way. They provide trust. The main properties of 
 - auto-enforcing;
 - cost saving;
 - removes third parties or escrow agents.
-
-
 
 It is possible to implement a Ricardian contract as a smart contract, but not in all instances. A smart contract is a 
 pre-agreed digital agreement that can be executed automatically. A Ricardian contract records “intentions” and “actions” 
@@ -721,7 +720,7 @@ restrictions [[30]].
 
 ## Contributors
 
-- [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
-- [https://github.com/philipr-za](https://github.com/philipr-za)
-- [https://github.com/neonknight64](https://github.com/neonknight64)
-- [https://github.com/anselld](https://github.com/anselld)
+- <https://github.com/hansieodendaal>
+- <https://github.com/philipr-za>
+- <https://github.com/neonknight64>
+- <https://github.com/anselld>

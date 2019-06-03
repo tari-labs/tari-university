@@ -1,5 +1,4 @@
 
-
 # Layer 2 Scaling Survey (Part 1)
 
 - [What is Layer 2 Scaling?](#what-is-layer-2-scaling)
@@ -47,7 +46,8 @@ knows about Layer&nbsp;1 and defines the protocols that deliver node-to-node dat
 
 <p align="center"><img src="sources/OSI_Model.png" width="770" /></p>
 
-Analogous to the OSI layers for communication, in blockchain technology, decentralized Layer&nbsp;2 protocols, also commonly 
+Analogous to the OSI layers for communication, in blockchain technology, decentralized Layer&nbsp;2 protocols, also 
+commonly 
 referred to as Layer&nbsp;2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer&nbsp;2 
 protocols run on top of the main blockchain (off-chain), while preserving the attributes of the main blockchain 
 (e.g. crypto-economic consensus). Instead of each transaction, only the result of a number of transactions is embedded 
@@ -69,11 +69,11 @@ If you can answer "no" and "yes", then you're looking for a Layer&nbsp;2 scaling
 Tari is a high-throughput protocol that will need to handle real-world transaction volumes. For example, Big Neon, the 
 initial business application to be built on top of the Tari blockchain, requires high-volume transactions in a short 
 time, especially when tickets sales open and when tickets will be redeemed at an event. Imagine filling an 85,000 seat 
-stadium with 72 entrance queues on match days. Serialized real-world scanning boils down to approximately 500 tickets in four minutes, 
+stadium with 72 entrance queues on match days. Serialized real-world scanning boils down to approximately 500 tickets in 
+four minutes, 
 or approximately two spectators allowed access per second per queue.
 
 This would be impossible to do with parent blockchain scaling solutions.
-
 
 ## Layer 2 Scaling Current Initiatives
 
@@ -223,7 +223,6 @@ Off-chain matching engines make use of a token representation smart contract tha
 contract tokens and vice versa [[5]].
 
 *Who uses them?*
-
 - Neon Exchange (NEX) ( [[5]], [[35]])
   - NEX uses a NEO decentralized application (dApp) with tokens.
   - Initial support is planned for NEO, ETH, NEP5 and ERC20 tokens.
@@ -252,11 +251,9 @@ contract tokens and vice versa [[5]].
   <p align="center"><img src="sources/0xSequence.png" width="620" /></p>
 
 *Strengths*
-
 - Performance {*NEX*, *0x*}:
   - off-chain request/order;
   - off-chain matching.
-
 - NEX-specific:
   - batched on-chain commits;
   - cross-chain transfers;
@@ -266,7 +263,6 @@ contract tokens and vice versa [[5]].
   - development environment - ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching 
   engine;
   - Cure53 full security audit on web extension, NEX tokens will be regulated as registered European securities.
-
 - 0x-specific:
   - open-source protocol to enable creation of independent off-chain dApp matching engines (*Relayers*);
   - totally transparent matching of orders with no single point of control
@@ -371,7 +367,6 @@ higher-level tiers [[4]].
 
 <p align="center"><img src="sources/Plasma-example-01.png" width="750" /></p>
 
-
 Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of 
 state updates per second, enabling the root blockchain to be able to represent a significant amount of dApps, each 
 employing its own blockchain in a tree format [[4]].
@@ -383,7 +378,6 @@ Byzantine, it has the option of going to any of its parents (including the root 
 exit with the current committed state [[4]].
 
 <p align="center"><img src="sources/Plasma-example.png" width="750" /></p>
-
 
 MapReduce is a programming model and an associated implementation for processing and generating large data sets. Users 
 specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce 
@@ -423,7 +417,6 @@ At the time of writing (July&nbsp;2018), Plasma still needed to be proven on oth
   In less than a year, a number of successful and diverse dAppChains have launched. *The next one could easily be for 
   ticket sales...*
 
-
 ### TrueBit
 
 *What is it?*
@@ -437,7 +430,6 @@ game", where an incentive is created for other parties, called *challengers,* to
 [[40]], [[43]]).
 
 <p align="center"><img src="sources/TrueBit_Diagram.png" width="600" /></p>
-
 
 *Who uses it?*
 
@@ -467,173 +459,184 @@ alignment, applicability and usability.
 
 ## References
 
-[[1]] "OSI Mode" [online]. Available: https://en.wikipedia.org/wiki/OSI_model. Date accessed: 2018-06-07.
+[[1]] "OSI Mode" [online]. Available: <https://en.wikipedia.org/wiki/OSI_model>. Date accessed: 2018&#8209;06&#8209;07.
 
 [1]: https://en.wikipedia.org/wiki/OSI_model
 "OSI Mode"
 
-[[2]] "Decentralized Digital Identities and Block Chain - The Future as We See It" [online]. Available: https://www.microsoft.com/en-us/microsoft-365/blog/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it/. 
-Date accessed: 2018-06-07.
+[[2]] "Decentralized Digital Identities and Block Chain - The Future as We See It" [online]. Available: <https://www.microsoft.com/en-us/microsoft-365/blog/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it/>. 
+Date accessed: 2018&#8209;06&#8209;07.
 
 [2]: https://www.microsoft.com/en-us/microsoft-365/blog/2018/02/12/decentralized-digital-identities-and-blockchain-the-future-as-we-see-it/
 "Decentralized Digital Identities and 
 Block Chain - The Future as We See It"
 
-[[3]] "Trinity Protocol: The Scaling Solution of the Future?" [Online.] Available: https://www.investinblockchain.com/trinity-protocol. 
-Date accessed: 2018-06-08.
+[[3]] "Trinity Protocol: The Scaling Solution of the Future?" [Online.] Available: <https://www.investinblockchain.com/trinity-protocol>.
+Date accessed: 2018&#8209;06&#8209;08.
 
 [3]: https://www.investinblockchain.com/trinity-protocol
 "Trinity Protocol: The Scaling Solution 
 of the Future?"
 
-[[4]] J. Poon and V. Buterin, "Plasma: Scalable Autonomous Smart Contracts" [online]. Available: http://plasma.io/plasma.pdf. 
-Date accessed: 2018-06-14.
+[[4]] J. Poon and V. Buterin, "Plasma: Scalable Autonomous Smart Contracts" [online]. Available: 
+<http://plasma.io/plasma.pdf>. 
+Date accessed: 2018&#8209;06&#8209;14.
 
 [4]: http://plasma.io/plasma.pdf
 "Plasma: Scalable Autonomous Smart Contracts"
 
-[[5]] "NEX: A High Performance Decentralized Trade and Payment Platform" [online]. Available: https://nash.io/pdfs/whitepaper_v2.pdf. 
-Date accessed: 2018-06-11.
+[[5]] "NEX: A High Performance Decentralized Trade and Payment Platform" [online]. Available: 
+<https://nash.io/pdfs/whitepaper_v2.pdf>. 
+Date accessed: 2018&#8209;06&#8209;11.
 
 [5]: https://nash.io/pdfs/whitepaper_v2.pdf
 "NEX: A High Performance Decentralized Trade and Payment Platform"
 
 [[6]] J. Poon and OmiseGO Team, "OmiseGO: Decentralized Exchange and Payments Platform" [online]. 
-Available: https://cdn.omise.co/omg/whitepaper.pdf. Date accessed: 2018-06-14.
+Available: <https://cdn.omise.co/omg/whitepaper.pdf>. Date accessed: 2018&#8209;06&#8209;14.
 
 [6]: https://cdn.omise.co/omg/whitepaper.pdf
 "OmiseGO: Decentralized Exchange 
 and Payments Platform"
 
-[[7]] "The Rise of Masternodes Might Soon be Followed by the Creation of Servicenodes" [online]. Available: https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes. Date 
-accessed: 2018-06-13.
+[[7]] "The Rise of Masternodes Might Soon be Followed by the Creation of Servicenodes" [online]. Available: <https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes>. Date 
+accessed: 2018&#8209;06&#8209;13.
 
 [7]: https://cointelegraph.com/news/the-rise-of-masternodes-might-soon-be-followed-by-the-creation-of-servicenodes
 "The Rise of Masternodes Might 
 Soon be Followed by the Creation 
 of Servicenodes"
 
-[[8]] "What are Masternodes?- Beginner's Guide" [online]. Available: https://blockonomi.com/masternode-guide/. Date 
-accessed: 2018-06-14.
+[[8]] "What are Masternodes?- Beginner's Guide" [online]. Available: <https://blockonomi.com/masternode-guide/>. Date 
+accessed: 2018&#8209;06&#8209;14.
 
 [8]: https://blockonomi.com/masternode-guide/
 "What are Masternodes?- Beginner's Guide"
 
-[[9]] "What the Heck is a DASH Masternode and How Do I get One" [online]. Available: https://medium.com/dash-for-newbies/what-the-heck-is-a-dash-masternode-and-how-do-i-get-one-56e24121417e. Date 
-accessed: 2018-06-14.
+[[9]] "What the Heck is a DASH Masternode and How Do I get One" [online]. Available: <https://medium.com/dash-for-newbies/what-the-heck-is-a-dash-masternode-and-how-do-i-get-one-56e24121417e>. Date 
+accessed: 2018&#8209;06&#8209;14.
 
 [9]: https://medium.com/dash-for-newbies/what-the-heck-is-a-dash-masternode-and-how-do-i-get-one-56e24121417e
 "What the Heck is a DASH Masternode 
 and How Do I get One"
 
-[[10]] "Payment Channels" (online). Available: https://en.bitcoin.it/wiki/Payment_channels. Date accessed: 2018-06-14.
+[[10]] "Payment Channels" (online). Available: <https://en.bitcoin.it/wiki/Payment_channels>. Date accessed: 
+2018&#8209;06&#8209;14.
 
 [10]: https://en.bitcoin.it/wiki/Payment_channels
 "Payment Channels"
 
-[[11]] "Lightning Network" (online). Available: https://en.wikipedia.org/wiki/Lightning_Network. Date accessed: 2018-06-14.
+[[11]] "Lightning Network" (online). Available: <https://en.wikipedia.org/wiki/Lightning_Network>. Date accessed: 
+2018&#8209;06&#8209;14.
 
 [11]: https://en.wikipedia.org/wiki/Lightning_Network
 "Lightning Network" 
 
 [[12]] "Bitcoin Isn't the Only Crypto Adding Lightning Tech Now" [online]. 
-Available: https://www.coindesk.com/bitcoin-isnt-crypto-adding-lightning-tech-now/. Date accessed: 2018-06-14.
+Available: <https://www.coindesk.com/bitcoin-isnt-crypto-adding-lightning-tech-now/>. Date accessed: 
+2018&#8209;06&#8209;14.
 
 [12]: https://www.coindesk.com/bitcoin-isnt-crypto-adding-lightning-tech-now/
 "Bitcoin Isn't the Only Crypto 
 Adding Lightning Tech Now" 
 
 [[13]] "What is Bitcoin Lightning Network? And How Does it Work?" [Online.] 
-Available: https://cryptoverze.com/what-is-bitcoin-lightning-network/. Date accessed: 2018-06-14.
+Available: <https://cryptoverze.com/what-is-bitcoin-lightning-network/>. Date accessed: 2018&#8209;06&#8209;14.
 
 [13]: https://cryptoverze.com/what-is-bitcoin-lightning-network/
 "What is Bitcoin Lightning Network? And How Does it Work?" 
 
-[[14]] "OmiseGO" [online]. Available: https://omisego.network/. Date accessed: 2018-06-14.
+[[14]] "OmiseGO" [online]. Available: <https://omisego.network/>. Date accessed: 2018&#8209;06&#8209;14.
 
 [14]: https://omisego.network/
 "OmiseGO"
 
-[[15]] "Everything You Need to Know About Loom Network, All In One Place (Updated Regularly)" [online]. Available: https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe. 
-Date accessed: 2018-06-14.
+[[15]] "Everything You Need to Know About Loom Network, All In One Place (Updated Regularly)" [online]. Available: 
+<https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe>. 
+Date accessed: 2018&#8209;06&#8209;14.
 
 [15]: https://medium.com/loom-network/everything-you-need-to-know-about-loom-network-all-in-one-place-updated-regularly-64742bd839fe
 "Everything You Need to 
 Know About Loom Network, All In 
 One Place (Updated Regularly)"
 
-[[16]] "Making Sense of Ethereum's Layer 2 Scaling Solutions: State Channels, Plasma, and Truebit" [online]. Available: https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4. 
-Date accessed: 2018-06-14.
+[[16]] "Making Sense of Ethereum's Layer 2 Scaling Solutions: State Channels, Plasma, and Truebit" [online]. Available: 
+<https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4>. 
+Date accessed: 2018&#8209;06&#8209;14.
 
 [16]: https://medium.com/l4-media/making-sense-of-ethereums-layer-2-scaling-solutions-state-channels-plasma-and-truebit-22cb40dcc2f4
 "Making Sense of Ethereum's 
 Layer 2 Scaling Solutions: 
 State Channels, Plasma, and Truebit"
 
-[[17]] "Trinity: Universal Off-chain Scaling Solution" [online]. Available: https://trinity.tech. Date accessed: 
-2018-06-14.
+[[17]] "Trinity: Universal Off-chain Scaling Solution" [online]. Available: <https://trinity.tech>. Date accessed: 
+2018&#8209;06&#8209;14.
 
 [17]: https://trinity.tech
 "Trinity: Universal Off-chain Scaling Solution"
 
-[[18]] "Trinity White Paper: Universal Off-chain Scaling Solution" [online]. Available: https://trinity.tech/#/writepaper. 
-Date accessed: 2018-06-14.
+[[18]] "Trinity White Paper: Universal Off-chain Scaling Solution" [online]. Available: <https://trinity.tech/#/writepaper>. 
+Date accessed: 2018&#8209;06&#8209;14.
 
 [18]: https://trinity.tech/#/writepaper
 "Trinity White Paper: Universal 
 Off-chain Scaling Solution"
 
 [[19]] J. Coleman, L. Horne, and L. Xuanji, "Counterfactual: Generalized State Channels" [online]. 
-Available at: https://counterfactual.com/statechannels & https://l4.ventures/papers/statechannels.pdf. Date accessed: 2018-06-15.
+Available at: <https://counterfactual.com/statechannels> and <https://l4.ventures/papers/statechannels.pdf>. Date accessed: 
+2018&#8209;06&#8209;15.
 
 [19]: https://counterfactual.com/statechannels
 "Counterfactual: Generalized State Channels"
 
-[[20]] "The Raiden Network" [online]. Available: https://raiden.network/. Date accessed: 2018-06-15.
+[[20]] "The Raiden Network" [online]. Available: <https://raiden.network/>. Date accessed: 2018&#8209;06&#8209;15.
 
 [20]: https://raiden.network/
 "The Raiden Network"
 
-[[21]] "What is the Raiden Network?" [Online.] Available: https://raiden.network/101.html. Date accessed: 2018-06-15.
+[[21]] "What is the Raiden Network?" [Online.] Available: <https://raiden.network/101.html>. Date accessed: 
+2018&#8209;06&#8209;15.
 
 [21]: https://raiden.network/101.html
 "What is the Raiden Network?"
 
-[[22]] "What are Masternodes? An Introduction and Guide" [online]. Available: https://coincentral.com/what-are-masternodes-an-introduction-and-guide/. 
-Date accessed: 2018-06-15.
+[[22]] "What are Masternodes? An Introduction and Guide" [online]. Available: 
+<https://coincentral.com/what-are-masternodes-an-introduction-and-guide/>. 
+Date accessed: 2018&#8209;06&#8209;15.
 
 [22]: https://coincentral.com/what-are-masternodes-an-introduction-and-guide/
 "What are Masternodes? 
 An Introduction and Guide" 
 
-[[23]] "State Channels in Disguise?" [Online.] Available: https://funfair.io/state-channels-in-disguise. Date 
-accessed: 2018-06-15.
+[[23]] "State Channels in Disguise?" [Online.] Available: <https://funfair.io/state-channels-in-disguise>. Date 
+accessed: 2018&#8209;06&#8209;15.
 
 [23]: https://funfair.io/state-channels-in-disguise
 "State Channels in Disguise?"
 
-[[24]] "World Payments Report 2017, © 2017 Capgemini and BNP Paribas" [online]. Available: https://www.worldpaymentsreport.com. 
-Date accessed: 2018-06-20.
+[[24]] "World Payments Report 2017, © 2017 Capgemini and BNP Paribas" [online]. Available: 
+<https://www.worldpaymentsreport.com>. 
+Date accessed: 2018&#8209;06&#8209;20.
 
 [24]: https://worldpaymentsreport.com/
 "World Payments Report 2017, © 2017
 Capgemini and BNP Paribas" 
 
-[[25]] "VISA" [online]. Available: https://usa.visa.com/visa-everywhere/innovation/contactless-payments-around-the-globe.html. 
-Date accessed: 2018-06-20.
+[[25]] "VISA" [online]. Available: <https://usa.visa.com/visa-everywhere/innovation/contactless-payments-around-the-globe.html>. 
+Date accessed: 2018&#8209;06&#8209;20.
 
 [25]: https://usa.visa.com/visa-everywhere/innovation/contactless-payments-around-the-globe.html
 "VISA"
 
-[[26]] "VisaNet Fact Sheet 2017 Q4" [online]. Available: https://usa.visa.com/dam/VCOM/download/corporate/media/visanet-technology/visa-net-fact-sheet.pdf. 
-Date accessed: 2018-06-20.
+[[26]] "VisaNet Fact Sheet 2017 Q4" [online]. Available: <https://usa.visa.com/dam/VCOM/download/corporate/media/visanet-technology/visa-net-fact-sheet.pdf>. 
+Date accessed: 2018&#8209;06&#8209;20.
 
 [26]: https://usa.visa.com/dam/VCOM/download/corporate/media/visanet-technology/visa-net-fact-sheet.pdf
 "VisaNet Fact Sheet 2017 Q4"
 
 [[27]] "With 100% segwit transactions, what would be the max number of transaction confirmation possible on a block?" [Online.] 
-Available: https://bitcoin.stackexchange.com/questions/59408/with-100-segwit-transactions-what-would-be-the-max-number-of-transaction-confi. 
-Date accessed: 2018-06-21.
+Available: <https://bitcoin.stackexchange.com/questions/59408/with-100-segwit-transactions-what-would-be-the-max-number-of-transaction-confi>. 
+Date accessed: 2018&#8209;06&#8209;21.
 
 [27]: https://bitcoin.stackexchange.com/questions/59408/with-100-segwit-transactions-what-would-be-the-max-number-of-transaction-confi
 "With 100% segwit transactions, 
@@ -641,109 +644,112 @@ what would be the max number of
 transaction confirmation possible 
 on a block?"
 
-[[28]]: "A Gentle Introduction to Ethereum" [online]. Available: https://bitsonblocks.net/2016/10/02/a-gentle-introduction-to-ethereum/. 
-Date accessed: 2018-06-21.
+[[28]]: "A Gentle Introduction to Ethereum" [online]. Available: <https://bitsonblocks.net/2016/10/02/a-gentle-introduction-to-ethereum/>. 
+Date accessed: 2018&#8209;06&#8209;21.
 
 [28]: https://bitsonblocks.net/2016/10/02/a-gentle-introduction-to-ethereum/
 "A Gentle Introduction to Ethereum"
 
-[[29]] "What is the size (bytes) of a simple Ethereum transaction versus a Bitcoin transaction?" [Online.] Available: https://ethereum.stackexchange.com/questions/30175/what-is-the-size-bytes-of-a-simple-ethereum-transaction-versus-a-bitcoin-trans?rq=1. 
-Date accessed: 2018-06-21.
+[[29]] "What is the size (bytes) of a simple Ethereum transaction versus a Bitcoin transaction?" [Online.] Available: 
+<https://ethereum.stackexchange.com/questions/30175/what-is-the-size-bytes-of-a-simple-ethereum-transaction-versus-a-bitcoin-trans?rq=1>. 
+Date accessed: 2018&#8209;06&#8209;21.
 
 [29]: https://ethereum.stackexchange.com/questions/30175/what-is-the-size-bytes-of-a-simple-ethereum-transaction-versus-a-bitcoin-trans?rq=1
 "What is the size (bytes) of 
 a simple Ethereum transaction 
 versus a Bitcoin transaction?"
 
-[[30]] "What is a Masternode?" [Online.] Available at: http://dashmasternode.org/what-is-a-masternode. Date accessed: 2018-06-14.
+[[30]] "What is a Masternode?" [Online.] Available at: <http://dashmasternode.org/what-is-a-masternode>. Date accessed: 
+2018&#8209;06&#8209;14.
 
 [30]: http://dashmasternode.org/what-is-a-masternode
 "What is a Masternode?"
 
 [[31]] "Counterfactual: Generalized State Channels on Ethereum" [online]. Available: 
-https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6. Date accessed: 2018-06-26.
+<https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6>. Date accessed: 
+2018&#8209;06&#8209;26.
 
 [31]: https://medium.com/statechannels/counterfactual-generalized-state-channels-on-ethereum-d38a36d25fc6
 "Counterfactual: Generalized State Channels on Ethereum"
 
 [[32]] J. Longley and O. Hopton, "FunFair Technology Roadmap and Discussion" [online]. 
-Available: https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf. Date accessed: 2018-06-27.
+Available: <https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf>. Date accessed: 2018&#8209;06&#8209;27.
 
 [32]: https://funfair.io/wp-content/uploads/FunFair-Technical-White-Paper.pdf
 "FunFair Technology Roadmap and Discussion"
 
-[[33]] "0x Protocol Website" [online]. Available: https://0xproject.com/. Date accessed: 2018-06-28.
+[[33]] "0x Protocol Website" [online]. Available: <https://0xproject.com/>. Date accessed: 2018&#8209;06&#8209;28.
 
 [33]: https://0xproject.com/
 "0x Protocol Website"
 
 [[34]] "0x: An open protocol for decentralized exchange on the Ethereum blockchain" [online]. 
-Available: https://0xproject.com/pdfs/0x_white_paper.pdf. Date accessed: 2018-06-28.
+Available: <https://0xproject.com/pdfs/0x_white_paper.pdf>. Date accessed: 2018&#8209;06&#8209;28.
 
 [34]: https://0xproject.com/pdfs/0x_white_paper.pdf
 "0x: An open protocol for decentralized exchange on the Ethereum blockchain"
 
-[[35]] "NEX/Nash website" [online]. Available: https://nash.io. Date accessed: 2018-06-28.
+[[35]] "NEX/Nash website" [online]. Available: <https://nash.io>. Date accessed: 2018&#8209;06&#8209;28.
 
 [35]: https://nash.io
 "NEX/Nash website"
 
-[[36]] "Front-running, Griefing and the Perils of Virtual Settlement (Part 1)" [online]. Available: https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-1-8554ab283e97. Date 
-accessed: 2018-06-29.
+[[36]] "Front-running, Griefing and the Perils of Virtual Settlement (Part 1)" [online]. Available: <https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-1-8554ab283e97>. Date 
+accessed: 2018&#8209;06&#8209;29.
 
 [36]: https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-1-8554ab283e97
 "Front-running, Griefing 
 and the Perils of Virtual 
 Settlement (Part&nbsp;1)"
 
-[[37]] "Front-running, Griefing and the Perils of Virtual Settlement (Part 2)" [online]. Available: https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21. Date 
-accessed: 2018-06-29.
+[[37]] "Front-running, Griefing and the Perils of Virtual Settlement (Part 2)" [online]. Available: <https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21>. Date 
+accessed: 2018&#8209;06&#8209;29.
 
 [37]: https://blog.0xproject.com/front-running-griefing-and-the-perils-of-virtual-settlement-part-2-921b00109e21
 "Front-running, Griefing 
 and the Perils of Virtual 
 Settlement (Part 2)"
 
-[[38]] "MapReduce: Simplified Data Processing on Large Clusters" [online]. Available: https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf. Date 
-accessed: 2018-07-02.
+[[38]] "MapReduce: Simplified Data Processing on Large Clusters" [online]. Available: <https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf>. Date 
+accessed: 2018&#8209;07&#8209;02.
 
 [38]: https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf
 "MapReduce: Simplified Data 
 Processing on Large Clusters"
 
-[[39]] "The Golem WhitePaper (Future Integrations)" [online]. Available: https://golem.network/crowdfunding/Golemwhitepaper.pdf. 
-Date accessed: 2018-06-22.
+[[39]] "The Golem WhitePaper (Future Integrations)" [online]. Available: <https://golem.network/crowdfunding/Golemwhitepaper.pdf>. 
+Date accessed: 2018&#8209;06&#8209;22.
 
 [39]: https://golem.network/crowdfunding/Golemwhitepaper.pdf
 "The Golem WhitePaper (Future Integrations)"
 
 [[40]] J. Teutsch, and C. Reitwiessner, "A Scalable Verification Solution for Block Chains" [online]. 
-Available: http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf. Date accessed: 2018-06-22.
+Available: <http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf>. Date accessed: 2018&#8209;06&#8209;22.
 
 [40]: http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf
 "A Scalable Verification Solution 
 for Block Chains"
 
-[[41]] "Livepeer's Path to Decentralization" [online]. Available: https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532. 
-Date accessed: 2018-06-22.
+[[41]] "Livepeer's Path to Decentralization" [online]. Available: <https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532>. 
+Date accessed: 2018&#8209;06&#8209;22.
 
 [41]: https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532
 "Livepeer's Path to Decentralization"
 
-[[42]] "Golem Website" [online]. Available: https://golem.network. Date accessed: 2018-06-22.
+[[42]] "Golem Website" [online]. Available: <https://golem.network>. Date accessed: 2018&#8209;06&#8209;22.
 
 [42]: https://golem.network
 "Golem Website"
 
-[[43]] "TruBit Website" [online]. Available: https://truebit.io. Date accessed: 2018-06-22.
+[[43]] "TruBit Website" [online]. Available: <https://truebit.io>. Date accessed: 2018&#8209;06&#8209;22.
 
 [43]: https://truebit.io
 "TruBit Website"
 
 ## Contributors
 
-- [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
-- [https://github.com/Kevoulee](https://github.com/Kevoulee)
-- [https://github.com/ksloven](https://github.com/ksloven)
-- [https://github.com/anselld](https://github.com/anselld)
+- <https://github.com/hansieodendaal>
+- <https://github.com/Kevoulee>
+- <https://github.com/ksloven>
+- <https://github.com/anselld>
 

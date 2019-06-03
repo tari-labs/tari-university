@@ -1,29 +1,22 @@
 # Merged Mining Introduction
 
-[What is Merged Mining?](#what-is-merged-mining)
-
-[Merged Mining with Multiple Auxiliary Chains](#merged-mining-with-multiple-auxiliary-chains)
-
-[Merged Mining - Interesting Facts and Case Studies](#merged-mining---interesting-facts-and-case-studies)
-
-- [Namecoin (#307) with Bitcoin (#1)](#namecoin-307-with-bitcoin-1)
-- [Dogecoin (#37) with Litecoin (#6)](#dogecoin-37-with-litecoin-6)
-- [Huntercoin (#779) with Bitcoin (#1) or Litecoin (#6)](#huntercoin-779-with-bitcoin-1-or-litecoin-6)
-- [Myriad (#510) with Bitcoin (#1) or Litecoin (#6)](#myriad-510-with-bitcoin-1-or-litecoin-6)
-- [Monero (#12)/DigitalNote (#166) + FantomCoin (#1068)](#monero-12digitalnote-166--fantomcoin-1068)
-- [Some Statistics](#some-statistics)
-- [Observations](#observations)
-
-[Attack Vectors](#attack-vectors)
-
-- [51% Attacks](#attack-vectors)
-- [Double Proof](#double-proof)
-- [Analysis of Mining Power Centralization Issues](#analysis-of-mining-power-centralization-issues)
-- [Introduction of New Attack Vectors ](#introduction-of-new-attack-vectors)
-
-[References](#references)
-
-[Contributors](#contributors)
+- [What is Merged Mining?](#what-is-merged-mining)
+- [Merged Mining with Multiple Auxiliary Chains](#merged-mining-with-multiple-auxiliary-chains)
+- [Merged Mining - Interesting Facts and Case Studies](#merged-mining---interesting-facts-and-case-studies)
+  - [Namecoin (#307) with Bitcoin (#1)](#namecoin-307-with-bitcoin-1)
+  - [Dogecoin (#37) with Litecoin (#6)](#dogecoin-37-with-litecoin-6)
+  - [Huntercoin (#779) with Bitcoin (#1) or Litecoin (#6)](#huntercoin-779-with-bitcoin-1-or-litecoin-6)
+  - [Myriad (#510) with Bitcoin (#1) or Litecoin (#6)](#myriad-510-with-bitcoin-1-or-litecoin-6)
+  - [Monero (#12)/DigitalNote (#166) + FantomCoin (#1068)](#monero-12digitalnote-166--fantomcoin-1068)
+  - [Some Statistics](#some-statistics)
+  - [Observations](#observations)
+- [Attack Vectors](#attack-vectors)
+  - [51% Attacks](#attack-vectors)
+  - [Double Proof](#double-proof)
+  - [Analysis of Mining Power Centralization Issues](#analysis-of-mining-power-centralization-issues)
+  - [Introduction of New Attack Vectors ](#introduction-of-new-attack-vectors)
+- [References](#references)
+- [Contributors](#contributors)
 
 ## What is Merged Mining? 
 
@@ -51,8 +44,6 @@ become part of the Parent blockchain propagation.
 
 <p align="center"><img src="./sources/MergedMiningIntro02.png" width="1100" /></p>
 
-
-
 ## Merged Mining with Multiple Auxiliary Chains
 
 A miner can use a single Parent to perform merged mining on multiple Auxiliary blockchains. The Merkle tree root of a 
@@ -63,15 +54,14 @@ located [[25]].
 
 <p align="center"><img src="./sources/MergedMiningIntro03.png" width="750" /></p>
 
-
-
 ## Merged Mining - Interesting Facts and Case Studies
 
 ### Namecoin (#307) with Bitcoin (#1)
 
 - Namecoin, the first fork of Bitcoin, introduced merged mining with Bitcoin [[1]] from block 19,200 onwards [[3]]. At 
 the time of writing (May&nbsp;2018), the block height of Namecoin was greater than 400,500 [[4]].
-- Over the five-day period from 23 May 2018 to 27 May 2018, only 226 out of 752 blocks posted transaction values over 
+- Over the five-day period from 23&nbsp;May&nbsp;2018 to 27&nbsp;May&nbsp;2018, only 226 out of 752 blocks posted 
+transaction values over 
 and above the block reward of 25 NMC, with an average transaction value of 159.231 NMC including the block reward. [[4]]
 - Slush Pool merged mining Namecoin with Bitcoin rewards all miners with BTC equivalent to NMC via an external exchange 
 service [[5]].
@@ -86,7 +76,7 @@ service [[5]].
 ### Dogecoin (#37) with Litecoin (#6)
 
 - Dogecoin introduced merged mining with Litecoin [[8]] from block 371,337 onwards [[9]]. At the time of writing 
-(May&nbsp;2018), the block height of Dogecoin was greater than 2,240,000  [[10]].
+(May&nbsp;2018), the block height of Dogecoin was greater than 2,240,000 [[10]].
 - Many in the Dogecoin user community believe merged mining with Litecoin saved Dogecoin from a 51% attack [[8]].
 
 | @ 2018-05-30          | Litecoin [[16]] | Dogecoin [[16]] | Ratio   |
@@ -137,7 +127,7 @@ exceptional 51% resistance [[23]].
 DigitalNote developers became interested in merged mining with Monero and revived FantamCoin in October&nbsp;2016 
 ([[17]], [[18]], [[19]]).
 
-- ```text
+ ```text
   FantamCoin Release notes 2.0.0
   - Fantomcoin 2.0 by XDN-project, major FCN update to the latest
     cryptonotefoundation codebase 
@@ -180,13 +170,11 @@ Merge-mined blocks in some cryptocurrencies on 18&nbsp;June&nbsp;2017 [[24]]:
 Parent blockchain.
 - A multi-PoW algorithm approach may further enhance 51% resistance.
 
-
-
 ## Attack Vectors
 
 ### 51% Attacks
 
-- 51% attacks are real and relevant today. Bitcoin Gold (rank #28 @ 2018-05-29) and Verge (rank #33 @ 2018-05-29) 
+- 51% attacks are real and relevant today. Bitcoin Gold (rank #28 @ 2018&#8209;05&#8209;29) and Verge (rank #33 @ 2018&#8209;05&#8209;29) 
 suffered recent attacks with double spend transactions following ([[11]], [[12]]).
 
 - In a conservative analysis, successful attacks on PoW cryptocurrencies are more likely when dishonest entities control 
@@ -231,7 +219,8 @@ exceeding the 50% threshold around the end of 2016.
 - Myriadcoin appears to have experienced only a moderate impact. Multi-merge-mined blockchains allow for more than one 
 parent cryptocurrency and have a greater chance of acquiring a higher difficulty per PoW algorithm than the respective 
 parent blockchain.
-- Distribution of overall percentage of days below or above the centralization indicator thresholds on 18&nbsp;June&nbsp;2017 was 
+- Distribution of overall percentage of days below or above the centralization indicator thresholds on 18&nbsp;June&nbsp;2017 
+was 
 as follows:
 
 <p align="center"><img src="./sources/MergedMiningStats-2.png" width="350" /></p>
@@ -252,90 +241,92 @@ block shares beyond the desired security and decentralization goals.
 ## References
 
 [[1]] "Merged Mining Specification" [online).
-Available: https://en.bitcoin.it/wiki/Merged_mining_specification. Date accessed: 2018-05-28.
+Available: <https://en.bitcoin.it/wiki/Merged_mining_specification>. Date accessed: 2018&#8209;05&#8209;28.
 
 [1]: https://en.bitcoin.it/wiki/Merged_mining_specification
 "Merged Mining Specification"
 
 [[2]] "How does Merged Mining Work?" [Online.]
-Available: https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work. Date accessed: 2018-05-28.
+Available: <https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work>. Date accessed: 
+2018&#8209;05&#8209;28.
 
 [2]: https://bitcoin.stackexchange.com/questions/273/how-does-merged-mining-work
 "How does Merged Mining Work?"
 
 [[3]] "Merged-Mining.mediawiki" [online].
-Available: https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki. Date accessed: 2018-05-28.
+Available: <https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki>. Date accessed: 2018&#8209;05&#8209;28.
 
 [3]: https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki
 "Merged-Mining.mediawiki"
 
 [[4]] "Bchain.info - Blockchain Explorer (NMC)" [online].
-Available: https://bchain.info/NMC. Date accessed: 2018-05-28.
+Available: <https://bchain.info/NMC>. Date accessed: 2018&#8209;05&#8209;28.
 
 [4]: https://bchain.info/NMC
 "Bchain.info - Blockchain Explorer (NMC)"
 
 [[5]] "SlushPool Merged Mining" [online].
-Available: https://slushpool.com/help/first-aid/faq-merged-mining. Date accessed: 2018-05-28.
+Available: <https://slushpool.com/help/first-aid/faq-merged-mining>. Date accessed: 2018&#8209;05&#8209;28.
 
 [5]: https://slushpool.com/help/first-aid/faq-merged-mining
 "SlushPool Merged Mining"
 
 [[6]] "5 Best Namecoin Mining Pools of 2018 (Comparison)" [online].
-Available: https://www.prooworld.com/namecoin/best-namecoin-mining-pools. Date accessed: 2018-05-28.
+Available: <https://www.prooworld.com/namecoin/best-namecoin-mining-pools>. Date accessed: 2018&#8209;05&#8209;28.
 
 [6]: https://www.prooworld.com/namecoin/best-namecoin-mining-pools
 "5 Best Namecoin Mining Pools 
 of 2018 (Comparison)"
 
 [[7]] "Alternative Chain" [online].
-Available: https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof. Date accessed: 2018-05-28.
+Available: <https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof>. Date accessed: 2018&#8209;05&#8209;28.
 
 [7]: https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof
 "Alternative Chain"
 
 [[8]] "Merged Mining AMA/FAQ" [online].
-Available: https://www.reddit.com/r/dogecoin/comments/22niq9/merged_mining_amafaq. Date accessed: 2018-05-29.
+Available: <https://www.reddit.com/r/dogecoin/comments/22niq9/merged_mining_amafaq>. Date accessed: 2018&#8209;05&#8209;29.
 
 [8]: https://www.reddit.com/r/dogecoin/comments/22niq9/merged_mining_amafaq
 "Merged Mining AMA/FAQ"
 
 [[9]] "The Forkening is Happening at ~9:00AM EST" [online].
-Available: https://www.reddit.com/r/dogecoin/comments/2fyxg1/the_forkening_is_happening_at_900am_est_a_couple. 
-Date accessed: 2018-05-29.
+Available: <https://www.reddit.com/r/dogecoin/comments/2fyxg1/the_forkening_is_happening_at_900am_est_a_couple>. 
+Date accessed: 2018&#8209;05&#8209;29.
 
 [9]:  ESThttps://www.reddit.com/r/dogecoin/comments/2fyxg1/the_forkening_is_happening_at_900am_est_a_couple
 "The Forkening is Happening at ~9:00AM"
 
 [[10]] "Dogecoin Blockchain Explorer" [online].
-Available: https://dogechain.info.  Date accessed: 2018-05-29.
+Available: <https://dogechain.info>.  Date accessed: 2018&#8209;05&#8209;29.
 
 [10]: https://dogechain.info
 "Dogecoin Blockchain Explorer"
 
 [[11]] "Bitcoin Gold Hit by Double Spend Attack, Exchanges Lose Millions" [online].
-Available: https://www.ccn.com/bitcoin-gold-hit-by-double-spend-attack-exchanges-lose-millions.  Date accessed: 
-2018-05-29.
+Available: <https://www.ccn.com/bitcoin-gold-hit-by-double-spend-attack-exchanges-lose-millions>. Date accessed: 
+2018&#8209;05&#8209;29.
 
 [11]: https://www.ccn.com/bitcoin-gold-hit-by-double-spend-attack-exchanges-lose-millions
 "Bitcoin Gold Hit by Double 
 Spend Attack, Exchanges Lose Millions"
 
 [[12]] "Privacy Coin Verge Succumbs to 51% Attack" [Again]. [Online.]
-Available: https://www.ccn.com/privacy-coin-verge-succumbs-to-51-attack-again. Date accessed: 2018-05-29.
+Available: <https://www.ccn.com/privacy-coin-verge-succumbs-to-51-attack-again>. Date accessed: 2018&#8209;05&#8209;29.
 
 [12]: https://www.ccn.com/privacy-coin-verge-succumbs-to-51-attack-again
-"Privacy Coin Verge Succumbs to 51% Attack [Again]"
+"Privacy Coin Verge Succumbs 
+to 51% Attack [Again]"
 
 [[13]] "Tari Official Website" [online].
-Available: https://www.tari.com. Date accessed: 2018-05-29.
+Available: <https://www.tari.com>. Date accessed: 2018&#8209;05&#8209;29.
 
 [13]: https://www.tari.com
 "Tari Official Website"
 
 [[14]] "Monero Hard Forks to Maintain ASIC Resistance, but ‘Classic’ Hopes to Spoil the Party" [online].
-Available: https://www.ccn.com/monero-hard-forks-to-maintain-asic-resistance-but-classic-hopes-to-spoil-the-party. 
-Date accessed: 2018-05-29.
+Available: <https://www.ccn.com/monero-hard-forks-to-maintain-asic-resistance-but-classic-hopes-to-spoil-the-party>. 
+Date accessed: 2018&#8209;05&#8209;29.
 
 [14]: https://www.ccn.com/monero-hard-forks-to-maintain-asic-resistance-but-classic-hopes-to-spoil-the-party
 "Monero Hard Forks to 
@@ -343,75 +334,76 @@ Maintain ASIC Resistance, but
 ‘Classic’ Hopes to Spoil the Party"
 
 [[15]] "PoW Change and Key Reuse" [online].
-Available: https://getmonero.org/2018/02/11/pow-change-and-key-reuse.html. Date accessed: 2018-05-29.
+Available: <https://getmonero.org/2018/02/11/pow-change-and-key-reuse.html>. Date accessed: 2018&#8209;05&#8209;29.
 
 [15]: https://getmonero.org/2018/02/11/pow-change-and-key-reuse.html
 "PoW Change and Key Reuse"
 
 [[16]] "BitInfoCharts" [online].
-Available: https://bitinfocharts.com. Date accessed: 2018-05-30.
+Available: <https://bitinfocharts.com>. Date accessed: 2018&#8209;05&#8209;30.
 
 [16]: https://bitinfocharts.com
 "BitInfoCharts"
 
 [[17]] "Merged Mining with Monero" [online].
-Available: https://minergate.com/blog/merged-mining-with-monero. Date accessed: 2018-05-30.
+Available: <https://minergate.com/blog/merged-mining-with-monero>. Date accessed: 2018&#8209;05&#8209;30.
 
 [17]: https://minergate.com/blog/merged-mining-with-monero
 "Merged Mining with Monero"
 
 [[18]] "ANN DigitalNote |XDN| - ICCO Announce - NEWS" [online].
-Available: https://bitcointalk.org/index.php?topic=1082745.msg16615346#msg16615346. Date accessed: 2018-05-31.
+Available: <https://bitcointalk.org/index.php?topic=1082745.msg16615346#msg16615346>. Date accessed: 2018&#8209;05&#8209;31.
 
 [18]: https://bitcointalk.org/index.php?topic=1082745.msg16615346#msg16615346
-"NN DigitalNote |XDN|
- - ICCO Announce - NEWS [online]"
+"NN DigitalNote |XDN| - ICCO Announce - NEWS"
 
 [[19]] "DigitalNote xdn-project" [online].
-Available: https://github.com/xdn-project. Date accessed: 2018-05-31.
+Available: <https://github.com/xdn-project>. Date accessed: 2018&#8209;05&#8209;31.
 
 [19]: https://github.com/xdn-project
 "DigitalNote xdn-project"
 
 [[20]] "Monero Charts" [online].
-Available: https://chainradar.com/xmr/chart. Date accessed: 2018-05-31.
+Available: <https://chainradar.com/xmr/chart>. Date accessed: 2018&#8209;05&#8209;31.
 
 [20]: https://chainradar.com/xmr/chart
 "Monero Charts"
 
 [[21]] "Nicehash Statistics for CryptoNight v7" [online].
-Available: https://www.nicehash.com/algorithm/cryptonightv7. Date accessed: 2018-05-31.
+Available: <https://www.nicehash.com/algorithm/cryptonightv7>. Date accessed: 2018&#8209;05&#8209;31.
 
 [21]: https://www.nicehash.com/algorithm/cryptonightv7
-"Nicehash Statistics for CryptoNight v7"
+"Nicehash Statistics for 
+CryptoNight v7"
 
 [[22]] "Huntercoin: A Blockchain based Game World" [online].
-Available: http://huntercoin.org. Date accessed: 2018-06-01.
+Available: <http://huntercoin.org>. Date accessed: 2018&#8209;06&#8209;01.
 
 [22]: http://huntercoin.org
-"Huntercoin: A Blockchain based Game World"
+"Huntercoin: A Blockchain based 
+Game World"
 
 [[23]] "Myriad: A Coin for Everyone" [online].
-Available: http://myriadcoin.org. Date accessed: 2018-06-01.
+Available: <http://myriadcoin.org>. Date accessed: 2018&#8209;06&#8209;01.
 
 [23]: http://myriadcoin.org
 "Myriad: A Coin for Everyone"
 
-[[24]] "Merged Mining: Curse or Cure?" [Online.].
-Available:  https://eprint.iacr.org/2017/791.pdf. Date accessed: 2019-02-12. 
+[[24]] "Merged Mining: Curse or Cure?" [Online.]
+Available: <https://eprint.iacr.org/2017/791.pdf>. Date accessed: 2019&#8209;02&#8209;12. 
 
 [24]: https://eprint.iacr.org/2017/791.pdf
 "Merged Mining: Curse or Cure?"
 
-[[25]] Merged Mining: Analysis of Effects and Implications [online]. Available: 
-http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652. Date accessed: 2019-02-12. 
+[[25]] Merged Mining: Analysis of Effects and Implications [online]. Available: <http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652>. 
+Date accessed: 2019&#8209;02&#8209;12. 
 
 [25]: http://repositum.tuwien.ac.at/obvutwhs/download/pdf/2315652
 "Merged Mining: Analysis of 
 Effects and Implications"
 
-[[26]] "Problems - Consensus - 8. Proof of Stake" [online]. Available: https://github.com/ethereum/wiki/wiki/Problems. 
-Date accessed: 2018-06-05.
+[[26]] "Problems - Consensus - 8. Proof of Stake" [online]. Available: <https://github.com/ethereum/wiki/wiki/Problems>. 
+Date accessed: 2018&#8209;06&#8209;05.
 
 [26]: https://github.com/ethereum/wiki/wiki/Problems
 "Problems - Consensus - 8. 
@@ -419,7 +411,7 @@ Proof of Stake"
 
 ## Contributors
 
-- [https://github.com/hansieodendaal](https://github,com/hansieodendaal)
-- [https://github.com/CjS77](https://github.com/CjS77)
-- [https://github.com/anselld](https://github.com/anselld)
+- <https://github.com/hansieodendaal>
+- <https://github.com/CjS77>
+- <https://github.com/anselld>
 

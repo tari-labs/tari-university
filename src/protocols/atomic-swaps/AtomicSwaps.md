@@ -11,7 +11,6 @@
 - [Contributors](#contributors)
 
 
-
 ## What are Atomic Swaps?
 
 Atomic swaps or cross-chain atomic swaps [[1]], in a nutshell, are decentralized 
@@ -19,8 +18,6 @@ exchanges, but only for cryptocurrencies. They allow multiple parties to exchang
 trustless environment. If one party defaults or fails the transaction, neither party can "run off" with anyone's 
 money. For this to work, we will require two technologies: a payment channel and hashed timelock contracts. An 
 implementation of a payment channel is the lightning network. 
-
-
 
 ## Hashed Timelock Contracts 
 
@@ -51,20 +48,15 @@ For an atomic swap transaction to happen, both cryptocurrencies must use the sam
 for HTLC to function. Etomic swaps were created in an attempt to make atomic swaps happen between Bitcoin tokens and 
 Ethereum-based tokens. 
 
-
 ## Examples of Current Atomic Swaps and Implementations
 ### #1 Manual Method 
 An article was posted on Hackernoon [[4]] 
-giving the exact steps that are required for doing an atomic swap using cli. 
-
-The requirements for this method are:
+giving the exact steps that are required for doing an atomic swap using cli. The requirements for this method are:
 
 - Full nodes on both parties.
 - Atomic swap package [[5]].
 - Use of supported coins (UXTO-based protocol coins, e.g. Bitcoin, Litecoin and Viacoin).
 - Power user.
-
-
 
 ### #2 Atomic Wallet
 
@@ -86,12 +78,13 @@ it works with electron servers or native. BarterDEX at its core is more like an 
 exchange. It also uses a security deposit in the form of Zcredits to do swaps without waiting for confirmation.
 
 BarterDEX also supports Etomic swaps. These work by keeping the payments locked in an etomic blockchain that will act 
-as a third party. Although swaps have been done, it is stated as not yet being production ready [[8]]. Currently (July&nbsp;2018),  
-it is only possible to use Barterdex out of the cli [[9]]. Barterdex charges a 0.1287% fee for a swap [[10]]. 
+as a third party. Although swaps have been done, it is stated as not yet being production ready [[8]]. 
+Currently (July&nbsp;2018), it is only possible to use Barterdex out of the cli [[9]]. Barterdex charges a 0.1287% fee 
+for a swap [[10]]. 
 
 ## References
 
-[[1]] S. Khatwani (2018), "What is Atomic Swap and Why it Matters?" *Coinsutra*. [Online.} 
+[[1]] S. Khatwani (2018), "What is Atomic Swap and Why it Matters?" *Coinsutra*. [Online.] 
 Available: <https://coinsutra.com/atomic-swap/>. Date accessed: 2018&#8209;07&#8209;12.
 
 [1]: https://coinsutra.com/atomic-swap/
@@ -100,7 +93,6 @@ Available: <https://coinsutra.com/atomic-swap/>. Date accessed: 2018&#8209;07&#8
 [[2]] A. Vohra (2016), "What are Hashed Timelock Contracts (HTLCs)? Application in Lightning Network & Payment Channels", 
 *Hackernoon* [online] Available: <https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345>. 
 Date accessed: 2018&#8209;07&#8209;12.
-
 
 [2]: https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345
 "What are Hashed Timelock Contracts (HTLCs)? Application in Lightning Network & Payment Channels" 
@@ -117,19 +109,16 @@ Available: <https://hackernoon.com/so-how-do-i-really-do-an-atomic-swap-f797852c
 [4]: https://hackernoon.com/so-how-do-i-really-do-an-atomic-swap-f797852c7639
 "So how do I really do an Atomic Swap" 
 
-
 [[5]] Open Source (ISC) (2018), "viacoin/atomicswap", GitHub [online]. Available: <https://github.com/viacoin/atomicswap>. 
 Date accessed: 2018&#8209;07&#8209;13.
 
 [5]: https://github.com/viacoin/atomicswap
 "viacoin/atomicswap" 
 
-
 [[6]] Atomic (2018), "Atomic Wallet" [online]. Available: <https://atomicwallet.io/>. Date accessed: 2018&#8209;07&#8209;13.
 
 [6]: https://atomicwallet.io/
 "Atomic Wallet" 
-
 
 [[7]] Komodo (2018), "BarterDEX" [online]. Available: <https://komodoplatform.com/decentralized-exchange/>. 
 Date accessed: 2018&#8209;07&#8209;13.
@@ -143,7 +132,6 @@ Date accessed: 2018&#8209;07&#8209;13.
 [8]: https://github.com/artemii235/etomic-swap
 "etomic-swap" 
 
-
 [[9]] Komodo (2018), "Barterdex", GitHub [online]. Available:
 <https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX>. 
 Date accessed: 2018&#8209;07&#8209;13.
@@ -151,14 +139,11 @@ Date accessed: 2018&#8209;07&#8209;13.
 [9]: https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX
 "Barterdex" 
 
-
 [[10]] Komodo and S. Hossain (2017), "barterDEX Whitepaper v2" [online]. 
 Available: <https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2>. Date accessed: 2018&#8209;07&#8209;13.
 
 [10]: https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2
 "barterDEX Whitepaper v2" 
-
-
 
 ## Contributors
 

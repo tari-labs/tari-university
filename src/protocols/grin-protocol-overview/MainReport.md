@@ -164,28 +164,19 @@ specifically, the kernel signature [[4]].
 When Alice wants to pay Bob, the transaction will be performed using the following steps:
 
 1. Alice selects her inputs and her change. The sum of all blinding factors (change output minus inputs) is $ r_s $.
-
 2. Alice picks a random nonce ks and sends her partial transaction, $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
-
 3. Bob picks his own random nonce $ k_r $ and the blinding factor for his output $ r_r $. Using $ r_r $, Bob adds his 
     output to the transaction.
-
 4. Bob computes the following:
-
    - message $ m = fee \Vert lock_-height $; 
    - Schnorr challenge $ e = SHA256(m \Vert k_r \cdot G + k_s\cdot  G \Vert r_r\cdot G + r_s\cdot G) $; and 
    - his side of the signature, $ s_r = k_r + e\cdot G $.
-
 5. Bob sends $ s_r $ and $ k_r\cdot G $ and $ r_r\cdot G $  to Alice.
-
 6. Alice computes $ e $, just like Bob did, and can check that $ s_r\cdot G = k_r\cdot G + e\cdot r_r \cdot G $.
-
 7. Alice sends her side of the signature, $ s_s = k_s + e\cdot r_s $, to Bob.
-
 8. Bob validates $ s_s\cdot G $, just like Alice did for $ s_r\cdot G $ in step 5, and can produce the final signature 
     $ sig = (s_s + s_r , \mspace{6mu} k_s\cdot G + k_s\cdot G) $ as well as the final transaction kernel, including $ sig $ and the public key 
     $ r_r\cdot G + r_s\cdot G$. 
-
 
 
 ## Contracts
