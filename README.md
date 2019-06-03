@@ -44,7 +44,6 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 
 \# | Topic 
 ---- | ----
-=======
 1 | Mimblewimble Multiparty Bulletproof UTXO
 2 | Tor |!2 Tor
 3 | An Introduction to the I2P Network
