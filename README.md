@@ -45,8 +45,8 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 \# | Topic 
 ---- | ----
 =======
-1 | Distributed Hash Tables (DHT) Application to Block Chain
-2 | The Application of Howey to token sales on public blockchain networks, Part 1: The Efforts of Others
-
+1 | Mimblewimble Multiparty Bulletproof UTXO
+2 | Tor |!2 Tor
+3 | An Introduction to the I2P Network
 
 <i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
