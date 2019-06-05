@@ -238,8 +238,6 @@ retrieved by participants in the network:
   increase the availability of the data. Depending on the implementation, the data may eventually expire (say 
   24&nbsp;hours). Therefore, the original publisher may be required to republish the data before that period expires.
 
-  
-
 - The retrieval procedure follows the same logic as storage, except a `FIND_VALUE` RPC is issued and the data received.
 
 

@@ -219,8 +219,7 @@ exceeding the 50% threshold around the end of 2016.
 - Myriadcoin appears to have experienced only a moderate impact. Multi-merge-mined blockchains allow for more than one 
 parent cryptocurrency and have a greater chance of acquiring a higher difficulty per PoW algorithm than the respective 
 parent blockchain.
-- Distribution of overall percentage of days below or above the centralization indicator thresholds on 18&nbsp;June&nbsp;2017 
-was 
+- Distribution of overall percentage of days below or above the centralization indicator thresholds on 18&nbsp;June&nbsp;2017 was 
 as follows:
 
 <p align="center"><img src="./sources/MergedMiningStats-2.png" width="350" /></p>

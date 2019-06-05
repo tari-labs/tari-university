@@ -35,8 +35,7 @@ Two modes of operation are supported:
 - a fully-fledged payment hub mode.
 
 TumbleBit consists of two interleaved fair-exchange protocols that rely on the  Rivest–Shamir–Adleman (RSA) 
-cryptosystem's blinding properties to prevent bad acting from either users or Tumblers, and to ensure anonymity. These 
-protocols are:
+cryptosystem's blinding properties to prevent bad acting from either users or Tumblers, and to ensure anonymity. These protocols are:
 
 - RSA-Puzzle-Solver Protocol; and
 - Puzzle-Promise Protocol.
@@ -54,8 +53,7 @@ includes hashing conditions, signing conditions, conditional execution, 2&#8209;
 
 The Boston University provided a proof-of-concept and reference implementation alongside the white paper [[4]]. 
 NTumbleBit [[5]] is being developed as a C# production implementation of the TumbleBit protocol that at the time of 
-writing (July 2018) was being deployed by Stratis with its Breeze implementation [[6]], at alpha/experimental release 
-level in TestNet.
+writing (July 2018) was being deployed by Stratis with its Breeze implementation [[6]], at alpha/experimental release level in TestNet.
 
 *NTumbleBit will be a cross-platform framework, server and client for the TumbleBit payment scheme. TumbleBit is 
 separated into two modes, tumbler mode and payment hub mode. The tumbler mode improves transaction fungibility and 
@@ -423,6 +421,7 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but they offer signi
 
 - The School of Engineering and Computer Science, The Hebrew University of Jerusalem ([[44]], [[45]], [[46]], [[50]], [[51]])
   - GHOST, SPECTRE, PHANTOM
+
 - DAGlabs [[53]] (**Note:** This is the commercial development chapter.)
   - SPECTRE, PHANTOM
     - SPECTRE provides high throughput and fast confirmation times. Its DAG structure represents an abstract vote 
@@ -432,11 +431,15 @@ DAG derivative protocols are not Layer 2 Scaling solutions, but they offer signi
     computation (smart contracts), which SPECTRE cannot. In order for a computation or contract to be processed 
     correctly and consistently, the full order of events in the ledger is required, particularly the order of inputs to 
     the contract. However, PHANTOM’s confirmation times are much slower than those in SPECTRE.
+
 - Ethereum as the Ethash PoW algorithm that has been adapted from GHOST
+
 - [Dr. Bob McElrath] ([[40]], [[41]])
   - Brading
+
 - David Vorick [[43]]
   - Jute
+
 - Crypto currencies:
   - IOTA [[47]] 
   - Nano [[48]]

@@ -46,8 +46,7 @@ knows about Layer&nbsp;1 and defines the protocols that deliver node-to-node dat
 
 <p align="center"><img src="sources/OSI_Model.png" width="770" /></p>
 
-Analogous to the OSI layers for communication, in blockchain technology, decentralized Layer&nbsp;2 protocols, also 
-commonly 
+Analogous to the OSI layers for communication, in blockchain technology, decentralized Layer&nbsp;2 protocols, also commonly 
 referred to as Layer&nbsp;2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer&nbsp;2 
 protocols run on top of the main blockchain (off-chain), while preserving the attributes of the main blockchain 
 (e.g. crypto-economic consensus). Instead of each transaction, only the result of a number of transactions is embedded 
@@ -69,8 +68,7 @@ If you can answer "no" and "yes", then you're looking for a Layer&nbsp;2 scaling
 Tari is a high-throughput protocol that will need to handle real-world transaction volumes. For example, Big Neon, the 
 initial business application to be built on top of the Tari blockchain, requires high-volume transactions in a short 
 time, especially when tickets sales open and when tickets will be redeemed at an event. Imagine filling an 85,000 seat 
-stadium with 72 entrance queues on match days. Serialized real-world scanning boils down to approximately 500 tickets in 
-four minutes, 
+stadium with 72 entrance queues on match days. Serialized real-world scanning boils down to approximately 500 tickets in four minutes, 
 or approximately two spectators allowed access per second per queue.
 
 This would be impossible to do with parent blockchain scaling solutions.
@@ -156,6 +154,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 **On Ethereum:**
 
 - Raiden Network ([[16]], [[21]])
+
   - Uses state channels to research state channel technology, define protocols and develop reference implementations.
   - State channels work with any ERC20-compatible token.
   - State updates between two parties are done via digitally signed and hash-locked transfers as the consensus 
@@ -165,6 +164,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 <p align="center"><img src="sources/Raiden.png" width="470" /></p>
 
 - Counterfactual ([[16]], [[19]], [[31]])
+
   - Uses state channels as a generalized framework for the integration of native state channels into Ethereum-based 
     decentralized applications.
   - A generalized state channel generalized framework is one where state is deposited once, and is then used afterwards 
@@ -182,6 +182,7 @@ Any change of state within a state channel requires explicit cryptographic conse
 <p align="center"><img src="sources/Counterfactual.png" width="900" /></p>
 
 - Funfair ([[16]], [[23]], [[32]])
+
   - Uses state channels as a decentralized slot machine gambling platform, but still using centralized server-based 
   random number generation.
   - Instantiates a normal "Raiden-like" state channel (called *fate channel*) between the player and the casino. Final 
@@ -251,9 +252,11 @@ contract tokens and vice versa [[5]].
   <p align="center"><img src="sources/0xSequence.png" width="620" /></p>
 
 *Strengths*
+
 - Performance {*NEX*, *0x*}:
   - off-chain request/order;
   - off-chain matching.
+  
 - NEX-specific:
   - batched on-chain commits;
   - cross-chain transfers;
@@ -263,6 +266,7 @@ contract tokens and vice versa [[5]].
   - development environment - ***Elixir on top of Erlang*** to enable scalable, distributed, and fault-tolerant matching 
   engine;
   - Cure53 full security audit on web extension, NEX tokens will be regulated as registered European securities.
+  
 - 0x-specific:
   - open-source protocol to enable creation of independent off-chain dApp matching engines (*Relayers*);
   - totally transparent matching of orders with no single point of control
@@ -273,9 +277,11 @@ contract tokens and vice versa [[5]].
 *Weaknesses*
 
 - At the time of writing (July&nbsp;2018), both NEX and 0x were still in development.
+
 - NEX-specific:
   - a certain level of trust is required, similar to a traditional exchange;
   - closed liquidity pool.
+  
 - 0x-specific:
   - a trusted Token Registry will be required to verify ERC20 token addresses and exchange rates;
   - front-running transactions and transaction collisions possible, more development needed ([[36]], [[37]]);
@@ -304,17 +310,14 @@ allowing for a greater return on investment (ROI) ([[7]], [[9]]).
   requires a stake of 1,000 DASH. Dash and the miners each have 45% of the block rewards. The other 10% goes to the 
   blockchain's treasury fund. Operators are in charge of voting on proposals for how these funds will be allocated to 
   improve the network.
-
 - Dash Deterministic Ordering. A special deterministic algorithm is used to create a pseudorandom ordering of the 
   masternodes. By using the hash from the proof-of-work for each block, security of this functionality is provided by 
   the mining network. 
-
 - Dash Trustless Quorums. The Dash masternode network is trustless, where no single entity can control the outcome. 
   N pseudorandom masternodes (Quorum&nbsp;A) are selected from the total pool to act as an oracle for 
   N pseudorandom masternodes (Quorum&nbsp;B) that are selected to perform the actual task. Quorum&nbsp;A nodes are 
   the nodes that are the closest, mathematically, to the current block hash, while Quorum&nbsp;B nodes are the furthest. 
   This process is repeated for each new block in the blockchain.
-
 - Dash Proof of Service. Bad actors could also run masternodes. To reduce the possibility of bad acting, nodes must ping 
   the rest of the network to ensure they remain active. All masternode verification is done randomly via the Quorum 
   system by the masternode network itself. Approximately 1% of the network is verified each block. This results in the 

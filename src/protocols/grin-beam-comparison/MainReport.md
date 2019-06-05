@@ -101,8 +101,7 @@ repository's wiki.
 For example, Grin has implemented a method for a node to sync the blockchain very quickly by only downloading a partial 
 history [[11]]. A new node entering the network will query the current head block of the chain and then request the 
 block header at a horizon. In the example, the horizon is initially set at 5,000 blocks before the current head. The 
-node then checks if there is enough data to confirm consensus. If there isn't consensus, the node will increase its 
-horizon until 
+node then checks if there is enough data to confirm consensus. If there isn't consensus, the node will increase its horizon until 
 consensus is reached. At that point, it will download the full UTXO set of the horizon block. This approach does 
 introduce a few security risks, but mitigations are provided and the result is that a node can sync to the network with 
 an order of magnitude less data.
@@ -162,8 +161,7 @@ however, makes use of a Radix-Hash tree structure for some of its trees. This st
 is also a binary search tree. This provides a number of features that the standard Merkle trees do not have, and which 
 BEAM exploits in its implementation [[17]].
 
-The features discussed here can all be seen in the code at the time of writing (May&nbsp;2019), although this is not a 
-guarantee that 
+The features discussed here can all be seen in the code at the time of writing (May&nbsp;2019), although this is not a guarantee that 
 they are working. A couple of features that have been mentioned in the literature as planned for the future, 
 have not yet been implemented. These include embedding signed textual content into transactions that can be used 
 to record contract text [[13]], and issuing confidential assets [[18]].
@@ -187,8 +185,7 @@ Grin initially opted to use the new Cuckoo Cycle PoW algorithm, also purported t
 latency bound [[20]]. This means that the algorithm is bound by memory bandwidth rather than raw processor speed, with 
 the hope that it will make mining possible on commodity hardware.
 
-In August&nbsp;2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely 
-that an 
+In August&nbsp;2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely that an 
 ASIC would be available for the Cuckoo cycle algorithm [[21]]. While acknowledging that ASIC mining is 
 inevitable, Grin is concerned that the current ASIC market is very centralized (i.e. Bitmain), and it wants to 
 foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that 
@@ -266,8 +263,7 @@ BEAM project. The following list summarizes the functional similarities and diff
   - Incentives to consume old UTXOs in order to keep the blockchain compact
   - Use of Radix-Hash trees
 
-Both projects are still very young. As of the writing of this report (May&nbsp;2019), both are still in the testnet 
-phase, and many of 
+Both projects are still very young. As of the writing of this report (May&nbsp;2019), both are still in the testnet phase, and many of 
 their core design choices have not yet been built or tested. Much of the BEAM wiki is still in Russian, so it is likely 
 that there are details to which we are not yet privy. It will be interesting to keep an eye on these projects 
 to see how their various decisions play out, both technically and in terms of their monetary policy and governance models.
@@ -480,8 +476,7 @@ Date accessed: 2018&#8209;12&#8209;24.
 
 ## Appendices
 
-This section contains some information on topics discussed in the report, details of which are not directly relevant to 
-the Grin vs. 
+This section contains some information on topics discussed in the report, details of which are not directly relevant to the Grin vs. 
 BEAM discussion.
 
 ### Appendix A: Cuckoo/Cuckatoo Cycle Proof of Work Algorithm
@@ -489,12 +484,10 @@ BEAM discussion.
 The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edges in a bipartite graph of N nodes and 
 M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from 
 one set to the other. As an example, let's consider nodes with even indices to be in one group and nodes with odd 
-indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N&nbsp;=&nbsp;8 and M&nbsp;=&nbsp;4. 
-So if 
+indices to be in another group. Figure&nbsp;2 shows eight nodes with four randomly placed edges, N&nbsp;=&nbsp;8 and M&nbsp;=&nbsp;4. So if 
 we are looking for cycles of length 4, we can easily confirm that none exist in Figure&nbsp;2. By adjusting the number 
 of edges present in  the graph vs. the number of nodes we can control, the probability that a cycle of a certain length 
-exists in the graph. When looking for cycles of length 4, the difficulty, as illustrated in Figure&nbsp;2, is that a 
-4/8 (M/N) graph 
+exists in the graph. When looking for cycles of length 4, the difficulty, as illustrated in Figure&nbsp;2, is that a 4/8 (M/N) graph 
 would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
 
 <p align="center"><img src="sources/cuckoo_base_numbered_few_edges.png" width="250"/></p>

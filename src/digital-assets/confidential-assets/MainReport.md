@@ -241,11 +241,13 @@ asset transaction consists of the following data:
 - A list of inputs, each of which can have one of the following forms:
   - a reference to an output of another transaction, with a signature using that output's verification key; or
   - an asset issuance input, which has an explicit amount and asset tag.
+
 - A list of outputs that contains:
   - a signature verification key;
   - an asset commitment $ H_0 $ with an ASP from all input asset commitments to $ H_0 $;
   - Pedersen commitment to an amount using generator $ H_0 $ in place of $ H $, with the associated *Back-Maxwell* 
   range proof.
+
 - A fee, listed explicitly as $ \{ (f_i , H_i) \}_{i=1}^n $, where $ f_i $ is a non-negative scalar amount denominated 
 in the asset with tag $ H_i $. 
 

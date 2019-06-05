@@ -78,9 +78,9 @@ it works with electron servers or native. BarterDEX at its core is more like an 
 exchange. It also uses a security deposit in the form of Zcredits to do swaps without waiting for confirmation.
 
 BarterDEX also supports Etomic swaps. These work by keeping the payments locked in an etomic blockchain that will act 
-as a third party. Although swaps have been done, it is stated as not yet being production ready [[8]]. 
-Currently (July&nbsp;2018), it is only possible to use Barterdex out of the cli [[9]]. Barterdex charges a 0.1287% fee 
-for a swap [[10]]. 
+as a third party. Although swaps have been done, it is stated as not yet being production ready [[8]]. Currently 
+(July&nbsp;2018), it is only possible to use Barterdex out of the Command Line Interface (CLI) [[9]]. Barterdex charges 
+a 0.1287% fee for a swap [[10]]. 
 
 ## References
 
