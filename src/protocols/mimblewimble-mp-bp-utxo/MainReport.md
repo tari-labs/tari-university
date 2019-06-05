@@ -582,11 +582,17 @@ form of a P2SH, but similar functionality can be implemented in the users' walle
 Bulletproof UTXO, [Shamir's Secret Sharing Scheme][ssss~] (SSSS) ([[8]], [[15]]) will be used to enable 
 $ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry one shard (share) 
 $ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ each of a secret $ s $, such that any $ m $ of them can 
-reconstruct the message. The shards will be distributed according to [Pedersen’s Verifiable Secret Sharing][pvss~] 
-(VSS) scheme, which extends the SSSS, where the dealer commits to the secret $ s $ itself 
-and the coefficients of the sharing polynomial $ f(x) $. This is broadcasted to all parties, who each also receives a 
-blinding factor shard $ g(i) $ corresponding to their secret shard $ f(i) $. This will enable each party to verify that 
-their shard is correct.
+reconstruct the message. The basic idea behind the SSSS is that it is possible to draw an infinite number of polynomials 
+of degree $ m $ through $ m $ points, whereas $ m+1 $ points are required to define a unique polynomial of degree $ m $. 
+A simplified illustration is shown in Figure&nbsp;1; the SSSS uses polynomials over a finite field, which is not representable on a 2-dimensional plane [[19]].
+
+<p align="center"><img src="sources/shamir_simple.png" width="220" /></p>
+<div align="center"><b>Figure&nbsp;1: Infinite Number of Polynomials of Degree 2 Possible through 2 Points</b></div>
+
+The shards will be distributed according to [Pedersen’s Verifiable Secret Sharing][pvss~] (VSS) scheme, which extends 
+the SSSS, where the dealer commits to the secret $ s $ itself and the coefficients of the sharing polynomial $ f(x) $. 
+This is broadcasted to all parties, who each also receives a blinding factor shard $ g(i) $ corresponding to their 
+secret shard $ f(i) $. This will enable each party to verify that their shard is correct.
 
 
 
@@ -777,7 +783,7 @@ and <https://doc-internal.dalek.rs/merlin/index.html>. Date accessed: 2019&#8209
 [7]: https://doc-internal.dalek.rs/merlin/index.html
 "Merlin Transcripts" 
 
-[[8]] T. Pedersen. "Non-interactive and Information-theoretic Secure Verifiable Secret Sharing" 
+[[8]] T. Pedersen, "Non-interactive and Information-theoretic Secure Verifiable Secret Sharing" 
 [online]. Available: <https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf>. 
 Date accessed: 2019&#8209;05&#8209;10.
 
@@ -845,6 +851,19 @@ Date accessed: 2019&#8209;05&#8209;29.
 [17]: https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf
 "Cryptographic Protocols (MTAT.07.005): Secret Sharing" 
 
+[[18]] T. Pedersen, "Distributed Provers and Verifiable Secret Sharing Based on the Discrete Logarithm Problem", DPB, vol. 21, no. 388, Mar. 1992 [online]. Available: <https://doi.org/10.7146/dpb.v21i388.6621>. 
+Date accessed: 2019&#8209;06&#8209;03.
+
+[18]: https://doi.org/10.7146/dpb.v21i388.6621
+"Distributed Provers and Verifiable Secret Sharing 
+Based on the Discrete Logarithm Problem" 
+
+[[19]] Wikipedia: "Shamir's Secret Sharing" [online]. Available: <https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing>. 
+Date accessed: 2019&#8209;05&#8209;06.
+
+[19]: https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
+"Wikipedia: Shamir's Secret Sharing"
+
 
 
 ## Appendices
@@ -883,7 +902,7 @@ the cited references.
 $ n $ parties to carry shards/shares of a secret message $ s $ such that any $ m $ of them can reconstruct the message. 
 The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shards provides no information regarding $ s $. 
 Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme using Lagrange interpolation 
-([[8]], [[15]], [[17]). 
+([[15]], [[17], [[19]]). 
 
   - Given $ m $ distinct points $ (x\_i, y\_i) $ of the form $ (x\_i, f(x\_i)) $, where $ f(x) $ is a polynomial of 
   degree less than $ m $, then according to the Lagrange interpolation formula $ f(x) $ and $ f(0) $ is determined by
@@ -898,7 +917,7 @@ Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme us
   random in $ \mathbb{Z}/p\mathbb{Z} $. The trusted party computes $ f(i) $ for all $ 1 \leq i \leq n $, where
 
   $$
-  f(x) = \sum \_{k=0}^{m - 1} a \_{k} x^{k} = a\_0 + a\_1x^1 + a\_2x^2 + \ldots + a\_{m-1}x^{m-1}
+  f(x) = \sum \_{k=0}^{m - 1} a \_{k} x^{k} = a\_0x^0 + a\_1x^1 + a\_2x^2 + \ldots + a\_{m-1}x^{m-1}
   $$
 
   - The shards $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term 
@@ -906,7 +925,7 @@ Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme us
   by
 
   $$
-  s = \sum \_{i \in I} c \_{i} f(i) , \text{ where each } c \_{i} = \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+  s = \sum \_{i \in I} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}  
   $$
 
 [ssss~]: #ssss
@@ -919,7 +938,8 @@ can reconstruct the message."
 - **Pedersen Verifiable Secret Sharing:**<a name="pvss"> </a>The Pedersen Verifiable Secret Sharing scheme is a 
 non-interactive $ (m, n) $ threshold VSS scheme that combines 
 [Pedersen Commitments](../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) 
-and [Shamir's Secret Sharing Scheme][ssss~] ([[8]], [[15]], [[17]).
+and [Shamir's Secret Sharing Scheme][ssss~] ([[8]], [[17]], [[18]). This is to ensure the dealer gives consistent shares 
+to all parties and that any party can know that the recovered secret is correct.
 
   - The dealer creates a commitment to the secret $ s $ for a randomly chosen blinding factor $ r $ as 
   $ C\_0(s,r) = (sH + rG) $.
@@ -942,7 +962,9 @@ and [Shamir's Secret Sharing Scheme][ssss~] ([[8]], [[15]], [[17]).
   verifies that:
 
   $$
-  (f(i)H + g(i)G) \overset{?}{=} \sum \_{i=0}^{m-1} C\_i
+  (f(i)H + g(i)G) \overset{?}{=} \sum \_{j=0}^{m-1} C\_j \cdot i^j \\\\
+  (a\_0i^0 + a\_1i^1 + \ldots + a\_{m-1}i^{m-1})H + (b\_0i^0 + b\_1i^1 + \ldots + b\_{m-1}i^{m-1})G \overset{?}{=} \\\\
+  (a\_0H + b\_0G) \cdot i^0 + (a\_1H + b\_1G) \cdot i^1 + \ldots + (a\_{m-1}H + b\_{m-1}G) \cdot i^{m-1} 
   $$
 
   - The secret $ s $ is recovered as before as per the SSSS from any $ m $ shards.
@@ -953,7 +975,7 @@ and [Shamir's Secret Sharing Scheme][ssss~] ([[8]], [[15]], [[17]).
     $ m $ shards $ (i, g(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace $ by
 
     $$
-    r = \sum \_{i \in I} c \_{i} g(i) , \text{ where each } c \_{i} = \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+    r = \sum \_{i \in I} g(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
     $$
 
     - Since $ C\_0 $ is the first entry in the vector of commitments $ \mathbf {C\_{m}} $, the parties can verify the 
