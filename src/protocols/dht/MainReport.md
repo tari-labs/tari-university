@@ -88,9 +88,8 @@ As peers come and go, these lists are repeatedly updated to ensure network integ
 A DHT network efficiently distributes responsibility for the replicated storage and retrieval of routing information
 and data. This distribution allows nodes to join and leave with minimal or no disruption. The network can
 have a massive number of nodes (in the case of BitTorrent, millions of nodes) without each node having to
-know about every other participant in the network.
-
-In this way, DHTs are inherently more resilient against hostile attackers than a typical centralized system [[1]].
+know about every other participant in the network. In this way, DHTs are inherently more resilient against hostile 
+attackers than a typical centralized system [[1]].
 
 BitTorrent is one of the largest decentralized networks in existence, containing in the order of tens of millions
 of concurrent users and hundreds of millions of active users. It is estimated that there are a quarter of a billion
@@ -171,9 +170,7 @@ other than being listed in some predefined list. They simply serve as a first po
 to become known to more of the network and to find its closest peers.
 
 There are a number of ways that bootstrap nodes can be obtained, including adding addresses to a configuration and using 
-[DNS seeds](https://bitcoin.org/en/glossary/dns-seed).
-
-The joining process is described as follows [[2]]:
+[DNS seeds](https://bitcoin.org/en/glossary/dns-seed). The joining process is described as follows [[2]]:
 
 1. A joining node generates a random ID.
 2. It contacts a few nodes it knows about.
@@ -214,7 +211,6 @@ The following RPC messages are part of the Kademlia protocol:
 - Peer discovery
   - `PING`/`PONG` - used to determine liveness of a peer.
   - `FIND_NODE` - returns a number of nodes which are closer to a given query value.
-
 - Data storage and retrieval
   - `STORE` - request to store a $\langle key, value \rangle$ pair.
   - `FIND_VALUE` - behaves the same as `FIND_NODE` by returning closer nodes. If a node has the requested 
@@ -235,14 +231,15 @@ learnt about each other.
 ##### Data Storage and Retrieval Procedure
 
 The storage and retrieval procedure ensures that $\langle key, value \rangle$ pairs are reliably stored and able to be
-retrieved by participants in the network.
+retrieved by participants in the network:
 
-The storage procedure uses the [lookup procedure](#lookup-procedure) to locate the closest nodes to the key, at which
-point it issues a `STORE` RPC message to those nodes. Each node republishes the $\langle key, value \rangle$ pairs to
-increase the availability of the data. Depending on the implementation, the data may eventually expire (say 
-24&nbsp;hours). Therefore, the original publisher may be required to republish the data before that period expires.
+- The storage procedure uses the [lookup procedure](#lookup-procedure) to locate the closest nodes to the key, at which
+  point it issues a `STORE` RPC message to those nodes. Each node republishes the $\langle key, value \rangle$ pairs to
+  increase the availability of the data. Depending on the implementation, the data may eventually expire (say 
+  24&nbsp;hours). Therefore, the original publisher may be required to republish the data before that period expires.
 
-The retrieval procedure follows the same logic as storage, except a `FIND_VALUE` RPC is issued and the data received.
+- The retrieval procedure follows the same logic as storage, except a `FIND_VALUE` RPC is issued and the data received.
+
 
 ##### Routing Table
 
@@ -251,9 +248,8 @@ Each node organizes contacts into a list called a routing table. A routing table
 that lookups and data will be available with high probability. These buckets are aptly named $k​$-buckets, and contain 
 nodes with some common node ID prefix.
 
-It should be noted that this is captured by the [XOR metric](#xor-metric).
-
-For instance, given node $A(1100)$ with peers $B(1110)$, $C(1101)$, $D(0111)$ and $E(0101)$, the distances from 
+It should be noted that this is captured by the [XOR metric](#xor-metric). For instance, given node $A(1100)$ with peers 
+$B(1110)$, $C(1101)$, $D(0111)$ and $E(0101)$, the distances from 
 node $A$ would be:
 
 - $A \oplus B = 0010 (2)$
@@ -408,35 +404,43 @@ Date accessed: 2019&#8209;03&#8209;08.
 
 [1]: https://en.wikipedia.org/wiki/Distributed_hash_table. "Wikipedia: Distributed Hash Table"
 
-[[2]] Kademlia: A Peer-to-Peer Information System" [online]. Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>. Date accessed: 2019&#8209;03&#8209;08.
+[[2]] "Kademlia: A Peer-to-Peer Information System" [online]. Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>. 
+Date accessed: 2019&#8209;03&#8209;08.
 
 [2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf "Original Kademlia paper"
 
-[[3]] Ethereum Wiki [online]. Available: <https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection#lookup>. Date accessed: 2019&#8209;03&#8209;12.
+[[3]] Ethereum/Wiki: "Kademlia Peer Selection' [online]. Available: <https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection#lookup>. 
+Date accessed: 2019&#8209;03&#8209;12.
 
 [3]: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection "Kademlia Peer Selection"
 
-[[4]] Wikipedia: "Tapestry (DHT)" [online]. Available: <https://www.wikiwand.com/en/Tapestry_(DHT)>. Date accessed: 2019&#8209;03&#8209;12.
+[[4]] Wikipedia: "Tapestry (DHT)" [online]. Available: <https://www.wikiwand.com/en/Tapestry_(DHT)>. Date accessed: 
+2019&#8209;03&#8209;12.
 
 [4]: https://www.wikiwand.com/en/Tapestry_(DHT) "Tapestry (DHT)"
 
-[[5]] "Towards a Scalable and Robust DHT" [online]. Available: <http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf>. Date accessed: 2019&#8209;03&#8209;12.
+[[5]] "Towards a Scalable and Robust DHT" [online]. Available: <http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf>. 
+Date accessed: 2019&#8209;03&#8209;12.
 
 [5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf "Towards a Scalable and Robust DHT"
 
-[[6]] "Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network" [online]. Available: <https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf>. Date accessed: 2019&#8209;03&#8209;15.
+[[6]] "Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network" [online]. Available: <https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf>. 
+Date accessed: 2019&#8209;03&#8209;15.
 
 [6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf "Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network"
 
-[[7]]: "Commensal Cuckoo: Secure Group Partitioning for Large-scale Services" [online]. Available: <https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed: 2019&#8209;03&#8209;15.
+[[7]]: "Commensal Cuckoo: Secure Group Partitioning for Large-scale Services" [online]. Available: <https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed: 
+2019&#8209;03&#8209;15.
 
 [7]: https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf "Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services"
 
-[[8]]: "Overlay and P2P Networks" [online]. Available: <https://www.cs.helsinki.fi/webfm_send/1339>. Date accessed: 2019&#8209;04&#8209;04.
+[[8]]: "Overlay and P2P Networks" [online]. Available: <https://www.cs.helsinki.fi/webfm_send/1339>. 
+Date accessed: 2019&#8209;04&#8209;04.
 
 [8]: https://www.cs.helsinki.fi/webfm_send/1339 "Overlay and P2P networks"
 
-[[9]]: "Poisoning the Kad Network" [online]. Available: <https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf>. Date accessed: 2019&#8209;04&#8209;04.
+[[9]]: "Poisoning the Kad Network" [online]. Available: <https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf>. 
+Date accessed: 2019&#8209;04&#8209;04.
 
 [9]: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf "Poisoning the Kad Network"
 
@@ -444,11 +448,13 @@ Date accessed: 2019&#8209;03&#8209;08.
 
 [10]: https://en.wikipedia.org/wiki/BitTorrent "BitTorrent"
 
-[[11]]: "Servers - Tor Metrics" [online]. <https://metrics.torproject.org/networksize.html>. Date accessed: 2019&#8209;04&#8209;29.
+[[11]]: "Servers - Tor Metrics" [online]. <https://metrics.torproject.org/networksize.html>. Date accessed: 
+2019&#8209;04&#8209;29.
 
 [11]: https://en.wikipedia.org/wiki/BitTorrent "Servers - Tor Metrics"
 
-[[12]]: "A Survey of DHT Security Techniques" [online]. <https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques>. Date accessed: 2019&#8209;04&#8209;29.
+[[12]]: "A Survey of DHT Security Techniques" [online]. <https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques>. 
+Date accessed: 2019&#8209;04&#8209;29.
 
 [12]: https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques "A Survey of DHT Security Techniques"
 
