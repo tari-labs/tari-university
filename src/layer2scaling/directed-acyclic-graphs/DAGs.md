@@ -1,10 +1,28 @@
-# Braiding the Blockchain (Dr. Bob McElrath)
+# Directed Acyclic Graphs
 
-## Video
+TOC
+
+## Braiding the Blockchain
+
+Bio ???
+
+### Summary
+
+"Braiding the Blockchain" by Dr. Bob McElrath, Scaling Bitcoin, Honk Kong, December 2015.
+
+This talk discusses the motivation for using Directed Acyclic Graphs (DAG), being orphaned blocks, throughput and more inclusive mining. New terms are defined to make DAGs applicable to blockchain as it needs to be more specific: Braid vs. DAG, Bead vs. block, Sibling and Incest.
+
+The Braid approach:
+
+- incentivize miners to quickly transmit beads;
+- prohibit parents to contain conflicting transactions (unlike GHOST or SPECTRE);
+- constructs beads to be valid Bitcoin blocks if they meet the difficulty target.
+
+### Video
 
 <iframe width="750" height="600" src="https://www.youtube.com/embed/8IlZ80mPWfE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Transcripts available [here](https://diyhpl.us/wiki/transcripts/scalingbitcoin/hong-kong/braiding-the-blockchain/).
+Transcripts available [here](https://diyhpl.us/wiki/transcripts/scalingbitcoin/hong-kong/braiding-the-blockchain/).o
 
 ## Slides
 
@@ -13,6 +31,10 @@ Transcripts available [here](https://diyhpl.us/wiki/transcripts/scalingbitcoin/h
 <br>
 
 # GHOST-DAG
+
+"The GHOST-DAG Protocol" by Yonatan Sompolinsky and Dr. Aviv Zohar, Scaling Bitcoin, Tokyo, October 2018.
+
+
 
 ## Video
 
