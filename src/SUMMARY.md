@@ -17,6 +17,7 @@
     - [Layer 2 Scaling Survey (part 1)](layer2scaling/layer2scaling-landscape/layer2scaling-survey.md)
     - [Layer 2 Scaling Survey (part 2)](layer2scaling/more-landscape/landscape-update.md)
     - [Layer 2 Scaling Survey Executive Summary](layer2scaling/executive-summary/sources/PITCHME.link.md)
+    - [Directed Acyclic Graphs](layer2scaling/directed-acyclic-graphs/DAGs.md)
   - [Merged Mining](./merged-mining/merged-mining.md)
     - [Merged Mining Introduction](merged-mining/merged-mining-scene/MergedMiningIntroduction.md)
   - [Digital Assets](./digital-assets/digital-assets.md)
