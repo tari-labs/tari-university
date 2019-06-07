@@ -30,7 +30,9 @@ of encryption, similar to the layers of an onion.
 
 Tor uses a unique system that was developed by the US Navy to protect 
 government intelligence communications. It is part of the ```Tor Browser``` package, where the Tor Browser has been 
-configured to proxy request via the Tor network.
+configured to proxy request via the Tor network.  
+  
+Clarification between Tor as a network service verse Tor Browser as a collective bundled tool, meant to make using Tor network as simple and secure as possible. Tor network service is the heart of the Tor project, where the Tor Browser and other tools, like OnionShare are tools that run on top of or via the Tor network. 
 
 ### Purpose of this Report
 
