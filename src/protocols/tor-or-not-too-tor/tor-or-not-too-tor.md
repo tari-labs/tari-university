@@ -34,11 +34,11 @@ configured to proxy request via the Tor network.
 
 ### Purpose of this Report
 
-This report gives an overview of Tor. The author reaches a conclusion regarding whether or not to 
+This report gives an overview of Tor using the Tor Browser. The author reaches a conclusion regarding whether or not to 
 recommend Tor, i.e. "to Tor || !2 Tor", which means "to Tor or not to Tor" in programming language.
 
 
-### Installation Instructions
+### Installation Instructions for Tor Browser
 With reference to [[1]]:
 * Download the package for your operating system and language.
 * Verify the package.
@@ -55,7 +55,7 @@ With reference to [[1]]:
 
 ### When to use Tor
 
-The Tor Browser is an anonymity tool that blocks tracking, hides some user details and aims to make all Tor 
+The ```Tor Browser``` is an anonymity tool that blocks tracking, hides some user details and aims to make all Tor 
 users look the same to average users. It could therefore be used to anonymize whistle-blowers or journalists reporting 
 on sensitive topics.
 
