@@ -19,11 +19,13 @@ div.LineHeight200per {
 - Introduction
 - Review of Bitcoin $ m\text{-of-}n $ Multisig
 - Security Aspects
-- Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO
+- Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof (BP) UTXO
   - Multiparty Funding Transaction
-  - Multiparty Bulletproof Range Proof
+  - Multiparty BP Range Proof
   - Spending the Multiparty UTXO
-- Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
+- Shamir's Secret Sharing Scheme (SSSS)
+- Pedersen Verifiable Secret Sharing
+- Mimblewimble $ m\text{-of-}n $ Multiparty BP UTXO
   - Secret Sharing for Multiple Rounds
   - How it Works
   - Spending Protocol
@@ -42,7 +44,20 @@ See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-u
 
 @div[text-left]
 
-???
+Mimblewimble does not have a Bitcoin-type multisig applied to a UTXO. In Bitcoin, multisig payments are usually combined 
+with P2SH to send funds to a P2SH payment address. The redeem script sets the conditions for the UTXOs linked to the 
+P2SH payment address to be spent.
+
+<div class="LineHeight100per"> <br></div>
+
+Mimblewimble transactions do not involve payment addresses. The UTXO can be spent if the Pedersen Commitment can be 
+opened/unlocked; does not require an "owner" signature. A typical Mimblewimble UTXO looks like this:
+
+`08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc`
+
+<div class="LineHeight100per"> <br></div>
+
+Also for Mimblewimble all senders receivers must interact to conclude a transaction.
 
 @divend
 
@@ -96,7 +111,7 @@ See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-u
 
 ---
 
-## Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO
+## Mimblewimble $ n\text{-of-}n $ Multiparty BP UTXO
 
 <div class="LineHeight20per"> <br></div>
 
@@ -116,7 +131,47 @@ See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-u
 
 ---
 
-## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
+## Shamir's Secret Sharing Scheme
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+???
+
+@divend
+
++++
+
+@div[text-left]
+
+???
+
+@divend
+
+---
+
+## Pedersen Verifiable Secret Sharing
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+???
+
+@divend
+
++++
+
+@div[text-left]
+
+???
+
+@divend
+
+---
+
+## Mimblewimble $ m\text{-of-}n $ Multiparty BP UTXO
 
 <div class="LineHeight20per"> <br></div>
 
