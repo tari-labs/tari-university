@@ -276,58 +276,37 @@ for a $ 2\text{-of-}3 $ scheme.
 <div class="LineHeight20per"> <br></div>
 
 Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be 
-implemented in the users' wallets.
+implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty BP UTXO, the SSSS will be used to enable such Txs. 
 
 @divend
 
 ---
 
-## Shamir's Secret Sharing Scheme
+## Shamir's Secret Sharing Scheme, Pedersen Verifiable Secret Sharing
 
 <div class="LineHeight20per"> <br></div>
 
 @div[text-left]
 
-???
+The SSSS is a method for $ n $ parties to carry one shard (share) $ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ 
+each of a secret $ s $, such that any $ m $ of them can reconstruct the message. 
+
+<div class="LineHeight20per"> <br></div>
+
+The basic idea: it is possible to draw an infinite number of polynomials of degree $ m $ through $ m $ points, whereas 
+$ m+1 $ points are required to define a unique polynomial of degree $ m $. This can be visualized on a two-dimensional 
+plane:
 
 @divend
 
-
-@div[s250px]
+@div[s200px]
 ![SSSS Simple ](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/mimblewimble-mp-bp-utxo/sources/shamir_simple.png)
 @divend
 
 @div[text-left]
 
-???
-
-@divend
-
-+++
-
-@div[text-left]
-
-???
-
-@divend
-
----
-
-## Pedersen Verifiable Secret Sharing
-
-<div class="LineHeight20per"> <br></div>
-
-@div[text-left]
-
-???
-
-@divend
-
-+++
-
-@div[text-left]
-
-???
+The shards will be distributed according to Pedersen’s Verifiable Secret Sharing (VSS) scheme, to enable each party to verify that their shard is correct. Let us look more closely 
+at the SSSS and Pedersen’s VSS definitions [here](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#appendix-b-definition-of-terms).
 
 @divend
 
