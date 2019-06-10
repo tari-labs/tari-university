@@ -64,7 +64,8 @@ opened/unlocked; does not require an "owner" signature. A typical Mimblewimble U
 
 <div class="LineHeight20per"> <br></div>
 
-Also for Mimblewimble all senders receivers must interact to conclude a Tx.
+Mimblewimble commitments are totally confidential and ownership cannot be proved. Also all senders receivers must 
+interact to conclude a Tx.
 
 <div class="LineHeight20per"> <br></div>
 
@@ -128,14 +129,6 @@ validationScript = OP_0 <A sig> <C sig> <redeemScript> OP_HASH160 <redeemScriptH
 
 @divend
 
-+++
-
-@div[text-left]
-
-???
-
-@divend
-
 ---
 
 ## Security Aspects
@@ -144,7 +137,20 @@ validationScript = OP_0 <A sig> <C sig> <redeemScript> OP_HASH160 <redeemScriptH
 
 @div[text-left]
 
-???
+Mimblewimble relies on Pedersen Commitments and range proofs (i.e. BP range proofs) to provide security.
+
+<div class="LineHeight20per"> <br></div>
+
+Pedersen Commitments $ C(v,k) = (vH + kG) $ provide perfectly hiding and computationally binding commitments. 
+
+<div class="LineHeight20per"> <br></div>
+
+An adversary with infinite computing power can determine alternate pairs 
+$ v ^\prime , k ^\prime $ such that $ C(v,k) = C(v ^\prime , k ^\prime) $ in a reasonable time to open the commitment 
+to another value when challenged (computationally binding). However, it will be impossible to determine the specific 
+pair $ v, k $ used to create the commitment, because there are multiple pairs that can produce the same $ C $ (perfectly 
+hiding).
+
 
 @divend
 
@@ -152,7 +158,27 @@ validationScript = OP_0 <A sig> <C sig> <redeemScript> OP_HASH160 <redeemScriptH
 
 @div[text-left]
 
-???
+Anyone can try to spend or mess with unspent coins embedded in commitments, but BP range proofs assure that all values 
+are in the range $ [0,2^{64} - 1] $ and also stop third parties locking away one's funds.
+
+<div class="LineHeight20per"> <br></div>
+
+Let $ C\_a(v\_1 , k\_1) $ be Alice' commitment that Bob ties to lock away. He knows Mimblewimble commitments are 
+additionally homomorphic. This means that he can theoretically use Alice's commitment in a Tx and create a new opposing 
+output that sums to a commitment of the value of $ 0 $, $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
+
+<div class="LineHeight20per"> <br></div>
+
+Bob will attempt to add an additional blinding factor $ k\_{x} $ to the commitment:
+
+`
+$$
+(v\_1 H + (k\_1 + k\_x) G) - (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0})
+$$
+`
+
+This new $ (v\_1 H + (k\_1 + k\_x) G) $ would be equally unspendable by Alice and Bob. Fortunately a BP range proof 
+for this output cannot be constructed as the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known.
 
 @divend
 
