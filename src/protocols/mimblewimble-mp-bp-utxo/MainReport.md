@@ -75,7 +75,7 @@ receivers, must interact to conclude the transaction.
 
 Multiple use cases of $ m\text{-of-}n $ multisig applications exist, e.g. a $ 1\text{-of-}2 $ petty cash account, 
 a $ 2\text{-of-}2 $ two-factor authentication wallet and a $ 2\text{-of-}3 $ board of directors account [[3]]. 
-A typical 2-of-3 Bitcoin P2SH multisig redeem script (where any two of the three predefined public keys must sign the 
+A typical $ 2\text{-of-}3 $ Bitcoin P2SH multisig redeem script (where any two of the three predefined public keys must sign the 
 transaction) has the following form:
 
 ```Text
@@ -97,7 +97,7 @@ P2SH payment address has the following form, irrespective of the redeem script's
 scriptPubKey      =     OP_HASH160 <redeemScriptHash> OP_EQUAL
 ```
 
-with `OP_HASH160` being the combination of SHA-256 and RIPEMD-160. The 2-of-3 multisig redeem transaction's input script 
+with `OP_HASH160` being the combination of SHA-256 and RIPEMD-160. The $ 2\text{-of-}3 $ multisig redeem transaction's input script 
 would have the following form:
 
 ```Text
@@ -479,7 +479,6 @@ $$
 Similar to the initial transaction, they each create their own private blinding factor $ k^{'}\_n $ for the new 
 multiparty UTXO and share the public blinding factor $ k^{'}\_nG $ with the group. Carol also shares the public 
 blinding factor $ k^{'}\_cG $ for her winnings:
-
 $$
 \begin{aligned} 
 \text{share:} \mspace{9mu} &\lbrace k^{'}\_1G, k^{'}\_2G, k^{'}\_3G \rbrace \\\\
