@@ -15,7 +15,7 @@ div.mywrap {
   background: #f1f1f1;
   font-size: 0.875em;
   font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
-  padding: 0.5em;
+  padding: 0.25em;
   color: #6e6b5e;
 }
 </style>
@@ -67,15 +67,11 @@ opened/unlocked; does not require an "owner" signature. A typical Mimblewimble U
 
 <div class="LineHeight20per"> <br></div>
 
-Also for Mimblewimble all senders receivers must interact to conclude a transaction.
+Also for Mimblewimble all senders receivers must interact to conclude a Tx.
 
-@divend
+<div class="LineHeight20per"> <br></div>
 
-+++
-
-@div[text-left]
-
-???
+We need to utilize Mimblewimble in a different way to enable multiparty UTXO functionality.
 
 @divend
 
