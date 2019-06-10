@@ -251,11 +251,11 @@ Let us now compare these two BP range proof (RP) methods:
 | Consideration   | Dalek's BP MPC Protocol                                      | Grin's Multiparty BP                                         |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Rounds          | Three                                                        | Two                                                          |
-| Security        | Use of Merlin transcripts makes this more secure against replay attacks. | No specific sharing protocol suggested.                      |
+| Security        | Use Merlin transcripts: more secure against replay attacks.  | No specific sharing protocol suggested.                      |
 | BP Size         | Logarithmic BP RP size, 672&nbsp;bytes up to 928&nbsp;bytes for 16&nbsp;range proofs. | Single BP RP size of 672&nbsp;bytes.                         |
-| Colored coin    | Coins are colored, distinguishable from normal commitments in the blockchain due to additional metadata. | Coins do not need to be colored, it may look exactly like any other commitment. |
-| Wallet          | Each individual RP's data is accessible within the aggregated RP. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with BP RP rewinding. | Wallet cannot be reconstructed, as a single party's blinding factor cannot be distinguished from the combined RP. Even if these coins were colored with a flag to make them identifiable, it would not help. |
-| Hiding, binding | Retains all hiding and binding security aspects of the Pederson Commitment. | Retains all hiding and binding security aspects of the Pederson Commitment. |
+| Colored coin    | Coins are colored, distinguishable from normal commitments in the blockchain. | Coins need not be colored, it may look exactly like any other commitment. |
+| Wallet          | Each RP's data accessible within  aggregated RP. Possible to identify the colored coin and to reconstruct the wallet (initial blinding factor seed, BP RP rewinding). | Wallet cannot be reconstructed, a single party's blinding factor cannot be distinguished from the combined RP. |
+| Hiding, binding | Retains all hiding and binding security aspects.             | Retains all hiding and binding security aspects.             |
 
 ---
 
