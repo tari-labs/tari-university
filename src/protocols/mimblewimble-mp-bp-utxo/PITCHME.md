@@ -83,33 +83,34 @@ We need to utilize Mimblewimble in a different way to enable multiparty UTXO fun
 A typical $ 2\text{-of-}3 $ Bitcoin P2SH multisig redeem script:
 
 <div class="mywrap">
-redeemScript     = <OP_2> <A pubkey> <B pubkey> <C pubkey> <OP_3> OP_CHECKMULTISIG
+redeemScript     = \<OP\_2\> \<A pubkey\> \<B pubkey\> \<C pubkey\> \<OP\_3\> OP\_CHECKMULTISIG
 </div>
 
 The P2SH payment address:
 
 <div class="mywrap">
 redeemScriptHash = RIPEMD160(SHA256(redeemScript))
-
+</div>
+<div class="mywrap">
 P2SHAddress      = base58check.Encode("05", redeemScriptHash)
 </div>
 
 A generic funding transaction's output script for the P2SH payment address:
 
 <div class="mywrap">
-scriptPubKey      =     OP_HASH160 <redeemScriptHash> OP_EQUAL
+scriptPubKey      =     OP\_HASH160 \<redeemScriptHash\> OP\_EQUAL
 </div>
 
 A 2-of-3 multisig redeem transaction's input script
 
 <div class="mywrap">
-scriptSig         =  OP_0 <A sig> <C sig> <redeemScript>
+scriptSig         =  OP_0 \<A sig\> \<C sig\> \<redeemScript\>
 </div>
 
 The combined spending and funding transaction script:
 
 <div class="mywrap">
-validationScript    = OP_0 <A sig> <C sig> <redeemScript> OP_HASH160 <redeemScriptHash> OP_EQUAL
+validationScript    = OP_0 \<A sig\> \<C sig\> \<redeemScript\> OP\_HASH160 \<redeemScriptHash\> OP\_EQUAL
 </div>
 
 @divend
