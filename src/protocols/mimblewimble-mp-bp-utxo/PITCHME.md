@@ -338,9 +338,11 @@ See an example of Alice's sharing shards for one private blinding factor [here](
 
 @div[text-left]
 
-Alice, Bob and Carol follow the protocol until they have all their information set up, ready and stored in their wallets.
+Alice, Bob and Carol follow the protocol until they have all their information set up, ready and stored in their wallets:
 
 @divend
+
+<div class="LineHeight20per"> <br></div>
 
 | #    | Blinding<br />Factor                                         | Vectors of <br />Comm.                                 | Alice's <br />Shards                                         | Bob's <br />Shards                                           | Carol's <br />Shards                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -352,7 +354,7 @@ Alice, Bob and Carol follow the protocol until they have all their information s
 
 @div[text-left]
 
-Now they set up the initial multiparty funding transaction and BP RP exactly the same as they did for the 
+They set up the initial multiparty funding transaction and BP RP exactly as they did for the 
 $ 3\text{-of-}3 $ case. For this, they use the private blinding factors they pre-calculated for round 1. 
 
 <div class="LineHeight20per"> <br></div>
@@ -360,13 +362,6 @@ $ 3\text{-of-}3 $ case. For this, they use the private blinding factors they pre
 Bob and Carol decide to spend funds, exactly like before, and for this they need to reconstruct Alice's private blinding 
 factor for round 1 and round 2. Because Alice did not win anything, she does not need to be present. Bob and Carol 
 consequently share the shards Alice gave them: 
-
-`
-$$
-\text{share:} \mspace{9mu} \lbrace (k\_{1\text{-}b1}, b\_{1\text{-}b1}),  (k\_{1\text{-}c1}, b\_{1\text{-}c1}), 
- (k\_{1\text{-}b2}, b\_{1\text{-}b2}) ,  (k\_{1\text{-}c2}, b\_{1\text{-}c2}) \rbrace
-$$
-`
 
 They are now able to reconstruct the blinding factors and verify the commitments to it.
 
