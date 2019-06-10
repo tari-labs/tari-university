@@ -23,8 +23,14 @@ div.LineHeight200per {
 <div class="LineHeight200per"> <br></div>
 
 - Introduction
-- ???
-- ???
+- Review of Bitcoin $ m\text{-of-}n $ Multisig
+- Security of Mimblewimble & Range Proofs
+- Simple Sharing Protocol
+- Mimblewimble $ n\text{-of-}n $ 
+  - Multiparty Funding Transaction
+  - Multiparty Bulletproof Range Proof
+    - Bulletproofs MPC Protocol
+    - Grin's Shared Bulletproof Computation
 - Conclusions
 
 <div class="LineHeight100per"> <br></div>
@@ -60,7 +66,6 @@ See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-u
 
 - ???
 
-
 +++
 
 @div[text-left]
@@ -78,7 +83,6 @@ See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-u
 ## Conclusions
 
 - ???
-
 
 +++
 
