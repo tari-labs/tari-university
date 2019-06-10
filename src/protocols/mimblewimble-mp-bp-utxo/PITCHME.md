@@ -151,17 +151,16 @@ to another value when challenged (computationally binding). However, it will be 
 pair $ v, k $ used to create the commitment, because there are multiple pairs that can produce the same $ C $ (perfectly 
 hiding).
 
+<div class="LineHeight20per"> <br></div>
+
+Anyone can try to spend or mess with unspent coins embedded in commitments, but BP range proofs assure that all values 
+are in the range $ [0,2^{64} - 1] $ and also stop third parties locking away one's funds.
 
 @divend
 
 +++
 
 @div[text-left]
-
-Anyone can try to spend or mess with unspent coins embedded in commitments, but BP range proofs assure that all values 
-are in the range $ [0,2^{64} - 1] $ and also stop third parties locking away one's funds.
-
-<div class="LineHeight20per"> <br></div>
 
 Let $ (v\_1 H + k\_1 G) $ be Alice' commitment that Bob ties to lock away. He knows Mimblewimble commitments are 
 additionally homomorphic; he can theoretically use Alice's commitment in a Tx and create a new opposing 
@@ -183,6 +182,11 @@ $$
 
 This new UTXO $ (v\_1 H + (k\_1 + k\_x) G) $ would be equally unspendable by Alice and Bob. Fortunately a BP range proof 
 cannot be constructed as the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known, so the miners will not accept.
+
+<div class="LineHeight20per"> <br></div>
+
+However, if Bob and Alice work together, it should be possible to create a BP range proof for a $ 2\text{-of-}2 $ 
+multisig type Tx.
 
 @divend
 
