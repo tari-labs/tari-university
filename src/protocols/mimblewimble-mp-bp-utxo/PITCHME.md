@@ -198,7 +198,12 @@ multisig type Tx.
 
 @div[text-left]
 
-???
+Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They 
+decide to use a sharing hash function $ val\_H = \text{H}\_{s}(arg) $ as a handshaking mechanism for all information 
+they need to share. 
+(1) Send hash $ val\_H $ 
+(2) Send value $ arg $ 
+(3) Verify and proceed, or stop
 
 @divend
 
