@@ -170,20 +170,17 @@ output that sums to a commitment of the value of $ 0 $, $ (0H + kG) = (kG) = (\m
 <div class="LineHeight20per"> <br></div>
 
 Bob will attempt to add an additional blinding factor $ k\_{x} $ to the commitment: 
+`$ (v_1 H + (k_1 + k_x) G) - (v_1 H + k_1 G) - (v_2 H + k_2 G) + \mathrm{fee} \cdot H = (\mathbf{0}) $` f
 
 @divend
 
 `
 $$
-\begin{aligned}
-(out_A - in_A) \mspace{3mu} , \mspace{3mu} (out_A - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  &(out_A - in_n) \\
-(out_B - in_A) \mspace{3mu} , \mspace{3mu} (out_B - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  &(out_B - in_n) \\
-. \\
-. \\
-(out_n - in_A) \mspace{3mu} , \mspace{3mu} (out_n - in_B)  \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu}  &(out_n - in_n)
-\end{aligned}
+(v_1 H + (k_1 + k_x) G) - (v_1 H + k_1 G) - (v_2 H + k_2 G) + \mathrm{fee} \cdot H = (\mathbf{0})
 $$
 `
+
+e `$ (v\_1 H + (k\_1 + k\_x) G) - (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H = (\mathbf{0}) $` e
 
 @div[text-left]
 
