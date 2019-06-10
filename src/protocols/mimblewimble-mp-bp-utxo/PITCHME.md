@@ -93,6 +93,7 @@ The P2SH payment address:
 <div class="mywrap">
 ```
 redeemScriptHash = RIPEMD160(SHA256(redeemScript))
+
 P2SHAddress      = base58check.Encode("05", redeemScriptHash)
 ```
 </div>
