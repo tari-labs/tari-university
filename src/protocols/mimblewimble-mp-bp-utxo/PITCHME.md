@@ -14,59 +14,31 @@ div.LineHeight200per {
 
 ## Mimblewimble Multiparty Bulletproof UTXO
 
-@div[text-left]
-
-"<i>???</i>"
-
-@divend
-
 <div class="LineHeight200per"> <br></div>
 
 - Introduction
 - Review of Bitcoin $ m\text{-of-}n $ Multisig
-- Security of Mimblewimble & Range Proofs
-- Simple Sharing Protocol
-- Mimblewimble $ n\text{-of-}n $ 
+- Security Aspects
+- Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO
   - Multiparty Funding Transaction
   - Multiparty Bulletproof Range Proof
-    - Bulletproofs MPC Protocol
-    - Grin's Shared Bulletproof Computation
+  - Spending the Multiparty UTXO
+- Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
+  - Secret Sharing for Multiple Rounds
+  - How it Works
+  - Spending Protocol
 - Conclusions
 
 <div class="LineHeight100per"> <br></div>
 
-@div[text-left]
-
 See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html).
 
-@divend
 
 ---
 
 ## Introduction
 
-- ???
-- ???
-- ???
-- ???
-
-+++
-
-- ???
-- ???
-- ???
-
-
-
----
-
-## ???
-
 <div class="LineHeight20per"> <br></div>
-
-- ???
-
-+++
 
 @div[text-left]
 
@@ -76,7 +48,91 @@ See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-u
 
 +++
 
+@div[text-left]
 
+???
+
+@divend
+
+---
+
+## Review of Bitcoin $ m\text{-of-}n $ Multisig
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+???
+
+@divend
+
++++
+
+@div[text-left]
+
+???
+
+@divend
+
+---
+
+## Security Aspects
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+???
+
+@divend
+
++++
+
+@div[text-left]
+
+???
+
+@divend
+
+---
+
+## Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+???
+
+@divend
+
++++
+
+@div[text-left]
+
+???
+
+@divend
+
+---
+
+## Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+???
+
+@divend
+
++++
+
+@div[text-left]
+
+???
+
+@divend
 
 ---
 
@@ -85,6 +141,5 @@ See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-u
 - ???
 
 +++
-
 
 - ???
