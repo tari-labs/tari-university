@@ -226,7 +226,7 @@ All good so far. Alice, Bob and Carol could each keep their shared blinding fact
 <div class="LineHeight20per"> <br></div>
 
 They must now use a secure method to calculate their combined BP range proof for commitment 
-`$ (v\_1H + (k\_1 + k\_2 + k\_3)G) $` without giving up their portion of the shared blinding factor.
+$ (v\_1H + (k\_1 + k\_2 + k\_3)G) $ without giving up their portion of the shared blinding factor.
 
 <div class="LineHeight20per"> <br></div>
 
@@ -242,20 +242,20 @@ We will now investigate 2 alternatives to construct such a BP range proof.
 
 <div class="LineHeight2o0per"> <br></div>
 
-Let us now compare these two BP range proof methods:
+Let us now compare these two BP range proof (RP) methods:
 
 @divend
 
 +++
 
-| Consideration                 | Using Dalek's Bulletproofs MPC Protocol                      | Using Grin's Multiparty Bulletproof                          |
-| ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Rounds of communication       | Three                                                        | Two                                                          |
-| Security                      | Use of Merlin transcripts makes this method more secure against replay attacks. | No specific sharing protocol suggested.                      |
-| Size of the Bulletproof       | Logarithmic Bulletproof range proof size, i.e. 672&nbsp;bytes up to 928&nbsp;bytes for 16&nbsp;range proofs. | Single Bulletproof range proof size of 672&nbsp;bytes.       |
-| Colored coin                  | Coins are colored, i.e. distinguishable from normal commitments in the blockchain due to additional metadata. | Coins do not need to be colored, i.e. it may look exactly like any other commitment. |
-| Wallet reconstructability     | Each individual range proof's data is accessible within the aggregated range proof. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with [Bulletproof range proof rewinding](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#improved-implementation). | The wallet cannot be reconstructed, as a single party's blinding factor cannot be distinguished from the combined range proof. Even if these coins were colored with a flag to make them identifiable, it would not help. |
-| Hiding and binding commitment | The main commitment and additional commitments in the UTXO's metadata retain all hiding and binding security aspects of the Pederson Commitment. | The commitment retains all hiding and binding security aspects of the Pederson Commitment. |
+| Consideration   | Dalek's BP MPC Protocol                                      | Grin's Multiparty BP                                         |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Rounds          | Three                                                        | Two                                                          |
+| Security        | Use of Merlin transcripts makes this more secure against replay attacks. | No specific sharing protocol suggested.                      |
+| BP Size         | Logarithmic BP RP size, 672&nbsp;bytes up to 928&nbsp;bytes for 16&nbsp;range proofs. | Single BP RP size of 672&nbsp;bytes.                         |
+| Colored coin    | Coins are colored, distinguishable from normal commitments in the blockchain due to additional metadata. | Coins do not need to be colored, it may look exactly like any other commitment. |
+| Wallet          | Each individual RP's data is accessible within the aggregated RP. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with BP RP rewinding. | Wallet cannot be reconstructed, as a single party's blinding factor cannot be distinguished from the combined RP. Even if these coins were colored with a flag to make them identifiable, it would not help. |
+| Hiding, binding | Retains all hiding and binding security aspects of the Pederson Commitment. | Retains all hiding and binding security aspects of the Pederson Commitment. |
 
 ---
 
