@@ -404,21 +404,30 @@ repeat these steps, starting at round 2.
 ### Spending Protocol
 
 - All parties must always know who shared shards and who played the missing party's role for each round.
+
 - The spend is aborted if any verification step does not complete successfully.
+
 - To recommence, the parties have to cancel all unused shards, calculate new shards for the remainder and start again.
+
 - No party may play the role of an absent party twice in a row.
 
 ---
 
 ## Conclusions
 
+@div[text-left]
 Comparison to Bitcoin
+@divend
+
 - Miner Validation (less)
 - $ m\text{-of-}n $ (similar)
 - Security (less)
 - Complexity (more)
 
+@div[text-left]
 General
+@divend
+
 - Bulletproof Range Proof (choose MPC)
 - Practicality (can be done)
 - Information Sharing Protocol (more work needed)
