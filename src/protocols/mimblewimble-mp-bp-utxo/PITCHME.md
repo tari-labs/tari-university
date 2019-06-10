@@ -9,8 +9,18 @@ div.LineHeight100per {
 div.LineHeight200per {
   line-height: 200%;
 }
+div.mywrap {
+  width: 95%; 
+  word-wrap: break-word;
+  background: #f1f1f1;
+  font-size: 0.875em;
+  font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
+  padding: 2.0em;
+  color: #6e6b5e;
+}
 </style>
 </head>
+
 
 ## Mimblewimble Multiparty Bulletproof UTXO
 
@@ -48,14 +58,10 @@ Mimblewimble does not have a Bitcoin-type multisig applied to a UTXO. In Bitcoin
 with P2SH to send funds to a P2SH payment address. The redeem script sets the conditions for the UTXOs linked to the 
 P2SH payment address to be spent.
 
-<div class="LineHeight100per"> <br></div>
-
 Mimblewimble transactions do not involve payment addresses. The UTXO can be spent if the Pedersen Commitment can be 
 opened/unlocked; does not require an "owner" signature. A typical Mimblewimble UTXO looks like this:
 
-`08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc`
-
-<div class="LineHeight100per"> <br></div>
+<div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
 
 Also for Mimblewimble all senders receivers must interact to conclude a transaction.
 
