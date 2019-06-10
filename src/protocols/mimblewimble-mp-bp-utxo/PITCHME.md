@@ -175,10 +175,10 @@ Bob will attempt to add an additional blinding factor $ k\_{x} $ to the commitme
 
 `
 $$
-(v\_1 H + (k\_1 + k\_x) G) - (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0})
+(v_1 H + (k_1 + k_x) G) - (v_1 H + k_1 G) - (v_2 H + k_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0})
 $$
 `
-$ (v\_1 H + (k\_1 + k\_x) G) - (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0}) $
+$ (v_1 H + (k_1 + k_x) G) - (v_1 H + k_1 G) - (v_2 H + k_2 G) + \mathrm{fee} \cdot H &= (\mathbf{0}) $
 @div[text-left]
 
 This new UTXO $ (v\_1 H + (k\_1 + k\_x) G) $ would be equally unspendable by Alice and Bob. Fortunately a BP range proof 
