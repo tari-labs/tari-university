@@ -212,7 +212,7 @@ decide to use a sharing hash function $ val\_H = \text{H}\_{s}(arg) $ as a hands
 
 <div class="LineHeight2o0per"> <br></div>
 
-[Setting up the Multiparty Funding Transaction](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#setting-up-the-multiparty-funding-transaction)
+They set up the funding Tx as follows: [Setting up the Multiparty Funding Transaction](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#setting-up-the-multiparty-funding-transaction)
 
 
 @divend
@@ -256,6 +256,19 @@ Let us now compare these two BP range proof (RP) methods:
 | Colored coin  | Coins are colored, distinguishable from normal commitments in the blockchain. | Coins not colored, looks exactly like any other commitment.  |
 | Wallet        | Each RP's data accessible within aggregated RP. The colored coin can be identified & wallet reconstructed (initial blinding factor seed, BP RP rewinding). | Wallet cannot be reconstructed, a single party's blinding factor cannot be distinguished from the combined RP. |
 | Commitment    | Retains all hiding and binding security aspects.             | Retains all hiding and binding security aspects.             |
+
++++
+
+@div[text-left]
+
+Alice, Bob and Carol had a private bet going that Carol won, and they agree to spend the multiparty UTXO to pay Carol 
+her winnings, with the change being used to set up a consecutive multiparty UTXO. 
+
+<div class="LineHeight20per"> <br></div>
+
+They do this as follows: [Spending the Multiparty UTXO](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#spending-the-multiparty-utxo)
+
+@divend
 
 ---
 
