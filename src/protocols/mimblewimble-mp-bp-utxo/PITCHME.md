@@ -24,8 +24,6 @@ div.mywrap {
 
 ## Mimblewimble Multiparty Bulletproof UTXO
 
-<div class="LineHeight200per"> <br></div>
-
 - Introduction
 - Review of Bitcoin $ m\text{-of-}n $ Multisig
 - Security Aspects
@@ -44,7 +42,6 @@ div.mywrap {
 <div class="LineHeight100per"> <br></div>
 
 See full report [*here*](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html).
-
 
 ---
 
@@ -83,7 +80,26 @@ We need to utilize Mimblewimble in a different way to enable multiparty UTXO fun
 
 @div[text-left]
 
-???
+<div class="mywrap">
+redeemScript     = <OP_2> <A pubkey> <B pubkey> <C pubkey> <OP_3> OP_CHECKMULTISIG
+</div>
+
+<div class="mywrap">
+redeemScriptHash = RIPEMD160(SHA256(redeemScript))
+P2SHAddress      = base58check.Encode("05", redeemScriptHash)
+</div>
+
+<div class="mywrap">
+scriptPubKey      =     OP_HASH160 <redeemScriptHash> OP_EQUAL
+</div>
+
+<div class="mywrap">
+scriptSig         =  OP_0 <A sig> <C sig> <redeemScript>
+</div>
+
+<div class="mywrap">
+validationScript    = OP_0 <A sig> <C sig> <redeemScript> OP_HASH160 <redeemScriptHash> OP_EQUAL
+</div>
 
 @divend
 
