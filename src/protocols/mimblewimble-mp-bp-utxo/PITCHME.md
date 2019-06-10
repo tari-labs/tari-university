@@ -164,12 +164,14 @@ are in the range $ [0,2^{64} - 1] $ and also stop third parties locking away one
 <div class="LineHeight20per"> <br></div>
 
 Let $ (v\_1 H + k\_1 G) $ be Alice' commitment that Bob ties to lock away. He knows Mimblewimble commitments are 
-additionally homomorphic. This means that he can theoretically use Alice's commitment in a Tx and create a new opposing 
+additionally homomorphic; he can theoretically use Alice's commitment in a Tx and create a new opposing 
 output that sums to a commitment of the value of $ 0 $, $ (0H + kG) = (kG) = (\mathbf{0}) $.
 
 <div class="LineHeight20per"> <br></div>
 
 Bob will attempt to add an additional blinding factor $ k\_{x} $ to the commitment:
+
+@divend
 
 `
 $$
@@ -177,8 +179,10 @@ $$
 $$
 `
 
-This new $ (v\_1 H + (k\_1 + k\_x) G) $ would be equally unspendable by Alice and Bob. Fortunately a BP range proof 
-for this output cannot be constructed as the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known.
+@div[text-left]
+
+This new UTXO $ (v\_1 H + (k\_1 + k\_x) G) $ would be equally unspendable by Alice and Bob. Fortunately a BP range proof 
+cannot be constructed as the values of $ v\_1 $ and $ k\_1 + k\_x $ must be known, so the miners will not accept.
 
 @divend
 
