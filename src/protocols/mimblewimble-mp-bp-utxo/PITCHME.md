@@ -212,7 +212,7 @@ decide to use a sharing hash function $ val\_H = \text{H}\_{s}(arg) $ as a hands
 
 <div class="LineHeight2o0per"> <br></div>
 
-They set up the funding Tx as follows: [Setting up the Multiparty Funding Transaction](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#setting-up-the-multiparty-funding-transaction)
+They are now ready to proceed: [Setting up the Multiparty Funding Transaction](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#setting-up-the-multiparty-funding-transaction)
 
 
 @divend
@@ -268,6 +268,16 @@ her winnings, with the change being used to set up a consecutive multiparty UTXO
 
 They do this as follows: [Spending the Multiparty UTXO](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#spending-the-multiparty-utxo)
 
+<div class="LineHeight20per"> <br></div>
+
+The friends have been wondering about the odd occasion that all three will not be present, so they now need a solution 
+for a $ 2\text{-of-}3 $ scheme.
+
+<div class="LineHeight20per"> <br></div>
+
+Mimblewimble transactions cannot utilize a smart/redeem script in the form of a P2SH, but similar functionality can be 
+implemented in the users' wallets.
+
 @divend
 
 ---
@@ -275,6 +285,17 @@ They do this as follows: [Spending the Multiparty UTXO](https://tlu.tarilabs.com
 ## Shamir's Secret Sharing Scheme
 
 <div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+???
+
+@divend
+
+
+@div[s250px]
+![SSSS Simple ](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/mimblewimble-mp-bp-utxo/sources/shamir_simple.png)
+@divend
 
 @div[text-left]
 
