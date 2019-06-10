@@ -266,7 +266,7 @@ They now have enough information to calculate the aggregated public key for the 
 
 $$
 P\_{agg} = (k\_1G + x\_{sa}G) + (k\_2G + x\_{sb}G) + (k\_3G + x\_{sc}G) \\\\
-P\_{agg} = (k\_1G - (k\_a + \phi\_a)G) + (k\_2G - (k\_b + \phi\_b)G) + (k\_3G - (k\_ca + \phi\_c)G)
+P\_{agg} = (k\_1G - (k\_a + \phi\_a)G) + (k\_2G - (k\_b + \phi\_b)G) + (k\_3G - (k\_c + \phi\_c)G)
 $$
 
 Each party also selects a private nonce $ r\_n $, shares the public value $ r\_nG $ with the group,
