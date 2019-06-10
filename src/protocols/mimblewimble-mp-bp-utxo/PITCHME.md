@@ -288,7 +288,7 @@ implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty BP UTXO,
 
 @div[text-left]
 
-With SSSS $ n $ parties carry one shard (share) $ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ 
+With the SSSS, $ n $ parties carry one shard (share) $ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ 
 each of a secret $ s $, such that any $ m $ can reconstruct the message. 
 
 <div class="LineHeight20per"> <br></div>
@@ -318,17 +318,25 @@ at the SSSS and Pedersen’s VSS definitions [here](https://tlu.tarilabs.com/pro
 
 @div[text-left]
 
-???
+Alice, Bob and Carol decide to set up a $ 2\text{-of-}3 $ scheme. They also want to be able to perform three rounds 
+of spending, with the last round being the closing round. 
+
+<div class="LineHeight20per"> <br></div>
+
+They will each pre-calculate $ 3 $ private blinding factors $ k\_{n\text{-}i} $ and shard it according to 
+Pedersen's VSS scheme. The scheme requires $ 3 $ shard tuples 
+$ (k\_{n\text{-}party\text{-}i}, b\_{n\text{-}party\text{-}i}) $ and $ 3 $ vectors of commitments 
+$\mathbf{C}\_{2}( k\_{party\text{-}1})$ for each round. (See example [here](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#appendix-c-shamirs-secret-sharing-example).)
 
 @divend
 
 +++
 
-@div[text-left]
-
-???
-
-@divend
+| Round | Blinding<br />Factor                                         | Vectors of <br />Commitments                                 | Alice's <br />Shards                                         | Bob's <br />Shards                                           | Carol's <br />Shards                                         |
+| ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1     | Alice: $ (k\_{1\text{-}1}, b\_{1\text{-}1}) $ <br />Bob:&nbsp;&nbsp; $ (k\_{2\text{-}1}, b\_{2\text{-}1}) $ <br />Carol: $ (k\_{3\text{-}1}, b\_{3\text{-}1})$ | $\mathbf{C\_{2}}( k\_{1\text{-}1})$ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}1}) $ <br />$\mathbf{C\_{2}}( k\_{3\text{-}1}) $ | $ (k\_{1\text{-}a1}, b\_{1\text{-}a1}) $ <br />$ (k\_{2\text{-}a1}, b\_{2\text{-}a1}) $ <br />$ (k\_{3\text{-}a1}, b\_{3\text{-}a1}) $ | $ (k\_{1\text{-}b1}, b\_{1\text{-}b1}) $ <br />$ (k\_{2\text{-}b1}, b\_{2\text{-}b1}) $ <br />$ (k\_{3\text{-}b1}, b\_{3\text{-}b1}) $ | $ (k\_{1\text{-}c1}, b\_{1\text{-}c1}) $ <br />$ (k\_{2\text{-}c1}, b\_{2\text{-}c1}) $ <br />$ (k\_{3\text{-}c1}, b\_{3\text{-}c1}) $ |
+| 2     | Alice: $ (k\_{1\text{-}2}, b\_{1\text{-}2}) $ <br />Bob:&nbsp;&nbsp; $ (k\_{2\text{-}2}, b\_{2\text{-}2}) $ <br />Carol: $ (k\_{3\text{-}2}, b\_{3\text{-}2}) $ | $ \mathbf{C\_{2}}( k\_{1\text{-}2}) $ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}2}) $ <br />$ \mathbf{C\_{2}}( k\_{3\text{-}2}) $ | $ (k\_{1\text{-}a2}, b\_{1\text{-}a2}) $ <br />$ (k\_{2\text{-}a2}, b\_{2\text{-}a2}) $ <br />$ (k\_{3\text{-}a2}, b\_{3\text{-}a2}) $ | $ (k\_{1\text{-}b2}, b\_{1\text{-}b2}) $ <br />$ (k\_{2\text{-}}b2, b\_{2\text{-}b2}) $ <br />$ (k\_{3\text{-}},b2 b\_{3\text{-}b2}) $ | $ (k\_{1\text{-}c2}, b\_{1\text{-}c2}) $ <br />$ (k\_{2\text{-}}c2, b\_{2\text{-}c2}) $ <br />$ (k\_{3\text{-}},c2 b\_{3\text{-}c2}) $ |
+| 3     | Alice: $ (k\_{1\text{-}3}, b\_{1\text{-}3}) $ <br />Bob:&nbsp;&nbsp; $ (k\_{2\text{-}3}, b\_{2\text{-}3}) $ <br />Carol: $ (k\_{3\text{-}3}, b\_{3\text{-}3}) $ | $ \mathbf{C\_{2}}( k\_{1\text{-}3}) $ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}3}) $ <br />$ \mathbf{C\_{2}}( k\_{3\text{-}3}) $ | $ (k\_{1\text{-}a3}, b\_{1\text{-}a3}) $ <br />$ (k\_{2\text{-}a3}, b\_{2\text{-}a3}) $ <br />$ (k\_{3\text{-}a3}, b\_{3\text{-}a3}) $ | $ (k\_{1\text{-}b3}, b\_{1\text{-}b3}) $ <br />$ (k\_{2\text{-}}b3, b\_{2\text{-}b3}) $ <br />$ (k\_{3\text{-}},b3 b\_{3\text{-}b3}) $ | $ (k\_{1\text{-}c3}, b\_{1\text{-}c3}) $ <br />$ (k\_{2\text{-}}c3, b\_{2\text{-}c3}) $ <br />$ (k\_{3\text{-}},c3 b\_{3\text{-}c3}) $ |
 
 ---
 
