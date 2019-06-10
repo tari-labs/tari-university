@@ -5,8 +5,6 @@
 Consensus mechanisms "are crucial for a blockchain in order to function correctly. They make sure everyone uses the same 
 blockchain" [[1]].
 
-
-
 ## Definitions
 
 - From [<u>**Investopedia**</u>](https://www.investopedia.com/terms/c/consensus-mechanism-cryptocurrency.asp)
