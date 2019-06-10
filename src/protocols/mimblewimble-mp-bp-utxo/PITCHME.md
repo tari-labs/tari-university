@@ -163,9 +163,9 @@ are in the range $ [0,2^{64} - 1] $ and also stop third parties locking away one
 
 <div class="LineHeight20per"> <br></div>
 
-Let $ C\_a(v\_1 , k\_1) $ be Alice' commitment that Bob ties to lock away. He knows Mimblewimble commitments are 
+Let $ (v\_1 H + k\_1 G) $ be Alice' commitment that Bob ties to lock away. He knows Mimblewimble commitments are 
 additionally homomorphic. This means that he can theoretically use Alice's commitment in a Tx and create a new opposing 
-output that sums to a commitment of the value of $ 0 $, $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.
+output that sums to a commitment of the value of $ 0 $, $ (0H + kG) = (kG) = (\mathbf{0}) $.
 
 <div class="LineHeight20per"> <br></div>
 
