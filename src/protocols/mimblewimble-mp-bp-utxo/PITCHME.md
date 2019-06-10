@@ -365,13 +365,13 @@ consequently share the shards Alice gave them:
 
 <div class="LineHeight20per"> <br></div>
 
-They are now able to reconstruct the blinding factors and verify the commitments to it.
+They are now able to reconstruct the blinding factors and verify the commitments to it:
 
-reconstruct: $ (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) $ 
+Reconstruct: $ (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) $ 
 
-verify: C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} (k\_{1\text{-}1}H + b\_{1\text{-}1}G)
+Verify: $ C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} (k\_{1\text{-}1}H + b\_{1\text{-}1}G) $ 
 
-verify: C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} (k\_{1\text{-}2}H + b\_{1\text{-}2}G)
+Verify: $ C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} (k\_{1\text{-}2}H + b\_{1\text{-}2}G) $ 
 
 @divend
 
