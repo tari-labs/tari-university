@@ -336,11 +336,49 @@ See an example of Alice's sharing shards for one private blinding factor [here](
 
 +++
 
+@div[text-left]
+
+Alice, Bob and Carol follow the protocol until they have all their information set up, ready and stored in their wallets.
+
+@divend
+
 | #    | Blinding<br />Factor                                         | Vectors of <br />Comm.                                 | Alice's <br />Shards                                         | Bob's <br />Shards                                           | Carol's <br />Shards                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | A: $ (k\_{1\text{-}1}, b\_{1\text{-}1}) $ <br />B: $ (k\_{2\text{-}1}, b\_{2\text{-}1}) $ <br />C: $ (k\_{3\text{-}1}, b\_{3\text{-}1})$ | $\mathbf{C\_{2}}( k\_{1\text{-}1})$ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}1}) $ <br />$\mathbf{C\_{2}}( k\_{3\text{-}1}) $ | $ (k\_{1\text{-}a1}, b\_{1\text{-}a1}) $ <br />$ (k\_{2\text{-}a1}, b\_{2\text{-}a1}) $ <br />$ (k\_{3\text{-}a1}, b\_{3\text{-}a1}) $ | $ (k\_{1\text{-}b1}, b\_{1\text{-}b1}) $ <br />$ (k\_{2\text{-}b1}, b\_{2\text{-}b1}) $ <br />$ (k\_{3\text{-}b1}, b\_{3\text{-}b1}) $ | $ (k\_{1\text{-}c1}, b\_{1\text{-}c1}) $ <br />$ (k\_{2\text{-}c1}, b\_{2\text{-}c1}) $ <br />$ (k\_{3\text{-}c1}, b\_{3\text{-}c1}) $ |
 | 2    | A: $ (k\_{1\text{-}2}, b\_{1\text{-}2}) $ <br />B: $ (k\_{2\text{-}2}, b\_{2\text{-}2}) $ <br />C: $ (k\_{3\text{-}2}, b\_{3\text{-}2}) $ | $ \mathbf{C\_{2}}( k\_{1\text{-}2}) $ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}2}) $ <br />$ \mathbf{C\_{2}}( k\_{3\text{-}2}) $ | $ (k\_{1\text{-}a2}, b\_{1\text{-}a2}) $ <br />$ (k\_{2\text{-}a2}, b\_{2\text{-}a2}) $ <br />$ (k\_{3\text{-}a2}, b\_{3\text{-}a2}) $ | $ (k\_{1\text{-}b2}, b\_{1\text{-}b2}) $ <br />$ (k\_{2\text{-}}b2, b\_{2\text{-}b2}) $ <br />$ (k\_{3\text{-}},b2 b\_{3\text{-}b2}) $ | $ (k\_{1\text{-}c2}, b\_{1\text{-}c2}) $ <br />$ (k\_{2\text{-}}c2, b\_{2\text{-}c2}) $ <br />$ (k\_{3\text{-}},c2 b\_{3\text{-}c2}) $ |
 | 3    | A: $ (k\_{1\text{-}3}, b\_{1\text{-}3}) $ <br />B: $ (k\_{2\text{-}3}, b\_{2\text{-}3}) $ <br />C: $ (k\_{3\text{-}3}, b\_{3\text{-}3}) $ | $ \mathbf{C\_{2}}( k\_{1\text{-}3}) $ <br />$ \mathbf{C\_{2}}( k\_{2\text{-}3}) $ <br />$ \mathbf{C\_{2}}( k\_{3\text{-}3}) $ | $ (k\_{1\text{-}a3}, b\_{1\text{-}a3}) $ <br />$ (k\_{2\text{-}a3}, b\_{2\text{-}a3}) $ <br />$ (k\_{3\text{-}a3}, b\_{3\text{-}a3}) $ | $ (k\_{1\text{-}b3}, b\_{1\text{-}b3}) $ <br />$ (k\_{2\text{-}}b3, b\_{2\text{-}b3}) $ <br />$ (k\_{3\text{-}},b3 b\_{3\text{-}b3}) $ | $ (k\_{1\text{-}c3}, b\_{1\text{-}c3}) $ <br />$ (k\_{2\text{-}}c3, b\_{2\text{-}c3}) $ <br />$ (k\_{3\text{-}},c3 b\_{3\text{-}c3}) $ |
+
++++
+
+@div[text-left]
+
+Now they set up the initial multiparty funding transaction and BP RP exactly the same as they did for the 
+$ 3\text{-of-}3 $ case. For this, they use the private blinding factors they pre-calculated for round 1. 
+
+<div class="LineHeight20per"> <br></div>
+
+Bob and Carol decide to spend funds, exactly like before, and for this they need to reconstruct Alice's private blinding 
+factor for round 1 and round 2. Because Alice did not win anything, she does not need to be present. Bob and Carol 
+consequently share the shards Alice gave them: 
+
+`
+$$
+\text{share:} \mspace{9mu} \lbrace (k\_{1\text{-}b1}, b\_{1\text{-}b1}),  (k\_{1\text{-}c1}, b\_{1\text{-}c1}), 
+ (k\_{1\text{-}b2}, b\_{1\text{-}b2}) ,  (k\_{1\text{-}c2}, b\_{1\text{-}c2}) \rbrace
+$$
+`
+
+They are now able to reconstruct the blinding factors and verify the commitments to it.
+
+`
+$$
+\text{reconstruct:} \mspace{9mu} (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) \\\\
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} (k\_{1\text{-}1}H + b\_{1\text{-}1}G) \\\\
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} (k\_{1\text{-}2}H + b\_{1\text{-}2}G)
+$$
+`
+
+@divend
 
 ---
 
