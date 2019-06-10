@@ -13,7 +13,7 @@ div.mywrap {
   width: 95%; 
   word-wrap: break-word;
   background: #f1f1f1;
-  font-size: 0.875em;
+  font-size: 0.7em;
   font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
   padding: 0.25em;
   color: #6e6b5e;
@@ -93,15 +93,11 @@ The P2SH payment address:
 <div class="mywrap">
 ```
 redeemScriptHash = RIPEMD160(SHA256(redeemScript))
-```
-</div>
-<div class="mywrap">
-```
 P2SHAddress      = base58check.Encode("05", redeemScriptHash)
 ```
 </div>
 
-A generic funding transaction's output script for the P2SH payment address:
+Generic funding transaction's output script for the P2SH payment address:
 
 <div class="mywrap">
 ```
