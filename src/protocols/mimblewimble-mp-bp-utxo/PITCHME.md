@@ -210,6 +210,8 @@ decide to use a sharing hash function $ val\_H = \text{H}\_{s}(arg) $ as a hands
 
 @div[text-left]
 
+<div class="LineHeight2o0per"> <br></div>
+
 [Setting up the Multiparty Funding Transaction](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#setting-up-the-multiparty-funding-transaction)
 
 
@@ -228,12 +230,32 @@ They must now use a secure method to calculate their combined BP range proof for
 
 <div class="LineHeight20per"> <br></div>
 
-We will now investrigate 2 alternatives to construct such a BP range proof.
+We will now investigate 2 alternatives to construct such a BP range proof.
 
 @divend
 
-1. Utilizing Bulletproofs MPC Protocol
-1. Utilizing Grin's Shared Bulletproof Computation
+1. [Utilizing Bulletproofs MPC Protocol](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#utilizing-bulletproofs-mpc-protocol)
+1. [Utilizing Grin's Shared Bulletproof Computation](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#utilizing-grins-shared-bulletproof-computation)
+
+
+@div[text-left]
+
+<div class="LineHeight2o0per"> <br></div>
+
+Let us now compare these two BP range proof methods:
+
+@divend
+
++++
+
+| Consideration                 | Using Dalek's Bulletproofs MPC Protocol                      | Using Grin's Multiparty Bulletproof                          |
+| ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Rounds of communication       | Three                                                        | Two                                                          |
+| Security                      | Use of Merlin transcripts makes this method more secure against replay attacks. | No specific sharing protocol suggested.                      |
+| Size of the Bulletproof       | Logarithmic Bulletproof range proof size, i.e. 672&nbsp;bytes up to 928&nbsp;bytes for 16&nbsp;range proofs. | Single Bulletproof range proof size of 672&nbsp;bytes.       |
+| Colored coin                  | Coins are colored, i.e. distinguishable from normal commitments in the blockchain due to additional metadata. | Coins do not need to be colored, i.e. it may look exactly like any other commitment. |
+| Wallet reconstructability     | Each individual range proof's data is accessible within the aggregated range proof. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with [Bulletproof range proof rewinding](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#improved-implementation). | The wallet cannot be reconstructed, as a single party's blinding factor cannot be distinguished from the combined range proof. Even if these coins were colored with a flag to make them identifiable, it would not help. |
+| Hiding and binding commitment | The main commitment and additional commitments in the UTXO's metadata retain all hiding and binding security aspects of the Pederson Commitment. | The commitment retains all hiding and binding security aspects of the Pederson Commitment. |
 
 ---
 
