@@ -365,7 +365,7 @@ consequently share the shards Alice gave them:
 
 <div class="LineHeight20per"> <br></div>
 
-They are now able to reconstruct the blinding factors and verify the commitments to it:
+They can reconstruct the blinding factors and verify the original commitments:
 
 Reconstruct: $ (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) $ 
 
@@ -375,12 +375,52 @@ Verify: $ C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} (k\_{1\te
 
 @divend
 
++++
+
+@div[text-left]
+
+Bob will play Alice's part to conclude the transaction as Bob has Alice's private blinding factors $ k\_{1\text{-}1} $ 
+and $ k\_{1\text{-}2} $. 
+
+<div class="LineHeight20per"> <br></div>
+
+When constructing the signature on Alice's behalf, he chooses a private nonce $ r^{'}\_n $ 
+she does not know, as it will only be used to construct the signature and then never again. 
+
+<div class="LineHeight20per"> <br></div>
+
+Bob and Carol conclude the transaction, let Alice know this and inform her that a consecutive multi-spend needs to start 
+at round 2.
+
+<div class="LineHeight20per"> <br></div>
+
+The next time two of our friends want to spend some or all of the remainder of their multiparty UTXO, they will just 
+repeat these steps, starting at round 2. 
+
+@divend
+
++++
+
+### Spending Protocol
+
+- All parties must always know who shared shards and who played the missing party's role for each round.
+- The spend is aborted if any verification step does not complete successfully.
+- To recommence, the parties have to cancel all unused shards, calculate new shards for the remainder and start again.
+- No party may play the role of an absent party twice in a row.
+
 ---
 
 ## Conclusions
 
-- ???
+Comparison to Bitcoin
+- Miner Validation (less)
+- $ m\text{-of-}n $ (similar)
+- Security (less)
+- Complexity (more)
 
-+++
+General
+- Bulletproof Range Proof (choose MPC)
+- Practicality (can be done)
+- Information Sharing Protocol (more work needed)
+- Generalization (possible)
 
-- ???
