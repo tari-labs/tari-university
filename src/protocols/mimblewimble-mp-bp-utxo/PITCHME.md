@@ -199,11 +199,19 @@ multisig type Tx.
 @div[text-left]
 
 Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They 
-decide to use a sharing hash function $ val\_H = \text{H}\_{s}(arg) $ as a handshaking mechanism for all information 
-they need to share. 
-(1) Send hash $ val\_H $ 
-(2) Send value $ arg $ 
-(3) Verify and proceed, or stop
+decide to use a sharing hash function $ val\_H = \text{H}\_{s}(arg) $ as a handshaking mechanism:
+
+@divend
+
+1. Send hash $ val\_H $ to all
+1. Send value $ arg $ to all
+1. Verify and proceed, or stop
+1. Denoted by $ \text{share:} $ 
+
+@div[text-left]
+
+[Setting up the Multiparty Funding Transaction](https://tlu.tarilabs.com/protocols/mimblewimble-mp-bp-utxo/MainReport.html#setting-up-the-multiparty-funding-transaction)
+
 
 @divend
 
@@ -211,9 +219,21 @@ they need to share.
 
 @div[text-left]
 
-???
+All good so far. Alice, Bob and Carol could each keep their shared blinding factor $ k\_n $ secret. 
+
+<div class="LineHeight20per"> <br></div>
+
+They must now use a secure method to calculate their combined BP range proof for commitment 
+`$ (v\_1H + (k\_1 + k\_2 + k\_3)G) $` without giving up their portion of the shared blinding factor.
+
+<div class="LineHeight20per"> <br></div>
+
+We will now investrigate 2 alternatives to construct such a BP range proof.
 
 @divend
+
+1. Utilizing Bulletproofs MPC Protocol
+1. Utilizing Grin's Shared Bulletproof Computation
 
 ---
 
