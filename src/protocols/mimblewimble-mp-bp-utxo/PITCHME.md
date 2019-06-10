@@ -282,14 +282,14 @@ implemented in the users' wallets. For the $ m\text{-of-}n $ multiparty BP UTXO,
 
 ---
 
-## Shamir's Secret Sharing Scheme, Pedersen Verifiable Secret Sharing
+## Pedersen Verifiable Secret Sharing
 
 <div class="LineHeight20per"> <br></div>
 
 @div[text-left]
 
-The SSSS is a method for $ n $ parties to carry one shard (share) $ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ 
-each of a secret $ s $, such that any $ m $ of them can reconstruct the message. 
+With SSSS $ n $ parties carry one shard (share) $ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ 
+each of a secret $ s $, such that any $ m $ can reconstruct the message. 
 
 <div class="LineHeight20per"> <br></div>
 
