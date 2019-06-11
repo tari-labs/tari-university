@@ -12,7 +12,7 @@
 
 ## Background
 
-When considering the concept of consensus in cryptocurrency and cryptographic protocols, the Byzantine Generals Problem is often referenced - where a protocol is described as being byzantine fault tolerant (or BFT). This stems from an analogy, as a means to understand the problem of distributed consensus.
+When considering the concept of consensus in cryptocurrency and cryptographic protocols, the Byzantine Generals Problem is often referenced - where a protocol is described as being byzantine fault tolerant (BFT). This stems from an analogy, as a means to understand the problem of distributed consensus.
 
 **To classify Byzantine failure:**
 It is said that some node in the system, which is exhibiting Byzantine failure is a traitor node. The traitor can send conflicting messages, leading to an incorrect result of the calculation that the distributed system is trying to perform where the cause is a flaky or malicious node.
@@ -76,7 +76,7 @@ type="application/pdf" width="750" height="600" />
 
 "*BFT, Blockchain and Beyond*" by Ittai Abraham, Israel Institie for Advaced Studies, 2018 
 
-This talk provides an overview of blockchain, decentralised trust, with focus on Byzantine Fault Tolerance (BFT). Traditional BFT protocols are assessed and compared with the modern Makamoto Consensus. 
+This talk provides an overview of blockchain, decentralised trust, with focus on Byzantine Fault Tolerance. Traditional BFT protocols are assessed and compared with the modern Nakamoto Consensus. 
 
 The presenation moves on to looking at a hybrid solution of combining traditional and modern consenus. 
 
