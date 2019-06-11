@@ -49,9 +49,9 @@ We have put the presentations and reports into categories of difficulty, interes
 - [Crypto101](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/) - An introduction to elliptic curve math and digital signatures.
 - [Mimblewimble](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/mimblewimble-1#/) - An introduction to Mimblewimble - a protocol that focuses on scalability and privacy through the implementation of confidential transactions.
 - [Lightning Network for Dummies](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/lightning-network-for-dummies#/) - An introduction to the Lightning Network, including examples of its workings, pros and cons.
-- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/layer2scaling-landscape#/) - An overview of different layer 2 scaling solutions being worked at today, as  well as a basic strengths, weaknesses, opportunities, and threats (SWOT) analysis of each.
-- [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/) - An overview of different layer 2 scaling solutions being worked at today, as  well as a basic strengths, weaknesses, opportunities, and threats (SWOT) analysis of each.
-- [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/) - An overview of the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari, and what viable scaling alternatives exist for Tari.
+- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/layer2scaling-landscape#/) - An overview of different layer 2 scaling solutions being worked at today, as  well as a basic strengths, weaknesses, opportunities, and threats (SWOT) analysis of each.
+- [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/more-landscape#/) - An overview of different layer 2 scaling solutions being worked at today, as  well as a basic strengths, weaknesses, opportunities, and threats (SWOT) analysis of each.
+- [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/executive-summary#/) - An overview of the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari, and what viable scaling alternatives exist for Tari.
 - [RGB Protocol](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/rgb-introduction#/) - An introduction to the RGB protocol.
 - [SPV, Merkle Trees and Bloom Filters](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/merkle-trees-and-spv-1#/) - An introduction to Simple Payment Verification (SPV) and how it is achieved with Merkle trees and Bloom Filters.
 - [Atomic Swaps](https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/atomic-swaps#/) - An introduction to the basics of Atomic Swaps.
@@ -61,8 +61,8 @@ We have put the presentations and reports into categories of difficulty, interes
 #### Reports
 
 - [Merged Mining](../merged-mining/merged-mining-scene/MergedMiningIntroduction.md) - Provides a fundamental understanding of the concept of merged mining, including definitions, relevant case studies, and vector attacks.
-- [Layer 2 Scaling Survey (Part 1)](../layer2scaling/layer2scaling-landscape/layer2scaling-survey.md) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
-- [Layer 2 Scaling Survey (Part 2)](../layer2scaling/more-landscape/landscape-update.md) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
+- [Layer 2 Scaling Survey (Part 1)](../scaling/layer2scaling-landscape/layer2scaling-survey.md) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
+- [Layer 2 Scaling Survey (Part 2)](../scaling/more-landscape/landscape-update.md) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
 - [Atomic Swaps](../protocols/atomic-swaps/AtomicSwaps.md) - Presents the basics of Atomic Swaps.
 - [Basics of Scriptless Scripts](../cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) - Presents the basics of Scriptless Scripts. 
 - [Introduction to Schnorr Signatures](../cryptography/digital_signatures/introduction_schnorr_signatures.md) - Presents the basics of Schnorr Signatures and Signature Aggregation.
@@ -86,7 +86,7 @@ A small jump...
 
 #### Lay of the Land   
 
-- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/layer2scaling-landscape#/) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
-- [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/more-landscape#/) - Presents an overview of different layer 2 scaling solutions being worked on today, as   well as a basic SWOT analysis of each.
-- [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/layer2scaling/executive-summary#/) - Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari, and what viable scaling alternatives exist for Tari.
+- [Layer 2 Scaling Survey (Part 1)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/layer2scaling-landscape#/) - Presents an overview of different layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
+- [Layer 2 Scaling Survey (Part 2)](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/more-landscape#/) - Presents an overview of different layer 2 scaling solutions being worked on today, as   well as a basic SWOT analysis of each.
+- [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/executive-summary#/) - Presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari, and what viable scaling alternatives exist for Tari.
 
