@@ -39,6 +39,7 @@ mathematical rules. The main problems to be solved by the DAG derivative protoco
     &nbsp;&nbsp;&nbsp;&nbsp;<strong>Dr. Bob McElrath</strong><br>
     &nbsp;&nbsp;&nbsp;&nbsp;Ph.D. Theoretical Physics
     <br>
+    <br>
   </p>
 </div>
 
@@ -84,6 +85,7 @@ type="application/pdf" width="750" height="600" />
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;<strong>Aviv Zohar</strong><br>
     &nbsp;&nbsp;&nbsp;&nbsp;Prof. at The Hebrew University and Chief Scientist @ QED-it
+    <br>
     <br>
   </p>
 </div>
@@ -131,6 +133,7 @@ type="application/pdf" width="750" height="600" />
     &nbsp;&nbsp;&nbsp;&nbsp;<strong>Aviv Zohar</strong><br>
     &nbsp;&nbsp;&nbsp;&nbsp;Prof. at The Hebrew University and Chief Scientist @ QED-it
     <br>
+    <br>
   </p>
 </div>
 
@@ -165,6 +168,7 @@ autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></ifra
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;<strong>Yonatan Sompolinsky</strong><br>
     &nbsp;&nbsp;&nbsp;&nbsp;Founding Scientist, Daglabs
+    <br>
     <br>
   </p>
 </div>
