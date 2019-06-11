@@ -11,6 +11,7 @@
     - [The Bulletproof Protocols](cryptography/bulletproofs-protocols/MainReport.md)
     - [Pure-Rust Elliptic Curve Cryptography](cryptography/pure-rust-ecc/pure-rust-ecc.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
+    - [Understanding BFT Consensus](consensus-mechanisms/BFT/understanding_bft_consensus.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)
     - [Introduction to Applications of Byzantine Consensus Mechanisms](consensus-mechanisms/BFT-consensus-mechanisms-applications/MainReport.md)
   - [Layer 2 Scaling](./layer2scaling/layer2scaling.md)
