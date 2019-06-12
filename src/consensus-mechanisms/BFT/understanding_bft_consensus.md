@@ -1,7 +1,7 @@
-# Understanding BFT Consensus
+# Understanding Byzantine Fault Tolerant Consensus
 
 - [Background](#background)
-- [Gossip Protocols](#gossip-protocols)
+- [Randomized Gossip Methods](#randomized-gossip-methods)
   - [Summary](#summary)
   - [Video](#video)
   - [Slides](#slides)
@@ -12,10 +12,13 @@
 
 ## Background
 
-When considering the concept of consensus in cryptocurrency and cryptographic protocols, the Byzantine Generals Problem is often referenced - where a protocol is described as being byzantine fault tolerant (BFT). This stems from an analogy, as a means to understand the problem of distributed consensus.
+When considering the concept of consensus in cryptocurrency and cryptographic protocols, the Byzantine Generals Problem 
+is often referenced, where a protocol is described as being Byzantine Fault Tolerant (BFT). This stems from an analogy, 
+as a means to understand the problem of distributed consensus.
 
 **To classify Byzantine failure:**
-It is said that some node in the system, which is exhibiting Byzantine failure is a traitor node. The traitor can send conflicting messages, leading to an incorrect result of the calculation that the distributed system is trying to perform where the cause is a flaky or malicious node.
+If a node in a system is exhibiting Byzantine failure, it is called a traitor node. The traitor (which is a flaky or malicious node) sends 
+conflicting messages, leading to an incorrect result of the calculation that the distributed system is trying to perform.
 
 ## Randomized Gossip Methods 
 
@@ -35,14 +38,15 @@ It is said that some node in the system, which is exhibiting Byzantine failure i
 
 ### Summary
 
-"*Randomized Gossip Methods*" by Dahlia Malkhi, PWL Conf, September, 2016.
+*"Randomized Gossip Methods"* by Dahlia Malkhi, PWL Conference, September, 2016.
 
-The talk touches on three protocols from randomized gossip methods; Rumor Mongering which spreads gossip in each communication, Name Dropper which pushes new neighbors in each communication and SWIM which pulls a heartbeat in each communication.   
+The talk touches on three protocols from randomized gossip methods: Rumor Mongering, which spreads gossip in each 
+communication; Name Dropper, which pushes new neighbors in each communication; and Scalable Weakly-consistent Infection-style Process Group Membership (SWIM), which pulls a heartbeat in each 
+communication.   
 
 ### Video
 
-_Note:_
-- Transcripts available [here](https://github.com/papers-we-love/pwlconf-info/blob/master/2016/dahlia-malkhi/dahlia_pwlconf_captions.srt).
+**Note:** Transcripts are available [here](https://github.com/papers-we-love/pwlconf-info/blob/master/2016/dahlia-malkhi/dahlia_pwlconf_captions.srt).
 
 <iframe width="750" height="600" src="https://www.youtube.com/watch?v=Gxf5glthqrk" frameborder="0" 
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -56,7 +60,7 @@ type="application/pdf" width="750" height="600" />
 <br>
 
 
-## BFT, Blockchain and Beyond
+## Byzantine Fault Tolerance, Blockchain and Beyond
 
 <div>
   <p style="float: left;">
@@ -74,11 +78,12 @@ type="application/pdf" width="750" height="600" />
 
 ### Summary
 
-"*BFT, Blockchain and Beyond*" by Ittai Abraham, Israel Institie for Advaced Studies, 2018 
+*"BFT, Blockchain and Beyond"* by Ittai Abraham, Israel Institute for Advanced Studies, 2018. 
 
-This talk provides an overview of blockchain, decentralised trust, with focus on Byzantine Fault Tolerance. Traditional BFT protocols are assessed and compared with the modern Nakamoto Consensus. 
+This talk provides an overview of blockchain and decentralized trust, with the focus on Byzantine Fault Tolerance (BFT). Traditional 
+BFT protocols are assessed and compared with the modern Nakamoto Consensus. 
 
-The presenation moves on to looking at a hybrid solution of combining traditional and modern consenus. 
+The presentation looks at a hybrid solution of combining traditional and modern consensus mechanisms. 
 
 ### Video
 
