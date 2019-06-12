@@ -50,7 +50,7 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 
 ### Slides
 
-<embed src="https://speakerdeck.com/paperswelove/randomized-gossip-methods-by-dahlia-malkhi" 
+<embed src="https://speakerd.s3.amazonaws.com/presentations/c1c33de400a44e90911569ce999bde95/PWL-Sep-2016hotel.pdf" 
 type="application/pdf" width="750" height="600" />
 
 <br>
