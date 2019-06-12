@@ -12,7 +12,7 @@
 
 
 
-*See Layer 2 Scaling Survey [part 1](../layer2scaling-landscape/layer2scaling-survey.md) and [part 2](../more-landscape/landscape-update.md) for the full reports.*
+*See [Layer 2 Scaling Survey](../layer2scaling-landscape/layer2scaling-survey.md) for the full report.*
 
 ---
 
