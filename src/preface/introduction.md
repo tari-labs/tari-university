@@ -60,7 +60,7 @@ We have put the presentations and reports into categories of difficulty, interes
 #### Reports
 
 - [Merged Mining](../merged-mining/merged-mining-scene/MergedMiningIntroduction.md) - provides a fundamental understanding of the concept of merged mining, including definitions, relevant case studies and vector attacks.
-- Layer 2 Scaling Survey](../scaling/layer2scaling-landscape/layer2scaling-survey.md) - presents an overview of different Layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
+- [Layer 2 Scaling Survey](../scaling/layer2scaling-landscape/layer2scaling-survey.md) - presents an overview of different Layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
 - [Atomic Swaps](../protocols/atomic-swaps/AtomicSwaps.md) - presents the basics of atomic swaps.
 - [Basics of Scriptless Scripts](../cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md) - presents the basics of Scriptless Scripts. 
 - [Introduction to Schnorr Signatures](../cryptography/digital_signatures/introduction_schnorr_signatures.md) - presents the basics of Schnorr signatures and signature aggregation.
