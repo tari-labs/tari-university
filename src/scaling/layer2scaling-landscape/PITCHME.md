@@ -21,7 +21,7 @@
 - Block size limit
 - Number of newer blocks needed to confirm a transaction 
 
-![waiting](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/waiting.png)
+![waiting](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/waiting.png)
 
 +++
 
@@ -44,7 +44,7 @@ This is why we need a proper scaling solution
 
 This is where the term 'Layer 2' is borrowed from
 
-![OSI_Model](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/OSI_Model.png)
+![OSI_Model](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/OSI_Model.png)
 
 +++
 
@@ -55,7 +55,7 @@ This is where the term 'Layer 2' is borrowed from
 - In block chain, decentralized Layer 2 protocols (i.e. Layer 2 scaling) refers to transaction throughput scaling solutions
 - Run on top of the main block chain (off-chain), while preserving the attributes of the main block chain (e.g. crypto economic consensus)
 
-![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/layer2scaling.png)
+![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/layer2scaling.png)
 
 ---
 
@@ -80,7 +80,7 @@ This is where the term 'Layer 2' is borrowed from
 
 <u>Example:</u> The Lightning Network
 
-![lightningnetwork](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
+![lightningnetwork](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
 
 +++
 
@@ -129,7 +129,7 @@ State channels the more general form of micropayment channels  (also used for 
 
 <u>Consensus</u>: Change of state within channel needs explicit cryptographic consent. Use digitally signed and hash-locked transfers as consensus mechanism (balance proofs) secured by time-out (HTLC).
 
-![Raiden](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/Raiden.PNG)
+![Raiden](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Raiden.PNG)
 
 +++
 
@@ -155,7 +155,7 @@ State channels the more general form of micropayment channels  (also used for 
 - - Makes use of global registry, an on-chain contract that maps unique deterministic addresses for any counterfactual contract to actual on-chain deployed addresses 
   - A typical Counterfactual state-channel is composed of counterfactually instantiated objects
 
-![Counterfactual](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/Counterfactual.PNG)
+![Counterfactual](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Counterfactual.PNG)
 
 +++
 
@@ -219,9 +219,9 @@ State channels the more general form of micropayment channels  (also used for 
 
 #### #3 Trusted, off-chain matching engines (cont'd)
 
-![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
+![NEX-matching-engine](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/NEX-matching-engine.png)
 
-![0xSequence](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/0xSequence.png)
+![0xSequence](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/0xSequence.png)
 
 +++
 
@@ -348,7 +348,7 @@ None
 
 - Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of state updates per second, enabling the root block chain to be able to represent a significant amount of dApps, each employing its own block chain in a tree format
 
-![Plasma-example-01](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/Plasma-example-01.png)
+![Plasma-example-01](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Plasma-example-01.png)
 
 - Plasma relies on two key parts: MapReduce functions, and an optional method to do Proof-of-Stake token bonding on top of existing block chains
 
@@ -360,7 +360,7 @@ None
 
 - MapReduce: commitments on block chain computations as input in map phase, merkleized proof of state transition in reduce step when returning the result
 
-![Plasma-example](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/layer2scaling-landscape/sources/Plasma-example.png)
+![Plasma-example](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Plasma-example.png)
 
 +++
 
