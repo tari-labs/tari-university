@@ -86,4 +86,3 @@ A small jump...
 
 - [Layer 2 Scaling Survey](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/layer2scaling-landscape#/) - presents an overview of different Layer 2 scaling solutions being worked on today, as well as a basic SWOT analysis of each.
 - [Layer 2 Scaling Executive summary](https://gitpitch.com/tari-labs/tari-university/master?p=/src/scaling/executive-summary#/) - presents the scaling landscape, how it will be applicable to Tari, what the scaling context is for Tari and what viable scaling alternatives exist for Tari.
-
