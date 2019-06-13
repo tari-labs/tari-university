@@ -26,7 +26,7 @@ kernels and their signatures, does not store permanent data. Fundamental propert
 include both privacy and scaling, both of which require the implementation of Scriptless Scripts [[2]].
 
 A brief introduction is also given in 
-[Scriptless Scripts, Layer 2 Scaling Survey (Part 2)](../../scaling/more-landscape/landscape-update.md#a5-scriptless-scripts). 
+[Scriptless Scripts, Layer 2 Scaling Survey](../../scaling/layer2scaling-landscape/layer2scaling-survey.md#a5-scriptless-scripts). 
 
 
 

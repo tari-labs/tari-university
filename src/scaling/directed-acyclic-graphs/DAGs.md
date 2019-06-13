@@ -20,7 +20,7 @@
 ## Background
 
 The principle of 
-[Directed Acyclic Graphs](../more-landscape/landscape-update.md#directed-acyclic-graph-dag-derivative-protocols) 
+[Directed Acyclic Graphs](../layer2scaling-landscape/layer2scaling-survey.md#directed-acyclic-graph-dag-derivative-protocols) 
 (DAGs) in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by 
 mathematical rules. The main problems to be solved by the DAG derivative protocols are:
 
