@@ -2,8 +2,8 @@
 
 ## Purpose
 
-A blockchain protocol is a common term for consensus methods. These methods are different systems that are implemented 
-to reach consensus and validate transactions within a blockchain network [[1]].
+Users often take blockchain protocols for granted when analyzing the potential of a cryptocurrency. The different 
+blockchain protocols used can play a prominent role in the success of a cryptocurrency [[1]].
 
 ## Definitions
 
@@ -67,12 +67,4 @@ Date accessed: 2019&#8209;06&#8209;11.
 [5]: https://www.britannica.com/technology/protocol-computer-science
 "Protocol - 
 Computer Science"
-
-
-
-
-
-
-
-
 

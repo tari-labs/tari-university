@@ -39,6 +39,3 @@ Date accessed: 2019&#8209;06&#8209;07.
 
 [3]: https://searchsecurity.techtarget.com/definition/cryptography
 "Cryptography"
-
-
-

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-A digital asset is digital in nature, uniquely identifiable and provides value to a company, user or consumer [[1]].
+"All digital assets provide value, but not all digital assets are valued equally" [[1]].
 
 ## Definitions
 
@@ -75,18 +75,3 @@ Date accessed: 2019&#8209;06&#8209;10.
 [6]: https://btcmanager.com/non-fungible-tokens/
 "Non-fungible Tokens: 
 What Are They?"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
