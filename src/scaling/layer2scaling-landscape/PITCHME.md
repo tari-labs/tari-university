@@ -132,7 +132,7 @@ like changes inside smart contract.
 <u>Consensus</u>: Change of state within channel needs explicit cryptographic consent. Use digitally signed and 
 hash-locked transfers as consensus mechanism (balance proofs) secured by time-out (HTLC).
 
-![Raiden](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Raiden.PNG)
+![Raiden](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Raiden.png)
 
 +++
 
@@ -160,7 +160,7 @@ hash-locked transfers as consensus mechanism (balance proofs) secured by time-ou
 contract to actual on-chain deployed addresses 
   - A typical Counterfactual state-channel is composed of counterfactually instantiated objects
 
-![Counterfactual](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Counterfactual.PNG)
+![Counterfactual](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Counterfactual.png)
 
 +++
 
@@ -432,7 +432,7 @@ number of successful and diverse dAppChains have launched. *The next one can eas
 - Unidirectional, unlinkable payment hub for Bitcoin
 - Combines off-chain cryptographics with on-chain Bitcoin scripting to realize smart contracts not dependent on Segwit
 
-![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/TumbleBitOverview.PNG)
+![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/TumbleBitOverview.png)
 
 
 
@@ -570,7 +570,7 @@ Signature (DMMS) and functionaries/notaries multi-signatures going back
 - Hivemind (formerly Truthcoin) is implementing a Peer-to-Peer Oracle Protocol 
 - Blockstream is implementing a Federated Sidechain called Liquid
 
-![Blockstream-Federated-Sidechain](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Blockstream-Federated-Sidechain.PNG)
+![Blockstream-Federated-Sidechain](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Blockstream-Federated-Sidechain.png)
 
 
 
@@ -605,7 +605,7 @@ None, if enough functionality will be built into the main Tari block chain
 - Difference compression of data from same owner, aggregate signing of previous Txs
 - RSK newly launched main net January 2018, Lumino Network to be launched test net
 
-![LuminoDataPruning](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/LuminoDataPruning.PNG)
+![LuminoDataPruning](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/LuminoDataPruning.png)
 
 +++
 
@@ -677,7 +677,7 @@ also known as *Zero-Knowledge Contingent Payments*.
 
 Mimblewimble is being sited by Andrew Poelstra as being the ultimate *Scriptless Script*.
 
-![Mimblewimble](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Mimblewimble.PNG)
+![Mimblewimble](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Mimblewimble.png)
 
 +++
 
@@ -719,7 +719,7 @@ developed by Counterparty, but with improved consensus
 - A directed graph is acyclic if it has a topological ordering: for every directed edge *uv* from vertex *u* to 
 vertex *v*, *u* comes before *v* in the ordering
 
-![DAG](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/DAG.PNG)
+![DAG](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/DAG.png)
 
 +++
 
@@ -733,7 +733,7 @@ Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentat
 - DAG in block chain includes traditional off-chain blocks into the ledger, governed by mathematical rules
 - A parent that is simultaneously an ancestor of another parent is disallowed
 
-![DAGTopologicalOrdering](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/DAGTopologicalOrdering.PNG)
+![DAGTopologicalOrdering](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/DAGTopologicalOrdering.png)
 
 +++
 
@@ -743,7 +743,7 @@ Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentat
   - Inclusion of orphaned blocks (decrease the negative effect of slow propagation)
   - Mitigation against selfish mining attacks
 
-![GHOST](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/GHOST.PNG)
+![GHOST](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/GHOST.png)
 
 +++
 
@@ -755,7 +755,7 @@ Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentat
   - SPECTRE: blocks vote -> Tx robustly accepted, Tx robustly rejected, Tx indefinite “pending”
   - All conflicting blocks earn their respective miners a block reward *[not in Braiding]*
 
-![SPECTRE](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/SPECTRE.PNG)
+![SPECTRE](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/SPECTRE.png)
 
 +++
 
@@ -765,7 +765,7 @@ Dagger-Hashimoto*), [Braiding](https://scalingbitcoin.org/hongkong2015/presentat
   - Incentives for behavior changes by nodes lead to increased throughput
   - Better payoff for weak miners
 
-![InclusiveProtocolDAG](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/InclusiveProtocolDAG.PNG)
+![InclusiveProtocolDAG](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/InclusiveProtocolDAG.png)
 
 - *Note: DAG derivative protocols not Layer 2 Scaling solution, offer scaling of primary block chain*
 
