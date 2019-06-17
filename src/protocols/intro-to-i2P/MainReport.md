@@ -12,17 +12,17 @@
 
 ## Introduction
 
-I2P (Invisible Internet Project), Tor and VPNs (Virtual Private Networks) are well known anonymity networks used by millions of users across the world. Most people use them as ways to securely transfer data over the internet with their identities concealed. These networks have very similar characteristics but are also very big differences and hence work in very specific ways.
+I2P (Invisible Internet Project), Tor and VPNs (Virtual Private Networks) are well known anonymity networks used by millions of people across the world. Most people use them as a way to securely and privately browse the internet. These networks have very similar characteristics but also very big differences and hence work in very specific ways.
 
 In this report we'll examine what the I2P network is, the paradigms of how it works, its security infrastructure and its usefulness in the blockchain domain.
 
 
 ## What is I2P
-I2P (known as the Invisible Internet Project and founded in 2003) is a network layer that runs on a distributed network of computers on a global network infrastructure. This network layer provides a set of functions that runs on each computer and provides encrypted, one-way connections to and from other computers within the network. These functions are wrapped in a *"router"* that is installed during setup and configuration.
+I2P (known as the Invisible Internet Project and founded in 2003) is a network layer that runs on a distributed network of computers on a global network infrastructure. This network layer provides a set of functions that runs on each computer and provides encrypted, one-way connections to and from other computers within the network. These functions are wrapped in a *"router"* that is installed during setup and configuration of the network.
 
 
 ## How Does It Work
-The first concept to understand about I2P is that it's primary an enclosed network that runs within the Internet infrastructure (reffered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works as a decentralised network of that operates within the Internet - i.e. an Internet within the internet. Interaction is done on a peer to peer level and there is no centralised authority that handles the network or keeps track of the active peers. Tor and VPNs, on the other hand have centralised authorities where the message/data and network is managed. Since I2P works within it's own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within the network and are only accessible to people using I2P. These can be easily created using an **I2PTunnel** service that uses a standard web server. Another concept of note is I2P is not inherently an "outproxy" network i.e. it's not intended for accessing the internet. This is because the client you send a message to is the cryptographic identifier, not some IP address, so the message must be addressed to someone running I2P. Browsing the internet is however possible through opening an outproxy that allows creating an anonymous internet connection. (ref https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work) ref: https://geti2p.net/en/docs/api/i2ptunnel
+The first concept to understand about I2P is that its primarily an enclosed network that runs within the Internet infrastructure (reffered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works as a decentralised network of that operates within the Internet - i.e. an Internet within the internet. Interaction is done on a peer to peer level and there is no centralised authority that handles the network or keeps track of the active peers. Tor and VPNs, on the other hand have centralised authorities where the message/data and network is managed. Since I2P works within it's own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within the network and are only accessible to people using I2P. These can be easily created using an **I2PTunnel** service that uses a standard web server. Another concept of note is I2P is not inherently an "outproxy" network i.e. it's not intended for accessing the internet. This is because the client you send a message to is the cryptographic identifier, not some IP address, so the message must be addressed to someone running I2P. Browsing the internet is however possible through opening an outproxy that allows creating an anonymous internet connection. (ref https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work) ref: https://geti2p.net/en/docs/api/i2ptunnel
 
 
 #### The Infrastructure
@@ -67,11 +67,55 @@ of all transactions and blocks for verification.
 One of the disadvantages and limitations of the of the Tor network is it's in ability to scale and Vulnerability to attacks. By design, it works by routing information through a number of intermediate nodes that eventually connect to exit nodes that work as trusted authority servers. Each of these servers keeps track of all the nodes in the network and their performance. These exit nodes also act as proxies, allowing Tor users to access the clearnet without revealing their identity.
 As there are only few trusted authority servers, the integrity of these nodes is essential for the entire network, making them a valuable target for attacks. reference: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
 
-Instead of storing the network's metadata in a group of trusted authority servers, I2P keeps this data in the Distributed Hash Table. 
+Instead of storing the network's metadata in a group of trusted authority servers, I2P keeps this data in the Distributed Hash Table. This approach makes it harder to attack the network since it runs on normal I2P nodes and provides a small group of authority servers.
+
+### Threat Model
+Threat modeling is a process by which potential threats can be identified, enumerated, and prioritised. I2P's threat model consists of the following types of attacks.
+
+1. Brute Force attacks:
+This attack can be done by a passive or active global adversary. They can do this by watching all messages that pass between all the nodes and running attempts to check which message follows which path.
+
+
+
+
+
+
+
+
 
 
 ## Comparisons to Tor & VPNs
+Heavily decentralized. Tor has a user:relay ratio of 165:1 (excluding non-public bridge relays; see metrics) while I2P has a user:relay ratio of 0.99:1 (a very limited amount of users don't route traffic for others because they are, for example, in a hostile country with a limited number of I2P users). This means that you would need a a lot more resources to have a chance of deanonymizing users by observing network traffic over malicious nodes (meaning a set of relays that are all observed by a hostile entity) for I2P than for Tor.
 
+No central point of failure for building tunnels. Tor has directory servers that form a catalog of (public) Tor relays. A user asks these directory servers for (a copy of the entire list of) Tor relays (or just part of them?) including their properties (such as Exit Node, Guard Node, Fast Node, etc.) If (a number of?) these directory servers are compromised, they could manipulate the information that they are supplying to the users that use those compromised directory servers. The Tor directory servers can also be attacked, making it impossible for users to form tunnels because they lack the required information. I2P uses DHT which allows all I2P relays to inform other I2P relays of relays that they known. There is no central (set of) point(s) that can be attacked to make building of tunnels impossible (except attacking all I2P relays).
+
+Asymmetric tunnels. I'll use an analogy to explain this. This analogy is wrong and inaccurate in some regards because the contents of the traffic that is sent through Tor and through I2P is encrypted and cannot be read. The amount of intermediary countries used also doesn't match. The purpose of the analogy is to make you understand the difference. With Tor, you send a letter from US to Canada through France, Germany and Brazil (in that order). The letter reads "Please send me the combination of our granddad's bank vault now that he has deceased.". The letter that is sent in reply from your friend in Canada (reading "19502118") is sent to your address in the US through Brazil, Germany and France (in that order). With I2P, the first letter (from US to Canada) is sent through France, Germany and Brazil (in the order), but the second letter is sent through Paraguay, Norway and Ukraine (in that order). Suppose the postal services in France, Germany, Brazil and Paraguay are compromised. In that case, those postal services can figure out that 19502118 is the combination for your granddad's bank vault, if you were using Tor to send the both of those letters. If you used I2P, they would not be able to figure out what the combination for the vault is, although they do know that you have requested the combination for the vault. A version of the above scenario that is more true to the nature of Tor and I2P would include letters sent in an unbreakable envelopes (the encrypted data). If that was the case, the compromised postal services would be able to confirm that a letter was sent from a person in the US to a person in Canada in both the case of Tor and I2P, but only in the case of Tor would they be able to also confirm that a letter was sent from that person in Canada to that person in the US. (They would also be able to guess that it was probably a letter in reply to the US -> Canada letter because of the rapid response time).
+
+Short-lived tunnels. Adapting the analogy above, this means that communications between the US resident and the Canadian resident are only shortly passed through Brazil, Germany and France + Paraguay, Norway and Ukraine. Much sooner than is the case with Tor will I2P change the intermediary nodes that the communications are using (to, for example, Peru, Mexico and Australia + Greece, Nicaragua and Russia). This is useful because if a tunnel is compromised, you will only send data using that tunnel for a short amount of time, thus limiting the amount of data that is compromised (though the data is encrypted, so unless the server you are connecting to is also compromised, the adversary cannot inspect the unencrypted data).
+
+Some protection against human errors. Tor simply relays TCP/IP packets while I2P is able to modify or trim those packets for some tunnels (such as the default IRC tunnel) to prevent human errors. Once again, an analogy is useful, though not accurate. Suppose you want to anonymously leak a document to a newspaper. You decide to use the (analog) Tor network to prevent your identity from being compromised. You send the letter through Bolivia, Colombia and Japan and then finally to the US HQ of a newspaper. Unfortunately though, you have forgotten to remove some identifying remarks from your letter (your data). Let's for the sake of clarity say that you have left fingerprints on your letter (a digital equivalent would be HTTP headers that indicate the local server time). You can then be deanonymized even though the delivery of the letter was securely anonymous.
+
+BitTorrent functionality. Unlike Tor, I2P has been designed with BitTorrent support in mind (can someone verify this?). Tor isn't supportive of the Tor network being used for clearnet BitTorrent activity and, unlike I2P, it doesn't have its own internal BitTorrent functionality.
+
+Weaknesses of I2P compared to Tor
+
+Technical
+
+No family flag for relays. This means that if one entity controls a bunch of relays, he can add this information to his relays so that the anonymization software will never choose more than 1 relay from the same family to build a tunnel. I'm not sure if I2P is actually missing this feature!
+
+Non-technical / social
+
+Lower amount of users (though more relays).
+
+No extensive documentation and noob-friendly start-up tutorials (though there has been some progress as of late).
+
+No extensive academic peer reviewing.
+
+No noob-friendly user interface.
+
+No noob-proof out-of-the-box solutions like the Tor Browser Bundle.
+
+No (charismatic) public representative like Jacob Appelbaum is for the Tor Project.
 
 
 
