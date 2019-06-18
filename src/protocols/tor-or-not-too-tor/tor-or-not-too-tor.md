@@ -142,19 +142,19 @@ Date accessed: 2019&#8209;05&#8209;16.
 [2]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
 "Wikipedia: Tor (Anonymity Network)"
 
-[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
+[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless Tor or the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
 
 [3]: https://3g2upl4pq6kufc4m.onion/
 "DuckDuckGo Search Engine - 
 link will not work unless 
-Tor Browser is used"
+Tor or Tor Browser is used"
 
-[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16
+[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. **Note:** This link will help the user identify if Tor or the Tor Browser is been used. Date accessed: 2019&#8209;05&#8209;16
 
 [4]: https://check.torproject.org/
 "Tor Project: Check - 
-link will not work unless 
-Tor Browser is used"
+link will help user identify 
+Tor or Tor Browser is been used"
 
 [[5]] Tor Project: Overview [online]. Available: <https://2019.www.torproject.org/about/overview.html.en>. 
 Date accessed: 2019&#8209;05&#8209;16.
