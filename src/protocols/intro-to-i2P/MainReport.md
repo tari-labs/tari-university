@@ -1,14 +1,21 @@
 # The I2P Network - An introduction and Comparison to Tor and VPNs.
 
 - [Introduction](#introduction)
-
-- [An Introduction to the i2P network](#Introduction)
-
-  - [What is I2P](#what-is-I2P)
-  - [How it Works](#scalability-and-fault-tolerance)
-  - [Understanding Routers](#distributed-data-storage)
-
-
+- [What is I2P](#what-is-i2p)
+- [How Does It Work](#how-does-it-work)
+    + [The Infrastructure](#the-infrastructure)
+- [Garlic Routing](#garlic-routing)
+- [Threat Model, Security and Vulnerability Attacks](#threat-model--security-and-vulnerability-attacks)
+  * [Sybil Attacks](#sybil-attacks)
+  * [Eclipse Attacks](#eclipse-attacks)
+  * [Brute force attacks](#brute-force-attacks)
+  * [Intersection attacks](#intersection-attacks)
+  * [Denial of Service Attacks](#denial-of-service-attacks)
+    + [Greedy User Attacks](#greedy-user-attacks)
+    + [Starvation attack](#starvation-attack)
+    + [Flooding attack](#flooding-attack)
+- [Comparisons to Tor](#comparisons-to-tor)
+- [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -22,17 +29,15 @@ I2P (known as the Invisible Internet Project and founded in 2003) is a network l
 
 
 ## How Does It Work
-The first concept to understand about I2P is that its primarily an enclosed network that runs within the Internet infrastructure (reffered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works as a decentralised network of that operates within the Internet - i.e. an Internet within the internet. Interaction is done on a peer to peer level and there is no centralised authority that handles the network or keeps track of the active peers. Tor and VPNs, on the other hand have centralised authorities where the messages/data and network is managed. Since I2P works within it's own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within this network and are only accessible to people using I2P. These sites can be easily created using an **I2PTunnel** service that uses a standard web server. Another concept of note is I2P, by design, is not inherently an "outproxy" network i.e. it's not intended for accessing the internet. This is because the client you send a message to is the cryptographic identifier, not some IP address, so the message must be addressed to someone running I2P. Browsing the internet is however possible through opening an outproxy that allows creating an anonymous internet connection. (ref https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work) ref: https://geti2p.net/en/docs/api/i2ptunnel
+The first concept to understand about I2P is that its primarily an enclosed network that runs within the Internet infrastructure (reffered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works as a decentralised network of that operates within the Internet - i.e. an Internet within the internet. Interaction is done on a peer to peer level and there is no centralised authority that handles the network or keeps track of the active peers. Tor and VPNs, on the other hand have centralised authorities where the messages/data and network is managed. Since I2P works within it's own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within this network and are only accessible to people using I2P. These sites can be easily created using an **I2PTunnel** service that uses a standard web server. Another concept of note is I2P, by design, is not inherently an "outproxy" network i.e. it's not intended for accessing the internet. This is because the client you send a message to is the cryptographic identifier, not some IP address, so the message must be addressed to someone running I2P. Browsing the internet is however possible through opening an outproxy that allows creating an anonymous internet connection. [[1]] [[2]]
 
 
-#### The Infrastructure
+## The Infrastructure
 1. **Routing Infrastructure & Anonymity:** I2P works by installing an I2P routing service within a user's device. This router creates temporary, encrypted, one way connections with other I2P routers on other devices. Connections are refered to as one way because they are made up of an *Outbound Tunnel* and an *Inbound Tunnel*. When communication is occurring, data leaves the user's devices via the outbound tunnels and is received on other devices through their inbound tunnels. Messages do not travel two ways within the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels. (reference https://censorbib.nymity.ch/pdf/Hoang2018a.pdf).
 Messages that leave one device do not travel directly to the inbound tunnel of the destination devices's intended. Instead, the outbound router queries a distributed network database by travelling through exploratory channels to get the address of the inbound router. This database is comprised of a custom Kademlia style distributed hash table (DHT), and it contains the router information and destination information.
 For each application/client, the I2P router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the netDB are shared among all users of
 a router. If a tunnel in the pool is about to expire or the tunnel is no longer useable the router creates a new tunnel and adds it to the pool. It is important to recall later that tunnels periodically expire every ten minutes, and hence, need to be refreshed frequently. This is a security measure, done to prevent long-lived tunnels from becoming a threat to anonymity. ref: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
-This intermediate database is there to find the other client's inbound tunnels efficiently, and to anonymise the addresses of devices communicating with each other. ref: https://geti2p.net/en/about/intro
-
-*Diagram of Inbound and Outbound Tunnels.*
+./assets/i2p network.png
 
 2. **Networking & Network Database:** The Distributed Database in I2P (called netDb) contains two types of data - the router information and destination information. When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the the other router.
 This RouterInfo is stored in the Network Database with the router's identity as the Key. These keys indexing the routers and hidden services are calculated by a SHA256 hash function of a 32-byte binary search key which is concatenated with a UTC date string. The date string is added because these hash values change every day at UTC 00:00.
@@ -52,13 +57,12 @@ The Arbitrary text options are used by other routers for basic decisions. i.e. S
 
 ## Garlic Routing
 Garlic Routing is a way of building paths/tunnels through which messages/data in the I2P network travels. When a message leaves the application/client it encrypted to the recipient's public key, then that encrypted message is encrypted with instructions specifying the next hop. This message travels this way through the each hop until it reaches the recipient.
-During the transportation of the message, it is furthermore bundled with other messages. This means that any messsage travelling in the network could contain a number of other messages bundled with it. In essense, garlic routing does two things:
+During the transportation of the message, it is furthermore bundled with other messages. This means that any messsage travelling in the network could contain a number of other messages bundled with it. In essence, garlic routing does two things:
 1. Layered Encryption
 2. Bundles multiple messages together
 
 The following image represents the end to end message bundling.
-
-/// IMAGE
+(/assets/garliccloves.png)
 
 
 
@@ -73,80 +77,55 @@ In general, the I2P network has no explicit threat model specified but there are
 
 
 ### Sybil Attacks
+The Sybil attack is a well known anonymity system attack in which the malicious user creates multiple identities as an effort to increase control over the network. Running this over the I2P network is rather difficult. This is because participants/clients in the network evaluate the performance of peers when selecting peers to interact with instead of using a random sample. Because running multiple identities on the same host impacts the performance of each of those instances, the number of additional identities running in parallel is effectively limited by the need to provide each of them with enough resources for being considered as peers. The hence means the malicious user will need a substantial amount of resources to create the multiple identities.
+
+
+### Eclipse Attacks
+This is an attack that compromises a node within the netDB. All requests that are requested on the netDB are answered by the node nearest to the searched key. If this node is malicious and claims not to know the key and not to know any other database server nearer to the key, the lookup will fail. I2P, however, stores the key on the eight nodes closest to the key and a requesting node will continue asking nodes further away from the key if they no longer know any candidate nearer to the searched key. Hence this attack is also ineffective against the network.
+
+
+### Brute force attacks
+Brute force attacks on the i2P network can be mounted by actively watching the network's messages pass between all of the nodes and attempting to correlate which message follows which path. Since all peers in the network are frequently sending messages, this attack is trivial. The attacker can send out large data (+2GB), observe all the nodes and narrow down those that routed the message. The large chunk of data is necessary because inter-router communication is encrypted and streamed i.e. 1024byte data is indistinguishable from 2048bytes. Mounting this attack is however very difficult and would need one to be an ISP in order to observe a large chunk of the network.
+
+
+### Intersection attacks
+These involve observing the network and node churns over time, and intersecting which peers are online when a message goes through to narrow down to a target. It is theoretically possible to mount this attack if the network is small, but impractical with a larger network.
+
+### Denial of Service Attacks
+There are a couple of these types of attacks available:
+
+#### Greedy User Attacks
+This is when a user is consuming significantly more resources than they are willing to contribute. I2P has strong defences against these as users within the network are routers by default and hence contribute to the network by design.
+
+#### Starvation attack
+A user/node may try to create a starvation attack by creating a number of bad nodes that do not provide any resources/services to the network, causing existing peers to search through a larger network database or request more tunnels than should be necessary. An attempt to find nodes can be difficult as they are not different from failing or loaded nodes. However, I2P, by design maintains a profile on all peers and attempts to identify and ignore bad performing nodes, making this attack difficult.
+
+#### Flooding attack
+In this attack the malicious user sends a large number of messages to the target's inbound tunnels or to the network at large. The targetted user can however detect this both by the contents of the message and because the tunnel's tests will fail. The user can hence identify the unresponsive tunnels, ignore them and build new ones. They can also choose to throttle the number of messages a tunnel can receive.
+However, I2P has no defences for a network flooding attack but flooding the network is an incredibly difficult attack.
 
 
 
+## Comparisons to Tor
+The primary differences between Tor and I2P lie in the design/intent of the service and consequentially the threat model. The primary difference is Tor takes a directory/ central authority approach in its design i.e. clients in its network route their messages via central servers. These authority servers act as monitors of the network as well and traffic routers. I2P on the other had uses a decentralised server approach (netDB to store information about each router in the network. There are more finer differences between the two. The following table draws a comparison between the two networks.
 
-
-
-
-
-
-## Comparisons to Tor & VPNs
-Heavily decentralized. Tor has a user:relay ratio of 165:1 (excluding non-public bridge relays; see metrics) while I2P has a user:relay ratio of 0.99:1 (a very limited amount of users don't route traffic for others because they are, for example, in a hostile country with a limited number of I2P users). This means that you would need a a lot more resources to have a chance of deanonymizing users by observing network traffic over malicious nodes (meaning a set of relays that are all observed by a hostile entity) for I2P than for Tor.
-
-No central point of failure for building tunnels. Tor has directory servers that form a catalog of (public) Tor relays. A user asks these directory servers for (a copy of the entire list of) Tor relays (or just part of them?) including their properties (such as Exit Node, Guard Node, Fast Node, etc.) If (a number of?) these directory servers are compromised, they could manipulate the information that they are supplying to the users that use those compromised directory servers. The Tor directory servers can also be attacked, making it impossible for users to form tunnels because they lack the required information. I2P uses DHT which allows all I2P relays to inform other I2P relays of relays that they known. There is no central (set of) point(s) that can be attacked to make building of tunnels impossible (except attacking all I2P relays).
-
-Asymmetric tunnels. I'll use an analogy to explain this. This analogy is wrong and inaccurate in some regards because the contents of the traffic that is sent through Tor and through I2P is encrypted and cannot be read. The amount of intermediary countries used also doesn't match. The purpose of the analogy is to make you understand the difference. With Tor, you send a letter from US to Canada through France, Germany and Brazil (in that order). The letter reads "Please send me the combination of our granddad's bank vault now that he has deceased.". The letter that is sent in reply from your friend in Canada (reading "19502118") is sent to your address in the US through Brazil, Germany and France (in that order). With I2P, the first letter (from US to Canada) is sent through France, Germany and Brazil (in the order), but the second letter is sent through Paraguay, Norway and Ukraine (in that order). Suppose the postal services in France, Germany, Brazil and Paraguay are compromised. In that case, those postal services can figure out that 19502118 is the combination for your granddad's bank vault, if you were using Tor to send the both of those letters. If you used I2P, they would not be able to figure out what the combination for the vault is, although they do know that you have requested the combination for the vault. A version of the above scenario that is more true to the nature of Tor and I2P would include letters sent in an unbreakable envelopes (the encrypted data). If that was the case, the compromised postal services would be able to confirm that a letter was sent from a person in the US to a person in Canada in both the case of Tor and I2P, but only in the case of Tor would they be able to also confirm that a letter was sent from that person in Canada to that person in the US. (They would also be able to guess that it was probably a letter in reply to the US -> Canada letter because of the rapid response time).
-
-Short-lived tunnels. Adapting the analogy above, this means that communications between the US resident and the Canadian resident are only shortly passed through Brazil, Germany and France + Paraguay, Norway and Ukraine. Much sooner than is the case with Tor will I2P change the intermediary nodes that the communications are using (to, for example, Peru, Mexico and Australia + Greece, Nicaragua and Russia). This is useful because if a tunnel is compromised, you will only send data using that tunnel for a short amount of time, thus limiting the amount of data that is compromised (though the data is encrypted, so unless the server you are connecting to is also compromised, the adversary cannot inspect the unencrypted data).
-
-Some protection against human errors. Tor simply relays TCP/IP packets while I2P is able to modify or trim those packets for some tunnels (such as the default IRC tunnel) to prevent human errors. Once again, an analogy is useful, though not accurate. Suppose you want to anonymously leak a document to a newspaper. You decide to use the (analog) Tor network to prevent your identity from being compromised. You send the letter through Bolivia, Colombia and Japan and then finally to the US HQ of a newspaper. Unfortunately though, you have forgotten to remove some identifying remarks from your letter (your data). Let's for the sake of clarity say that you have left fingerprints on your letter (a digital equivalent would be HTTP headers that indicate the local server time). You can then be deanonymized even though the delivery of the letter was securely anonymous.
-
-BitTorrent functionality. Unlike Tor, I2P has been designed with BitTorrent support in mind (can someone verify this?). Tor isn't supportive of the Tor network being used for clearnet BitTorrent activity and, unlike I2P, it doesn't have its own internal BitTorrent functionality.
-
-Weaknesses of I2P compared to Tor
-
-Technical
-
-No family flag for relays. This means that if one entity controls a bunch of relays, he can add this information to his relays so that the anonymization software will never choose more than 1 relay from the same family to build a tunnel. I'm not sure if I2P is actually missing this feature!
-
-Non-technical / social
-
-Lower amount of users (though more relays).
-
-No extensive documentation and noob-friendly start-up tutorials (though there has been some progress as of late).
-
-No extensive academic peer reviewing.
-
-No noob-friendly user interface.
-
-No noob-proof out-of-the-box solutions like the Tor Browser Bundle.
-
-No (charismatic) public representative like Jacob Appelbaum is for the Tor Project.
-
-
-The following graph is replicated and simplified from [[8]]. Degree is the number of neighbors with which a node must maintain in contact.
-
-| Parameter                              | CAN                                     | CHORD                   | Kademlia                                                  | Koord                                    | Pastry                             | Tapestry                  | Viceroy                         |
-| -------------------------------------- | --------------------------------------- | ----------------------- | --------------------------------------------------------- | ---------------------------------------- | ---------------------------------- | ------------------------- | ------------------------------- |
-| Foundation                             | d-dimensional torus                     | Circular space          | XOR metric                                                | de Bruijn graph                          | Plaxton-style mesh                 | Plaxton-style mesh        | Butterfly network               |
-| Routing function                       | Map key-value pairs to coordinate space | Matching key to node ID | Matching key to node ID                                   | Matching key to node ID                  | Matching key and prefix in node ID | Suffix matching           | Levels of tree, vicinity search |
-| Routing performance (network size $n$) | $O(dn^{(2/d)})$                         | $O(log(n))$             | $O(log(n)) + c$ $c$ is small                              | Between $O(log(log(n)))$ and $O(log(n))$ | $O(log(n))$                        | $O(log(n))$               | $O(log(n))$                     |
-| Degree                                 | $2d$                                    | $O(log(n))$             | $O(log(n))$                                               | Between constant to $log(n)$             | $O(2log(n))$                       | $O(log(n))$               | Constant                        |
-| Join/Leaves                            | $2d$                                    | $log(n)^2$              | $O(log(n)) + c$ $c$ is small                              | $O(log(n))$                              | $O(log(n))$                        | $O(log(n))$               | $O(log(n))$                     |
-| Implementations                        | \-\-                                    | OpenChord, OverSIM      | Ethereum [3], Mainline DHT (BitTorrent), I2P, Kad Network | \-\-                                     | FreePastry                         | OceanStore, Mnemosyne [4] | \-\-                            |
-
-The popularity of Kademlia over other DHTs is likely due to its relative simplicity and performance. The rest of this section dives deeper into Kademlia.
-
+### TABLE OF DIFFERENCES
 
 
 
 ## Conclusion
 
-DHTs are a proven solution to distributed storage and discovery. Kademlia, in particular, has been successfully implemented and
-sustained in file-sharing and blockchain networks with participants in the millions. As with every network, it is not without its
-flaws, and careful network design is required to mitigate attacks.
+The I2P Network is a proven network for the movement of messages/data in an anonymous and secure approach. As much as it's possible to browse the internet with it, it is primarily and limited to communication within its networks Tor is, however, perfect for anonymous internet browsing and provides the tools and service for this.
 
-Novel research exists, which proposes schemes for protecting networks against control from adversaries. This research becomes
+Extensive research exists and continues to find ways to improve the security of these networks. This research becomes
 especially important when control of a network may mean monetary losses, loss of privacy or denial of service.
 
 
 ## References
 
-[[1]] Wikipedia: "Distributed Hash Table" [online]. Available: https://en.wikipedia.org/wiki/Distributed_hash_table. Date accessed: 2019-03-08.
+[[1]] What Is I2P & How Does It Compare vs. Tor Browser? [online]. Available: https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work. Date accessed: 2019-06-18.
 
-[1]: https://en.wikipedia.org/wiki/Distributed_hash_table. "Wikipedia: Distributed Hash Table"
+[[2]]: https://geti2p.net/en/docs/api/i2ptunnel "An overview of the I2P network"
 
 [[2]] Kademlia: A Peer-to-Peer Information System" [online]. Available: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf. Date accessed: 2019-03-08.
 
