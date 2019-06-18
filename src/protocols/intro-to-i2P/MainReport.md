@@ -38,7 +38,7 @@ This intermediate database is there to find the other client's inbound tunnels e
 This RouterInfo is stored in the Network Database with the router's identity as the Key. These keys indexing the routers and hidden services are calculated by a SHA256 hash function of a 32-byte binary search key which is concatenated with a UTC date string. The date string is added because these hash values change every day at UTC 00:00.
 
 To request a resource (or router info), a client requests the desired key from the server node considered closest to the key. If the piece of data is located at the server node, it is returned to the client. Otherwise, the server uses its local knowledge of participating nodes and returns the server it
-considers nearest to the key. If the returned server is closer to the key than the one currently tried, the client continues the search at this server
+considers nearest to the key. If the returned server is closer to the key than the one currently tried, the client continues the search at this server ref: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
 
 The Router structure comprises of: (ref: https://censorbib.nymity.ch/pdf/Hoang2018a.pdf)
 - The router's identity (an encryption key, a signing key, and a certificate)
@@ -50,39 +50,29 @@ The Router structure comprises of: (ref: https://censorbib.nymity.ch/pdf/Hoang20
 The Arbitrary text options are used by other routers for basic decisions. i.e. Should we connect to this router? Should we attempt to route a tunnel through this router? Does the router meet a minimum threshold for routing tunnels.
 
 
-## Understanding Onion Routing
+## Garlic Routing
+Garlic Routing is a way of building paths/tunnels through which messages/data in the I2P network travels. When a message leaves the application/client it encrypted to the recipient's public key, then that encrypted message is encrypted with instructions specifying the next hop. This message travels this way through the each hop until it reaches the recipient.
+During the transportation of the message, it is furthermore bundled with other messages. This means that any messsage travelling in the network could contain a number of other messages bundled with it. In essense, garlic routing does two things:
+1. Layered Encryption
+2. Bundles multiple messages together
 
-Arbitrary data may be stored and replicated by a subset of nodes for later retrieval. Data is hashed using a
-consistent hashing function (such as SHA256) to produce a key for the data. That data is propagated and
-eventually stored on the node or nodes whose node IDs are "closer" to the key for that data for some distance
-function.
+The following image represents the end to end message bundling.
 
-Partitioned data storage has limited usefulness to a typical blockchain, as each full node is required to keep a copy
-of all transactions and blocks for verification.
+/// IMAGE
 
 
-## Message Types
-
-Arbitrary data may be stored and replicated by a subset of nodes for later retrieval. Data is hashed using a
-consistent hashing function (such as SHA256) to produce a key for the data. That data is propagated and
-eventually stored on the node or nodes whose node IDs are "closer" to the key for that data for some distance
-function.
-
-Partitioned data storage has limited usefulness to a typical blockchain, as each full node is required to keep a copy
-of all transactions and blocks for verification.
 
 ## Threat Model, Security and Vulnerability Attacks
-One of the disadvantages and limitations of the of the Tor network is it's in ability to scale and Vulnerability to attacks. By design, it works by routing information through a number of intermediate nodes that eventually connect to exit nodes that work as trusted authority servers. Each of these servers keeps track of all the nodes in the network and their performance. These exit nodes also act as proxies, allowing Tor users to access the clearnet without revealing their identity.
+One of the disadvantages and limitations of the of the Tor network is it's in ability to scale and vulnerability to attacks. By design, it works by routing information through a number of intermediate nodes that eventually connect to exit nodes that work as trusted authority servers. Each of these servers keeps track of all the nodes in the network and their performance. These exit nodes also act as proxies, allowing Tor users to access the clearnet without revealing their identity.
 As there are only few trusted authority servers, the integrity of these nodes is essential for the entire network, making them a valuable target for attacks. reference: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
 
-Instead of storing the network's metadata in a group of trusted authority servers, I2P keeps this data in the Distributed Hash Table. This approach makes it harder to attack the network since it runs on normal I2P nodes and provides a small group of authority servers.
+Instead of storing the network's metadata in a group of trusted authority servers, I2P keeps this data in the Distributed Hash Table. This approach makes it harder to attack the network since it runs on normal I2P nodes and provides a small group of authority servers (about 3% of the network)
 
-### Threat Model
-Threat modeling is a process by which potential threats can be identified, enumerated, and prioritised. I2P's threat model consists of the following types of attacks.
+In general, the I2P network has no explicit threat model specified but there are common attacks and existing defences against it.
 
-1. Brute Force attacks:
-This attack can be done by a passive or active global adversary. They can do this by watching all messages that pass between all the nodes and running attempts to check which message follows which path.
 
+
+### Sybil Attacks
 
 
 
@@ -126,14 +116,6 @@ No noob-proof out-of-the-box solutions like the Tor Browser Bundle.
 No (charismatic) public representative like Jacob Appelbaum is for the Tor Project.
 
 
-
-## Usage within the Blockchain Domain
-
-
-
-
-## Conclusions
-
 The following graph is replicated and simplified from [[8]]. Degree is the number of neighbors with which a node must maintain in contact.
 
 | Parameter                              | CAN                                     | CHORD                   | Kademlia                                                  | Koord                                    | Pastry                             | Tapestry                  | Viceroy                         |
@@ -147,271 +129,8 @@ The following graph is replicated and simplified from [[8]]. Degree is the numbe
 
 The popularity of Kademlia over other DHTs is likely due to its relative simplicity and performance. The rest of this section dives deeper into Kademlia.
 
-### Kademlia
 
-Kademlia is designed to be an efficient means for storing and finding content in a distributed peer-to-peer (P2P) network.
-It has a number of core features that are not simultaneously offered by other DHTs [[2]], such as:
 
-- The number of messages necessary for nodes to learn about each other, is minimized.
-- Nodes have enough information to route traffic through low-latency paths.
-- Parallel and asynchronous queries are made to avoid timeout delays from failed nodes.
-- The node existence algorithm resists certain basic distributed denial-of-service (DDoS) attacks.
-
-#### NodeID
-
-A node selects an $n$-bit ID, which is opaque to other nodes on the network. The network design
-relies on node IDs being uniformly distributed by some random procedure. A node's position is
-determined by the shortest unique prefix of its ID, which forms a tree structure with node IDs
-as leaves [[2]]. This ID should be reused when the node rejoins the network. The following figure shows a binary tree structure in a three-bit key space:
-
-<div class="mermaid">
-graph TD
-AR[ ] --- |0| A0( )
-AR --- |1| A1[ ]
-A0 --- |0| A00[ ]
-A0 --- |1| A01[ ]
-A00 --- |0| N000[Node 000]
-A00 --- |1| N001[Node 001]
-A01 --- |0| N010[Node 010]
-A01 --- |1| N011[Node 011]
-A1 --- |0| A10[ ]
-A1 --- |1| A11[ ]
-A10 --- |0| A100[Node 100]
-A10 --- |1| A101[Node 101]
-A11 --- |0| A110[Node 110]
-A11 --- |1| A111[Node 111]
-</div>
-The bit length of the Node ID should be sufficiently large to make collisions extremely unlikely when using a uniformly distributed random number generator [[2]].
-
-#### Bootstrapping a Node
-
-A node wishing to join the network for the first time has no contacts in its $k$-buckets. In order for the node to establish
-itself on the network, it must contact one, or more than one, bootstrap node. These nodes are not special in any way other than
-being listed in some predefined list. They simply serve as a first point of contact for the requesting node to become
-known to more of the network and to find their closest peers.
-
-There are a number of ways that bootstrap nodes can be obtained, including adding addresses to a configuration
-and using [DNS seeds](https://bitcoin.org/en/glossary/dns-seed).
-
-The joining process is described as follows [[2]]:
-
-1. A joining node generates a random ID.
-2. It contacts a few nodes it knows about.
-3. It sends a `FIND_NODE` lookup request of its newly generated node ID.
-4. The contacted nodes return the closest nodes they know about. The newly discovered nodes are added to the joining node's routing table.
-5. The joining node then contacts some of the new nodes it knows about. The process then continues iteratively until the joining node
-   is unable to locate any closer nodes.
-
-This _self-lookup_ has two effects: it allows the node to learn about nodes closer to itself; and it populates other nodes'
-routing tables with the node's ID. [[1]]
-
-#### XOR metric
-
-The Kademlia paper published in 2002 [[2]] offered the novel idea of using the XOR ($\oplus​$) operator
-to determine the distance and therefore the arrangement of peers within the network.
-Defined as:
-
-$$ distance(a, b) = a \oplus b$$
-
-This works, because XOR exhibits the same mathematical properties as any distance function.
-
-Specifically, [[1]]
-
-- $a \oplus a = 0$
-- $a \oplus b > 0$ for $a \neq b$
-- $a \oplus b = b \oplus a$
-- Triangle property: $a \oplus b + b \oplus c \geq a \oplus c$
-
-The XOR metric implicitly captures a notion of distance in the preceding tree structure [[2]].
-
-#### Protocol
-
-Kademlia is a relatively simple protocol consisting of only four remote procedure call (RPC) messages that facilitate two independent concerns:
-peer discovery and data storage/retrieval.
-
-The following RPC messages are part of the Kademlia protocol:
-
-- Peer discovery
-  - `PING`/`PONG` - used to determine liveness of a peer.
-- - `FIND_NODE` - returns at most $k$ nodes, which are closer to a given query value.
-
-
-- Data storage and retrieval
-  - `STORE` - request to store a $\langle key, value \rangle$ pair.
-  - `FIND_VALUE` - behaves the same as `FIND_NODE` by returning the $k$ closest nodes. If a node has the requested $\langle key, value \rangle$ pair,
-    it will instead return the stored value.
-
-Notably, there is no `JOIN` message. This is because there is no explicit join in Kademlia. Each peer has a chance of being added to a
-routing table of another node whenever an RPC message is sent/received between them [[2]]. In this way, the node becomes known to the network.
-
-##### Lookup Procedure
-
-The lookup procedure allows nodes to locate other nodes, given a node ID. The procedure begins by
-the initiator concurrently querying the closest $\alpha$ (concurrency parameter) nodes to the target node ID
-it knows about. The queried node returns the $k​$ closest nodes it knows about. The querying node then proceeds in rounds,
-querying closer and closer nodes until it has found the node. In the process, both the querying node and the intermediate nodes have learnt about each other.
-
-##### Data Storage and Retrieval Procedure
-
-The storage and retrieval procedure ensures that $\langle key, value \rangle$ pairs are reliably stored and able to be
-
-retrieved by participants in the network.
-
-The storage procedure uses the [lookup procedure](#lookup-procedure) to locate the closest nodes to the key, at which
-
-point it issues a `STORE` RPC message to those nodes. Each node republishes the $\langle key, value \rangle$ pairs to
-
-increase the availability of t he data. Depending on the implementation, the data may eventually expire (say 24 hours).
-
-Therefore, the original publisher may be required to republish the data before that period expires.
-
-The retrieval procedure follows the same logic as storage, except a `FIND_VALUE` RPC is issued and the data received.
-
-##### Routing Table
-
-Each node organizes contacts into a list called a routing table. A routing table is a binary tree
-where the leaves are buckets that contain a maximum of $k$ nodes, aptly named $k$-buckets.
-These are nodes with some common node ID prefix, which is captured by the [XOR metric](#xor-metric).
-
-For instance, given node $A(1100)$ with peers $B(1110)$, $C(1101)$, $D(0111)$ and $E(0101)$:
-
-The distances from node $A​$ would be
-
-$A \oplus B = 0010 (2)$
-
-$A \oplus C = 0001 (1)​$
-
-$A \oplus D = 1011 (11)$
-
-$A \oplus E = 1001 (9)$
-
-$A$, $B$ and $C$ share the same prefix up to the first two most significant bits (MSBs). However, $A$, $C$ and $D$ share
-
-no prefixed bits and are therefore further apart. In this example, $A$, $B$ and $C$ would in the same bucket and
-
-$D$, $E$ in their own bucket.
-
-Initially, a node's routing table is not populated with $k​$-buckets, but may contain a single node in a
-single $k​$-bucket. As more nodes become known, they are added to the $k​$-bucket until it is full.
-At this point, the node splits the bucket in two: one for nodes that share the same prefix as itself
-and one for all the others.
-
-![Kad-Routing-table](./assets/Kad-Evolution-Routing-Table.png)
-
-This guarantees that for bucket $j$, where $0 <= j < k$, there is at least one node $N$ in node $A$'s routing table for which
-
-$$ 2^j <= distance(A, N) < 2^{(j+1)} $$
-
-##### $k$-bucket ordering
-
-Peers within $k​$-buckets are sorted from least to most recently seen.
-
-Once a node receives a request or reply from a peer, it checks to see if the peer is contained in the
-appropriate $k​$-bucket. Depending on whether or not the peer already exists, the entry is either moved or appended to the
-tail of the list (most recently seen). If a particular bucket is already size $k​$, the node tries to `PING` the first
-peer in the list (least recently seen). If the peer does not respond, it is evicted and the new peer is
-appended to the bucket, otherwise the new peer is discarded. In this way, the algorithm is biased towards peers
-that are long-lived and highly available.
-
-#### Kademlia Attacks
-
-Some notable attacks in the Kademlia scheme:
-
-##### Node Insertion Attack
-
-Since there is no verification of a node's ID, an attacker can select their ID to occupy a particular keyspace in the network.
-Once an attacker has inserted themselves in this way, they may censor or manipulate content in that keyspace, or eclipse nodes [[9]].
-
-##### Eclipse Attack
-
-An attacker takes advantage of the fact that in practice, there are relatively few nodes in most parts of a 160-bit keyspace.
-An attacker injects themselves closer to the target than other peers and eventually could achieve a dominating position.
-This can be done cheaply if the network rules allow many peers to come from the same IP address.
-
-## DHT Vulnerabilities and Attacks
-
-### Eclipse Attack
-
-An Eclipse attack is an attack that allows adversarial nodes to isolate the victim from the rest of its peers and filter its view of the rest of the
-network. If the attacker is able to occupy all peer connections, the victim is eclipsed.
-
-The cost of executing an eclipse attack is highly dependent on the architecture of the network and can range from a small number of machines
-(e.g. with hundreds of node instances on a single machine) to requiring a full-fledged botnet. Reference [[6]] shows that an eclipse attack on Ethereum's Kademlia-based DHT can be
-executed using as few as two nodes.
-
-Mitigations include:
-
-- Identities must be obtained independently from some random oracle.
-- Nodes maintain contact with nodes outside of their current network placement.
-
-### Sybil Attack
-
-Sybil attacks are an attempt by colluding nodes to gain disproportionate control of a network. and are often used as a vector
-for other attacks. Many, if not all, DHTs have been designed under the assumption that a low fraction of nodes are malicious.
-A Sybil attack attempts to break this assumption by increasing the number of malicious nodes.
-
-Mitigations include:
-
-- Associating a cost with adding new identifiers to the network.
-- Reliably joining real-world identifiers (IP address, MAC address, etc.) to the node identifier, and rejecting a threshold of duplicates.
-- Having a trusted central authority that issues identities.
-- Using social information and trust relationships.
-
-### Adaptive Join-Leave Attack
-
-An adversary wants to populate a particular keyspace interval $I$ with bad nodes in order to prevent a particular file
-from being shared. Let's suppose that we have a network with node IDs chosen completely at random through some random oracle.
-An adversary starts by executing join/leaves until it has nodes in that keyspace. After that they proceed in rounds,
-keeping the nodes that are in $I$ and rejoining the nodes that aren't, until control is gained over the interval.
-
-It should be noted that if there is a large enough cost for rejoining the network, there is a disincentive for this attack.
-In the absence of this disincentive, the [cuckoo rule](#cuckoo-rule) is proposed as a defence.
-
-## Cuckoo Rule
-
-Given a network that is partitioned into groups or intervals, and in which nodes are positioned uniformly and randomly.
-Adversaries may proceed in rounds, continuously rejoin nodes from the least faulty group until control is gained over
-one or more groups as described in [Adaptive Join-Leave Attack](#adaptive-join-leave-attack).
-
-The cuckoo rule is a join rule that moves (cuckoos) nodes in the same group as the joining node to random locations
-outside of the group. It is shown that this can prevent adaptive join-leave attacks with high probability,
-i.e. a probability $1 - 1/N$, where $N$ is the size of the network.
-
-Given:
-
-- $I$ - keyspace group in $[0,1)$;
-- $n$ - number of honest nodes;
-- $ \epsilon n$ - number adversarial nodes for constant $\epsilon < 1$;
-- therefore, the network size $N$ is $n + \epsilon n$;
-- $k$-region is a region in $[0,1)$ of size $k/n$;
-- $R_k(x)$ is a unique $k$-region containing $x$.
-
-And with the following two conditions:
-
-- Balancing Condition - the interval $I$ contains at least $O(log(n))$ nodes.
-- Majority Condition - honest nodes are in the majority in $I$.
-
-The cuckoo rule states:
-
-> If a new node $v​$ wants to join the system, pick a random $x \in [0, 1)​$. Place $v​$ into $x​$ and move
-> all nodes in $R_k(x)​$ to points in $[0, 1)​$ chosen uniformly and independently at random (without replacing any
-> further nodes) [[5]].
-
-It is concluded that for a constant fraction of adversarial peers, where $\epsilon < 1 - 1/k$ for any constant, $k > 1$
-
-is sufficient to prevent adaptive join-leave attacks with high probability.
-
-Sen, Freedman [[7]] modelled and analysed the Cuckoo Rule and found that, in practice, it tolerates very few adversarial nodes.
-
-|                                                              |      |                                                              |
-| :----------------------------------------------------------: | :--: | :----------------------------------------------------------: |
-| ![Commensal Cuckoo Figure1](./assets/Commensal-Cuckoo-Figure1.png) |      | ![Commensal Cuckoo Figure2](./assets/Commensal-Cuckoo-Figure2.png) |
-| (Cuckoo rule) Minimum group size <br>needed to tolerate different $\epsilon$ for 100,000 rounds.<br>Groups must be large (i.e. 100s to 1,000s of nodes) to guarantee correctness [[7]] |      | (Cuckoo rule) Number of rounds the system maintained correctness with an average group<br> size of 64 nodes, varied. Simulation was halted<br> after 100,000 rounds. Failure rates drop dramatically past a certain threshold for different N [[7]] |
-
-Notably, they show that rounds to failure (i.e. more than one-third of nodes in a given group are adversarial) decreases dramatically
-with an increasing but small global fraction of adversarial nodes. An amendment rule is proposed, which allows smaller group sizes
-while maintaining Byzantine correctness. Reference [[7]] warrants more
-investigation, but is out of the scope of this report.
 
 ## Conclusion
 
@@ -421,6 +140,7 @@ flaws, and careful network design is required to mitigate attacks.
 
 Novel research exists, which proposes schemes for protecting networks against control from adversaries. This research becomes
 especially important when control of a network may mean monetary losses, loss of privacy or denial of service.
+
 
 ## References
 
@@ -463,6 +183,6 @@ Date accessed: 2019-04-04.
 
 ## Contributors
 
-- https://github.com/sdbondi
+- https://github.com/mhlangagc
 - https://github.com/hansieodendaal
 - <https://github.com/anselld>
