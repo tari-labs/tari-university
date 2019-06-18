@@ -48,7 +48,7 @@ communication.
 
 **Note:** Transcripts are available [here](https://github.com/papers-we-love/pwlconf-info/blob/master/2016/dahlia-malkhi/dahlia_pwlconf_captions.srt).
 
-<iframe width="750" height="600" src="https://www.youtube.com/watch?v=Gxf5glthqrk" frameborder="0" 
+<iframe width="750" height="600" src="https://www.youtube.com/embed/Gxf5glthqrk" frameborder="0" 
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
@@ -87,8 +87,6 @@ The presentation looks at a hybrid solution of combining traditional and modern 
 
 ### Video
 
-<iframe width="750" height="600" src="https://www.youtube.com/watch?v=N_3r-NkBUTk" frameborder="0" allow="accelerometer; 
+<iframe width="750" height="600" src="https://www.youtube.com/embed/N_3r-NkBUTk" frameborder="0" allow="accelerometer; 
 autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
 
