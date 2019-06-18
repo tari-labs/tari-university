@@ -162,11 +162,11 @@ Date accessed: 2019&#8209;05&#8209;16.
 [5]: https://2019.www.torproject.org/about/overview.html.en
 "Tor Project: Overview"
 
-[[6]] YouTube: "Dropping Docs on Darknets: How People Got Caught" [online]. Available: 
-<https://www.youtube.com/watch?v=7G1LjQSYM5Q>. Date accessed: 2019&#8209;05&#8209;16.
+[[6]] YouTube: "DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: How People Got Caught" [online]. Available: 
+<https://www.youtube.com/watch?v=eQ2OZKitRwc>. Date accessed: 2019&#8209;06&#8209;18.
 
-[6]: https://www.youtube.com/watch?v=7G1LjQSYM5Q
-"YouTube: Dropping Docs on Darknets: 
+[6]: https://www.youtube.com/watch?v=eQ2OZKitRwc
+"YouTube: DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: 
 How People Got Caught"
 
 
