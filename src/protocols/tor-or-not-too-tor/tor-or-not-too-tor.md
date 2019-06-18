@@ -31,12 +31,12 @@ of encryption, similar to the layers of an onion.
 Tor uses a unique system that was developed by the US Navy to protect 
 government intelligence communications. It is part of the ```Tor Browser``` package, where the Tor Browser has been 
 configured to proxy request via the Tor network.  
-  
-Clarification between Tor as a network service verse Tor Browser as a collective bundled tool, meant to make using Tor network as simple and secure as possible. Tor network service is the heart of the Tor project, where the Tor Browser and other tools, like OnionShare are tools that run on top of or via the Tor network. 
+
+The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such as OnionShare, run on top of or via the Tor network. These tools are meant to make using the Tor network as simple and secure as possible.  
 
 ### Purpose of this Report
 
-This report gives an overview of Tor using the Tor Browser. The author reaches a conclusion regarding whether or not to 
+This report gives an overview of Tor, using the Tor Browser. The author reaches a conclusion regarding whether or not to 
 recommend Tor, i.e. "to Tor || !2 Tor", which means "to Tor or not to Tor" in programming language.
 
 
@@ -142,15 +142,19 @@ Date accessed: 2019&#8209;05&#8209;16.
 [2]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
 "Wikipedia: Tor (Anonymity Network)"
 
-[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
+[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless Tor or the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
 
 [3]: https://3g2upl4pq6kufc4m.onion/
-"DuckDuckGo Search Engine - link will not work unless Tor Browser is used"
+"DuckDuckGo Search Engine - 
+link will not work unless 
+Tor or Tor Browser is used"
 
-[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. **Note:** This link will not work unless the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16
+[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. **Note:** This link will help the user identify if Tor or the Tor Browser is been used. Date accessed: 2019&#8209;05&#8209;16
 
 [4]: https://check.torproject.org/
-"Tor Project: Check - link will not work unless Tor Browser is used"
+"Tor Project: Check - 
+link will help user identify 
+Tor or Tor Browser is been used"
 
 [[5]] Tor Project: Overview [online]. Available: <https://2019.www.torproject.org/about/overview.html.en>. 
 Date accessed: 2019&#8209;05&#8209;16.
@@ -158,11 +162,12 @@ Date accessed: 2019&#8209;05&#8209;16.
 [5]: https://2019.www.torproject.org/about/overview.html.en
 "Tor Project: Overview"
 
-[[6]] YouTube: "Dropping Docs on Darknets: How People Got Caught" [online]. Available: 
-<https://www.youtube.com/watch?v=7G1LjQSYM5Q>. Date accessed: 2019&#8209;05&#8209;16.
+[[6]] YouTube: "DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: How People Got Caught" [online]. Available: 
+<https://www.youtube.com/watch?v=eQ2OZKitRwc>. Date accessed: 2019&#8209;06&#8209;18.
 
-[6]: https://www.youtube.com/watch?v=7G1LjQSYM5Q
-"YouTube: Dropping Docs on Darknets: How People Got Caught"
+[6]: https://www.youtube.com/watch?v=eQ2OZKitRwc
+"YouTube: DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: 
+How People Got Caught"
 
 
 
