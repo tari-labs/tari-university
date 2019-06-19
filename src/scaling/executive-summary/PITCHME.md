@@ -12,7 +12,7 @@
 
 
 
-*See Layer 2 Scaling Survey [part 1](../layer2scaling-landscape/layer2scaling-survey.md) and [part 2](../more-landscape/landscape-update.md) for the full reports.*
+*See [Layer 2 Scaling Survey](https://tlu.tarilabs.com/scaling/layer2scaling-landscape/layer2scaling-survey.html) for the full report.*
 
 ---
 
@@ -27,7 +27,7 @@
 
 
 
-![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/layer2scaling/executive-summary/sources/L2ScalingLandscape.png)
+![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/executive-summary/sources/L2ScalingLandscape.png)
 
 +++
 
@@ -36,7 +36,7 @@
   - Transaction data compression
   - Scriptless scripts
 
-![Non_L2S](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/layer2scaling/executive-summary/sources/Non_L2S.png)
+![Non_L2S](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/executive-summary/sources/Non_L2S.png)
 
 ---
 
@@ -64,13 +64,13 @@
   - *Scriptless Scripts & Schnorr Signature Aggregation*, as Layer 1 scaling
   - *SPECTRE, PHANTOM*, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
 
-![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/layer2scaling/executive-summary/sources/L2ContextTari.png)
+![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/executive-summary/sources/L2ContextTari.png)
 
 ---
 
 #### #1 Why TumbleBit?
 
-![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/more-landscape/sources/TumbleBitOverview.PNG)
+![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/TumbleBitOverview.png)
 
 - **Notes**: 
   - *The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking*
@@ -91,7 +91,7 @@
 
 #### #2 Why Federated Nodes/Masternodes?
 
-![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/more-landscape/sources/CounterpartyStack.png)
+![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/CounterpartyStack.png)
 
 +++
 
@@ -107,7 +107,7 @@
 
 #### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation?
 
-![Mimblewimble](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/more-landscape/sources/Mimblewimble.PNG)
+![Mimblewimble](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Mimblewimble.png)
 
 +++
 
@@ -160,7 +160,7 @@ Note:
 
 #### #4 Why SPECTRE, PHANTOM?
 
-![SPECTRE](https://github.com/tari-labs/tari-university/raw/master/src/layer2scaling/more-landscape/sources/SPECTRE.PNG)
+![SPECTRE](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/SPECTRE.png)
 
 +++
 
