@@ -40,9 +40,7 @@ conflicting messages, leading to an incorrect result of the calculation that the
 
 *"Randomized Gossip Methods"* by Dahlia Malkhi, PWL Conference, September, 2016.
 
-The talk touches on three protocols from randomized gossip methods: Rumor Mongering, which spreads gossip in each 
-communication; Name Dropper, which pushes new neighbors in each communication; and Scalable Weakly-consistent Infection-style Process Group Membership (SWIM), which pulls a heartbeat in each 
-communication.   
+As an introduction, gossip-based protocols are simple, robust, efficient, and fault tolerant. This talk provides insight into gossip protocols and how they function, as well as the reasoning behind the instances they do not function. It touches on three protocols from randomized gossip methods: Rumor Mongering, which spreads gossip in each communication; Name Dropper, which pushes new neighbors in each communication; and Scalable Weakly-consistent Infection-style Process Group Membership (SWIM), which pulls a heartbeat in each communication.   
 
 ### Video
 
@@ -80,13 +78,18 @@ type="application/pdf" width="750" height="600" />
 
 *"BFT, Blockchain and Beyond"* by Ittai Abraham, Israel Institute for Advanced Studies, 2018. 
 
-This talk provides an overview of blockchain and decentralized trust, with the focus on Byzantine Fault Tolerance (BFT). Traditional 
-BFT protocols are assessed and compared with the modern Nakamoto Consensus. 
+This talk provides an overview of blockchain and decentralized trust, with the focus on Byzantine Fault Tolerance (BFT). Traditional BFT protocols are assessed and compared with the modern Nakamoto Consensus. 
 
-The presentation looks at a hybrid solution of combining traditional and modern consensus mechanisms. 
+The presentation looks at a hybrid solution of combining traditional and modern consensus mechanisms. The talk delves into the types of consensus; asynchrony, synchrony, and partial synchrony, and provides a brief history on all three and their recent implementation and responsiveness.  
+
+In addition, the fundamental tradeoff of decentralized trust is assessed, where comparisons are made of the performance, decentralization, and privacy. 
 
 ### Video
 
+**Part 1**
 <iframe width="750" height="600" src="https://www.youtube.com/embed/N_3r-NkBUTk" frameborder="0" allow="accelerometer; 
 autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+**Part 2**
+<iframe width="750" height="600" src="https://www.youtube.com/embed/c72itS8BfC0" frameborder="0" allow="accelerometer; 
+autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
