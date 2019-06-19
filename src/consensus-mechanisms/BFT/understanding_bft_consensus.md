@@ -69,7 +69,7 @@ type="application/pdf" width="750" height="600" />
   <p>
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;<strong>Dr. Ittai Abraham</strong><br>
-    &nbsp;&nbsp;&nbsp;&nbsp; Ph.D. Computer Science
+    &nbsp;&nbsp;&nbsp;&nbsp;Ph.D. Computer Science
     <br>
     <br>
   </p>
