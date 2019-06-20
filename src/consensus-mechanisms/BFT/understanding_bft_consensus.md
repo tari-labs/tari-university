@@ -1,15 +1,14 @@
-# Understanding Byzantine Fault Tolerant Consensus
+# Understanding Byzantine Fault-tolerant Consensus
 
 - [Background](#background)
 - [Randomized Gossip Methods](#randomized-gossip-methods)
   - [Summary](#summary)
   - [Video](#video)
   - [Slides](#slides)
-- [BFT, Blockchain and Beyond](#bft-blockchain-and-beyond)
+- [Byzantine Fault Tolerance, Blockchain and Beyond](#byzantine-fault-tolerance-blockchain-and-beyond)
   - [Summary](#summary-1)
   - [Video](#video-1)
   
-
 ## Background
 
 When considering the concept of consensus in cryptocurrency and cryptographic protocols, the Byzantine Generals Problem 
@@ -17,8 +16,9 @@ is often referenced, where a protocol is described as being Byzantine Fault Tole
 as a means to understand the problem of distributed consensus.
 
 **To classify Byzantine failure:**
-If a node in a system is exhibiting Byzantine failure, it is called a traitor node. The traitor (which is a flaky or malicious node) sends 
-conflicting messages, leading to an incorrect result of the calculation that the distributed system is trying to perform.
+If a node in a system is exhibiting Byzantine failure, it is called a traitor node. The traitor (which is a flaky or 
+malicious node) sends conflicting messages, leading to an incorrect result of the calculation that the distributed 
+system is trying to perform.
 
 ## Randomized Gossip Methods 
 
@@ -35,12 +35,15 @@ conflicting messages, leading to an incorrect result of the calculation that the
   </p>
 </div>
 
-
 ### Summary
 
-*"Randomized Gossip Methods"* by Dahlia Malkhi, PWL Conference, September, 2016.
+*"Randomized Gossip Methods"* by Dahlia Malkhi, PWL Conference, September 2016.
 
-As an introduction, gossip-based protocols are simple, robust, efficient, and fault tolerant. This talk provides insight into gossip protocols and how they function, as well as the reasoning behind the instances they do not function. It touches on three protocols from randomized gossip methods: Rumor Mongering, which spreads gossip in each communication; Name Dropper, which pushes new neighbors in each communication; and Scalable Weakly-consistent Infection-style Process Group Membership (SWIM), which pulls a heartbeat in each communication.   
+As an introduction, gossip-based protocols are simple, robust, efficient and fault tolerant. This talk provides insight 
+into gossip protocols and how they function, as well as the reasoning behind the instances in which they do not function. It 
+touches on three protocols from randomized gossip methods: Rumor Mongering, which spreads gossip in each communication; 
+Name Dropper, which pushes new neighbors in each communication; and Scalable Weakly-consistent Infection-style Process 
+Group Membership (SWIM), which pulls a heartbeat in each communication.   
 
 ### Video
 
@@ -49,14 +52,12 @@ As an introduction, gossip-based protocols are simple, robust, efficient, and fa
 <iframe width="750" height="600" src="https://www.youtube.com/embed/Gxf5glthqrk" frameborder="0" 
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
 ### Slides
 
 <embed src="https://speakerd.s3.amazonaws.com/presentations/c1c33de400a44e90911569ce999bde95/PWL-Sep-2016hotel.pdf" 
 type="application/pdf" width="750" height="600" />
 
 <br>
-
 
 ## Byzantine Fault Tolerance, Blockchain and Beyond
 
@@ -73,16 +74,19 @@ type="application/pdf" width="750" height="600" />
   </p>
 </div>
 
-
 ### Summary
 
 *"BFT, Blockchain and Beyond"* by Ittai Abraham, Israel Institute for Advanced Studies, 2018. 
 
-This talk provides an overview of blockchain and decentralized trust, with the focus on Byzantine Fault Tolerance (BFT). Traditional BFT protocols are assessed and compared with the modern Nakamoto Consensus. 
+This talk provides an overview of blockchain and decentralized trust, with the focus on Byzantine Fault Tolerance (BFT). 
+Traditional BFT protocols are assessed and compared with the modern Nakamoto Consensus. 
 
-The presentation looks at a hybrid solution of combining traditional and modern consensus mechanisms. The talk delves into the types of consensus; asynchrony, synchrony, and partial synchrony, and provides a brief history on all three and their recent implementation and responsiveness.  
+The presentation looks at a hybrid solution of combining traditional and modern consensus mechanisms. The talk delves 
+into the types of consensus; asynchrony, synchrony and partial synchrony, and provides a brief history of all three, as well as 
+their recent implementation and responsiveness.  
 
-In addition, the fundamental tradeoff of decentralized trust is assessed, where comparisons are made of the performance, decentralization, and privacy. 
+In addition, the fundamental trade-off of decentralized trust is assessed, and performance, 
+decentralization and privacy are compared. 
 
 ### Video
 
