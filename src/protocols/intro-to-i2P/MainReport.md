@@ -29,24 +29,21 @@ I2P (known as the Invisible Internet Project and founded in 2003) is a network l
 
 
 ## How Does It Work
-The first concept to understand about I2P is that its primarily an enclosed network that runs within the Internet infrastructure (reffered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works as a decentralised network of that operates within the Internet - i.e. an Internet within the internet. Interaction is done on a peer to peer level and there is no centralised authority that handles the network or keeps track of the active peers. Tor and VPNs, on the other hand have centralised authorities where the messages/data and network is managed. Since I2P works within it's own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within this network and are only accessible to people using I2P. These sites can be easily created using an **I2PTunnel** service that uses a standard web server. Another concept of note is I2P, by design, is not inherently an "outproxy" network i.e. it's not intended for accessing the internet. This is because the client you send a message to is the cryptographic identifier, not some IP address, so the message must be addressed to someone running I2P. Browsing the internet is however possible through opening an outproxy that allows creating an anonymous internet connection [[1]]
+The first concept to understand about I2P is that its primarily an enclosed network that runs within the Internet infrastructure (reffered to as the Clearnet in this paradigm). Unlike VPN's and the Tor network, which are built to communicate with the Internet anonymously, I2P works as a decentralised network of that operates within the Internet - i.e. an Internet within the internet. Interaction is done on a peer to peer level and there is no centralised authority that handles the network or keeps track of the active peers. Tor and VPNs, on the other hand have centralised authorities where the messages/data and network is managed. Since I2P works within it's own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within this network and are only accessible to people using I2P. These sites can be easily created using an **I2PTunnel** service that uses a standard web server. Another concept of note is I2P, by design, is not inherently an "outproxy" network i.e. it's not intended for accessing the internet. This is because the client you send a message to is the cryptographic identifier, not some IP address, so the message must be addressed to someone running I2P. Browsing the internet is however possible through opening an outproxy that allows creating an anonymous internet connection. [[1]] [[2]]
 
 
 ## The Infrastructure
-1. **Routing Infrastructure & Anonymity:** I2P works by installing an I2P routing service within a user's device. This router creates temporary, encrypted, one way connections with other I2P routers on other devices. Connections are refered to as one way because they are made up of an *Outbound Tunnel* and an *Inbound Tunnel*. When communication is occurring, data leaves the user's devices via the outbound tunnels and is received on other devices through their inbound tunnels. Messages do not travel two ways within the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels. [[3]].
+1. **Routing Infrastructure & Anonymity:** I2P works by installing an I2P routing service within a user's device. This router creates temporary, encrypted, one way connections with other I2P routers on other devices. Connections are refered to as one way because they are made up of an *Outbound Tunnel* and an *Inbound Tunnel*. When communication is occurring, data leaves the user's devices via the outbound tunnels and is received on other devices through their inbound tunnels. Messages do not travel two ways within the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels. (reference https://censorbib.nymity.ch/pdf/Hoang2018a.pdf).
 Messages that leave one device do not travel directly to the inbound tunnel of the destination devices's intended. Instead, the outbound router queries a distributed network database by travelling through exploratory channels to get the address of the inbound router. This database is comprised of a custom Kademlia style distributed hash table (DHT), and it contains the router information and destination information.
 For each application/client, the I2P router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the netDB are shared among all users of
-a router. If a tunnel in the pool is about to expire or the tunnel is no longer useable the router creates a new tunnel and adds it to the pool. It is important to recall later that tunnels periodically expire every ten minutes, and hence, need to be refreshed frequently. This is a security measure, done to prevent long-lived tunnels from becoming a threat to anonymity. [[3]]
-<p align="center"><a name="fig_eca"> </a><img src="assets/i2p network.png" width="650" /></p>
-<p align="center"><b>Figure&nbsp;1: An Empirical Study of the I2P Anonymity Network and its
-Censorship Resistance [<a href="https://censorbib.nymity.ch/pdf/Hoang2018a.pdf" title="An Empirical Study of the I2P Anonymity Network and its
-Censorship Resistance">4</a>]</b></p>
+a router. If a tunnel in the pool is about to expire or the tunnel is no longer useable the router creates a new tunnel and adds it to the pool. It is important to recall later that tunnels periodically expire every ten minutes, and hence, need to be refreshed frequently. This is a security measure, done to prevent long-lived tunnels from becoming a threat to anonymity. ref: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
+./assets/i2p network.png
 
 2. **Networking & Network Database:** The Distributed Database in I2P (called netDb) contains two types of data - the router information and destination information. When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the the other router.
 This RouterInfo is stored in the Network Database with the router's identity as the Key. These keys indexing the routers and hidden services are calculated by a SHA256 hash function of a 32-byte binary search key which is concatenated with a UTC date string. The date string is added because these hash values change every day at UTC 00:00.
 
 To request a resource (or router info), a client requests the desired key from the server node considered closest to the key. If the piece of data is located at the server node, it is returned to the client. Otherwise, the server uses its local knowledge of participating nodes and returns the server it
-considers nearest to the key. If the returned server is closer to the key than the one currently tried, the client continues the search at this server. [[5]]
+considers nearest to the key. If the returned server is closer to the key than the one currently tried, the client continues the search at this server ref: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
 
 The Router structure comprises of: (ref: https://censorbib.nymity.ch/pdf/Hoang2018a.pdf)
 - The router's identity (an encryption key, a signing key, and a certificate)
@@ -65,8 +62,8 @@ During the transportation of the message, it is furthermore bundled with other m
 2. Bundles multiple messages together
 
 The following image represents the end to end message bundling.
-<p align="center"><a name="fig_eca"> </a><img src="assets/garliccloves.png" width="650" /></p>
-<p align="center"><b>Figure&nbsp;2: Elements Confidential Assets Transfer Demonstration [<a href="https://github.com/ElementsProject/confidential-assets-demo" title="ElementsProject/confidential-assets-demo">17</a>]</b></p>
+(/assets/garliccloves.png)
+
 
 
 ## Threat Model, Security and Vulnerability Attacks
@@ -128,16 +125,40 @@ especially important when control of a network may mean monetary losses, loss of
 
 [[1]] What Is I2P & How Does It Compare vs. Tor Browser? [online]. Available: https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work. Date accessed: 2019-06-18.
 
-[[2]]: "An overview of the I2P network". https://geti2p.net/en/docs/api/i2ptunnel  Date accessed: 2019-06-18.
+[[2]]: https://geti2p.net/en/docs/api/i2ptunnel "An overview of the I2P network"
 
-[[3]]: "Practical Attacks Against The I2P Network" [Paper] https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf. Date accessed: 2019-06-18
+[[2]] Kademlia: A Peer-to-Peer Information System" [online]. Available: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf. Date accessed: 2019-03-08.
 
-[[4]] An Empirical Study of the I2P Anonymity Network and its
-Censorship Resistance" [online]. Available: https://censorbib.nymity.ch/pdf/Hoang2018a.pdf. Date accessed: 2019-06-18.
+[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf "Original Kademlia paper"
 
-[[5]] https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf Date accessed: 2019-06-18.
+[[3]] Ethereum Wiki [online]. Available: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection#lookup. Date accessed: 2019-03-12.
 
+[3]: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection "Kademlia Peer Selection"
 
+[[4]] Wikipedia: "Tapestry (DHT)" [online]. Available: https://www.wikiwand.com/en/Tapestry_(DHT). Date accessed: 2019-03-12.
+
+[4]: https://www.wikiwand.com/en/Tapestry_(DHT) "Tapestry (DHT)"
+
+[[5]] Towards a Scalable and Robust DHT [online]. Available: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf. Date accessed: 2019-03-12.
+
+[5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf "Towards a Scalable and Robust DHT"
+
+[[6]] Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network [online]. Available:  https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf. Date accessed: 2019-03-15.
+
+[6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf "Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network"
+
+[[7]]: Commensal Cuckoo: Secure Group Partitioning for Large-scale Services [online]. Available: http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf. Date accessed: 2019-03-15.
+
+[7]: http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf "Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services"
+
+[[8]]: Overlay and P2P Networks [online]. Available: https://www.cs.Nhelsinki.fi/webfm_send/1339.
+Date accessed: 2019-04-04.
+
+[8]: https://www.cs.helsinki.fi/webfm_send/1339 "Overlay and P2P networks"
+
+[[9]]: Poisoning the Kad Networ" [online]. Available: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf. Date accessed: 2019-04-04.
+
+[9]: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf "Poisoning the Kad Network"
 
 ## Contributors
 
