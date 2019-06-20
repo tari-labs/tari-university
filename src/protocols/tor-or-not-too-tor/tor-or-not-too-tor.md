@@ -30,7 +30,7 @@ of encryption, similar to the layers of an onion.
 
 Tor uses a unique system that was developed by the US Navy to protect 
 government intelligence communications. It is part of the ```Tor Browser``` package, where the Tor Browser has been 
-configured to proxy request via the Tor network.  
+configured to proxy requests via the Tor network.  
 
 The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such as OnionShare, run on top of or via the Tor network. These tools are meant to make using the Tor network as simple and secure as possible.  
 
@@ -77,7 +77,7 @@ Tor data passes through one of these relays, a layer of encryption is removed to
 When the data reaches the final relay on its path, known as the ```Exit Node```, the last layer of encryption is removed 
 and the data is sent to its final destination.
 
-Each relay only decrypts enough data to learn the location of the previous and next relays. Since each path is randomly 
+Each relay only can decrypt enough data to learn the location of the previous and next relay. Since each path is randomly 
 generated and the relays do not keep records, it is nearly impossible for your activity to be traced back to you 
 through Tor’s complex network. Refer to [[5]] for more detailed information.
 
@@ -92,7 +92,7 @@ both sites isolated from one another.
 Older Tor setups needed a user to know how to configure their proxy settings in their operating system, in order to use 
 Tor services. This was very easy to get wrong or incomplete, and some user information or details could be leaked. 
 Newer releases of Tor as a single package, preconfigured and shipped with a secure browser, resolved many of these 
-problems. Keeping the Tor Browser package up to date, thereby addressing any new security issues, helps to keep your 
+problems. Keeping the Tor Browser package up to date, thereby addressing any new security issues, as well as helping to keep your 
 ```anonymity```.
 
 Tor has weaknesses. For example, if you are the only person using Tor on your home, office or school 
@@ -113,7 +113,7 @@ Advantages of Tor:
 - It supports Linux, OSX and Windows.
 - It is easy to install for supported operating systems.
 - Its browser is the only browser that provides secure accessibility to ```.onion``` sites.
-- It is not controlled by corporation or government agencies.
+- It is not controlled by corporate nor government agencies.
 
 Disadvantages of Tor:
 - It is slow.
@@ -121,7 +121,7 @@ Disadvantages of Tor:
 - It does not stop somebody from de-anonymizing themselves.
 - It does not stop interceptors from knowing you are using Tor.
 - Its network is not user-friendly, due to its secure and hidden nature.
-- Its nodes (relay/bridge) are run by volunteers.
+- Its nodes (relay/bridge) are run by volunteers, can some times be unreliable.
 
 Would the author of this report recommend Tor? Perhaps not, as Tor by itself does not guarantee anonymity. I like the 
 goals that Tor is trying to address and think it is making great progress. However, total anonymity has many obstacles, 
