@@ -10,7 +10,6 @@
       - [Floodfill Routers](#floodfill-routers)
       - [Garlic Routing](#garlic-routing)
 - [Threat Model, Security and Vulnerability Attacks](#threat-model-security-and-vulnerability-attacks)
-
     - [Sybil Attacks](#sybil-attacks)
     * [Eclipse Attacks](#eclipse-attacks)
     * [Brute Force Attacks](#brute-force-attacks)
@@ -48,7 +47,7 @@ communicate with the Internet anonymously, I2P works as a decentralized network 
 centralized authority that handles the network or keeps track of the active peers. A node in the network can either be a 
 server that hosts a darknet service, or a client who accesses said servers to use their services [[6]]. Tor and VPNs, 
 on the other hand, have centralized authorities where the messages/data and network are managed. Since I2P works within its 
-own network, it is primarily made up of anonymous and hidden sites (called eepsites) that exist only within this network 
+own network, it is primarily made up of anonymous and hidden sites (called *eepsites*) that exist only within this network 
 and are only accessible to people using I2P. These sites can easily be created using an **I2PTunnel** service that uses 
 a standard web server.
 
@@ -132,8 +131,8 @@ During the transportation of the message, it is bundled with other messages. Thi
 travelling in the network could contain a number of other messages bundled with it. In essence, garlic routing does two
 things:
 
-- Provides layered encryption.
-- Bundles multiple messages together.
+- provides layered encryption; and
+- bundles multiple messages together.
 
 Figure&nbsp;2 illustrates the end-to-end message bundling:
 <p align="center"><a name="fig_eca"> </a><img src="assets/garliccloves.png" width="850" /></p>
@@ -144,7 +143,7 @@ The disadvantages or limitations of the Tor network include its inability to sca
 By design, it works by routing information through a number of intermediate nodes, which eventually connect to exit nodes 
 that work as trusted authority servers. Each of these servers keeps track of all the nodes in the network and their 
 performance. These exit nodes also act as proxies, allowing Tor users to access the clearnet without revealing their 
-identity. As there are only few trusted authority servers, the integrity of these nodes is essential for the entire 
+identity. As there are only a few trusted authority servers, the integrity of these nodes is essential for the entire 
 network, making them a valuable target for attacks [[3]].
 
 Instead of storing the network's metadata in a group of trusted authority servers, I2P keeps this data in the DHT. This approach makes it harder to attack the network, since it runs on normal I2P nodes and provides a small 
@@ -158,7 +157,7 @@ effort to increase control over the network. Running this over the I2P network i
 participants/clients in the network evaluate the performance of peers when selecting peers to interact with, instead of 
 using a random sample. Because running multiple identities on the same host affects the performance of each of those 
 instances, the number of additional identities running in parallel is effectively limited by the need to provide each of 
-them with enough resources to be considered as peers. The means that the malicious user will need a substantial 
+them with enough resources to be considered as peers. This means that the malicious user will need a substantial 
 amount of resources to create the multiple identities.
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/Sybil Attack.png" width="750" /></p>
@@ -166,7 +165,7 @@ amount of resources to create the multiple identities.
 
 ### Eclipse Attacks
 In eclipse attacks, a set of malicious and colluding nodes arranges that a good node can 
-peer only with malicious nodes. So the union of malicious nodes fools the good node into writing its
+peer only with malicious nodes. The union of malicious nodes therefore fools the good node into writing its
 addresses into neighboring lists of good nodes. In a Sybil attack, a single malicious node possesses a large number of 
 identities in the network to control some part of the network. If an attacker wants to continue a Sybil attack into an eclipse 
 attack, the attacker will try to place the malicious nodes in the strategic routing path in such a way that all traffic 
@@ -178,7 +177,7 @@ Brute force attacks on the I2P network can be mounted by actively watching the n
 the nodes and attempting to correlate which message follows which path. Since all peers in the network are frequently 
 sending messages, this attack is trivial. The attacker can send out large amounts of data (more than 2GB), observe all the nodes and narrow 
 down those that routed the message. The large chunk of data is necessary because inter-router communication is encrypted 
-and streamed, i.e. 1024&nbsp;byte data is indistinguishable from 2048&nbsp;byte data. Mounting this attack is, however, very difficult and 
+and streamed, i.e. 1,024&nbsp;byte data is indistinguishable from 2,048&nbsp;byte data. Mounting this attack is, however, very difficult and 
 one would need to be an Internet Service Provider (ISP) in order to observe a large chunk of the network.
 
 ### Intersection Attacks
