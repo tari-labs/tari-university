@@ -71,8 +71,9 @@ The basis of confidential transactions is to replace the input and output amount
 Commitments*<sup>[def][ecpc~]</sup>. It is then publicly verifiable that the transactions balance (the sum of the 
 committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the 
 specific committed amounts hidden. This makes it a zero-knowledge transaction. The transaction amounts must be encoded 
-as $ integers \mod q $, which can overflow, but are prevented from doing so by making use of range proofs. This is where Bulletproofs 
-come in. The essence of Bulletproofs is its ability to calculate proofs, including range proofs, from inner-products.
+as $ integers \mod q ​$, which can overflow, but are prevented from doing so by making use of range proofs. This is where 
+Bulletproofs come in. The essence of Bulletproofs is its ability to calculate proofs, including range proofs, from 
+inner-products.
 
 The *prover* must convince the *verifier* that commitment $ C(x,r) = xH + rG $ contains a number such that $ x \in 
 [0,2^n - 1] $. If $ \mathbf {a} = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n) \in \{0,1\}^n 
@@ -80,15 +81,15 @@ $ is the vector containing the bits of $ x $, the basic idea is to hide all the 
 vector Pedersen Commitment. It must then be proven that each bit satisfies $ \omega(\omega-1) = 0 $, i.e. each 
 $ \omega $ is either $ 0 $ or $ 1 $, and that they sum to $ x $. As part of the ensuing protocol, the *verifier* sends 
 random linear combinations of constraints and challenges $ \in \mathbb{Z_p} $ to the *prover*. The 
-*prover* is then able to construct a vectorized inner product relation containing the elements of<br> $ \mathbf {a} $, 
-the constraints and challenges $ \in \mathbb{Z_p} $, and appropriate blinding vectors $ \in \mathbb Z_p^n $.
+*prover* is then able to construct a vectorized inner product relation containing the elements of $ \mathbf {a} $, the 
+constraints and challenges $ \in \mathbb{Z_p} $, and appropriate blinding vectors $ \in \mathbb Z_p^n $.
 
-These inner product vectors have size $ n $ that would require many expensive exponentiations. The Pedersen Commitment 
+These inner product vectors have size $ n ​$ that would require many expensive exponentiations. The Pedersen Commitment 
 scheme, shown in Figure&nbsp;1, allows for a vector to be cut in half, and for the two halves to be compressed together, 
-each time calculating a new set of Pedersen Commitment generators. Applying the same trick repeatedly, $ \log _2 n $ 
+each time calculating a new set of Pedersen Commitment generators. Applying the same trick repeatedly, $ \log _2 n ​$ 
 times, produces a single value. This is applied to the inner product vectors; they are reduced interactively with a 
 logarithmic number of rounds by the *prover* and *verifier* into a single multi-exponentiation of size 
-$ 2n + 2 \log_2(n) + 1 $. This single multi-exponentiation can then be calculated much faster than $ n $ separate ones. 
+$ 2n + 2 \log_2(n) + 1 ​$. This single multi-exponentiation can then be calculated much faster than $ n ​$ separate ones. 
 All of this is made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
 <p align="center"><img src="sources/VectorCutNHalf.png" width="450" /></p>
@@ -101,11 +102,10 @@ title="How to do Zero-Knowledge from Discrete-Logs
 in under 7kB, Bootle J.">63</a>])</b></p>
 
 
-
 Bulletproofs only rely on the discrete logarithm assumption. In practice, this means that Bulletproofs are 
 compatible with any secure elliptic curve, making them extremely versatile. The proof sizes are short; only 
-$ [2 \log_2(n) + 9] $ elements are required for the range proofs and $ [\log_2(n) + 13] $ elements for arithmetic 
-circuit proofs, with $ n $ denoting the multiplicative complexity. Additionally, the logarithmic proof size enables the 
+$ [2 \log_2(n) + 9] ​$ elements are required for the range proofs and $ [\log_2(n) + 13] ​$ elements for arithmetic 
+circuit proofs, with $ n ​$ denoting the multiplicative complexity. Additionally, the logarithmic proof size enables the 
 *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from 
 different parties into one proof (refer to Figure&nbsp;2) ([[1]], [[3]], [[5]]).
 
@@ -115,19 +115,20 @@ different parties into one proof (refer to Figure&nbsp;2) ([[1]], [[3]], [[5]]).
 [<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bullet Proofs (Slides), 
 Bitcoin Milan Meetup 2018-02-02, 
 Andrew Poelstra">3</a>]</b></p>
-
-If all Bitcoin transactions were confidential, approximately 50 million UTXOs from approximately 22 million transactions 
-would result in roughly 160GB range proof data, when using current/linear proof systems and assuming use of 52&nbsp;bits 
-to represent any value from 1 satoshi up to 21 million bitcoins. Aggregated Bulletproofs would reduce the data storage 
-requirement to < 17GB [[1]].
+If all Bitcoin transactions were confidential, approximately 50&nbsp;million UTXOs from approximately 22&nbsp;million 
+transactions would result in roughly 160GB range proof data, when using current/linear proof systems and assuming use of 
+52&nbsp;bits to represent any value from 1 satoshi up to 21 million bitcoins. Aggregated Bulletproofs would reduce the 
+data storage 
+requirement to less than 17GB [[1]].
 
 In Mimblewimble, the blockchain grows with the size of the UTXO set. Using Bulletproofs as a drop-in replacement for 
 range proofs in confidential transactions, the size of the blockchain would only grow with the number of transactions 
 that have unspent outputs. This is much smaller than the size of the UTXO set [[1]].
 
-The recent implementation of Bulletproofs in Monero on 18 October 2018 saw the average data size on the blockchain per 
-payment reduce by ~73% and the average USD-based fees reduce by ~94.5% for the period 30 August 2018 to 28 November 2018 
-(refer to Figure&nbsp;3).
+The recent implementation of Bulletproofs in Monero on 18&nbsp;October&nbsp;2018 saw the average data size on the 
+blockchain per 
+payment reduce by ~73% and the average USD-based fees reduce by ~94.5% for the period 30&nbsp;August&nbsp;2018 to 
+28&nbsp;November&nbsp;2018 (refer to Figure&nbsp;3).
 
 <p align="center"><img src="sources/xmr-tx-size.png" width="650" /></p>
 
@@ -146,7 +147,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
 
    Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval. 
    It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wraparound when 
-   adding a small number, e.g. proof that<br> $ x \in [0,2^{52} - 1] $.
+   adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] ​$.
 
 2. Merkle proofs
 
@@ -158,7 +159,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
    Proofs of solvency are a specialized application of Merkle proofs; coins can be added into a giant Merkle tree. It 
    can then be proven that some outputs are in the Merkle tree and that those outputs add up to some amount that the 
    cryptocurrency exchange claims they have control over without revealing any private information. A Bitcoin exchange 
-   with 2 million customers needs approximately 18GB to prove solvency in a confidential manner using the Provisions 
+   with 2&nbsp;million customers needs approximately 18GB to prove solvency in a confidential manner using the Provisions 
    protocol [[58]]. Using Bulletproofs and its variant protocols proposed in [[1]], this size could be reduced to 
    approximately 62MB.
 
@@ -205,7 +206,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
    Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to 
    this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are 
    correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with 
-   Bulletproofs to proof that the transaction is valid.
+   Bulletproofs to prove that the transaction is valid.
 
    When a proof is needed that one list of values $[x_1, ... , x_n]$ is a permutation of a second list of values
    $[y_1, ... , y_n]$, it is called a verifiable shuffle. It has many applications, e.g. voting, blind signatures 
@@ -214,7 +215,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
 
    Another potential use case is to verify that two nodes executed the same list of independent instructions 
    $ [x1,x4,x3,x2] $ and $ [x1,x2,x3,x4] $, which may be in different order, to arrive at the same next state $ N $. The 
-   nodes do not need to share the actual instructions with a *Verifier*, but the *Verifier* can show that they executed 
+   nodes do not need to share the actual instructions with a *verifier*, but the *verifier* can show that they executed 
    the same set without having knowledge of the instructions.
 
   <p align="center"><img src="sources/VerifiableShuffles.png" width="600" /></p>
@@ -230,7 +231,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
 8. Batch verifications
 
    Batch verifications can be done using one of the Bulletproofs derivative protocols. This has application where the 
-   *Verifier* needs to verify multiple (separate) range proofs at once, e.g. a blockchain full node receiving a 
+   *verifier* needs to verify multiple (separate) range proofs at once, e.g. a blockchain full node receiving a 
    block of transactions needs to verify all transactions as well as range proofs. This batch verification is then 
    implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.
 
@@ -241,7 +242,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
 Table&nbsp;1 ([[2]], [[5]]) shows a high-level comparison between Sigma protocols (i.e. interactive public-coin 
 protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for 
 each measurement are shown in ***bold italics***.) The aim will be to have a proof system that is not interactive, has 
-short proof sizes, has linear *Prover* runtime scalability, has efficient (sub-linear) *Verifier* runtime scalability, 
+short proof sizes, has linear *prover* runtime scalability, has efficient (sub-linear) *verifier* runtime scalability, 
 has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive, 
 have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement. 
 These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.
@@ -366,7 +367,7 @@ $$
 
 where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [[44]] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $ 
 the switch commitment hash. In order for such an amount to be spent, the owner needs to reveal $ b , r $ so that the 
-*Verifier* can check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $ by confirming that it matches 
+*verifier* can check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $ by confirming that it matches 
 the value stored in the switch commitment hash portion of the transaction output. Grin implemented the BLAKE2 hash 
 function, which outperforms all mainstream hash function implementations in terms of hashing speed with similar security 
 to the latest Secure Hash Algorithm 3 (SHA-3) standard [[44]].
@@ -423,13 +424,13 @@ b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\
 $$
 
 with $ b^\prime $ being the user generated blinding factor. The (Elliptic Curve) Pedersen Commitment then becomes
- 
+
 $$
 vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
 $$
 
 After activation of the switch commitment in the age of quantum adversaries, users can reveal 
-$ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $, and *Verifiers* can check if it is computed correctly and 
+$ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $, and *verifiers* can check if it is computed correctly and 
 use it as if it were the *ElGamal Commitment*<sup>[def][egc~]</sup> $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) $. 
 
 
@@ -505,9 +506,9 @@ b = b' + hash(vG + b'H,b'J). (So this "tweaks" the commitment, in a pay-to-contr
 this is just used like a normal Pedersen Commitment vG + bH. After the switch, users can reveal (vG + b'H, b'J), and 
 verifiers check if it's computed correctly and use as if it were the ElGamal commitment (vG + bH, bJ)."
 
-{**@ignopeverell**} modified the milestones: Beta / testnet3, Mainnet on 11 Jul
+{**@ignopeverell**} modified the milestones: Beta / testnet3, Mainnet on 11 Jul.
 
-{**@ignopeverell**} added the must-have label on 24 Aug
+{**@ignopeverell**} added the must-have label on 24 Aug.
 
 
 
@@ -515,16 +516,20 @@ verifiers check if it's computed correctly and use as if it were the ElGamal com
 
 - Bulletproofs are not Bulletproofs are not Bulletproofs. This is evident by comparing the functionality, security and 
 performance of all the current different Bulletproof implementations as well as the evolving nature of Bulletproofs.
-- The security audit instigated by the Monero project on their Bulletproofs implementation as well as the resulting findings and 
-corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to the nature of 
-confidential transactions; transacted values and token owners are not public.
+
+- The security audit instigated by the Monero project on their Bulletproofs implementation as well as the resulting 
+findings and corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to 
+the nature of confidential transactions; transacted values and token owners are not public.
+
 - The growing number of open source Bulletproof implementations should strengthen the development of a new confidential 
 blockchain protocol such as Tari.
+
 - In the pure implementation of Bulletproof range proofs, a discrete-log attacker (*e.g. a bad actor employing a quantum 
 computer*) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly 
 *hiding*<sup>[def][cs~]</sup> (*i.e. confidential*), but only computationally *binding*<sup>[def][cs~]</sup> (*i.e. not 
 quantum resistant*). Unconditional soundness is lost due to the data compression being employed ([[1]], [[5]], [[6]] 
 and [[10]]).
+
 - Bulletproofs are not only about range proofs. All the different Bulletproof use cases have a potential implementation 
 in a new confidential blockchain protocol such as Tari; in the base layer as well as in the probable second layer.
 
@@ -532,32 +537,33 @@ in a new confidential blockchain protocol such as Tari; in the base layer as wel
 
 ## References
 
-[[1]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential Transactions and More", Blockchain Protocol Analysis and Security Engineering 2018 [online]. Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed: 2018&#8209;09&#8209;18.
+[[1]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential 
+Transactions and More", Blockchain Protocol Analysis and Security Engineering 2018 [online]. 
+Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed: 2018&#8209;09&#8209;18.
 
 [1]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and 
 More" 
 
-[[2]] A. Poelstra, "Bulletproofs" (Transcript), Bitcoin Milan Meetup 2018-02-02 [online]. Available: 
-<https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-Bulletproofs>. Date accessed: 2018-09-10. 
+[[2]] A. Poelstra, "Bulletproofs" (Transcript), Bitcoin Milan Meetup 2018&#8209;02&#8209;02 [online]. Available: 
+<https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-Bulletproofs>. Date accessed: 2018&#8209;09&#8209;10. 
 
-[2]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bulletproofs (Transcript)" 
+[2]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs "Bulletproofs (Transcript)"
 
-[[3]] A. Poelstra, "Bulletproofs" (Slides), Bitcoin Milan Meetup 2018-02-02 [online]. Available: 
-<https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view>. Date accessed: 2018-09-10. 
+[[3]] A. Poelstra, "Bulletproofs" (Slides), Bitcoin Milan Meetup 2018&#8209;02&#8209;02 [online]. Available: 
+<https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view>. Date accessed: 2018&#8209;09&#8209;10. 
 
-[3]: https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view "Bulletproofs (Slides)" 
+[3]: https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view "Bulletproofs (Slides)"
 
 [[4]] B. Feng, "Decoding zk-SNARKs" [online]. Available: 
-<https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040>. Date accessed: 2018-09-17. 
+<https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040>. Date accessed: 2018&#8209;09&#8209;17. 
 
-[4]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 "Decoding zk-SNARKs" 
+[4]: https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040 "Decoding zk-SNARKs"
 
 [[5]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for 
 Confidential Transactions and More" (Slides) [online]. Available: 
-<https://cyber.stanford.edu/sites/default/files/bpase18.pptx>. Date accessed: 2018-09-18. 
+<https://cyber.stanford.edu/sites/default/files/bpase18.pptx>. Date accessed: 2018&#8209;09&#8209;18. 
 
-
-[5]: https://cyber.stanford.edu/sites/default/files/bpase18.pptx 
+[5]: https://cyber.stanford.edu/sites/default/files/bpase18.pptx
 "Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)"
 
 [[6]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for 
@@ -565,36 +571,35 @@ Confidential Transactions and More (Transcripts)" [online]. Available:
 <http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/Bulletproofs>. Date accessed: 
 2018&#8209;09&#8209;18. 
 
-
 [6]: http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs
 "Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts)"
 
-[[7]] Merkle Root and Merkle Proofs [online]. Available: 
-<https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs>. Date accessed: 2018-10-10. 
+[[7]] "Merkle Root and Merkle Proofs" [online]. Available: 
+<https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs>. Date accessed: 2018&#8209;10&#8209;10. 
 
-[7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs "Merkle Root and Merkle Proofs" 
+[7]: https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs "Merkle Root and Merkle Proofs"
 
-[[8]] Bulletproofs Audit: Fundraising [online]. Available: 
-<https://forum.getmonero.org/22/completed-tasks/90007/Bulletproofs-audit-fundraising>. Date accessed: 2018-10-23. 
+[[8]] "Bulletproofs Audit: Fundraising" [online]. Available: 
+<https://forum.getmonero.org/22/completed-tasks/90007/Bulletproofs-audit-fundraising>. Date accessed: 2018&#8209;10&#8209;23. 
 
 [8]: https://forum.getmonero.org/22/completed-tasks/90007/bulletproofs-audit-fundraising "Bulletproofs Audit: 
 Fundraising" 
 
-[[9]] The QuarksLab and Kudelski Security Audits of Monero Bulletproofs are Complete [online]. Available: 
+[[9]] "The QuarksLab and Kudelski Security Audits of Monero Bulletproofs are Complete" [online]. Available: 
 <https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-Bulletproofs-are-complete>. Date accessed: 
-2018-10-23. 
+2018&#8209;10&#8209;23. 
 
 [9]: https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-bulletproofs-are-complete "The QuarksLab and 
 Kudelski Security Audits of Monero Bulletproofs are Complete" 
 
-[[10]] A. Poelstra, Bulletproofs Presentation at Feb 2 Milan Meetup, Reddit [online]. Available: 
+[[10]] A. Poelstra, "Bulletproofs Presentation at Feb 2 Milan Meetup, Reddit" [online]. Available: 
 <https://www.reddit.com/r/Bitcoin/comments/7w72pq/Bulletproofs_presentation_at_feb_2_milan_meetup>. Date accessed: 
-2018-09-10. 
+2018&#8209;09&#8209;10. 
 
 [10]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup "Bulletproofs 
 Presentation at Feb 2 Milan Meetup" 
 
-[[11]] The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched [online]. Available: 
+[[11]] "The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched [online]". Available: 
 <https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-Bulletproofs-is-complete-critical-bug-patched>. Date 
 accessed: 2018-10-23. 
 
@@ -604,61 +609,61 @@ OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Pa
 [[12]] J. Bootle, A. Cerulli1, P. Chaidos, J. Groth and C. Petit, "Efficient Zero-knowledge Arguments for Arithmetic 
 Circuits in the Discrete Log Setting", Annual International Conference on the Theory and Applications of Cryptographic 
 Techniques, pages 327-357. Springer, 2016 [online]. Available: <https://eprint.iacr.org/2016/263.pdf>. Date accessed: 
-2018-09-21. 
+2018&#8209;09&#8209;21. 
 
 [12]: https://eprint.iacr.org/2016/263.pdf "Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete 
 Log Setting" 
 
 [[13]] J. Groth, "Linear Algebra with Sub-linear Zero-knowledge Arguments" [online]. Available: 
-<https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf>. Date accessed: 2018-09-21. 
+<https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf>. Date accessed: 2018&#8209;09&#8209;21. 
 
 [13]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf "Linear Algebra with Sub-linear 
 Zero-knowledge Arguments" 
 
 [[14]] T. Perrin, "The XEdDSA and VXEdDSA Signature Schemes", 2016-10-20 [online]. Available: 
 <https://signal.org/docs/specifications/xeddsa> and <https://signal.org/docs/specifications/xeddsa/xeddsa.pdf>. Date 
-accessed: 2018-10-23. 
+accessed: 2018&#8209;10&#8209;23. 
 
-[14]: https://signal.org/docs/specifications/xeddsa "The XEdDSA and VXEdDSA Signature Schemes" 
+[14]: https://signal.org/docs/specifications/xeddsa "The XEdDSA and VXEdDSA Signature Schemes"
 
 [[15]] A. Poelstra, A. Back, M. Friedenbach, G. Maxwell and P. Wuille, "Confidential Assets", Blockstream [online]. 
-Available: <https://blockstream.com/bitcoin17-final41.pdf>. Date accessed: 2018-09-25. 
+Available: <https://blockstream.com/bitcoin17-final41.pdf>. Date accessed: 2018&#8209;09&#8209;25. 
 
-[15]: https://blockstream.com/bitcoin17-final41.pdf "Confidential Assets" 
+[15]: https://blockstream.com/bitcoin17-final41.pdf "Confidential Assets"
 
-[[16]] Wikipedia: "Zero-knowledge Proof" [online]. Available: <https://en.wikipedia.org/wiki/Zero-knowledge_proof>. Date 
-accessed: 2018-09-18. 
+[[16]] Wikipedia: "Zero-knowledge Proof" [online]. Available: <https://en.wikipedia.org/wiki/Zero-knowledge_proof>. 
+Date accessed: 2018&#8209;09&#8209;18. 
 
-[16]: https://en.wikipedia.org/wiki/Zero-knowledge_proof "Wikipedia - Zero-knowledge Proof" 
+[16]: https://en.wikipedia.org/wiki/Zero-knowledge_proof "Wikipedia - Zero-knowledge Proof"
 
 [[17]] Wikipedia: "Discrete Logarithm" [online]. Available: <https://en.wikipedia.org/wiki/Discrete_logarithm>. Date 
-accessed: 2018-09-20. 
+accessed: 2018&#8209;09&#8209;20. 
 
-[17]: https://en.wikipedia.org/wiki/Discrete_logarithm "Wikipedia: Discrete Logarithm" 
+[17]: https://en.wikipedia.org/wiki/Discrete_logarithm "Wikipedia: Discrete Logarithm"
 
 [[18]] A. Fiat and A. Shamir, "How to Prove Yourself: Practical Solutions to Identification and Signature Problems". 
-CRYPTO 1986: pp. 186-194 [online]. Available: <https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf>. 
-Date accessed: 2018-09-20. 
+CRYPTO 1986: pp. 186&#8209;194 [online]. Available: <https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf>. 
+Date accessed: 2018&#8209;09&#8209;20. 
 
 [18]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf "How to Prove Yourself: Practical Solutions 
 to Identification and Signature Problems" 
 
 [[19]] D. Bernhard, O. Pereira and B. Warinschi, "How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and 
 Applications to Helios" [online]. Available: <https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf>. 
-Date accessed: 2018-09-20. 
+Date accessed: 2018&#8209;09&#8209;20. 
 
 [19]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf "How not to Prove Yourself: Pitfalls of 
 the Fiat-Shamir Heuristic and Applications to Helios" 
 
-[[20]] Mimblewimble Explained [online]. Available: <https://www.weusecoins.com/mimble-wimble-andrew-poelstra/>. Date 
-accessed: 2018-09-10. 
+[[20]] "Mimblewimble Explained" [online]. Available: <https://www.weusecoins.com/mimble-wimble-andrew-poelstra/>. Date 
+accessed: 2018&#8209;09&#8209;10. 
 
-[20]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra "Mimblewimble Explained" 
+[20]: https://www.weusecoins.com/mimble-wimble-andrew-poelstra "Mimblewimble Explained"
 
-[[21]] Message Hiding in Bulletproofs #721 [online]. Available: <https://github.com/mimblewimble/grin/issues/721>, Date 
-accessed: 2018-09-10. 
+[[21]] GitHub: "Message Hiding in Bulletproofs #721" [online]. Available: <https://github.com/mimblewimble/grin/issues/721>. 
+Date accessed: 2018&#8209;09&#8209;10. 
 
-[21]: https://github.com/mimblewimble/grin/issues/721 "Message Hiding in Bulletproofs #721" 
+[21]: https://github.com/mimblewimble/grin/issues/721 "Message Hiding in Bulletproofs #721"
 
 [[22]] Pedersen-commitment: "An Implementation of Pedersen Commitment Schemes" [online]. Available: 
 <https://hackage.haskell.org/package/pedersen-commitment>. Date accessed: 2018-09-25. 
@@ -666,205 +671,205 @@ accessed: 2018-09-10.
 [22]: https://hackage.haskell.org/package/pedersen-commitment "Pedersen-commitment: An Implementation of Pedersen 
 Commitment Schemes" 
 
-[[23]] Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative [online]. Available: 
-<https://zkproof.org/documents.html>. Date accessed: 2018-09-26. 
+[[23]] "Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative" [online]. Available: 
+<https://zkproof.org/documents.html>. Date accessed: 2018&#8209;09&#8209;26. 
 
-[23]: https://zkproof.org/documents.html "Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative" 
+[23]: https://zkproof.org/documents.html "Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative"
 
-[[24]] SEC 2: Recommended Elliptic Curve Domain Parameters, Standards for Efficient Cryptography, 20 September 2000 
-[online]. Available: <http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf>. Date accessed: 2018-09-26. 
+[[24]] "SEC 2: Recommended Elliptic Curve Domain Parameters, Standards for Efficient Cryptography", 20 September 2000 
+[online]. Available: <http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf>. Date accessed: 2018&#8209;09&#8209;26. 
 
 [24]: http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf "SEC 2: Recommended Elliptic Curve Domain Parameters, 
 Standards for Efficient Cryptography" 
 
-[[25]] GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments 
-and Range Proofs [online]. Available: <https://github.com/ElementsProject/secp256k1-zkp>. Date accessed: 2018-09-18. 
+[[25]] GitHub: "ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments 
+and Range Proofs" [online]. Available: <https://github.com/ElementsProject/secp256k1-zkp>. Date accessed: 2018&#8209;09&#8209;18. 
 
 [25]: https://github.com/ElementsProject/secp256k1-zkp "GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of 
 libsecp256k1 with Support for Pedersen Commitments and Range Proofs" 
 
-[[26]] GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives 
-[online]. Available: <https://github.com/apoelstra/secp256k1-mw/tree/Bulletproofs>. Date accessed: 2018-09-18. 
+[[26]] GitHub: "apoelstra/secp256k1-mw, Fork of libsecp-zkp `d78f12b` to Add Support for Mimblewimble Primitives" 
+[online]. Available: <https://github.com/apoelstra/secp256k1-mw/tree/Bulletproofs>. Date accessed: 2018&#8209;09&#8209;18. 
 
 [26]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs "GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp 
 `d78f12b` to Add Support for Mimblewimble Primitives" 
 
-[[27]] GitHub: bbuenz/BulletProofLib, Library for Generating Non-interactive Zero Knowledge Proofs without Trusted Setup 
-(Bulletproofs) [online]. Available: <https://github.com/bbuenz/BulletProofLib>. Date accessed: 2018-09-18. 
+[[27]] GitHub: "bbuenz/BulletProofLib, Library for Generating Non-interactive Zero Knowledge Proofs without Trusted 
+Setup (Bulletproofs)" [online]. Available: <https://github.com/bbuenz/BulletProofLib>. Date accessed: 2018&#8209;09&#8209;18. 
 
 [27]: https://github.com/bbuenz/BulletProofLib "GitHub: bbuenz/BulletProofLib, Library for Generating Non-interactive 
 Zero Knowledge Proofs without Trusted Setup (Bulletproofs)" 
 
-[[28]] GitHub: dalek-cryptography/Bulletproofs, A Pure-Rust Implementation of Bulletproofs using Ristretto [online]. 
+[[28]] GitHub: "dalek-cryptography/Bulletproofs, A Pure-Rust Implementation of Bulletproofs using Ristretto" [online]. 
 Available: <https://github.com/dalek-cryptography/Bulletproofs>. Date accessed: 2018-09-18. 
 
 [28]: https://github.com/dalek-cryptography/bulletproofs "GitHub: dalek-cryptography/Bulletproofs, A Pure-Rust 
 Implementation of Bulletproofs using Ristretto" 
 
-[[29]] GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no 
-Trusted Setup [online]. Available: <https://github.com/adjoint-io/Bulletproofs>. Date accessed: 2018-09-10. 
+[[29]] GitHub: "adjoint-io/Bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no 
+Trusted Setup" [online]. Available: <https://github.com/adjoint-io/Bulletproofs>. Date accessed: 2018&#8209;09&#8209;10. 
 
 [29]: https://github.com/adjoint-io/bulletproofs "GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short 
 Non-interactive Zero-knowledge Proofs that Require no Trusted Setup" 
 
-[[30]] GitHub: mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the Grin/MimbleWimble project [online]. Available: 
+[[30]] GitHub: "mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the Grin/MimbleWimble project" [online]. Available: 
 <https://github.com/mimblewimble/secp256k1-zkp>. Date accessed: 2018-09-18. 
 
 [30]: https://github.com/mimblewimble/secp256k1-zkp "GitHub: mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the 
 Grin/MimbleWimble project" 
 
-[[31]] The Ristretto Group [online]. Available: <https://ristretto.group/ristretto.html>. Date accessed: 2018-10-23. 
+[[31]] "The Ristretto Group" [online]. Available: <https://ristretto.group/ristretto.html>. Date accessed: 2018&#8209;10&#8209;23. 
 
-[31]: https://ristretto.group/ristretto.html "The Ristretto Group" 
+[31]: https://ristretto.group/ristretto.html "The Ristretto Group"
 
-[[32]] SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography [online]. Available: 
-<http://safecurves.cr.yp.to/>. Date accessed: 2018-10-23. 
+[[32]] "SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography" [online]. Available: 
+<http://safecurves.cr.yp.to/>. Date accessed: 2018&#8209;10&#8209;23. 
 
-[32]: http://safecurves.cr.yp.to/ "SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography" 
+[32]: http://safecurves.cr.yp.to/ "SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography"
 
 [[33]] R. Canetti, B. Riva and G. N. Rothblum, "Two 1-Round Protocols for Delegation of Computation" [online]. 
-Available: <https://eprint.iacr.org/2011/518.pdf>, Date accessed: 2018-10-11. 
+Available: <https://eprint.iacr.org/2011/518.pdf>. Date accessed: 2018&#8209;10&#8209;11. 
 
-[33]: https://eprint.iacr.org/2011/518.pdf "Two 1-Round Protocols for Delegation of Computation" 
+[33]: https://eprint.iacr.org/2011/518.pdf "Two 1-Round Protocols for Delegation of Computation"
 
-[[34]] GitHub: mimblewimble/grin, Switch Commits / Bulletproofs - Status #734 [online]. Available: 
+[[34]] GitHub: "mimblewimble/grin, Switch Commits / Bulletproofs - Status #734" [online]. Available: 
 <https://github.com/mimblewimble/grin/issues/734>. Date accessed: 2018-09-10. 
 
 [34]: https://github.com/mimblewimble/grin/issues/734 "GitHub: mimblewimble/grin, Switch Commits / Bulletproofs - Status 
 #734" 
 
-[[35]] GitHub: mimblewimble/grin, Bulletproofs #273 [online]. Available: 
-<https://github.com/mimblewimble/grin/issues/273>. Date accessed: 2018-09-10. 
+[[35]] GitHub: "mimblewimble/grin, Bulletproofs #273" [online]. Available: 
+<https://github.com/mimblewimble/grin/issues/273>. Date accessed: 2018&#8209;09&#8209;10. 
 
-[35]: https://github.com/mimblewimble/grin/issues/273 "GitHub: mimblewimble/grin, Bulletproofs #273" 
+[35]: https://github.com/mimblewimble/grin/issues/273 "GitHub: mimblewimble/grin, Bulletproofs #273"
 
-[[36]] Wikipedia: "Commitment Scheme [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. Date 
-accessed: 2018-09-26. 
+[[36]] Wikipedia: "Commitment Scheme" [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>. Date 
+accessed: 2018&#8209;09&#8209;26. 
 
-[36]: https://en.wikipedia.org/wiki/Commitment_scheme "Wikipedia: Commitment Scheme" 
+[36]: https://en.wikipedia.org/wiki/Commitment_scheme "Wikipedia: Commitment Scheme"
 
-[[37]] Cryptography Wikia: Commitment Scheme [online]. Available: 
+[[37]] Cryptography Wikia: "Commitment Scheme" [online]. Available: 
 <http://cryptography.wikia.com/wiki/Commitment_scheme>. Date accessed: 2018&#8209;09&#8209;26. 
 
-[37]: http://cryptography.wikia.com/wiki/Commitment_scheme "Cryptography Wikia: Commitment Scheme" 
+[37]: http://cryptography.wikia.com/wiki/Commitment_scheme "Cryptography Wikia: Commitment Scheme"
 
 [[38]] D. J. Bernstein, "Curve25519: New Diﬃe-Hellman Speed Records" [online]. Available: 
-<https://cr.yp.to/ecdh/curve25519-20060209.pdf>. Date accessed: 2018-09-26. 
+<https://cr.yp.to/ecdh/curve25519-20060209.pdf>. Date accessed: 2018&#8209;09&#8209;26. 
 
-[38]: https://cr.yp.to/ecdh/curve25519-20060209.pdf "Curve25519: New Diﬃe-Hellman Speed Records" 
+[38]: https://cr.yp.to/ecdh/curve25519-20060209.pdf "Curve25519: New Diﬃe-Hellman Speed Records"
 
 [[39]] H. Hisil, K. Koon-Ho Wong, G. Carter and E. Dawson, "Twisted Edwards Curves Revisited", Information Security 
 Institute, Queensland University of Technology [online]. Available: 
-<https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf>. Date accessed: 2018-09-26. 
+<https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf>. Date accessed: 2018&#8209;09&#8209;26. 
 
-[39]: https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf "Twisted Edwards Curves Revisited" 
+[39]: https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf "Twisted Edwards Curves Revisited"
 
 [[40]] A. Sadeghi and M. Steiner, "Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real 
-Difference"[online]. Available: <http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf>. Date accessed: 
+Difference" [online]. Available: <http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf>. Date accessed: 
 2018-09-24. 
 
 [40]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf "Assumptions Related to Discrete Logarithms: Why 
 Subtleties Make a Real Difference" 
 
 [[41]] Crypto Wiki: "Cryptographic Nonce" [online]. Available: <http://cryptography.wikia.com/wiki/Cryptographic_nonce>. 
+Date accessed: 2018&#8209;10&#8209;08. 
+
+[41]: http://cryptography.wikia.com/wiki/Cryptographic_nonce "Crypto Wiki: Cryptographic Nonce"
+
+[[42]] Wikipedia: "Cryptographic Nonce" [online]. Available: <https://en.wikipedia.org/wiki/Cryptographic_nonce>. 
 Date accessed: 2018-10-08. 
 
-[41]: http://cryptography.wikia.com/wiki/Cryptographic_nonce "Crypto Wiki: Cryptographic Nonce" 
-
-[[42]] Wikipedia: "Cryptographic Nonce" [online]. Available: <https://en.wikipedia.org/wiki/Cryptographic_nonce>. Date 
-accessed: 2018-10-08. 
-
-[42]: https://en.wikipedia.org/wiki/Cryptographic_nonce "Wikipedia: Cryptographic Nonce" 
+[42]: https://en.wikipedia.org/wiki/Cryptographic_nonce "Wikipedia: Cryptographic Nonce"
 
 [[43]] T. Ruffing and G. Malavolta, " Switch Commitments: A Safety Switch for Confidential Transactions", Saarland 
 University [online]. Available: <https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf>. Date 
-accessed: 2018-10-08. 
+accessed: 2018&#8209;10&#8209;08. 
 
 [43]: https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf "Switch Commitments: A Safety Switch 
 for Confidential Transactions" 
 
-[[44]] BLAKE2 — Fast Secure Hashing [online]. Available: <https://blake2.net>. Date accessed: 2018-10-08. 
+[[44]] "BLAKE2 — Fast Secure Hashing" [online]. Available: <https://blake2.net>. Date accessed: 2018&#8209;10&#8209;08. 
 
-[44]: https://blake2.net "BLAKE2 — Fast Secure Hashing" 
+[44]: https://blake2.net "BLAKE2 — Fast Secure Hashing"
 
-[[45]] GitHub: mimblewimble/rust-secp256k1-zkp [online]. Available: 
+[[45]] GitHub: "mimblewimble/rust-secp256k1-zkp" [online]. Available: 
 <https://github.com/mimblewimble/rust-secp256k1-zkp>. Date accessed: 2018&#8209;11&#8209;16. 
 
-[45]: https://github.com/mimblewimble/rust-secp256k1-zkp "GitHub: mimblewimble/rust-secp256k1-zkp" 
+[45]: https://github.com/mimblewimble/rust-secp256k1-zkp "GitHub: mimblewimble/rust-secp256k1-zkp"
 
-[[46]] GitHub: monero-project/monero [online]. Available: 
+[[46]] GitHub: "monero-project/monero [online]". Available: 
 <https://github.com/monero-project/monero/tree/master/src/ringct>. Date accessed: 2018&#8209;11&#8209;16. 
 
-[46]: https://github.com/monero-project/monero/tree/master/src/ringct "GitHub: monero-project/monero" 
+[46]: https://github.com/monero-project/monero/tree/master/src/ringct "GitHub: monero-project/monero"
 
-[[47]] Wikipedia: Arithmetic Circuit Complexity [online]. Available: 
+[[47]] Wikipedia: "Arithmetic Circuit Complexity [online]". Available: 
 <https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity>. Date accessed: 2018&#8209;11&#8209;08. 
 
-[47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity "Wikipedia: Arithmetic Circuit Complexity" 
+[47]: https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity "Wikipedia: Arithmetic Circuit Complexity"
 
 [[48]] G. Maxwell, A. Poelstra1, Y. Seurin and P. Wuille, "Simple Schnorr Multi-signatures with Applications to 
-Bitcoin", 20 May 2018 [online]. Available: <https://eprint.iacr.org/2018/068.pdf>. Date accessed: 2018-07-24. 
+Bitcoin", 20&nbsp;May&nbsp;2018 [online]. Available: <https://eprint.iacr.org/2018/068.pdf>. Date accessed: 2018&#8209;07&#8209;24. 
 
-[48]: https://eprint.iacr.org/2018/068.pdf "Simple Schnorr Multi-signatures with Applications to Bitcoin" 
+[48]: https://eprint.iacr.org/2018/068.pdf "Simple Schnorr Multi-signatures with Applications to Bitcoin"
 
-[[49]] GitHub: b-g-goodell/research-lab [online]. Available: 
-<https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java>. Date accessed: 2018-11-16. 
+[[49]] GitHub: "b-g-goodell/research-lab" [online]. Available: 
+<https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java>. Date accessed: 2018&#8209;11&#8209;16. 
 
 [49]: https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java "GitHub: 
 b-g-goodell/research-lab" 
 
-[[50]] Wikipedia: "One-way Function [online]. Available: <https://en.wikipedia.org/wiki/One-way_function>. Date 
-accessed: 2018-11-27. 
+[[50]] Wikipedia: "One-way Function" [online]. Available: <https://en.wikipedia.org/wiki/One-way_function>. Date 
+accessed: 2018&#8209;11&#8209;27. 
 
-[50]: https://en.wikipedia.org/wiki/One-way_function "Wikipedia: One-way Function" 
+[50]: https://en.wikipedia.org/wiki/One-way_function "Wikipedia: One-way Function"
 
 [[51]] P. Sharma, A. K. Gupta and S. Sharma, "Intensified ElGamal Cryptosystem (IEC)", *International Journal of 
 Advances in Engineering & Technology*, January&nbsp;2012 [online]. Available: 
-<http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf>. Date accessed: 2018-10-09. 
+<http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf>. Date accessed: 2018&#8209;10&#8209;09. 
 
-[51]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf "Intensified ElGamal Cryptosystem (IEC)" 
+[51]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf "Intensified ElGamal Cryptosystem (IEC)"
 
 [[52]] Y. Tsiounis and M Yung, "On the Security of ElGamal Based Encryption" [online]. Available: 
-<https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view>. Date accessed: 2018-10-09. 
+<https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view>. Date accessed: 2018&#8209;10&#8209;09. 
 
 [52]: https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view "On the Security of ElGamal Based 
 Encryption" 
 
 [[53]] Wikipedia: "Decisional Diffie–Hellman Assumption" [online]. Available: 
-<https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption>. Date accessed: 2018-10-09. 
+<https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption>. Date accessed: 2018&#8209;10&#8209;09. 
 
 [53]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption "Wikipedia: Decisional Diffie–Hellman 
 Assumption" 
 
-[[54]] GitHub: mimblewimble/grin, Bulletproof messages #730 [online]. Available: 
-<https://github.com/mimblewimble/grin/pull/730>. Date accessed: 2018-11-29. 
+[[54]] GitHub: "mimblewimble/grin, Bulletproof messages #730" [online]. Available: 
+<https://github.com/mimblewimble/grin/pull/730>. Date accessed: 2018&#8209;11&#8209;29. 
 
-[54]: https://github.com/mimblewimble/grin/pull/730 "GitHub: mimblewimble/grin, Bulletproof messages #730" 
+[54]: https://github.com/mimblewimble/grin/pull/730 "GitHub: mimblewimble/grin, Bulletproof messages #730"
 
-[[55]] GitHub: mimblewimble/grin, Removed all switch commitment usages, including restore #841 [online]. Available: 
-<https://github.com/mimblewimble/grin/pull/841>. Date accessed: 2018-11-29. 
+[[55]] GitHub: "mimblewimble/grin, Removed all switch commitment usages, including restore #841" [online]. Available: 
+<https://github.com/mimblewimble/grin/pull/841>. Date accessed: 2018&#8209;11&#8209;29. 
 
 [55]: https://github.com/mimblewimble/grin/pull/841 "GitHub: mimblewimble/grin, Removed all switch commitment usages, 
 including restore #841" 
 
-[[56]] GitHub: mimblewimble/grin, switch commitment discussion #998 [online]. Available: 
-<https://github.com/mimblewimble/grin/issues/998>. Date accessed: 2018-11-29. 
+[[56]] GitHub: "mimblewimble/grin, switch commitment discussion #998" [online]. Available: 
+<https://github.com/mimblewimble/grin/issues/998>. Date accessed: 2018&#8209;11&#8209;29. 
 
-[56]: https://github.com/mimblewimble/grin/issues/998 "GitHub: mimblewimble/grin, switch commitment discussion #998" 
+[56]: https://github.com/mimblewimble/grin/issues/998 "GitHub: mimblewimble/grin, switch commitment discussion #998"
 
-[[57]] GitHub: mimblewimble/grin, [DNM] Switch commitments #2007 [online]. Available: 
-<https://github.com/mimblewimble/grin/pull/2007>. Date accessed: 2018-11-29. 
+[[57]] GitHub: "mimblewimble/grin, [DNM] Switch commitments #2007" [online]. Available: 
+<https://github.com/mimblewimble/grin/pull/2007>. Date accessed: 2018&#8209;11&#8209;29. 
 
-[57]: https://github.com/mimblewimble/grin/pull/2007 "GitHub: mimblewimble/grin, [DNM] Switch commitments #2007" 
+[57]: https://github.com/mimblewimble/grin/pull/2007 "GitHub: mimblewimble/grin, [DNM] Switch commitments #2007"
 
 [[58]] G. G. Dagher, B. Bünz, J. Bonneauy, J. Clark and D. Boneh1, "Provisions: Privacy-preserving Proofs of Solvency 
 for Bitcoin Exchanges", October 2015 [online]. Available: <https://eprint.iacr.org/2015/1008.pdf>. Date accessed: 
-2018-11-29. 
+2018&#8209;11&#8209;29. 
 
-[58]: https://eprint.iacr.org/2015/1008.pdf "Provisions: Privacy-preserving Proofs of Solvency for Bitcoin Exchanges" 
+[58]: https://eprint.iacr.org/2015/1008.pdf "Provisions: Privacy-preserving Proofs of Solvency for Bitcoin Exchanges"
 
 [[59]] A. Poelstra, "Bulletproofs: Faster Rangeproofs and Much More", February 2018 [online]. Available: 
-<https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/>. Date accessed: 2018-11-30. 
+<https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/>. Date accessed: 2018&#8209;11&#8209;30. 
 
 [59]: https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/ "Bulletproofs: Faster 
 Rangeproofs and Much More" 
@@ -872,24 +877,24 @@ Rangeproofs and Much More"
 [[60]] B. Franca, "Homomorphic Mini-blockchain Scheme", April 2015 [online]. Available: 
 <http://cryptonite.info/files/HMBC.pdf>. Date accessed: 2018&#8209;11&#8209;22. 
 
-[60]: http://cryptonite.info/files/HMBC.pdf "Homomorphic Mini-blockchain Scheme" 
+[60]: http://cryptonite.info/files/HMBC.pdf "Homomorphic Mini-blockchain Scheme"
 
 [[61]] C. Franck and J. Großschädl, "Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves", 
 University of Luxembourg [online]. Available: <http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf>. Date 
-accessed: 2018-11-22. 
+accessed: 2018&#8209;11&#8209;22. 
 
 [61]: http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf "Efficient Implementation of Pedersen Commitments Using 
 Twisted Edwards Curves" 
 
 [[62]] A. Gibson, "An Investigation into Confidential Transactions", July 2018 [online]. Available: 
-<https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf>. Date accessed: 2018-11-22. 
+<https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf>. Date accessed: 2018&#8209;11&#8209;22. 
 
 [62]: https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf "An Investigation into 
 Confidential Transactions" 
 
 [[63]] J. Bootle, "How to do Zero-knowledge from Discrete-Logs in under 7kB", October 2016 [online]. Available: 
 <https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb>. Date accessed: 
-2019-01-18. 
+2019&#8209;01&#8209;18. 
 
 [63]: https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb "How to do 
 Zero-knowledge from Discrete-Logs in under 7kB" 
@@ -930,8 +935,8 @@ sometimes called argument systems."
 
 
 - **Commitment Scheme:**<a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup>[def][zk~]</sup> 
-is a cryptographic primitive that allows a prover to commit to only a single chosen value/statement from a finite set 
-without the ability to change it later (*binding* property) while keeping it hidden from a verifier (*hiding* property). 
+is a cryptographic primitive that allows a *prover* to commit to only a single chosen value/statement from a finite set 
+without the ability to change it later (*binding* property) while keeping it hidden from a *verifier* (*hiding* property). 
 Both *binding* and *hiding* properties are then further classified in increasing levels of security to be 
 *computational*, *statistical* or *perfect*. No commitment scheme can at the same time be perfectly *binding* and 
 perfectly *hiding* ([[36]], [[37]]).
@@ -963,13 +968,10 @@ of numbers. Note that traditionally in elliptic curve arithmetic lower case lett
   - The generalized Elliptic Curve Pedersen Commitment definition follows 
   (refer to [Appendix B: Notation Used](#appendix-b-notation-used)):
     - Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.
-
     - Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially 
     chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP) 
     is solved. 
-
     - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p $.
-
     - The commitment to value $ x \in \mathbb Z_p $ is then determined by calculating $ C(x,r) = rH + xG $, which is 
     called the Elliptic Curve Pedersen Commitment.
 
@@ -1003,8 +1005,8 @@ Elliptic Curve Cryptography, which is ..."
 - **ElGamal Commitment/Encryption:**<a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment ([[15]], 
 [[22]]) with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the 
 Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states 
-that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. (**Note:** The 
-ElGamal encryption scheme should not be confused with the ElGamal signature scheme.) ([[1]], [[51]], [[52]], [[53]].)
+that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. **Note:**&nbsp;The 
+ElGamal encryption scheme should not be confused with the ElGamal signature scheme ([[1]], [[51]], [[52]], [[53]]).
 
 [egc~]: #egc
 "An ElGamal Commitment is a 
@@ -1019,12 +1021,14 @@ one-message (non-interactive) protocol using a cryptographic hash function ([[18
   is shared with the *verifier* and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain 
   the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $. 
   The single message sent to the *verifier* then contains the challenge $ c $ and response $ f $.
+  
   - The *verifier* is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and 
   response $ f $. The *verifier* will then use a <code>Verify()</code> algorithm to verify the combination of shared 
   statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.
+  
   - A weak Fiat&#8209;Shamir transformation can be turned into a strong Fiat&#8209;Shamir transformation if the hashing function 
   is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the 
-  commitment $ A $.
+  commitment $ A ​$.
 
 [fsh~]: #fsh
 "The Fiat&#8209;Shamir heuristic is a 
@@ -1045,15 +1049,15 @@ number ..."
 
 
 - **Zero-knowledge Proof/Protocol:**<a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a 
-method by which one party (the prover) can convince another party (the verifier) that a statement $ Y $ is true, without 
-conveying any information apart from the fact that the prover knows the value of $ Y $. The proof system must be 
-complete, sound and zero-knowledge ([[16]], [[23]]).
-  - Complete: If the statement is true and both prover and verifier follow the protocol, the verifier will accept.
+method by which one party (the *prover*) can convince another party (the *verifier*) that a statement $ Y $ is true, 
+without conveying any information apart from the fact that the *prover* knows the value of $ Y $. The proof system must 
+be complete, sound and zero-knowledge ([[16]], [[23]]):
+  - Complete - if the statement is true and both *prover* and *verifier* follow the protocol, the *verifier* will accept.
 
-  - Sound: If the statement is false, and the verifier follows the protocol, the verifier will not be convinced.
+  - Sound - if the statement is false, and the *verifier* follows the protocol, the *verifier* will not be convinced.
 
-  - Zero-knowledge: If the statement is true and the prover follows the protocol, the verifier will not learn any 
-  confidential information from the interaction with the prover, apart from the fact that the statement is true.
+  - Zero-knowledge - if the statement is true and the *prover* follows the protocol, the *verifier* will not learn any 
+  confidential information from the interaction with the *prover*, apart from the fact that the statement is true.
 
 [zk~]: #zk
 "In cryptography, a zero-knowledge 
@@ -1064,7 +1068,7 @@ one party (the prover) can convince ..."
 
 ### Appendix B: Notation Used
 
-The general notation of mathematical expressions when specifically referenced are listed here, based on [[1]].
+The general notation of mathematical expressions when specifically referenced is given here, based on [[1]].
 
 - Let  $ p $ and $ q $ be large prime numbers.
 - Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively.
@@ -1083,9 +1087,9 @@ respectively. This excludes the element $ 0 $ which is not invertible.
 
 ## Contributors
 
-- [https://github.com/hansieodendaal](https://github.com/hansieodendaal)
-- [https://github.com/CjS77](https://github.com/CjS77)
-- [https://github.com/SWvheerden](https://github.com/SWvheerden)
-- [https://github.com/philipr-za](https://github.com/philipr-za)
-- [https://github.com/neonknight64](https://github.com/neonknight64)
-- [https://github.com/anselld](https://github.com/anselld)
+- <https://github.com/hansieodendaal>
+- <https://github.com/CjS77>
+- <https://github.com/SWvheerden>
+- <https://github.com/philipr-za>
+- <https://github.com/neonknight64>
+- <https://github.com/anselld>
