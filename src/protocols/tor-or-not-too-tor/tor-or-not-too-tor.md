@@ -64,8 +64,8 @@ on sensitive topics.
 
 ### When not to use Tor
 
-Do not use the Tor Browser if you want end-to-end encryption to a non-```.onion``` site such as your banking site, as 
-the ```Exit Node``` ends encryption and your data can be intercepted between the Exit Node and the destination server.
+Do not use the Tor Browser if you want end-to-end encryption to a non-```.onion``` site such as a banking site, as the 
+```Exit Node``` ends the Tor encryption and your traffic can be intercepted between the Exit Node and the destination server.
 
 
 
