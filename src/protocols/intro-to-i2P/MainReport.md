@@ -1,4 +1,4 @@
-# Introduction to I2P Network and Comparison with Tor
+# The I2P Network - An Introduction
 
 - [Background](#background)
 - [Introduction to I2P Network](#introduction-to-i2p-network)
