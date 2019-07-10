@@ -26,9 +26,9 @@
 ## Background
 Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks used by
 millions of people across the world. Most people use them as a way to securely and privately browse the Internet. These
-networks have very similar characteristics but also very big differences and hence work in very specific ways.
+networks have very similar characteristics but also have very big differences in the ways that they try to anonymise the internet traffic of users.
 
-In this report we'll examine what the I2P network is, the paradigms of how it works, its security infrastructure and its
+In this report, we'll examine what the I2P network is, the paradigms of how it works, its security infrastructure and its
 usefulness in the blockchain domain.
 
 ## Introduction to I2P Network
@@ -45,8 +45,7 @@ Regarding I2P, the first concept to understand is that it is primarily an enclos
 infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and the Tor network, which are built to
 communicate with the Internet anonymously, I2P works as a decentralized network that operates within the Internet, i.e. an Internet within the Internet. Interaction is done on a peer-to-peer (node-to-node) level and there is no 
 centralized authority that handles the network or keeps track of the active peers. A node in the network can either be a 
-server that hosts a darknet service, or a client who accesses said servers to use their services [[6]]. Tor and VPNs, 
-on the other hand, have centralized authorities where the messages/data and network are managed. Since I2P works within its 
+server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor and VPNs on the other hand, have centralized authorities where the messages/data and network are managed. Since I2P works within its 
 own network, it is primarily made up of anonymous and hidden sites (called *eepsites*) that exist only within this network 
 and are only accessible to people using I2P. These sites can easily be created using an **I2PTunnel** service that uses 
 a standard web server.
@@ -64,7 +63,7 @@ connections with other I2P routers on other devices. Connections are referred to
 an *Outbound Tunnel* and an *Inbound Tunnel*. When communication occurs, data leaves the user's devices via the 
 outbound tunnels and is received on other devices through their inbound tunnels. Messages do not travel in two directions within 
 the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels [[4]], as shown in Figure&nbsp;1.
-Messages that leave one device do not travel directly to the inbound tunnel of the destination devices intended.
+Messages that are sent from one device do not travel directly to the inbound tunnel of the destination device.
 Instead, the outbound router queries a distributed network database by travelling through exploratory channels to get
 the address of the inbound router. This database is comprised of a custom Kademlia style Distributed Hash Table (DHT)
 that contains the router information and destination information.
@@ -168,13 +167,13 @@ In eclipse attacks, a set of malicious and colluding nodes arranges that a good 
 peer only with malicious nodes. The union of malicious nodes therefore fools the good node into writing its
 addresses into neighboring lists of good nodes. In a Sybil attack, a single malicious node possesses a large number of 
 identities in the network to control some part of the network. If an attacker wants to continue a Sybil attack into an eclipse 
-attack, the attacker will try to place the malicious nodes in the strategic routing path in such a way that all traffic 
+attack, the attacker will try to place malicious nodes in the strategic routing path in such a way that all traffic 
 will pass through the attacker's node. However, the eclipse attack is possible even if there is a defence, such as certified node identities, against the Sybil 
 attack [[8]].
 
 ### Brute Force Attacks
-Brute force attacks on the I2P network can be mounted by actively watching the network's messages pass between all of 
-the nodes and attempting to correlate which message follows which path. Since all peers in the network are frequently 
+Brute force attacks on the I2P network can be mounted by actively watching the network's messages as they pass between all of 
+the nodes and attempt to correlate messages and their route. Since all peers in the network are frequently 
 sending messages, this attack is trivial. The attacker can send out large amounts of data (more than 2GB), observe all the nodes and narrow 
 down those that routed the message. The large chunk of data is necessary because inter-router communication is encrypted 
 and streamed, i.e. 1,024&nbsp;byte data is indistinguishable from 2,048&nbsp;byte data. Mounting this attack is, however, very difficult and 
@@ -194,7 +193,7 @@ defences against these attacks, as users within the network are routers by defau
 
 #### Starvation Attack
 A user/node may try to launch a starvation attack by creating a number of bad nodes that do not provide any resources or services to the network, causing existing peers to search through a larger network database or request more tunnels than 
-should be necessary. An attempt to find nodes can be difficult, as they are not different to failing or loaded nodes. 
+should be necessary. An attempt to find useful nodes can be difficult, as there are no differences between them and failing or loaded nodes. 
 However, I2P, by design, maintains a profile of all peers and attempts to identify and ignore poorly performing nodes, making 
 this attack difficult.
 
