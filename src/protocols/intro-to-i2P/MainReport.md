@@ -59,13 +59,12 @@ through opening an outproxy that allows an anonymous Internet connection to be c
 #### Routing Infrastructure and Anonymity
 
 I2P works by installing an I2P routing service within a user's device. This router creates temporary, encrypted, one-way 
-connections with other I2P routers on other devices. Connections are referred to as one way because they are made up of 
+connections with I2P routers on other devices. Connections are referred to as one way because they are made up of 
 an *Outbound Tunnel* and an *Inbound Tunnel*. When communication occurs, data leaves the user's devices via the 
 outbound tunnels and is received on other devices through their inbound tunnels. Messages do not travel in two directions within 
 the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels [[4]], as shown in Figure&nbsp;1.
-Messages that are sent from one device do not travel directly to the inbound tunnel of the destination device.
-Instead, the outbound router queries a distributed network database by travelling through exploratory channels to get
-the address of the inbound router. This database is comprised of a custom Kademlia style Distributed Hash Table (DHT)
+Messages sent from one device do not travel directly to the inbound tunnel of the destination device.
+Instead, the outbound router queries a distributed network database for address of the inbound router. This database is comprised of a custom Kademlia style Distributed Hash Table (DHT)
 that contains the router information and destination information.
 For each application/client, the I2P router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the
 network database are shared among all users of
@@ -79,7 +78,7 @@ to anonymity [[3]].
 
 #### Networking and Network Database
 
-The distributed network database in I2P (called netDb) contains two types of data:
+The NetDB, discussed earlier, is implemented as a DHT and is propagated via so-called floodfill routers using the Kademlia algorithm, making I2P a decentralised network. For a router to start participating in the I2P network it requires a part of the NetDB in which the information resides it needs to communicate to other participants of the network. Obtaining the NetDB is called bootstrapping and happens by ’reseeding’ the router. By default, a router will reseed the first time it starts by querying some hard-coded domain names via the Domain Name System. When a router can successfully establish a connection to one of these domains a Transport Layer Security (TLS) connection is set up through which the router downloads a signed partial copy of the NetDB. Once the router can reach at least one other participant, the router will query for other parts of the NetDB it does not have itself. Alternatively reseeding can be done manually by uploading a zip-archive which has a part of the NetDB. [[12]]
 
 - router information; and
 - LeaseSets.
@@ -320,6 +319,12 @@ Date accessed: 2019&#8209;06&#8209;20.
 "I2P Compared to Tor 
 and Freenet"
 
+
+[[12]] Tim de Boer & Vincent Breider: "Invisible Internet Project - MSc Security and Network Engineering Research Project." [online].
+Available: <https://www.delaat.net/rp/2018-2019/p63/report.pdf> Date accessed: 2019&#8209;07&#8209;10.
+
+[12]: https://www.delaat.net/rp/2018-2019/p63/report.pdf
+"Invisible Internet Project - MSc Security and Network Engineering Research Project"
 ## Contributors
 
 - <https://github.com/mhlangagc>
