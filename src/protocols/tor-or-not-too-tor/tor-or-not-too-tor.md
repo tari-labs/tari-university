@@ -106,6 +106,16 @@ Tor has weaknesses. For example, if you are the only person using Tor on your ho
 network, you will be discovered. This is called a time/traffic correlation attack. For an interesting talk about some 
 of the Tor attacks, refer to [[6]].
 
+Two examples of where people using Tor that were discovered:
+- 16th December 2013, Havard University received a bomb threat, that was tracked down to Eldo Kim, who 
+was one of the few people using Tor on the campus network when the email had been sent. After questioning, 
+admitted he had sent the hoax bomb threat, as he wanted to get out of an exam. [[7]]  
+- Hector Xavier Monsegur(Sabu) normally used Tor for connecting to IRC but was caught not using it once 
+and FBI found his home IP. After 
+being caught, he started to collaborate with the FBI.  
+While Hector was chatting to Jeremy Hammond(sup_g) on IRC, Jeremy let slip where he had been arrested before 
+and other groups he had been involved with. This helped reduce the number of suspects and FBI were able to 
+get a court order to monitor internet access and was able to correlate when Jeremy was using Tor.[[8]]
 
 
 ## Conclusion
@@ -176,6 +186,17 @@ Date accessed: 2019&#8209;05&#8209;16.
 "YouTube: DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: 
 How People Got Caught"
 
+[[7]] Ars Technica: "Use of Tor helped FBI ID suspect in bomb hoax case" [online]. Available: 
+<https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/>. Date accessed: 2019&#8209;07&#8209;11.
+
+[7]: https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/
+"Ars Technica: Use of Tor helped FBI ID suspect in bomb hoax case"
+
+[[8]] Ars Technica: "Stakeout: how the FBI tracked and busted a Chicago Anon" [online]. Available: 
+<http://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. Date accessed: 2019&#8209;07&#8209;11.
+
+[8]: http://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
+"Ars Technica: Stakeout: how the FBI tracked and busted a Chicago Anon"
 
 
 ## Appendices
@@ -188,7 +209,7 @@ Onion Services - Tor services that don’t leave the Tor network: <https://2019.
 
 - [What is Tor Browser?](https://www.le-vpn.com/what-is-tor-browser/)
 - [The Ultimate Guide to Tor Browser (with Important Tips) 2019](https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/)
--  [Metrics of the Tor Project](https://metrics.torproject.org)
+- [Metrics of the Tor Project](https://metrics.torproject.org)
 - [Sharing files using Tor](https://onionshare.org)
 - [Blog post about OnionShare2 and its release](https://blog.torproject.org/new-release-onionshare-2)
 - [List of Tor Projects](https://2019.www.torproject.org/projects/projects.html.en)
