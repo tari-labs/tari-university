@@ -757,12 +757,12 @@ to the dealer, who computes $ \mathbf{l},\mathbf{r} $ as the interleaved concate
 inner product argument ([Protocol&nbsp;1](#inner-product-argument-protocol-1)) to generate the final proof. Each proof 
 component is the (homomorphic) sum of each party's proof components and each share constitutes part of a separate 
 zero-knowledge proof. Figure&nbsp;7 shows an example of the MPC protocol implementation using three rounds with linear 
-communication: 
+communication [[29]]: 
 
 <p align="center"><img src="sources/MPC-diagram.png" width="850" /></p>
 <div align="center"><b>Figure&nbsp;7: MPC Implementation Example 
-[<a href="https://doc-internal.dalek.rs/bulletproofs/aggregation/index.html" title="Dalek Cryptography - 
-Module bulletproofs::aggregation">34</a>]</b></div>
+[<a href="https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html" title="Dalek Cryptography - 
+Module bulletproofs::range_proof_mpc">29</a>]</b></div>
 
 
 The communication can be reduced by running a second MPC protocol for the inner product argument, reducing the rounds 
@@ -993,7 +993,7 @@ built with their programmable constraint system:
 [<a href="https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7" 
 title="Programmable Constraint Systems for Bulletproofs,
 Interstellar,
-Cathie Yun">24</a>]</b></div>
+Cathie Yun">23</a>]</b></div>
 
 
 
@@ -1243,6 +1243,13 @@ University of Luxembourg"
 "An Investigation into Confidential Transactions, 
 A. Gibson, 
 July 2018"
+
+[[29]] "Dalek Cryptography - Module bulletproofs::range_proof_mpc" [online]. Available: <https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html>. Date accessed: 
+2019&#8209;07&#8209;10.
+
+[29]: https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html
+"Dalek Cryptography - 
+Module bulletproofs::range_proof_mpc"
 
 
 ## Appendices
