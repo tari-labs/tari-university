@@ -29,10 +29,17 @@ refers to the way in which Tor protects your data, by wrapping it in multiple la
 of encryption, similar to the layers of an onion.
 
 Tor uses a unique system that was developed by the US Navy to protect 
-government intelligence communications. It is part of the ```Tor Browser``` package, where the Tor Browser has been 
-configured to proxy requests via the Tor network.  
+government intelligence communications.  
 
-The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such as OnionShare, run on top of or via the Tor network. These tools are meant to make using the Tor network as simple and secure as possible.  
+The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such 
+as OnionShare, run on top of or via the Tor network. These tools are meant to make using 
+the Tor network as simple and secure as possible.  
+
+Some tools, like the Tor Browser Bundle, come as a single downloadable and installable 
+package. Setup and containing everything needed to use the Tor network and be anonymous.  
+
+Almost any network tool or application that can be configure to use a SOCKS proxy can be setup to use the Tor network service.  
+
 
 ### Purpose of this Report
 
