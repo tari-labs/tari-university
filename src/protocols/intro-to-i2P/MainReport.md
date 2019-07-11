@@ -127,7 +127,7 @@ Figure&nbsp;2 illustrates the end-to-end message bundling:
 
 ## Threat Model, Security and Vulnerability Attacks
 The I2P project has no explicit threat model specified but rather talks about common attacks and existing defenses against them. Overall, the design of I2P is motivated by threats similar to those addressed by Tor: The attacker can
-observe traffic locally but not all traffic flowing through the network and integrity of all cryptographic primitives is assumed. Furthermore, an attacker is only allowed to control a limited amount of peers in the network (the website talks about not more than 20 % of nodes participating in the netDB and a similar fraction of total amount of nodes controlled by the malicious entity). In this section, we'll look at different threat models affecting the network. 
+observe traffic locally but not all traffic flowing through the network and integrity of all cryptographic primitives is assumed. Furthermore, an attacker is only allowed to control a limited amount of peers in the network (the website talks about not more than 20 % of nodes participating in the netDB and a similar fraction of total amount of nodes controlled by the malicious entity). In this section, we'll look at different threat models affecting the network. [[3]]
 
 ### Sybil Attacks
 The Sybil attack, illustrated in Figure&nbsp;3, is a well-known anonymity system attack in which the malicious user creates multiple identities in an 
@@ -305,6 +305,7 @@ Available: <https://www.delaat.net/rp/2018-2019/p63/report.pdf> Date accessed: 2
 
 [12]: https://www.delaat.net/rp/2018-2019/p63/report.pdf
 "Invisible Internet Project - MSc Security and Network Engineering Research Project"
+
 ## Contributors
 
 - <https://github.com/mhlangagc>
