@@ -229,7 +229,7 @@ Developer Funding Campaign run by Yeastplume to fund his full-time involvement i
 February&nbsp;2019. Refer to [[26]].
 
 In terms of the monetary policy of the two projects, BEAM has stated that it will be using a deflationary model with 
-periodic halving of its mining reward and a maximum supply of BEAM of ~262 million coins. BEAM will start with 
+periodic halving of its mining reward and a maximum supply of BEAM of 262,800,000 coins. BEAM will start with 
 100 coins emitted per block. The first halving will occur after one year. Halving will then happen every four years 
 [[32]]. Grin has opted for an inflationary model where the block reward will remain constant, making its arguments 
 for this approach in [[27]]. This approach will asymptotically tend towards a zero percent dilution as the supply 
@@ -254,12 +254,12 @@ BEAM project. The following list summarizes the functional similarities and diff
   - Partial history syncing
   - DAG representation of Mempool to prevent duplicate UTXOs and cyclic transaction references
 - BEAM unique features:
+  - Secure BBS system hosted on the nodes for establishing communication between wallets. Removes the need for sender and receiver to be online at the same time.
+  - Use of decoy outputs in Dandelion stem phase. Decoy outputs are later spent to avoid clutter on blockchain
   - Explicit UTXO incubation period
   - Timelocks with a minimum and maximum threshold
   - Auditable transactions as part of the roadmap
-  - Secure BBS system hosted on the nodes for non-interactive transaction negotiation
-  - One-sided transaction construction
-  - Incentives to consume old UTXOs in order to keep the blockchain compact
+  - One-sided transaction construction for non-interactive payments
   - Use of Radix-Hash trees
 
 Both projects are still very young. As of the writing of this report (May&nbsp;2019), both are still in the testnet phase, and many of 
