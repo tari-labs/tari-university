@@ -254,10 +254,9 @@ BEAM project. The following list summarizes the functional similarities and diff
   - Partial history syncing
   - DAG representation of Mempool to prevent duplicate UTXOs and cyclic transaction references
 - BEAM unique features:
-  - Both confidential and non-confidential transactions
   - Explicit UTXO incubation period
   - Timelocks with a minimum and maximum threshold
-  - Auditable transactions
+  - Auditable transactions as part of the roadmap
   - Secure BBS system hosted on the nodes for non-interactive transaction negotiation
   - One-sided transaction construction
   - Incentives to consume old UTXOs in order to keep the blockchain compact
