@@ -46,7 +46,7 @@ A consensus protocol enables a system of *n* asynchronous processes, some of the
 
 ### Threshold Cryptography 
 
-There are consensus protocols that use threshold cryptography to encrypt and decrypt sets of transactions. A threshold value *t* is sent so that any group of *t+1* nodes in the netwrok can collaborate to decrypt messages adn construct digitial signatures. The threshold must be met, but is can be met by any combination of active nodes. https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87
+There are consensus protocols that use threshold cryptography to encrypt and decrypt sets of transactions. A threshold value *t* is sent so that any group of *t+1* nodes in the netwrok can collaborate to decrypt messages adn construct digitial signatures. The threshold must be met, but is can be met by any combination of active nodes. [[5]] 
 
 ## Introduction
 (What you researched and why)
@@ -70,6 +70,8 @@ Validator nodes form committees to manage the digital assets, their state change
 
 Where was the idea borne from? 
 
+### XOR Metric
+
 ## Literature Review 
 (Other relevant research in this area)
 
@@ -81,7 +83,7 @@ It was developed as part of the atomic program, by a scientist at the Los Alamos
 
 Monte Carlo analysis utlizes statical tools to mathematically model a real life system or process and tehn it estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled must be determined first before Monte Carlo simulation can be applied. 
 
-Monte Carlo methods are idely used heuristic techniques which can solce a variety of common problems including optimization and numerical intergration problems. These algorithms work by cleverly sampling from a distribution to simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends in financial investments. https://towardsdatascience.com/monte-carlo-simulations-with-python-part-1-f5627b7d60b0
+Monte Carlo methods are idely used heuristic techniques which can solce a variety of common problems including optimization and numerical intergration problems. These algorithms work by cleverly sampling from a distribution to simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends in financial investments. [[6]] 
 
 #### Monte Carlo Fallacy 
 
@@ -93,12 +95,22 @@ illustrate the flaws of the gamblers falacity
 
 The Monte Carlo technique is built upon this principle: instead of evaluating an indefinite integral, which can sometimes be impossible, the average of the integrand is estimated and that is used to approximate the integral. If one needs to be more precise, the number of samples can be increased. 
 
+#### The Law of Large Numbers 
 
+The law of large numbers (LLN), in probability and statistics, states that as a sample size grows, its mean gets closer to the average of the whole population. In statistical analysis, the law of large numbers can be applied to a variety of subjects. It may not be feasible to poll every individual within a given population to collect the required amount of data, but every additional data point gathered has the potential to increase the likelihood that the outcome is a true measure of the mean. [[7]] 
+
+The LLN is important beacuse it guatantees stable long-term results from the [[8]] 
+
+![law_of_large_numbers](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/law_of_large_numbers.png)
+
+The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right) they would be extremely similar. 
+
+By Pred - Own work, CC0, [[9]]
 
 
 ### Types of Distribution 
 
-When considering solving the probability of the of an attacker controlling the majority of nodes in the network, the various types of probability distributions need to be analysed with regards to the specific circumstances and variables of the problem. Types of probability distribution can be split into finite and infinite support [[1]]; where support is defined as a real-valued function *f*, which is the subset of the domain containing those elemets which are not mapped to zero. If the domain of *f* is a topological space, teh support of *f* is instead defined as the smallest closed set containing all points not mapped to zero. [[2]] 
+When considering solving the probability of the of an attacker controlling the majority of nodes in the network, the various types of probability distributions need to be analysed with regards to the specific circumstances and variables of the problem. Types of probability distribution can be split into finite and infinite support [[1]]; where support is defined as a real-valued function *f*, which is the subset of the domain containing those elemets which are not mapped to zero. If the domain of *f* is a topological space, the support of *f* is instead defined as the smallest closed set containing all points not mapped to zero. [[2]] 
 
 #### Hypergeometric Distribution:
 
@@ -127,7 +139,7 @@ The hypergeometric distribution has the following properties:
 
 - The variance is $ n\cdot k \cdot(N-k)\cdot\frac{N-n}{N^2\cdot(N-1)}$
 
-https://stattrek.com/probability-distributions/hypergeometric.aspx
+[[10]] https://stattrek.com/probability-distributions/hypergeometric.aspx
 
 
 
@@ -137,7 +149,7 @@ The binomial distribution with parameters Selecting nodes with replacement, i.e.
 
 Example: You have an urn of 10 marbles -5 red and 5 green, You randomly select 2 marbles with replacement, the probability of siccess would not change. It would be 5/10 on every trial. https://stattrek.com/probability-distributions/hypergeometric.aspx
 
-## Methodolgy 
+## Methodology 
 (What you did and how you found it)
 
 Based on the understanding of the problem, statisical analysis using hypergeometric distribution was conducted.  
@@ -240,8 +252,6 @@ $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
 $$
 
-
-
 show a hypergeometric distribution graph
 
 ### Implementation with Excel 
@@ -283,8 +293,6 @@ Python is a multi-paradigm programming language. It supports object-oriented pro
 ### Demonstration 
 
 Insert hotlink with python link for the static.py 
-
-
 
 ### Probabilistic Attack Graphs 
 
@@ -333,9 +341,17 @@ From a plot of committee size versus probability where the number of nodes remai
 
 - It is interesting to note that in the case were there is 
 
-  
+
+### Monte Carlo Simulation
+
+
+
+### Randomness (Histogram of Randomness) 
+
+### Law of Large Numbers 
 
 ### Discussion 
+
 (Relevance of your results, how it fits with other research in the area)
 
 #### Function 
@@ -371,6 +387,27 @@ Date accessed: 2019-05-13.
 [4]: https://en.wikipedia.org/wiki/Binomial_distribution
 “Binomial distribution"
 
+[[5]] ?? Availiable:<https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87>. Date accessed: 2019-06-28 
+
+[5]: https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87
+
+[[6]]?? Available: <https://towardsdatascience.com/monte-carlo-simulations-with-python-part-1-f5627b7d60b0>. Date accessed: 2019-06-28
+
+[6]:  https://towardsdatascience.com/monte-carlo-simulations-with-python-part-1-f5627b7d60b0
+
+[[7]] ?? Available: <https://www.investopedia.com/terms/l/lawoflargenumbers.asp>. Date accessed: 2019-06-28
+
+[7]: https://www.investopedia.com/terms/l/lawoflargenumbers.asp
+
+[[8]]?? Available: <https://en.wikipedia.org/wiki/Law_of_large_numbers>. Date accessed: 2019-06-28
+
+[8]: https://en.wikipedia.org/wiki/Law_of_large_numbers
+
+[[9]]?? Available: <https://commons.wikimedia.org/w/index.php?curid=58536069>. Date accessed: 2019-06-28 
+
+[9]: https://commons.wikimedia.org/w/index.php?curid=58536069
+
+[[10]]?? Available: <
 
 
 
