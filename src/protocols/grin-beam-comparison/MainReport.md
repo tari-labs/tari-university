@@ -128,6 +128,11 @@ key can identify those transactions on the blockchain, but cannot create transac
 allows a business to provide visibility of its transactions to a given authority without compromising its privacy 
 to the public [[14]].
 
+BEAM's implementation of Dandelion improves privacy by adding decoy transaction outputs at the Stem phase. Each such 
+output has a value of zero, but is indistinguishable from regular outputs. At a later stage (a randomly calculated 
+number of blocks for each output), the UTXOs are added as inputs to new transactions, thus spending them and removing
+them from the blockchain.
+
 BEAM has also proposed another feature aimed at keeping the blockchain as compact as possible. In Mimblewimble, as 
 transactions are added, cut-through is performed, which eliminates all intermediary transaction commitments [[3]]. 
 However, the transaction kernels for every transaction are never removed. BEAM has proposed a scheme to reuse these 
@@ -153,7 +158,7 @@ would involve revealing your blinding factor to the counterparty. BEAM solves th
 *kernel fusion*, whereby a kernel can include a reference to another kernel so that it is only valid if both kernels are 
 present in the transaction. In this way, the payee can build their half of the transaction with a secret blinding factor 
 and a kernel that compensates for their blinding factor, which **must** be included when the payer completes the 
-transaction [[13]]. BEAM has indicated that this feature will be part of the initial release.
+transaction [[13]]. 
 
 Both projects make use of a number of Merkle tree structures to keep track of various aspects of the respective 
 blockchains. Details of the exact trees and what they record are documented for both projects ([[16]], [[17]]). BEAM, 
