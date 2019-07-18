@@ -112,6 +112,99 @@ By Pred - Own work, CC0, [[9]]
 
 When considering solving the probability of the of an attacker controlling the majority of nodes in the network, the various types of probability distributions need to be analysed with regards to the specific circumstances and variables of the problem. Types of probability distribution can be split into finite and infinite support [[1]]; where support is defined as a real-valued function *f*, which is the subset of the domain containing those elemets which are not mapped to zero. If the domain of *f* is a topological space, the support of *f* is instead defined as the smallest closed set containing all points not mapped to zero. [[2]] 
 
+#### Continuous Distribution 
+
+In order to understand continuous distribution, a continuous random variable needs to be defined. A continuous random variaible is a random variable with a set of possible values, a range, that is inifinite and as such, uncountable. [[11]]
+
+Probabilities of continuous random variables (X) are defined as the area under the curve of its PDF, probability density function. <sup>[def][zk~]</sup> Therefore the only ranges of values can have a nonzero probability. The probability that a continuous random variable equals some value is always zero. [[11]]
+
+![distribution_plot_normal_weight_shade_middle](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/distribution_plot_normal_weight_shade_middle.png)
+
+The continuous normal distribution can describe the distribution of weight of adult males. For example, you can calculate the probability that a man weighs between 160 and 170 pounds.
+
+Distribution plot of the weight of adult males
+The shaded region under the curve in this example represents the range from 160 and 170 pounds. The area of this range is 0.136; therefore, the probability that a randomly selected man weighs between 160 and 170 pounds is 13.6%. The entire area under the curve equals 1.0.
+
+However, the probability that X is exactly equal to some value is always zero because the area under the curve at a single point, which has no width, is zero. For example, the probability that a man weighs exactly 190 pounds to infinite precision is zero. You could calculate a nonzero probability that a man weighs more than 190 pounds, or less than 190 pounds, or between 189.9 and 190.1 pounds, but the probability that he weighs exactly 190 pounds is zero.
+
+Examples of continuous distribution include the following: 
+
+| Type of continuous distribution | Description |
+| ------------------------------- | ----------- |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+|                                 |             |
+
+#### Discrete Distributions 
+
+Likewise, in order to understand discrete distribution, a discrete random variable requires definition. A discrete random variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution, thus describes the probability of occurrence of each value of a discrete random variable. [[11]]
+
+With a discrete probability distribution, each possible value of the discrete random variable can be associated with a non-zero probability. Thus, a discrete probability distribution is often presented in tabular form. [[11]]
+
+![distribution_plot_poisson_shade_right_tail](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/distribution_plot_poisson_shade_right_tail.png)
+
+With a discrete distribution, unlike with a continuous distribution, you can calculate the probability that X is exactly equal to some value. For example, you can use the discrete Poisson distribution to describe the number of customer complaints within a day. Suppose the average number of complaints per day is 10 and you want to know the probability of receiving 5, 10, and 15 customer complaints in a day.
+
+| x    | P(X=x)   |
+| ---- | -------- |
+| 5    | 0.037833 |
+| 10   | 0.125110 |
+| 15   | 0.034718 |
+
+The shaded bars in this example represents the number of occurrences when the daily customer complaints is 15 or more. The height of the bars sums to 0.08346; therefore, the probability that the number of calls per day is 15 or more is 8.35%.
+
+Examples of discrete distribution with **finite** support include the following: 
+
+| Type of finite discrete distribution              | Description                                                  |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Bernouli Distribution                             | Takes value 1 with probability $p$ and value 0 with probability $q=1-p$ |
+| Rademacher Distribution                           | Takes value 1 with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$ |
+| Binomial Distribution                             | The number of successes in a series of independent Yes/No experiments all with the same probability of success |
+| Beta-Binomial Distribution                        | The number of successes in a series of independent Yes/No experiments with heterogeneity in the success probability |
+| Degenate Distribution                             | at x0, where $X$ is certain to take the value x0. This does not look random, but it satisfies the definition of random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
+| Discrete Uniform Distribution                     | where all elements of a finite set are equally likely. This is the theoretical distribution model for a balances coin, an unbiased die, a casino roulette, or the first card of a well-shuffled deck |
+| Hypergeometric Distribution                       | The number of successes in the first $m$ of a series of $n$ consective Yes/No experiments, if the total numebr of successes is known. This distribution arises where there is no replacement |
+| Poisson Biomial  Distribution                     | The number of successes in a series of independent Yes/No experiments with different success probabilities |
+| Fisher's Noncentral Hypergeometric Distribution   |                                                              |
+| Wallenius' Noncentral Hypergeometric Distribution |                                                              |
+| Benford's Law                                     |                                                              |
+| Soliton Distribution                              |                                                              |
+
+Examples of discrete distribution with **infinite** support include the following: 
+
+| Type of infinite discrete distribution  | Description |
+| --------------------------------------- | ----------- |
+| Beta Negative Binomial Distribution     |             |
+| Boltzmann Distribution                  |             |
+| Borel Distribution                      |             |
+| Extended Negative Binomial Distribution |             |
+| Extended Hypergeometric Distribution    |             |
+| Generalized Log-Series Distribution     |             |
+| Geometric Distribution                  |             |
+| Logarithmic (Series) Distribution       |             |
+| Negative Binomial Distribution          |             |
+| Compound Poisson Distribution           |             |
+| Parabolic Fractal Distribution          |             |
+| Poisson Distribution                    |             |
+| Polya-Eggenberger Distribution          |             |
+| Skellam Distribution                    |             |
+| Skew Elliptical Distribution            |             |
+| Yule-Simon Distribution                 |             |
+| Zeta Distribution                       |             |
+| Zipf's Law                              |             |
+| Zipf-Mandelbrot Law                     |             |
+
+
+
+
 #### Hypergeometric Distribution:
 
 Hypergeometric distribution is a dicrete probability distribution that describes the probability *k* successes (random draws for which the object drawn has a specified feature) in *n* draws, *without* replacement, from a finite population of  size *N* that contains exactly *K* objects with that feature, wherein each draw is either a success or a failure. [[3]]
@@ -375,6 +468,8 @@ Standard Deviation" 0.02083756242980528
 
 #### Randomness (Histogram of Randomness) 
 
+Definitions of mean, median and mode. 
+
 Mean: 7500.0
 Median: 7493.5
 There is no mode!
@@ -454,7 +549,25 @@ Date accessed: 2019-05-13.
 
 [10]: https://stattrek.com/probability-distributions/hypergeometric.aspx
 
+[[11]]?? Available:<https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/>. Date accessed: 2019-07-18
 
+[11]: https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/
+
+[[12]]?? Available: <https://en.wikipedia.org/wiki/Probability_density_function>. Date accessed: 2019-07-18
+
+[12]: https://en.wikipedia.org/wiki/Probability_density_function
+
+## Appendices
+
+Appendix A: Definitions of Terms 
+
+Definitions of terms peresentated here are high level and general in nature. Fill statistical definitions are available in the cited references. 
+
+- **Probability Density Function:**<a name="pdf"> </a> A statistical expression that defines a probability distribution for a continuous random variable instead of a. discrete random variable. [[11]][[12]]
+
+[pdf~]: #pdf
+" A statistical expression that 
+defines a..." 
 
 
 ## Contributions
