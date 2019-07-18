@@ -139,7 +139,7 @@ The hypergeometric distribution has the following properties:
 
 - The variance is $ n\cdot k \cdot(N-k)\cdot\frac{N-n}{N^2\cdot(N-1)}$
 
-[[10]] https://stattrek.com/probability-distributions/hypergeometric.aspx
+[[10]] 
 
 
 
@@ -147,7 +147,7 @@ The hypergeometric distribution has the following properties:
 
 The binomial distribution with parameters Selecting nodes with replacement, i.e. selecting each node, noting whether it is malicious or friendly and returning back to the committee. [[4]] a bionomial experiment requires that the probability of success be constant on every trial. 
 
-Example: You have an urn of 10 marbles -5 red and 5 green, You randomly select 2 marbles with replacement, the probability of siccess would not change. It would be 5/10 on every trial. https://stattrek.com/probability-distributions/hypergeometric.aspx
+Example: You have an urn of 10 marbles -5 red and 5 green, You randomly select 2 marbles with replacement, the probability of siccess would not change. It would be 5/10 on every trial.[[10]] 
 
 ## Methodology 
 (What you did and how you found it)
@@ -324,29 +324,72 @@ From a plot of committee size versus probability with a change in $N$, the total
 From a plot of committee size versus probability where the number of nodes remains at 500 with a change in $T$, the BFT threshold, ranging from 50% to 67%, it can be seen that: 
 
 - When the BFT threshold is 50% the probability is lower when the committee size is small, the probabiltiy increases when the committee size increases, and eventually tends to one.
-
 - When the BFT threshold is 55% the probability is lower when the committe size is small, the probability increases when the committee size increases, and eventually tends to one. 
-
 - A similar trend is followed for the cases where the BFT threshold is 50% and 55%
-
 - The probability is higher for the case where the BFT threshold is 50% than when the probability is 55% 
-
 - When the BFT threshold is 60% the probability decreases from 0.63 to approxiamtely 0.53 where it remains constant 
-
 - When the BFT threshold is 65% the probability decreases from 0.38 and tends to zero 
-
 - When the BFT threshold is 67% the probability decreases from 0.38 and tends to zero 
-
 - A similar trend is followed for the cases where the BFT threshold is 65% and 67% 
-
 - It is interesting to note that in the case were there is 
+
+<u>Example data</u> 
+
+Total nodes= 100       
+
+Bad nodes= 60
+
+Committee Size= 3
+
+Threshold= 2
+
+P_tot= 0.649474335188621  
+
+
+
+Therefore y= 0.649474335188621  
 
 
 ### Monte Carlo Simulation
 
+What is the total amount of nodes? 100
 
+What is the amount of bad nodes? 60
 
-### Randomness (Histogram of Randomness) 
+How many nodes are to be drawn? 3
+
+What is the BFT threshold within the committee? 2
+
+What is the no of draws within an experiment? 500
+
+How many experiments? 500
+
+What is the theoretical mean?0.649474335188621
+
+#### Individual Probabilities 
+Slope: -8.167040668162673e-06
+Intercept: 0.6516176766467067
+Standard Deviation" 0.02083756242980528
+
+![each_experiments_individual_probability](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/each_experiments_individual_probability.png)
+
+#### Randomness (Histogram of Randomness) 
+
+Mean: 7500.0
+Median: 7493.5
+There is no mode!
+Standard deviation 87.86134623152643
+
+![histogram_of_randomness](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/histogram_of_randomness.png)
+
+#### Proving LLN
+
+![convergence_proving_lln](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/convergence_proving_lln.png)
+
+#### Position of Nodes within Network
+
+![position_of_nodes_within_network](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/position_of_nodes_within_network.png)
+
 
 ### Law of Large Numbers 
 
@@ -407,7 +450,9 @@ Date accessed: 2019-05-13.
 
 [9]: https://commons.wikimedia.org/w/index.php?curid=58536069
 
-[[10]]?? Available: <
+[[10]]?? Available: <https://stattrek.com/probability-distributions/hypergeometric.aspx>. Date accessed: 2019-06-28
+
+[10]: https://stattrek.com/probability-distributions/hypergeometric.aspx
 
 
 
