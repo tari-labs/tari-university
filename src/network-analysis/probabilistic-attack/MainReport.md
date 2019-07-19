@@ -127,22 +127,6 @@ The shaded region under the curve in this example represents the range from 160 
 
 However, the probability that X is exactly equal to some value is always zero because the area under the curve at a single point, which has no width, is zero. For example, the probability that a man weighs exactly 190 pounds to infinite precision is zero. You could calculate a nonzero probability that a man weighs more than 190 pounds, or less than 190 pounds, or between 189.9 and 190.1 pounds, but the probability that he weighs exactly 190 pounds is zero.
 
-Examples of continuous distribution include the following: 
-
-| Type of continuous distribution | Description |
-| ------------------------------- | ----------- |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-|                                 |             |
-
 #### Discrete Distributions 
 
 Likewise, in order to understand discrete distribution, a discrete random variable requires definition. A discrete random variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution, thus describes the probability of occurrence of each value of a discrete random variable. [[11]]
@@ -180,27 +164,27 @@ Examples of discrete distribution with **finite** support include the following:
 
 Examples of discrete distribution with **infinite** support include the following: 
 
-| Type of infinite discrete distribution  | Description |
-| --------------------------------------- | ----------- |
-| Beta Negative Binomial Distribution     |             |
-| Boltzmann Distribution                  |             |
-| Borel Distribution                      |             |
-| Extended Negative Binomial Distribution |             |
-| Extended Hypergeometric Distribution    |             |
-| Generalized Log-Series Distribution     |             |
-| Geometric Distribution                  |             |
-| Logarithmic (Series) Distribution       |             |
-| Negative Binomial Distribution          |             |
-| Compound Poisson Distribution           |             |
-| Parabolic Fractal Distribution          |             |
-| Poisson Distribution                    |             |
-| Polya-Eggenberger Distribution          |             |
-| Skellam Distribution                    |             |
-| Skew Elliptical Distribution            |             |
-| Yule-Simon Distribution                 |             |
-| Zeta Distribution                       |             |
-| Zipf's Law                              |             |
-| Zipf-Mandelbrot Law                     |             |
+| Type of infinite discrete distribution  | Description                                                  |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Beta Negative Binomial Distribution     |                                                              |
+| Boltzmann Distribution                  | A discrete distribution important in statistical physics which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analogue. |
+| Borel Distribution                      |                                                              |
+| Extended Negative Binomial Distribution |                                                              |
+| Extended Hypergeometric Distribution    |                                                              |
+| Generalized Log-Series Distribution     |                                                              |
+| Geometric Distribution                  | A discrete disctribution which describes the number of attempts needed to get the first success in a series of independent Bernoulli trials, or alternatively only the number of losses before the first success (i.e. one less) |
+| Logarithmic (Series) Distribution       |                                                              |
+| Negative Binomial Distribution          | Pascal distribution, a generalization of the geometric distribution of the nth success |
+| Compound Poisson Distribution           |                                                              |
+| Parabolic Fractal Distribution          |                                                              |
+| Poisson Distribution                    | A very large number of individually unlikely events that happen in a certain time interval. Relateed to this distribution are a number of other distributions: the displaced Poisson, the hyper-Poisson, teh general Poissin binomial and the Poissan type distributions. |
+| Polya-Eggenberger Distribution          |                                                              |
+| Skellam Distribution                    | The distribution of the difference between two independent Poisson-distributed random variables. |
+| Skew Elliptical Distribution            |                                                              |
+| Yule-Simon Distribution                 |                                                              |
+| Zeta Distribution                       | Has uses in applied statistics and statistical mechanics, and perhaps may be of interst to number theorists. It is the Zipf distribution for an infinite number of elements. |
+| Zipf's Law                              | A discrete power-law distribution, the most famous example of which is the description of the frequency of words in the English language. |
+| Zipf-Mandelbrot Law                     | A discrete power law distribution whcih is a generalization of the Zipf distribution. |
 
 
 
@@ -233,8 +217,6 @@ The hypergeometric distribution has the following properties:
 - The variance is $ n\cdot k \cdot(N-k)\cdot\frac{N-n}{N^2\cdot(N-1)}$
 
 [[10]] 
-
-
 
 #### Binomial Distribution:
 
@@ -356,8 +338,8 @@ show a hypergeometric distribution graph
 (What you found)
 
 - Certain variables that remain constant 
-  - Total nodes, *N* = 500 
-  - Bad nodes, *m* = 300 
+  - Total nodes, *N* = 100 
+  - Bad nodes, *m* = 60
 - Committee size and Threshold increases as the array increases 
 - As the commitee size increases, the threshold increases  
 
@@ -445,6 +427,8 @@ Therefore y= 0.649474335188621
 
 ### Monte Carlo Simulation
 
+
+
 What is the total amount of nodes? 100
 
 What is the amount of bad nodes? 60
@@ -459,7 +443,12 @@ How many experiments? 500
 
 What is the theoretical mean?0.649474335188621
 
+
+
+
+
 #### Individual Probabilities 
+
 Slope: -8.167040668162673e-06
 Intercept: 0.6516176766467067
 Standard Deviation" 0.02083756242980528
@@ -501,61 +490,69 @@ It has come to light, that in addition to further analysis within the Python env
 
 ## References
 
-[[1]] B. W. Contributors, “List of probability distributions”, 2019. Available: <https://en.wikipedia.org/wiki/List_of_probability_distributions>. 
-Date accessed: 2019-05-13. 
+[[1]] Wikipedia:, “List of probability distributions” [online]. Available: <https://en.wikipedia.org/wiki/List_of_probability_distributions>. 
+Date accessed: 2019&#8209;05&#8209;13.
 
 [1]: https://en.wikipedia.org/wiki/List_of_probability_distributions
 "List of probability distributions"
 
-[[2]] B. W. Contributors, “Support (mathematics)”, 2019. Available: <https://en.wikipedia.org/wiki/Support_(mathematics)>. 
-Date accessed: 2019-05-13. 
+[[2]] Wikipedia, “Support (mathematics)" [online]. Available: <https://en.wikipedia.org/wiki/Support_(mathematics)>. 
+Date accessed: 2019&#8209;05&#8209;13.
 
 [2]: https://en.wikipedia.org/wiki/Support_(mathematics)
-“Support (mathematics)”
+"Support (mathematics)"
 
-[[3]] B. W. Contributors, “Hypergeometric distribution”, 2019. Available: <https://en.wikipedia.org/wiki/Hypergeometric_distribution>. 
-Date accessed: 2019-05-13. 
+[[3]] Wikipedia, “Hypergeometric distribution” [online]. Available: <https://en.wikipedia.org/wiki/Hypergeometric_distribution>. 
+Date accessed: 2019&#8209;05&#8209;13.
 
 [3]: https://en.wikipedia.org/wiki/Hypergeometric_distribution
 "Hypergeometric distribution"
 
-[[4]] B. W. Contributors, “Binomial distribution", 2019. Available: <https://en.wikipedia.org/wiki/Binomial_distribution>. 
-Date accessed: 2019-05-13. 
+[[4]] Wikipedia, “Binomial distribution" [online]. Available: <https://en.wikipedia.org/wiki/Binomial_distribution>. 
+Date accessed: 2019&#8209;05&#8209;13.
 
 [4]: https://en.wikipedia.org/wiki/Binomial_distribution
-“Binomial distribution"
+"Binomial Distribution"
 
-[[5]] ?? Availiable:<https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87>. Date accessed: 2019-06-28 
+[[5]] POA Network Team, "POA Network: HoneyBadger BFT and Threshold Cryptography" [online]. Availiable:<https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87>. Date accessed: 2019&#8209;06&#8209;28.
 
 [5]: https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87
+"POA Network: HoneyBadger BFT and Threshold Cryptography"
 
-[[6]]?? Available: <https://towardsdatascience.com/monte-carlo-simulations-with-python-part-1-f5627b7d60b0>. Date accessed: 2019-06-28
+[[6]]P. Hanbury, "Monte Carlo Simulations with Python (Part 1)" [online]. Available: <https://towardsdatascience.com/monte-carlo-simulations-with-python-part-1-f5627b7d60b0>. Date accessed: 2019&#8209;06&#8209;28.
 
 [6]:  https://towardsdatascience.com/monte-carlo-simulations-with-python-part-1-f5627b7d60b0
+"Monte Carlo Simulations with Python (Part 1)"
 
-[[7]] ?? Available: <https://www.investopedia.com/terms/l/lawoflargenumbers.asp>. Date accessed: 2019-06-28
+[[7]] W. Kenton, "Law of Large Numbers" [online]. Available: <https://www.investopedia.com/terms/l/lawoflargenumbers.asp>. Date accessed: 2019&#8209;06&#8209;28.
 
 [7]: https://www.investopedia.com/terms/l/lawoflargenumbers.asp
+"Investopia: Law of Large Numbers"
 
-[[8]]?? Available: <https://en.wikipedia.org/wiki/Law_of_large_numbers>. Date accessed: 2019-06-28
+[[8]]Wikipedia, "Law of Large Numbers" [online]. Available: <https://en.wikipedia.org/wiki/Law_of_large_numbers>. Date accessed: 2019&#8209;06&#8209;28.
 
 [8]: https://en.wikipedia.org/wiki/Law_of_large_numbers
+"Law of Large Numbers"
 
-[[9]]?? Available: <https://commons.wikimedia.org/w/index.php?curid=58536069>. Date accessed: 2019-06-28 
+[[9]]Wikipedia, "Law of Large Numbers- Average dice roll by number of rolls" [online]. Available: <https://commons.wikimedia.org/w/index.php?curid=58536069>. Date accessed: 2019&#8209;06&#8209;28.
 
 [9]: https://commons.wikimedia.org/w/index.php?curid=58536069
+"Law of Large Numbers- Average dice roll by number of rolls"
 
-[[10]]?? Available: <https://stattrek.com/probability-distributions/hypergeometric.aspx>. Date accessed: 2019-06-28
+[[10]]"Hypergeometric Distribution" [online]. Available: <https://stattrek.com/probability-distributions/hypergeometric.aspx>. Date accessed: 2019&#8209;06&#8209;28.
 
 [10]: https://stattrek.com/probability-distributions/hypergeometric.aspx
+"Hypergeometric Distribution" 
 
-[[11]]?? Available:<https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/>. Date accessed: 2019-07-18
+[[11]]"Continuous and Discrete Probability Distributions" [online]. Available:<https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/>. Date accessed: 2019&#8209;0&#8209;18.
 
 [11]: https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/
+"Continuous and Discrete Probability Distributions" 
 
-[[12]]?? Available: <https://en.wikipedia.org/wiki/Probability_density_function>. Date accessed: 2019-07-18
+[[12]]Wikipedia, "Probability Density Function" [online]. Available: <https://en.wikipedia.org/wiki/Probability_density_function>. Date accessed: 2019&#8209;0&#8209;18.
 
 [12]: https://en.wikipedia.org/wiki/Probability_density_function
+"Probability Density Function" 
 
 ## Appendices
 
