@@ -128,6 +128,11 @@ key can identify those transactions on the blockchain, but cannot create transac
 allows a business to provide visibility of its transactions to a given authority without compromising its privacy 
 to the public [[14]].
 
+BEAM's implementation of Dandelion improves privacy by adding decoy transaction outputs at the Stem phase. Each such 
+output has a value of zero, but is indistinguishable from regular outputs. At a later stage (a randomly calculated 
+number of blocks for each output), the UTXOs are added as inputs to new transactions, thus spending them and removing
+them from the blockchain.
+
 BEAM has also proposed another feature aimed at keeping the blockchain as compact as possible. In Mimblewimble, as 
 transactions are added, cut-through is performed, which eliminates all intermediary transaction commitments [[3]]. 
 However, the transaction kernels for every transaction are never removed. BEAM has proposed a scheme to reuse these 
@@ -153,7 +158,7 @@ would involve revealing your blinding factor to the counterparty. BEAM solves th
 *kernel fusion*, whereby a kernel can include a reference to another kernel so that it is only valid if both kernels are 
 present in the transaction. In this way, the payee can build their half of the transaction with a secret blinding factor 
 and a kernel that compensates for their blinding factor, which **must** be included when the payer completes the 
-transaction [[13]]. BEAM has indicated that this feature will be part of the initial release.
+transaction [[13]]. 
 
 Both projects make use of a number of Merkle tree structures to keep track of various aspects of the respective 
 blockchains. Details of the exact trees and what they record are documented for both projects ([[16]], [[17]]). BEAM, 
@@ -229,7 +234,7 @@ Developer Funding Campaign run by Yeastplume to fund his full-time involvement i
 February&nbsp;2019. Refer to [[26]].
 
 In terms of the monetary policy of the two projects, BEAM has stated that it will be using a deflationary model with 
-periodic halving of its mining reward and a maximum supply of BEAM of ~262 million coins. BEAM will start with 
+periodic halving of its mining reward and a maximum supply of BEAM of 262,800,000 coins. BEAM will start with 
 100 coins emitted per block. The first halving will occur after one year. Halving will then happen every four years 
 [[32]]. Grin has opted for an inflationary model where the block reward will remain constant, making its arguments 
 for this approach in [[27]]. This approach will asymptotically tend towards a zero percent dilution as the supply 
@@ -254,13 +259,12 @@ BEAM project. The following list summarizes the functional similarities and diff
   - Partial history syncing
   - DAG representation of Mempool to prevent duplicate UTXOs and cyclic transaction references
 - BEAM unique features:
-  - Both confidential and non-confidential transactions
+  - Secure BBS system hosted on the nodes for establishing communication between wallets. Removes the need for sender and receiver to be online at the same time.
+  - Use of decoy outputs in Dandelion stem phase. Decoy outputs are later spent to avoid clutter on blockchain
   - Explicit UTXO incubation period
   - Timelocks with a minimum and maximum threshold
-  - Auditable transactions
-  - Secure BBS system hosted on the nodes for non-interactive transaction negotiation
-  - One-sided transaction construction
-  - Incentives to consume old UTXOs in order to keep the blockchain compact
+  - Auditable transactions as part of the roadmap
+  - One-sided transaction construction for non-interactive payments
   - Use of Radix-Hash trees
 
 Both projects are still very young. As of the writing of this report (May&nbsp;2019), both are still in the testnet phase, and many of 
