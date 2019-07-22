@@ -109,15 +109,12 @@ For example, Grin has implemented a method for a node to sync the blockchain ver
 history [[11]]. A new node entering the network will query the current head block of the chain and then request the 
 block header at a horizon. In the example, the horizon is initially set at 5,000 blocks before the current head. The 
 node then checks if there is enough data to confirm consensus. If there isn't consensus, the node will increase its 
-horizon until 
-consensus is reached. At that point, it will download the full Unspent Transaction Output (UTXO) set of the horizon block. 
-This approach does 
-introduce a few security risks, but mitigations are provided and the result is that a node can sync to the network with 
-an order of magnitude less data.
+horizon until consensus is reached. At that point, it will download the full Unspent Transaction Output (UTXO) set of 
+the horizon block. This approach does introduce a few security risks, but mitigations are provided and the result is 
+that a node can sync to the network with an order of magnitude less data.
 
 Since the initial writing of this article (October&nbsp;2018), BEAM has published its solution for fast node 
-synchronization using macroblocks. A macroblock is a complete state of all UTXOs, 
-periodically created by BEAM 
+synchronization using macroblocks. A macroblock is a complete state of all UTXOs, periodically created by BEAM 
 nodes [[12]].
 
 ### BEAM Unique Features
@@ -177,9 +174,8 @@ is also a binary search tree. This provides a number of features that the standa
 BEAM exploits in its implementation [[17]].
 
 The features discussed here can all be seen in the code at the time of writing (May&nbsp;2019), although this is not a 
-guarantee that 
-they are working. A couple of features, which have been mentioned in the literature as planned for the future, 
-have not yet been implemented. These include embedding signed textual content into transactions that can be used 
+guarantee that they are working. A couple of features, which have been mentioned in the literature as planned for the 
+future, have not yet been implemented. These include embedding signed textual content into transactions that can be used 
 to record contract text [[13]], and issuing confidential assets [[18]].
 
 ## Proof-of-Work Mining Algorithm
@@ -202,8 +198,7 @@ latency bound [[20]]. This means that the algorithm is bound by memory bandwidth
 the hope that it will make mining possible on commodity hardware.
 
 In August&nbsp;2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely 
-that an 
-ASIC would be available for the Cuckoo cycle algorithm [[21]]. While acknowledging that ASIC mining is 
+that an ASIC would be available for the Cuckoo cycle algorithm [[21]]. While acknowledging that ASIC mining is 
 inevitable, Grin is concerned that the current ASIC market is very centralized (i.e. Bitmain), and it wants to 
 foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that 
 ASICs will have become more of a commodity and thus decentralized.
@@ -211,10 +206,9 @@ ASICs will have become more of a commodity and thus decentralized.
 To address this, it was proposed to use two PoW algorithms initially: one that is ASIC Friendly (AF) and one that is 
 ASIC Resistant (AR), and then to select which PoW is used per block to balance the mining rewards between 
 the two algorithms, over a 24&#8209;hour period. The Governance committee resolved on 25&nbsp;September&nbsp;2018 to go 
-ahead 
-with this approach, using a modified version of the Cuckoo Cycle algorithm, called the Cuckatoo Cycle. The AF algorithm 
-at launch will be Cuckatoo32+, which will gradually increase its memory requirements to make older single-chip ASICs 
-obsolete over time. The AR algorithm is still not defined [[23]].
+ahead with this approach, using a modified version of the Cuckoo Cycle algorithm, called the Cuckatoo Cycle. The AF 
+algorithm at launch will be Cuckatoo32+, which will gradually increase its memory requirements to make older single-chip 
+ASICs obsolete over time. The AR algorithm is still not defined [[23]].
 
 ## Governance Models and Monetary Policy
 
@@ -230,8 +224,7 @@ conclusion that while foundations are useful, they do not provide the only solut
 have therefore opted to remain a completely decentralized community-driven project. Currently, decisions are made at 
 periodic governance meetings that are convened on Gitter with community members, where an agenda is discussed and 
 decisions are ratified. Agendas and minutes of these meetings can be found in the Grin Forums governance section. 
-An example 
-of the outcomes of such a meeting can be seen in [[23]].
+An example of the outcomes of such a meeting can be seen in [[23]].
 
 Neither project will engage in an Initial Coin Offering (ICO) or pre-mine, but the two projects also have different 
 funding models. BEAM set up a Limited Liability Company (LLC) and has attracted investors to it for its initial round of 
