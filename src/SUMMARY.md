@@ -1,5 +1,5 @@
 - **<u>Tari Labs University - Contents</u>**
-- [Learning](./preface/learning.md)
+- [Learning](./preface/learning/introduction-to-learning.md)
 	- [Applications](preface/learning/applications.md)	 
 	- [Attacks](preface/learning/attacks.md)	 
 	- [Block Generation Parameters](preface/learning/block-generation-parameters.md)
