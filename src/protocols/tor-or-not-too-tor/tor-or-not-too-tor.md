@@ -70,7 +70,7 @@ on sensitive topics.
 
 ### When not to use Tor
 
-Do not use the Tor Browser if you want end-to-end encryption to a non-```.onion``` site such as a banking site, as the 
+Do not use only the Tor Browser if you expect end-to-end encryption to a non-```.onion``` site such as a banking site, as the 
 ```Exit Node``` ends the Tor encryption and your traffic can be intercepted between the Exit Node and the destination server.
 
 
@@ -89,22 +89,34 @@ through Tor’s complex network. Refer to [[5]] for more detailed information.
 
 ## Is Tor broken?
 
-Tor is not broken if Tor services are correctly set up and if the Tor Browser is used correctly. However, it is very 
-easy to do something that would make Tor appear to be broken. If you login into a remote service such as Facebook or 
-Gmail, your ```anonymity``` at this site is lost. However, the recent release of the Tor Browser package would keep 
-both sites isolated from one another.
+Tor encrypted network service has not been broken, but due to the complex nature of networks, internet services, 
+internet browsers and operating systems, what might seem like a simple request to a URL, could de-anonymize somebody.
 
-Older Tor setups needed a user to know how to configure their proxy settings in their operating system, in order to use 
-Tor services. This was very easy to get wrong or incomplete, and some user information or details could be leaked. 
-Newer releases of Tor as a single package, preconfigured and shipped with a secure browser, resolved many of these 
-problems. Keeping the Tor Browser package up to date, thereby addressing any new security issues, as well as helping to keep your 
-```anonymity```.
+Older Tor setups needed a user to know how to configure their proxy settings in their operating system and/or browser, 
+in order to use Tor services. This was very easy to get wrong and/or incomplete, and some users information or details 
+could be leaked. An example is DNS requests meant for the Tor network, ie .onion address, might be sent directly to the 
+public DNS server, if the ```network.proxy.socks_remote_dns``` was not set to true in FireFox. Theses DNS request could 
+be used to track where a user might be surfing and thus, de-anonymize the user.
 
-Tor has weaknesses. For example, if you are the only person using Tor on your home, office or school 
-network, you will be discovered. This is called a time/traffic correlation attack. For an interesting talk about some 
-of the Tor attacks, refer to [[6]].
+Tor is not broken if Tor services are correctly setup or if the Tor Browser is used correctly. It is very easy to do 
+something that would de-anonymize a user, like using an older browser or tool that is not configured to proxy all 
+traffic via Tor network services.
 
-Two examples of where people using Tor that were discovered:
+Another example is if the user logs into a remote service such as Facebook or Gmail, your anonymity at this site is 
+lost. What many people don't know, is that other sites use tracking techniques, like cookies, could de-anonymize 
+the user on other sites too. Further information about online tracking can be found at [[9]]
+
+However, recent releases of the Tor Browser notify users of updates and also work toward keeping each site isolated 
+in their own Tab or session, addressing old and possible insecure releases and user tracking via cookies.
+
+Tor some has weaknesses, for example, if you are the only person using Tor on your home, office or school network, 
+you will be discovered.  Another is that a site knows when it's been accessed using Tor.  These shortcomings 
+might not be directly an issue with Tor nor it's encryption, but an expectation of a novice user, using Tor or 
+one of the Tor tools and services.
+
+For an interesting talk about some of the Tor attacks, refer to [[6]].
+
+Two real world examples of where people using Tor that were discovered:
 - 16th December 2013, Havard University received a bomb threat, that was tracked down to Eldo Kim, who 
 was one of the few people using Tor on the campus network when the email had been sent. After questioning, 
 admitted he had sent the hoax bomb threat, as he wanted to get out of an exam. [[7]]  
@@ -179,20 +191,30 @@ Date accessed: 2019&#8209;05&#8209;16.
 <https://www.youtube.com/watch?v=eQ2OZKitRwc>. Date accessed: 2019&#8209;06&#8209;18.
 
 [6]: https://www.youtube.com/watch?v=eQ2OZKitRwc
-"YouTube: DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: 
+"YouTube: DEF CON 22 - Adrian Crenshaw - 
+Dropping Docs on Darknets: 
 How People Got Caught"
 
 [[7]] Ars Technica: "Use of Tor helped FBI ID suspect in bomb hoax case" [online]. Available: 
 <https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/>. Date accessed: 2019&#8209;07&#8209;11.
 
 [7]: https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/
-"Ars Technica: Use of Tor helped FBI ID suspect in bomb hoax case"
+"Ars Technica: Use of Tor helped 
+FBI ID suspect in bomb hoax case"
 
 [[8]] Ars Technica: "Stakeout: how the FBI tracked and busted a Chicago Anon" [online]. Available: 
-<http://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. Date accessed: 2019&#8209;07&#8209;11.
+<https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. Date accessed: 2019&#8209;07&#8209;11.
 
-[8]: http://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
-"Ars Technica: Stakeout: how the FBI tracked and busted a Chicago Anon"
+[8]: https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
+"Ars Technica: Stakeout: How the 
+FBI tracked and busted a Chicago Anon"
+
+[[9]] Robert Heaton: "How does online tracking actually work?" [online]. Available: 
+<https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/>. Date accessed: 2019&#8209;07&#8209;25.
+
+[9]: https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/
+"Robert Heaton: How does online 
+tracking actually work?"
 
 
 ## Appendices
