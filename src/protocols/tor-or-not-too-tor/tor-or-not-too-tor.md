@@ -18,12 +18,11 @@
 - [Contributors](#contributors)
 
 
-
 ## Introduction
 
 ### What is Tor?
 
-Tor is a free and open source anonymity/privacy tool, meant to protect your location and identity.
+Tor is a free and open-source anonymity/privacy tool, meant to protect your location and identity.
 The name is derived from the acronym for the original software project name, ```The Onion Router``` ([[1]], [[2]]). This 
 refers to the way in which Tor protects your data, by wrapping it in multiple layers 
 of encryption, similar to the layers of an onion.
@@ -38,7 +37,7 @@ the Tor network as simple and secure as possible.
 Some tools, like the Tor Browser Bundle, come as a single downloadable and installable 
 package. Setup and containing everything needed to use the Tor network and be anonymous.  
 
-Almost any network tool or application that can be configure to use a SOCKS proxy can be setup to use the Tor network service.  
+Almost any network tool or application that can be configured to use a SOCKS proxy can be setup to use the Tor network service.  
 
 
 ### Purpose of this Report
@@ -48,11 +47,11 @@ recommend Tor, i.e. "to Tor || !2 Tor", which means "to Tor or not to Tor" in pr
 
 
 ### Installation Instructions for Tor Browser
+
 With reference to [[1]]:
 * Download the package for your operating system and language.
 * Verify the package.
 * Install the downloaded and verified package.
-
 
 
 ## Using Tor
@@ -73,7 +72,6 @@ on sensitive topics.
 
 Do not use the Tor Browser if you want end-to-end encryption to a non-```.onion``` site such as a banking site, as the 
 ```Exit Node``` ends the Tor encryption and your traffic can be intercepted between the Exit Node and the destination server.
-
 
 
 ## How does Tor Network Work?
@@ -129,7 +127,6 @@ Advantages of Tor:
 - It is free and open source.
 - It supports Linux, OSX and Windows.
 - It is easy to install for supported operating systems.
-- Its browser is the only browser that provides secure accessibility to ```.onion``` sites.
 - It is not controlled by corporate nor government agencies.
 
 Disadvantages of Tor:
@@ -143,7 +140,6 @@ Disadvantages of Tor:
 Would the author of this report recommend Tor? Perhaps not, as Tor by itself does not guarantee anonymity. I like the 
 goals that Tor is trying to address and think it is making great progress. However, total anonymity has many obstacles, 
 not just technology related, but also the human component.
-
 
 
 ## References
@@ -214,7 +210,6 @@ Onion Services - Tor services that don’t leave the Tor network: <https://2019.
 - [Blog post about OnionShare2 and its release](https://blog.torproject.org/new-release-onionshare-2)
 - [List of Tor Projects](https://2019.www.torproject.org/projects/projects.html.en)
 - [Isis Lovecruft's PDF covering Privacy and Anonymity](https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf)
-
 
 
 ## Contributors
