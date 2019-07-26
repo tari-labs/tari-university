@@ -4,7 +4,6 @@
 		- [Block Generation Parameters](preface/learning/block-generation-parameters.md)
 		- [Blockchain Basics](preface/learning/blockchain-basics.md)
 		- [Bulletproofs](preface/learning/bulletproofs.md)
-		- [Economics](preface/learning/economics.md)
 		- [FinTech Law and Policy](preface/learning/fintech-law-and-policy.md)
 		- [Fungibility](preface/learning/fungibility.md)
 		- [Gossip Protocols](preface/learning/gossip-protocols.md)
