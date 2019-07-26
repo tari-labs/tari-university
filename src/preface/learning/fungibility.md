@@ -7,6 +7,13 @@
 
 (What does this encompass)
 
+
+## Outline
+
+[**Non-fungible Tokens Survey**](digital-assets/nft-landscape-1/sources/PITCHME.link.md)
+
+
+
 ## Learning Path Matrix 
 
 For learning purposes, we have arranged report, presentation and video topics in a matrix, in categories of difficulty, interest and format.
@@ -14,3 +21,4 @@ For learning purposes, we have arranged report, presentation and video topics in
 | Topics                     |                         Introductory                         | Intermediate | Advanced |
 | -------------------------- | :----------------------------------------------------------: | :----------: | :------: |
 | Non-fungible Tokens Survey | [presentation](digital-assets/nft-landscape-1/sources/PITCHME.link.md) |              |          |
+

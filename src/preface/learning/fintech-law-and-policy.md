@@ -1,11 +1,18 @@
 # Fintech Law and Policy
 
 - [Background](#background)
+- [Outline](#outline)
 - [Learning Path Matrix](#learning-path-matrix)
 
 ## Background
 
 (What does this encompass)
+
+## Outline
+
+[**Application of *Howey* to Blockchain Network Token Sales**](digital-assets/howey-application-to-blockchain/MainReport.md)
+
+
 
 ## Learning Path Matrix 
 

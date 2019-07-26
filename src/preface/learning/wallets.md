@@ -7,6 +7,15 @@
 
 (What does this encompass)
 
+## Outline
+
+[**Introduction to SPV, Merkle Trees and Bloom Filters**](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)
+
+
+
+
+[**Fraud Proofs**](cryptography/fraud-proofs-1/MainReport.md)
+
 ## Learning Path Matrix 
 
 For learning purposes, we have arranged report, presentation and video topics in a matrix, in categories of difficulty, interest and format.

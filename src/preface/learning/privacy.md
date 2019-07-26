@@ -7,6 +7,14 @@
 
 (What does this encompass)
 
+## Outline
+
+[**Layer 2 Scaling Survey**](scaling/layer2scaling-landscape/layer2scaling-survey.md)
+
+
+
+[**Confidential Assets**](digital-assets/confidential-assets/MainReport.md)
+
 ## Learning Path Matrix 
 
 For learning purposes, we have arranged report, presentation and video topics in a matrix, in categories of difficulty, interest and format.

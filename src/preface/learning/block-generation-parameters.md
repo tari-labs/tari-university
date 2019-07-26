@@ -1,11 +1,20 @@
 # Block Generation Parameters
 
 - [Background](#background)
+- [Outline](#outline)
 - [Learning Path Matrix](#learning-path-matrix)
 
 ## Background
 
-(What does this encompass)
+Block generation takes into account 
+
+## Outline 
+
+[**Directed Acyclic Graphs**](scaling/directed-acyclic-graphs/DAGs.md)
+
+
+
+[**Layer 2 Scaling Survey**](scaling/layer2scaling-landscape/layer2scaling-survey.md)
 
 ## Learning Path Matrix 
 

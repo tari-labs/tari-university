@@ -1,11 +1,36 @@
 # Blockchain Basics 
 
 - [Background](#background)
+- [Outline](#outline)
 - [Learning Path Matrix](#learning-path-matrix)
 
 ## Background
 
-(What does this encompass)
+
+
+## Outline 
+
+[**Eliptic Curves 101**](cryptography/crypto-1/sources/PITCHME.link.md) is a short presentation covering elliptic curve cryptography, 
+
+
+
+[**Atomic Swap**](protocols/atomic-swaps/AtomicSwaps.md)
+
+
+
+[**Lightning Network for Dummies**](protocols/lightning-network-for-dummies/sources/PITCHME.link.md)
+
+
+
+[**Introduction to SPV, Merkle Trees and Bloom Filters**](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)
+
+
+
+[**The RGB Protcol- An Introduction**](protocols/rgb-introduction/sources/PITCHME.link.md)
+
+
+
+
 
 ## Learning Path Matrix 
 
