@@ -6,7 +6,7 @@
 
 ## Background
 
-(What does this encompass)
+Bulletproofs are short non-interactive zero-knowledge proofs that require no trusted setup. A bulletproof can be used to convince a verifier that an encrypted plaintext is well formed. For example, prove that an encrypted number is in a given range, without revealing anything else about the number.
 
 ## Outline
 

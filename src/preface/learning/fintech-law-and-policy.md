@@ -6,7 +6,7 @@
 
 ## Background
 
-(What does this encompass)
+Understanding the laws and regulations is important when considering a business in the technological space. Here you will learn about the critical legal, regulatory, and policy issues associated with cryptocurrencies, initial coin offerings, online lending, new payments and wealth management technologies, and financial account aggregators.  In addition, you will learn how regulatory agencies in the U.S. are continually adjusting to the emergence of new financial technologies and how one specific agency has proposed a path for FinTech firms to become regulated banks. You will also learn the basics of how banks are regulated in the U.S.
 
 ## Outline
 

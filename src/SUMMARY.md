@@ -1,7 +1,6 @@
 - **<u>Tari Labs University - Contents</u>**
 - [Introduction](./preface/introduction.md)
 	- [Learning](./preface/learning/introduction-to-learning.md)
-		- [Block Generation Parameters](preface/learning/block-generation-parameters.md)
 		- [Blockchain Basics](preface/learning/blockchain-basics.md)
 		- [Bulletproofs](preface/learning/bulletproofs.md)
 		- [FinTech Law and Policy](preface/learning/fintech-law-and-policy.md)
@@ -15,7 +14,7 @@
 		- [Stake](preface/learning/stake.md)
 		- [Understanding Mimblewimble](preface/learning/understanding-mimblewimble.md) 
 		- [Wallets](preface/learning/wallets.md)
-  - [Cryptography](./cryptography/cryptography.md)
+	- [Cryptography](./cryptography/cryptography.md)
     - [Elliptic Curves 101](cryptography/crypto-1/sources/PITCHME.link.md)
     - [Introduction to Schnorr Signatures](cryptography/digital_signatures/introduction_schnorr_signatures.md)
     - [Introduction to Scriptless Scripts](cryptography/scriptless-scripts/introduction-to-scriptless-scripts.md)

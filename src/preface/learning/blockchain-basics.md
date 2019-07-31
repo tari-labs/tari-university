@@ -6,11 +6,11 @@
 
 ## Background
 
-
+Blockchain Basics opens with 'What is Blockchain?', a broad and easily understood explanation of blockchain technology, as well as the history of value itself. Having an understanding of the value is especially important in grasping how blockchain and cryptocurrencies have the potential to reshape the financial industry.
 
 ## Outline 
 
-[**Eliptic Curves 101**](cryptography/crypto-1/sources/PITCHME.link.md) is a short presentation covering elliptic curve cryptography, 
+[**Eliptic Curves 101**](cryptography/crypto-1/sources/PITCHME.link.md) is a short presentation covering elliptic curve cryptography...
 
 
 
