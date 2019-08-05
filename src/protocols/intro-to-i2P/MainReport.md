@@ -24,9 +24,8 @@
 - [Contributors](#contributors)
 
 ## Background
-Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks used by
-millions of people across the world. Most people use them as a way to securely and privately browse the Internet. These
-networks have very similar characteristics but also have very big differences in the ways that they try to anonymise the internet traffic of users.
+Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks. Most people use them as a way to securely and privately browse the Internet inspite of their varied use cases. These
+networks have very similar characteristics but also have important differentiators in the ways that they work and anonymise the internet traffic of users.
 
 In this report, we'll examine what the I2P network is, the paradigms of how it works, its security infrastructure and its
 usefulness in the blockchain domain.
@@ -34,14 +33,14 @@ usefulness in the blockchain domain.
 ## Introduction to I2P Network
 
 ### What is I2P?
-I2P (known as the Invisible Internet Project and founded in 2003) is a low-latency network layer that runs on a distributed 
+I2P (known as the Invisible Internet Project - founded in 2003) is a low-latency network layer that runs on a distributed 
 network of computers on a global network infrastructure. It is primarily built into applications such as email, Internet Relay Chat (IRC) and file 
 sharing [[6]]. This network layer provides a set of functions that runs on each
 computer and provides encrypted, one-way connections to and from other computers within the network. These functions are
 wrapped in a *"router"* that is installed during setup and configuration of the network.
 
 ### How does it Work?
-Regarding I2P, the first concept to understand is that it is primarily an enclosed network that runs within the Internet
+I2P is primarily an enclosed network that runs within the Internet
 infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and the Tor network, which are built to
 communicate with the Internet anonymously, I2P works as a decentralized network that operates within the Internet, i.e. an Internet within the Internet. Interaction is done on a peer-to-peer (node-to-node) level and there is no 
 centralized authority that handles the network or keeps track of the active peers. A node in the network can either be a 
