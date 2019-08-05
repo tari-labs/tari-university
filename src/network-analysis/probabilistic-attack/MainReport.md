@@ -3,54 +3,57 @@
 - [Introduction](#introduction)
 	- [Question](#question) 
 	- [Aim](#aim)
-	- [The Tari Digital Assets Network](#the-tari-digital-assets-network) 
 - [Literature Review](#literature-review)
-	- [Monte Carlo Simulations](#monte-carlo-simulations)
-	- 
-	- [Types of Distribution](#types-of-distribution)
-		- [Hypergeometric Distribution](#hypergeometric-distribution)
-		- [Binomial Distribution](#binomial-distribution)
+  - [The Tari Digital Assets Network](#the-tari-digital-assets-network) 
+  - [XOR Metric](#xor-metric)
+  - [Data Modelling](#data-modelling)
+  - [Types of Distribution](#types-of-distribution)
+    - [Continuous Distribution](#continuous-distribution)
+    - [Discrete Distribution](#discrete-distribution)
+      - [Hypergeometric Distribution](#hypergeometric-distribution)
+      - [Binomial Distribution](#binomial-distribution)
+  - [Monte Carlo Simulations](#monte-carlo-simulations)
+- [Monte Carlo Fallacy](#monte-carlo-fallacy) 
+    - [Illustration of the Gambler's Falacity](#illustration-of-the-gamblers-falacity)
+  - [The Crude Monte Carlo](#the-crude-monte-carlo)
+  - [The Law of Large Numbers](#the-law-of-large-numbers)
 - [Methodology](#methodology)
+	
 	- [Notation Used](#notation-used)
-	- [Formulae](#formulae)
-		- [Hypergeometric Distribution](#hypergeometric-distribution)
-		- [Binomial Distribution](#binomial-distribution)
-		- [Summation](#summation)
-	- [Explanation of hypergeometric distribution ](#explanation-of-hypergeometric-distribution)
-	- [Implemention with Excel](#implementation-with-excel)
+	- [Statistical Calculation](#statistical-calculation)
+	  - [Formulae](#formulae)
+	    - [Hypergeometric Distribution](#hypergeometric-distribution)
+	    - [Binomial Distribution](#binomial-distribution)
+	    - [Summation](#summation)
+	  - [Explanation of Hypergeometric Distribution ](#explanation-of-hypergeometric-distribution)
+	  - [Implemention with Excel](#implementation-with-excel)
+	- [Crude Monte Carlo Simulation](curde-monte-carlo-simulation)
+	  - [Use of Random Numbers](#use of random numbers)
+	  - [Drawing and Distribution of Random Numbers](#drawing-and-distribution-of-random-numbers)
+	  - [Drawing Integers](#drawing-integers)
+	  - [Clustered Random Numbers](#clustered-random-numbers)
+	  - [Histogram of Gaussian Numbers](#histogram-of-gaussian-numbers)
+	  - [Computing Statistics](#computing-statistics)
+	  - [Example: Drawing Balls from a Hat](#example:-drawing-balls-from-a-hat)
 - [Implementation](#implementation)
+	- [The Use of Python](#the-use-of-python)
+	- [Demonstration](#demonstration) 
 	- [Results](#results)
-	- [The Use of Python](#the-use-of-python) 
-	- [Probabilistic Attack Graphs](#probabilistic-attack-graphs) 
-	- [Demonstration](#demonstration)
+	  - [Statistical Calculation](#statistical-calculation)
+	    - [Probabilistic Attack Graphs](#probabilistic-attack-graphs) 
+	  - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation)
+	    - [Individual Probabilities](#individual-probabilities)
+	    - [A Histogram and Visualization of Distribution](#a-histogram-and-visualization-of-distribution)
+	    - [Proving the Law of Large Numbers](#proving the law of large numbers)
+	    - [Summary of Probability and Statistics Computations](#summary-of-probability-and-statistics-computations)
 	- [Discussion](#discussion) 
 		- [Function](#function)
 - [Conclusion and Recommendations](#conclusions-and-recommendations)
 - [References](#references)
+- [Appendices](#appendices)
 - [Contributions](#contributors) 
 
-# Notes
-
-develops tests, test method, reference data, proof of concept implementations, and technical analysis to advance the development and productive ise of infromation technology. 
-
-Today's information systems face sophisticated attackers who combine multiple vulnerabilitesi to penetrate networks with devastating impact. The overall 
-
-
-### Malicious Node
-
-A malicious node, or bad actor, is defined as a node seeking to deny service to other nodes in the network.
-
-### Consensus Protocols 
-
-A consensus protocol enables a system of *n* asynchronous processes, some of them faulty, to reach agreement. Both the process and the message system are capable of cooperating to prevent the correct processes from reaching decision. 
-
-### Threshold Cryptography 
-
-There are consensus protocols that use threshold cryptography to encrypt and decrypt sets of transactions. A threshold value *t* is sent so that any group of *t+1* nodes in the netwrok can collaborate to decrypt messages adn construct digitial signatures. The threshold must be met, but is can be met by any combination of active nodes. [[5]] 
-
 ## Introduction
-(What you researched and why)
-
 ### Question
 
 What is the probability of an attacker controlling the majority of nodes in the network?
@@ -63,7 +66,9 @@ Current day network operate on multiple hardware devices assisted by numerous nu
 
 This research aims to provide answers to questions posed about the workings of the  Tari DAN environment: Probabilistic attack vector with regards to the total nodes, compromised nodes, committee size and BFT threshold. 
 
+## Literature Review 
 ### The Tari Digital Assets Network 
+
 Digital assets (DAs) are managed by committees of special nodes, Validator nodes . 
 
 Validator nodes form committees to manage the digital assets, their state change and ensures that the rules governing asset contracts are enforced. 
@@ -72,41 +77,7 @@ Where was the idea borne from?
 
 ### XOR Metric
 
-## Literature Review 
-(Other relevant research in this area)
-
-### Monte Carlo Simulations 
-
-Monte Carlo (MC) approch is a computer based analytical method and was developed in the 1940s. It employs statistical sampling techniques for obtaining a probabilistic approximation to the solution of a mathematical equation or model by utilising sequences of random numbers as inputs into a model which yields results that are indicationd of the performance of the developed model. 
-
-It was developed as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to model the random diffusion of neurtrons. The name was given after the city in Monaco and its many casions. Monte Carlo simulstion are used in a wide array of applications, including physics, finance and system reliability. 
-
-Monte Carlo analysis utlizes statical tools to mathematically model a real life system or process and tehn it estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled must be determined first before Monte Carlo simulation can be applied. 
-
-Monte Carlo methods are idely used heuristic techniques which can solce a variety of common problems including optimization and numerical intergration problems. These algorithms work by cleverly sampling from a distribution to simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends in financial investments. [[6]] 
-
-#### Monte Carlo Fallacy 
-
-The Monte Carlo Fallacy, or gambler's fallacy is the inaccurate belief that if something happens more frequently than normal during a given period it will happen less fequently in the future. In situations where the outcome being observed is truly random and consists of independent trials of a random process, this belief is false. The fallacy can arise in many situations, but is most stringly associated with gambling, where it is common among players.  
-
-illustrate the flaws of the gamblers falacity 
-
-#### The Crude Monte Carlo
-
-The Monte Carlo technique is built upon this principle: instead of evaluating an indefinite integral, which can sometimes be impossible, the average of the integrand is estimated and that is used to approximate the integral. If one needs to be more precise, the number of samples can be increased. 
-
-#### The Law of Large Numbers 
-
-The law of large numbers (LLN), in probability and statistics, states that as a sample size grows, its mean gets closer to the average of the whole population. In statistical analysis, the law of large numbers can be applied to a variety of subjects. It may not be feasible to poll every individual within a given population to collect the required amount of data, but every additional data point gathered has the potential to increase the likelihood that the outcome is a true measure of the mean. [[7]] 
-
-The LLN is important beacuse it guatantees stable long-term results from the [[8]] 
-
-![law_of_large_numbers](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/law_of_large_numbers.png)
-
-The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right) they would be extremely similar. 
-
-By Pred - Own work, CC0, [[9]]
-
+### Data Modelling
 
 ### Types of Distribution 
 
@@ -157,76 +128,85 @@ Examples of discrete distribution with **finite** support include the following:
 | Discrete Uniform Distribution                     | where all elements of a finite set are equally likely. This is the theoretical distribution model for a balances coin, an unbiased die, a casino roulette, or the first card of a well-shuffled deck |
 | Hypergeometric Distribution                       | The number of successes in the first $m$ of a series of $n$ consective Yes/No experiments, if the total numebr of successes is known. This distribution arises where there is no replacement |
 | Poisson Biomial  Distribution                     | The number of successes in a series of independent Yes/No experiments with different success probabilities |
-| Fisher's Noncentral Hypergeometric Distribution   |                                                              |
-| Wallenius' Noncentral Hypergeometric Distribution |                                                              |
-| Benford's Law                                     |                                                              |
-| Soliton Distribution                              |                                                              |
 
 Examples of discrete distribution with **infinite** support include the following: 
 
-| Type of infinite discrete distribution  | Description                                                  |
-| --------------------------------------- | ------------------------------------------------------------ |
-| Beta Negative Binomial Distribution     |                                                              |
-| Boltzmann Distribution                  | A discrete distribution important in statistical physics which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analogue. |
-| Borel Distribution                      |                                                              |
-| Extended Negative Binomial Distribution |                                                              |
-| Extended Hypergeometric Distribution    |                                                              |
-| Generalized Log-Series Distribution     |                                                              |
-| Geometric Distribution                  | A discrete disctribution which describes the number of attempts needed to get the first success in a series of independent Bernoulli trials, or alternatively only the number of losses before the first success (i.e. one less) |
-| Logarithmic (Series) Distribution       |                                                              |
-| Negative Binomial Distribution          | Pascal distribution, a generalization of the geometric distribution of the nth success |
-| Compound Poisson Distribution           |                                                              |
-| Parabolic Fractal Distribution          |                                                              |
-| Poisson Distribution                    | A very large number of individually unlikely events that happen in a certain time interval. Relateed to this distribution are a number of other distributions: the displaced Poisson, the hyper-Poisson, teh general Poissin binomial and the Poissan type distributions. |
-| Polya-Eggenberger Distribution          |                                                              |
-| Skellam Distribution                    | The distribution of the difference between two independent Poisson-distributed random variables. |
-| Skew Elliptical Distribution            |                                                              |
-| Yule-Simon Distribution                 |                                                              |
-| Zeta Distribution                       | Has uses in applied statistics and statistical mechanics, and perhaps may be of interst to number theorists. It is the Zipf distribution for an infinite number of elements. |
-| Zipf's Law                              | A discrete power-law distribution, the most famous example of which is the description of the frequency of words in the English language. |
-| Zipf-Mandelbrot Law                     | A discrete power law distribution whcih is a generalization of the Zipf distribution. |
+| Type of infinite discrete distribution | Description                                                  |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Boltzmann Distribution                 | A discrete distribution important in statistical physics which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analogue. |
+| Geometric Distribution                 | A discrete disctribution which describes the number of attempts needed to get the first success in a series of independent Bernoulli trials, or alternatively only the number of losses before the first success (i.e. one less) |
+| Negative Binomial Distribution         | Pascal distribution, a generalization of the geometric distribution of the nth success |
+| Poisson Distribution                   | A very large number of individually unlikely events that happen in a certain time interval. Relateed to this distribution are a number of other distributions: the displaced Poisson, the hyper-Poisson, teh general Poissin binomial and the Poissan type distributions. |
+| Skellam Distribution                   | The distribution of the difference between two independent Poisson-distributed random variables. |
+| Zeta Distribution                      | Has uses in applied statistics and statistical mechanics, and perhaps may be of interst to number theorists. It is the Zipf distribution for an infinite number of elements. |
+| Zipf's Law                             | A discrete power-law distribution, the most famous example of which is the description of the frequency of words in the English language. |
+| Zipf-Mandelbrot Law                    | A discrete power law distribution whcih is a generalization of the Zipf distribution. |
 
+#### Hypergeometric Distribution
 
+Hypergeometric distribution is a disrete probability distribution that describes the probability $T$ successes (random draws for which the object drawn has a specified feature) in $n$ draws, *without* replacement, from a finite population of size $N$ that contains exactly $m$ objects with that feature, wherein each draw is either a success or a failure. [[3]]
 
+- A sample of size $n$ is randomly selected without replacement from a population of $N$ items
+- In the population, $T$ items can be classified as successes, and $N-T$ items can be classified as failures 
 
-#### Hypergeometric Distribution:
+Given $x, N, n$ and $k$ the hypergeometric probability can be computed based on the following formula 
 
-Hypergeometric distribution is a dicrete probability distribution that describes the probability *k* successes (random draws for which the object drawn has a specified feature) in *n* draws, *without* replacement, from a finite population of  size *N* that contains exactly *K* objects with that feature, wherein each draw is either a success or a failure. [[3]]
-
-Selecting nodes without replacement, i.e. selecting all 6 nodes at once
-
-Example: You have an urn of 10 marbles -5 red and 5 green, You randomly select 2 marbles without replacement and count the number of red marbles selected. This would be a hypergeometric experiment. 
-
-A hypergeometric random variable is the number of successes that result from a hypergeometri experiment. The probability distribution of a hypergeometric random variable is called a hypergeometric distribution. 
-
-- A sample of size *n* is randomly selected without replacement from a population of N items
-- In the population, *k* items can be classified as successes, and *N-k* items can be classified as failures 
-
-(k=m and x=t)
-
-Given $x, N, n$ and $k$ the hypergeometric probability can be computed based on teh following formula 
-
-Example: Suppose a population consists of $N$ items, $k$ of which are successes. And a random sample drawn from that population consists of $n$ items, $x$ of which are successes. Then the hypergeometric probability is:
+Example: Suppose a population consists of $N$ items, $k$ of which are successes. And a random sample drawn from that population consists of $n$ items, $x$ of which are successes. Then the hypergeometric probability is:[[10]]
 $$
-h(x; N, n, k)= {{k}\choose{x}}{{N-k}\choose{n-x}}{{N}\choose{n}}
+h(m; N, n, T)= {{T}\choose{m}}{{N-T}\choose{n-m}}{{N}\choose{n}}
 $$
 The hypergeometric distribution has the following properties:
 
-- The mean of the distribution is equal to $n\cdot\frac{k}{N}$
+- The mean of the distribution is equal to $n\cdot\frac{T}{N}$
+- The variance is $ n\cdot T \cdot(N-T)\cdot\frac{N-n}{N^2\cdot(N-1)}$
 
-- The variance is $ n\cdot k \cdot(N-k)\cdot\frac{N-n}{N^2\cdot(N-1)}$
+#### Binomial Distribution
 
-[[10]] 
+The binomial distribution with parameters $n$ and $p$ is the discrete probability distribution of the number of successes in a sequence of $n$ independent experiments, each asking a yes-no question, and each with its own boolean-valued outcome: success/yes/true/one (with probability $p$) or failure/no/false/zero (with probability $q=1- p$). A single success/failure experiment is also called a Bernoulli trial or Bernoullu experiment and a sequence of outcomes is called a Bernoulli process; for a single trial, 1.e., $n=1$, the binomial distribution is a Bernoulli distribution. The binomial distribution is the basis for the popular binomial test of statiscial signifance. 
 
-#### Binomial Distribution:
+The binomial distribution is frequently used to model the number of successes in a sample of size $n$ drawn with replacement from a population of size $N$. If the sampling is carried out without replacement, the draws are not independent and so the resulting distribution is hypergeometric, not a binomial one. However, for $n$ much larger than $n$, the binomial distribution remainds a good approximation, and is widely used. 
 
-The binomial distribution with parameters Selecting nodes with replacement, i.e. selecting each node, noting whether it is malicious or friendly and returning back to the committee. [[4]] a bionomial experiment requires that the probability of success be constant on every trial. 
+Thus, in bionial distribution an object is selected with replacement [[4]].  A bionomial experiment requires that the probability of success be constant on every trial. 
 
-Example: You have an urn of 10 marbles -5 red and 5 green, You randomly select 2 marbles with replacement, the probability of siccess would not change. It would be 5/10 on every trial.[[10]] 
+Example: You have an urn of $10$ marbles $-5$ red and $5$ green, You randomly select $2$ marbles with replacement, the probability of siccess would not change. It would be $\frac{5}{10}$ on every trial.[[10]] 
+
+### Monte Carlo Simulations 
+
+Monte Carlo (MC) approch is a computer based analytical method and was developed in the 1940s. It employs statistical sampling techniques for obtaining a probabilistic approximation to the solution of a mathematical equation or model by utilising sequences of random numbers as inputs into a model which yields results that are indicationd of the performance of the developed model. 
+
+It was developed as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to model the random diffusion of neurtrons. The name was given after the city in Monaco and its many casions. Monte Carlo simulstion are used in a wide array of applications, including physics, finance and system reliability. 
+
+Monte Carlo analysis utlizes statical tools to mathematically model a real life system or process and tehn it estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled must be determined first before Monte Carlo simulation can be applied. 
+
+Monte Carlo methods are idely used heuristic techniques which can solce a variety of common problems including optimization and numerical intergration problems. These algorithms work by cleverly sampling from a distribution to simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends in financial investments. [[6]] 
+
+#### Monte Carlo Fallacy 
+
+The Monte Carlo Fallacy, or gambler's fallacy is the inaccurate belief that if something happens more frequently than normal during a given period it will happen less fequently in the future. In situations where the outcome being observed is truly random and consists of independent trials of a random process, this belief is false. The fallacy can arise in many situations, but is most stringly associated with gambling, where it is common among players. [[13]] 
+
+##### Illustratration of the Gambler's Falacity 
+
+The gambler's fallacy can be illustrated by considering the repeated toss of a fair coin. The outcomes in different tosses are statistically independent and teh probability of getting heads on a single toss is $\frac{1}{2}$. The probaility of getting two heads in two tosses is $\frac{1}{4}$ abd tge probability of getthing three heads in three tosses is $\frac{1}{8}$. If after tossing four heads in a row, teh next coin toss also came up heads, it would complete a run of five successive heads. Since the probability of a run of five successive heads is $\frac{1}{32}$, a person might believe that the next flip would be more likely to come up tails rather than heads again. Thsi si incorrect and is an example of the gambler's fallacy. The event 'five heads in a row and the event 'first 4 heads, then a tails' are equally likely, each having probability $\frac{1}{32}$. Since the first four tosses turn up heads, the probability that the next toss is a head is $\frac{1}{2}$ . While a run of five heads has a probability of $\frac{1}{32} = 0.03125$, the misunderstanding lies in not realising that htis is the case only before the first coin is tossed. After the first four tosses, the results are no longer unknown, so therei probabilityes are at that point equal to 1. The reasoning that it is more likely that a fifth toss is more likely to be tails because the previous four tosses were heads, with a run of luck in the past influencing the odds in the future, forms the basis of the fallacy. [[13]]
+
+#### The Crude Monte Carlo
+
+The Monte Carlo technique is built upon this principle: instead of evaluating an indefinite integral, which can sometimes be impossible, the average of the integrand is estimated and that is used to approximate the integral. If one needs to be more precise, the number of samples can be increased. 
+
+It is widely used heursitic technique which can solve a vaiety of common problems including optimization and numerical integration problems. These algorithms work by cleverly sampling from a distribution oto simulate the workings of a system.  Applciations range from solving problems in theoretical physics to predicting trends in financial investments. 
+
+#### The Law of Large Numbers 
+
+The law of large numbers (LLN), in probability and statistics, states that as a sample size grows, its mean gets closer to the average of the whole population. In statistical analysis, the law of large numbers can be applied to a variety of subjects. It may not be feasible to poll every individual within a given population to collect the required amount of data, but every additional data point gathered has the potential to increase the likelihood that the outcome is a true measure of the mean. [[7]] 
+
+The LLN is important beacuse it guatantees stable long-term results from the [[8]] 
+
+![law_of_large_numbers](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/law_of_large_numbers.png)
+
+The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right) they would be extremely similar. 
+
+By Pred - Own work, CC0, [[9]]
 
 ## Methodology 
-(What you did and how you found it)
-
 Based on the understanding of the problem, statisical analysis using hypergeometric distribution was conducted.  
 
 ### Notation Used  
@@ -240,11 +220,13 @@ This section conmtains the general notation of statistical expressions when spec
 
 There would be a pool with *N* nodes, the pool contains *m* malicious nodes or bad actors,  within the pool a random selection of nodes are drawn *n*, from that selection the probablity of drawning a threshold of bad actors *T* needs to be calculated.  
 
-### Formulae
+### Statistical Calculation
+
+#### Formulae
 
 As a means to derive the formulae, a single probability from the overarching question was used to distill the  formula. 
 
-#####Example 1
+**Example 1**
 
 What is the probability of selecting a majority of bad nodes from a total of 5 nodes if the committee size is $3$. There are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
 
@@ -265,7 +247,7 @@ From this list, the number of combinations where 'B' is the majority can then be
 
 This method is limited in calculating the probability where the variables are large e.g. if the same question was posed, but the one had to now calculate the probability of selecting a majority of bad nodes from a total of 100 nodes, with a committee size is $60$, $60$ bade nodes and $40$ good nodes, the number of combinations where bad and good nodes can be chosen is $1,27E+28$
 
-#### Hypergeometric Distribution
+##### Hypergeometric Distribution
 
 With regards to hypergeometric distribution, a committee of nodes were drawn from the total nodesn without replacement; i.e. nodes are drawn simultatenously, the intention of the node is distinguished and not returned to the total nodes. 
 
@@ -294,7 +276,7 @@ $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
 
-#### Binomial Distribution  
+##### Binomial Distribution  
 
 With regards to bionomial distribution, a committee of nodes were drawn from the total nodes with replacement; i.e. nodes are drawn, the intention of the node is distinguished and   then the node is returned to the total nodes. 
 
@@ -303,7 +285,15 @@ $$
 P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
 $$
 
-### Explanation of hypergeometric distribution (combinations)
+##### Summation 
+
+$$
+P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
+$$
+
+show a hypergeometric distribution graph
+
+#### Explanation of hypergeometric distribution (combinations)
 
 Once the formula was mapped out, preliminary calculations could be solved using Excel. If the total number of nodes $N$ is fixed.
 
@@ -321,19 +311,170 @@ In order to understand this, the table below provides some visual insight. (inse
 
 The number of steps is counted by considering the BFT thresfold and the committee size. What is actually being said here is that when 10 nodes are selected without replacement from a total of 300 nodes, what is the probability that out the the 10 nodes there will be 7 nodes or more that are bad. Thus, probabilities need to be calculated for when there are 7 bad nodes, 8 bad nodes, 9 bad nodes and 10 bad nodes. 
 
-#### Summation 
+#### Implementation with Excel 
+
+### Crude Monte Carlo Simulation
+
+#### Use of Random Numbers  
+
+Some problems in science and technology are described by 'exact' mathematics, leading to 'precise' results, i.e. throwing a ball or oscillating system. Some problems appear physcially uncertain, i.e. rolling a die, molecular motion. Random numbers can be used to mimic the uncertainity of the experiment. 
+
+Random numbers make it possible to simulate physical systems with uncertainity, in input data or the process. 
+
+#### Drawing and distribution for Random Numbers 
+
+Python has a random module for drawing random numbers. The sequence of random numbers is produced by a deterministic algorithm. `random.random()` generates random nyumbers that are *unifromly distributed* in the interval `[0,1)` `random.uniform(a,b)`generates random numbers uniformly distributed in `[a,b)`. *Uniformly distributed* means that if a large set of numbers is generated, no part of `[a,b)` get more numbers than others.
+
+#### Drawing integars 
+
+Python's `random`module and `numpy.random` have functions for drawing uniformly distributed integers:
+
+
+
+#### Clustered random numbers 
+
+- Uniform distribution is not also needed, i.e. it is more likely to have norm (mean) blood pressure than large deviation from the mean
+
+#### Histogram of Gaussian/normal numbers 
+
+`from scitools.std import compute_histogram, plot`
+
+`x, y = compute_histogram(array_of_numbers, 50, piecewise_constant = True)`
+
+`plot(x,y)`
+
+#### Computing statistics: mean and standard deviation 
+
+To describe a set of random numebrs $xi$ we are often interested in two things:
+
+- the mean value 
 
 $$
-P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
+x_{m} = \frac{1}{n}\displaystyle\sum_{j=1}^{n-1}x_j  ​
 $$
 
-show a hypergeometric distribution graph
 
-### Implementation with Excel 
+
+- the 'mean deviation' from the mean value (standard deviation)
+
+$$
+x_{s} =\sqrt{\frac{1}{n}\displaystyle\sum_{j=1}^{n-1}(x_j-x_m)^2}
+$$
+
+#### Example: Drawing balls from a hat 
+
+When considering the problem of drawing balls from a hatSuppose there are 12 balls in a hat: four black, four red, and four blue. We want to make a program that draws three balls at random from the hat. It is natural to represent the collection of balls as a list. Each list element can be an integer 1, 2, or 3, since we have three different types of balls, but it would be easier to work with the program if the balls could have a color instead of an integer number. This is easily accomplished by defining color names:
+
+```
+colors = 'black', 'red', 'blue'   # (tuple of strings)
+hat = []
+for color in colors:
+    for i in range(4):
+        hat.append(color)
+```
+
+Drawing a ball at random is performed by
+
+```
+import random
+color = random.choice(hat)
+print color
+```
+
+Drawing nn balls without replacing the drawn balls requires us to remove an element from the hat when it is drawn. There are three ways to implement the procedure: (i) we perform a `hat.remove(color)`, (ii) we draw a random index with `randint` from the set of legal indices in the `hat` list, and then we do a `del hat[index]` to remove the element, or (iii) we can compress the code in (ii) to `hat.pop(index)`.
+
+```
+def draw_ball(hat):
+    color = random.choice(hat)
+    hat.remove(color)
+    return color, hat
+
+def draw_ball(hat):
+    index = random.randint(0, len(hat)-1)
+    color = hat[index]
+    del hat[index]
+    return color, hat
+
+def draw_ball(hat):
+    index = random.randint(0, len(hat)-1)
+    color = hat.pop(index)
+    return color, hat
+
+# Draw n balls from the hat
+balls = []
+for i in range(n):
+    color, hat = draw_ball(hat)
+    balls.append(color)
+print 'Got the balls', balls
+```
+
+We can extend the experiment above and ask the question: what is the probability of drawing two or more black balls from a hat with 12 balls, four black, four red, and four blue? To this end, we perform NNexperiments, count how many times MM we get two or more black balls, and estimate the probability as M/NM/N. Each experiment consists of making the `hat` list, drawing a number of balls, and counting how many black balls we got. The latter task is easy with the `count` method in list objects:`hat.count('black')` counts how many elements with value `'black'` we have in the list `hat`. A complete program for this task is listed below. The program appears in the file [`balls_in_hat.py`](http://tinyurl.com/pwyasaa/random/balls_in_hat.py).
+
+```
+import random
+
+def draw_ball(hat):
+    """Draw a ball using list index."""
+    index = random.randint(0, len(hat)-1)
+    color = hat.pop(index)
+    return color, hat
+
+def draw_ball(hat):
+    """Draw a ball using list index."""
+    index = random.randint(0, len(hat)-1)
+    color = hat[index]
+    del hat[index]
+    return color, hat
+
+def draw_ball(hat):
+    """Draw a ball using list element."""
+    color = random.choice(hat)
+    hat.remove(color)
+    return color, hat
+
+def new_hat():
+    colors = 'black', 'red', 'blue'   # (tuple of strings)
+    hat = []
+    for color in colors:
+        for i in range(4):
+            hat.append(color)
+    return hat
+
+n = int(raw_input('How many balls are to be drawn? '))
+N = int(raw_input('How many experiments? '))
+
+# Run experiments
+M = 0  # no of successes
+for e in range(N):
+    hat = new_hat()
+    balls = []           # the n balls we draw
+    for i in range(n):
+        color, hat = draw_ball(hat)
+        balls.append(color)
+    if balls.count('black') >= 2:  # at least two black balls?
+        M += 1
+print 'Probability:', float(M)/N
+```
+
+Running the program with n=5n=5 (drawing 5 balls each time) and N=4000N=4000 gives a probability of 0.57. Drawing only 2 balls at a time reduces the probability to about 0.09.
+
+One can with the aid of probability theory derive theoretical expressions for such probabilities, but it is much simpler to let the computer perform a large number of experiments to estimate an approximate probability.
+
+A class version of the code in this section is better than the code presented, because we avoid shuffling the `hat` variable in and out of functions. [Exercise 21: Make a class for drawing balls from a hat](http://hplgit.github.io/primer.html/doc/pub/random/._random-readable008.html#sec:random:ex9) asks you to design and implement a class `Hat`.
 
 ## Implementation
 
+### The Use of Python 
+
+Python is a multi-paradigm programming language. It supports object-oriented programming, structural programming, and functional programming patterns, among others. 
+
+### Demonstration 
+
+Insert hotlink with python link for the static.py 
+
 ### Results 
+
+#### Statistical Calculation
 
 (What you found)
 
@@ -361,15 +502,7 @@ show a hypergeometric distribution graph
 | 500         | 300       | 140            | 70        | 0.9983220920579189 |
 | 500         | 300       | 150            | 75        | 0.9989418454891916 |
 
-### The Use of Python 
-
-Python is a multi-paradigm programming language. It supports object-oriented programming, structural programming, and functional programming patterns, among others. 
-
-### Demonstration 
-
-Insert hotlink with python link for the static.py 
-
-### Probabilistic Attack Graphs 
+##### Probabilistic Attack Graphs 
 
 From a plot of committee size versus probability of bad actors controlling the network it can be seen that:
 
@@ -408,6 +541,8 @@ From a plot of committee size versus probability where the number of nodes remai
 - A similar trend is followed for the cases where the BFT threshold is 65% and 67% 
 - It is interesting to note that in the case were there is 
 
+#### Crude Monte Carlo Simulation
+
 <u>Example data</u> 
 
 Total nodes= 100       
@@ -420,14 +555,7 @@ Threshold= 2
 
 P_tot= 0.649474335188621  
 
-
-
 Therefore y= 0.649474335188621  
-
-
-### Monte Carlo Simulation
-
-
 
 What is the total amount of nodes? 100
 
@@ -443,11 +571,7 @@ How many experiments? 500
 
 What is the theoretical mean?0.649474335188621
 
-
-
-
-
-#### Individual Probabilities 
+##### Individual Probabilities 
 
 Slope: -8.167040668162673e-06
 Intercept: 0.6516176766467067
@@ -455,9 +579,9 @@ Standard Deviation" 0.02083756242980528
 
 ![each_experiments_individual_probability](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/each_experiments_individual_probability.png)
 
-#### Randomness (Histogram of Randomness) 
+##### A histogram and visualization of distribution 
 
-Definitions of mean, median and mode. 
+Histogram: divide `[0,1)` into $n_{i}$ small subintervals, generate $N$ numbers, count how many numbers that fall in each subinterval (and divide the counts  by $N$) - plot the count variation and see if the curve is flat  
 
 Mean: 7500.0
 Median: 7493.5
@@ -466,16 +590,18 @@ Standard deviation 87.86134623152643
 
 ![histogram_of_randomness](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/histogram_of_randomness.png)
 
-#### Proving LLN
+![position_of_nodes_within_network](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/position_of_nodes_within_network.png)
+
+##### Proving the Law of Large Numbers
 
 ![convergence_proving_lln](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/convergence_proving_lln.png)
 
-#### Position of Nodes within Network
-
-![position_of_nodes_within_network](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/position_of_nodes_within_network.png)
 
 
-### Law of Large Numbers 
+##### Summary of probability and statistics computations 
+
+- Probability: perform $N$ experiments, count $M$ successes, then success had probability $\frac{M}{N}$($N$ must be large)
+- Monte Carlo simulation: let a program do $N$ experiments and count $M$ (simple method for probability problems) 
 
 ### Discussion 
 
@@ -544,15 +670,23 @@ Date accessed: 2019&#8209;05&#8209;13.
 [10]: https://stattrek.com/probability-distributions/hypergeometric.aspx
 "Hypergeometric Distribution" 
 
-[[11]]"Continuous and Discrete Probability Distributions" [online]. Available:<https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/>. Date accessed: 2019&#8209;0&#8209;18.
+[[11]]"Continuous and Discrete Probability Distributions" [online]. Available:<https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/>. Date accessed: 2019&#8209;07&#8209;18.
 
 [11]: https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/basic-statistics/probability-distributions/supporting-topics/basics/continuous-and-discrete-probability-distributions/
 "Continuous and Discrete Probability Distributions" 
 
-[[12]]Wikipedia, "Probability Density Function" [online]. Available: <https://en.wikipedia.org/wiki/Probability_density_function>. Date accessed: 2019&#8209;0&#8209;18.
+[[12]]Wikipedia, "Probability Density Function" [online]. Available: <https://en.wikipedia.org/wiki/Probability_density_function>. Date accessed: 2019&#8209;07&#8209;18.
 
 [12]: https://en.wikipedia.org/wiki/Probability_density_function
 "Probability Density Function" 
+
+[[13]]Wikipedia, "Gambler's Fallacy" [online]. Available: https://en.wikipedia.org/wiki/Gambler%27s_fallacy. Date accessed: 2019&#8209;07&#8209;18.
+
+[13]: https://en.wikipedia.org/wiki/Gambler%27s_fallacy
+
+"Gambler's Fallacy" 
+
+
 
 ## Appendices
 
