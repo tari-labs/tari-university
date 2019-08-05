@@ -18,7 +18,7 @@
       + [Greedy User Attack](#greedy-user-attack)
       + [Starvation Attack](#starvation-attack)
       + [Flooding Attack](#flooding-attack)
-- [Comparison with Tor](#comparison-with-tor)
+- [How Tor works and compares to I2P](#comparison-with-tor)
 - [Conclusion](#conclusion)
 - [References](#references)
 - [Contributors](#contributors)
@@ -44,7 +44,7 @@ I2P is primarily an enclosed network that runs within the Internet
 infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and the Tor network, which are built to
 communicate with the Internet anonymously, I2P works as a decentralized network that operates within the Internet, i.e. an Internet within the Internet. Interaction is done on a peer-to-peer (node-to-node) level and there is no 
 centralized authority that handles the network or keeps track of the active peers. A node in the network can either be a 
-server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other hand is a made up of a group of volunteer operated servers that allows people to privately and securely access the internet [[13]]. Since I2P works within its 
+server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other hand is a made up of a group of volunteer-operated servers that allows people to privately and securely access the internet. This means people can volunteer to run a relay node in the network and essentially donate bandwidth. [[13]]. More on this below. In I2P each client/server is a relay node - depending on the bandwidth on their device as one of the parameters. Since I2P works within its 
 own network, it is primarily made up of anonymous and hidden sites (called *eepsites*) that exist only within this network 
 and are only accessible to people using I2P. These sites can easily be created using an **I2PTunnel** service that uses 
 a standard web server.
@@ -155,7 +155,7 @@ the nodes and attempt to correlate messages and their route. Since all peers in 
 sending messages, this attack is trivial. The attacker can send out large amounts of data (more than 2GB), observe all the nodes and narrow 
 down those that routed the message. The large chunk of data is necessary because inter-router communication is encrypted 
 and streamed, i.e. 1,024&nbsp;byte data is indistinguishable from 2,048&nbsp;byte data. Mounting this attack is, however, very difficult and 
-one would need to be an Internet Service Provider (ISP) in order to observe a large chunk of the network.
+one would need to be an Internet Service Provider (ISP) or government entity in order to observe a large chunk of the network.
 
 ### Intersection Attacks
 Intersection attacks involve observing the network and node churns over time, and intersecting the peers that are online when a message 
@@ -181,7 +181,7 @@ large. The targeted user can, however, detect this by the contents of the messag
 fail. The user can hence identify the unresponsive tunnels, ignore them and build new ones. They can also choose to 
 throttle the number of messages a tunnel can receive. Although I2P has no defences against a network flooding attack, it is incredibly difficult to flood the network.
 
-## Comparison with Tor
+## How Tor works and Comparison with I2P
 The primary differences between Tor and I2P lie in the design/intent of the service and consequentially the threat model. 
 Tor takes a directory/central authority approach in its design, i.e. clients in its network 
 route their messages via central servers. These authority servers act as monitors of the network as well as traffic
