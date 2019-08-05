@@ -44,7 +44,7 @@ I2P is primarily an enclosed network that runs within the Internet
 infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and the Tor network, which are built to
 communicate with the Internet anonymously, I2P works as a decentralized network that operates within the Internet, i.e. an Internet within the Internet. Interaction is done on a peer-to-peer (node-to-node) level and there is no 
 centralized authority that handles the network or keeps track of the active peers. A node in the network can either be a 
-server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor and VPNs on the other hand, have centralized authorities where the messages/data and network are managed. Since I2P works within its 
+server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other hand is a made up of a group of volunteer operated servers that allows people to privately and securely access the internet [[13]]. Since I2P works within its 
 own network, it is primarily made up of anonymous and hidden sites (called *eepsites*) that exist only within this network 
 and are only accessible to people using I2P. These sites can easily be created using an **I2PTunnel** service that uses 
 a standard web server.
@@ -304,6 +304,12 @@ Available: <https://www.delaat.net/rp/2018-2019/p63/report.pdf> Date accessed: 2
 
 [12]: https://www.delaat.net/rp/2018-2019/p63/report.pdf
 "Invisible Internet Project - MSc Security and Network Engineering Research Project"
+
+[[13]] "Tor Project" [online].
+Available: <https://2019.www.torproject.org/about/overview.html.en> Date accessed: 2019&#8209;08&#8209;05.
+
+[13]:https://2019.www.torproject.org/about/overview.html.en
+"Tor Project"
 
 ## Contributors
 
