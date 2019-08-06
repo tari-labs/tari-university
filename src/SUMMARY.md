@@ -34,6 +34,8 @@
     - [Introduction to SPV, Merkle Trees and Bloom Filters](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)
     - [The RGB Protocol - An Introduction](protocols/rgb-introduction/sources/PITCHME.link.md)
     - [Distributed Hash Tables](protocols/dht/MainReport.md)
+  - [Network Analysis](./network-analysis/network-analysis.md)
+    - [Probabilistic Attack Vector Analysis Building Blocks](network-analysis/probabilistic-attack/MainReport.md)
   - [Labs](labs/introduction.md)
     - [Mermaid Demonstration](labs/mermaid-demo.md)
     - [Notes and info boxes](labs/notes.md)
