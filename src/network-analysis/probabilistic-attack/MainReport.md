@@ -28,7 +28,7 @@
 	  - [Explanation of Hypergeometric Distribution ](#explanation-of-hypergeometric-distribution)
 	  - [Implemention with Excel](#implementation-with-excel)
 	- [Crude Monte Carlo Simulation](curde-monte-carlo-simulation)
-	  - [Use of Random Numbers](#use of random numbers)
+	  - [Use of Random Numbers](#use-of-random-numbers)
 	  - [Drawing and Distribution of Random Numbers](#drawing-and-distribution-of-random-numbers)
 	  - [Drawing Integers](#drawing-integers)
 	  - [Clustered Random Numbers](#clustered-random-numbers)
@@ -44,7 +44,7 @@
 	  - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation)
 	    - [Individual Probabilities](#individual-probabilities)
 	    - [A Histogram and Visualization of Distribution](#a-histogram-and-visualization-of-distribution)
-	    - [Proving the Law of Large Numbers](#proving the law of large numbers)
+	    - [Proving the Law of Large Numbers](#proving-the-law-of-large-numbers)
 	    - [Summary of Probability and Statistics Computations](#summary-of-probability-and-statistics-computations)
 	- [Discussion](#discussion) 
 		- [Function](#function)
@@ -58,7 +58,7 @@
 
 What is the probability of an attacker controlling the majority of nodes in the network?
 
-What is the % chance of me controlling majority of nodes in a random sample of N (N=3, 4, 5, 10 )
+What is the % chance of me controlling majority of nodes in a random sample of $N (N=3, 4, 5, 10 )$
 
 Current day network operate on multiple hardware devices assisted by numerous numbers of operating systems. Systems have vulnerablities. These are explored and then exploited. This paper has made an attempt to explore possility of quantifying various probabilities. Cyber system can be modeled in different ways. There are various attack vectors that make cyber network vulnerable. 
 
@@ -72,8 +72,6 @@ This research aims to provide answers to questions posed about the workings of t
 Digital assets (DAs) are managed by committees of special nodes, Validator nodes . 
 
 Validator nodes form committees to manage the digital assets, their state change and ensures that the rules governing asset contracts are enforced. 
-
-Where was the idea borne from? 
 
 ### XOR Metric
 
@@ -89,8 +87,7 @@ In order to understand continuous distribution, a continuous random variable nee
 
 Probabilities of continuous random variables (X) are defined as the area under the curve of its PDF, probability density function. <sup>[def][zk~]</sup> Therefore the only ranges of values can have a nonzero probability. The probability that a continuous random variable equals some value is always zero. [[11]]
 
-![distribution_plot_normal_weight_shade_middle](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/distribution_plot_normal_weight_shade_middle.png)
-
+<p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
 The continuous normal distribution can describe the distribution of weight of adult males. For example, you can calculate the probability that a man weighs between 160 and 170 pounds.
 
 Distribution plot of the weight of adult males
@@ -104,8 +101,7 @@ Likewise, in order to understand discrete distribution, a discrete random variab
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a non-zero probability. Thus, a discrete probability distribution is often presented in tabular form. [[11]]
 
-![distribution_plot_poisson_shade_right_tail](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/distribution_plot_poisson_shade_right_tail.png)
-
+<p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
 With a discrete distribution, unlike with a continuous distribution, you can calculate the probability that X is exactly equal to some value. For example, you can use the discrete Poisson distribution to describe the number of customer complaints within a day. Suppose the average number of complaints per day is 10 and you want to know the probability of receiving 5, 10, and 15 customer complaints in a day.
 
 | x    | P(X=x)   |
@@ -200,8 +196,7 @@ The law of large numbers (LLN), in probability and statistics, states that as a 
 
 The LLN is important beacuse it guatantees stable long-term results from the [[8]] 
 
-![law_of_large_numbers](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/law_of_large_numbers.png)
-
+<p align="center"><img src="assets/law_of_large_numbers.png" width="700" /></p>
 The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right) they would be extremely similar. 
 
 By Pred - Own work, CC0, [[9]]
@@ -329,8 +324,6 @@ Python has a random module for drawing random numbers. The sequence of random nu
 
 Python's `random`module and `numpy.random` have functions for drawing uniformly distributed integers:
 
-
-
 #### Clustered random numbers 
 
 - Uniform distribution is not also needed, i.e. it is more likely to have norm (mean) blood pressure than large deviation from the mean
@@ -352,8 +345,6 @@ To describe a set of random numebrs $xi$ we are often interested in two things:
 $$
 x_{m} = \frac{1}{n}\displaystyle\sum_{j=1}^{n-1}x_j  ​
 $$
-
-
 
 - the 'mean deviation' from the mean value (standard deviation)
 
@@ -476,8 +467,6 @@ Insert hotlink with python link for the static.py
 
 #### Statistical Calculation
 
-(What you found)
-
 - Certain variables that remain constant 
   - Total nodes, *N* = 100 
   - Bad nodes, *m* = 60
@@ -509,8 +498,7 @@ From a plot of committee size versus probability of bad actors controlling the n
 - As the commitee size increases, the probability increases 
 - Thus, the greater the sample size the greater the chance of there being bad nodes in the set drawn 
 
-![probability-1](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/probability-1.png)
-
+<p align="center"><img src="assets/probability-1.png" width="700" /></p>
 The variables
 
 - Total nodes = N
@@ -522,13 +510,10 @@ The variables
 
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that:
 
-
-![probability-2](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/probability-2.png)
-
+<p align="center"><img src="assets/probability-2.png" width="700" /></p>
 **Vary the BFT threshold**
 
-![probability-3](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/probability-3.png)
-
+<p align="center"><img src="assets/probability-3.png" width="700" /></p>
 From a plot of committee size versus probability where the number of nodes remains at 500 with a change in $T$, the BFT threshold, ranging from 50% to 67%, it can be seen that: 
 
 - When the BFT threshold is 50% the probability is lower when the committee size is small, the probabiltiy increases when the committee size increases, and eventually tends to one.
@@ -565,9 +550,11 @@ How many nodes are to be drawn? 3
 
 What is the BFT threshold within the committee? 2
 
-What is the no of draws within an experiment? 500
+What is the no of draws within an experiment? 1000
 
-How many experiments? 500
+How many experiments? 1000
+
+Do you know theoratical mean? Y|N: Y
 
 What is the theoretical mean?0.649474335188621
 
@@ -575,10 +562,9 @@ What is the theoretical mean?0.649474335188621
 
 Slope: -8.167040668162673e-06
 Intercept: 0.6516176766467067
-Standard Deviation" 0.02083756242980528
+Standard Deviation: 0.02083756242980528
 
-![each_experiments_individual_probability](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/each_experiments_individual_probability.png)
-
+<p align="center"><img src="assets/uniform_individual_probability.png" width="700" /></p>
 ##### A histogram and visualization of distribution 
 
 Histogram: divide `[0,1)` into $n_{i}$ small subintervals, generate $N$ numbers, count how many numbers that fall in each subinterval (and divide the counts  by $N$) - plot the count variation and see if the curve is flat  
@@ -586,31 +572,79 @@ Histogram: divide `[0,1)` into $n_{i}$ small subintervals, generate $N$ numbers,
 Mean: 7500.0
 Median: 7493.5
 There is no mode!
-Standard deviation 87.86134623152643
+Standard deviation: 87.86134623152643
 
-![histogram_of_randomness](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/histogram_of_randomness.png)
-
-![position_of_nodes_within_network](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/position_of_nodes_within_network.png)
-
+<p align="center"><img src="assets/uniform_histogram.png" width="700" /></p>
+<p align="center"><img src="assets/uniform_position.png" width="700" /></p>
 ##### Proving the Law of Large Numbers
 
-![convergence_proving_lln](/Users/kevoulee/tari-university/src/network-analysis/probabilistic-attack/assets/convergence_proving_lln.png)
-
-
-
+<p align="center"><img src="assets/uniform_lln.png" width="700" /></p>
 ##### Summary of probability and statistics computations 
 
 - Probability: perform $N$ experiments, count $M$ successes, then success had probability $\frac{M}{N}$($N$ must be large)
 - Monte Carlo simulation: let a program do $N$ experiments and count $M$ (simple method for probability problems) 
 
+#### (New with changes) Uniform Distribution 
+Slope: 1.47009147009147e-06
+Intercept: **0.6488206893106894** 0.649474335188621
+Standard Deviation: 0.015299118864759447
+
+Mean: 30000.0
+Median: 29999.0
+There is no mode!
+Standard deviation: 156.4164345908096
+
+#### Hypergeometric Distribution 
+
+Slope: -9.241269241269239e-07
+Intercept: **0.6497326013986013** 0.649474335188621
+Standard Deviation: 0.01489030826679826
+
+<p align="center"><img src="assets/hg_individual_probability.png" width="700" /></p>
+Mean: 30000.0
+Median: 30005.0
+There is no mode!
+Standard deviation: 176.78949418029694
+
+<p align="center"><img src="assets/hg_histogram.png" width="700" /></p>
+<p align="center"><img src="assets/hg_position.png" width="700" /></p>
+<p align="center"><img src="assets/hg_lln.png" width="700" /></p>
+#### Poisson
+
+Slope: 1.8626598626598637e-06
+Intercept: **0.6484946013986014** 0.649474335188621
+Standard Deviation: 0.015487421839519825
+
+<p align="center"><img src="assets/poisson_individual_probability.png" width="700" /></p>
+Mean: 30000.0
+Median: 29986.5
+There is no mode!
+Standard deviation: 159.88916615751506
+
+<p align="center"><img src="assets/poisson_histogram.png" width="700" /></p>
+<p align="center"><img src="assets/poisson_position.png" width="700" /></p>
+<p align="center"><img src="assets/poisson_lln.png" width="700" /></p>
+#### Normal 
+
+Slope: 8.819888819888823e-07
+Intercept: **0.6494234465534465** 0.649474335188621
+Standard Deviation: 0.015062283239149923
+
+<p align="center"><img src="assets/normal_individual_probability.png" width="700" /></p>
+Mean: 30000.0
+Median: 29988.0
+There is no mode!
+Standard deviation: 166.1450625753947
+
+<p align="center"><img src="assets/normal_histogram.png" width="700" /></p>
+<p align="center"><img src="assets/normal_position.png" width="700" /></p>
+<p align="center"><img src="assets/normal_lln.png" width="700" /></p>
 ### Discussion 
 
-(Relevance of your results, how it fits with other research in the area)
 
 #### Function 
 
 ## Conclusion and Recommendations
-(Summary of results/findings and what needs to be done as a reuslt of your findings)
 
 It has come to light, that in addition to further analysis within the Python environment, research into using the Monte Carlo simulations must be considered. 
 
@@ -680,12 +714,10 @@ Date accessed: 2019&#8209;05&#8209;13.
 [12]: https://en.wikipedia.org/wiki/Probability_density_function
 "Probability Density Function" 
 
-[[13]]Wikipedia, "Gambler's Fallacy" [online]. Available: https://en.wikipedia.org/wiki/Gambler%27s_fallacy. Date accessed: 2019&#8209;07&#8209;18.
+[[13]]Wikipedia, "Gambler's Fallacy" [online]. Available: <https://en.wikipedia.org/wiki/Gambler%27s_fallacy>. Date accessed: 2019&#8209;07&#8209;18.
 
 [13]: https://en.wikipedia.org/wiki/Gambler%27s_fallacy
-
 "Gambler's Fallacy" 
-
 
 
 ## Appendices
