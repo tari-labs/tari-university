@@ -56,11 +56,9 @@
 ## Introduction
 ### Question
 
-What is the probability of an attacker controlling the majority of nodes in the network?
+This investigation attempts to answer the following question:*What is the % chance of controlling majority of nodes in a random sample of with varying quantities of the total number of nodes?*
 
-What is the % chance of me controlling majority of nodes in a random sample of $N (N=3, 4, 5, 10 )$
-
-Current day network operate on multiple hardware devices assisted by numerous numbers of operating systems. Systems have vulnerablities. These are explored and then exploited. This paper has made an attempt to explore possility of quantifying various probabilities. Cyber system can be modeled in different ways. There are various attack vectors that make cyber network vulnerable. 
+This research paper has made an attempt to explore possibility of quantifying various probabilities including the total number of nodes, the committee selected from the total, and the threshold which governs whether a committee can be deemed corrupt. 
 
 ### Aim 
 
