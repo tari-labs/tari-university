@@ -24,35 +24,26 @@
 - [Contributors](#contributors)
 
 ## Background
-Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks. Most people use them as a way to securely and privately browse the Internet inspite of their varied use cases. These
-networks have very similar characteristics but also have important differentiators in the ways that they work and anonymise the internet traffic of users.
+Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks. They are all designed in different ways and for specific uses though most people use them with the intent of privately browsing the internet. In their functions, these networks have very similar characteristics but also have important differentiators in the how they work to anonymise and secure the internet traffic of users.
 
 In this report, we'll examine what the I2P network is, the paradigms of how it works, its security infrastructure and its
-usefulness in the blockchain domain.
+potential or known use-cases in the blockchain domain.
 
 ## Introduction to I2P Network
 
 ### What is I2P?
 I2P (known as the Invisible Internet Project - founded in 2003) is a low-latency network layer that runs on a distributed 
 network of computers on a global network infrastructure. It is primarily built into applications such as email, Internet Relay Chat (IRC) and file 
-sharing [[6]]. This network layer provides a set of functions that runs on each
-computer and provides encrypted, one-way connections to and from other computers within the network. These functions are
-wrapped in a *"router"* that is installed during setup and configuration of the network.
+sharing [[6]]. It works by automatically making each client in the network a node through which data and traffic is routed. The nodes that run support the network layer are responsible for providing encrypted, one-way connections to and from other computers within the network. 
 
 ### How does it Work?
-I2P is primarily an enclosed network that runs within the Internet
-infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and the Tor network, which are built to
-communicate with the Internet anonymously, I2P works as a decentralized network that operates within the Internet, i.e. an Internet within the Internet. Interaction is done on a peer-to-peer (node-to-node) level and there is no 
-centralized authority that handles the network or keeps track of the active peers. A node in the network can either be a 
-server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other hand is a made up of a group of volunteer-operated servers that allows people to privately and securely access the internet. This means people can volunteer to run a relay node in the network and essentially donate bandwidth. [[13]]. More on this below. In I2P each client/server is a relay node - depending on the bandwidth on their device as one of the parameters. Since I2P works within its 
-own network, it is primarily made up of anonymous and hidden sites (called *eepsites*) that exist only within this network 
-and are only accessible to people using I2P. These sites can easily be created using an **I2PTunnel** service that uses 
-a standard web server.
+I2P is an enclosed network that runs within the Internet
+infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and Tor, which are inherently "outproxy" networks designed to
+anonymous and privately communication with the Internet, I2P is designed as a peer to peer nework. This means it has very little to no communication with the internet. Identifying each node in I2P is hence not done with an IP address but a cryptographic identifier. ([[1]], [[2]]). A node in the I2P network can either be a 
+server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other hand is a made up of a group of volunteer-operated servers that allows people to privately and securely access the internet. This means people can volunteer to run a relay node in the network and essentially donate bandwidth. [[13]]. More on this. Compared to Tor, each client/server in I2P is automatically a relay node. Whether data is routed through a specific node is mainly bandwidth dependent. 
 
-Another concept of note regarding I2P is that by design, it is not inherently an "outproxy" network, i.e. it is not 
-intended for accessing the Internet. This is because the client to whom you send a message is the cryptographic identifier, 
-not some IP address. The message must therefore be addressed to someone running I2P. Browsing the Internet is, however, possible 
-through opening an outproxy that allows an anonymous Internet connection to be created ([[1]], [[2]]).
+**Eepsites** Since there is no *internet* in I2P, the network is made up of its own anonymous and hidden sites (called *eepsites*). These exist only within the network and are only accessible to people using I2P. Services such as **I2PTunnel**, that use 
+a standard web server, can be used to create sites like these.
 
 ### Infrastructure
 #### Routing Infrastructure and Anonymity
