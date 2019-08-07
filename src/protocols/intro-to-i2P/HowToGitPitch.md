@@ -13,7 +13,7 @@ Presentation:   src/protocols/intro-to-i2P#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/grin-protocol-overview#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/intro-to-i2P#/
 
 ## On the trunk
 ### Trunk name
