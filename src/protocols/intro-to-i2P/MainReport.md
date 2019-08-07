@@ -39,8 +39,8 @@ sharing [[6]]. It works by automatically making each client in the network a nod
 ### How does it Work?
 I2P is an enclosed network that runs within the Internet
 infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and Tor, which are inherently "outproxy" networks designed to
-anonymous and privately communication with the Internet, I2P is designed as a peer to peer nework. This means it has very little to no communication with the internet. Identifying each node in I2P is hence not done with an IP address but a cryptographic identifier. ([[1]], [[2]]). A node in the I2P network can either be a 
-server that hosts a darknet service, or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other hand is a made up of a group of volunteer-operated servers that allows people to privately and securely access the internet. This means people can volunteer to run a relay node in the network and essentially donate bandwidth. [[13]]. More on this. Compared to Tor, each client/server in I2P is automatically a relay node. Whether data is routed through a specific node is mainly bandwidth dependent. 
+anonymous and privately communication with the Internet, I2P is designed as a peer to peer nework. This means it has very little to no communication with the internet. This also means identifying each node in I2P is not done with an IP address but a cryptographic identifier. ([[1]], [[2]]). A node in the I2P network can either be a 
+server that hosts a darknet service (similar to a website in the internet), or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other works by using a group of volunteer-operated relay servers/nodes that allow people to privately and securely access the internet. This means people can choose to volunteer as a relay node in the network and essentially donate bandwidth. [[13]]. Compared to Tor, each client/server in I2P is automatically a relay node. Whether data is routed through a specific node is normally bandwidth dependent. 
 
 **Eepsites** Since there is no *internet* in I2P, the network is made up of its own anonymous and hidden sites (called *eepsites*). These exist only within the network and are only accessible to people using I2P. Services such as **I2PTunnel**, that use 
 a standard web server, can be used to create sites like these.
@@ -48,10 +48,10 @@ a standard web server, can be used to create sites like these.
 ### Infrastructure
 #### Routing Infrastructure and Anonymity
 
-I2P works by installing an I2P routing service within a user's device. This router creates temporary, encrypted, one-way 
+I2P works by installing an I2P routing service within a client's device. This router creates temporary, encrypted, one-way 
 connections with I2P routers on other devices. Connections are referred to as one way because they are made up of 
-an *Outbound Tunnel* and an *Inbound Tunnel*. When communication occurs, data leaves the user's devices via the 
-outbound tunnels and is received on other devices through their inbound tunnels. Messages do not travel in two directions within 
+an *Outbound Tunnel* and an *Inbound Tunnel*. During any communication, data leaves the client's devices via the 
+outbound tunnels and is received on other devices through their inbound tunnels. This hence means messages/data does not travel in two directions within 
 the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels [[4]], as shown in Figure&nbsp;1.
 Messages sent from one device do not travel directly to the inbound tunnel of the destination device.
 Instead, the outbound router queries a distributed network database for address of the inbound router. This database is comprised of a custom Kademlia style Distributed Hash Table (DHT)
@@ -59,8 +59,8 @@ that contains the router information and destination information.
 For each application/client, the I2P router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the
 network database are shared among all users of
 a router. If a tunnel in the pool is about to expire or if the tunnel is no longer usable, the router creates a new tunnel
-and adds it to the pool. It is important to recall later that tunnels periodically expire every ten minutes and, hence,
-need to be refreshed frequently. This is a security measure, done to prevent long-lived tunnels from becoming a threat
+and adds it to the pool. It is important to recall later that tunnels periodically expire, every ten minutes, and hence,
+need to be refreshed frequently. This is one of I2P's security measures that's done to prevent long-lived tunnels from becoming a threat
 to anonymity [[3]].
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/network-topology.png" width="950" /></p>
@@ -68,27 +68,27 @@ to anonymity [[3]].
 
 #### The Distributed Network Database
 
-The NetDB, discussed earlier, is implemented as a Distributed Hash Table (DHT) and is propagated via the floodfill routers using the Kademlia algorithm. This is one of the properties that makes I2P decentralised. For a router to start participating in the I2P network it requires the installation of part of the NetDB. Obtaining the partial NetDB is called bootstrapping and happens by ’reseeding’ the router. By default, a router will reseed the first time by querying some hard-coded domain names. When a router successfully establishes a connection to one of these domains, a Transport Layer Security (TLS) connection is set up through which the router downloads a signed partial copy of the NetDB. Once the router can reach at least one other participant in the network, the router will query for other parts of the NetDB it does not have itself. [[12]]
+The NetDB, discussed earlier, is implemented as a Distributed Hash Table (DHT) and is propagated via nodes known as floodfill routers using the Kademlia algorithm. The netDB is one of the characteristics that makes I2P decentralised. To start participating in the network, a router instals a part of the NetDB. Obtaining the partial NetDB is called bootstrapping and happens by ’reseeding’ the router. By default, a router will reseed the first time by querying some hard-coded domain names. When a router successfully establishes a connection to one of these domains, a Transport Layer Security (TLS) connection is set up through which the router downloads a signed partial copy of the NetDB. Once the router can reach at least one other participant in the network, the router will query for other parts of the NetDB it does not have itself. [[12]]
 
 The NetDB stores two types of data: 
 1. **Router Info and how this works:**
 When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the other router.
-The destination router info is stored in the netDb with the router's identity as the key. To request a resource (or RouterInfo),a client requests the desired key from the node considered to be closest to the key. If the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge of participating nodes and returns the node it considers to be nearest to the key. [[3]]. The router info in the netDB is made up of: ([[4]], [[6]]):
+The destination router info is stored in the netDb with the router's identity as the key. To request a resource (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge of participating nodes and returns the node it considers to be nearest to the key. [[3]]. The router info in the netDB is made up of: ([[4]], [[6]]):
 
-- The router's identity - an encryption key, a signing key and a certificate.
-- The contact addresses at which it can be reached - protocol, Internet Protocol (IP), port.
-- When this was created or published.
-- Options - a set of arbitrary text options, e.g. bandwidth of router.
-- The signature of the above, generated by the identity's signing key.
+    - The router's identity - an encryption key, a signing key and a certificate.
+    - The contact addresses at which it can be reached - protocol, Internet Protocol (IP), port.
+    - When this was created or published.
+    - Options - a set of arbitrary text options, e.g. bandwidth of router.
+    - The signature of the above, generated by the identity's signing key.
 
 2. **LeaseSets:** 
 The LeaseSet specifies tunnel entry point to reach an endpoint. This specifies the routers that can directly contact the desired destination. It contains the following data:
 
-- Tunnel gateway router - given by specifying its identity.
-- Tunnel ID - tunnel used to send messages.
-- Tunnel expiration - when the tunnel will expire.
-- Destination itself - similar to router identity.
-- Signature - used to verify the LeaseSet.
+    - Tunnel gateway router - given by specifying its identity.
+    - Tunnel ID - tunnel used to send messages.
+    - Tunnel expiration - when the tunnel will expire.
+    - Destination itself - similar to router identity.
+    - Signature - used to verify the LeaseSet.
 
 #### Floodfill Routers
 Special routers, referred to as *floodfill routers*, are responsible for storing the netDb. Participation in the floodfill 
@@ -174,12 +174,12 @@ throttle the number of messages a tunnel can receive. Although I2P has no defenc
 
 ## How Tor works and Comparison with I2P
 ********* 
-As previously mentioned, Tor works through voluteer relay nodes. These relay nodes are responsible for creating hops through which data is routed before reaching its destination on the Internet. The designated use of relay nodes in the function of the network means a couple of things: 
-- The stability of the network is directly proportional to the number of relay nodes in the network. The less the relay nodes the less stable the network becomes. 
+As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. The designated use of relay nodes in the network means a couple of things: 
+- The stability of the network is proportional to the number of relay nodes in the network. The less the relay nodes the less stable the network becomes. 
 - The security of the network is also proportinal to the number of relay nodes. The more the relay nodes the less vulnerable it is agaist attacks. 
-- Finally, the speed of the network is also proportinal to the number of relay nodes. The more nodes there are the faster the network becomes.    
+- Finally, the speed of the network is proportinal to the number of relay nodes. The more nodes there are the faster the network becomes. [[13]]
 
-Tor's relay nodes are not the same in  also have different functions. . [13]
+Tor's relay nodes are not the same. There are three types of relay nodes that exist in the network as described below. 
 
 The way 
 
