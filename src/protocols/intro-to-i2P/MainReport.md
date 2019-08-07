@@ -182,6 +182,16 @@ fail. The user can hence identify the unresponsive tunnels, ignore them and buil
 throttle the number of messages a tunnel can receive. Although I2P has no defences against a network flooding attack, it is incredibly difficult to flood the network.
 
 ## How Tor works and Comparison with I2P
+********* 
+As previously mentioned, Tor works through voluteer relay nodes. These relay nodes are responsible for creating hops through which data is routed before reaching its destination on the Internet. The designated use of relay nodes in the function of the network means a couple of things: 
+- The stability of the network is directly proportional to the number of relay nodes in the network. The less the relay nodes the less stable the network becomes. 
+- The security of the network is also proportinal to the number of relay nodes. The more the relay nodes the less vulnerable it is agaist attacks. 
+- Finally, the speed of the network is also proportinal to the number of relay nodes. The more nodes there are the faster the network becomes.    
+
+Tor's relay nodes are not the same in  also have different functions. . [13]
+
+The way 
+
 The primary differences between Tor and I2P lie in the design/intent of the service and consequentially the threat model. 
 Tor takes a directory/central authority approach in its design, i.e. clients in its network 
 route their messages via central servers. These authority servers act as monitors of the network as well as traffic
@@ -191,10 +201,9 @@ network. Table&nbsp;1 compares the finer differences between the two networks:
 <div align="center"><b>Table 1: Differences between I2P and Tor</b></div>
 
 
-
 | I2P                                     | Tor                       |
 | ---------------------------------       | --------------------------|
-| Fully peer to peer and self-organizing | Server                         |
+| Fully peer to peer: Self-organizing Nodes | Fully Peer to Peer: Volunteer Relay Nodes                         |
 | Query netDb to find destination’s inbound tunnel gateway | Centralized authority/directory to relay data     |
 | Limited to no exit nodes. Internal communication only | Designed and optimized for exit traffic, with a large number of exit nodes          |
 | Designed primarily for file sharing    | Designed for anonymous Internet access |
