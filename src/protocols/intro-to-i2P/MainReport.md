@@ -173,7 +173,12 @@ fail. The user can hence identify the unresponsive tunnels, ignore them and buil
 throttle the number of messages a tunnel can receive. Although I2P has no defences against a network flooding attack, it is incredibly difficult to flood the network.
 
 ## How Tor works and Comparison with I2P
-As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. The designated use of relay nodes in the network means a couple of things: 
+As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. Thue work by incrementally building a circuit of encrypted connections through relays on the network. The circuit is extended one hop at a time, and each relay along the way knows only which relay gave it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. Later requests are given a new circuit, to keep people from linking your earlier actions to the new ones. [[14]] See the image below: 
+
+<p align="center"><a name="fig_eca"> </a><img src="assets/htw3.png" width="750" /></p>
+<p align="center"><b>Figure&nbsp;4: How Tor Works - Illustration [<a href="https://2019.www.torproject.org/about/overview.html.en" title="How Tor Works">13</a>]</b></p>
+
+The designated use of relay nodes in the network means a couple of things: 
 - The stability of the network is proportional to the number of relay nodes in the network. The less the relay nodes the less stable the network becomes. 
 - The security of the network is also proportinal to the number of relay nodes. The more the relay nodes the less vulnerable it is agaist attacks. 
 - Finally, the speed of the network is proportinal to the number of relay nodes. The more nodes there are the faster the network becomes. [[13]]
@@ -182,7 +187,7 @@ Tor's relay nodes do not all function in the same way. There are three types of 
 
 #### 1. Guard or Middle Relay (non-exit relay)
 
-A guard relay is the first relay in the Tor circuit. It's functions are similar to a middle relay, however the middle relay acts as a hop between the guard and an exit relay. Guard or middle relays do not exit any data to the internet. This is done by Exit relays. However they are visible to the public as Tor lists all relays publicly. 
+A guard relay is the first relay in the Tor circuit. It's functions are similar to a middle relay, however the middle relay acts as a hop between the guard and an exit relay. Guard or middle relays do not exit any data to the internet. This is done by Exit relays. [[13]]  
 
 
 #### 2. Exit Relay
@@ -321,11 +326,11 @@ Available: <https://www.delaat.net/rp/2018-2019/p63/report.pdf> Date accessed: 2
 [12]: https://www.delaat.net/rp/2018-2019/p63/report.pdf
 "Invisible Internet Project - MSc Security and Network Engineering Research Project"
 
-[[13]] "Tor Project" [online].
+[[13]] "Tor Project: How it works" [online].
 Available: <https://2019.www.torproject.org/about/overview.html.en> Date accessed: 2019&#8209;08&#8209;05.
 
 [13]:https://2019.www.torproject.org/about/overview.html.en
-"Tor Project"
+"Tor Project: How it works"
 
 ## Contributors
 
