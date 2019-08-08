@@ -173,29 +173,38 @@ fail. The user can hence identify the unresponsive tunnels, ignore them and buil
 throttle the number of messages a tunnel can receive. Although I2P has no defences against a network flooding attack, it is incredibly difficult to flood the network.
 
 ## How Tor works and Comparison with I2P
-As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. Thue work by incrementally building a circuit of encrypted connections through relays on the network. The circuit is extended one hop at a time, and each relay along the way knows only which relay gave it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. Later requests are given a new circuit, to keep people from linking your earlier actions to the new ones. [[14]] See the image below: 
+As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. Thuy work by incrementally building a circuit of encrypted connections through relays on the network. The circuit is extended one hop at a time, and each relay along the way knows only which relay gave it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. Later requests are given a new circuit, to keep people from linking your earlier actions to the new ones. This process is also known as Onion Routing [[14]]. See the image below: 
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/htw3.png" width="750" /></p>
 <p align="center"><b>Figure&nbsp;4: How Tor Works - Illustration [<a href="https://2019.www.torproject.org/about/overview.html.en" title="How Tor Works">13</a>]</b></p>
 
-The designated use of relay nodes in the network means a couple of things: 
+### Onion Routing - How is works
+Onion Routing is essentially a distributed overlay network designed to anonymize TCP-based applications like web browsing, secure shell, and instant messaging. Clients choose a path through the network and build a circuit, in which each node, in the path knows its predecessor and successor, but no other nodes in the circuit. Traffic flows down the circuit in fixed-size cells, which are unwrapped by a symmetric key at each node (like the layers of an onion) and relayed downstream. [[14]]
+
+
+The designated use of relay nodes in the Tor network gives the network a couple of important characeristics: 
 - The stability of the network is proportional to the number of relay nodes in the network. The less the relay nodes the less stable the network becomes. 
 - The security of the network is also proportinal to the number of relay nodes. The more the relay nodes the less vulnerable it is agaist attacks. 
 - Finally, the speed of the network is proportinal to the number of relay nodes. The more nodes there are the faster the network becomes. [[13]]
 
-Tor's relay nodes do not all function in the same way. There are three types of relay nodes - a Guard, Exit and Bridge node. 
+### Types of Tor Relays/Nodes Routing
+Tor's relay nodes do not all function in the same way. There are four types of relay nodes - a Guard/Entry, Middle, Exit and Bridge node. 
 
-#### 1. Guard or Middle Relay (non-exit relay)
+<p align="center"><a name="fig_eca"> </a><img src="assets/torCircuit.png" width="750" /></p>
+<p align="center"><b>Figure&nbsp;5: The Tor Circuit [<a href="https://medium.com/coinmonks/tor-nodes-explained-580808c29e2d" title="The Tor Circuit">14</a>]</b></p>
 
-A guard relay is the first relay in the Tor circuit. It's functions are similar to a middle relay, however the middle relay acts as a hop between the guard and an exit relay. Guard or middle relays do not exit any data to the internet. This is done by Exit relays. [[13]]  
+#### 1. Guard or Entry Relay (non-exit relay)
 
+A guard relay is the first relay in the Tor circuit. Each client that wants to connect to the Tor netowkr will first connect to a Guard relay. This means guard nodes can see the IP Address of the client attempting to connect. Tor publishes it's guard nodes and hence anyone can see them on websites such as this one: [[15]] Because seeing the IP address of a client is possible, there have been cases where attackers have filtered out traffic on the network using Circuit Fingerprinting techniques such as is documented in this paper. [[16]].
 
-#### 2. Exit Relay
+#### 2. Middle Relay
+These cover most parts of the Tor netowrk and act as hops. They consist of relays through which data is passed in encrypted format and no node knows more than its predecessor and descendant. All the available middle relay nodes show themselves to the guard and exit nodes so that any may connect to them for transmission. They can never be exit relays. 
 
-
+#### 3. Exit Relay
+These are nodes that send data to the desired destinations on the internet. The services Tor clients are connecting to (website, chat service, email provider, etc) will see the IP address of the exit relay instead of their real IP address of the Tor user. Because of this, the often are subject to numerous legal complaints and shut down threats. [[13]]
 
 #### 3. Bridge Relay
-
+The design of the Tor network means that the IP address of Tor relays is public. However, one of the ways Tor can be blocked by governments or ISPs is by blacklisting the IP addresses of these public Tor nodes. Tor bridges are nodes in the network that are not listed in the public Tor directory, making it harder for ISPs and governments to block them. [[13]]
 
 
 #### Comparison to I2P's node. 
@@ -331,6 +340,25 @@ Available: <https://2019.www.torproject.org/about/overview.html.en> Date accesse
 
 [13]:https://2019.www.torproject.org/about/overview.html.en
 "Tor Project: How it works"
+
+[[14]] "Tor: The Second-Generation Onion Router" [online]
+Available: <https://svn.torproject.org/svn/projects/design-paper/tor-design.html>  Date accessed: 2019&#8209;08&#8209;05.
+
+[14]:https://svn.torproject.org/svn/projects/design-paper/tor-design.html
+"Tor: The Second-Generation Onion Router"
+
+[[15]] "Tor Network Status" [online]  
+Available: <https://torstatus.blutmagie.de/>  Date accessed: 2019&#8209;08&#8209;05.
+
+[15]: https://torstatus.blutmagie.de/
+"Tor Network Status"
+
+
+[[6]] "Circuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service" [online]
+Available: <https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf> Date accessed: 2019&#8209;08&#8209;05.
+
+[16]: https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf
+"TCircuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service"
 
 ## Contributors
 
