@@ -45,7 +45,7 @@ server that hosts a darknet service (similar to a website in the internet), or a
 **Eepsites** Since there is no *internet* in I2P, the network is made up of its own anonymous and hidden sites (called *eepsites*). These exist only within the network and are only accessible to people using I2P. Services such as **I2PTunnel**, that use 
 a standard web server, can be used to create sites like these.
 
-### Infrastructure
+## Infrastructure
 #### Routing Infrastructure and Anonymity
 
 I2P works by installing an I2P routing service within a client's device. This router creates temporary, encrypted, one-way 
@@ -173,23 +173,39 @@ fail. The user can hence identify the unresponsive tunnels, ignore them and buil
 throttle the number of messages a tunnel can receive. Although I2P has no defences against a network flooding attack, it is incredibly difficult to flood the network.
 
 ## How Tor works and Comparison with I2P
-********* 
 As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. The designated use of relay nodes in the network means a couple of things: 
 - The stability of the network is proportional to the number of relay nodes in the network. The less the relay nodes the less stable the network becomes. 
 - The security of the network is also proportinal to the number of relay nodes. The more the relay nodes the less vulnerable it is agaist attacks. 
 - Finally, the speed of the network is proportinal to the number of relay nodes. The more nodes there are the faster the network becomes. [[13]]
 
-Tor's relay nodes are not the same. There are three types of relay nodes that exist in the network as described below. 
+Tor's relay nodes do not all function in the same way. There are three types of relay nodes - a Guard, Exit and Bridge node. 
 
-The way 
+#### 1. Guard or Middle Relay (non-exit relay)
 
-The primary differences between Tor and I2P lie in the design/intent of the service and consequentially the threat model. 
+A guard relay is the first relay in the Tor circuit. It's functions are similar to a middle relay, however the middle relay acts as a hop between the guard and an exit relay. Guard or middle relays do not exit any data to the internet. This is done by Exit relays. However they are visible to the public as Tor lists all relays publicly. 
+
+
+#### 2. Exit Relay
+
+
+
+#### 3. Bridge Relay
+
+
+
+#### Comparison to I2P's node. 
+
+
+
+
+<!-- The primary differences between Tor and I2P lie in the design/intent of the service and consequentially the threat model. 
 Tor takes a directory/central authority approach in its design, i.e. clients in its network 
 route their messages via central servers. These authority servers act as monitors of the network as well as traffic
 routers. I2P, on the other hand, uses a decentralized server approach (netDb) to store information about each router in the 
-network. Table&nbsp;1 compares the finer differences between the two networks:
+network. Table&nbsp;1 compares the finer differences between the two networks: -->
 
-<div align="center"><b>Table 1: Differences between I2P and Tor</b></div>
+## Differences between I2P and Tor
+<!-- <div align="center"><b>Table 1: Differences between I2P and Tor</b></div> -->
 
 
 | I2P                                     | Tor                       |
