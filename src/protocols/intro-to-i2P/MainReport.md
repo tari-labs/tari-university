@@ -173,7 +173,7 @@ fail. The user can hence identify the unresponsive tunnels, ignore them and buil
 throttle the number of messages a tunnel can receive. Although I2P has no defences against a network flooding attack, it is incredibly difficult to flood the network.
 
 ## How Tor works and Comparison with I2P
-As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. Thuy work by incrementally building a circuit of encrypted connections through relays on the network. The circuit is extended one hop at a time, and each relay along the way knows only which relay gave it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. Later requests are given a new circuit, to keep people from linking your earlier actions to the new ones. This process is also known as Onion Routing [[14]]. See the image below: 
+As previously mentioned, Tor works through volunteer relay nodes. These relay nodes, like I2P's nodes, are responsible for creating hops through which data is routed before reaching its intended destination on the Internet. They work by incrementally building a circuit of encrypted connections through relays on the network. The circuit is extended one hop at a time, and each relay along the way knows only which relay gave it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. Later requests are given a new circuit, to keep people from linking your earlier actions to the new ones. This process is also known as Onion Routing [[14]]. See the image below: 
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/htw3.png" width="750" /></p>
 <p align="center"><b>Figure&nbsp;4: How Tor Works - Illustration [<a href="https://2019.www.torproject.org/about/overview.html.en" title="How Tor Works">13</a>]</b></p>
@@ -214,22 +214,19 @@ The design of the Tor network means that the IP address of Tor relays is public 
 | I2P                                     | Tor                       |
 | ---------------------------------       | --------------------------|
 | Fully peer to peer: Self-organizing Nodes | Fully Peer to Peer: Volunteer Relay Nodes                         |
-| Query netDb to find destination’s inbound tunnel gateway | Centralized authority/directory to relay data     |
+| Query netDb to find destination’s inbound tunnel gateway | Relays Data to the closest relay     |
 | Limited to no exit nodes. Internal communication only | Designed and optimized for exit traffic, with a large number of exit nodes          |
 | Designed primarily for file sharing    | Designed for anonymous Internet access |
-| Garlic routing                          | Onion routing                       |
 | Unidirectional tunnels                 | Rendezvous point                        |
-| Significantly smaller user base      | Bigger user base        |
-| Floodfill peers ("directory servers") are varying and untrusted | Hard-coded central authority |
-| Tunnels in I2P are short-lived | Tor tunnels have a long-lived capacity.
+| Significantly smaller user base      | Generally bigger user base        |
 
 **Source:** ([[9]], [[10]], [[11]]).
 
 ## Conclusion
 
-The I2P network is a proven network for moving messages/data anonymously and securely. Regarding the possibility of using I2P to browse the Internet, it is primarily limited to communication within its networks. Tor, however, is perfect for anonymous Internet browsing, and provides the tools and service for doing this.
+In summary, Tor and I2P are two types of networks that anonymise and encrypt data moved within them. Each network is uniquely designed for a respective function. The I2P network is a designed for moving data in a Peer to Peer peer format, whereas Tor is designed for accessing the internet privately. 
 
-Extensive research exists and continues to find ways to improve the security of these networks. This research becomes
+Extensive research exists and continues to find ways to improve the security of these networks in their respective operational designs. This research becomes
 especially important when control of a network may mean monetary losses, loss of privacy or denial of service.
 
 ## References
