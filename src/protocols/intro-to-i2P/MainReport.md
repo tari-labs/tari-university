@@ -195,28 +195,17 @@ Tor's relay nodes do not all function in the same way. There are four types of r
 
 #### 1. Guard or Entry Relay (non-exit relay)
 
-A guard relay is the first relay in the Tor circuit. Each client that wants to connect to the Tor netowkr will first connect to a Guard relay. This means guard nodes can see the IP Address of the client attempting to connect. Tor publishes it's guard nodes and hence anyone can see them on websites such as this one: [[15]] Because seeing the IP address of a client is possible, there have been cases where attackers have filtered out traffic on the network using Circuit Fingerprinting techniques such as is documented in this paper. [[16]].
+A guard relay is the first relay in the Tor circuit. Each client that wants to connect to the Tor network will first connect to a Guard relay. This means guard nodes can see the IP Address of the client attempting to connect. It is worth noting that Tor publishes it's guard nodes and hence anyone can see them on websites such as this one: [[15]] Because seeing the IP address of a client is possible, there have been cases where attackers have filtered out traffic on the network using Circuit Fingerprinting techniques such as is documented in this paper. [[16]].
 
 #### 2. Middle Relay
-These cover most parts of the Tor netowrk and act as hops. They consist of relays through which data is passed in encrypted format and no node knows more than its predecessor and descendant. All the available middle relay nodes show themselves to the guard and exit nodes so that any may connect to them for transmission. They can never be exit relays. 
+These cover most parts of the Tor netowrk and act as hops. They consist of relays through which data is passed in encrypted format. No node knows more than its predecessor and descendant. All the available middle relay nodes show themselves to the guard and exit nodes so that any may connect to them for transmission. Middle relays can never be exit relays within the network. [[13]]
 
 #### 3. Exit Relay
-These are nodes that send data to the desired destinations on the internet. The services Tor clients are connecting to (website, chat service, email provider, etc) will see the IP address of the exit relay instead of their real IP address of the Tor user. Because of this, the often are subject to numerous legal complaints and shut down threats. [[13]]
+These are nodes that send data to the desired destinations on the internet. The services Tor clients are connecting to (website, chat service, email provider, etc) will see the IP address of the exit relay instead of their real IP address of the Tor user. Because of this, exit relay owners are often are subject to numerous legal complaints and shut down threats. [[13]]
 
 #### 3. Bridge Relay
-The design of the Tor network means that the IP address of Tor relays is public. However, one of the ways Tor can be blocked by governments or ISPs is by blacklisting the IP addresses of these public Tor nodes. Tor bridges are nodes in the network that are not listed in the public Tor directory, making it harder for ISPs and governments to block them. [[13]]
+The design of the Tor network means that the IP address of Tor relays is public as previously mentioned and shown here. [[15]] Because of this, Tor can be blocked by governments or ISPs by blacklisting the IP addresses of these public Tor nodes. Tor Bridges are nodes in the network that are not listed in the public Tor directory, making it harder for ISPs and governments to block them. They are meant for people who want to run Tor from their homes, have a static IP or don't have much bandwidth to donate. [[13]]
 
-
-#### Comparison to I2P's node. 
-
-
-
-
-<!-- The primary differences between Tor and I2P lie in the design/intent of the service and consequentially the threat model. 
-Tor takes a directory/central authority approach in its design, i.e. clients in its network 
-route their messages via central servers. These authority servers act as monitors of the network as well as traffic
-routers. I2P, on the other hand, uses a decentralized server approach (netDb) to store information about each router in the 
-network. Table&nbsp;1 compares the finer differences between the two networks: -->
 
 ## Differences between I2P and Tor
 <!-- <div align="center"><b>Table 1: Differences between I2P and Tor</b></div> -->
