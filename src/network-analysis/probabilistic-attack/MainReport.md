@@ -527,9 +527,11 @@ From a plot of committee size versus probability where the number of nodes remai
 **Vary the total number of nodes, with committee size of 10**
 
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
-**Vary the total number of nodes, with committee size of 10**
+
+**Vary the total number of nodes, with committee size of 100**
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
+
 #### Crude Monte Carlo Simulation
 
 <u>Example data</u> 
