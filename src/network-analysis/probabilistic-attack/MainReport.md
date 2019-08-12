@@ -524,6 +524,12 @@ From a plot of committee size versus probability where the number of nodes remai
 - A similar trend is followed for the cases where the BFT threshold is 65% and 67% 
 - It is interesting to note that in the case were there is 
 
+**Vary the total number of nodes, with committee size of 10**
+
+<p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
+**Vary the total number of nodes, with committee size of 10**
+
+<p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
 #### Crude Monte Carlo Simulation
 
 <u>Example data</u> 
