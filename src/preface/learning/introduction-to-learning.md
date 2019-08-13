@@ -13,7 +13,9 @@ List of resources available to garner your knowledge in the Blockchain and crypt
 
 ## Key 
 
-| Beginner | Intermediate | Advanced |
-| -------- | ------------ | -------- |
-|          |              |          |
+| Level        |  Description  |
+| ------------ | ------------- |
+| <div class="wrap_beg">Beginner</div>     |  ?            |
+| <div class="wrap_int">Intermediate</div> |  ?            |
+| <div class="wrap_adv">Advanced</div>     |  ?            |
 
