@@ -75,21 +75,26 @@ on sensitive topics.
 ### When not to use Tor
 
 Do not use only the Tor Browser if you expect end-to-end encryption to a non-```.onion``` site such as a banking site, as the 
-```Exit Node``` ends the Tor encryption and your traffic can be intercepted between the Exit Node and the destination server.
+```Exit Node/Relay``` ends the Tor encryption and your traffic can be intercepted between the Exit Node and the destination server.
 
 
 ## How does Tor Network Work?
 
-Before Tor data enters the Tor network, it is bundled into layers of encrypted packets that are the same size. These 
-packets are then routed through a series of volunteer-operated servers called nodes, relays or bridges. Each time the 
+Before Tor data enters the Tor network, it is bundled into nested layers of encrypted packets of the same size. These 
+packets are then routed through a random series of volunteer-operated servers called nodes/relays. Each time the 
 Tor data passes through one of these relays, a layer of encryption is removed to reveal the location of the next relay. 
-When the data reaches the final relay on its path, known as the ```Exit Node```, the last layer of encryption is removed 
+When the data reaches the final relay on its path, known as the ```Exit Node/Relay```, the last layer of encryption is removed 
 and the data is sent to its final destination.
 
-Each relay only can decrypt enough data to learn the location of the previous and next relay. Since each path is randomly 
+There are a few different kinds of relays. A Guard/Middle (none-exit) relay, which deals with traffic inside or entering the 
+Tor network. Exit relays, which are public-facing relays where Tor traffic leaves the Tor network. A special kind of relay 
+called a Bridge, which is an unlisted relay, less likely to be blocked.
+
+Each relay can only decrypt enough data to learn the location of the previous and next relay. Since each path is randomly 
 generated and the relays do not keep records, it is nearly impossible for your activity to be traced back to you 
 through Tor’s complex network. Refer to [[5]] for more detailed information.
 
+More information on what a Tor Relay is or how to setup and volunteer some resources can be found at [[10]]
 
 ## Is Tor broken?
 
@@ -220,6 +225,11 @@ FBI tracked and busted a Chicago Anon"
 "Robert Heaton: How does online 
 tracking actually work?"
 
+[[10]] Tor: "The Tor Relay Guide" [online]. Available: 
+<https://trac.torproject.org/projects/tor/wiki/TorRelayGuide>. Date accessed: 2019&#8209;08&#8209;14.
+
+[10]: https://trac.torproject.org/projects/tor/wiki/TorRelayGuide
+"Tor: The Tor Relay Guide"
 
 ## Appendices
 
