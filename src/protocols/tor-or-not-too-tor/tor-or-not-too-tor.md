@@ -27,8 +27,12 @@ The name is derived from the acronym for the original software project name, ```
 refers to the way in which Tor protects your data, by wrapping it in multiple layers 
 of encryption, similar to the layers of an onion.
 
-Tor uses a unique system that was developed by the US Navy to protect 
-government intelligence communications.  
+Tor uses a unique system that was originally developed by the US Navy to protect 
+government intelligence communications. Naval Research Laboratory released the Tor code 
+under a free licence and in 2006 the Tor Project was founded. With the help of 
+the Electronic Frontier Foundation (EFF), further research and development has continued 
+as a Free and Open Source Project. Run by a worldwide community of volunteers, means 
+the Tor network services are not controlled by any corporate nor government agencies.  
 
 The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such 
 as OnionShare, run on top of or via the Tor network. These tools are meant to make using 
