@@ -133,12 +133,11 @@ amount of resources to create multiple identities.
 
 ### Eclipse Attacks
 In eclipse attacks, a set of malicious and colluding nodes arranges that a good node can 
-peer only with malicious nodes. The union of malicious nodes therefore fools the good node into writing its
-addresses into neighboring lists of good nodes. In a Sybil attack, a single malicious node possesses a large number of 
-identities in the network to control some part of the network. If an attacker wants to continue a Sybil attack into an eclipse 
+only communicate with malicious nodes. The union of malicious nodes therefore fools the good node into writing its
+addresses into neighbouring lists of good nodes. In a Sybil attack, a single malicious node possesses a large number of 
+identities in the network in-order to control some part of the network. If an attacker wants to continue a Sybil attack into an eclipse 
 attack, the attacker will try to place malicious nodes in the strategic routing path in such a way that all traffic 
-will pass through the attacker's node. However, the eclipse attack is possible even if there is a defence, such as certified node identities, against the Sybil 
-attack [[8]].
+will pass through the attacker's node. [[8]].
 
 ### Brute Force Attacks
 Brute force attacks on the I2P network can be mounted by actively watching the network's messages as they pass between all of 
