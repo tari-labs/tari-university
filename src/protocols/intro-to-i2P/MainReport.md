@@ -33,8 +33,8 @@ potential or known use-cases in the blockchain domain.
 
 ### What is I2P?
 I2P (known as the Invisible Internet Project - founded in 2003) is a low-latency network layer that runs on a distributed 
-network of computers on a global network infrastructure. It is primarily built into applications such as email, Internet Relay Chat (IRC) and file 
-sharing [[6]]. It works by automatically making each client in the network a node through which data and traffic is routed. The nodes that run support the network layer are responsible for providing encrypted, one-way connections to and from other computers within the network. 
+network of computers across the globe. It is primarily built into applications such as email, Internet Relay Chat (IRC) and file 
+sharing [[6]]. It works by automatically making each client in the network a node; through which data and traffic is routed. These nodes are responsible for providing encrypted, one-way connections to and from other computers within the network. 
 
 ### How does it Work?
 I2P is an enclosed network that runs within the Internet
