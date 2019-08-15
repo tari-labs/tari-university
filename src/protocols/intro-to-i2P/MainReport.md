@@ -40,7 +40,7 @@ sharing [[6]]. It works by automatically making each client in the network a nod
 I2P is an enclosed network that runs within the Internet
 infrastructure (referred to as the clearnet in this paradigm). Unlike VPNs and Tor, which are inherently "outproxy" networks designed to
 anonymous and privately communication with the Internet, I2P is designed as a peer to peer network. This means it has very little to no communication with the internet. This also means identifying each node in I2P is not done with an IP address but a cryptographic identifier. ([[1]], [[2]]). A node in the I2P network can either be a 
-server that hosts a darknet service (similar to a website on the internet), or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other works by using a group of volunteer-operated relay servers/nodes that allow people to privately and securely access the internet. This means people can choose to volunteer as a relay node in the network and essentially donate bandwidth. [[13]]. Compared to Tor, each client/server in I2P is automatically a relay node. Whether data is routed through a specific node is normally bandwidth dependent. 
+server that hosts a darknet service (similar to a website on the internet), or a client who accesses the servers and services hosted by other nodes [[6]]. Tor, on the other hand, works by using a group of volunteer-operated relay servers/nodes that allow people to privately and securely access the internet. This means people can choose to volunteer as a relay node in the network and hence donate bandwidth. [[13]]. Compared to Tor, each client/server in I2P is automatically a relay node. Whether data is routed through a specific node is normally bandwidth dependent. 
 
 **Eepsites** Since there is no *internet* in I2P, the network is made up of its own anonymous and hidden sites (called *eepsites*). These exist only within the network and are only accessible to people using I2P. Services such as **I2PTunnel**, that use 
 a standard web server, can be used to create sites like these.
@@ -51,16 +51,16 @@ a standard web server, can be used to create sites like these.
 I2P works by installing an I2P routing service within a client's device. This router creates temporary, encrypted, one-way 
 connections with I2P routers on other devices. Connections are referred to as one way because they are made up of 
 an *Outbound Tunnel* and an *Inbound Tunnel*. During any communication, data leaves the client's devices via the 
-outbound tunnels and is received on other devices through their inbound tunnels. This hence means messages/data does not travel in two directions within 
+outbound tunnels and is received on other devices through their inbound tunnels. Hence, this means messages/data doesn't travel in two directions within 
 the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels [[4]], as shown in Figure&nbsp;1.
 Messages sent from one device do not travel directly to the inbound tunnel of the destination device.
-Instead, the outbound router queries a distributed network database for address of the inbound router. This database is comprised of a custom Kademlia style Distributed Hash Table (DHT)
+Instead, the outbound router queries a distributed network database for the corresponding address of the inbound router. This database is comprised of a custom Kademlia style Distributed Hash Table (DHT)
 that contains the router information and destination information.
 For each application/client, the I2P router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the
 network database are shared among all users of
 a router. If a tunnel in the pool is about to expire or if the tunnel is no longer usable, the router creates a new tunnel
 and adds it to the pool. It is important to recall later that tunnels periodically expire, every ten minutes, and hence,
-need to be refreshed frequently. This is one of I2P's security measures that's done to prevent long-lived tunnels from becoming a threat
+need to be refreshed frequently. This is one of I2P's security measures that is performed to prevent long-lived tunnels from becoming a threat
 to anonymity [[3]].
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/network-topology.png" width="950" /></p>
@@ -68,12 +68,12 @@ to anonymity [[3]].
 
 #### The Distributed Network Database
 
-The NetDB, discussed earlier, is implemented as a Distributed Hash Table (DHT) and is propagated via nodes known as floodfill routers using the Kademlia algorithm. The netDB is one of the characteristics that makes I2P decentralised. To start participating in the network, a router instals a part of the NetDB. Obtaining the partial NetDB is called bootstrapping and happens by ’reseeding’ the router. By default, a router will reseed the first time by querying some hard-coded domain names. When a router successfully establishes a connection to one of these domains, a Transport Layer Security (TLS) connection is set up through which the router downloads a signed partial copy of the NetDB. Once the router can reach at least one other participant in the network, the router will query for other parts of the NetDB it does not have itself. [[12]]
+The NetDB, discussed earlier, is implemented as a Distributed Hash Table (DHT) and is propagated via nodes known as floodfill routers using the Kademlia algorithm. The NetDB is one of the characteristics that makes I2P decentralised. To start participating in the network, a router instals a part of the NetDB. Obtaining the partial NetDB is called bootstrapping and happens by ’reseeding’ the router. By default, a router will reseed the first time by querying some hard-coded domain names. When a router successfully establishes a connection to one of these domains, a Transport Layer Security (TLS) connection is set up through which the router downloads a signed partial copy of the NetDB. Once the router can reach at least one other participant in the network, the router will query for other parts of the NetDB it does not have itself. [[12]]
 
 The NetDB stores two types of data: 
 1. **Router Info and how this works:**
 When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the other router.
-The destination router info is stored in the netDb with the router's identity as the key. To request a resource (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge of participating nodes and returns the node it considers to be nearest to the key. [[3]]. The router info in the netDB is made up of: ([[4]], [[6]]):
+The destination router info is stored in the NetDB with the router's identity as the key. To request a resource (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge of participating nodes and returns the node it considers to be nearest to the key. [[3]]. The router info in the NetDB is made up of: ([[4]], [[6]]):
 
     - The router's identity - an encryption key, a signing key and a certificate.
     - The contact addresses at which it can be reached - protocol, Internet Protocol (IP), port.
@@ -91,11 +91,11 @@ The LeaseSet specifies tunnel entry point to reach an endpoint. This specifies t
     - Signature - used to verify the LeaseSet.
 
 #### Floodfill Routers
-Special routers, referred to as *floodfill routers*, are responsible for storing the netDb. Participation in the floodfill 
+Special routers, referred to as *floodfill routers*, are responsible for storing the NetDB. Participation in the floodfill 
 pool can either be automatic or manual. Automatic participation occurs whenever the number of floodfill routers drops 
 below a certain threshold, which is currently 6% of all nodes in the network ([[6]], [[7]]). When this happens, a node is 
 selected to participate as a floodfill router based on criteria such as uptime and bandwidth. It should be noted that 
-approximately 95% of floodfill routers are automatic [[8]]. The netDb is stored in a DHT format within 
+approximately 95% of floodfill routers are automatic [[8]]. The NetDB is stored in a DHT format within 
 the floodfill routers. A resource is requested from the floodfill router considered to be closest to that key. To have a 
 higher success rate on a lookup, the client is able to iteratively look up the key. This means that the lookup continues 
 with the next-closest peer should the initial lookup request fail.
@@ -117,7 +117,7 @@ Figure&nbsp;2 illustrates the end-to-end message bundling:
 
 ## Threat Model, Security and Vulnerability Attacks
 The I2P project has no explicit threat model specified but rather talks about common attacks and existing defenses against them. Overall, the design of I2P is motivated by threats similar to those addressed by Tor: The attacker can
-observe traffic locally but not all traffic flowing through the network and integrity of all cryptographic primitives is assumed. Furthermore, an attacker is only allowed to control a limited amount of peers in the network (the website talks about not more than 20 % of nodes participating in the netDB and a similar fraction of total amount of nodes controlled by the malicious entity). In this section, we'll look at different threat models affecting the network. [[3]]
+observe traffic locally but not all traffic flowing through the network and integrity of all cryptographic primitives is assumed. Furthermore, an attacker is only allowed to control a limited amount of peers in the network (the website talks about not more than 20% of nodes participating in the NetDB and a similar percentage of total amount of nodes controlled by the malicious entity). In this section, we'll look at different threat models affecting the network. [[3]]
 
 ### Sybil Attacks
 The Sybil attack, illustrated in Figure&nbsp;3, is a well-known anonymity system attack in which the malicious user creates multiple identities in an 
@@ -126,7 +126,7 @@ participants/clients in the network evaluate the performance of peers when selec
 using a random sample. Because running multiple identities on the same host affects the performance of each of those 
 instances, the number of additional identities running in parallel is effectively limited by the need to provide each of 
 them with enough resources to be considered as peers. This means that the malicious user will need a substantial 
-amount of resources to create the multiple identities.
+amount of resources to create multiple identities.
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/Sybil Attack.png" width="750" /></p>
 <p align="center"><b>Figure&nbsp;3: Sybil Attack Illustration [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">5</a>]</b></p>
@@ -142,15 +142,15 @@ attack [[8]].
 
 ### Brute Force Attacks
 Brute force attacks on the I2P network can be mounted by actively watching the network's messages as they pass between all of 
-the nodes and attempt to correlate messages and their route. Since all peers in the network are frequently 
+the nodes and attempt to correlate messages and their routes. Since all peers in the network are frequently 
 sending messages, this attack is trivial. The attacker can send out large amounts of data (more than 2GB), observe all the nodes and narrow 
-down those that routed the message. The large chunk of data is necessary because inter-router communication is encrypted 
+down those that routed the message. Transmission of a large chunk of data is necessary because inter-router communication is encrypted 
 and streamed, i.e. 1,024&nbsp;byte data is indistinguishable from 2,048&nbsp;byte data. Mounting this attack is, however, very difficult and 
 one would need to be an Internet Service Provider (ISP) or government entity in order to observe a large chunk of the network.
 
 ### Intersection Attacks
 Intersection attacks involve observing the network and node churns over time, and intersecting the peers that are online when a message 
-goes through, in order to narrow down to a target. It is theoretically possible to mount this attack if the network is small, but 
+is transferred through the network, in order to narrow down specific targets. It is theoretically possible to mount this attack if the network is small, but 
 impractical with a larger network.
 
 ### Denial of Service Attacks
@@ -184,8 +184,8 @@ Onion Routing is essentially a distributed overlay network designed to anonymize
 
 The designated use of relay nodes in the Tor network gives the network a couple of important characeristics: 
 - The stability of the network is proportional to the number of relay nodes in the network. The less the relay nodes the less stable the network becomes. 
-- The security of the network is also proportinal to the number of relay nodes. The more the relay nodes the less vulnerable it is agaist attacks. 
-- Finally, the speed of the network is proportinal to the number of relay nodes. The more nodes there are the faster the network becomes. [[13]]
+- The security of the network is also proportional to the number of relay nodes. A network with more active relay nodes is less vulnerable against attacks. 
+- Finally, the speed of the network is proportional to the number of relay nodes. The more nodes there are the faster the network becomes. [[13]]
 
 ### Types of Tor Relays/Nodes Routing
 Tor's relay nodes do not all function in the same way. There are four types of relay nodes - a Guard/Entry, Middle, Exit and Bridge node. 
@@ -198,10 +198,10 @@ Tor's relay nodes do not all function in the same way. There are four types of r
 A guard relay is the first relay in the Tor circuit. Each client that wants to connect to the Tor network will first connect to a Guard relay. This means guard nodes can see the IP Address of the client attempting to connect. It is worth noting that Tor publishes it's guard nodes and hence anyone can see them on websites such as this one: [[15]] Because seeing the IP address of a client is possible, there have been cases where attackers have filtered out traffic on the network using Circuit Fingerprinting techniques such as is documented in this paper. [[16]].
 
 #### 2. Middle Relay
-These cover most parts of the Tor netowrk and act as hops. They consist of relays through which data is passed in encrypted format. No node knows more than its predecessor and descendant. All the available middle relay nodes show themselves to the guard and exit nodes so that any may connect to them for transmission. Middle relays can never be exit relays within the network. [[13]]
+These cover most parts of the Tor network and act as hops. They consist of relays through which data is passed in encrypted format. No node knows more than its predecessor and descendant. All the available middle relay nodes show themselves to the guard and exit nodes so that any may connect to them for transmission. Middle relays can never be exit relays within the network. [[13]]
 
 #### 3. Exit Relay
-These are nodes that send data to the desired destinations on the internet. The services Tor clients are connecting to (website, chat service, email provider, etc) will see the IP address of the exit relay instead of their real IP address of the Tor user. Because of this, exit relay owners are often are subject to numerous legal complaints and shut down threats. [[13]]
+Exit relay nodes act as a bridge between the Tor network and the internet, and they send data to the desired destinations on the internet. The services Tor clients are connecting to (website, chat service, email provider, etc) will see the IP address of the exit relay instead of the real IP addresses of Tor users. Because of this, exit relay owners are often are subject to numerous legal complaints and shut down threats. [[13]]
 
 #### 3. Bridge Relay
 The design of the Tor network means that the IP address of Tor relays is public as previously mentioned and shown here. [[15]] Because of this, Tor can be blocked by governments or ISPs by blacklisting the IP addresses of these public Tor nodes. Tor Bridges are nodes in the network that are not listed in the public Tor directory, making it harder for ISPs and governments to block them. They are meant for people who want to run Tor from their homes, have a static IP or don't have much bandwidth to donate. [[13]]
@@ -214,7 +214,7 @@ The design of the Tor network means that the IP address of Tor relays is public 
 | I2P                                     | Tor                       |
 | ---------------------------------       | --------------------------|
 | Fully peer to peer: Self-organizing Nodes | Fully Peer to Peer: Volunteer Relay Nodes                         |
-| Query netDb to find destination’s inbound tunnel gateway | Relays Data to the closest relay     |
+| Query NetDB to find destination’s inbound tunnel gateway | Relays Data to the closest relay     |
 | Limited to no exit nodes. Internal communication only | Designed and optimized for exit traffic, with a large number of exit nodes          |
 | Designed primarily for file sharing    | Designed for anonymous Internet access |
 | Unidirectional tunnels                 | Rendezvous point                        |
@@ -224,7 +224,7 @@ The design of the Tor network means that the IP address of Tor relays is public 
 
 ## Conclusion
 
-In summary, Tor and I2P are two types of networks that anonymise and encrypt data moved within them. Each network is uniquely designed for a respective function. The I2P network is a designed for moving data in a Peer to Peer peer format, whereas Tor is designed for accessing the internet privately. 
+In summary, Tor and I2P are two types of networks that anonymise and encrypt data transferred within them. Each network is uniquely designed for a respective function. The I2P network is a designed for moving data in a Peer to Peer peer format, whereas Tor is designed for accessing the internet privately. 
 
 Extensive research exists and continues to find ways to improve the security of these networks in their respective operational designs. This research becomes
 especially important when control of a network may mean monetary losses, loss of privacy or denial of service.
