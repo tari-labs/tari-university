@@ -336,6 +336,8 @@ Python's `random`module and `numpy.random` have functions for drawing uniformly 
 
 #### Computing statistics: mean and standard deviation 
 
+<p align="center"><img src="assets/mode_median_mean.png" width="200" /></p>
+
 To describe a set of random numebrs $xi$ we are often interested in two things:
 
 - the mean value 
@@ -566,16 +568,24 @@ What is the theoretical mean?0.649474335188621
 
 ##### Individual Probabilities 
 
+<p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
+
 ##### A histogram and visualization of distribution 
 
 Histogram: divide `[0,1)` into $n_{i}$ small subintervals, generate $N$ numbers, count how many numbers that fall in each subinterval (and divide the counts  by $N$) - plot the count variation and see if the curve is flat  
 
-Mean: 7500.0
-Median: 7493.5
-There is no mode!
-Standard deviation: 87.86134623152643
+<p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
+
+| **Statistical Information ** |                   |
+| ---------------------------- | ----------------- |
+| Mean                         | 120000.0          |
+| Median                       | 119991.0          |
+| Mode                         | -                 |
+| Standard Deviation           | 346.4313595341606 |
 
 ##### Proving the Law of Large Numbers
+
+<p align="center"><img src="assets/convergence.png" width="700" /></p>
 
 ##### Summary of probability and statistics computations 
 
@@ -584,35 +594,35 @@ Standard deviation: 87.86134623152643
 
 #### Uniform Distribution 
 
-| Statisical Information |                      | Comparison with theoretical mean |
-| ---------------------- | -------------------- | -------------------------------- |
-| Slope                  | 1.47009147009147e-06 |                                  |
-| Intercept              | 0.6488206893106894   | 0.649474335188621                |
-| Standard Deviation     | 0.015299118864759447 |                                  |
+| Statistical Information |                       | Comparison with theoretical mean |
+| ----------------------- | --------------------- | -------------------------------- |
+| Slope                   | -1.87686187686188e-07 |                                  |
+| Intercept               | 0.6497887492507493    | 0.649474335188621                |
+| Standard Deviation      | 0.015438728229013219  |                                  |
 
 #### Hypergeometric Distribution 
 
 | Statisical Information |                      | Comparison with theoretical mean |
 | ---------------------- | -------------------- | -------------------------------- |
-| Slope                  | -9.241269241269239e-07 |                                  |
-| Intercept              | 0.6497326013986013   | 0.649474335188621                |
-| Standard Deviation     | 0.01489030826679826 |                                  |
+| Slope                  | -8.279948279948292e-07 |                                  |
+| Intercept              | 0.6495665834165834 | 0.649474335188621                |
+| Standard Deviation     | 0.014812123075035204 |                                  |
 
 #### Poisson
 
 | Statisical Information |                      | Comparison with theoretical mean |
 | ---------------------- | -------------------- | -------------------------------- |
-| Slope                  | 1.8626598626598637e-06 |                                  |
-| Intercept              | 0.6484946013986014   | 0.649474335188621                |
-| Standard Deviation     | 0.015487421839519825 |                                  |
+| Slope                  | -1.411267411267412e-06 |                                  |
+| Intercept              | 0.6501259280719281 | 0.649474335188621                |
+| Standard Deviation     | 0.015233575444419514 |                                  |
 
 #### Normal 
 
 | Statisical Information |                      | Comparison with theoretical mean |
 | ---------------------- | -------------------- | -------------------------------- |
-| Slope                  | 8.819888819888823e-07 |                                  |
-| Intercept              | 0.6494234465534465   | 0.649474335188621                |
-| Standard Deviation     | 0.015062283239149923 |                                  |
+| Slope                  | 1.5411855411855414e-06 |                                  |
+| Intercept              | 0.6482901778221778 | 0.649474335188621                |
+| Standard Deviation     | 0.01507612979811762 |                                  |
 
 ### Discussion 
 
