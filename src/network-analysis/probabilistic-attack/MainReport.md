@@ -527,11 +527,9 @@ From a plot of committee size versus probability where the number of nodes remai
 **Vary the total number of nodes, with committee size of 10**
 
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
-
 **Vary the total number of nodes, with committee size of 100**
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
-
 #### Crude Monte Carlo Simulation
 
 <u>Example data</u> 
@@ -548,6 +546,7 @@ P_tot= 0.649474335188621
 
 Therefore y= 0.649474335188621  
 
+```Text
 What is the total amount of nodes? 100
 
 What is the amount of bad nodes? 60
@@ -563,14 +562,10 @@ How many experiments? 1000
 Do you know theoratical mean? Y|N: Y
 
 What is the theoretical mean?0.649474335188621
+```
 
 ##### Individual Probabilities 
 
-Slope: -8.167040668162673e-06
-Intercept: 0.6516176766467067
-Standard Deviation: 0.02083756242980528
-
-<p align="center"><img src="assets/uniform_individual_probability.png" width="700" /></p>
 ##### A histogram and visualization of distribution 
 
 Histogram: divide `[0,1)` into $n_{i}$ small subintervals, generate $N$ numbers, count how many numbers that fall in each subinterval (and divide the counts  by $N$) - plot the count variation and see if the curve is flat  
@@ -580,71 +575,45 @@ Median: 7493.5
 There is no mode!
 Standard deviation: 87.86134623152643
 
-<p align="center"><img src="assets/uniform_histogram.png" width="700" /></p>
-<p align="center"><img src="assets/uniform_position.png" width="700" /></p>
 ##### Proving the Law of Large Numbers
 
-<p align="center"><img src="assets/uniform_lln.png" width="700" /></p>
 ##### Summary of probability and statistics computations 
 
 - Probability: perform $N$ experiments, count $M$ successes, then success had probability $\frac{M}{N}$($N$ must be large)
 - Monte Carlo simulation: let a program do $N$ experiments and count $M$ (simple method for probability problems) 
 
-#### (New with changes) Uniform Distribution 
-Slope: 1.47009147009147e-06
-Intercept: **0.6488206893106894** 0.649474335188621
-Standard Deviation: 0.015299118864759447
+#### Uniform Distribution 
 
-Mean: 30000.0
-Median: 29999.0
-There is no mode!
-Standard deviation: 156.4164345908096
+| Statisical Information |                      | Comparison with theoretical mean |
+| ---------------------- | -------------------- | -------------------------------- |
+| Slope                  | 1.47009147009147e-06 |                                  |
+| Intercept              | 0.6488206893106894   | 0.649474335188621                |
+| Standard Deviation     | 0.015299118864759447 |                                  |
 
 #### Hypergeometric Distribution 
 
-Slope: -9.241269241269239e-07
-Intercept: **0.6497326013986013** 0.649474335188621
-Standard Deviation: 0.01489030826679826
+| Statisical Information |                      | Comparison with theoretical mean |
+| ---------------------- | -------------------- | -------------------------------- |
+| Slope                  | -9.241269241269239e-07 |                                  |
+| Intercept              | 0.6497326013986013   | 0.649474335188621                |
+| Standard Deviation     | 0.01489030826679826 |                                  |
 
-<p align="center"><img src="assets/hg_individual_probability.png" width="700" /></p>
-Mean: 30000.0
-Median: 30005.0
-There is no mode!
-Standard deviation: 176.78949418029694
-
-<p align="center"><img src="assets/hg_histogram.png" width="700" /></p>
-<p align="center"><img src="assets/hg_position.png" width="700" /></p>
-<p align="center"><img src="assets/hg_lln.png" width="700" /></p>
 #### Poisson
 
-Slope: 1.8626598626598637e-06
-Intercept: **0.6484946013986014** 0.649474335188621
-Standard Deviation: 0.015487421839519825
+| Statisical Information |                      | Comparison with theoretical mean |
+| ---------------------- | -------------------- | -------------------------------- |
+| Slope                  | 1.8626598626598637e-06 |                                  |
+| Intercept              | 0.6484946013986014   | 0.649474335188621                |
+| Standard Deviation     | 0.015487421839519825 |                                  |
 
-<p align="center"><img src="assets/poisson_individual_probability.png" width="700" /></p>
-Mean: 30000.0
-Median: 29986.5
-There is no mode!
-Standard deviation: 159.88916615751506
-
-<p align="center"><img src="assets/poisson_histogram.png" width="700" /></p>
-<p align="center"><img src="assets/poisson_position.png" width="700" /></p>
-<p align="center"><img src="assets/poisson_lln.png" width="700" /></p>
 #### Normal 
 
-Slope: 8.819888819888823e-07
-Intercept: **0.6494234465534465** 0.649474335188621
-Standard Deviation: 0.015062283239149923
+| Statisical Information |                      | Comparison with theoretical mean |
+| ---------------------- | -------------------- | -------------------------------- |
+| Slope                  | 8.819888819888823e-07 |                                  |
+| Intercept              | 0.6494234465534465   | 0.649474335188621                |
+| Standard Deviation     | 0.015062283239149923 |                                  |
 
-<p align="center"><img src="assets/normal_individual_probability.png" width="700" /></p>
-Mean: 30000.0
-Median: 29988.0
-There is no mode!
-Standard deviation: 166.1450625753947
-
-<p align="center"><img src="assets/normal_histogram.png" width="700" /></p>
-<p align="center"><img src="assets/normal_position.png" width="700" /></p>
-<p align="center"><img src="assets/normal_lln.png" width="700" /></p>
 ### Discussion 
 
 
