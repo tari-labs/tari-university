@@ -105,8 +105,8 @@ An ```.onion``` site is a hidden service or web site that is hosted inside of th
 the Tor network [[3]]. Generally only accessible within the Tor network. Traffic between a Tor client and an ```.onion``` site should 
 never leave the Tor network, keeping the network traffic safer than publicly hosted sites. Thou more difficult to find, as the 
 ```.onion``` address is not an easy to remember domain name, but generally opaque, non-mnemonic, 16- or 56-character alpha-semi-numerical 
-strings which are generated based on a public key. The TLD .onion is not a true domain and can't be found or queried on the 
-internet, but only inside of the Tor network.
+strings which are generated on a cryptographically hashed public key. The TLD .onion is not a true domain and can't be found or queried 
+on the internet, but only inside of the Tor network.
 
 More information on what an ```.onion``` site and/or address is, can be found at [[7]] and [[8]]
 
