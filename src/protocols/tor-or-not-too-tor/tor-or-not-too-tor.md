@@ -179,7 +179,7 @@ not just technology related, but also the human component.
 
 ## References
 
-[[1]] Tor Project: Download for Tor Browser [online]. Available: <https://www.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16.
+[[1]] Tor Project: "Download for Tor Browser" [online]. Available: <https://www.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16.
 
 [1]: https://www.torproject.org/
 "Tor Project: Download for Tor Browser"
@@ -190,21 +190,21 @@ Date accessed: 2019&#8209;05&#8209;16.
 [2]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
 "Wikipedia: Tor (Anonymity Network)"
 
-[[3]] DuckDuckGo Search Engine [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless Tor or the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
+[[3]] DuckDuckGo Search Engine inside Tor [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless Tor or the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
 
 [3]: https://3g2upl4pq6kufc4m.onion/
 "DuckDuckGo Search Engine - 
 link will not work unless 
 Tor or Tor Browser is used"
 
-[[4]] Tor Project: Check [online]. Available: <https://check.torproject.org/>. **Note:** This link will help the user identify if Tor or the Tor Browser is been used. Date accessed: 2019&#8209;05&#8209;16
+[[4]] Tor Project: "Check" [online]. Available: <https://check.torproject.org/>. **Note:** This link will help the user identify if Tor or the Tor Browser is been used. Date accessed: 2019&#8209;05&#8209;16
 
 [4]: https://check.torproject.org/
 "Tor Project: Check - 
 link will help user identify 
 Tor or Tor Browser is been used"
 
-[[5]] Tor Project: Overview [online]. Available: <https://2019.www.torproject.org/about/overview.html.en>. 
+[[5]] Tor Project: "Overview" [online]. Available: <https://2019.www.torproject.org/about/overview.html.en>. 
 Date accessed: 2019&#8209;05&#8209;16.
 
 [5]: https://2019.www.torproject.org/about/overview.html.en
@@ -250,7 +250,7 @@ How People Got Caught"
 "Ars Technica: Use of Tor helped 
 FBI ID suspect in bomb hoax case"
 
-[[12]] Ars Technica: "Stakeout: how the FBI tracked and busted a Chicago Anon" [online]. Available: 
+[[12]] Ars Technica: "Stakeout: How the FBI tracked and busted a Chicago Anon" [online]. Available: 
 <https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. Date accessed: 2019&#8209;07&#8209;11.
 
 [12]: https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
