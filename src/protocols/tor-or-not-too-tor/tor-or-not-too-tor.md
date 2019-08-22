@@ -65,6 +65,7 @@ With reference to [[1]]:
 - Run the Tor Browser and visit an ```.onion``` site such as the DuckDuckGo Search engine [[3]].
 - Check if you are running Tor [[4]].
 
+
 ### When to use Tor
 
 The ```Tor Browser``` is an anonymity tool that blocks tracking, hides some user details and aims to make all Tor 
@@ -95,6 +96,18 @@ generated and the relays do not keep records, it is nearly impossible for your a
 through Tor’s complex network. Refer to [[5]] for more detailed information.
 
 More information on what a Tor Relay is or how to setup and volunteer some resources can be found at [[10]]
+
+
+## What is an ```.onion``` site?
+An ```.onion``` site is a hidden service or web site that is hosted inside of the Tor network, like DuckDuckGo Search engine inside 
+the Tor network [[3]]. Generally only accessible within the Tor network. Traffic between a Tor client and an ```.onion``` site should 
+never leave the Tor network, keeping the network traffic safer than publicly hosted sites. Thou more difficult to find, as the 
+```.onion``` address is not an easy to remember domain name, but generally opaque, non-mnemonic, 16- or 56-character alpha-semi-numerical 
+strings which are generated based on a public key. The TLD .onion is not a true domain and can't be found or queried on the 
+internet, but only inside of the Tor network.
+
+More information on what an ```.onion``` site and/or address is, can be found at [[11]] and [[12]]
+
 
 ## Is Tor broken?
 
@@ -165,10 +178,10 @@ not just technology related, but also the human component.
 
 ## References
 
-[[1]] Download for Tor Browser [online]. Available: <https://www.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16.
+[[1]] Tor Project: Download for Tor Browser [online]. Available: <https://www.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16.
 
 [1]: https://www.torproject.org/
-"Download for Tor Browser"
+"Tor Project: Download for Tor Browser"
 
 [[2]] Wikipedia: "Tor (Anonymity Network)" [online]. Available: <https://en.wikipedia.org/wiki/Tor_(anonymity_network)>. 
 Date accessed: 2019&#8209;05&#8209;16.
@@ -225,11 +238,24 @@ FBI tracked and busted a Chicago Anon"
 "Robert Heaton: How does online 
 tracking actually work?"
 
-[[10]] Tor: "The Tor Relay Guide" [online]. Available: 
+[[10]] Tor Project: "The Tor Relay Guide" [online]. Available: 
 <https://trac.torproject.org/projects/tor/wiki/TorRelayGuide>. Date accessed: 2019&#8209;08&#8209;14.
 
 [10]: https://trac.torproject.org/projects/tor/wiki/TorRelayGuide
-"Tor: The Tor Relay Guide"
+"Tor Project: The Tor Relay Guide"
+
+[[11]] Wikipedia: ".onion" [online]. Available: 
+<https://en.wikipedia.org/wiki/.onion>. Date accessed: 2019&#8209;08&#8209;22.
+
+[11]: https://en.wikipedia.org/wiki/.onion
+"Wikipedia: .onion"
+
+[[12]] Tor Project: "How do I access onion services?" [online]. Available: 
+<https://2019.www.torproject.org/docs/faq#AccessOnionServices>. Date accessed: 2019&#8209;08&#8209;22.
+
+[12]: https://2019.www.torproject.org/docs/faq#AccessOnionServices
+"Tor Project: How do I access onion services?"
+
 
 ## Appendices
 
