@@ -9,6 +9,7 @@
   - [When to use Tor](#when-to-use-tor)
   - [When not to use Tor](#when-not-to-use-tor)
 - [How does Tor Network Work?](#how-does-tor-network-work)
+- [What is an .onion site?](#what-is-an-.onion-site)
 - [Is Tor Broken?](#is-tor-broken)
 - [Conclusion](#conclusion)
 - [References](#references)
@@ -95,7 +96,7 @@ Each relay can only decrypt enough data to learn the location of the previous an
 generated and the relays do not keep records, it is nearly impossible for your activity to be traced back to you 
 through Tor’s complex network. Refer to [[5]] for more detailed information.
 
-More information on what a Tor Relay is or how to setup and volunteer some resources can be found at [[10]]
+More information on what a Tor Relay is or how to setup and volunteer some resources can be found at [[6]]
 
 
 ## What is an ```.onion``` site?
@@ -106,7 +107,7 @@ never leave the Tor network, keeping the network traffic safer than publicly hos
 strings which are generated based on a public key. The TLD .onion is not a true domain and can't be found or queried on the 
 internet, but only inside of the Tor network.
 
-More information on what an ```.onion``` site and/or address is, can be found at [[11]] and [[12]]
+More information on what an ```.onion``` site and/or address is, can be found at [[7]] and [[8]]
 
 
 ## Is Tor broken?
@@ -136,18 +137,18 @@ you will be discovered.  Another is that a site knows when it's been accessed us
 might not be directly an issue with Tor nor it's encryption, but an expectation of a novice user, using Tor or 
 one of the Tor tools and services.
 
-For an interesting talk about some of the Tor attacks, refer to [[6]].
+For an interesting talk about some of the Tor attacks, refer to [[10]].
 
 Two real world examples of where people using Tor that were discovered:
 - 16th December 2013, Havard University received a bomb threat, that was tracked down to Eldo Kim, who 
 was one of the few people using Tor on the campus network when the email had been sent. After questioning, 
-admitted he had sent the hoax bomb threat, as he wanted to get out of an exam. [[7]]  
+admitted he had sent the hoax bomb threat, as he wanted to get out of an exam. [[11]]  
 - Hector Xavier Monsegur(Sabu) normally used Tor for connecting to IRC but was caught not using it once 
 and FBI found his home IP. After 
 being caught, he started to collaborate with the FBI.  
 While Hector was chatting to Jeremy Hammond(sup_g) on IRC, Jeremy let slip where he had been arrested before 
 and other groups he had been involved with. This helped reduce the number of suspects and FBI were able to 
-get a court order to monitor internet access and was able to correlate when Jeremy was using Tor.[[8]]
+get a court order to monitor internet access and was able to correlate when Jeremy was using Tor.[[12]]
 
 
 ## Conclusion
@@ -209,27 +210,23 @@ Date accessed: 2019&#8209;05&#8209;16.
 [5]: https://2019.www.torproject.org/about/overview.html.en
 "Tor Project: Overview"
 
-[[6]] YouTube: "DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: How People Got Caught" [online]. Available: 
-<https://www.youtube.com/watch?v=eQ2OZKitRwc>. Date accessed: 2019&#8209;06&#8209;18.
+[[6]] Tor Project: "The Tor Relay Guide" [online]. Available: 
+<https://trac.torproject.org/projects/tor/wiki/TorRelayGuide>. Date accessed: 2019&#8209;08&#8209;14.
 
-[6]: https://www.youtube.com/watch?v=eQ2OZKitRwc
-"YouTube: DEF CON 22 - Adrian Crenshaw - 
-Dropping Docs on Darknets: 
-How People Got Caught"
+[6]: https://trac.torproject.org/projects/tor/wiki/TorRelayGuide
+"Tor Project: The Tor Relay Guide"
 
-[[7]] Ars Technica: "Use of Tor helped FBI ID suspect in bomb hoax case" [online]. Available: 
-<https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/>. Date accessed: 2019&#8209;07&#8209;11.
+[[7]] Wikipedia: ".onion" [online]. Available: 
+<https://en.wikipedia.org/wiki/.onion>. Date accessed: 2019&#8209;08&#8209;22.
 
-[7]: https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/
-"Ars Technica: Use of Tor helped 
-FBI ID suspect in bomb hoax case"
+[7]: https://en.wikipedia.org/wiki/.onion
+"Wikipedia: .onion"
 
-[[8]] Ars Technica: "Stakeout: how the FBI tracked and busted a Chicago Anon" [online]. Available: 
-<https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. Date accessed: 2019&#8209;07&#8209;11.
+[[8]] Tor Project: "How do I access onion services?" [online]. Available: 
+<https://2019.www.torproject.org/docs/faq#AccessOnionServices>. Date accessed: 2019&#8209;08&#8209;22.
 
-[8]: https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
-"Ars Technica: Stakeout: How the 
-FBI tracked and busted a Chicago Anon"
+[8]: https://2019.www.torproject.org/docs/faq#AccessOnionServices
+"Tor Project: How do I access onion services?"
 
 [[9]] Robert Heaton: "How does online tracking actually work?" [online]. Available: 
 <https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/>. Date accessed: 2019&#8209;07&#8209;25.
@@ -238,23 +235,27 @@ FBI tracked and busted a Chicago Anon"
 "Robert Heaton: How does online 
 tracking actually work?"
 
-[[10]] Tor Project: "The Tor Relay Guide" [online]. Available: 
-<https://trac.torproject.org/projects/tor/wiki/TorRelayGuide>. Date accessed: 2019&#8209;08&#8209;14.
+[[10]] YouTube: "DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: How People Got Caught" [online]. Available: 
+<https://www.youtube.com/watch?v=eQ2OZKitRwc>. Date accessed: 2019&#8209;06&#8209;18.
 
-[10]: https://trac.torproject.org/projects/tor/wiki/TorRelayGuide
-"Tor Project: The Tor Relay Guide"
+[10]: https://www.youtube.com/watch?v=eQ2OZKitRwc
+"YouTube: DEF CON 22 - Adrian Crenshaw - 
+Dropping Docs on Darknets: 
+How People Got Caught"
 
-[[11]] Wikipedia: ".onion" [online]. Available: 
-<https://en.wikipedia.org/wiki/.onion>. Date accessed: 2019&#8209;08&#8209;22.
+[[11]] Ars Technica: "Use of Tor helped FBI ID suspect in bomb hoax case" [online]. Available: 
+<https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/>. Date accessed: 2019&#8209;07&#8209;11.
 
-[11]: https://en.wikipedia.org/wiki/.onion
-"Wikipedia: .onion"
+[11]: https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/
+"Ars Technica: Use of Tor helped 
+FBI ID suspect in bomb hoax case"
 
-[[12]] Tor Project: "How do I access onion services?" [online]. Available: 
-<https://2019.www.torproject.org/docs/faq#AccessOnionServices>. Date accessed: 2019&#8209;08&#8209;22.
+[[12]] Ars Technica: "Stakeout: how the FBI tracked and busted a Chicago Anon" [online]. Available: 
+<https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. Date accessed: 2019&#8209;07&#8209;11.
 
-[12]: https://2019.www.torproject.org/docs/faq#AccessOnionServices
-"Tor Project: How do I access onion services?"
+[12]: https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
+"Ars Technica: Stakeout: How the 
+FBI tracked and busted a Chicago Anon"
 
 
 ## Appendices
