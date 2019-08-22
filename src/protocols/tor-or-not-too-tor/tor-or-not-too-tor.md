@@ -101,7 +101,7 @@ More information on what a Tor Relay is or how to setup and volunteer some resou
 
 ## What is an ```.onion``` site?
 
-An ```.onion``` site is a hidden service or web site that is hosted inside of the Tor network, like DuckDuckGo Search engine inside 
+An ```.onion``` address points to some resource on the Tor network called a hidden service. Hidden services are only accessible by using the Tor network. As an example,  visiting the DuckDuckGo Search engine onion address (https://3g2upl4pq6kufc4m.onion/) routes the request through the Tor network without the client knowing the host IP address of the server. The onion address is practically meaningless without it being routed through and resolved by the Tor network. 
 the Tor network [[3]]. Generally only accessible within the Tor network. Traffic between a Tor client and an ```.onion``` site should 
 never leave the Tor network, keeping the network traffic safer than publicly hosted sites. Though more difficult to find, as the 
 ```.onion``` address is not an easy to remember domain name, but generally opaque, non-mnemonic, 16- or 56-character alpha-semi-numerical 
