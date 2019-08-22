@@ -9,7 +9,7 @@
   - [When to use Tor](#when-to-use-tor)
   - [When not to use Tor](#when-not-to-use-tor)
 - [How does Tor Network Work?](#how-does-tor-network-work)
-- [What is an .onion site?](#what-is-an-.onion-site)
+- [What is an .onion site?](#what-is-an-onion-site)
 - [Is Tor Broken?](#is-tor-broken)
 - [Conclusion](#conclusion)
 - [References](#references)
@@ -100,6 +100,7 @@ More information on what a Tor Relay is or how to setup and volunteer some resou
 
 
 ## What is an ```.onion``` site?
+
 An ```.onion``` site is a hidden service or web site that is hosted inside of the Tor network, like DuckDuckGo Search engine inside 
 the Tor network [[3]]. Generally only accessible within the Tor network. Traffic between a Tor client and an ```.onion``` site should 
 never leave the Tor network, keeping the network traffic safer than publicly hosted sites. Thou more difficult to find, as the 
