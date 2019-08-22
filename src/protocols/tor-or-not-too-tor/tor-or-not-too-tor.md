@@ -134,7 +134,7 @@ However, recent releases of the Tor Browser notify users of updates and also wor
 in their own Tab or session, addressing old and possible insecure releases and user tracking via cookies.
 
 Tor some has weaknesses, for example, if you are the only person using Tor on your home, office or school network, 
-you will be discovered.  Another is that a site knows when it's been accessed using Tor.  These shortcomings 
+you could be de-anonymized.  Another is that a site knows when it's been accessed using Tor.  These shortcomings 
 might not be directly an issue with Tor nor it's encryption, but an expectation of a novice user, using Tor or 
 one of the Tor tools and services.
 
