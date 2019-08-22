@@ -166,7 +166,7 @@ Advantages of Tor:
 - It is not controlled by corporate nor government agencies.
 
 Disadvantages of Tor:
-- It is slow.
+- It can be slow.
 - It does not necessarily encrypt data leaving ```Exit Node```. This data can be intercepted.
 - It does not stop somebody from de-anonymizing themselves.
 - It does not stop interceptors from knowing you are using Tor.
