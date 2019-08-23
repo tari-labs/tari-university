@@ -54,24 +54,216 @@
 - [Contributions](#contributors) 
 
 ## Introduction
-### Question
-
-This investigation attempts to answer the following question:*What is the % chance of controlling majority of nodes in a random sample of with varying quantities of the total number of nodes?*
-
-This research paper has made an attempt to explore possibility of quantifying various probabilities including the total number of nodes, the committee selected from the total, and the threshold which governs whether a committee can be deemed corrupt. 
 
 ### Aim 
 
-This research aims to provide answers to questions posed about the workings of the  Tari DAN environment: Probabilistic attack vector with regards to the total nodes, compromised nodes, committee size and BFT threshold. 
+This research aims to provide answers to questions posed about the workings of the  Tari Digital Assets Network environment: Probabilistic attack vector with regards to the total nodes, compromised nodes, committee size and byzsntine fault tolerance threshold. 
+
+### Question
+
+This investigation attempts to answer the following question: *What is the % chance of controlling majority of nodes in a random sample of with varying quantities of the total number of nodes, committee size, bad nodes and byzantine fault tolerance threshold?*
+
+This research paper has made an attempt to explore the possibility of quantifying various probabilities through variations in the total number of nodes, the committee selected from the total, and the threshold which governs whether a committee can be deemed corrupt. 
 
 ## Literature Review 
+
 ### The Tari Digital Assets Network 
 
-Digital assets (DAs) are managed by committees of special nodes, Validator nodes . 
+The Tari Digital Assets Network (DAN) forms part of the Tari second layer, and is where all digital asset interactions are managed. 
 
-Validator nodes form committees to manage the digital assets, their state change and ensures that the rules governing asset contracts are enforced. 
+These interactions are processed and validated by  committees of special nodes, validator nodes. Management of digital assets involves state changes and ensures that the rules that govern assets contractes are enforced. 
+
+The validator nodes are registered on the base layer and in order to prevent Sybil attacks, commit collateral. 
+
+The Digital Asset (DA) would be issued by an AI and a contract drawn. It is the AI that will dictate the size of committee of validator nodes for a particular DA. The AI will also have the ability to nominate a trusted node to form part of the valiator node committee for the DA. If there are any remaining vacancies in the committee they would be filled with 
+
+An AI will issue a DA by constructing a contract from one of the supported set of [DigitalAssetTemplate](https://rfc.tari.com/Glossary.html#digitalassettemplate)s. The AI will choose how large the committee of VNs will be for this DA, and have the option to nominate [Trusted Node](https://rfc.tari.com/Glossary.html#trusted-node)s to be part of the VN committee for the DA. Any remaining spots on the committee will be filled by permissionless VNs that are selected according to a [CommitteeSelectionStrategy](https://rfc.tari.com/Glossary.html#committeeselectionstrategy). This is a strategy that an AI will use to select from the set of potential candidate VNs that nominated themselves for a position on the committee when the AI broadcast a public call for VNs during the asset creation process. For the VNs to accept the appointment to the committee, they will need to put up the specified collateral.
+
+
+
+Validator nodes (VNs) make up the Tari second layer, or [Digital Asset Network](https://rfc.tari.com/Glossary.html#digital-asset-network). VNs are responsible for creating and updating [digital asset](https://rfc.tari.com/Glossary.html#digital-asset)s living on the Tari network.
+
+
+
+[Validator Node](https://rfc.tari.com/Glossary.html#validator-node)s form the basis of the second-layer DAN. All actions on this network take place by interacting with VNs. Some examples of actions that VNs will facilitate are:
+
+- issuing a [Digital Asset](https://rfc.tari.com/Glossary.html#digital-asset) (DA);
+- querying the state of a DA and its constituent [tokens](https://rfc.tari.com/Glossary.html#digital-asset-tokens); and
+- issuing an instruction to change the state of a DA or tokens.
+
+VNs will also perform archival functions for the assets they manage. The lifetime of these archives and the fee structure for this function are still being discussed.
+
+
+
+VNs are expected to manage the state of DAs on behalf of DA issuers. They receive fees as reward for doing this.
+
+- DAs consist of an initial state plus a set of state transition rules. These rules are set by the Tari protocol, but will usually provide parameters that must be specified by the [Asset Issuer](https://rfc.tari.com/Glossary.html#asset-issuer).
+- The set of VNs that participate in managing state of a specific DA is called a [Committee](https://rfc.tari.com/Glossary.html#committee). A committee is selected during the asset issuance process and membership of the committee can be updated at [Checkpoint](https://rfc.tari.com/Glossary.html#checkpoint)s.
+- The VN is responsible for ensuring that every state change in a DA conforms to the contract's rules.
+- VNs accept DA [Instructions](https://rfc.tari.com/Glossary.html#instructions) from clients and peers. Instructions allow for creating, updating, expiring and archiving DAs on the DAN.
+- VNs provide additional collateral, called [AssetCollateral](https://rfc.tari.com/Glossary.html#assetcollateral), when accepting an offer to manage an asset, which is stored in a multi-signature (multi-sig) Unspent Transaction Output (UTXO) on the base layer. This collateral can be taken from the VN if it is proven that the VN engaged in malicious behaviour.
+- VNs participate in fraud-proof validations in the event of consensus disputes (which could result in the malicious VN's collateral being slashed).
+- DA metadata (e.g. large images) is managed by VNs. The large data itself will not be stored on the VNs, but in an external location, and a hash of the data can be stored. Whether the data is considered part of the state (and thus checkpointed) or out of state depends on the type of DA contract employed.
+
+### [Nomination](https://rfc.tari.com/RFC-0304_VNCommittees.html#nomination)
+
+The first step in assembling a committee is to nominate candidate VNs. As described in [RFC-0311](https://rfc.tari.com/RFC-0311_AssetTemplates.html), an asset can be created with two possible `committee_modes` - `CREATOR_NOMINATION` or `PUBLIC_NOMINATION`:
+
+- In `CREATOR_NOMINATION` mode, the AI nominates candidate committee members directly. The AI will have a list of permissioned [Trusted Node](https://rfc.tari.com/Glossary.html#trusted-node)s that they want to act as the committee. The AI will contact the candidate VNs directly to inform them of their nomination.
+- In `PUBLIC_NOMINATION` mode, the AI does not have a list of [Trusted Node](https://rfc.tari.com/Glossary.html#trusted-node)s and wants to source unknown VNs from the network. In this case, the AI broadcasts a public call for nomination to the Tari network using the peer-to-peer messaging protocol described in [RFC-0172](https://rfc.tari.com/RFC-0172_PeerToPeerMessagingProtocol.html). This call for nomination contains all the details of the asset. VNs that want to participate will then nominate themselves by contacting the AI.
+
+### [Selection](https://rfc.tari.com/RFC-0304_VNCommittees.html#selection)
+
+Once the AI has received a list of nominated VNs, it must make a selection, assuming enough VNs were nominated to populate the committee. The AI will employ some [CommitteeSelectionStrategy](https://rfc.tari.com/Glossary.html#committeeselectionstrategy) in order to select the committee from the candidate VNs that have been nominated. This strategy might aim for a perfectly random selection, or perhaps it will consider some metrics about the candidate VNs, such as the length of their VN registrations. These metrics might indicate that they are reliable and have not been blacklisted for poor or malicious performance.
+
+A consideration when selecting a committee in `PUBLIC_NOMINATION` mode will be the size of the pool of nominated VNs. The size of this pool relative to the size of the committee to be selected will be linked to a risk profile. If the pool contains very few candidates, then it will be much easier for an attacker to have nominated their own nodes in order to obtain a majority membership of the committee. For example, if the AI is selecting a committee of 10 members using a uniformly random selection strategy and only 12 public nominations are received, an attacker only requires control of six VNs to achieve a majority position in the committee. In contrast, if 100 nominations are received and the AI performs a uniformly random selection, an attacker would need to control more than 50 of the nominated nodes in order to achieve a majority position in the committee.
+
+### [Offer Acceptance](https://rfc.tari.com/RFC-0304_VNCommittees.html#offer-acceptance)
+
+Once the selection has been made by the AI, the selected VNs will be informed and they will be made an offer of membership. If the VNs are still inclined to join the committee, they will accept the offer by posting the [AssetCollateral](https://rfc.tari.com/Glossary.html#assetcollateral) required by the asset to the [base layer](https://rfc.tari.com/Glossary.html#base-layer) during the initial [Checkpoint](https://rfc.tari.com/Glossary.html#checkpoint)transaction built to commence the operation of the asset.
+
+
+
+### [ Overview](https://rfc.tari.com/RFC-0340_VNConsensusOverview.html#overview)
+
+The primary problem under consideration here is for multiple machines running the same program (in the form of a Tari smart contract) to maintain agreement on what the state of the program is, often under adverse conditions, including unreliable network communication, malicious third parties, or even malicious peers running the smart contract.
+
+In computer science terms, the problem is referred to as [State Machine Replication](https://en.wikipedia.org/wiki/State_machine_replication), or SMR. If we want our honest machines (referred to as *replicas* in SMR parlance) to reach agreement in the face of arbitrary failures, then we talk about our system being [Byzantine Fault Tolerant](https://tlu.tarilabs.com/consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.html).
+
+Tari Asset [committees](https://rfc.tari.com/Glossary.html#committee) are chosen by the asset issuer according to [RFC-0304](https://rfc.tari.com/RFC-0304_VNCommittees.html). The committees form a fixed set of replicas, at the very least from checkpoint to checkpoint, and will typically be limited in size, usually less than ten, and almost always under 100. *Note*: These numbers are highly speculative based on an intuitive guess about the main use cases for Tari DAs, where we have
+
+- many 1-3-sized committees where the asset issuer and the VN committee are the same entity,
+- semi-decentralised assets of ±4-10 where speed trumps censorship-resistance,
+- a small number of 50-100 VNs where censorship-resistance trumps speed.
+
+Because nodes cannot join and leave the committees at will, robust yet slow and expensive consensus approaches such as Nakamoto consensus can be dropped in favour of something more performant.
+
+There is a good survey of consensus mechanisms on [Tari Labs University](https://tlu.tarilabs.com/consensus-mechanisms/consensus-mechanisms.html).
+
+From the point of view of a DAN committee, the ideal consensus algorithm is one that
+
+1. Allows a high number of transactions per second, and doesn't have unnecessary pauses (i.e. a partially synchronous or asynchronous model).
+2. Is Byzantine Fault tolerant.
+3. Is relatively efficient from a network communication point of view (number of messages passed per state agreement).
+4. Is relatively simple to implement (to reduce the bug and vulnerability surface in implementations).
+
+A summary of some of the most well-known BFT algorithms is presented in [this table](https://tlu.tarilabs.com/consensus-mechanisms/BFT-consensus-mechanisms-applications/MainReport.html#summary-of-findings).
+
+A close reading of the algorithms presented suggest that [LinBFT](https://arxiv.org/pdf/1807.01829.pdf), which is based on [HotStuff](https://arxiv.org/pdf/1803.05069) BFT provide the best trade-offs for the goals that a DAN committee is trying to achieve:
+
+1. The algorithm is optimistic, i.e. as soon as quorum is reached on a particular state, the committee can move onto the next one. There is no need to wait for the "timeout" period as we do in e.g. Tendermint. This allows instructions to be executed almost as quickly as they are received.
+2. The algorithm is efficient in communication, requiring O(n) messages per state agreement in most practical cases. This is compared to e.g. PBFT which requires O(n4) messages.
+3. The algorithm is modular and relatively simple to implement.
+
+Potential drawbacks to using HotStuff include:
+
+1. Each round required the election of a *leader*. Having a leader dramatically simplifies the consensus algorithm; it allows a linear number of messages to be sent between the leader and the other replicas in order to agree on the current state; and it allows a strict ordering to be established on instructions without having to resort to e.g. proof of work. However, if the choice of leader is deterministic, attackers can identify and potentially DDOS the leader for a given round, causing the algorithm to time out. There are ways to mitigate this attack for a *specific round*, as suggested in the LinBFT paper, such as using Verifiable Random Functions, but DDOSing a single replica means that, on average, the algorithm will time out every 1/n rounds.
+2. The attack described above only pauses progress in Hotstuff for the timeout period. In similar protocols, e.g. Tendermint it can be shown to [delay progress indefinitely](https://arxiv.org/pdf/1803.05069).
+
+Given these trade-offs, there is strong evidence to suggest that [HotStuff](https://arxiv.org/pdf/1803.05069) BFT, when implemented on the Tari DAN will provide BFT security guarantees with liveness performance in the sub-second scale and throughput on the order of thousands of instructions per second, if the benchmarks presented in the [HotStuff](https://arxiv.org/pdf/1803.05069) paper are representative.
+
+
+
+A Quorum certificate, or QC is proof that a super-majority of replicas have agreed on a given state. In particular, a QC consists of
+
+- The type of QC (depending on the phase in which the HotStuff pipeline the QC was signed),
+- The *view number* for the QC
+- A reference to the node in the state tree being ratified,
+- A signature from a super-majority of replicas.
+
+
+
+### [Tari-specific considerations](https://rfc.tari.com/RFC-0340_VNConsensusOverview.html#tari-specific-considerations)
+
+As soon as a state is finalised, replicas can inform clients as to the result of instructions they have submitted (in the affirmative or negative). Given that HotStuff proceeds optimistically, and finalisation happens after 4 rounds of communication, it's anticipated that clients can receive a final response from the validator committee in under 500 ms for reasonably-sized committees (this value is speculation at present and will be updated once exploratory experiments have been carried out).
+
+The Tari communication platform was designed to handle peer-to-peer messaging of the type described in [HotStuff](https://arxiv.org/pdf/1803.05069), and therefore the protocol implementation should be relatively straightforward.
+
+The "state" agreed upon by the VN committee will not only include the smart-contract state, but instruction fee allocations and periodic checkpoints onto the base layer.
+
+Checkpoints onto the base layer achieve several goals:
+
+- Offers a proof-of-work backstop against "evil committees". Without proof of work, there's nothing stopping an evil committee (one that controls a super-majority of replicas) from rewriting history. Proof-of-work is the only reliable and practical method that currently exists to make it expensive to change the history of a chain of records. Tari gives us a "best of both worlds" scenario wherein an evil committee would have to rewrite the base layer history (which *does* use proof-of-work) before they could rewrite the digital asset history (which does not).
+- They allow the asset issuer to authorise changes in the VN committee replica set.
+- It allows asset owners to have an immutable proof of asset ownership long after the VN committee has dissolved after the useful end-of-life of a smart contract.
+- Provides a means for an asset issuer to resurrect a smart contract long after the original contract has terminated.
+
+When Validator Nodes run smart contracts, they should be run in a separate thread so that if a smart contract crashes, it does not bring the consensus algorithm down with it.
+
+Furthermore, VNs should be able to quickly revert state to at least four views back in order to handle temporary forks. Nodes should also be able to initialise/resume a smart contract (e.g. from a crash) given a state, view number, and view history.
+
+This implies that VNs, in addition to passing around HotStuff BFT messages, will expose additional APIs in order to
+
+- allow lagging replicas to catch up in the execution state.
+- Provide information to (authorised) clients regarding the most recent finalised state of the smart contract via a read-only API.
+- Accept smart-contract instructions from clients and forward these onto the other replicas in the VN committee.
 
 ### XOR Metric
+
+### Kademlia
+
+Kademlia is designed to be an efficient means for storing and finding content in a distributed peer-to-peer (P2P) network.
+It has a number of core features that are not simultaneously offered by other DHTs [[2]], such as:
+
+- The number of messages necessary for nodes to learn about each other, is minimized.
+- Nodes have enough information to route traffic through low-latency paths.
+- Parallel and asynchronous queries are made to avoid timeout delays from failed nodes.
+- The node existence algorithm resists certain basic distributed denial-of-service (DDoS) attacks.
+
+#### Node ID
+
+A node selects an $n$-bit ID, which is given to other nodes on the network. The network design relies on node IDs being 
+uniformly distributed by some random procedure. A node's position is determined by the shortest unique prefix of its 
+ID, which forms a tree structure with node IDs as leaves [[2]]. This ID should be reused when the node rejoins the 
+network.
+
+The bit length of the node ID should be sufficiently large to make collisions extremely unlikely when using a uniformly
+distributed random number generator [[2]].
+
+#### Bootstrapping a Node
+
+A node wishing to join the network for the first time has no known contacts. In order for the node to establish
+itself on the network, it must contact one, or more than one, bootstrap node. These nodes are not special in any way 
+other than being listed in some predefined list. They simply serve as a first point of contact for the requesting node 
+to become known to more of the network and to find its closest peers.
+
+There are a number of ways that bootstrap nodes can be obtained, including adding addresses to a configuration and using 
+[DNS seeds](https://bitcoin.org/en/glossary/dns-seed). The joining process is described as follows [[2]]:
+
+1. A joining node generates a random ID.
+2. It contacts a few nodes it knows about.
+3. It sends a `FIND_NODE` lookup request of its newly generated node ID.
+4. The contacted nodes return the closest nodes they know about. The newly discovered nodes are added to the joining 
+node's routing table.
+5. The joining node then contacts some of the new nodes it knows about. The process then continues iteratively until 
+the joining node is unable to locate any closer nodes.
+
+This _self-lookup_ has two effects: it allows the node to learn about nodes closer to itself; and it populates other 
+nodes' routing tables with the node's ID [[1]].
+
+#### XOR Metric
+
+The Kademlia paper published in 2002 [[2]] offered the novel idea of using the XOR ($\oplus​$) operator to determine the 
+distance and therefore the arrangement of peers within the network. Defined as:
+
+$$ distance(a, b) = a \oplus b$$
+
+This works, because XOR exhibits the same mathematical properties as any distance function.
+
+Specifically, [[1]]
+
+- Identity: $a \oplus a = 0$
+- Non-negativity: $a \oplus b > 0$ for $a \neq b$
+- Symmetry: $a \oplus b = b \oplus a$
+- Triangle inequality: $a \oplus b + b \oplus c \geq a \oplus c$
+
+The XOR metric implicitly captures a notion of distance in the preceding tree structure [[2]].
+
+The lookup procedure allows nodes to locate other nodes, given a node ID. The procedure begins by the initiator 
+concurrently querying the closest $\alpha$ (concurrency parameter) nodes to the target node ID it knows about. The 
+queried node returns the $k​$ closest nodes it knows about. The querying node then proceeds in rounds, querying closer 
+and closer nodes until it has found the node. In the process, both the querying node and the intermediate nodes have 
+learnt about each other.
 
 ### Data Modelling
 
