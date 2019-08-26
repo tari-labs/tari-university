@@ -45,105 +45,96 @@
 - [Appendices](#appendices)
 - [Contributions](#contributors) 
 
-## Introduction
+## **Introduction**
 
-### Aim 
+### **Aim** 
 
-This research aims to provide answers to questions posed about the workings of the  Tari Digital Assets Network environment: Probabilistic attack vector with regards to the total nodes, compromised nodes, committee size and byzsntine fault tolerance threshold. 
+This research aims to provide answers to questions posed about the workings of the  Tari Digital Assets Network environment: Probabilistic attack vector with regards to the total nodes, compromised nodes, committee size, and byzantine fault-tolerance threshold. 
 
-### Question
+### **Question**
 
-This investigation attempts to answer the following question: *What is the % chance of controlling majority of nodes in a random sample of with varying quantities of the total number of nodes, committee size, bad nodes and byzantine fault tolerance threshold?*
+This investigation attempts to answer the following question:
 
-This research paper has made an attempt to explore the possibility of quantifying various probabilities through variations in the total number of nodes, the committee selected from the total, and the threshold which governs whether a committee can be deemed corrupt. 
+*What is the % chance of controlling the majority of nodes in a random sample with varying quantities of the total number of nodes, committee size, bad nodes, and byzantine fault tolerance threshold?*
 
 ## Literature Review 
 
 ### The Tari Digital Assets Network 
 
-The Tari Digital Assets Network (DAN) forms part of the Tari second layer, and is where all digital asset interactions are managed. 
+The Tari Digital Assets Network (DAN) forms part of the Tari second layer and is where the management of all digital asset interactions takes place. 
 
-These interactions are processed and validated by committees of special nodes, termed validator nodes (VNs). Management of digital assets involves state changes and ensures that the rules that govern assets contractes are enforced. Thus, all actions on this network are due to the interactions of the VNs. 
+These interactions are processed and validated by committees of special nodes, termed validator nodes (VNs). Management of digital assets involves state changes and ensures that the enforcement of the rules that govern assets contracts. Thus, all actions on this network are due to the interactions of the VNs. 
+The registration of validator nodes occurs on the base layer and to prevent Sybil attacks they commit collateral. If proved that the VN engaged in malicious behavior, the VN will lose its collateral. 
 
-The validator nodes are registered on the base layer and in order to prevent Sybil attacks they commit collateral. This collateral can be taken from the VN if it is proven that the VN engaged in malicious behaviour. 
-
-The Digital Asset (DA) would then be issued by an Asset Issuer (AI) and a contract drawn. It is the AI that will dictate the size of committee of validator nodes for a particular DA. The AI will also have the ability to nominate a trusted node to form part of the valiator node committee for the DA. If there are any remaining vacancies in the committee they would be filled with permissionless VNs. [[14]]
+An Asset Isser (AI) would then be issue Digital Assets and drawn a contract. It is the AI that will dictate the size of the committee of validator nodes for a particular DA. The AI will also have the ability to nominate a trusted node to form part of the validator node committee for the DA. [[14]]
 
 #### Kademlia
 
-Kademlia was designed by Petar Maymounkov and David Mazières in 2002 and is  a distributed hash table, used for decentralised peer-to-peer computer networks. 
+Kademlia was designed by Petar Maymounkov and David Mazières in 2002 and is a distributed hash table, used for decentralized peer-to-peer computer networks. 
 
 #### Node ID
 
-With regards to node ID, a node selects an $n$-bit ID, which is given to nodes on the network. Node IDs are  **uniformly** distributed The position of a node is determined by a unique prefix of its ID, which forms a tree structure with node IDs as leaves. This ID should be reused when the node rejoins the network.
+With regards to node ID, a node selects an -bit ID,  given to nodes on the network. Node IDs have uniformly distributed. The determination of node position is by a unique prefix of its ID, which forms a tree structure with node IDs as leaves. 
 
 The bit length of the node ID should be sufficiently large to make collisions unlikely when using a uniformly distributed random number generator. [[15]]
 
 ##### Bootstrapping a Node
 
-In order for a node to establish itself on the network without any know contacts, it needs to contact one or more bootstrap node. A bootstrap node is a node listed on a predetermined list, and serves as the first point of contact for new node requesting to be introduced to the network. First, a node ID is generated for the joining node, then the node contacts other nodes it is aware of, next it sends a lookup request with its newly generated node ID. The contacted nodes return the closest nodes they know about. The newly discovered nodes are added to the joining node's routing table. Thereafter, the joining node contacts some of the new nodes it knows about. The process then continues iteratively until the joining node is unable to locate any closer nodes. This _self-lookup_ has two effects: it allows the node to learn about nodes closer to itself; and it populates other nodes' routing tables with the node's ID [[15]].
+For a node to establish itself on the network without any know contacts, it needs to contact one or more bootstrap node. A bootstrap node is a node listed on a predetermined list and serves as the first point of contact for new node requesting an introduction to the network. This process includes the generation of a node ID for the joining node. Then the new node contacts other nodes it is aware of, next it sends a lookup request with its newly generated node ID. The contacted nodes return the nodes they know about that are closest. Then the new nodes are added to the routing table, and contacting begins. The process then continues until the joining node is unable to locate any closer nodes. This *self-lookup* has two effects: it allows the node to learn about nodes closer to itself, and it populates other nodes' routing tables with the node's ID [[15]].
 
 ##### XOR Metric
 
-The Kademlia paper published in 2002 and provided a offered the novel idea of using the XOR ($\oplus$) operator to determine the distance and therefore the arrangement of peers within the network. 
+The Kademlia paper published in 2002 and provided a offered the novel idea of using the XOR operator to determine the distance and therefore the arrangement of peers within the network. 
 
-Through the XOR metric a notion of distance is captured. The lookup procedure allows nodes to locate other nodes, given a node ID. [[15]]
+Through the XOR metric, capturing of a distance takes place. The lookup procedure allows nodes to locate other nodes, given a node ID. [[15]]
 
 ### Types of Distribution 
 
-When considering solving the probability of an attacker controlling the majority of nodes in the network, the various types of probability distributions need to be analysed with regards to the specific circumstances and variables of the problem. Types of probability distribution can be split into finite and infinite support [[1]]; where support is defined as a real-valued function *f*, which is the subset of the domain containing those elemets which are not mapped to zero. If the domain of *f* is a topological space, the support of *f* is instead defined as the smallest closed set containing all points not mapped to zero. [[2]] 
+When considering solving the probability of an attacker controlling the majority of nodes in the network, the various types of probability distributions need analysis with regards to the specific circumstances and variables of the problem. There are two categories of probability distribution: finite and infinite support [[1]]. Here support is defined as a real-valued function *f*, which is the subset of the domain containing those elements which are not mapped to zero. If the domain of *f* is a topological space, the support of *f* is instead defined as the smallest closed set containing all points not mapped to zero. [[2]] 
 
 #### Continuous Distribution 
 
-In order to understand continuous distribution, a continuous random variable needs to be defined. A continuous random variaible is a random variable with a set of possible values, a range, that is inifinite and as such, uncountable. [[11]]
+A continuous random variable is a random variable with a set of possible values, a range, that is infinite and as such, uncountable. [[11]]
 
 Probabilities of continuous random variables (X) are defined as the area under the curve of its PDF, probability density function. <sup>[def][zk~]</sup> Therefore the only ranges of values can have a nonzero probability. The probability that a continuous random variable equals some value is always zero. [[11]]
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
-The continuous normal distribution can describe the distribution of weight of adult males. For example, you can calculate the probability that a man weighs between 160 and 170 pounds.
+
+The continuous normal distribution can describe the distribution of the weight of adult males. For example, you can calculate the probability that a man weighs between 160 and 170 pounds.
 
 #### Discrete Distributions 
 
-Likewise, in order to understand discrete distribution, a discrete random variable requires definition. A discrete random variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution, thus describes the probability of occurrence of each value of a discrete random variable. [[11]]
+Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution thus describes the probability of occurrence of each value of a discrete random variable. [[11]]
 
-With a discrete probability distribution, each possible value of the discrete random variable can be associated with a non-zero probability. Thus, a discrete probability distribution is often presented in tabular form. [[11]]
+With a discrete probability distribution, each possible value of the discrete random variable can be associated with a non-zero probability. Thus, the presentation of a discrete probability distribution is often in tabular form. [[11]]
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
-With a discrete distribution, unlike with a continuous distribution, you can calculate the probability that X is exactly equal to some value. For example, you can use the discrete Poisson distribution to describe the number of customer complaints within a day. Suppose the average number of complaints per day is 10 and you want to know the probability of receiving 5, 10, and 15 customer complaints in a day.
-
-| x    | P(X=x)   |
-| ---- | -------- |
-| 5    | 0.037833 |
-| 10   | 0.125110 |
-| 15   | 0.034718 |
-
-The shaded bars in this example represents the number of occurrences when the daily customer complaints is 15 or more. The height of the bars sums to 0.08346; therefore, the probability that the number of calls per day is 15 or more is 8.35%.
 
 Examples of discrete distribution with **finite** support include the following: 
 
 | Type of finite discrete distribution              | Description                                                  |
 | ------------------------------------------------- | ------------------------------------------------------------ |
-| Bernouli Distribution                             | Takes value 1 with probability $p$ and value 0 with probability $q=1-p$ |
+| Bernoulli Distribution                             | Takes value 1 with probability $p$ and value 0 with probability $q=1-p$ |
 | Rademacher Distribution                           | Takes value 1 with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$ |
 | Binomial Distribution                             | The number of successes in a series of independent Yes/No experiments all with the same probability of success |
 | Beta-Binomial Distribution                        | The number of successes in a series of independent Yes/No experiments with heterogeneity in the success probability |
-| Degenate Distribution                             | at x0, where $X$ is certain to take the value x0. This does not look random, but it satisfies the definition of random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
+| Degenate Distribution                             | at x0, where $X$ is certain to take the value x0. This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
 | Discrete Uniform Distribution                     | where all elements of a finite set are equally likely. This is the theoretical distribution model for a balances coin, an unbiased die, a casino roulette, or the first card of a well-shuffled deck |
-| Hypergeometric Distribution                       | The number of successes in the first $m$ of a series of $n$ consective Yes/No experiments, if the total numebr of successes is known. This distribution arises where there is no replacement |
-| Poisson Biomial  Distribution                     | The number of successes in a series of independent Yes/No experiments with different success probabilities |
+| Hypergeometric Distribution                       | The number of successes in the first $m$ of a series of $n$ consecutive Yes/No experiments, if the total number of successes is known. This distribution arises where there is no replacement |
+| Poisson Binomial  Distribution                     | The number of successes in a series of independent Yes/No experiments with different success probabilities |
 
 Examples of discrete distribution with **infinite** support include the following: 
 
 | Type of infinite discrete distribution | Description                                                  |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Boltzmann Distribution                 | A discrete distribution important in statistical physics which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analogue. |
-| Geometric Distribution                 | A discrete disctribution which describes the number of attempts needed to get the first success in a series of independent Bernoulli trials, or alternatively only the number of losses before the first success (i.e. one less) |
+| Boltzmann Distribution                 | A discrete distribution important in statistical physics which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analog. |
+| Geometric Distribution                 | A discrete distribution which describes the number of attempts needed to get the first success in a series of independent Bernoulli trials, or alternatively only the number of losses before the first success (i.e., one less) |
 | Negative Binomial Distribution         | Pascal distribution, a generalization of the geometric distribution of the nth success |
-| Poisson Distribution                   | A very large number of individually unlikely events that happen in a certain time interval. Relateed to this distribution are a number of other distributions: the displaced Poisson, the hyper-Poisson, teh general Poissin binomial and the Poissan type distributions. |
+| Poisson Distribution                   | A very large number of individually unlikely events that happen at a specific time interval. Related to this distribution are several other distributions: the displaced Poisson, the hyper-Poisson, the general Poisson binomial, and the Poisson type distributions. |
 | Skellam Distribution                   | The distribution of the difference between two independent Poisson-distributed random variables. |
-| Zeta Distribution                      | Has uses in applied statistics and statistical mechanics, and perhaps may be of interst to number theorists. It is the Zipf distribution for an infinite number of elements. |
-| Zipf's Law                             | A discrete power-law distribution, the most famous example of which is the description of the frequency of words in the English language. |
-| Zipf-Mandelbrot Law                    | A discrete power law distribution whcih is a generalization of the Zipf distribution. |
+| Zeta Distribution                      | Has uses in applied statistics and statistical mechanics, and perhaps may be of interest to number theorists. It is the Zipf distribution for an infinite number of elements. |
+| Zipf's Law                             | A discrete power-law distribution, the most famous example of which is the description of the frequency of words in the English language.  |
+| Zipf-Mandelbrot Law                    | A discrete power-law distribution which is a generalization of the Zipf distribution.|
 
 ##### Hypergeometric Distribution
 
@@ -152,7 +143,7 @@ Hypergeometric distribution is a discrete probability distribution that describe
 - A sample of size $n$ is randomly selected without replacement from a population of $N$ items
 - In the population, $T$ items can be classified as successes, and $N-T$ items can be classified as failures 
 
-Given $x, N, n$ and $k$ the hypergeometric probability can be computed based on the following formula 
+Given $x, N, n$ and $k$ the hypergeometric probability can be computed based on the following formula. 
 
 Example: Suppose a population consists of $N$ items, $k$ of which are successes. And a random sample drawn from that population consists of $n$ items, $x$ of which are successes. Then the hypergeometric probability is:[[10]]
 $$
@@ -395,7 +386,6 @@ Histogram: divide `[0,1)` into $n_{i}$ small subintervals, generate $N$ numbers,
 ##### Proving the Law of Large Numbers
 
 <p align="center"><img src="assets/convergence.png" width="700" /></p>
-
 Show two graphs one with small number of experiments and one with a large number of experiments. 
 
 ##### Summary of Distribution Data 
@@ -502,17 +492,14 @@ From a plot of committee size versus probability where the number of nodes remai
 **Vary the total number of nodes, with committee size of 100**
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
-
 **Vary the bad nodes, with committee size of 100**
 
 <p align="center"><img src="assets/bad_actor_grid.png" width="700" /></p>
 
 
-
 **Variation of percentage of  the bad nodes, when committee size is 10 and 100**
 
 <p align="center"><img src="assets/bad_actors_varied_committee_size_10_100.png" width="700" /></p>
-
 ## 
 
 ## Conclusion
