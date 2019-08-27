@@ -40,7 +40,6 @@
 	  - [Summary of Distribution Data](#summary-of-distribution-data)
 	- [Statistical Calculation](#statistical-calculation)
 	  - [Probabilistic Attack Graphs](#probabilistic-attack-graphs) 
-- [Conclusion](#conclusion)
 - [References](#references)
 - [Appendices](#appendices)
 - [Contributions](#contributors) 
@@ -99,7 +98,6 @@ A continuous random variable is a random variable with a set of possible values,
 Probabilities of continuous random variables (X) are defined as the area under the curve of its PDF, probability density function. <sup>[def][zk~]</sup> Therefore the only ranges of values can have a nonzero probability. The probability that a continuous random variable equals some value is always zero. [[11]]
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
-
 The continuous normal distribution can describe the distribution of the weight of adult males. For example, you can calculate the probability that a man weighs between 160 and 170 pounds.
 
 #### Discrete Distributions 
@@ -109,7 +107,6 @@ Likewise, to understand the discrete distribution, a discrete random variable re
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a non-zero probability. Thus, the presentation of a discrete probability distribution is often in tabular form. [[11]]
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
-
 Examples of discrete distribution with **finite** support include the following: 
 
 | Type of finite discrete distribution              | Description                                                  |
@@ -143,7 +140,7 @@ Hypergeometric distribution is a discrete probability distribution that describe
 - A sample of size $n$ is randomly selected without replacement from a population of $N$ items
 - In the population, $T$ items can be classified as successes, and $N-T$ items can be classified as failures 
 
-Given $x, N, n$ and $k$ the hypergeometric probability can be computed based on the following formula. 
+Given $x, N, n$ and $k$, the hypergeometric probability can be computed based on the following formula. 
 
 Example: Suppose a population consists of $N$ items, $k$ of which are successes. And a random sample drawn from that population consists of $n$ items, $x$ of which are successes. Then the hypergeometric probability is:[[10]]
 $$
@@ -156,76 +153,74 @@ The hypergeometric distribution has the following properties:
 
 ##### Binomial Distribution
 
-The binomial distribution with parameters $n$ and $p$ is the discrete probability distribution of the number of successes in a sequence of $n$ independent experiments, each asking a yes-no question, and each with its own boolean-valued outcome: success/yes/true/one (with probability $p$) or failure/no/false/zero (with probability $q=1- p$). A single success/failure experiment is also called a Bernoulli trial or Bernoullu experiment and a sequence of outcomes is called a Bernoulli process; for a single trial, 1.e., $n=1$, the binomial distribution is a Bernoulli distribution. The binomial distribution is the basis for the popular binomial test of statistical significance. 
+The binomial distribution with parameters $n$ and $p$ is the discrete probability distribution of the number of successes in a sequence of $n$ independent experiments, each asking a yes-no question, and each with its own boolean-valued outcome: success/yes/true/one (with probability $p$) or failure/no/false/zero (with probability $q=1- p$). A single success/failure experiment is also called a Bernoulli trial or Bernoulli experiment, and a sequence of outcomes is called a Bernoulli process; for a single trial, 1.e., $n=1$, the binomial distribution is a Bernoulli distribution. The binomial distribution is the basis for the popular binomial test of statistical significance. 
 
-The binomial distribution is frequently used to model the number of successes in a sample of size $n$ drawn with replacement from a population of size $N$. If the sampling is carried out without replacement, the draws are not independent and so the resulting distribution is hypergeometric, not a binomial one. However, for $n$ much larger than $n$, the binomial distribution remainds a good approximation, and is widely used. 
+The binomial distribution is frequently used to model the number of successes in a sample of size $n$ drawn with replacement from a population of size $N$. If the sampling is carried out without replacement, the draws are not independent, and so the resulting distribution is hypergeometric, not a binomial one. However, for $n$ much larger than $n$, the binomial distribution remains a good approximation and is widely used. 
 
-Thus, in bionial distribution an object is selected with replacement [[4]].  A bionomial experiment requires that the probability of success be constant on every trial. 
+Thus, in a binomial distribution, an object is selected with replacement [[4]].  A binomial experiment requires that the probability of success be constant on every trial. 
 
-Example: You have an urn of $10$ marbles $-5$ red and $5$ green, You randomly select $2$ marbles with replacement, the probability of siccess would not change. It would be $\frac{5}{10}$ on every trial.[[10]] 
+Example: You have an urn of $10$ marbles $-5$ red and $5$ green, You randomly select $2$ marbles with replacement, the probability of success would not change. It would be $\frac{5}{10}$ on every trial.[[10]] 
 
 ### Monte Carlo Simulations 
 
-Monte Carlo (MC) approch is a computer based analytical method and was developed in the 1940s. It employs statistical sampling techniques for obtaining a probabilistic approximation to the solution of a mathematical equation or model by utilising sequences of random numbers as inputs into a model which yields results that are indicationd of the performance of the developed model. 
+Monte Carlo (MC) approach is a computer-based analytical method and developed in the 1940s. It employs statistical sampling techniques for obtaining a probabilistic approximation to the solution of a mathematical equation or model. It utilises sequences of random numbers as inputs into a model which yields results that are an indication of the performance of the developed model. 
 
-It was developed as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to model the random diffusion of neurtrons. The name was given after the city in Monaco and its many casions. Monte Carlo simulstion are used in a wide array of applications, including physics, finance and system reliability. 
+It was developed as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to model the random diffusion of neutrons. It was named after the city in Monaco and its many casinos. Monte Carlo simulation is used in a wide array of applications, including physics, finance, and system reliability. 
 
-Monte Carlo analysis utlizes statistical tools to mathematically model a real life system or process and then it estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled must be determined first before Monte Carlo simulation can be applied. 
+Monte Carlo analysis utilizes statistical tools to model a real-life system or process mathematically, and then it estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled must be determined first before the Monte Carlo simulation can be applied. 
 
-Monte Carlo methods are ideally used heuristic techniques which can solve a variety of common problems including optimization and numerical intergration problems. These algorithms work by cleverly sampling from a distribution to simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends in financial investments. [[6]] 
+Monte Carlo methods are ideally used heuristic techniques which can solve a variety of common problems including optimization and numerical integration problems. These algorithms work by cleverly sampling from distribution to simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends in financial investments. [[6]] 
 
 #### Monte Carlo Fallacy 
 
-The Monte Carlo Fallacy, or gambler's fallacy is the inaccurate belief that if something happens more frequently than normal during a given period it will happen less fequently in the future. In situations where the outcome being observed is truly random and consists of independent trials of a random process, this belief is false. The fallacy can arise in many situations, but is most stringly associated with gambling, where it is common among players. [[13]] 
+The Monte Carlo Fallacy or gambler's fallacy is the inaccurate belief that if something happens more frequently than normal during a given period, it will happen less often in the future. In situations where the outcome being observed is truly random and consists of independent trials of a random process, this belief is false. The fallacy can arise in many situations but is most strongly associated with gambling, where it is common among players. [[13]] 
 
-##### Illustratration of the Gambler's Falacity 
+##### Illustration of the Gambler's Fallacy 
 
-The gambler's fallacy can be illustrated by considering the repeated toss of a fair coin. The outcomes in different tosses are statistically independent and the probability of getting heads on a single toss is $\frac{1}{2}$. The probaility of getting two heads in two tosses is $\frac{1}{4}$ abd tge probability of getthing three heads in three tosses is $\frac{1}{8}$. If after tossing four heads in a row, teh next coin toss also came up heads, it would complete a run of five successive heads. Since the probability of a run of five successive heads is $\frac{1}{32}$, a person might believe that the next flip would be more likely to come up tails rather than heads again. Thsi si incorrect and is an example of the gambler's fallacy. The event 'five heads in a row and the event 'first 4 heads, then a tails' are equally likely, each having probability $\frac{1}{32}$. Since the first four tosses turn up heads, the probability that the next toss is a head is $\frac{1}{2}$ . While a run of five heads has a probability of $\frac{1}{32} = 0.03125$, the misunderstanding lies in not realising that htis is the case only before the first coin is tossed. After the first four tosses, the results are no longer unknown, so therei probabilityes are at that point equal to 1. The reasoning that it is more likely that a fifth toss is more likely to be tails because the previous four tosses were heads, with a run of luck in the past influencing the odds in the future, forms the basis of the fallacy. [[13]]
+The gambler's fallacy can be illustrated by considering the repeated toss of a fair coin. The outcomes in different tosses are statistically independent, and the probability of getting heads on a single toss is $\frac{1}{2}$. The probability of getting two heads in two tosses is $\frac{1}{4}$, and the probability of getting three heads in three tosses is $\frac{1}{8}$. If after tossing four heads in a row, the next coin toss also came up heads, it would complete a run of five successive heads. Since the probability of a sequence of five consecutive heads is $\frac{1}{32}$, a person might believe that the next flip would be more likely to come up tails rather than heads again. This is incorrect and is an example of the gambler's fallacy. The event 'five heads in a row and the event 'first 4 heads, then a tails' are equally likely, each having probability $\frac{1}{32}$. Since the first four tosses turn up heads, the probability that the next toss is a head is $\frac{1}{2}$ . While a run of five heads has a probability of $\frac{1}{32} = 0.03125$, the misunderstanding lies in not realizing that this is the case only before the first coin is tossed. After the first four tosses, the results are no longer unknown, so therei probabilityes are at that point equal to 1. The reasoning that it is more likely that a fifth toss is more likely to be tails because the previous four tosses were heads, with a run of luck in the past influencing the odds in the future, forms the basis of the fallacy. [[13]]
 
 #### The Crude Monte Carlo
 
-The Monte Carlo technique is built upon this principle: instead of evaluating an indefinite integral, which can sometimes be impossible, the average of the integrand is estimated and that is used to approximate the integral. If one needs to be more precise, the number of samples can be increased. 
+The Monte Carlo technique is built upon this principle: instead of evaluating an indefinite integral, which can sometimes be impossible, the average of the integrand is estimated, and that is used to approximate the integral. If one needs to be more precise, the number of samples can be increased. 
 
-It is widely used heursitic technique which can solve a vaiety of common problems including optimization and numerical integration problems. These algorithms work by cleverly sampling from a distribution oto simulate the workings of a system.  Applciations range from solving problems in theoretical physics to predicting trends in financial investments. 
+It is a widely used heuristic technique which can solve a variety of common problems including optimization and numerical integration problems. These algorithms work by cleverly sampling from distribution to simulate the workings of a system.  Applications range from solving problems in theoretical physics to predicting trends in financial investments. 
 
 #### The Law of Large Numbers 
 
-The law of large numbers (LLN), in probability and statistics, states that as a sample size grows, its mean gets closer to the average of the whole population. In statistical analysis, the law of large numbers can be applied to a variety of subjects. It may not be feasible to poll every individual within a given population to collect the required amount of data, but every additional data point gathered has the potential to increase the likelihood that the outcome is a true measure of the mean. [[7]] 
+The law of large numbers (LLN), in probability and statistics, states that as a sample size grows, its mean gets closer to the average of the whole population. In statistical analysis, the law of large numbers can be applied to a variety of subjects. It may not be feasible to poll every individual within a given population to collect the required amount of data. But every additional data point gathered has the potential to increase the likelihood that the outcome is an accurate measure of the mean. [[7]] 
 
-The LLN is important beacuse it guatantees stable long-term results from the [[8]] 
+The LLN is crucial because it guarantees stable long-term results from the [[8]] 
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="700" /></p>
-The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right) they would be extremely similar. [[9]]
+The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar. [[9]]
 
 ## Methodology 
-Based on the understanding of the problem, statisical analysis using hypergeometric distribution was conducted.  
+Based on the understanding of the problem, statistical analysis using hypergeometric distribution was conducted.  
 
 ### Notation Used  
 
-This section contains the general notation of statistical expressions when specifically referenced. This information serves as important pre-knolwedge for the remainder of the report. 
+This section contains the general notation of statistical expressions when specifically referenced. This information serves as an important pre-knowledge for the remainder of the report. 
 
 - Let $N$ be the total number of nodes in the network *set size* 
 - Let $n$ be the committee size *sample_size*
 - Let $m$ be the number of bad actors *no_of_type_in_set*
 - Let $T$ be the BFT threshold *type threshold*
 
-There would be a pool with *N* nodes, the pool contains *m* malicious nodes or bad actors,  within the pool a random selection of nodes are drawn *n*, from that selection the probablity of drawning a threshold of bad actors *T* needs to be calculated.  
+There would be a pool with *N* nodes, the pool contains *m* malicious nodes or bad actors,  within the pool a random selection of nodes is drawn *n*, from that selection the probability of drawing a threshold of bad actors *T* needs to be calculated.  
 
 ### Crude Monte Carlo Simulation
 
 #### Programming the simulation
 
-It was intially thought that selecting a committee (n) from the total nodes (N) without replacing the selected nodes requires the removal of an element from the pool of total nodes when it is drawn. However, as this the programme is  calling for many selections within many experiments this logic could not be used. 
+It was initially thought that selecting a committee (n) from the total nodes (N) without replacing the selected nodes requires the removal of an element from the pool of total nodes when it is drawn. However, as this the program is calling for many selections within many experiments, this logic could not be used. 
 
-To begin with a random index is drawn with `randint` from the set of legal indices in the... 
-
-The experiment is extended to ask the overarching question: what is the probability of selecting the threshold worth of bad nodes or more from a pool of total nodes? To this end, we perform a variable amount of experiments (no_of_draws), count how many times the threshold is met in order to estimate the   probability as M/n_of_draws. 
+The experiment is extended to ask the overarching question: what is the probability of selecting the threshold worth of bad nodes or more from a pool of total nodes? To this end, we perform a variable amount of experiments (no_of_draws), count how many times the threshold is met in order to estimate the probability as M/n_of_draws. 
 
 #### Use of Random Numbers  
 
-Some problems in science and technology are described by 'exact' mathematics, leading to 'precise' results, i.e. throwing a ball or oscillating system. Some problems appear physcially uncertain, i.e. rolling a die, molecular motion. Random numbers can be used to mimic the uncertainity of the experiment. 
+Some problems in science and technology are described by 'exact' mathematics, leading to 'precise' results, i.e., throwing a ball or oscillating system. Some problems appear physically uncertain, i.e., rolling a die, molecular motion. Random numbers can be used to mimic the uncertainty of the experiment. 
 
-Random numbers make it possible to simulate physical systems with uncertainity, in input data or the process. 
+Random numbers make it possible to simulate physical systems with uncertainty, in input data or the process. 
 
 #### Computing statistics 
 
@@ -248,7 +243,7 @@ $$
 
 #### Formulae
 
-As a means to derive the formulae, a single probability from the overarching question was used to distill the  formula. 
+As a means to derive the formulae, a single probability from the overarching question was used to distill the formula. 
 
 **Example 1**
 
@@ -267,17 +262,17 @@ $(B2, B3, G2)$
 $(B2, G1, G2)$
 $(B3, G1, G2)$
 
-From this list, the number of combinations where 'B' is the majority can then be tallied. In this case there are $7$ combinations where 'B' is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a majority of bad nodes. Therefore, the quoient of $7$ and $10$, is the probability, $0.7$. 
+From this list, the number of combinations where 'B' is the majority can then be tallied. In this case, there are $7$ combinations where 'B' is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a majority of bad nodes. Therefore, the quotient of $7$ and $10$, is the probability, $0.7$. 
 
 This method is limited in calculating the probability where the variables are large e.g. if the same question was posed, but the one had to now calculate the probability of selecting a majority of bad nodes from a total of 100 nodes, with a committee size is $60$, $60$ bade nodes and $40$ good nodes, the number of combinations where bad and good nodes can be chosen is $1,27E+28$
 
 ##### Hypergeometric Distribution
 
-With regards to hypergeometric distribution, a committee of nodes were drawn from the total nodesn without replacement; i.e. nodes are drawn simultatenously, the intention of the node is distinguished and not returned to the total nodes. 
+With regards to hypergeometric distribution, a committee of nodes was drawn from the total nodes without replacement; i.e., nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. 
 
 Using the same example from above, 
 
-What is the probability of drawing 3 red cards from a standard deck of 52 cards if you draw 5 cards from the deck? There are 26 red cards. 
+What is the probability of drawing three red cards from a standard deck of 52 cards if you draw five cards from the deck? There are 26 red cards. 
 
 - $N$ = 52
 - $n$ = 5
@@ -320,7 +315,7 @@ Once the formula was mapped out, preliminary calculations could be solved using 
 - The committee size (n) increases by a factor of 10 from 0 to $N$
 - The BFT threshold (T) is set to sixty-seven percent of $n$
 
-As a recap to the question, What is the probability of selecting a majority of bad nodes from a total of 300 nodes if the committee size is $10$. This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calcuate the probability for selecting the majority of bad nodes. 
+As a recap to the question, What is the probability of selecting a majority of bad nodes from a total of 300 nodes if the committee size is $10$. This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
 
 In order to understand this, the table below provides some visual insight. (insert hotlink)
 
@@ -328,7 +323,7 @@ In order to understand this, the table below provides some visual insight. (inse
 | -------------- | ---------- | ------------- | ----------- |
 | 10             | 180        | 7             | 3           |
 
-The number of steps is counted by considering the BFT thresfold and the committee size. What is actually being said here is that when 10 nodes are selected without replacement from a total of 300 nodes, what is the probability that out the the 10 nodes there will be 7 nodes or more that are bad. Thus, probabilities need to be calculated for when there are 7 bad nodes, 8 bad nodes, 9 bad nodes and 10 bad nodes. 
+The number of steps is counted by considering the BFT thresfold and the committee size. What is actually being said here is that when ten nodes are selected without replacement from a total of 300 nodes, what is the probability that out the ten nodes there will be seven nodes or more that are bad. Thus, probabilities need to be calculated for when there are seven bad nodes, eight bad nodes, nine bad nodes, and ten bad nodes. 
 
 
 
@@ -365,7 +360,7 @@ How many experiments? 1000
 
 Do you know theoratical mean? Y|N: Y
 
-What is the theoretical mean?0.649474335188621
+What is the theoretical mean? 0.649474335188621
 ```
 
 ##### Individual Probabilities 
@@ -460,10 +455,10 @@ T = 50% of N
 
 n = increases from 10-500 
 
-From a plot of committee size versus probability of bad actors controlling the network it can be seen that:
+From a plot of committee size versus the probability of bad actors controlling the network, it can be seen that:
 
-- As the commitee size increases, the probability increases 
-- Thus, the greater the sample size the greater the chance of there being bad nodes in the set drawn 
+- As the committee size increases, the probability increases 
+- Thus, the greater the sample size, the greater the chance of there being bad nodes in the set drawn 
 
 <p align="center"><img src="assets/probability-1.png" width="700" /></p>
 **Vary the total nodes**
@@ -476,15 +471,14 @@ From a plot of committee size versus probability with a change in $N$, the total
 <p align="center"><img src="assets/probability-3.png" width="700" /></p>
 From a plot of committee size versus probability where the number of nodes remains at 500 with a change in $T$, the BFT threshold, ranging from 50% to 67%, it can be seen that: 
 
-- When the BFT threshold is 50% the probability is lower when the committee size is small, the probabiltiy increases when the committee size increases, and eventually tends to one.
-- When the BFT threshold is 55% the probability is lower when the committe size is small, the probability increases when the committee size increases, and eventually tends to one. 
+- When the BFT threshold is 50%, the probability is lower when the committee size is small; the probability increases when the committee size increases, and eventually tends to one.
+- When the BFT threshold is 55%, the probability is lower when the committee size is small; the probability increases when the committee size increases, and eventually tends to one. 
 - A similar trend is followed for the cases where the BFT threshold is 50% and 55%
 - The probability is higher for the case where the BFT threshold is 50% than when the probability is 55% 
-- When the BFT threshold is 60% the probability decreases from 0.63 to approxiamtely 0.53 where it remains constant 
-- When the BFT threshold is 65% the probability decreases from 0.38 and tends to zero 
-- When the BFT threshold is 67% the probability decreases from 0.38 and tends to zero 
+- When the BFT threshold is 60%, the probability decreases from 0.63 to approximately 0.53 where it remains constant 
+- When the BFT threshold is 65%, the probability decreases from 0.38 and tends to zero 
+- When the BFT threshold is 67%, the probability decreases from 0.38 and tends to zero 
 - A similar trend is followed for the cases where the BFT threshold is 65% and 67% 
-- It is interesting to note that in the case were there is 
 
 **Vary the total number of nodes, with committee size of 10**
 
@@ -495,17 +489,9 @@ From a plot of committee size versus probability where the number of nodes remai
 **Vary the bad nodes, with committee size of 100**
 
 <p align="center"><img src="assets/bad_actor_grid.png" width="700" /></p>
-
-
 **Variation of percentage of  the bad nodes, when committee size is 10 and 100**
 
 <p align="center"><img src="assets/bad_actors_varied_committee_size_10_100.png" width="700" /></p>
-## 
-
-## Conclusion
-
-
-
 ## References
 
 [[1]] Wikipedia:, “List of probability distributions” [online]. Available: <https://en.wikipedia.org/wiki/List_of_probability_distributions>. 
