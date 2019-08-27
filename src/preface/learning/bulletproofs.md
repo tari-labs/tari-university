@@ -14,9 +14,9 @@ For learning purposes, we have arranged report, presentation and video topics in
 
 | Topics                                   |                             Type                             |
 | ---------------------------------------- | :----------------------------------------------------------: |
-| Bulletproofs and Mimblewimble            | [report](cryptography/bulletproofs-and-mimblewimble/MainReport.md) |
-| Building on Bulletproofs                 |   [report](cryptography/building-on-bulletproofs/link.md)    |
-| The Bulletproof Protocols                | [report](cryptography/bulletproofs-protocols/MainReport.md)  |
-| Mimblewimble Multiparty Bulletproof UTXO |  [report](protocols/mimblewimble-mp-bp-utxo/MainReport.md)   |
-| Pure-Rust Elliptic Curve Cryptography    |     [video](cryptography/pure-rust-ecc/pure-rust-ecc.md)     |
+| Bulletproofs and Mimblewimble            | <div class="wrap_int">[report](/cryptography/bulletproofs-and-mimblewimble/MainReport.md)</div> |
+| Building on Bulletproofs                 |   <div class="wrap_int">[report](/cryptography/building-on-bulletproofs/link.md)</div>    |
+| The Bulletproof Protocols                | <div class="wrap_int">[report](/cryptography/bulletproofs-protocols/MainReport.md)</div> |
+| Mimblewimble Multiparty Bulletproof UTXO |  <div class="wrap_int">[report](/protocols/mimblewimble-mp-bp-utxo/MainReport.md)</div>  |
+| Pure-Rust Elliptic Curve Cryptography    |    <div class="wrap_int">[video](/cryptography/pure-rust-ecc/pure-rust-ecc.md)</div>    |
 

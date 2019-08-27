@@ -14,9 +14,11 @@ For learning purposes, we have arranged report, presentation and video topics in
 
 | Topics                                              |                             Type                             |
 | --------------------------------------------------- | :----------------------------------------------------------: |
-| Elliptic Curves 101                                 | <div class="wrap_beg">[presentation](cryptography/crypto-1/sources/PITCHME.link.md)</div> |
-| Atomic Swaps                                        | <div class="wrap_int">[presentation](protocols/atomic-swaps/AtomicSwaps.md)</div>     |
-| Lightning Network for Dummies                       | <div class="wrap_beg">[presentation](protocols/lightning-network-for-dummies/sources/PITCHME.link.md)</div> |
-| Introduction to SPV, Merkle Trees and Bloom Filters | <div class="wrap_beg">[presentation](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)</div> |
-| The RGB Protocol - An Introduction                  | <div class="wrap_adv">[presentation](protocols/rgb-introduction/sources/PITCHME.link.md)</div> |
+| So you think you need a blockchain? Part I          | <div class="wrap_beg">[article](https://medium.com/@cayle/so-you-think-you-need-a-blockchain-part-i-a75389808c00)</div> |
+| So you think you need a Blockchain, Part II?        | <div class="wrap_beg">[article](https://medium.com/@cayle/so-you-think-you-need-a-blockchain-part-ii-71a62c5f1a1a)</div> |
+| BFT Consensus Mechanism                             | <div class="wrap_beg">[presentation](/consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)</div> |
+| Lightning Network for Dummies                       | <div class="wrap_beg">[presentation](/protocols/lightning-network-for-dummies/sources/PITCHME.link.md)</div> |
+| Atomic Swaps                                        | <div class="wrap_beg">[presentation](/protocols/atomic-swaps/AtomicSwaps.md)</div> |
+| Introduction to SPV, Merkle Trees and Bloom Filters | <div class="wrap_int">[presentation](/protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)</div> |
+|                                                     |                                                              |
 
