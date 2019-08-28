@@ -280,10 +280,12 @@ accurate measure of the mean [[7]].
 The LLN is crucial because it guarantees stable long-term results for the averages of some random event. [[8]] 
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="700" /></p>
-The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen 
-in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. 
-While different runs would show a different shape over a small number of throws (at the left), over a large number of 
-rolls (to the right), they would be extremely similar. [[9]] 
+
+
+
+
+The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar. [[9]]
+
 
 ## Methodology 
 Based on the understanding of the problem, statistical analysis using hypergeometric distribution was conducted.  
