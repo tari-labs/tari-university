@@ -277,7 +277,7 @@ subjects. It may not be feasible to poll every individual within a given populat
 data. But every additional data point gathered has the potential to increase the likelihood that the outcome is an 
 accurate measure of the mean [[7]]. 
 
-The LLN is crucial because it guarantees stable long-term results from the [[8]] 
+The LLN is crucial because it guarantees stable long-term results for the averages of some random event. [[8]] 
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="700" /></p>
 The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen 
