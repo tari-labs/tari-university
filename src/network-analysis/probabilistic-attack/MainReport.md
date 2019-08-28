@@ -192,6 +192,10 @@ The law of large numbers (LLN), in probability and statistics, states that as a 
 The LLN is crucial because it guarantees stable long-term results from the [[8]] 
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="700" /></p>
+
+
+
+
 The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar. [[9]]
 
 ## Methodology 
@@ -533,12 +537,12 @@ Date accessed: 2019&#8209;05&#8209;13.
 [7]: https://www.investopedia.com/terms/l/lawoflargenumbers.asp
 "Investopia: Law of Large Numbers"
 
-[[8]]Wikipedia, "Law of Large Numbers" [online]. Available: <https://en.wikipedia.org/wiki/Law_of_large_numbers>. Date accessed: 2019&#8209;06&#8209;28.
+[[8]] Wikipedia, "Law of Large Numbers" [online]. Available: <https://en.wikipedia.org/wiki/Law_of_large_numbers>. Date accessed: 2019&#8209;06&#8209;28.
 
 [8]: https://en.wikipedia.org/wiki/Law_of_large_numbers
 "Law of Large Numbers"
 
-[[9]]Wikipedia, "Law of Large Numbers- Average dice roll by number of rolls" [online]. Available: <https://commons.wikimedia.org/w/index.php?curid=58536069>. Date accessed: 2019&#8209;06&#8209;28.
+[[9]] Wikipedia, "Law of Large Numbers- Average dice roll by number of rolls" [online]. Available: <https://commons.wikimedia.org/w/index.php?curid=58536069>. Date accessed: 2019&#8209;06&#8209;28.
 
 [9]: https://commons.wikimedia.org/w/index.php?curid=58536069
 "Law of Large Numbers- Average dice roll by number of rolls"
