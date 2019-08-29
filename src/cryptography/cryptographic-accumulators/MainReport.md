@@ -19,6 +19,10 @@
 
 This is an example [[1]]. 
 
+
+
+<p align="center"><img src="sources/gringots.png" width="650" /></p>
+
 ### Subsections for Body of Text 
 
 
