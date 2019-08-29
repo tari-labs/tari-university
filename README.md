@@ -47,5 +47,6 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 1 | An Introduction to the I2P Network
 2 | Tor |!2 Tor 
 3 | Cryptographic Accumulators 
+4 | Probabilistic Attack Vector Analysis Building Blocks 
 
 <i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
