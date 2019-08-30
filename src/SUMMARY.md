@@ -4,7 +4,6 @@
     - [Learning about Blockchain Basics](./preface/learning/blockchain-basics.md)
     - [Learning about Mimblewimble](./preface/learning/mimblewimble.md)
     - [Learning about Bulletproofs](./preface/learning/bulletproofs.md)
-    - [Learning about Mimblewimble](./preface/learning/mimblewimble.md)
   - [Cryptography](./cryptography/cryptography.md)
     - [Elliptic Curves 101](cryptography/crypto-1/sources/PITCHME.link.md)
     - [Introduction to Schnorr Signatures](cryptography/digital_signatures/introduction_schnorr_signatures.md)
