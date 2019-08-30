@@ -5,7 +5,10 @@
 
 ## Background
 
-
+Mimblewimble is a blockchain protocol that focuses on privacy through the implementation of confidential transactions. 
+It enables a greatly simplified blockchain in which all spent transactions can be pruned, resulting in a much smaller 
+blockchain footprint and efficient base node validation. The blockchain consists only of block-headers, remaining Unspent 
+Transaction Outputs (UTXO) with their range proofs and an unprunable transaction kernel per transaction.
 
 ## Learning Path Matrix 
 
