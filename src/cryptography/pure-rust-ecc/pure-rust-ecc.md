@@ -20,3 +20,11 @@ zero-knowledge proofs.
 
 The content in this video is not complicated, but it is an **advanced** topic, since it dives deep into the internals of
 how cryptographic operations are implemented on computers.
+
+
+## Slides
+
+<embed src="Fast Safe Pure-Rust Elliptic Curve Cryptography (Slides).pdf" 
+type="application/pdf" width="750" height="500" />
+
+<br>
