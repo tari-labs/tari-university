@@ -285,8 +285,6 @@ The LLN is crucial because it guarantees stable, long-term results for the avera
 <p align="center"><img src="assets/law_of_large_numbers.png" width="650" /></p>
 
 
-
-
 The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar [[9]].
 
 
