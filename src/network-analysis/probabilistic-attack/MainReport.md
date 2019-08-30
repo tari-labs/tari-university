@@ -90,7 +90,7 @@ form part of the VN committee for the DA [[14]].
 
 #### Kademlia
 
-Kademlia was designed by Petar Maymounkov and David Mazières in 2002. It is a distributed hash table, used for 
+Kademlia was designed by Petar Maymounkov and David Mazières in 2002 [[16]]. It is a distributed hash table, used for 
 decentralized, peer-to-peer computer networks. 
 
 #### Node ID
@@ -123,7 +123,7 @@ This
 
 ##### XOR Metric
 
-The Kademlia paper, published in 2002, contained the novel idea of using the XOR operator to determine the 
+The Kademlia paper, published in 2002 [[16]], contained the novel idea of using the XOR operator to determine the 
 distance and therefore the arrangement of peers within the network. 
 
 Through the XOR metric, a distance is captured. The lookup procedure allows nodes to locate other nodes, 
@@ -437,7 +437,7 @@ nodes in the committee. This entails calculating the probabilities from the BFT 
 there needs to be a summation of individual probabilities in order to calculate the probability for selecting the 
 majority of bad nodes. 
 
-The following table provides some insight into understanding this. (insert hotlink)
+The following table provides some insight into understanding this.
 
 | Committee Size        | Bad Actors   | BFT Threshold   | No. of Steps   |
 | :--------------:      | :----------: | :-------------: | :------------: |
@@ -653,7 +653,8 @@ Date accessed: 2019&#8209;05&#8209;13.
 "Binomial Distribution"
 
 [[5]] POA Network Team, "POA Network: Honey Badger BFT and Threshold Cryptography" [online]. Available: 
-<https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87>. Date accessed: 2019&#8209;06&#8209;28.
+<https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87>. 
+Date accessed: 2019&#8209;06&#8209;28.
 
 [5]: https://medium.com/poa-network/poa-network-honey-badger-bft-and-threshold-cryptography-c43e10fadd87
 "POA Network: HoneyBadger BFT and Threshold Cryptography"
@@ -676,7 +677,8 @@ Date accessed: 2019&#8209;06&#8209;28.
 [8]: https://en.wikipedia.org/wiki/Law_of_large_numbers
 "Law of Large Numbers"
 
-[[9]] Wikipedia, "Law of Large Numbers - Average Dice Roll by Number of Rolls" [online]. Available: <https://commons.wikimedia.org/w/index.php?curid=58536069>. Date accessed: 2019&#8209;06&#8209;28.
+[[9]] Wikipedia, "Law of Large Numbers - Average Dice Roll by Number of Rolls" [online]. 
+Available: <https://commons.wikimedia.org/w/index.php?curid=58536069>. Date accessed: 2019&#8209;06&#8209;28.
 
 [9]: https://commons.wikimedia.org/w/index.php?curid=58536069
 "Law of Large Numbers - Average Dice Roll by Number of Rolls"
@@ -717,6 +719,11 @@ Date accessed: 2019&#8209;07&#8209;18.
 
 [15]: https://tlu.tarilabs.com/protocols/dht/MainReport.html
 "Distributed Hash Tables" 
+
+[[16]] P. Maymounkov and D. Mazières, "Kademlia: A Peer-to-peer Information System Based on the XOR Metric" [online]. 
+Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>. Date accessed: 2019‑07‑18.
+
+[16]: "Kademlia'
 
 ## Appendices
 
