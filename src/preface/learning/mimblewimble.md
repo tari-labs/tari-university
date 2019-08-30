@@ -1,7 +1,6 @@
 # Mimblewimble Implementation
 
 - [Background](#background)
-- [Outline](#outline)
 - [Learning Path Matrix](#learning-path-matrix)
 
 ## Background
