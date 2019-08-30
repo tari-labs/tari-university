@@ -1,4 +1,4 @@
-# Mimblewimble Implementation
+# Mimblewimble
 
 - [Background](#background)
 - [Learning Path Matrix](#learning-path-matrix)
