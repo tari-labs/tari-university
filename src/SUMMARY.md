@@ -34,6 +34,7 @@
     - [Lightning Network for Dummies](protocols/lightning-network-for-dummies/sources/PITCHME.link.md)
     - [Introduction to SPV, Merkle Trees and Bloom Filters](protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)
     - [The RGB Protocol - An Introduction](protocols/rgb-introduction/sources/PITCHME.link.md)
+    - [The I2P Network - An Introduction](protocols/intro-to-i2P/MainReport.md)
     - [Distributed Hash Tables](protocols/dht/MainReport.md)
     - [Tor - an Overview](protocols/tor-or-not-too-tor/tor-or-not-too-tor.md)
     - [Mimblewimble Multiparty Bulletproof UTXO](protocols/mimblewimble-mp-bp-utxo/MainReport.md)
