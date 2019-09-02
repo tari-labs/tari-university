@@ -95,7 +95,7 @@ to anonymity [[3]].
 
 #### Distributed Network Database
 
-The Network Database (NetDB), discussed earlier, is implemented as a DHT and is propagated via nodes known as 
+The Network Database (NetDB) is implemented as a DHT and is propagated via nodes known as 
 floodfill routers using the Kademlia protocol. The NetDB is one of the characteristics that make I2P decentralized. 
 To start participating in the network, a router installs a part of the NetDB. Obtaining the partial NetDB is called 
 bootstrapping and happens by ’reseeding’ the router. By default, a router will reseed the first time by querying some 
