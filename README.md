@@ -42,11 +42,13 @@ This is the basic process we follow within Tari Labs. As an external contributor
 
 View our pipeline<sup id="a1">[*](#f1)</sup> below. 
 
+
 \# | Topic 
 ---- | ----
-=======
-1 | Distributed Hash Tables (DHT) Application to Block Chain
-2 | The Application of Howey to token sales on public blockchain networks, Part 1: The Efforts of Others
+1 | An Introduction to the I2P Network
+2 | Tor |!2 Tor 
+3 | Cryptographic Accumulators 
+4 | Probabilistic Attack Vector Analysis Building Blocks 
 
 
 <i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>
