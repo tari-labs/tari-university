@@ -2,7 +2,7 @@
 - [Introduction](./preface/introduction.md)
   - [Learning](./preface/learning/introduction-to-learning.md)
     - [Learning about Blockchain Basics](./preface/learning/blockchain-basics.md)
-    - [Learning about Mimblewimble](./preface/learning/mimblewimble.md)
+    - [Learning about Mimblewimble Implementation](./preface/learning/mimblewimble.md)
     - [Learning about Bulletproofs](./preface/learning/bulletproofs.md)
   - [Cryptography](./cryptography/cryptography.md)
     - [Elliptic Curves 101](cryptography/crypto-1/sources/PITCHME.link.md)
