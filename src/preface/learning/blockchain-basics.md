@@ -18,5 +18,9 @@ For learning purposes, we have arranged report, presentation and video topics in
 | BFT Consensus Mechanisms                            | <div class="wrap_beg">[presentation](/consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)</div> |
 | Lightning Network for Dummies                       | <div class="wrap_beg">[presentation](/protocols/lightning-network-for-dummies/sources/PITCHME.link.md)</div> |
 | Atomic Swaps                                        | <div class="wrap_beg">[presentation](/protocols/atomic-swaps/AtomicSwaps.md)</div> |
+| Layer 2 Scaling Survey                              | <div class="wrap_beg">[report](/scaling/layer2scaling-landscape/layer2scaling-survey.md)</div> |
+| Merged Mining Introduction                          | <div class="wrap_beg">[report](/merged-mining/merged-mining-scene/MergedMiningIntroduction.md)</div> |
 | Introduction to SPV, Merkle Trees and Bloom Filters | <div class="wrap_int">[presentation](/protocols/merkle-trees-and-spv-1/sources/PITCHME.link.md)</div> |
+| Elliptic Curves 101                                 | <div class="wrap_int">[presentation](/cryptography/crypto-1/sources/PITCHME.link.md)</div> |
+
 
