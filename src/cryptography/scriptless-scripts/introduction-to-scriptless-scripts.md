@@ -39,7 +39,7 @@ The benefits of Scriptless Scripts are functionality, privacy and efficiency.
 
 With regard to functionality, Scriptless Scripts are said to increase the range and complexity of smart contracts. 
 Currently, as within Bitcoin Script, limitations stem from the number of ```OP_CODES``` that have been enabled by the 
-network. Scriptless Scripts move the specification and execution of smart contractions from the network to a discussion 
+network. Scriptless Scripts move the specification and execution of smart contracts from the network to a discussion
 that only involves the participants of the smart contract. 
 
 ### Privacy
@@ -99,14 +99,14 @@ thus less useful [[2]].
 
 ## Schnorr Multi-signatures
 
-A multi-signature (mulitsig) has multiple participants that produce a signature. Every participant might produce a 
-separate signature and concatenate them, forming a mulitsig. 
+A multi-signature (multisig) has multiple participants that produce a signature. Every participant might produce a 
+separate signature and concatenate them, forming a multisig.
 
 With Schnorr Signatures, one can have a single public key, which is the sum of many different people's public keys. The 
 resulting key is one against which signatures will be verifiable [[5]].
 
-The formulation of a mulitsig involves taking the sum of all components; thus all nonces and $s$ values result in the 
-formulation of a mulitsig [[4]]:
+The formulation of a multisig involves taking the sum of all components; thus all nonces and $s$ values result in the 
+formulation of a multisig [[4]]:
 $$
 s=\sum s(i)
 $$
@@ -118,7 +118,7 @@ number of participants involved or the original public keys.
 
 ## Adaptor Signatures  
 
-This mulitsig protocol can be modified to produce an adaptor signature, which serves as the building block for all 
+This multisig protocol can be modified to produce an adaptor signature, which serves as the building block for all
 Scriptless Script functions [[5]]. 
 
 Instead of functioning as a full valid signature on a message with a key, an adaptor signature is a promise that a 
@@ -129,12 +129,12 @@ cryptography, there is only scalar multiplication of elliptic curve points. Fort
 elliptic curves function in one way, so an elliptic curve point ($T$), can simply be shared and the secret will be its 
 corresponding private key.  
 
-If two parties are considered, rather than providing their nonce $R$ in the mulitsig protocol, a blinding factor, taken 
+If two parties are considered, rather than providing their nonce $R$ in the multisig protocol, a blinding factor, taken 
 as an elliptic curve point $T$, is conceived and sent in addition to $R$ (i.e. $R+T$). It can therefore be seen that 
 $R$ is not 
 blinded; it has instead been offset by the secret value $T$. 
 
-Here, the Schnorr mulitsig construction is modified such that the first party generates 
+Here, the Schnorr multisig construction is modified such that the first party generates
 $$
 T=tG, R=rG
 $$
@@ -221,7 +221,7 @@ and then reveal the same preimage on both sides. Once Alice knows the preimage, 
 then copies it off one chain to the other chain to take his coins. 
 
 Using adaptor signatures, the same result can be achieved through simpler means. In this case, both Alice and Bob put 
-up their coins on two of two outputs on each blockchain. They sign the mulitsig protocols in parallel, where Bob then 
+up their coins on two of two outputs on each blockchain. They sign the multisig protocols in parallel, where Bob then
 gives Alice the adaptor signatures for each side using the same value $T$ . This means that for Bob to take his coins, 
 he needs to reveal $t$; and for Alice to take her coins, she needs to reveal $T$. Bob then replaces one of the 
 signatures and publishes $t$, taking his coins. Alice computes $t$  from the final signature, visible on the blockchain, 
@@ -247,7 +247,7 @@ As previously stated, Mimblewimble is a blockchain design. Built similarly to Bi
 outputs. Each input and output has a confidential transaction commitment. Confidential commitments have an interesting 
 property where, in a valid balanced transaction, one can subtract the input from the output commitments, ensuring that 
 all of the values of the Pedersen values balance out. Taking the difference of these inputs and outputs results in the 
-mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
+multisig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
 
 Mimblewimble blocks will only have a list of new inputs, new outputs and signatures that are created 
 from the aforementioned excess value [[7]].
