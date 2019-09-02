@@ -1,6 +1,6 @@
 - **<u>Tari Labs University - Contents</u>**
 - [Introduction](./preface/introduction.md)
-  - [Learning](./preface/learning/introduction-to-learning.md)
+  - [Learning Paths](./preface/learning/introduction-to-learning.md)
     - [Learning about Blockchain Basics](./preface/learning/blockchain-basics.md)
     - [Learning about Mimblewimble Implementation](./preface/learning/mimblewimble.md)
     - [Learning about Bulletproofs](./preface/learning/bulletproofs.md)
