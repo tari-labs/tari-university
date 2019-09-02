@@ -1,6 +1,18 @@
 # Pure-Rust Elliptic Curve Cryptography
 
-<iframe width="750" height="400" src="https://www.youtube-nocookie.com/embed/tH_pdYyqK4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div>
+  <p style="float: left;">
+    <img src="isis-agora-lovecruft.png" width="90" /></a>
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Isis Agora Lovecruft</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Cryptographer
+    <br>
+  </p>
+</div>
+
+
 
 ## Summary
 
@@ -20,3 +32,15 @@ zero-knowledge proofs.
 
 The content in this video is not complicated, but it is an **advanced** topic, since it dives deep into the internals of
 how cryptographic operations are implemented on computers.
+
+## Video
+
+<iframe width="750" height="400" src="https://www.youtube-nocookie.com/embed/tH_pdYyqK4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+## Slides
+
+<embed src="Fast Safe Pure-Rust Elliptic Curve Cryptography (Slides).pdf" 
+type="application/pdf" width="750" height="500" />
+
+<br>
