@@ -1,3 +1,27 @@
+<style>
+        div.wrap_bad {
+            width: 95%; 
+            word-wrap: break-word;
+            background: #3D85C6;
+            font-size: 1.0em;
+            padding: 0.5em;
+            color: #000000;
+            }
+        </style>
+
+<style>
+        div.wrap_good {
+            width: 95%; 
+            word-wrap: break-word;
+            background: #6AA84F;
+            font-size: 1.0em;
+            padding: 0.5em;
+            color: #000000;
+            }
+        </style>
+
+
+
 # Probabilistic Attack Vector Analysis Building Blocks
 
 - [Introduction](#introduction)
@@ -193,17 +217,12 @@ The LLN is crucial because it guarantees stable long-term results from the [[8]]
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="700" /></p>
 
-
-
-
 The above figure illustrates the law of large numbers using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar. [[9]]
 
 ## Methodology 
-Based on the understanding of the problem, statistical analysis using hypergeometric distribution was conducted.  
-
 ### Notation Used  
 
-This section contains the general notation of statistical expressions when specifically referenced. This information serves as an important pre-knowledge for the remainder of the report. 
+This section contains the general notation of statistical expressions when specifically referenced. This information serves as an important knowledge for the remainder of the report. 
 
 - Let $N$ be the total number of nodes in the network *set size* 
 - Let $n$ be the committee size *sample_size*
@@ -247,71 +266,68 @@ $$
 
 #### Formulae
 
-As a means to derive the formulae, a single probability from the overarching question was used to distill the formula. 
+As a means to derive the formulae, a single probability from the overarching question. 
 
 **Example 1**
 
-What is the probability of selecting a majority of bad nodes from a total of 5 nodes if the committee size is $3$. There are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
+What is the probability of selecting a majority of bad nodes from a total of 5 nodes if the committee size is $3$. There are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen. 
 
-$(B1, B2, B3)$
-$(B1, B2, G1)$
-$(B1, B2, G2)$
-$(B1, B3, G1)$
-$(B1, B3, G2)$
-$(B1, G1, G2)$
-$(B2, B3, G1)$
-$(B2, B3, G2)$
-$(B2, G1, G2)$
-$(B3, G1, G2)$
+|                                  |                                   |                                   | Are bad nodes in the majority? |
+| :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div>  |       :heavy_check_mark:       |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G1$</div> |       :heavy_check_mark:       |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G2$</div> |       :heavy_check_mark:       |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |       :heavy_check_mark:       |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |       :heavy_check_mark:       |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |                                |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |       :heavy_check_mark:       |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |       :heavy_check_mark:       |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |                                |
+| <div class="wrap_bad">$B3$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |                                |
+|                                  |                                   |             **Tally**             |              $7$               |
 
-From this list, the number of combinations where 'B' is the majority can then be tallied. In this case, there are $7$ combinations where 'B' is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a majority of bad nodes. Therefore, the quotient of $7$ and $10$, is the probability, $0.7$. 
+From this list, the number of combinations where $B$ is the majority can then be tallied. In this case, there are $7$ combinations where $B$ is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a majority of bad nodes. Therefore, the quotient of $7$ and $10$, is the probability, $0.7$. 
 
 This method is limited in calculating the probability where the variables are large e.g. if the same question was posed, but the one had to now calculate the probability of selecting a majority of bad nodes from a total of 100 nodes, with a committee size is $60$, $60$ bade nodes and $40$ good nodes, the number of combinations where bad and good nodes can be chosen is $1,27E+28$
 
-##### Hypergeometric Distribution
-
-With regards to hypergeometric distribution, a committee of nodes was drawn from the total nodes without replacement; i.e., nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. 
-
-Using the same example from above, 
-
-What is the probability of drawing three red cards from a standard deck of 52 cards if you draw five cards from the deck? There are 26 red cards. 
-
-- $N$ = 52
-- $n$ = 5
-- $T$ = 3
-- $m$ = 26
-
-Derivation: 
-
-Of the $3$ bad nodes, the threshold is $2$ ${{3}\choose{2}} \therefore {{m}\choose{T}} $
-
-Of the $2$ good nodes, the threshold is $1$ ${{5-3}\choose{3-2}} \therefore {{N-m}\choose{n-T}}$
-
-Of the $5$ nodes in total, the committee size is $3$ ${{5}\choose{3}} \therefore {{N}\choose{n}}$ 
-
-Therefore, 
-$$
-P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
-$$
-
 ##### Binomial Distribution  
 
-With regards to bionomial distribution, a committee of nodes were drawn from the total nodes with replacement; i.e. nodes are drawn, the intention of the node is distinguished and   then the node is returned to the total nodes. 
+With regards to bionomial distribution, a committee of nodes were drawn from the total nodes with replacement; i.e. nodes are drawn, the intention of the node is distinguished and  then the node is returned to the total nodes. 
 $$
 P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
 $$
 
+
+##### Hypergeometric Distribution
+
+With regards to hypergeometric distribution, a committee of nodes was drawn from the total nodes without replacement; i.e., nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This is closely mimics the events that would take place. 
+
+$$
+P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
+$$
+
 ##### Summation 
+
+Refering to *Example 1*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
+
+As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of 100 nodes if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
+
 
 $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
 $$
 
-show a hypergeometric distribution graph
+#### 
 
-#### Explanation of hypergeometric distribution
+In order to understand this, the table below provides some visual insight. 
+
+| Committee Size | Bad Actors | BFT Threshold | No of Steps |
+| -------------- | ---------- | ------------- | ----------- |
+| 10             | 180        | 7             | 3           |
+
+The number of steps is counted by considering the BFT thresfold and the committee size. What is actually being said here is that when ten nodes are selected without replacement from a total of 300 nodes, what is the probability that out the ten nodes there will be seven nodes or more that are bad. Thus, probabilities need to be calculated for when there are seven bad nodes, eight bad nodes, nine bad nodes, and ten bad nodes. Initial Calculations Using Excel
 
 Once the formula was mapped out, preliminary calculations could be solved using Excel. If the total number of nodes $N$ is fixed.
 
@@ -319,35 +335,11 @@ Once the formula was mapped out, preliminary calculations could be solved using 
 - The committee size (n) increases by a factor of 10 from 0 to $N$
 - The BFT threshold (T) is set to sixty-seven percent of $n$
 
-As a recap to the question, What is the probability of selecting a majority of bad nodes from a total of 300 nodes if the committee size is $10$. This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
-
-In order to understand this, the table below provides some visual insight. (insert hotlink)
-
-| Committee Size | Bad Actors | BFT Threshold | No of Steps |
-| -------------- | ---------- | ------------- | ----------- |
-| 10             | 180        | 7             | 3           |
-
-The number of steps is counted by considering the BFT thresfold and the committee size. What is actually being said here is that when ten nodes are selected without replacement from a total of 300 nodes, what is the probability that out the ten nodes there will be seven nodes or more that are bad. Thus, probabilities need to be calculated for when there are seven bad nodes, eight bad nodes, nine bad nodes, and ten bad nodes. 
-
-
-
 ## Implementation
 
 #### Crude Monte Carlo Simulation
 
-<u>Example data</u> 
-
-Total nodes= 100       
-
-Bad nodes= 60
-
-Committee Size= 3
-
-Threshold= 2
-
-P_tot= 0.649474335188621  
-
-Therefore y= 0.649474335188621  
+Below is the input inserted into the python programme written:
 
 ```Text
 What is the total amount of nodes? 100
@@ -369,10 +361,16 @@ What is the theoretical mean? 0.649474335188621
 
 ##### Individual Probabilities 
 
+In the graph below we see the varying probabilities of each experiment conducted. The mean of which provides us with the average of the probabilites- which can then be compared to the statistical calculated probability. 
+
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
+
+
+
+
 ##### A histogram and visualization of distribution 
 
-Histogram: divide `[0,1)` into $n_{i}$ small subintervals, generate $N$ numbers, count how many numbers that fall in each subinterval (and divide the counts  by $N$) - plot the count variation and see if the curve is flat  
+The histogram of randomness hgihlights the distribution of the 
 
 <p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
 | **Statistical Information ** |                   |
