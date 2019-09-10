@@ -1,3 +1,27 @@
+<style>
+        div.wrap_bad {
+            width: 95%; 
+            word-wrap: break-word;
+            background: #3D85C6;
+            font-size: 1.0em;
+            padding: 0.5em;
+            color: #000000;
+            }
+        </style>
+
+<style>
+        div.wrap_good {
+            width: 95%; 
+            word-wrap: break-word;
+            background: #6AA84F;
+            font-size: 1.0em;
+            padding: 0.5em;
+            color: #000000;
+            }
+        </style>
+
+
+
 # Probabilistic Attack Vector Analysis Building Blocks
 
 - [Introduction](#introduction)
@@ -285,13 +309,12 @@ The LLN is crucial because it guarantees stable, long-term results for the avera
 <p align="center"><img src="assets/law_of_large_numbers.png" width="650" /></p>
 
 
+
 The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar [[9]].
 
-
 ## Methodology 
-Based on the understanding of the problem, statistical analysis using hypergeometric distribution was conducted.  
-
 ### Notation Used  
+
 
 This section gives the general notation of statistical expressions when specifically referenced. This information 
 is important pre-knowledge for the remainder of the report. 
@@ -347,10 +370,12 @@ $$
 
 #### Formulae
 
+
 As a means to derive the formulae, a single probability from the overarching question was used to distill the formula, as shown in the following example. 
 
 **Example**: What is the probability of selecting a majority of bad nodes from a total of $5​$ nodes if the committee size is $3​$? There 
 are $3​$ bad nodes $(B1, B2, B3)​$ and $2​$ good nodes $(G1, G2)​$.
+
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
@@ -365,6 +390,7 @@ The first step is to calculate the number of combinations where bad and good nod
 - $(B2, G1, G2)$
 - $(B3, G1, G2)$
 
+
 From this list, the number of combinations where "B" is the majority can then be tallied. In this case, there are $7$
 combinations where "B" is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a 
 majority of bad nodes. Therefore, the quotient of $7$ and $10$ is the probability $0.7​$. 
@@ -375,6 +401,7 @@ committee size of $60$, $60$ bad nodes and $40$ good nodes, the number of combin
 chosen is $1.27E+28$.
 
 #### Distribution
+
 
 ##### Hypergeometric Distribution
 
@@ -391,17 +418,19 @@ deck? There are $26$ red cards.
 - $T$ = $3$
 - $m$ = $26$
 
-Derivation: 
+With regards to bionomial distribution, a committee of nodes were drawn from the total nodes with replacement; i.e. nodes are drawn, the intention of the node is distinguished and  then the node is returned to the total nodes. 
+$$
+P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
+$$
+
 
 - Of the $3$ bad nodes, the threshold is $2$ ${{3}\choose{2}} \therefore {{m}\choose{T}} $
 - Of the $2$ good nodes, the threshold is $1$ ${{5-3}\choose{3-2}} \therefore {{N-m}\choose{n-T}}$
 - Of the $5$ nodes in total, the committee size is $3$ ${{5}\choose{3}} \therefore {{N}\choose{n}}$ 
 
-Therefore, 
 $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
-
 
 
 ##### Binomial Distribution  
@@ -412,11 +441,10 @@ $$
 P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
 $$
 
-##### Summation 
-
 $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
 $$
+
 
 This shows a hypergeometric distribution graph.
 
@@ -446,7 +474,11 @@ is that when $10$ nodes are selected without replacement from a total of $300$ n
 $10$ nodes there will be $7$ nodes or more that are bad? Thus, probabilities need to be calculated for when there are 
 $7$ bad nodes, $8$ bad nodes, $9$ bad nodes and $10$ bad nodes. 
 
+Once the formula was mapped out, preliminary calculations could be solved using Excel. If the total number of nodes $N$ is fixed.
 
+- The number of bad nodes (m) is set to sixty percent of N
+- The committee size (n) increases by a factor of 10 from 0 to $N$
+- The BFT threshold (T) is set to sixty-seven percent of $n$
 
 ## Implementation
 
@@ -473,6 +505,8 @@ What is the theoretical mean? 0.649474335188621
 ```
 
 #### Individual Probabilities 
+
+In the graph below we see the varying probabilities of each experiment conducted. The mean of which provides us with the average of the probabilites- which can then be compared to the statistical calculated probability. 
 
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
 
@@ -572,9 +606,6 @@ From a plot of committee size versus the probability of bad actors controlling t
 - Thus, the greater the sample size, the greater the chance of bad nodes in the set being drawn. 
 
 <p align="center"><img src="assets/probability-1.png" width="700" /></p>
-
-
-
 
 #### **Variation of Total Nodes**
 
