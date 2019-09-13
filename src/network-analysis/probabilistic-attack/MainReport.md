@@ -183,7 +183,6 @@ With a discrete probability distribution, each possible value of the discrete ra
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
-
 Examples of discrete distribution with **finite** support include the following: 
 
 | Type of Finite Discrete Distribution | Description                                                  |
@@ -306,8 +305,6 @@ accurate measure of the mean [[7]].
 The LLN is crucial because it guarantees stable, long-term results for the averages of some random event [[8]]. 
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="650" /></p>
-
-
 The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar [[9]].
 
 ## Methodology 
@@ -471,13 +468,39 @@ What is the theoretical mean? 0.649474335188621
 In the graph below we see the varying probabilities of each experiment conducted. The mean of which provides us with the average of the probabilites- which can then be compared to the statistical calculated probability. 
 
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
+#### Uniform Distribution
+
+| Statistical Information |                      | Comparison with Theoretical Mean |
+| ----------------------- | -------------------- | -------------------------------- |
+| Intercept               | 0.6497887492507493   | 0.649474335188621                |
+| Standard Deviation      | 0.015438728229013219 |                                  |
+
+#### Hypergeometric Distribution
+
+| Statistical Information |                      | Comparison with Theoretical Mean |
+| ----------------------- | -------------------- | -------------------------------- |
+| Intercept               | 0.6495665834165834   | 0.649474335188621                |
+| Standard Deviation      | 0.014812123075035204 |                                  |
+
+#### Poisson Distribution
+
+| Statistical Information |                      | Comparison with Theoretical Mean |
+| ----------------------- | -------------------- | -------------------------------- |
+| Intercept               | 0.6501259280719281   | 0.649474335188621                |
+| Standard Deviation      | 0.015233575444419514 |                                  |
+
+#### Normal Distribution
+
+| Statistical Information |                     | Comparison with Theoretical Mean |
+| ----------------------- | ------------------- | -------------------------------- |
+| Intercept               | 0.6482901778221778  | 0.649474335188621                |
+| Standard Deviation      | 0.01507612979811762 |                                  |
 
 #### Histogram and Visualization of Distribution 
 
 The histogram of randomness highlights the distribution of good and bad nodes selected in each experiment. 
 
 <p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
-
 | **Statistical Information ** |                   |
 | ---------------------------- | ----------------- |
 | Mean                         | 120,000.0         |
@@ -492,37 +515,7 @@ Show two graphs, one with a small number of experiments and one with a large num
 
 ### Summary of Distribution Data 
 
-#### Uniform Distribution
 
-| Statistical Information |                       | Comparison with Theoretical Mean |
-| ----------------------- | --------------------- | -------------------------------- |
-| Slope                   | -1.87686187686188e-07 |                                  |
-| Intercept               | 0.6497887492507493    | 0.649474335188621                |
-| Standard Deviation      | 0.015438728229013219  |                                  |
-
-#### Hypergeometric Distribution
-
-| Statistical Information |                      | Comparison with Theoretical Mean |
-| ---------------------- | -------------------- | -------------------------------- |
-| Slope                  | -8.279948279948292e-07 |                                  |
-| Intercept              | 0.6495665834165834 | 0.649474335188621                |
-| Standard Deviation     | 0.014812123075035204 |                                  |
-
-#### Poisson Distribution
-
-| Statistical Information |                      | Comparison with Theoretical Mean |
-| ---------------------- | -------------------- | -------------------------------- |
-| Slope                  | -1.411267411267412e-06 |                                  |
-| Intercept              | 0.6501259280719281 | 0.649474335188621                |
-| Standard Deviation     | 0.015233575444419514 |                                  |
-
-#### Normal Distribution
-
-| Statistical Information |                      | Comparison with Theoretical Mean |
-| ---------------------- | -------------------- | -------------------------------- |
-| Slope                  | 1.5411855411855414e-06 |                                  |
-| Intercept              | 0.6482901778221778 | 0.649474335188621                |
-| Standard Deviation     | 0.01507612979811762 |                                  |
 
 ### Statistical Calculation
 
@@ -570,7 +563,6 @@ From a plot of committee size versus the probability of bad actors controlling t
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that:
 
 <p align="center"><img src="assets/probability-2.png" width="700" /></p>
-
 #### **Variation of Byzantine Fault-tolerance Threshold**
 
 <p align="center"><img src="assets/probability-3.png" width="700" /></p>
@@ -592,22 +584,17 @@ when the committee size increases, and eventually tends to one.
 
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
 
-
-
 #### **Variation of Total Number of Nodes with Committee Size 100**
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
-
 #### **Variation of Bad Nodes with Committee Size 100**
 
 
 
 <p align="center"><img src="assets/bad_actor_grid.png" width="700" /></p>
-
 #### **Variation of Percentage of Bad Nodes with Committee Size 10 and 100**
 
 <p align="center"><img src="assets/bad_actors_varied_committee_size_10_100.png" width="700" /></p>
-
 ## References
 
 [[1]] Wikipedia, “List of Probability Distributions” [online]. Available: <https://en.wikipedia.org/wiki/List_of_probability_distributions>. 
