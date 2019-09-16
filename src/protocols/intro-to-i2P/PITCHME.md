@@ -79,7 +79,7 @@ When a message is leaving one router, it needs to know some key pieces of data (
 ---
 ## Types of Tor Relays or Nodes 
 
-![Tor Relays] (https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/torCircuit.png)
+![Tor Relays](https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/torCircuit.png)
 
 
 ---
