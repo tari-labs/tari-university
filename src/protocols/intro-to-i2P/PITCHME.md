@@ -41,7 +41,7 @@
 ---
 # I2P Illustration Image
 
-https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/network-topology.png
+![Tunnels](https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/network-topology.png)
 
 ---
 ### Router Information:
@@ -77,6 +77,10 @@ When a message is leaving one router, it needs to know some key pieces of data (
 * No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. 
 
 ---
+# Tor illustration image
+![Tor Network](https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/htw3.png)
+
+---
 ## Types of Tor Relays or Nodes 
 
 ![Tor Relays](https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/torCircuit.png)
@@ -96,3 +100,8 @@ When a message is leaving one router, it needs to know some key pieces of data (
 
 ---
 # Conclusion
+
+* Anonymity network 
+* Secure network (Communication is encrypted)
+* Low-latency network
+* Generally confused with Tor / VPN networks
