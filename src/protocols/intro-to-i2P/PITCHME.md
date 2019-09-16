@@ -41,7 +41,7 @@
 ---
 # I2P Illustration Image
 
-https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/network-topology.png)
+https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/network-topology.png
 
 ---
 ### Router Information:
@@ -69,9 +69,6 @@ When a message is leaving one router, it needs to know some key pieces of data (
 * Provides layered encryption; and
 * Bundles multiple messages together
 
-![mw_txs](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/mimblewimble-1/sources/mw_txs.png)
-
-
 ---
 # How Tor works - compared to I2P
 * Volunteer relay nodes. Relay nodes are responsible for creating hops through which data is routed.
@@ -82,7 +79,7 @@ When a message is leaving one router, it needs to know some key pieces of data (
 ---
 ## Types of Tor Relays or Nodes 
 
-https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/torCircuit.png)
+![Tor Relays] (https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/torCircuit.png)
 
 
 ---
