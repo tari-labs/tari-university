@@ -29,7 +29,7 @@
 * Messages sent from one device do not travel directly to the inbound tunnel of the destination device. 
 * Instead, the outbound router queries a distributed network database for the corresponding address of the inbound router.
 
-
+---
 ## Tunnels and How they work
 
 * Router information and destination information is stored in a Distributed Hash Table (DHT). 
@@ -38,10 +38,12 @@
 * If a tunnel in the pool is about to expire or if the tunnel is no longer usable, the router creates a new tunnel and adds it to the pool.
 * Tunnels periodically expire, every ten minutes, and hence, need to be refreshed frequently. (Security Measure)
 
+---
 # I2P Illustration Image
 
 /protocols/intro-to-i2P/assets/network-topology.png
 
+---
 ### Router Information:
 
 When a message is leaving one router, it needs to know some key pieces of data (known as RouterInfo) about the other router. The destination router info is stored in the NetDB with the router's identity as the key
@@ -69,56 +71,29 @@ When a message is leaving one router, it needs to know some key pieces of data (
 
 ![mw_txs](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/mimblewimble-1/sources/mw_txs.png)
 
----
-# Threat Model, Security and Vulnerability Attacks
-
-
----
-## Sybil Attacks 
-
-
----
-## Eclipse Attacks 
-
-
----
-## Brute Force Attacks 
-
-
----
-## Intersection Attacks 
-
-
----
-## Denial of Service (DOS) Attacks 
-
 
 ---
 # How Tor works - compared to I2P
-
+* Volunteer relay nodes. Relay nodes are responsible for creating hops through which data is routed.
+* The circuit is extended one hop at a time, 
+  * Each relay along the way knows only which relay gave it data and which relay it is giving data to. 
+* No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. 
 
 ---
 ## Types of Tor Relays or Nodes 
 
 
-+++ 
-### Guard or Entry Relay (non-exit relay)
-
-
-+++ 
-### Middle Relay
-
-
-+++ 
-### Exit Relay
-
-
-+++ 
-### Bridge Relay
-
 
 ---
 # Differences between I2P and Tor
+| I2P                                     | Tor                       |
+| ---------------------------------       | --------------------------|
+| Fully peer to peer: Self-organizing Nodes | Fully Peer to Peer: Volunteer Relay Nodes                         |
+| Query NetDB to find destination’s inbound tunnel gateway | Relays Data to the closest relay     |
+| Limited to no exit nodes. Internal communication only | Designed and optimized for exit traffic, with a large number of exit nodes          |
+| Designed primarily for file sharing    | Designed for anonymous Internet access |
+| Unidirectional tunnels                 | Rendezvous point                        |
+| Significantly smaller user base      | Generally bigger user base        |
 
 
 ---
