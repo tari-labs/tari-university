@@ -4,21 +4,28 @@
 ---
 # What is I2P
 
-* No addresses
-* Completely private
-* Compact blockchain
+* Anonymity network 
+* Secure network (Communication is encrypted)
+* Low-latency network
+* Generally confused with Tor / VPN networks
 
 ---
 
 # How does it work
-
-![mw_txs](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/protocols/mimblewimble-1/sources/mw_txs.png)
-
+* Enclosed network within the internet
+* Peer to peer communication
+  * Very little communication with internet
+  * Has it's own websites - Eepsites
+  * no IP address but cryptographic ID's. 
+ * Each Connected client is a router
 ---
 
 # Infrastructure
 
 ## Routing Infrastructure and Anonymity
+
+
+
 
 ## The Distributed Network Database
 
