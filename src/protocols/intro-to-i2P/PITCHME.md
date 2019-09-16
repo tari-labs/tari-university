@@ -41,7 +41,7 @@
 ---
 # I2P Illustration Image
 
-/protocols/intro-to-i2P/assets/network-topology.png
+https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/network-topology.png)
 
 ---
 ### Router Information:
@@ -82,6 +82,7 @@ When a message is leaving one router, it needs to know some key pieces of data (
 ---
 ## Types of Tor Relays or Nodes 
 
+https://raw.githubusercontent.com/tari-labs/tari-university/mhlangagc-presentation/src/protocols/intro-to-i2P/assets/torCircuit.png)
 
 
 ---
