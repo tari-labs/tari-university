@@ -153,6 +153,10 @@ distance and therefore the arrangement of peers within the network.
 Through the XOR metric, a distance is captured. The lookup procedure allows nodes to locate other nodes, 
 given a node ID [[15]].
 
+
+
+# Test
+
 ### Types of Distribution 
 
 When considering solving the probability of an attacker controlling the majority of nodes in the network, the various 
@@ -171,9 +175,6 @@ Function (PDF). <sup>[def][pdf~]</sup> Therefore only ranges of values can have 
 a continuous random variable equals some value is always zero [[11]].
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
-The continuous normal distribution can describe the distribution of the weight of adult males. For example, you can 
-calculate the probability that a man weighs between 160 pounds and 170 pounds.
-
 #### Discrete Distribution 
 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
@@ -498,7 +499,7 @@ In the graph below we see the varying probabilities of each experiment conducted
 
 #### Histogram and Visualization of Distribution 
 
-The histogram of randomness highlights the distribution of good and bad nodes selected in each experiment. 
+The histogram of randomness highlights the distribution of good and bad nodes selected in each experiment, highlighting the random nature of the experiment. 
 
 <p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
 | **Statistical Information ** |                   |
@@ -510,12 +511,23 @@ The histogram of randomness highlights the distribution of good and bad nodes se
 
 #### Proving the Law of Large Numbers
 
+
+
 <p align="center"><img src="assets/convergence.png" width="700" /></p>
-Show two graphs, one with a small number of experiments and one with a large number of experiments. 
+```Text
+What is the total amount of nodes? 100
+What is the amount of bad nodes? 60
+How many nodes are to be drawn? 3
+What is the BFT threshold within the committee? 2
+What is the number of draws within an experiment? 10
+How many experiments? 10
+Do you know the theoretical mean? Y|N: Y
+What is the theoretical mean? 0.649474335188621
+```
 
-### Summary of Distribution Data 
+<p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
 
-
+As can be seen from the two graphs, when the number of experiments is low, then convergence is poor.
 
 ### Statistical Calculation
 
@@ -583,7 +595,6 @@ when the committee size increases, and eventually tends to one.
 #### **Variation of Total Number of Nodes with Committee Size 10**
 
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
-
 #### **Variation of Total Number of Nodes with Committee Size 100**
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
