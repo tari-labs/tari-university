@@ -154,9 +154,6 @@ Through the XOR metric, a distance is captured. The lookup procedure allows node
 given a node ID [[15]].
 
 
-
-# Test
-
 ### Types of Distribution 
 
 When considering solving the probability of an attacker controlling the majority of nodes in the network, the various 
@@ -526,7 +523,6 @@ What is the theoretical mean? 0.649474335188621
 ```
 
 <p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
-
 As can be seen from the two graphs, when the number of experiments is low, then convergence is poor.
 
 ### Statistical Calculation
