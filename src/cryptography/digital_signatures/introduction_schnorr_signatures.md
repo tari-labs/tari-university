@@ -156,7 +156,7 @@ We can show that leaving off the nonce is indeed highly insecure:
 #### ECDH
 
 How do parties that want to communicate securely generate a shared secret for encrypting messages? One way is called
-the Elliptic Curve Diffie-Hellmam exchange (ECDH), which is a simple method for doing just this.
+the Elliptic Curve Diffie-Hellman exchange (ECDH), which is a simple method for doing just this.
 
 ECDH is used in many places, including the Lightning Network during channel negotiation [[3]].
 
