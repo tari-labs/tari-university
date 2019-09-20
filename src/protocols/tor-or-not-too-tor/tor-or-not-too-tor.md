@@ -85,12 +85,14 @@ Do not use only the Tor Browser if you expect end-to-end encryption to a non-```
 Before Tor data enters the Tor network, it is bundled into nested layers of encrypted packets of the same size. These 
 packets are then routed through a random series of volunteer-operated servers called nodes/relays. Each time the 
 Tor data passes through one of these relays, a layer of encryption is removed to reveal the location of the next relay. 
-When the data reaches the final relay on its path, known as the ```Exit Node/Relay```, the last layer of encryption is removed 
+When the data reaches the final relay on its path, known as the ```Exit Relays```, the last layer of encryption is removed 
 and the data is sent to its final destination.
 
-There are a few different kinds of relays. A Guard/Middle (none-exit) relay, which deals with traffic inside or entering the 
-Tor network. Exit relays, which are public-facing relays where Tor traffic leaves the Tor network. A special kind of relay 
-called a Bridge, which is an unlisted relay, less likely to be blocked.
+There are a few different kinds of relays (also known as nodes). Guard relays, which deal with traffic entering the Tor network. Middle relays deal with traffic inside the Tor network. Both Guard and Middle relays are often referred too as none-exist relays.
+
+Exit relays, which are internet public-facing relays, where the last layer of Tor encryption is removed as traffic leaves the Tor network as normal traffic into the internet on it's way too its destination server. Exit relays often have to deal with complaints, legal notices, takedown notices as Exit relays are seen as the source address of the traffic.
+
+Also, Exit relays are registered as part of the Tor relay setup process, some adversary agencies have blocked or attacked these Tor relays. In response to blocking tactics, a special kind of relay called a Bridge should be used. Bridge selection is done when installing the Tor Browser bundle. Mostly if Tor does not seem to work, Bridge relays are unlisted relays and less likely to deal with complaints or have internet traffic blocked. 
 
 Each relay can only decrypt enough data to learn the location of the previous and next relay. Since each path is randomly 
 generated and the relays do not keep records, it is nearly impossible for your activity to be traced back to you 
@@ -101,10 +103,15 @@ More information on what a Tor Relay is or how to setup and volunteer some resou
 
 ## What is an ```.onion``` site?
 
-An ```.onion``` address points to some resource on the Tor network called a hidden service. Hidden services are only accessible by using the Tor network. As an example,  visiting the DuckDuckGo Search engine onion address (https://3g2upl4pq6kufc4m.onion/) routes the request through the Tor network without the client knowing the host IP address of the server. The onion address is practically meaningless without it being routed through and resolved by the Tor network. 
-the Tor network [[3]]. Generally only accessible within the Tor network. Traffic between a Tor client and an ```.onion``` site should 
-never leave the Tor network, keeping the network traffic safer than publicly hosted sites. Though more difficult to find, as the 
-```.onion``` address is not an easy to remember domain name, but generally opaque, non-mnemonic, 16- or 56-character alpha-semi-numerical 
+An ```.onion``` address points to some resource on the Tor network called a hidden service or an ```onion``` service. 
+```Onion``` services are generally only accessible by using the Tor network. As an example,  visiting the DuckDuckGo 
+Search engine onion address (https://3g2upl4pq6kufc4m.onion/) [[3]]], routes the request through the Tor network without 
+the client knowing the host IP address of the server. The onion address is practically meaningless without it being routed 
+through and resolved by the Tor network. Traffic between a Tor client and an ```.onion``` site should never leave the 
+Tor network, keeping the network traffic safer and more anonymous than publicly hosted sites. Though more difficult to 
+find, been there is not directory services or easy to remember names
+as the ```.onion``` address is not an easy to remember domain name, 
+but generally opaque, non-mnemonic, 16- or 56-character alpha-semi-numerical 
 strings which are generated on a cryptographically hashed public key. The TLD .onion is not a true domain and can't be found or queried 
 on the internet, but only inside of the Tor network.
 
@@ -281,4 +288,4 @@ Onion Services - Tor services that don’t leave the Tor network: <https://2019.
 - <https://github.com/leet4tari>
 - <https://github.com/kevoulee>
 - <https://github.com/anselld>
-
+- <https://github.com/sdbondi>
