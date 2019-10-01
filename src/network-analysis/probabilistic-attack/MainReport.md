@@ -253,7 +253,7 @@ probability of success would not change. It would be $\frac{5}{10}$ on every tri
 ### Monte Carlo Simulations 
 
 The Monte Carlo approach is a computer-based analytical method that was developed in the 1940s as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to 
-model the random diffusion of neutrons.It was named after the city in Monaco and its many casinos. 
+model the random diffusion of neutrons. It was named after the city in Monaco and its many casinos. 
 
 Monte Carlo analysis uses statistical tools to model a real-life system or process mathematically, and then estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled 
 must be determined before the Monte Carlo simulation can be applied. 
