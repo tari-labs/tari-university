@@ -62,30 +62,21 @@
    - [Statistical Calculation](#statistical-calculation)
      - [Formulae](#formulae)
      - [Distribution](#distribution)
-       - [Hypergeometric Distribution](#hypergeometric-distribution)
        - [Binomial Distribution](#binomial-distribution)
+       - [Hypergeometric Distribution](#hypergeometric-distribution)
        - [Summation](#summation)
-     - [Explanation of Hypergeometric Distribution ](#explanation-of-hypergeometric-distribution)
 - [Implementation](#implementation)
   - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation-1)
-    - [Example Data](#example-data)
+    - [Proving the Law of Large Numbers](#proving-the-law-of-large-numbers)
     - [Individual Probabilities](#individual-probabilities)
     - [Histogram and Visualization of Distribution](#histogram-and-visualization-of-distribution)
-    - [Proving the Law of Large Numbers](#proving-the-law-of-large-numbers)
-  - [Summary of Distribution Data](#summary-of-distribution-data)
-     - [Uniform Distribution](#uniform-distribution)
-     - [Hypergeometric Distribution](#hypergeometric-distribution)
-     - [Poisson Distribution](#poisson-distribution)
-     - [Normal Distribution](#normal-distribution)
   - [Statistical Calculation](#statistical-calculation)
-  - [Probabilistic Attack Graphs](#probabilistic-attack-graphs) 
-    - [Graph Variables](#graph-variables)
-    - [Variation of Total Nodes](#variation-of-total-nodes)
-    - [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
-    - [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
-    - [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100)
-    - [Variation of Bad Nodes with Committee Size 100](#variation-of-bad-nodes-with-committee-size-100)
-    - [Variation of Percentage of Bad Nodes with Committee Size 10 and 100](#variation-of-percentage-of-bad-nodes-with-committee-size-10-and-100)
+     - [Variation of Total Nodes](#variation-of-total-nodes)
+     - [Variation of Byzantine Fault Tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
+     - [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
+     - [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100)
+     - [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
+- [Conclusions and Remarks](#conclusions-and-remarks)
 - [References](#references)
 - [Appendices](#appendices)
    - [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
@@ -521,7 +512,6 @@ The histogram of randomness highlights the distribution of good and bad nodes se
 
 <p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
 
-
 | Statistical Information |                   |
 | ----------------------- | ----------------- |
 | Mean                    | 120,000.0         |
@@ -563,7 +553,7 @@ Below is a sample of the data where the total nodes are $100$. The highlighted d
 <p align="center"><img src="assets/variation_of_total_nodes .png" width="700" /></p>
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that the probability is lower with respect to the committee size when $N$ is smaller. 
 
-#### Variation of Byzantine Fault-tolerance Threshold
+#### Variation of Byzantine Fault-Tolerance Threshold
 
 - ##### Variables
 
