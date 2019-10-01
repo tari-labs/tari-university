@@ -328,7 +328,7 @@ be calculated.
 #### Programming the Simulation
 
 It was initially thought that selecting a committee ($n$) from the total nodes ($N$) without replacing the selected nodes 
-requires the removal of an element from the pool of total nodes when it is drawn. However, as  the program is 
+requires the removal of an element from the pool of total nodes when it is drawn. However, as the program is 
 calling for many selections within many experiments, this logic could not be used. 
 
 The experiment is extended to ask the overarching question: *"What is the probability of selecting the threshold worth of* 
