@@ -46,7 +46,7 @@ where $ G $ and $ H $ are elliptic curves, $ r $ a private key used as a blindin
 
 An example transaction can be expressed as input = output + change. 
 
-​	$ (r_i \cdot G + v_i \cdot H) = (r_c \cdot G + v_c \cdot H) + (r_c \cdot G + v_c + \cdot H) $  
+​	$ (r_i \cdot G + v_i \cdot H) = (r_o \cdot G + v_o \cdot H) + (r_c \cdot G + v_c + \cdot H) $  
 
 But this requires that
 
