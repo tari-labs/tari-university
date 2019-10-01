@@ -409,7 +409,7 @@ $$
 ##### Hypergeometric Distribution
 
 With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
-i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This is closely mimics the events that would take place within the network. 
+i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This closely mimics the events that would take place within the network. 
 $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
