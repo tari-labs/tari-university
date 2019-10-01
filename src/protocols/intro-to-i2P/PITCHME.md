@@ -58,7 +58,7 @@ When a message is leaving one router, it needs to know some key pieces of data (
 ## Floodfill Routers 
 * Foodfill routers are responsible for storing the NetDB. 
 * 6% of the network
-* participation is automatic or manual - dependent on bandwidth. 
+* Participation is automatic or manual - dependent on bandwidth. 
 
 ---
 ## Garlic Routing
