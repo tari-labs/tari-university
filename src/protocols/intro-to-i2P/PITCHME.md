@@ -56,7 +56,7 @@ When a message is leaving one router, it needs to know some key pieces of data (
 
 ---
 ## Floodfill Routers 
-• Foodfill routers are responsible for storing the NetDB. 
+* Foodfill routers are responsible for storing the NetDB. 
 * 6% of the network
 * participation is automatic or manual - dependent on bandwidth. 
 
@@ -71,7 +71,7 @@ When a message is leaving one router, it needs to know some key pieces of data (
 # How Tor works - compared to I2P
 * Volunteer relay nodes. Relay nodes are responsible for creating hops through which data is routed.
 * The circuit is extended one hop at a time, 
-  * Each relay along the way knows only which relay gave it data and which relay it is giving data to. 
+* Each relay along the way knows only which relay gave it data and which relay it is giving data to. 
 * No individual relay ever knows the complete path that a data packet has taken. Also no request uses the same path. 
 
 ---
