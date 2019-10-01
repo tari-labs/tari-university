@@ -291,7 +291,7 @@ sometimes be impossible, the average of the integrand is estimated, and that is 
 needs to be more precise, the number of samples can be increased. 
 
 It is a widely used heuristic technique that can solve a variety of common problems including optimization and numerical 
-integration problems. These algorithms work by cleverly sampling from distribution to simulate the workings of a system.  
+integration problems. These algorithms work by cleverly sampling from a distribution to simulate the workings of a system.  
 Applications range from solving problems in theoretical physics to predicting trends in financial investments. 
 
 #### Law of Large Numbers 
