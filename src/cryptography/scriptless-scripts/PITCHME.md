@@ -19,7 +19,7 @@
 
 - The concept of Scriptless Scripts was borne from Mimblewimble, recap: Mimblewimble is a block chain design that with the exception of kernels and their signatures does not store permanent data. Fundamental properties of Mimblewimble include both privacy and scaling both of which require the implementation of Scriptless Scripts. [[2]](https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s)
 
-*Also see [#5 Scriptless scripts, Layer 2 Scaling Survey (part 2)](https://github.com/tari-labs/tari-university/blob/master/src/layer2scaling/more-landscape/landscape-update.md)*
+*Also see [Scriptless scripts, Layer 2 Scaling Survey](../../scaling/layer2scaling-landscape/layer2scaling-survey.md#scriptless-scripts)*
 
 ---
 
@@ -27,7 +27,7 @@
 
 The benefit of Scriptless Scripts are functionality, privacy and efficiency. [[1]](https://medium.com/blockchain-capital/crypto-innovation-spotlight-2-scriptless-scripts-306c4eb6b3a8)  
 
-- Functionality: Scriptless Scripts may increase the range and complexity of smart contracts. Scriptless scripts move the specification and execution of smart contractions from the network to a discussion that only involves the participants of the smart contract. 
+- Functionality: Scriptless Scripts may increase the range and complexity of smart contracts. Scriptless scripts move the specification and execution of smart contracts from the network to a discussion that only involves the participants of the smart contract.
 - Privacy: Moving the specification and execution of smart contracts from on-chain to off-chain increases privacy. 
 - Efficiency: Scriptless Scripts minimize the amount of data that requires verification and storage on-chain.  
 
@@ -72,7 +72,7 @@ $$
 
 ## Schnorr multi-signatures = Scriptless Scripts
 
--a mulitsig has multiple participants that produce a signature. Every participant might product a separate signature and concatenate them forming a mulitsig. 
+-a multisig has multiple participants that produce a signature. Every participant might product a separate signature and concatenate them forming a multisig.
 
 $$
   s=Σs(i)
@@ -86,17 +86,17 @@ $$
 
 ## Adaptor Signatures 
 
-- This mulitsig protocol can be modified to produce an adaptor signature, which serves as the building block for all scriptless script functions. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/) 
+- This multisig protocol can be modified to produce an adaptor signature, which serves as the building block for all scriptless script functions. [[5]](https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/) 
 
 - Instead of functioning as full valid signature on a message with a key, an adaptor signature is a promise that a signature agreed to be published, will reveal a secret. 
 
 - This concept is similar to that of atomic swaps, however no scrips are implemented. Since this is elliptic curve cryptography, there is only scalar multiplication of elliptic curve points. Fortunately, like a hash function, elliptic curve function in one way, so an elliptic curve point (*T*), can simply be shared and the secret will be it's corresponding private key.  
 
-- If two parties are considered: rather than providing their nonce *R* in the mulitsig protocol, a blinding factor, taken as an elliptic curve point *T* is conceived and sent in addition to *R* (ie. *R+T*). So it can be seen that *R* is not blinded, it has instead been offset by the secret value *T*. 
+- If two parties are considered: rather than providing their nonce *R* in the multisig protocol, a blinding factor, taken as an elliptic curve point *T* is conceived and sent in addition to *R* (ie. *R+T*). So it can be seen that *R* is not blinded, it has instead been offset by the secret value *T*. 
 
 +++
 
-Here, the Schnorr mulitsig construction is modified such that the first party generates 
+Here, the Schnorr multisig construction is modified such that the first party generates
 
 $$
 T=tG, R=rG
@@ -201,7 +201,7 @@ By attaching auxiliary proofs one can derive an adaptor signature to translate c
 
 - Mimblewimble is a block chain design. Built similarly to Bitcoin, every transaction has inputs and outputs. Each input and output has a confidential transaction commitment. 
 -Confidential commitments have an interesting property where in a valid balanced transaction one can subtract the input from the output commitments, ensuring that all of the values of the Pedersen values balance out. 
--Taking the difference of these inputs and outputs results in the mulitsig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
+-Taking the difference of these inputs and outputs results in the multisig key of the owners of every output and every input in the transaction. This is referred to as the kernel.
 - Mimblewimble blocks will only have a list of new inputs, a list of new outputs and a list of signatures which are created from the aforementioned excess value. [[7]](https://www.cryptocompare.com/coins/guides/what-is-mimblewimble/)
 - Since the values are homomorphically encrypted, nodes can verify that no coin are being created or destroyed. 
 
