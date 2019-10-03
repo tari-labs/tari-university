@@ -577,7 +577,7 @@ When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$
 
 ##### Variables
 
-- N = ranging from $0$ to $350$
+- N = ranging from $10$ to $350$
 - m = $60$% of N
 - T = $67$% of N
 - n = $10$
