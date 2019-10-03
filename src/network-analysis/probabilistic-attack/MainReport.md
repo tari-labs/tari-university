@@ -619,7 +619,7 @@ With regards to the Crude Monte Carlo Simulation, at this building block stage, 
 With regards to the statisical calculation, comments can be made for each of the varied parameters. 
 
 - Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing 
-- BFT threshold: this threshold should be higher than $60$%- two thirds ($67$% is ideal)
+- BFT threshold: this threshold should be higher than $67$% as per literature.
 - Committee size: the larger the committee size, the lower the probability bad nodes controlling the network
 - Bad nodes: while this variable cannot be controlled, the probability can remain low as the percentage of bad nodes increase if the committee size approx $100$ or larger. 
 
