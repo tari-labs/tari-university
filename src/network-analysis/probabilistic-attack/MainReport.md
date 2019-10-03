@@ -483,7 +483,7 @@ As discussed in [Section: Types of Distribution](#types-of-distribution) hyperge
 
 #### Uniform Distribution
 
-| Statistical Information |                      | Comparison with Theoretical Mean | Difference  Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
 | ----------------------- | -------------------- | -------------------------------- | ---------------------- |
 | Intercept               | 0.6497887492507493   | 0.649474335188621                | 3.14414E-4             |
 | Standard Deviation      | 0.015438728229013219 |                                  |                        |
