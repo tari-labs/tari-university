@@ -558,7 +558,7 @@ From a plot of committee size versus probability with a change in $N$, the total
 
 #### Variation of Byzantine Fault-Tolerance Threshold
 
-- ##### Variables
+##### Variables
 
   - N = $100$
   - m = $60$% of N
