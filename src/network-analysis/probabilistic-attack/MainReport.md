@@ -235,7 +235,7 @@ The hypergeometric distribution has the following properties:
 ##### Binomial Distribution
 
 The binomial distribution with parameters $n$ and $p$ is the discrete probability distribution of the number of 
-successes in a sequence of $n$ independent experiments, each asking a yes-no question, and each with its own 
+successes in a sequence of $n$ independent experiments, each asking a Yes/No question, and each with its own 
 Boolean-valued outcome: success/yes/true/one (with probability $p$) or failure/no/false/zero (with probability $q=1- p$). 
 A single success/failure experiment is also called a Bernoulli trial or Bernoulli experiment, and a sequence of outcomes 
 is called a Bernoulli process. For a single trial, i.e. $n=1$, the binomial distribution is a Bernoulli distribution. 
