@@ -204,7 +204,7 @@ Examples of discrete distribution with **infinite** support include the followin
 | -------------------------------------- | ------------------------------------------------------------ |
 | Boltzmann Distribution                 | A discrete distribution important in statistical physics, which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analog. |
 | Geometric Distribution                 | A discrete distribution that describes the number of attempts needed to get the first success in a series of independent Bernoulli trials or, alternatively, only the number of losses before the first success (i.e. one less). |
-| Negative Binomial Distribution         | Pascal distribution, a generalization of the geometric distribution of the $nth$ success. |
+| Negative Binomial/Pascal Distribution  | A generalization of the geometric distribution of the $nth$ success.             |```
 | Poisson Distribution                   | A very large number of individually unlikely events that happen at a specific time interval. Related to this distribution are several other distributions: the displaced Poisson, the hyper-Poisson, the general Poisson binomial and the Poisson-type distributions. |
 | Skellam Distribution                   | The distribution of the difference between two independent Poisson-distributed random variables. |
 | Zeta Distribution                      | Has uses in applied statistics and statistical mechanics, and perhaps may be of interest to number theorists. It is the Zipf distribution for an infinite number of elements. |
