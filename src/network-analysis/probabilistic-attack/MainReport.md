@@ -566,6 +566,7 @@ From a plot of committee size versus probability with a change in $N$, the total
   - n = ranging from $1$ to $100$ 
 
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
+
 From a plot of committee size versus probability where the number of nodes remains at 100 with a change in $T$, the BFT 
 threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT threshold is $50$% and $55$% the probability is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
 
