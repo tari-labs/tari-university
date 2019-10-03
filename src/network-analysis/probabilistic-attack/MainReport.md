@@ -511,7 +511,6 @@ As discussed in [Section: Types of Distribution](#types-of-distribution) hyperge
 The histogram of randomness highlights the distribution of good and bad nodes selected in each experiment, highlighting the random nature of the experiment. 
 
 <p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
-
 | Statistical Information |                   |
 | ----------------------- | ----------------- |
 | Mean                    | 120,000.0         |
