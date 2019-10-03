@@ -187,7 +187,7 @@ nonzero probability. Thus, the presentation of a discrete probability distributi
 
 Examples of discrete distribution with **finite** support include the following: 
 
-| Type of Finite Discrete Distribution | Description                                                  |
+| Type of Finite Discrete Distribution | Description   [[1]]                                          |
 | ------------------------------------ | ------------------------------------------------------------ |
 | Bernoulli Distribution               | Takes value 1 with probability $p$ and value 0 with probability $q=1-p$. |
 | Rademacher Distribution              | Takes value 1 with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$. |
