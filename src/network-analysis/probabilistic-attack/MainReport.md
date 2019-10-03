@@ -184,6 +184,7 @@ With a discrete probability distribution, each possible value of the discrete ra
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
+
 Examples of discrete distribution with **finite** support include the following: 
 
 | Type of Finite Discrete Distribution | Description                                                  |
