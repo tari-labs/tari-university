@@ -429,7 +429,7 @@ $$
 In order to understand this, the table below provides some visual insight. 
 
 | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;No of Steps&nbsp;&nbsp; |
-| -------------- | ------------- | ----------- |
+| :------------: | :------------: | :------------: |
 | 10             | 7             | 3           |
 
 ## Implementation
