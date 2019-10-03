@@ -480,6 +480,7 @@ From a comparison of the mean probability of each distribution with the theoreti
 As discussed in [Section: Types of Distribution](#types-of-distribution) hypergeometric distribution is where there is no replacement, i.e., nodes are drawn simultaneously, distinguished and not returned to the total nodes pool. 
 
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
+
 #### Uniform Distribution
 
 | Statistical Information |                      | Comparison with Theoretical Mean | Difference  Calculated |
