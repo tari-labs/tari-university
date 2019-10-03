@@ -490,7 +490,7 @@ As discussed in [Section: Types of Distribution](#types-of-distribution) hyperge
 
 #### Hypergeometric Distribution
 
-| Statistical Information |                      | Comparison with Theoretical Mean | Difference Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | -------------------- | -------------------------------- | --------------------- |
 | Intercept               | 0.6495665834165834   | 0.649474335188621                | 9.22482E-5            |
 | Standard Deviation      | 0.014812123075035204 |                                  |                       |
