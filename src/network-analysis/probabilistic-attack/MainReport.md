@@ -571,7 +571,7 @@ threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT thresh
 
 When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
 
-When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. Thus, in order to ensure a low probability, the BFT threshold needs to be higher than $60$%.  
+When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. This confirms the BFT threshold of $67$% as per literature. 
 
 #### **Variation of Total Number of Nodes with Committee Size 10**
 
