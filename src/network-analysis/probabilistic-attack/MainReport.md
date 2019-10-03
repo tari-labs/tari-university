@@ -174,6 +174,7 @@ Function (PDF). <sup>[def][pdf~]</sup> Therefore only ranges of values can have 
 a continuous random variable equals some value is always zero [[11]].
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
+
 #### Discrete Distribution 
 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
