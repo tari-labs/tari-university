@@ -193,7 +193,7 @@ Examples of discrete distribution with **finite** support include the following:
 | Rademacher Distribution              | Takes value 1 with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$. |
 | Binomial Distribution                | The number of successes in a series of independent Yes/No experiments, all with the same probability of success. |
 | Beta-Binomial Distribution           | The number of successes in a series of independent Yes/No experiments with heterogeneity in the success probability. |
-| Degenate Distribution                | At $X0$, where $X$ is certain to take the value $X0$ This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
+| Degenerate Distribution             | At $X0$, where $X$ is certain to take the value $X0$. This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
 | Discrete Uniform Distribution        | Where all elements of a finite set are equally likely. This is the theoretical distribution model for a balances coin, an unbiased die, a casino roulette, or the first card of a well-shuffled deck. |
 | Hypergeometric Distribution          | The number of successes in the first $m$ of a series of $n$ consecutive Yes/No experiments, if the total number of successes is known. This distribution arises where there is no replacement. |
 | Poisson Binomial  Distribution       | The number of successes in a series of independent Yes/No experiments with different success probabilities. |
