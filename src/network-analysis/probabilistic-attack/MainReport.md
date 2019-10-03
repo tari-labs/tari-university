@@ -213,7 +213,7 @@ Examples of discrete distribution with **infinite** support include the followin
 
 ##### Hypergeometric Distribution
 
-Hypergeometric distribution is a discrete probability distribution that describes the probability $T$ successes (random 
+A hypergeometric distribution is a discrete probability distribution that describes the probability of $T$ successes (random 
 draws for which the object drawn has a specified feature) in $n$ draws, *without* replacement, from a finite population 
 of size $N$ that contains exactly $m$ objects with that feature, wherein each draw is either a success or a failure [[3]]:
 
