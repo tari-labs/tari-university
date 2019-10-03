@@ -597,7 +597,8 @@ probability dramatically increases when the total nodes is three times more than
 - n = $100$
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
-From the two graphs, it can be seen that probabilities are significantly lower when the committee size is 100. There is an increase in probability between $0$ and $700$, albeit, not as steep as the change when the committee size is 10.  The probability plateaus at 0.08.
+From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
+up to a network size of $700$, albeit, not as steep as the change when the committee size is $10$.  The probability plateaus at 0.08.
 
 The larger the committee size, the less dramatic changes there are in the probability. 
 
