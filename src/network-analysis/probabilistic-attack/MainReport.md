@@ -200,7 +200,7 @@ Examples of discrete distribution with **finite** support include the following:
 
 Examples of discrete distribution with **infinite** support include the following: 
 
-| Type of Infinite Discrete Distribution | Description                                                  |
+| Type of Infinite Discrete Distribution | Description [[1]]                                            |
 | -------------------------------------- | ------------------------------------------------------------ |
 | Boltzmann Distribution                 | A discrete distribution important in statistical physics, which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analog. |
 | Geometric Distribution                 | A discrete distribution that describes the number of attempts needed to get the first success in a series of independent Bernoulli trials or, alternatively, only the number of losses before the first success (i.e. one less). |
