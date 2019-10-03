@@ -583,7 +583,8 @@ When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$
 - n = $10$
 
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
-For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the probability dramatically increases when the total nodes is $0$ to$100$. The probability plateaus at 0.35. 
+For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the 
+probability dramatically increases when the total nodes is three times more than the committee size and onwards. The probability plateaus at 0.35. 
 
 #### Variation of Total Number of Nodes with Committee Size 100
 
