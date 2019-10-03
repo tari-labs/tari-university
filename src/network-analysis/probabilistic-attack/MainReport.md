@@ -591,7 +591,7 @@ probability dramatically increases when the total nodes is three times more than
 
 ##### Variables
 
-- N = ranging from $0$ to $1300$
+- N = ranging from $100$ to $1300$
 - m = $60$% of N
 - T = $67$% of N
 - n = $100$
