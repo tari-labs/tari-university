@@ -169,11 +169,12 @@ containing all points not mapped to zero [[2]].
 
 A continuous random variable is a random variable with an infinite and uncountable set and range of possible values [[11]].
 
-Probabilities of continuous random variables (X) are defined as the area under the curve of its Probability Density 
-Function (PDF). <sup>[def][pdf~]</sup> Therefore only ranges of values can have a nonzero probability. The probability that 
+Probabilities of continuous random variables (*X*) are defined as the area under the curve of its Probability Density 
+Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
 a continuous random variable equals some value is always zero [[11]].
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
+
 #### Discrete Distribution 
 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
@@ -183,26 +184,27 @@ With a discrete probability distribution, each possible value of the discrete ra
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
+
 Examples of discrete distribution with **finite** support include the following: 
 
-| Type of Finite Discrete Distribution | Description                                                  |
+| Type of Finite Discrete Distribution | Description   [[1]]                                          |
 | ------------------------------------ | ------------------------------------------------------------ |
 | Bernoulli Distribution               | Takes value 1 with probability $p$ and value 0 with probability $q=1-p$. |
 | Rademacher Distribution              | Takes value 1 with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$. |
 | Binomial Distribution                | The number of successes in a series of independent Yes/No experiments, all with the same probability of success. |
 | Beta-Binomial Distribution           | The number of successes in a series of independent Yes/No experiments with heterogeneity in the success probability. |
-| Degenate Distribution                | At $X0$, where $X$ is certain to take the value $X0$ This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
-| Discrete Uniform Distribution        | Where all elements of a finite set are equally likely. This is the theoretical distribution model for a balances coin, an unbiased die, a casino roulette, or the first card of a well-shuffled deck. |
+| Degenerate Distribution             | At $X0$, where $X$ is certain to take the value $X0$. This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
+| Discrete Uniform Distribution        | Where all elements of a finite set are equally likely. This is the theoretical distribution model for a balanced coin, an unbiased die, a casino roulette, or the first card of a well-shuffled deck. |
 | Hypergeometric Distribution          | The number of successes in the first $m$ of a series of $n$ consecutive Yes/No experiments, if the total number of successes is known. This distribution arises where there is no replacement. |
 | Poisson Binomial  Distribution       | The number of successes in a series of independent Yes/No experiments with different success probabilities. |
 
 Examples of discrete distribution with **infinite** support include the following: 
 
-| Type of Infinite Discrete Distribution | Description                                                  |
+| Type of Infinite Discrete Distribution | Description [[1]]                                            |
 | -------------------------------------- | ------------------------------------------------------------ |
 | Boltzmann Distribution                 | A discrete distribution important in statistical physics, which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analog. |
 | Geometric Distribution                 | A discrete distribution that describes the number of attempts needed to get the first success in a series of independent Bernoulli trials or, alternatively, only the number of losses before the first success (i.e. one less). |
-| Negative Binomial Distribution         | Pascal distribution, a generalization of the geometric distribution of the $nth$ success. |
+| Negative Binomial/Pascal Distribution  | A generalization of the geometric distribution of the $nth$ success.             |```
 | Poisson Distribution                   | A very large number of individually unlikely events that happen at a specific time interval. Related to this distribution are several other distributions: the displaced Poisson, the hyper-Poisson, the general Poisson binomial and the Poisson-type distributions. |
 | Skellam Distribution                   | The distribution of the difference between two independent Poisson-distributed random variables. |
 | Zeta Distribution                      | Has uses in applied statistics and statistical mechanics, and perhaps may be of interest to number theorists. It is the Zipf distribution for an infinite number of elements. |
@@ -211,7 +213,7 @@ Examples of discrete distribution with **infinite** support include the followin
 
 ##### Hypergeometric Distribution
 
-Hypergeometric distribution is a discrete probability distribution that describes the probability $T$ successes (random 
+A hypergeometric distribution is a discrete probability distribution that describes the probability of $T$ successes (random 
 draws for which the object drawn has a specified feature) in $n$ draws, *without* replacement, from a finite population 
 of size $N$ that contains exactly $m$ objects with that feature, wherein each draw is either a success or a failure [[3]]:
 
@@ -233,7 +235,7 @@ The hypergeometric distribution has the following properties:
 ##### Binomial Distribution
 
 The binomial distribution with parameters $n$ and $p$ is the discrete probability distribution of the number of 
-successes in a sequence of $n$ independent experiments, each asking a yes-no question, and each with its own 
+successes in a sequence of $n$ independent experiments, each asking a Yes/No question, and each with its own 
 Boolean-valued outcome: success/yes/true/one (with probability $p$) or failure/no/false/zero (with probability $q=1- p$). 
 A single success/failure experiment is also called a Bernoulli trial or Bernoulli experiment, and a sequence of outcomes 
 is called a Bernoulli process. For a single trial, i.e. $n=1$, the binomial distribution is a Bernoulli distribution. 
@@ -373,7 +375,7 @@ are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
-|                                  |                                   |                                   | Are bad nodes in the majority? |
+| &nbsp;&nbsp;Draw 1st node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 2nd node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 3rd node&nbsp;&nbsp; | Are bad nodes <br /> in the majority? |
 | :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
 | <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div>  |              Yes               |
 | <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
@@ -426,9 +428,9 @@ $$
 
 In order to understand this, the table below provides some visual insight. 
 
-| Committee Size | BFT Threshold | No of Steps |
-| -------------- | ------------- | ----------- |
-| 10             | 7             | 3           |
+| &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;No of Steps&nbsp;&nbsp; |
+| :------------: | :------------: | :------------: |
+| 10             | 7              | 3              |
 
 ## Implementation
 
@@ -478,30 +480,31 @@ From a comparison of the mean probability of each distribution with the theoreti
 As discussed in [Section: Types of Distribution](#types-of-distribution) hypergeometric distribution is where there is no replacement, i.e., nodes are drawn simultaneously, distinguished and not returned to the total nodes pool. 
 
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
+
 #### Uniform Distribution
 
-| Statistical Information |                      | Comparison with Theoretical Mean | Difference  Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
 | ----------------------- | -------------------- | -------------------------------- | ---------------------- |
 | Intercept               | 0.6497887492507493   | 0.649474335188621                | 3.14414E-4             |
 | Standard Deviation      | 0.015438728229013219 |                                  |                        |
 
 #### Hypergeometric Distribution
 
-| Statistical Information |                      | Comparison with Theoretical Mean | Difference Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | -------------------- | -------------------------------- | --------------------- |
 | Intercept               | 0.6495665834165834   | 0.649474335188621                | 9.22482E-5            |
 | Standard Deviation      | 0.014812123075035204 |                                  |                       |
 
 #### Poisson Distribution
 
-| Statistical Information |                      | Comparison with Theoretical Mean | Difference Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | -------------------- | -------------------------------- | --------------------- |
 | Intercept               | 0.6501259280719281   | 0.649474335188621                | 6.51592E-4            |
 | Standard Deviation      | 0.015233575444419514 |                                  |                       |
 
 #### Normal Distribution
 
-| Statistical Information |                     | Comparison with Theoretical Mean | Difference Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | ------------------- | -------------------------------- | --------------------- |
 | Intercept               | 0.6482901778221778  | 0.649474335188621                | 1.18416E-3            |
 | Standard Deviation      | 0.01507612979811762 |                                  |                       |
@@ -554,7 +557,7 @@ From a plot of committee size versus probability with a change in $N$, the total
 
 #### Variation of Byzantine Fault-Tolerance Threshold
 
-- ##### Variables
+##### Variables
 
   - N = $100$
   - m = $60$% of N
@@ -562,36 +565,39 @@ From a plot of committee size versus probability with a change in $N$, the total
   - n = ranging from $1$ to $100$ 
 
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
+
 From a plot of committee size versus probability where the number of nodes remains at 100 with a change in $T$, the BFT 
 threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT threshold is $50$% and $55$% the probability is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
 
 When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
 
-When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. Thus, in order to ensure a low probability, the BFT threshold needs to be higher than $60$%.  
+When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. This confirms the BFT threshold of $67$% as per literature. 
 
 #### **Variation of Total Number of Nodes with Committee Size 10**
 
 ##### Variables
 
-- N = ranging from $0$ to $350$
+- N = ranging from $10$ to $350$
 - m = $60$% of N
 - T = $67$% of N
 - n = $10$
 
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
-For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the probability dramatically increases when the total nodes is $0$ to$100$. The probability plateaus at 0.35. 
+For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the 
+probability dramatically increases when the total nodes is three times more than the committee size and onwards. The probability plateaus at 0.35. 
 
 #### Variation of Total Number of Nodes with Committee Size 100
 
 ##### Variables
 
-- N = ranging from $0$ to $1300$
+- N = ranging from $100$ to $1300$
 - m = $60$% of N
 - T = $67$% of N
 - n = $100$
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
-From the two graphs, it can be seen that probabilities are significantly lower when the committee size is 100. There is an increase in probability between $0$ and $700$, albeit, not as steep as the change when the committee size is 10.  The probability plateaus at 0.08.
+From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
+up to a network size of $700$, albeit, not as steep as the change when the committee size is $10$.  The probability plateaus at 0.08.
 
 The larger the committee size, the less dramatic changes there are in the probability. 
 
@@ -599,7 +605,7 @@ The larger the committee size, the less dramatic changes there are in the probab
 
 ##### Variables
 
-- N = ranging from $0$ to $50,000$
+- N = ranging from $10$ and $100$ to $50,000$
 - m = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
 - T = $67$% of N
 - n = $10$ and $100$
@@ -617,7 +623,7 @@ With regards to the Crude Monte Carlo Simulation, at this building block stage, 
 With regards to the statisical calculation, comments can be made for each of the varied parameters. 
 
 - Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing 
-- BFT threshold: this threshold should be higher than $60$%- two thirds ($67$% is ideal)
+- BFT threshold: this threshold should be higher than $67$% as per literature.
 - Committee size: the larger the committee size, the lower the probability bad nodes controlling the network
 - Bad nodes: while this variable cannot be controlled, the probability can remain low as the percentage of bad nodes increase if the committee size approx $100$ or larger. 
 
