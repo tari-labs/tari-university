@@ -375,7 +375,7 @@ are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
-|                                  |                                   |                                   | Are bad nodes in the majority? |
+| &nbsp;&nbsp;Draw 1st node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 2nd node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 3rd node&nbsp;&nbsp; | Are bad nodes <br /> in the majority? |
 | :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
 | <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div>  |              Yes               |
 | <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
