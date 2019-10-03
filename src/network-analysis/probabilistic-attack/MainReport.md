@@ -169,7 +169,7 @@ containing all points not mapped to zero [[2]].
 
 A continuous random variable is a random variable with an infinite and uncountable set and range of possible values [[11]].
 
-Probabilities of continuous random variables (X) are defined as the area under the curve of its Probability Density 
+Probabilities of continuous random variables (*X*) are defined as the area under the curve of its Probability Density 
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
 a continuous random variable equals some value is always zero [[11]].
 
