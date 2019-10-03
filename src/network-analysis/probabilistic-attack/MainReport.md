@@ -497,7 +497,7 @@ As discussed in [Section: Types of Distribution](#types-of-distribution) hyperge
 
 #### Poisson Distribution
 
-| Statistical Information |                      | Comparison with Theoretical Mean | Difference Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | -------------------- | -------------------------------- | --------------------- |
 | Intercept               | 0.6501259280719281   | 0.649474335188621                | 6.51592E-4            |
 | Standard Deviation      | 0.015233575444419514 |                                  |                       |
