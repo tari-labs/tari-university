@@ -504,7 +504,7 @@ As discussed in [Section: Types of Distribution](#types-of-distribution) hyperge
 
 #### Normal Distribution
 
-| Statistical Information |                     | Comparison with Theoretical Mean | Difference Calculated |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | ------------------- | -------------------------------- | --------------------- |
 | Intercept               | 0.6482901778221778  | 0.649474335188621                | 1.18416E-3            |
 | Standard Deviation      | 0.01507612979811762 |                                  |                       |
