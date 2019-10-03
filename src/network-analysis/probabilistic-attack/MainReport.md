@@ -606,7 +606,7 @@ The larger the committee size, the less dramatic changes there are in the probab
 
 ##### Variables
 
-- N = ranging from $0$ to $50,000$
+- N = ranging from $10$ and $100$ to $50,000$
 - m = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
 - T = $67$% of N
 - n = $10$ and $100$
