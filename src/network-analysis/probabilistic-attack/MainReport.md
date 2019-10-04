@@ -174,7 +174,6 @@ Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a
 a continuous random variable equals some value is always zero [[11]].
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
-
 #### Discrete Distribution 
 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
@@ -184,8 +183,7 @@ With a discrete probability distribution, each possible value of the discrete ra
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
-
-Examples of discrete distribution with **finite** support include the following: 
+A discrete distribution with finite support can onluy have a finite number of possible realizations. Examples of discrete distribution with **finite** support include the following: 
 
 | Type of Finite Discrete Distribution | Description   [[1]]                                          |
 | ------------------------------------ | ------------------------------------------------------------ |
@@ -198,7 +196,7 @@ Examples of discrete distribution with **finite** support include the following:
 | Hypergeometric Distribution          | The number of successes in the first $m$ of a series of $n$ consecutive Yes/No experiments, if the total number of successes is known. This distribution arises where there is no replacement. |
 | Poisson Binomial  Distribution       | The number of successes in a series of independent Yes/No experiments with different success probabilities. |
 
-Examples of discrete distribution with **infinite** support include the following: 
+A discrete distribution with infinite support can have an infinite number of possible realizations. Examples of discrete distribution with **infinite** support include the following: 
 
 | Type of Infinite Discrete Distribution | Description [[1]]                                            |
 | -------------------------------------- | ------------------------------------------------------------ |
@@ -219,11 +217,12 @@ of size $N$ that contains exactly $m$ objects with that feature, wherein each dr
 
 - A sample of size $n$ is randomly selected without replacement from a population of $N$ items.
 - In the population, $T$ items can be classified as successes and $N-T$ items can be classified as failures.
+- There are $m$ featuring objects. 
 
-Given $x, N, n$ and $k$, the hypergeometric probability can be computed based on the following example: 
+Given $m, N, n$ and $T$, the hypergeometric probability can be computed based on the following example: 
 
-**Example:** Suppose a population consists of $N$ items, $k$ of which are successes; and a random sample drawn from that 
-population consists of $n$ items, $x$ of which are successes. Then the hypergeometric probability is [[10]]:
+**Example:** Suppose a population consists of $N$ items, $T$ of which are successes; and a random sample drawn from that 
+population consists of $n$ items. Then the hypergeometric probability is [[10]]:
 $$
 h(m; N, n, T)= {{T}\choose{m}}{{N-T}\choose{n-m}}{{N}\choose{n}}
 $$
@@ -261,7 +260,7 @@ Monte Carlo analysis uses statistical tools to model a real-life system or proce
 must be determined before the Monte Carlo simulation can be applied. 
 
 Monte Carlo methods are widely used heuristic techniques that can solve a variety of common problems, including 
-optimization and numerical integration problems. These algorithms work by cleverly sampling from distribution to 
+optimization and numerical integration problems. These algorithms work by cleverly sampling from distributions to 
 simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends 
 in financial investments [[6]]. 
 
@@ -480,7 +479,6 @@ From a comparison of the mean probability of each distribution with the theoreti
 As discussed in [Section: Types of Distribution](#types-of-distribution) hypergeometric distribution is where there is no replacement, i.e., nodes are drawn simultaneously, distinguished and not returned to the total nodes pool. 
 
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
-
 #### Uniform Distribution
 
 | Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
@@ -527,14 +525,14 @@ The histogram of randomness highlights the distribution of good and bad nodes se
 
 ##### Variables
 
-- N = $100, 300, 500, 1000$
-- m = $60$% of N
-- T = $67$% of N
-- n = ranging from $1$ to $1000$ 
+- N (total number of nodes in the network) = $100, 300, 500, 1000$
+- m (number of bad actors) = $60$% of N
+- T (BFT threshold) = $67$% of N
+- n (committee size) = ranging from $1$ to $1000$ 
 
 Below is a sample of the data where the total nodes are $100$. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
 
-|           Total Nodes            |            Bad Nodes            |         Committee Size         |         BFT Threshold          | Probability                                    |
+|           &nbsp;&nbsp;Total Nodes&nbsp;&nbsp;            |            &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp;             |         &nbsp;&nbsp;Committee Size&nbsp;&nbsp;          |         &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp;           | &nbsp;&nbsp;Probability&nbsp;&nbsp;                                     |
 | :------------------------------: | :-----------------------------: | :----------------------------: | :----------------------------: | ---------------------------------------------- |
 |               100                |               60                |               1                |               1                | 0.6                                            |
 |               100                |               60                |               2                |               2                | 0.3575757575757576                             |
@@ -559,13 +557,12 @@ From a plot of committee size versus probability with a change in $N$, the total
 
 ##### Variables
 
-  - N = $100$
-  - m = $60$% of N
-  - T = $50$%, $55$%, $60$%, $67$% of N
-  - n = ranging from $1$ to $100$ 
+  - N (total number of nodes in the network) = $100$
+  - m (number of bad actors) = $60$% of N
+  - T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
+  - n (committee size) = ranging from $1$ to $100$ 
 
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
-
 From a plot of committee size versus probability where the number of nodes remains at 100 with a change in $T$, the BFT 
 threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT threshold is $50$% and $55$% the probability is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
 
@@ -577,10 +574,10 @@ When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$
 
 ##### Variables
 
-- N = ranging from $10$ to $350$
-- m = $60$% of N
-- T = $67$% of N
-- n = $10$
+- N (total number of nodes in the network) = ranging from $10$ to $350$
+- m (number of bad actors) = $60$% of N
+- T (BFT threshold) = $67$% of N
+- n (committee size) = $10$
 
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
 For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the 
@@ -590,10 +587,10 @@ probability dramatically increases when the total nodes is three times more than
 
 ##### Variables
 
-- N = ranging from $100$ to $1300$
-- m = $60$% of N
-- T = $67$% of N
-- n = $100$
+- N (total number of nodes in the network) = ranging from $100$ to $1300$
+- m (number of bad actors) = $60$% of N
+- T (BFT threshold) = $67$% of N
+- n (committee size) = $100$
 
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
 From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
@@ -605,10 +602,10 @@ The larger the committee size, the less dramatic changes there are in the probab
 
 ##### Variables
 
-- N = ranging from $10$ and $100$ to $50,000$
-- m = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
-- T = $67$% of N
-- n = $10$ and $100$
+- N (total number of nodes in the network) = ranging from $10$ and $100$ to $50,000$
+- m (number of bad actors) = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
+- T (BFT threshold) = $67$% of N
+- n (committee size) = $10$ and $100$
 
 <p align="center"><img src="assets/bad_actor_grid.png" width="700" /></p>
 These graphs show varying probabilities when the number of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
