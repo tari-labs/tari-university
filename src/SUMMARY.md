@@ -43,6 +43,7 @@
     - [Mimblewimble Multiparty Bulletproof UTXO](protocols/mimblewimble-mp-bp-utxo/MainReport.md)
   - [Network Analysis](./network-analysis/network-analysis.md)
     - [Probabilistic Attack Vector Analysis Building Blocks](network-analysis/probabilistic-attack/MainReport.md)
+    - [Probability of a Byzantine Takeover of the DAN](network-analysis/probability-of-a-byzantine-takeover-of-the-DAN.md)
   - [Labs](labs/introduction.md)
     - [Mermaid Demonstration](labs/mermaid-demo.md)
     - [Notes and info boxes](labs/notes.md)
