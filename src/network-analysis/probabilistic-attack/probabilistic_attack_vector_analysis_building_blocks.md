@@ -36,14 +36,6 @@
 # Probabilistic Attack Vector Analysis Building Blocks
 
 - [Introduction](#introduction)
-  - [Aim](#aim)
-  - [Question](#question) 
-- [Literature Review](#literature-review)
-  - [Tari Digital Assets Network](#tari-digital-assets-network) 
-    - [Kademlia](#kademlia)
-    - [Node ID](#node-id)
-      - [Bootstrapping a Node](#bootstrapping-a-node)
-      - [XOR Metric](#xor-metric)
   - [Types of Distribution](#types-of-distribution)
     - [Continuous Distribution](#continuous-distribution)
     - [Discrete Distribution](#discrete-distribution)
@@ -61,88 +53,12 @@
      - [Computing Statistics](#computing-statistics)
    - [Statistical Calculation](#statistical-calculation)
      - [Formulae](#formulae)
-     - [Distribution](#distribution)
-       - [Use of Binomial Distribution](#use-of-binomial-distribution)
-       - [Use of Hypergeometric Distribution](#use-of-hypergeometric-distribution)
-       - [Summation](#summation)
 - [References](#references)
 - [Appendices](#appendices)
    - [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
 - [Contributors](#contributors) 
 
-## **Introduction**
-
-### **Aim** 
-
-This research aims to provide answers to questions posed about the workings of the Tari Digital Assets Network (DAN) 
-environment: probabilistic attack vector with regard to the total nodes, compromised nodes, committee size and 
-Byzantine Fault-tolerance (BFT) threshold. 
-
-### **Question**
-
-This investigation attempts to answer the following question:
-
-*What is the percentage chance of controlling the majority of nodes in a random sample with varying quantities of the total 
-number of nodes, committee size, bad nodes and BFT threshold?*
-
-## Literature Review 
-
-### Tari Digital Assets Network 
-
-The Tari Digital Assets Network (DAN) forms part of the Tari second layer, where the management of all digital 
-asset interactions takes place. 
-
-These interactions are processed and validated by committees of special nodes, called Validator Nodes (VNs). Management 
-of Digital Assets (DAs) involves state changes and ensures enforcement of the rules that govern assets contracts. 
-Thus, all actions on this network are due to the interactions of the VNs. 
-The registration of VNs occurs on the base layer. To prevent Sybil attacks, they commit collateral. If 
-proved that the VN engaged in malicious behavior, the VN will lose its collateral. 
-
-An Asset Issuer (AI) would then issue DAs and draw up a contract. The AI will dictate the size of 
-the committee of VNs for a particular DA. The AI will also have the ability to nominate a trusted node to 
-form part of the VN committee for the DA [[14]].
-
-#### Kademlia
-
-Kademlia was designed by Petar Maymounkov and David Mazières in 2002 [[16]]. It is a distributed hash table, used for 
-decentralized, peer-to-peer computer networks. 
-
-#### Node ID
-
-A node selects an $n$-bit ID, given to nodes on the network. Node IDs have uniformly distributed numbers. 
-A node's position is determined by a unique prefix of its ID, which forms a tree structure, with node IDs as leaves. 
-
-The bit length of the node ID should be sufficiently large to make collisions unlikely when using a uniformly 
-distributed random number generator [[15]].
-
-##### Bootstrapping a Node
-
-A bootstrap node is a node listed on a predetermined list, and serves as the first point of contact for a new node. The node bootstrapping process is as follows:
-
-- To establish itself on the network without any known contacts, a node needs to contact at least one bootstrap node, 
-  requesting an introduction to the network.
-- A node ID is generated for the joining node.
-- The new node contacts other nodes it is aware of.
-- The new node sends a lookup request with its newly generated node ID.
-- The contacted nodes return the nodes they know about that are closest.
-- The new nodes are added to the routing table, and contacting begins.
-- The process continues until the joining node is unable to locate any closer nodes.
-
-This 
-*self-lookup* has two effects:
-
-- it allows the node to learn about nodes closer to itself; and
-- it populates other nodes' 
-  routing tables with the node's ID [[15]].
-
-##### XOR Metric
-
-The Kademlia paper, published in 2002 [[16]], contained the novel idea of using the XOR operator to determine the 
-distance and therefore the arrangement of peers within the network. 
-
-Through the XOR metric, a distance is captured. The lookup procedure allows nodes to locate other nodes, 
-given a node ID [[15]].
-
+## Introduction
 
 ### Types of Distribution 
 
@@ -396,42 +312,6 @@ but one had to calculate the probability of selecting a majority of bad nodes fr
 committee size of $60$, $60$ bad nodes and $40$ good nodes, the number of combinations where bad and good nodes can be 
 chosen is $1.27E+28$.
 
-#### Distribution
-
-##### Use of Binomial Distribution  
-
-With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
-are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
-$$
-P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
-$$
-
-##### Use of Hypergeometric Distribution
-
-With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
-i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This closely mimics the events that would take place within the network. 
-$$
-P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
-$$
-
-##### Summation 
-
-Refering to *Example $3$*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
-
-As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
-
-$$
-P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
-$$
-
-In order to understand this, the table below provides some visual insight. 
-
-| &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;No of Steps&nbsp;&nbsp; |
-| :------------: | :------------: | :------------: |
-| 10             | 7              | 3              |
-
-
-
 ## References
 
 [[1]] Wikipedia, “List of Probability Distributions” [online]. Available: <https://en.wikipedia.org/wiki/List_of_probability_distributions>. 
@@ -513,23 +393,6 @@ accessed: 2019&#8209;07&#8209;18.
 
 [13]: https://en.wikipedia.org/wiki/Gambler%27s_fallacy
 "Gambler's Fallacy" 
-
-[[14]] C. Sharrock and P. Robinson, "Digital Assets Network" [online]. Available: <https://rfc.tari.com/RFC-0300_DAN.html>. 
-Date accessed: 2019&#8209;07&#8209;18.
-
-[14]: https://rfc.tari.com/RFC-0300_DAN.html
-"Tari RFC - Digital Assets Network" 
-
-[[15]] S. Bondi, "Distributed Hash Tables" [online]. Available: <https://tlu.tarilabs.com/protocols/dht/MainReport.html>. 
-Date accessed: 2019&#8209;07&#8209;18.
-
-[15]: https://tlu.tarilabs.com/protocols/dht/MainReport.html
-"Distributed Hash Tables" 
-
-[[16]] P. Maymounkov and D. Mazières, "Kademlia: A Peer-to-peer Information System Based on the XOR Metric" [online]. 
-Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>. Date accessed: 2019‑07‑18.
-
-[16]: "Kademlia'
 
 ## Appendices
 
