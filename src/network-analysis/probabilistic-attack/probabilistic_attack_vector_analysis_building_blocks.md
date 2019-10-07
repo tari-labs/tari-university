@@ -62,21 +62,9 @@
    - [Statistical Calculation](#statistical-calculation)
      - [Formulae](#formulae)
      - [Distribution](#distribution)
-       - [Binomial Distribution](#binomial-distribution)
-       - [Hypergeometric Distribution](#hypergeometric-distribution)
+       - [Use of Binomial Distribution](#use-of-binomial-distribution)
+       - [Use of Hypergeometric Distribution](#use-of-hypergeometric-distribution)
        - [Summation](#summation)
-- [Implementation](#implementation)
-  - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation-1)
-    - [Proving the Law of Large Numbers](#proving-the-law-of-large-numbers)
-    - [Individual Probabilities](#individual-probabilities)
-    - [Histogram and Visualization of Distribution](#histogram-and-visualization-of-distribution)
-  - [Statistical Calculation](#statistical-calculation)
-     - [Variation of Total Nodes](#variation-of-total-nodes)
-     - [Variation of Byzantine Fault Tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
-     - [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
-     - [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100)
-     - [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
-- [Conclusions and Remarks](#conclusions-and-remarks)
 - [References](#references)
 - [Appendices](#appendices)
    - [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
@@ -173,22 +161,27 @@ Probabilities of continuous random variables (*X*) are defined as the area under
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
 a continuous random variable equals some value is always zero [[11]].
 
+<br />
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
-#### Discrete Distribution 
+<br />
 
+#### Discrete Distribution 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
 variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
+<br />
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
+<br />
+
 A discrete distribution with finite support can onluy have a finite number of possible realizations. Examples of discrete distribution with **finite** support include the following: 
 
 | Type of Finite Discrete Distribution | Description   [[1]]                                          |
 | ------------------------------------ | ------------------------------------------------------------ |
-| Bernoulli Distribution               | Takes value 1 with probability $p$ and value 0 with probability $q=1-p$. |
-| Rademacher Distribution              | Takes value 1 with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$. |
+| Bernoulli Distribution               | Takes value $1$ with probability $p$ and value $0$ with probability $q=1-p$. |
+| Rademacher Distribution              | Takes value $1$ with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$. |
 | Binomial Distribution                | The number of successes in a series of independent Yes/No experiments, all with the same probability of success. |
 | Beta-Binomial Distribution           | The number of successes in a series of independent Yes/No experiments with heterogeneity in the success probability. |
 | Degenerate Distribution             | At $X0$, where $X$ is certain to take the value $X0$. This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
@@ -221,7 +214,7 @@ of size $N$ that contains exactly $m$ objects with that feature, wherein each dr
 
 Given $m, N, n$ and $T$, the hypergeometric probability can be computed based on the following example: 
 
-**Example:** Suppose a population consists of $N$ items, $T$ of which are successes; and a random sample drawn from that 
+**Example 1:** Suppose a population consists of $N$ items, $T$ of which are successes; and a random sample drawn from that 
 population consists of $n$ items. Then the hypergeometric probability is [[10]]:
 $$
 h(m; N, n, T)= {{T}\choose{m}}{{N-T}\choose{n-m}}{{N}\choose{n}}
@@ -248,7 +241,7 @@ $n$, the binomial distribution remains a good approximation and is widely used.
 Thus, in a binomial distribution, an object is selected with replacement [[4]].  A binomial experiment requires that the 
 probability of success be constant on every trial. 
 
-**Example:** You have an urn containing $10$ marbles - $5$ red and $5$ green. You randomly select $2$ marbles with replacement, and the 
+**Example 2:** You have an urn containing $10$ marbles - $5$ red and $5$ green. You randomly select $2$ marbles with replacement, and the 
 probability of success would not change. It would be $\frac{5}{10}$ on every trial [[10]]. 
 
 ### Monte Carlo Simulations 
@@ -281,7 +274,7 @@ and is an example of the gambler's fallacy. The events "five heads in a row" and
 are equally likely, each having a probability of $\frac{1}{32}$. Since the first four tosses turn up heads, the probability 
 that the next toss is a head is $\frac{1}{2}$ . While a run of five heads has a probability of $\frac{1}{32} = 0.03125$, 
 the misunderstanding lies in not realizing that this is the case only before the first coin is tossed. After the first 
-four tosses, the results are no longer unknown, so the probability at that point is equal to 1. The reasoning that 
+four tosses, the results are no longer unknown, so the probability at that point is equal to $1$. The reasoning that 
 it is more likely that a fifth toss is more likely to be tails because the previous four tosses were heads, with a run 
 of luck in the past influencing the odds in the future, forms the basis of the fallacy [[13]].
 
@@ -305,7 +298,10 @@ accurate measure of the mean [[7]].
 
 The LLN is crucial because it guarantees stable, long-term results for the averages of some random event [[8]]. 
 
+<br />
 <p align="center"><img src="assets/law_of_large_numbers.png" width="650" /></p>
+<br />
+
 The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar [[9]].
 
 ## Methodology 
@@ -346,7 +342,10 @@ Random numbers make it possible to simulate physical systems with uncertainty, i
 
 #### Computing Statistics 
 
+<br />
 <p align="center"><img src="assets/mode_median_mean.png" width="170" /></p>
+<br />
+
 To describe a set of random numbers $xi$, we are often interested in two things:
 
 - Mean value 
@@ -368,7 +367,7 @@ $$
 
 As a means to derive the formulae, a single probability from the overarching question was used, as shown in the following example. 
 
-**Example 1**: What is the probability of selecting a majority of bad nodes from a total of $5$ nodes if the committee size is $3$? There 
+**Example 3**: What is the probability of selecting a majority of bad nodes from a total of $5$ nodes if the committee size is $3$? There 
 are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
 
 
@@ -399,7 +398,7 @@ chosen is $1.27E+28$.
 
 #### Distribution
 
-##### Binomial Distribution  
+##### Use of Binomial Distribution  
 
 With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
 are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
@@ -407,7 +406,7 @@ $$
 P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
 $$
 
-##### Hypergeometric Distribution
+##### Use of Hypergeometric Distribution
 
 With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
 i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This closely mimics the events that would take place within the network. 
@@ -417,9 +416,9 @@ $$
 
 ##### Summation 
 
-Refering to *Example 1*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
+Refering to *Example $3$*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
 
-As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of 100 nodes if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
+As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
 
 $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
@@ -431,198 +430,7 @@ In order to understand this, the table below provides some visual insight.
 | :------------: | :------------: | :------------: |
 | 10             | 7              | 3              |
 
-## Implementation
 
-### Crude Monte Carlo Simulation
-
-#### Proving the Law of Large Numbers
-
-With the Crude Monte Carlo technique, to gain precision, the number of samples can be increased. Thus, before calculating the probability and drawing comparisons, the sample size, number of draws within an experiment, and the number of experiments can be varied to find an optimal amount. 
-
-Below is the input data inserted into the python programme, where the number of draws within an experiment is $10$, and the number of experiments is $10$ :
-
-```Text
-What is the total amount of nodes? 100
-What is the amount of bad nodes? 60
-How many nodes are to be drawn? 3
-What is the BFT threshold within the committee? 2
-What is the number of draws within an experiment? 10
-How many experiments? 10
-Do you know the theoretical mean? Y|N: Y
-What is the theoretical mean? 0.649474335188621
-```
-<p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
-Below is the input data inserted into the python programme, where the number of draws within an experiment is $1,000$, and the number of experiments is $1,000$ :
-
-```Text
-What is the total amount of nodes? 100
-What is the amount of bad nodes? 60
-How many nodes are to be drawn? 3
-What is the BFT threshold within the committee? 2
-What is the number of draws within an experiment? 1,000
-How many experiments? 1,000
-Do you know the theoretical mean? Y|N: Y
-What is the theoretical mean? 0.649474335188621
-```
-
-<p align="center"><img src="assets/convergence.png" width="700" /></p>
-In each graph, the cumulative probabilities calculated for normal, uniform, Poisson and hypergeometric distribution are plotted against the number of experiments. The bold blue line represents the mean calculated from theoretical data. 
-
-From the graph where the experiments and draws are equal to $10$ there is weak convergence. While the graph where the experiments and draws are equal to $1,000$ the  Law of Large Numbers is proved, as the sample size grows, convergence with the statistical mean is achieved. 
-
-#### Individual Probabilities 
-
-The graph below highlights the varying probabilities of each experiment conducted for the hypergeometric distribution. The mean of which provides us with the average of the probabilities, which can then be compared to the calculated theoretical mean. 
-
-From a comparison of the mean probability of each distribution with the theoretical mean, it can be seen that the distribution type that closely mimics the theoretical result is hypergeometric. 
-
-As discussed in [Section: Types of Distribution](#types-of-distribution) hypergeometric distribution is where there is no replacement, i.e., nodes are drawn simultaneously, distinguished and not returned to the total nodes pool. 
-
-<p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
-#### Uniform Distribution
-
-| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
-| ----------------------- | -------------------- | -------------------------------- | ---------------------- |
-| Intercept               | 0.6497887492507493   | 0.649474335188621                | 3.14414E-4             |
-| Standard Deviation      | 0.015438728229013219 |                                  |                        |
-
-#### Hypergeometric Distribution
-
-| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
-| ----------------------- | -------------------- | -------------------------------- | --------------------- |
-| Intercept               | 0.6495665834165834   | 0.649474335188621                | 9.22482E-5            |
-| Standard Deviation      | 0.014812123075035204 |                                  |                       |
-
-#### Poisson Distribution
-
-| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
-| ----------------------- | -------------------- | -------------------------------- | --------------------- |
-| Intercept               | 0.6501259280719281   | 0.649474335188621                | 6.51592E-4            |
-| Standard Deviation      | 0.015233575444419514 |                                  |                       |
-
-#### Normal Distribution
-
-| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
-| ----------------------- | ------------------- | -------------------------------- | --------------------- |
-| Intercept               | 0.6482901778221778  | 0.649474335188621                | 1.18416E-3            |
-| Standard Deviation      | 0.01507612979811762 |                                  |                       |
-
-#### Histogram and Visualization of Distribution 
-
-The histogram of randomness highlights the distribution of good and bad nodes selected in each experiment, highlighting the random nature of the experiment. 
-
-<p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
-| Statistical Information |                   |
-| ----------------------- | ----------------- |
-| Mean                    | 120,000.0         |
-| Median                  | 119,991.0         |
-| Mode                    | -                 |
-| Standard Deviation      | 346.4313595341606 |
-
-### Statistical Calculation
-
-#### Variation of Total Nodes
-
-##### Variables
-
-- N (total number of nodes in the network) = $100, 300, 500, 1000$
-- m (number of bad actors) = $60$% of N
-- T (BFT threshold) = $67$% of N
-- n (committee size) = ranging from $1$ to $1000$ 
-
-Below is a sample of the data where the total nodes are $100$. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
-
-|           &nbsp;&nbsp;Total Nodes&nbsp;&nbsp;            |            &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp;             |         &nbsp;&nbsp;Committee Size&nbsp;&nbsp;          |         &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp;           | &nbsp;&nbsp;Probability&nbsp;&nbsp;                                     |
-| :------------------------------: | :-----------------------------: | :----------------------------: | :----------------------------: | ---------------------------------------------- |
-|               100                |               60                |               1                |               1                | 0.6                                            |
-|               100                |               60                |               2                |               2                | 0.3575757575757576                             |
-| <div class="highlight">100​</div> | <div class="highlight">60</div> | <div class="highlight">3</div> | <div class="highlight">2</div> | <div class="highlight">0.649474335188621</div> |
-|               100                |               60                |               4                |               3                | 0.47343240951488375                            |
-|               100                |               60                |               5                |               4                | 0.33162085827770661                            |
-|               100                |               60                |               6                |               4                | 0.5443381851334722                             |
-|               100                |               60                |               7                |               5                | 0.4153500188485931                             |
-|               100                |               60                |               8                |               6                | 0.30661160770090995                            |
-|               100                |               60                |               9                |               6                | 0.47996269793634677                            |
-|               100                |               60                |               10               |               7                | 0.37423758246308586                            |
-|               100                |               60                |               11               |               8                | 0.28361605491457653                            |
-|               100                |               60                |               12               |               8                | 0.4320215340178938                             |
-|               100                |               60                |               13               |               9                | 0.3409545354772218                             |
-|               100                |               60                |               14               |               10               | 0.2623321970180976                             |
-|               100                |               60                |               15               |               10               | 0.39288184738975973                            |
-
-<p align="center"><img src="assets/variation_of_total_nodes .png" width="700" /></p>
-From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that the probability is lower with respect to the committee size when $N$ is smaller. 
-
-#### Variation of Byzantine Fault-Tolerance Threshold
-
-##### Variables
-
-  - N (total number of nodes in the network) = $100$
-  - m (number of bad actors) = $60$% of N
-  - T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
-  - n (committee size) = ranging from $1$ to $100$ 
-
-<p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
-From a plot of committee size versus probability where the number of nodes remains at 100 with a change in $T$, the BFT 
-threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT threshold is $50$% and $55$% the probability is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
-
-When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
-
-When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. This confirms the BFT threshold of $67$% as per literature. 
-
-#### **Variation of Total Number of Nodes with Committee Size 10**
-
-##### Variables
-
-- N (total number of nodes in the network) = ranging from $10$ to $350$
-- m (number of bad actors) = $60$% of N
-- T (BFT threshold) = $67$% of N
-- n (committee size) = $10$
-
-<p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
-For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the 
-probability dramatically increases when the total nodes is three times more than the committee size and onwards. The probability plateaus at 0.35. 
-
-#### Variation of Total Number of Nodes with Committee Size 100
-
-##### Variables
-
-- N (total number of nodes in the network) = ranging from $100$ to $1300$
-- m (number of bad actors) = $60$% of N
-- T (BFT threshold) = $67$% of N
-- n (committee size) = $100$
-
-<p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
-From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
-up to a network size of $700$, albeit, not as steep as the change when the committee size is $10$.  The probability plateaus at 0.08.
-
-The larger the committee size, the less dramatic changes there are in the probability. 
-
-#### Variation of Bad Nodes with Committee Size 10 and 100
-
-##### Variables
-
-- N (total number of nodes in the network) = ranging from $10$ and $100$ to $50,000$
-- m (number of bad actors) = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
-- T (BFT threshold) = $67$% of N
-- n (committee size) = $10$ and $100$
-
-<p align="center"><img src="assets/bad_actor_grid.png" width="700" /></p>
-These graphs show varying probabilities when the number of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
-
-<p align="center"><img src="assets/bad_actors_varied_committee_size_10_100.png" width="700" /></p>
-The graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When the committee size is 10, there is a change in probability when the bad node percentage is between $30$ and $80$.  When the committee size is 100, there is a steep increase in the probability when the bad node percentage is between $50$ and $80$.  When the committee size is $100$, the probability remains lower as the bad node percentage increases and has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability begins to increase at a lower percentage of bad nodes. 
-
-## Conclusions and Remarks 
-
-With regards to the Crude Monte Carlo Simulation, at this building block stage, probabilities were calculated and distributions of nodes within the network illustrated.
-
-With regards to the statisical calculation, comments can be made for each of the varied parameters. 
-
-- Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing 
-- BFT threshold: this threshold should be higher than $67$% as per literature.
-- Committee size: the larger the committee size, the lower the probability bad nodes controlling the network
-- Bad nodes: while this variable cannot be controlled, the probability can remain low as the percentage of bad nodes increase if the committee size approx $100$ or larger. 
 
 ## References
 
