@@ -420,8 +420,7 @@ accessed: 2019&#8209;07&#8209;18.
 
 ### Appendix A: Definitions of Terms 
 
-Definitions of terms presented here are high level and general in nature. Full statistical definitions are available 
-in the cited references. 
+Definitions of terms presented here are high level and general in nature. 
 
 - **Probability Density Function (PDF):**<a name="pdf"> </a> A statistical expression that defines a probability distribution 
 for a continuous random variable instead of a discrete random variable ([[11]], [[12]]).
@@ -435,3 +434,6 @@ defines a..."
 
 - <https://github.com/kevoulee>
 - <https://github.com/anselld>
+- <https://github.com/neonknight64> 
+- <https://github.com/hansieodendaal> 
+

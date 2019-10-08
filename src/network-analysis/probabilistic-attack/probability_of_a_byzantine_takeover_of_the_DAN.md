@@ -37,6 +37,7 @@
      - [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
 - [Conclusions and Remarks](#conclusions-and-remarks)
 - [References](#references)
+- [Appendices](#appendices)
 - [Contributors](#contributors) 
 
 
@@ -300,6 +301,7 @@ From a plot of committee size versus probability with a change in $N$, the total
   - n (committee size) = ranging from $1$ to $100$ 
 
 <br />
+
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
 <br />
 
@@ -310,7 +312,7 @@ When the BFT threshold is $60$%, the probability decreases from $0.63$ to approx
 
 When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. This confirms the BFT threshold of $67$% as per literature. 
 
-#### **Variation of Total Number of Nodes with Committee Size 10**
+#### Variation of Total Number of Nodes with Committee Size 10
 
 ##### Variables
 
@@ -340,7 +342,7 @@ probability dramatically increases when the total nodes is three times more than
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
 <br />
 
-The above graph was calculated from [variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
+The above graph was calculated from [variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
 up to a network size of $700$, albeit, not as steep as the change when the committee size is $10$.  The probability plateaus at $0.08$.
 
 The larger the committee size, the less dramatic changes there are in the probability. 
@@ -356,16 +358,30 @@ The larger the committee size, the less dramatic changes there are in the probab
 
 <br />
 
-<p align="center"><img src="assets/bad_actor_grid.png" /></p>
-<br />
-
-These graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
+<p align="center"><img src="assets/probability_when_committee_100_20.png" width="600" /></p>
 
 <br />
-<p align="center"><img src="assets/bad_actors_varied_committee_size_10_100.png" width="700" /></p>
+
+<p align="center"><img src="assets/probability_when_committee_100_40.png" width="600" /></p>
+
 <br />
 
-The above graph was calculated from [bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). The graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between $50$ and $80$.  When the committee size is $100$, the probability remains lower as the bad node percentage increases and has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability begins to increase at a lower percentage of bad nodes. 
+<p align="center"><img src="assets/probability_when_committee_100_60.png" width="600" /></p>
+
+<br />
+
+<p align="center"><img src="assets/probability_when_committee_100_90.png" width="600" /></p>
+
+<br />
+
+The above graphs were calculated from [bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_100.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). These graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
+
+<br />
+<p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="700" /></p>
+
+<br />
+
+The above graph was calculated from [bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). The graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between $50$ and $80$.  When the committee size is $100$, the probability remains lower as the bad node percentage increases and has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability begins to increase at a lower percentage of bad nodes. 
 
 ## Conclusions and Remarks 
 
@@ -373,33 +389,58 @@ With regards to the Crude Monte Carlo Simulation, at this building block stage, 
 
 With regards to the statisical calculation, comments can be made for each of the varied parameters. 
 
-- Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing
-- BFT threshold: this threshold should be higher than $67$% as per literature.
-- Committee size: the larger the committee size, the lower the probability bad nodes controlling the network
-- Bad nodes: while this variable cannot be controlled, the probability can remain low as the percentage of bad nodes increase if the committee size approx $100$ or larger. 
+- Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability of bad actors controlling the network; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing. This can be seen from the graph in [Variations of Total Nodes](#variation-of-total-nodes). 
+- BFT threshold: this threshold should be higher than $67$% as per literature. This can be seen from the graph in [Variation of Byzantine Fault-Tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
+- Committee size: the larger the committee size, the lower the probability bad actors controlling the network. This can be seen from the graph in [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10) and [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100).
+- Bad nodes: while this variable cannot be controlled, the probability of bad actors controlling the network can remain low as the percentage of bad nodes increase if the committee size approx $100$ or larger. This can be seen from the graphs in [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
 
 
 
 ## References
 
+[[1]] C. Sharrock [online]. Available:<https://rfc.tari.com/RFC-0300_DAN.html>. 
+Date accessed: 2019&#8209;07&#8209;18.
+
 [1]: https://rfc.tari.com/RFC-0300_DAN.html
-"Distributed Hash Tables" 
+"Tari RFC" 
 
 [[2]] P. Maymounkov and D. Mazières, "Kademlia: A Peer-to-peer Information System Based on the XOR Metric" [online]. 
 Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>. Date accessed: 2019‑07‑18.
 
-[2]: "Kademlia'
+[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf
 
-"Tari RFC - Digital Assets Network" 
+"Kademlia"
 
 [[3]] S. Bondi, "Distributed Hash Tables" [online]. Available: <https://tlu.tarilabs.com/protocols/dht/MainReport.html>. 
 Date accessed: 2019&#8209;07&#8209;18.
 
 [3]: https://tlu.tarilabs.com/protocols/dht/MainReport.html
 
+"Distributed Hash Tables" 
 
+## Appendices
+
+### Appendix A: Definitions of Terms 
+
+Definitions of terms presented here are high level and general in nature. 
+
+- **Asset Issuer (AI):**<a name="pdf"> </a> An entity that creates digital assets on the Tari DAN. The Asset Issuer will specify the parameters of the contract template that defines the rules that govern the asset and the number and nature of its constituent tokens on issuance. The Asset Issuer will, generally, be the initial owner of the tokens. [[1]]
+
+[ai~]: #ai
+
+" An entity that creates
+digital assets..." 
+
+- **Validator Node (VN):**<a name="pdf"> </a>Validator nodes make up the Tari second layer, or Digital Asset Network. VNs are responsible for creating and updating digital asset living on the Tari network. [[1]]
+
+[vn~]: #vn
+
+" Validator nodes make up 
+the Tari second layer..." 
 
 ## Contributors
 
 - <https://github.com/kevoulee>
 - <https://github.com/anselld> 
+- <https://github.com/neonknight64> 
+- <https://github.com/hansieodendaal> 
