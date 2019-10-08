@@ -154,13 +154,15 @@ In order to understand this, the table below provides some visual insight.
 
 ## Implementation
 
+The following calculations were written to the [Tari Labs Modelling Repository]((https://github.com/tari-labs/modelling)). 
+
 ### Crude Monte Carlo Simulation
 
 #### Proving the Law of Large Numbers
 
 With the Crude Monte Carlo technique, to gain precision, the number of samples can be increased. Thus, before calculating the probability and drawing comparisons, the sample size, number of draws within an experiment, and the number of experiments can be varied to find an optimal amount. 
 
-Below is the input data inserted into the python programme, where the number of draws within an experiment is $10$, and the number of experiments is $10$ :
+Below is the input data inserted into the [python programme](https://github.com/tari-labs/modelling/blob/master/scenarios/crude_monte_carlo_simulation.py) with [network setup](https://github.com/tari-labs/modelling/blob/master/utils/network_setup.py) and [random distribution](https://github.com/tari-labs/modelling/blob/master/utils/rand_dist.py), where the number of draws within an experiment is $10$, and the number of experiments is $10$ :
 
 ```Text
 What is the total amount of nodes? 100
@@ -173,6 +175,7 @@ Do you know the theoretical mean? Y|N: Y
 What is the theoretical mean? 0.649474335188621
 ```
 <br />
+
 <p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
 <br />
 
@@ -260,7 +263,7 @@ The histogram of randomness highlights the distribution of good and bad nodes se
 - T (BFT threshold) = $67$% of N
 - n (committee size) = ranging from $1$ to $1000$ 
 
-Below is a sample of the data where the total nodes are $100$. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
+The above graph was calculated from [variations of N](https://github.com/tari-labs/modelling/blob/master/scenarios/N_variations.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). Below is a sample of the data where the total nodes are $100$. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
 
 | &nbsp;&nbsp;Total Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;Probability&nbsp;&nbsp;            |
 | :---------------------------------: | :-------------------------------: | :------------------------------------: | :-----------------------------------: | ---------------------------------------------- |
@@ -300,7 +303,7 @@ From a plot of committee size versus probability with a change in $N$, the total
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
 <br />
 
-From a plot of committee size versus probability where the number of nodes remains at $100$ with a change in $T$, the BFT 
+The above graph was calculated from [variations of BFT](https://github.com/tari-labs/modelling/blob/master/scenarios/T_variations.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From a plot of committee size versus probability where the number of nodes remains at $100$ with a change in $T$, the BFT 
 threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT threshold is $50$% and $55$% the probability is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
 
 When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
@@ -320,7 +323,7 @@ When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$
 <p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
 <br />
 
-For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the 
+The above graph was calculated from [variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the 
 probability dramatically increases when the total nodes is three times more than the committee size and onwards. The probability plateaus at $0.35$. 
 
 #### Variation of Total Number of Nodes with Committee Size 100
@@ -337,7 +340,7 @@ probability dramatically increases when the total nodes is three times more than
 <p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
 <br />
 
-From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
+The above graph was calculated from [variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
 up to a network size of $700$, albeit, not as steep as the change when the committee size is $10$.  The probability plateaus at $0.08$.
 
 The larger the committee size, the less dramatic changes there are in the probability. 
@@ -362,7 +365,7 @@ These graphs show varying probabilities when the percentage of bad nodes is $20$
 <p align="center"><img src="assets/bad_actors_varied_committee_size_10_100.png" width="700" /></p>
 <br />
 
-The graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between $50$ and $80$.  When the committee size is $100$, the probability remains lower as the bad node percentage increases and has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability begins to increase at a lower percentage of bad nodes. 
+The above graph was calculated from [bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). The graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between $50$ and $80$.  When the committee size is $100$, the probability remains lower as the bad node percentage increases and has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability begins to increase at a lower percentage of bad nodes. 
 
 ## Conclusions and Remarks 
 
@@ -370,7 +373,7 @@ With regards to the Crude Monte Carlo Simulation, at this building block stage, 
 
 With regards to the statisical calculation, comments can be made for each of the varied parameters. 
 
-- Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing 
+- Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing
 - BFT threshold: this threshold should be higher than $67$% as per literature.
 - Committee size: the larger the committee size, the lower the probability bad nodes controlling the network
 - Bad nodes: while this variable cannot be controlled, the probability can remain low as the percentage of bad nodes increase if the committee size approx $100$ or larger. 

@@ -62,12 +62,11 @@
 
 ### Types of Distribution 
 
+There are 6 high-level types of distributions. These include discrete, continuous , mixed discrete/continuous, joint, non-numeric and miscellaneous. 
+
 When considering solving the probability of an attacker controlling the majority of nodes in the network, the various 
 types of probability distributions of the specific circumstances and variables of the 
-problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. Here support is 
-defined as a real-valued function *f*, which is the subset of the domain containing those elements that are not mapped 
-to zero. If the domain of *f* is a topological space, the support of *f* is instead defined as the smallest closed set 
-containing all points not mapped to zero [[2]]. 
+problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. 
 
 #### Continuous Distribution 
 
@@ -258,23 +257,46 @@ Random numbers make it possible to simulate physical systems with uncertainty, i
 
 #### Computing Statistics 
 
+The mean, median and mode are the arithmetic average of a data set. This is found by adding the enumbers in a data set and dividing by how many numbers there are. 
+
+The mode is the value that occurs with most often in a data set.
+
+The median is the middle number in a data set with the numbers are listed in either ascending or descending order.
+
 <br />
+
 <p align="center"><img src="assets/mode_median_mean.png" width="170" /></p>
 <br />
 
 To describe a set of random numbers $xi$, we are often interested in two things:
 
-- Mean value 
+- **Mode value**
+
+The mode is the most frequently occuring score or value. 
+
+- **Median value**
+
+If the total number of numbers (n) is an odd number, then the formula is:
+$$
+median =\biggl(\frac{n+1}{2}\biggr)^{th}term
+$$
+
+If the total number of numbers (n) is an even number, then the formula is:
+$$
+median= \frac{\biggl({\frac{n}{2}\biggr)^{th}term+\biggl({\frac{n}{2}+1\biggr)}^{th}term}}{2}
+$$
+
+- **Mean value** 
 
 $$
-x_{m} = \frac{1}{n}\displaystyle\sum_{j=1}^{n-1}x_j  ​
+\bar{x}  = \frac{{\sum}x}{N}\
 $$
 
-- "Mean deviation" from the mean value (standard deviation)
+$\sum$ represents the summation 
 
-$$
-x_{s} =\sqrt{\frac{1}{n}\displaystyle\sum_{j=1}^{n-1}(x_j-x_m)^2}
-$$
+$x$ represents scores 
+
+$N$ Represents number of scores 
 
 ### Statistical Calculation
 
