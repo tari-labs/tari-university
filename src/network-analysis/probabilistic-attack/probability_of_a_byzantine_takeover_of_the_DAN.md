@@ -12,18 +12,11 @@
 # Probability of a Byzantine Takeover of the DAN
 
 - [Introduction](#introduction)
-  - [Aim](#aim)
-      - [Question](#question) 
-- [Literature Review](#literature-review)
-  - [Tari Digital Assets Network](#tari-digital-assets-network) 
-    - [Kademlia](#kademlia)
-    - [Node ID](#node-id)
-      - [Bootstrapping a Node](#bootstrapping-a-node)
-      - [XOR Metric](#xor-metric)
-- [Distribution](#distribution)
-  - [Binomial Distribution](#binomial-distribution)
-  - [Hypergeometric Distribution](#hypergeometric-distribution)
-  - [Summation](#summation)
+- [Tari Digital Assets Network](#tari-digital-assets-network) 
+  - [Kademlia](#kademlia)
+  - [Node ID](#node-id)
+    - [Bootstrapping a Node](#bootstrapping-a-node)
+    - [XOR Metric](#xor-metric)
 - [Implementation](#implementation)
   - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation-1)
     - [Proving the Law of Large Numbers](#proving-the-law-of-large-numbers)
@@ -40,26 +33,18 @@
 - [Appendices](#appendices)
 - [Contributors](#contributors) 
 
-
-
 ## Introduction 
-
-### Aim 
 
 This research aims to provide answers to questions posed about the workings of the Tari Digital Assets Network (DAN) 
 environment: probabilistic attack vector with regard to the total nodes, compromised nodes, committee size and 
 Byzantine Fault-tolerance (BFT) threshold. 
-
-#### Question 
 
 This investigation attempts to answer the following question:
 
 *What is the percentage chance of controlling the majority of nodes in a random sample with varying quantities of the total 
 number of nodes, committee size, bad nodes and BFT threshold?*
 
-## Literature Review 
-
-### Tari Digital Assets Network 
+## Tari Digital Assets Network
 
 The Tari Digital Assets Network (DAN) forms part of the Tari second layer, where the management of all digital 
 asset interactions takes place. 
@@ -74,12 +59,12 @@ An Asset Issuer <sup>[def][pdf~]</sup> (AI) would then issue DAs and draw up a c
 the committee of VNs for a particular DA. The AI will also have the ability to nominate a trusted node to 
 form part of the VN committee for the DA [[1]].
 
-#### Kademlia
+### Kademlia
 
 Kademlia was designed by Petar Maymounkov and David Mazières in 2002 [[2]]. It is a distributed hash table, used for 
 decentralized, peer-to-peer computer networks. 
 
-#### Node ID
+### Node ID
 
 A node selects an $n$-bit ID, given to nodes on the network. Node IDs have uniformly distributed numbers. 
 A node's position is determined by a unique prefix of its ID, which forms a tree structure, with node IDs as leaves. 
@@ -87,7 +72,7 @@ A node's position is determined by a unique prefix of its ID, which forms a tree
 The bit length of the node ID should be sufficiently large to make collisions unlikely when using a uniformly 
 distributed random number generator [[3]].
 
-##### Bootstrapping a Node 
+#### Bootstrapping a Node 
 
 A bootstrap node is a node listed on a predetermined list, and serves as the first point of contact for a new node. The node bootstrapping process is as follows:
 
@@ -107,51 +92,13 @@ This
 - it populates other nodes' 
   routing tables with the node's ID [[3]].
 
-##### XOR Metric
+#### XOR Metric
 
 The Kademlia paper, published in 2002 [[2]], contained the novel idea of using the XOR operator to determine the 
 distance and therefore the arrangement of peers within the network. 
 
 Through the XOR metric, a distance is captured. The lookup procedure allows nodes to locate other nodes, 
 given a node ID [[3]].
-
-
-
-#### Distribution
-
-##### Use of Binomial Distribution  
-
-With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
-are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
-$$
-P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
-$$
-
-##### Use of Hypergeometric Distribution
-
-With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
-i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This closely mimics the events that would take place within the network. 
-$$
-P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
-$$
-
-##### Summation 
-
-Refering to *Example $3$*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
-
-As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
-
-$$
-P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
-$$
-
-In order to understand this, the table below provides some visual insight. 
-
-| &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;No of Steps&nbsp;&nbsp; |
-| :------------------------------------: | :-----------------------------------: | :---------------------------------: |
-|                   10                   |                   7                   |                  3                  |
-
-
 
 ## Implementation
 
@@ -210,28 +157,28 @@ Hypergeometric distribution is where there is no replacement, i.e., nodes are dr
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
 <br />
 
-#### Uniform Distribution
+##### Uniform Distribution
 
 | Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
 | ----------------------- | -------------------- | -------------------------------------- | ---------------------------------- |
 | Intercept               | 0.6497887492507493   | 0.649474335188621                      | 3.14414E-4                         |
 | Standard Deviation      | 0.015438728229013219 |                                        |                                    |
 
-#### Hypergeometric Distribution
+##### Hypergeometric Distribution
 
 | Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | -------------------- | -------------------------------------- | --------------------------------- |
 | Intercept               | 0.6495665834165834   | 0.649474335188621                      | 9.22482E-5                        |
 | Standard Deviation      | 0.014812123075035204 |                                        |                                   |
 
-#### Poisson Distribution
+##### Poisson Distribution
 
 | Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | -------------------- | -------------------------------------- | --------------------------------- |
 | Intercept               | 0.6501259280719281   | 0.649474335188621                      | 6.51592E-4                        |
 | Standard Deviation      | 0.015233575444419514 |                                        |                                   |
 
-#### Normal Distribution
+##### Normal Distribution
 
 | Statistical Information |                     | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
 | ----------------------- | ------------------- | -------------------------------------- | --------------------------------- |
@@ -359,19 +306,15 @@ The larger the committee size, the less dramatic changes there are in the probab
 <br />
 
 <p align="center"><img src="assets/probability_when_committee_100_20.png" width="600" /></p>
-
 <br />
 
 <p align="center"><img src="assets/probability_when_committee_100_40.png" width="600" /></p>
-
 <br />
 
 <p align="center"><img src="assets/probability_when_committee_100_60.png" width="600" /></p>
-
 <br />
 
 <p align="center"><img src="assets/probability_when_committee_100_90.png" width="600" /></p>
-
 <br />
 
 The above graphs were calculated from [bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_10_10.xlsx.zip) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). These graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
@@ -379,7 +322,6 @@ The above graphs were calculated from [bad node variation where n is 100](https:
 <br />
 
 <p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="700" /></p>
-
 <br />
 
 The above graph was calculated from [bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). The graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between $50$ and $80$.  When the committee size is $100$, the probability remains lower as the bad node percentage increases and has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability begins to increase at a lower percentage of bad nodes. 
