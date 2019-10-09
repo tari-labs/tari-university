@@ -28,5 +28,5 @@ Network models of the Tari ecosystem and analysis of such need to be developed t
 Date accessed: 2019&#8209;10&#8209;09.
 2019&#8209;10&#8209;09.
 
-[3]: https://en.wikipedia.org/wiki/Social_network_analysis	"Network Analysis"
+[2]: https://en.wikipedia.org/wiki/Social_network_analysis "Social Network Analysis"
 
