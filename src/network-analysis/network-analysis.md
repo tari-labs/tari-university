@@ -17,7 +17,6 @@ the network) and the *ties*, *edges*, or *links* (relationships or interactions)
 
 ## References
 
-[[1]] N, Papadis: "Stochastic Models and Wide-Area Network Measurements for Blockchain Design and Analysis" [online]. Available: <file:///Users/kevoulee/Downloads/PapadisBorstWalidGrissaTassiulasStochasticModelsandWide-AreaNetworkMeasurementsforBlockchainDesignandAnalysis2018%20(1).pdf>. Date accessed: 
 2019&#8209;10&#8209;09.
 [1]: file:///Users/kevoulee/Downloads/PapadisBorstWalidGrissaTassiulasStochasticModelsandWide-AreaNetworkMeasurementsforBlockchainDesignandAnalysis2018%20(1).pdf	"Stochastic Models"
 
