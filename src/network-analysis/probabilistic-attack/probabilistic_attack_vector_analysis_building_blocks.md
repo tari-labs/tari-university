@@ -36,15 +36,15 @@
 # Probabilistic Attack Vector Analysis Building Blocks
 
 - [Introduction](#introduction)
-  - [Types of Distribution](#types-of-distribution)
-    - [Continuous Distribution](#continuous-distribution)
-    - [Discrete Distribution](#discrete-distribution)
-      - [Hypergeometric Distribution](#hypergeometric-distribution)
-      - [Binomial Distribution](#binomial-distribution)
-  - [Monte Carlo Simulations](#monte-carlo-simulations)
-    - [Monte Carlo Fallacy](#monte-carlo-fallacy) 
-    - [Crude Monte Carlo](#crude-monte-carlo)
-    - [Law of Large Numbers](#law-of-large-numbers)
+- [Types of Distribution](#types-of-distribution) 
+  - [Continuous Distribution](#continuous-distribution)
+  - [Discrete Distribution](#discrete-distribution)
+    - [Hypergeometric Distribution](#hypergeometric-distribution)
+    - [Binomial Distribution](#binomial-distribution)
+- [Monte Carlo Simulations](#monte-carlo-simulations) 
+  - [Monte Carlo Fallacy](#monte-carlo-fallacy) 
+  - [Crude Monte Carlo](#crude-monte-carlo)
+  - [Law of Large Numbers](#law-of-large-numbers)
 - [Methodology](#methodology)
    - [Notation Used](#notation-used)
    - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation)
@@ -53,6 +53,9 @@
      - [Computing Statistics](#computing-statistics)
    - [Statistical Calculation](#statistical-calculation)
      - [Formulae](#formulae)
+       - [Binomial Distribution Formula](#binomial-distribution-formula)
+       - [Hypergeometric Distribution Formula](#hypergeometric-distribution-formula)
+       - [Summation Formula](#summation-formula) 
 - [References](#references)
 - [Appendices](#appendices)
    - [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
@@ -60,7 +63,9 @@
 
 ## Introduction
 
-### Types of Distribution 
+The paper serves as building blocks to aid in the answering of questions regarding the Tari Network. In order to perform analysis and draw accurate conclusions, a set of skills and programmes need to be built and honed. Among these, is an understanding of statistics. This report focuses on types of distribution and the deriving of their formulae and touches on the simulations, specifically the Monte Carlo Simulation. 
+
+## Types of Distribution 
 
 There are 6 high-level types of distributions. These include discrete, continuous , mixed discrete/continuous, joint, non-numeric and miscellaneous. 
 
@@ -68,7 +73,7 @@ When considering solving the probability of an attacker controlling the majority
 types of probability distributions of the specific circumstances and variables of the 
 problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. 
 
-#### Continuous Distribution 
+### Continuous Distribution 
 
 A continuous random variable is a random variable with an infinite and uncountable set and range of possible values [[11]].
 
@@ -80,7 +85,7 @@ a continuous random variable equals some value is always zero [[11]].
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
 <br />
 
-#### Discrete Distribution 
+### Discrete Distribution 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
 variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
@@ -117,7 +122,7 @@ A discrete distribution with infinite support can have an infinite number of pos
 | Zipf's Law                             | A discrete power-law distribution, the most famous example of which is the description of the frequency of words in the English language. |
 | Zipf-Mandelbrot Law                    | A discrete power-law distribution, which is a generalization of the Zipf distribution. |
 
-##### Hypergeometric Distribution
+#### Hypergeometric Distribution
 
 A hypergeometric distribution is a discrete probability distribution that describes the probability of $T$ successes (random 
 draws for which the object drawn has a specified feature) in $n$ draws, *without* replacement, from a finite population 
@@ -139,7 +144,7 @@ The hypergeometric distribution has the following properties:
 - The mean of the distribution is equal to $n\cdot\frac{T}{N}$
 - The variance is $ n\cdot T \cdot(N-T)\cdot\frac{N-n}{N^2\cdot(N-1)}$
 
-##### Binomial Distribution
+#### Binomial Distribution
 
 The binomial distribution with parameters $n$ and $p$ is the discrete probability distribution of the number of 
 successes in a sequence of $n$ independent experiments, each asking a Yes/No question, and each with its own 
@@ -159,7 +164,7 @@ probability of success be constant on every trial.
 **Example 2:** You have an urn containing $10$ marbles - $5$ red and $5$ green. You randomly select $2$ marbles with replacement, and the 
 probability of success would not change. It would be $\frac{5}{10}$ on every trial [[10]]. 
 
-### Monte Carlo Simulations 
+## Monte Carlo Simulations 
 
 The Monte Carlo approach is a computer-based analytical method that was developed in the 1940s as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to 
 model the random diffusion of neutrons. It was named after the city in Monaco and its many casinos. 
@@ -172,7 +177,7 @@ optimization and numerical integration problems. These algorithms work by clever
 simulate the workings of a system. Applications range from solving problems in theoretical physics to predicting trends 
 in financial investments [[6]]. 
 
-#### Monte Carlo Fallacy 
+### Monte Carlo Fallacy 
 
 The Monte Carlo Fallacy or gambler's fallacy is the inaccurate belief that if something happens more frequently than 
 normal during a given period, it will happen less often in the future. In situations where the outcome being observed is 
@@ -193,7 +198,7 @@ four tosses, the results are no longer unknown, so the probability at that point
 it is more likely that a fifth toss is more likely to be tails because the previous four tosses were heads, with a run 
 of luck in the past influencing the odds in the future, forms the basis of the fallacy [[13]].
 
-#### Crude Monte Carlo
+### Crude Monte Carlo
 
 The Monte Carlo technique is built upon this principle: instead of evaluating an indefinite integral, which can 
 sometimes be impossible, the average of the integrand is estimated, and that is used to approximate the integral. If one 
@@ -203,7 +208,7 @@ It is a widely used heuristic technique that can solve a variety of common probl
 integration problems. These algorithms work by cleverly sampling from a distribution to simulate the workings of a system.  
 Applications range from solving problems in theoretical physics to predicting trends in financial investments. 
 
-#### Law of Large Numbers 
+### Law of Large Numbers 
 
 The Law of Large Numbers (LLN), in probability and statistics, states that as a sample size grows, its mean gets closer 
 to the average of the whole population. In statistical analysis, the LLN can be applied to a variety of 
@@ -219,8 +224,9 @@ The LLN is crucial because it guarantees stable, long-term results for the avera
 
 The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar [[9]].
 
-## Methodology 
-### Notation Used  
+# Methodology 
+
+##Notation Used  
 
 
 This section gives the general notation of statistical expressions when specifically referenced. This information 
@@ -235,9 +241,9 @@ There is a pool with *N* nodes. The pool contains *m* malicious nodes or bad act
 selection of nodes, *n* is drawn. From this selection, the probability of drawing a threshold of bad actors, *T*, needs to 
 be calculated.  
 
-### Crude Monte Carlo Simulation
+## Crude Monte Carlo Simulation
 
-#### Programming the Simulation
+### Programming the Simulation
 
 It was initially thought that selecting a committee ($n$) from the total nodes ($N$) without replacing the selected nodes 
 requires the removal of an element from the pool of total nodes when it is drawn. However, as the program is 
@@ -247,7 +253,7 @@ The experiment is extended to ask the overarching question: *"What is the probab
 *bad nodes or more from a pool of total nodes?"* To this end, we perform a variable number of experiments and 
 count how many times the threshold is met, in order to estimate the probability. 
 
-#### Use of Random Numbers  
+### Use of Random Numbers  
 
 Some problems in science and technology are described by "exact" mathematics, leading to "precise" results, e.g. 
 throwing a ball and oscillating a system. Some problems appear physically uncertain, e.g. rolling a die and molecular motion. 
@@ -255,7 +261,7 @@ Random numbers can be used to mimic the uncertainty of the experiment.
 
 Random numbers make it possible to simulate physical systems with uncertainty, in input data or the process. 
 
-#### Computing Statistics 
+### Computing Statistics 
 
 The mean, median and mode are the arithmetic average of a data set. This is found by adding the enumbers in a data set and dividing by how many numbers there are. 
 
@@ -298,10 +304,9 @@ $x$ represents scores
 
 $N$ Represents number of scores 
 
-### Statistical Calculation
+## Statistical Calculation
 
-#### Formulae
-
+### Formulae
 
 As a means to derive the formulae, a single probability from the overarching question was used, as shown in the following example. 
 
@@ -333,6 +338,39 @@ This method is limited in calculating the probability where the variables are la
 but one had to calculate the probability of selecting a majority of bad nodes from a total of $100$ nodes, with a 
 committee size of $60$, $60$ bad nodes and $40$ good nodes, the number of combinations where bad and good nodes can be 
 chosen is $1.27E+28$.
+
+#### Binomial Distribution Formula 
+
+With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
+are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
+$$
+P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
+$$
+
+#### Hypergeometric Distribution Formula
+
+With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
+i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This closely mimics the events that would take place within the network. 
+$$
+P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
+$$
+
+#### Summation Formula
+
+Refering to *Example $3$*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
+
+As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
+
+$$
+P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
+$$
+
+In order to understand this, the table below provides some visual insight. 
+
+| &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;No of Steps&nbsp;&nbsp; |
+| :------------------------------------: | :-----------------------------------: | :---------------------------------: |
+|                   10                   |                   7                   |                  3                  |
+
 
 ## References
 
