@@ -26,7 +26,6 @@ Network models of the Tari ecosystem and analysis of such need to be developed t
 
 [[2]] Wikipedia: "Social Network Analysis" [online]. Available: <https://en.wikipedia.org/wiki/Social_network_analysis>. 
 Date accessed: 2019&#8209;10&#8209;09.
-2019&#8209;10&#8209;09.
 
 [2]: https://en.wikipedia.org/wiki/Social_network_analysis "Social Network Analysis"
 
