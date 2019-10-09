@@ -21,7 +21,6 @@ Network models of the Tari ecosystem and analysis of such need to be developed t
 [1]: file:///Users/kevoulee/Downloads/PapadisBorstWalidGrissaTassiulasStochasticModelsandWide-AreaNetworkMeasurementsforBlockchainDesignandAnalysis2018%20(1).pdf	"Stochastic Models"
 
 [[2]] Lexico: "Network Analysis" [online]. Available: <https://www.lexico.com/en/definition/network_analysis>. Date accessed: 
-2019&#8209;10&#8209;09.
 
 [2]: https://www.lexico.com/en/definition/network_analysis	"Network Analysis"
 
