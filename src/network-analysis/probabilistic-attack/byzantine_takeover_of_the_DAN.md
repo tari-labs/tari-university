@@ -18,7 +18,7 @@
     - [Bootstrapping a Node](#bootstrapping-a-node)
     - [XOR Metric](#xor-metric)
 - [Implementation](#implementation)
-  - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation-1)
+  - [Crude Monte Carlo Simulation](#crude-monte-carlo-simulation)
     - [Proving the Law of Large Numbers](#proving-the-law-of-large-numbers)
     - [Individual Probabilities](#individual-probabilities)
     - [Histogram and Visualization of Distribution](#histogram-and-visualization-of-distribution)
@@ -31,6 +31,7 @@
 - [Conclusions and Remarks](#conclusions-and-remarks)
 - [References](#references)
 - [Appendices](#appendices)
+  -  [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
 - [Contributors](#contributors) 
 
 ## Introduction 
@@ -40,7 +41,6 @@ environment: probabilistic attack vector with regard to the total nodes, comprom
 Byzantine Fault-tolerance (BFT) threshold. 
 
 This investigation attempts to answer the following question:
-
 *What is the percentage chance of controlling the majority of nodes in a random sample with varying quantities of the total 
 number of nodes, committee size, bad nodes and BFT threshold?*
 
@@ -102,7 +102,7 @@ given a node ID [[3]].
 
 ## Implementation
 
-The following calculations were written to the [Tari Labs Modelling Repository]((https://github.com/tari-labs/modelling)). 
+The following calculations were done using the [Tari Labs Modelling Repository]((https://github.com/tari-labs/modelling)). 
 
 ### Crude Monte Carlo Simulation
 
@@ -122,10 +122,9 @@ How many experiments? 10
 Do you know the theoretical mean? Y|N: Y
 What is the theoretical mean? 0.649474335188621
 ```
-<br />
+
 
 <p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
-<br />
 
 Below is the input data inserted into the python programme, where the number of draws within an experiment is $1,000$, and the number of experiments is $1,000$ :
 
@@ -153,10 +152,7 @@ From a comparison of the mean probability of each distribution with the theoreti
 
 Hypergeometric distribution is where there is no replacement, i.e., nodes are drawn simultaneously, distinguished and not returned to the total nodes pool. 
 
-<br />
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
-<br />
-
 ##### Uniform Distribution
 
 | Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
@@ -189,10 +185,7 @@ Hypergeometric distribution is where there is no replacement, i.e., nodes are dr
 
 The histogram of randomness highlights the distribution of good and bad nodes selected in each experiment, highlighting the random nature of the experiment. 
 
-<br />
 <p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
-<br />
-
 | Statistical Information |                   |
 | ----------------------- | ----------------- |
 | Mean                    | 120,000.0         |
@@ -201,6 +194,11 @@ The histogram of randomness highlights the distribution of good and bad nodes se
 | Standard Deviation      | 346.4313595341606 |
 
 ### Statistical Calculation
+
+Literature about [BFT threshold](../../consensus-mechanisms/BFT-consensus-mechanisms-applications/MainReport.md) advises 
+the number of good nodes to be at least $\frac{2}{3} \cdot n+1$, where $n$ is the number of nodes. In the calculations 
+that follow, BFT threshold of for example $67$% of N, is implemented with rounding up to ensure that at least that 
+fraction is obtained. I this sense $67$% of N simulates $\frac{2}{3} \cdot n+1$.
 
 #### Variation of Total Nodes
 
@@ -231,11 +229,8 @@ The above graph was calculated from [variations of N](https://github.com/tari-la
 |                 100                 |                60                 |                   14                   |                  10                   | 0.2623321970180976                             |
 |                 100                 |                60                 |                   15                   |                  10                   | 0.39288184738975973                            |
 
-<br />
 
 <p align="center"><img src="assets/variation_of_total_nodes .png" width="700" /></p>
-<br />
-
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that the probability is lower with respect to the committee size when $N$ is smaller. 
 
 #### Variation of Byzantine Fault-Tolerance Threshold
@@ -247,17 +242,13 @@ From a plot of committee size versus probability with a change in $N$, the total
   - T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
   - n (committee size) = ranging from $1$ to $100$ 
 
-<br />
-
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
-<br />
-
 The above graph was calculated from [variations of BFT](https://github.com/tari-labs/modelling/blob/master/scenarios/T_variations.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From a plot of committee size versus probability where the number of nodes remains at $100$ with a change in $T$, the BFT 
 threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT threshold is $50$% and $55$% the probability is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
 
 When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
 
-When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. This confirms the BFT threshold of $67$% as per literature. 
+When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. This confirms the BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 
 #### Variation of Total Number of Nodes with Committee Size 10
 
@@ -268,10 +259,7 @@ When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$
 - T (BFT threshold) = $67$% of N
 - n (committee size) = $10$
 
-<br />
-<p align="center"><img src="assets/committee_size_10.png" width="700" /></p>
-<br />
-
+<p align="center"><img src="assets/committee_size_10.png" width="900" /></p>
 The above graph was calculated from [variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). For the graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, the 
 probability dramatically increases when the total nodes is three times more than the committee size and onwards. The probability plateaus at $0.35$. 
 
@@ -284,11 +272,7 @@ probability dramatically increases when the total nodes is three times more than
 - T (BFT threshold) = $67$% of N
 - n (committee size) = $100$
 
-<br />
-
-<p align="center"><img src="assets/committee_size_100.png" width="700" /></p>
-<br />
-
+<p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
 The above graph was calculated from [variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
 up to a network size of $700$, albeit, not as steep as the change when the committee size is $10$.  The probability plateaus at $0.08$.
 
@@ -303,27 +287,13 @@ The larger the committee size, the less dramatic changes there are in the probab
 - T (BFT threshold) = $67$% of N
 - n (committee size) = $10$ and $100$
 
-<br />
-
-<p align="center"><img src="assets/probability_when_committee_100_20.png" width="600" /></p>
-<br />
-
-<p align="center"><img src="assets/probability_when_committee_100_40.png" width="600" /></p>
-<br />
-
-<p align="center"><img src="assets/probability_when_committee_100_60.png" width="600" /></p>
-<br />
-
-<p align="center"><img src="assets/probability_when_committee_100_90.png" width="600" /></p>
-<br />
-
+<p align="center"><img src="assets/probability_when_committee_100_20.png" width="900" /></p>
+<p align="center"><img src="assets/probability_when_committee_100_40.png" width="900" /></p>
+<p align="center"><img src="assets/probability_when_committee_100_60.png" width="900" /></p>
+<p align="center"><img src="assets/probability_when_committee_100_90.png" width="900" /></p>
 The above graphs were calculated from [bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_10_10.xlsx.zip) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). These graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
 
-<br />
-
-<p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="700" /></p>
-<br />
-
+<p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="850" /></p>
 The above graph was calculated from [bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). The graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between $50$ and $80$.  When the committee size is $100$, the probability remains lower as the bad node percentage increases and has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability begins to increase at a lower percentage of bad nodes. 
 
 ## Conclusions and Remarks 
@@ -333,7 +303,7 @@ With regards to the Crude Monte Carlo Simulation, at this building block stage, 
 With regards to the statisical calculation, comments can be made for each of the varied parameters. 
 
 - Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability of bad actors controlling the network; however, the probability difference is near negligible if the committee size is large. Also, this parameter will be difficult to control, and the network will be ever-increasing. This can be seen from the graph in [Variations of Total Nodes](#variation-of-total-nodes). 
-- BFT threshold: this threshold should be higher than $67$% as per literature. This can be seen from the graph in [Variation of Byzantine Fault-Tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
+- BFT threshold: this threshold should be at least  $\frac{2}{3} \cdot n+1$ as per literature. This can be seen from the graph in [Variation of Byzantine Fault-Tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
 - Committee size: the larger the committee size, the lower the probability bad actors controlling the network. This can be seen from the graph in [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10) and [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100).
 - Bad nodes: while this variable cannot be controlled, the probability of bad actors controlling the network can remain low as the percentage of bad nodes increase if the committee size approx $100$ or larger. This can be seen from the graphs in [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
 
@@ -367,14 +337,14 @@ Date accessed: 2019&#8209;07&#8209;18.
 
 Definitions of terms presented here are high level and general in nature. 
 
-- **Asset Issuer (AI):**<a name="pdf"> </a> An entity that creates digital assets on the Tari DAN. The Asset Issuer will specify the parameters of the contract template that defines the rules that govern the asset and the number and nature of its constituent tokens on issuance. The Asset Issuer will, generally, be the initial owner of the tokens. [[1]]
+- **Asset Issuer (AI):**<a name="ai"> </a> An entity that creates digital assets on the Tari DAN. The Asset Issuer will specify the parameters of the contract template that defines the rules that govern the asset and the number and nature of its constituent tokens on issuance. The Asset Issuer will, generally, be the initial owner of the tokens. [[1]]
 
 [ai~]: #ai
 
 " An entity that creates
 digital assets..." 
 
-- **Validator Node (VN):**<a name="pdf"> </a>Validator nodes make up the Tari second layer, or Digital Asset Network. VNs are responsible for creating and updating digital asset living on the Tari network. [[1]]
+- **Validator Node (VN):**<a name="vn"> </a>Validator nodes make up the Tari second layer, or Digital Asset Network. VNs are responsible for creating and updating digital asset living on the Tari network. [[1]]
 
 [vn~]: #vn
 

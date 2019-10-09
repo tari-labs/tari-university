@@ -62,7 +62,7 @@
 
 ## Introduction
 
-The paper serves as building blocks to aid in the answering of questions regarding the Tari Network. In order to perform analysis and draw accurate conclusions, a set of skills and programmes need to be built and honed. Among these, is an understanding of statistics. This report focuses on types of distribution and the deriving of their formulae and touches on the simulations, specifically the Monte Carlo Simulation. 
+The paper discusses building blocks to aid in answering of questions regarding the Tari Network. In order to perform analysis and draw accurate conclusions, a set of skills and programs need to be built and honed. Among these, is an understanding of statistics. This report focuses on types of distribution and the deriving of their formulae and touches on the simulations, specifically the Monte Carlo Simulation. 
 
 ## Types of Distribution 
 
@@ -80,10 +80,7 @@ Probabilities of continuous random variables (*X*) are defined as the area under
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
 a continuous random variable equals some value is always zero [[11]].
 
-<br />
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
-<br />
-
 ### Discrete Distribution 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
 variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
@@ -91,11 +88,8 @@ variable is a random variable that has countable values, such as a list of non-n
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
-<br />
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
-<br />
-
-A discrete distribution with finite support can onluy have a finite number of possible realizations. Examples of discrete distribution with **finite** support include the following: 
+Examples of discrete distribution with **finite** support <sup>[def][discrete_distribution_finite~]</sup>  include the following: 
 
 | Type of Finite Discrete Distribution | Description   [[1]]                                          |
 | ------------------------------------ | ------------------------------------------------------------ |
@@ -108,13 +102,13 @@ A discrete distribution with finite support can onluy have a finite number of po
 | Hypergeometric Distribution          | The number of successes in the first $m$ of a series of $n$ consecutive Yes/No experiments, if the total number of successes is known. This distribution arises where there is no replacement. |
 | Poisson Binomial  Distribution       | The number of successes in a series of independent Yes/No experiments with different success probabilities. |
 
-A discrete distribution with infinite support can have an infinite number of possible realizations. Examples of discrete distribution with **infinite** support include the following: 
+Examples of discrete distribution with **infinite** support <sup>[def][discrete_distribution_infinite~]</sup>  include the following: 
 
 | Type of Infinite Discrete Distribution | Description [[1]]                                            |
 | -------------------------------------- | ------------------------------------------------------------ |
 | Boltzmann Distribution                 | A discrete distribution important in statistical physics, which describes the probabilities of the various discrete energy levels of a system in thermal equilibrium. It has a continuous analog. |
 | Geometric Distribution                 | A discrete distribution that describes the number of attempts needed to get the first success in a series of independent Bernoulli trials or, alternatively, only the number of losses before the first success (i.e. one less). |
-| Negative Binomial/Pascal Distribution  | A generalization of the geometric distribution of the $nth$ success.             |```
+| Negative Binomial/Pascal Distribution  | A generalization of the geometric distribution of the $nth$ success.             |
 | Poisson Distribution                   | A very large number of individually unlikely events that happen at a specific time interval. Related to this distribution are several other distributions: the displaced Poisson, the hyper-Poisson, the general Poisson binomial and the Poisson-type distributions. |
 | Skellam Distribution                   | The distribution of the difference between two independent Poisson-distributed random variables. |
 | Zeta Distribution                      | Has uses in applied statistics and statistical mechanics, and perhaps may be of interest to number theorists. It is the Zipf distribution for an infinite number of elements. |
@@ -217,15 +211,12 @@ accurate measure of the mean [[7]].
 
 The LLN is crucial because it guarantees stable, long-term results for the averages of some random event [[8]]. 
 
-<br />
 <p align="center"><img src="assets/law_of_large_numbers.png" width="650" /></p>
-<br />
-
 The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar [[9]].
 
 # Methodology 
 
-##Notation Used  
+## Notation Used  
 
 
 This section gives the general notation of statistical expressions when specifically referenced. This information 
@@ -268,13 +259,8 @@ The mode is the value that occurs with most often in a data set.
 
 The median is the middle number in a data set with the numbers are listed in either ascending or descending order.
 
-<br />
 
 <p align="center"><img src="assets/mode_median_mean.png" width="170" /></p>
-<br />
-
-To describe a set of random numbers $xi$, we are often interested in two things:
-
 - **Mode value**
 
 The mode is the most frequently occuring score or value. 
@@ -464,6 +450,15 @@ for a continuous random variable instead of a discrete random variable ([[11]], 
 " A statistical expression that 
 defines a..." 
 
+- **Discrete Distribution with finite support:**<a name="discrete distribution"> </a> A discrete distribution with finite support can have an finite number of possible realizations.
+
+[discrete_distribution_finite~]: #discrete_distribution_finite
+"A discrete distribution with finite... " 
+
+- **Discrete Distribution with infinite support:**<a name="discrete distribution"> </a> A discrete distribution with infinite support can have an infinite number of possible realizations.
+
+[discrete_distribution_infinite~]: #discrete_distribution_infinite
+"A discrete distribution with infinite... " 
 
 ## Contributors
 
