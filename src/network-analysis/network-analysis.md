@@ -22,7 +22,7 @@ Network models of the Tari ecosystem and analysis of such need to be developed t
 
 [[2]] Lexico: "Network Analysis" [online]. Available: <https://www.lexico.com/en/definition/network_analysis>. Date accessed: 
 
-[2]: https://www.lexico.com/en/definition/network_analysis	"Network Analysis"
+[1]: https://www.lexico.com/en/definition/network_analysis "Network Analysis"
 
 [[2]] Wikipedia: "Social Network Analysis" [online]. Available: <https://en.wikipedia.org/wiki/Social_network_analysis>. 
 Date accessed: 2019&#8209;10&#8209;09.
