@@ -52,10 +52,9 @@
      - [Use of Random Numbers](#use-of-random-numbers)
      - [Computing Statistics](#computing-statistics)
    - [Statistical Calculation](#statistical-calculation)
-     - [Formulae](#formulae)
-       - [Binomial Distribution Formula](#binomial-distribution-formula)
-       - [Hypergeometric Distribution Formula](#hypergeometric-distribution-formula)
-       - [Summation Formula](#summation-formula) 
+     - [Binomial Distribution Formula](#binomial-distribution-formula)
+     - [Hypergeometric Distribution Formula](#hypergeometric-distribution-formula)
+     - [Summation Formula](#summation-formula) 
 - [References](#references)
 - [Appendices](#appendices)
    - [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
@@ -306,8 +305,6 @@ $N$ Represents number of scores
 
 ## Statistical Calculation
 
-### Formulae
-
 As a means to derive the formulae, a single probability from the overarching question was used, as shown in the following example. 
 
 **Example 3**: What is the probability of selecting a majority of bad nodes from a total of $5$ nodes if the committee size is $3$? There 
@@ -339,7 +336,7 @@ but one had to calculate the probability of selecting a majority of bad nodes fr
 committee size of $60$, $60$ bad nodes and $40$ good nodes, the number of combinations where bad and good nodes can be 
 chosen is $1.27E+28$.
 
-#### Binomial Distribution Formula 
+### Binomial Distribution Formula 
 
 With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
 are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
@@ -347,7 +344,7 @@ $$
 P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
 $$
 
-#### Hypergeometric Distribution Formula
+### Hypergeometric Distribution Formula
 
 With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
 i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This closely mimics the events that would take place within the network. 
@@ -355,7 +352,7 @@ $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
 
-#### Summation Formula
+### Summation Formula
 
 Refering to *Example $3$*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
 
