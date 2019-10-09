@@ -10,7 +10,7 @@ and analysis of such need to be developed to capture the evolution and dynamics.
 
 ## Definitions
 
-- From **Lexico**: The mathematical analysis of complex working procedures in terms of a network of related activities. [[2]]
+- From **Lexico**: The mathematical analysis of complex working procedures in terms of a network of related activities [[1]].
 - From **Wikipedia**:  Network Analysis is the process of investigating social structures through the use of networks and graph theory. It characterizes networked structures in terms of *nodes* (individual actors, people, or things within the network) and the *ties*, *edges*, or *links* (relationships or interactions) that connect them.[[3]]
 
 ## References
