@@ -18,7 +18,6 @@ and analysis of such need to be developed to capture the evolution and dynamics.
 
 [[1]] N, Papadis: "Stochastic Models and Wide-Area Network Measurements for Blockchain Design and Analysis" [online]. Available: <file:///Users/kevoulee/Downloads/PapadisBorstWalidGrissaTassiulasStochasticModelsandWide-AreaNetworkMeasurementsforBlockchainDesignandAnalysis2018%20(1).pdf>. Date accessed: 
 2019&#8209;10&#8209;09.
-
 [1]: file:///Users/kevoulee/Downloads/PapadisBorstWalidGrissaTassiulasStochasticModelsandWide-AreaNetworkMeasurementsforBlockchainDesignandAnalysis2018%20(1).pdf	"Stochastic Models"
 
 [[2]] Lexico: "Network Analysis" [online]. Available: <https://www.lexico.com/en/definition/network_analysis>. Date accessed: 
