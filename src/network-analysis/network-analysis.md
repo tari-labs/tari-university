@@ -4,20 +4,29 @@
 
 ## Purpose
 
-Asking questions and looking for answers about the simulated performance of the tari eco system. Mainly using Python.
+As networks evolve with large numbers of geographically distributed nodes, processing delays and data transfers etc. may arise as issues, potentially creating an environment for adversarial attacks. 
 
-As Blockchain networks evolve to industrical deployments with lareg numbers of geographically deployments with large numbers of 
+Network models of the Tari ecosystem and analysis of such need to be developed to capture the evolution and dynamics. [[1]]
 
 ## Definitions
 
-- 
+- From **Lexico**: The mathematical analysis of complex working procedures in terms of a network of related activities. [[2]]
+- From **Wikipedia**:  Network Analysis is the process of investigating social structures through the use of networks and graph theory. It characterizes networked structures in terms of *nodes* (individual actors, people, or things within the network) and the *ties*, *edges*, or *links* (relationships or interactions) that connect them.[[3]]
 
 ## References
 
-[[1]] "" [online]. .
-Available: <>. Date accessed: 2019&#8209;06&#8209;10.
+[[1]] N, Papadis: "Stochastic Models and Wide-Area Network Measurements for Blockchain Design and Analysis" [online]. Available: <file:///Users/kevoulee/Downloads/PapadisBorstWalidGrissaTassiulasStochasticModelsandWide-AreaNetworkMeasurementsforBlockchainDesignandAnalysis2018%20(1).pdf>. Date accessed: 
+2019&#8209;10&#8209;09.
 
-[1]: https://www.
+[1]: file:///Users/kevoulee/Downloads/PapadisBorstWalidGrissaTassiulasStochasticModelsandWide-AreaNetworkMeasurementsforBlockchainDesignandAnalysis2018%20(1).pdf	"Stochastic Models"
 
-""
+[[2]] Lexico: "Network Analysis" [online]. Available: <https://www.lexico.com/en/definition/network_analysis>. Date accessed: 
+2019&#8209;10&#8209;09.
+
+[2]: https://www.lexico.com/en/definition/network_analysis	"Network Analysis"
+
+[[3]] Wikipedia: "Social Network Analysis" [online]. Available: <https://en.wikipedia.org/wiki/Social_network_analysis>. Date accessed: 
+2019&#8209;10&#8209;09.
+
+[3]: https://en.wikipedia.org/wiki/Social_network_analysis	"Network Analysis"
 
