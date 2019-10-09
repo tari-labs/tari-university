@@ -64,13 +64,13 @@ number of nodes, committee size, bad nodes and BFT threshold?*
 The Tari Digital Assets Network (DAN) forms part of the Tari second layer, where the management of all digital 
 asset interactions takes place. 
 
-These interactions are processed and validated by committees of special nodes, called Validator Nodes (VNs). Management 
+These interactions are processed and validated by committees of special nodes, called Validator Nodes <sup>[def][pdf~]</sup> (VNs). Management 
 of Digital Assets (DAs) involves state changes and ensures enforcement of the rules that govern assets contracts. 
 Thus, all actions on this network are due to the interactions of the VNs. 
 The registration of VNs occurs on the base layer. To prevent Sybil attacks, they commit collateral. If 
 proved that the VN engaged in malicious behavior, the VN will lose its collateral. 
 
-An Asset Issuer (AI) would then issue DAs and draw up a contract. The AI will dictate the size of 
+An Asset Issuer <sup>[def][pdf~]</sup> (AI) would then issue DAs and draw up a contract. The AI will dictate the size of 
 the committee of VNs for a particular DA. The AI will also have the ability to nominate a trusted node to 
 form part of the VN committee for the DA [[1]].
 
@@ -374,9 +374,10 @@ The larger the committee size, the less dramatic changes there are in the probab
 
 <br />
 
-The above graphs were calculated from [bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_100.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). These graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
+The above graphs were calculated from [bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_10_10.xlsx.zip) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). These graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
 
 <br />
+
 <p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="700" /></p>
 
 <br />
