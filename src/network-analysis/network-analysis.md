@@ -7,7 +7,7 @@
 As networks evolve with large numbers of geographically distributed nodes, processing delays and data transfers etc. may 
 arise as issues, potentially creating an environment for adversarial attacks. Network models of a networked ecosystem 
 
-Network models of the Tari ecosystem and analysis of such need to be developed to capture the evolution and dynamics. [[1]]
+and analysis of such need to be developed to capture the evolution and dynamics.
 
 ## Definitions
 
