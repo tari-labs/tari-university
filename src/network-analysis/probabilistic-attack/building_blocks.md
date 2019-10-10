@@ -78,7 +78,7 @@ problem need to be analyzed. There are two categories of probability distributio
 All probability distributions can be classified as discrete probability distributions or as continuous probability distributions, depending on whether they define probabilities associated with discrete variables or continuous variables” [1x]. 
 ### Continuous Distribution 
 
-A continuous random variable is a random variable with an infinite and uncountable set and range of possible values [[11]].
+If a variable can take on any value between two specified values, it is called a continuous variable, and its probability distribution is called a discrete probability distribution [1x].
 
 Probabilities of continuous random variables (*X*) are defined as the area under the curve of its Probability Density 
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
