@@ -17,7 +17,6 @@ the network) and the *ties*, *edges*, or *links* (relationships or interactions)
 
 ## References
 
-2019&#8209;10&#8209;09.
 
 [[1]] Lexico: "Network Analysis" [online]. Available: <https://www.lexico.com/en/definition/network_analysis>. 
 Date accessed: 2019&#8209;10&#8209;09.
