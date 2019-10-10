@@ -82,7 +82,7 @@ If a variable can take on any value between two specified values, it is called
 
 Probabilities of continuous random variables (*X*) are defined as the area under the curve of its Probability Density 
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
-a continuous random variable equals some value is always zero [[11]].
+a continuous random variable equals some value is always zero [[11]]. A typical plot of a continuous distribution is depicted below (although specifically for a normal distribution.)
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
 
