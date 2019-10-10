@@ -285,7 +285,7 @@ BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 
 <p align="center"><img src="assets/committee_size_10.png" width="900" /></p>
 
-The above graph was calculated using Excel  
+The above graph was calculated using Excel 
 ([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). For the 
 graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, 
 the probability dramatically increases when the total nodes is three times more than the committee size and onwards. The 
@@ -302,7 +302,7 @@ probability plateaus at $0.35$.
 
 <p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
 
-The above graph was calculated using Excel 
+The above graph was calculateds using Excel 
 ([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). 
 From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is 
 $100$ compared to $10$. There is an increase in probability up to a network size of $700$, albeit, not as steep as the 
@@ -334,7 +334,7 @@ probability plateaus is used to construct the graph below for both committee siz
 
 <p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="850" /></p>
 
-The above graph was calculated using Excel  
+The above graph was calculated using Excel 
 ([bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.xlsx)). The 
 graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When 
 the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  
@@ -347,7 +347,7 @@ begins to increase at a lower percentage of bad nodes.
 
 With regards to the Crude Monte Carlo Simulation, at this building block stage, probabilities were calculated and distributions of nodes within the network illustrated.
 
-With regards to the statisical calculation, comments can be made for each of the varied parameters. 
+With regards to the statistical calculation, comments can be made for each of the varied parameters. 
 
 - Total nodes in the network: the smaller the pool of total nodes in the network, the lower the probability of bad 
 actors controlling the network; however, the probability difference is near negligible if the committee size is large. 
