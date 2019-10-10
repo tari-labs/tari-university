@@ -92,7 +92,7 @@ variable is a random variable that has countable values, such as a list of non-n
 distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
-nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
+nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]], or a bar graph.
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
 Here's an overview of the various distributions and how they related; 
