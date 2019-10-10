@@ -62,11 +62,15 @@
 
 ## Introduction
 
-The paper discusses building blocks to aid in answering of questions regarding the Tari Network. In order to perform analysis and draw accurate conclusions, a set of skills and programs need to be built and honed. Among these, is an understanding of statistics. This report focuses on types of distribution and the deriving of their formulae and touches on the simulations, specifically the Monte Carlo Simulation. 
+The paper discusses building blocks to aid in answering of questions regarding the Tari Network. In order to perform 
+analysis and draw accurate conclusions, a set of skills and programs need to be built and honed. Among these, is an 
+understanding of statistics. This report focuses on types of distribution and the deriving of their formulae and touches 
+on the simulations, specifically the Monte Carlo Simulation. 
 
 ## Types of Distribution 
 
-There are 6 high-level types of distributions. These include discrete, continuous , mixed discrete/continuous, joint, non-numeric and miscellaneous. 
+There are 6 high-level types of distributions. These include discrete, continuous , mixed discrete/continuous, joint, 
+non-numeric and miscellaneous. 
 
 When considering solving the probability of an attacker controlling the majority of nodes in the network, the various 
 types of probability distributions of the specific circumstances and variables of the 
@@ -81,14 +85,17 @@ Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a
 a continuous random variable equals some value is always zero [[11]].
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
+
 ### Discrete Distribution 
 Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
-variable is a random variable that has countable values, such as a list of non-negative integers. A discrete distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
+variable is a random variable that has countable values, such as a list of non-negative integers. A discrete 
+distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
+
 Examples of discrete distribution with **finite** support <sup>[def][discrete_distribution_finite~]</sup>  include the following: 
 
 | Type of Finite Discrete Distribution | Description   [[1]]                                          |
@@ -97,7 +104,7 @@ Examples of discrete distribution with **finite** support <sup>[def][discrete_di
 | Rademacher Distribution              | Takes value $1$ with probability $\frac{1}{2}$ and value $-1$ with probability $\frac{1}{2}$. |
 | Binomial Distribution                | The number of successes in a series of independent Yes/No experiments, all with the same probability of success. |
 | Beta-Binomial Distribution           | The number of successes in a series of independent Yes/No experiments with heterogeneity in the success probability. |
-| Degenerate Distribution             | At $X0$, where $X$ is certain to take the value $X0$. This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
+| Degenerate Distribution              | At $X0$, where $X$ is certain to take the value $X0$. This does not look random, but it satisfies the definition of a random variable. This is useful because it puts deterministic variables and random variables in the same formalism. |
 | Discrete Uniform Distribution        | Where all elements of a finite set are equally likely. This is the theoretical distribution model for a balanced coin, an unbiased die, a casino roulette, or the first card of a well-shuffled deck. |
 | Hypergeometric Distribution          | The number of successes in the first $m$ of a series of $n$ consecutive Yes/No experiments, if the total number of successes is known. This distribution arises where there is no replacement. |
 | Poisson Binomial  Distribution       | The number of successes in a series of independent Yes/No experiments with different success probabilities. |
@@ -154,15 +161,17 @@ $n$, the binomial distribution remains a good approximation and is widely used.
 Thus, in a binomial distribution, an object is selected with replacement [[4]].  A binomial experiment requires that the 
 probability of success be constant on every trial. 
 
-**Example 2:** You have an urn containing $10$ marbles - $5$ red and $5$ green. You randomly select $2$ marbles with replacement, and the 
-probability of success would not change. It would be $\frac{5}{10}$ on every trial [[10]]. 
+**Example 2:** You have an urn containing $10$ marbles - $5$ red and $5$ green. You randomly select $2$ marbles with 
+replacement, and the probability of success would not change. It would be $\frac{5}{10}$ on every trial [[10]]. 
 
 ## Monte Carlo Simulations 
 
-The Monte Carlo approach is a computer-based analytical method that was developed in the 1940s as part of the atomic program, by a scientist at the Los Alamos National Laboratory, who used it to 
+The Monte Carlo approach is a computer-based analytical method that was developed in the 1940s as part of the atomic 
+program, by a scientist at the Los Alamos National Laboratory, who used it to 
 model the random diffusion of neutrons. It was named after the city in Monaco and its many casinos. 
 
-Monte Carlo analysis uses statistical tools to model a real-life system or process mathematically, and then estimates the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled 
+Monte Carlo analysis uses statistical tools to model a real-life system or process mathematically, and then estimates 
+the probability of obtaining a successful outcome. The statistical distribution of the process to be modeled 
 must be determined before the Monte Carlo simulation can be applied. 
 
 Monte Carlo methods are widely used heuristic techniques that can solve a variety of common problems, including 
@@ -212,7 +221,11 @@ accurate measure of the mean [[7]].
 The LLN is crucial because it guarantees stable, long-term results for the averages of some random event [[8]]. 
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="650" /></p>
-The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While different runs would show a different shape over a small number of throws (at the left), over a large number of rolls (to the right), they would be extremely similar [[9]].
+
+The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, 
+as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While 
+different runs would show a different shape over a small number of throws (at the left), over a large number of rolls 
+(to the right), they would be extremely similar [[9]].
 
 # Methodology 
 
@@ -293,8 +306,8 @@ $N$ Represents number of scores
 
 As a means to derive the formulae, a single probability from the overarching question was used, as shown in the following example. 
 
-**Example 3**: What is the probability of selecting a majority of bad nodes from a total of $5$ nodes if the committee size is $3$? There 
-are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
+**Example 3**: What is the probability of selecting a majority of bad nodes from a total of $5$ nodes if the committee 
+size is $3$? There are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
 
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
@@ -333,7 +346,8 @@ $$
 ### Hypergeometric Distribution Formula
 
 With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
-i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. This closely mimics the events that would take place within the network. 
+i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. 
+This closely mimics the events that would take place within the network. 
 $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
@@ -342,7 +356,10 @@ $$
 
 Refering to *Example $3$*, the **Tally** is the sum of all the combinations where the bad nodes are in a majority.  
 
-As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
+As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes 
+if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad 
+nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, 
+there needs to be a summation of individual probabilities in order to calculate the probability for selecting the majority of bad nodes. 
 
 $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
@@ -450,12 +467,14 @@ for a continuous random variable instead of a discrete random variable ([[11]], 
 " A statistical expression that 
 defines a..." 
 
-- **Discrete Distribution with finite support:**<a name="discrete distribution"> </a> A discrete distribution with finite support can have an finite number of possible realizations.
+- **Discrete Distribution with finite support:**<a name="discrete distribution"> </a> A discrete distribution with 
+finite support can have an finite number of possible realizations.
 
 [discrete_distribution_finite~]: #discrete_distribution_finite
 "A discrete distribution with finite... " 
 
-- **Discrete Distribution with infinite support:**<a name="discrete distribution"> </a> A discrete distribution with infinite support can have an infinite number of possible realizations.
+- **Discrete Distribution with infinite support:**<a name="discrete distribution"> </a> A discrete distribution with 
+infinite support can have an infinite number of possible realizations.
 
 [discrete_distribution_infinite~]: #discrete_distribution_infinite
 "A discrete distribution with infinite... " 
