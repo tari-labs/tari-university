@@ -125,7 +125,6 @@ What is the theoretical mean? 0.649474335188621
 
 
 <p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
-
 Below is the input data inserted into the python programme, where the number of draws within an experiment is $1,000$, and the number of experiments is $1,000$ :
 
 ```Text
@@ -243,7 +242,7 @@ From a plot of committee size versus probability with a change in $N$, the total
   - n (committee size) = ranging from $1$ to $100$ 
 
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
-The above graph was calculated from [variations of BFT](https://github.com/tari-labs/modelling/blob/master/scenarios/T_variations.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From a plot of committee size versus probability where the number of nodes remains at $100$ with a change in $T$, the BFT 
+The above graph was calculated using Python ([variations of BFT](https://github.com/tari-labs/modelling/blob/master/scenarios/T_variations.py) with dependencies [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py)). From a plot of committee size versus probability where the number of nodes remains at $100$ with a change in $T$, the BFT 
 threshold, ranging from $50$% to $67$%, it can be seen that: When the BFT threshold is $50$% and $55$% the probability is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
 
 When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
@@ -273,7 +272,7 @@ probability dramatically increases when the total nodes is three times more than
 - n (committee size) = $100$
 
 <p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
-The above graph was calculated from [variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
+The above graph was calculated using Excel ([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is $100$ compared to $10$. There is an increase in probability 
 up to a network size of $700$, albeit, not as steep as the change when the committee size is $10$.  The probability plateaus at $0.08$.
 
 The larger the committee size, the less dramatic changes there are in the probability. 
