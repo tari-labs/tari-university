@@ -113,7 +113,7 @@ With the Crude Monte Carlo technique, to gain precision, the number of samples c
 calculating the probability and drawing comparisons, the sample size, number of draws within an experiment, and the 
 number of experiments can be varied to find an optimal amount. 
 
-Below is the input data inserted into the [python programme](https://github.com/tari-labs/modelling/blob/master/scenarios/crude_monte_carlo_simulation.py) with [network setup](https://github.com/tari-labs/modelling/blob/master/utils/network_setup.py) and [random distribution](https://github.com/tari-labs/modelling/blob/master/utils/rand_dist.py), where the number of draws within an experiment is $10$, and the number of experiments is $10$ :
+Below is the input data inserted into the [python programme](https://github.com/tari-labs/modelling/blob/master/scenarios/crude_monte_carlo_simulation.py) with dependencies [network setup](https://github.com/tari-labs/modelling/blob/master/utils/network_setup.py) and [random distribution](https://github.com/tari-labs/modelling/blob/master/utils/rand_dist.py), where the number of draws within an experiment is $10$, and the number of experiments is $10$ :
 
 ```Text
 What is the total amount of nodes? 100
@@ -224,7 +224,7 @@ fraction is obtained. I this sense $67$% of N simulates $\frac{2}{3} \cdot n+1$.
 - T (BFT threshold) = $67$% of N
 - n (committee size) = ranging from $1$ to $1000$ 
 
-The above graph was calculated from [variations of N](https://github.com/tari-labs/modelling/blob/master/scenarios/N_variations.py) with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). Below is a sample of the data where the total nodes are $100$. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
+The above graph was calculated using Python ([variations of N](https://github.com/tari-labs/modelling/blob/master/scenarios/N_variations.py) with dependencies [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py)). Below is a sample of the data where the total nodes are $100$. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
 
 | &nbsp;&nbsp;Total Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;Probability&nbsp;&nbsp;            |
 | :---------------------------------: | :-------------------------------: | :------------------------------------: | :-----------------------------------: | ---------------------------------------------- |
@@ -285,9 +285,8 @@ BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 
 <p align="center"><img src="assets/committee_size_10.png" width="900" /></p>
 
-The above graph was calculated from 
-[variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.py) 
-with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). For the 
+The above graph was calculated using Excel  
+([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). For the 
 graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, 
 the probability dramatically increases when the total nodes is three times more than the committee size and onwards. The 
 probability plateaus at $0.35$. 
@@ -328,17 +327,15 @@ The larger the committee size, the less dramatic changes there are in the probab
 
 <p align="center"><img src="assets/probability_when_committee_100_90.png" width="900" /></p>
 
-The above graphs were calculated from 
-[bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_10_10.xlsx.zip) 
-with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). These 
+The above graphs were calculated using Excel  
+([bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_10_10.xlsx)). These 
 graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the 
 probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
 
 <p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="850" /></p>
 
-The above graph was calculated from 
-[bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.xlsx) 
-with [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py). The 
+The above graph was calculated using Excel  
+([bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.xlsx)). The 
 graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When 
 the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  
 When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between 
