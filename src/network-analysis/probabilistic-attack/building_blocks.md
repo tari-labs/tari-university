@@ -69,7 +69,7 @@ on the simulations, specifically the Monte Carlo Simulation.
 
 ## Types of Distribution 
 
-There are 6 high-level types of distributions. These include discrete, continuous , mixed discrete/continuous, joint, 
+There are a few high-level types of distributions, and these include discrete, continuous , mixed discrete/continuous, joint, and non-numeric.  
 non-numeric and miscellaneous. 
 
 When considering solving the probability of an attacker controlling the majority of nodes in the network, the various 
