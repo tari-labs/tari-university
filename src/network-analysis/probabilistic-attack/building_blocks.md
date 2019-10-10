@@ -87,7 +87,7 @@ a continuous random variable equals some value is always zero [[11]].
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
 
 ### Discrete Distribution 
-Likewise, to understand the discrete distribution, a discrete random variable requires definition. A discrete random 
+A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [1x].   
 variable is a random variable that has countable values, such as a list of non-negative integers. A discrete 
 distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
