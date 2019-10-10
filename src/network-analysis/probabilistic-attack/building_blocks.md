@@ -75,7 +75,7 @@ non-numeric and miscellaneous.
 When determining the probability of an attacker controlling the majority of nodes in the network, the various 
 types of probability distributions of the specific circumstances and variables of the 
 problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. 
-
+All probability distributions can be classified as discrete probability distributions or as continuous probability distributions, depending on whether they define probabilities associated with discrete variables or continuous variables” [1x]. 
 ### Continuous Distribution 
 
 A continuous random variable is a random variable with an infinite and uncountable set and range of possible values [[11]].
