@@ -274,6 +274,7 @@ The median is the middle number in a data set with the numbers are listed in eit
 
 
 <p align="center"><img src="assets/mode_median_mean.png" width="170" /></p>
+
 - **Mode value**
 
 The mode is the most frequently occuring score or value. 
