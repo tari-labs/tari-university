@@ -302,7 +302,7 @@ probability plateaus at $0.35$.
 
 <p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
 
-The above graph was calculateds using Excel 
+The above graph was calculated using Excel 
 ([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). 
 From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is 
 $100$ compared to $10$. There is an increase in probability up to a network size of $700$, albeit, not as steep as the 
@@ -327,7 +327,7 @@ The larger the committee size, the less dramatic changes there are in the probab
 
 <p align="center"><img src="assets/probability_when_committee_100_90.png" width="900" /></p>
 
-The above graphs were calculated using Excel  
+The above graphs were calculated using Excel 
 ([bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_10_10.xlsx)). These 
 graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the 
 probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
