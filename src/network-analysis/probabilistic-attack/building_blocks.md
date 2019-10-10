@@ -95,6 +95,8 @@ With a discrete probability distribution, each possible value of the discrete ra
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
+Here's an overview of the various distributions and how they related; 
+![image](https://user-images.githubusercontent.com/55133541/66566528-79406b80-eb65-11e9-9c48-dbc20fbc4937.png)
 
 Examples of discrete distribution with **finite** support <sup>[def][discrete_distribution_finite~]</sup>  include the following: 
 
