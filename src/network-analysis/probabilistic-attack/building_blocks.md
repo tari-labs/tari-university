@@ -72,7 +72,7 @@ on the simulations, specifically the Monte Carlo Simulation.
 There are a few high-level types of distributions, and these include discrete, continuous , mixed discrete/continuous, joint, and non-numeric.  
 non-numeric and miscellaneous. 
 
-When considering solving the probability of an attacker controlling the majority of nodes in the network, the various 
+When determining the probability of an attacker controlling the majority of nodes in the network, the various 
 types of probability distributions of the specific circumstances and variables of the 
 problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. 
 
