@@ -69,26 +69,26 @@ With reference to [[1]]:
 
 ### When to use Tor
 
-The ```Tor Browser``` is an anonymity tool that blocks tracking, hides some user details and aims to make all Tor 
-users look the same to average users. It could therefore be used to anonymize whistle-blowers or journalists reporting 
-on sensitive topics.
+The ```Tor Browser``` is an anonymity tool, that in addition to using the ```Tor network``` encryption service, 
+also blocks tracking, hides user details and aims to make all Tor users look the same. It could 
+therefore be used to anonymize whistle-blowers or journalists reporting on sensitive topics.
 
 
 ### When not to use Tor
 
 Do not use only the Tor Browser if you expect end-to-end encryption to a non-```.onion``` site such as a banking site, as the 
-```Exit Node/Relay``` ends the Tor encryption and your traffic can be intercepted between the Exit Node and the destination server.
+```Exit Relay``` ends the Tor encryption and your traffic can be intercepted between the Exit Node and the destination server.
 
 
 ## How does Tor Network Work?
 
 Before Tor data enters the Tor network, it is bundled into nested layers of encrypted packets of the same size. These 
-packets are then routed through a random series of volunteer-operated servers called nodes/relays. Each time the 
+packets are then routed through a random series of volunteer-operated servers called relays( also known as nodes). Each time the 
 Tor data passes through one of these relays, a layer of encryption is removed to reveal the location of the next relay. 
 When the data reaches the final relay on its path, known as the ```Exit Relays```, the last layer of encryption is removed 
 and the data is sent to its final destination.
 
-There are a few different kinds of relays (also known as nodes). Guard relays, which deal with traffic entering the Tor network. Middle relays deal with traffic inside the Tor network. Both Guard and Middle relays are often referred too as none-exist relays.
+There are a few different kinds of relays. Guard relays, which deal with traffic entering the Tor network. Middle relays deal with traffic inside the Tor network. Both Guard and Middle relays are often referred too as none-exist relays.
 
 Exit relays, which are internet public-facing relays, where the last layer of Tor encryption is removed as traffic leaves the Tor network as normal traffic into the internet on it's way too its destination server. Exit relays often have to deal with complaints, legal notices, takedown notices as Exit relays are seen as the source address of the traffic.
 
