@@ -69,32 +69,41 @@ on the simulations, specifically the Monte Carlo Simulation.
 
 ## Types of Distribution 
 
-There are a few high-level types of distributions, and these include discrete, continuous , mixed discrete/continuous, joint, and non-numeric.  
-non-numeric and miscellaneous. 
+There are a few high-level types of distributions, and these include discrete, continuous , mixed discrete/continuous, 
+joint, and non-numeric.  
+
 
 When determining the probability of an attacker controlling the majority of nodes in the network, the various 
 types of probability distributions of the specific circumstances and variables of the 
 problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. 
-All probability distributions can be classified as discrete probability distributions or as continuous probability distributions, depending on whether they define probabilities associated with discrete variables or continuous variables” [1x]. 
+All probability distributions can be classified as discrete probability distributions or as continuous probability distributions, 
+depending on whether they define probabilities associated with discrete variables or continuous variables” [14]. 
+
 ### Continuous Distribution 
 
-If a variable can take on any value between two specified values, it is called a continuous variable, and its probability distribution is called a discrete probability distribution [1x].
+If a variable can take on any value between two specified values, it is called a continuous variable, and its probability distribution is called a discrete probability distribution [14].
 
 Probabilities of continuous random variables (*X*) are defined as the area under the curve of its Probability Density 
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
-a continuous random variable equals some value is always zero [[11]]. A typical plot of a continuous distribution is depicted below (although specifically for a normal distribution.)
+a continuous random variable equals some value is always zero [[11]]. A typical plot of a continuous distribution is depicted 
+below (although specifically for a normal distribution.)
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
 
 ### Discrete Distribution 
-A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [1x].   
+
+A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [14].   
 variable is a random variable that has countable values, such as a list of non-negative integers. A discrete 
 distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
-nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]].
+nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]] or a bar graph.
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
+
+Here's an overview of the various distributions and how they are related: [[15]]
+
+<p align="center"><img src="assets/relationship_map.png" width="700" /></p>
 
 Examples of discrete distribution with **finite** support <sup>[def][discrete_distribution_finite~]</sup>  include the following: 
 
@@ -266,7 +275,8 @@ Random numbers make it possible to simulate physical systems with uncertainty, i
 
 ### Computing Statistics 
 
-The mean, median and mode are the arithmetic average of a data set. This is found by adding the enumbers in a data set and dividing by how many numbers there are. 
+The mean, median and mode are the arithmetic average of a data set. This is found by adding the numbers in a data set and 
+dividing by how many numbers there are. 
 
 The mode is the value that occurs with most often in a data set.
 
@@ -277,7 +287,7 @@ The median is the middle number in a data set with the numbers are listed in eit
 
 - **Mode value**
 
-The mode is the most frequently occuring score or value. 
+The mode is the most frequently occurring score or value. 
 
 - **Median value**
 
@@ -455,6 +465,18 @@ accessed: 2019&#8209;07&#8209;18.
 [13]: https://en.wikipedia.org/wiki/Gambler%27s_fallacy
 "Gambler's Fallacy" 
 
+[[14]] Stat Trek, "Probability Distributions: Discrete vs. Continuous" [online]. Available: <https://stattrek.com/probability-distributions/discrete-continuous.aspx>. Date 
+accessed: 2019&#8210;11&#8209;18.
+
+[14]: https://stattrek.com/probability-distributions/discrete-continuous.aspx
+"Probability Distributions" 
+
+[[15]] Medium, "Common Probability Distributions: The Data Scientist’s Crib Sheet" [online]. Available: <https://medium.com/@srowen/common-probability-distributions-347e6b945ce4>. Date 
+accessed: 2019&#8210;11&#8209;18.
+
+[15]: https://medium.com/@srowen/common-probability-distributions-347e6b945ce4
+"Common Probability Distributions"
+
 ## Appendices
 
 ### Appendix A: Definitions of Terms 
@@ -469,7 +491,7 @@ for a continuous random variable instead of a discrete random variable ([[11]], 
 defines a..." 
 
 - **Discrete Distribution with finite support:**<a name="discrete distribution"> </a> A discrete distribution with 
-finite support can have an finite number of possible realizations.
+finite support can have a finite number of possible realizations.
 
 [discrete_distribution_finite~]: #discrete_distribution_finite
 "A discrete distribution with finite... " 
@@ -486,4 +508,5 @@ infinite support can have an infinite number of possible realizations.
 - <https://github.com/anselld>
 - <https://github.com/neonknight64> 
 - <https://github.com/hansieodendaal> 
+- <https://github.com/Empiech007> 
 

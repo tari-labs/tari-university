@@ -4,7 +4,7 @@
 
 ## Purpose
 
-As networks evolve with large numbers of geographically distributed nodes, processing delays and data transfers etc. may 
+As networks evolve with large numbers of geographically distributed nodes, processing delays and data transfers may 
 arise as issues, potentially creating an environment for adversarial attacks. Network models of a networked ecosystem 
 and analysis of such need to be developed to capture the evolution and dynamics.
 
