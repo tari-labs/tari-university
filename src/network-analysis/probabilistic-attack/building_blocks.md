@@ -77,11 +77,11 @@ When determining the probability of an attacker controlling the majority of node
 types of probability distributions of the specific circumstances and variables of the 
 problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. 
 All probability distributions can be classified as discrete probability distributions or as continuous probability distributions, 
-depending on whether they define probabilities associated with discrete variables or continuous variables” [14]. 
+depending on whether they define probabilities associated with discrete variables or continuous variables” [[14]]. 
 
 ### Continuous Distribution 
 
-If a variable can take on any value between two specified values, it is called a continuous variable, and its probability distribution is called a discrete probability distribution [14].
+If a variable can take on any value between two specified values, it is called a continuous variable, and its probability distribution is called a discrete probability distribution [[14]].
 
 Probabilities of continuous random variables (*X*) are defined as the area under the curve of its Probability Density 
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
@@ -92,8 +92,7 @@ below (although specifically for a normal distribution.)
 
 ### Discrete Distribution 
 
-A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [14].   
-variable is a random variable that has countable values, such as a list of non-negative integers. A discrete 
+A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [14]. A discrete 
 distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
