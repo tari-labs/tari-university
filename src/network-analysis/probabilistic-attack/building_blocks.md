@@ -92,7 +92,7 @@ below (although specifically for a normal distribution.)
 
 ### Discrete Distribution 
 
-A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [14]. A discrete 
+A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [[14]]. A discrete 
 distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
