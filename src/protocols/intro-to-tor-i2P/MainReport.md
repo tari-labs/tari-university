@@ -295,7 +295,7 @@ onion address (https://3g2upl4pq6kufc4m.onion/), routes the request through the 
 the host IP address of the server. The onion address is practically meaningless without it being routed through and 
 resolved by the Tor network. Traffic between a Tor client and an `.onion` site should never leave the Tor network, 
 keeping the network traffic safer and more anonymous than publicly hosted sites. Though more difficult to find, been 
-there is not directory services or easy to remember names as the `.onion` address is not an easy to remember domain 
+there is no directory services or easy to remember names as the `.onion` address is not an easy to remember domain 
 name, but generally opaque, non-mnemonic, 16- or 56-character alpha-semi-numerical strings which are generated on a 
 cryptographically hashed public key. The Top Level Domain (TLD) `.onion` is not a true domain and can't be found or 
 queried on the internet, but only inside of the Tor network ( [[19]]], [[23]], [[24]]).
@@ -358,7 +358,9 @@ donate [[13]].
 
 ### Pitfalls of Using Tor Anonymously - Is it Broken?
 
-Tor encrypted network service has not been broken, but due to the complex nature of networks, internet services, 
+Although traffic between nodes on the Tor network is encrypted, this does not guarantee anonymity for users. There are a number of pitfalls which may impact using Tor anonymously. 
+
+TODO: list or describe pitfalls more or less as below
 internet browsers and operating systems, what might seem like a simple request to a URL, could de-anonymize somebody.
 
 Older Tor setups needed a user to know how to configure their proxy settings in their operating system and/or browser, 
