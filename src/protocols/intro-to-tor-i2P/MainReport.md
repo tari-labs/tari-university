@@ -25,7 +25,7 @@
      - [Middle Relay Nodes](#middle-relay-nodes)
      - [Exit Relay Nodes](#exit-relay-nodes)
      - [Bridge Relay Nodes](#bridge-relay-nodes)
-  - [Is Tor broken?](#is-tor-broken)
+  - [Pitfalls of Using Tor Anonymously - Is it Broken?](#pitfalls-of-using-tor-anonymously---is-it-broken)
   - [Advantages and Disadvantages](#advantages-and-disadvantages)
 - [Differences between I2P and Tor](#differences-between-i2p-and-tor)
 - [Conclusion](#conclusion)
@@ -356,7 +356,7 @@ governments.
 They are meant for people who want to run Tor from their homes, have a static IP or do not have much bandwidth to 
 donate [[13]].
 
-### Is Tor broken?
+### Pitfalls of Using Tor Anonymously - Is it Broken?
 
 Tor encrypted network service has not been broken, but due to the complex nature of networks, internet services, 
 internet browsers and operating systems, what might seem like a simple request to a URL, could de-anonymize somebody.
