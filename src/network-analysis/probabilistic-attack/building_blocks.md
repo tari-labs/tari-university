@@ -77,11 +77,11 @@ When determining the probability of an attacker controlling the majority of node
 types of probability distributions of the specific circumstances and variables of the 
 problem need to be analyzed. There are two categories of probability distribution: finite and infinite support [[1]]. 
 All probability distributions can be classified as discrete probability distributions or as continuous probability distributions, 
-depending on whether they define probabilities associated with discrete variables or continuous variables” [14]. 
+depending on whether they define probabilities associated with discrete variables or continuous variables” [[14]]. 
 
 ### Continuous Distribution 
 
-If a variable can take on any value between two specified values, it is called a continuous variable, and its probability distribution is called a discrete probability distribution [14].
+If a variable can take on any value between two specified values, it is called a continuous variable, and its probability distribution is called a discrete probability distribution [[14]].
 
 Probabilities of continuous random variables (*X*) are defined as the area under the curve of its Probability Density 
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
@@ -92,20 +92,13 @@ below (although specifically for a normal distribution.)
 
 ### Discrete Distribution 
 
-A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [14].   
-variable is a random variable that has countable values, such as a list of non-negative integers. A discrete 
+A discrete variable, as opposed to a continuous variable, can only take on a finite number of values.  If a random variable is a discrete variable, its probability distribution is called a discrete probability distribution [[14]]. A discrete 
 distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
 With a discrete probability distribution, each possible value of the discrete random variable can be associated with a 
-<<<<<<< HEAD
-nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]] or a bar graph.
-=======
 nonzero probability. Thus, the presentation of a discrete probability distribution is often in tabular form [[11]], or a bar graph.
->>>>>>> ks-network-analysis-report-1
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
-Here's an overview of the various distributions and how they related; 
-![image](https://user-images.githubusercontent.com/55133541/66566528-79406b80-eb65-11e9-9c48-dbc20fbc4937.png)
 
 Here's an overview of the various distributions and how they are related: [[15]]
 
