@@ -358,7 +358,9 @@ donate [[13]].
 
 ### Is Tor broken?
 
-Tor encrypted network service has not been broken, but due to the complex nature of networks, internet services, 
+Although traffic between nodes on the Tor network is encrypted, this does not guarantee anonymity for users. There are a number of pitfalls which may impact using Tor anonymously. 
+
+TODO: list or describe pitfalls more or less as below
 internet browsers and operating systems, what might seem like a simple request to a URL, could de-anonymize somebody.
 
 Older Tor setups needed a user to know how to configure their proxy settings in their operating system and/or browser, 
