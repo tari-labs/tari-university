@@ -274,7 +274,7 @@ The above graph was calculated using Python
 [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py)). From a plot 
 of committee size versus probability where the number of nodes remains at $100$ with a change in $T$, the BFT 
 threshold, ranging from $50$% to $67$%, it can be seen that When the BFT threshold is $50$% and $55$%, the probability 
-is low when the committee size is small; as the committee size increases, the probability increases, and tends to one. 
+is low when the committee size is small; as the committee size increases, the probability increases, and tends to $1$. 
 The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
 
 When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
@@ -296,7 +296,7 @@ BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 The above graph was calculated using Excel 
 ([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/other/variation_of_N_n_fixed.xlsx)). For the 
 graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, 
-the probability dramatically increases when the total nodes is three times more than the committee size and onwards. The 
+the probability dramatically increases when the total nodes is $3$ times more than the committee size and onwards. The 
 probability plateaus at $0.35$. 
 
 #### Variation of Total Number of Nodes with Committee Size 100

@@ -177,7 +177,7 @@ $n$, the binomial distribution remains a good approximation and is widely used.
 Thus, in a binomial distribution, an object is selected with replacement [[4]]. A binomial experiment requires that the 
 probability of success be constant on every trial. 
 
-**Example 2:** You have an urn containing $10$ marbles: $five$ red and $five$ green. You randomly select $two$ marbles with 
+**Example 2:** You have an urn containing $10$ marbles: $5$ red and $5$ green. You randomly select $2$ marbles with 
 replacement, and the probability of success would not change. It would be $\frac{5}{10}$ on every trial [[10]]. 
 
 ## Monte Carlo Simulations 
@@ -204,11 +204,11 @@ situations, but is most strongly associated with gambling, where it is common am
 
 The gambler's fallacy can be illustrated by considering the repeated toss of a fair coin. The outcomes in different 
 tosses are statistically independent, and the probability of getting heads on a single toss is $\frac{1}{2}$. The 
-probability of getting two heads in two tosses is $\frac{1}{4}$, and the probability of getting three heads in three 
+probability of getting $2$ heads in $2$ tosses is $\frac{1}{4}$, and the probability of getting $3$ heads in $3$ 
 tosses is $\frac{1}{8}$. If, after tossing four heads in a row, the next coin toss also came up heads, it would complete 
 a run of five successive heads. Since the probability of a sequence of five consecutive heads is $\frac{1}{32}$, a 
 person might believe that the next flip would more likely come up tails rather than heads again. This is incorrect 
-and is an example of the gambler's fallacy. The events "five heads in a row" and "first four heads, then a tails" 
+and is an example of the gambler's fallacy. The events "five heads in a row" and "first $4$ heads, then a tails" 
 are equally likely, each having a probability of $\frac{1}{32}$. Since the first four tosses turn up heads, the probability 
 that the next toss is a head is $\frac{1}{2}$ . While a run of five heads has a probability of $\frac{1}{32} = 0.03125$, 
 the misunderstanding lies in not realizing that this is the case only before the first coin is tossed. After the first 
@@ -323,8 +323,8 @@ Where:
 A single probability from the overarching question was used as a means to derive the formulae, as shown in the following 
 example. 
 
-**Example 3**: What is the probability of selecting a majority of bad nodes from a total of $five​$ nodes if the committee 
-size is $three​$? There are $three​$ bad nodes $(B1, B2, B3)​$ and $two​$ good nodes $(G1, G2)​$.
+**Example 3**: What is the probability of selecting a majority of bad nodes from a total of $5​$ nodes if the committee 
+size is $3​$? There are $3​$ bad nodes $(B1, B2, B3)​$ and $2​$ good nodes $(G1, G2)​$.
 
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
@@ -343,9 +343,9 @@ The first step is to calculate the number of combinations where bad and good nod
 | <div class="wrap_bad">$B3$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
 |                                  |                                   |    **Tally of Yes responses**     |              $7$               |
 
-From this list, the number of combinations where $B$ is the majority can then be tallied. In this case, there are $seven$
-combinations where $B$ is the majority. Thus, from the $10$ combinations, there are $seven$ combinations where there is a 
-majority of bad nodes. Therefore, the quotient of $seven$ and $10$ is the probability $0.7$. 
+From this list, the number of combinations where $B$ is the majority can then be tallied. In this case, there are $7$
+combinations where $B$ is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a 
+majority of bad nodes. Therefore, the quotient of $7$ and $10$ is the probability $0.7$. 
 
 This method is limited in calculating the probability where the variables are large. For example, if the same question 
 was posed, 
