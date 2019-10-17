@@ -4,10 +4,10 @@
 - [Hashed Timelock Contracts](#hashed-timelock-contracts)
 - [Atomic vs. Etomic Swaps](#atomic-vs-etomic-swaps)
 - [Examples of Current Atomic Swaps and Implementations](#examples-of-current-atomic-swaps-and-implementations)
-  - [#1 Manual Method](#a1-manual-method)
-  - [#2 Atomic Wallet](#a2-atomic-wallet)
-  - [#3 BarterDEX](#a3-barterdex)
-  - [#4 COMIT](#a4-comit)
+  - [#1 Manual Method](#1-manual-method)
+  - [#2 Atomic Wallet](#2-atomic-wallet)
+  - [#3 BarterDEX](#3-barterdex)
+  - [#4 COMIT](#4-comit)
 - [References](#references)
 - [Contributors](#contributors)
 
@@ -84,10 +84,13 @@ as a third party. Although swaps have been done, it is stated as not yet being p
 a 0.1287% fee for a swap [[10]]. 
 
 ### #4 COMIT
-COMIT is an open protocol for atomic swaps [[13]]. Compared to other solutions, COMIT does not feature another _blockchain_ nor token. Powered by simple cryptographic principles such as HTLCs [[12]] it enables users to trustlessly exchange one digital asset to another.
-Its reference implementation in rust as well as its specification are completly open source, free and publicly available on GitHub [[11],[14]]. Developers can take the provided JavaScript SDK [[15]] or get inspired by the provided CLI including examples [[16]] to build their own DEX. 
-
-Currently (October&nbsp;2019), COMIT supports assets from the Bitcoin blockchain (e.g. BTC) and assets from the Ethereum blockchain (e.g. ETH and ERC20 tokens).
+Cryptographically-secure Off-chain Multi-asset Instant Transaction (COMIT) is an open-source protocol for 
+cross-blockchain applications, like peer-to-peer atomic swaps, and does not feature another blockchain nor token. It 
+is powered by simple cryptographic principles such as HTLCs and enables users to trustlessly exchange one digital asset 
+to another. Its specification, reference implementation in Rust, JavaScript Software Development Kit (SDK), CLI and web 
+Graphical User Interface (GUI) are available on GitHub. At the time of writing, October&nbsp;2019, COMIT supports 
+assets from the Bitcoin blockchain (e.g. BTC) and from the Ethereum blockchain (e.g. ETH and ERC20 tokens) 
+([[11], [[12]], [[13]]). 
 
 
 ## References
@@ -153,35 +156,25 @@ Available: <https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whit
 [10]: https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2
 "barterDEX Whitepaper v2" 
 
-[[11]] COMIT (2018), "COMIT RFCs", GitHub [online].
-Available: <https://github.com/comit-network/RFCs/>. Date accessed: 2018&#8209;10&#8209;16.
+[[11]] GitHub: "comit-network, COMIT is an open protocol facilitating trustless cross-blockchain applications." 
+[online]. Available: <https://github.com/comit-network>. Date accessed: 2019&#8209;10&#8209;16.
 
-[11]: https://github.com/comit-network/RFCs/
+[11]: https://github.com/comit-network
+"GitHub: comit-network"
 
-[[12]] CoBloX (2018), "First atomic swap between Bitcoin and Ethereum" [online]
-Available: <https://blog.coblox.tech/2018/06/23/connect-all-the-blockchains.html/>. Date accessed: 2018&#8209;10&#8209;16.
+[[12]] CoBloX (2018), "Connect all the Blockchains!!!" [online] Available: 
+<https://blog.coblox.tech/2018/06/23/connect-all-the-blockchains.html/>. Date accessed: 2019&#8209;10&#8209;16.
 
 [12]: https://blog.coblox.tech/2018/06/23/connect-all-the-blockchains.html
+"CoBloX Connect all the Blockchains!!!"
 
 [[13]] COMIT (2016), "COMIT is an open protocol facilitating trustless cross-blockchain applications." [online]
-Available: <https://comit.network/>. Date accessed: 2018&#8209;10&#8209;16.
+Available: <https://comit.network/>. Date accessed: 2019&#8209;10&#8209;16.
 
 [13]: https://comit.network/
 
-[[14]] COMIT (2018), "Reference implementation of COMIT." GitHub [online]
-Available: <https://github.com/comit-network/comit-rs>. Date accessed: 2018&#8209;10&#8209;16.
 
-[14]: https://github.com/comit-network/comit-rs
 
-[[15]] COMIT (2019), "COMIT JavaScript SDK." GitHub [online]
-Available: <https://github.com/comit-network/comit-js-sdk>. Date accessed: 2018&#8209;10&#8209;16.
-
-[15]: https://github.com/comit-network/comit-js-sdk
-
-[[16]] COMIT (2019), "CLI to setup a dev environment." GitHub [online]
-Available: <https://github.com/comit-network/create-comit-app>. Date accessed: 2018&#8209;10&#8209;16.
-
-[16]: https://github.com/comit-network/create-comit-app
 
 
 ## Contributors
