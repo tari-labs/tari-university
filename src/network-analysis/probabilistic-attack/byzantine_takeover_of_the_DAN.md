@@ -1,4 +1,4 @@
-<style>
+ <style>
         div.highlight {
             width: 95%; 
             word-wrap: break-word;
@@ -103,7 +103,7 @@ given a node ID [[3]].
 
 ## Implementation
 
-The following calculations were done using the [Tari Labs Modelling Repository]((https://github.com/tari-labs/modelling)). 
+The following calculations were done using the [Tari Labs Modelling Repository](https://github.com/tari-labs/modelling). 
 
 ### Crude Monte Carlo Simulation
 
@@ -126,8 +126,8 @@ Do you know the theoretical mean? Y|N: Y
 What is the theoretical mean? 0.649474335188621
 ```
 
-
 <p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
+
 Below is the input data inserted into the python programme, where the number of draws within an experiment is $1,000$, 
 and the number of experiments is $1,000$ :
 
@@ -143,6 +143,7 @@ What is the theoretical mean? 0.649474335188621
 ```
 
 <p align="center"><img src="assets/convergence.png" width="700" /></p>
+
 In each graph, the cumulative probabilities calculated for normal, uniform, Poisson and hypergeometric distribution are 
 plotted against the number of experiments. The bold blue line represents the mean calculated from theoretical data. 
 
@@ -163,6 +164,7 @@ Hypergeometric distribution is where there is no replacement, i.e., nodes are dr
 not returned to the total nodes pool. 
 
 <p align="center"><img src="assets/individual_probability_hypergeometric.png" width="700" /></p>
+
 ##### Uniform Distribution
 
 | Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
@@ -197,6 +199,7 @@ The histogram of randomness highlights the distribution of good and bad nodes se
 the random nature of the experiment. 
 
 <p align="center"><img src="assets/histogram_of_randomness.png" width="700" /></p>
+
 | Statistical Information |                   |
 | ----------------------- | ----------------- |
 | Mean                    | 120,000.0         |
@@ -255,6 +258,7 @@ the probability is lower with respect to the committee size when $N$ is smaller.
   - n (committee size) = ranging from $1$ to $100$ 
 
 <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
+
 The above graph was calculated using Python 
 ([variations of BFT](https://github.com/tari-labs/modelling/blob/master/scenarios/T_variations.py) with dependencies 
 [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py)). From a plot 
@@ -278,6 +282,7 @@ BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 - n (committee size) = $10$
 
 <p align="center"><img src="assets/committee_size_10.png" width="900" /></p>
+
 The above graph was calculated using Excel 
 ([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). For the 
 graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, 
@@ -294,6 +299,7 @@ probability plateaus at $0.35$.
 - n (committee size) = $100$
 
 <p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
+
 The above graph was calculated using Excel 
 ([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/other/variation_of_N_n_fixed.xlsx)). 
 From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is 
@@ -312,15 +318,20 @@ The larger the committee size, the less dramatic changes there are in the probab
 - n (committee size) = $10$ and $100$
 
 <p align="center"><img src="assets/probability_when_committee_100_20.png" width="900" /></p>
+
 <p align="center"><img src="assets/probability_when_committee_100_40.png" width="900" /></p>
+
 <p align="center"><img src="assets/probability_when_committee_100_60.png" width="900" /></p>
+
 <p align="center"><img src="assets/probability_when_committee_100_90.png" width="900" /></p>
+
 The above graphs were calculated using Excel 
 ([bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/other/bad_nodes_variation_10_10.xlsx)). These 
 graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the 
 probability plateaus is used to construct the graph below for both committee sizes $10$ and $100$. 
 
 <p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="850" /></p>
+
 The above graph was calculated using Excel 
 ([bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/other/bad_node_percentage_10_100.xlsx)). The 
 graph shows changes in the probability due to changes in % of bad nodes when the committee size is $10$ and $100$.  When 
