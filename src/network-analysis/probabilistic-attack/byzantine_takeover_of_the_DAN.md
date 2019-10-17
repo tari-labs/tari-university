@@ -294,8 +294,8 @@ BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 <p align="center"><img src="assets/committee_size_10.png" width="900" /></p>
 
 The above graph was calculated using Excel 
-([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). For the 
-preceding graph, which shows varying probabilities with respect to the total number of network nodes, where the committee size is $10$, 
+([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/other/variation_of_N_n_fixed.xlsx)). For the 
+graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, 
 the probability dramatically increases when the total nodes is three times more than the committee size and onwards. The 
 probability plateaus at $0.35$. 
 
