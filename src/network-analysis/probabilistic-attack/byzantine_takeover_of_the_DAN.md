@@ -1,4 +1,4 @@
-<style>
+ <style>
         div.highlight {
             width: 95%; 
             word-wrap: break-word;
@@ -112,7 +112,7 @@ given a node ID [[3]].
 
 ## Implementation
 
-The following calculations were done using the [Tari Labs Modelling Repository]((https://github.com/tari-labs/modelling)). 
+The following calculations were done using the [Tari Labs Modelling Repository](https://github.com/tari-labs/modelling). 
 
 ### Crude Monte Carlo Simulation
 
@@ -135,7 +135,6 @@ How many experiments? 10
 Do you know the theoretical mean? Y|N: Y
 What is the theoretical mean? 0.649474335188621
 ```
-
 
 <p align="center"><img src="assets/small_no_exp_convergence.png" width="700" /></p>
 
@@ -256,7 +255,6 @@ The above graph was calculated using Python ([variations of N](https://github.co
 
 
 <p align="center"><img src="assets/variation_of_total_nodes .png" width="700" /></p>
-
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that 
 the probability is lower with respect to the committee size when $N$ is smaller. 
 
@@ -313,7 +311,7 @@ probability plateaus at $0.35$.
 <p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
 
 The above graph was calculated using Excel 
-([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/scenarios/variation_of_N_n_fixed.xlsx)). 
+([variations of N with n fixed](https://github.com/tari-labs/modelling/blob/master/other/variation_of_N_n_fixed.xlsx)). 
 From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is 
 $100$ compared to when it is $10$. There is an increase in probability up to a network size of $700$, albeit, not as steep as the 
 change when the committee size is $10$. The probability plateaus at $0.08$.
@@ -338,16 +336,14 @@ The larger the committee size, the fewer dramatic changes there are in the proba
 <p align="center"><img src="assets/probability_when_committee_100_90.png" width="900" /></p>
 
 The above graphs were calculated using Excel 
-([bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_variation_10_10.xlsx)). 
-These 
+([bad node variation where n is 100](https://github.com/tari-labs/modelling/blob/master/other/bad_nodes_variation_10_10.xlsx)). These 
 graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the 
 probability plateaus is used to construct the following graph for both committee sizes $10$ and $100$. 
 
 <p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="850" /></p>
 
 The above graph was calculated using Excel 
-([bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/scenarios/bad_node_percentage_10_100.xlsx)). 
-The 
+([bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/other/bad_node_percentage_10_100.xlsx)). The 
 graph shows changes in the probability due to changes in percentage of bad nodes when the committee size is $10$ and $100$.  When 
 the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  
 When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between 
