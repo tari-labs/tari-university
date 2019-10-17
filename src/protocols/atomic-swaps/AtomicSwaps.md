@@ -168,10 +168,11 @@ Available: <https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whit
 [12]: https://blog.coblox.tech/2018/06/23/connect-all-the-blockchains.html
 "CoBloX Connect all the Blockchains!!!"
 
-[[13]] COMIT (2016), "COMIT is an open protocol facilitating trustless cross-blockchain applications." [online]
+[[13]] "COMIT is an open protocol facilitating trustless cross-blockchain applications" [online]
 Available: <https://comit.network/>. Date accessed: 2019&#8209;10&#8209;16.
 
 [13]: https://comit.network/
+"COMIT Website"
 
 
 
