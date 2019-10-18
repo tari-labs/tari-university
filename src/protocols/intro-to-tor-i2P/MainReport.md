@@ -44,8 +44,8 @@ designed in different ways and for specific uses, although most people use them 
 Internet. These network functions have very similar characteristics, but also have important differentiators 
 in how they work to anonymize and secure users' Internet traffic.
 
-In this report we'll examine what Tor and the I2P networks are, the paradigms of how they work, their security infrastructure 
-and their potential or known use-cases in the blockchain domain.
+In this report we'll examine what Tor and the I2P networks are, the paradigms of how they work, their security 
+infrastructure and their potential or known use-cases in the blockchain domain.
 
 ## I2P Network
 
@@ -53,10 +53,9 @@ and their potential or known use-cases in the blockchain domain.
 
 I2P (known as the Invisible Internet Project - founded in 2003) is a low-latency network layer that runs on a distributed 
 network of computers across the globe. It is primarily built into applications such as email, Internet Relay Chat (IRC) 
-and file 
-sharing [[6]]. I2P works by automatically making each client in the network a node, through which data and traffic are
-routed. These nodes are responsible for providing encrypted, one-way connections to and from other computers within the 
-network. 
+and file sharing [[6]]. I2P works by automatically making each client in the network a node, through which data and 
+traffic are routed. These nodes are responsible for providing encrypted, one-way connections to and from other computers 
+within the network. 
 
 ### How does I2P Work?
 
@@ -80,23 +79,19 @@ which use a standard web server, can be used to create such sites.
 #### Routing Infrastructure and Anonymity
 
 I2P works by installing an I2P routing service within a client's device. This router creates temporary, encrypted, 
-one-way 
-connections with I2P routers on other devices. Connections are referred to as one way because they are made up of 
-an *Outbound Tunnel* and an *Inbound Tunnel*. During any communication, data leaves the client's devices via the 
+one-way connections with I2P routers on other devices. Connections are referred to as one way because they are made up 
+of an *Outbound Tunnel* and an *Inbound Tunnel*. During any communication, data leaves the client's devices via the 
 outbound tunnels and is received on other devices through their inbound tunnels. This means that messages do not 
-travel in two directions within 
-the same tunnel. Therefore, a single round-trip request message and its response between two parties needs four tunnels 
-[[4]], as shown in Figure&nbsp;1.
-Messages sent from one device do not travel directly to the inbound tunnel of the destination device.
-Instead, the outbound router queries a distributed network database for the corresponding address of the inbound router. 
-This database is comprised of a custom Kademlia-style Distributed Hash Table (DHT)
-that contains the router information and destination information.
-For each application or client, the I2P router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the
-network database are shared among all users of
-a router. If a tunnel in the pool is about to expire or if the tunnel is no longer usable, the router creates a new tunnel
-and adds it to the pool. It is important to recall later that tunnels periodically expire every 10 minutes, and thus need to be refreshed frequently. This is one of I2P's security measures that are performed to prevent long-lived tunnels 
-from becoming a threat
-to anonymity [[3]].
+travel in two directions within the same tunnel. Therefore, a single round-trip request message and its response between 
+two parties needs four tunnels [[4]], as shown in Figure&nbsp;1. Messages sent from one device do not travel directly to 
+the inbound tunnel of the destination device. Instead, the outbound router queries a distributed network database for 
+the corresponding address of the inbound router. This database is comprised of a custom Kademlia-style Distributed Hash 
+Table (DHT) that contains the router information and destination information. For each application or client, the I2P 
+router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the network database are shared among all 
+users of a router. If a tunnel in the pool is about to expire or if the tunnel is no longer usable, the router creates a 
+new tunnel and adds it to the pool. It is important to recall later that tunnels periodically expire every 10 minutes, 
+and thus need to be refreshed frequently. This is one of I2P's security measures that are performed to prevent 
+long-lived tunnels from becoming a threat to anonymity [[3]].
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/network-topology.png" width="950" /></p>
 <p align="center"><b>Figure&nbsp;1: Network Topology [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">6</a>]</b></p> 
@@ -116,12 +111,12 @@ it does not have itself [[12]].
 
 The NetDB stores two types of data: 
 1. **RouterInfo.**
-    When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the other 
-    router.
-    The destination RouterInfo is stored in the NetDB with the router's identity as the key. To request a resource 
-    (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If the piece of 
-    data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge of participating 
-    nodes and returns the node it considers to be nearest to the key [[3]]. The RouterInfo in the NetDB is made up of ([[4]], [[6]]):
+    When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the 
+    other router. The destination RouterInfo is stored in the NetDB with the router's identity as the key. To request a 
+    resource (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If 
+    the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge 
+    of participating nodes and returns the node it considers to be nearest to the key [[3]]. The RouterInfo in the NetDB 
+    is made up of ([[4]], [[6]]):
    - The router's identity - an encryption key, a signing key and a certificate.
    - The contact addresses at which it can be reached - protocol, IP and port.
    - When this was created or published.
@@ -129,8 +124,8 @@ The NetDB stores two types of data:
    - The signature of the above, generated by the identity's signing key.
 
 2. **LeaseSets.** 
-    The LeaseSet specifies a tunnel entry point to reach an endpoint. This specifies the routers that can directly contact 
-    the desired destination. It contains the following data:
+    The LeaseSet specifies a tunnel entry point to reach an endpoint. This specifies the routers that can directly 
+    contact the desired destination. It contains the following data:
    - Tunnel gateway router - given by specifying its identity.
    - Tunnel ID - tunnel used to send messages.
    - Tunnel expiration - when the tunnel will expire.
@@ -140,20 +135,20 @@ The NetDB stores two types of data:
 #### Floodfill Routers
 
 Special routers, referred to as *floodfill routers*, are responsible for storing the NetDB. Participation in the floodfill 
-pool can be automatic or manual. Automatic participation occurs whenever the number of floodfill routers drops 
-below a certain threshold, which is currently 6% of all nodes in the network ([[6]], [[7]]). When this happens, a node is 
+pool can be automatic or manual. Automatic participation occurs whenever the number of floodfill routers drops below a 
+certain threshold, which is currently 6% of all nodes in the network ([[6]], [[7]]). When this happens, a node is 
 selected to participate as a floodfill router based on criteria such as uptime and bandwidth. It should be noted that 
-approximately 95% of floodfill routers are automatic [[8]]. The NetDB is stored in a DHT format within 
-the floodfill routers. A resource is requested from the floodfill router considered to be closest to that key. To have a 
-higher success rate on a lookup, the client is able to iteratively look up the key. This means that the lookup continues 
-with the next-closest peer should the initial lookup request fail.
+approximately 95% of floodfill routers are automatic [[8]]. The NetDB is stored in a DHT format within the floodfill 
+routers. A resource is requested from the floodfill router considered to be closest to that key. To have a higher 
+success rate on a lookup, the client is able to iteratively look up the key. This means that the lookup continues with 
+the next-closest peer should the initial lookup request fail.
 
 #### Garlic Routing
 
 Garlic routing is a way of building paths or tunnels through which messages in the I2P network travel. When a message
-leaves the application or client, it is encrypted to the recipient's public key. The encrypted message is then encrypted with
-instructions specifying the next hop. The message travels in this way through each hop until it reaches the recipient.
-During the transportation of the message, it is bundled with other messages. This means that any message
+leaves the application or client, it is encrypted to the recipient's public key. The encrypted message is then encrypted 
+with instructions specifying the next hop. The message travels in this way through each hop until it reaches the 
+recipient. During the transportation of the message, it is bundled with other messages. This means that any message
 travelling in the network could contain a number of other messages bundled with it. In essence, garlic routing does two
 things:
 
@@ -161,7 +156,7 @@ things:
 - bundles multiple messages together.
 
 Figure&nbsp;2 illustrates the end-to-end message bundling:
-<p align="center"><a name="fig_eca"> </a><img src="assets/garliccloves.png" width="850" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="assets/garliccloves.png" width="1050" /></p>
 <p align="center"><b>Figure&nbsp;2: Garlic Routing <a href="https://github.com/ElementsProject/confidential-assets-demo" title="ElementsProject/confidential-assets-demo"></a></b></p>
 
 
@@ -177,13 +172,12 @@ by the malicious entity). In this section, we'll look at different threat models
 #### Sybil Attacks
 
 The Sybil attack, illustrated in Figure&nbsp;3, is a well-known anonymity system attack in which the malicious user 
-creates multiple identities in an 
-effort to increase control over the network. Running this attack over the I2P network is rather difficult. This is because 
-participants/clients in the network evaluate the performance of peers when selecting peers to interact with, instead of 
-using a random sample. Since running multiple identities on the same host affects the performance of each of those 
-instances, the number of additional identities running in parallel is effectively limited by the need to provide each of 
-them with enough resources to be considered as peers. This means that the malicious user will need substantial 
-resources to create multiple identities.
+creates multiple identities in an effort to increase control over the network. Running this attack over the I2P network 
+is rather difficult. This is because participants/clients in the network evaluate the performance of peers when 
+selecting peers to interact with, instead of using a random sample. Since running multiple identities on the same host 
+affects the performance of each of those instances, the number of additional identities running in parallel is 
+effectively limited by the need to provide each of them with enough resources to be considered as peers. This means that 
+the malicious user will need substantial resources to create multiple identities.
 
 <p align="center"><a name="fig_eca"> </a><img src="assets/Sybil Attack.png" width="750" /></p>
 <p align="center"><b>Figure&nbsp;3: Sybil Attack [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">5</a>]</b></p>
@@ -210,8 +204,8 @@ Provider (ISP) or government entity in order to observe a large chunk of the net
 
 #### Intersection Attacks
 
-Intersection attacks involve observing the network and node churns over time. In order to narrow down specific targets, when a message is transferred through the network, the peers that are online are intersected.
-It is theoretically 
+Intersection attacks involve observing the network and node churns over time. In order to narrow down specific targets, 
+when a message is transferred through the network, the peers that are online are intersected. It is theoretically 
 possible to mount this attack if the network is small, but impractical with a larger network.
 
 #### Denial of Service Attacks
@@ -257,16 +251,18 @@ in which Tor protects a user's data, by wrapping it in multiple layers of encryp
 
 Tor uses a unique system that was originally developed by the US Navy to protect government intelligence communications. 
 Naval Research Laboratory released the Tor code under a free license and the Tor Project was founded in 2006. With the 
-help of the Electronic Frontier Foundation (EFF), further research and development of Tor have continued as a Free and Open 
-Source Project. The Tor network service is run by a worldwide community of volunteers and are not controlled by any corporate or government agencies.  
+help of the Electronic Frontier Foundation (EFF), further research and development of Tor have continued as a Free and 
+Open Source Project. The Tor network service is run by a worldwide community of volunteers and are not controlled by any 
+corporate or government agencies.  
 
 The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such as OnionShare, run on top 
 of or via the Tor network. These tools are meant to make using the Tor network as simple and secure as possible.  
 
-Some tools, such as the Tor Browser Bundle, come as a single downloadable and installable package containing everything needed to use the Tor network and be anonymous.  
+Some tools, such as the Tor Browser Bundle, come as a single downloadable and installable package containing everything 
+needed to use the Tor network and be anonymous.  
 
-Almost any network tool or application that can be configured to use a Socket Secure (SOCKS) proxy can be set up to use the Tor network 
-service.  
+Almost any network tool or application that can be configured to use a Socket Secure (SOCKS) proxy can be set up to use 
+the Tor network service.  
 
 ### How does Tor Work?
 
@@ -278,12 +274,12 @@ sent to its final destination.
 
 Relay nodes, such as I2P's nodes, are responsible for creating hops through which data is routed before reaching its 
 intended destination on the Internet. They work by incrementally building a circuit of encrypted connections through 
-relays on the network. The circuit is extended one hop at a time. Each relay along the way knows only which relay 
-gave it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet 
-has taken. Also, no request uses the same path. Later requests are given a new circuit, to keep people from linking a user's
+relays on the network. The circuit is extended one hop at a time. Each relay along the way knows only which relay gave 
+it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet has 
+taken. Also, no request uses the same path. Later requests are given a new circuit, to keep people from linking a user's 
 earlier actions to new actions. This process is also known as Onion Routing [[14]], and is illustrated in Figure 4: 
 
-<p align="center"><a name="fig_eca"> </a><img src="assets/htw3.png" width="750" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="assets/htw3.png" width="625" /></p>
 <p align="center"><b>Figure&nbsp;4: How Tor Works [<a href="https://2019.www.torproject.org/about/overview.html.en" title="How Tor Works">13</a>]</b></p>
 
 
@@ -301,14 +297,15 @@ location of the previous and next relay. Since each path is randomly generated a
 nearly impossible for your activity to be traced back to you through Tor’s complex network [[21]].
 
 An `.onion` address points to some resource on the Tor network called a hidden service or an `onion` service. Onion 
-services are generally only accessible by using the Tor network. As an example, if the DuckDuckGo Search engine 
-onion address (https://3g2upl4pq6kufc4m.onion/) is visited, the request is routed through the Tor network without the client knowing 
-the host IP address of the server. The onion address is practically meaningless without it being routed through and 
-resolved by the Tor network. Traffic between a Tor client and an `.onion` site should never leave the Tor network, 
+services are generally only accessible by using the Tor network. As an example, if the DuckDuckGo Search engine onion 
+address (https://3g2upl4pq6kufc4m.onion/) is visited, the request is routed through the Tor network without the client 
+knowing the host IP address of the server. The onion address is practically meaningless without it being routed through 
+and resolved by the Tor network. Traffic between a Tor client and an `.onion` site should never leave the Tor network, 
 thus making the network traffic safer and more anonymous than publicly hosted sites. An `.onion` address is a domain 
-name that is not easy to remember or find, as there are no directory services. It generally consists of opaque, non-mnemonic, 16- or 56-character alpha-semi-numerical strings that are generated on a 
-cryptographically hashed public key. The Top Level Domain (TLD) `.onion` is not a true domain and cannot be found or 
-queried on the Internet, but only inside the Tor network ([[19]]], [[23]], [[24]]).
+name that is not easy to remember or find, as there are no directory services. It generally consists of opaque, 
+non-mnemonic, 16- or 56-character alpha-semi-numerical strings that are generated on a cryptographically hashed public 
+key. The Top Level Domain (TLD) `.onion` is not a true domain and cannot be found or queried on the Internet, but only 
+inside the Tor network ([[19]]], [[23]], [[24]]).
 
 
 The designated use of relay nodes in the Tor network gives the network the following important characteristics [[13]]: 
@@ -321,10 +318,10 @@ the network becomes.
 
 ### Types of Tor Relays/Nodes Routing
 
-Tor's relay nodes do not all function in the same way. As shown in Figure 5, there are four types of relay nodes: an entry or guard relay node, 
-a middle relay node, an exit relay node and a bridge relay node. 
+Tor's relay nodes do not all function in the same way. As shown in Figure 5, there are four types of relay nodes: an 
+entry or guard relay node, a middle relay node, an exit relay node and a bridge relay node. 
 
-<p align="center"><a name="fig_eca"> </a><img src="assets/torCircuit.png" width="750" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="assets/torCircuit.png" width="650" /></p>
 <p align="center"><b>Figure&nbsp;5: Tor Circuit [<a href="https://medium.com/coinmonks/tor-nodes-explained-580808c29e2d" title="The Tor Circuit">14</a>]</b></p>
 
 
@@ -347,8 +344,8 @@ can never be exit relay nodes within the network [[13]].
 #### Exit Relay Nodes
 
 Exit relay nodes act as a bridge between the Tor network and the Internet. They are Internet public-facing relays, where 
-the last layer of Tor encryption is removed from traffic that can then leave the Tor network as normal traffic that merges into the Internet on 
-its way to its desired destinations on the Internet.
+the last layer of Tor encryption is removed from traffic that can then leave the Tor network as normal traffic that 
+merges into the Internet on its way to its desired destinations on the Internet.
 
 The services to which Tor clients are connecting (website, chat service, email provider, etc.) will see the IP address 
 of the exit relay instead of the real IP addresses of Tor users. Because of this, exit relay node owners are often 
@@ -363,23 +360,22 @@ node in the network that is not listed in the public Tor directory. Bridge selec
 Browser bundle, and makes it less likely to have to deal with complaints or have Internet traffic blocked by ISPs and 
 governments.
 
-Bridge relay nodes are meant for people who want to run Tor from their homes, have a static IP address or do not have much bandwidth to 
-donate [[13]].
+Bridge relay nodes are meant for people who want to run Tor from their homes, have a static IP address or do not have much bandwidth to donate [[13]].
 
 ### Pitfalls of Using Tor Anonymously - is it Broken?
 
-Although traffic between nodes on the Tor network is encrypted, this does not guarantee anonymity for users. There are a number of pitfalls of using Tor anonymously. 
+Although traffic between nodes on the Tor network is encrypted, this does not guarantee anonymity for users. There are a 
+number of pitfalls of using Tor anonymously. 
 
-TO DO: list or describe pitfalls more or less as below
 Internet browsers and operating systems, what might seem like a simple request to a URL, could deanonymize somebody.
 
 Older Tor setups needed a user to know how to configure their proxy settings in their operating system and/or browser, 
 in order to use Tor services. This was very easy to get wrong or incomplete, and some users' information or details 
 could be leaked.
 
-For example, Domain Name System (DNS) requests intended for the Tor network, i.e. `.onion` address, might be sent directly to 
-the public DNS server, if the ```network.proxy.socks_remote_dns``` was not set to true in FireFox. These DNS requests 
-could be used to track where a user might be surfing and thus deanonymize the user.
+For example, Domain Name System (DNS) requests intended for the Tor network, i.e. `.onion` address, might be sent 
+directly to the public DNS server, if the ```network.proxy.socks_remote_dns``` was not set to true in FireFox. These DNS 
+requests could be used to track where a user might be surfing and thus deanonymize the user.
 
 Tor is not broken if Tor services are correctly set up or if the Tor Browser is used correctly. It is very easy to do 
 something that would deanonymize a user, such as use an older browser or tool that is not configured to proxy all 
@@ -397,16 +393,17 @@ they could be deanonymized. Another is that a site knows when it has been access
 might not be directly an issue with Tor or its encryption, but an expectation of a novice user, using Tor or 
 one of the Tor tools and services.
 
-For an interesting talk about some of the Tor attacks, refer to [[26]]. The following are two real instances where people using 
-Tor were discovered:
+For an interesting talk about some of the Tor attacks, refer to [[26]]. The following are two real instances where 
+people using Tor were discovered:
 
 - On 16 December 2013, Harvard University received a bomb threat that was tracked down to Eldo Kim, who was one of the 
-  few people using Tor on the campus network when the email had been sent. After questioning, Kim admitted he had sent the 
-  hoax bomb threat, as he wanted to get out of an exam [[27]].
-- Hector Xavier Monsegur (Sabu) normally used Tor for connecting to IRC, but was caught not using it once, and the FBI found 
-  his home IP. After being caught, he started to collaborate with the FBI. While Monsegur was chatting to Jeremy 
-  Hammond on IRC, Hammond let slip details of where he had been arrested before and other groups with which he had been involved. 
-  This helped reduce the number of suspects and the FBI was able to get a court order to monitor Internet access and to correlate when Hammond was using Tor [[28]].
+  few people using Tor on the campus network when the email had been sent. After questioning, Kim admitted he had sent 
+  the hoax bomb threat, as he wanted to get out of an exam [[27]].
+- Hector Xavier Monsegur (Sabu) normally used Tor for connecting to IRC, but was caught not using it once, and the FBI 
+  found his home IP. After being caught, he started to collaborate with the FBI. While Monsegur was chatting to Jeremy 
+  Hammond on IRC, Hammond let slip details of where he had been arrested before and other groups with which he had been 
+  involved. This helped reduce the number of suspects and the FBI was able to get a court order to monitor Internet 
+  access and to correlate when Hammond was using Tor [[28]].
 
 ### Advantages and Disadvantages
 
@@ -446,7 +443,9 @@ Disadvantages of Tor:
 
 ## Conclusion
 
-In summary, Tor and I2P are two network types that anonymize and encrypt data transferred within them. Each network is uniquely designed for a respective function. The I2P network is designed for moving data in a peer-to-peer format, whereas the Tor network is designed for accessing the Internet privately. 
+In summary, Tor and I2P are two network types that anonymize and encrypt data transferred within them. Each network is 
+uniquely designed for a respective function. The I2P network is designed for moving data in a peer-to-peer format, 
+whereas the Tor network is designed for accessing the Internet privately. 
 
 Regarding Tor, the following should be kept in mind:
 
@@ -455,7 +454,8 @@ Regarding Tor, the following should be kept in mind:
 - Tor is not a Virtual Private Network (VPN).
 - Tor data leaving the Tor network can be intercepted.
 
-Extensive research exists and continues to find ways to improve the security of these networks in their respective operational designs. This research becomes especially important when control of a network may mean monetary loss, loss 
+Extensive research exists and continues to find ways to improve the security of these networks in their respective 
+operational designs. This research becomes especially important when control of a network may mean monetary loss, loss 
 of privacy or denial of service.
 
 ## References
@@ -584,14 +584,16 @@ Date accessed: 2019&#8209;05&#8209;16.
 [18]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
 "Wikipedia: Tor (Anonymity Network)"
 
-[[19]] DuckDuckGo Search Engine inside Tor [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link will not work unless Tor or the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
+[[19]] DuckDuckGo Search Engine inside Tor [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link 
+will not work unless Tor or the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
 
 [19]: https://3g2upl4pq6kufc4m.onion/
 "DuckDuckGo Search Engine - 
 link will not work unless 
 Tor or Tor Browser is used"
 
-[[20]] Tor Project: "Check" [online]. Available: <https://check.torproject.org/>. **Note:** This link will help the user identify if Tor or the Tor Browser is been used. Date accessed: 2019&#8209;05&#8209;16
+[[20]] Tor Project: "Check" [online]. Available: <https://check.torproject.org/>. **Note:** This link will help the user 
+identify if Tor or the Tor Browser is been used. Date accessed: 2019&#8209;05&#8209;16
 
 [20]: https://check.torproject.org/
 "Tor Project: Check - 
@@ -638,14 +640,16 @@ Dropping Docs on Darknets:
 How People Got Caught"
 
 [[27]] Ars Technica: "Use of Tor helped FBI ID suspect in bomb hoax case" [online]. Available: 
-<https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/>. Date accessed: 2019&#8209;07&#8209;11.
+<https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/>. 
+Date accessed: 2019&#8209;07&#8209;11.
 
 [27]: https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/
 "Ars Technica: Use of Tor helped 
 FBI ID suspect in bomb hoax case"
 
 [[28]] Ars Technica: "Stakeout: How the FBI tracked and busted a Chicago Anon" [online]. Available: 
-<https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. Date accessed: 2019&#8209;07&#8209;11.
+<https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>. 
+Date accessed: 2019&#8209;07&#8209;11.
 
 [28]: https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
 "Ars Technica: Stakeout: How the 
