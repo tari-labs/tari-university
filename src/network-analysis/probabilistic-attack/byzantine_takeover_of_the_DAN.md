@@ -27,15 +27,10 @@
     - [Histogram and Visualization of Distribution](#histogram-and-visualization-of-distribution)
   - [Statistical Calculation](#statistical-calculation)
      - [Variation of Total Nodes](#variation-of-total-nodes)
-       - [Variables](#variables)
      - [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
-       - [Variables](#variables-1)
      - [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
-       - [Variables](#variables-2)
      - [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100)
-       - [Variables](#variables-3)
      - [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
-       - [Variables](#variables-4)
 - [Conclusions and Remarks](#conclusions-and-remarks)
 - [References](#references)
 - [Appendices](#appendices)
@@ -226,7 +221,7 @@ fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot 
 
 #### Variation of Total Nodes
 
-##### Variables
+The variables and results are below: 
 
 - N (total number of nodes in the network) = $100, 300, 500, 1000$
 - m (number of bad actors) = $60$% of N
@@ -260,7 +255,7 @@ the probability is lower with respect to the committee size when $N$ is smaller.
 
 #### Variation of Byzantine Fault-tolerance Threshold
 
-##### Variables
+The variables and results are below: 
 
   - N (total number of nodes in the network) = $100$
   - m (number of bad actors) = $60$% of N
@@ -284,7 +279,7 @@ BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 
 #### Variation of Total Number of Nodes with Committee Size 10
 
-##### Variables
+The variables and results are below: 
 
 - N (total number of nodes in the network) = ranging from $10$ to $350$
 - m (number of bad actors) = $60$% of N
@@ -301,7 +296,7 @@ probability plateaus at $0.35$.
 
 #### Variation of Total Number of Nodes with Committee Size 100
 
-##### Variables
+The variables and results are below: 
 
 - N (total number of nodes in the network) = ranging from $100$ to $1,300$
 - m (number of bad actors) = $60$% of N
@@ -320,7 +315,7 @@ The larger the committee size, the fewer dramatic changes there are in the proba
 
 #### Variation of Bad Nodes with Committee Size 10 and 100
 
-##### Variables
+The variables and results are below: 
 
 - N (total number of nodes in the network) = ranging from $10$ and $100$ to $50,000$
 - m (number of bad actors) = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
