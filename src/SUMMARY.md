@@ -22,6 +22,7 @@
     - [Layer 2 Scaling Survey](scaling/layer2scaling-landscape/layer2scaling-survey.md)
     - [Layer 2 Scaling Survey Executive Summary](scaling/executive-summary/sources/PITCHME.link.md)
     - [Directed Acyclic Graphs](scaling/directed-acyclic-graphs/DAGs.md)
+    - [Laser Beam](scaling/laser-beam/MainReport.md)
   - [Merged Mining](./merged-mining/merged-mining.md)
     - [Merged Mining Introduction](merged-mining/merged-mining-scene/MergedMiningIntroduction.md)
   - [Digital Assets](./digital-assets/digital-assets.md)
