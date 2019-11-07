@@ -1,7 +1,7 @@
 # Laser Beam
 
 - [Introduction](#introduction)
-- [Laser Beam Transactions](#laser-beam-transactions)
+- [Detail Scheme](#detail-scheme)
   - [Funding Transaction](#funding-transaction)
   - [Refund Procedure](#refund-procedure)
     - [Alice - Part 1](#alice---part-1)
@@ -40,7 +40,7 @@ repository, which at this stage demonstrates off-chain transactions in a single 
 According to the Request for Comment (RFC) documents, Beam does not plan to support multiparty (more than two) payment 
 channels, but rather to implement routing across different payment channels in the Lightning Network style.
 
-## Laser Beam Transactions
+## Detail Scheme
 
 Beam's version of a multisignature (MultiSig) is actually a $2\text{-of-}2$ multiparty Unspent Transaction Output (UTXO), where each party keeps its 
 share of the blinding factor of the Pedersen commitment, $C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)$, secret. (Refer 
@@ -420,7 +420,7 @@ Lightning Network now?"
 BeamMW/beam Wiki"
 
 [[6]] F. Jahr, "Beam - Lightning Network Position Paper. (v 1.0)" \[online\]. Available: 
-<https://docs.beam.mw/Beam\_lightning\_network\_position\_paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
+<https://docs.beam.mw/Beam_lightning_network_position_paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
 
 [6]: https://docs.beam.mw/Beam\_lightning\_network\_position\_paper.pdf
 "Beam - Lightning network 
@@ -434,16 +434,16 @@ position paper. (v 1.0)"
 Lightning Network Specifications"
 
 [[8]] The Beam Team, "GitHub: beam/node/laser\_beam\_demo at master - BeamMW/beam" \[online\]. Available: 
-<https://github.com/BeamMW/beam/tree/master/node/laser\_beam\_demo>. Date accessed: 2019&#8209;07&#8209;05.
+<https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo>. Date accessed: 2019&#8209;07&#8209;05.
 
 [8]: https://github.com/BeamMW/beam/tree/master/node/laser\_beam\_demo
 "GitHub: beam/node/laser\_beam\_demo 
 at master - BeamMW/beam"
 
 [[9]] The Beam Team, "GitHub: beam/ecc\_bulletproof.cpp at mainnet - BeamMW/beam" \[online\]. Available: 
-<https://github.com/BeamMW/beam/blob/mainnet/core/ecc\_bulletproof.cpp>. Date accessed: 2019&#8209;07&#8209;05.
+<https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp>. Date accessed: 2019&#8209;07&#8209;05.
 
-[9]: https://github.com/BeamMW/beam/blob/mainnet/core/ecc\_bulletproof.cpp
+[9]: https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp
 "GitHub: beam/ecc\_bulletproof.cpp 
 at mainnet - BeamMW/beam"
 
