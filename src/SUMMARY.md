@@ -14,7 +14,7 @@
     - [Building on Bulletproofs](cryptography/building-on-bulletproofs/link.md)
     - [The Bulletproof Protocols](cryptography/bulletproofs-protocols/MainReport.md)
     - [Pure-Rust Elliptic Curve Cryptography](cryptography/pure-rust-ecc/pure-rust-ecc.md)
-    - [Rank-1 Constraint Systems](cryptography/Rank-1 Constraint Systems/R1CS-Constraint Systems.md)
+    - [Rank-1 Constraint Systems](cryptography/Rank-1-Constraint-Systems/R1CS-Constraint-Systems.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
     - [Understanding BFT Consensus](consensus-mechanisms/BFT/understanding_bft_consensus.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)
