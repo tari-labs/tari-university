@@ -1,7 +1,7 @@
 # Laser Beam
 
 - [Introduction](#introduction)
-- [Detail Scheme](#detail-scheme)
+- [Laser Beam Transactions](#laser-beam-transactions)
   - [Funding Transaction](#funding-transaction)
   - [Refund Procedure](#refund-procedure)
     - [Alice - Part 1](#alice---part-1)
@@ -40,12 +40,12 @@ repository, which at this stage demonstrates off-chain transactions in a single 
 According to the Request for Comment (RFC) documents, Beam does not plan to support multiparty (more than two) payment 
 channels, but rather to implement routing across different payment channels in the Lightning Network style.
 
-## Detail Scheme
+## Laser Beam Transactions
 
-Beam's version of a multisignature (MultiSig) is actually a $2\text{-of-}2$ multiparty UTXO, where each party keeps its 
+Beam's version of a multisignature (MultiSig) is actually a $2\text{-of-}2$ multiparty Unspent Transaction Output (UTXO), where each party keeps its 
 share of the blinding factor of the Pedersen commitment, $C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)$, secret. (Refer 
 to [Appendix A](#appendix-a-notation-used) for notations used.) The multiparty commitment is accompanied by a single 
-multiparty Bulletproof range proof, similar that employed by 
+multiparty Bulletproof range proof, similar to that employed by 
 [Grin](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#utilizing-grins-shared-bulletproof-computation), 
 where the individual shares of the blinding factor are used to create the combined range proof [[9]].
 
@@ -70,16 +70,16 @@ $$
 \mspace{50mu} (1)
 $$
 
-Alice and Bob also need to set up their own respective refund transaction so they can be compensated should the channel 
+Alice and Bob also need to set up their own respective refund transactions so they can be compensated should the channel 
 never be used; this is performed via a refund procedure. A refund procedure (off‑chain) consists of four parts, whereby 
 each user creates two transactions: one kept partially secret (discussed below) and the other shared. Each partially 
 secret transaction creates a different intermediate multiparty UTXO, which is then used as input in two shared 
 transactions, to spending the same set of outputs to each participant.
 
-All consecutive refund procedures work in exactly the same manner. In the equations that follow, double subscripts 
+All consecutive refund procedures work in exactly the same way. In the equations that follow, double subscripts 
 $\_{AA}$, $\_{AB}$, $\_{BA}$ and $\_{BB}$ have the following meaning: the first letter and the second letter indicate 
-who controls the transaction the term is part of, and who created the value, respectively. Blinding factors denoted by 
-$\hat{k}$ and $k^{\prime}$ and values denoted by $v^{\prime}$ have a special purpose, discussed later, so that 
+who controls the transaction and who created the value, respectively. Blinding factors denoted by 
+$\hat{k}$ and $k^{\prime}$, and values denoted by $v^{\prime}$, have a special purpose, discussed later, so that 
 $\hat{k}\_{N\_{a}} \neq k\_{N\_{a}} \neq k^{\prime}\_{N\_{a}}$ and $v\_{N\_{a}} \neq v^{\prime}\_{N\_{a}}$. The 
 $N\_{\text{th}}$ refund procedure is as follows:
 
@@ -257,7 +257,7 @@ $$
 Whenever the individual balances in the channel change, a new refund procedure is negotiated, revoking previous 
 agreements. Revoking refund transactions involves revealing blinding factor shares for the intermediate multiparty UTXOs, 
 thereby nullifying their further use. After the four parts of the refund procedure have been concluded successfully, the 
-previous round's blinding factor shares $\hat{k}_{(N-1)}$  are revealed to each other, in order to revoke the previous 
+previous round's blinding factor shares $\hat{k}_{(N-1)}​$  are revealed to each other, in order to revoke the previous 
 agreement.
 
 Alice:
@@ -280,10 +280,9 @@ $$
 \mspace{50mu} (17)
 $$
 
-
 Note that although the kernels for transactions (2) and (10) were kept secret, when the Bulletproof range proofs for 
 $\text{MultiSig}(N-1)\_{A}$ and  $\text{MultiSig}(N-1)\_{B}$ were constructed, resultant values of those MultiSig 
-Pedersen commitments were revealed to the counterparty. Each of them are thus able to verify the counterparty's blinding 
+Pedersen commitments were revealed to the counterparty. Each of them is thus able to verify the counterparty's blinding 
 factor share by constructing the counterparty's MultiSig Pedersen commitment.
 
 Alice verifies:
@@ -312,7 +311,7 @@ counterparty.
 
 ### Punishment Transaction
 
-If a counterparty decides to broadcast a revoked set of refund transactions, and the honest party is actively monitoring 
+If a counterparty decides to broadcast a revoked set of refund transactions, and if the honest party is actively monitoring 
 the blockchain and able to detect the attempted foul play, a punishment transaction can immediately be constructed 
 before the relative time lock $h_{rel}$ expires. Whenever any of the counterparty's intermediate multiparty UTXOs, 
 $\text{MultiSig}(N-m)\ \text{for}\ 0<m<N$, becomes available in the blockchain, the honest party can spend all the 
@@ -320,7 +319,7 @@ funds to its own output, because it knows the total blinding factor.
 
 ### Channel Closure
 
-Whenever the parties agree to a channel closure, the original on‑chain multiparty UTXO, $\text{MultiSig}(0)$, is spent 
+Whenever the parties agree to a channel closure, the original on‑chain multiparty UTXO, $\text{MultiSig}(0)​$, is spent 
 to their respective outputs in a collaborative transaction. In the event of a single party deciding to close the channel 
 unilaterally for whatever reason, its latest refund transaction is broadcast, effectively closing the channel.
 
@@ -333,36 +332,36 @@ at most, three on‑chain transactions.
 
 1. MultiSig
 
-   The Laser Beam MultiSig corresponds to a Mimblewimble $2-of-2$ Multiparty Bulletproof UTXO as described 
+   The Laser Beam MultiSig corresponds to a Mimblewimble $2-of-2$ Multiparty Bulletproof UTXO, as described 
    [here](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo). 
-   More than one method exist to create the MultiSig's associated Bulletproof range proof, and utilizing the 
+   There is more than one method for creating the MultiSig's associated Bulletproof range proof, and utilizing the 
    [Bulletproofs MPC Protocol](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#creating-the-multiparty-bulletproof-range-proof) 
    can make it more secure. 
 
 1. Linked Transactions
 
-   The 2nd part of the refund procedure requires a kernel with a relative time lock to the kernel of its corresponding 
-   1st part refund procedure, when those kernels are not yet available in the base layer, as well as a different, 
-   non-standard, signature challenge. Meta data about the linked transaction kernel and non-standard signature challenge 
-   creation must therefore be embedded within the 2nd part refund transaction kernels.  
+   Part 2 of the refund procedure requires a kernel with a relative time lock to the kernel of its corresponding 
+   part 1 refund procedure, when those kernels are not yet available in the base layer, as well as a different, 
+   non-standard, signature challenge. Metadata about the linked transaction kernel and non-standard signature challenge 
+   creation must therefore be embedded within part 2 refund transaction kernels.  
 
 1. Refund Procedure
 
    In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part 1 has been 
-   concluded and broadcast that transaction, the result would be that funding UTXO, $\text{MultiSig}(0)$, would be 
+   concluded and that transaction has been broadcast, the result would be that funding UTXO, $\text{MultiSig}(0)$, would be 
    replaced by the respective $\text{MultiSig}(N)$. The channel will still be open. However, it also cannot be spent 
-   unilaterally as the blinding factor is shared. Any new updates of the channel will then need to be based on 
+   unilaterally, as the blinding factor is shared. Any new updates of the channel will then need to be based on 
    $\text{MultiSig}(N)$ as the funding UTXO.
 
    In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part 1 and part 2 
-   have been concluded and broadcast those transactions, it will effectively be a channel closure.
+   have been concluded and those transactions have been broadcast, it will effectively be a channel closure.
 
 1. Revoke Attack Vector
 
    When revoking the previous refund  $(N-1)$, Alice can get hold of Bob's blinding factor share $\hat{k}\_{(N-1)\_{b}}$ 
-   (17), and after verifying that it is correct (18), refuses to give up her blinding factor share. This will leave 
+   (17), and after verifying that it is correct (18), refuse to give up her blinding factor share. This will leave 
    Alice with the ability to broadcast any of refund transactions $(N-1)$ and $N$, without fear of Bob broadcasting a 
-   punishment transaction. Bob on the other hand, will only be able to broadcast refund transaction $N$.
+   punishment transaction. Bob, on the other hand, will only be able to broadcast refund transaction $N$.
 
    
 
@@ -420,7 +419,7 @@ Lightning Network now?"
 "GitHub: Lightning Network - 
 BeamMW/beam Wiki"
 
-[[6]] F. Jahr, "Beam - Lightning network position paper. (v 1.0)" \[online\]. Available: 
+[[6]] F. Jahr, "Beam - Lightning Network Position Paper. (v 1.0)" \[online\]. Available: 
 <https://docs.beam.mw/Beam\_lightning\_network\_position\_paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
 
 [6]: https://docs.beam.mw/Beam\_lightning\_network\_position\_paper.pdf
@@ -448,11 +447,11 @@ at master - BeamMW/beam"
 "GitHub: beam/ecc\_bulletproof.cpp 
 at mainnet - BeamMW/beam"
 
-[[10]] D. Smith, N. Kohen, and C. Stewart, “Lightning 101 For Exchanges” \[online\]. Available: 
+[[10]] D. Smith, N. Kohen, and C. Stewart, “Lightning 101 for Exchanges” \[online\]. Available: 
 <https://suredbits.com/lightning-101-for-exchanges-overview>. Date accessed: 2019&#8209;11&#8209;06.
 
 [10]: https://suredbits.com/lightning-101-for-exchanges-overview/
-"Lightning 101 For Exchanges"
+"Lightning 101 for Exchanges"
 
 
 ## Contributors
