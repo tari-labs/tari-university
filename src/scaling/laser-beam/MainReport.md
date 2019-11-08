@@ -350,7 +350,8 @@ at most, three on‑chain transactions.
    [here](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo). 
    There is more than one method for creating the MultiSig's associated Bulletproof range proof, and utilizing the 
    [Bulletproofs MPC Protocol](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#creating-the-multiparty-bulletproof-range-proof) 
-   may make it more secure and enable wallet reconstruction.
+   will enable wallet reconstruction. It may also make information sharing, while constructing the Bulletproof range 
+   proof, more secure.
 
 1. Linked Transactions
 
