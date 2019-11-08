@@ -105,7 +105,7 @@ In the context of verification using zero-knowledge proofs, the solution  $s$  i
 	y = x**3  
  	return x + y + 5
  
-**Arithmetic Circuit**: The aim is to express everything in this code in a low level language that only handles two operations, *addition* and *multiplication*, and in each equation has one operation between two terms. This is called 'flattening' as it literally means converting the entire equation into smaller equation in which all variables are to the power 1, i.e., linearising. 
+**Arithmetic Circuit**: The aim is to express everything in this code in a low level language that only handles two operations, *addition* and *multiplication*, and in each equation there's one operation between two terms. This is called 'flattening' as it literally means converting the entire equation into smaller equation in which all variables are to the power 1, i.e., 'linearising'. 
  
 	sym_1 = x * x
 	y = sym_1 * x 
@@ -130,12 +130,12 @@ In order to set up the solution vector $s$, we note all the variables involved t
 						 	b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
 						 	c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
 						
-		sym_2 = y + x  satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  
-							b = [ 0 , 0 , 0 , 0 , 1 , 0 ] ,  and  
+		sym_2 = y + x  satisfied if 	a = [ 0 , 1 , 0 , 0 , 1 , 0 ] ,  
+							b = [ 1 , 0 , 0 , 0 , 0 , 0 ] ,  and  
 							c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
 							
-		~out = sym_2 + 5	satisfied if	a = [ 0 , 0 , 0 , 0 , 0 , 1 ] ,  
-							b = [ 5 , 0 , 0 , 0 , 0 , 0 ] ,  and  
+		~out = sym_2 + 5	satisfied if	a = [ 5 , 0 , 0 , 0 , 0 , 1 ] ,  
+							b = [ 1 , 0 , 0 , 0 , 0 , 0 ] ,  and  
 							c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
 
   
