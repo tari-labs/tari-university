@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:   src/protocols/intro-to-i2P#/
+Presentation:   src/protocols/intro-to-tor-i2P#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/intro-to-i2P#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/protocols/intro-to-tor-i2P#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:    src/protocols/intro-to-i2P#/
+Presentation:    src/protocols/intro-to-tor-i2P#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/intro-to-i2P#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/protocols/intro-to-tor-i2P#/
