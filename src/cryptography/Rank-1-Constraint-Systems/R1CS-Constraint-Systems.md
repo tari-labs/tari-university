@@ -123,20 +123,20 @@ In order to set up the solution vector $s$, we note all the variables involved t
  Now, about the vectors $a$ , $b$  and  $c$  : $\ \ $ Each triple   $( a , b , c )$   corresponds to each equation (actually each gate) in the Arithmetic Circuit. Since each equation has three terms, a  1  in either $a$ , $b$  or  $c$  indicates the appearance of the corresponding variable in the equation. The constraints are therefore, 
 
 	sym_1 = x * x  satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] , 
-							b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
-							c = [ 0 , 0 , 0 , 1 , 0 , 0 ]. 
+						b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
+						c = [ 0 , 0 , 0 , 1 , 0 , 0 ]. 
 						
 	y = sym_1 * x  satisfied if 	a = [ 0 , 0 , 0 , 1 , 0 , 0 ] ,  
-							b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
-							c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
+						b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
+						c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
 						
 	sym_2 = y + x 	satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  
-								b = [ 0 , 0 , 0 , 0 , 1 , 0 ] ,  and  
-								c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
+							b = [ 0 , 0 , 0 , 0 , 1 , 0 ] ,  and  
+							c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
 							
 	~out = sym_2 + 5 	satisfied if 	a = [ 0 , 0 , 0 , 0 , 0 , 1 ] ,  
-									b = [ 5 , 0 , 0 , 0 , 0 , 0 ] ,  and  
-									c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
+							b = [ 5 , 0 , 0 , 0 , 0 , 0 ] ,  and  
+							c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
 
   
 ### Remarks 
