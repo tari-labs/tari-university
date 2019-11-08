@@ -116,27 +116,27 @@ In the context of verification using zero-knowledge proofs, the solution  $s$  i
 
 In order to set up the solution vector $s$, we note all the variables involved thus far. The *auxiliary* variables are  'sym_1',  'y' , and  'sym_2', while the *primary* variables are the input  $x$ , the output  '~out', and dummy variable  '~one'  representing the number  1. The vector  $s$  is defined as 
   
- $s$ = $[$ ~one , $x$ , ~out , sym_1 , y , sym_2  $]$.    
+  s  =  [  ~one , x , ~out , sym_1 , y , sym_2  ].    
   
- In fact, using the Arithmetic Circuit above, one can quickly check that,  $s$ = $[$ 1 ,  3  , 35 , 9 , 27 , 30  $]$.   
+ In fact, using the Arithmetic Circuit above, one can quickly check that,   s  =  [ 1 ,  3  , 35 , 9 , 27 , 30 ].   
   
- Now, about the vectors $a$ , $b$  and  $c$  : $\ \ $ Each triple   $( a , b , c )$   corresponds to each equation (actually each gate) in the Arithmetic Circuit. Since each equation has three terms, a  1  in either $a$ , $b$  or  $c$  indicates the appearance of the corresponding variable in the equation. The constraints are therefore, 
+ Now, about the vectors  a , b  and  c :   Each triple    ( a , b , c )    corresponds to each equation (actually each gate) in the Arithmetic Circuit. Since each equation has three terms, a  1  in either $a$ , $b$  or  $c$  indicates the appearance of the corresponding variable in the equation. The constraints are therefore, 
 
-	sym_1 = x * x  satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] , 
-						b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
-						c = [ 0 , 0 , 0 , 1 , 0 , 0 ]. 
+		sym_1 = x * x   satisfied if	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] , 
+									b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
+									c = [ 0 , 0 , 0 , 1 , 0 , 0 ]. 
 						
-	y = sym_1 * x  satisfied if 	a = [ 0 , 0 , 0 , 1 , 0 , 0 ] ,  
-						b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
-						c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
+		y = sym_1 * x   satisfied if	a = [ 0 , 0 , 0 , 1 , 0 , 0 ] ,  
+						 		b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
+						 		c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
 						
-	sym_2 = y + x 	satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  
-							b = [ 0 , 0 , 0 , 0 , 1 , 0 ] ,  and  
-							c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
+		sym_2 = y + x  satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  
+									b = [ 0 , 0 , 0 , 0 , 1 , 0 ] ,  and  
+									c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
 							
-	~out = sym_2 + 5 	satisfied if 	a = [ 0 , 0 , 0 , 0 , 0 , 1 ] ,  
-							b = [ 5 , 0 , 0 , 0 , 0 , 0 ] ,  and  
-							c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
+		~out = sym_2 + 5	satisfied if	a = [ 0 , 0 , 0 , 0 , 0 , 1 ] ,  
+											b = [ 5 , 0 , 0 , 0 , 0 , 0 ] ,  and  
+											c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
 
   
 ### Remarks 
