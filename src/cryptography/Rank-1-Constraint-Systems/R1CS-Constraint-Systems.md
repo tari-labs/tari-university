@@ -96,7 +96,7 @@ In the context of verification using zero-knowledge proofs, the solution  $s$  i
   Here's the Verifier's *challenge* to the Prover: 
   Prove that you know the solution to  $$ x^3 + x + 5 = 35 $$ 
 
-  It is easy to find the solution, which is$\ \ $ $ x = 3 $. Here's how a zk-SNARK approach to verifying the solution, by using going through the 5-step process above.    
+  It is easy to find the solution, which is$\ \ $ $ x = 3 $. Here's how a zk-SNARK approach uses an R1CS to verify the solution (focusing on the R1CS part of the 5-step process above). 
   
   
   **Computational Problem**: A program that takes  $x$  as an input and checks whether it satisfies the given equation. It can be written as; 
@@ -120,7 +120,7 @@ In order to set up the solution vector $s$, we note all the variables involved t
   
  In fact, using the Arithmetic Circuit above, one can quickly check that,   s  =  [ 1 ,  3  , 35 , 9 , 27 , 30 ].   
   
- Now, about the vectors  a , b  and  c :   Each triple    ( a , b , c )    corresponds to each equation (actually each gate) in the Arithmetic Circuit. Since each equation has three terms, a  1  in either $a$ , $b$  or  $c$  indicates the appearance of the corresponding variable in the equation. The constraints are therefore, 
+ Now, about the vectors  a , b  and  c :   Each triple    ( a , b , c )    corresponds to each equation (actually each gate) in the Arithmetic Circuit. Since each equation has three terms, a  1  in either  a  ,  b  or  c   indicates the appearance of the corresponding variable in the equation. The constraints are therefore, 
 
 		sym_1 = x * x   satisfied if	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] , 
 							b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
