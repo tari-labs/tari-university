@@ -81,8 +81,10 @@ Eran Tromer adds an extra 'form' between a linear PCP and the zk-SNARKs, and tha
   
 Our focus in this report is on the R1CS form. 
   
-  **Definition**: [2.]  An R1CS is a sequence of groups of three vectors  $( a, b, c )$ , and the solution to an R1CS is a vector  $s$  that satisfies the equation 
-  $$ ( s \cdot a ) * ( s \cdot b ) - ( s \cdot c ) = 0 $$  where  "$\cdot$"  is the dot-product of vectors. 
+  **Definition**: [2.]  
+  An R1CS is a sequence of groups of three vectors  $( a, b, c )$ , and the solution to an R1CS is a vector  $s$  that satisfies the equation 
+  $ ( s \cdot a ) * ( s \cdot b ) - ( s \cdot c ) = 0 $ $ \ \ $  
+  where  "$\cdot$"  is the dot-product of vectors. 
   
 In the context of verification using zero-knowledge proofs, the solution  $s$  in the above definition would be the solution to a computational problem posed by the Verifier. The Prover needs to have  $s$, and prove to the verifier that they are in possession of  $s$.     
   
@@ -121,20 +123,20 @@ In order to set up the solution vector $s$, we note all the variables involved t
  Now, about the vectors $a$ , $b$  and  $c$  : $\ \ $ Each triple   $( a , b , c )$   corresponds to each equation (actually each gate) in the Arithmetic Circuit. Since each equation has three terms, a  1  in either $a$ , $b$  or  $c$  indicates the appearance of the corresponding variable in the equation. The constraints are therefore, 
 
 	sym_1 = x * x  satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] , 
-									b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
-									c = [ 0 , 0 , 0 , 1 , 0 , 0 ]. 
+							b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
+							c = [ 0 , 0 , 0 , 1 , 0 , 0 ]. 
 						
 	y = sym_1 * x  satisfied if 	a = [ 0 , 0 , 0 , 1 , 0 , 0 ] ,  
-									b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
-									c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
+							b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
+							c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
 						
 	sym_2 = y + x 	satisfied if 	a = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  
-									b = [ 0 , 0 , 0 , 0 , 1 , 0 ] ,  and  
-									c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
+								b = [ 0 , 0 , 0 , 0 , 1 , 0 ] ,  and  
+								c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
 							
 	~out = sym_2 + 5 	satisfied if 	a = [ 0 , 0 , 0 , 0 , 0 , 1 ] ,  
-											b = [ 5 , 0 , 0 , 0 , 0 , 0 ] ,  and  
-											c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
+									b = [ 5 , 0 , 0 , 0 , 0 , 0 ] ,  and  
+									c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
 
   
 ### Remarks 
