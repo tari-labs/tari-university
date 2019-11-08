@@ -22,33 +22,33 @@ Of interest to us is the so called *zero-knowledge succinct non-interactive argu
  
  **Definition:** (zk-SNARKs)
  
- A typical zk-SNARK consists of three components  ( **G, P, V** ),  where  **G**  is the Key Generator,  **P**  is the Prover, and  **V**  is the Verifier. 
+ A typical zk-SNARK consists of three components  ( G, P, V ),  where  G  is the Key Generator,  P  is the Prover, and  V  is the Verifier. 
  
-		 **G** the Key Generator; 
-			•  **G** takes as inputs, 
+		 G  the Key Generator; 
+			•   G  takes as inputs, 
 				$\lambda$ , a secret parameter, and 
-				$C$ , a given program. 
-			•  The output of **G** is a pair of public keys, 
-				$pk$ the *proving key* to be used by the Prover, and 
-				$vk$ the *verification key* to be used by the Verifier. 
+				C , a given program. 
+			•  The output of  G  is a pair of public keys, 
+				pk   the  proving key  to be used by the Prover, and 
+				vk the  verification key  to be used by the Verifier. 
 	
-		 **P** the Prover; 
-			•  **P** takes 3 inputs,  
-				$pk$ the prover key, 
-				$x$ a public input, 
-				$w$ a private witness 
-			•  The output of **P** is a proof, 
-				***prf*** = **P**($pk , x, w$).
+		 P  the Prover; 
+			•  P  takes 3 inputs,  
+				pk  the prover key, 
+				x  a public input, 
+				w  a private witness 
+			•  The output of  P  is a proof, 
+				prf  =  P( pk , x, w ).
    
-		**V** the Verifier;   
-			•  **V** takes 3 inputs 
-				$vk$ the prover key, 
-				$x$ a public input, 
-				***prf*** a private witness. 
-			•  **V** computes two values and checks equality, 
-				First value  **V**( $vk, x,$ ***prf*** ) , 
-				Second value  $C( x, \eta )$ for some $\eta$  in the range, 
-				Checks if   **V**( $vk, x,$ ***prf*** )  equals   $C( x, \eta )$ .    
+		V  the Verifier;   
+			•   V  takes 3 inputs 
+				vk  the prover key, 
+				x  a public input, 
+				prf  a private witness. 
+			•   V  computes two values and checks equality, 
+				First value  V( vk, x, prf ) , 
+				Second value  C( x, \eta )  for some  \eta  in the range, 
+				Checks if   V( vk, x,  prf )  equals   C( x, \eta ).    
 
 
  Note that  $pk$ and $vk$ are generated once and only for a given program  $C$. i.e. $(pk, vk) = \bf{G}( \lambda, C )$. 
