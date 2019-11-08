@@ -351,7 +351,7 @@ $$
 
 <br>
 
-Commitment $ P = L \cdot R $ can then further be sliced as follows:
+Commitment $ P $ can then further be sliced into $ L $ and $ R $ as follows:
 
 $$
 \begin{aligned} 
