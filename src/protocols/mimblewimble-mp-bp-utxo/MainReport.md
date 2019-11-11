@@ -456,7 +456,8 @@ $ C\_m $.
 | Consideration                 | Using Dalek's Bulletproofs MPC Protocol                      | Using Grin's Multiparty Bulletproof                          |
 | ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Rounds of communication       | Three                                                        | Two                                                          |
-| Security                      | Use of Merlin transcripts makes this method more secure against replay attacks. | No specific sharing protocol suggested.                      |
+| Information sharing security  | Use of Merlin transcripts, combined with the MPC protocol, makes this method more secure against replay attacks. | No specific sharing protocol suggested, but potentially easy to implement, as described [here]((#simple-sharing-protocol)).  |
+| Guarantee of honest verifier  | There's no way to detect a dishonest challenge until the dealer provides the final proof to the players, except if every player acts as a dealer. | Similar  |
 | Size of the Bulletproof       | Logarithmic Bulletproof range proof size, i.e. 672&nbsp;bytes up to 928&nbsp;bytes for 16&nbsp;range proofs. | Single Bulletproof range proof size of 672&nbsp;bytes.       |
 | Colored coin                  | Coins are colored, i.e. distinguishable from normal commitments in the blockchain due to additional metadata. | Coins do not need to be colored, i.e. it may look exactly like any other commitment. |
 | Wallet reconstructability     | Each individual range proof's data is accessible within the aggregated range proof. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with [Bulletproof range proof rewinding](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#improved-implementation). | The wallet cannot be reconstructed, as a single party's blinding factor cannot be distinguished from the combined range proof. Even if these coins were colored with a flag to make them identifiable, it would not help. |
@@ -721,8 +722,9 @@ multiparty payment scheme introduced here, the following observations can be mad
 
    The choice between using Dalek's Bulletproofs MPC Protocol or Grin's multiparty Bulletproof to construct a multiparty 
    range proof is important. Although using Dalek's method involves more rounds of communication, with a slightly larger 
-   proof size and the requirement to have the coins colored, it has definite advantages. It trumps on security while 
-   executing the protocol and wallet reconstructability.
+   proof size and the requirement to have the coins colored, it has definite advantages. It trumps on wallet 
+   reconstructability and information sharing security while executing the protocol, although the latter could easily be 
+   enhanced for the Grin implementation.
 
 1. Practicality
 
