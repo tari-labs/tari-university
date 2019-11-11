@@ -17,7 +17,7 @@ A *zero-knowledge proof* protocol allows two players, the Verifier and the Prove
 
 A lot of work has been done in making these type of protocols practical, making them short and efficient. Research work over the last decade has produced several refinements of these proofs, even mechanisms to transform interactive zero-knowledge proofs to non-interactive zero-knowledge proofs (NIZKs). 
 
-Of interest to us is the so called *zero-knowledge succinct non-interactive arguments of knowledge*, or zk-SNARKs. If we drop the technical detail that *arguments of knowledge* must be *decidable* and *sound*, zk-SNARKs can simply be classified as *proofs*, zero-knowledge proofs, and hence a special class of NIZKs (See  [1.]  for a brief landscape NIZKs, and includes zk-SNARKs).  
+Of interest to us is the so called *zero-knowledge succinct non-interactive arguments of knowledge*, or zk-SNARKs. If we drop the technical detail that *arguments of knowledge* must be *decidable* and *sound*, zk-SNARKs can simply be classified as *proofs*, zero-knowledge proofs, and hence a special class of NIZKs (See  [1.]  for a brief landscape of NIZKs, which includes zk-SNARKs).  
 
  
  **Definition:** (zk-SNARKs)
@@ -29,8 +29,8 @@ Of interest to us is the so called *zero-knowledge succinct non-interactive argu
 				$\lambda$ , a secret parameter, and 
 				C , a given program. 
 			•  The output of  G  is a pair of public keys, 
-				pk   the  proving key  to be used by the Prover, and 
-				vk the  verification key  to be used by the Verifier. 
+				pk  the proving key to be used by the Prover, and 
+				vk  the verification key to be used by the Verifier. 
 	
 		 P  the Prover; 
 			•  P  takes 3 inputs,  
@@ -48,7 +48,7 @@ Of interest to us is the so called *zero-knowledge succinct non-interactive argu
 			•   V  computes two values and checks equality, 
 				First value  V( vk, x, prf ) , 
 				Second value  C( x, \eta )  for some  \eta  in the range, 
-				Checks if   V( vk, x,  prf )  equals   C( x, \eta ).    
+				Checks if  V( vk, x,  prf )  equals   C( x, \eta ).    
 
 
  Note that  $pk$ and $vk$ are generated once and only for a given program  $C$. i.e. $(pk, vk) = \bf{G}( \lambda, C )$. 
