@@ -98,7 +98,7 @@ $$
 \begin{aligned}
   -\text{MultiSig}(0)+\text{MultiSig}(N)\_{A}+\text{fee} 
        & =\text{Excess}(N)\_{A1} \\\\
-  -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big(v\_{0}H+(\hat{k}\_{N\_{a}}+k\_{N\_{b}})G\Big) + fH 
+  -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(\hat{k}\_{N\_{a}}+k\_{N\_{b}})G\Big) + fH 
        &= \mathcal{X}\_{N\_{A1}} 
 \end{aligned}
 \mspace{50mu} (2)
@@ -185,7 +185,7 @@ $$
 \begin{aligned}
   -\text{MultiSig}(0)+\text{MultiSig}(N)\_{B}+\text{fee} 
        & =\text{Excess}(N)\_{B1} \\\\
-  -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big(v\_{0}H+(k\_{N\_{a}}+\hat{k}\_{N\_{b}})G\Big) + fH 
+  -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(k\_{N\_{a}}+\hat{k}\_{N\_{b}})G\Big) + fH 
        &= \mathcal{X}\_{N\_{B1}}
 \end{aligned}
 \mspace{50mu} (10)
