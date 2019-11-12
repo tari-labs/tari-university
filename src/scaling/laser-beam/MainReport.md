@@ -267,7 +267,7 @@ $$
   \lbrace\text{Alice's commitment}\rbrace \\\\
   \hat{k}\_{(N-1)\_{a}}   & \quad & \lbrace\text{Alice shares with Bob}\rbrace \\\\
 \end{aligned}
-\mspace{50mu} (16)
+\mspace{50mu} (18)
 $$
 
 Bob:
@@ -277,7 +277,7 @@ $$
   \lbrace\text{Bob's commitment}\rbrace \\\\
   \hat{k}\_{(N-1)\_{b}}   & \quad & \lbrace\text{Bob shares with Alice}\rbrace 
 \end{aligned}
-\mspace{50mu} (17)
+\mspace{50mu} (19)
 $$
 
 Note that although the kernels for transactions (2) and (10) were kept secret, when the Bulletproof range proofs for 
@@ -290,7 +290,7 @@ $$
 \begin{aligned}  
   \Big(v\_{0}H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0},\ k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})
 \end{aligned}
-\mspace{50mu} (18)
+\mspace{50mu} (20)
 $$
 
 
@@ -301,7 +301,7 @@ $$
 \begin{aligned}
   \Big(v\_{0}H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0},\ \hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})
 \end{aligned}
-\mspace{50mu} (19)
+\mspace{50mu} (21)
 $$
 
 
@@ -359,7 +359,7 @@ at most, three on‑chain transactions.
 1. Revoke Attack Vector
 
    When revoking the previous refund  $(N-1)$, Alice can get hold of Bob's blinding factor share $\hat{k}\_{(N-1)\_{b}}$ 
-   (17), and after verifying that it is correct (18), refuse to give up her blinding factor share. This will leave 
+   (19), and after verifying that it is correct (20), refuse to give up her blinding factor share. This will leave 
    Alice with the ability to broadcast any of refund transactions $(N-1)$ and $N$, without fear of Bob broadcasting a 
    punishment transaction. Bob, on the other hand, will only be able to broadcast refund transaction $N$.
 
@@ -420,9 +420,9 @@ Lightning Network now?"
 BeamMW/beam Wiki"
 
 [[6]] F. Jahr, "Beam - Lightning Network Position Paper. (v 1.0)" \[online\]. Available: 
-<https://docs.beam.mw/Beam\_lightning\_network\_position\_paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
+<https://docs.beam.mw/Beam_lightning_network_position_paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
 
-[6]: https://docs.beam.mw/Beam\_lightning\_network\_position\_paper.pdf
+[6]: https://docs.beam.mw/Beam_lightning_network_position_paper.pdf
 "Beam - Lightning network 
 position paper. (v 1.0)"
 
@@ -433,17 +433,17 @@ position paper. (v 1.0)"
 "GitHub: fjahr/lightning-mw, 
 Lightning Network Specifications"
 
-[[8]] The Beam Team, "GitHub: beam/node/laser\_beam\_demo at master - BeamMW/beam" \[online\]. Available: 
-<https://github.com/BeamMW/beam/tree/master/node/laser\_beam\_demo>. Date accessed: 2019&#8209;07&#8209;05.
+[[8]] The Beam Team, "GitHub: beam/node/laser_beam_demo at master - BeamMW/beam" \[online\]. Available: 
+<https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo>. Date accessed: 2019&#8209;07&#8209;05.
 
-[8]: https://github.com/BeamMW/beam/tree/master/node/laser\_beam\_demo
+[8]: https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo
 "GitHub: beam/node/laser\_beam\_demo 
 at master - BeamMW/beam"
 
 [[9]] The Beam Team, "GitHub: beam/ecc\_bulletproof.cpp at mainnet - BeamMW/beam" \[online\]. Available: 
-<https://github.com/BeamMW/beam/blob/mainnet/core/ecc\_bulletproof.cpp>. Date accessed: 2019&#8209;07&#8209;05.
+<https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp>. Date accessed: 2019&#8209;07&#8209;05.
 
-[9]: https://github.com/BeamMW/beam/blob/mainnet/core/ecc\_bulletproof.cpp
+[9]: https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp
 "GitHub: beam/ecc\_bulletproof.cpp 
 at mainnet - BeamMW/beam"
 
