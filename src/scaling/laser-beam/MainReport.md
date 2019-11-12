@@ -368,7 +368,7 @@ at most, three on‑chain transactions.
    be replaced by the respective $\text{MultiSig}(N)$. The channel will still be open. However, it also cannot be spent 
    unilaterally, as the blinding factor is shared. Any new updates of the channel will then need to be based on 
    $\text{MultiSig}(N)$ as the funding UTXO. Note that this cannot happen if the counterparties construct transactions 
-   for part 1 and part 2, conclude part&nbsp;2 by signing it, and only then sign part 1.
+   for part&nbsp;1 and part&nbsp;2, conclude part&nbsp;2 by signing it, and only then sign part&nbsp;1.
    
    In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part 1 and part 2 
    have been concluded and those transactions have been broadcast, it will effectively be a channel closure.
