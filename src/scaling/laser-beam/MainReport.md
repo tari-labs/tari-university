@@ -105,7 +105,7 @@ $$
 $$
 
 They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof,
-the signature challenge and Bob's potion of the signature, $s\_{N\_{AB1}}$. Alice does not share the final kernel and 
+the signature challenge and Bob's portion of the signature, $s\_{N\_{AB1}}$. Alice does not share the final kernel and 
 thus keeps her part of the aggregated signature, $s\_{N\_{AA1}}$, hidden.
 
 $$
