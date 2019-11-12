@@ -279,7 +279,7 @@ $$
   \lbrace\text{Alice's commitment}\rbrace \\\\
   \hat{k}\_{(N-1)\_{a}}   & \quad & \lbrace\text{Alice shares with Bob}\rbrace \\\\
 \end{aligned}
-\mspace{50mu} (16)
+\mspace{50mu} (18)
 $$
 
 Bob:
@@ -290,7 +290,7 @@ $$
   \lbrace\text{Bob's commitment}\rbrace \\\\
   \hat{k}\_{(N-1)\_{b}}   & \quad & \lbrace\text{Bob shares with Alice}\rbrace 
 \end{aligned}
-\mspace{50mu} (17)
+\mspace{50mu} (19)
 $$
 
 Note that although the kernels for transactions (2) and (10) were kept secret, when the Bulletproof range proofs for 
@@ -304,7 +304,7 @@ $$
 \begin{aligned}  
   \Big(v\_{0}H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0},\ k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})
 \end{aligned}
-\mspace{50mu} (18)
+\mspace{50mu} (20)
 $$
 
 
@@ -314,7 +314,7 @@ $$
 \begin{aligned}
   \Big(v\_{0}H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0},\ \hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})
 \end{aligned}
-\mspace{50mu} (19)
+\mspace{50mu} (21)
 $$
 
 
@@ -376,7 +376,7 @@ at most, three on‑chain transactions.
 1. Revoke Attack Vector
 
    When revoking the previous refund  $(N-1)$, Alice can get hold of Bob's blinding factor share $\hat{k}\_{(N-1)\_{b}}$ 
-   (17), and after verifying that it is correct (18), refuse to give up her blinding factor share. This will leave 
+   (19), and after verifying that it is correct (20), refuse to give up her blinding factor share. This will leave 
    Alice with the ability to broadcast any of refund transactions $(N-1)$ and $N$, without fear of Bob broadcasting a 
    punishment transaction. Bob, on the other hand, will only be able to broadcast refund transaction $N$.
 
@@ -474,3 +474,7 @@ at mainnet - BeamMW/beam"
 
 - <https://github.com/hansieodendaal>
 - <https://github.com/anselld>
+- <https://github.com/SWvheerden>
+- <https://github.com/Empiech007>
+- <https://github.com/mikethetike>
+
