@@ -20,7 +20,8 @@
 
 ## Introduction
 
-Proof-of-Work (PoW) blockchains are not immutable in realtime and have poor scalability properties. A payment channel 
+Proof-of-Work (PoW) blockchains are notoriously slow, as transactions need to be a number of blocks in the past to be 
+confirmed, and have poor scalability properties. A payment channel 
 is a class of techniques designed to allow two or more parties to make multiple blockchain transactions, without 
 committing all of the transactions to the blockchain. Resulting funds can be committed back to the blockchain. Payment 
 channels allow multiple transactions to be made within off-chain agreements. They keep the operation mode of the 
