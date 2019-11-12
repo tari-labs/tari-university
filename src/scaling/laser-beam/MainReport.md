@@ -38,14 +38,14 @@ Laser Beam is an adaptation of the Lightning Network for the [Mimblewimble](../.
 protocol, to be implemented for Beam ([[5]], [[6]], [[7]]). At the time of writing of this report (November&nbsp;2019), 
 the specifications were far advanced, but still work in progress. Beam has a working demonstration in its mainnet 
 repository, which at this stage demonstrates off-chain transactions in a single channel between two parties [[8]]. 
-According to the Request for Comment (RFC) documents, Beam plan to 
+According to the Request for Comment (RFC) documents, Beam plans to 
 implement routing across different payment channels in the Lightning Network style.
 
 ## Detail Scheme
 
 Beam's version of a multisignature (MultiSig) is actually a $2\text{-of-}2$ multiparty Unspent Transaction Output (UTXO), 
 where each party keeps its share of the blinding factor of the Pedersen commitment, 
-$C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)$, secret. (Refer to [Appendix A](#appendix-a-notation-used) for notations 
+$C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)$, secret. (Refer to [Appendix A](#appendix-a-notation-used) for notation 
 used.) The multiparty commitment is accompanied by a single multiparty Bulletproof range proof, similar to that employed 
 by [Grin](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#utilizing-grins-shared-bulletproof-computation), 
 where the individual shares of the blinding factor are used to create the combined range proof [[9]].
@@ -357,20 +357,20 @@ at most, three on‑chain transactions.
 1. Linked Transactions
 
    Part 2 of the refund procedure requires a kernel with a relative time lock to the kernel of its corresponding 
-   part 1 refund procedure, when those kernels are not yet available in the base layer, as well as a different, 
+   part&nbsp;1 refund procedure, when those kernels are not yet available in the base layer, as well as a different, 
    non-similar, signature challenge. Metadata about the linked transaction kernel and non-similar signature challenge 
-   creation must therefore be embedded within part 2 refund transaction kernels.  
+   creation must therefore be embedded within part&nbsp;2 refund transaction kernels.  
 
 1. Refund Procedure
 
-   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part 1 has been 
+   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part&nbsp;1 has been 
    concluded and that transaction has been broadcast, the result would be that funding UTXO, $\text{MultiSig}(0)$, would 
    be replaced by the respective $\text{MultiSig}(N)$. The channel will still be open. However, it also cannot be spent 
    unilaterally, as the blinding factor is shared. Any new updates of the channel will then need to be based on 
    $\text{MultiSig}(N)$ as the funding UTXO. Note that this cannot happen if the counterparties construct transactions 
-   for part 1 and part 2, conclude part 2 by signing it, and only then sign part 1.
+   for part&nbsp;1 and part&nbsp;2, conclude part&nbsp;2 by signing it, and only then sign part&nbsp;1.
    
-   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part 1 and part 2 
+   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part&nbsp;1 and part&nbsp;2 
    have been concluded and those transactions have been broadcast, it will effectively be a channel closure.
 
 1. Revoke Attack Vector
