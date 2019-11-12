@@ -765,7 +765,7 @@ communication [[29]]:
 Module bulletproofs::range_proof_mpc">29</a>]</b></div>
 
 With the standard MPC protocol implementation as depicted in Figure&nbsp;7, there's no guarantee of Honest Verifier ZK, 
-that we can expect that the dealer behaves honestly according to the specified protocol ([30], [31]). There is no way to 
+that we can expect that the dealer behaves honestly according to the specified protocol ([[30]], [[31]]). There is no way to 
 detect a dishonest challenge until the dealer provides the final proof to the parties, except if every party acts as a 
 dealer in the final step of the protocol. Each party need to ensure that their partial proof elements (ProofShare) reach 
 every other party, and that each party produces the aggregate challenges identically.
