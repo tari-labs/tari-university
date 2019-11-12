@@ -764,6 +764,11 @@ communication [[29]]:
 [<a href="https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html" title="Dalek Cryptography - 
 Module bulletproofs::range_proof_mpc">29</a>]</b></div>
 
+With the standard MPC protocol implementation as depicted in Figure&nbsp;7, there's no guarantee of Honest Verifier ZK, 
+that we can expect that the dealer behaves honestly according to the specified protocol ([30], [31]). There is no way to 
+detect a dishonest challenge until the dealer provides the final proof to the parties, except if every party acts as a 
+dealer in the final step of the protocol. Each party need to ensure that their partial proof elements (ProofShare) reach 
+every other party, and that each party produces the aggregate challenges identically.
 
 The communication can be reduced by running a second MPC protocol for the inner product argument, reducing the rounds 
 to $ \log_2(l) $. Up to the last $ \log_2(l) $ round, each party's witnesses are independent, and the overall witness is 
@@ -1028,6 +1033,9 @@ Cathie Yun">23</a>]</b></div>
 - It is important that developers understand more about the fundamental underlying mathematics when implementing 
   something like Bulletproofs, even if they just reuse libraries developed by someone else.
 
+- The standard [MPC protocol](#mpc-protocol-for-bulletproofs) implementation only guarantees Honest Verifier ZK, but can 
+  be extended to be more secure if each party ensures that their partial proof elements reach every other party, and 
+  that each party produces the aggregate challenges identically.
 
 
 ## References
@@ -1250,6 +1258,20 @@ July 2018"
 [29]: https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html
 "Dalek Cryptography - 
 Module bulletproofs::range_proof_mpc"
+
+[[30]] "What is the difference between honest verifier zero knowledge and zero knowledge?" [online]. Available: 
+<https://crypto.stackexchange.com/questions/40436/what-is-the-difference-between-honest-verifier-zero-knowledge-and-zero-knowledge>. 
+Date accessed: 2019&#8209;11&#8209;12.
+
+[30]: https://crypto.stackexchange.com/questions/40436/what-is-the-difference-between-honest-verifier-zero-knowledge-and-zero-knowledge
+"Difference between honest 
+verifier ZK and ZK"
+
+[[31]] "600.641 Special Topics in Theoretical Cryptography - Lecture 11: Honest Verifier ZK and Fiat-Shamir" [online]. 
+Available: <https://www.cs.jhu.edu/~susan/600.641/scribes/lecture11.pdf>. Date accessed: 2019&#8209;11&#8209;12.
+
+[31]: https://www.cs.jhu.edu/~susan/600.641/scribes/lecture11.pdf
+"Honest Verifier ZK and Fiat-Shamir"
 
 
 ## Appendices
