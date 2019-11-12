@@ -44,8 +44,8 @@ channels, but rather to implement routing across different payment channels in t
 
 Beam's version of a multisignature (MultiSig) is actually a $2\text{-of-}2$ multiparty Unspent Transaction Output (UTXO), where each party keeps its 
 share of the blinding factor of the Pedersen commitment, $C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)$, secret. (Refer 
-to [Appendix A](#appendix-a-notation-used) for notations used.) The multiparty commitment is accompanied by a single 
-multiparty Bulletproof range proof, similar to that employed by 
+to [Appendix A](#appendix-a-notation-used) for notation used.) The multiparty commitment is accompanied by a single 
+multiparty Bulletproof range proof, similar to that used by 
 [Grin](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#utilizing-grins-shared-bulletproof-computation), 
 where the individual shares of the blinding factor are used to create the combined range proof [[9]].
 
@@ -332,9 +332,9 @@ at most, three on‑chain transactions.
 
 1. MultiSig
 
-   The Laser Beam MultiSig corresponds to a Mimblewimble $2-of-2$ Multiparty Bulletproof UTXO, as described 
+   The Laser Beam MultiSig corresponds to a Mimblewimble $2-of-2​$ Multiparty Bulletproof UTXO, as described 
    [here](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo). 
-   There is more than one method for creating the MultiSig's associated Bulletproof range proof, and utilizing the 
+   There is more than one method for creating the MultiSig's associated Bulletproof range proof. Utilizing the 
    [Bulletproofs MPC Protocol](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#creating-the-multiparty-bulletproof-range-proof) 
    can make it more secure. 
 
