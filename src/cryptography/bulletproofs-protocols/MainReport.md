@@ -16,6 +16,7 @@
     - [Aggregating Logarithmic Proofs](#aggregating-logarithmic-proofs)
     - [Non-interactive Proof through Fiat-Shamir Heuristic](#non-interactive-proof-through-fiat-shamir-heuristic)
     - [MPC Protocol for Bulletproofs](#mpc-protocol-for-bulletproofs)
+    - [MPC Protocol Security Discussion](#mpc-protocol-security-discussion)
   - [Zero-knowledge Proof for Arithmetic Circuits](#zero-knowledge-proof-for-arithmetic-circuits)
     - [Inner-product Proof for Arithmetic Circuits (Protocol 3)](#inner-product-proof-for-arithmetic-circuits-protocol-3)
     - [Logarithmic-sized Non-interactive Protocol for Arithmetic Circuits](#logarithmic-sized-non-interactive-protocol-for-arithmetic-circuits)
@@ -648,7 +649,7 @@ Bünz B. et al">1</a>]</b></div>
 The range proof presented here has the following Commitment Scheme properties:
 
 - **Perfect completeness (hiding).** Every validity/truth is provable. Also refer to Definition&nbsp;9 in [[1]].
-- **Perfect special honest verifier zero-knowledge.** The *verifier* $ \mathcal{V} $ behaves according to the protocol. 
+- **Perfect special Honest Verifier Zero-knowledge (HVZK).** The *verifier* $ \mathcal{V} $ behaves according to the protocol. 
 Also refer to Definition&nbsp;12 in [[1]].
 - **Computational witness extended emulation (binding).** A witness can be computed in time closely related to time 
   spent by the *prover* $ \mathcal{P} $. Also refer to Definition&nbsp;10 in [[1]].
@@ -705,7 +706,7 @@ $ m $ independent range proofs.
 The aggregate range proof presented here has the following Commitment Scheme properties:
 
 - **Perfect completeness (hiding):** Every validity/truth is provable. Also refer to Definition&nbsp;9 in [[1]].
-- **Perfect special honest verifier zero-knowledge:** The *verifier* $ \mathcal{V} $ behaves according to the 
+- **Perfect special HVZK:** The *verifier* $ \mathcal{V} $ behaves according to the 
 protocol. Also refer to Definition&nbsp;12 in [[1]].
 - **Computational witness extended emulation (binding):** A witness can be computed in time closely related to time 
 spent by the *prover* $ \mathcal{P} $. Also refer to Definition&nbsp;10 in [[1]].
@@ -721,11 +722,11 @@ Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
 ##### MPC Protocol for Bulletproofs
 
-This protocol allows multiple parties to construct a single, simple, efficient, aggregate range proof designed for 
-Bulletproofs. This is valuable when multiple parties want to create a single joined confidential transaction, where each 
-party knows some of the inputs and outputs, and needs to create range proofs for their known outputs. In Bulletproofs, 
-$ m $ parties, each having a Pedersen Commitment $ (V_k)_{k=1}^m $, can generate a single Bulletproof to which each 
-$ V_k $ commits in some fixed range.
+The Multi-party Computation (MPC) protocol for Bulletproofs allows multiple parties to construct a single, simple, 
+efficient, aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a 
+single joined confidential transaction, where each party knows some of the inputs and outputs, and needs to create range 
+proofs for their known outputs. In Bulletproofs, $ m $ parties, each having a Pedersen Commitment $ (V_k)_{k=1}^m $, can 
+generate a single Bulletproof to which each $ V_k $ commits in some fixed range.
 
 Let $ k $ denote the $ k $th party's message, thus $ A^{(k)} $ is generated using only inputs of party $ k $. A set of 
 distinct generators $ (g^{(k)}, h^{(k)})^m_{k=1} $ is assigned to each party, and $ \mathbf g,\mathbf h $ is defined as 
@@ -764,19 +765,26 @@ communication [[29]]:
 [<a href="https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html" title="Dalek Cryptography - 
 Module bulletproofs::range_proof_mpc">29</a>]</b></div>
 
-With the standard MPC protocol implementation as depicted in Figure&nbsp;7, there's no guarantee of it being Honest 
-Verifier Zero-knowledge (ZK), which would mean that the dealer behaves honestly according to the specified protocol 
-([[30]], [[31]]). There is no way to detect a dishonest challenge until the dealer provides the final proof to the 
-parties, except if every party acts as a dealer in the final step of the protocol. Each party needs to ensure that their 
-partial proof elements (ProofShare) reach every other party, and that each party produces the aggregate challenges 
-identically.
-
 The communication can be reduced by running a second MPC protocol for the inner product argument, reducing the rounds 
 to $ \log_2(l) $. Up to the last $ \log_2(l) $ round, each party's witnesses are independent, and the overall witness is 
 the interleaved concatenation of the parties' witnesses. The parties compute $ L^{(k)}, R^{(k)} $ in each round and the 
 dealer computes $ L, R $ as the homomorphic sum of the shares. In the final round, the dealer generates the final 
 challenge and sends it to each party, who in turn send their witness to the dealer, who completes 
 [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2). 
+
+
+##### MPC Protocol Security Discussion
+
+With the standard MPC protocol implementation as depicted in Figure&nbsp;7, there's no guarantee that the dealer behaves 
+honestly according to the specified protocol and generates challenges honestly. Since the Bulletproofs protocol is 
+special HVZK ([[30]], [[31]]) only, a secure MPC protocol requires all parties to receive 
+partial proof elements and independently compute aggregated challenges, in order to avoid the alternate case where a 
+single dealer maliciously generates them. A single dealer can, however, assign index positions to all parties at the 
+start of the protocol, and may complete the inner product compression since it does not rely on partial proof data.
+
+HVZK implies witness-indistinguishability [[32]], but it isn't clear what the implications of this 
+would be on the MPC protocol in practice. It could be that there are no practical attacks possible from a malicious 
+dealer and that witness-indistinguishability is sufficient.
 
 
 #### Zero-knowledge Proof for Arithmetic Circuits
@@ -859,7 +867,7 @@ Bünz B. et al">1</a>]</b></div>
 The proof system presented here has the following Commitment Scheme properties:
 
 - **Perfect completeness (hiding):** Every validity/truth is provable. Also refer to Definition&nbsp;9 in [[1]].
-- **Perfect honest verifier zero-knowledge:** The *verifier*  $ \mathcal{V} ​$ behaves according to the protocol. Also 
+- **Perfect HVZK:** The *verifier*  $ \mathcal{V} ​$ behaves according to the protocol. Also 
   refer to Definition&nbsp;12 in [[1]].
 - **Computational witness extended emulation (binding):** A witness can be computed in time closely related to time 
   spent by the *prover* $ \mathcal{P} $. Also refer to Definition&nbsp;10 in [[1]].
@@ -1011,12 +1019,10 @@ Cathie Yun">23</a>]</b></div>
   confidential blockchain protocol such as Tari should carefully consider expanded use of Bulletproofs to maximally leverage 
   functionality of the code base.
 
-  
 
 - Bulletproofs are not done yet, as illustrated in [Evolving Bulletproof Protocols](#evolving-bulletproof-protocols), 
   and their further development and efficient implementation have a lot of traction in the community.
 
-  
 
 - Bünz et al. [[1]] proposed that the switch commitment scheme defined by Ruffing et al. [[10]] can be used for 
   Bulletproofs if doubts in the underlying cryptographic hardness (discrete log) assumption arise in future. The switch 
@@ -1029,14 +1035,14 @@ Cathie Yun">23</a>]</b></div>
   (Refer to the Grin projects' implementation 
   [here](../bulletproofs-and-mimblewimble/MainReport.md#wallet-reconstruction-and-switch-commitment---grin).)
 
-  
 
 - It is important that developers understand more about the fundamental underlying mathematics when implementing 
   something like Bulletproofs, even if they just reuse libraries developed by someone else.
 
-- The standard [MPC protocol](#mpc-protocol-for-bulletproofs) implementation only guarantees Honest Verifier ZK, but can 
-  be extended to be more secure if each party ensures that their partial proof elements reach every other party, and 
-  that each party produces the aggregate challenges identically.
+
+- With the standard [MPC protocol](#mpc-protocol-for-bulletproofs) implementation, there is no guarantee that the dealer 
+  behaves honestly according to the protocol and generates challenges honestly. The protocol can be extended to be more 
+  secure if all parties receive partial proof elements and independently compute aggregated challenges.
 
 
 ## References
@@ -1274,6 +1280,12 @@ Available: <https://www.cs.jhu.edu/~susan/600.641/scribes/lecture11.pdf>. Date a
 [31]: https://www.cs.jhu.edu/~susan/600.641/scribes/lecture11.pdf
 "Honest Verifier ZK and Fiat-Shamir"
 
+[[32]] Wikipedia: "Witness-indistinguishable proof" [online]. Available: 
+<https://en.wikipedia.org/wiki/Witness-indistinguishable_proof>. Date accessed: 2019&#8209;11&#8209;12.
+
+[32]: https://en.wikipedia.org/wiki/Witness-indistinguishable_proof
+"Wikipedia: Witness-indistinguishable proof"
+
 
 ## Appendices
 
@@ -1394,4 +1406,5 @@ one party (the prover) can convince ..."
 - <https://github.com/neonknight64>
 - <https://github.com/CjS77>
 - <https://github.com/philipr-za>
+- <https://github.com/SarangNoether>
 - <https://github.com/anselld>
