@@ -310,7 +310,7 @@ satisfy $ c = \langle \mathbf {a} , \mathbf {b} \rangle $.
 Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 
@@ -481,7 +481,7 @@ Figure&nbsp;2 shows Protocol 2:
 Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 
@@ -590,7 +590,7 @@ Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="
 Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 
@@ -623,7 +623,7 @@ Part B [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="
 Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 
@@ -641,7 +641,7 @@ Part C [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="
 Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 
@@ -847,7 +847,7 @@ Figure&nbsp;8 presents Part 1 of the protocol, where the *prover* $ \mathcal{P} 
 Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 Figure&nbsp;9 presents Part 2 of the protocol, where the *prover* 
@@ -860,7 +860,7 @@ $ \mathcal{V} ​$ that the polynomials are well formed and that $ \langle l(X),
 Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 
@@ -926,7 +926,7 @@ Verification [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" t
 Confidential Transactions 
 and More, Blockchain Protocol Analysis and Security 
 Engineering 2018, 
-Bünz B. et al">1</a>]</b></div>
+Bünz B. et al.">1</a>]</b></div>
 
 
 
