@@ -778,7 +778,7 @@ challenge and sends it to each party, who in turn send their witness to the deal
 With the standard MPC protocol implementation as depicted in Figure&nbsp;7, there's no guarantee that the dealer behaves 
 honestly according to the specified protocol and generates challenges honestly. Since the Bulletproofs protocol is 
 special HVZK ([[30]], [[31]]) only, a secure MPC protocol requires all parties to receive 
-partial proof elements and independently compute aggregated challenges, in order to avoid the alternate case where a 
+partial proof elements and independently compute aggregated challenges, in order to avoid the alternative case where a 
 single dealer maliciously generates them. A single dealer can, however, assign index positions to all parties at the 
 start of the protocol, and may complete the inner product compression since it does not rely on partial proof data.
 
