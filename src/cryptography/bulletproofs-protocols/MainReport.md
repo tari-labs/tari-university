@@ -780,7 +780,7 @@ honestly according to the specified protocol and generates challenges honestly. 
 special HVZK ([[30]], [[31]]) only, a secure MPC protocol requires all parties to receive 
 partial proof elements and independently compute aggregated challenges, in order to avoid the alternative case where a 
 single dealer maliciously generates them. A single dealer can, however, assign index positions to all parties at the 
-start of the protocol, and may complete the inner product compression since it does not rely on partial proof data.
+start of the protocol, and may complete the inner product compression, since it does not rely on partial proof data.
 
 HVZK implies witness-indistinguishability [[32]], but it isn't clear what the implications of this 
 would be on the MPC protocol in practice. It could be that there are no practical attacks possible from a malicious 
