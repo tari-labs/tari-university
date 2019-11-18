@@ -130,11 +130,13 @@ In order to set up the solution vector $s$, we note all the variables involved t
 						 	b = [ 0 , 1 , 0 , 0 , 0 , 0 ] ,  and  
 						 	c = [ 0 , 0 , 0 , 0 , 1 , 0 ]. 
 						
-		sym_2 = y + x  satisfied if 	a = [ 0 , 1 , 0 , 0 , 1 , 0 ] ,  
+		sym_2 = y + x  which is best expressed as  sym_2 = 1*(y + x) ,  	is satisfied if 
+							a = [ 0 , 1 , 0 , 0 , 1 , 0 ] ,  
 							b = [ 1 , 0 , 0 , 0 , 0 , 0 ] ,  and  
 							c = [ 0 , 0 , 0 , 0 , 0 , 1 ].  
 							
-		~out = sym_2 + 5	satisfied if	a = [ 5 , 0 , 0 , 0 , 0 , 1 ] ,  
+		~out = sym_2 + 5  which is also best expressed as  ~out = sym_2 + 5  is satisfied if 
+							a = [ 5 , 0 , 0 , 0 , 0 , 1 ] ,  
 							b = [ 1 , 0 , 0 , 0 , 0 , 0 ] ,  and  
 							c = [ 0 , 0 , 1 , 0 , 0 , 0 ].    
 
