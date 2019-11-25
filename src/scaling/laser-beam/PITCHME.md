@@ -28,6 +28,7 @@ div.mywrap {
 - Lightning Network
 - Laser Beam Overview
 - Multiparty UTXO, Pedersen Commitment Trick
+- Refund Procedure
 - ???
   - ???
   - ???
@@ -172,6 +173,47 @@ $$
     (k_{0_{a}}+k_{0_{b}})G\Big)+fH = \mathcal{X}_{0}
 $$
 `
+
+---
+
+## Refund Procedure
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+Alice Part 1:
+
+@divend
+
+`
+$$
+-\text{MultiSig}(0)+\text{MultiSig}(N)\_{A}+\text{fee} 
+       =\text{Excess}(N)\_{A1} \\\\
+-\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(\hat{k}\_{N\_{a}}+k\_{N\_{b}})G\Big) + fH 
+       = \mathcal{X}\_{N\_{A1}}
+$$
+`
+
+- Alice gets Bob's part of the signature, but keeps her part secret!
+
+@div[text-left]
+
+Alice Part 2:
+
+@divend
+
+`
+$$
+-\text{MultiSig}(N)\_{A}+\text{Outputs}(N)+\text{fee}
+    =\text{Excess}(N)\_{A2} \\\\
+-\Big(v\_{0}H+(\hat{k}\_{N_{a}}+k\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
+  {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
+    =\mathcal{X}\_{N\_{A2}}
+$$
+`
+
+- Alice shares her part of the signature with Bob
 
 ---
 
