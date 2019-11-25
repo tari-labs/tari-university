@@ -124,6 +124,48 @@ Pans to implement routing across different payment channels in the Lightning Net
 ![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure.png)
 @divend
 
+---
+
+@div[text-left]
+
+Normal Pedersen commitment: 
+
+@divend
+
+`
+$$
+C(v,k)=\Big(vH+kG\Big)
+$$
+`
+
+@div[text-left]
+
+MultiSig Pedersen commitment between 2 parties:
+
+@divend
+
+`
+$$
+C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)
+$$
+`
+
+@div[text-left]
+
+Initial funding Tx:
+
+@divend
+
+`
+$$
+\begin{aligned}
+  \begin{aligned}
+    -\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee}\end{aligned} &= \text{Excess}(0) \\\\
+    -\Big((v_{a}H+k_{a}G)+(v_{b}H+k_{b}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH       &= \mathcal{X}_{0}
+  \end{aligned}
+\mspace{50mu}
+$$
+`
 
 ---
 
