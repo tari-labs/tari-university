@@ -190,8 +190,8 @@ Alice Part 1:
 $$
 -\text{MultiSig}(0)+\text{MultiSig}(N)_{A}+\text{fee} 
        =\text{Excess}(N)_{A1} \\\\
--\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(\hat{k}\_{N\_{a}}+k\_{N\_{b}})G\Big) + fH 
-       = \mathcal{X}\_{N\_{A1}}
+-\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N\_{b}})G\Big) + fH 
+       = \mathcal{X}_{N_{A1}}
 $$
 `
 
