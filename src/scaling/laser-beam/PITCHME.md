@@ -45,18 +45,23 @@ See full report [*here*](https://tlu.tarilabs.com/scaling/laser-beam/MainReport.
 
 PoW blockchains:
 
+@divend
+
 - Notoriously slow
 - Txs need to be a number of blocks in the past to be confirmed
 - Have poor scalability properties
 
 <div class="LineHeight20per"> <br></div>
-Payment channels:
+
+@div[text-left]
+
+Payment channels:<br>
+
+@divend
 
 - 2(+) parties can make multiple blockchain Txs off-chain
 - Only some Txs committed to the blockchain
 - Final payout committed back to the blockchain
-
-@divend
 
 ---
 
