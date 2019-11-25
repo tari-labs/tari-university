@@ -24,10 +24,13 @@ div.mywrap {
 
 ## Laser Beam
 
-- ???
+- Introduction
+- Lightning Network
+- Laser Beam Overview
 - ???
   - ???
   - ???
+- Conclusions
 
 <div class="LineHeight100per"> <br></div>
 See full report [*here*](https://tlu.tarilabs.com/scaling/laser-beam/MainReport.html).
@@ -37,15 +40,85 @@ See full report [*here*](https://tlu.tarilabs.com/scaling/laser-beam/MainReport.
 ## Introduction
 
 <div class="LineHeight20per"> <br></div>
+
 @div[text-left]
 
-PoW blockchains are notoriously slow, Txs need to be a number of blocks in the past to be confirmed, and have poor 
-scalability properties.
+PoW blockchains:
+
+- Notoriously slow
+- Txs need to be a number of blocks in the past to be confirmed
+- Have poor scalability properties
 
 <div class="LineHeight20per"> <br></div>
-???
+Payment channels:
+
+- 2(+) parties can make multiple blockchain Txs off-chain
+- Only some Txs committed to the blockchain
+- Final payout committed back to the blockchain
 
 @divend
+
+---
+
+@div[s800px]
+![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/layer2scaling.png)
+@divend
+
+---
+
+## Lightning Network
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+2nd-layer payment protocol originally designed for Bitcoin
+
+@divend
+
+<div class="LineHeight20per"> <br></div>
+
+@div[s800px]
+![lightningnetwork](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
+@divend
+
+<div class="LineHeight20per"> <br></div>
+@div[text-left]
+
+Dispute mechanism requires all users to constantly watch the blockchain for fraud
+
+@divend
+
+---
+
+## Laser Beam Overview
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+Laser Beam (still WIP) is an adaptation of the Lightning Network for [Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) 
+
+<div class="LineHeight20per"> <br></div>
+
+Created by The Beam Team for Beam
+
+<div class="LineHeight20per"> <br></div>
+
+Currently demonstrates off-chain transactions in a single channel between two parties
+
+<div class="LineHeight20per"> <br></div>
+
+Pans to implement routing across different payment channels in the Lightning Network style
+
+@divend
+
+---
+
+@div[s900px]
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure.png)
+@divend
+
 
 ---
 
