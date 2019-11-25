@@ -42,7 +42,6 @@ See full report [*here*](https://tlu.tarilabs.com/scaling/laser-beam/MainReport.
 ## Introduction
 
 <div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
 PoW blockchains:
@@ -54,7 +53,6 @@ PoW blockchains:
 - Have poor scalability properties
 
 <div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
 Payment channels:<br>
@@ -76,7 +74,6 @@ Payment channels:<br>
 ## Lightning Network
 
 <div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
 2nd-layer payment protocol originally designed for Bitcoin
@@ -84,7 +81,6 @@ Payment channels:<br>
 @divend
 
 <div class="LineHeight20per"> <br></div>
-
 @div[s800px]
 ![lightningnetwork](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/bitcoin-lightning-network-basic.png)
 @divend
@@ -101,21 +97,17 @@ Dispute mechanism requires all users to constantly watch the blockchain for frau
 ## Laser Beam Overview
 
 <div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
 Laser Beam (still WIP) is an adaptation of the Lightning Network for [Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) 
 
 <div class="LineHeight20per"> <br></div>
-
 Created by The Beam Team for Beam
 
 <div class="LineHeight20per"> <br></div>
-
 Currently demonstrates off-chain transactions in a single channel between two parties
 
 <div class="LineHeight20per"> <br></div>
-
 Pans to implement routing across different payment channels in the Lightning Network style
 
 @divend
@@ -131,11 +123,8 @@ Pans to implement routing across different payment channels in the Lightning Net
 ## Multiparty UTXO, Pedersen Commitment Trick
 
 <div class="LineHeight20per"> <br></div>
-
 <div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
-
 <div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
 Normal Pedersen commitment: 
@@ -179,7 +168,6 @@ $$
 ## Refund Procedure
 
 <div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
 Alice Part 1:
@@ -198,7 +186,6 @@ $$
 -> _Alice gets Bob's part of the signature, but keeps her part secret!_
 
 <div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
 Alice Part 2:
@@ -216,6 +203,45 @@ $$
 `
 
 -> _Alice shares her part of the signature with Bob_
+
+---
+
+@div[text-left]
+
+Bob Part 1:
+
+@divend
+
+`
+$$
+-\text{MultiSig}(0)+\text{MultiSig}(N)_{B}+\text{fee} 
+       =\text{Excess}(N)_{B1} \\\\
+-\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H+(k_{N_{a}}+\hat{k}_{N_{b}})G\Big) + fH 
+       = \mathcal{X}_{N_{B1}}
+$$
+`
+
+-> _Bob gets Alice's part of the signature, but keeps his part secret!_
+
+<div class="LineHeight20per"> <br></div>
+@div[text-left]
+
+Bob Part 2:
+
+@divend
+
+`
+$$
+-\text{MultiSig}(N)_{B}+\text{Outputs}(N)+\text{fee}
+      =\text{Excess}(N)_{B2} \\\\
+-\Big((v_{0}-f)H+(k_{N_{a}}+\hat{k}_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
+  {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH
+      =\mathcal{X}_{N_{B2}}                     \\\\
+$$
+`
+
+-> _Bob shares his part of the signature with Alice_
+
 
 ---
 
