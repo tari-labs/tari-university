@@ -299,9 +299,11 @@ $$
 @div[text-left]
 - Must monitor to detect foul play
 @divend
+
 @div[text-left]
 - Race against time!
 @divend
+
 @div[text-left]
 - Alice tries her luck and create:
 @divend
@@ -310,28 +312,25 @@ $$
 $$
 \begin{aligned}
 -\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) &+ \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + fH 
-  = \mathcal{X}_{(N-1)_{A1}}
+  = \mathcal{X}_{(N-1)_{A}}
 \end{aligned}
 $$
 `
+
 @div[text-left]
-
 - Bob jumps and claim all the funds!
-
 @divend
 
 `
 $$
-\begin{aligned}
-- \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) +
-\end{aligned}
+- \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big)
 $$
 `
 
 `
 $$
 \begin{aligned}
-(v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G) + fH 
++ (v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G) + fH 
 \end{aligned}
 $$
 `
