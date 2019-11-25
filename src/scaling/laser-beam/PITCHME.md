@@ -297,6 +297,8 @@ $$
 
 <div class="LineHeight20per"> <br></div>
 
+@div[text-left]
+
 - Must monitor to detect foul play
 - Race against time!
 - Alice tries her luck and create:
