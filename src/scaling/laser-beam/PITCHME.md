@@ -321,3 +321,8 @@ $$
 - Bob jumps and claim all the funds!
 @divend
 
++++
+
+@div[s900px]
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure.png)
+@divend
