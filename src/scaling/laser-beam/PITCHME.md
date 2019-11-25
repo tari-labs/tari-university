@@ -301,6 +301,8 @@ $$
 - Race against time!
 - Alice tries her luck and create:
 
+@divend
+
 `
 $$
 \begin{aligned}
@@ -309,8 +311,11 @@ $$
 \end{aligned}
 $$
 `
+@div[text-left]
 
 - Bob jumps and claim all the funds!
+
+@divend
 
 `
 $$
