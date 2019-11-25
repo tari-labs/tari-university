@@ -187,9 +187,11 @@ $$
 
 `
 $$
+\begin{aligned}
 -\text{MultiSig}(0) &+ \text{MultiSig}(N)_{A} + \text{fee} = \text{Excess}(N)_{A1} \\\\
 -\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) &+ \Big((v_{0}-f)H + (\hat{k}_{N_{a}}+k_{N_{b}})G\Big) + fH 
   = \mathcal{X}_{N_{A1}}
+\end{aligned}
 $$
 `
 
@@ -205,9 +207,11 @@ $$
 
 `
 $$
+\begin{aligned}
 -\text{MultiSig}(0) &+ \text{MultiSig}(N)_{B} + \text{fee} = \text{Excess}(N)_{B1} \\\\
 -\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) &+ \Big((v_{0}-f)H+(k_{N_{a}}+\hat{k}_{N_{b}})G\Big) + fH 
   = \mathcal{X}_{N_{B1}}
+\end{aligned}
 $$
 `
 
@@ -223,9 +227,11 @@ $$
 
 `
 $$
+\begin{aligned}
 -\text{MultiSig}(N)_{A}&+\text{Outputs}(N)+\text{fee} =\text{Excess}(N)_{A2} \\\\
 -\Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big)&+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
   {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH =\mathcal{X}_{N_{A2}}
+\end{aligned}
 $$
 `
 
@@ -241,9 +247,11 @@ $$
 
 `
 $$
+\begin{aligned}
 -\text{MultiSig}(N)_{B}&+\text{Outputs}(N)+\text{fee} =\text{Excess}(N)_{B2} \\\\
 -\Big((v_{0}-f)H+(k_{N_{a}}+\hat{k}_{N_{b}})G\Big)&+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
   {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH =\mathcal{X}_{N_{B2}}
+\end{aligned}
 $$
 `
 
@@ -265,8 +273,8 @@ $$
 `
 $$
 \begin{aligned}
-\text{MultiSig}(N-1)_{A}:\quad\Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Alice's commitment}\rbrace \\\\
-\hat{k}_{(N-1)_{a}} \quad &\lbrace\text{Alice shares with Bob}\rbrace \\\\
+\text{MultiSig}(N-1)_{A}:\quad\Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Alice's commitment}\rbrace \\
+\hat{k}_{(N-1)_{a}} \quad &\lbrace\text{Alice shares with Bob}\rbrace \\
 \Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0},\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \quad &\lbrace\text{Bob verifies}\rbrace 
 \end{aligned}
 $$
@@ -281,8 +289,8 @@ $$
 `
 $$
 \begin{aligned}
-\text{MultiSig}(N-1)_{B}:\quad\Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Bob's commitment}\rbrace \\\\
-\hat{k}_{(N-1)_{b}} \quad &\lbrace\text{Bob shares with Alice}\rbrace \\\\
+\text{MultiSig}(N-1)_{B}:\quad\Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Bob's commitment}\rbrace \\
+\hat{k}_{(N-1)_{b}} \quad &\lbrace\text{Bob shares with Alice}\rbrace \\
 \Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0},\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \quad &\lbrace\text{Alice verifies}\rbrace 
 \end{aligned}
 $$
