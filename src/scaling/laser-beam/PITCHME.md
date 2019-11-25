@@ -31,7 +31,6 @@ div.mywrap {
 - Refund Procedure
 - Revoke Previous Refund
 - Punishment!
-- Conclusions
 
 <div class="LineHeight100per"> <br></div>
 See full report [*here*](https://tlu.tarilabs.com/scaling/laser-beam/MainReport.html).
@@ -323,14 +322,16 @@ $$
 
 `
 $$
-- \Big( (v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G \Big) +
+\begin{aligned}
+- \Big( (v\_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G \Big) +
+\end{aligned}
 $$
 `
 
 `
 $$
 \begin{aligned}
-((v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G)) + fH 
+(v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G) + fH 
 \end{aligned}
 $$
 `
@@ -342,22 +343,4 @@ $$
 \end{aligned}
 $$
 `
-
----
-
-## Conclusions
-
-@div[text-left]
-???
-@divend
-
-- ???
-- ???
-
-@div[text-left]
-???
-@divend
-
-- ???
-- ???
 
