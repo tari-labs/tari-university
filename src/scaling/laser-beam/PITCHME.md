@@ -186,25 +186,6 @@ $$
 -> _Alice gets Bob's part of the signature, but keeps her part secret!_
 
 <div class="LineHeight20per"> <br></div>
-@div[text-left]
-
-Alice Part 2:
-
-@divend
-
-`
-$$
--\text{MultiSig}(N)_{A}+\text{Outputs}(N)+\text{fee}
-    =\text{Excess}(N)_{A2} \\\\
--\Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
-  {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH
-    =\mathcal{X}_{N_{A2}}
-$$
-`
-
--> _Alice shares her part of the signature with Bob_
-
----
 
 @div[text-left]
 
@@ -223,7 +204,28 @@ $$
 
 -> _Bob gets Alice's part of the signature, but keeps his part secret!_
 
+---
+
+@div[text-left]
+
+Alice Part 2:
+
+@divend
+
+`
+$$
+-\text{MultiSig}(N)_{A}+\text{Outputs}(N)+\text{fee}
+    =\text{Excess}(N)_{A2} \\\\
+-\Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
+  {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH
+    =\mathcal{X}_{N_{A2}}
+$$
+`
+
+-> _Alice shares her part of the signature with Bob_
+
 <div class="LineHeight20per"> <br></div>
+
 @div[text-left]
 
 Bob Part 2:
