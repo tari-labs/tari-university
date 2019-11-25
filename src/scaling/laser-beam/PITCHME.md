@@ -133,6 +133,8 @@ Pans to implement routing across different payment channels in the Lightning Net
 
 <div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
 
+<div class="LineHeight20per"> <br></div>
+
 @div[text-left]
 
 Normal Pedersen commitment: 
