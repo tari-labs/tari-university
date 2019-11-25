@@ -195,7 +195,9 @@ $$
 $$
 `
 
-- Alice gets Bob's part of the signature, but keeps her part secret!
+-> _Alice gets Bob's part of the signature, but keeps her part secret!_
+
+<div class="LineHeight20per"> <br></div>
 
 @div[text-left]
 
@@ -213,7 +215,7 @@ $$
 $$
 `
 
-- Alice shares her part of the signature with Bob
+-> _Alice shares her part of the signature with Bob_
 
 ---
 
