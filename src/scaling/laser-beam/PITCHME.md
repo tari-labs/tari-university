@@ -63,7 +63,7 @@ Payment channels:<br>
 - Only some Txs committed to the blockchain
 - Final payout committed back to the blockchain
 
----
++++
 
 @div[s800px]
 ![layer2scaling](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/layer2scaling.png)
@@ -112,7 +112,7 @@ Pans to implement routing across different payment channels in the Lightning Net
 
 @divend
 
----
++++
 
 @div[s900px]
 ![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure.png)
@@ -123,8 +123,15 @@ Pans to implement routing across different payment channels in the Lightning Net
 ## Multiparty UTXO, Pedersen Commitment Trick
 
 <div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+Remember...
+@divend
+
 <div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
+
 <div class="LineHeight20per"> <br></div>
+
 @div[text-left]
 
 Normal Pedersen commitment: 
@@ -168,6 +175,7 @@ $$
 ## Refund Procedure
 
 <div class="LineHeight20per"> <br></div>
+
 @div[text-left]
 
 Alice Part 1:
@@ -204,7 +212,7 @@ $$
 
 -> _Bob gets Alice's part of the signature, but keeps his part secret!_
 
----
++++
 
 @div[text-left]
 
@@ -244,6 +252,44 @@ $$
 
 -> _Bob shares his part of the signature with Alice_
 
+
+---
+
+## Revoke Previous Refund
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+Alice:
+
+@divend
+
+`
+$$
+\text{MultiSig}(N-1)_{A}:\quad\Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \quad 
+  \lbrace\text{Alice's commitment}\rbrace \\\\
+  \hat{k}_{(N-1)_{a}} \quad \lbrace\text{Alice shares with Bob}\rbrace \\\\
+\Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \overset{?}{=} 
+  C(v_{0},\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \quad \lbrace\text{Bob verifies}\rbrace 
+$$
+`
+
+@div[text-left]
+
+Bob:
+
+@divend
+
+`
+$$
+\text{MultiSig}(N-1)_{B}:\quad\Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \quad 
+  \lbrace\text{Bob's commitment}\rbrace \\\\
+  \hat{k}_{(N-1)_{b}} \quad \lbrace\text{Bob shares with Alice}\rbrace  \\\\
+\Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} 
+  C(v_{0},\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \quad \lbrace\text{Alice verifies}\rbrace 
+$$
+`
 
 ---
 
