@@ -158,12 +158,9 @@ Initial funding Tx:
 
 `
 $$
-\begin{aligned}
-  \begin{aligned}
-    -\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee}\end{aligned} &= \text{Excess}(0) \\\\
-    -\Big((v_{a}H+k_{a}G)+(v_{b}H+k_{b}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH       &= \mathcal{X}_{0}
-  \end{aligned}
-\mspace{50mu}
+-\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee} = \text{Excess}(0) \\\\
+-\Big((v_{a}H+k_{a}G)+(v_{b}H+k_{b}G)\Big)+\Big(v_{0}H+
+    (k_{0_{a}}+k_{0_{b}})G\Big)+fH = \mathcal{X}_{0}
 $$
 `
 
