@@ -323,7 +323,7 @@ $$
 `
 $$
 \begin{aligned}
-- \Big( (v\_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G \Big) +
+- \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) +
 \end{aligned}
 $$
 `
