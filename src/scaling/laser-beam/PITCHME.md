@@ -30,7 +30,7 @@ div.mywrap {
 - Multiparty UTXO, Pedersen Commitment Trick
 - Refund Procedure
 - Revoke Previous Refund
-- Punishment
+- Punishment!
 - Conclusions
 
 <div class="LineHeight100per"> <br></div>
@@ -293,11 +293,9 @@ $$
 
 ---
 
-## Refund Procedure
+## Punishment!
 
 <div class="LineHeight20per"> <br></div>
-
-@div[text-left]
 
 - Must monitor to detect foul play
 - Race against time!
@@ -317,15 +315,11 @@ $$
 `
 $$
 \begin{aligned}
-- \Big(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + \Big((v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G)\Big) + fH 
+- \Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + ((v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G)) + fH 
   = \mathcal{X}_{(N-1)_{A1}}
 \end{aligned}
 $$
 `
-
-
-@divend
-
 
 ---
 
