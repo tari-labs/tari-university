@@ -298,11 +298,13 @@ $$
 <div class="LineHeight20per"> <br></div>
 
 @div[text-left]
-
 - Must monitor to detect foul play
+@divend
+@div[text-left]
 - Race against time!
+@divend
+@div[text-left]
 - Alice tries her luck and create:
-
 @divend
 
 `
@@ -322,7 +324,22 @@ $$
 `
 $$
 \begin{aligned}
-- \Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + ((v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G)) + fH 
+- \Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) +
+\end{aligned}
+$$
+`
+
+`
+$$
+\begin{aligned}
+((v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G)) + fH 
+  = \mathcal{X}_{(N-1)_{A1}}
+$$
+`
+
+`
+$$
+\begin{aligned}
   = \mathcal{X}_{(N-1)_{A1}}
 \end{aligned}
 $$
