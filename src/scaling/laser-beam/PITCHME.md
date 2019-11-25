@@ -166,8 +166,8 @@ Initial funding Tx:
 `
 $$
 \begin{aligned}
--\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee} = \text{Excess}(0) \\\\
--\Big((v_{a}H+k_{a}G)+(v_{b}H+k_{b}G)\Big)+\Big(v_{0}H+
+-\text{Inputs}(0)+\text{MultiSig}(0)&+\text{fee} = \text{Excess}(0) \\\\
+-\Big((v_{a}H+k_{a}G)+(v_{b}H+k_{b}G)\Big)&+\Big(v_{0}H+
     (k_{0_{a}}+k_{0_{b}})G\Big)+fH = \mathcal{X}_{0}
 \end{aligned}
 $$
@@ -181,7 +181,7 @@ $$
 
 @div[text-left]
 
-Alice Part 1:
+**Alice Part 1:**
 
 @divend
 
@@ -200,7 +200,7 @@ $$
 
 @div[text-left]
 
-Bob Part 1:
+**Bob Part 1:**
 
 @divend
 
@@ -219,7 +219,7 @@ $$
 
 @div[text-left]
 
-Alice Part 2:
+**Alice Part 2:**
 
 @divend
 
@@ -239,7 +239,7 @@ $$
 
 @div[text-left]
 
-Bob Part 2:
+**Bob Part 2:**
 
 @divend
 
@@ -264,33 +264,41 @@ $$
 
 @div[text-left]
 
-Alice:
+**Alice:**
 
 @divend
 
 `
 $$
+\begin{aligned}
 \text{MultiSig}(N-1)_{A}:\quad\Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \quad 
-  \lbrace\text{Alice's commitment}\rbrace \\\\
-  \hat{k}_{(N-1)_{a}} \quad \lbrace\text{Alice shares with Bob}\rbrace \\\\
+  &\lbrace\text{Alice's commitment}\rbrace \\\\
+\hat{k}_{(N-1)_{a}} \quad 
+  &\lbrace\text{Alice shares with Bob}\rbrace \\\\
 \Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \overset{?}{=} 
-  C(v_{0},\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \quad \lbrace\text{Bob verifies}\rbrace 
+  C(v_{0},\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \quad 
+  &\lbrace\text{Bob verifies}\rbrace 
+\end{aligned}
 $$
 `
 
 @div[text-left]
 
-Bob:
+**Bob:**
 
 @divend
 
 `
 $$
+\begin{aligned}
 \text{MultiSig}(N-1)_{B}:\quad\Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \quad 
-  \lbrace\text{Bob's commitment}\rbrace \\\\
-  \hat{k}_{(N-1)_{b}} \quad \lbrace\text{Bob shares with Alice}\rbrace  \\\\
+  &\lbrace\text{Bob's commitment}\rbrace \\\\
+\hat{k}_{(N-1)_{b}} \quad 
+  &\lbrace\text{Bob shares with Alice}\rbrace  \\\\
 \Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} 
-  C(v_{0},\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \quad \lbrace\text{Alice verifies}\rbrace 
+  C(v_{0},\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \quad 
+  &\lbrace\text{Alice verifies}\rbrace 
+\end{aligned}
 $$
 `
 
