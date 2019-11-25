@@ -190,7 +190,7 @@ Alice Part 1:
 $$
 -\text{MultiSig}(0)+\text{MultiSig}(N)_{A}+\text{fee} 
        =\text{Excess}(N)_{A1} \\\\
--\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N\_{b}})G\Big) + fH 
+-\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big) + fH 
        = \mathcal{X}_{N_{A1}}
 $$
 `
@@ -205,11 +205,11 @@ Alice Part 2:
 
 `
 $$
--\text{MultiSig}(N)\_{A}+\text{Outputs}(N)+\text{fee}
-    =\text{Excess}(N)\_{A2} \\\\
--\Big(v\_{0}H+(\hat{k}\_{N_{a}}+k\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
-  {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
-    =\mathcal{X}\_{N\_{A2}}
+-\text{MultiSig}(N)_{A}+\text{Outputs}(N)+\text{fee}
+    =\text{Excess}(N)_{A2} \\\\
+-\Big(v_{0}H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
+  {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH
+    =\mathcal{X}_{N_{A2}}
 $$
 `
 
