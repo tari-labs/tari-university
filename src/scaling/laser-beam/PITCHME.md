@@ -207,7 +207,7 @@ Alice Part 2:
 $$
 -\text{MultiSig}(N)_{A}+\text{Outputs}(N)+\text{fee}
     =\text{Excess}(N)_{A2} \\\\
--\Big(v_{0}H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
+-\Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
   {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH
     =\mathcal{X}_{N_{A2}}
 $$
