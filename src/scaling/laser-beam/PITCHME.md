@@ -321,25 +321,3 @@ $$
 - Bob jumps and claim all the funds!
 @divend
 
-`
-$$
-- \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big)
-$$
-`
-
-`
-$$
-\begin{aligned}
-+ (v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G) + fH 
-\end{aligned}
-$$
-`
-
-`
-$$
-\begin{aligned}
-  = \mathcal{X}_{(N-1)_{A1}}
-\end{aligned}
-$$
-`
-
