@@ -29,9 +29,8 @@ div.mywrap {
 - Laser Beam Overview
 - Multiparty UTXO, Pedersen Commitment Trick
 - Refund Procedure
-- ???
-  - ???
-  - ???
+- Revoke Previous Refund
+- Punishment
 - Conclusions
 
 <div class="LineHeight100per"> <br></div>
@@ -97,18 +96,14 @@ Dispute mechanism requires all users to constantly watch the blockchain for frau
 ## Laser Beam Overview
 
 <div class="LineHeight20per"> <br></div>
-@div[text-left]
 
-Laser Beam (still WIP) is an adaptation of the Lightning Network for [Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) 
+- Laser Beam (still WIP) is an adaptation of the Lightning Network for [Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) 
 
-<div class="LineHeight20per"> <br></div>
-Created by The Beam Team for Beam
+- Created by The Beam Team for Beam
 
-<div class="LineHeight20per"> <br></div>
-Currently demonstrates off-chain transactions in a single channel between two parties
+- Currently demonstrates off-chain transactions in a single channel between two parties
 
-<div class="LineHeight20per"> <br></div>
-Plans to implement routing across different payment channels in the Lightning Network style
+- Plans to implement routing across different payment channels in the Lightning Network style
 
 @divend
 
@@ -235,7 +230,7 @@ $$
 $$
 `
 
--> _Alice shares her part of the signature with Bob_
+-> _Has relative time lock, Alice shares her part of the signature with Bob_
 
 <div class="LineHeight20per"> <br></div>
 
@@ -255,7 +250,7 @@ $$
 $$
 `
 
--> _Bob shares his part of the signature with Alice_
+-> _Has relative time lock, Bob shares his part of the signature with Alice_
 
 
 ---
@@ -273,9 +268,9 @@ $$
 `
 $$
 \begin{aligned}
-\text{MultiSig}(N-1)_{A}:\quad\Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Alice's commitment}\rbrace \\
+\text{MultiSig}(N-1)_{A}:\quad\Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Alice's commitment}\rbrace \\
 \hat{k}_{(N-1)_{a}} \quad &\lbrace\text{Alice shares with Bob}\rbrace \\
-\Big(v_{0}H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0},\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \quad &\lbrace\text{Bob verifies}\rbrace 
+\Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0}-f,\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \quad &\lbrace\text{Bob verifies}\rbrace 
 \end{aligned}
 $$
 `
@@ -289,12 +284,48 @@ $$
 `
 $$
 \begin{aligned}
-\text{MultiSig}(N-1)_{B}:\quad\Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Bob's commitment}\rbrace \\
+\text{MultiSig}(N-1)_{B}:\quad\Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Bob's commitment}\rbrace \\
 \hat{k}_{(N-1)_{b}} \quad &\lbrace\text{Bob shares with Alice}\rbrace \\
-\Big(v_{0}H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0},\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \quad &\lbrace\text{Alice verifies}\rbrace 
+\Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0}-f,\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \quad &\lbrace\text{Alice verifies}\rbrace 
 \end{aligned}
 $$
 `
+
+---
+
+## Refund Procedure
+
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
+- Must monitor to detect foul play
+- Race against time!
+- Alice tries her luck and create:
+
+`
+$$
+\begin{aligned}
+-\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) &+ \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + fH 
+  = \mathcal{X}_{(N-1)_{A1}}
+\end{aligned}
+$$
+`
+
+- Bob jumps and claim all the funds!
+
+`
+$$
+\begin{aligned}
+- \Big(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + \Big((v_{N_{b}}^{\prime\prime}H+k_{N_{b}}^{\prime\prime}G)\Big) + fH 
+  = \mathcal{X}_{(N-1)_{A1}}
+\end{aligned}
+$$
+`
+
+
+@divend
+
 
 ---
 
