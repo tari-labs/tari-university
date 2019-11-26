@@ -340,13 +340,14 @@ $$
 `
 $$
 \begin{aligned}
--\text{MultiSig}(0) + \text{MultiSig}(N-m)_{A} + \text{fee} = \text{Excess}(N-m)_{A1}
+-\text{MultiSig}(0) + \text{MultiSig}(N-m)_{A} + \text{fee} &= \text{Excess}(N-m)_{A1} \\\\
+-\text{MultiSig}(N-m)_{A} + \text{Outputs}(N-m)+\text{fee} &= \text{Excess}(N-m)_{A2} \ \ \lbrace\text{Locked}\rbrace
 \end{aligned}
 $$
 `
 
 @div[text-left]
-- Bob jumps and claim all the funds!
+- Bob jumps and claim all the funds before the relative lock expires!
 @divend
 
 `
