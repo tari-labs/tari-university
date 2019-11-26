@@ -58,15 +58,19 @@ transactions have a relative time lock in their kernel, referencing the kernel o
 transaction, which has to be confirmed on the blockchain.
 
 The initial funding transaction between Alice and Bob, the $0\_{\text{th}}$ refund procedure, is depicted in (1). 
-Alice's and Bob's contributions are denoted by subscripts $\_{a}$ and $\_{b}$ respectively. The capitalized use of $R$ 
-and $P$ in the equations that follow denotes public nonce and public blinding factor respectively; $f$ is the fee; and 
-$\mathcal{X}$ is the excess. The lock height in the signature challenge corresponds to the current blockchain height.
+Note that blinding factors denoted by $\hat{k}$, $k^{\prime}$ and $k^{\prime\prime}$, and values denoted by $v^{\prime}$ 
+and $v^{\prime\prime}$, have a special purpose, discussed later, so that $\hat{k}\_{N\_{a}} \neq k\_{N\_{a}} 
+\neq k^{\prime} \neq k^{\prime\prime}\_{N\_{a}}$ and $v\_{N\_{a}} \neq v^{\prime}\_{N\_{a}} \neq 
+v^{\prime\prime}\_{N\_{a}}$. Alice's and Bob's contributions are denoted by subscripts $\_{a}$ and $\_{b}$ respectively. 
+The capitalized use of $R$ and $P$ in the equations that follow denotes public nonce and public blinding factor
+respectively; $f$ is the fee; and $\mathcal{X}$ is the excess. The lock height in the signature challenge corresponds to 
+the current blockchain height.
 
 $$
 \begin{aligned}
   \begin{aligned}
     -\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee}\end{aligned} &= \text{Excess}(0) \\\\
-    -\Big((v_{a}H+k_{a}G)+(v_{b}H+k_{b}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH       &= \mathcal{X}_{0}
+    -\Big((v^{\prime\prime}\_{0_{a}}H+k^{\prime\prime}\_{0_{a}}G)+(v^{\prime\prime}\_{0_{b}}H+k^{\prime\prime}\_{0_{b}}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH       &= \mathcal{X}_{0}
   \end{aligned}
 \mspace{50mu} (1)
 $$
@@ -83,10 +87,8 @@ transactions, to spending the same set of outputs to each participant.
 
 All consecutive refund procedures work in exactly the same way. In the equations that follow, double subscripts 
 $\_{AA}$, $\_{AB}$, $\_{BA}$ and $\_{BB}$ have the following meaning: the first letter and the second letter indicate 
-who controls the transaction and who created the value, respectively. Blinding factors denoted by 
-$\hat{k}$ and $k^{\prime}$, and values denoted by $v^{\prime}$, have a special purpose, discussed later, so that 
-$\hat{k}\_{N\_{a}} \neq k\_{N\_{a}} \neq k^{\prime}\_{N\_{a}}$ and $v\_{N\_{a}} \neq v^{\prime}\_{N\_{a}}$. The 
-$N\_{\text{th}}$ refund procedure is as follows:
+who controls the transaction and who created the value, respectively. The $N\_{\text{th}}$ refund procedure is as 
+follows:
 
 ### Refund Procedure
 
@@ -156,7 +158,7 @@ $$
   -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(k\_{N\_{a}}+\hat{k}\_{N\_{b}})G\Big) + fH 
        &= \mathcal{X}\_{N\_{B1}}
 \end{aligned}
-\mspace{50mu} (10)
+\mspace{50mu} (7)
 $$
 
 They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof,
@@ -168,14 +170,14 @@ $$
   \mathcal{X}\_{N\_{B1}} &= (-k_{0\_{a}}+k\_{N\_{a}})G+(-k\_{0\_{b}}+\hat{k}\_{N\_{b}})G \\\\ 
                          &= P\_{N\_{BA1}}+P\_{N\_{BB1}}
 \end{aligned}
-\mspace{50mu} (11)
+\mspace{50mu} (8)
 $$
 
 $$
 \begin{aligned}
   \text{Challenge:}\quad\mathcal{H}(R_{N\_{BA1}}+R\_{N\_{BB1}}\parallel P\_{N\_{BA1}}+P\_{N\_{BB1}}\parallel f\parallel h\_{N}) 
 \end{aligned}
-\mspace{50mu} (12)
+\mspace{50mu} (9)
 $$
 
 
@@ -183,14 +185,14 @@ $$
 \begin{aligned}
   \text{Final signature tuple, kept secret:}\quad(s\_{N\_{BA1}}+s\_{N\_{BB1}},R\_{N\_{BA1}}+R\_{N\_{BB1}}) 
 \end{aligned}
-\mspace{50mu} (13)
+\mspace{50mu} (10)
 $$
 
 $$
 \begin{aligned}
   \text{Kernel of this transaction:}\quad\mathcal{K}\_{N\_{BB1}} 
 \end{aligned}
-\mspace{50mu} (14)
+\mspace{50mu} (11)
 $$
 
 #### Alice - Part 2
@@ -211,7 +213,7 @@ $$
   {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
 &=\mathcal{X}\_{N\_{A2}}                     \\\\
 \end{aligned}
-\mspace{50mu} (7)
+\mspace{50mu} (12)
 $$
 
 They collaborate to create the challenge and the aggregated signature. Because the final kernel 
@@ -223,7 +225,7 @@ $$
   \mathcal{X}\_{N\_{A2}} &= (-\hat{k}\_{N_{a}}+k\_{N\_{a}}^{\prime})G + (-k\_{N\_{b}}+k\_{N\_{b}}^{\prime})G \\\\
                          &= P\_{N\_{AA2}}+P\_{N\_{AB2}} \\\\
 \end{aligned}
-\mspace{50mu} (8)
+\mspace{50mu} (13)
 $$
 
 $$
@@ -231,7 +233,7 @@ $$
   \text{Challenge:}\quad\mathcal{H}(R\_{N\_{AA2}}+R\_{N\_{AB2}}\parallel P\_{N\_{AA2}}+P\_{N\_{AB2}}\parallel f
   \parallel\mathcal{H}(\mathcal{K}\_{N\_{AA1}})\parallel h\_{rel})
 \end{aligned}
-\mspace{50mu} (9)
+\mspace{50mu} (14)
 $$
 
 #### Bob - Part 2
