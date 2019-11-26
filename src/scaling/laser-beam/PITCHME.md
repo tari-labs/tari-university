@@ -296,9 +296,9 @@ $$
 `
 $$
 \begin{aligned}
-\text{MultiSig}(N-1)_{A}:\quad\Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Alice's commitment}\rbrace \\
-\hat{k}_{(N-1)_{a}} \quad &\lbrace\text{Alice shares with Bob}\rbrace \\
-\Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0}-f,\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \quad &\lbrace\text{Bob verifies}\rbrace 
+\text{MultiSig}(N-1)_{A}:\ \ \Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \ \  &\lbrace\text{Alice's commitment}\rbrace \\
+\hat{k}_{(N-1)_{a}} \ \  &\lbrace\text{Alice shares with Bob}\rbrace \\
+(v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G \overset{?}{=} C(v_{0}-f,\ \hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}}) \ \  &\lbrace\text{Bob verifies}\rbrace 
 \end{aligned}
 $$
 `
@@ -312,9 +312,9 @@ $$
 `
 $$
 \begin{aligned}
-\text{MultiSig}(N-1)_{B}:\quad\Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \quad &\lbrace\text{Bob's commitment}\rbrace \\
-\hat{k}_{(N-1)_{b}} \quad &\lbrace\text{Bob shares with Alice}\rbrace \\
-\Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0}-f,\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \quad &\lbrace\text{Alice verifies}\rbrace 
+\text{MultiSig}(N-1)_{B}:\ \ \Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \ \  &\lbrace\text{Bob's commitment}\rbrace \\
+\hat{k}_{(N-1)_{b}} \ \  &\lbrace\text{Bob shares with Alice}\rbrace \\
+(v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G \overset{?}{=} C(v_{0}-f,\ k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}}) \ \  &\lbrace\text{Alice verifies}\rbrace 
 \end{aligned}
 $$
 `
