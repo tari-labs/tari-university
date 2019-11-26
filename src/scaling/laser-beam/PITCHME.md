@@ -144,9 +144,15 @@ C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)
 $$
 `
 
+@div[text-left]
+
+Indistinguishable on the blockchain!
+
+@divend
+
 ---
 
-## Funding Tx
+## Laser Beam - Funding Tx
 
 @div[s900px]
 ![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_01.png)
@@ -172,7 +178,7 @@ $$
 
 ---
 
-## Refund Procedure
+## Laser Beam - Refund Procedure Part 1
 
 <div class="LineHeight20per"> <br></div>
 
@@ -220,7 +226,9 @@ $$
 
 -> _Bob gets Alice's part of the signature, but keeps his part secret!_
 
-+++
+---
+
+## Laser Beam - Refund Procedure Part 2
 
 @div[s900px]
 ![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_03.png)
@@ -269,7 +277,7 @@ $$
 
 ---
 
-## Revoke Previous Refund
+## Laser Beam - Revoke Previous Refund
 
 @div[s900px]
 ![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_04.png)
@@ -313,7 +321,7 @@ $$
 
 ---
 
-## Punishment!
+## Laser Beam - Punishment!
 
 <div class="LineHeight20per"> <br></div>
 
