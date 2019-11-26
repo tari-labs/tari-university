@@ -97,7 +97,7 @@ Dispute mechanism requires all users to constantly watch the blockchain for frau
 
 <div class="LineHeight20per"> <br></div>
 
-- Laser Beam (still WIP) is an adaptation of the Lightning Network for [Mimblewimble](../../protocols/mimblewimble-1/MainReport.md) 
+- Laser Beam (still WIP) is an adaptation of the Lightning Network for [Mimblewimble](https://tlu.tarilabs.com/protocols/mimblewimble-1/MainReport.html) 
 
 - Created by The Beam Team for Beam
 
