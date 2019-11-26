@@ -181,8 +181,33 @@ In zk-SNARKs schemes, the statement being proved is reduced to what is called a 
   
 # PART II: R1CS - as used in *Bulletproofs*  
   
+  A constraint system is a collection of arithmetic constraints over a set of variables. [10.]  
+
+The constraint system we use is specifically a rank-1 constraint system or R1CS. Such a system consists of two sets of constraints: multiplication gates and linear constraints in terms of the variables. [10.] 
+  
+  There are two kinds of variables in the constraint system:
+
+mm high-level variables, the input secrets \mathbf{v}v,
+nn low-level variables, the internal inputs and outputs of the multiplication gates: \mathbf{a}_L, \mathbf{a}_R, \mathbf{a}_Oa 
+L
+​	 ,a 
+R
+​	 ,a 
+O
+​	 .
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  [10.] https://doc-internal.dalek.rs/develop/bulletproofs/notes/r1cs_proof/index.html  
+  
+   
   
   ## Various Ways to Implement R1CS 
 - Cf. [2.] above regarding the “binary file format” versa vis “JSON lines format” (sizes of the constraints) 
