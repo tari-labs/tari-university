@@ -28,6 +28,7 @@ div.mywrap {
 - Lightning Network
 - Laser Beam Overview
 - Multiparty UTXO, Pedersen Commitment Trick
+- Funding Tx
 - Refund Procedure
 - Revoke Previous Refund
 - Punishment!
@@ -106,12 +107,6 @@ Dispute mechanism requires all users to constantly watch the blockchain for frau
 
 @divend
 
-+++
-
-@div[s900px]
-![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure.png)
-@divend
-
 ---
 
 ## Multiparty UTXO, Pedersen Commitment Trick
@@ -124,11 +119,9 @@ Remember...
 
 <div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
 
-<div class="LineHeight20per"> <br></div>
-<div class="LineHeight20per"> <br></div>
-
 @div[text-left]
 
+<br>
 Normal Pedersen commitment: 
 
 @divend
@@ -151,6 +144,16 @@ C(v,k_{1}+k_{2})=\Big(vH+(k_{1}+k_{2})G\Big)
 $$
 `
 
+---
+
+## Funding Tx
+
+@div[s900px]
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_01.png)
+@divend
+
++++
+
 @div[text-left]
 
 Initial funding Tx:
@@ -172,6 +175,12 @@ $$
 ## Refund Procedure
 
 <div class="LineHeight20per"> <br></div>
+
+@div[s900px]
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_02.png)
+@divend
+
++++
 
 @div[text-left]
 
@@ -210,6 +219,12 @@ $$
 `
 
 -> _Bob gets Alice's part of the signature, but keeps his part secret!_
+
++++
+
+@div[s900px]
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_03.png)
+@divend
 
 +++
 
@@ -255,6 +270,12 @@ $$
 ---
 
 ## Revoke Previous Refund
+
+@div[s900px]
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_04.png)
+@divend
+
++++
 
 <div class="LineHeight20per"> <br></div>
 
