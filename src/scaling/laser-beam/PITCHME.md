@@ -334,13 +334,13 @@ $$
 @divend
 
 @div[text-left]
-- Alice tries her luck and create:
+- Alice tries her luck and post a previous favourable refund Tx:
 @divend
 
 `
 $$
 \begin{aligned}
--\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) &+ \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + fH 
+-\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + fH 
   = \mathcal{X}_{(N-1)_{A}}
 \end{aligned}
 $$
@@ -349,6 +349,15 @@ $$
 @div[text-left]
 - Bob jumps and claim all the funds!
 @divend
+
+`
+$$
+\begin{aligned}
+- \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + fH 
+  = \mathcal{X}_{(N-1)_{A}}
+\end{aligned}
+$$
+`
 
 +++
 
