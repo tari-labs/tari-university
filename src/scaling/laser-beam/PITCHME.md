@@ -340,8 +340,7 @@ $$
 `
 $$
 \begin{aligned}
--\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + fH 
-  = \mathcal{X}_{(N-1)_{A}}
+-\text{MultiSig}(0) + \text{MultiSig}(N-m)_{A} + \text{fee} = \text{Excess}(N-m)_{A1}
 \end{aligned}
 $$
 `
@@ -353,14 +352,7 @@ $$
 `
 $$
 \begin{aligned}
-- \Big((v_{0}-f)H + (\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) + fH 
-  = \mathcal{X}_{(N-1)_{A}}
+-\text{MultiSig}(N-m)_{A} + \text{Outputs}(N)_{Bob} + \text{fee} = \text{Excess}(N)_{Bob}
 \end{aligned}
 $$
 `
-
-+++
-
-@div[s900px]
-![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure.png)
-@divend
