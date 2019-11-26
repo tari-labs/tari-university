@@ -62,9 +62,9 @@ Note that blinding factors denoted by $\hat{k}$, $k^{\prime}$ and $k^{\prime\pri
 and $v^{\prime\prime}$, have a special purpose, discussed later, so that $\hat{k}\_{N\_{a}} \neq k\_{N\_{a}} 
 \neq k^{\prime} \neq k^{\prime\prime}\_{N\_{a}}$ and $v\_{N\_{a}} \neq v^{\prime}\_{N\_{a}} \neq 
 v^{\prime\prime}\_{N\_{a}}$. Alice's and Bob's contributions are denoted by subscripts $\_{a}$ and $\_{b}$ respectively. 
-The capitalized use of $R$ and $P$ in the equations that follow denotes public nonce and public blinding factor
-respectively; $f$ is the fee; and $\mathcal{X}$ is the excess. The lock height in the signature challenge corresponds to 
-the current blockchain height.
+In the equations that follow $f$ is the fee and $\mathcal{X}$ is the excess. The lock height in the signature challenge 
+corresponds to the current blockchain height. Input commitment values and blinding factors are identified by superscript 
+$^{\prime\prime}$.
 
 $$
 \begin{aligned}
@@ -87,7 +87,8 @@ transactions, to spending the same set of outputs to each participant.
 
 All consecutive refund procedures work in exactly the same way. In the equations that follow, double subscripts 
 $\_{AA}$, $\_{AB}$, $\_{BA}$ and $\_{BB}$ have the following meaning: the first letter and the second letter indicate 
-who controls the transaction and who created the value, respectively. The $N\_{\text{th}}$ refund procedure is as 
+who controls the transaction and who created the value, respectively. Capitalized use of $R$ and $P$ denotes public 
+nonce and public blinding factor respectively. The $N\_{\text{th}}$ refund procedure is as 
 follows:
 
 ### Refund Procedure
