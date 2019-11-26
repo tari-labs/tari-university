@@ -162,7 +162,7 @@ Indistinguishable on the blockchain!
 
 @div[text-left]
 
-Initial funding Tx:
+**Initial funding Tx:**
 
 @divend
 
