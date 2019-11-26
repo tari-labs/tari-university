@@ -155,7 +155,7 @@ Indistinguishable on the blockchain!
 ## Laser Beam - Funding Tx
 
 @div[s900px]
-![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_01.png)
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure_01.png)
 @divend
 
 +++
@@ -183,7 +183,7 @@ $$
 <div class="LineHeight20per"> <br></div>
 
 @div[s900px]
-![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_02.png)
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure_02.png)
 @divend
 
 +++
@@ -231,7 +231,7 @@ $$
 ## Laser Beam - Refund Procedure Part 2
 
 @div[s900px]
-![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_03.png)
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure_03.png)
 @divend
 
 +++
@@ -280,7 +280,7 @@ $$
 ## Laser Beam - Revoke Previous Refund
 
 @div[s900px]
-![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/laser-beam-fixes/src/scaling/laser-beam/sources/refund_procedure_04.png)
+![lightningnetwork](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/laser-beam/sources/refund_procedure_04.png)
 @divend
 
 +++
