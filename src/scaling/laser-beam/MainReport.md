@@ -5,8 +5,8 @@
   - [Funding Transaction](#funding-transaction)
   - [Refund Procedure](#refund-procedure)
     - [Alice - Part 1](#alice---part-1)
-    - [Alice - Part 2](#alice---part-2)
     - [Bob - Part 1](#bob---part-1)
+    - [Alice - Part 2](#alice---part-2)
     - [Bob - Part 2](#bob---part-2)
   - [Revoke Previous Refund](#revoke-previous-refund)
   - [Punishment Transaction](#punishment-transaction)
@@ -77,8 +77,8 @@ each user creates two transactions: one kept partially secret (discussed below) 
 secret transaction creates a different intermediate multiparty UTXO, which is then used as input in two shared 
 transactions, to spending the same set of outputs to each participant.
 
-<p align="center"><img src="sources/refund_procedure.png" width="700" /></p>
-<div align="center"><b>Figure&nbsp;1: Laser Beam Funding, Refund and Revoke for Round (N)</b></div>
+<p align="center"><img src="sources/refund_procedure_01.png" width="700" /></p>
+<div align="center"><b>Figure&nbsp;1: Laser Beam Funding for Round (N)</b></div>
 
 
 All consecutive refund procedures work in exactly the same way. In the equations that follow, double subscripts 
@@ -92,7 +92,11 @@ $N\_{\text{th}}$ refund procedure is as follows:
 
 #### Alice - Part 1
 
-Alice and Bob set up Alice's intermediate MultiSig funding transaction (Figure&nbsp;1), spending the original funding 
+<p align="center"><img src="sources/refund_procedure_02.png" width="700" /></p>
+<div align="center"><b>Figure&nbsp;2: Laser Beam Refund Part 1 for Round (N)</b></div>
+
+
+Alice and Bob set up Alice's intermediate MultiSig funding transaction (Figure&nbsp;2), spending the original funding 
 MultiSig UTXO. The lock height $h\_{N}$ corresponds to the current blockchain height. 
 
 $$
@@ -140,46 +144,9 @@ $$
 \mspace{50mu} (6)
 $$
 
-#### Alice - Part 2
-
-Alice and Bob set up a refund transaction (Figure&nbsp;1), which Alice controls, with the same relative time lock 
-$h_{rel}$ to the intermediate funding transaction's kernel, $\mathcal{K}\_{N\_{AA1}}$. Output commitment values and 
-blinding factors are identified by superscript $^{\prime}$.
-
-$$
-\begin{aligned}
-  -\text{MultiSig}(N)\_{A}+\text{Outputs}(N)+\text{fee}
-   & =\text{Excess}(N)\_{A2} \\\\
-  -\Big(v\_{0}H+(\hat{k}\_{N_{a}}+k\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
-  {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
-&=\mathcal{X}\_{N\_{A2}}                     \\\\
-\end{aligned}
-\mspace{50mu} (7)
-$$
-
-They collaborate to create the challenge and the aggregated signature. Because the final kernel 
-$\mathcal{K}\_{N\_{AA1}}$ is kept secret, only its hash is shared. Alice shares this transaction's final kernel with Bob. 
-The signature challenge is determined as follows:
-
-$$
-\begin{aligned}
-  \mathcal{X}\_{N\_{A2}} &= (-\hat{k}\_{N_{a}}+k\_{N\_{a}}^{\prime})G + (-k\_{N\_{b}}+k\_{N\_{b}}^{\prime})G \\\\
-                         &= P\_{N\_{AA2}}+P\_{N\_{AB2}} \\\\
-\end{aligned}
-\mspace{50mu} (8)
-$$
-
-$$
-\begin{aligned}
-  \text{Challenge:}\quad\mathcal{H}(R\_{N\_{AA2}}+R\_{N\_{AB2}}\parallel P\_{N\_{AA2}}+P\_{N\_{AB2}}\parallel f
-  \parallel\mathcal{H}(\mathcal{K}\_{N\_{AA1}})\parallel h\_{rel})
-\end{aligned}
-\mspace{50mu} (9)
-$$
-
 #### Bob - Part 1
 
-Alice and Bob set up Bob's intermediate MultiSig funding transaction (Figure&nbsp;1), also spending the original funding 
+Alice and Bob set up Bob's intermediate MultiSig funding transaction (Figure&nbsp;2), also spending the original funding 
 MultiSig UTXO. The lock height $h\_{N}$ again corresponds to the current blockchain height.
 
 $$
@@ -226,9 +193,50 @@ $$
 \mspace{50mu} (14)
 $$
 
+#### Alice - Part 2
+
+<p align="center"><img src="sources/refund_procedure_03.png" width="700" /></p>
+<div align="center"><b>Figure&nbsp;3: Laser Beam Refund Part 2 for Round (N)</b></div>
+
+
+Alice and Bob set up a refund transaction (Figure&nbsp;3), which Alice controls, with the same relative time lock 
+$h_{rel}$ to the intermediate funding transaction's kernel, $\mathcal{K}\_{N\_{AA1}}$. Output commitment values and 
+blinding factors are identified by superscript $^{\prime}$.
+
+$$
+\begin{aligned}
+  -\text{MultiSig}(N)\_{A}+\text{Outputs}(N)+\text{fee}
+   & =\text{Excess}(N)\_{A2} \\\\
+  -\Big((v\_{0}-f)H+(\hat{k}\_{N_{a}}+k\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
+  {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
+&=\mathcal{X}\_{N\_{A2}}                     \\\\
+\end{aligned}
+\mspace{50mu} (7)
+$$
+
+They collaborate to create the challenge and the aggregated signature. Because the final kernel 
+$\mathcal{K}\_{N\_{AA1}}$ is kept secret, only its hash is shared. Alice shares this transaction's final kernel with Bob. 
+The signature challenge is determined as follows:
+
+$$
+\begin{aligned}
+  \mathcal{X}\_{N\_{A2}} &= (-\hat{k}\_{N_{a}}+k\_{N\_{a}}^{\prime})G + (-k\_{N\_{b}}+k\_{N\_{b}}^{\prime})G \\\\
+                         &= P\_{N\_{AA2}}+P\_{N\_{AB2}} \\\\
+\end{aligned}
+\mspace{50mu} (8)
+$$
+
+$$
+\begin{aligned}
+  \text{Challenge:}\quad\mathcal{H}(R\_{N\_{AA2}}+R\_{N\_{AB2}}\parallel P\_{N\_{AA2}}+P\_{N\_{AB2}}\parallel f
+  \parallel\mathcal{H}(\mathcal{K}\_{N\_{AA1}})\parallel h\_{rel})
+\end{aligned}
+\mspace{50mu} (9)
+$$
+
 #### Bob - Part 2
 
-Alice and Bob set up a refund transaction (Figure&nbsp;1), which Bob controls, with a relative time lock $h_{rel}$ to 
+Alice and Bob set up a refund transaction (Figure&nbsp;3), which Bob controls, with a relative time lock $h_{rel}$ to 
 the intermediate funding transaction's kernel, $\mathcal{K}\_{N\_{BB1}}$. Output commitment values and blinding factors 
 are identified by superscript $^{\prime}$.
 
@@ -236,7 +244,7 @@ $$
 \begin{aligned}
   -\text{MultiSig}(N)\_{B}+\text{Outputs}(N)+\text{fee}
       & =\text{Excess}(N)\_{B2} \\\\
-  -\Big(v\_{0}H+(k\_{N_{a}}+\hat{k}\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
+  -\Big((v\_{0}-f)H+(k\_{N_{a}}+\hat{k}\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
   {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
       &=\mathcal{X}\_{N\_{B2}}                     \\\\
 \end{aligned}
@@ -266,7 +274,13 @@ $$
 ### Revoke Previous Refund
 
 Whenever the individual balances in the channel change, a new refund procedure is negotiated, revoking previous 
-agreements (Figure&nbsp;1). Revoking refund transactions involves revealing blinding factor shares for the intermediate 
+agreements (Figure&nbsp;4). 
+
+<p align="center"><img src="sources/refund_procedure_04.png" width="700" /></p>
+<div align="center"><b>Figure&nbsp;4: Laser Beam Revoke for Round (N)</b></div>
+
+
+Revoking refund transactions involves revealing blinding factor shares for the intermediate 
 multiparty UTXOs, thereby nullifying their further use. After the four parts of the refund procedure have been concluded 
 successfully, the previous round's blinding factor shares $\hat{k}_{(N-1)}$  are revealed to each other, in order to 
 revoke the previous agreement.
@@ -275,7 +289,7 @@ Alice:
 
 $$
 \begin{aligned}
-  \text{MultiSig}(N-1)\_{A}:\quad\Big(v\_{0}H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) & \quad & 
+  \text{MultiSig}(N-1)\_{A}:\quad\Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) & \quad & 
   \lbrace\text{Alice's commitment}\rbrace \\\\
   \hat{k}\_{(N-1)\_{a}}   & \quad & \lbrace\text{Alice shares with Bob}\rbrace \\\\
 \end{aligned}
@@ -286,7 +300,7 @@ Bob:
 
 $$
 \begin{aligned}
-  \text{MultiSig}(N-1)\_{B}:\quad\Big(v\_{0}H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big)   & \quad & 
+  \text{MultiSig}(N-1)\_{B}:\quad\Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big)   & \quad & 
   \lbrace\text{Bob's commitment}\rbrace \\\\
   \hat{k}\_{(N-1)\_{b}}   & \quad & \lbrace\text{Bob shares with Alice}\rbrace 
 \end{aligned}
@@ -302,7 +316,7 @@ Alice verifies:
 
 $$
 \begin{aligned}  
-  \Big(v\_{0}H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0},\ k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})
+  \Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})
 \end{aligned}
 \mspace{50mu} (20)
 $$
@@ -312,7 +326,7 @@ Bob verifies:
 
 $$
 \begin{aligned}
-  \Big(v\_{0}H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0},\ \hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})
+  \Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ \hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})
 \end{aligned}
 \mspace{50mu} (21)
 $$
