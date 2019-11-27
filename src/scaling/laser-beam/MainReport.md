@@ -50,6 +50,12 @@ used.) The multiparty commitment is accompanied by a single multiparty Bulletpro
 by [Grin](../../protocols/mimblewimble-mp-bp-utxo/MainReport.md#utilizing-grins-shared-bulletproof-computation), 
 where the individual shares of the blinding factor are used to create the combined range proof [[9]].
 
+In the equations that follow Alice's and Bob's contributions are denoted by subscripts $\_{a}$ and $\_{b}$ respectively; 
+$f$ is the fee and $\mathcal{X}$ is the excess. Note that blinding factors denoted by $\hat{k}$, $k^{\prime}$ and 
+$k^{\prime\prime}$, and values denoted by $v^{\prime}$ and $v^{\prime\prime}$, have a special purpose, discussed later, 
+so that $\hat{k}\_{N\_{a}} \neq k\_{N\_{a}} \neq k^{\prime} \neq k^{\prime\prime}\_{N\_{a}}$ and $v\_{N\_{a}} 
+\neq v^{\prime}\_{N\_{a}} \neq v^{\prime\prime}\_{N\_{a}}$. 
+
 ### Funding Transaction
 
 The parties collaborate to create the multiparty UTXO (i.e. commitment and associated multiparty range proof), combined 
@@ -57,12 +63,11 @@ on‑chain funding transaction (Figure&nbsp;1) and an initial refund transaction
 transactions have a relative time lock in their kernel, referencing the kernel of the original combined funding 
 transaction, which has to be confirmed on the blockchain.
 
-The initial funding transaction between Alice and Bob, the $0\_{\text{th}}$ refund procedure, is depicted in (1). 
-Note that blinding factors denoted by $\hat{k}$, $k^{\prime}$ and $k^{\prime\prime}$, and values denoted by $v^{\prime}$ 
-and $v^{\prime\prime}$, have a special purpose, discussed later, so that $\hat{k}\_{N\_{a}} \neq k\_{N\_{a}} 
-\neq k^{\prime} \neq k^{\prime\prime}\_{N\_{a}}$ and $v\_{N\_{a}} \neq v^{\prime}\_{N\_{a}} \neq 
-v^{\prime\prime}\_{N\_{a}}$. Alice's and Bob's contributions are denoted by subscripts $\_{a}$ and $\_{b}$ respectively. 
-In the equations that follow $f$ is the fee and $\mathcal{X}$ is the excess. The lock height in the signature challenge 
+<p align="center"><img src="sources/refund_procedure_01.png" width="700" /></p>
+<div align="center"><b>Figure&nbsp;1: Laser Beam Funding for Round (N)</b></div>
+
+
+The initial funding transaction between Alice and Bob is depicted in (1). The lock height in the signature challenge 
 corresponds to the current blockchain height. Input commitment values and blinding factors are identified by superscript 
 $^{\prime\prime}$.
 
@@ -81,15 +86,10 @@ each user creates two transactions: one kept partially secret (discussed below) 
 secret transaction creates a different intermediate multiparty UTXO, which is then used as input in two shared 
 transactions, to spending the same set of outputs to each participant.
 
-<p align="center"><img src="sources/refund_procedure_01.png" width="700" /></p>
-<div align="center"><b>Figure&nbsp;1: Laser Beam Funding for Round (N)</b></div>
-
-
 All consecutive refund procedures work in exactly the same way. In the equations that follow, double subscripts 
 $\_{AA}$, $\_{AB}$, $\_{BA}$ and $\_{BB}$ have the following meaning: the first letter and the second letter indicate 
 who controls the transaction and who created the value, respectively. Capitalized use of $R$ and $P$ denotes public 
-nonce and public blinding factor respectively. The $N\_{\text{th}}$ refund procedure is as 
-follows:
+nonce and public blinding factor respectively. The $N\_{\text{th}}$ refund procedure is as follows:
 
 ### Refund Procedure
 
@@ -112,9 +112,9 @@ $$
 \mspace{50mu} (2)
 $$
 
-They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof,
-the signature challenge and Bob's portion of the signature, $s\_{N\_{AB1}}$. Alice does not share the final kernel and 
-thus keeps her part of the aggregated signature, $s\_{N\_{AA1}}$, hidden.
+They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof, the signature challenge and Bob's 
+portion of the signature, $s\_{N\_{AB1}}$. Alice does not share the final kernel and thus keeps her part of the 
+aggregated signature, $s\_{N\_{AA1}}$, hidden.
 
 $$
 \begin{aligned}
@@ -127,7 +127,8 @@ $$
 
 $$
 \begin{aligned}
-  \text{Challenge:}\quad\mathcal{H}(R_{N\_{AA1}}+R\_{N\_{AB1}}\parallel P\_{N\_{AA1}}+P\_{N\_{AB1}}\parallel f\parallel h\_{N}) 
+  \text{Challenge:}\quad\mathcal{H}(R_{N\_{AA1}}+R\_{N\_{AB1}}\parallel P\_{N\_{AA1}}+P\_{N\_{AB1}}\parallel 
+    f\parallel h\_{N}) 
 \end{aligned}
 \mspace{50mu} (4)
 $$
@@ -162,9 +163,9 @@ $$
 \mspace{50mu} (7)
 $$
 
-They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof,
-the signature challenge and Alice's portion of the signature. Bob does 
-not share the final kernel and thus keeps his part of the aggregated signature hidden.
+They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof, the signature challenge and Alice's 
+portion of the signature. Bob does not share the final kernel and thus keeps his part of the aggregated signature 
+hidden.
 
 $$
 \begin{aligned}
@@ -176,7 +177,8 @@ $$
 
 $$
 \begin{aligned}
-  \text{Challenge:}\quad\mathcal{H}(R_{N\_{BA1}}+R\_{N\_{BB1}}\parallel P\_{N\_{BA1}}+P\_{N\_{BB1}}\parallel f\parallel h\_{N}) 
+  \text{Challenge:}\quad\mathcal{H}(R_{N\_{BA1}}+R\_{N\_{BB1}}\parallel P\_{N\_{BA1}}+P\_{N\_{BB1}}\parallel 
+    f\parallel h\_{N}) 
 \end{aligned}
 \mspace{50mu} (9)
 $$
@@ -209,17 +211,17 @@ blinding factors are identified by superscript $^{\prime}$.
 $$
 \begin{aligned}
   -\text{MultiSig}(N)\_{A}+\text{Outputs}(N)+\text{fee}
-   & =\text{Excess}(N)\_{A2} \\\\
+    & =\text{Excess}(N)\_{A2} \\\\
   -\Big((v\_{0}-f)H+(\hat{k}\_{N_{a}}+k\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
-  {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
-&=\mathcal{X}\_{N\_{A2}}                     \\\\
+    {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
+    &=\mathcal{X}\_{N\_{A2}}  \\\\
 \end{aligned}
 \mspace{50mu} (12)
 $$
 
 They collaborate to create the challenge and the aggregated signature. Because the final kernel 
-$\mathcal{K}\_{N\_{AA1}}$ is kept secret, only its hash is shared. Alice shares this transaction's final kernel with Bob. 
-The signature challenge is determined as follows:
+$\mathcal{K}\_{N\_{AA1}}$ is kept secret, only its hash is shared. Alice shares this transaction's final kernel with 
+Bob. The signature challenge is determined as follows:
 
 $$
 \begin{aligned}
@@ -232,7 +234,7 @@ $$
 $$
 \begin{aligned}
   \text{Challenge:}\quad\mathcal{H}(R\_{N\_{AA2}}+R\_{N\_{AB2}}\parallel P\_{N\_{AA2}}+P\_{N\_{AB2}}\parallel f
-  \parallel\mathcal{H}(\mathcal{K}\_{N\_{AA1}})\parallel h\_{rel})
+    \parallel\mathcal{H}(\mathcal{K}\_{N\_{AA1}})\parallel h\_{rel})
 \end{aligned}
 \mspace{50mu} (14)
 $$
@@ -246,10 +248,10 @@ are identified by superscript $^{\prime}$.
 $$
 \begin{aligned}
   -\text{MultiSig}(N)\_{B}+\text{Outputs}(N)+\text{fee}
-      & =\text{Excess}(N)\_{B2} \\\\
+    & =\text{Excess}(N)\_{B2} \\\\
   -\Big((v\_{0}-f)H+(k\_{N_{a}}+\hat{k}\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
   {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
-      &=\mathcal{X}\_{N\_{B2}}                     \\\\
+    &=\mathcal{X}\_{N\_{B2}} \\\\
 \end{aligned}
 \mspace{50mu} (15)
 $$
@@ -269,7 +271,7 @@ $$
 $$
 \begin{aligned}
   \text{Challenge:}\quad\mathcal{H}(R\_{N\_{BA2}}+R\_{N\_{BB2}}\parallel P\_{N\_{BA2}}+P\_{N\_{BB2}}\parallel f
-  \parallel\mathcal{H}(\mathcal{K}\_{N\_{BB1}})\parallel h\_{rel})
+    \parallel\mathcal{H}(\mathcal{K}\_{N\_{BB1}})\parallel h\_{rel})
 \end{aligned}
 \mspace{50mu} (17)
 $$
@@ -283,18 +285,19 @@ agreements (Figure&nbsp;4).
 <div align="center"><b>Figure&nbsp;4: Laser Beam Revoke for Round (N)</b></div>
 
 
-Revoking refund transactions involves revealing blinding factor shares for the intermediate 
-multiparty UTXOs, thereby nullifying their further use. After the four parts of the refund procedure have been concluded 
-successfully, the previous round's blinding factor shares $\hat{k}_{(N-1)}$  are revealed to each other, in order to 
-revoke the previous agreement.
+Revoking refund transactions involves revealing blinding factor shares for the intermediate multiparty UTXOs, thereby 
+nullifying their further use. After the four parts of the refund procedure have been concluded successfully, the 
+previous round's blinding factor shares $\hat{k}_{(N-1)}$  are revealed to each other, in order to revoke the previous 
+agreement.
 
 Alice:
 
 $$
 \begin{aligned}
-  \text{MultiSig}(N-1)\_{A}:\quad\Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) & \quad & 
-  \lbrace\text{Alice's commitment}\rbrace \\\\
-  \hat{k}\_{(N-1)\_{a}}   & \quad & \lbrace\text{Alice shares with Bob}\rbrace \\\\
+  \text{MultiSig}(N-1)\_{A}:\quad\Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) 
+    & \quad & \lbrace\text{Alice's commitment}\rbrace \\\\
+  \hat{k}\_{(N-1)\_{a}} 
+    & \quad & \lbrace\text{Alice shares with Bob}\rbrace \\\\
 \end{aligned}
 \mspace{50mu} (18)
 $$
@@ -303,9 +306,10 @@ Bob:
 
 $$
 \begin{aligned}
-  \text{MultiSig}(N-1)\_{B}:\quad\Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big)   & \quad & 
-  \lbrace\text{Bob's commitment}\rbrace \\\\
-  \hat{k}\_{(N-1)\_{b}}   & \quad & \lbrace\text{Bob shares with Alice}\rbrace 
+  \text{MultiSig}(N-1)\_{B}:\quad\Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) 
+    & \quad & \lbrace\text{Bob's commitment}\rbrace \\\\
+  \hat{k}\_{(N-1)\_{b}} 
+    & \quad & \lbrace\text{Bob shares with Alice}\rbrace 
 \end{aligned}
 \mspace{50mu} (19)
 $$
@@ -319,7 +323,8 @@ Alice verifies:
 
 $$
 \begin{aligned}  
-  \Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})
+  \Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ k\_{(N-1)\_{a}}+
+    \hat{k}\_{(N-1)\_{b}})
 \end{aligned}
 \mspace{50mu} (20)
 $$
@@ -329,7 +334,8 @@ Bob verifies:
 
 $$
 \begin{aligned}
-  \Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ \hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})
+  \Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ \hat{k}\_{(N-1)\_{a}}+
+    k\_{(N-1)\_{b}})
 \end{aligned}
 \mspace{50mu} (21)
 $$
@@ -342,11 +348,11 @@ never published on the blockchain.
 
 ### Punishment Transaction
 
-If a counterparty decides to broadcast a revoked set of refund transactions, and if the honest party is actively monitoring 
-the blockchain and able to detect the attempted foul play, a punishment transaction can immediately be constructed 
-before the relative time lock $h_{rel}$ expires. Whenever any of the counterparty's intermediate multiparty UTXOs, 
-$\text{MultiSig}(N-m)\ \text{for}\ 0<m<N$, becomes available in the blockchain, the honest party can spend all the 
-funds to its own output, because it knows the total blinding factor and the counterparty does not.
+If a counterparty decides to broadcast a revoked set of refund transactions, and if the honest party is actively 
+monitoring the blockchain and able to detect the attempted foul play, a punishment transaction can immediately be 
+constructed before the relative time lock $h_{rel}$ expires. Whenever any of the counterparty's intermediate multiparty 
+UTXOs, $\text{MultiSig}(N-m)\ \text{for}\ 0<m<N$, becomes available in the blockchain, the honest party can spend all 
+the funds to its own output, because it knows the total blinding factor and the counterparty does not.
 
 ### Channel Closure
 
@@ -380,15 +386,15 @@ at most, three on‑chain transactions.
 
 1. Refund Procedure
 
-   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part&nbsp;1 has been 
-   concluded and that transaction has been broadcast, the result would be that funding UTXO, $\text{MultiSig}(0)$, would 
-   be replaced by the respective $\text{MultiSig}(N)$. The channel will still be open. However, it also cannot be spent 
-   unilaterally, as the blinding factor is shared. Any new updates of the channel will then need to be based on 
+   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part&nbsp;1 has 
+   been concluded and that transaction has been broadcast, the result would be that funding UTXO, $\text{MultiSig}(0)$, 
+   would be replaced by the respective $\text{MultiSig}(N)$. The channel will still be open. However, it also cannot be 
+   spent unilaterally, as the blinding factor is shared. Any new updates of the channel will then need to be based on 
    $\text{MultiSig}(N)$ as the funding UTXO. Note that this cannot happen if the counterparties construct transactions 
    for part&nbsp;1 and part&nbsp;2, conclude part&nbsp;2 by signing it, and only then sign part&nbsp;1.
    
-   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part&nbsp;1 and part&nbsp;2 
-   have been concluded and those transactions have been broadcast, it will effectively be a channel closure.
+   In the event that for round $N$, Alice or Bob decides to stop negotiations after their respective part&nbsp;1 and 
+   part&nbsp;2 have been concluded and those transactions have been broadcast, it will effectively be a channel closure.
 
 1. Revoke Attack Vector
 
