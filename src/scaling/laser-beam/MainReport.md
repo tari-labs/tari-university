@@ -73,11 +73,12 @@ $^{\prime\prime}$.
 
 $$
 \begin{aligned}
-  \begin{aligned}
-    -\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee}\end{aligned} &= \text{Excess}(0) \\\\
-    -\Big((v^{\prime\prime}\_{0_{a}}H+k^{\prime\prime}\_{0_{a}}G)+(v^{\prime\prime}\_{0_{b}}H+k^{\prime\prime}\_{0_{b}}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH       &= \mathcal{X}_{0}
-  \end{aligned}
-\mspace{50mu} (1)
+  -\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee} 
+    &= \text{Excess}(0) \\\\
+  -\Big((v^{\prime\prime}\_{0_{a}}H+k^{\prime\prime}\_{0_{a}}G)+(v^{\prime\prime}\_{0_{b}}H+k^{\prime\prime}\_{0_{b}}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH 
+    &= \mathcal{X}_{0}
+\end{aligned}
+\tag{1}
 $$
 
 Alice and Bob also need to set up their own respective refund transactions so they can be compensated should the channel 
@@ -109,7 +110,7 @@ $$
   -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(\hat{k}\_{N\_{a}}+k\_{N\_{b}})G\Big) + fH 
        &= \mathcal{X}\_{N\_{A1}} 
 \end{aligned}
-\mspace{50mu} (2)
+\tag{2}
 $$
 
 They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof, the signature challenge and Bob's 
@@ -121,7 +122,7 @@ $$
   \mathcal{X}\_{N\_{A1}} &= (-k_{0\_{a}}+\hat{k}\_{N\_{a}})G+(-k\_{0\_{b}}+k\_{N\_{b}})G \\\\ 
                          &= P\_{N\_{AA1}}+P\_{N\_{AB1}}
 \end{aligned}
-\mspace{50mu} (3)
+\tag{3}
 $$
 
 
@@ -130,7 +131,7 @@ $$
   \text{Challenge:}\quad\mathcal{H}(R_{N\_{AA1}}+R\_{N\_{AB1}}\parallel P\_{N\_{AA1}}+P\_{N\_{AB1}}\parallel 
     f\parallel h\_{N}) 
 \end{aligned}
-\mspace{50mu} (4)
+\tag{4}
 $$
 
 
@@ -138,14 +139,14 @@ $$
 \begin{aligned}
   \text{Final signature tuple, kept secret:}\quad(s\_{N\_{AA1}}+s\_{N\_{AB1}},R\_{N\_{AA1}}+R\_{N\_{AB1}}) 
 \end{aligned}
-\mspace{50mu} (5)
+\tag{5}
 $$
 
 $$
 \begin{aligned}
   \text{Kernel of this transaction:}\quad\mathcal{K}\_{N\_{AA1}} 
 \end{aligned}
-\mspace{50mu} (6)
+\tag{6}
 $$
 
 #### Bob - Part 1
@@ -160,7 +161,7 @@ $$
   -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(k\_{N\_{a}}+\hat{k}\_{N\_{b}})G\Big) + fH 
        &= \mathcal{X}\_{N\_{B1}}
 \end{aligned}
-\mspace{50mu} (7)
+\tag{7}
 $$
 
 They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof, the signature challenge and Alice's 
@@ -172,7 +173,7 @@ $$
   \mathcal{X}\_{N\_{B1}} &= (-k_{0\_{a}}+k\_{N\_{a}})G+(-k\_{0\_{b}}+\hat{k}\_{N\_{b}})G \\\\ 
                          &= P\_{N\_{BA1}}+P\_{N\_{BB1}}
 \end{aligned}
-\mspace{50mu} (8)
+\tag{8}
 $$
 
 $$
@@ -180,7 +181,7 @@ $$
   \text{Challenge:}\quad\mathcal{H}(R_{N\_{BA1}}+R\_{N\_{BB1}}\parallel P\_{N\_{BA1}}+P\_{N\_{BB1}}\parallel 
     f\parallel h\_{N}) 
 \end{aligned}
-\mspace{50mu} (9)
+\tag{9}
 $$
 
 
@@ -188,14 +189,14 @@ $$
 \begin{aligned}
   \text{Final signature tuple, kept secret:}\quad(s\_{N\_{BA1}}+s\_{N\_{BB1}},R\_{N\_{BA1}}+R\_{N\_{BB1}}) 
 \end{aligned}
-\mspace{50mu} (10)
+\tag{10}
 $$
 
 $$
 \begin{aligned}
   \text{Kernel of this transaction:}\quad\mathcal{K}\_{N\_{BB1}} 
 \end{aligned}
-\mspace{50mu} (11)
+\tag{11}
 $$
 
 #### Alice - Part 2
@@ -216,7 +217,7 @@ $$
     {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
     &=\mathcal{X}\_{N\_{A2}}  \\\\
 \end{aligned}
-\mspace{50mu} (12)
+\tag{12}
 $$
 
 They collaborate to create the challenge and the aggregated signature. Because the final kernel 
@@ -228,7 +229,7 @@ $$
   \mathcal{X}\_{N\_{A2}} &= (-\hat{k}\_{N_{a}}+k\_{N\_{a}}^{\prime})G + (-k\_{N\_{b}}+k\_{N\_{b}}^{\prime})G \\\\
                          &= P\_{N\_{AA2}}+P\_{N\_{AB2}} \\\\
 \end{aligned}
-\mspace{50mu} (13)
+\tag{13}
 $$
 
 $$
@@ -236,7 +237,7 @@ $$
   \text{Challenge:}\quad\mathcal{H}(R\_{N\_{AA2}}+R\_{N\_{AB2}}\parallel P\_{N\_{AA2}}+P\_{N\_{AB2}}\parallel f
     \parallel\mathcal{H}(\mathcal{K}\_{N\_{AA1}})\parallel h\_{rel})
 \end{aligned}
-\mspace{50mu} (14)
+\tag{14}
 $$
 
 #### Bob - Part 2
@@ -253,7 +254,7 @@ $$
   {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
     &=\mathcal{X}\_{N\_{B2}} \\\\
 \end{aligned}
-\mspace{50mu} (15)
+\tag{15}
 $$
 
 They collaborate to create the challenge and the aggregated signature. Because the final kernel 
@@ -265,7 +266,7 @@ $$
   \mathcal{X}\_{N\_{B2}} &= (-k\_{N_{a}}+k\_{N\_{a}}^{\prime})G + (-\hat{k}\_{N\_{b}}+k\_{N\_{b}}^{\prime})G \\\\
                          &= P\_{N\_{BA2}}+P\_{N\_{BB2}}
 \end{aligned}
-\mspace{50mu} (16)
+\tag{16}
 $$
 
 $$
@@ -273,7 +274,7 @@ $$
   \text{Challenge:}\quad\mathcal{H}(R\_{N\_{BA2}}+R\_{N\_{BB2}}\parallel P\_{N\_{BA2}}+P\_{N\_{BB2}}\parallel f
     \parallel\mathcal{H}(\mathcal{K}\_{N\_{BB1}})\parallel h\_{rel})
 \end{aligned}
-\mspace{50mu} (17)
+\tag{17}
 $$
 
 ### Revoke Previous Refund
@@ -299,7 +300,7 @@ $$
   \hat{k}\_{(N-1)\_{a}} 
     & \quad & \lbrace\text{Alice shares with Bob}\rbrace \\\\
 \end{aligned}
-\mspace{50mu} (18)
+\tag{18}
 $$
 
 Bob:
@@ -311,7 +312,7 @@ $$
   \hat{k}\_{(N-1)\_{b}} 
     & \quad & \lbrace\text{Bob shares with Alice}\rbrace 
 \end{aligned}
-\mspace{50mu} (19)
+\tag{19}
 $$
 
 Note that although the kernels for transactions (2) and (10) were kept secret, when the Bulletproof range proofs for 
@@ -326,7 +327,7 @@ $$
   \Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ k\_{(N-1)\_{a}}+
     \hat{k}\_{(N-1)\_{b}})
 \end{aligned}
-\mspace{50mu} (20)
+\tag{20}
 $$
 
 
@@ -337,7 +338,7 @@ $$
   \Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ \hat{k}\_{(N-1)\_{a}}+
     k\_{(N-1)\_{b}})
 \end{aligned}
-\mspace{50mu} (21)
+\tag{21}
 $$
 
 
