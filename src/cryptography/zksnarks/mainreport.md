@@ -52,7 +52,19 @@ without disclosing the information. This is a powerful tool in the blockchain wo
 as the aim is to achieve a trustless network, that is, anyone in the network should be able to verify information 
 recorded in a block.  
 
-![circle-cropped (1)](/Users/anthonymatlala/Downloads/circle-cropped (1).png) 
+<div>
+  <p style="float: left;">
+    <img src="sources/hasib_anwar.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Hasib Anwar</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <br>
+    <br>
+  </p>
+</div>
+
 
 **Hasib Anwar** gives an excellent [zero-knowledge infographic](https://101blockchains.com/wp-content/uploads/2018/11/Zero_knowledge_Proof_ZKP.png) 
 which summarises what a zero-knowledge proof is, its main properties (completeness, soundness and zero-knowledge), as 
@@ -68,11 +80,19 @@ A typical zero-knowledge proof protocol involves at least two participants, call
 The _Verifier_ sends a challenge to the _Prover_ in the form of a computational problem. The _Prover_ has to solve the 
 computational problem and, without revealing his solution, send _proof_ of his correct solution to the Verifier. 
 
-<img src="/Users/anthonymatlala/Downloads/circle-cropped (4).png" alt="circle-cropped (4)" style="zoom: 50%;" /> 
+<div>
+  <p style="float: left;">
+    <img src="sources/chris_reitweissner.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Dr. Christian Rietwiessner</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Ethereum Foundation
+    <br>
+    <br>
+  </p>
+</div>
 
-**Dr. Christian Rietwiessner**, Ethereum Foundation
-
-@ethchris github.com/chriseth chris@ethereum.org
 
 ### Summary 
 
@@ -108,16 +128,26 @@ to scholarly research papers for the technical reader.
 
 ### Comparing General-purpose zkSNARKs
 
-<img src="/Users/anthonymatlala/Downloads/circle-cropped (6).png" alt="circle-cropped (6)" style="zoom: 50%;" /> 
+<div>
+  <p style="float: left;">
+    <img src="sources/ronald_mannak.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Ronald Mannak</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <br>
+    <br>
+  </p>
+</div>
 
-[**Ronald Mannak**](https://medium.com/@ronaldmannak_1825?source=post_page-----51ce124c60bd----------------------) , Coinmonks 
 
 ### Summary
 
-"_Comparing General Purpose zk-SNARKs_" by Ronald Mannak, [November 11, 2019](https://medium.com/coinmonks/comparing-general-purpose-zk-snarks-51ce124c60bd?source=post_page-----51ce124c60bd----------------------) · 6 min read
+"_Comparing General Purpose zk-SNARKs_" by Ronald Mannak, November 11, 2019
 
 The main drawback with zkSNARKs is their reliance on a _common reference string_ that is created using a _trusted setup_. 
-Ronald Mannak mentions three issues with reference strings or having a trusted setup. First, a leaked reference string 
+In this [post](https://medium.com/coinmonks/comparing-general-purpose-zk-snarks-51ce124c60bd?source=post_page-----51ce124c60bd----------------------) Ronald Mannak mentions three issues with reference strings or having a trusted setup. First, a leaked reference string 
 can be used to create undetectable fake proofs. Second, one setup is only applicable to one computation thus making 
 smart contracts impossible. Third, reference strings are not upgradable which means a whole new _ceremony_ is require 
 even for minor _bug fixes_ in crypto coins.   
@@ -149,15 +179,25 @@ gives the following 5-step process of achieving a zkSNARK,
 
 ### Quadratic Arithmetic Programs - from Zero to Hero 
 
-<img src="/Users/anthonymatlala/Downloads/circle-cropped (8).png" alt="circle-cropped (8)" style="zoom: 25%;" /> 
+<div>
+  <p style="float: left;">
+    <img src="sources/vitalik_buterin.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Vitalik Buterin</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Co-founder of Ethereum
+    <br>
+    <br>
+  </p>
+</div>
 
-[**Vitalik Buterin**](https://medium.com/@VitalikButerin?source=post_page-----f6d558cea649----------------------)  [Dec 12, 2016](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649?source=post_page-----f6d558cea649----------------------) · 13 min read
 
 ### Summary 
 
 "_Quadratic Arithmetic Programs_" by Vitalik Buterin, 2016-12-12  
 
-Vitalik Buterin explains how zkSNARKs work by use of an example, focusing on first three steps of Eran Tomer's 5-step 
+In this [post](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649?source=post_page-----f6d558cea649----------------------) Vitalik Buterin explains how zkSNARKs work by use of an example, focusing on first three steps of Eran Tomer's 5-step 
 process given above. He explains how a computational problem can be written as an arithmetic circuit, converted into an 
 rank-1 constraint system or R1CS, and ultimately transforming the R1CS into a quadratic arithmetic program. Vitalik's 
 blogpost can be found [here](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649). 
@@ -170,19 +210,27 @@ blogpost can be found [here](https://medium.com/@VitalikButerin/quadratic-arithm
 
 The explanation of zkSNARKs given by Vitalik Buterin above, and similar explanations by _Alex Pinto_ in [[4]] and [[5]] though excellent in elucidating the R1CS and the QAP concepts, do not explain how zero-knowledge is achieved in zkSNARKs. For a step-by-step and mathematical explanation of how zero-knowledge is achieved in zk-SNARKs, as used in Zcash, see the _Explaining SNARKs 7-part series_ by Ariel Gabizon [[7]]. 
 
-<img src="/Users/anthonymatlala/Downloads/circle-cropped (5).png" alt="circle-cropped (5)" style="zoom: 50%;" /> 
+<div>
+  <p style="float: left;">
+    <img src="sources/ariel_gabizon.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Ariel Gabizon</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Engineer at Zcash
+    <br>
+    <br>
+  </p>
+</div>
 
-**Ariel Gabizon**
-
-Engineer at Zcash
 
 ### Summary 
 
 "_Explaining zkSNARKs: Part I to Part VII_" by Ariel Gabizon, February 28, 2017 - June 7, 2017, electriccoin.co/blog/
 
-#### [Part I: Homomorphic Hidings](https://z.cash/blog/snark-explain) 
+#### [Part I: Homomorphic Hidings]
 
-Explains how zkSNARKs use _homomrphic hiding_ or _homomorphic encryption_ in order to achieve zero-knowledge proofs. 
+This [post](https://z.cash/blog/snark-explain) explains how zkSNARKs use _homomrphic hiding_ or _homomorphic encryption_ in order to achieve zero-knowledge proofs. 
 Gabizon dives into the _mathematics_ that underpins the cryptographic security of homomorphic encryption afforded by the 
 difficulty of solving _discrete log problems_ in a finite group of a large _prime_ order. 
 
@@ -263,11 +311,19 @@ and Madars Virza.
 
 ### zkSHARKs - Combining Succinct Verification and Public Coin Setup
 
-<img src="/Users/anthonymatlala/Downloads/imageedit_11_7245436018.png" alt="imageedit_11_7245436018" style="zoom:50%;" /> 
+<div>
+  <p style="float: left;">
+    <img src="sources/madars_virza.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Madars Virza</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Scientist, MIT
+    <br>
+    <br>
+  </p>
+</div>
 
-**Madars Virza**, 
-
-Scientist, MIT
 
 ### Summary 
 
