@@ -27,7 +27,6 @@
 - [zk-SHARKs: Combining Succinct Verification and Public Coin Setup](#zk-sharks-combining-succinct-verification-and-public-coin-setup) 
   - [Background](#background)
   - [Summary](#summary-4)
-- [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations) 
 - [References](#references)
 
 
@@ -39,6 +38,15 @@ knowledge,_ is a special kind of a zero-knowledge proof. The difference between 
 of knowledge_ is rather technical for the intended audience of this report. The distinction lies in the difference 
 between _statistical soundness_ and _computational soundness_. The technical reader is referred to 
 [[1]] or [[2]]. 
+
+
+zk-SNARKs have found many applications in zero-knowledge proving systems, libraries of proving systems such as 
+_libsnark_ and _bellman_ and general-purpose compilers from high-level languages such as _Pinocchio_. "DIZK: A 
+Distributed Zero Knowledge Proof System", by Wu et al. [[3]], is one of the best papers on zk-SNARKs, at least from a 
+cryptographer's point of view. Coins such as Zerocoin and Zcash use zk-SNARKs. The content reflected in this curated 
+content report, although not all inclusive, covers all the necessary basics one needs to understand zk-SNARKs and their 
+implementations.  
+
 
 
 ## What is ZKP? A Complete Guide to Zero-knowledge Proof
@@ -136,7 +144,7 @@ autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></ifra
 
 ### Overview
 
-Recently, zk-SNARK constructs such as Supersonic [[8]] and Halo [[9]] 
+Recently, zk-SNARK constructs such as Supersonic [[4]] and Halo [[5]] 
 were created mainly for efficiency of proofs. The following article by Mannak gives a quick survey of the most 
 recent developments, comparing general-purpose zk-SNARKs. The article is easy to read. It provides the technical reader with relevant references 
 to scholarly research papers.  
@@ -176,15 +184,15 @@ _proof_ and _verification sizes_ as well as _performance_.
 ### Overview
 
 The zk-SNARK end-to-end journey is to create a function or a protocol that takes the proof, given by the Prover, and 
-checks its veracity [[4]]. In a zk-SNARK proof, a computation is verified step by step [[5]]. To do so, the computation 
+checks its veracity. In a zk-SNARK proof, a computation is verified step by step. To do so, the computation 
 is first turned into an arithmetic circuit. Each of its wires is then assigned a value that results from feeding 
 specific inputs to the circuit. Next, each computing node of the arithmetic circuit (called a “gate” - an analogy of the 
 nomenclature of electronic circuits) is transformed into a constraint that verifies the output wire has the value it 
 should have for the values assigned to the input wires. This process involves transforming statements or computational 
-problems into various formats on which a zk-SNARK proof can be performed. In [[3]], Tomer gives the following five-step 
-process for achieving a zk-SNARK:   
+problems into various formats on which a zk-SNARK proof can be performed. The following seven steps depicts the process 
+for achieving a zk-SNARK:   
 
-`Computational Problem  —>  Arithmetic Circuit  —>  R1CS  —>  QAP  —>  Linear PCP  —>  zk-SNARK`
+`Computational Problem  —>  Arithmetic Circuit  —>  R1CS  —>  QAP  —>  Linear PCP  —>  Linear Interactive Proof  ->  zk-SNARK`
 
 ### Summary 
 
@@ -193,8 +201,7 @@ _"Quadratic Arithmetic Programs"_ by Vitalik Buterin, 2016-12-12
 In [this post](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649?source=post_page-----f6d558cea649----------------------), 
 Buterin explains how zk-SNARKs work, using an example that focuses on the first three steps of Tomer's five-step 
 process given above. Buterin explains how a computational problem can be written as an arithmetic circuit, converted into a 
-rank-1 constraint system or R1CS, and ultimately transform the R1CS into a quadratic arithmetic program. Buterin's 
-blogpost can be found [here](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649). 
+rank-1 constraint system or R1CS, and ultimately transform the R1CS into a quadratic arithmetic program.
 
 ## Explaining SNARKs Series: Part I to Part VII
 
@@ -213,10 +220,10 @@ blogpost can be found [here](https://medium.com/@VitalikButerin/quadratic-arithm
 
 ### Overview
 
-The explanation of zk-SNARKs given by Buterin above, and similar explanations by Pinto in [[4]] and [[5]], 
-although excellent in clarifying the R1CS and the QAP concepts, do not explain how zero-knowledge is achieved in 
-zk-SNARKs. For a step-by-step and mathematical explanation of how this is achieved, as used in 
-Zcash, refer to the seven-part series on _Explaining SNARKs_ by Gabizon [[7]]. 
+The explanation of zk-SNARKs given by [Buterin above](#quadratic-arithmetic-programs---from-zero-to-hero), and similar 
+explanations by Pinto ([6]], [[7]]), although excellent in clarifying the R1CS and the QAP concepts, do not explain how 
+zero-knowledge is achieved in zk-SNARKs. For a step-by-step and mathematical explanation of how this is achieved, as 
+used in Zcash, refer to the seven-part series listed here. 
 
 ### [Part I: Homomorphic Hidings]
 
@@ -345,18 +352,6 @@ The slides from the [talk](https://dci.mit.edu/zksharks) can be found
 autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-## Conclusions, Observations and Recommendations
-
-zk-SNARKs have found many applications in zero-knowledge proving systems, libraries of proving systems such as 
-_libsnark_ and _bellman_; general-purpose compilers from high-level languages such as _Pinocchio_; and some examples of 
-circuits such as _Zcash Sprout_ and _Spacesuit_ [[11]]. The content reflected in this curated 
-content report, although not all inclusive, covers all the necessary basics one needs to understand zk-SNARKs and their 
-implementations. Many coins, such as Zerocoin, Zcash and, recently, Bitcoin and Moneros, use zk-SNARKs. 
-The specific details of exactly how they are implemented can be found on the respective websites of these 
-cryptocurrencies. A paper such as [[10]] is one of the best papers on zk-SNARKs, at least 
-from a cryptographer's point of view. 
-
-
 ## References 
 
 [[1]] G. Brassard, D. Chaum and C. Crepeau, "Minimum Disclosure Proofs of Knowledge" [online]. Available:
@@ -377,73 +372,40 @@ Any One-way Function
 (Extended 
 Abstract)"
 
-[[3]] E. Tromer, "Lecture 12: Verified Computation and its Applications, Course Conclusion", 2016 [online]. 
-Available: <http://www.cs.tau.ac.il/~tromer/istvr1516-files/lecture12-verified-computation.pdf>. Date accessed: 
-2019&#8209;12&#8209;07.  
+[[3]] H. Wu, W. Zheng, A. Chiesa, R. A. Popa and I. Stoica, "DIZK: A Distributed Zero Knowledge Proof System", 
+UC Berkeley [online]. Available: <https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf>. 
+Date accessed: 2019&#8209;12&#8209;07.
 
-[3]: http://www.cs.tau.ac.il/~tromer/istvr1516-files/lecture12-verified-computation.pdf
-"Lecture 12: Verified 
-Computation and its 
-Applications, Course Conclusion"
-
-[[4]] A. Pinto, "Constraint Systems for ZK SNARKs" [online]. Available: 
-<http://coders-errand.com/constraint-systems-for-zk-snarks/>. Date accessed: 2019&#8209;03&#8209;06. 
-
-
-[4]: http://coders-errand.com/constraint-systems-for-zk-snarks/
-"Constraint Systems for ZK SNARKs"
-
-[[5]] A. Pinto, "The Vanishing Polynomial for QAPs", 23 March 2019 [online]. Available: 
-<http://coders-errand.com/the-vanishing-polynomial-for-qaps/>. Date accessed: 2019&#8209;10&#8209;10.
-
-[5]: http://coders-errand.com/the-vanishing-polynomial-for-qaps/
-"The Vanishing Polynomial
-for QAPs"
-
-[[6]] A. Gabizon, "Explaining SNARKs Part I: Homomorphic Hidings"[online]. Available: 
-<https://electriccoin.co/blog/snark-explain/>. Date accessed: 2019&#8209;10&#8209;25.
-
-[6]: https://electriccoin.co/blog/snark-explain/
-"Explaining SNARKs Part I:
-Homomorphic Hidings"
-
-[[7]] A. Gabizon, "Explaining SNARKs - 7-Part-Series - Ariel Gabizon.pdf" [online]. Available: 
-<https://electriccoin.co/blog/snark-explain5/>. Date accessed: 2019&#8209;10&#8209;30.
-
-[7]: https://electriccoin.co/blog/snark-explain5/
-"Explaining SNARKs - 
-7-Part-Series - 
-Ariel Gabizon.pdf"
-
-[[8]] B. Bünz, B. Fisch and A. Szepieniec, "Transparent SNARKs from DARK Compilers" [online]. Available: 
-<https://eprint.iacr.org/2019/1229>. Date accessed: 2019&#8209;12&#8209;07.
-
-[8]: https://eprint.iacr.org/2019/1229
-"Transparent SNARKs
-from DARK Compilers"
-
-[[9]] S. Bowe, J. Grigg and D. Hopwood, "Halo: Recursive Proof Composition without a Trusted Setup" [online]. Available: 
-<https://eprint.iacr.org/2019/1021>. Date accessed: 2019&#8209;12&#8209;07. 
-
-[9]: https://eprint.iacr.org/2019/1021
-"Halo: Recursive Proof
-Composition without
-a Trusted Setup"
-
-[[10]] H. Wu, W. Zheng, A. Chiesa, R. A. Popa and I. Stoica, "DIZK: A Distributed Zero Knowledge Proof System", 
-UC Berkeley [online]. Available: <https://www.usenix.org/conference/usenixsecurity18/presentation/wu>. Date accessed: 
-2019&#8209;12&#8209;07.
-
-[10]: https://www.usenix.org/conference/usenixsecurity18/presentation/wu
+[3]: https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf
 "DIZK: A Distributed
 Zero Knowledge
 Proof System"
 
-[[11]] "Zero-Knowledge Proofs: What are they, how do they work, and are they fast yet?" [online]. Available: 
-<https://zkp.science/>. Date accessed: 2019&#8209;12&#8209;07.
+[[4]] B. Bünz, B. Fisch and A. Szepieniec, "Transparent SNARKs from DARK Compilers" [online]. Available: 
+<https://eprint.iacr.org/2019/1229.pdf>. Date accessed: 2019&#8209;12&#8209;07.
 
-[11]: https://zkp.science/
-"Zero-Knowledge Proofs:
-What are they,
-how do they work,
-and are they fast yet?" 
+[4]: https://eprint.iacr.org/2019/1229.pdf
+"Transparent SNARKs
+from DARK Compilers"
+
+[[5]] S. Bowe, J. Grigg and D. Hopwood, "Halo: Recursive Proof Composition without a Trusted Setup" [online]. Available: 
+<https://eprint.iacr.org/2019/1021.pdf>. Date accessed: 2019&#8209;12&#8209;07. 
+
+[5]: https://eprint.iacr.org/2019/1021.pdf
+"Halo: Recursive Proof
+Composition without
+a Trusted Setup"
+
+[[6]] A. Pinto, "Constraint Systems for ZK SNARKs" [online]. Available: 
+<http://coders-errand.com/constraint-systems-for-zk-snarks/>. Date accessed: 2019&#8209;03&#8209;06. 
+
+
+[6]: http://coders-errand.com/constraint-systems-for-zk-snarks/
+"Constraint Systems for ZK SNARKs"
+
+[[7]] A. Pinto, "The Vanishing Polynomial for QAPs", 23 March 2019 [online]. Available: 
+<http://coders-errand.com/the-vanishing-polynomial-for-qaps/>. Date accessed: 2019&#8209;10&#8209;10.
+
+[7]: http://coders-errand.com/the-vanishing-polynomial-for-qaps/
+"The Vanishing Polynomial
+for QAPs"
