@@ -127,13 +127,16 @@ One solution to the equation  $\large{x^2_1 x_2 + x_1 + 1 = 22}$  , from Example
 
 It is easy to check that the R1CS for the computation problem in **Example 1** is as follows; (i.e., one need only test if  ${\large \langle {\bf{a_L , s}} \rangle * \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0}$  for each equation),  
 
- $\large{ u = x_1*x_1}$	:  $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $. 
 
- $ \large{ v = u*x_2 }$ 	 :  $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $. 
 
- $ \large{ y = 1*( x_1 + 1 ) } $ :  ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $.
+| Equation                        | R1CS Vectors                                                 |
+| ------------------------------- | ------------------------------------------------------------ |
+| $\large{ u = x_1*x_1}$          | $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ |
+| $ \large{ v = u*x_2 }$          | $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $ |
+| $ \large{ y = 1*( x_1 + 1 ) } $ | ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ |
+| $ \large{ z = 1*( v + y )} $    | ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ |
 
- $ \large{ z = 1*( v + y )} $   :  ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$. 
+​				**Table 1 : Equations and R1CS Vectors**  
 
 
 
@@ -167,15 +170,17 @@ where  "${\large \circ }$"  is the Hadamard product, and
 
  where  $\mathbf{W_L, W_R, W_O}$  and  $\mathbf{W_V}$  are weights applied to respective input vectors and output vectors. 
 
- It is Bootle et al. who first expressed _arithmetic circuit satisfiability_ in terms of the _Hadamard relation_ and linear constraints (see [10.]).   
+It is Bootle et al. who first expressed _arithmetic circuit satisfiability_ in terms of the _Hadamard relation_ and linear constraints (see [10.]). In their definition, the above linear constraints is written without as:
 
+  $\mathbf{W_L\cdot {\large a_L}  +  W_R\cdot {\large a_R}  +  W_O\cdot {\large a_O } =  c } $. 
 
+That is, without the vector  $\mathbf{\large{v}}$  and its weight  $\mathbf{W_V} $. We explain this later.  
 
 
 
 ## ZK Proofs for Arithmetic Circuits _vs._ Programmable Constraint Systems for Bulletproofs 
 
-As noted [here](https://tlu.tarilabs.com/cryptography/bulletproofs-protocols/MainReport.html#evolving-bulletproof-protocols), Interstellar's [_Programmable Constraint Systems for Bulletproofs_](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7) [11.] is an extension of _Zero-knowledge Proofs for Arithmetic Circuits_ by Bootle et al [10.], enabling protocols that support _proving of arbitrary statements_ in zero-knowledge using constraint systems. Although our focus here is on the above two works of research, we recognize the _Bulletproofs paper_ by Bunz et al [9.] as a _bridge_ between the two research works. We thus split the comparison to be among **three** works of research. 
+As noted [here](https://tlu.tarilabs.com/cryptography/bulletproofs-protocols/MainReport.html#evolving-bulletproof-protocols), Interstellar's [_Programmable Constraint Systems for Bulletproofs_](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7) [11.] is an extension of _Zero-knowledge Proofs for Arithmetic Circuits_ by Bootle et al [10.], enabling protocols that support _proving of arbitrary statements_ in zero-knowledge using constraint systems. Although our focus here is on the above two works of research [10.] and [11.], we recognize the _Bulletproofs paper_ by Bunz et al [9.] as a _bridge_ between the two. We thus split the comparison to be among **three** works of research as shown in the table below. 
 
 All these are _zero-knowledge proofs_ based on the difficulty of the _discrete logarithm problem_. 
 
@@ -183,15 +188,15 @@ All these are _zero-knowledge proofs_ based on the difficulty of the _discrete l
 
 | No.  | ZKProofs for Arithmetic Circuits by Bootle et al. [10.] (2016) | Bulletproofs & Constraints by Benedikt Buenz et al. [9.] (2017) | Programmable Constraints by Cathie Yun et al. [11.] (2018)   |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint. | Generalizes Constraint systems and uses what is called _gadgets_ as building blocks for Consraint systems. |
-| 2    | Improves on Groth's work [[12.]](https://iacr.org/archive/crypto2009/56770190/56770190.pdf) on ZK Proofs. Reducing  a $\sqrt{N}$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Improves on Bootle et al.'s work [10.]. Reducing a $2log_2(N) + 13$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Adds Constraint systems to Bunz et al.'s work on Bulleproofs, which are _short proofs_ and the complexity advantage is seen in an _proving_ statements at once. |
+| 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint. | Generalizes Constraint systems and uses what is called _gadgets_ as building blocks for Constraint systems. |
+| 2    | Improves on Groth's work [[12.]](https://iacr.org/archive/crypto2009/56770190/56770190.pdf) on ZK Proofs. Reducing  a $\sqrt{N}$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Improves on Bootle et al.'s work [10.]. Reducing a $2log_2(N) + 13$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Adds Constraint systems to Bunz et al.'s work on Bulleproofs, which are _short proofs_ and the complexity advantage is seen in _proving_ several statements at once. |
 | 3.   | Introduces logarithm-sized inner-product proofs zero-knowledge proofs. | Introduces Bulletproofs, extending proofs to proofs of arbitrary statements. The _halving method_ is used on the inner-products _resulting_ in the above reduction in complexity. | Introduces _Gadgets_ that are actually _add-ons_ to an ordinary zero-knowledge proofs. A _range proof_  is but an example of a gadget. |
-| 4.   | Uses _Fiat-Shamir heuristics_ in order to achieve _non-interactive_ zero-knowledge proofs. | The use of the _Fiat Shamir heuristics_ is continued here to have non-interactive proofs. | The _Merlin transcripts_ are specifically used for a Fiat-Shamir transformation to achieve _non-interactive_ zero-knowledge proofs. |
+| 4.   | Uses _Fiat-Shamir heuristics_ in order to achieve _non-interactive_ zero-knowledge proofs. | Bulletproofs have no trusted setup as they use of the _Fiat Shamir heuristics_ to achieve non-interactive zero-knowledge proofs. | The _Merlin transcripts_ are specifically used for a Fiat-Shamir transformation to achieve _non-interactive_ zero-knowledge proofs. |
 | 5.   | The Pedersen Commitments are used in order to achieve _zero-knowledge_ property. | Eliminates the need for a _commitment algorithm_ by including _Pedersen commitments_ among the inputs to the verification proof. | Low-level variables, representing _inputs_ and _outputs_ to _multiplication gates_, are computed per-proof and committed using a single _vector Pedersen commitment_. |
 | 6.   | The zero-knowledge proof involves _conversion_ of the Arithmetic circuit into a Rank-1 Constraint system. | The mathematical expression of a _Hadamard relation_ is closely related to an _Arithmetic circuit_. The use of this relation plus linear constraints as a single constraint amounts to using a constraint system. | Although _Arithmetic circuits_ are not explicitly used here, the Hadamard relation remains the same as first seen in Bulletproofs, moreso in the _inner-product proof_. |
 | 7.   | The zero-knowledge proof here is for NP statements based on the _difficulty_ of _the discrete logarithm problem_. | As mentioned above, Bulletproofs extend zero-knowledge proofs (such as _range proofs_) to proofs on arbitrary statements. They are also described as _short non-Interactive proofs for Arithmetic Circuits without a Trusted Setup_. | Interstellar is building an API that allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop. |
 
-​				**Table 1 : Comparison of three Research Works Zero Knowledge Proofs**   
+​				**Table 2 : Comparison of three Research Works Zero Knowledge Proofs**   
 
 
 
@@ -223,126 +228,43 @@ The _first step_ is to express the given computational problem in terms of _addi
 
 
 
+## Interstellar’s Constraint System 
 
+The Interstellar team paved the way towards implementations of several cryptographic primitives in the RUST language, including [_Ristretto_](https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html), a construction of a prime-order group using a cofactor-8 curve known as Curve25519. They reported on how they implemented Bulletproofs in Henry de Valence's article entitled "[Bulletproofs pre-release](https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b)". An update on their progress in extending the [Bulletproofs implementation](http://github.com/dalek-cryptography/bulletproofs/) to a _constraint system_ API which enables zero-knowledge proofs of arbitrary statements was given in Cathie Yun's article, [Programmable Constraint Systems for Bulletproofs](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7) [11.] However, it was Bootle et al [9.] who first used the _Hadamard relation_ and _linear constraints_ which together form the _constraints system_ as formalised by the Interstellar team, and most of the Mathematical background of these _constraints_ and _bulletproofs_ is contained Bunz et al paper [9.] For an extensive study on Bulletproofs protocols see previous report [here](https://tlu.tarilabs.com/preface/learning/bulletproofs.html). 
 
-## Dalek’s Constraint System 
+Dalek's constraint system, as seen in Definition 3 above, is a collection of _arithmetic constraints_ of two types, _multiplicative constraints_ and _linear constraints_ over a set of high-level variables and low-level variables.  
 
-The Interstellar team paved the way towards implementations of several cryptographic primitives in the RUST language, including [_Ristretto_](https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html), a construction of a prime-order group using a cofactor-8 curve such as Curve25519. They have also written about how they implemented Bulletproofs, reported [here](https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b).    
-
-Bootle et al first used the Hadamard relation and linear constraints which can be regarded as the _formalised_ constraints system by the Interstellar team. 
-
-
-
-
-
-On Pages 5 of [9.], Bunz et al discuss how bulletproofs can be used to create a _verfiable shuffle_ of size $\mathcal{O}(log(n)).$ Although not referred to as such, this was in fact a _shuffle gadget_. The term was popularised by Interstellar, using _gadgets_ as building blocks of constraints systems in [_Building on Bulletproofs_](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8). 
-
-The Cloak was inspired by the Bellman's API ... see [11.]  
+As to why there is a vector  $\mathbf{\large{v}}$  and its weight  $\mathbf{W_V}$  in Definition 3 above, Bunz et al explain that "we include additional commitments  $V_i$  as part of our statement, and give a protocol for a more general relation, where the _linear consistency constraints_ include the openings  ${\large v_j}$  of the commitments  $V_j$", see Page24 [9.] That is, their definition of a _constraint system_ incorporates a secret vector  $\mathbf{\large{v}}$  and its weight  $\mathbf{W_V}$  because commitments  $V_i$  of components  ${\large v_i}$  of  $\mathbf{\large{v}} = \large{(v_1, v_2, ... , v_m )}$  are included among the inputs. We note that Bulletproofs use the _Pedersen commitment scheme_.  
 
 
 
+#### Easy to Build Constraint Systems  
+
+In this bulletproofs framework, a _prover_ can build a constraint system in two steps. Firstly, she _commits_ to secret inputs and _allocates_ high-level variables corresponding the inputs. Secondly, she _selects_ a suitable combination of _multiplicative constraints_ and _linear constraints_, as well as requesting a _random scalar_ in response to the high-level variables already committed. 
+
+##### _About Gadgets_ 
+
+Consider a _verifiable shuffle_: Given two lists of _committed values_  ${\large x_1, x_2, . . . , x_n}$  and  ${\large y_1, y_2, . . . , y_n} ,$  prove that the second list is a permutation of the first. Bunz et al mention that the use of bulletproofs improves the complexity of such a _verifiable shuffle_ to size $\mathcal{O}(log(n))$ compared to previous implementation results, see Page 5 of [9.]  Although not referred to as a _gadget_ in the paper, this is in fact a _shuffle gadget_. The term _gadget_ was used and popularised by the Interstellar team, who introduced _gadgets_ as building blocks of constraints systems, see Cathie Yun's article entitled [_Building on Bulletproofs_](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).  
+
+A _shuffle gadget_ is any function whose outputs are but a permutation of its inputs. By definition of a permutation the _number of inputs_ to a shuffle gadget is always the same as the _number of outputs_. 
 
 
 
+<img src="https://miro.medium.com/max/1772/0*PYz5oJnePHRxfZJi" alt="img" style="zoom: 67%;" />
 
-#### Building constraints
-
-Bulletproofs framework allows building constraint systems _on the fly_, without a trusted setup.
-This allows instantiating constraints from a _family of constraint systems_ parametrized by
-public values and commitments to the secret inputs.
-As a result, the instantiation can be thought of as a _challenge_ generated by a verifier to a prover.
-
-The prover starts out by committing to its secret inputs $\mathbf{v}$
-and obtaining $m$ _variables_ representing these inputs.
-
-Then, the prover performs a combination of the following operations to generate the constraints:
-
-1. **Allocate a multiplier:** a new [multiplication gate](#multiplication-gates) is added, represented by three [low-level variables](#variables) $a_L, a_R, a_O$, for left input, right input and output value respectively.
-2. **Add a constraint:** a [linear combination](#linear-constraints) of any number of [variables](#variables) is encoded into appropriate positions in matrices $\mathbf{W}_L, \mathbf{W}_R, \mathbf{W}_O, \mathbf{W}_V$ and a vector of constants $\mathbf{c}$.
-3. **Request a challenge scalar:** a random scalar returned in response to committed [high-level variables](#variables). 
+​				**Diagram 3 : Simple Shuffle Gadgets with 2 inputs** [[13.]](Building on Bulletproofs, https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)
 
 
 
-(see **notes-r1cs.md**) - not Constraint system proof 
+The Interstellar team mentions other _gadgets_; “merge”, “split” and a “range proof”; that are implemented in their _Confidential Assets scheme_ called the _Cloak_. Just as a _shuffle gadget_ creates constraints that prove that _two sets of variables_ are equal up to a permutation, a _range proof gadget_ checks that a given _value_ is composed of a specific number of bits. 
 
+Gadgets in their simplest form merely receive some _variables_ as inputs and produce corresponding _output_ values. They however may _allocate_ more _variables_ for internal use, sometimes called _auxilliary variables_, and _produce constraints_ involving all these variables. The main advantage with gadgets is that they are _composable_, and thus a more _complex_ gadget can always be created from a number of _single_ gadgets. 
 
+Cathie Yun regards _constraint systems_ as "_very powerful_ because they can represent any efficiently verifiable program," [[13.]](Cathie Yun, "Building on Bulletproofs," https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).   
 
-Cathie Yun says "_constraint systems_ are very powerful because they can represent any efficiently verifiable program."  [[t.]](Cathie Yun, "Building on Bulletproofs," https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).
+##### Previous Work on _Verifiable Shuffles_
 
-"A zero knowledge constraint system proof is a proof that all of the constraints in a constraint system are satisfied by certain secret inputs, without revealing what those secret inputs are," [[t.]](Cathie Yun, "Building on Bulletproofs," https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8). 
-
-
-
-#### Gadgets
-
-Gadgets are buildings blocks of a constraint system that map to some functions in a higher-level protocol.
-Gadgets receive some [variables](#variables) as inputs, may [allocate more variables](#building-constraints) for internal use,
-and produce constraints involving all these variables.
-
-Examples:
-
-- a **shuffle gadget** creates constraints that prove that two sets of variables are equal up to a permutation;
-- a **range proof gadget** checks that a given value is composed of a specific number of bits.
-
-
-
-#### Low-level variables
-
-Often a [gadget](#gadgets) needs a variable to connect with another gadget,
-or to implement its internal logic, without requiring a distinct [high-level variable](#variables) commitment $V_i$ for it.
-Such **low-level variables** are created from left and right variables $a_L, a_R$ of additional multiplication gates.
-Output variables $a_O$ are not used for this purpose because
-they are implicitly constrained by a [multiplication gate](#multiplication-gates)
-and cannot be used as independent uncommitted variables.
-
-**Important:** uncommitted variables have their name due to lack of the individual commitments $V_i$,
-but they are still committed collectively with all [low-level variables](#variables)
-using a single vector Pedersen commitment $A_I$ as required by the underlying proof protocol.
-The distinction is important when [building constraints](#building-constraints) using [challenges](#gadget-as-a-challenge),
-which are bound only to the high-level variables, but not to the low-level variables (hence, “uncommitted”). 
-
-
-
-#### Gadget as a challenge
-
-Intermediate challenge scalars can be used to construct [gadgets](#gadgets) more efficiently.
-
-For example, a shuffle gadgets (“proof of permutation”) can be done by proving equality of
-two polynomials sampled at a challenge point, where roots of each polynomial
-represent secret values of the corresponding side of a permutation:
-$$
-\lbrace a,b \rbrace  =  \lbrace c,d \rbrace   \iff  (a-x)\cdot(b-x) = (c-x)\cdot(d-x),
-$$
-where $x$ is a random challenge, sampled after all values $a,b,c,d$ are committed.
-
-Making a proof of permutation using a static gadget (without challenge values) may require
-building a [sorting network][sorting_network] that would use significantly more multiplication gates.
-
-**Important:** challenges are bound to the [high-level variables](#variables) and the
- committed portion of [low-level variables](#low-level-variables).
- The remaining [low-level variables](#low-level-variables) are uncommitted and must be uniquely determined
- by the committed variables and the challenge scalars in order for gadgets to be _locally sound_.
- To facilitate this, the [constraint system API](../../r1cs/index.html) prevents use of challenges
- before all freely chosen variables are committed. 
-
-
-
-See "Programmable Constraints ..." by Cathie Yun 
-
-[sorting_network]: https://en.wikipedia.org/wiki/Sorting_network
-
-
-
-#### Representation of constraints
-
-The matrices $\mathbf{W}_L, \mathbf{W}_R, \mathbf{W}_O, \mathbf{W}_V$ are typically very sparse
-because most constraints apply only to a few variables. As a result, constraints are represented as short lists
-of pairs $(i, w)$ where $i$ is an index of a variable, and $w$ is its (non-zero) weight.
-
-Multiplication of a matrix by a vector is implemented via multiplication of each weight $w$ by 
-a scalar in the vector at a corresponding index $i$. This way, all zero-weight terms are automatically skipped.
-
-
+It would be interesting to see how some of the applications of _verifiable shuffles_ mentioned in [9.]; _voting_, _mix-nets_, and _solvency proofs_; could be enhanced by the Interstellar's Bulletproofs framework. The _first_ and _third_ seem more relevant to _cryptocurrencies_ and _confidential asset schemes_. 
 
 
 
@@ -366,6 +288,8 @@ Bellman's RUST example of a zkSNARK circuit [here](https://docs.rs/bellman/0.2.0
 
 
 
+
+
 ## Implementations of R1CS, 
 
 
@@ -378,9 +302,9 @@ Medio Demarco and Anil Lulla, "Zero-Knowledge Proofs : Privacy & Scaling - Thema
 
 DIZK, PINNOCHIO, ... 
 
+CLOAK is a Confidential Assets scheme built using Bulletproofs ... The Cloak was inspired by the Bellman's API ... see [11.]  
 
-
-
+ZkVM aim is to create a smart contracts language that allows for confidentiality.  
 
 
 
@@ -414,7 +338,9 @@ DIZK, PINNOCHIO, ...
 
 [12.]  Jens Groth, "Linear algebra with sub-linear zero-knowledge arguments," Advances in Cryptology – CRYPTO 2009, pages 192–208, 2009. https://iacr.org/archive/crypto2009/56770190/56770190.pdf 
 
-[13.]   
+[13.] Cathie Yun, "Building on Bulletproofs," https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)  
+
+[14.]  
 
 
 
