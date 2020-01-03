@@ -6,13 +6,13 @@
 
 The main focus of this report is to explain the Mathematics behind Rank-1 Constraints System or R1CS as it applies to zkSNARKs and Bulletproofs. 
 
-When reading the literature on the use of R1CS in zkSNARKs, this mathematical tool is used simply as one of many parts of the process towards achieving a zkSNARK-proof. In fact, not much attention is given to it, not even in explaining what "rank-1" actually means. Although the terminology has a similar notion of the traditional _rank of a matrix_ as known in Linear Algebra, examples given on the internet do not yield a _reduced matrix with only one non-zero row or column_. 
+When reading the literature on the use of R1CS in zkSNARKs, this mathematical tool is used simply as one of many parts of the process towards achieving a zkSNARK-proof. In fact, not much attention is given to it, not even in explaining what "rank-1" actually means. Although the terminology has a similar notion as the traditional _rank of a matrix_ in Linear Algebra, examples given on the internet do not yield a _reduced matrix with only one non-zero row or column_. 
 
 
 
 ## Introduction 
 
-R1CS became more prominent due to research work done by Cathie Yun and her colleagues at Interstellar. The _Constraint systems_, or in particular _Rank-1 Constraint Systems_, are used as an _add-on_ to Bulletproofs protocols. The title of Cathie Yun's article, "[Building on Bulletproofs](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)" [1b.] suggests this to be true. One of the Interstellar team's goals is to use the constraints system in their envisaged _Confidential Asset Protocol_ called the CLOAK. Despite their work on using R1CS being _research-in-progress_, their detailed notes on _constraints systems_ and their implementation in RUST are made available [here](https://doc-internal.dalek.rs/develop/bulletproofs/notes/r1cs_proof/index.html#constraint-system). (Also https://doc.dalek.rs/bulletproofs/index.html)
+R1CS became more prominent due to research work done by Cathie Yun and her colleagues at Interstellar. The _Constraint systems_, or in particular _Rank-1 Constraint Systems_, are used as an _add-on_ to Bulletproofs protocols. The title of Cathie Yun's article, "[Building on Bulletproofs](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)" [1b.] suggests this to be true. One of the Interstellar team's goals is to use the constraints system in their _Confidential Asset Protocol_ called the CLOAK and the envisaged [_Spacesuit_](https://github.com/interstellar/spacesuit). Despite their work on using R1CS being _research-in-progress_, their detailed notes on _constraints systems_ and their implementation in RUST are made available [here](https://doc-internal.dalek.rs/develop/bulletproofs/notes/r1cs_proof/index.html#constraint-system). (Also https://doc.dalek.rs/bulletproofs/index.html)
 
 Most recent constructions of zkSNARKs and Bulletproofs involve _arithmetic circuits_ and _rank-1 constraint systems_ either explicitly or implicitly.  
 
@@ -265,6 +265,21 @@ Cathie Yun regards _constraint systems_ as "_very powerful_ because they can rep
 ##### Previous Work on _Verifiable Shuffles_
 
 It would be interesting to see how some of the applications of _verifiable shuffles_ mentioned in [9.]; _voting_, _mix-nets_, and _solvency proofs_; could be enhanced by the Interstellar's Bulletproofs framework. The _first_ and _third_ seem more relevant to _cryptocurrencies_ and _confidential asset schemes_. 
+
+
+
+Cathie Yun ... [Programmable Constraint Systems for Bulletproofs](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7)    
+The work on Cloak and Spacesuit is far from complete, and now will continue in the open in our [repository](https://github.com/interstellar/spacesuit). To learn more about Cloak check out its [specification](https://github.com/interstellar/spacesuit/blob/main/spec.md).
+
+**Next steps** 
+
+The work on constraint systems and Cloak is still ongoing. For the R1CS implementation, there are two major improvements that we will focus on:
+
+First, we would like to extend the Bulletproofs protocol slightly, to enable committing to a portion of low-level variables using a single vector Pedersen commitment without an overhead of additional individual high-level Pedersen commitments. This will also come with a change in the API that would ensure that challenge-based variables cannot be inspected, preventing the user from accidentally breaking soundness of their gadgets.
+
+Second, we want to enable multi-party proving of a single constraint system. This is different from the existing [aggregation MPC](https://blog.chain.com/bulletproof-multi-party-computation-in-rust-with-session-types-b3da6e928d5d) that we’ve done for the range proofs: instead of aggregating proofs of distinct statements purely to make proofs smaller, we want to enable building a joint proof of a single constraint system by multiple parties, without sharing their secret inputs with each other. This not only makes the proofs smaller, but could also improve privacy in Cloak by enabling a zero-knowledge version of a [CoinJoin protocol](https://bitcointalk.org/?topic=279249).
+
+
 
 
 
