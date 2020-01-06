@@ -34,9 +34,9 @@ And talking about Bulletproofs, we would like to understand what Bunz et al. mea
 
 Arithmetic circuits are said to be the most natural and standard model for computing polynomials. In fact, every function  ${\large \mathcal{H} : \{ 0 , 1 \}^n → \{ 0 , 1 \}^m} $  of fixed input and output _length_ can be represented as an arithmetic circuit over any finite field  $ \mathcal{F}_p$ , cf. [[7.]](Alan Szepieniec and Bart Preneel, "Generic Zero-Knowledge and Multivariate Quadratic Systems"). 
 
-According Amir Shpilka and Amir Yehudayoff [1.], arithmetic circuits are a highly structured model of computation compared to Boolean circuits. For instance, when studying arithmetic circuits one is interested in _syntactic_ computation of polynomials, whereas in studying Boolean circuits one is interested in the _semantics_ of the computation. In other words, in the Boolean case one is not interested in any specific _polynomial representation_ of the function but rather one just wants to compute some representation of it, while in the arithmetic world one focuses on a _specific representation_ of the function. 
+According to Amir Shpilka and Amir Yehudayoff [1.], arithmetic circuits are a highly structured model of computation compared to Boolean circuits. For instance, when studying arithmetic circuits one is interested in _syntactic_ computation of polynomials, whereas in studying Boolean circuits one is interested in the _semantics_ of the computation. In other words, in the Boolean case one is not interested in any specific _polynomial representation_ of the function but rather one just wants to compute some representation of it, while in the arithmetic world one focuses on a _specific representation_ of the function. 
 
-For our purposes, arithmetic circuits have as inputs variables  $\large{ x_1, ... , x_n }$, and computations are performed using the arithmetic operations  $ + $ , $ × $  and may involve constants from a field  $\mathcal{F}_p$. Complexity measures associated with such circuits are _size_ and _depth_, which capture _the number of gates_ in a circuit and _the maximal distance between an input and an output_, respectively [[1.]](Arithmetic Circuits-survey of recent results -open questions__SY10.pdf)
+For our purposes, arithmetic circuits have as inputs variables  $\large{ x_1, ... , x_n }$, and computations are performed using the arithmetic operations  $ + $  and  $ × $, and may involve constants from a field  $\mathcal{F}_p$. Complexity measures associated with such circuits are _size_ and _depth_, which capture _the number of gates_ in a circuit and _the maximal distance between an input and an output_, respectively [[1.]](Arithmetic Circuits-survey of recent results -open questions__SY10.pdf)
 
 
 
@@ -58,7 +58,7 @@ An ***arithmetic circuit***  $\mathcal{A}$  over the field  $\mathcal{F}$  and t
 
 A typical multiplication gate is thought of as having a _left input_  $\large{a_L}$, a _right input_  $\large{a_R}$, and an _output_  $\large{a_O}$. Also, we note that,  $$ \large{a_L \cdot a_R  -  a_O  =  0} .$$ 
 
-![basic-multiplication-gate](/Users/anthonymatlala/Downloads/basic-multiplication-gate.png)
+<img src="/Users/anthonymatlala/Downloads/basic-multiplication-gate.png" alt="basic-multiplication-gate" style="zoom:67%;" />
 
 
 
@@ -68,9 +68,9 @@ We note that in cases where the inputs and outputs are all _vectors_ of  ${\larg
 
 then _multiplication_ between  ${\large \mathbf{a_L}}$  and  ${\large \mathbf{a_R} }$  is defined as an _entry-wise_ product called the _**Hadamard product**_; 
 
-  			${\large \mathbf{a_L}\circ \mathbf{a_R} = (( a_{L, 1} \cdot a_{R, 1} ) , ( a_{L, 2}  \cdot a_{R, 2} ) , ... , ( a_{L, n} \cdot a_{R, n} ) )}   =   \large \mathbf{a_O}  .$
+ ${\large \mathbf{a_L}\circ \mathbf{a_R} = (( a_{L, 1} \cdot a_{R, 1} ) , ( a_{L, 2}  \cdot a_{R, 2} ) , ... , ( a_{L, n} \cdot a_{R, n} ) )}   =   \large \mathbf{a_O}  .$
 
-The equation  ${\large \mathbf{a_L}\circ \mathbf{a_R} =  \mathbf{a_O} }$  referred to as a _multiplicative constraint_ is also known as the _Hadamard relation_, [10.]. 
+The equation  ${\large \mathbf{a_L}\circ \mathbf{a_R} =  \mathbf{a_O} }$  is referred to as a _multiplicative constraint_ but also known as the _Hadamard relation_, [10.]. 
 
 
 
@@ -80,7 +80,7 @@ An arithmetic circuit computes a polynomial in a natural way, as seen in the exa
 
 Consider the following Arithmetic circuit  $\mathcal{A}$  with inputs  $\{ {\large{ x_1 , x_2 , 1 }} \}$  over some field  $\mathcal{F}$ , 
 
-<img src="/Users/anthonymatlala/Downloads/polynomial-eg-ac.png" alt="polynomial-eg-ac"  />
+<img src="/Users/anthonymatlala/Downloads/polynomial-eg-ac.png" alt="polynomial-eg-ac" style="zoom:67%;" />
 
 The output of  $\mathcal{A}$  above is the polynomial   $\large{x^2_1 x_2 + x_1 + 1 }$  of _total degree_ three. 
 
@@ -94,11 +94,11 @@ The variables  $ \large{ u , v }$  and $ \large{ y }$  are called _auxiliary var
 
 Although "Arithmetic circuits are a highly structured model of computation compared to Boolean circuits," according to Amir Shpilka and Amir Yehudayoff [[1.]](Arithmetic Circuits-survey of recent results -open questions__SY10.pdf), "we do not know how to efficiently reconstruct a circuit using only queries to the polynomial it computes." 
 
-Computational problems that zero-knowledge proofs such as zkSNARKs and Bulletproofs handle need to be expressed in the simplest terms for efficiency. Alex Pinto [[2.]](http://coders-errand.com/constraint-systems-for-zk-snarks/) mentions that "the ZK SNARK end-to-end journey is to create a _function_ to write proofs about," but they "must work with specific constructs." That is why arithmetic circuits are so important in making zero-knowledge more efficient, "these _functions_ have to be specified as sequences of very simple terms, namely, additions and multiplications of only two terms in a particular field" [2.]
+Zero-knowledge proofs, such as zkSNARKs and Bulletproofs, require _statements to proved_ be expressed in their simplest terms for efficiency. Alex Pinto [[2.]](http://coders-errand.com/constraint-systems-for-zk-snarks/) mentions that "the ZK SNARK end-to-end journey is to create a _function_ to write proofs about," but they "must work with specific constructs." That is why arithmetic circuits are so important in making zero-knowledge more efficient, "these _functions_ have to be specified as sequences of very simple terms, namely, additions and multiplications of only two terms in a particular field" [2.]
 
 In verifying a zkSNARK proof, the verifier needs to carry out a step-by-step check of the computations, that is, for each gate the verifier has to check if the _output_  $ \large{ a_O }$  is correct with respect to the given _inputs_  $\large{ a_L }$  and  $ \large{ a_R } $. Testing if   $ \large{a_L \cdot a_R  -  a_O  =  0}$ , for each multiplication gate. This requires that an _addition gate_ be treated as some form of a _multiplication gate_, we explain this later in this report. 
 
-For further details on Arithmetic circuits see previously curated content at  [[4.]](https://tlu.tarilabs.com/cryptography/zksnarks/mainreport.html), in particular, Vitalik Buterin's article [[5.]](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649).  
+For a simple example on Arithmetic circuits in zkSNARKs see previously curated content at  [[4.]](https://tlu.tarilabs.com/cryptography/zksnarks/mainreport.html), in particular, Vitalik Buterin's article [[5.]](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649).  
 
 
 
@@ -170,7 +170,7 @@ where  "${\large \circ }$"  is the Hadamard product, and
 
  where  $\mathbf{W_L, W_R, W_O}$  and  $\mathbf{W_V}$  are weights applied to respective input vectors and output vectors. 
 
-It is Bootle et al. who first expressed _arithmetic circuit satisfiability_ in terms of the _Hadamard relation_ and linear constraints (see [10.]). In their definition, the above linear constraints is written without as:
+Note that it is Bootle et al. who first expressed _arithmetic circuit satisfiability_ in terms of the _Hadamard relation_ and linear constraints (see [10.]). In their definition, the above linear constraints are written as:
 
   $\mathbf{W_L\cdot {\large a_L}  +  W_R\cdot {\large a_R}  +  W_O\cdot {\large a_O } =  c } $. 
 
@@ -197,6 +197,8 @@ All these are _zero-knowledge proofs_ based on the difficulty of the _discrete l
 | 7.   | The zero-knowledge proof here is for NP statements based on the _difficulty_ of _the discrete logarithm problem_. | As mentioned above, Bulletproofs extend zero-knowledge proofs (such as _range proofs_) to proofs on arbitrary statements. They are also described as _short non-Interactive proofs for Arithmetic Circuits without a Trusted Setup_. | Interstellar is building an API that allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop. |
 
 ​				**Table 2 : Comparison of three Research Works Zero Knowledge Proofs**   
+
+
 
 
 
@@ -242,6 +244,18 @@ As to why there is a vector  $\mathbf{\large{v}}$  and its weight  $\mathbf{W_V}
 
 In this bulletproofs framework, a _prover_ can build a constraint system in two steps. Firstly, she _commits_ to secret inputs and _allocates_ high-level variables corresponding the inputs. Secondly, she _selects_ a suitable combination of _multiplicative constraints_ and _linear constraints_, as well as requesting a _random scalar_ in response to the high-level variables already committed. 
 
+Lovesh Harchandani in the article "[Zero knowledge proofs using Bulletproofs](https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82)" [14.] captures an excellent outline of _zero-knowledge proofs_ that use _Bulletproofs_;  
+
+(a)  The prover _commits_ to values that he wants to prove knowledge of.  
+
+(b)  The prover _generates_ the _proof_ by enforcing the _constraints over the committed values_ and any additional _public values_. The constraints might require the prover to commit to some _additional variables_. 
+
+(c)  Prover _sends_ the verifier _all the commitments_ he made in step 1 and step 2 along with the _proof_ from step 2. 
+
+(d)  The verifier now _verifies the proof_ by enforcing the _same constraints_ over _the commitments_ plus any public values.
+
+
+
 ##### _About Gadgets_ 
 
 Consider a _verifiable shuffle_: Given two lists of _committed values_  ${\large x_1, x_2, . . . , x_n}$  and  ${\large y_1, y_2, . . . , y_n} ,$  prove that the second list is a permutation of the first. Bunz et al mention that the use of bulletproofs improves the complexity of such a _verifiable shuffle_ to size $\mathcal{O}(log(n))$ compared to previous implementation results, see Page 5 of [9.]  Although not referred to as a _gadget_ in the paper, this is in fact a _shuffle gadget_. The term _gadget_ was used and popularised by the Interstellar team, who introduced _gadgets_ as building blocks of constraints systems, see Cathie Yun's article entitled [_Building on Bulletproofs_](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).  
@@ -256,50 +270,61 @@ A _shuffle gadget_ is any function whose outputs are but a permutation of its in
 
 
 
-The Interstellar team mentions other _gadgets_; “merge”, “split” and a “range proof”; that are implemented in their _Confidential Assets scheme_ called the _Cloak_. Just as a _shuffle gadget_ creates constraints that prove that _two sets of variables_ are equal up to a permutation, a _range proof gadget_ checks that a given _value_ is composed of a specific number of bits. 
+Find a RUST example code of a _shuffle gadget_ in the _Bulletproofs Constraint System_ framework by Lovesh Harchandani [here](https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/docs/r1cs-docs-example.md). 
 
-Gadgets in their simplest form merely receive some _variables_ as inputs and produce corresponding _output_ values. They however may _allocate_ more _variables_ for internal use, sometimes called _auxilliary variables_, and _produce constraints_ involving all these variables. The main advantage with gadgets is that they are _composable_, and thus a more _complex_ gadget can always be created from a number of _single_ gadgets. 
+The Interstellar team mentions other _gadgets_; “merge”, “split” and a “range proof”; that are implemented in their _Confidential Assets scheme_ called the _Cloak_. Just as a _shuffle gadget_ creates constraints that prove that _two sets of variables_ are equal up to a permutation, a _range proof gadget_ checks that a given _value_ is in the interval  ${\large [0, 2^n]}$  where  ${\large n}$  is the size of input vector. 
 
-Cathie Yun regards _constraint systems_ as "_very powerful_ because they can represent any efficiently verifiable program," [[13.]](Cathie Yun, "Building on Bulletproofs," https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).   
+Gadgets in their simplest form merely receive some _variables_ as inputs and produce corresponding _output_ values. They however may _allocate_ more _variables_ for internal use, sometimes called _auxilliary variables_, and _produce constraints_ involving all these variables. The main advantage with gadgets is that they are _composable_, and thus a more _complex_ gadget can always be created from a number of _single_ gadgets. Interstellar's Bulletproofs API allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop. 
+
+
+
+##### Interstellar's _Concluding Remarks_ 
+
+Cathie Yun reported in [11.] that their "_work on Cloak and Spacesuit is far from complete_" and mentions that they still have two more goals to achieve; 
+
+Firstly, in order to "_ensure that challenge-based variables cannot be inspected_" and _prevent_ the user from accidentally breaking soundness of their gadgets, the Bulletproofs protocol need to be slightly extended, enabling it to commit "to a portion of low-level variables using a single vector Pedersen commitment without an overhead of additional individual high-level Pedersen commitments" [11.]  
+
+Secondly, to "_improve privacy in Cloak"_ by enable "_multi-party proving of a single constraint system_". That is, "_building a joint proof of a single constraint system by multiple parties_, without sharing their secret inputs with each other."
+
+All-in-all Cathie Yun regards _constraint systems_ as "_very powerful_ because they can represent any efficiently verifiable program," [[13.]](Cathie Yun, "Building on Bulletproofs," https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).  
+
+
 
 ##### Previous Work on _Verifiable Shuffles_
 
-It would be interesting to see how some of the applications of _verifiable shuffles_ mentioned in [9.]; _voting_, _mix-nets_, and _solvency proofs_; could be enhanced by the Interstellar's Bulletproofs framework. The _first_ and _third_ seem more relevant to _cryptocurrencies_ and _confidential asset schemes_. 
-
-
-
-Cathie Yun ... [Programmable Constraint Systems for Bulletproofs](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7)    
-The work on Cloak and Spacesuit is far from complete, and now will continue in the open in our [repository](https://github.com/interstellar/spacesuit). To learn more about Cloak check out its [specification](https://github.com/interstellar/spacesuit/blob/main/spec.md).
-
-**Next steps** 
-
-The work on constraint systems and Cloak is still ongoing. For the R1CS implementation, there are two major improvements that we will focus on:
-
-First, we would like to extend the Bulletproofs protocol slightly, to enable committing to a portion of low-level variables using a single vector Pedersen commitment without an overhead of additional individual high-level Pedersen commitments. This will also come with a change in the API that would ensure that challenge-based variables cannot be inspected, preventing the user from accidentally breaking soundness of their gadgets.
-
-Second, we want to enable multi-party proving of a single constraint system. This is different from the existing [aggregation MPC](https://blog.chain.com/bulletproof-multi-party-computation-in-rust-with-session-types-b3da6e928d5d) that we’ve done for the range proofs: instead of aggregating proofs of distinct statements purely to make proofs smaller, we want to enable building a joint proof of a single constraint system by multiple parties, without sharing their secret inputs with each other. This not only makes the proofs smaller, but could also improve privacy in Cloak by enabling a zero-knowledge version of a [CoinJoin protocol](https://bitcointalk.org/?topic=279249).
+It would be interesting to see how some of the applications of _verifiable shuffles_ mentioned in [9.]; _voting_, _mix-nets_, and _solvency proofs_; could be enhanced by frameworks similar to the Interstellar's Bulletproofs. The _first_ and _third_ applications seem more relevant to _cryptocurrencies_ and _confidential asset schemes_. 
 
 
 
 
 
+## R1CS: zkSNARKs vs. Bulletproofs 
 
+In the context of comparing  zkSNARKs and Bulletproofs, Lovesh Harchandani in [Zero knowledge proofs using Bulletproofs](https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82) [14.] mentions the two main disadvantages of zkSNARKs; 
 
-## R1CS in two contexts; zkSNARKs and Bulletproofs 
+- First is the presence of a _trusted setup_ used for a one-time generation of protocol parameters (for a so-called _common reference string_ (CRS)). The problem with such a setup is that the generated parameters (or the CRS) could be used to leak some secrets. One way, however, to avoid such possible leakage of secrets is to use a multi-party computation (MPC) as utilised in crypto-currencies like Zcash. 
 
+- The second disadvantage of zkSNARKs is that a new _trusted setup_ (i.e., a fresh CRS) is needed for each circuit simply because each new computational challenge will have different constraints. 
 
+The Bulletproofs constraint system, on the other hand, has no trusted setup. 
 
-(reference the examples, … [Vitalik’s e.g.](https://tlu.tarilabs.com/cryptography/zksnarks/mainreport.html#quadratic-arithmetic-programs---from-zero-to-hero)  & [Lovesh’s Rust e.g.](https://github.com/lovesh/bulletproofs-r1cs-gadgets/blob/master/src/gadget_bound_check.rs) or the _shuffle_ e.g.  
+In the same article [[14.]]("Zero knowledge proofs using Bulletproofs" https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82) Lovesh Harchandani explores the Dalek's Bulletproofs API with various examples. Having looked at an R1CS _zkSNARK_ example by Alex Pinto above, where he looked at a _factorisation problem_, we now look at the counterpart R1CS _Bulletproof_ example. That is, the computational challenge is "_prove knowledge of factors_  p  _and_  q  _of a given number_  r  _without revealing the factors_". It is one of six examples discussed in the article [14.]. 
 
+Here's an _outline of the description and the code lines_ of the example in tabular form. Lovesh Harchandani's complete code of this example can be found [here](https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17).   
 
+|      | Description                                                  | Code Lines                                                   |
+| ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| 1.   | Create _two_ pairs of generators;<br/>one pair for the Pedersen commitments and the other for the Bulletproof. | `let pc_gens = PedersenGens::*default*();`<br/>`let bp_gens = BulletproofGens::*new*(128, 1);` |
+| 2.   | Instantiate the prover using <br/>the commitment generators and Bulletproofs generators<br/>of Step 1, to produce the <br/>prover's transcript. | `let mut prover_transcript = Transcript::*new*(b"Factors");`<br/>`let mut prover = Prover::*new*(&bp_gens, &pc_gens, &mut prover_transcript);` |
+| 3.   | Prover commits to variables using <br/>the Pedersen commitments,<br/>creates variables corresponding<br/>to each commitment, and adds<br/>the variables to the transcript. | `let x1 = Scalar::*random*(&mut rng);`<br/>`let (com_p, var_p) = prover.commit(p.into(), x1);`<br/>`let x2 = Scalar::*random*(&mut rng);`<br/>`let (com_q, var_q) = prover.commit(q.into(), x2);` |
+| 4.   | The prover _constrains_ the variables in _two_ steps;<br/><br/>a) Prover _multiplies_ the <br/>variables of step 3 and captures<br/>the product in the "output" variable O, <br/>b) Prover wants to ensure<br/>the _difference of_ the product  O <br/>and  r  is zero. | `let (_, _, o) =  prover.multiply(var_p.into(), var_q.into());`<br/> <br/>`let r_lc: LinearCombination = vec![(Variable::*One*(),      r.into())].iter().collect();`<br/>`prover.constrain(o -  r_lc);` |
+| 5.   | Prover creates the proof.                                    | `let proof = prover.prove().unwrap();`                       |
+| 6.   | Instantiation of the Verifier<br/> using the Pedersen commitments and Bulletproof generators, <br/>and creates its own transcript. | `let mut verifier_transcript = Transcript::*new*(b"Factors");`<br/>`let mut verifier = Verifier::*new*(&bp_gens, &pc_gens, &mut verifier_transcript);` |
+| 7.   | Verifier _records_ commitments<br/>for p and q sent by prover in<br/>the transcript, and creates variables for them similar to the prover's. | `let var_p = verifier.commit(commitments.0);`<br/>`let var_q = verifier.commit(commitments.1);` |
+| 8.   | Verifier _constrains_ variables corresponding to the<br/>commitments. | `let (_, _, o) =  verifier.multiply(var_p.into(), var_q.into());`<br/>`let r_lc: LinearCombination = vec![(Variable::*One*(), r.into())].iter().collect();`<br/>`verifier.constrain(o -  r_lc);` |
+| 9.   | Verifier _verifies_ the _proof_.                             | `verifier.verify(&proof)`                                    |
 
-Example by Lovesh ... shuffle Rust example https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/docs/r1cs-docs-example.md
-
-
-
-Bellman's RUST example of a zkSNARK circuit [here](https://docs.rs/bellman/0.2.0/bellman/#example-circuit). 
-
-
+​			**Table 3 : Bulletproof Constraint Example [[14.]](https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82)** 
 
 
 
@@ -317,11 +342,11 @@ Medio Demarco and Anil Lulla, "Zero-Knowledge Proofs : Privacy & Scaling - Thema
 
 DIZK, PINNOCHIO, ... 
 
-CLOAK is a Confidential Assets scheme built using Bulletproofs ... The Cloak was inspired by the Bellman's API ... see [11.]  
+ 
 
 ZkVM aim is to create a smart contracts language that allows for confidentiality.  
 
-
+Bellman's RUST example of a zkSNARK circuit [here](https://docs.rs/bellman/0.2.0/bellman/#example-circuit). 
 
 
 
@@ -355,7 +380,7 @@ ZkVM aim is to create a smart contracts language that allows for confidentiality
 
 [13.] Cathie Yun, "Building on Bulletproofs," https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)  
 
-[14.]  
+[14.] Lovesh Harchandani, "Zero knowledge proofs using Bulletproofs," Feb. 2019. https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82 
 
 
 
