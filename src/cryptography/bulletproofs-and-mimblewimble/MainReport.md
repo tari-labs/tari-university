@@ -363,6 +363,7 @@ value $ r $ as input. The transaction output has the following form:
 
 $$
 (vG + bH \mspace{3mu} , \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r))
+\tag{1}
 $$
 
 where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [[44]] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $ 
@@ -392,6 +393,7 @@ $$
 \mathrm S (\eta \mspace{3mu} , \mspace{3mu} P \mspace{3mu} ,  \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , 
 \mspace{3mu} r) ) = \eta \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{S256}} 
 (P \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) )
+\tag{2}
 $$
 
 where $ \mathrm{H_{S256}}$ is the SHA256 hash function. The Bulletproof range proof is then calculated with an adapted 
@@ -400,6 +402,7 @@ $m_{w2} $ that make up the 64-byte embedded message as follows:
 
 $$
 \tilde{\alpha} = \mathrm {XOR} ( \alpha \mspace{3mu} , \mspace{3mu} m_{w1}) \mspace{12mu} \mathrm{and} \mspace{12mu} \tilde{\tau_1} = \mathrm {XOR} ( \tau_1 \mspace{3mu} , \mspace{3mu} m_{w2} )
+\tag{3}
 $$
 
 To retrieve the embedded message, the process is simply inverted. Note that the owner of an output needs to keep record 
@@ -421,12 +424,14 @@ set and for it to be passed around during a transaction. The switch commitment l
 
 $$
 b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J )
+\tag{4}
 $$
 
 with $ b^\prime $ being the user generated blinding factor. The (Elliptic Curve) Pedersen Commitment then becomes
 
 $$
 vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
+\tag{5}
 $$
 
 After activation of the switch commitment in the age of quantum adversaries, users can reveal 
