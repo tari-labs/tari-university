@@ -4,13 +4,47 @@
 
 
 
-The main focus of this report is to explain the Mathematics behind Rank-1 Constraints System or R1CS as it applies to zkSNARKs and Bulletproofs. 
+[Introduction](introduction) 
 
-When reading the literature on the use of R1CS in zkSNARKs, this mathematical tool is used simply as one of many parts of the process towards achieving a zkSNARK-proof. In fact, not much attention is given to it, not even in explaining what "rank-1" actually means. Although the terminology has a similar notion as the traditional _rank of a matrix_ in Linear Algebra, examples given on the internet do not yield a _reduced matrix with only one non-zero row or column_. 
+[Arithmetic Circuits](arithmetic-circuits) 
+
+[R1CS](r1cs) 
+
+[ZK Proofs for Arithmetic Circuits _vs._ Programmable Constraint Systems for Bulletproofs](zkproofs-for-arithmetic-circuits-vs-programmable-constraint-systems-for-bulletproofs)
+
+[Constraint Systems for ZK SNARKs](constraint-systems-for-zksnarks)
+
+[Interstellar’s Constraint System](interstellars-constraint-system)
+
+​	[Easy to Build Constraint Systems](easy-to-build-constraint-system) 
+
+​			[About Gadgets](about-gadgets) 
+
+​			[Interstellar's Concluding Remarks](interstellar-concluding-remarks) 
+
+​			[Previous Work on Verifiable Shuffles](previous-work-on-verifiable-shuffles) 
+
+[R1CS: zkSNARKs vs. Bulletproofs](r1cs-zksnarks-vs-bulletproofs)
+
+[Zero-Knowledge Proofs : Privacy & Scaling](zero-knowledge-proofs-privacy-&-scaling)
+
+[Implementations of R1CS](implementations-of-r1cs) 
+
+[References](references) 
+
+
+
+
 
 
 
 ## Introduction 
+
+
+
+The main focus of this report is to elucidate technical underpinnings of Rank-1 Constraints Systems or R1CS as applied to zkSNARKs and Bulletproofs. 
+
+When reading the literature on the use of R1CS in zkSNARKs, this mathematical tool is used simply as one part of many in a complex process towards achieving a zkSNARK-proof. In fact, not much attention is given to it, not even in explaining what "rank-1" actually means. Although the terminology has a similar notion as the traditional _rank of a matrix_ in Linear Algebra, examples given on the internet do not yield a _reduced matrix with only one non-zero row or column_. 
 
 R1CS became more prominent due to research work done by Cathie Yun and her colleagues at Interstellar. The _Constraint systems_, or in particular _Rank-1 Constraint Systems_, are used as an _add-on_ to Bulletproofs protocols. The title of Cathie Yun's article, "[Building on Bulletproofs](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)" [1b.] suggests this to be true. One of the Interstellar team's goals is to use the constraints system in their _Confidential Asset Protocol_ called the CLOAK and the envisaged [_Spacesuit_](https://github.com/interstellar/spacesuit). Despite their work on using R1CS being _research-in-progress_, their detailed notes on _constraints systems_ and their implementation in RUST are made available [here](https://doc-internal.dalek.rs/develop/bulletproofs/notes/r1cs_proof/index.html#constraint-system). (Also https://doc.dalek.rs/bulletproofs/index.html)
 
@@ -19,7 +53,7 @@ Most recent constructions of zkSNARKs and Bulletproofs involve _arithmetic circu
 In this report we intend to; 
 
 - highlight the connection between _Arithmetic circuits_ and R1CS, 
-- clarify the difference R1CS makes in bulletproofs compared to range proofs (or inner-product proofs),  
+- clarify the difference R1CS makes in bulletproofs compared to range proofs, 
 - the link between R1CS in _zkSNARK_ and R1CS in _Bulletproofs_.   
 
 We refer the reader to the [notation used](https://tlu.tarilabs.com/cryptography/bulletproofs-protocols/MainReport.html#notation-used) in the Bulletproofs Protocols [report](https://tlu.tarilabs.com/cryptography/bulletproofs-protocols/MainReport.html#the-bulletproof-protocols).
@@ -94,7 +128,7 @@ The variables  $ \large{ u , v }$  and $ \large{ y }$  are called _auxiliary var
 
 Although "Arithmetic circuits are a highly structured model of computation compared to Boolean circuits," according to Amir Shpilka and Amir Yehudayoff [[1.]](Arithmetic Circuits-survey of recent results -open questions__SY10.pdf), "we do not know how to efficiently reconstruct a circuit using only queries to the polynomial it computes." 
 
-Zero-knowledge proofs, such as zkSNARKs and Bulletproofs, require _statements to proved_ be expressed in their simplest terms for efficiency. Alex Pinto [[2.]](http://coders-errand.com/constraint-systems-for-zk-snarks/) mentions that "the ZK SNARK end-to-end journey is to create a _function_ to write proofs about," but they "must work with specific constructs." That is why arithmetic circuits are so important in making zero-knowledge more efficient, "these _functions_ have to be specified as sequences of very simple terms, namely, additions and multiplications of only two terms in a particular field" [2.]
+Zero-knowledge proofs, such as zkSNARKs and Bulletproofs, require _statements to be proved_ be expressed in their simplest terms for efficiency. Alex Pinto [[2.]](http://coders-errand.com/constraint-systems-for-zk-snarks/) mentions that "the ZK SNARK end-to-end journey is to create a _function_ to write proofs about," but they "must work with specific constructs." That is why arithmetic circuits are so important in making zero-knowledge more efficient, "these _functions_ have to be specified as sequences of very simple terms, namely, additions and multiplications of only two terms in a particular field" [2.]
 
 In verifying a zkSNARK proof, the verifier needs to carry out a step-by-step check of the computations, that is, for each gate the verifier has to check if the _output_  $ \large{ a_O }$  is correct with respect to the given _inputs_  $\large{ a_L }$  and  $ \large{ a_R } $. Testing if   $ \large{a_L \cdot a_R  -  a_O  =  0}$ , for each multiplication gate. This requires that an _addition gate_ be treated as some form of a _multiplication gate_, we explain this later in this report. 
 
@@ -308,45 +342,62 @@ In the context of comparing  zkSNARKs and Bulletproofs, Lovesh Harchandani in [Z
 
 The Bulletproofs constraint system, on the other hand, has no trusted setup. 
 
-In the same article [[14.]]("Zero knowledge proofs using Bulletproofs" https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82) Lovesh Harchandani explores the Dalek's Bulletproofs API with various examples. Having looked at an R1CS _zkSNARK_ example by Alex Pinto above, where he looked at a _factorisation problem_, we now look at the counterpart R1CS _Bulletproof_ example. That is, the computational challenge is "_prove knowledge of factors_  p  _and_  q  _of a given number_  r  _without revealing the factors_". It is one of six examples discussed in the article [14.]. 
+In the same article [[14.]](https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82), Lovesh Harchandani explores the Dalek's Bulletproofs API with various examples. Having looked at an R1CS _zkSNARK_ example by Alex Pinto above, where he looked at a _factorisation problem_, we now look at the counterpart R1CS _Bulletproof_ example. That is, the computational challenge is "_prove knowledge of factors_  p  _and_  q  _of a given number_  r  _without revealing the factors_". It is one of six examples discussed in the article [14.]. 
 
 Here's an _outline of the description and the code lines_ of the example in tabular form. Lovesh Harchandani's complete code of this example can be found [here](https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17).   
 
 |      | Description                                                  | Code Lines                                                   |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 1.   | Create _two_ pairs of generators;<br/>one pair for the Pedersen commitments and the other for the Bulletproof. | `let pc_gens = PedersenGens::*default*();`<br/>`let bp_gens = BulletproofGens::*new*(128, 1);` |
-| 2.   | Instantiate the prover using <br/>the commitment generators and Bulletproofs generators<br/>of Step 1, to produce the <br/>prover's transcript. | `let mut prover_transcript = Transcript::*new*(b"Factors");`<br/>`let mut prover = Prover::*new*(&bp_gens, &pc_gens, &mut prover_transcript);` |
+| 1.   | Create _two_ pairs of generators; one pair <br/>for the Pedersen commitments and <br/>the other for the Bulletproof. | `let pc_gens = PedersenGens::*default*();`<br/>`let bp_gens = BulletproofGens::*new*(128, 1);` |
+| 2.   | Instantiate the prover using the commitment<br/> and Bulletproofs generatorsof Step 1, to <br/>produce the prover's transcript. | `let mut prover_transcript = Transcript::*new*(b"Factors");`<br/>`let mut prover = Prover::*new*(&bp_gens, &pc_gens, &mut prover_transcript);` |
 | 3.   | Prover commits to variables using <br/>the Pedersen commitments,<br/>creates variables corresponding<br/>to each commitment, and adds<br/>the variables to the transcript. | `let x1 = Scalar::*random*(&mut rng);`<br/>`let (com_p, var_p) = prover.commit(p.into(), x1);`<br/>`let x2 = Scalar::*random*(&mut rng);`<br/>`let (com_q, var_q) = prover.commit(q.into(), x2);` |
-| 4.   | The prover _constrains_ the variables in _two_ steps;<br/><br/>a) Prover _multiplies_ the <br/>variables of step 3 and captures<br/>the product in the "output" variable O, <br/>b) Prover wants to ensure<br/>the _difference of_ the product  O <br/>and  r  is zero. | `let (_, _, o) =  prover.multiply(var_p.into(), var_q.into());`<br/> <br/>`let r_lc: LinearCombination = vec![(Variable::*One*(),      r.into())].iter().collect();`<br/>`prover.constrain(o -  r_lc);` |
+| 4.   | The prover _constrains_ the variables in _two_ steps;<br/><br/>a) Prover _multiplies_ the variables of <br/>step 3 and captures the product in <br/>the "output" variable O, <br/>b) Prover wants to ensure the <br/>_difference of_ the product  O  and  r  <br/> is zero. | `let (_, _, o) =  prover.multiply(var_p.into(), var_q.into());`<br/> <br/>`let r_lc: LinearCombination = vec![(Variable::*One*(),      r.into())].iter().collect();`<br/>`prover.constrain(o -  r_lc);` |
 | 5.   | Prover creates the proof.                                    | `let proof = prover.prove().unwrap();`                       |
-| 6.   | Instantiation of the Verifier<br/> using the Pedersen commitments and Bulletproof generators, <br/>and creates its own transcript. | `let mut verifier_transcript = Transcript::*new*(b"Factors");`<br/>`let mut verifier = Verifier::*new*(&bp_gens, &pc_gens, &mut verifier_transcript);` |
+| 6.   | Instantiation of the Verifier using the Pedersen<br/> commitments and Bulletproof generators, <br/>and creates its own transcript. | `let mut verifier_transcript = Transcript::*new*(b"Factors");`<br/>`let mut verifier = Verifier::*new*(&bp_gens, &pc_gens, &mut verifier_transcript);` |
 | 7.   | Verifier _records_ commitments<br/>for p and q sent by prover in<br/>the transcript, and creates variables for them similar to the prover's. | `let var_p = verifier.commit(commitments.0);`<br/>`let var_q = verifier.commit(commitments.1);` |
 | 8.   | Verifier _constrains_ variables corresponding to the<br/>commitments. | `let (_, _, o) =  verifier.multiply(var_p.into(), var_q.into());`<br/>`let r_lc: LinearCombination = vec![(Variable::*One*(), r.into())].iter().collect();`<br/>`verifier.constrain(o -  r_lc);` |
 | 9.   | Verifier _verifies_ the _proof_.                             | `verifier.verify(&proof)`                                    |
 
-​			**Table 3 : Bulletproof Constraint Example [[14.]](https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82)** 
+​			**Table 3 : Bulletproof Constraint Example**
 
 
 
 
 
-## Implementations of R1CS, 
+
+
+## Zero-Knowledge Proofs : Privacy & Scaling
+
+<img src="/Users/anthonymatlala/tari-university/src/cryptography/r1cs-bulletproofs/sources/mediodemarco1.png" alt="mediodemarco1" style="zoom:67%;" />  <img src="/Users/anthonymatlala/tari-university/src/cryptography/r1cs-bulletproofs/sources/anillulla.png" alt="anillulla" style="zoom: 25%;" />
+
+Medio Demarco (Principal at Delphi Digital) and Anil Lulla (co-founder of Delphi Digital) 
 
 
 
-1. Write a summary of this infographic; 
+#### Summary 
 
-Medio Demarco and Anil Lulla, "Zero-Knowledge Proofs : Privacy & Scaling - Thematic Insights," Delphi Digital, April 2019.	See Delphi Digital's article [[y.]](Zero-Knowledge Proofs: Privacy & Scaling Thematic Insights, Delphi Digital, April, 2019) for a sypnosis on implementations of, and some historical facts on, zkSNARKs, zkSTARKs, and Bulletproofs. The bulletproofs paper, by Benedikt Bunz et al., can actually be seen as part of that great research work on Zero-knowledge proofs. 
+Medio Demarco and Anil Lulla of Delphi Digital have written a synoptic infographic [[y.]](Zero-Knowledge Proofs: Privacy & Scaling Thematic Insights, Delphi Digital, April, 2019)  that contains a _quick-to read_ information on zkSNARKs and Bulletproofs. It includes a summative explanation on what ZK proofs are, takes a glance at four main ZK Proofs (zkSNARKs, zkSTARKs, Bulletproofs and Mimblewimble, and the AZTEC Protocol), gives a brief overview on ZK Proofs features and trade-offs that have driven recent research (speed, proof-size, trusted setups, and quantum resistance). Terse descriptions of known of a few implementations are included those that in line with this report are; 
 
-2. Write a summary, ... who did what (e.g. as in https://zkp.science/)
+- zkSNARKs implementations; Zcash, Coda, and Matter Labs, 
+- Bulletproofs implementations; Monero, Grin & Beam, and a possible implementation to Bitcoin. 
 
-DIZK, PINNOCHIO, ... 
 
- 
 
-ZkVM aim is to create a smart contracts language that allows for confidentiality.  
 
-Bellman's RUST example of a zkSNARK circuit [here](https://docs.rs/bellman/0.2.0/bellman/#example-circuit). 
+
+
+
+
+## Implementations of R1CS  
+
+A lot of theory on zero-knowledge proofs have seen practical and almost practical implementation. Most of which are made efficient, secure, and achieve privacy because of zero-knowledge techniques such as _zkSNARKs_ and _Bulletproofs_. 
+
+
+For further information and a more inclusive list of references on zero-knowledge proofs (with links) see "[Zero-Knowledge Proofs: _What are they, how do they work, and are they fast yet?_](https://zkp.science/)." There is a tabular list of "Implementations of proving systems" which includes [bellman](https://github.com/zkcrypto/bellman), [dalek bulletproofs](https://github.com/dalek-cryptography/bulletproofs) and [adjoint-io bulletproofs](https://github.com/adjoint-io/bulletproofs). In line with this report, one also finds a list of "Libraries for writing circuits (or gadgets)" such as [libsnark](https://github.com/scipr-lab/libsnark),  [ZoKrates](https://github.com/Zokrates/ZoKrates), [snarky](https://github.com/o1-labs/snarky), and [ZkMV](https://github.com/stellar/slingshot/tree/main/zkvm). 
+
+There are standardization efforts made by the community with [the third ZKProof workshop coming up in April 4 - 6, 2020 in London](https://zkproof.org/), and communication made with NIST in this regard, as seen in the letter [here](https://zkp.science/docs/Letter-to-NIST-20160613-Advanced-Crypto.pdf).  
+
+
 
 
 
@@ -382,9 +433,19 @@ Bellman's RUST example of a zkSNARK circuit [here](https://docs.rs/bellman/0.2.0
 
 [14.] Lovesh Harchandani, "Zero knowledge proofs using Bulletproofs," Feb. 2019. https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82 
 
+[15.]
 
 
- 
+
+[y.]  Medio Demarco and Anil Lulla, "Zero-Knowledge Proofs: Privacy & Scaling Thematic Insights," Delphi Digital, April, 2019.  
+
+ [last.]  "Zero-Knowledge Proofs: _What are they, how do they work, and are they fast yet?_" https://zkp.science/. last accessed 07 January 2020.  
+
+
+
+   **fix author names-format accordingly** 
+
+
 
 
 
