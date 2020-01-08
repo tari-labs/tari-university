@@ -51,7 +51,7 @@ And talking about Bulletproofs, we would like to understand what Bunz et al. mea
 
 ## Arithmetic Circuits  
 
-Arithmetic circuits are said to be the most natural and standard model for computing polynomials. In fact, every function  ${\large \mathcal{H} : \{ 0 , 1 \}^n → \{ 0 , 1 \}^m} $  of fixed input and output _length_ can be represented as an arithmetic circuit over any finite field  $ \mathcal{F}_p$ , cf. [[2.]]. 
+Arithmetic circuits are said to be the most natural and standard model for computing polynomials. In fact, every function  ${\large \mathcal{H} : \{ 0 , 1 \}^n → \{ 0 , 1 \}^m} $  of fixed input and output _length_ can be represented as an arithmetic circuit over any finite field  $ \mathcal{F}_p$ ,  [[2.]]. 
 
 According to Amir Shpilka and Amir Yehudayoff [[3.]], arithmetic circuits are a highly structured model of computation compared to Boolean circuits. For instance, when studying arithmetic circuits one is interested in _syntactic_ computation of polynomials, whereas in studying Boolean circuits one is interested in the _semantics_ of the computation. In other words, in the Boolean case one is not interested in any specific _polynomial representation_ of the function but rather one just wants to compute some representation of it, while in the arithmetic world one focuses on a _specific representation_ of the function. 
 
