@@ -279,7 +279,8 @@ $$
 \{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} P \in \mathbb G , \mspace{12mu} c \in \mathbb Z_p ; 
 \mspace{12mu} \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \mspace{3mu} : \mspace{15mu} P = 
 \mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \mspace{3mu} \wedge \mspace{3mu} c = 
-\langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle \} \mspace{100mu} (1)
+\langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle \} 
+\tag{1}
 $$
 
 Relation (1) requires sending $ 2n $ elements to the *verifier* $ \mathcal{V} $. The inner product 
@@ -290,10 +291,12 @@ vectors $ \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p $ for which
 $ P =\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } $. 
 Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log relative to 
 $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$. 
+
 $$
 \{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} u,P \in \mathbb G ; 
 \mspace{12mu} \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) : \mspace{15mu} P = 
-\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} \mspace{100mu} (2)
+\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \} 
+\tag{2}
 $$
 
 A proof system for relation (2) gives a proof system for (1) with the same complexity, thus only a proof system for 
@@ -331,6 +334,7 @@ $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) $. 
 $ \mathrm H $ is additively homomorphic, therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  $ can be 
 hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p$. If $ n ^\prime = n/2 ​$, 
 starting with relation (2), then
+
 $$
 \begin{aligned} 
 \mathrm H(\mathbf a \mspace{3mu} , \mspace{3mu} \mathbf b \mspace{3mu} , \mspace{3mu} \langle \mathbf a , 
@@ -392,7 +396,8 @@ $$
 $$
 P^\prime = \mathrm H ( x^{-1} \mathbf a^\prime \mspace{3mu} , \mspace{3mu} x \mathbf a^\prime \mspace{6mu} , 
 \mspace{6mu} x \mathbf b^\prime \mspace{3mu} , \mspace{3mu} x^{-1} \mathbf b^\prime \mspace{3mu} , 
-\mspace{3mu} \langle \mathbf a^\prime , \mathbf b^\prime \rangle ) \mspace{100mu} (3)
+\mspace{3mu} \langle \mathbf a^\prime , \mathbf b^\prime \rangle ) 
+\tag{3}
 $$
 
 <br>
@@ -404,7 +409,8 @@ $$
 P^\prime = 
 (\mathbf g ^ {x^{-1}} \_{[: n ^\prime]} \circ \mathbf g ^ x \_{[n ^\prime :]})^{\mathbf a^\prime} \cdot 
 (\mathbf h ^ x \_{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} \_{[n ^\prime :]})^{\mathbf b^\prime} \cdot 
-u^{\langle \mathbf a^\prime , \mathbf b^\prime \rangle} \mspace{100mu} (4)
+u^{\langle \mathbf a^\prime , \mathbf b^\prime \rangle} 
+\tag{4}
 $$
 
 Thus, the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ can recursively engage in an inner-product argument 
@@ -441,6 +447,7 @@ Let $ g $ and $ h $ be the generators used in the final round of the protocol an
 $ j _{th} $ round. In the last round, the *verifier* $ \mathcal{V} $ checks that $ g^a h^b u ^{a \cdot b} = P $, where 
 $ a,b \in \mathbb Z_p $ are given by the *prover* $ \mathcal{P} $. The final $ g $ and $ h $ can be expressed in terms 
 of the input generators $ \mathbf {g},\mathbf {h} \in \mathbb G^n $ as:
+
 $$
 g = \prod _{i=1}^n g_i^{s_i} \in \mathbb{G}, \mspace{21mu} h=\prod _{i=1}^n h_i^{1/s_i} \in \mathbb{G}
 $$
@@ -470,7 +477,8 @@ The entire verification check in the protocol reduces to a single multi-exponent
 
 $$
 \mathbf g^{a \cdot \mathbf{s}} \cdot \mathbf h^{b \cdot\mathbf{s^{-1}}} \cdot u^{a \cdot b} \mspace{12mu} \overset{?}{=} 
-\mspace{12mu} P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}} \mspace{100mu} (5)
+\mspace{12mu} P \cdot \prod _{j=1}^{\log_2(n)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}} 
+\tag{5}
 $$
 
 Figure&nbsp;2 shows Protocol 2: 
@@ -533,7 +541,8 @@ that $ V =h^\gamma g^v ​$ and
 $$
 \langle \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {2}^n \rangle = v \mspace{20mu} \mathrm{and} \mspace{20mu} 
 \mathbf {a}_R = \mathbf {a}_L - \mathbf {1}^n \mspace{20mu} \mathrm{and} \mspace{20mu} \mathbf {a}_L \circ \mathbf {a}_R 
-= \mathbf{0}^n \mspace{20mu} \mspace{100mu} (6)
+= \mathbf{0}^n \mspace{20mu} 
+\tag{6}
 $$
 
 This proves that $ a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} a_n $ are all in $ \{0,1\} $ and that 
@@ -554,11 +563,13 @@ $$
 
 Building on this, the *verifier* $ \mathcal{V} $ chooses a random $ z \in \mathbb{Z_p} $ and lets the 
 *prover* $ \mathcal{P} $ prove that
+
 $$
 z^2 \cdot \langle \mathbf {a}_L \mspace{3mu} , 
 \mspace{3mu} \mathbf {2}^n \rangle + z \cdot \langle \mathbf {a}_L - 1 - \mathbf {a}_R \mspace{3mu} , 
 \mspace{3mu} \mathbf {y}^n \rangle + \langle \mathbf {a}_L \mspace{3mu} , 
-\mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n \rangle = z^2 \cdot v \mspace{20mu} \mspace{100mu} (7)
+\mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n \rangle = z^2 \cdot v \mspace{20mu} 
+\tag{7}
 $$
 
 Relation (7) can be rewritten as
@@ -566,7 +577,8 @@ Relation (7) can be rewritten as
 $$
 \langle \mathbf {a}_L - z \cdot \mathbf {1}^n \mspace{3mu} , 
 \mspace{3mu} \mathbf {y}^n \circ (\mathbf {a}_R + z \cdot \mathbf {1}^n) +z^2 \cdot \mathbf {2}^n \rangle = 
-z^2 \cdot v + \delta (y,z) \mspace{100mu} (8)
+z^2 \cdot v + \delta (y,z) 
+\tag{8}
 $$
 
 where
@@ -678,12 +690,15 @@ range proof do not affect the output of another range proof. Aggregating logarit
 if a single *prover* $ \mathcal{P} $ needs to perform multiple range proofs at the same time.
 
 A proof system must be presented for the following relation:
+
 $$
 \{ (g,h \in \mathbb{G}) , \mspace{9mu} \mathbf {V} \in \mathbb{G}^m \mspace{3mu} ; 
 \mspace{9mu} \mathbf {v}, \gamma \in \mathbb Z_p^m ) \mspace{6mu} : \mspace{6mu} V_j =
 h^{\gamma_j} g^{v_j} \mspace{6mu} \wedge \mspace{6mu} v_j \in [0,2^n - 1] \mspace{15mu} \forall \mspace{15mu} j \in 
-[1,m] \} \mspace{100mu} (9)
+[1,m] \} 
+\tag{9}
 $$
+
 The *prover* $ \mathcal{P} $ should now compute $ \mspace{3mu} \mathbf a_L \in \mathbb Z_p^{n \cdot m} $ as the 
 concatenation of all of the bits for every $ v_j $ such that
 
@@ -740,6 +755,7 @@ The protocol either uses three rounds with linear communication in both $ m $ an
 it uses a logarithmic number of rounds and communication that is only linear in $ m $. For the linear communication case, 
 the protocol in [Inner-product Range Proof](#inner-product-range-proof) is followed with the difference that each party 
 generates its part of the proof using its own inputs and generators, i.e.
+
 $$
 A^{(k)} , S^{(k)}; \mspace{15mu} T_1^{(k)} , T_2^{(k)}; \mspace{15mu} \tau_x^{(k)} , \mu^{(k)} , \hat{t}^{(k)} , 
 \mathbf{l}^{(k)} , \mathbf{r}^{(k)}
@@ -818,6 +834,7 @@ Similar to [Inner-product Range Proof](#inner-product-range-proof), the *prover*
 combination of the Hadamard Product<sup>[def][hdmp~]</sup> and linear constraints to form a single inner product 
 constraint. If the combination is chosen randomly by the *verifier* $ \mathcal{V} $, then with overwhelming probability, 
 the inner-product constraint implies the other constraints. A proof system must be presented for relation (10) below:
+
 $$
 \begin{aligned} 
 \mspace{3mu} (g,h \in \mathbb{G} \mspace{3mu} ; \mspace{3mu} \mathbf g,\mathbf h \in \mathbb{G}^n \mspace{3mu} ; 
@@ -831,7 +848,7 @@ V_j =h^{\gamma_j} g^{v_j} \mspace{6mu} \forall \mspace{6mu} j \in [1,m] \mspace{
 \mathbf W_L \cdot \mathbf a_L + \mathbf W_R \cdot \mathbf a_R + \mathbf W_O \cdot \mathbf a_O = 
 \mathbf W_V \cdot \mathbf v + \mathbf c \mspace{50mu}
 \end{aligned}
-\mspace{70mu} (10)
+\tag{10}
 $$
 
 
