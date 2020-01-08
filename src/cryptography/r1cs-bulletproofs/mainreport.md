@@ -230,7 +230,7 @@ All these are _zero-knowledge proofs_ based on the difficulty of the _discrete l
 
 ## Constraint Systems for ZK SNARKs 
 
-<img src="sources/alex-pinto.png" alt="alex-pinto" style="zoom: 15%;" /> 
+<img src="sources/alex-pinto.png" alt="alex-pinto" style="zoom: 10%;" /> 
 
 **Alex Pinto**
 
@@ -362,7 +362,7 @@ Here's an _outline of the description and the code lines_ of the example in tabu
 
 ## Zero-Knowledge Proofs: Privacy & Scaling
 
-<img src="sources/mediodemarco1.png" alt="mediodemarco1" style="zoom:67%;" />  <img src="sources/anillulla.png" alt="anillulla" style="zoom: 25%;" />
+<img src="sources/mediodemarco1.png" alt="mediodemarco1" style="zoom:67%;" />  <img src="sources/anillulla.png" alt="anillulla" style="zoom: 15%;" />
 
 Medio Demarco (Principal at Delphi Digital) and Anil Lulla (co-founder of Delphi Digital) 
 
