@@ -115,7 +115,7 @@ Although "Arithmetic circuits are a highly structured model of computation compa
 
 Zero-knowledge proofs, such as zkSNARKs and Bulletproofs, require _statements to be proved_ be expressed in their simplest terms for efficiency. Alex Pinto [[5.]] mentions that "the ZK SNARK end-to-end journey is to create a _function_ to write proofs about," but they "must work with specific constructs." That is why arithmetic circuits are so important in making zero-knowledge more efficient, "these _functions_ have to be specified as sequences of very simple terms, namely, additions and multiplications of only two terms in a particular field" [[5.]].
 
-In verifying a zkSNARK proof, the verifier needs to carry out a step-by-step check of the computations, that is, for each gate the verifier has to check if the _output_  $ \large{ a_O }$  is correct with respect to the given _inputs_  $\large{ a_L }$  and  $ \large{ a_R } $. Testing if   $ \large{a_L \cdot a_R  -  a_O  =  0}$ , for each multiplication gate. This requires that an _addition gate_ be treated as some form of a _multiplication gate_, we explain this later in this report. 
+In verifying a zkSNARK proof, the verifier needs to carry out a step-by-step check of the computations, that is, for each gate the verifier has to check if the _output_  $ \large{ a_O }$  is correct with respect to the given _inputs_  $\large{ a_L }$  and  $ \large{ a_R } $. Testing if   $ \large{a_L \cdot a_R  -  a_O  =  0}$ ,  for each multiplication gate. This requires that an _addition gate_ be treated as some form of a _multiplication gate_, we explain this later in this report. 
 
 
 
@@ -189,7 +189,7 @@ where  "${\large \circ }$"  is the Hadamard product, and
 
  where  $\mathbf{W_L, W_R, W_O}$  and  $\mathbf{W_V}$  are weights applied to respective input vectors and output vectors. 
 
-Note that it is Bootle et al. who first expressed _arithmetic circuit satisfiability_ in terms of the _Hadamard relation_ and linear constraints (see [10.]). In their definition, the above linear constraints are written as:
+Note that it is Bootle et al. who first expressed _arithmetic circuit satisfiability_ in terms of the _Hadamard relation_ and linear constraints (see [[10.]]). In their definition, the above linear constraints are written as:
 
   $\mathbf{W_L\cdot {\large a_L}  +  W_R\cdot {\large a_R}  +  W_O\cdot {\large a_O } =  c } $. 
 
@@ -203,7 +203,7 @@ That is, without the vector  $\mathbf{\large{v}}$  and its weight  $\mathbf{W_V}
 
 ## ZK Proofs for Arithmetic Circuits _vs._ Programmable Constraint Systems for Bulletproofs 
 
-As noted in previous reports [here](https://tlu.tarilabs.com/cryptography/bulletproofs-protocols/MainReport.html#evolving-bulletproof-protocols), Interstellar's [_Programmable Constraint Systems for Bulletproofs_](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7) [[11.]] is an extension of _Zero-knowledge Proofs for Arithmetic Circuits_ by Bootle et al [4.] -[10.], enabling protocols that support _proving of arbitrary statements_ in zero-knowledge using constraint systems. Although our focus here is on the above two works of research [[4.]] and [[11.]], we recognize the _Bulletproofs paper_ by Bunz et al [[12.]] as a _bridge_ between the two. We thus split the comparison to be among **three** works of research as shown in the table below. 
+As noted in previous reports [here](https://tlu.tarilabs.com/cryptography/bulletproofs-protocols/MainReport.html#evolving-bulletproof-protocols), Interstellar's [_Programmable Constraint Systems for Bulletproofs_](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7) [[11.]] is an extension of _Zero-knowledge Proofs for Arithmetic Circuits_ by Bootle et al [[4.]], enabling protocols that support _proving of arbitrary statements_ in zero-knowledge using constraint systems. Although our focus here is on the above two works of research [[4.]] and [[11.]], we recognize the _Bulletproofs paper_ by Bunz et al [[12.]] as a _bridge_ between the two. We thus split the comparison to be among **three** works of research as shown in the table below. 
 
 All these are _zero-knowledge proofs_ based on the difficulty of the _discrete logarithm problem_. 
 
@@ -212,7 +212,7 @@ All these are _zero-knowledge proofs_ based on the difficulty of the _discrete l
 | No.  | ZKProofs for Arithmetic Circuits by Bootle et al. [[4.]] (2016) | Bulletproofs & Constraints by Benedikt Buenz et al. [[12.]] (2017) | Programmable Constraints by Cathie Yun et al. [[11.]] (2018) |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint, and these are in fact the R1CS. | Generalizes Constraint systems and uses what is called _gadgets_ as building blocks for Constraint systems. |
-| 2    | Improves on Groth's work [[17.]] on ZK Proofs. Reducing  a $\sqrt{N}$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Improves on Bootle et al.'s work [10.]. Reducing a $2log_2(N) + 13$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Adds Constraint systems to Bunz et al.'s work on Bulleproofs, which are _short proofs_ and the complexity advantage is seen in _proving_ several statements at once. |
+| 2    | Improves on Groth's work [[17.]] on ZK Proofs. Reducing  a $\sqrt{N}$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Improves on Bootle et al.'s work [[4.]]. Reducing a $2log_2(N) + 13$  complexity to  $6log_2(N) + 13$,  where  $N$  is the circuit size. | Adds Constraint systems to Bunz et al.'s work on Bulleproofs, which are _short proofs_ and the complexity advantage is seen in _proving_ several statements at once. |
 | 3.   | Introduces logarithm-sized inner-product proofs zero-knowledge proofs. | Introduces Bulletproofs, extending proofs to proofs of arbitrary statements. The _halving method_ is used on the inner-products _resulting_ in the above reduction in complexity. | Introduces _Gadgets_ that are actually _add-ons_ to an ordinary zero-knowledge proofs. A _range proof_  is but an example of a gadget. |
 | 4.   | Uses _Fiat-Shamir heuristics_ in order to achieve _non-interactive_ zero-knowledge proofs. | Bulletproofs have no trusted setup as they use of the _Fiat Shamir heuristics_ to achieve non-interactive zero-knowledge proofs. | _Merlin transcripts_ are specifically used for a Fiat-Shamir transformation to achieve _non-interactive_ zero-knowledge proofs. |
 | 5.   | The Pedersen Commitments are used in order to achieve _zero-knowledge_ property. | Eliminates the need for a _commitment algorithm_ by including _Pedersen commitments_ among the inputs to the verification proof. | Low-level variables, representing _inputs_ and _outputs_ to _multiplication gates_, are computed per-proof and committed using a single _vector Pedersen commitment_. |
@@ -241,7 +241,7 @@ Developer and researcher in the blockchain space
 
 Now, how exactly does one go _**from an Arithmetic circuit to an R1CS**_ ? 
 
-Eli Ben-Sasson et al. mentioned that the difference in computational power among the parties makes _succinct verification_ a requirement [8.]. Hence the pursuit of short and fast proofs systems. These make it possible for a verifier to check a non-deterministic polynomial-time computation in a much shorter time than the time required to run the computation when given a valid NP witness. They also state that the difficulty in studying the efficiency of proofs for NP statements is the _problem of representation_. Arithmetic circuits and the R1CS are some of such _representations_ of statements to be proved. 
+Eli Ben-Sasson et al. mentioned that the difference in computational power among the parties makes _succinct verification_ a requirement [[8.]]. Hence the pursuit of short and fast proofs systems. These make it possible for a verifier to check a non-deterministic polynomial-time computation in a much shorter time than the time required to run the computation when given a valid NP witness. They also state that the difficulty in studying the efficiency of proofs for NP statements is the _problem of representation_. Arithmetic circuits and the R1CS are some of such _representations_ of statements to be proved. 
 
 #### Summary 
 
@@ -283,7 +283,7 @@ Lovesh Harchandani in the article "[Zero knowledge proofs using Bulletproofs](ht
 
 ##### _About Gadgets_ 
 
-Consider a _verifiable shuffle_: Given two lists of _committed values_  ${\large x_1, x_2, . . . , x_n}$  and  ${\large y_1, y_2, . . . , y_n} ,$  prove that the second list is a permutation of the first. Bunz et al mention that the use of bulletproofs improves the complexity of such a _verifiable shuffle_ to size $\mathcal{O}(log(n))$ compared to previous implementation results, see Page 5 of [9.]  Although not referred to as a _gadget_ in the paper, this is in fact a _shuffle gadget_. The term _gadget_ was used and popularised by the Interstellar team, who introduced _gadgets_ as building blocks of constraints systems, see Cathie Yun's article entitled [_Building on Bulletproofs_](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).  
+Consider a _verifiable shuffle_: Given two lists of _committed values_  ${\large x_1, x_2, . . . , x_n}$  and  ${\large y_1, y_2, . . . , y_n} ,$  prove that the second list is a permutation of the first. Bunz et al mention that the use of bulletproofs improves the complexity of such a _verifiable shuffle_ to size $\mathcal{O}(log(n))$ compared to previous implementation results, see Page 5 of [[9.]]  Although not referred to as a _gadget_ in the paper, this is in fact a _shuffle gadget_. The term _gadget_ was used and popularised by the Interstellar team, who introduced _gadgets_ as building blocks of constraints systems, see Cathie Yun's article entitled [_Building on Bulletproofs_](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8).  
 
 A _shuffle gadget_ is any function whose outputs are but a permutation of its inputs. By definition of a permutation the _number of inputs_ to a shuffle gadget is always the same as the _number of outputs_. 
 
@@ -317,7 +317,7 @@ All-in-all Cathie Yun regards _constraint systems_ as "_very powerful_ because t
 
 ##### Previous Work on _Verifiable Shuffles_
 
-It would be interesting to see how some of the applications of _verifiable shuffles_ mentioned in [9.]; _voting_, _mix-nets_, and _solvency proofs_; could be enhanced by frameworks similar to the Interstellar's Bulletproofs. The _first_ and _third_ applications seem more relevant to _cryptocurrencies_ and _confidential asset schemes_. 
+It would be interesting to see how some of the applications of _verifiable shuffles_ mentioned in [[9.]]; _voting_, _mix-nets_, and _solvency proofs_; could be enhanced by frameworks similar to the Interstellar's Bulletproofs. The _first_ and _third_ applications seem more relevant to _cryptocurrencies_ and _confidential asset schemes_. 
 
 
 
