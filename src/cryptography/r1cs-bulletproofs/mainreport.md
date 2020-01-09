@@ -230,7 +230,7 @@ All these are _zero-knowledge proofs_ based on the difficulty of the _discrete l
 
 ## Constraint Systems for ZK SNARKs 
 
-<img src="sources/alex-pinto.png" alt="alex-pinto" style="zoom: 10%;" /> 
+<img src="sources/alex-pinto.png" alt="alex-pinto" style="zoom: 15%;" /> 
 
 **Alex Pinto**
 
@@ -343,7 +343,7 @@ Here's an _outline of the description and the code lines_ of the example in tabu
 |      | Description                                                  | Code Lines                                                   |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 1.   | Create _two_ pairs of generators; one pair <br/>for the Pedersen commitments and <br/>the other for the Bulletproof. | `let pc_gens = PedersenGens::default();`<br/>`let bp_gens = BulletproofGens::new(128, 1);` |
-| 2.   | Instantiate the prover using the commitment<br/> and Bulletproofs generatorsof Step 1, to <br/>produce the prover's transcript. | `let mut prover_transcript = Transcript::new(b"Factors");`<br/>`let mut prover = Prover::new(&bp_gens, &pc_gens, &mut prover_transcript);` |
+| 2.   | Instantiate the prover using the commitment<br/> and Bulletproofs generators of Step 1, to <br/>produce the prover's transcript. | `let mut prover_transcript = Transcript::new(b"Factors");`<br/>`let mut prover = Prover::new(&bp_gens, &pc_gens, &mut prover_transcript);` |
 | 3.   | Prover commits to variables using <br/>the Pedersen commitments,<br/>creates variables corresponding<br/>to each commitment, and adds<br/>the variables to the transcript. | `let x1 = Scalar::random(&mut rng);`<br/>`let (com_p, var_p) = prover.commit(p.into(), x1);`<br/>`let x2 = Scalar::random(&mut rng);`<br/>`let (com_q, var_q) = prover.commit(q.into(), x2);` |
 | 4.   | The prover _constrains_ the variables in _two_ steps;<br/><br/>a) Prover _multiplies_ the variables of <br/>step 3 and captures the product in <br/>the "output" variable O, <br/>b) Prover wants to ensure the <br/>_difference of_ the product  O  and  r  <br/> is zero. | `let (_, _, o) =  prover.multiply(var_p.into(), var_q.into());`<br/> <br/>`let r_lc: LinearCombination = vec![(Variable::One(),      r.into())].iter().collect();`<br/>`prover.constrain(o -  r_lc);` |
 | 5.   | Prover creates the proof.                                    | `let proof = prover.prove().unwrap();`                       |
@@ -362,7 +362,7 @@ Here's an _outline of the description and the code lines_ of the example in tabu
 
 ## Zero-Knowledge Proofs: Privacy & Scaling
 
-<img src="sources/mediodemarco1.png" alt="mediodemarco1" style="zoom:67%;" />  <img src="sources/anillulla.png" alt="anillulla" style="zoom: 15%;" />
+<img src="sources/mediodemarco1.png" alt="mediodemarco1" style="zoom:67%;" />  <img src="sources/anillulla.png" alt="anillulla" style="zoom: 25%;" />
 
 Medio Demarco (Principal at Delphi Digital) and Anil Lulla (co-founder of Delphi Digital) 
 
@@ -384,7 +384,7 @@ Medio Demarco (Principal at Delphi Digital) and Anil Lulla (co-founder of Delphi
 
 ## Implementations of R1CS  
 
-A lot of theory on zero-knowledge proofs have seen practical and almost practical implementation. Most of which are made efficient, secure, and achieve privacy thanks to _zero-knowledge_ techniques such as _zkSNARKs_ and _Bulletproofs_. 
+A lot of theory on zero-knowledge proofs has seen practical and almost practical implementation. Most of which are made efficient, secure, and achieve privacy thanks to _zero-knowledge_ techniques such as _zkSNARKs_ and _Bulletproofs_. 
 
 
 For further information and a more inclusive list of references on zero-knowledge proofs (with links) see [[18.]]." It contains a tabular list of "Implementations of proving systems" which includes [bellman](https://github.com/zkcrypto/bellman), [dalek bulletproofs](https://github.com/dalek-cryptography/bulletproofs) and [adjoint-io bulletproofs](https://github.com/adjoint-io/bulletproofs). In line with this report, one also finds a list of "Libraries for writing circuits (or gadgets)" such as [libsnark](https://github.com/scipr-lab/libsnark),  [ZoKrates](https://github.com/Zokrates/ZoKrates), [snarky](https://github.com/o1-labs/snarky), and [ZkMV](https://github.com/stellar/slingshot/tree/main/zkvm). 
