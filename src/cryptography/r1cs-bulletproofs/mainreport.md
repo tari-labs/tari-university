@@ -407,7 +407,9 @@ There are standardization efforts made by the community with [the third _ZKProof
 
 [[2.]]  Alan Szepieniec and Bart Preneel, "Generic Zero-Knowledge and Multivariate Quadratic Systems," 2016. https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591 Date accessed: 2020‑01‑08. 
 
-[2.]: https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591
+[2]: https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591
+"Generic Zero-Knowledge and 
+Multivariate Quadratic Systems"
 "Generic Zero-Knowledge and Multivariate Quadratic Systems,"
 
 
@@ -491,7 +493,6 @@ There are standardization efforts made by the community with [the third _ZKProof
 
 [18.]: https://zkp.science/
 "Zero-Knowledge Proofs: What are they, how do they work, and are they fast yet?"
-
 
 
 
