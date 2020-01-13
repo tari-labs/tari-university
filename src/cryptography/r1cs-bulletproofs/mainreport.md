@@ -292,8 +292,9 @@ Consider a _verifiable shuffle_: Given two lists of _committed values_  ${\large
 A _shuffle gadget_ is any function whose outputs are but a permutation of its inputs. By definition of a permutation the _number of inputs_ to a shuffle gadget is always the same as the _number of outputs_. 
 
 
-
-<img src="sources/simple-shuffle-diagram.png" style="zoom:67%;" />
+<div align="center"><b> 
+<img src="sources/simple-shuffle-diagram.png" style="zoom:67%;" /> 
+</b></div> 
 
 ​				**Diagram 3 : Simple Shuffle Gadgets with 2 inputs** [[1]]
 
