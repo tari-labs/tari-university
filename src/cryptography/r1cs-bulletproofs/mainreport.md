@@ -410,7 +410,7 @@ With regards to validation of transactions or verification proofs any voting cou
 
 [[1.](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)] Cathie Yun, "Building on Bulletproofs," [online]. Available: <https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8> Date accessed: 2020&#8209;01&#8209;03.
 
-[1.]: https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8
+[1]: https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8
 "Building on Bulletproofs"
 
 
@@ -526,7 +526,6 @@ More"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
 
 
