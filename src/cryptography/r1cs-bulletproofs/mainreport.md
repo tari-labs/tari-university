@@ -78,8 +78,9 @@ An ***arithmetic circuit***  $\mathcal{A}$  over the field  $\mathcal{F}$  and t
 
 A typical multiplication gate is thought of as having a _left input_  $\large{a_L}$, a _right input_  $\large{a_R}$, and an _output_  $\large{a_O}$. Also, we note that,  $$ \large{a_L \cdot a_R  -  a_O  =  0} .$$ 
 
+<div align="center"><b>
 <img src="sources/basic-multiplication-gate.png" alt="basic-multiplication-gate" style="zoom:67%;" />
-
+</b></div> 
 
 
 We note that in cases where the inputs and outputs are all _vectors_ of  ${\large n}$  components, i.e., 
@@ -100,7 +101,11 @@ An arithmetic circuit computes a polynomial in a natural way, as seen in the exa
 
 Consider the following Arithmetic circuit  $\mathcal{A}$  with inputs  $\{ {\large{ x_1 , x_2 , 1 }} \}$  over some field  $\mathcal{F}$ , 
 
+<div align="center"><b>
 <img src="sources/polynomial-eg-ac.png" alt="polynomial-eg-ac" style="zoom:67%;" />
+</b></div> 
+
+
 
 The output of  $\mathcal{A}$  above is the polynomial   $\large{x^2_1 x_2 + x_1 + 1 }$  of _total degree_ three. 
 
