@@ -148,7 +148,11 @@ One solution to the equation  $\large{x^2_1 x_2 + x_1 + 1 = 22}$  , from Example
 It is easy to check that the R1CS for the computation problem in **Example 1** is as follows; (i.e., one need only test if  ${\large \langle {\bf{a_L , s}} \rangle * \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0}$  for each equation),  
 
 
+
+
 <div align="center"><b>Table 1: Equations and R1CS Vectors</b></div> 
+
+
 | Equation                        | R1CS Vectors                                                 |
 | ------------------------------- | ------------------------------------------------------------ |
 | $\large{ u = x_1*x_1}$          | $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ |
@@ -209,6 +213,7 @@ As noted in previous reports [here](https://tlu.tarilabs.com/cryptography/bullet
 All these are _zero-knowledge proofs_ based on the difficulty of the _discrete logarithm problem_. 
 
 <div align="center"><b>Table 2: Comparison of three Research Works on Zero Knowledge Proofs</b></div> 
+
 
 | No.  | ZKProofs for Arithmetic Circuits by Bootle et al. [[4]] (2016) | Bulletproofs & Constraints by Benedikt Buenz et al. [[12]] (2017) | Programmable Constraints by Cathie Yun et al. [[11]] (2018)  |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -335,6 +340,7 @@ Here's an _outline of the description and the code lines_ of the example in tabu
 
 <div align="center"><b>Table 3: Bulletproof Constraint Example</b></div> 
 
+
 |      | Description                                                  | Code Lines                                                   |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 1.   | Create _two_ pairs of generators; one pair <br/>for the Pedersen commitments and <br/>the other for the Bulletproof. | `let pc_gens = PedersenGens::default();`<br/>`let bp_gens = BulletproofGens::new(128, 1);` |
@@ -364,7 +370,7 @@ A lot of research has been done towards improving scalability and privacy in cry
 
 #### Summary 
 
-"_Zero-Knowledge Proofs: Privacy & Scaling_" is a synoptic infographic that contains _quick-to-read_ information on zkSNARKs and Bulletproofs [[16]]. It includes a summative explanation on what ZK proofs are, takes a glance at four main ZK Proofs (zkSNARKs, zkSTARKs, Bulletproofs and Mimblewimble, and the AZTEC Protocol), gives a brief overview on ZK Proofs features and trade-offs that have driven recent research (speed, proof-size, trusted setups, and quantum resistance). Terse descriptions of a few known implementations are included those that in line with this report are; 
+"_Zero-Knowledge Proofs: Privacy & Scaling_" is a synoptic infographic that contains _quick-to-read_ information on zkSNARKs and Bulletproofs [[16]]. It includes a summative explanation on what ZK proofs are, takes a glance at four main ZK Proofs (zkSNARKs, zkSTARKs, Bulletproofs and Mimblewimble, and the AZTEC Protocol), gives a brief overview on ZK Proofs features and trade-offs that have driven recent research (speed, proof-size, trusted setups, and quantum resistance). Terse descriptions of a few known implementations are included. Those that in line with this report are; 
 
 - zkSNARKs implementations; Zcash, Coda, and Matter Labs, 
 - Bulletproofs implementations; Monero, Grin & Beam, and a possible implementation to Bitcoin. 
@@ -460,12 +466,13 @@ With regards to validation of transactions or verification proofs any voting cou
 [[12]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential Transactions and More", Blockchain Protocol Analysis and Security Engineering 2018 [online]. 
 Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed: 2019&#8209;11&#8209;21.
 
-[12]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and 
-More" 
+[12]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf "Bulletproofs: Short Proofs for Confidential Transactions and More"
+
+
 
 [[13]]  Tari Labs University, "zkSNARKs," [online]. Available:  <https://tlu.tarilabs.com/cryptography/zksnarks/mainreport.html> Date accessed: 2020&#8209;01&#8209;06. 
 
-[13]: https://tlu.tarilabs.com/cryptography/zksnarks/mainreport.html 
+[13]: https://tlu.tarilabs.com/cryptography/zksnarks/mainreport.html
 "zkSNARKs"
 
 
@@ -478,7 +485,7 @@ More"
 
 [[15]]  Lovesh Harchandani, "Zero knowledge proofs using Bulletproofs," [online]. Available: <https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82> Date accessed: 2020&#8209;01&#8209;03.
 
-[15]: https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82  "Zero knowledge proofs using Bulletproofs" 
+[15]: https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82  "Zero knowledge proofs using Bulletproofs"
 
 
 
@@ -508,6 +515,7 @@ Date accessed: 2020&#8209;01&#8209;06.
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
+
 
 
 
