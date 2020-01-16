@@ -461,7 +461,7 @@ still have two more goals to achieve:
 
   
 
-- Secondly, to "_improve privacy in Cloak"_ by enable "_multi-party proving of a single constraint system_". That is, 
+- Secondly, to "_improve privacy in Cloak"_ by enabling "_multi-party proving of a single constraint system_". That is, 
   "_building a joint proof of a single constraint system by multiple parties_, without sharing their secret inputs with 
   each other".
 
