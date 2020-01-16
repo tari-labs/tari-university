@@ -288,6 +288,8 @@ between the two. We thus split the comparison to be among **three** works of res
 All these are ZK proofs based on the difficulty of the discrete logarithm problem. 
 
 <div align="center"><b>Table 2: Comparison of three Research Works on ZK Proofs</b></div> 
+
+
 | No.  | Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting [[4]] (2016) | Bulletproofs: Short Proofs for Confidential Transactions and More [[12]] (2017) | Programmable Constraint Systems  [[11]] (2018)               |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint, and these are in fact the R1CS. | Generalizes constraint systems and uses what is called gadgets as building blocks for constraint systems. |
@@ -494,6 +496,8 @@ Table 3 gives an _outline of the description and the code lines_ of the example.
 code of this example can be found [here](https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17). 
 
 <div align="center"><b>Table 3: Example of Bulletproof Constraint</b></div> 
+
+
 | No.  | Description                                                  | Code Lines                                                   |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 1.   | Create two pairs of generators; one pair <br/>for the Pedersen commitments and <br/>the other for the Bulletproof. | `let pc_gens = PedersenGens::default();`<br/>`let bp_gens = BulletproofGens::new(128, 1);` |
