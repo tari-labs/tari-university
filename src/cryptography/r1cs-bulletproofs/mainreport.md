@@ -120,13 +120,12 @@ an _output_ $\large{a_O}$. Also, we note that: $$ \large{a_L \cdot a_R - a_O = 0
 <img src="sources/basic-multiplication-gate.png" alt="basic-multiplication-gate" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 1: Typical Multiplication Gate</b></div> 
-
 We note that in cases where the inputs and outputs are all _vectors_ of ${\large n}$ components, i.e. 
 
-​	${\large \mathbf{a_L} = ( a_{L, 1}, a_{L, 2} , ... , a_{L, n}) }​$, $ {\large \mathbf{a_R} = ( a_{R, 1}, a_{R, 2} , ... , a_{R, n}) } ​$,
- ${\large \mathbf{a_O} = ( a_{O, 1}, a_{O, 2} , ... , a_{O, n}) } ,​$ 
+​	${\large \mathbf{a_L} = ( a_{L, 1}, a_{L, 2} , ... , a_{L, n}) }$, $ {\large \mathbf{a_R} = ( a_{R, 1}, a_{R, 2} , ... , a_{R, n}) } $,
+ ${\large \mathbf{a_O} = ( a_{O, 1}, a_{O, 2} , ... , a_{O, n}) } ,$ 
 
-then _multiplication_ of ${\large \mathbf{a_L}}​$ and ${\large \mathbf{a_R} }​$ is defined as an _entry-wise_ 
+then _multiplication_ of ${\large \mathbf{a_L}}$ and ${\large \mathbf{a_R} }$ is defined as an _entry-wise_ 
 product called the _**Hadamard product**_; 
 
  ${\large \mathbf{a_L}\circ \mathbf{a_R} = (( a_{L, 1} \cdot a_{R, 1} ) , ( a_{L, 2} \cdot a_{R, 2} ) , ... , ( a_{L, n} \cdot a_{R, n} ) )} = \large \mathbf{a_O} .$
@@ -147,21 +146,19 @@ field $\mathcal{F}$:
 <img src="sources/polynomial-eg-ac.png" alt="polynomial-eg-ac" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 2: Arithmetic Circuit</b></div> 
+The output of $\mathcal{A}$ above is the polynomial $\large{x^2_1 x_2 + x_1 + 1 }$ of _total degree_ three. 
 
-
-The output of $\mathcal{A}​$ above is the polynomial $\large{x^2_1 x_2 + x_1 + 1 }​$ of _total degree_ three. 
-
-A typical computational problem would involve finding the solution to, let's say, $\large{x^2_1 x_2 + x_1 + 1 = 22}​$. 
+A typical computational problem would involve finding the solution to, let's say, $\large{x^2_1 x_2 + x_1 + 1 = 22}$. 
 Or, in a proof of knowledge scenario, the prover has to prove to the verifier that they have the correct solution to such 
 an equation. 
 
 Following the wires in the example shows that an arithmetic circuit actually _breaks down_ the given computation into 
 _smaller equations_ corresponding to each _gate_: 
 
-​				$\large{ u = x_1*x_1} ​$, $ \large{ v = u*x_2 }​$, $ \large{ y = x_1 + 1 } ​$ and $ \large{ z = v + y }​$. 
+$$\large{ u = x\_1*x\_1}  \text{, } \large{ v = u*x\_2 } \text{, }  \large{ y = x\_1 + 1 }  \text{  and  } \large{ z = v + y } .$$ 
 
-The variables $ \large{u, v}​$ and $ \large{ y }​$ are called _auxiliary variables_ or _low-level variables_, while 
-$\large{ z }​$ is the _output_ of $ \mathcal{A} ​$. Thus, in addition to computing polynomials naturally, an 
+The variables $ \large{u, v}$ and $ \large{ y }$ are called _auxiliary variables_ or _low-level variables_, while 
+$\large{ z }$ is the _output_ of $ \mathcal{A} $. Thus, in addition to computing polynomials naturally, an 
 arithmetic circuit helps in reducing a computation to a _low-level_ language involving only _two_ variables, 
 _one operation_ and an _output_. 
 
@@ -176,8 +173,8 @@ in making zero-knowledge more efficient: "these _functions_ have to be specified
 namely, additions and multiplications of only two terms in a particular field" [[5]].
 
 In verifying a zk-SNARK proof, the verifier needs to carry out a step-by-step check of the computations, i.e. for 
-each gate, the verifier has to check if the _output_ $ \large{ a_O }​$ is correct with respect to the given _inputs_ 
-$\large{ a_L }​$ and $ \large{ a_R } ​$, and test if $ \large{a_L \cdot a_R - a_O = 0}​$ for each multiplication 
+each gate, the verifier has to check if the _output_ $ \large{ a_O }$ is correct with respect to the given _inputs_ 
+$\large{ a_L }$ and $ \large{ a_R } $, and test if $ \large{a_L \cdot a_R - a_O = 0}$ for each multiplication 
 gate. This requires that an _addition gate_ be treated as some form of a _multiplication gate_. This is explained later in 
 this report. 
 
@@ -229,19 +226,19 @@ That is, without the vector $\mathbf{\large{v}}$ and its weight $\mathbf{W_V} $.
 
 This paragraph provides a simplified definition of an R1CS as it applies to zk-SNARKs [[9]]. 
 
-An R1CS is a sequence of groups of three vectors ${\large \bf{a_L}}, {\large \bf{a_R}}, {\large \bf{a_O}} ,​$ and the 
-solution to an R1CS is a vector ${\large \bf{s}}​$ that satisfies the equation 
+An R1CS is a sequence of groups of three vectors ${\large \bf{a_L}}, {\large \bf{a_R}}, {\large \bf{a_O}} ,$ and the 
+solution to an R1CS is a vector ${\large \bf{s}}$ that satisfies the equation 
 
-​					${\large \langle {\bf{a_L , s}} \rangle * \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0 }​$. 
+​					${\large \langle {\bf{a_L , s}} \rangle * \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0 }$. 
 
 
 
 
 ### Example of Rank-1 Constraint System 
 
-One solution to the equation $\large{x^2_1 x_2 + x_1 + 1 = 22}​$, from the preceding example of an arithmetic circuit, is ${\large{ x_1 = 3} }​$ 
-and ${ \large{ x_2 = 2 }}​$ belonging to the appropriate field $\large{ \mathcal{F}}​$. Thus the solution vector 
-${ \large{ s = ( const , x_1 , x_2 , z , u , v , y )}}​$ becomes ${ \large{ s = ( 1 , 3 , 2 , 22 , 9 , 18 , 4 )}}​$. 
+One solution to the equation $\large{x^2_1 x_2 + x_1 + 1 = 22}$, from the preceding example of an arithmetic circuit, is ${\large{ x_1 = 3} }$ 
+and ${ \large{ x_2 = 2 }}$ belonging to the appropriate field $\large{ \mathcal{F}}$. Thus the solution vector 
+${ \large{ s = ( const , x_1 , x_2 , z , u , v , y )}}$ becomes ${ \large{ s = ( 1 , 3 , 2 , 22 , 9 , 18 , 4 )}}$. 
 
 It is easy to check that the R1CS for the computation problem in the preceding example is as follows (one need only test 
 if ${\large \langle {\bf{a_L , s}} \rangle * \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0}$ 
@@ -250,7 +247,6 @@ for each equation).
 
 
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div> 
-
 
 | Equation                        | Rank-1 Constraint System Vectors                             |
 | ------------------------------- | ------------------------------------------------------------ |
@@ -263,18 +259,18 @@ for each equation).
 
 
 
-In a more formal definition, an **R1CS** is a set of three matrices ${\bf{ A_L , A_R }}​$ and ${\bf A_O}​$, 
-where the rows of each matrix are formed by the corresponding vectors $\large {\bf{a_L }}​$, ${\large \bf{a_R }}​$ and 
-${\large \bf{a_O}} ​$, respectively, as shown in Table 1: 
+In a more formal definition, an **R1CS** is a set of three matrices ${\bf{ A_L , A_R }}$ and ${\bf A_O}$, 
+where the rows of each matrix are formed by the corresponding vectors $\large {\bf{a_L }}$, ${\large \bf{a_R }}$ and 
+${\large \bf{a_O}} $, respectively, as shown in Table 1: 
 
 
 
-${\large \bf{A_L}} = {\bf{\begin{bmatrix} 0&1&0&0&0&0&0 <br/>\\ 0&0&0&0&1&0&0 <br/>\\ 1&1&0&0&0&0&0 <br/>\\ 0&0&0&0&0&1&1\\ \end{bmatrix}}},​$ ${\large \bf{A_R}} = {\bf{\begin{bmatrix} 0&1&0&0&0&0&0 <br/>\\ 0&1&0&0&0&0&0 <br/>\\ 1&0&0&0&0&0&0 <br/>\\ 1&0&0&0&0&0&0 \\ \end{bmatrix}}}​$ , ${\large \bf{ A_O }} = {\bf{ \begin{bmatrix} 0&0&0&0&1&0&0 <br/>\\ 0&0&0&0&0&1&0 <br/>\\ 0&0&0&0&0&0&1 <br/>\\ 0&0&0&1&0&0&0\\ \end{bmatrix}}}.​$
+${\large \bf{A_L}} = {\bf{\begin{bmatrix} 0&1&0&0&0&0&0 <br/>\\ 0&0&0&0&1&0&0 <br/>\\ 1&1&0&0&0&0&0 <br/>\\ 0&0&0&0&0&1&1\\ \end{bmatrix}}},$ ${\large \bf{A_R}} = {\bf{\begin{bmatrix} 0&1&0&0&0&0&0 <br/>\\ 0&1&0&0&0&0&0 <br/>\\ 1&0&0&0&0&0&0 <br/>\\ 1&0&0&0&0&0&0 \\ \end{bmatrix}}}$ , ${\large \bf{ A_O }} = {\bf{ \begin{bmatrix} 0&0&0&0&1&0&0 <br/>\\ 0&0&0&0&0&1&0 <br/>\\ 0&0&0&0&0&0&1 <br/>\\ 0&0&0&1&0&0&0\\ \end{bmatrix}}}.$
 
 
 
 We observe that ${\large \bf{ (A_L\cdot s^T) * (A_R\cdot s^T ) - (A_O\cdot s^T)} = 0 }$, where "${\bf{ \cdot }}$" is 
-_matrix multiplication_ and ${\large \bf s^T}$ is the transpose of the solution vector ${\large \bf{s}}​$. 
+_matrix multiplication_ and ${\large \bf s^T}$ is the transpose of the solution vector ${\large \bf{s}}$. 
 
   
 
@@ -292,8 +288,6 @@ between the two. We thus split the comparison to be among **three** works of res
 All these are ZK proofs based on the difficulty of the discrete logarithm problem. 
 
 <div align="center"><b>Table 2: Comparison of three Research Works on ZK Proofs</b></div> 
-
-
 | No.  | Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting [[4]] (2016) | Bulletproofs: Short Proofs for Confidential Transactions and More [[12]] (2017) | Programmable Constraint Systems  [[11]] (2018)               |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint, and these are in fact the R1CS. | Generalizes constraint systems and uses what is called gadgets as building blocks for constraint systems. |
@@ -345,8 +339,8 @@ Pinto gives some finer details.
 Pinto explains how this is achieved. He makes it easy to 
 understand how the _solution vector_ as shown in Table 1 is constructed, as well as how addition gates need to be 
 expressed as some _multiplication gate_ in order to understand the resulting R1CS. Pinto uses an example inspired by 
-RSA's well-known _difficulty of factorization problem_: "Proving that one knows prime factors ${\large p}$ and 
-${\large q}$ such that ${\large n + 1 = (p + 3)(q + 2)}$." 
+RSA's well-known _difficulty of factorization problem_: "Proving that one knows prime factors  ${\large p}$  and  
+${\large q}$  such that  ${\large n + 1 = (p + 3)(q + 2)}$." 
 
 
 
@@ -428,8 +422,6 @@ _number of inputs_ to a shuffle gadget is always the same as the _number of outp
 
 <div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs [[1]]</b></div> 
 
-
-
 Find a RUST example code for a _shuffle gadget_ in the _Bulletproofs Constraint System_ framework 
 [here](https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/docs/r1cs-docs-example.md), 
 written by Lovesh Harchandani. 
@@ -502,8 +494,6 @@ Table 3 gives an _outline of the description and the code lines_ of the example.
 code of this example can be found [here](https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17). 
 
 <div align="center"><b>Table 3: Example of Bulletproof Constraint</b></div> 
-
-
 | No.  | Description                                                  | Code Lines                                                   |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 1.   | Create two pairs of generators; one pair <br/>for the Pedersen commitments and <br/>the other for the Bulletproof. | `let pc_gens = PedersenGens::default();`<br/>`let bp_gens = BulletproofGens::new(128, 1);` |
@@ -694,7 +684,7 @@ Date accessed: 2020&#8209;01&#8209;06.
 [13]: https://tlu.tarilabs.com/cryptography/zksnarks/mainreport.html
 "zk-SNARKs"
 
-[[14]] Dalek's documents, "Module Bulletproofs​::notes::r1cs_proof" [online]. Available: 
+[[14]] Dalek's documents, "Module Bulletproofs::notes::r1cs_proof" [online]. Available: 
 <https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html>. Date accessed: 2020&#8209;01&#8209;07. 
 
 [14]: https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html
