@@ -95,9 +95,7 @@ The variables and results are below:
 
 | &nbsp;&nbsp;Total Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;Probability&nbsp;&nbsp;            |
 | :---------------------------------: | :-------------------------------: | :------------------------------------: | :-----------------------------------: | ---------------------------------------------- |
-|                 100                 |                60                 |                   1                    |                   1                   | 0.6                                            |
 |                 100                 |                60                 |                   2                    |                   2                   | 0.3575757575757576                             |
-|  <div class="highlight">100</div>   |  <div class="highlight">60</div>  |     <div class="highlight">3</div>     |    <div class="highlight">2</div>     | <div class="highlight">0.649474335188621</div> |
 |                 100                 |                60                 |                   4                    |                   3                   | 0.47343240951488375                            |
 |                 100                 |                60                 |                   6                    |                   4                   | 0.5443381851334722                             |
 |                 100                 |                60                 |                   8                    |                   6                   | 0.30661160770090995                            |
