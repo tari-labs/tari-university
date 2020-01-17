@@ -9,11 +9,11 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   MyBranchName?p=/
 
-Presentation:   src/network-analysis/probabilistic-attack-01#/
+Presentation:   src/network-analysis/probabilistic-attack#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack-1#/
+https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack#/
 
 ## On the trunk
 ### Trunk name
@@ -23,8 +23,8 @@ Project, user:   https://gitpitch.com/tari-labs/tari-university/
 
 Tree location:   master?p=/
 
-Presentation:   src/network-analysis/probabilistic-attack-01#/
+Presentation:   src/network-analysis/probabilistic-attack#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/master?p=/src/network-analysis/probabilistic-attack-01#/
+https://gitpitch.com/tari-labs/tari-university/master?p=/src/network-analysis/probabilistic-attack#/

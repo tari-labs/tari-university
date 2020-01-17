@@ -1,170 +1,59 @@
-## Fraud proofs and SPV clients - easier said than done?
 
-- Background
-- What are fraud proofs?
-- How do they relate to SPV/lightweight clients?
-- proposals and improvements of fraud proofs
-- Security & Privacy of SPV clients
-- Observations and Conclusions
+# Probability of a Byzantine Takeover of the Digital Assets Network
 
----
+## Notation Used  
 
-## Background
+General notation of statistical expressions.  
 
-SPV clients will believe everything miners or nodes tell them:
-- Node code modified
-- Lightweight clients don't verify coin amounts
+- Let $N$ be the total number of nodes in the network. 
+- Let $n$ be the committee size.
+- Let $m$ be the number of bad actors.
+- Let $T$ be the Byzantine Fault Tolerance (BFT) threshold.
 
-@div[s250px]
-![BTC client lied to](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/todd-btc-spv.jpg)
-@divend
+There is a pool with $N$ nodes. The pool contains $m$ malicious nodes or bad actors. From within the pool, a random 
+selection of nodes, $n$ is drawn. From this selection, the probability of drawing a threshold of bad actors, $T$, needs to 
+be calculated.  
 
-<p align="center"><img src="sources/todd-btc-spv.jpg" width="301" /></p>
+## Statistical Calculation
 
-+++
+A single probability from the overarching question was used as a means to derive the formulae, as shown in the following 
+example. 
 
-## Full node vs SPV client
-
-A full Bitcoin node contains the following details:
-- every block
-- every transaction that has ever been sent
-- all the unspent transaction outputs (UTXOs)
-
-+++
-
-An SPV client, however, contains :
-- a block header with transaction data relative to the client including other transactions required to compute the Merkle root
-or 
-- just a block header with no transactions
-
-+++
-
-## What are fraud proofs
-
-- Satoshi recognised this and introduced the concept of a Simplified Payment Verification (SPV)
-
-- full nodes would need to provide an alert (known as a fraud proof) to SPV clients when an invalid block is detected irrespective of the amount of proof of work it has
-
-- An invalid block need not be of malicious intent, but could be as a result of other accounting errors
-
-- assumes a minimum of one honest node
-
-- Could help with scalability of blockchains and security of SPV
-
-- Satoshi didn't go into the details of how it could be done
-
-+++
-
-## Fraud proof data structures
-
-Invalid transaction if input does not exist
-- the entire blockchain
-
-Invalid transaction due to incorrect generation output value
-- the block itself
-
-+++
-
-Invalid transaction due to input already been spent
-- header of the invalid block
-- invalid transaction
-- proof that the invalid transaction is within the invalid block
-- the header of the block containing original spend transaction
-- the original spending transaction
-- proof showing that the spend transaction is within the header block of the spend transaction
-
-+++
-
-## Universal fraud proof proposal
-
-Proposition:
-- generalize the entire blockchain as a state transition system
-- represent the entire state as a Merkle root using a Sparse Merkle tree
-- each transaction changes the state root of the blockchain
-  - `transaction(state,tx) = State or Error`
-
-@div[s650px]
-![stateroot](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/stateroot.png)
-@divend
-
-+++
-## Universal fraud proof (Cont'n)
-<u>Bitcoin blockchain</u>
-- represent the entire blockchain as a key-value store uisng Sparse Merkle tree
-    - `Key = UTXO ID`
-    - `Value = 1 if unspent or 0 if spent`
-- Each transaction will change the state root of the blockchain
-    - `rootTransition(stateRoot, tx, witnesses) != stateRoot`
-
-+++
-- full node sends lightclient/SPV this data to proof a valid fraud proof
-- SPV computes this function.
-
-@div[s650px]
-![fraudproof](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/fraud-proofs-1/sources/fraudproof.png)
-@divend
-
-- post-state root can be excluded in order to save block space
-- But this increases the fraud proof size
-
-+++
-
-#### How SPV/Lightweight clients work
+**Example**: What is the probability of selecting a majority of bad nodes from a total of $5​$ nodes if the committee 
+size is $3​$? There are $3​$ bad nodes $(B1, B2, B3)​$ and $2​$ good nodes $(G1, G2)​$.
 
 
-##### Strengths
-- memory light
-- user adoption
+The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
-+++
+| &nbsp;&nbsp;Draw 1st node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 2nd node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 3rd node&nbsp;&nbsp; | Are bad nodes <br /> in the majority? |
+| :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes ​              |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes ​              |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
+| <div class="wrap_bad">$B3$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
+|                                  |                                   |    **Tally of Yes responses**     |              $7$               |
 
-#### How SPV/Lightweight clients work (cont'd)
+From this list, the number of combinations where $B$ is the majority can then be tallied. In this case, there are $7$
+combinations where $B$ is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a 
+majority of bad nodes. Therefore, the quotient of $7$ and $10$ is the probability $0.7$. 
 
-##### Weaknesses
+This method is limited in calculating the probability where the variables are large. For example, if the same question 
+was posed, 
+but one had to calculate the probability of selecting a majority of bad nodes from a total of $100$ nodes, with a 
+committee size of $60$, $60$ bad nodes and $40$ good nodes, the number of combinations where bad and good nodes can be 
+chosen is $1.27E+28$.
 
-- Bitcoin Merkle tree design reduces the security of SPV clients
-    - allow an attacker to simulate a payment of arbitrary amount to a victim
-- bitcoin Merkle tree makes no distinction between inner and leaf nodes
-    - re-interpret transactions as nodes and nodes as transactions
-    - inner nodes having no format and only requiring the length to be 64 bytes
-- Bloom filters leak information such as determining if multiple addresses belongs to a single owner
-- SPV clients pose the risk of a denial of service attack against full nodes when syncing
-- nodes can cause a denial of service against SPV clients by returning NULL filter responses to requests
+# Statistical Calculation 
 
----
+Literature about [BFT threshold](../../consensus-mechanisms/BFT-consensus-mechanisms-applications/MainReport.md) advises 
+the number of good nodes to be at least $\frac{2}{3} \cdot n+1​$, where $n​$ is the number of nodes. In the calculations 
+that follow, BFT threshold of, for example, $67​$% of N, is implemented with rounding up to ensure that at least that 
+fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot n+1​$.
 
-#### Other suggested fraud proof improvements
-
-- Erasure codes
-    - helps with data availability
-    - allows a piece of data M chunks long to be expanded into a piece of data N chunks long
-    - any M of the N chunks can be used to recover the original data
-
-
-+++
-
-#### Other suggested fraud proof improvements (cont'd)
-
-- Merklix trees
-  - Merkle trees that use unordered set
-  - block sharding and validation
-- What can be proved?
-  - a transaction is in the block
-  - its inputs and outputs are or aren't in the UTXO set
-
-- SPV clients can be made aware of any invalidity in blocks and can’t be lied to about the UTXO set
-
-- Payment channels
-  - malicious alerting nodes spam with false fraud proofs
-  - operating at near instant speeds thus allowing quick alerting of fraud proofs
-  - facilitate micro-transactions (incentives)
-  - Are robust to temporary mining failures (as they use long “custodial periods”)
-
----
-
-## Observations
-
-- Fraud proofs can be complex and hard to implement
-- There is continuous research and suggested improvements on this topic
-- Universal fraud proofs seem to be the simpler solution to implement
 
