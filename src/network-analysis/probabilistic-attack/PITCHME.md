@@ -45,7 +45,7 @@ size is $3​$? There are $3​$ bad nodes $(B1, B2, B3)​$ and $2​$ good nod
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
 ---
-
+Table 1: 
 | &nbsp;&nbsp;Draw 1st node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 2nd node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 3rd node&nbsp;&nbsp; | Are bad nodes <br /> in the majority? |
 | :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
 | <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div> |              Yes               |
@@ -60,15 +60,17 @@ The first step is to calculate the number of combinations where bad and good nod
 | <div class="wrap_bad">$B3$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
 |                                  |                                   |    **Tally of Yes responses**     |              $7$               |
 
-Note:
+---
 
-From this list, the number of combinations where $B$ is the majority can then be tallied. In this case, there are $7$
-combinations where $B$ is the majority. Thus, from the $10$ combinations, there are $7$ combinations where there is a 
-majority of bad nodes. Therefore, the quotient of $7$ and $10$ is the probability $0.7$. 
+From this list:
+- The number of combinations where $B$ is the majority can then be tallied. 
+- There are $7$ combinations where $B$ is the majority. 
+- Thus, from the $10$ combinations, there are $7$ combinations where there is a 
+majority of bad nodes. 
+- Therefore, the quotient of $7$ and $10$ is the probability $0.7$. 
 
 This method is limited in calculating the probability where the variables are large. For example, if the same question 
-was posed, 
-but one had to calculate the probability of selecting a majority of bad nodes from a total of $100$ nodes, with a 
+was posed, but one had to calculate the probability of selecting a majority of bad nodes from a total of $100$ nodes, with a 
 committee size of $60$, $60$ bad nodes and $40$ good nodes, the number of combinations where bad and good nodes can be 
 chosen is $1.27E+28$. 
 
@@ -76,10 +78,7 @@ chosen is $1.27E+28$.
 
 # Statistical Calculation 
 
-Literature about BFT threshold advises 
-the number of good nodes to be at least $\frac{2}{3} \cdot n+1​$, where $n​$ is the number of nodes. In the calculations 
-that follow, BFT threshold of, for example, $67​$% of N, is implemented with rounding up to ensure that at least that 
-fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot n+1​$.
+Literature about BFT threshold advises the number of good nodes to be at least $\frac{2}{3} \cdot n+1​$, where $n​$ is the number of nodes. In the calculations that follow, BFT threshold of, for example, $67​$% of N, is implemented with rounding up to ensure that at least that fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot n+1​$.
 
 ---
 
@@ -100,27 +99,17 @@ The variables and results are below:
 |                 100                 |                60                 |                   2                    |                   2                   | 0.3575757575757576                             |
 |  <div class="highlight">100</div>   |  <div class="highlight">60</div>  |     <div class="highlight">3</div>     |    <div class="highlight">2</div>     | <div class="highlight">0.649474335188621</div> |
 |                 100                 |                60                 |                   4                    |                   3                   | 0.47343240951488375                            |
-|                 100                 |                60                 |                   5                    |                   4                   | 0.33162085827770661                            |
 |                 100                 |                60                 |                   6                    |                   4                   | 0.5443381851334722                             |
-|                 100                 |                60                 |                   7                    |                   5                   | 0.4153500188485931                             |
 |                 100                 |                60                 |                   8                    |                   6                   | 0.30661160770090995                            |
-|                 100                 |                60                 |                   9                    |                   6                   | 0.47996269793634677                            |
 |                 100                 |                60                 |                   10                   |                   7                   | 0.37423758246308586                            |
-|                 100                 |                60                 |                   11                   |                   8                   | 0.28361605491457653                            |
 |                 100                 |                60                 |                   12                   |                   8                   | 0.4320215340178938                             |
-|                 100                 |                60                 |                   13                   |                   9                   | 0.3409545354772218                             |
 |                 100                 |                60                 |                   14                   |                  10                   | 0.2623321970180976                             |
-|                 100                 |                60                 |                   15                   |                  10                   | 0.39288184738975973                            |
-
-Note: 
-
-Here is a sample of the data where there is a total of 100. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
 
 ---
 
-<p align="center"><img src="assets/variation_of_total_nodes .png" width="700" /></p>
-
-Note: 
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes .png)
+@divend 
 
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that 
 the probability is lower with respect to the committee size when $N$ is smaller. 
@@ -137,8 +126,10 @@ The variables and results are below:
   - n (committee size) = ranging from $1$ to $100$ 
   
 ---
-  
-  <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
+ 
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
+@divend 
   
 ---
 
@@ -166,7 +157,9 @@ The variables and results are below:
 
 ---
 
-<p align="center"><img src="assets/committee_size_10.png" width="900" /></p>
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/committee_size_10.png)
+@divend
 
 Note: 
 
@@ -188,7 +181,9 @@ The variables and results are below:
 
 ---
 
-<p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/committee_size_100.png)
+@divend
 
 Note: 
 
@@ -209,19 +204,26 @@ The variables and results are below:
 
 ---
 
-<p align="center"><img src="assets/probability_when_committee_100_20.png" width="900" /></p>
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
+@divend
 
 ---
 
-<p align="center"><img src="assets/probability_when_committee_100_40.png" width="900" /></p>
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
+@divend
 
 ---
 
-<p align="center"><img src="assets/probability_when_committee_100_60.png" width="900" /></p>
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_60.png)
+@divend
 
 ---
-
-<p align="center"><img src="assets/probability_when_committee_100_90.png" width="900" /></p>
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_90.png)
+@divend
 
 Note: 
 
@@ -231,7 +233,10 @@ probability plateaus is used to construct the following graph for both committee
 
 ---
 
-<p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="850" /></p>
+@div[s250px]
+![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_bad_nodes_10_100.png)
+@divend
+
 
 Note:
 
