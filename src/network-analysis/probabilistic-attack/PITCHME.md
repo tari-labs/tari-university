@@ -1,6 +1,16 @@
 
 # Probability of a Byzantine Takeover of the Digital Assets Network
 
+## Introduction 
+
+This investigation aims to provide answers to questions posed about the workings of the Tari Digital Assets Network (DAN) 
+environment. It covers probabilistic attack vector with regard to the total nodes, compromised nodes, committee size and 
+Byzantine Fault-tolerance (BFT) threshold. 
+
+The investigation attempts to answer the following question:
+*What is the percentage chance of controlling the majority of nodes in a random sample with varying quantities of the total 
+number of nodes, committee size, bad nodes and BFT threshold?*
+
 ## Notation Used  
 
 General notation of statistical expressions.  
@@ -56,4 +66,142 @@ the number of good nodes to be at least $\frac{2}{3} \cdot n+1​$, where $n​$
 that follow, BFT threshold of, for example, $67​$% of N, is implemented with rounding up to ensure that at least that 
 fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot n+1​$.
 
+#### Variation of Total Nodes
 
+The variables and results are below: 
+
+- N (total number of nodes in the network) = $100, 300, 500, 1000$
+- m (number of bad actors) = $60$% of N
+- T (BFT threshold) = $67$% of N
+- n (committee size) = ranging from $1$ to $1,000$ 
+
+The above graph was calculated using Python ([variations of N](https://github.com/tari-labs/modelling/blob/master/scenarios/N_variations.py) with dependencies [hypergeometric distribution](https://github.com/tari-labs/modelling/blob/master/utils/hyper_dist_prob.py)). Below is a sample of the data where there is a total of 100. The highlighted data was previously used in the Crude Monte Carlo Simulation when supplying the theoretical mean.
+
+| &nbsp;&nbsp;Total Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;Probability&nbsp;&nbsp;            |
+| :---------------------------------: | :-------------------------------: | :------------------------------------: | :-----------------------------------: | ---------------------------------------------- |
+|                 100                 |                60                 |                   1                    |                   1                   | 0.6                                            |
+|                 100                 |                60                 |                   2                    |                   2                   | 0.3575757575757576                             |
+|  <div class="highlight">100</div>   |  <div class="highlight">60</div>  |     <div class="highlight">3</div>     |    <div class="highlight">2</div>     | <div class="highlight">0.649474335188621</div> |
+|                 100                 |                60                 |                   4                    |                   3                   | 0.47343240951488375                            |
+|                 100                 |                60                 |                   5                    |                   4                   | 0.33162085827770661                            |
+|                 100                 |                60                 |                   6                    |                   4                   | 0.5443381851334722                             |
+|                 100                 |                60                 |                   7                    |                   5                   | 0.4153500188485931                             |
+|                 100                 |                60                 |                   8                    |                   6                   | 0.30661160770090995                            |
+|                 100                 |                60                 |                   9                    |                   6                   | 0.47996269793634677                            |
+|                 100                 |                60                 |                   10                   |                   7                   | 0.37423758246308586                            |
+|                 100                 |                60                 |                   11                   |                   8                   | 0.28361605491457653                            |
+|                 100                 |                60                 |                   12                   |                   8                   | 0.4320215340178938                             |
+|                 100                 |                60                 |                   13                   |                   9                   | 0.3409545354772218                             |
+|                 100                 |                60                 |                   14                   |                  10                   | 0.2623321970180976                             |
+|                 100                 |                60                 |                   15                   |                  10                   | 0.39288184738975973                            |
+
+<p align="center"><img src="assets/variation_of_total_nodes .png" width="700" /></p>
+From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that 
+the probability is lower with respect to the committee size when $N$ is smaller. 
+
+#### Variation of Byzantine Fault-tolerance Threshold
+
+The variables and results are below: 
+
+  - N (total number of nodes in the network) = $100$
+  - m (number of bad actors) = $60$% of N
+  - T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
+  - n (committee size) = ranging from $1$ to $100$ 
+  
+  <p align="center"><img src="assets/variation_of_bft_threshold.png" width="700" /></p>
+  
+The above graph was calculated using Python. From a plot 
+of committee size versus probability where the number of nodes remains at $100$ with a change in $T$, the BFT 
+threshold, ranging from $50$% to $67$%, it can be seen that When the BFT threshold is $50$% and $55$%, the probability 
+is low when the committee size is small; as the committee size increases, the probability increases, and tends to $1$. 
+The probability is higher for the case where the BFT threshold is $50$% than when the probability is $55$%. 
+
+When the BFT threshold is $60$%, the probability decreases from $0.63$ to approximately $0.59$, where it remains constant. 
+
+When the BFT threshold is $65$% and $67$%, the probability decreases from $0.38$ and tends to zero. This confirms the 
+BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
+
+#### Variation of Total Number of Nodes with Committee Size 10
+
+The variables and results are below: 
+
+- N (total number of nodes in the network) = ranging from $10$ to $350$
+- m (number of bad actors) = $60$% of N
+- T (BFT threshold) = $67$% of N
+- n (committee size) = $10$
+
+<p align="center"><img src="assets/committee_size_10.png" width="900" /></p>
+
+The above graph was calculated using Excel. For the 
+graph showing varying probabilities with respect to the total number of network nodes, where the committee size is $10$, 
+the probability dramatically increases when the total nodes is $3$ times more than the committee size and onwards. The 
+probability plateaus at $0.35$. 
+
+#### Variation of Total Number of Nodes with Committee Size 100
+
+The variables and results are below: 
+
+- N (total number of nodes in the network) = ranging from $100$ to $1,300$
+- m (number of bad actors) = $60$% of N
+- T (BFT threshold) = $67​$% of N
+- n (committee size) = $100$
+
+<p align="center"><img src="assets/committee_size_100.png" width="900" /></p>
+
+The above graph was calculated using Excel. From this and the previous graph, it can be seen that probabilities are significantly lower when the committee size is 
+$100$ compared to when it is $10$. There is an increase in probability up to a network size of $700$, albeit, not as steep as the 
+change when the committee size is $10$. The probability plateaus at $0.08$.
+
+The larger the committee size, the fewer dramatic changes there are in the probability. 
+
+#### Variation of Bad Nodes with Committee Size 10 and 100
+
+The variables and results are below: 
+
+- N (total number of nodes in the network) = ranging from $10$ and $100$ to $50,000$
+- m (number of bad actors) = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
+- T (BFT threshold) = $67$% of N
+- n (committee size) = $10$ and $100$
+
+<p align="center"><img src="assets/probability_when_committee_100_20.png" width="900" /></p>
+
+<p align="center"><img src="assets/probability_when_committee_100_40.png" width="900" /></p>
+
+<p align="center"><img src="assets/probability_when_committee_100_60.png" width="900" /></p>
+
+<p align="center"><img src="assets/probability_when_committee_100_90.png" width="900" /></p>
+
+The above graphs were calculated using Excel. These 
+graphs show varying probabilities when the percentage of bad nodes is $20$, $40$, $60$ and $90$. The value when the 
+probability plateaus is used to construct the following graph for both committee sizes $10$ and $100$. 
+
+<p align="center"><img src="assets/probability_bad_nodes_10_100.png" width="850" /></p>
+
+The above graph was calculated using Excel. The 
+graph shows changes in the probability due to changes in percentage of bad nodes when the committee size is $10$ and $100$.  When 
+the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  
+When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between 
+$50$ and $80$. When the committee size is $100$, the probability remains lower as the bad node percentage increases and 
+has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability 
+begins to increase at a lower percentage of bad nodes. 
+
+## Conclusions and Remarks 
+
+With regard to the Crude Monte Carlo Simulation, at this building block stage, probabilities were calculated and 
+distributions of nodes within the network illustrated.
+
+With regard to the statistical calculation, comments can be made for each of the varied parameters. 
+
+- Total nodes in the network: The smaller the pool of total nodes in the network, the lower the probability of bad 
+actors controlling the network. However, the probability difference is near negligible if the committee size is large. 
+This parameter will also be difficult to control, and the network will be ever-increasing. This can be seen in the 
+graph in [Variation of Total Nodes](#variation-of-total-nodes). 
+- BFT threshold: This threshold should be at least  $\frac{2}{3} \cdot n+1$ as per literature. This can be seen in the 
+graph in [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold).
+- Committee size: The larger the committee size, the lower the probability of bad actors controlling the network. This can 
+be seen in the graph in 
+[Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10) 
+and [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100).
+- Bad nodes: While this variable cannot be controlled, the probability of bad actors controlling the network can remain 
+low, as the percentage of bad nodes increases if the committee size is approximately $100$ or larger. This can be seen in the 
+graphs in [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
