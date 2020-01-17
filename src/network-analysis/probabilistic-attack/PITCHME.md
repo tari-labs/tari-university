@@ -126,7 +126,7 @@ The variables and results are below:
 ---
  
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
 @divend 
   
 ---
@@ -156,7 +156,7 @@ The variables and results are below:
 ---
 
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/committee_size_10.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/committee_size_10.png)
 @divend
 
 Note: 
@@ -180,7 +180,7 @@ The variables and results are below:
 ---
 
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/committee_size_100.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/committee_size_100.png)
 @divend
 
 Note: 
@@ -203,24 +203,24 @@ The variables and results are below:
 ---
 
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
 @divend
 
 ---
 
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
 @divend
 
 ---
 
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_60.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_60.png)
 @divend
 
 ---
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_90.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_90.png)
 @divend
 
 Note: 
@@ -232,7 +232,7 @@ probability plateaus is used to construct the following graph for both committee
 ---
 
 @div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/probability_bad_nodes_10_100.png)
+![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_bad_nodes_10_100.png)
 @divend
 
 
