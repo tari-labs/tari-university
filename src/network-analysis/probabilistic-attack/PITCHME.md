@@ -183,6 +183,8 @@ change when the committee size is $10$. The probability plateaus at $0.08$. The 
 
 ---
 
+![image](https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.bbcgoodfood.com%2Fsites%2Fdefault%2Ffiles%2Frecipe%2Frecipe-image%2F2016%2F06%2Fcardamom-buns.jpg&imgrefurl=https%3A%2F%2Fwww.bbcgoodfood.com%2Frecipes%2Fcardamom-buns&tbnid=N_kgm2Xv6YeaCM&vet=12ahUKEwiBpZvivYvnAhVv1eAKHewsBMQQMygBegUIARD7AQ..i&docid=y9DjgeA5HbTU3M&w=440&h=400&q=cardamom%20buns&ved=2ahUKEwiBpZvivYvnAhVv1eAKHewsBMQQMygBegUIARD7AQ)
+
 #### Variation of Bad Nodes with Committee Size 10 and 100
 
 The variables and results are below: 
