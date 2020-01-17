@@ -165,6 +165,41 @@ After classifying zk-SNARKs according to the type of trusted setup they use, Man
 _proof_ and _verification sizes_ as well as _performance_. 
 
 
+## Privacy and Scaling of Zero-knowledge Proofs 
+
+<div>
+  <p style="float: left;">
+    <img src="sources/???.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>???</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;???
+    <br>
+    <br>
+  </p>
+</div>
+
+
+
+### Overview
+
+Much research has been done towards improving scalability and privacy in cryptocurrencies, especially with the use 
+of ZK proofs. Other than zk-SNARKs and Bulletproofs are zk-STARKs (zero-knowledge Scalable Transparent 
+ARgument of Knowledge) and the AZTEC Protocol (Anonymous Zero-knowledge Transactions with Efficient Communication). 
+
+### Summary 
+
+"_Zero-Knowledge Proofs: Privacy & Scaling_" is a synoptic infographic that contains quick-to-read information on 
+zkSNARKs and Bulletproofs [[8]]. It includes a summative explanation on what ZK proofs are, takes a glance at four main 
+ZK Proofs (zk-SNARKs; zk-STARKs; Bulletproofs and Mimblewimble; and the AZTEC Protocol), and gives a brief overview of ZK 
+proofs features and trade-offs that have driven recent research (speed, proof-size, trusted setups and quantum 
+resistance). Concise descriptions of a few known implementations are included. Those that are in line with this report are: 
+
+- zk-SNARKs implementations - Zcash, Coda and Matter Labs; 
+- Bulletproof implementations - Monero, Grin and Beam, and a possible implementation to Bitcoin. 
+
+
 ## Quadratic Arithmetic Programs - from Zero to Hero 
 
 <div>
@@ -414,3 +449,12 @@ a Trusted Setup"
 [7]: http://coders-errand.com/the-vanishing-polynomial-for-qaps/
 "The Vanishing Polynomial
 for QAPs"
+
+[[8]] M. Demarco and A. Lulla, "Zero-knowledge Proofs: Privacy & Scaling Thematic Insights", Delphi Digital, 
+April 2019 [online]. Available: <https://cp0x.com/applications/core/interface/file/attachment.php?id=213>.
+Date accessed: 2020&#8209;01&#8209;06. 
+
+[8]: https://cp0x.com/applications/core/interface/file/attachment.php?id=213
+"Zero-knowledge Proofs: 
+Privacy & Scaling 
+Thematic Insights" 
