@@ -105,9 +105,7 @@ The variables and results are below:
 
 ---
 
-@div[s250px]
-![graph](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes .png)
-@divend 
+![variation_of_total_nodes](https://raw.githubusercontent.com/tari-labs/tari-university/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes.png)
 
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that 
 the probability is lower with respect to the committee size when $N$ is smaller. 
@@ -125,9 +123,7 @@ The variables and results are below:
   
 ---
  
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
-@divend 
+![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
   
 ---
 
@@ -155,9 +151,7 @@ The variables and results are below:
 
 ---
 
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/committee_size_10.png)
-@divend
+![committee_size_10](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/committee_size_10.png)
 
 Note: 
 
@@ -179,9 +173,7 @@ The variables and results are below:
 
 ---
 
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/committee_size_100.png)
-@divend
+![committee_size_100](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/committee_size_100.png)
 
 Note: 
 
@@ -202,26 +194,21 @@ The variables and results are below:
 
 ---
 
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
-@divend
+![probability_when_committee_100_20](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
+
 
 ---
 
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
-@divend
+
+![probability_when_committee_100_40](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
+---
+
+![probability_when_committee_100_60](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_60.png)
 
 ---
 
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_60.png)
-@divend
+![probability_when_committee_100_90](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_90.png)
 
----
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_90.png)
-@divend
 
 Note: 
 
@@ -231,9 +218,7 @@ probability plateaus is used to construct the following graph for both committee
 
 ---
 
-@div[s250px]
-![graph](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_bad_nodes_10_100.png)
-@divend
+![probability_bad_nodes_10_100.png](https://github.com/tari-labs/tari-university/blob/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/probability_bad_nodes_10_100.png)
 
 
 Note:
@@ -245,6 +230,8 @@ When the committee size is $100$, there is a steep increase in the probability w
 $50$ and $80$. When the committee size is $100$, the probability remains lower as the bad node percentage increases and 
 has a steeper gradient when the change in probability occurs. Whereas, when the committee size is $10$, the probability 
 begins to increase at a lower percentage of bad nodes. 
+
+---
 
 ## Conclusions and Remarks 
 
