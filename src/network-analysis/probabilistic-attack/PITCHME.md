@@ -45,21 +45,24 @@ size is $3​$? There are $3​$ bad nodes $(B1, B2, B3)​$ and $2​$ good nod
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
 ---
-Table 1: 
-| &nbsp;&nbsp;Draw 1st node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 2nd node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 3rd node&nbsp;&nbsp; | Are bad nodes <br /> in the majority? |
-| :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
-| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes ​              |
-| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes ​              |
-| <div class="wrap_bad">$B2$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
-| <div class="wrap_bad">$B3$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
-|                                  |                                   |    **Tally of Yes responses**     |              $7$               |
 
+| &nbsp;&nbsp;Total Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;Probability&nbsp;&nbsp;            |
+| :---------------------------------: | :-------------------------------: | :------------------------------------: | :-----------------------------------: | ---------------------------------------------- |
+|                 100                 |                60                 |                   1                    |                   1                   | 0.6                                            |
+|                 100                 |                60                 |                   2                    |                   2                   | 0.3575757575757576                             |
+|  <div class="highlight">100</div>   |  <div class="highlight">60</div>  |     <div class="highlight">3</div>     |    <div class="highlight">2</div>     | <div class="highlight">0.649474335188621</div> |
+|                 100                 |                60                 |                   4                    |                   3                   | 0.47343240951488375                            |
+|                 100                 |                60                 |                   5                    |                   4                   | 0.33162085827770661                            |
+|                 100                 |                60                 |                   6                    |                   4                   | 0.5443381851334722                             |
+|                 100                 |                60                 |                   7                    |                   5                   | 0.4153500188485931                             |
+|                 100                 |                60                 |                   8                    |                   6                   | 0.30661160770090995                            |
+|                 100                 |                60                 |                   9                    |                   6                   | 0.47996269793634677                            |
+|                 100                 |                60                 |                   10                   |                   7                   | 0.37423758246308586                            |
+|                 100                 |                60                 |                   11                   |                   8                   | 0.28361605491457653                            |
+|                 100                 |                60                 |                   12                   |                   8                   | 0.4320215340178938                             |
+|                 100                 |                60                 |                   13                   |                   9                   | 0.3409545354772218                             |
+|                 100                 |                60                 |                   14                   |                  10                   | 0.2623321970180976                             |
+|                 100                 |                60                 |                   15                   |                  10                   | 0.39288184738975973                            |
 ---
 
 From this list:
@@ -123,7 +126,7 @@ The variables and results are below:
   
 ---
  
-![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
+![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes%20.png)
   
 ---
 
@@ -183,8 +186,6 @@ change when the committee size is $10$. The probability plateaus at $0.08$. The 
 
 ---
 
-![image](https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.bbcgoodfood.com%2Fsites%2Fdefault%2Ffiles%2Frecipe%2Frecipe-image%2F2016%2F06%2Fcardamom-buns.jpg&imgrefurl=https%3A%2F%2Fwww.bbcgoodfood.com%2Frecipes%2Fcardamom-buns&tbnid=N_kgm2Xv6YeaCM&vet=12ahUKEwiBpZvivYvnAhVv1eAKHewsBMQQMygBegUIARD7AQ..i&docid=y9DjgeA5HbTU3M&w=440&h=400&q=cardamom%20buns&ved=2ahUKEwiBpZvivYvnAhVv1eAKHewsBMQQMygBegUIARD7AQ)
-
 #### Variation of Bad Nodes with Committee Size 10 and 100
 
 The variables and results are below: 
@@ -198,9 +199,7 @@ The variables and results are below:
 
 ![probability_when_committee_100_20](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
 
-
 ---
-
 
 ![probability_when_committee_100_40](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
 ---
@@ -240,16 +239,16 @@ begins to increase at a lower percentage of bad nodes.
 - Total nodes in the network: The smaller the pool of total nodes in the network, the lower the probability of bad 
 actors controlling the network. However, the probability difference is near negligible if the committee size is large. 
 This parameter will also be difficult to control, and the network will be ever-increasing. This can be seen in the 
-graph in [Variation of Total Nodes](#variation-of-total-nodes). 
+graph in Variation of Total Nodes. 
 - BFT threshold: This threshold should be at least  $\frac{2}{3} \cdot n+1$ as per literature. This can be seen in the 
-graph in [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold).
+graph in Variation of Byzantine Fault-tolerance Threshold.
 - Committee size: The larger the committee size, the lower the probability of bad actors controlling the network. This can 
 be seen in the graph in 
-[Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10) 
-and [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100).
+Variation of Total Number of Nodes with Committee Size 10 
+and Variation of Total Number of Nodes with Committee Size 100.
 - Bad nodes: While this variable cannot be controlled, the probability of bad actors controlling the network can remain 
 low, as the percentage of bad nodes increases if the committee size is approximately $100$ or larger. This can be seen in the 
-graphs in [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
+graphs in Variation of Bad Nodes with Committee Size 10 and 100
 
 Note: 
 
