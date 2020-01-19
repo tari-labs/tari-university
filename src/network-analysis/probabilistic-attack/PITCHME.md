@@ -1,36 +1,3 @@
-<style>
-        div.wrap_bad {
-            width: 95%; 
-            word-wrap: break-word;
-            background: #3D85C6;
-            font-size: 1.0em;
-            padding: 0.5em;
-            color: #000000;
-            }
-        </style>
-
-<style>
-        div.wrap_good {
-            width: 95%; 
-            word-wrap: break-word;
-            background: #6AA84F;
-            font-size: 1.0em;
-            padding: 0.5em;
-            color: #000000;
-            }
-        </style>
-
-<style>
-        div.highlight {
-            width: 95%; 
-            word-wrap: break-word;
-            background: #EA9999;
-            font-size: 1.0em;
-            padding: 0.5em;
-            color: #000000;
-            }
-        </style>
-
 # Probability of a Byzantine Takeover of the Digital Assets Network
 
 ---
@@ -78,19 +45,8 @@ The first step is to calculate the number of combinations where bad and good nod
 
 ---
 
-| &nbsp;&nbsp;Draw 1st node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 2nd node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 3rd node&nbsp;&nbsp; | Are bad nodes <br /> in the majority? |
-| :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
-| <div class="wrap_bad">$B1$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
-| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes ​              |
-| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes ​              |
-| <div class="wrap_bad">$B2$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
-| <div class="wrap_bad">$B3$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
-|                                  |                                   |    **Tally of Yes responses**     |              $7$               |
+![table](assets/table.png)
+
 ---
 
 From this list:
@@ -138,6 +94,8 @@ The variables and results are below:
 
 ![variation_of_bft_threshold](assets/variation_of_total_nodes%20.png)
 
+Note:
+
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that 
 the probability is lower with respect to the committee size when $N$ is smaller. 
 
@@ -155,8 +113,8 @@ The variables and results are below:
 ---
  
 ![variation_of_bft_threshold](assets/variation_of_bft_threshold.png)
-  
----
+
+Note:
 
 The above graph was calculated using Python. From a plot 
 of committee size versus probability where the number of nodes remains at 100 with a change in T, the BFT 
@@ -225,11 +183,12 @@ The variables and results are below:
 
 ---
 
-![probability_when_committee_100_20]assets/probability_when_committee_100_20.png)
+![probability_when_committee_100_20](assets/probability_when_committee_100_20.png)
 
 ---
 
 ![probability_when_committee_100_40](assets/probability_when_committee_100_40.png)
+
 ---
 
 ![probability_when_committee_100_60](assets/probability_when_committee_100_60.png)
@@ -247,7 +206,7 @@ probability plateaus is used to construct the following graph for both committee
 
 ---
 
-![probability_bad_nodes_10_100.png](assets/probability_bad_nodes_10_100.png)
+![probability_bad_nodes_10_100](assets/probability_bad_nodes_10_100.png)
 
 
 Note:
