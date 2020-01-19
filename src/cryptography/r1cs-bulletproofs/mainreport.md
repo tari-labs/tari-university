@@ -111,7 +111,6 @@ an _output_ $a_O$. Also, we note that $ a_L \cdot a_R - a_O = 0 $.
 <img src="sources/basic-multiplication-gate.png" alt="basic-multiplication-gate" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 1: Typical Multiplication Gate</b></div> 
-
 We note that in cases where the inputs and outputs are all _vectors_ of 
 $n$ components, i.e. $\mathbf{a_L} = ( a_{L, 1}, a_{L, 2} , \dots , a_{L, n})$, 
 $\mathbf{a_R} = ( a_{R, 1}, a_{R, 2} , \dots , a_{R, n})$ 
@@ -148,7 +147,7 @@ _smaller equations_ corresponding to each _gate_:
 
 $$
 u = x_1 \cdot x_1 \quad \text{,} \quad v = u \cdot x_2 \quad \text{,} \quad y = x_1 + 1 \quad \text{and} \quad z = v + y
-$$ 
+$$
 
 The variables $u, v$ and $ y $ are called _auxiliary variables_ or _low-level variables_, while 
 ${ z }$ is the _output_ of $ \mathcal{A} $. Thus, in addition to computing polynomials naturally, an 
@@ -237,12 +236,13 @@ and ${ { x_2 = 2 }}$ belonging to the appropriate field ${ \mathcal{F}}$. Thus t
 ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$ becomes ${ { s = ( 1 , 3 , 2 , 22 , 9 , 18 , 4 )}}$. 
 
 It is easy to check that the R1CS for the computation problem in the preceding example is as follows (one need only test 
-if ${ \langle {\bf{a_L , s}} \rangle * \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0}$ 
+if ${ \langle {\bf{a_L , s}} \rangle  \cdot  \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0}$ 
 for each equation). 
 
 
 
-<div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div> 
+<div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div>  
+
 
 | Equation                        | Rank-1 Constraint System Vectors                             |
 | ------------------------------- | ------------------------------------------------------------ |
@@ -424,7 +424,6 @@ _number of inputs_ to a shuffle gadget is always the same as the _number of outp
 ​				
 
 <div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs [[1]]</b></div> 
-
 Find a RUST example code for a _shuffle gadget_ in the _Bulletproofs Constraint System_ framework 
 [here](https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/docs/r1cs-docs-example.md), 
 written by Lovesh Harchandani. 
@@ -488,7 +487,7 @@ code of this example can be found [here](https://github.com/lovesh/bulletproofs/
 | 1.   | Create two pairs of generators; one pair <br/>for the Pedersen commitments and <br/>the other for the Bulletproof. | `let pc_gens = PedersenGens::default();`<br/>`let bp_gens = BulletproofGens::new(128, 1);` |
 | 2.   | Instantiate the prover using the commitment<br/>and Bulletproofs generators of Step 1, to <br/>produce the prover's transcript. | `let mut prover_transcript = Transcript::new(b"Factors");`<br/>`let mut prover = Prover::new(&bp_gens, &pc_gens, &mut prover_transcript);` |
 | 3.   | Prover commits to variables using <br/>the Pedersen commitments,<br/>creates variables corresponding<br/>to each commitment and adds<br/>the variables to the transcript. | `let x1 = Scalar::random(&mut rng);`<br/>`let (com_p, var_p) = prover.commit(p.into(), x1);`<br/>`let x2 = Scalar::random(&mut rng);`<br/>`let (com_q, var_q) = prover.commit(q.into(), x2);` |
-| 4.   | Prover constrains the variables in two steps:<br/><br/>a. Prover multiplies the variables of <br/>step 3 and captures the product in <br/>the "output" variable O. <br/>b. Prover wants to ensure the <br/>difference of the product O and r <br/>is zero. | `let (_, _, o) =  prover.multiply(var_p.into(), var_q.into());`<br/> <br/>`let r_lc: LinearCombination = vec![(Variable::One(),      r.into())].iter().collect();`<br/>`prover.constrain(o -  r_lc);` |
+| 4.   | Prover constrains the variables in two steps:<br/><br/>a) Prover multiplies the variables of <br/>step 3 and captures the product in <br/>the "output" variable O. <br/>b) Prover wants to ensure the <br/>difference of the product O and r <br/>is zero. | `let (_, _, o) =  prover.multiply(var_p.into(), var_q.into());`<br/> <br/>`let r_lc: LinearCombination = vec![(Variable::One(),      r.into())].iter().collect();`<br/>`prover.constrain(o -  r_lc);` |
 | 5.   | Prover creates the proof.                                    | `let proof = prover.prove().unwrap();`                       |
 | 6.   | Instantiation of the Verifier using the Pedersen<br/>commitments and Bulletproof generators, <br/>and creates its own transcript. | `let mut verifier_transcript = Transcript::new(b"Factors");`<br/>`let mut verifier = Verifier::new(&bp_gens, &pc_gens, &mut verifier_transcript);` |
 | 7.   | Verifier records commitments<br/>for p and q sent by prover in<br/>the transcript, and creates variables for them similar to the prover's. | `let var_p = verifier.commit(commitments.0);`<br/>`let var_q = verifier.commit(commitments.1);` |
