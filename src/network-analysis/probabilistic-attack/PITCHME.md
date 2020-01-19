@@ -4,8 +4,6 @@
 
 ## Introduction 
 
-@div[text-left]
-
 The investigation attempts to answer the following question:
 
 *What is the percentage chance of controlling the majority of nodes in a random sample with varying quantities of the total 
@@ -17,13 +15,9 @@ This investigation aims to provide answers to questions posed about the workings
 environment. It covers probabilistic attack vector with regard to the total nodes, compromised nodes, committee size and 
 Byzantine Fault-tolerance (BFT) threshold. 
 
-@divend
-
 ---
 
 ## Notation Used  
-
-@div[text-left]
 
 General notation of statistical expressions.  
 
@@ -36,13 +30,9 @@ There is a pool with $N$ nodes. The pool contains $m$ malicious nodes or bad act
 selection of nodes, $n$ is drawn. From this selection, the probability of drawing a threshold of bad actors, $T$, needs to 
 be calculated.  
 
-@divend
-
 ---
 
 ## Statistical Calculation
-
-@div[text-left]
 
 A single probability from the overarching question was used as a means to derive the formulae, as shown in the following 
 example. 
@@ -53,15 +43,11 @@ size is $3​$? There are $3​$ bad nodes $(B1, B2, B3)​$ and $2​$ good nod
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
-@divend
-
 ---
 
 ![table](assets/table.png)
 
 ---
-
-@div[text-left]
 
 From this list:
 - The number of combinations where $B$ is the majority can then be tallied. 
@@ -75,13 +61,9 @@ was posed, but one had to calculate the probability of selecting a majority of b
 committee size of $60$, $60$ bad nodes and $40$ good nodes, the number of combinations where bad and good nodes can be 
 chosen is $1.27E+28$. 
 
-@divend
-
 ---
 
 ### Binomial Distribution Formula 
-
-@div[text-left]
 
 With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
 are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
@@ -90,13 +72,9 @@ $$
 P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
 $$
 
-@divend
-
 ---
 
 ### Hypergeometric Distribution Formula
-
-@div[text-left]
 
 With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
 i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. 
@@ -107,14 +85,9 @@ $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
 `
-
-@divend
-
 ---
 
 ### Summation Formula
-
-@div[text-left]
 
 Referring to Example 3, the **tally** is the sum of all the combinations where the bad nodes are in a majority.  
 
@@ -129,11 +102,7 @@ $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
 $$
 `
-@divend
-
 ---
-
-@div[text-left]
 
 The following table provides some visual insight into understanding this: 
 
@@ -141,23 +110,15 @@ The following table provides some visual insight into understanding this:
 | :------------------------------------: | :-----------------------------------: | :----------------------------------: |
 |                   10                   |                   7                   |                  3                   |
 
-@divend
-
 ---
 
 # The Calculations
 
-@div[text-left]
-
 Literature about BFT threshold advises the number of good nodes to be at least $\frac{2}{3} \cdot n+1​$, where $n​$ is the number of nodes. In the calculations that follow, BFT threshold of, for example, $67​$% of N, is implemented with rounding up to ensure that at least that fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot n+1​$.
-
-@divend
 
 ---
 
 #### Variation of Total Nodes
-
-@div[text-left]
 
 The variables and results are below: 
 
@@ -166,11 +127,7 @@ The variables and results are below:
 - T (BFT threshold) = $67$% of N
 - n (committee size) = ranging from $1$ to $1,000$ 
 
-@divend
-
 ---
-
-@div[text-left]
 
 | &nbsp;&nbsp;Total Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;Probability&nbsp;&nbsp;            |
 | :---------------------------------: | :-------------------------------: | :------------------------------------: | :-----------------------------------: | ---------------------------------------------- |
@@ -181,8 +138,6 @@ The variables and results are below:
 |                 100                 |                60                 |                   10                   |                   7                   | 0.37423758246308586                            |
 |                 100                 |                60                 |                   12                   |                   8                   | 0.4320215340178938                             |
 |                 100                 |                60                 |                   14                   |                  10                   | 0.2623321970180976                             |
-
-@divend
 
 ---
 
@@ -197,16 +152,12 @@ the probability is lower with respect to the committee size when $N$ is smaller.
 
 #### Variation of Byzantine Fault-tolerance Threshold
 
-@div[text-left]
-
 The variables and results are below: 
 
   - N (total number of nodes in the network) = $100$
   - m (number of bad actors) = $60$% of N
   - T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
   - n (committee size) = ranging from $1$ to $100$ 
-  
-@divend
 
 ---
  
@@ -227,8 +178,6 @@ BFT threshold of $\frac{2}{3} \cdot n+1$ as per literature.
 
 ---
 
-@div[text-left]
-
 #### Variation of Total Number of Nodes with Committee Size 10
 
 The variables and results are below: 
@@ -237,8 +186,6 @@ The variables and results are below:
 - m (number of bad actors) = $60$% of N
 - T (BFT threshold) = $67$% of N
 - n (committee size) = $10$
-
-@divend
 
 ---
 
@@ -253,8 +200,6 @@ probability plateaus at $0.35$.
 
 ---
 
-@div[text-left]
-
 #### Variation of Total Number of Nodes with Committee Size 100
 
 The variables and results are below: 
@@ -263,8 +208,6 @@ The variables and results are below:
 - m (number of bad actors) = $60$% of N
 - T (BFT threshold) = $67​$% of N
 - n (committee size) = $100$
-
-@divend
 
 ---
 
@@ -278,8 +221,6 @@ change when the committee size is $10$. The probability plateaus at $0.08$. The 
 
 ---
 
-@div[text-left]
-
 #### Variation of Bad Nodes with Committee Size 10 and 100
 
 The variables and results are below: 
@@ -288,8 +229,6 @@ The variables and results are below:
 - m (number of bad actors) = $10$%, $20$%, $30$%, $40$%, $50$%, $60$%, $70$%, $80$% and $90$% of N
 - T (BFT threshold) = $67$% of N
 - n (committee size) = $10$ and $100$
-
-@divend
 
 ---
 
@@ -331,8 +270,6 @@ begins to increase at a lower percentage of bad nodes.
 
 ---
 
-@div[text-left]
-
 ## Conclusions and Remarks 
 
 - Total nodes in the network: The smaller the pool of total nodes in the network, the lower the probability of bad 
@@ -348,8 +285,6 @@ and Variation of Total Number of Nodes with Committee Size 100.
 - Bad nodes: While this variable cannot be controlled, the probability of bad actors controlling the network can remain 
 low, as the percentage of bad nodes increases if the committee size is approximately $100$ or larger. This can be seen in the 
 graphs in Variation of Bad Nodes with Committee Size 10 and 100
-
-@divend
 
 Note: 
 
