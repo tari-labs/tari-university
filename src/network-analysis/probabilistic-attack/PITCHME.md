@@ -78,19 +78,19 @@ The first step is to calculate the number of combinations where bad and good nod
 
 ---
 
-| &nbsp;&nbsp;Total Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Bad Nodes&nbsp;&nbsp; | &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;Probability&nbsp;&nbsp;            |
-| :---------------------------------: | :-------------------------------: | :------------------------------------: | :-----------------------------------: | ---------------------------------------------- |
-|                 100                 |                60                 |                   1                    |                   1                   | 0.6                                            |
-|                 100                 |                60                 |                   2                    |                   2                   | 0.3575757575757576                             |
-|  <div class="highlight">100</div>   |  <div class="highlight">60</div>  |     <div class="highlight">3</div>     |    <div class="highlight">2</div>     | <div class="highlight">0.649474335188621</div> |
-|                 100                 |                60                 |                   4                    |                   3                   | 0.47343240951488375                            |
-|                 100                 |                60                 |                   5                    |                   4                   | 0.33162085827770661                            |
-|                 100                 |                60                 |                   6                    |                   4                   | 0.5443381851334722                             |
-|                 100                 |                60                 |                   7                    |                   5                   | 0.4153500188485931                             |
-|                 100                 |                60                 |                   8                    |                   6                   | 0.30661160770090995                            |
-|                 100                 |                60                 |                   9                    |                   6                   | 0.47996269793634677                            |
-|                 100                 |                60                 |                   10                   |                   7                   | 0.37423758246308586                            |
-
+| &nbsp;&nbsp;Draw 1st node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 2nd node&nbsp;&nbsp; | &nbsp;&nbsp;Draw 3rd node&nbsp;&nbsp; | Are bad nodes <br /> in the majority? |
+| :------------------------------: | :-------------------------------: | :-------------------------------: | :----------------------------: |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_bad">$B3$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B2$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes               |
+| <div class="wrap_bad">$B1$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G1$</div> |              Yes ​              |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_bad">$B3$</div>  | <div class="wrap_good">$G2$</div> |              Yes ​              |
+| <div class="wrap_bad">$B2$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
+| <div class="wrap_bad">$B3$</div> | <div class="wrap_good">$G1$</div> | <div class="wrap_good">$G2$</div> |               No               |
+|                                  |                                   |    **Tally of Yes responses**     |              $7$               |
 ---
 
 From this list:
@@ -107,7 +107,7 @@ chosen is $1.27E+28$.
 
 ---
 
-# Statistical Calculation 
+# The Calculations
 
 Literature about BFT threshold advises the number of good nodes to be at least $\frac{2}{3} \cdot n+1​$, where $n​$ is the number of nodes. In the calculations that follow, BFT threshold of, for example, $67​$% of N, is implemented with rounding up to ensure that at least that fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot n+1​$.
 
