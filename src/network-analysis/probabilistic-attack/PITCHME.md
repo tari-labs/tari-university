@@ -80,10 +80,11 @@ With regard to hypergeometric distribution, a committee of nodes is drawn from t
 i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. 
 This closely mimics the events that would take place within the network. 
 
+`
 $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
-
+`
 ---
 
 ### Summation Formula
@@ -96,10 +97,11 @@ nodes in the committee. This entails calculating the probabilities from the BFT 
 there needs to be a summation of individual probabilities in order to calculate the probability of selecting the 
 majority of bad nodes. 
 
+`
 $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
 $$
-
+`
 ---
 
 The following table provides some visual insight into understanding this: 
@@ -156,7 +158,7 @@ The variables and results are below:
   - m (number of bad actors) = $60$% of N
   - T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
   - n (committee size) = ranging from $1$ to $100$ 
-  
+
 ---
  
 ![variation_of_bft_threshold](assets/variation_of_bft_threshold.png)
