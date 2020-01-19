@@ -70,9 +70,11 @@ chosen is $1.27E+28$.
 With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
 are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
 
+`
 $$
 P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
 $$
+`
 
 ---
 
@@ -87,6 +89,7 @@ $$
 P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
 $$
 `
+
 ---
 
 ### Summation Formula
@@ -104,6 +107,7 @@ $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
 $$
 `
+
 ---
 
 The following table provides some visual insight into understanding this: 
