@@ -108,7 +108,7 @@ The variables and results are below:
 
 ---
 
-![variation_of_total_nodes](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes.png) 
+![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes%20.png)
 
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that 
 the probability is lower with respect to the committee size when $N$ is smaller. 
@@ -126,7 +126,7 @@ The variables and results are below:
   
 ---
  
-![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes%20.png)
+![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/blob/master/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
   
 ---
 
