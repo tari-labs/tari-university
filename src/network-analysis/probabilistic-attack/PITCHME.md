@@ -63,6 +63,53 @@ chosen is $1.27E+28$.
 
 ---
 
+### Binomial Distribution Formula 
+
+With regard to binomial distribution, a committee of nodes is drawn from the total nodes with replacement, i.e. nodes 
+are drawn, the intention of the node is distinguished and the node is returned to the total nodes. 
+
+$$
+P = {{n}\choose{T}}\cdot\biggl(\frac{m}{n}\biggr)^{T}\cdot\biggl(\frac{N-m}{n}\biggr)^{n-T}
+$$
+
+---
+
+### Hypergeometric Distribution Formula
+
+With regard to hypergeometric distribution, a committee of nodes is drawn from the total nodes without replacement, 
+i.e. nodes are drawn simultaneously, the intention of the node is distinguished and not returned to the total nodes. 
+This closely mimics the events that would take place within the network. 
+
+$$
+P = \frac{{{m}\choose{T}}\cdot{{N-m}\choose{n-T}}}{{N}\choose{n}}
+$$
+
+---
+
+### Summation Formula
+
+Referring to Example 3, the **tally** is the sum of all the combinations where the bad nodes are in a majority.  
+
+As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes 
+if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad 
+nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, 
+there needs to be a summation of individual probabilities in order to calculate the probability of selecting the 
+majority of bad nodes. 
+
+$$
+P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
+$$
+
+---
+
+The following table provides some visual insight into understanding this: 
+
+| &nbsp;&nbsp;Committee Size&nbsp;&nbsp; | &nbsp;&nbsp;BFT Threshold&nbsp;&nbsp; | &nbsp;&nbsp;No. of Steps&nbsp;&nbsp; |
+| :------------------------------------: | :-----------------------------------: | :----------------------------------: |
+|                   10                   |                   7                   |                  3                   |
+
+---
+
 # The Calculations
 
 Literature about BFT threshold advises the number of good nodes to be at least $\frac{2}{3} \cdot n+1​$, where $n​$ is the number of nodes. In the calculations that follow, BFT threshold of, for example, $67​$% of N, is implemented with rounding up to ensure that at least that fraction is obtained. In this sense, $67​$% of N simulates $\frac{2}{3} \cdot n+1​$.
