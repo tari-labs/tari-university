@@ -1,6 +1,16 @@
 # Probability of a Byzantine Takeover of the Digital Assets Network
 ---
 
+- Introduction 
+- Notation Used 
+- Statistical Calculations
+- Calculations and Analysis
+- Conclusions and Remarks
+
+See full report [here]() 
+
+---
+
 ## Introduction 
 
 The investigation attempts to answer the following question:
@@ -119,7 +129,7 @@ The following table provides some visual insight into understanding this:
 
 ---
 
-# The Calculations
+# Calculations and Analysis
 
 Literature about BFT threshold advises the number of good nodes to be at least $\frac{2}{3} \cdot n+1$, where $n$ is the number of nodes. In the calculations that follow, BFT threshold of, for example, $67$% of N, is implemented with rounding up to ensure that at least that fraction is obtained. In this sense, $67$% of N simulates $\frac{2}{3} \cdot n+1$.
 
