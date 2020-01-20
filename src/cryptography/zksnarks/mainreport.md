@@ -184,7 +184,7 @@ _proof_ and _verification sizes_ as well as _performance_.
     <br>
   </p>
 </div> 
-\ \
+
 <div>
   <p style="float: left;">
     <img src="sources/anillulla.png" width="90" />
