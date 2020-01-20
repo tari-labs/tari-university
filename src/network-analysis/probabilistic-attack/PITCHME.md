@@ -1,5 +1,4 @@
 # Probability of a Byzantine Takeover of the Digital Assets Network
----
 
 - Introduction 
 - Notation Used 
