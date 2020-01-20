@@ -12,11 +12,14 @@
 - [Comparing General-purpose zk-SNARKs](#comparing-general-purpose-zk-snarks) 
   - [Overview](#overview-2)
   - [Summary](#summary-2)
-- [Quadratic Arithmetic Programs - from Zero to Hero](#quadratic-arithmetic-programs---from-zero-to-hero) 
+- [Privacy and Scaling of Zero-knowledge Proofs](#privacy-and-scaling-of-zero-knowledge-proofs)
   - [Overview](#overview-3)
   - [Summary](#summary-3)
-- [Explaining SNARKs Series: Part I to Part VII](#explaining-snarks-series-part-i-to-part-vii) 
+- [Quadratic Arithmetic Programs - from Zero to Hero](#quadratic-arithmetic-programs---from-zero-to-hero) 
   - [Overview](#overview-4)
+  - [Summary](#summary-4)
+- [Explaining SNARKs Series: Part I to Part VII](#explaining-snarks-series-part-i-to-part-vii) 
+  - [Overview](#overview-5)
   - [Part I: Homomorphic Hidings](#part-i-homomorphic-hidings) 
   - [Part II: Blind Evaluation of Polynomials](#part-ii-blind-evaluation-of-polynomials) 
   - [Part III: The Knowledge of Coefficient Test and Assumption](#part-iii-the-knowledge-of-coefficient-test-and-assumption) 
@@ -26,7 +29,7 @@
   - [Part VII: Pairings of Elliptic Curves](#part-vii-pairings-of-elliptic-curves)
 - [zk-SHARKs: Combining Succinct Verification and Public Coin Setup](#zk-sharks-combining-succinct-verification-and-public-coin-setup) 
   - [Background](#background)
-  - [Summary](#summary-4)
+  - [Summary](#summary-5)
 - [References](#references)
 
 
@@ -167,19 +170,33 @@ _proof_ and _verification sizes_ as well as _performance_.
 
 ## Privacy and Scaling of Zero-knowledge Proofs 
 
+
+
 <div>
   <p style="float: left;">
-    <img src="sources/???.png" width="90" />
+    <img src="sources/mediodemarco1.png" width="90" />
   </p>
   <p>
     <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<strong>???</strong><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;???
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Medio Demarco</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Co-founder of Delphi Digital
+    <br>
+    <br>
+  </p>
+</div> 
+\ \
+<div>
+  <p style="float: left;">
+    <img src="sources/anillulla.png" width="90" />
+  </p>
+  <p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Anil Lulla</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Co-founder of Delphi Digital
     <br>
     <br>
   </p>
 </div>
-
 
 
 ### Overview
@@ -190,14 +207,16 @@ ARgument of Knowledge) and the AZTEC Protocol (Anonymous Zero-knowledge Transact
 
 ### Summary 
 
-"_Zero-Knowledge Proofs: Privacy & Scaling_" is a synoptic infographic that contains quick-to-read information on 
+"_Zero-Knowledge Proofs: Privacy & Scaling_" found [here](https://cp0x.com/applications/core/interface/file/attachment.php?id=213) is a synoptic infographic that contains quick-to-read information on 
 zkSNARKs and Bulletproofs [[8]]. It includes a summative explanation on what ZK proofs are, takes a glance at four main 
 ZK Proofs (zk-SNARKs; zk-STARKs; Bulletproofs and Mimblewimble; and the AZTEC Protocol), and gives a brief overview of ZK 
 proofs features and trade-offs that have driven recent research (speed, proof-size, trusted setups and quantum 
-resistance). Concise descriptions of a few known implementations are included. Those that are in line with this report are: 
+resistance). Concise descriptions of a few known implementations are included. Those that are of interest to the Tari Labs Project are: 
 
 - zk-SNARKs implementations - Zcash, Coda and Matter Labs; 
 - Bulletproof implementations - Monero, Grin and Beam, and a possible implementation to Bitcoin. 
+
+
 
 
 ## Quadratic Arithmetic Programs - from Zero to Hero 
@@ -233,7 +252,9 @@ formats on which a zk-SNARK proof can be performed. The following seven steps de
 In [this post](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649?source=post_page-----f6d558cea649----------------------), 
 Buterin explains how zk-SNARKs work, using an example that focuses on the first three steps of the process given above. 
 Buterin explains how a computational problem can be written as an arithmetic circuit, converted into a rank-1 constraint 
-system or R1CS, and ultimately transform the R1CS into a quadratic arithmetic program.
+system or R1CS, and ultimately transform the R1CS into a quadratic arithmetic program. 
+
+
 
 ## Explaining SNARKs Series: Part I to Part VII
 
@@ -268,7 +289,7 @@ finite group of a large _prime_ order.
 
 This [post](https://z.cash/blog/snark-explain2) explains how the power of the _homomorphic property_ of these types of 
 hidings is seen in how it easily extends to linear combinations. Since any polynomial evaluated at a specific value 
-$x = \bf{s} $ is a _weighted linear combination_ of powers of $\bf{s}​$, this property allows sophisticated 
+$x = \bf{s} $ is a _weighted linear combination_ of powers of $\bf{s}$, this property allows sophisticated 
 zero-knowledge proofs to be set up. 
 
 For example, two parties can set up a _zero-knowledge proof_ where the Verifier can request the Prover to prove 
@@ -276,7 +297,7 @@ knowledge of the "right" polynomial $P(x)$, without revealing $P(x)$ to the Veri
 is for the Prover to evaluate $P(x)$ at a secret point $\bf{s}$, without learning what $\bf{s}$ is. Thus, instead of 
 sending $\bf{s}$ in the open, the Verifier sends homomorphic hidings of the necessary power of $\bf{s}$. The Prover 
 therefore simply evaluates the right linear combination of the hidings as dictated to by the polynomial $P(x)$. This is 
-how the Prover performs what is called a _blind evaluation of the polynomial_ $P(x)$ at a secret point $\bf{s}​$ 
+how the Prover performs what is called a _blind evaluation of the polynomial_ $P(x)$ at a secret point $\bf{s}$ 
 only known by the Verifier.  
 
 ### [Part III: The Knowledge of Coefficient Test and Assumption]
@@ -297,11 +318,11 @@ _extractor_ of the Prover.
 In [this part](https://z.cash/blog/snark-explain4) of the series, Gabizon explains how to make the _blind 
 evaluation of polynomials_ of Part II above, verifiable. This requires an extension of the _Knowledge of Coefficient 
 Assumption_ considered in Part III. Due to the homomorphic property of the used homomorphic hiding function, the Prover 
-is able to receive several hidings of $\alpha​$-pairs from the Verifier, evaluate the polynomial $P(x)​$ on a 
-particular linear combination of these hidings of $\alpha​$-pairs and send the resulting pair to the Verifier. Now, 
-according to the extended _Knowledge of Coefficient Assumption_ of degree $d​$, the Verifier can know, with a high 
+is able to receive several hidings of $\alpha$-pairs from the Verifier, evaluate the polynomial $P(x)$ on a 
+particular linear combination of these hidings of $\alpha$-pairs and send the resulting pair to the Verifier. Now, 
+according to the extended _Knowledge of Coefficient Assumption_ of degree $d$, the Verifier can know, with a high 
 probability, that the Prover knows the "right" polynomial, 
-$P(x)​$, without disclosing it.   
+$P(x)$, without disclosing it.   
 
 ### [Part V: From Computations to Polynomials]
 
@@ -390,6 +411,7 @@ The slides from the [talk](https://dci.mit.edu/zksharks) can be found
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/OP8ydUxAVt4" frameborder="0" allow="accelerometer; 
 autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 
 ## References 
