@@ -7,7 +7,7 @@
 - Calculations and Analysis
 - Conclusions and Remarks
 
-See full report [here]() 
+See full report [here](https://tlu.tarilabs.com/network-analysis/probabilistic-attack/byzantine_takeover_of_the_DAN.html) 
 
 ---
 
