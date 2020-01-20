@@ -147,7 +147,9 @@ The variables:
 
 ---
 
-![variation_of_total_nodes](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes%20.png)
+@div[s800px]
+![variation_of_total_nodes](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes%20.png)
+@divend
 
 Note:
 
