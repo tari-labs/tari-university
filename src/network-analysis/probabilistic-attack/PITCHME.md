@@ -43,13 +43,9 @@ size is $3$? There are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
 ---
-@div[s700px]
-![table](https://raw.githubusercontent.com/tari-labs/tari-university/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/table.png)
-@divend
 
----
-@div[s700px]
-![table](https://github.com/tari-labs/tari-university/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/table.png)
+@div[s600px]
+![table](https://raw.githubusercontent.com/tari-labs/tari-university/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/table.png)
 @divend
 
 ---
