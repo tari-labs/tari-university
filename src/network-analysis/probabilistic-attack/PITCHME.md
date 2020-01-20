@@ -44,7 +44,7 @@ The first step is to calculate the number of combinations where bad and good nod
 
 ---
 
-@div[s700px]
+@div[s500px]
 ![variation_of_bft_threshold](https://raw.githubusercontent.com/tari-labs/tari-university/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/table.png)
 @divend
 
@@ -148,7 +148,7 @@ The variables:
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![variation_of_total_nodes](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes%20.png)
 @divend
 
@@ -170,7 +170,7 @@ The variables:
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
 @divend
 
@@ -200,7 +200,7 @@ The variables:
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![committee_size_10](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/committee_size_10.png)
 @divend
 
@@ -224,7 +224,7 @@ The variables:
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![committee_size_100](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/committee_size_100.png)
 @divend
 
@@ -247,25 +247,25 @@ The variables:
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![probability_when_committee_100_20](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
 @divend
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![probability_when_committee_100_40](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
 @divend
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![probability_when_committee_100_60](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_60.png)
 @divend
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![probability_when_committee_100_90](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_90.png)
 @divend
 
@@ -277,7 +277,7 @@ probability plateaus is used to construct the following graph for both committee
 
 ---
 
-@div[s700px]
+@div[s800px]
 ![probability_bad_nodes_10_100](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_bad_nodes_10_100.png)
 @divend
 
