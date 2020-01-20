@@ -1,5 +1,4 @@
 # Probability of a Byzantine Takeover of the Digital Assets Network
-
 ---
 
 ## Introduction 
@@ -44,8 +43,9 @@ size is $3$? There are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
 
 ---
-
-![table](assets/table.png)
+@div[s700px]
+![table](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/table.png)
+@divend
 
 ---
 
@@ -147,7 +147,7 @@ The variables:
 
 ---
 
-@div[s800px]
+@div[s700px]
 ![variation_of_total_nodes](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/variation_of_total_nodes%20.png)
 @divend
 
@@ -169,7 +169,9 @@ The variables:
 
 ---
 
-![variation_of_bft_threshold](assets/variation_of_bft_threshold.png)
+@div[s700px]
+![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/variation_of_bft_threshold.png)
+@divend
 
 Note:
 
@@ -197,7 +199,9 @@ The variables:
 
 ---
 
-![committee_size_10](assets/committee_size_10.png)
+@div[s700px]
+![committee_size_10](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/committee_size_10.png)
+@divend
 
 Note: 
 
@@ -219,7 +223,9 @@ The variables:
 
 ---
 
-![committee_size_100](assets/committee_size_100.png)
+@div[s700px]
+![committee_size_100](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/committee_size_100.png)
+@divend
 
 Note: 
 
@@ -240,20 +246,27 @@ The variables:
 
 ---
 
-![probability_when_committee_100_20](assets/probability_when_committee_100_20.png)
+@div[s700px]
+![probability_when_committee_100_20](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_20.png)
+@divend
 
 ---
 
-![probability_when_committee_100_40](assets/probability_when_committee_100_40.png)
+@div[s700px]
+![probability_when_committee_100_40](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_40.png)
+@divend
 
 ---
 
-![probability_when_committee_100_60](assets/probability_when_committee_100_60.png)
+@div[s700px]
+![probability_when_committee_100_60](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_60.png)
+@divend
 
 ---
 
-![probability_when_committee_100_90](assets/probability_when_committee_100_90.png)
-
+@div[s700px]
+![probability_when_committee_100_90](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_when_committee_100_90.png)
+@divend
 
 Note: 
 
@@ -263,8 +276,9 @@ probability plateaus is used to construct the following graph for both committee
 
 ---
 
-![probability_bad_nodes_10_100](assets/probability_bad_nodes_10_100.png)
-
+@div[s700px]
+![probability_bad_nodes_10_100](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/probability_bad_nodes_10_100.png)
+@divend
 
 Note:
 
