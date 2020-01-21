@@ -54,7 +54,7 @@ The first step is to calculate the number of combinations where bad and good nod
 ---
 
 @div[s500px]
-![variation_of_bft_threshold](https://raw.githubusercontent.com/tari-labs/tari-university/ks-network-probability-presentation/src/network-analysis/probabilistic-attack/assets/table.png)
+![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/table.png)
 @divend
 
 ---

@@ -13,7 +13,7 @@ Presentation:   src/network-analysis/probabilistic-attack#/
 
 Final URL:
 
-https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack#/
+https://gitpitch.com/tari-labs/tari-university/MyBranchName?p=/src/network-analysis/probabilistic-attack#/
 
 ## On the trunk
 ### Trunk name
