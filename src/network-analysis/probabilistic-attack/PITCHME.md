@@ -34,6 +34,8 @@ General notation of statistical expressions.
 - Let $m$ be the number of bad actors.
 - Let $T$ be the Byzantine Fault Tolerance (BFT) threshold.
 
+Note:
+
 There is a pool with $N$ nodes. The pool contains $m$ malicious nodes or bad actors. From within the pool, a random 
 selection of nodes, $n$ is drawn. From this selection, the probability of drawing a threshold of bad actors, $T$, needs to 
 be calculated.  
@@ -57,7 +59,7 @@ The first step is to calculate the number of combinations where bad and good nod
 ![variation_of_bft_threshold](https://github.com/tari-labs/tari-university/raw/master/src/network-analysis/probabilistic-attack/assets/table.png)
 @divend
 
----
+Note: 
 
 From this list:
 - The number of combinations where $B$ is the majority can then be tallied. 
@@ -65,8 +67,6 @@ From this list:
 - Thus, from the $10$ combinations, there are $7$ combinations where there is a 
 majority of bad nodes. 
 - Therefore, the quotient of $7$ and $10$ is the probability $0.7$. 
-
-Note:
 
 This method is limited in calculating the probability where the variables are large. For example, if the same question 
 was posed, but one had to calculate the probability of selecting a majority of bad nodes from a total of $100$ nodes, with a 
@@ -106,17 +106,19 @@ $$
 
 Referring to Example earlier, the **tally** is the sum of all the combinations where the bad nodes are in a majority.  
 
-As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes 
-if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad 
-nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, 
-there needs to be a summation of individual probabilities in order to calculate the probability of selecting the 
-majority of bad nodes. 
-
 `
 $$
 P_{tot} = \sum_{i=T}^{n} P(N,m,n,i)
 $$
 `
+
+Note:
+
+As a recap to the question, *what is the probability of selecting a majority of bad nodes from a total of $100$ nodes 
+if the committee size is $10$*? This problem considers solving for the probability where there is a **majority** of bad 
+nodes in the committee. This entails calculating the probabilities from the BFT threshold to the committee size. Thus, 
+there needs to be a summation of individual probabilities in order to calculate the probability of selecting the 
+majority of bad nodes. 
 
 ---
 
