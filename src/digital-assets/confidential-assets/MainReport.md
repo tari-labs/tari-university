@@ -83,6 +83,7 @@ has the following form:
 
 $$
 C(x,r) = xH + rG
+\tag{1}
 $$
 
 where $ r \in  \mathbb Z_p $ is a random blinding factor, $ G \in  \mathbb F_p $ is a random generator point and 
@@ -115,28 +116,32 @@ $$
 in_A = x_1H_A + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_A + r_{A_2}G \\\\
 in_B = y_1H_B + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_B + r_{B_2}G
 \end{aligned}
-\mspace{70mu} (1)
+\tag{2}
 $$
 
-For relation (1) to hold, the sum of the outputs minus the sum of the inputs must be zero:
+In the equations that follow, a commitment to the value of $ 0 $ will be denoted by $ (\mathbf{0}) $, i.e. 
+$C(0,r) = 0H + rG = (\mathbf{0})$. For relation (2) to hold, the sum of the outputs minus the sum of the inputs must be 
+a commitment to the value of $ 0 $:
 
 $$
 \begin{aligned}
-(out_A + out_B) - (in_A + in_B) = 0 \\\\
-(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = 0 \\\\
-(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = 0
+(out_A + out_B) - (in_A + in_B) = (\mathbf{0}) \\\\
+(x_2H_A + r_{A_2}G) + (y_2H_B + r_{B_2}G) - (x_1H_A + r_{A_1}G) - (y_1H_B + r_{B_1}G) = (\mathbf{0}) \\\\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_A + (y_2 - y_1)H_B = (\mathbf{0})
 \end{aligned}
-\mspace{70mu} (2)
+\tag{3}
 $$
 
-Since $ H_A $ and $ H_B $ are both NUMS asset tags, the only way relation (2) can hold is if the total input and 
+Since $ H_A $ and $ H_B $ are both NUMS asset tags, the only way relation (3) can hold is if the total input and 
 output amounts of asset $ A $ are equal and if the same is true for asset $ B $. This concept can be extended to an 
 unlimited amount of distinct asset types, as long as each asset tag can be a unique NUMS generator. The problem with 
-relation (2) is that the asset type of each output is publicly visible, thus the assets that were transacted in are 
+relation (3) is that the asset type of each output is publicly visible, thus the assets that were transacted in are 
 not confidential. This can be solved by replacing each asset tag with a blinded version of itself. The asset commitment 
 to asset tag $ H_A $ (blinded asset tag) is then defined as the point
+
 $$
 H_{0_A} = H_A + rG
+\tag{4}
 $$
 
 Blinding of the asset tag is necessary to make transactions in the asset, i.e. which asset was transacted in, 
@@ -147,25 +152,28 @@ tag $  H_{0_A}  $ is also a commitment to the same value using the asset tag $  
 
 $$
 x_1H_{0_A} + r_{A_1}G = x_1(H_A + rG) + r_{A_1}G = x_1H_A + (r_{A_1} + x_1r)G
+\tag{5}
 $$
 
-Using blinded asset tags, the transaction in relation (1) then becomes:
+Using blinded asset tags, the transaction in relation (2) then becomes:
 
 $$
 \begin{aligned}
 in_A = x_1H_{0_A} + r_{A_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_A = x_2H_{0_A} + r_{A_2}G \\\\
 in_B = y_1H_{0_B} + r_{B_1}G \mspace{15mu} \mathrm{,} \mspace{15mu} out_B = y_2H_{0_B} + r_{B_2}G
 \end{aligned}
+\tag{6}
 $$
 
 Correspondingly, the zero sum rule translates to:
 
 $$
 \begin{aligned}
-(out_A + out_B) - (in_A + in_B) = 0 \\\\
-(x_2H_{0_A} + r_{A_2}G) + (y_2H_{0_B} + r_{B_2}G) - (x_1H_{0_A} + r_{A_1}G) - (y_1H_{0_B} + r_{B_1}G) = 0 \\\\
-(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_{0_A} + (y_2 - y_1)H_{0_B} = 0
+(out_A + out_B) - (in_A + in_B) = (\mathbf{0}) \\\\
+(x_2H_{0_A} + r_{A_2}G) + (y_2H_{0_B} + r_{B_2}G) - (x_1H_{0_A} + r_{A_1}G) - (y_1H_{0_B} + r_{B_1}G) = (\mathbf{0}) \\\\
+(r_{A_2} + r_{B_2} - r_{A_1} - r_{B_1})G + (x_2 - x_1)H_{0_A} + (y_2 - y_1)H_{0_B} = (\mathbf{0})
 \end{aligned}
+\tag{7}
 $$
 
 However, using only the sum to zero rule, it is still possible to introduce negative amounts of an asset type. Consider 
@@ -173,6 +181,7 @@ blinded asset tag
 
 $$
 H_{0_A} = -H_A + rG
+\tag{8}
 $$
 
 Any amount of blinded asset tag $  H_{0_A}  $ will correspond to a negative amount of asset $ A $, thereby inflating its 
@@ -189,12 +198,14 @@ asset tag $  H_A  ​$:
 
 $$
 H_{0_{A1}} = H_A + r_1G \mspace{15mu} \mathrm{and} \mspace{15mu} H_{0_{A2}} = H_A + r_2G
+\tag{9}
 $$
 
 Then
 
 $$
 H_{0_{A1}} - H_{0_{A2}} = (H_A + r_1G) - (H_A + r_2G) = (r_1 - r_2)G
+\tag{10}
 $$
 
 will be a signature key with secret key $ r_1 - r_2 $. Thus for an $ n $ distinct multiple asset type transaction, 
@@ -272,14 +283,17 @@ contract [[11]] to be hashed together with the reference to the UTXO being spent
 generate the auxiliary input $ A $ as follows. Let $I $ be the input being spent (an unambiguous reference to a 
 specific UTXO used to create the asset), let $ \widehat {RC} $ be the issuer-specified Ricardian contract, then the 
 asset entropy $ E $ is defined as 
+
 $$
 E = \mathrm {Hash} ( \mathrm {Hash} (I) \parallel \mathrm {Hash} (\widehat {RC}))
+\tag{11}
 $$
 
 The auxiliary input $ A $ is then defined as 
 
 $$
 A = \mathrm {Hash} ( E \parallel 0)
+\tag{12}
 $$
 
 Note that a Ricardian contract $ \widehat {RC} $ is not crucial for entropy $ E $ generation, as some other unique NUMS 
@@ -299,8 +313,10 @@ The confidential asset scheme allows the asset owner to later increase or decrea
 circulation, given that an asset reissuance token is generated together with the initial asset issuance. Given an asset 
 entropy $ E $, the asset reissuance capability is the element (asset tag) $ H_{\hat A} \in \mathbb G $ obtained using 
 an alternative auxiliary input $ \hat A $ defined as
+
 $$
 \hat A = \mathrm {Hash} ( E \parallel 1)
+\tag{13}
 $$
 
 The resulting asset tag $ H_{\hat A} \in \mathbb G $ is linked to its reissuance capability, and the asset owner can 

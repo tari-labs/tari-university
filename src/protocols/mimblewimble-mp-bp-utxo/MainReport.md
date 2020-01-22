@@ -232,6 +232,7 @@ $$
 C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + \mathrm{fee} \cdot H &= (\mathbf{0}) \\\\
 (v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H &= (\mathbf{0})
 \end{aligned}
+\tag{2}
 $$
 
 In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while 
@@ -240,6 +241,7 @@ $ k\_n $ for the multiparty shared commitment and shares the public blinding fac
 
 $$
 \text{share:} \mspace{9mu} \lbrace k\_1G, k\_2G, k\_3G \rbrace
+\tag{3}
 $$
 
 They proceed to calculate their own total excess blinding factors as 
@@ -252,6 +254,7 @@ x\_{sa} &= 0 - k\_a - \phi\_a \\\\
 x\_{sb} &= 0 - k\_b - \phi\_b \\\\
 x\_{sc} &= 0 - k\_c - \phi\_c
 \end{aligned}
+\tag{4}
 $$
 
 The offset $ \phi\_n $ is introduced to prevent someone else linking this transaction's inputs and outputs when 
@@ -260,31 +263,38 @@ public value of the excess $ x\_{sn}G $ with each other:
 
 $$
 \text{share:} \mspace{9mu} \lbrace x\_{sa}G, x\_{sb}G, x\_{sc}G \rbrace
+\tag{5}
 $$
 
 They now have enough information to calculate the aggregated public key for the signature:
 
 $$
+\begin{aligned} 
 P\_{agg} = (k\_1G + x\_{sa}G) + (k\_2G + x\_{sb}G) + (k\_3G + x\_{sc}G) \\\\
 P\_{agg} = (k\_1G - (k\_a + \phi\_a)G) + (k\_2G - (k\_b + \phi\_b)G) + (k\_3G - (k\_c + \phi\_c)G)
+\end{aligned}
+\tag{6}
 $$
 
 Each party also selects a private nonce $ r\_n $, shares the public value $ r\_nG $ with the group,
 
 $$
 \text{share:} \mspace{9mu} \lbrace r\_aG, r\_bG, r\_cG \rbrace
+\tag{7}
 $$
 
 and calculates the aggregated public nonce for the signature:
 
 $$
 R\_{agg} = r\_aG + r\_bG + r\_cG
+\tag{8}
 $$
 
 The signature challenge $ e $ can now be calculated:
 
 $$
 e = \text{Hash}(R\_{agg} || P\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H ||height
+\tag{9}
 $$
 
 Each party now uses their private nonce $ r\_n $, secret blinding factor $ k\_n $ and excess $ x\_{sn} $ to calculate a 
@@ -296,18 +306,21 @@ s\_a &= r_a + e \cdot (k\_1 + x\_{sa}) \\\\
 s\_b &= r_b + e \cdot (k\_2 + x\_{sb}) \\\\
 s\_c &= r_c + e \cdot (k\_3 + x\_{sc})
 \end{aligned}
+\tag{10}
 $$
 
 These partial signatures are then shared with the group to be aggregated:
 
 $$
 \text{share:} \mspace{9mu} \lbrace s\_a, s\_b, s\_c \rbrace
+\tag{11}
 $$
 
 The aggregated Schnorr signature for the transaction is then simply calculated as
 
 $$
 s\_{agg} = s\_a + s\_b + s\_c
+\tag{12}
 $$
 
 The resulting signature for the transaction is the tuple $ (s\_{agg},R\_{agg}) $. To validate the signature, publicly 
@@ -315,21 +328,26 @@ shared aggregated values $ R\_{agg} $ and $ P\_{agg} $ will be needed:
 
 $$
 s\_{agg}G \overset{?}{=} R\_{agg} + e \cdot P\_{agg}
+\tag{13}
 $$
 
 To validate that no funds are created, the total offset must also be stored in the transaction kernel, so the parties 
 also share their offset and calculate the total:
 
 $$
+\begin{aligned} 
 \text{share:} \mspace{9mu} \lbrace \phi\_a, \phi\_b, \phi\_c \rbrace \\\\
 \phi\_{tot} = \phi\_a + \phi\_b + \phi\_c
+\end{aligned}
+\tag{14}
 $$
 
 The transaction balance can then be validated to be equal to a commitment to the value $ 0 $ as follows:
 
 $$
 (v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H \overset{?}{=} 
-(0H + ( P\_{agg} + \phi\_{tot})G)
+(0H + (P\_{agg} + \phi\_{tot}G))
+\tag{15}
 $$
 
 
@@ -365,6 +383,7 @@ $$
 \text{Bob's fake commitment:} \mspace{18mu} C\_2(\frac{v\_1}3,k\_2) &= (\frac{v\_1}3H + k\_2G) \\\\
 \text{Carol's fake commitment:} \mspace{18mu} C\_3(\frac{v\_1}3,k\_3) &= (\frac{v\_1}3H + k\_3G)
 \end{aligned}
+\tag{16}
 $$
 
 Notice that 
@@ -374,6 +393,7 @@ $$
 C\_m(v\_1, k\_1 + k\_2 + k\_3) &= C\_1(\frac{v\_1}3,k\_1) + C\_2(\frac{v\_1}3,k\_2) + C\_3(\frac{v\_1}3,k\_3) \\\\
 (v\_1H + (k\_1 + k\_2 + k\_3)G) &= (\frac{v\_1}3H + k\_1G) + (\frac{v\_1}3H + k\_1G) + (\frac{v\_1}3H + k\_1G)
 \end{aligned}
+\tag{17}
 $$
 
 and that rounding implementation of $ ^{v\_1} / \_3 $ can ensure that adding these components for all parties will 
@@ -388,6 +408,7 @@ the metadata is proposed as:
 
 $$
 hash_{C\_m} = \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_2 || C\_3)
+\tag{18}
 $$
 
 Range proof validation by miners will involve
@@ -398,12 +419,14 @@ hash_{C\_m} &\overset{?}{=} \text{Hash}(C\_m || RP\_{agg} || flag || C\_1 || C\_
 C\_m &\overset{?}{=} C\_1 + C\_2 + C\_3 \\\\
 \text{verify: } &RP\_{agg} \text{ for set } \lbrace C\_1, C\_2, C\_3 \rbrace 
 \end{aligned}
+\tag{19}
 $$
 
 instead of 
 
 $$
 \text{verify: } RP\_m \text{ for } C\_m
+\tag{20}
 $$
 
 
@@ -425,6 +448,7 @@ $$
 \text{Bob:} \mspace{18mu} C\_2(0,k\_2) &= (0H + k\_2G) \\\\
 \text{Carol:} \mspace{18mu} C\_3(0,k\_3) &= (0H + k\_3G)
 \end{aligned}
+\tag{21}
 $$
 
 With this implementation, Alice needs to act as the dealer. When they get to [steps (53) to (61) in Figure 5](../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof) of the inner-product range proof 
@@ -442,6 +466,7 @@ Using this approach, the resulting shared commitment for Alice, Bob and Carol is
 
 $$
 C\_m(v\_1, \sum \_{j=1}^3 k\_jG) = (v\_1H + \sum \_{j=1}^3 k\_jG) = (v\_1H + (k\_1 + k\_2 + k\_3)G)
+\tag{22}
 $$
 
 with the UTXO tuple being $ (C\_m , RP\_m) $. Range proof validation by miners will involve verifying $ RP\_m $ for 
@@ -456,7 +481,8 @@ $ C\_m $.
 | Consideration                 | Using Dalek's Bulletproofs MPC Protocol                      | Using Grin's Multiparty Bulletproof                          |
 | ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Rounds of communication       | Three                                                        | Two                                                          |
-| Security                      | Use of Merlin transcripts makes this method more secure against replay attacks. | No specific sharing protocol suggested.                      |
+| Information sharing security  | Use of Merlin transcripts, combined with the MPC protocol, makes this method more secure against replay attacks. | No specific sharing protocol suggested, but potentially easy to implement, as described [here](#simple-sharing-protocol).  |
+| Guarantee of honest dealer | With the standard MPC protocol implementation, there is no guarantee that the dealer behaves honestly according to the protocol and generates challenges honestly, but this aspect could be improved [as suggested](../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-security-discussion) in that report. | Although each party independently computes challenges themselves, it isn't clear what the implications of a dishonest dealer would be in practice.  |
 | Size of the Bulletproof       | Logarithmic Bulletproof range proof size, i.e. 672&nbsp;bytes up to 928&nbsp;bytes for 16&nbsp;range proofs. | Single Bulletproof range proof size of 672&nbsp;bytes.       |
 | Colored coin                  | Coins are colored, i.e. distinguishable from normal commitments in the blockchain due to additional metadata. | Coins do not need to be colored, i.e. it may look exactly like any other commitment. |
 | Wallet reconstructability     | Each individual range proof's data is accessible within the aggregated range proof. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with [Bulletproof range proof rewinding](../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#improved-implementation). | The wallet cannot be reconstructed, as a single party's blinding factor cannot be distinguished from the combined range proof. Even if these coins were colored with a flag to make them identifiable, it would not help. |
@@ -474,16 +500,19 @@ $$
 C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + \mathrm{fee} \cdot H &= (\mathbf{0}) \\\\
 (v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H &= (\mathbf{0})
 \end{aligned}
+\tag{23}
 $$
 
 Similar to the initial transaction, they each create their own private blinding factor $ k^{'}\_n $ for the new 
 multiparty UTXO and share the public blinding factor $ k^{'}\_nG $ with the group. Carol also shares the public 
 blinding factor $ k^{'}\_cG $ for her winnings:
+
 $$
 \begin{aligned} 
 \text{share:} \mspace{9mu} &\lbrace k^{'}\_1G, k^{'}\_2G, k^{'}\_3G \rbrace \\\\
 \text{share:} \mspace{9mu} &\lbrace k^{'}\_cG \rbrace
 \end{aligned}
+\tag{24}
 $$
 
 As before, they calculate their own total excess blinding factors as 
@@ -495,37 +524,43 @@ x^{'}\_{sa} &= 0 - k\_1 - \phi^{'}\_a \\\\
 x^{'}\_{sb} &= 0 - k\_2 - \phi^{'}\_b \\\\
 x^{'}\_{sc} &= 0 - k\_3 - \phi^{'}\_c
 \end{aligned}
+\tag{25}
 $$
 
 They share the public value of the excess $ x^{'}\_{sn}G $ with each other: 
 
 $$
 \text{share:} \mspace{9mu} \lbrace x^{'}\_{sa}G, x^{'}\_{sb}G, x^{'}\_{sc}G \rbrace
+\tag{26}
 $$
 
 The aggregated public key for the signature can then be calculated as:
 
 $$
 P^{'}\_{agg} = (k^{'}\_1G + x^{'}\_{sa}G) + (k^{'}\_2G + x^{'}\_{sb}G) + (k^{'}\_3G + x^{'}\_{sc}G + k^{'}\_cG) \\\\
-P^{'}\_{agg} = (k^{'}\_1G - (k\_1 + \phi^{'}\_a)) + (k^{'}\_2G - (k\_2 + \phi^{'}\_a)) + (k^{'}\_3G - (k\_3 + \phi^{'}\_a) + k^{'}\_cG)
+P^{'}\_{agg} = (k^{'}\_1G - (k\_1 + \phi^{'}\_a)G) + (k^{'}\_2G - (k\_2 + \phi^{'}\_a)G) + (k^{'}\_3G - (k\_3 + \phi^{'}\_a)G + k^{'}\_cG)
+\tag{27}
 $$
 
 Each party again selects a private nonce $ r^{'}\_n $, shares the public value $ r^{'}\_nG $ with the group,
 
 $$
 \text{share:} \mspace{9mu} \lbrace r^{'}\_aG, r^{'}\_bG, r^{'}\_cG \rbrace
+\tag{28}
 $$
 
 and calculates the aggregated public nonce for the signature:
 
 $$
 R^{'}\_{agg} = r^{'}\_aG + r^{'}\_bG + r^{'}\_cG
+\tag{29}
 $$
 
 The new signature challenge $ e^{'} $ is then calculated as:
 
 $$
 e^{'} = \text{Hash}(R^{'}\_{agg} || P^{'}\_{agg} || m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H ||height
+\tag{30}
 $$
 
 Each party now calculates their partial Schnorr signature $ s^{'}\_n $ as before, except that Carol also adds her 
@@ -537,18 +572,21 @@ s^{'}\_a &= r^{'}\_a + e^{'} \cdot (k^{'}\_1 + x^{'}\_{sa})\\\\
 s^{'}\_b &= r^{'}\_b + e^{'} \cdot (k^{'}\_2 + x^{'}\_{sa})\\\\
 s^{'}\_c &= r^{'}\_c + e^{'} \cdot (k^{'}\_3 + x^{'}\_{sa} + k^{'}\_c)
 \end{aligned}
+\tag{31}
 $$
 
 These partial signatures are then shared with the group 
 
 $$
 \text{share:} \mspace{9mu} \lbrace s^{'}\_a, s^{'}\_b, s^{'}\_c \rbrace
+\tag{32}
 $$
 
 to enable calculation of the aggregated Schnorr signature as
 
 $$
 s^{'}\_{agg} = s^{'}\_a + s^{'}\_b + s^{'}\_c
+\tag{33}
 $$
 
 The resulting signature for the transaction is the tuple $ (s^{'}\_{agg},R^{'}\_{agg}) $. The signature is again 
@@ -556,6 +594,7 @@ validated as done previously, using the publicly shared aggregated values $ R^{'
 
 $$
 s^{'}\_{agg}G \overset{?}{=} R^{'}\_{agg} + e^{'} \cdot P^{'}\_{agg}
+\tag{34}
 $$
 
 Again the parties also share their own personal offset so that the total offset can be calculated:
@@ -563,6 +602,7 @@ Again the parties also share their own personal offset so that the total offset 
 $$
 \text{share:} \mspace{9mu} \lbrace \phi^{'}\_a, \phi^{'}\_b, \phi^{'}\_c \rbrace \\\\
 \phi^{'}\_{tot} = \phi^{'}\_a + \phi^{'}\_b + \phi^{'}\_c
+\tag{35}
 $$
 
 Lastly, the transaction balance can be validated to be equal to a commitment to the value $ 0 $:
@@ -570,6 +610,7 @@ Lastly, the transaction balance can be validated to be equal to a commitment to 
 $$
 (v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H \overset{?}{=} 
 (0H + (P^{'}\_{agg} + \phi^{'}\_{tot}G))
+\tag{36}
 $$
 
 
@@ -639,6 +680,7 @@ Carol consequently share the shards Alice gave them:
 $$
 \text{share:} \mspace{9mu} \lbrace (k\_{1\text{-}b1}, b\_{1\text{-}b1}),  (k\_{1\text{-}c1}, b\_{1\text{-}c1}), 
  (k\_{1\text{-}b2}, b\_{1\text{-}b2}) ,  (k\_{1\text{-}c2}, b\_{1\text{-}c2}) \rbrace
+\tag{37}
 $$
 
 They are now able to reconstruct the blinding factors and verify the commitments to it. If the verification fails, they 
@@ -646,9 +688,12 @@ stop the protocol and schedule a meeting with Alice to have a word with her. Wit
 to identify the source of the misinformation.
 
 $$
+\begin{aligned} 
 \text{reconstruct:} \mspace{9mu} (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) \\\\
 \text{verify:} \mspace{9mu} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} (k\_{1\text{-}1}H + b\_{1\text{-}1}G) \\\\
 \text{verify:} \mspace{9mu} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} (k\_{1\text{-}2}H + b\_{1\text{-}2}G)
+\end{aligned} 
+\tag{38}
 $$
 
 For this round they choose Bob to play Alice's part when they set up and conclude the transaction. Bob is able to do 
@@ -721,8 +766,9 @@ multiparty payment scheme introduced here, the following observations can be mad
 
    The choice between using Dalek's Bulletproofs MPC Protocol or Grin's multiparty Bulletproof to construct a multiparty 
    range proof is important. Although using Dalek's method involves more rounds of communication, with a slightly larger 
-   proof size and the requirement to have the coins colored, it has definite advantages. It trumps on security while 
-   executing the protocol and wallet reconstructability.
+   proof size and the requirement to have the coins colored, it has definite advantages. It trumps on wallet 
+   reconstructability and information sharing security while executing the protocol, although the latter could easily be 
+   enhanced for the Grin implementation.
 
 1. Practicality
 
@@ -908,7 +954,12 @@ Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme us
 
   $$
   f(x) = \sum \_{i=1}^{m} y \_{i} \prod \_{1 \leq j \leq m \atop i \neq j} \frac{x - x \_{j}}{x \_{i} - x \_{j}} \\\\
-  f(0) = \sum \_{i=1}^{m} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+  \tag{B1}
+  $$
+
+  $$
+  f(0) = \sum \_{i=1}^{m} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i} 
+  \tag{B2}
   $$
 
   - Shamir’s scheme is defined for a secret message $ s \in \mathbb{Z}/p\mathbb{Z} $ with prime $ p $, by setting 
@@ -917,6 +968,7 @@ Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme us
 
   $$
   f(x) = \sum \_{k=0}^{m - 1} a \_{k} x^{k} = a\_0x^0 + a\_1x^1 + a\_2x^2 + \ldots + a\_{m-1}x^{m-1}
+  \tag{B3}
   $$
 
   - The shards $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term 
@@ -924,7 +976,8 @@ Shamir's Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme us
   by
 
   $$
-  s = \sum \_{i \in I} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}  
+  s = \sum \_{i \in I} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i} 
+  \tag{B4}
   $$
 
 [ssss~]: #ssss
@@ -961,9 +1014,12 @@ to all parties and that any party can know that the recovered secret is correct.
   verifies that:
 
   $$
-  (f(i)H + g(i)G) \overset{?}{=} \sum \_{j=0}^{m-1} C\_j \cdot i^j \\\\
-  (a\_0i^0 + a\_1i^1 + \ldots + a\_{m-1}i^{m-1})H + (b\_0i^0 + b\_1i^1 + \ldots + b\_{m-1}i^{m-1})G \overset{?}{=} \\\\
-  (a\_0H + b\_0G) \cdot i^0 + (a\_1H + b\_1G) \cdot i^1 + \ldots + (a\_{m-1}H + b\_{m-1}G) \cdot i^{m-1} 
+  \begin{aligned}
+  (f(i)H + g(i)G) &\overset{?}{=} \sum \_{j=0}^{m-1} C\_j \cdot i^j \\\\
+  (a\_0i^0 + a\_1i^1 + \ldots + a\_{m-1}i^{m-1})H + (b\_0i^0 + b\_1i^1 + \ldots + b\_{m-1}i^{m-1})G &\overset{?}{=} \\\\
+  \quad (a\_0H + b\_0G) \cdot i^0 + (a\_1H + b\_1G) \cdot i^1 + &\ldots + (a\_{m-1}H + b\_{m-1}G) \cdot i^{m-1} 
+  \end{aligned}
+  \tag{B5}
   $$
 
   - The secret $ s $ is recovered as before as per the SSSS from any $ m $ shards.
@@ -975,6 +1031,7 @@ to all parties and that any party can know that the recovered secret is correct.
 
     $$
     r = \sum \_{i \in I} g(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+    \tag{B6}
     $$
 
     - Since $ C\_0 $ is the first entry in the vector of commitments $ \mathbf {C\_{m}} $, the parties can verify the 
@@ -983,6 +1040,7 @@ to all parties and that any party can know that the recovered secret is correct.
 
     $$
     C\_0(s,r) \overset{?}{=} (sH + rG)
+    \tag{B7}
     $$
 
 [pvss~]: #pvss
