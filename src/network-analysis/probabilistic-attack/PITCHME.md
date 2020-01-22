@@ -309,15 +309,15 @@ begins to increase at a lower percentage of bad nodes.
 - Total nodes in the network: The smaller the pool of total nodes in the network, the lower the probability of bad 
 actors controlling the network. However, the probability difference is near negligible if the committee size is large. 
 This parameter will also be difficult to control, and the network will be ever-increasing. This can be seen in the 
-graph in [Variation of Total Nodes](https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack#/13). 
+graph in [Variation of Total Nodes](https://gitpitch.com/tari-labs/tari-university/master?p=/src/network-analysis/probabilistic-attack#/13). 
 - BFT threshold: This threshold should be at least  $\frac{2}{3} \cdot n+1$ as per literature. This can be seen in the 
-graph in [Variation of Byzantine Fault-tolerance Threshold](https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack#/15).
+graph in [Variation of Byzantine Fault-tolerance Threshold](https://gitpitch.com/tari-labs/tari-university/master?p=/src/network-analysis/probabilistic-attack#/15).
 - Committee size: The larger the committee size, the lower the probability of bad actors controlling the network. This can 
 be seen in the graph in 
-[Variation of Total Number of Nodes with Committee Size 10](https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack#/17) 
-and [Variation of Total Number of Nodes with Committee Size 100](https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack#/19).
+[Variation of Total Number of Nodes with Committee Size 10](https://gitpitch.com/tari-labs/tari-university/master?p=/src/network-analysis/probabilistic-attack#/17) 
+and [Variation of Total Number of Nodes with Committee Size 100](https://gitpitch.com/tari-labs/tari-university/master?p=/src/network-analysis/probabilistic-attack#/19).
 - Bad nodes: While this variable cannot be controlled, the probability of bad actors controlling the network can remain 
 low, as the percentage of bad nodes increases if the committee size is approximately $100$ or larger. This can be seen in the 
-graphs in [Variation of Bad Nodes with Committee Size 10 and 100](https://gitpitch.com/tari-labs/tari-university/ks-network-probability-presentation?p=/src/network-analysis/probabilistic-attack#/25).
+graphs in [Variation of Bad Nodes with Committee Size 10 and 100](https://gitpitch.com/tari-labs/tari-university/master?p=/src/network-analysis/probabilistic-attack#/19).
 
 
