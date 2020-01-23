@@ -46,7 +46,7 @@ R1CSs became more prominent due to research work done by Cathie Yun and her coll
 systems, in particular R1CSs, are used as an add-on to Bulletproof protocols. The title of 
 Yun's article, "Building on Bulletproofs" 
 [[1]] suggests this is true. One of the Interstellar team's goals is to use the constraint system in their 
-_Confidential Asset Protocol_ called the *Cloak* and in their envisaged [_Spacesuit_](https://github.com/interstellar/spacesuit). 
+Confidential Asset Protocol called the Cloak and in their envisaged Spacesuit. 
 Despite their work on using R1CS being research in progress, their detailed notes on constraint systems and their 
 implementation in RUST are available in [[13]]. 
 
@@ -655,7 +655,6 @@ are they fast yet?"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
 
 
