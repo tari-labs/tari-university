@@ -59,7 +59,7 @@ The aim of this report is to:
 - clarify the difference R1CSs make in Bulletproofs and in range proofs; 
 - compare R1CSs in zk-SNARKs and Bulletproofs; 
 - explain what is meant by the following in [[12]] - "We note that a range proof 
-  using the protocol of [[BCC+16]](Bootle et al's paper [[4]]) would have required implementing the commitment opening 
+  using the protocol of Bootle et al. [[4]] would have required implementing the commitment opening 
   algorithm as part of the verification circuit, which we are able to eliminate." 
 
 
@@ -655,7 +655,6 @@ are they fast yet?"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
 
 
