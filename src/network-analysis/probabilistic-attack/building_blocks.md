@@ -83,8 +83,8 @@ depending on whether they define probabilities associated with discrete or conti
 
 ### Continuous Distribution 
 
-If a variable can take on any value between two specified values, it is called a continuous variable, and its probability 
-distribution is called a discrete probability distribution [[14]].
+If a variable can take on any value between two specified values, it is called a continuous variable, and its probability 
+distribution is called a discrete probability distribution [[14]].
 
 Probabilities of continuous random variables (*X*) are defined as the area under the curve of their Probability Density 
 Function<sup>[def][pdf~]</sup> (PDF). Therefore only ranges of values can have a nonzero probability. The probability that 
@@ -92,11 +92,10 @@ a continuous random variable equals some value is always zero [[11]]. The follow
 below (although specifically for a normal distribution).
 
 <p align="center"><img src="assets/distribution_plot_normal_weight_shade_middle.png" width="700" /></p>
-
 ### Discrete Distribution 
 
-A discrete variable, as opposed to a continuous variable, can only take on a finite number of values. If a random 
-variable is a discrete variable, its probability distribution is called a discrete probability distribution [[14]]. A 
+A discrete variable, as opposed to a continuous variable, can only take on a finite number of values. If a random 
+variable is a discrete variable, its probability distribution is called a discrete probability distribution [[14]]. A 
 discrete 
 distribution thus describes the probability of occurrence of each value of a discrete random variable [[11]].
 
@@ -105,11 +104,9 @@ nonzero probability. Thus, the presentation of a discrete probability distributi
 bar graph.
 
 <p align="center"><img src="assets/distribution_plot_poisson_shade_right_tail.png" width="700" /></p>
-
 Here's an overview of the various distributions and how they are related [[15]]:
 
 <p align="center"><img src="assets/relationship_map.png" width="700" /></p>
-
 Examples of discrete distribution with **finite** support <sup>[def][discrete_distribution_finite~]</sup>  include the 
 following: 
 
@@ -148,10 +145,10 @@ of size $N$ that contains exactly $m$ objects with that feature, wherein each dr
 - In the population, $T$ items can be classified as successes and $N-T$ items can be classified as failures.
 - There are $m$ featuring objects. 
 
-Given $m, N, n​$ and $T​$, the hypergeometric probability can be computed based on the following example: 
+Given $m, N, n$ and $T$, the hypergeometric probability can be computed based on the following example: 
 
-**Example 1:** Suppose a population consists of $N​$ items, $T​$ of which are successes; and a random sample drawn from that 
-population consists of $n​$ items. Then the hypergeometric probability is [[10]]:
+**Example 1:** Suppose a population consists of $N$ items, $T$ of which are successes; and a random sample drawn from that 
+population consists of $n$ items. Then the hypergeometric probability is [[10]]:
 $$
 h(m; N, n, T)= {{T}\choose{m}}{{N-T}\choose{n-m}}{{N}\choose{n}}
 $$
@@ -212,7 +209,7 @@ and is an example of the gambler's fallacy. The events "five heads in a row" and
 are equally likely, each having a probability of $\frac{1}{32}$. Since the first four tosses turn up heads, the probability 
 that the next toss is a head is $\frac{1}{2}$ . While a run of five heads has a probability of $\frac{1}{32} = 0.03125$, 
 the misunderstanding lies in not realizing that this is the case only before the first coin is tossed. After the first 
-four tosses, the results are no longer unknown, so the probability at that point is equal to $one​$. The reasoning that 
+four tosses, the results are no longer unknown, so the probability at that point is equal to $one$. The reasoning that 
 it is more likely that a fifth toss is more likely to be tails because the previous four tosses were heads, with a run 
 of luck in the past influencing the odds in the future, forms the basis of the fallacy [[13]].
 
@@ -237,7 +234,6 @@ accurate measure of the mean [[7]].
 The LLN is crucial because it guarantees stable, long-term results for the averages of some random event [[8]]. 
 
 <p align="center"><img src="assets/law_of_large_numbers.png" width="650" /></p>
-
 The preceding figure illustrates the LLN using a particular run of rolls of a single dice. As can be seen in the figure, 
 as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. While 
 different runs would show a different shape over a small number of throws (on the left), over a large number of rolls 
@@ -311,20 +307,19 @@ Where:
 
 - $\sum$ represents the summation 
 - $x$ represents scores 
-- $N​$ represents number of scores 
+- $N$ represents number of scores 
 
 
 
 
 <p align="center"><img src="assets/mode_median_mean.png" width="170" /></p>
-
 ## Statistical Calculation
 
 A single probability from the overarching question was used as a means to derive the formulae, as shown in the following 
 example. 
 
-**Example 3**: What is the probability of selecting a majority of bad nodes from a total of $5​$ nodes if the committee 
-size is $3​$? There are $3​$ bad nodes $(B1, B2, B3)​$ and $2​$ good nodes $(G1, G2)​$.
+**Example 3**: What is the probability of selecting a majority of bad nodes from a total of $5$ nodes if the committee 
+size is $3$? There are $3$ bad nodes $(B1, B2, B3)$ and $2$ good nodes $(G1, G2)$.
 
 
 The first step is to calculate the number of combinations where bad and good nodes can be chosen: 
