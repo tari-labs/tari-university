@@ -35,7 +35,7 @@
 ## Introduction 
 
 This report explains the technical underpinnings of Rank-1 Constraint Systems (R1CSs) as applied 
-to zero-knowledge Succinct Non-interactive Argument of Knowledge (zk-SNARKs) and Bulletproofs. 
+to zero-knowledge Succinct Non-interactive Argument of Knowledge (zk-SNARKs) and Bulletproofs, with a special focus on Bulletproofs. 
 
 The literature on the use of R1CSs in zk-SNARKs shows that this mathematical tool is used simply as one part of many in 
 a complex process towards achieving a zk-SNARK proof. Not much attention is given to it, not even in explaining 
@@ -655,7 +655,6 @@ are they fast yet?"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
 
 
