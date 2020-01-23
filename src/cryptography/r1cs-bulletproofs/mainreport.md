@@ -364,7 +364,7 @@ of a prime-order group using a cofactor-8 curve known as Curve25519. They report
 in Henry de Valence's article entitled "[Bulletproofs pre-release](https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b)". 
 An update on their progress in extending the [Bulletproofs implementation](http://github.com/dalek-cryptography/bulletproofs/) 
 to a constraint system API, which enables ZK proofs of arbitrary statements, was given in Cathie Yun's 
-article, [Programmable Constraint Systems for Bulletproofs](https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7) 
+article, "Programmable Constraint Systems for Bulletproofs"
 [[11]]. However, it was Bootle et al. [[4]] who first used the Hadamard relation and linear constraints, which together 
 form the constraint system as formalized by the Interstellar team. Most of the mathematical background of these 
 constraints and bulletproofs is contained Bunz et al.'s paper [[12]]. For an extensive study on Bulletproof 
@@ -655,5 +655,4 @@ are they fast yet?"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
