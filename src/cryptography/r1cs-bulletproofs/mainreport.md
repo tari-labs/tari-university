@@ -190,7 +190,7 @@ constructions of zk-SNARKs. At times they were simply referred to as _quadratic 
 ### Definition of Constraint System 
 
 A constraint system was originally defined by Bootle 
-et al in [[4]]. The Dalek team give a more general definition of a constraint system in [[10]]: 
+et al. in [[4]]. The Dalek team give a more general definition of a constraint system in [[10]]: 
 
 "A **constraint system** is a collection of arithmetic constraints over a set of variables. There are two kinds of 
 variables in the constraint system:
@@ -655,6 +655,5 @@ are they fast yet?"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
 
