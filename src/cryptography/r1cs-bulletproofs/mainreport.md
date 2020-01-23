@@ -367,7 +367,7 @@ to a constraint system API, which enables ZK proofs of arbitrary statements, was
 article, "Programmable Constraint Systems for Bulletproofs"
 [[11]]. However, it was Bootle et al. [[4]] who first used the Hadamard relation and linear constraints, which together 
 form the constraint system as formalized by the Interstellar team. Most of the mathematical background of these 
-constraints and bulletproofs is contained Bunz et al.'s paper [[12]]. For an extensive study on Bulletproof 
+constraints and bulletproofs is contained Bunz et al.'s paper [[12]].
 
 Dalek's constraint system, as defined earlier in [Definition of Constraint System](#definition-of-constraint-system), is a collection of arithmetic constraints of two types, 
 _multiplicative constraints_ and _linear constraints_, over a set of high-level and low-level variables. 
