@@ -42,7 +42,7 @@ a complex process towards achieving a zk-SNARK proof. Not much attention is give
 what "rank-1" actually means. Although the terminology is similar to the traditional _rank of a matrix_ in 
 linear algebra, examples on the Internet do not yield a _reduced matrix with only one non-zero row or column_. 
 
-R1CSs became more prominent due to research work done by Cathie Yun and her colleagues at Interstellar. The constraint 
+R1CSs became more prominent for Bulletproofs due to research work done by Cathie Yun and her colleagues at Interstellar. The constraint 
 systems, in particular R1CSs, are used as an add-on to Bulletproof protocols. The title of 
 Yun's article, "Building on Bulletproofs" 
 [[1]] suggests this is true. One of the Interstellar team's goals is to use the constraint system in their 
@@ -655,7 +655,6 @@ are they fast yet?"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
 
 
