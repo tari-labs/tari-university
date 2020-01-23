@@ -44,7 +44,7 @@ linear algebra, examples on the Internet do not yield a _reduced matrix with onl
 
 R1CSs became more prominent due to research work done by Cathie Yun and her colleagues at Interstellar. The constraint 
 systems, in particular R1CSs, are used as an add-on to Bulletproof protocols. The title of 
-Yun's article, "[Building on Bulletproofs](https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8)" 
+Yun's article, "Building on Bulletproofs" 
 [[1]] suggests this is true. One of the Interstellar team's goals is to use the constraint system in their 
 _Confidential Asset Protocol_ called the *Cloak* and in their envisaged [_Spacesuit_](https://github.com/interstellar/spacesuit). 
 Despite their work on using R1CS being research in progress, their detailed notes on constraint systems and their 
@@ -655,7 +655,6 @@ are they fast yet?"
 - <https://github.com/Empiech007>
 - <https://github.com/hansieodendaal> 
 - <https://github.com/anselld> 
-
 
 
 
