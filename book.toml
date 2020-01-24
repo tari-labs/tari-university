@@ -11,6 +11,7 @@ preprocess = ["links", "index"]
 [output.html]
 mathjax-support=true
 theme = "src/theme"
+google-analytics = "123456"
 
 [output.html.playpen]
 editable = true
