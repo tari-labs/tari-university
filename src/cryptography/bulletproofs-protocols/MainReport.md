@@ -258,7 +258,7 @@ consistently with [[1]]. Refer to [Notation Used](#notation-used).
 <br>
 
 
-#### Inner-product Argument (Protocol 1)
+### Inner-product Argument (Protocol 1)
 
 The first and most important building block of the Bulletproofs is its efficient algorithm to calculate an inner-product 
 argument for two independent (not related) binding vector Pedersen Commitments<sup>[def][pc~]</sup>. 
@@ -325,7 +325,7 @@ The argument presented in Protocol 1 has the following Commitment Scheme propert
 logarithm relation between $ \mathbf {g} , \mathbf {h} , u $ or extracting a valid witness $ \mathbf {a}, \mathbf {b} $.
 
 
-#### How Proof System for Protocol 1 Works, Shrinking by Recursion
+### How Proof System for Protocol 1 Works, Shrinking by Recursion
 
 Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $ of size $ n $. 
 The Pedersen Commitment scheme allows a vector to be cut in half and the two halves to then be compressed together. 
@@ -433,7 +433,7 @@ where $ a,b \in \mathbb Z _p ​$ are only sent right at the end. This protocol 
 Fiat-Shamir<sup>[def](#fsh)</sup> heuristic.
 
 
-#### Inner-product Verification through Multi-exponentiation (Protocol 2)
+### Inner-product Verification through Multi-exponentiation (Protocol 2)
 
 The inner product argument to be calculated is that of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $ of size 
 $ n $. Protocol 2 has a logarithmic number of rounds. In each round, the *prover* $ \mathcal{P} $ and 
@@ -494,7 +494,7 @@ Bünz B. et al.">1</a>]</b></div>
 
 
 
-#### Range Proof Protocol with Logarithmic Size
+### Range Proof Protocol with Logarithmic Size
 
 This protocol provides short and aggregatable range proofs, using the improved inner product argument from Protocol 1. 
 It is built up in five parts: 
@@ -517,7 +517,7 @@ Crate Bulletproofs">22</a>]</b></div>
 
 
 
-##### Inner-product Range Proof
+#### Inner-product Range Proof
 
 This protocol provides the ability to construct a range proof that requires the *verifier* $ \mathcal{V} ​$ to check an 
 inner product between two vectors. The range proof is constructed by exploiting the fact that a Pedersen 
@@ -667,7 +667,7 @@ Also refer to Definition&nbsp;12 in [[1]].
   spent by the *prover* $ \mathcal{P} $. Also refer to Definition&nbsp;10 in [[1]].
 
 
-##### Logarithmic Range Proof
+#### Logarithmic Range Proof
 
 This protocol replaces the inner product argument with an efficient inner-product argument. In step&nbsp;(63) in 
 Figure&nbsp;5, the *prover* $ \mathcal{P} $ transmits $ \mathbf {l} $ and $ \mathbf {r} $ to the *verifier* 
@@ -682,7 +682,7 @@ of information limited to the scalar properties $ ( \tau _x , \mu , \hat t ) $ a
 that is logarithmic in $ n $.
 
 
-##### Aggregating Logarithmic Proofs
+#### Aggregating Logarithmic Proofs
 
 This protocol efficiently aggregates $ m $ range proofs into one short proof with a slight modification to the protocol 
 presented in [Inner-product Range Proof](#inner-product-range-proof). For aggregate range proofs, the inputs of one 
@@ -727,7 +727,7 @@ protocol. Also refer to Definition&nbsp;12 in [[1]].
 spent by the *prover* $ \mathcal{P} $. Also refer to Definition&nbsp;10 in [[1]].
 
 
-##### Non-interactive Proof through Fiat-Shamir Heuristic
+#### Non-interactive Proof through Fiat-Shamir Heuristic
 
 So far, the *verifier* $ \mathcal{V} ​$ behaves as an honest verifier and all messages are random elements from 
 $ \mathbb Z_p^* ​$. These are the prerequisites needed to convert the protocol presented so far into a non-interactive 
@@ -735,7 +735,7 @@ protocol that is secure and has full zero-knowledge in the random oracle model (
 Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>. 
 
 
-##### MPC Protocol for Bulletproofs
+#### MPC Protocol for Bulletproofs
 
 The Multi-party Computation (MPC) protocol for Bulletproofs allows multiple parties to construct a single, simple, 
 efficient, aggregate range proof designed for Bulletproofs. This is valuable when multiple parties want to create a 
@@ -789,7 +789,7 @@ challenge and sends it to each party, who in turn send their witness to the deal
 [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2). 
 
 
-##### MPC Protocol Security Discussion
+#### MPC Protocol Security Discussion
 
 With the standard MPC protocol implementation as depicted in Figure&nbsp;7, there's no guarantee that the dealer behaves 
 honestly according to the specified protocol and generates challenges honestly. Since the Bulletproofs protocol is 
@@ -803,7 +803,7 @@ would be on the MPC protocol in practice. It could be that there are no practica
 dealer and that witness-indistinguishability is sufficient.
 
 
-#### Zero-knowledge Proof for Arithmetic Circuits
+### Zero-knowledge Proof for Arithmetic Circuits
 
 Bulletproofs present an efficient zero-knowledge argument for arbitrary Arithmetic Circuits<sup>[def][ac~]</sup> with a 
 proof size of $ 2 \cdot [ \log _2 (n)+13] $ elements with $ n $ denoting the multiplicative complexity (number of 
@@ -828,7 +828,7 @@ arithmetic circuit, which is an important refinement, otherwise the arithmetic c
 commitment algorithm. The linear constraints also include openings $ v_j $ of $ V_j $. 
 
 
-##### Inner-product Proof for Arithmetic Circuits (Protocol 3)
+#### Inner-product Proof for Arithmetic Circuits (Protocol 3)
 
 Similar to [Inner-product Range Proof](#inner-product-range-proof), the *prover* $ \mathcal{P} $ produces a random linear 
 combination of the Hadamard Product<sup>[def][hdmp~]</sup> and linear constraints to form a single inner product 
@@ -890,7 +890,7 @@ The proof system presented here has the following Commitment Scheme properties:
   spent by the *prover* $ \mathcal{P} $. Also refer to Definition&nbsp;10 in [[1]].
 
 
-##### Logarithmic-sized Non-interactive Protocol for Arithmetic Circuits
+#### Logarithmic-sized Non-interactive Protocol for Arithmetic Circuits
 
 Similar to [Logarithmic Range Proof](#logarithmic-range-proof), the communication cost of 
 [Protocol&nbsp;3](#inner-product-proof-for-arithmetic-circuits-protocol-3) can be reduced by using the efficient inner 
@@ -916,14 +916,14 @@ The proof system presented here has the following Commitment Scheme properties:
   generated, then finding a discrete logarithm relation between them is as hard as breaking the Discrete Log Problem.
 
 
-#### Optimized Verifier using Multi-exponentiation and Batch Verification
+### Optimized Verifier using Multi-exponentiation and Batch Verification
 
 In many of the Bulletproofs' [Use Cases](../bulletproofs-and-mimblewimble/MainReport.md#applications-for-bulletproofs), 
 the *verifier's* runtime is of particular interest. This protocol presents optimizations for a single range proof that 
 is also extendable to [aggregate range proofs](#aggregating-logarithmic-proofs) and the 
 [arithmetic circuit protocol](#zero-knowledge-proof-for-arithmetic-circuits).
 
-##### Multi-exponentiation
+#### Multi-exponentiation
 
 In [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2), verification of the inner-product 
 is reduced to a single multi-exponentiation. This can be extended to verify the whole range proof using a single 
@@ -954,7 +954,7 @@ $ A = 1 \mspace 3mu \wedge \mspace 3mu B = 1 ​$. Various algorithms are known 
 scalar quantities (steps 101 and 102 in Figure&nbsp;10) efficiently (sub-linearly), thereby further improving the 
 speed and efficiency of the protocol.
 
-##### Batch Verification
+#### Batch Verification
 
 A further important optimization concerns the verification of multiple proofs. The essence of the verification is to 
 calculate a large multi-exponentiation. Batch verification is applied in order to reduce the number of expensive 

@@ -125,14 +125,14 @@ html:not(.sidebar-visible) #menu-bar:not(:hover).folded > #menu-bar-sticky-conta
 }
 
 /* Nav Icons */
-
+/*
 .nav-chapters {
     font-size: 2.5em;
     text-align: center;
     text-decoration: none;
 
     position: fixed;
-    top: 50px; /* Height of menu-bar */
+    top: 50px; // Height of menu-bar
     bottom: 0;
     margin: 0;
     max-width: 150px;
@@ -145,7 +145,7 @@ html:not(.sidebar-visible) #menu-bar:not(:hover).folded > #menu-bar-sticky-conta
 
     transition: color 0.5s;
 }
-
+*/
 .nav-chapters:hover { text-decoration: none; }
 
 .nav-wrapper {
