@@ -36,8 +36,8 @@ open channel to Bart, who does have an open channel to Carla.
 
 1. Carla generates a random number and gives the hash of the number to Alex. 
 2. Alex pays Bart, but adds the condition that if Bart wants to claim the payment, he has to provide the random number 
-that generated the hash Carlo gave to Alex. 
-3. Bart pays Carlo, but he adds the same condition to the payment. 
+that generated the hash Carla gave to Alex. 
+3. Bart pays Carla, but he adds the same condition to the payment. 
 4. Carla claims the payment by providing the random number, thus exposing the random number to Bart. 
 5. Bart uses the random number to claim the payment from Alex. 
 

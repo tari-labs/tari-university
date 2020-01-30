@@ -1,30 +1,30 @@
 # The MuSig Schnorr Signature Scheme 
 
-- - [Introduction](#introduction)
-    - [Schnorr Signatures and their Attack Vectors](#schnorr-signatures-and-their-attack-vectors)
-    - [MuSig](#musig)
-    - [Key Aggregation](#key-aggregation) 
-  - [Overview of Multi-signatures](#overview-of-multi-signatures)
-    - [Bitcoin $m-of-n$ Multi-signatures](#bitcoin--m-of-n--multi-signatures)
-      - [What are $m-of-n$ Transactions?](#what-are--m-of-n--transactions)
-      - [Use Cases for $m-of-n $ Multi-signatures](#use-cases-for--m-of-n--multi-signatures)
-    - [Rogue Attacks](#rogue-attacks)
-    - [Interactive Aggregate Signatures](#interactive-aggregate-signatures)
-      - [Applications of Interactive Aggregate Signatures](#applications-of-interactive-aggregate-signatures)
-      - [Native Multi-signature Support](#native-multi-signature-support)
-      - [Cross-input Multi-signatures](#cross-input-multi-signatures)
-      - [Protection against Rogue-key Attacks](#protection-against-rogue-key-attacks)
-  - [Formation of MuSig](#formation-of-musig)
-    - [Notation Used](#notation-used)
-    - [Recap on Schnorr Signature Scheme](#recap-on-schnorr-signature-scheme)
-    - [Design of Schnorr Multi-signature Scheme](#design-of-schnorr-multi-signature-scheme)
-    - [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme)   
-    - [MuSig Signature Scheme](#musig-signature-scheme)
-    - [Revisions](#revisions) 
-    - [Turning Bellare and Neven's Scheme into an IAS Scheme](#turning-bellare-and-nevens-scheme-into-an-ias-scheme)
-  - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
-  - [References](#references)
-  - [Contributors](#contributors)
+- [Introduction](#introduction)
+  - [Schnorr Signatures and their Attack Vectors](#schnorr-signatures-and-their-attack-vectors)
+  - [MuSig](#musig)
+  - [Key Aggregation](#key-aggregation) 
+- [Overview of Multi-signatures](#overview-of-multi-signatures)
+  - [Bitcoin $m-of-n$ Multi-signatures](#bitcoin--m-of-n--multi-signatures)
+    - [What are $m-of-n$ Transactions?](#what-are--m-of-n--transactions)
+    - [Use Cases for $m-of-n $ Multi-signatures](#use-cases-for--m-of-n--multi-signatures)
+  - [Rogue Attacks](#rogue-attacks)
+  - [Interactive Aggregate Signatures](#interactive-aggregate-signatures)
+    - [Applications of Interactive Aggregate Signatures](#applications-of-interactive-aggregate-signatures)
+    - [Native Multi-signature Support](#native-multi-signature-support)
+    - [Cross-input Multi-signatures](#cross-input-multi-signatures)
+    - [Protection against Rogue-key Attacks](#protection-against-rogue-key-attacks)
+- [Formation of MuSig](#formation-of-musig)
+  - [Notation Used](#notation-used)
+  - [Recap on Schnorr Signature Scheme](#recap-on-schnorr-signature-scheme)
+  - [Design of Schnorr Multi-signature Scheme](#design-of-schnorr-multi-signature-scheme)
+  - [Bellare and Neven Signature Scheme](#bellare-and-neven-signature-scheme)   
+  - [MuSig Signature Scheme](#musig-signature-scheme)
+  - [Revisions](#revisions) 
+  - [Turning Bellare and Neven's Scheme into an IAS Scheme](#turning-bellare-and-nevens-scheme-into-an-ias-scheme)
+- [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
+- [References](#references)
+- [Contributors](#contributors)
 
 
 
@@ -332,9 +332,7 @@ signers.
 
 ## Formation of MuSig
 
-### Preliminaries 
-
-#### Notation Used 
+### Notation Used 
 
 This section gives the  general notation of mathematical expressions when specifically referenced. This information 
 is important pre-knowledge for the remainder of the report. 
