@@ -67,20 +67,14 @@ The aim of this report is to:
 ### Overview 
 
 Arithmetic circuits are said to be the most natural and standard model for computing polynomials. Every 
-function $ \mathcal{H} : \lbrace 0 , 1 \rbrace^n → \lbrace 0 , 1 \rbrace^m $ of fixed input and output _length_ 
+function of binary vectors of fixed size $n$ to binary vectors of fixed size $m$,  $ \mathcal{H} : \lbrace 0 , 1 \rbrace^n → \lbrace 0 , 1 \rbrace^m $, 
 can be represented as an arithmetic circuit over any finite field $ \mathcal{F}_p$ , [[5]]. 
 
-According to [[6]], arithmetic circuits are a more highly structured model of computation 
-than Boolean circuits. For instance, when studying arithmetic circuits, one is interested in _syntactic_ 
-computation of polynomials, whereas in studying Boolean circuits, one is interested in the _semantics_ of the computation. 
-In the Boolean case, one is not interested in any specific polynomial representation of the function, 
-but only wants to compute some representation of the function. In the arithmetic case, one focuses on a 
-specific representation of the function. 
+According to [[6]], arithmetic circuits are a highly structured model of computation 
+where one is interested in _syntactic_ 
+computation of polynomials. That is, focusing on specific representation of the function being computed in order to improve efficiency. 
 
-For our purposes, arithmetic circuits have as inputs variables $ x_1, \dots , x_n $. Computations are 
-performed using the arithmetic operations $ + $ and $ × $, and may involve constants from a field $\mathcal{F}_p$. 
-Complexity measures associated with such circuits are _size_ and _depth_, which capture the number of gates in a 
-circuit and the maximum distance between an input and an output, respectively [[6]].
+
 
 
 
@@ -94,13 +88,23 @@ _gates_, while the edges are called _wires_ [[6]]:
   it has  $k$  outgoing wires. 
 - Every gate in  $\mathcal{A}$  of in-degree 0 is labeled by either a variable  ${x_i}$  or some field 
   element from  $\mathcal{F}$.  Such a gate is called an  input gate. Every gate of out-degree  0  is called an 
-  output gate. 
+  output gate or the root. 
 - Every other gate in  $\mathcal{A}$  is labeled by either  $\otimes$  or  $\oplus$ , and called a 
   multiplication gate or addition gate, respectively. We are interested in binary circuits, i.e. circuits where 
   each gate has two input wires and one output wire. 
 - An arithmetic circuit is called a formula if it is a directed tree whose edges are directed from the leaves 
   to the root. 
+- The depth of a node is the number of edges in the longest directed path between the node and the root.
 - The size of  $\mathcal{A}$ , denoted  $|\mathcal{A}|$ , is the number of wires, i.e. edges, in  $\mathcal{A}$. 
+
+
+
+For our purposes, arithmetic circuits have as inputs variables $ x_1, \dots , x_n $. Computations are 
+performed using the arithmetic operations $ + $ and $ × $, and may involve constants from some field $\mathcal{F}$. 
+Complexity measures associated with such circuits are size and depth, which capture the number of gates in a 
+circuit and the maximum distance (the number of edges in the longest directed path) between an input and an output, respectively [[6]].
+
+
 
 A typical multiplication gate has a left input  $a_L$ , a right input  $a_R$  and 
 an output  $a_O$. Also, we note that  $ a_L \cdot a_R - a_O = 0 $.
@@ -111,7 +115,6 @@ an output  $a_O$. Also, we note that  $ a_L \cdot a_R - a_O = 0 $.
 <img src="sources/basic-multiplication-gate.png" alt="basic-multiplication-gate" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 1: Typical Multiplication Gate</b></div> 
-
 We note that in cases where the inputs and outputs are all vectors of  
 $n$  components, i.e.  $\mathbf{a_L} = ( a_{L, 1}, a_{L, 2} , \dots , a_{L, n})$, 
 $\mathbf{a_R} = ( a_{R, 1}, a_{R, 2} , \dots , a_{R, n})$ 
@@ -123,8 +126,8 @@ $$
 a_{R, n} ) \big) =  \mathbf{a_O}
 $$
 
-The equation ${ \mathbf{a_L}\circ \mathbf{a_R} = \mathbf{a_O} }$ is referred to as a _multiplicative constraint_, 
-but is also known as the _Hadamard relation_ [[4]]. 
+The equation ${ \mathbf{a_L}\circ \mathbf{a_R} = \mathbf{a_O} }$ is referred to as a multiplicative constraint, 
+but is also known as the Hadamard relation [[4]]. 
 
 
 
@@ -140,10 +143,9 @@ arithmetic circuit  $\mathcal{A}$  with inputs  $\lbrace x_1 , x_2 , 1 \rbrace$ 
 <img src="sources/polynomial-eg-ac.png" alt="polynomial-eg-ac" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 2: Arithmetic Circuit</b></div> 
+The output of $\mathcal{A}$ above is the polynomial $x^2_1 \cdot x\_2 + x\_1 + 1 $ of total degree three. 
 
-The output of $\mathcal{A}$ above is the polynomial $x^2_1 \cdot x_2 + x_1 + 1 $ of total degree three. 
-
-A typical computational problem would involve finding the solution to, let's say,  $x^2_1 \cdot x_2 + x_1 + 1 = 22$.  
+A typical computational problem would involve finding the solution to, let's say,  $x^2\_1 \cdot x\_2 + x\_1 + 1 = 22$.  
 Or, in a proof of knowledge scenario, the prover has to prove to the verifier that they have the correct solution to such 
 an equation. 
 
@@ -153,19 +155,15 @@ $$
 u = x_1 \cdot x_1 \quad \text{,} \quad v = u \cdot x_2 \quad \text{,} \quad y = x_1 + 1 \quad \text{and} \quad z = v + y
 $$
 
-The variables $u, v$ and $ y $ are called _auxiliary variables_ or _low-level variables_, while  
+The variables $u, v$ and $ y $ are called auxiliary variables or low-level variables, while 
 ${ z }$  is the output of  $ \mathcal{A} $ . Thus, in addition to computing polynomials naturally, an 
 arithmetic circuit helps in reducing a computation to a low-level language involving only two variables, 
 one operation and an output. 
 
-Although [[N6]] describes arithmetic circuits as being a more highly structured model of computation 
-than Boolean circuits, it also points out that "we do not know how to efficiently reconstruct a circuit using only queries to 
-the polynomial it computes". 
-
 Zero-knowledge proofs in general require that statements to be proved are expressed in their 
 simplest terms for efficiency. A ZK proof's end-to-end journey is to create a _function_ 
 to write proofs about yet such a function needs to work with specific constructs.
-In making ZK proofs more efficient: "these _functions_ have to be specified as sequences of very simple terms, 
+In making ZK proofs more efficient: "these functions have to be specified as sequences of very simple terms, 
 namely, additions and multiplications of only two terms in a particular field" [[7]]. This is where arithmetic circuits come in. 
 
 In verifying a ZK proof, the verifier needs to carry out a step-by-step check of the computations. When these computations are expressed in terms of arithmetic circuits, the process translates to checking
@@ -184,8 +182,8 @@ gate.
 Although a computational problem is typically expressed in terms of a high-level programming language, a ZK proof requires 
 it to be expressed in terms of a set of quadratic constraints, which are closely related to circuits of logical gates. 
 
-R1CS is short for Rank-1 Constraint System. Other than in Bulletproof constructions, these types of constraint systems have been featured in several 
-constructions of zk-SNARKs. At times they were simply referred to as _quadratic constraints_ or _quadratic equations_; refer to 
+Other than in Bulletproof constructions, R1CS types of constraint systems have been featured in several 
+constructions of zk-SNARKs. At times they were simply referred to as quadratic constraints or quadratic equations; refer to 
 [[5]], [[8]] and [[9]]. 
 
 
@@ -202,12 +200,12 @@ variables in the constraint system:
 2. $ n$  **low-level** variables, the internal input vectors  ${ \mathbf{a}_L}$  and  
    ${ \mathbf{a}_R},$  and output vectors  ${ \mathbf{a}_O } $  of the multiplication gates." 
 
-Specifically, a **Rank-1 Constraint System** **(R1CS)** is a system that consists of two sets of constraints: 
+Specifically, an R1CS is a system that consists of two sets of constraints: 
 
 - ${ n}$  multiplicative constraints,  $ \mathbf{ a_L \circ a_R = a_O } $,  where  "${ \circ }$"  is the Hadamard product; and
-- ${ q}$  linear constraints,  $\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} } $,  where  $\mathbf{W_L, W_R, W_O}$  and  $\mathbf{W_V}$  are weights applied to respective input vectors and output vectors [[2]]. 
+- ${ q}$  linear constraints,  $\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} } $,  where  $\mathbf{c}$  is a vector of constant terms used in linear constraints, and  $\mathbf{W_L, W_R, W_O}$  and  $\mathbf{W_V}$  are weights applied to respective input vectors and output vectors [[2]]. 
 
-Note that it was Bootle et al. who first expressed _arithmetic circuit satisfiability_ in terms of the Hadamard relation 
+Note that it was Bootle et al. who first expressed arithmetic circuit satisfiability in terms of the Hadamard relation 
 and linear constraints [[2]]. In their definition, the above linear constraints are written as:
 $$
 \mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = c }
@@ -223,15 +221,22 @@ Bulletproofs use the Pedersen commitment scheme.
 
 
 
-### Definition of Rank-1 Constraint System 
+### R1CS Definition for zkSNARKs 
 
 This paragraph provides a simplified definition of an R1CS as it applies to zk-SNARKs [[10]]. 
 
 An R1CS is a sequence of groups of three vectors ${ \bf{a_L}}, { \bf{a_R}}, { \bf{a_O}} ,$ and the 
 solution to an R1CS is a vector ${ \bf{s}}$ that satisfies the equation:
 $$
-{ \langle {\bf{a_L , s}} \rangle \cdot \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0 }
+{ \langle {\mathbf{a_L} , \mathbf{s}} \rangle \cdot \langle {\mathbf{a_R} , \mathbf{s}} \rangle - \langle {\mathbf{a_O} , \mathbf{s}} \rangle = 0 }
 $$
+where
+$$\langle {\mathbf{a_L} , \mathbf{s}} \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n $$
+which is the innerproduct of the vectors 
+$ \mathbf{a\_{L}}  =  (a\_{L,1}, a\_{L,2}, ... , a\_{L,n} )$
+and
+$ {\mathbf{s}} = (s\_1, s\_2, ... , s\_n) $.
+
 
 
 
@@ -243,7 +248,7 @@ and ${ { x_2 = 2 }}$ belonging to the appropriate field ${ \mathcal{F}}$. Thus t
 ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$ becomes ${ { s = ( 1 , 3 , 2 , 22 , 9 , 18 , 4 )}}$. 
 
 It is easy to check that the R1CS for the computation problem in the preceding example is as follows (one need only test 
-if ${ \langle {\bf{a_L , s}} \rangle  \cdot  \langle {\bf{a_R , s }} \rangle - \langle {\bf{a_O , s }} \rangle = 0}$ 
+if ${ \langle {\mathbf{a_L} , \mathbf{s}} \rangle  \cdot  \langle {\mathbf{a_R} , \mathbf{s}} \rangle - \langle {\mathbf{a_O} , \mathbf{s}} \rangle = 0}$ 
 for each equation). 
 
 
@@ -283,7 +288,7 @@ _matrix multiplication_ and ${ \bf s^T}$ is the transpose of the solution vector
 
 ## From Arithmetic Circuits to Programmable Constraint Systems for Bulletproofs 
 
-[Interstellar's Programmable Constraint Systems for Bulletproofs](#interstellars-bulletproof-constraint-system) 
+Interstellar's Programmable Constraint Systems for Bulletproofs [[11]]
 is an extension of "Zero-knowledge Proofs for Arithmetic Circuits" by Bootle et al. [[4]], enabling protocols that 
 support proving of arbitrary statements in ZK using constraint systems. Although our focus here is on the 
 two works of research [[4]] and [[11]], the _Bulletproofs paper_ by Bunz et al. [[3]] is here recognized as a bridge 
@@ -292,16 +297,15 @@ between the two. The comparison among these **three** works of research is shown
 All these are ZK proofs are based on the difficulty of the discrete logarithm problem. 
 
 <div align="center"><b>Table 2: Comparison of three Research Works on ZK Proofs</b></div> 
-
 | No.  | Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting [[4]] (2016) | Bulletproofs: Short Proofs for Confidential Transactions and More [[3]] (2017) | Programmable Constraint Systems  [[11]] (2018)               |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint, and these are in fact the R1CS. | Generalizes constraint systems and uses what is called gadgets as building blocks for constraint systems. |
 | 2.   | Improves on Groth's work [[12]] on ZK proofs. Reducing a $\sqrt{N}$  complexity to  $6log_2(N) + 13$, where $N$  is the circuit size. | Improves on Bootle et al.'s work [[4]]. Reducing a $2log_2(N) + 13$ complexity to  $6log_2(N) + 13$, where $N$ is the circuit size. | Adds constraint systems to Bunz et al.'s work on Bulletproofs, which are short proofs, and the complexity advantage is seen in proving several statements at once. |
 | 3.   | Introduces logarithm-sized inner-product ZK proofs.          | Introduces Bulletproofs, extending proofs to proofs of arbitrary statements. The halving method is used on the inner-products, resulting in the above reduction in complexity. | Introduces gadgets that are actually add-ons to an ordinary ZK proof. A range proof is an example of a gadget. |
-| 4.   | Uses Fiat-Shamir heuristics in order to achieve non-interactive ZK proofs. | Bulletproofs have no trusted setup, as they use  the Fiat Shamir heuristics to achieve non-interactive ZK proofs. | Merlin transcripts are specifically used for a Fiat-Shamir transformation to achieve non-interactive ZK proofs. |
+| 4.   | Uses Fiat-Shamir heuristics in order to achieve non-interactive ZK proofs. | Bulletproofs have no trusted setup, as they use  the Fiat Shamir heuristics to achieve non-interaction. | Merlin transcripts are specifically used for a Fiat-Shamir transformation to achieve non-interaction. |
 | 5.   | The Pedersen commitments are used in order to achieve ZK property. | Eliminates the need for a commitment algorithm by including Pedersen commitments among the inputs to the verification proof. | Low-level variables, representing inputs and outputs to multiplication gates, are computed per proof and committed using a single vector Pedersen commitment. |
 | 6.   | The ZK proof involves conversion of the arithmetic circuit into an R1CS. | The mathematical expression of a Hadamard relation is closely related to an arithmetic circuit. The use of this relation plus linear constraints as a single constraint amounts to using a constraint system. | Although arithmetic circuits are not explicitly used here, the Hadamard relation remains the same as first seen in Bulletproofs, more so in the inner-product proof. |
-| 7.   | The ZK proof here is for NP statements based on the difficulty of the discrete logarithm problem. | As mentioned above, Bulletproofs extend ZK proofs (such as range proofs) to proofs on arbitrary statements. They are also described as short non-interactive proofs for arithmetic circuits without a trusted setup. | Interstellar is building an Application Programming Interface (API) that allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop. |
+| 7.   | The ZK proof here is for NP statements based on the difficulty of the discrete logarithm problem. NP refers to being non-deterministically provable in polynomial time | As mentioned above, Bulletproofs extend ZK proofs (such as range proofs) to proofs on arbitrary statements. | Interstellar is building an Application Programming Interface (API) that allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop. |
 
 
 
@@ -373,10 +377,6 @@ number of inputs to a shuffle gadget is always the same as the number of outputs
 ​				
 
 <div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs [[1]]</b></div> 
-
-Find a RUST example code for a shuffle gadget in the Bulletproofs Constraint System framework 
-by Lovesh Harchandani [[17]]. 
-
 The Interstellar team mentions other gadgets: “merge”, “split” and a “range proof”, that are implemented in their 
 Confidential Assets scheme called the _Cloak_. Just as a shuffle gadget creates constraints which prove that 
 two sets of variables are equal up to a permutation, a range proof gadget checks that a given value is in the 
@@ -418,7 +418,7 @@ The computational challenge is to "_prove knowledge of factors_ p
 _and_ q _of a given number_ r _without revealing the factors_". 
 
 Table 3 gives an outline of the description and the code lines of the example. Harchandani's complete 
-code of this example can be found in [[18]]. 
+code of this example can be found in [[17]]. 
 
 <div align="center"><b>Table 3: Example of Bulletproof Constraint</b></div> 
 | No.  | Description                                                  | Code Lines                                                   |
@@ -445,7 +445,7 @@ In conclusion, this report has:
 - clarified the difference R1CSs make in Bulletproofs and in range proofs; 
 - compared ZK Proofs for arithmetic circuits and Programmable Constraint System; 
 - explained what is meant by the following in [[3]] - "We note that a range proof 
-  using the protocol of [[BCC+16]](Bootle et al.'s paper [[4]]) would have required implementing the commitment opening 
+  using the protocol of Bootle et al. [[4]] would have required implementing the commitment opening 
   algorithm as part of the verification circuit, which we are able to eliminate." 
 
 Constraint systems indeed form a natural language for most computational problems expressed as arithmetic circuits. No 
@@ -453,8 +453,8 @@ wonder they have found such ample application in both zk-SNARKs and Bulletproofs
 Although much work still needs to be done, Bulletproofs with constraint systems built on them promise to be powerful 
 tools for efficient handling of verifiable programs. The leverage that developers have, in choosing whatever gadgets 
 they wish to implement, leaves enough room to build proof systems that have some degree of modularity. 
-The possibility of using this Bulletproofs framework in building confidential digital asset schemes provides 
-greater opportunities or options to consider when building Tari's envisaged Digital Assets Network. 
+The possibility of using this Bulletproofs framework in building blockchain-enabled confidential digital asset schemes provides 
+greater opportunities. 
 With regard to validation of transactions or verification proofs, it would be an interesting 
 survey to make on how the blockchain community could vote, given a choice between 
 Bulletproofs and zk-SNARKs. Only time will tell which of these two will yield better practicality. 
@@ -513,11 +513,11 @@ Multivariate Quadratic Systems"
 
 
 [[6]] A. Shpilka and A. Yehudayoff, "Arithmetic Circuits: A Survey of Recent Results and Open Questions", 
-Technion-Israel Institute of Technology, Haifa, Israel, 2010 [online]. Available: 
-<https://ieeexplore.ieee.org/document/8186881/metrics#metrics>. 
+Technion-Israel Institute of Technology, Haifa, Israel, 2010 [online]. Available: <http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf>. 
 Date accessed: 2019&#8209;12&#8209;21. 
 
-[6]: https://ieeexplore.ieee.org/document/8186881/metrics#metrics
+[6]: http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf
+
 "Arithmetic Circuits: 
 A Survey of Recent Results 
 and Open Questions" 
@@ -552,8 +552,6 @@ Executions Succinctly and in Zero Knowledge (extended version)," October 2013 [o
 Verifying Program Executions 
 Succinctly and in Zero 
 Knowledge (extended version)"
-
-
 
 
 
@@ -616,19 +614,13 @@ using Bulletproofs"
 
 
 
-[[17]] L. Harchandani, "Building a proof-of-shuffle constraint system", [online]. Available: 
-
-<https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/docs/r1cs-docs-example.md> Date accessed: 2019&#8209;10&#8209;02. 
-
-[17]: https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/docs/r1cs-docs-example.md	"Building a proof-of-shuffle constraint system"
 
 
-
-[[18]] L. Harchandani, "Factors R1CS Bulletproofs Example", [online]. Available: 
+[[17]] L. Harchandani, "Factors R1CS Bulletproofs Example", [online]. Available: 
 
 <https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17> Date accessed: 2019&#8209;10&#8209;02. 
 
-[18]: https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17	"Factors R1CS Bulletproofs Example"
+[17]: https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17	"Factors R1CS Bulletproofs Example"
 
 
 
