@@ -13,7 +13,7 @@
 - [Rank-1 Constraint Systems](#rank-1-constraint-systems)
   - [Overview](#overview-1)
   - [Definition of Constraint System](#definition-of-constraint-system)
-  - [Definition of Rank-1 Constraint System](#definition-of-rank-1-constraint-system)
+  - [R1CS Definition for zkSNARKs](#r1cs-definition-for-zksnarks)
   - [Example of Rank-1 Constraint System](#example-of-rank-1-constraint-system) 
 - [From Arithmetic Circuits to Programmable Constraint Systems for Bulletproofs ](#from-arithmetic-circuits-to-programmable-constraint-systems-for-bulletproofs) 
 - [Interstellar's Bulletproof Constraint System](#interstellars-bulletproof-constraint-system)
