@@ -112,7 +112,6 @@ an output  $a_O$. Also, we note that  $ a_L \cdot a_R - a_O = 0 $.
 </b></div> 
 <div align="center"><b>Figure 1: Typical Multiplication Gate</b></div> 
 
-
 We note that in cases where the inputs and outputs are all vectors of  
 $n$  components, i.e.  $\mathbf{a_L} = ( a_{L, 1}, a_{L, 2} , \dots , a_{L, n})$, 
 $\mathbf{a_R} = ( a_{R, 1}, a_{R, 2} , \dots , a_{R, n})$ 
@@ -141,7 +140,6 @@ arithmetic circuit  $\mathcal{A}$  with inputs  $\lbrace x_1 , x_2 , 1 \rbrace$ 
 <img src="sources/polynomial-eg-ac.png" alt="polynomial-eg-ac" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 2: Arithmetic Circuit</b></div> 
-
 
 The output of $\mathcal{A}$ above is the polynomial $x^2_1 \cdot x_2 + x_1 + 1 $ of total degree three. 
 
@@ -251,7 +249,6 @@ for each equation).
 
 
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div> 
-
 | Equation                        | Rank-1 Constraint System Vectors                             |
 | ------------------------------- | ------------------------------------------------------------ |
 | ${ u = x_1\cdot x_1}$          | $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ |
@@ -295,7 +292,6 @@ between the two. The comparison among these **three** works of research is shown
 All these are ZK proofs are based on the difficulty of the discrete logarithm problem. 
 
 <div align="center"><b>Table 2: Comparison of three Research Works on ZK Proofs</b></div> 
-
 
 | No.  | Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting [[4]] (2016) | Bulletproofs: Short Proofs for Confidential Transactions and More [[3]] (2017) | Programmable Constraint Systems  [[11]] (2018)               |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -378,7 +374,6 @@ number of inputs to a shuffle gadget is always the same as the number of outputs
 
 <div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs [[1]]</b></div> 
 
-
 Find a RUST example code for a shuffle gadget in the Bulletproofs Constraint System framework 
 by Lovesh Harchandani [[17]]. 
 
@@ -426,7 +421,6 @@ Table 3 gives an outline of the description and the code lines of the example. H
 code of this example can be found in [[18]]. 
 
 <div align="center"><b>Table 3: Example of Bulletproof Constraint</b></div> 
-
 | No.  | Description                                                  | Code Lines                                                   |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 1.   | Create two pairs of generators; one pair for the <br/>Pedersen commitments and the other for the <br/>Bulletproof. | `let pc_gens = PedersenGens::default();`<br/>`let bp_gens = BulletproofGens::new(128, 1);` |
