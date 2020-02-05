@@ -349,7 +349,7 @@ In this bulletproofs framework, a prover can build a constraint system in two st
   high-level variables already committed [[2]]. 
 
 Reference 
-[[N16]] gives an excellent outline of ZK proofs that use Bulletproofs: 
+In [[16]] an excellent outline of ZK proofs that use Bulletproofs is given: 
 
 1. The prover commits to a value(s) that they want to prove knowledge of. 
 2. The prover generates the proof by enforcing the constraints over the committed values and any additional 
