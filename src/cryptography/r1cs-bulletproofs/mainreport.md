@@ -326,7 +326,7 @@ in Henry de Valence's article entitled "Bulletproofs pre-release" [[14]].
 An update on their progress in extending the Bulletproofs implementation [[15]] 
 to a constraint system API, which enables ZK proofs of arbitrary statements, was given in Cathie Yun's 
 article, "Programmable Constraint Systems for Bulletproofs"
-[[11]]. However, it was Bootle et al. [[4]] who first used the Hadamard relation and linear constraints, which together 
+[[11]]. The Hadamard relation and linear constraints together 
 form the constraint system as formalized by the Interstellar team. Most of the mathematical background of these 
 constraints and bulletproofs is contained in Bunz et al.'s paper [[3]].
 
