@@ -377,7 +377,9 @@ number of inputs to a shuffle gadget is always the same as the number of outputs
 </b></div> 
 ​				
 
-<div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs [[1]]</b></div> 
+<div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs 
+[<a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8" 
+title="Building on Bulletproofs">1</a>]</b></div> 
 The Interstellar team mentions other gadgets: “merge”, “split” and a “range proof”, that are implemented in their 
 Confidential Assets scheme called the _Cloak_. Just as a shuffle gadget creates constraints which prove that 
 two sets of variables are equal up to a permutation, a range proof gadget checks that a given value is in the 
