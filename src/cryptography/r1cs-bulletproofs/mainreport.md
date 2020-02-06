@@ -285,8 +285,8 @@ $$
 
 
 
-We observe that ${ \bf{ (A_L\cdot s^T) * (A_R\cdot s^T ) - (A_O\cdot s^T)} = 0 }$, where "${\bf{ \cdot }}$" is 
-_matrix multiplication_ and ${ \bf s^T}$ is the transpose of the solution vector ${ \bf{s}}$. 
+We observe that ${ \bf{ (A_L  *  s^T) \cdot (A_R  *  s^T ) - (A_O  *  s^T)} = 0 }$, where "$ * $" is 
+_matrix multiplication_ and ${ \bf s^T}$ is the transpose of the solution vector ${ \bf{s}}$, [[8]]. 
 
   
 
@@ -645,11 +645,57 @@ using Bulletproofs"
 
 
 
+[[20]]  Wikipedia: "NP (complexity)", [online]. Available:  <https://en.wikipedia.org/wiki/NP_(complexity)> . Date accessed: 2020&#8209;02&#8209;06. 
+
+[20]: https://en.wikipedia.org/wiki/NP_(complexity)	"NP (complexity) - Wikipedia"
 
 
-[[20]] WolframMathWorld, "Field Theory", [online]. Available: <http://mathworld.wolfram.com/FieldAxioms.html>. Accessed: 2020&#8209;02&#8209;06. 
 
-[20]: http://mathworld.wolfram.com/FieldAxioms.html	"Field Theory - WolframMathWorld"
+
+
+[[21]] Wikipedia: "Set (mathematics)", [online]. Available: https://en.wikipedia.org/wiki/Set_(mathematics). Date accessed: 2020&#8209;02&#8209;06. 
+
+[21]: https://en.wikipedia.org/wiki/Set_(mathematics)	"Set (mathematics) - Wikipedia"
+
+
+
+
+
+[[22]] Wikipedia: "Finite Theory", [online]. Available: <https://en.wikipedia.org/wiki/Finite_field>. Date accessed: 2020&#8209;02&#8209;06. 
+
+[22]: https://en.wikipedia.org/wiki/Finite_field	"Field Theory - WolframMathWorld"
+
+  
+
+
+
+[[23]] Wikipedia: "Finite Set", [online]. Available:  <https://en.wikipedia.org/wiki/Finite_set>. Date accessed: 2020&#8209;02&#8209;06. 
+
+[23]: https://en.wikipedia.org/wiki/Finite_set	"Finite Set - WolframMathWorld"
+
+ 
+
+
+
+[[24]] Wikipedia: "Binary Operation", [online]. Available: <https://en.wikipedia.org/wiki/Binary_operation >. Date accessed: 2020&#8209;02&#8209;06. 
+
+[24]: https://en.wikipedia.org/wiki/Binary_operation	"Field Theory - WolframMathWorld"
+
+
+
+
+
+[[25]] WolframMathWorld, "Field Theory", [online]. Available: <http://mathworld.wolfram.com/FieldAxioms.html>. Accessed: 2020&#8209;02&#8209;06. 
+
+[25]: http://mathworld.wolfram.com/FieldAxioms.html	"Field Theory - WolframMathWorld"
+
+
+
+
+
+[[26]] Wikipedia: "Finite Theory", [online]. Available: <https://en.wikipedia.org/wiki/Finite_field>. Date accessed: 2020&#8209;02&#8209;06. 
+
+[26]: https://en.wikipedia.org/wiki/Finite_field	"Field Theory - Wikipedia"
 
 
 
@@ -669,7 +715,18 @@ using Bulletproofs"
 
 Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
 
-- **Field**: Any set  $ \mathcal{F} $  of elements together with binary operations $ + $ and  $ \cdot $  , called addition and multiplication, respectively, is a **field** if for any three elements $ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $  satisfy the field axioms given in the table below [[20]]. 
+
+
+- **Symbolic Computation**: The study and development of algorithms and software for manipulating mathematical expressions and other mathematical objects [[19]]. 
+- **NP statements**: A statement that is non-deterministically provable in polynomial time [[20]]. 
+
+- **Set**: A well-defined collection of distinct objects [[21]]. 
+- **Element of a set**: Any member of the set or any one of the distinct objects that make up that set [[22]].
+- **Finite Set**: Any set that has a finite number of elements [[23]].
+- **Binary Operation**: An operation  $ * $  or a calculation that combines two elements  $ \mathcal{a} $  and  $ \mathcal{b} $ , called operands, to produce another element  $ \mathcal{a} * \mathcal{b} $ , [[24]].
+
+- **Field**: Any set  $ \mathcal{F} $  of elements together with binary operations $ + $ and  $ \cdot $  , called addition and multiplication, respectively, is a **field** if for any three elements $ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $  satisfy the field axioms given in the table below [[25]]. 
+- **Finite field**: Any field  $ \mathcal{F} $  that contains a finite number of elements [[26]].
 
  
 
@@ -687,13 +744,7 @@ Definitions of terms presented here are high level and general in nature. Full m
 
 
 
-  
 
-- **NP statements**: A statement that non-deterministically provable in polynomial time. 
-
-
-
-- **Symbolic Computation**: The study and development of algorithms and software for manipulating mathematical expressions and other mathematical objects [[N19]]. 
 
 
 
@@ -704,11 +755,9 @@ Definitions of terms presented here are high level and general in nature. Full m
 
 
 - Let  $ \mathbf{a} = (a_1 , a_2 , ... , a_n ) $  be a vector with  $n$  components  $ a_1 , a_2 , ... , a_n $,  which are elements of some field $ \mathcal{F} $.  
-
 - The vector  $ \mathbf{a} $  is of size  $n$  if it has  $ n $  components. 
-
 - The transpose of a vector  $ \mathbf{s} = ( s_1 , s_2 , \dots , s_n )$  of size  $ n $  is the vector
-  $ \mathbf{s}^T = \begin{bmatrix} s_1 \\ s_2 \\ \cdot \\ \cdot \\ \cdot \\ s_4 \end{bmatrix} $ 
+  $ \mathbf{s}^T = \begin{bmatrix} s_1 \\\\ s_2 \\\\ \cdot \\\\ \cdot \\\\ \cdot \\\\ s_n \end{bmatrix} $ 
 
 
 
