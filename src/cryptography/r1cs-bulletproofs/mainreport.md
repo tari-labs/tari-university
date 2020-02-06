@@ -362,7 +362,7 @@ In [[16]] an excellent outline of ZK proofs that use Bulletproofs is given:
 ### About Gadgets 
 
 Consider a verifiable shuffle: given two lists of committed values  ${ x_1, x_2, . . . , x_n}$  and 
-${ y_1, y_2, . . . , y_n} ,$ prove that the second list is a permutation of the first. Bunz et al. (page 5 of [[3]]) mention that 
+${ y_1, y_2, . . . , y_n} ,$ prove that the second list is a permutation of the first. Bunz et al. ([[3], page 5]) mention that 
 the use of bulletproofs improves the complexity of such a verifiable shuffle to size $\mathcal{O}(log(n))$ compared to 
 previous implementation results. Although not referred to as a _gadget_ in the paper, this is in 
 fact a shuffle gadget. The term gadget was used and popularized by the Interstellar team, who introduced gadgets 
