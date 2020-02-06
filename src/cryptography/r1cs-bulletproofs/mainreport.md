@@ -419,7 +419,8 @@ The computational challenge is to "_prove knowledge of factors_ p
 _and_ q _of a given number_ r _without revealing the factors_". 
 
 Table 3 gives an outline of the description and the code lines of the example. Harchandani's complete 
-code of this example can be found in [[17]]. 
+code of this example can be found in [[17]]. Important to note is that the verifier must have an exact copy of the R1CS 
+circuit used by the prover.
 
 <div align="center"><b>Table 3: Example of Bulletproof Constraint</b></div> 
 
