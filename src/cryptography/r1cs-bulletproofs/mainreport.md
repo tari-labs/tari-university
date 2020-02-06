@@ -623,7 +623,7 @@ using Bulletproofs"
 
 <https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17> Date accessed: 2019&#8209;10&#8209;02. 
 
-[17]: https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17	"Factors R1CS Bulletproofs Example"
+[17]: https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17 "Factors R1CS Bulletproofs Example"
 
 
 
