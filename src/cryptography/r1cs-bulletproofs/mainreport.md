@@ -104,7 +104,7 @@ circuit and the maximum distance (the number of edges in the longest directed pa
 
 
 A typical multiplication gate has a left input  $a_L$ , a right input  $a_R$  and 
-an output  $a_O$. Also, we note that  $ a_L \cdot a_R - a_O = 0 $.
+an output  $a_O$ (Figure&nbsp;1). Also, we note that  $ a_L \cdot a_R - a_O = 0 $.
 
 
 
