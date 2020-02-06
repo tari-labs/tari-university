@@ -546,7 +546,7 @@ Technion-Israel Institute of Technology, Haifa, Israel, 2010 [online]. Available
 
 
 
-[[8]] A. Pinto, "Constraint Systems for ZK SNARKs," 2019-03-06 [online]. Available: 
+[[8]] A. Pinto, "Constraint Systems for ZK SNARKs", [online]. Available: 
 <http://coders-errand.com/constraint-systems-for-zk-snarks/>. Date accessed: 2019&#8209;12&#8209;23.
 
 [8]: http://coders-errand.com/constraint-systems-for-zk-snarks/	"Constraint Systems for ZK SNARKs"
