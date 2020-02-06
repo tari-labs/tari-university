@@ -368,7 +368,7 @@ previous implementation results. Although not referred to as a _gadget_ in the p
 fact a shuffle gadget. The term gadget was used and popularized by the Interstellar team, who introduced gadgets 
 as building blocks of constraint systems; refer to [[1]]. 
 
-A _shuffle gadget_ is any function whose outputs are but a permutation of its inputs. By definition of a permutation, the 
+A _shuffle gadget_ (Figure&nbsp;3) is any function whose outputs are but a permutation of its inputs. By definition of a permutation, the 
 number of inputs to a shuffle gadget is always the same as the number of outputs. 
 
 
