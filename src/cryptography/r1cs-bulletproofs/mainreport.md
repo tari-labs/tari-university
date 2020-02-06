@@ -159,7 +159,7 @@ one operation and an output.
 
 Zero-knowledge proofs in general require that statements to be proved are expressed in their 
 simplest terms for efficiency. A ZK proof's end-to-end journey is to create a _function_ 
-to write proofs about yet such a function needs to work with specific constructs.
+to write proofs about, yet such a function needs to work with specific constructs.
 In making ZK proofs more efficient: "these functions have to be specified as sequences of very simple terms, 
 namely, additions and multiplications of only two terms in a particular field" [[7]]. This is where arithmetic circuits come in. 
 
