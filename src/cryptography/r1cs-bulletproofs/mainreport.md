@@ -564,7 +564,7 @@ Knowledge (extended version)"
 [[10]] V. Buterin, "Quadratic Arithmetic Programs: from Zero to Hero," 12 December 2016 [online]. Available: 
 <https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649>. Date accessed: 2019&#8209;12&#8209;19.
 
-[10]: https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649	"Quadratic Arithmetic Programs: from Zero to Hero"
+[10]: https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649 "Quadratic Arithmetic Programs: from Zero to Hero"
 
 
 
