@@ -10,7 +10,7 @@
 - [Rank-1 Constraint Systems](#rank-1-constraint-systems)
   - [Overview](#overview-1)
   - [Definition of Constraint System](#definition-of-constraint-system)
-  - [R1CS Definition for zkSNARKs](#r1cs-definition-for-zksnarks)
+  - [R1CS Definition for zk-SNARKs](#r1cs-definition-for-zk-snarks)
   - [Example of Rank-1 Constraint System](#example-of-rank-1-constraint-system) 
 - [From Arithmetic Circuits to Programmable Constraint Systems for Bulletproofs ](#from-arithmetic-circuits-to-programmable-constraint-systems-for-bulletproofs) 
 - [Interstellar's Bulletproof Constraint System](#interstellars-bulletproof-constraint-system)
@@ -21,6 +21,9 @@
   - [R1CS Factorization Example for Bulletproofs ](#r1cs-factorization-example-for-bulletproofs)
 - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
 - [References](#references) 
+- [Appendix](#appendices)
+	- [Appendix A: Definition of Terms](#appendix-a-definition-of-terms) 
+	- [Appendix B: Notation Used](#appendix-b-notation-used)
 - [Contributors](#contributors) 
 
 
@@ -32,8 +35,8 @@
 This report explains the technical underpinnings of Rank-1 Constraint Systems (R1CSs) as applied 
 to Bulletproofs. 
 
-The literature on the use of R1CSs in zero-knowledge (ZK) proofs, for example in zk-SNARKs, shows that this mathematical tool is used simply as one part of many in 
-a complex process towards achieving the proof. Not much attention is given to it, not even in explaining 
+The literature on the use of R1CSs in zero-knowledge (ZK) proofs, for example in zero-knowledge Succinct Non-interactive ARguments of Knowledge (zk-SNARKs), shows that this mathematical tool is used simply as one part of many in 
+a complex process towards achieving the proof [[N1]]. Not much attention is given to it, not even in explaining 
 what "rank-1" actually means. Although the terminology is similar to the traditional _rank of a matrix_ in 
 linear algebra, examples on the Internet do not yield a _reduced matrix with only one non-zero row or column_. 
 
@@ -45,8 +48,6 @@ Confidential Asset Protocol called the Cloak and in their envisaged Spacesuit.
 Despite their work on using R1CS being research in progress, their detailed notes on constraint systems and their 
 implementation in RUST are available in [[2]]. 
 
-Constructions of zero-knowledge proofs such as Bulletproofs involve arithmetic circuits and R1CSs, 
-either explicitly or implicitly. 
 
 The aim of this report is to: 
 
@@ -55,7 +56,7 @@ The aim of this report is to:
 - compare ZK Proofs for arithmetic circuits and Programmable Constraint System; 
 - explain what is meant by the following in [[3]] - "We note that a range proof 
   using the protocol of Bootle et al. [[4]] would have required implementing the commitment opening 
-  algorithm as part of the verification circuit, which we are able to eliminate." 
+  algorithm as part of the verification circuit, which we are able to eliminate", and how Bunz et al achieve this elimination.  
 
 
 
@@ -63,13 +64,7 @@ The aim of this report is to:
 
 ### Overview 
 
-Arithmetic circuits are said to be the most natural and standard model for computing polynomials. Every 
-function of binary vectors of fixed size $n$ to binary vectors of fixed size $m$,  $ \mathcal{H} : \lbrace 0 , 1 \rbrace^n → \lbrace 0 , 1 \rbrace^m $, 
-can be represented as an arithmetic circuit over any finite field $ \mathcal{F}_p$ , [[5]]. 
-
-According to [[6]], arithmetic circuits are a highly structured model of computation 
-where one is interested in _syntactic_ 
-computation of polynomials. That is, focusing on specific representation of the function being computed in order to improve efficiency. 
+Many problems in symbolic computation and cryptography can be expressed as the task of computing some polynomials; and arithmetic circuits form the most standard model for studying the complexity of such computations. Zero-knowledge proofs form a core building block of many cryptographic protocols. Of special interest are zero-knowledge proof systems capable of proving the correct computation of arbitrary arithmetic circuits ([[5]], [[6]]).
 
 
 
@@ -87,19 +82,17 @@ _gates_, while the edges are called _wires_ [[6]]:
   element from  $\mathcal{F}$.  Such a gate is called an  input gate. Every gate of out-degree  0  is called an 
   output gate or the root. 
 - Every other gate in  $\mathcal{A}$  is labeled by either  $\otimes$  or  $\oplus$ , and called a 
-  multiplication gate or addition gate, respectively. We are interested in binary circuits, i.e. circuits where 
-  each gate has two input wires and one output wire. 
+  multiplication gate or addition gate, respectively. 
 - An arithmetic circuit is called a formula if it is a directed tree whose edges are directed from the leaves 
   to the root. 
 - The depth of a node is the number of edges in the longest directed path between the node and the root.
 - The size of  $\mathcal{A}$ , denoted  $|\mathcal{A}|$ , is the number of wires, i.e. edges, in  $\mathcal{A}$. 
 
+Arithmetic circuits of interest and most applicable to this report are those with gates of in-degree 2 and out-degree 1. 
+A typical multiplication gate therefore has a left input  $a_L$ , a right input  $a_R$  and 
+an output  $a_O$. Also, we note that  $ a_L \cdot a_R - a_O = 0 $. 
 
 
-For our purposes, arithmetic circuits have as inputs variables $ x_1, \dots , x_n $. Computations are 
-performed using the arithmetic operations $ + $ and $ × $, and may involve constants from some field $\mathcal{F}$. 
-Complexity measures associated with such circuits are size and depth, which capture the number of gates in a 
-circuit and the maximum distance (the number of edges in the longest directed path) between an input and an output, respectively [[6]].
 
 
 
@@ -112,18 +105,26 @@ an output  $a_O$ (Figure&nbsp;1). Also, we note that  $ a_L \cdot a_R - a_O = 0 
 <img src="sources/basic-multiplication-gate.png" alt="basic-multiplication-gate" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 1: Typical Multiplication Gate</b></div> 
-We note that in cases where the inputs and outputs are all vectors of  
-$n$  components, i.e.  $\mathbf{a_L} = ( a_{L, 1}, a_{L, 2} , \dots , a_{L, n})$, 
-$\mathbf{a_R} = ( a_{R, 1}, a_{R, 2} , \dots , a_{R, n})$ 
-and  $\mathbf{a_O} = ( a_{O, 1}, a_{O, 2} , \dots , a_{O, n})$, 
-then multiplication of $\mathbf{a_L}$ and $\mathbf{a_R}$ is defined as an entry-wise 
+
+In cases where the inputs and outputs are all vectors of size 
+$n$ , i.e. 
+$\mathbf{a\_L} = ( a\_{L, 1}, a\_{L, 2} , \dots , a\_{L, n})$,
+$\mathbf{a\_R} = ( a\_{R, 1}, a\_{R, 2} , \dots , a\_{R, n})$ 
+and 
+$\mathbf{a_O} = ( a\_{O, 1}, a\_{O, 2} , \dots , a\_{O, n})$, 
+then multiplication of 
+$ \mathbf{a\_L} $ 
+and
+$ \mathbf{a\_R} $ 
+is defined as an entry-wise 
 product called the **Hadamard product**; 
 $$
 \mathbf{a_L}\circ \mathbf{a_R} = \big(( a_{L, 1} \cdot a_{R, 1} ) , ( a_{L, 2} \cdot a_{R, 2} ) , \dots , ( a_{L, n} \cdot 
 a_{R, n} ) \big) =  \mathbf{a_O}
 $$
 
-The equation ${ \mathbf{a_L}\circ \mathbf{a_R} = \mathbf{a_O} }$ is referred to as a multiplicative constraint, 
+The equation ${ \mathbf{a\_L}\circ \mathbf{a\_R} = \mathbf{a\_O} }$ 
+is referred to as a multiplicative constraint, 
 but is also known as the Hadamard relation [[4]]. 
 
 
@@ -140,7 +141,8 @@ arithmetic circuit  $\mathcal{A}$  with inputs  $\lbrace x_1 , x_2 , 1 \rbrace$ 
 <img src="sources/polynomial-eg-ac.png" alt="polynomial-eg-ac" style="zoom:67%;" />
 </b></div> 
 <div align="center"><b>Figure 2: Arithmetic Circuit</b></div> 
-The output of $\mathcal{A}$ above is the polynomial $x^2_1 \cdot x\_2 + x\_1 + 1 $ of total degree three. 
+
+The output of $\mathcal{A}$ above is the polynomial $x^2\_1 \cdot x\_2 + x\_1 + 1 $ of total degree three. 
 
 A typical computational problem would involve finding the solution to, let's say,  $x^2\_1 \cdot x\_2 + x\_1 + 1 = 22$.  
 Or, in a proof of knowledge scenario, the prover has to prove to the verifier that they have the correct solution to such 
@@ -148,6 +150,7 @@ an equation.
 
 Following the wires in the example shows that an arithmetic circuit actually breaks down the given computation into 
 smaller equations corresponding to each gate: 
+
 $$
 u = x_1 \cdot x_1 \quad \text{,} \quad v = u \cdot x_2 \quad \text{,} \quad y = x_1 + 1 \quad \text{and} \quad z = v + y
 $$
@@ -157,7 +160,7 @@ ${ z }$  is the output of  $ \mathcal{A} $ . Thus, in addition to computing poly
 arithmetic circuit helps in reducing a computation to a low-level language involving only two variables, 
 one operation and an output. 
 
-Zero-knowledge proofs in general require that statements to be proved are expressed in their 
+ZK proofs in general require that statements to be proved are expressed in their 
 simplest terms for efficiency. A ZK proof's end-to-end journey is to create a _function_ 
 to write proofs about, yet such a function needs to work with specific constructs.
 In making ZK proofs more efficient: "these functions have to be specified as sequences of very simple terms, 
@@ -194,12 +197,12 @@ et al. in [[4]]. The Dalek team give a more general definition of a constraint s
 variables in the constraint system:
 
 1. ${m}$  **high-level** variables, the input secrets  ${ \mathbf{v}}$, 
-2. $ n$  **low-level** variables, the internal input vectors  ${ \mathbf{a}_L}$  and  
+2. $ n$  **low-level** variables, the internal input vectors  ${ \mathbf{a}_L}$  and 
    ${ \mathbf{a}_R},$  and output vectors  ${ \mathbf{a}_O } $  of the multiplication gates." 
 
 Specifically, an R1CS is a system that consists of two sets of constraints: 
 
-- ${ n}$  multiplicative constraints,  $ \mathbf{ a_L \circ a_R = a_O } $,  where  "${ \circ }$"  is the Hadamard product; and
+- ${ n}$  multiplicative constraints,  $ \mathbf{ a_L \circ a_R = a_O } $,  and
 - ${ q}$  linear constraints,  $\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} } $,  where  $\mathbf{c}$  is a vector of constant terms used in linear constraints, and  $\mathbf{W_L, W_R, W_O}$  and  $\mathbf{W_V}$  are weights applied to respective input vectors and output vectors [[2]]. 
 
 Note that it was Bootle et al. who first expressed arithmetic circuit satisfiability in terms of the Hadamard relation 
@@ -218,9 +221,10 @@ Bulletproofs use the Pedersen commitment scheme.
 
 
 
-### R1CS Definition for zkSNARKs 
+### R1CS Definition for zk-SNARKs 
 
-This paragraph provides a simplified definition of an R1CS as it applies to zk-SNARKs [[10]]. 
+The use of arithmetic circuits and R1CS are more naturally applied to zkSNARKs, and these are  implemented in cryptocurrencies such as Zerocoin and Zcash, see [[N1]]. 
+In order to illustrate the simplicity of this concept, a definition of an R1CS as it applies to zk-SNARKs is provided in this paragraph, taken from [[10]]. 
 
 An R1CS is a sequence of groups of three vectors ${ \bf{a_L}}, { \bf{a_R}}, { \bf{a_O}} ,$ and the 
 solution to an R1CS is a vector ${ \bf{s}}$ that satisfies the equation:
@@ -252,11 +256,10 @@ for each equation).
 
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div> 
 
-
 | Equation                        | Rank-1 Constraint System Vectors                             |
 | ------------------------------- | ------------------------------------------------------------ |
 | ${ u = x_1\cdot x_1}$          | $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ |
-| $ { v = u\cdot x_2 }$          | $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $ |
+| $ { v = u\cdot x_2 }$          | $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 0 , 1 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $ |
 | $ { y = 1\cdot( x_1 + 1 ) } $ | ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ |
 | $ { z = 1\cdot( v + y )} $    | ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ |
 
@@ -297,18 +300,18 @@ All these are ZK proofs are based on the difficulty of the discrete logarithm pr
 
 <div align="center"><b>Table 2: Comparison of three Research Works on ZK Proofs</b></div> 
 
-
 | No.  | Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting [[4]] (2016) | Bulletproofs: Short Proofs for Confidential Transactions and More [[3]] (2017) | Programmable Constraint Systems  [[11]] (2018)               |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint, and these are in fact the R1CS. | Generalizes constraint systems and uses what is called gadgets as building blocks for constraint systems. |
 | 2.   | Improves on Groth's work [[12]] on ZK proofs. Reducing a $\sqrt{N}$  complexity to  $6log_2(N) + 13$, where $N$  is the circuit size. | Improves on Bootle et al.'s work [[4]]. Reducing a $2log_2(N) + 13$ complexity to  $6log_2(N) + 13$, where $N$ is the circuit size. | Adds constraint systems to Bunz et al.'s work on Bulletproofs, which are short proofs, and the complexity advantage is seen in proving several statements at once. |
 | 3.   | Introduces logarithm-sized inner-product ZK proofs.          | Introduces Bulletproofs, extending proofs to proofs of arbitrary statements. The halving method is used on the inner-products, resulting in the above reduction in complexity. | Introduces gadgets that are actually add-ons to an ordinary ZK proof. A range proof is an example of a gadget. |
-| 4.   | Uses Fiat-Shamir heuristics in order to achieve non-interactive ZK proofs. | Bulletproofs have no trusted setup, as they use  the Fiat Shamir heuristics to achieve non-interaction. | Merlin transcripts are specifically used for a Fiat-Shamir transformation to achieve non-interaction. |
+| 4.   | Uses Fiat-Shamir heuristics in order to achieve non-interactive ZK proofs. | Bulletproofs also use the Fiat Shamir heuristics to achieve non-interaction. | Merlin transcripts are specifically used for a Fiat-Shamir transformation to achieve non-interaction. |
 | 5.   | The Pedersen commitments are used in order to achieve ZK property. | Eliminates the need for a commitment algorithm by including Pedersen commitments among the inputs to the verification proof. | Low-level variables, representing inputs and outputs to multiplication gates, are computed per proof and committed using a single vector Pedersen commitment. |
 | 6.   | The ZK proof involves conversion of the arithmetic circuit into an R1CS. | The mathematical expression of a Hadamard relation is closely related to an arithmetic circuit. The use of this relation plus linear constraints as a single constraint amounts to using a constraint system. | Although arithmetic circuits are not explicitly used here, the Hadamard relation remains the same as first seen in Bulletproofs, more so in the inner-product proof. |
-| 7.   | The ZK proof here is for NP statements based on the difficulty of the discrete logarithm problem. NP refers to being non-deterministically provable in polynomial time | As mentioned above, Bulletproofs extend ZK proofs (such as range proofs) to proofs on arbitrary statements. | Interstellar is building an Application Programming Interface (API) that allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop. |
 
 
+
+Interstellar is building an Application Programming Interface (API) that allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop, as discussed in the [next section](#interstellars-bulletproof-constraint-system). 
 
 
 
@@ -372,18 +375,26 @@ A _shuffle gadget_ (Figure&nbsp;3) is any function whose outputs are but a permu
 number of inputs to a shuffle gadget is always the same as the number of outputs. 
 
 
+
+
 <div align="center"><b> 
 <img src="sources/simple-shuffle-diagram.png" style="zoom:67%;" /> 
 </b></div> 
 ​				
 
-<div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs 
-[<a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8" 
-title="Building on Bulletproofs">1</a>]</b></div> 
+<div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs [[1]]</b></div> 
+
 The Interstellar team mentions other gadgets: “merge”, “split” and a “range proof”, that are implemented in their 
-Confidential Assets scheme called the _Cloak_. Just as a shuffle gadget creates constraints which prove that 
+Confidential Assets scheme called the Cloak. 
+Just as a shuffle gadget creates constraints which prove that 
 two sets of variables are equal up to a permutation, a range proof gadget checks that a given value is in the 
-interval ${ [0, 2^n]}$, where ${ n}$ is the size of the input vector [[2]]. 
+$ [ 0, 2^n ] $ 
+where 
+$ n $ 
+is size of the input vector
+[[2]]. 
+
+
 
 Gadgets in their simplest form merely receive some variables as inputs and produce corresponding output values. However, they 
 may allocate more variables for internal use, sometimes called auxiliary variables, and produce constraints involving all these variables. The main advantage of gadgets is that they are composable, thus a more complex 
@@ -425,7 +436,6 @@ code of this example can be found in [[17]]. Important to note is that the verif
 circuit used by the prover.
 
 <div align="center"><b>Table 3: Example of Bulletproof Constraint</b></div> 
-
 
 | No.  | Description                                                  | Code Lines                                                   |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
@@ -472,149 +482,140 @@ Bulletproofs and zk-SNARKs. Only time will tell which of these two will yield be
 
 ## References 
 
-[[1]] C. Yun, "Building on Bulletproofs" [online]. Available: <https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8>. 
+
+
+[[1]] A. Gabizon, "Explaining SNARKs Part V: From Computations to Polynomials", [online]. Available:
+<https://electriccoin.co/blog/snark-explain5/>. Date accessed: 2020&#8209;01&#8209;03.
+
+[1]:  https://electriccoin.co/blog/snark-explain5/	"Explaining SNARKs Part V: From Computations to Polynomials"
+
+
+
+[[2]] C. Yun, "Building on Bulletproofs", [online]. Available: <https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8>. 
 Date accessed: 2020&#8209;01&#8209;03.
 
-[1]: https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8
-"Building on Bulletproofs" 
+[2]: https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8	"Building on Bulletproofs"
 
 
 
-[[2]] "Dalek's R1CS documents, Module Bulletproofs::r1cs_proof" [online]. Available: 
+
+
+[[3]] Dalek's R1CS documents, "Module Bulletproofs::r1cs_proof", [online]. Available: 
 <https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html>. Date accessed: 2020&#8209;01&#8209;07. 
 
-[2]: https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html
-"Module Bulletproofs::Notes::r1cs_proof"
+[3]: https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html "Module Bulletproofs::Notes::r1cs_proof"
 
 
 
-[[3]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential 
+[[4]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for Confidential 
 Transactions and More", Blockchain Protocol Analysis and Security Engineering 2018 [online]. 
 Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed: 2019&#8209;11&#8209;21.
 
-[3]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf
-"Bulletproofs: Short Proofs for Confidential Transactions and More"
+[4]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf	"Bulletproofs: Short Proofs for Confidential Transactions and More"
 
 
 
-[[4]]  J. Bootle, A. Cerulli, P. Chaidos, J. Groth and C. Petit, "Efficient Zero-knowledge Arguments for Arithmetic 
-Circuits in the Discrete Log Setting", *Annual International Conference on the Theory and Applications of Cryptographic* 
-*Techniques*, pp. 327‑357. Springer, 2016 [online]. Available: <https://eprint.iacr.org/2016/263.pdf> Date accessed: 2019&#8209;12&#8209;21.
 
-[4]: https://eprint.iacr.org/2016/263.pdf
-"Efficient Zero-knowledge 
-Arguments for Arithmetic Circuits 
-in the Discrete Log Setting" 
+
+[[5]]  J. Bootle, A. Cerulli, P. Chaidos, J. Groth and C. Petit, "Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting", Annual International Conference on the Theory and Applications of Cryptographic Techniques, pp. 327‑357. Springer, 2016 [online]. Available: <https://eprint.iacr.org/2016/263.pdf> Date accessed: 2019&#8209;12&#8209;21.
+
+[5]: https://eprint.iacr.org/2016/263.pdf	"Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting"
 
 
 
-[[5]] A. Szepieniec and B. Preneel, "Generic Zero-knowledge and Multivariate Quadratic Systems" [online]. Available: 
+[[6]] A. Szepieniec and B. Preneel, "Generic Zero-knowledge and Multivariate Quadratic Systems" [online]. Available: 
 <https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591>. 
 Date accessed: 2019&#8209;12&#8209;31.
 
-[5]: https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591
-"Generic Zero-knowledge and 
-Multivariate Quadratic Systems" 
+[6]: https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591	"Generic Zero-knowledge and MultiQuadratic Systems"
 
 
 
-[[6]] A. Shpilka and A. Yehudayoff, "Arithmetic Circuits: A Survey of Recent Results and Open Questions", 
-Technion-Israel Institute of Technology, Haifa, Israel, 2010 [online]. Available: <http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf>. 
-Date accessed: 2019&#8209;12&#8209;21. 
+[[7]] A. Shpilka and A. Yehudayoff, "Arithmetic Circuits: A Survey of Recent Results and Open Questions", 
+Technion-Israel Institute of Technology, Haifa, Israel, 2010 [online]. Available: <http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf>. Date accessed: 2019&#8209;12&#8209;21. 
 
-[6]: http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf
-
-"Arithmetic Circuits: 
-A Survey of Recent Results 
-and Open Questions" 
+[7]: http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf	"Arithmetic Circuits: A Survey of Recent Results and Open Questions"
 
 
 
-[[7]] A. Pinto, "Constraint Systems for ZK SNARKs," 2019-03-06 [online]. Available: 
-<http://coders-errand.com/constraint-systems-for-zk-snarks/>. 
-Date accessed: 2019&#8209;12&#8209;23.
+[[8]] A. Pinto, "Constraint Systems for ZK SNARKs," 2019-03-06 [online]. Available: 
+<http://coders-errand.com/constraint-systems-for-zk-snarks/>. Date accessed: 2019&#8209;12&#8209;23.
 
-[7]: http://coders-errand.com/constraint-systems-for-zk-snarks/
-"Constraint Systems for ZK SNARKs" 
+[8]: http://coders-errand.com/constraint-systems-for-zk-snarks/	"Constraint Systems for ZK SNARKs"
 
 
 
-[[8]] H. Wu, W. Zheng, A. Chiesa, R. Ada Popa, and I. Stoica, "DIZK: A Distributed Zero Knowledge 
+
+[[9]] H. Wu, W. Zheng, A. Chiesa, R. Ada Popa, and I. Stoica, "DIZK: A Distributed Zero Knowledge 
 Proof System", Proceedings of the 27th USENIX Security Symposium, August 15–17, 2018 [online]. Available: 
 <https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf>. Date accessed: 2019&#8209;12&#8209;14. 
 
-[8]: https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf
+[9]: https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf
 "DIZK: A Distributed Zero 
 Knowledge Proof System" 
 
 
 
-[[9]] E. Ben-Sasson, A. Chiesa, D. Genkin, E. Tromer and M. Virza, "SNARKs for C: Verifying Program 
+[[10]] E. Ben-Sasson, A. Chiesa, D. Genkin, E. Tromer and M. Virza, "SNARKs for C: Verifying Program 
 Executions Succinctly and in Zero Knowledge (extended version)," October 2013 [online]. Available: 
 <https://eprint.iacr.org/2013/507.pdf>. Date accessed: 2019&#8209;12&#8209;17. 
 
-[9]: https://eprint.iacr.org/2013/507.pdf
-"SNARKs for C: 
-Verifying Program Executions 
-Succinctly and in Zero 
-Knowledge (extended version)"
+[10]: https://eprint.iacr.org/2013/507.pdf	"SNARKs for C: Verifying Program Executions Succinctly and in Zero Knowledge (extended version)"
 
 
 
 
-
-[[10]] V. Buterin, "Quadratic Arithmetic Programs: from Zero to Hero," 12 December 2016 [online]. Available: 
+[[11]] V. Buterin, "Quadratic Arithmetic Programs: from Zero to Hero," 12 December 2016 [online]. Available: 
 <https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649>. Date accessed: 2019&#8209;12&#8209;19.
 
-[10]: https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649 "Quadratic Arithmetic Programs: from Zero to Hero"
+[11]: https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649	"Quadratic Arithmetic Programs: from Zero to Hero"
 
 
 
-[[11]] C. Yun, "Programmable Constraint Systems for Bulletproofs" [online]. Available: 
+
+
+[[12]] C. Yun, "Programmable Constraint Systems for Bulletproofs" [online]. Available: 
 <https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7>. Date accessed: 2019&#8209;12&#8209;04.
 
-[11]: https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7
-"Programmable Constraint Systems 
-for Bulletproofs" 
+[12]: https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7	"Programmable Constraint Systems for Bulletproofs"
 
 
 
-[[12]]  J. Groth, "Linear Algebra with Sub-linear Zero-knowledge Arguments", Advances in Cryptology – CRYPTO 2009, 
+
+[[13]]  J. Groth, "Linear Algebra with Sub-linear Zero-knowledge Arguments", Advances in Cryptology – CRYPTO 2009, 
 pages 192–208, 2009 [online]. Available: <https://iacr.org/archive/crypto2009/56770190/56770190.pdf>. Date accessed: 2019&#8209;12&#8209;04.
 
-[12]: https://iacr.org/archive/crypto2009/56770190/56770190.pdf
-"Linear Algebra with 
-Sub-linear Zero-knowledge 
-Arguments"
+[13]: https://iacr.org/archive/crypto2009/56770190/56770190.pdf	"Linear Algebra with Sub-linear Zero-knowledge Arguments"
 
 
 
-[[13]]  Dalek, "Ristretto", [online]. Available: <https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html> Date accessed: 2019&#8209;10&#8209;17
 
-[13]: https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html
-"Ristretto"
+[[14]]  Dalek, "Ristretto", [online]. Available: <https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html> Date accessed: 2019&#8209;10&#8209;17
 
-
-
-[[14]] H. Valence, "Bulletproofs pre-release", [online]. Available: <https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b> Date accessed: 2019&#8209;11&#8209;21.
-
-[14]: https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b
-"Bulletproofs pre-release"
+[14]: https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html	"Ristretto"
 
 
 
-[[15]] Dalek, "Bulletproofs Implementation", [online]. Available:
+
+[[15]] H. Valence, "Bulletproofs pre-release", [online]. Available: <https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b> Date accessed: 2019&#8209;11&#8209;21.
+
+[15]: https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b	"Bulletproofs pre-release"
+
+
+
+
+[[16]] Dalek, "Bulletproofs Implementation", [online]. Available:
 <http://github.com/dalek-cryptography/bulletproofs/> Date accessed: 2019&#8209;10&#8209;02.
 
-[15]: http://github.com/dalek-cryptography/bulletproofs/
-"Dalek's Bulletproofs Implementation"
+[16]: http://github.com/dalek-cryptography/bulletproofs/	"Dalek&#39;s Bulletproofs Implementation"
 
 
 
-[[16]] L. Harchandani, "Zero Knowledge Proofs using Bulletproofs" [online]. Available: 
+
+[[17]] L. Harchandani, "Zero Knowledge Proofs using Bulletproofs" [online]. Available: 
 <https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82>. Date accessed: 2020&#8209;01&#8209;03.
 
-[16]: https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82
+[17]: https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82
 "Zero Knowledge Proofs 
 using Bulletproofs"
 
@@ -622,11 +623,87 @@ using Bulletproofs"
 
 
 
-[[17]] L. Harchandani, "Factors R1CS Bulletproofs Example", [online]. Available: 
+[[18]] L. Harchandani, "Factors R1CS Bulletproofs Example", [online]. Available: <https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17>. Date accessed: 2019&#8209;10&#8209;02. 
 
-<https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17> Date accessed: 2019&#8209;10&#8209;02. 
+[18]: https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17	"Factors R1CS Bulletproofs Example"
 
-[17]: https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17 "Factors R1CS Bulletproofs Example"
+
+
+
+
+[[19]] "Computer Algebra", [online]. Available: <https://en.wikipedia.org/wiki/Computer_algebra>. Date accessed: 2020&#8209;02&#8209;05. 
+
+[19]: https://en.wikipedia.org/wiki/Computer_algebra	"Computer Algebra - Wikipedia"
+
+
+
+
+
+[[20]] WolframMathWorld, "Field Theory", [online]. Available: <http://mathworld.wolfram.com/FieldAxioms.html>. Accessed: 2020&#8209;02&#8209;06. 
+
+[20]: http://mathworld.wolfram.com/FieldAxioms.html	"Field Theory - WolframMathWorld"
+
+
+
+
+
+
+
+
+
+
+
+## Appendices
+
+
+
+### Appendix A: Definition of Terms
+
+Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in the cited references. 
+
+- **Field**: Any set  $ \mathcal{F} $  of elements together with binary operations $ + $ and  $ \cdot $  , called addition and multiplication, respectively, is a **field** if for any three elements $ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $  satisfy the field axioms given in the table below [[20]]. 
+
+ 
+
+<div align="center"><b>Table A1: Axioms of a Field </b></div> 
+
+
+| name           | addition                                                     | multiplication                                               |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| associativity  | ![(a+b)+c=a+(b+c)](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline1.gif) | ![(ab)c=a(bc)](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline2.gif) |
+| commutativity  | ![a+b=b+a](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline3.gif) | ![ab=ba](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline4.gif) |
+| distributivity | ![a(b+c)=ab+ac](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline5.gif) | ![(a+b)c=ac+bc](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline6.gif) |
+| identity       | ![a+0=a=0+a](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline7.gif) | ![a·1=a=1·a](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline8.gif) |
+| inverses       | ![a+(-a)=0=(-a)+a](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline9.gif) | ![aa^(-1)=1=a^(-1)a if a!=0](http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline10.gif) |
+
+
+
+  
+
+- **NP statements**: A statement that non-deterministically provable in polynomial time. 
+
+
+
+- **Symbolic Computation**: The study and development of algorithms and software for manipulating mathematical expressions and other mathematical objects [[N19]]. 
+
+
+
+
+
+### Appendix B: Notation Used 
+
+
+
+Let  $ \mathbf{a} = (a_1 , a_2 , ... , a_n ) $  be a vector with  $n$  components  $ a_1 , a_2 , ... , a_n $,  which are elements of some field $ \mathcal{F} $.  The vector  $ \mathbf{a} $  is of size  $n$  if it has  $ n $  components. 
+
+
+
+
+
+The transpose of a vector  $ \mathbf{s} = ( s_1 , s_2 , s_3 , s_4 )$  of size  $ 4 $  is the vector
+$  \mathbf{s}^T =  \begin{bmatrix} s_1 \\ s_2 \\ s_3 \\ s_4 \end{bmatrix} $ 
+
+
 
 
 
