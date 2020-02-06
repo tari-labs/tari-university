@@ -414,7 +414,7 @@ verifiable program" [[1]].
 
 ### R1CS Factorization Example for Bulletproofs 
 
-In the article [[16]], Harchandani explores the Dalek Bulletproofs API with various examples. Of interest
+In [[16]], Harchandani explores the Dalek Bulletproofs API with various examples. Of interest
 is the factorization problem, which is one out of the six R1CS Bulletproof examples 
 discussed in the article. 
 The computational challenge is to "_prove knowledge of factors_ p 
