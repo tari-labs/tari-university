@@ -10,7 +10,7 @@
 - [Rank-1 Constraint Systems](#rank-1-constraint-systems)
   - [Overview](#overview-1)
   - [Definition of Constraint System](#definition-of-constraint-system)
-  - [R1CS Definition for zk-SNARKs](#r1cs-definition-for-zk-snarks)
+  - [R1CS Definition for zk&#8209;SNARKs](#r1cs-definition-for-zk&#8209;SNARKs)
   - [Example of Rank-1 Constraint System](#example-of-rank-1-constraint-system) 
 - [From Arithmetic Circuits to Programmable Constraint Systems for Bulletproofs ](#from-arithmetic-circuits-to-programmable-constraint-systems-for-bulletproofs) 
 - [Interstellar's Bulletproof Constraint System](#interstellars-bulletproof-constraint-system)
@@ -35,7 +35,7 @@
 This report explains the technical underpinnings of Rank-1 Constraint Systems (R1CSs) as applied 
 to Bulletproofs. 
 
-The literature on the use of R1CSs in zero-knowledge (ZK) proofs, for example in zero-knowledge Succinct Non-interactive ARguments of Knowledge (zk-SNARKs), shows that this mathematical tool is used simply as one part of many in 
+The literature on the use of R1CSs in zero-knowledge (ZK) proofs, for example in zero-knowledge Succinct Non-interactive ARguments of Knowledge (zk&#8209;SNARKs), shows that this mathematical tool is used simply as one part of many in 
 a complex process towards achieving the proof [[1]]. Not much attention is given to it, not even in explaining 
 what "rank-1" actually means. Although the terminology is similar to the traditional _rank of a matrix_ in 
 linear algebra, examples on the Internet do not yield a _reduced matrix with only one non-zero row or column_. 
@@ -168,7 +168,7 @@ Although a computational problem is typically expressed in terms of a high-level
 it to be expressed in terms of a set of quadratic constraints, which are closely related to circuits of logical gates. 
 
 Other than in Bulletproof constructions, R1CS types of constraint systems have been featured in several 
-constructions of zk-SNARKs. At times they were simply referred to as quadratic constraints or quadratic equations; refer to 
+constructions of zk&#8209;SNARKs. At times they were simply referred to as quadratic constraints or quadratic equations; refer to 
 [[6]], [[9]] and [[10]]. 
 
 
@@ -212,10 +212,10 @@ Specifically, an R1CS is a system that consists of two sets of constraints [[3]]
 
 
 
-### R1CS Definition for zk-SNARKs 
+### R1CS Definition for zk&#8209;SNARKs 
 
-The use of arithmetic circuits and R1CS are more naturally applied to zkSNARKs, and these are  implemented in cryptocurrencies such as Zerocoin and Zcash, see [[1]]. 
-In order to illustrate the simplicity of this concept, a definition of an R1CS as it applies to zk-SNARKs is provided in this paragraph, taken from [[11]]. 
+The use of arithmetic circuits and R1CS are more naturally applied to zk&#8209;SNARKs, and these are  implemented in cryptocurrencies such as Zerocoin and Zcash, see [[1]]. 
+In order to illustrate the simplicity of this concept, a definition of an R1CS as it applies to zk&#8209;SNARKs is provided in this paragraph, taken from [[11]]. 
 
 An R1CS is a sequence of groups of three vectors ${ \bf{a_L}}, { \bf{a_R}}, { \bf{a_O}} ,$ and the 
 solution to an R1CS is a vector ${ \bf{s}}$ that satisfies the equation:
@@ -445,7 +445,7 @@ circuit used by the prover.
 ## Conclusions, Observations and Recommendations 
 
 Constraint systems form a natural language for most computational problems expressed as arithmetic circuits, and have 
-found ample application in both zk-SNARKs and Bulletproofs. Although much work still needs to be done, Bulletproofs with 
+found ample application in both zk&#8209;SNARKs and Bulletproofs. Although much work still needs to be done, Bulletproofs with 
 constraint systems built on them promise to be powerful tools for efficient handling of verifiable programs. The 
 leverage that developers have, in choosing whatever gadgets they wish to implement, leaves enough room to build proof 
 systems that have some degree of modularity. Proof system examples by both Dalek and Harchandani are valuable examples of what can be achieved with Bulletproofs and  R1CSs. The possibility of using this Bulletproofs framework in building 
@@ -512,9 +512,9 @@ Technion-Israel Institute of Technology, Haifa, Israel, 2010 [online]. Available
 
 
 [[8]] A. Pinto, "Constraint Systems for ZK SNARKs", [online]. Available: 
-<http://coders-errand.com/constraint-systems-for-zk-snarks/>. Date accessed: 2019&#8209;12&#8209;23.
+<http://coders-errand.com/constraint-systems-for-zk&#8209;SNARKs/>. Date accessed: 2019&#8209;12&#8209;23.
 
-[8]: http://coders-errand.com/constraint-systems-for-zk-snarks/ "Constraint Systems for ZK SNARKs"
+[8]: http://coders-errand.com/constraint-systems-for-zk&#8209;SNARKs/ "Constraint Systems for ZK SNARKs"
 
 
 
