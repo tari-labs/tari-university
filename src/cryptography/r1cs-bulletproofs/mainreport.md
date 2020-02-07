@@ -181,7 +181,7 @@ $$
 \mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = c }
 $$
 
-where $\mathbf{c}$ is a vector of constant terms used in linear constraints, and $\mathbf{W_L, W_R, W_O}$ and $\mathbf{W_V}$ 
+where $\mathbf{c}$ is a vector of constant terms used in linear constraints, and $\mathbf{W_L, W_R}$ and $\mathbf{W_O}$ 
 are weights applied to respective input vectors and output vectors. Bunz et al. incorporated a vector  $\mathbf{v}$  and vector of weights  $\mathbf{W_V}$ to the Bootle et al. definition [[4]]: 
 
 $$
@@ -606,32 +606,29 @@ using Bulletproofs"
 
 
 
-[[20]]  Wikipedia: "NP (complexity)", [online]. Available:  <https://en.wikipedia.org/wiki/NP_(complexity)> . Date accessed: 2020&#8209;02&#8209;06. 
-
-[20]: https://en.wikipedia.org/wiki/NP_(complexity) "NP (complexity) - Wikipedia"
 
 
 
 
-[[21]] Wikipedia: "Binary Operation", [online]. Available: <https://en.wikipedia.org/wiki/Binary_operation >. Date accessed: 2020&#8209;02&#8209;06. 
+[[20]] Wikipedia: "Binary Operation", [online]. Available: <https://en.wikipedia.org/wiki/Binary_operation >. Date accessed: 2020&#8209;02&#8209;06. 
 
-[21]: https://en.wikipedia.org/wiki/Binary_operation "Field Theory - WolframMathWorld"
+[20]: https://en.wikipedia.org/wiki/Binary_operation "Field Theory - WolframMathWorld"
 
 
 
 
 
-[[22]] WolframMathWorld, "Field Theory", [online]. Available: <http://mathworld.wolfram.com/FieldAxioms.html>. Date accessed: 2020&#8209;02&#8209;06. 
+[[21]] WolframMathWorld, "Field Theory", [online]. Available: <http://mathworld.wolfram.com/FieldAxioms.html>. Date accessed: 2020&#8209;02&#8209;06. 
 
-[22]: http://mathworld.wolfram.com/FieldAxioms.html "Field Theory - WolframMathWorld"
-
-
+[21]: http://mathworld.wolfram.com/FieldAxioms.html "Field Theory - WolframMathWorld"
 
 
 
-[[23]] Wikipedia: "Finite Theory", [online]. Available: <https://en.wikipedia.org/wiki/Finite_field>. Date accessed: 2020&#8209;02&#8209;06. 
 
-[23]: https://en.wikipedia.org/wiki/Finite_field "Field Theory - Wikipedia"
+
+[[22]] Wikipedia: "Finite Theory", [online]. Available: <https://en.wikipedia.org/wiki/Finite_field>. Date accessed: 2020&#8209;02&#8209;06. 
+
+[22]: https://en.wikipedia.org/wiki/Finite_field "Field Theory - Wikipedia"
 
 
 
@@ -660,14 +657,9 @@ Definitions of terms presented here are high level and general in nature. Full m
 and software for manipulating ..."
 
 
-- **NP statements**: <a name="np"> </a>A statement that is non-deterministically provable in polynomial time [[20]]. 
+- **Binary Operation**: An operation  $ * $  or a calculation that combines two elements  $ \mathcal{a} $  and  $ \mathcal{b} $ , called operands, to produce another element  $ \mathcal{a} * \mathcal{b} $ , [[20]].
 
-[np~]: #np
-"A statement that is non-deterministically provable in polynomial time"
-
-- **Binary Operation**: An operation  $ * $  or a calculation that combines two elements  $ \mathcal{a} $  and  $ \mathcal{b} $ , called operands, to produce another element  $ \mathcal{a} * \mathcal{b} $ , [[21]].
-
-- **Field**: <a name="fd"> </a>Any set  $ \mathcal{F} $  of elements together with binary operations $ + $ and  $ \cdot $  , called addition and multiplication, respectively, is a **field** if for any three elements $ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $  satisfy the field axioms given in the table below. A **Finite field** is any field  $ \mathcal{F} $  that contains a finite number of elements ([[22]], [[23]]).
+- **Field**: <a name="fd"> </a>Any set  $ \mathcal{F} $  of elements together with _Binary Operations_ $ + $ and  $ \cdot $  , called addition and multiplication, respectively, is a **field** if for any three elements $ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $  satisfy the field axioms given in the table below. A **Finite field** is any field  $ \mathcal{F} $  that contains a finite number of elements ([[21]], [[22]]).
 
  [fd~]: #fd
 "Any set of elements together with binary operations 'addition' and 'multiplication' satisfying field axioms ... " 
