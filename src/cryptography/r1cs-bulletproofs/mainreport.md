@@ -69,7 +69,7 @@ Many problems in _Symbolic Computation_<sup>[def][sc~]</sup> and cryptography ca
 
 ### Definition of Arithmetic Circuit 
 
-An **arithmetic circuit** $\mathcal{A}$ over the field $\mathcal{F}$ and the set of variables 
+An **arithmetic circuit** $\mathcal{A}$ over the field<sup>[def][fd~]</sup>  $\mathcal{F}$ and the set of variables 
 $X = \lbrace  {x_1,\dots,x_n} \rbrace$ is a directed acyclic graph such that the vertices of $\mathcal{A}$ are called 
 _gates_, while the edges are called _wires_ [[7]]: 
 
@@ -182,20 +182,16 @@ $$
 $$
 
 where $\mathbf{c}$ is a vector of constant terms used in linear constraints, and $\mathbf{W_L, W_R, W_O}$ and $\mathbf{W_V}$ 
-are weights applied to respective input vectors and output vectors. Bunz et al. added a vector  $\mathbf{v}$  and weight  $\mathbf{W_V}$ to the Bootle et al. definition [[4]]: 
+are weights applied to respective input vectors and output vectors. Bunz et al. incorporated a vector  $\mathbf{v}$  and vector of weights  $\mathbf{W_V}$ to the Bootle et al. definition [[4]]: 
 
 $$
 \mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} }
 $$
 
-where $\mathbf{v} = {(v_1, v_2, \dots , v_m )}$ is a secret vector of openings ${ v_i}$ of the 
-[Pedersen Commitments](../bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) $V_i, i \in (1,2, \cdots,m) $, and $\mathbf{W_V}$ is a vector of weights for all commitments $V_i$. 
+where  $\mathbf{v} = {(v_1, v_2, \dots , v_m )}$  is a secret vector of openings ${v_i}$ of the 
+[Pedersen Commitments](../bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments) $V_i$ , $ i \in (1, 2, \cdots , m) $, and 
+$\mathbf{W_V}$  is a vector of weights for all commitments  $V_i$. This incorporation of the secret vector $\mathbf{v}$  and the corresponding vector of weights  $\mathbf{W_V}$  in the linear consistency constraints enabled them to provide a protocol for a more general setting [[4], page 24]. 
 
-!!Fix!!They included these additional $V_i$ as part of the statement, and provide a protocol for a more general relation, where 
-the linear consistency constraints include the openings ${ v_i}$ [[4], page 24]. 
-
-Note that Bulletproofs use the Pedersen 
-commitment scheme.
 
 
 The Dalek team give a more general definition of a constraint system [[3]]. A **constraint system** is a collection of arithmetic constraints over a set of variables. There are two kinds of 
@@ -664,12 +660,19 @@ Definitions of terms presented here are high level and general in nature. Full m
 and software for manipulating ..."
 
 
-- **NP statements**: A statement that is non-deterministically provable in polynomial time [[20]]. 
+- **NP statements**: <a name="np"> </a>A statement that is non-deterministically provable in polynomial time [[20]]. 
+
+[np~]: #np
+"A statement that is non-deterministically provable in polynomial time"
 
 - **Binary Operation**: An operation  $ * $  or a calculation that combines two elements  $ \mathcal{a} $  and  $ \mathcal{b} $ , called operands, to produce another element  $ \mathcal{a} * \mathcal{b} $ , [[21]].
 
-- **Field**: Any set  $ \mathcal{F} $  of elements together with binary operations $ + $ and  $ \cdot $  , called addition and multiplication, respectively, is a **field** if for any three elements $ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $  satisfy the field axioms given in the table below. A **Finite field** is any field  $ \mathcal{F} $  that contains a finite number of elements ([[22]], [[23]]).
+- **Field**: <a name="fd"> </a>Any set  $ \mathcal{F} $  of elements together with binary operations $ + $ and  $ \cdot $  , called addition and multiplication, respectively, is a **field** if for any three elements $ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $  satisfy the field axioms given in the table below. A **Finite field** is any field  $ \mathcal{F} $  that contains a finite number of elements ([[22]], [[23]]).
 
+ [fd~]: #fd
+"Any set of elements together with binary operations 'addition' and 'multiplication' satisfying field axioms ... " 
+
+ 
  
 
 <div align="center"><b>Table A1: Axioms of a Field </b></div> 
@@ -695,6 +698,7 @@ and software for manipulating ..."
 ### Appendix B: Notation Used 
 
 
+- Let  $ \mathcal{F} $  be a field. 
 
 - Let  $ \mathbf{a} = (a_1 , a_2 , ... , a_n ) $  be a vector with  $n$  components  $ a_1 , a_2 , ... , a_n $,  which are elements of some field $ \mathcal{F} $.  
 
