@@ -283,7 +283,7 @@ All these ZK proofs are based on the difficulty of the discrete logarithm proble
 | No. | Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting [[5]] (2016) | Bulletproofs: Short Proofs for Confidential Transactions and More [[4]] (2017) | Programmable Constraint Systems [[12]] (2018)               |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1.   | Introduces the Hadamard relation and linear constraints.     | Turns the Hadamard relation and linear constraints into a single linear constraint, and these are in fact the R1CS. | Generalizes constraint systems and uses what is called gadgets as building blocks for constraint systems. |
-| 2.   | Improves on Groth's work [[13]] on ZK proofs. Reducing a $\sqrt{N}$ complexity to $6log_2(N) + 13$, where $N$ is the circuit size. | Improves on Bootle et al.'s work [[5]]. Reducing a $2log_2(N) + 13$ complexity to $6log_2(N) + 13$, where $N$ is the circuit size. | Adds constraint systems to Bunz et al.'s work on Bulletproofs, which are short proofs. The complexity advantage is seen in proving several statements at once. |
+| 2.   | Improves on Groth's work [[13]] on ZK proofs. Reducing a $\sqrt{N}$ complexity to $6log_2(N) + 13$, where $N$ is the circuit size. | Improves on Bootle et al.'s work [[5]]. Reducing a $6log_2(N) + 13$ complexity to $2log_2(N) + 13$, where $N$ is the circuit size. | Adds constraint systems to Bunz et al.'s work on Bulletproofs, which are short proofs. The complexity advantage is seen in proving several statements at once. |
 | 3.   | Introduces logarithm-sized inner-product ZK proofs.          | Introduces Bulletproofs, extending proofs to proofs of arbitrary statements. The halving method is used on the inner-products, resulting in the above reduction in complexity. | Introduces gadgets that are actually add-ons to an ordinary ZK proof. A range proof is an example of a gadget. |
 | 4.   | Uses Fiat-Shamir heuristics in order to achieve non-interactive ZK proofs. | Bulletproofs also use the Fiat Shamir heuristics to achieve non-interaction. | Merlin transcripts are specifically used for a Fiat-Shamir transformation to achieve non-interaction. |
 | 5.   | The Pedersen commitments are used in order to achieve ZK property. | Eliminates the need for a commitment algorithm by including Pedersen commitments among the inputs to the verification proof. | Low-level variables, representing inputs and outputs to multiplication gates, are computed per proof and committed using a single vector Pedersen commitment. |
@@ -355,11 +355,11 @@ number of inputs to a shuffle gadget is always the same as the number of outputs
 The Interstellar team mentions other gadgets: “merge”, “split” and a “range proof” that are implemented in their 
 Confidential Assets scheme called the Cloak. 
 Just as a shuffle gadget creates constraints that prove that 
-two sets of variables are equal up to a permutation, a range-proof gadget checks that a given value is in the 
+two sets of variables are equal up to a permutation, a range-proof gadget checks that a given value is in the interval
 $ [ 0, 2^n ] $ 
 where 
 $ n $ 
-is size of the input vector
+is the size of the input vector
 [[3]]. 
 
 Gadgets in their simplest form merely receive some variables as inputs and produce corresponding output values. However, 
