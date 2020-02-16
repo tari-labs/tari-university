@@ -302,9 +302,12 @@ high-level and low-level variables.
 
 ## Conclusion
 
-All-in-all, Yun regards constraint systems as "very powerful because they can represent any efficiently 
-verifiable program." 
+ - Constraint systems form a natural language for most computational problems expressed as arithmetic circuits. 
+ - They have found ample application in both zk&#8209;SNARKs and Bulletproofs. 
+ - Much work still needs to be done, yet Bulletproofs with constraint systems built on them 
+ promise to be powerful tools for efficient handling of verifiable programs. 
+ - The leverage that developers have, in choosing whatever gadgets they wish to implement, leaves enough room to build proof 
+systems that have some degree of modularity. 
+- Proof system examples by both Dalek and Harchandani are valuable examples of what can be achieved with Bulletproofs and R1CSs. 
+- The possibility of using this Bulletproofs framework in building blockchain-enabled confidential digital asset schemes provides greater opportunities. 
 
-
-
- 
