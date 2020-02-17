@@ -72,8 +72,11 @@ Example:
 #### ![basic-multiplication-gate](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
 
 - As an equation; that’s  
+
 $ a_L \circ a_R = a_O  $ 
+
 which is known as the Hadamard relation, and can be rewritten as
+
 $a_L \circ a_R - a_O = 0 $
 
 ---
@@ -84,11 +87,15 @@ $a_L \circ a_R - a_O = 0 $
 
 #### ![polynomial-eg-ac](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
 
-- The output of the above Arithmetic Circuit is the polynomial:   $x^2\_1 \cdot x\_2 + x\_1 + 1 $. 
+- The output of the above Arithmetic Circuit is the polynomial:  
+
+$x^2\_1 \cdot x\_2 + x\_1 + 1 $. 
 
 --- 
 
-- The above e.g. of an Arithmetic Circuit can be described by the following set of equations; 
+- The above e.g. of an Arithmetic Circuit can be described 
+with the following set of equations; 
+
 $
 u = x_1 \cdot x_1 \quad \text{,} \quad v = u \cdot x_2 \quad \text{,} \quad y = x_1 + 1 \quad \text{and} \quad z = v + y
 $
@@ -134,12 +141,17 @@ $$
 $$
 
   - where
+
 $$
 \langle {\mathbf{a_L} , \mathbf{s}} \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n 
 $$
+
 which is the inner-product of the vectors 
+
 $ \mathbf{a\_{L}} $
+
 and
+
 $ {\mathbf{s}} $
 
 --- 
@@ -161,21 +173,15 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 
 --- 
 
-## R1CS Example
-
-- A solution vector to the equation ${x^2_1 x_2 + x_1 + 1 = 22}$. can be formatted as 
-${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = ( 1 , 3 , 2 , 22 , 9 , 18 , 4 )}}$. 
-
-
-#### ![Table-1-r1cs-eg](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/Table-1-r1cs-eg.png)
-
---- 
-
 ## Arithmetic Circuits to Programmable Constraint Systems
 
 - "Zero-knowledge Proofs for Arithmetic Circuits" by Bootle et al. 
 - "Programmable Constraint Systems for Bulletproofs" by Cathie Yun, Interstellar. 
 - "Bulletproofs: Short Proofs for Confidential Transactions and More" by Bunz et al. 
+
+--- 
+
+## Arithmetic Circuits to Programmable Constraint Systems
 
 #### ![Table-2-comparison](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/Table-2-comparison.png)
 
