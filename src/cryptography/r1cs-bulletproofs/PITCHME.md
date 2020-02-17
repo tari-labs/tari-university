@@ -142,17 +142,11 @@ $$
 
   - where
 
-$$
+$
 \langle {\mathbf{a_L} , \mathbf{s}} \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n 
-$$
+$
 
-which is the inner-product of the vectors 
-
-$ \mathbf{a\_{L}} $
-
-and
-
-$ {\mathbf{s}} $
+which is the inner-product of the vectors  $ \mathbf{a\_{L}} $  and  $ {\mathbf{s}} $
 
 --- 
 
