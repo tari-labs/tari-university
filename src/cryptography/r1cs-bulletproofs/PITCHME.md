@@ -31,6 +31,7 @@ Bulletproofs on the other hand have been extensively covered.
 ## Introduction 
 
 R1CS form a thin slice of the TLU reports on Bulletproofs. 
+
 The big challenge was to avoid rehearsing things already presented under Bulletproofs. 
 
 #### ![r1cs-zoomin](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/r1cs-zoomin.png)
@@ -76,14 +77,13 @@ which is known as the Hadamard relation.
 
 ---
 
-## Arithmetic Circuits
+## Arithmetic Circuits 
 
 - Arithmetic Circuits are the most standard model for expressing computations in a low-level language.
 
 #### ![polynomial-eg-ac](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
 
 - The output of the above Arithmetic Circuit is the polynomial:  
-
 $x^2\_1 \cdot x\_2 + x\_1 + 1 $. 
 
 --- 
@@ -135,9 +135,8 @@ $$
  \langle \mathbf{a_L} , \mathbf{s} \rangle \cdot \langle \mathbf{a_R} , \mathbf{s} \rangle - \langle \mathbf{a_O} , \mathbf{s} \rangle = 0 
 $$
   - where
-
 $$
-\langle  \mathbf{a_L} , \mathbf{s}  \rangle = a_{L,1} \cdot s_1 + a_{L,2} \cdot s_2 + \cdots + a_{L,n} \cdot s_n 
+\langle  \mathbf{a_L} , \mathbf{s}  \rangle  =  a_{L,1} \cdot s_1  +  a_{L,2} \cdot s_2  +  \cdots  +  a_{L,n} \cdot s_n 
 $$
 
 which is the inner-product of the vectors  $ \mathbf{a\_{L}} $  and  $ {\mathbf{s}} $
@@ -184,7 +183,7 @@ high-level and low-level variables.
 
 - A constraint system can be build in two steps: 
   1. Committing to secret inputs and allocating high-level variables corresponding to the inputs.
-  2. Selecting a suitable combination of multiplicative and linear constraints, also requesting a random scalar in response to committed high-level variables  
+  2. Selecting a suitable combination of multiplicative and linear constraints, also requesting a random scalar in response to committed high-level variables. 
 
 --- 
 
@@ -195,7 +194,7 @@ high-level and low-level variables.
    - The prover commits to a value(s) that they want to prove knowledge of. 
    - The prover generates the proof by enforcing the constraints over the committed values and any additional public 
    values. The constraints might require the prover to commit to some additional variables. 
-   - The Prover sends the verifier all the commitments made in step 1 and step 2 along with the proof from step 2. 
+   - The Prover sends to the verifier all the commitments made in step 1 and step 2 along with the proof from step 2. 
    - The verifier now verifies the proof by enforcing the same constraints over the commitments plus any public values.
 
 --- 
