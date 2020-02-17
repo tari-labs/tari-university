@@ -80,7 +80,7 @@ which is known as the Hadamard relation.
 
 - Arithmetic Circuits are the most standard model for expressing computations in a low-level language.
 
-#### ![polynomial-eg-ac](https://war.gthubusercontent.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
+#### ![polynomial-eg-ac](https://raw.githubusercontent.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
 
 - The output of the above Arithmetic Circuit is the polynomial:  
 
