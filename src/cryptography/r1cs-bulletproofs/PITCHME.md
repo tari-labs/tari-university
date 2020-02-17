@@ -170,7 +170,7 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 
 ## Arithmetic Circuits to Programmable Constraint Systems
 
-#### ![Table-2-comparison](https://github.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/Table-2-comparison.png)
+#### ![Table-2-comparison](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/Table-2-comparison.png)
 
 --- 
 
@@ -203,7 +203,7 @@ high-level and low-level variables.
 
 - Factors Example:
 
-#### ![factor-eg-allsteps](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/factor-eg-allsteps.png)
+#### ![factor-eg-allsteps](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/factor-eg-allsteps.png)
 
 --- 
 
@@ -211,7 +211,7 @@ high-level and low-level variables.
 
 - Factors Example:
 
-#### ![factor-eg-step5](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/factor-eg-step5.png)
+#### ![factor-eg-step5](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/factor-eg-step5.png)
 
 --- 
 
@@ -219,7 +219,7 @@ high-level and low-level variables.
 
 - Factors Example:
 
-#### ![factor-eg-step9](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/factor-eg-step9.png)
+#### ![factor-eg-step9](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/factor-eg-step9.png)
 
 --- 
 
@@ -230,7 +230,7 @@ high-level and low-level variables.
 - Gadgets are building blocks of constraint systems; 
    - Examples are "shuffle", “merge”, “split” and a “range proof”. 
 
-#### ![two-shuffle-pic](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/two-shuffle-pic.png)
+#### ![two-shuffle-pic](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/two-shuffle-pic.png)
 
 --- 
 
@@ -239,7 +239,7 @@ high-level and low-level variables.
 ### About Gadgets 
    - Gadgets are composable, thus forming a more complex gadget.
 
-#### ![composable-gadgets-1](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/composable-gadgets-1.png)
+#### ![composable-gadgets-1](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/composable-gadgets-1.png)
 
 ---
 
@@ -248,25 +248,25 @@ high-level and low-level variables.
 ### About Gadgets 
    - Gadgets are composable, thus forming a more complex gadget.
 
-#### ![composable-gadgets-2](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/composable-gadgets-2.png)
+#### ![composable-gadgets-2](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/composable-gadgets-2.png)
 
 --- 
 
 ## Interstellar's Bulletproof Constraint System 
 
-#### ![two-shuffle-CYun](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/two-shuffle-CYun.png) 
+#### ![two-shuffle-CYun](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/two-shuffle-CYun.png) 
 
 --- 
 
 ## Interstellar's Bulletproof Constraint System 
 
-#### ![prover-instance-CYun](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/prover-instance-CYun.png) 
+#### ![prover-instance-CYun](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/prover-instance-CYun.png) 
 
 --- 
 
 ## Interstellar's Bulletproof Constraint System 
 
-#### ![verifier-instance-CYun](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/verifier-instance-CYun.png)
+#### ![verifier-instance-CYun](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/verifier-instance-CYun.png)
 
 --- 
 
@@ -274,7 +274,7 @@ high-level and low-level variables.
 
   - Perfomance 
   
-#### ![bulletproof-performance](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/bulletproof-performance.png)  
+#### ![bulletproof-performance](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/bulletproof-performance.png)  
 
 --- 
 
