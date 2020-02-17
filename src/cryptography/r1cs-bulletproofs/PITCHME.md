@@ -83,8 +83,7 @@ which is known as the Hadamard relation.
 
 #### ![polynomial-eg-ac](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
 
-- The output of the above Arithmetic Circuit is the polynomial:  
-$x^2\_1 \cdot x\_2 + x\_1 + 1 $. 
+ The output of the above Arithmetic Circuit is the polynomial:   $x^2\_1 \cdot x\_2 + x\_1 + 1 $. 
 
 --- 
 
