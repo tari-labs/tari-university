@@ -23,7 +23,7 @@
 
 Bulletproofs on the other hand have been extensively covered. 
 
-#### ![bulletproofs-r1cs-pic](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
+#### ![bulletproofs-r1cs-pic](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
 
  
 --- 
