@@ -71,13 +71,8 @@ Example:
 
 #### ![basic-multiplication-gate](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
 
-- As an equation; that’s  
-
-$ a_L \circ a_R = a_O  $ 
-
-which is known as the Hadamard relation, and can be rewritten as
-
-$a_L \circ a_R - a_O = 0 $
+- As an equation; that’s  $ a_L \circ a_R = a_O  $ 
+which is known as the Hadamard relation.
 
 ---
 
@@ -85,7 +80,7 @@ $a_L \circ a_R - a_O = 0 $
 
 - Arithmetic Circuits are the most standard model for expressing computations in a low-level language.
 
-#### ![polynomial-eg-ac](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
+#### ![polynomial-eg-ac](https://war.gthubusercontent.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
 
 - The output of the above Arithmetic Circuit is the polynomial:  
 
@@ -142,9 +137,7 @@ $$
 
   - where
 
-$
-\langle {\mathbf{a_L} , \mathbf{s}} \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n 
-$
+$ \langle  \mathbf{a_L} , \mathbf{s}  \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n $
 
 which is the inner-product of the vectors  $ \mathbf{a\_{L}} $  and  $ {\mathbf{s}} $
 
