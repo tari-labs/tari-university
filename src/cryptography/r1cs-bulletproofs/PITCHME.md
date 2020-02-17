@@ -69,7 +69,7 @@ So this talk will focus specifically on;
 
 Example:
 
-#### ![basic-multiplication-gate](https://github.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
+#### ![basic-multiplication-gate](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
 
 - As an equation; that’s  $ a_L \circ a_R = a_O  $ 
 which is known as the Hadamard relation.
@@ -80,7 +80,7 @@ which is known as the Hadamard relation.
 
 - Arithmetic Circuits are the most standard model for expressing computations in a low-level language.
 
-#### ![polynomial-eg-ac](https://raw.githubusercontent.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
+#### ![polynomial-eg-ac](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
 
 - The output of the above Arithmetic Circuit is the polynomial:  
 
