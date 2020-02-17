@@ -1,6 +1,5 @@
 ## Rank-1 Constraint System with Application to Bulletproofs
 
-
 - Introduction
 - Arithmetic Circuits
 - Rank-1 Constraint Systems
@@ -12,26 +11,12 @@
 
 ## Introduction
 
-- Originally proposed topic description: 
-  - Fast and efficient transaction validation is one of the main reasons for Layer 2 Scaling, especially for blockchains using confidential transactions.  
-  - Rank-1 Constraint Systems (R1CS) are used to achieve faster zero-knowledge proofs, particularly in zk-SNARKs and Bulletproofs. 
-  - An R1CS is “basically a language for arithmetic circuits with bilinear gates”. It defines a set of bilinear equations that serve as constraints suitable for ZK proofs. 
-  - Tentatively, the report will be split into two parts; 
-    PART I    :  R1CS in zk-SNARKs  
-    PART II   :  R1CS in Bulletproofs 
-
---- 
-
-## Introduction
-
 - From the research that has gone into this topic, came out 
 
-(a) A curated content on zkSNARKs, 
-(b) R1CS with Applications to Bulletproofs  
+ (a) A curated content on zkSNARKs, 
 
-So, zkSNARKs have not yet been fully covered in the TLU. 
-A fully fledged report on zkSNARKs will be considered later on. 
-
+ (b) R1CS with Applications to Bulletproofs  
+ 
 --- 
 
 ## Introduction
@@ -49,7 +34,6 @@ R1CS form a thin slice of the TLU reports on Bulletproofs.
 The big challenge was to avoid rehearsing things already presented under Bulletproofs. 
 
 #### ![r1cs-zoomin](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/r1cs-zoomin.png)
-
 
 --- 
 
@@ -70,7 +54,6 @@ So this talk will focus specifically on;
    -  The idea of R1CS is not that sophisticated or complex. 
    -  The main issue here is language. It’s about expressing computational problems in a way that enables fast computations.
 
-
 ---
 
 ## Arithmetic Circuits
@@ -79,6 +62,10 @@ So this talk will focus specifically on;
 -  An arithmetic circuit is a directed acyclic graph. 
 - The vertices of are called gates, while the edges are called wires. 
 - Every other gate in an Arithmetic Circuit is labeled with either  $\oplus$  or  $\otimes$  indicating an “addition gate” or “multiplication gate”, respectively.
+
+--- 
+
+## Arithmetic Circuits
 
 Example:
 
@@ -98,10 +85,13 @@ $a_L \circ a_R - a_O = 0 $
 #### ![polynomial-eg-ac](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/polynomial-eg-ac.png)
 
 - The output of the above Arithmetic Circuit is the polynomial:   $x^2\_1 \cdot x\_2 + x\_1 + 1 $. 
+
+--- 
+
 - The above e.g. of an Arithmetic Circuit can be described by the following set of equations; 
-$$
+$
 u = x_1 \cdot x_1 \quad \text{,} \quad v = u \cdot x_2 \quad \text{,} \quad y = x_1 + 1 \quad \text{and} \quad z = v + y
-$$
+$
 
 ---
 
@@ -121,7 +111,6 @@ $$
 
 - where. $ \mathbf{v}$  is a secret vector of openings ${v_i}$ of the Pedersen Commitments  $V_i$  and 
 $\mathbf{W_V}$  is a vector of weights for all commitments  $V_i$.
-
 
 ---
 
@@ -143,12 +132,15 @@ solution to an R1CS is a vector ${ \bf{s}}$ that satisfies the equation:
 $$
 { \langle {\mathbf{a_L} , \mathbf{s}} \rangle \cdot \langle {\mathbf{a_R} , \mathbf{s}} \rangle - \langle {\mathbf{a_O} , \mathbf{s}} \rangle = 0 }
 $$
-where
-$$\langle {\mathbf{a_L} , \mathbf{s}} \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n $$
-which is the innerproduct of the vectors 
-$ \mathbf{a\_{L}}  =  (a\_{L,1}, a\_{L,2}, ... , a\_{L,n} )$
+
+  - where
+$$
+\langle {\mathbf{a_L} , \mathbf{s}} \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n 
+$$
+which is the inner-product of the vectors 
+$ \mathbf{a\_{L}} $
 and
-$ {\mathbf{s}} = (s\_1, s\_2, ... , s\_n) $.
+$ {\mathbf{s}} $
 
 --- 
 
@@ -167,7 +159,6 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 | $ { y = 1\cdot( x_1 + 1 ) } $ | ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ |
 | $ { z = 1\cdot( v + y )} $    | ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ |
 
-
 --- 
 
 ## R1CS Example
@@ -178,11 +169,9 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 
 #### ![Table-1-r1cs-eg](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/Table-1-r1cs-eg.png)
 
-
 --- 
 
 ## Arithmetic Circuits to Programmable Constraint Systems
-
 
 - "Zero-knowledge Proofs for Arithmetic Circuits" by Bootle et al. 
 - "Programmable Constraint Systems for Bulletproofs" by Cathie Yun, Interstellar. 
@@ -199,11 +188,9 @@ a collection of arithmetic constraints of two types,
    - multiplicative constraints and linear constraints, over a set of 
 high-level and low-level variables.
 
-
 - A constraint system can be build in two steps: 
-      1. Committing to secret inputs and allocating high-level variables corresponding to the inputs.
-      2. Selecting a suitable combination of multiplicative constraints and linear constraints, as well as requesting a random 
-   scalar in response to the high-level variables already committed.  
+  1. Committing to secret inputs and allocating high-level variables corresponding to the inputs.
+  2. Selecting a suitable combination of multiplicative and linear constraints, also requesting a random scalar in response to committed high-level variables  
 
 --- 
 
@@ -234,7 +221,6 @@ high-level and low-level variables.
 #### ![factor-eg-step5](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/factor-eg-step5.png)
 
 --- 
-
 
 ## Interstellar's Bulletproof Constraint System 
 
@@ -296,8 +282,7 @@ high-level and low-level variables.
   - Perfomance 
   
 #### ![bulletproof-performance](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/bulletproof-performance.png)  
-  
-   
+
 --- 
 
 ## Conclusion
