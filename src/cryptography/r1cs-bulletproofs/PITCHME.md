@@ -69,7 +69,7 @@ So this talk will focus specifically on;
 
 Example:
 
-#### ![basic-multiplication-gate](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
+#### ![basic-multiplication-gate](https://github.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
 
 - As an equation; that’s  $ a_L \circ a_R = a_O  $ 
 which is known as the Hadamard relation.
