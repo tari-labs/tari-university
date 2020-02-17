@@ -23,7 +23,7 @@
 
 Bulletproofs on the other hand have been extensively covered. 
 
-#### ![bulletproofs-r1cs-pic](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
+#### ![bulletproofs-r1cs-pic](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
 
  
 --- 
@@ -33,7 +33,7 @@ Bulletproofs on the other hand have been extensively covered.
 R1CS form a thin slice of the TLU reports on Bulletproofs. 
 The big challenge was to avoid rehearsing things already presented under Bulletproofs. 
 
-#### ![r1cs-zoomin](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/r1cs-zoomin.png)
+#### ![r1cs-zoomin](https://raw.githubusercontent.com/tari-labs/tari-university/bulletproofs/src/cryptography/r1cs-bulletproofs/sources/r1cs-zoomin.png)
 
 --- 
 
