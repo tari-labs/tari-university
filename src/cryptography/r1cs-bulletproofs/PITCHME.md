@@ -69,7 +69,7 @@ So this talk will focus specifically on;
 
 Example:
 
-#### ![basic-multiplication-gate](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
+#### ![basic-multiplication-gate](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/basic-multiplication-gate.png)
 
 - As an equation; that’s  $ a_L \circ a_R = a_O  $ 
 which is known as the Hadamard relation.
@@ -170,7 +170,7 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 
 ## Arithmetic Circuits to Programmable Constraint Systems
 
-#### ![Table-2-comparison](https://github.com/tari-labs/tari-university/blob/master/src/cryptography/r1cs-bulletproofs/sources/Table-2-comparison.png)
+#### ![Table-2-comparison](https://raw.githubusercontent.com/tari-labs/tari-university/r1cs-bulletproofs/src/cryptography/r1cs-bulletproofs/sources/Table-2-comparison.png)
 
 --- 
 
