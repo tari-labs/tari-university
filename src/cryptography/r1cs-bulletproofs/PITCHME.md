@@ -105,7 +105,7 @@ $$
 \mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = c }
 $$  
 
-- Bunz et al. incorporated a vector  $\mathbf{v}$  and vector of weights  $\mathbf{W_V}$ to the Bootle et al. definition [[4]]:
+- Bunz et al. incorporated a vector  $\mathbf{v}$  and vector of weights  $\mathbf{W_V}$ to the Bootle et al. definition:
 
 $$
 \mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} }
@@ -118,7 +118,7 @@ $\mathbf{W_V}$  is a vector of weights for all commitments  $V_i$.
 
 ## Rank-1 Constraint Systems 
 
-- An R1CS is a system that consists of two sets of constraints [[3]]: 
+- An R1CS is a system that consists of two sets of constraints: 
 
   - ${ n}$  multiplicative constraints,  $ \mathbf{ a_L \circ a_R = a_O } $,  and
   - ${ q}$  linear constraints,  $\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} } $. 
@@ -134,11 +134,10 @@ solution to an R1CS is a vector ${ \bf{s}}$ that satisfies the equation:
 $$
 { \langle {\mathbf{a_L} , \mathbf{s}} \rangle \cdot \langle {\mathbf{a_R} , \mathbf{s}} \rangle - \langle {\mathbf{a_O} , \mathbf{s}} \rangle = 0 }
 $$
-
   - where
-
-$ \langle  \mathbf{a_L} , \mathbf{s}  \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n $
-
+$$
+\langle  \mathbf{a_L} , \mathbf{s}  \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n 
+$$
 which is the inner-product of the vectors  $ \mathbf{a\_{L}} $  and  $ {\mathbf{s}} $
 
 --- 
