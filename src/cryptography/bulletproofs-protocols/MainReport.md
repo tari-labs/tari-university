@@ -813,7 +813,7 @@ Bootle et al. [[2]] showed how an arbitrary arithmetic circuit with $ n $ multip
 relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear consistency constraints. 
 The communication cost of the addition gates in the argument was removed by providing a technique that can directly 
 handle a set of Hadamard products and linear relations together. For a two-input multiplication gate, let $ \mathbf a_L , 
-\mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the 
+\mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_O = \mathbf a_L \circ \mathbf a_R $ is the 
 vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear consistency constraints, 
 $ \mathbf W_{L,q} \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}, \mathbf W_{O,q} \in \mathbb Z_p^n $ be the gate weights 
 and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] $, then the linear consistency constraints have the form
