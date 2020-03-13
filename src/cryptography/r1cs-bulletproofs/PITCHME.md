@@ -187,7 +187,7 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div>  
 
 
-@div[h3]
+@div[pre]
 
 | Equation                        | Rank-1 Constraint System Vectors                             |
 | ------------------------------ | ---------------------------------------------------------- |
