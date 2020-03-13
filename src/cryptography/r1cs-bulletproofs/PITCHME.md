@@ -171,6 +171,7 @@ $\mathbf{W_V}$  is a vector of weights for all commitments  $V_i$.
 
 - A sequence of groups of three vectors ${ \bf{a_L}}, { \bf{a_R}}, { \bf{a_O}} ,$ and the 
 solution to an R1CS is a vector ${ \bf{s}}$ that satisfies the equation: 
+
 '
 $$
  \langle \mathbf{a_L} , \mathbf{s} \rangle \cdot \langle \mathbf{a_R} , \mathbf{s} \rangle - \langle \mathbf{a_O} , \mathbf{s} \rangle = 0 
@@ -178,6 +179,7 @@ $$
 '
 
 @div[text-left] where
+
 '
 $$
 \langle  \mathbf{a_L} , \mathbf{s}  \rangle  =  a_{L,1} \cdot s_1  +  a_{L,2} \cdot s_2  +  \cdots  +  a_{L,n} \cdot s_n 
