@@ -187,7 +187,6 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div>  
 
 
-@div[pre]
 
 | Equation                        | Rank-1 Constraint System Vectors                             |
 | ------------------------------ | ---------------------------------------------------------- |
@@ -196,7 +195,6 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 | <div class="tab"> $ { y = 1\cdot( x_1 + 1 ) } $ </div>   | <div class="tab"> ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ </div>  |
 | <div class="tab"> $ { z = 1\cdot( v + y )} $ </div>    | <div class="tab"> ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ </div> |
 
-@divend
 
 --- 
 
