@@ -183,7 +183,6 @@ $$
 `
 $$
 \langle  \mathbf{a_L} , \mathbf{s}  \rangle  =  a_{L,1} \cdot s_1  +  a_{L,2} \cdot s_2  +  \cdots  +  a_{L,n} \cdot s_n 
-
 $$
 `
 
@@ -201,12 +200,12 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 
 
 
-| Equation                        | Rank-1 Constraint System Vectors                             |
-| ------------------------------ | ---------------------------------------------------------- |
-|  <div class="tab"> ${ u = x_1\cdot x_1}$ </div>   | <div class="tab"> $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ </div>  |
-| <div class="tab"> $ { v = u\cdot x_2 }$ </div>   | <div class="tab"> $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 0 , 1 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $ </div>  |
-| <div class="tab"> $ { y = 1\cdot( x_1 + 1 ) } $ </div>   | <div class="tab"> ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ </div>  |
-| <div class="tab"> $ { z = 1\cdot( v + y )} $ </div>    | <div class="tab"> ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ </div> |
+@div[text-left] | Equation                        | Rank-1 Constraint System Vectors                             | @divend
+@div[text-left] | ------------------------------ | ---------------------------------------------------------- | @divend
+@div[text-left] |  <div class="tab"> ${ u = x_1\cdot x_1}$ </div>   | <div class="tab"> $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ </div>  | @divend
+@div[text-left] | <div class="tab"> $ { v = u\cdot x_2 }$ </div>   | <div class="tab"> $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 0 , 1 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $ </div>  | @divend
+@div[text-left] | <div class="tab"> $ { y = 1\cdot( x_1 + 1 ) } $ </div>   | <div class="tab"> ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ </div>  | @divend
+@div[text-left] | <div class="tab"> $ { z = 1\cdot( v + y )} $ </div>    | <div class="tab"> ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ </div> | @divend 
 
 
 --- 
