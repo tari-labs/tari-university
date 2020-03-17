@@ -195,6 +195,10 @@ which is the inner-product of the vectors  $ \mathbf{a\_{L}} $  and  $ {\mathbf{
 - A solution vector to the equation ${x^2_1 x_2 + x_1 + 1 = 22}$. can be formatted as 
 ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = ( 1 , 3 , 2 , 22 , 9 , 18 , 4 )}}$. 
 
+<div class="LineHeight20per"> <br></div>
+
+@div[text-left]
+
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div>  
 
 | <div class="tab"> Equation </div>                      | <div class="tab"> Rank-1 Constraint System Vectors </div>                                                                                                                  |
@@ -204,6 +208,7 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 | <div class="tab"> $ { y = 1\cdot( x_1 + 1 ) } $ </div> | <div class="tab"> ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ </div>       |
 | <div class="tab"> $ { z = 1\cdot( v + y )} $ </div>    | <div class="tab"> ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ </div>        |
 
+@divend
 
 --- 
 
