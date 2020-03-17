@@ -12,6 +12,9 @@ div.LineHeight200per {
 div.tab {
   "font-size:0.8em;"
 }
+div.head2 {
+  "font-size:1.5em;"
+}
 </style>
 </head>
 
@@ -36,15 +39,14 @@ div.tab {
  
 +++
 
-## Introduction
-
 @div[left-50]
+<div class="head2"> Introduction </div>
 Bulletproofs on the other hand have been extensively covered. 
 @divend
 
 
 @div[right-50]
-@div[s500px]
+@div[s550px]
 
 ![bulletproofs-r1cs-pic](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
 
