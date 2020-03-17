@@ -197,7 +197,7 @@ A solution vector to the equation ${x^2_1 x_2 + x_1 + 1 = 22}$. can be formatted
 ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = ( 1 , 3 , 2 , 22 , 9 , 18 , 4 )}}$. 
 @divend
 
-<div class="LineHeight20per"> <br></div>
+<div class="LineHeight200per"> <br></div>
 
 
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div>  
