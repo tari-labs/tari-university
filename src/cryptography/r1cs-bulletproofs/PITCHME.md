@@ -36,14 +36,15 @@ div.tab {
  
 +++
 
-@div[left-25]
 ## Introduction
+
+@div[left-25]
 Bulletproofs on the other hand have been extensively covered. 
 @divend
 
 
 @div[right-75]
-@div[s650px]
+@div[s550px]
 
 ![bulletproofs-r1cs-pic](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
 
