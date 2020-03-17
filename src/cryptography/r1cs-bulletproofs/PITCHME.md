@@ -39,14 +39,12 @@ div.head2 {
  
 +++
 
-@div[left-50]
-<div class="head2"> Introduction </div>
+@div[left-25]
 Bulletproofs on the other hand have been extensively covered. 
 @divend
 
-
-@div[right-50]
-@div[s550px]
+@div[right-75]
+@div[s600px]
 
 ![bulletproofs-r1cs-pic](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
 
