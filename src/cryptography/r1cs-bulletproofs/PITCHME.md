@@ -54,7 +54,6 @@ Bulletproofs on the other hand have been extensively covered.
 
 +++ 
 
-## Introduction 
 
 R1CS form a thin slice of the TLU reports on Bulletproofs. 
 
@@ -68,16 +67,12 @@ The big challenge was to avoid rehearsing things already presented under Bulletp
 
 +++ 
 
-## Introduction
-
 So this talk will focus specifically on; 
 - What an R1CS is 
 - The link between Arithmetic Circuits and R1CS 
 - Comparing ZK Proofs for Arithmetic Circuits (Bootle et al.) and Programmable Constraints Systems (Cathie Yun et al.)
 
 +++ 
-
-## Introduction
 
 - We are not worried too much about specific fields. 
    - A field is a set of objects (numbers) on which one can define some “addition” and “multiplication” 
@@ -202,12 +197,12 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 
 <div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div>  
 
- | Equation                        | Rank-1 Constraint System Vectors                             | 
- | ------------------------------ | ---------------------------------------------------------- | 
- |  <div class="tab"> ${ u = x_1\cdot x_1}$ </div>   | <div class="tab"> $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ </div>  | 
- | <div class="tab"> $ { v = u\cdot x_2 }$ </div>   | <div class="tab"> $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 0 , 1 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $ </div>  | 
- | <div class="tab"> $ { y = 1\cdot( x_1 + 1 ) } $ </div>   | <div class="tab"> ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ </div>  | 
- | <div class="tab"> $ { z = 1\cdot( v + y )} $ </div>    | <div class="tab"> ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ </div> | 
+| <div class="tab"> Equation </div>                      | <div class="tab"> Rank-1 Constraint System Vectors </div>                                                                                                                  |
+|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <div class="tab"> ${ u = x_1\cdot x_1}$ </div>         | <div class="tab"> $ {\bf{a_L}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0 ) , \ \ {\bf{a_R}} = ( 0 , 1 , 0 , 0 , 0 , 0 , 0  ) ,\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0  ) $ </div> |
+| <div class="tab"> $ { v = u\cdot x_2 }$ </div>         | <div class="tab"> $ {\bf{a_L}} = ( 0 , 0 , 0 , 0 , 1 , 0 , 0 ) ,\ \ {\bf{a_R}} = ( 0 , 0 , 1 , 0 , 0 , 0 , 0  ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 0 )  $ </div>   |
+| <div class="tab"> $ { y = 1\cdot( x_1 + 1 ) } $ </div> | <div class="tab"> ${\bf{a_L}} = ( 1 , 1 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 0 , 0 , 0 , 1 ) $ </div>       |
+| <div class="tab"> $ { z = 1\cdot( v + y )} $ </div>    | <div class="tab"> ${\bf{a_L}} = ( 0 , 0 , 0 , 0 , 0 , 1 , 1 ),\ \ {\bf{a_R}} = ( 1 , 0 , 0 , 0 , 0 , 0 , 0 ),\ \ {\bf{a_O}} = ( 0 , 0 , 0 , 1 , 0 , 0 , 0 )$ </div>        |
 
 
 --- 
