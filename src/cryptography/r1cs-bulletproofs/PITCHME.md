@@ -91,8 +91,6 @@ So this talk will focus specifically on;
 
 +++ 
 
-## Arithmetic Circuits
-
 Example:
 
 
@@ -107,8 +105,6 @@ which is known as the Hadamard relation.
 
 +++
 
-## Arithmetic Circuits 
-
 - Arithmetic Circuits are the most standard model for expressing computations in a low-level language.
 
 @div[s350px]
@@ -120,8 +116,6 @@ which is known as the Hadamard relation.
  The output of the above Arithmetic Circuit is the polynomial:   $x^2\_1 \cdot x\_2 + x\_1 + 1 $. 
 
 +++ 
-
-## Arithmetic Circuits 
 
 - The above e.g. of an Arithmetic Circuit can be described 
 with the following set of equations; 
@@ -153,7 +147,7 @@ $$
 @div[text-left] where. $ \mathbf{v}$  is a secret vector of openings ${v_i}$ of the Pedersen Commitments  $V_i$  and 
 $\mathbf{W_V}$  is a vector of weights for all commitments  $V_i$.
 
-+++
+---
 
 ## Rank-1 Constraint Systems 
 
@@ -163,8 +157,6 @@ $\mathbf{W_V}$  is a vector of weights for all commitments  $V_i$.
   - ${ q}$  linear constraints,  $\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} } $. 
 
 +++
-
-## Rank-1 Constraint Systems 
 
 - The zkSNARK's corresponding definition of R1CS: 
 
@@ -190,7 +182,7 @@ which is the inner-product of the vectors  $ \mathbf{a\_{L}} $  and  $ {\mathbf{
 
 +++ 
 
-## R1CS Example
+R1CS Example
 
 @div[text-left]
 A solution vector to the equation ${x^2_1 x_2 + x_1 + 1 = 22}$. can be formatted as 
@@ -221,9 +213,6 @@ ${ { s = ( const , x_1 , x_2 , z , u , v , y )}}$, and in particular  ${ { s = (
 
 +++
 
-## Arithmetic Circuits to Programmable Constraint Systems
-
-
 @div[s800px]
 
 ![Table-2-comparison](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/Table-2-comparison.png)
@@ -245,8 +234,6 @@ high-level and low-level variables.
 
 +++
 
-## Interstellar's Bulletproof Constraint System 
-
 - Lovesh Harchandani outlines ZK proofs that use Bulletproofs is follows: 
 
    - The prover commits to a value(s) that they want to prove knowledge of. 
@@ -256,8 +243,6 @@ high-level and low-level variables.
    - The verifier now verifies the proof by enforcing the same constraints over the commitments plus any public values.
 
 +++
-
-## Interstellar's Bulletproof Constraint System 
 
 - Factors Example:
 
@@ -269,8 +254,6 @@ high-level and low-level variables.
 
 +++
 
-## Interstellar's Bulletproof Constraint System 
-
 - Factors Example:
 
 @div[s800px]
@@ -280,8 +263,6 @@ high-level and low-level variables.
 @divend
 
 +++
-
-## Interstellar's Bulletproof Constraint System 
 
 - Factors Example:
 
@@ -293,9 +274,7 @@ high-level and low-level variables.
 
 --- 
 
-## Interstellar's Bulletproof Constraint System 
-
-### About Gadgets
+## Interstellar's Gadgets
 
 - Gadgets are building blocks of constraint systems; 
    - Examples are "shuffle", “merge”, “split” and a “range proof”. 
@@ -308,9 +287,6 @@ high-level and low-level variables.
 
 +++ 
 
-## Interstellar's Bulletproof Constraint System 
-
-### About Gadgets 
    - Gadgets are composable, thus forming a more complex gadget.
 
 @div[s750px]
@@ -321,9 +297,6 @@ high-level and low-level variables.
 
 +++
 
-## Interstellar's Bulletproof Constraint System 
-
-### About Gadgets 
    - Gadgets are composable, thus forming a more complex gadget.
 
 @div[s750px]
@@ -332,9 +305,9 @@ high-level and low-level variables.
 
 @divend
 
-+++ 
+---
 
-## Interstellar's Bulletproof Constraint System 
+## Interstellar's Shuffle Example 
 
 @div[s750px]
 
@@ -342,9 +315,7 @@ high-level and low-level variables.
 
 @divend
 
---- 
-
-## Interstellar's Bulletproof Constraint System 
++++
 
 @div[s800px]
 
@@ -354,23 +325,9 @@ high-level and low-level variables.
 
 +++ 
 
-## Interstellar's Bulletproof Constraint System 
-
 @div[s800px]
 
 ![verifier-instance-CYun](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/verifier-instance-CYun.png)
-
-@divend
-
---- 
-
-## Interstellar's Bulletproof Constraint System 
-
-  - Perfomance 
-
-@div[s700px]
-  
-![bulletproof-performance](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/bulletproof-performance.png)  
 
 @divend
 
