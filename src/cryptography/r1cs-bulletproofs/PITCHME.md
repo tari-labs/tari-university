@@ -38,16 +38,19 @@ div.tab {
 
 ## Introduction
 
-Bulletproofs on the other hand have been extensively covered. 
-
-@div[s750px]
+@div[left-75 text-left]
+@div[s650px]
 
 ![bulletproofs-r1cs-pic](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/cryptography/r1cs-bulletproofs/sources/bulletproofs-r1cs-pic.png)
 
 @divend
- 
- 
- 
+@divend
+
+@div[left-75 text-left]
+Bulletproofs on the other hand have been extensively covered. 
+@divend
+
+
 +++ 
 
 ## Introduction 
