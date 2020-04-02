@@ -11,7 +11,7 @@ We would like this platform to be a place of learning accessible to anyone, irre
 Our aim is to cover a wide range of topics that are relevant to the TLU space, starting at a beginner level and 
 extending down a path of deeper complexity. 
 
-You are welcome to contribute to our online content. To help you get started, we've compiled a 
+You are welcome to contribute to our online content by submitting a [pull request](https://github.com/tari-labs/tari-university/pulls) or [issue](https://github.com/tari-labs/tari-university/issues) in [GitHub](https://github.com/tari-labs/tari-university). To help you get started, we've compiled a 
 [Style Guide](../preface/style-guide.md) for TLU reports. Using this Style Guide, you can help us to 
 ensure consistency in the content and layout of TLU reports.
 
@@ -30,7 +30,7 @@ In the words of Yoda, “Always pass on what you have learned.”
 
 If you are considering contributing content to TLU, please be aware of our guiding principles:
 
-1. The topic researched should be potentially relevant to the Tari protocol; chat to us on #tari-research on IRC if 
+1. The topic researched should be potentially relevant to the Tari protocol; chat to us on _**#tari-research**_ on IRC if 
 you're not sure.
 2. The topic should be thoroughly researched.
 3. A critical approach should be taken (in the academic sense), with critiques and commentaries sought out and 
