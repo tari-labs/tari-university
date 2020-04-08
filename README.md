@@ -48,7 +48,7 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 1 | Rank-1 Constraint System with Application to Bulletproofs 
 2 | Bulletproof Range Proofs vs. R1CS Gadget Range Proofs
 3 | Cost Based Steady-State Analysis of Multiple PoW 
-4 | Permissionless Sided Chain Multi-party Payment Channel for Mimblewimble 
+4 | Permissionless Sidechain Multi-party Payment Channel for Mimblewimble 
 
 
 
