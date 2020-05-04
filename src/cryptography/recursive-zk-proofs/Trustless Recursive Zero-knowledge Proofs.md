@@ -127,12 +127,10 @@ A typical recursive function  $F(j)$  for  $j \in \{ 0 , 1 , ... , n \} $  can b
 
 
 
-<img src="/Users/anthonymatlala/tari-university/src/cryptography/recursive-proofs/sources/Basic-recursive-function.png" alt="Basic-recursive-function" style="zoom:50%;" />
 
 
 
-<p align="center"><img src="sources/Basic-recursive-function.png" width="170" /></p>
-
+<p align="center"><img src="sources/Basic-recursive-function.png" width="200" /></p>
 <div align="center"><b>Figure 1: Recursive Function Flow Chart</b></div> 
 
 
@@ -165,8 +163,9 @@ The input to the IP proof is the quadruple  $ \big( \mathbf{a}^{(j)} , \mathbf{b
 
 
 
-<img src="/Users/anthonymatlala/tari-university/src/cryptography/recursive-proofs/sources/IPProof-prover-side-0.png" alt="IPProof-prover-side-0" style="zoom:50%;" />
 
+<p align="center"><img src="sources/IPProof-prover-side-0.png" width="170" /></p>
+<div align="center"><b>Figure 2: IP Proof - Prover Side </b></div> 
 
 
 (Why the diagram for the IPP? So that I can later use it to explain the amortization strategies of Sean Bowe et al [[3]], e.g., delegation of computations to a 3rd party called 'helper': for instance, computing the inverse of the challenges  $u_k$ ) ... (Well, well, this refers to the verifier's side of the proof not necessarily the prover's. it is still crucial however to understand clearly what values the prover supplies to the verifier as proof.)
@@ -183,8 +182,8 @@ The diagram below, depicts how instances of a recursive function are linked, and
 
 
 
-![Recursive-funct-resembles-blockchain](/Users/anthonymatlala/tari-university/src/cryptography/recursive-proofs/sources/Recursive-funct-resembles-blockchain.png)
-
+<p align="center"><img src="sources/Recursive-funct-resembles-blockchain.png" width="170" /></p>
+<div align="center"><b>Figure 3: Recursive Function Resembles Blockchain </b></div> 
 
 
 The amortization strategy that recursive proof composition, or proof recursion, uses is based on the ancient but powerful mathematical tool called the *Principle of Mathematical Induction*. It is so ancient it dates back to the sixteenth century, [[10]]. 
@@ -209,9 +208,8 @@ The verifier has;
 The following diagram illustrates the above proof. 
 
 
-
-<img src="/Users/anthonymatlala/tari-university/src/cryptography/recursive-proofs/sources/proof-recursion-michaelStraka1.png" alt="proof-recursion-michaelStraka1" style="zoom:33%;" />
-
+<p align="center"><img src="sources/proof-recursion-michaelStraka1.png" width="170" /></p>
+<div align="center"><b>Figure 4: Proof Recursion Diagram [[11]] </b></div>
 
 
 Straka continues to explain how an arithmetic circuit for the verfier could be build in order the above proof. Such a circuit a circuit  $\mathcal{C}$  would either verify  $R( x_0 , w_0 ) = 1$  (for the base case) or verify  $R( x_i , w_i ) = 1$  and then check  $ V( x_i , π_{i−1} ) = 1$ , [[11]].
@@ -275,8 +273,8 @@ If the cost of checking correctness of  $\pi_F$  is equivalent to invoking the o
 
 
 
-<img src="/Users/anthonymatlala/tari-university/src/cryptography/recursive-proofs/sources/Collapsing-computations-00.png" alt="Collapsing-computations-00" style="zoom: 33%;" />
-
+<p align="center"><img src="sources/Collapsing-computations-00.png" width="170" /></p>
+<div align="center"><b>Figure 5: Collapsing Computations </b></div>
 
 
 Therefore a nested amortization is achieved on the instances of a binary tree of accumulated instances, helping to reduce verification costs of the final single proof from linear-time to sub-linear marginal verification time. 
@@ -331,8 +329,9 @@ One application in point is computation of inverses of verifier's challenges in 
 
 
 
-<img src="/Users/anthonymatlala/tari-university/src/cryptography/recursive-proofs/sources/IPProof-verifier-side-01.png" alt="IPProof-verifier-side-01" style="zoom: 67%;" />
 
+<p align="center"><img src="sources/Collapsing-computations-00.png" width="170" /></p>
+<div align="center"><b>Figure 6: IP Proof - Verifier Side </b></div>
 
 
 
