@@ -99,7 +99,7 @@ The prover receives a challenge
 from the verifier and does two things. He firstly makes a commitment 
 ` $P$  
 of the witness which hides the value of 
-` $w$ 
+` $w$ `
 , and secondly creates a proof 
 ` $\pi$  
 that attests knowledge of the correct 
@@ -115,18 +115,21 @@ between
 and 
 ` $x$  
 holds true. The proof 
-` $\pi$ 
+` $\pi$ `
  is deemed correct if 
- ` $\mathcal{R}(x,w) = 1$ and incorrect if  $\mathcal{R}(x,w) = 0$.  
+ ` $\mathcal{R}(x,w) = 1$ ` 
+ and incorrect if 
+ ` $\mathcal{R}(x,w) = 0$. ` 
 Since the verifier does not know  
-` $w$ , 
+` $w$ ` 
+, 
 she uses some verification algorithm 
-` $\mathcal{V}$ 
+` $\mathcal{V}$ `
  such that 
- ` $\mathcal{V}(x, \pi )  =  \mathcal{R}(x,w)$.   
+ ` $\mathcal{V}(x, \pi )  =  \mathcal{R}(x,w)$.  ` 
 
 The whole research on scalability is in pursuit of such an algorithm 
-` $\mathcal{V}$ 
+` $\mathcal{V}$ `
  that is most efficient and secure. 
 
 
