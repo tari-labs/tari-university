@@ -130,7 +130,7 @@ A typical recursive function  $F(j)$  for  $j \in \{ 0 , 1 , ... , n \} $  can b
 
 
 
-<p align="center"><img src="sources/Basic-recursive-function.png" width="200" /></p>
+<p align="center"><img src="sources/Basic-recursive-function.png" width="300" /></p>
 <div align="center"><b>Figure 1: Recursive Function Flow Chart</b></div> 
 
 
@@ -164,7 +164,7 @@ The input to the IP proof is the quadruple  $ \big( \mathbf{a}^{(j)} , \mathbf{b
 
 
 
-<p align="center"><img src="sources/IPProof-prover-side-0.png" width="170" /></p>
+<p align="center"><img src="sources/IPProof-prover-side-0.png" width="600" /></p>
 <div align="center"><b>Figure 2: IP Proof - Prover Side </b></div> 
 
 
@@ -182,7 +182,7 @@ The diagram below, depicts how instances of a recursive function are linked, and
 
 
 
-<p align="center"><img src="sources/Recursive-funct-resembles-blockchain.png" width="170" /></p>
+<p align="center"><img src="sources/Recursive-funct-resembles-blockchain.png" width="300" /></p>
 <div align="center"><b>Figure 3: Recursive Function Resembles Blockchain </b></div> 
 
 
@@ -208,7 +208,7 @@ The verifier has;
 The following diagram illustrates the above proof. 
 
 
-<p align="center"><img src="sources/proof-recursion-michaelStraka1.png" width="170" /></p>
+<p align="center"><img src="sources/proof-recursion-michaelStraka1.png" width="400" /></p>
 <div align="center"><b>Figure 4: Proof Recursion Diagram [[11]] </b></div>
 
 
@@ -273,7 +273,7 @@ If the cost of checking correctness of  $\pi_F$  is equivalent to invoking the o
 
 
 
-<p align="center"><img src="sources/Collapsing-computations-00.png" width="170" /></p>
+<p align="center"><img src="sources/Collapsing-computations-00.png" width="400" /></p>
 <div align="center"><b>Figure 5: Collapsing Computations </b></div>
 
 
@@ -330,7 +330,7 @@ One application in point is computation of inverses of verifier's challenges in 
 
 
 
-<p align="center"><img src="sources/Collapsing-computations-00.png" width="170" /></p>
+<p align="center"><img src="sources/IPProof-verifier-side-01.png" width="800" /></p>
 <div align="center"><b>Figure 6: IP Proof - Verifier Side </b></div>
 
 
