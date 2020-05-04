@@ -16,6 +16,7 @@
     - [Pure-Rust Elliptic Curve Cryptography](cryptography/pure-rust-ecc/pure-rust-ecc.md)
     - [zk-SNARKs](cryptography/zksnarks/mainreport.md)
     - [Rank-1 Constraint System with Application to Bulletproofs](cryptography/r1cs-bulletproofs/mainreport.md)
+    - [Trustless Recursive Zero-Knowledge Proofs](cryptography/recursive-zk-proofs/mainreport.md)
   - [Consensus Mechanisms](./consensus-mechanisms/consensus-mechanisms.md)
     - [Understanding BFT Consensus](consensus-mechanisms/BFT/understanding_bft_consensus.md)
     - [BFT Consensus Mechanisms](consensus-mechanisms/BFT-consensusmechanisms/sources/PITCHME.link.md)

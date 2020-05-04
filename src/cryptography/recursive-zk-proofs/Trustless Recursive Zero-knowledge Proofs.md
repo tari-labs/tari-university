@@ -131,6 +131,12 @@ A typical recursive function  $F(j)$  for  $j \in \{ 0 , 1 , ... , n \} $  can b
 
 
 
+<p align="center"><img src="sources/Basic-recursive-function.png" width="170" /></p>
+
+<div align="center"><b>Figure 1: Recursive Function Flow Chart</b></div> 
+
+
+
 In computer programming, algorithms that involve recursive functions are efficiently executed by the use of 'for-loops' and 'while-loops'. One can say that computers were made and designed to specifically carry out repetitive computation without much error. However, although recursive proof compositionrecursion' is pointedly applicable to recursive algorithms, there's more to it than just recursiveness. That is, proof recursion is not defined by recursiveness but rather takes advantage it.  
 
 
