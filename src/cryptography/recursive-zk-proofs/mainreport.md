@@ -1,6 +1,6 @@
-#Trustless Recursive Zero-knowledge Proofs
+# Trustless Recursive Zero-knowledge Proofs
 
-##Part I: Amortization of Bulletproofs Range Proofs 
+## Part I: Amortization of Bulletproofs Range Proofs 
 
 
 
@@ -13,7 +13,7 @@
 	- [Recursive Functions](#recursive-functions)
 	- [Recursion in Bulletproofs Inner-Product Proofs](#recursion-in-bulletproofs-inner-product-proof)
 	- [Inductive Proofs](#inductive-proofs) 
-- [Protocol Amortization Strategies](#protocol-amortization-strategies)
+- [Verification Amortization Strategies](#verification-amortization-strategies)
 	- [Application of Verifiable Computation](#application-of-verifiable-computation)
 	- [Incrementally Verifiable Computation](#incrementally-verifiable-computation) 
 	- [Nested Armotization](#nested-armotization)
@@ -25,8 +25,9 @@
 	- [Amortized Strategy](#amortized-strategy) 
 - [Amortized Range Proofs](#amortized-range-proofs) 
 	- [Bulletproofs Inner Product Proof Verification](#bulletproofs-inner-product-proof-verification) 
-	- [Amortized Inner Product Proof](#amortized-inner-product-proof)
-	- [Amortized Range Proofs vs. Bulletproof Range Proofs](#amortized-range-proofs-vs.-bulletproof-range-proofs)
+	- [Amortized Inner Product Proof](#amortized-inner-product-proof) 
+	- [Amortized Bulletproof Range Proofs](#amortized-bulletproof-range-proofs)
+	- [Halo-type Range Proofs](#halo-type-range-proofs)
 - [Application to the Tari Blockchain](#application-to-the-tari-blockchain) 
 - [References](#references) 
 - [Appendix A: Mathematical Induction](#appendix-a-mathematical-induction)
@@ -36,7 +37,9 @@
 
 
 
-##Introduction 
+
+
+## Introduction 
 
 One of the main attractions with blockchains is the idea of trustlessness. 
 It is aiming at building a network that allows every participant to run his or her own validation 
@@ -67,14 +70,11 @@ the Halo protocol can be used to enhance the Bulletproofs range proofs.
 
 
 
-##Notation and Assumptions
+## Notation and Assumptions
 
 The settings and notations used in this report follow the Bulletproofs framework as 
 in the Dalek notes [[7]], this includes the underlying field  $\mathbb{F}_p$, elliptic curve, 
-elliptic curve group and generators
-` $G$ 
-and 
-` $H$. The details are left out in this report because they have been covered in other TLU reports. 
+elliptic curve group and generators  $G$  and  $H$. The details are left out in this report because they have been covered in other TLU reports. 
 Note that properties such as completeness, soundness or public coin, as well as the discrete log difficulty, are assumed here. 
 
 
@@ -82,55 +82,54 @@ Note that properties such as completeness, soundness or public coin, as well as 
 
 
 
-##Zero-Knowledge Proofs
+## Zero-Knowledge Proofs
 
 In a zero-knowledge proof there are two parties, the prover and the verifier. 
 The prover seeks to convince the verifier that he has knowledge of a secret value 
-` $w$  
+$w$ 
 called 
-the *witness* without disclosing any more information about  
-`$w$  
+the *witness* without disclosing any more information about 
+$w$ 
 to the verifier. 
 
 How does this work? 
 
 The prover receives a challenge 
-` $x$  
+$x$ 
 from the verifier and does two things. He firstly makes a commitment 
-` $P$  
+ $P$ 
 of the witness which hides the value of 
-` $w$ `
+ $w$ 
 , and secondly creates a proof 
-` $\pi$  
+ $\pi$  
 that attests knowledge of the correct 
-` $w$. 
+ $w$. 
 He then sends these two to the verifier. 
 
 The verifier then checks correctness of the proof 
-` $\pi$ . 
-This means she tests if some particular relation  
-` $\mathcal{R}$  
+ $\pi$ . 
+This means she tests if some particular relation 
+ $\mathcal{R}$  
 between 
-` $w$  
+ $w$ 
 and 
-` $x$  
+ $x$ 
 holds true. The proof 
-` $\pi$ `
+ $\pi$ 
  is deemed correct if 
- ` $\mathcal{R}(x,w) = 1$ ` 
- and incorrect if 
- ` $\mathcal{R}(x,w) = 0$. ` 
-Since the verifier does not know  
-` $w$ ` 
-, 
+$\mathcal{R}(x,w) = 1$ 
+and incorrect if 
+$\mathcal{R}(x,w) = 0$. 
+Since the verifier does not know 
+$w$ , 
 she uses some verification algorithm 
-` $\mathcal{V}$ `
+ $\mathcal{V}$ 
  such that 
- ` $\mathcal{V}(x, \pi )  =  \mathcal{R}(x,w)$.  ` 
+ $\mathcal{V}(x, \pi )  =  \mathcal{R}(x,w)$. 
 
-The whole research on scalability is in pursuit of such an algorithm 
-` $\mathcal{V}$ `
- that is most efficient and secure. 
+The whole research on scalability is in pursuit of such an algorithm  
+$\mathcal{V}$  
+that is most efficient and secure. 
 
 
 
@@ -139,68 +138,68 @@ The whole research on scalability is in pursuit of such an algorithm
 ##Bulletproofs Range Proofs 
 
 The Bulletproofs system itself provides a framework for building non-interactive 
-zero-knowledge proofs with the no need for a trusted setup. And, 
+zero-knowledge proofs without any need for a trusted setup. And, 
 according to Cathie Yun, "it allows for proving a much wider class of statements than just range proofs" [[8a]].
 
 The Bulletproofs framework uses the *Pedersen commitment scheme* which is 
 known for its hiding and binding properties. 
 
 A *Pedersen commitment* of a value 
-` $v$  
+ $v$ 
 is given by 
-` $Com(v) = v \cdot B  +  \tilde{v} \cdot \tilde{B}$  
+ $Com(v) = v \cdot B  +  \tilde{v} \cdot \tilde{B}$  
  where 
- ` $B$ 
+  $B$ 
  and 
- ` $\tilde{B}$ 
-  are the generators of the elliptic curve group, and 
-  ` $\tilde{v}$ 
-   is a blinding factor, [[7]]. 
+  $\tilde{B}$  
+are the generators of the elliptic curve group, and 
+ $\tilde{v}$  
+is a blinding factor, [[7]]. 
 
 In a Bulletproofs range proof, 
 
-- a prover, given a challenge  
-` $x$  
+- a prover, given a challenge 
+ $x$ 
 from the verfier, 
   - makes a commitment to a value 
-  ` $v$ , 
+ $v$ , 
   - creates a proof 
-  ` $\pi$ 
+ $\pi$ 
    that attests to the statement that 
-   ` $v \in [ 0 , 2^n )$, 
+ $v \in [ 0 , 2^n )$, 
   - sends the proof 
-  ` $\pi$ 
+   $\pi$ 
    to the verifier, without revealing any other information about 
-   ` $v$.  
-- a verifier checks if indeed  
-` $v$  
+    $v$.  
+- a verifier checks if indeed 
+ $v$  
 is non-negative and falls within the interval 
-` $v \in [ 0 , 2^n )$. 
+ $v \in [ 0 , 2^n )$. 
 
-The Bulletproofs range proof achieves its goal by first rewriting the statement  
-` $v \in [ 0 , 2^n )$  
+The Bulletproofs range proof achieves its goal by first rewriting the statement 
+ $v \in [ 0 , 2^n )$  
 in terms of its binary vectors, as well as expressing it as a single inner-product 
-` $t(x) = \langle \mathbf{l}(x) , \mathbf{r}(x) \rangle$  
+ $t(x) = \langle \mathbf{l}(x) , \mathbf{r}(x) \rangle$  
 of specially defined binary polynomial vectors 
-` $\mathbf{l}(x)$  and  $\mathbf{r}(x)$.
+ $\mathbf{l}(x)$  and  $\mathbf{r}(x)$.
 
 Thus a so-called *vector Pedersen commitment* is also used in these type of proofs, 
 and it is defined as follows.   
 
 A *vector Pedersen commitment* of vectors 
-` $\mathbf{a}_L$ and $\mathbf{a}_R$ 
+ $\mathbf{a}_L$ and $\mathbf{a}_R$ 
 is given by 
-` $ Com(\mathbf{a}_L , \mathbf{a}_R )  =  \langle \mathbf{a}_L , \mathbf{G} \rangle + \langle \mathbf{a}_R , \mathbf{H} \rangle + \tilde{a} \tilde{B} $  
+ $ Com(\mathbf{a}_L , \mathbf{a}_R )  =  \langle \mathbf{a}_L , \mathbf{G} \rangle + \langle \mathbf{a}_R , \mathbf{H} \rangle + \tilde{a} \tilde{B} $  
 where 
-` $\mathbf{G}$  and  $\mathbf{H}$  
+ $\mathbf{G}$  and  $\mathbf{H}$  
 are vectors of generators of the elliptic curve group, [[7]]. 
 
 The major component of a Bulletproofs range proof is no doubt its Inner-product proof (IPP). 
 This became even more apparent when Bootle et al introduced an inner-product proof that 
 requires only 
-` $2log_2(n) + 2$  
+ $2log_2(n) + 2$  
 proof-elements instead of 
-` $2n$ 
+ $2n$ 
 , [[8]]. Henry de Valence of Interstellar puts it this way, 
 
 "The inner-product proof allows the prover to convince a verifier that some scalar is 
@@ -216,7 +215,7 @@ Close attention is therefore given to the IPP as described by Bootle et al [[8]]
 
 
 
-##What is Recursive Proof Composition? 
+## What is Recursive Proof Composition? 
 
 The aim with Recursive Proof Compositions is to construct "proofs that verify other proofs" 
 or "proofs that are capable of verifying other instances of themselves", [[6]]. 
@@ -230,7 +229,7 @@ the IPP is given below, and will later be helpful in understanding some of Halo'
 
 
 
-###Recursive Functions 
+### Recursive Functions 
 
 Recursion is used to define functions or sequences of values that depict a consistent pattern. 
 And, when written as a formula, it becomes apparent that a 
@@ -280,7 +279,7 @@ That is, proof recursion is not defined by recursiveness but rather takes advant
 
 
 
-###Recursion in Bulletproofs Inner-Product Proof
+### Recursion in Bulletproofs Inner-Product Proof
 
 In Bulletproofs range proofs, a prover commits to a value 
 ` $v$ 
@@ -385,7 +384,7 @@ computing the inverse of the challenges
 
   
 
-###Inductive Proofs 
+### Inductive Proofs 
 
 As noted earlier, 'for-loops' and 'while-loops' are powerful in efficiently executing 
 repetitive computations but not sufficient to reach the level of scalability needed in blockchains. 
@@ -409,66 +408,64 @@ the *Principle of Mathematical Induction*.
 It is so ancient it dates back to the sixteenth century, [[10]]. 
 
 Suppose one has to prove that a given sequence of values 
-` $ F(0) , F(1), ... , F(n)$  
+ $ F(0) , F(1), ... , F(n)$ 
 are 
 correct instances of a recursive function 
-` $F(n) = F(n - 1) + g(n)$  
+ $F(n) = F(n - 1) + g(n)$ 
 for all positive integer 
-` $ n $ ,
+ $ n $ ,
  and 
- ` $g(n)$  
+ $g(n)$ 
  some function. 
 
 According to the **Principle of Mathematical Induction**, 
 it is sufficient to prove the above statement in the following two steps; 
 
 - (Base step): Prove that the first possible instance 
-` $F(0)$ 
+ $F(0)$ 
  is correct, and 
 
 - (Inductive step): For any integer 
-` $ k > 0 $ , 
+ $ k > 0 $ , 
 prove that 'if the previous instance 
-` $F(k - 1)$  
+ $F(k - 1)$ 
 is correct then the current instance 
-` $F(k)$  
-is also correct'. (i.e.,  '
-` $F(k - 1)$ 
-is correct'  implies  '
-` $F(k)$  
+ $F(k)$ 
+is also correct'. (i.e.,  '$F(k - 1)$ 
+is correct'  implies  '$F(k)$ 
 is also correct'.) 
 
 These two steps together are sufficient to form a complete proof for 
 the verifier to be convinced. And such a proof is valid even if 
 the current instance is the zillionth. 
 Thus saving the verifier the trouble of checking every instance of the function 
-` $F(n)$. 
+ $F(n)$. 
 
 Michael Straka describes a similar inductive proof which he refers to as 'proof recursion', [[11]]. 
 Here's his explanation of the simplest case a recursive proof will prove a relation 
-` $\mathcal{R}$ 
+$\mathcal{R}$ 
 inductively: 
 
 The verifier has; 
 
 - a “base” proof 
-` $\pi_0$  
+ $\pi_0$  
 which attests to the prover knowing some input 
-` $( x_0 , w_0 )$ 
+ $( x_0 , w_0 )$ 
  such that 
- ` $R( x_0 ,w_0 ) = 1$. 
+ $\mathcal{R}( x_0 ,w_0 ) = 1$. 
 - the proof 
-` $\pi_n$ 
+ $\pi_n$ 
  for any 
- ` $n>0$ 
-  will then prove that the prover knows 
-  ` $( x_n , w_n )$ 
-   such that 
-   ` $R(x_n , w_n ) = 1$ 
-    and that a proof 
-    ` $\pi_{n-1}$  
-    was produced attesting to the knowledge of 
-    ` $( x_{n−1} , w_{n−1})$. 
+  $n>0$ 
+will then prove that the prover knows 
+$( x_n , w_n )$ 
+such that 
+$\mathcal{R}(x_n , w_n ) = 1$ 
+and that a proof 
+$\pi_{n-1}$  
+was produced attesting to the knowledge of 
+$(x_{n−1} , w_{n−1})$. 
 
 The following diagram illustrates the above proof. 
 
@@ -480,13 +477,13 @@ The following diagram illustrates the above proof.
 Straka continues to explain how an arithmetic circuit for the verfier could be build 
 in order the above proof. 
 Such a circuit a circuit 
-` $\mathcal{C}$  
+ $\mathcal{C}$  
 would either verify 
-` $R( x_0 , w_0 ) = 1$ 
+ $\mathcal{R}( x_0 , w_0 ) = 1$ 
  (for the base case) or verify 
- ` $R( x_i , w_i ) = 1$  
+  $\mathcal{R}( x_i , w_i ) = 1$  
  and then check 
- ` $ V( x_i , π_{i−1} ) = 1$ , [[11]].
+  $\mathcal{V}( x_{i - 1} , π_{i−1} ) = 1$ , [[11]].
 
 Proof systems that utilise this type of inductive proofs for verification solve 
 the blockchain's distributed validation problem. 
@@ -500,33 +497,33 @@ the correctness of other instances of themselves".
 
 
 
-##Protocol Amortization Strategies 
+## Verification Amortization Strategies 
 
 There only a few amortization strategies used to achieve proper recursive proof composition 
 in the literature. The focus here is on those Sean Bowe et al utilized in the Halo protocol. 
 
 
 
-###Application of Verifiable Computation
+### Application of Verifiable Computation
 
 Delegation of computations to an untrusted third party (or at times, the prover) who returns 
 
 - the result 
-` $z$ 
+ $z$ 
  of the computation, and 
 - a cryptographic proof 
-` $\pi_z$ 
+ $\pi_z$ 
  that the result is correct. 
 
 The ideal property of such a proof 
-` $\pi_z$ 
+ $\pi_z$ 
  is *succinctness*, which means the proof 
- ` $\pi_z$ 
+  $\pi_z$ 
   must be asymptotically smaller and less expensive to check than the delegated computation itself, [[3]].  
 
 
 
-###Incrementally Verifiable Computation
+### Incrementally Verifiable Computation
 
 The idea here is to attest to validity of a previous proof in addition to application of 
 verifiable computation. The best thing about this amortization strategy is that 
@@ -551,64 +548,20 @@ the correctness of many previous proofs" [[3]].
 
 
 
-###Nested amortization 
+### Nested amortization 
 
 This strategy can be used as part of the above two amortization strategies. 
 
-Whenever the verifier has to compute an expensive fixed operation 
-` $F$  
-that is invoked with some input 
-` $x$  
- the prover is allowed to witness 
- ` $y = F(x)$  
- and send the pair 
- ` $( x , y )$ 
-  to the verifier. 
-  The verification circuit takes 
-  ` $( x , y )$  
-  as a public input. 
-  "The circuit can then proceed under the assumption that 
-  ` $y$  
-  is correct, delegating the responsibility of checking the correctness of 
-  ` $y$ 
-   to the verifier of the proof" [[3]]. 
+Whenever the verifier has to compute an expensive fixed operation  $F$  that is invoked with some input  $x$  the prover is allowed to witness  $y = F(x)$  and send the pair  $( x , y )$  to the verifier. The verification circuit takes  $( x , y )$  as a public input. "The circuit can then proceed under the assumption that  $y$  is correct, delegating the responsibility of checking the correctness of  $y$  to the verifier of the proof" [[3]]. 
 
-Now, increasing instances of 
-` $( x , y )$ 
- will accumulate as proofs are continually composed, 
- simply because the verification circuit will not check these proofs but rather 
- continually delegate the checking to its verifier. 
- The problem here is that computational cost will escalate. 
+Now, increasing instances of  $( x , y )$  will accumulate as proofs are continually composed, simply because the verification circuit will not check these proofs but rather continually delegate the checking to its verifier. The problem here is that computational cost will escalate. 
 
 It is here that the amortization strategy of *collapsing computations* is needed: 
 
-- given instances 
-` $( x , y )$  
-and 
-` $( x′ , y′ )$ , 
-the prover will provide a non-interactive proof 
-` $\pi_F$  
-that 
-` $y = F(x)$  
-and 
-` $y' = F(x')$  
-as a witness to the verification circuit, and 
-- the verification circuit will check 
-` $\pi_F$  
-proof.
+- given instances  $( x , y )$  and  $( x′ , y′ )$ , the prover will provide a non-interactive proof  $\pi_{y,y'}$  that  $y = F(x)$  and  $y' = F(x')$  as a witness to the verification circuit, and 
+- the verification circuit will check  $\pi_{y,y'}$  proof.
 
-If the cost of checking correctness of 
-` $\pi_F$ 
- is equivalent to invoking the operation 
- ` $F$  
- then the verifier will have collapsed the two instances 
- ` $( x , y )$  
- and 
- ` $( x' , y' )$  
- into a single fresh instance  
- ` $( x'' , y'' )$. 
- That's how the cost of invoked can be amortized away. 
-
+If the cost of checking correctness of  $\pi_{y,y'}$  is equivalent to invoking the operation  $F$  then the verifier will have collapsed the two instances  $( x , y )$  and  $( x' , y' )$  into a single fresh instance  $( x'' , y'' )$.  That's how the cost of invoking  $F$  can be amortized away. 
 
 
 <p align="center"><img src="sources/Collapsing-computations-00.png" width="400" /></p>
@@ -621,67 +574,39 @@ the final single proof from linear-time to sub-linear marginal verification time
 
 
 
-###Example Application
+### Example Application
 
 Computing of inverses is one example of computations that 
 the verifier could delegate to the prover. In arithmetic circuits where 
-a field inversion of a variable 
-` $u$  
-can be computed 
-(i.e., 
-` $u^{p−2}$ ), 
-which would normally require 
-` $log(p)$  
-multiplication constraints, the prover could witness 
-` $v = u − 1$  
-instead. 
-And the verifier could simply check if 
-` $uv = 1$  
-taking only a single multiplication constraint, [[3]]. 
-Thus one trades 
-` $log(p)$  
-multiplication constraints for only one.  
+a field inversion of a variable  $u$  can be computed (i.e.,  $u^{p−2}$ ), which would normally require  $log(p)$  multiplication constraints, the prover could witness  $v = u^{− 1}$  instead. And the verifier could simply check if  $uv = 1$  taking only a single multiplication constraint, [[3]]. 
+Thus one trades  $log(p)$  multiplication constraints for only one.  
 
 One application in point is computation of inverses of verifier's challenges in 
 the Bulletproofs Inner-Product Proof. 
-The prover could be requested to compute 
-` $u_j^{- 1}$  
-and send it to the verifier together with 
-` $L_j$ 
-and 
- $R_j$ 
-  for each 
-  ` $j \in \{ 1, 2 , ... , log_2(n) \}$. 
-  This would only cost the verifier 
-  ` $log_2(n)$  
-  multiplication constraints for checking all inverses in one Inner-Product Proof instead of  
-  ` $(log(p))*(log_2(n))$. 
-  Note also that 
-  ` $n$  
-  the size of the initial input vectors to the inner-product proof is typically very small compared to the prime  
-  ` $p$ .       
+The prover could be requested to compute  $u_j^{- 1}$  and send it to the verifier together with  $L_j$  and  $R_j$  for each  $j \in \{ 1, 2 , ... , log_2(n) \}$. The prover computes these value anyway, so this comes with no extra cost to the him (see IP Proof-prover-side diagram above). On the other hand, this will cost the verifier only  $log_2(n)$  multiplication constraints in a single Inner-Product Proof for checking all inverses instead of a cost of  $(log(p))\*(log_2(n))$  constraints. 
+Note also that  $n$  the size of the initial input vectors to the inner-product proof is typically very small compared to the prime  $p$ .       
 
 
 
 
 
-##Halo Protocol Amortization Strategies
+## Halo Protocol Amortization Strategies
 
 
 
-###Polynomial commitment scheme 
+### Polynomial commitment scheme 
 
 
 
-###Schnorr protocol 
+### Schnorr protocol 
 
 
 
-###Modified Inner-Product 
+### Modified Inner-Product 
 
 
 
-###Amortized Strategy 
+### Amortized Strategy 
 
 ... polynomial commitment scheme ... (cf., Sec 3.2, [[3]], Page 9)
 
@@ -691,11 +616,11 @@ and
 
 
 
-##Amortized Range Proofs
+## Amortized Range Proofs
 
 
 
-###Bulletproofs Inner Product Proof Verification   
+### Bulletproofs Inner Product Proof Verification   
 
 
 
@@ -710,32 +635,48 @@ and
 
 
 
-##Amortized Inner Product Proof
 
-One of the details ommited from the IPP - verfier's side [diagram](#bulletproofs-inner-product-proof-verification) 
-is the computation of inverses of the challenges  
-` $u_j$  
-needed in computing the vector of coefficients 
-` $s = ( s_1 , s_2 , s_3 , ... , s_k )$  
-where 
-` $k = log_2(n)$. 
 
-Verifiable computation strategy is applicable to the Inner-Product Proof, 
-where the prover can compute inverses of the  
-` $log_2(n)$  
-verifier's challenges 
-` $u_j$ . 
-As noted [above](example-application) , this 
-amortization strategy reduces the verification costs by factor of 
-` $log(p)$.     
+### Amortized Inner Product Proof
 
 
 
 
 
+**Delegating Inversion of Verifier's Challenges** 
+
+One of the details ommited from the IPP-verfier-side [diagram](#bulletproofs-inner-product-proof-verification) is the computation of inverses of the verifier's challenges  $u_j$  needed to complete verification. 
+
+Verifiable computation strategy is therefore applicable to the Inner-Product Proof, where the verifier delegates inversion of challenges to the prover. It so happens that the prover needs these inverses to carry out his part of the proof. So this delegation will not cost any extra computation for the verifier except just to send each of the inverses he has already computed to the verifier. 
+
+ As noted [above](example-application), this amortization strategy reduces the verification costs by factor of  $log(p)$. 
 
 
-##Amortized Range Proofs vs. Bulletproof Range Proofs
+
+**Delegating Computation of $G_i$'s Coeffiecient**
+
+Consider the vector of group-generators  $\mathbf{G} = ( G_1 , G_2 , G_3 , ... , G_n )$ , one of the four intial input vectors to the IP Proof. 
+In verifying the prover's inner-product proof, the verifier has to compute the vector  $\mathbf{s} = ( s_1 , s_2 , s_3 , ... , s_k )$  where each  $s_i = \prod\limits_{i = 1}^n u_j^{b(i,j)}$  is the so-called coefficient of  $G_i$ , and  $j \in \{ 1 , 2 , 3 , ... , k \}$  with  $k = log_2(n)$.
+
+See the IPP-verifier-side [diagram](#bulletproofs-inner-product-proof-verification) above. 
+
+
+
+
+
+
+
+### Amortized Bulletproof Range Proofs
+
+
+
+
+
+
+
+
+
+### Halo-type Range Proofs 
 
  
 
@@ -745,7 +686,7 @@ amortization strategy reduces the verification costs by factor of
 
 
 
-##Application to the Tari Blockchain 
+## Application to the Tari Blockchain 
 
 
 
@@ -753,7 +694,7 @@ amortization strategy reduces the verification costs by factor of
 
 
 
-##References 
+## References 
 
 
 
