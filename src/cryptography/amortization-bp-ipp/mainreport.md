@@ -606,7 +606,9 @@ The basic optimisation strategy is based on the observation that every coefficie
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` s[i + 2^(j-2)] = s[i];`
+​				` l = i + 2^(j-2); `
+
+​				` s[l] = s[l]*(u_j^{b(i,j)} `; 
 
 ​			`}`
 
@@ -941,7 +943,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` s[i + 2^(j-2)] = s[i];`
+​				` l = i + 2^(j-2); `
+
+​				` s[l] = s[l]*(u_j^{b(i,j)} `;
 
 ​			`}` `}` `}` 
 
@@ -963,7 +967,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` s[i + 2^(j-2)] = s[i];`
+​				` l = i + 2^(j-2); `
+
+​				` s[l] = s[l]*(u_j^{b(i,j)} `;
 
 ​			`}` `}` `}` 
 
@@ -1007,7 +1013,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` s[i + 2^(j-2)] = s[i];`
+​				` l = i + 2^(j-2); `
+
+​				` s[l] = s[l]*(u_j^{b(i,j)} `;
 
 ​			`}` `}` `}` 
 
@@ -1029,7 +1037,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` s[i + 2^(j-2)] = s[i];`
+​				` l = i + 2^(j-2); `
+
+​				` s[l] = s[l]*(u_j^{b(i,j)} `;
 
 ​			`}` `}` `}` 
 
@@ -1073,7 +1083,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` s[i + 2^(j-2)] = s[i];`
+​				` l = i + 2^(j-2); `
+
+​				` s[l] = s[l]*(u_j^{b(i,j)} `;
 
 ​			`}` `}` `}` 
 
@@ -1095,7 +1107,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` s[i + 2^(j-2)] = s[i];`
+​				` l = i + 2^(j-2); `
+
+​				` s[l] = s[l]*(u_j^{b(i,j)} `;
 
 ​			`}` `}` `}` 
 
