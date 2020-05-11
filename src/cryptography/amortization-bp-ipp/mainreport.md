@@ -197,32 +197,30 @@ It is due to this recursion that Bootle et al reduced the previous complexity of
 See the diagram below for an overview of the prover's side of the IPP. 
 
 The input to the IP proof is the quadruple 
-
 $\big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)$ 
-
-
 which is initially 
-
 $\big( \mathbf{a} , \mathbf{b} , \mathbf{G} , \mathbf{H} \big) $. 
 
 But when  $j < k$   the input is updated to 
-
 $ \big(\mathbf{a}^{(j-1)} , \mathbf{b}^{(j-1)} , \mathbf{G}^{(j-1)} , \mathbf{H}^{(j-1)} \big)$ 
-
 where 
-
-$\mathbf{a}^{(j-1)} = \mathbf{a}_{lo}  \cdot u_j  + \mathbf{a}_{hi} \cdot u_j^{-1}$ 
-
-
-with  
-
-$\mathbf{a}_{lo}$  
-
+$\mathbf{a}^{(j-1)}$,  $\mathbf{b}^{(j-1)}$,  $\mathbf{G}^{(j-1)}$,  $\mathbf{H}^{(j-1)}$ 
+are vectors of size 
+$2^{j-1}$, 
+and 
+$\mathbf{a}^{(j-1)} = \mathbf{a}_{lo} \cdot u_j + \mathbf{a}_{hi} \cdot u_j^{-1}$, 
+$\mathbf{b}^{(j-1)} = \mathbf{b}_{lo}  \cdot u_j^{-1}  + \mathbf{b}_{hi} \cdot u_j$, 
+$\mathbf{G}^{(j-1)} = \mathbf{G}_{lo}  \cdot u_j^{-1}  + \mathbf{G}_{hi} \cdot u_j$, 
+$\mathbf{H}^{(j-1)} = \mathbf{H}_{lo}  \cdot u_j  + \mathbf{H}_{hi} \cdot u_j^{-1}$ 
+with 
+$u_k$ 
+is the verifier's challenge, 
+$\mathbf{a}_{lo}$ 
 and
-
-  $\mathbf{a}_{hi}$ 
-
-being the left and the right halves of the vector  $\mathbf{a}$ ,  respectively. 
+$\mathbf{a}_{hi} $ 
+being the left and the right halves of the vector 
+$\mathbf{a}$, 
+respectively. 
 
 
 
@@ -538,7 +536,7 @@ for randomly sampled values  $ \{ r_1, r_2, ... , r_k \} \subset \{ 0, 1, 2, ...
 
 The naively implemented computation of the coefficients  $s_i$  as depicted in [diagram](#bulletproofs-inner-product-proof-verification) is very expensive in terms of number multiplications. 
 
-**Naive Algorithm**: The naive algorithm codes computation of the coefficients  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  by cumulatively multiplying the correct factor  $u_j^{b(i,j)}$  in each $j-$th round of the IP Proof, running from  $k = log_2(n)$  down to  $1$. 
+**Naive Algorithm**: The naive algorithm codes computation of the coefficients  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  by cumulatively multiplying the correct factor  $u_j^{b(i,j)}$  in each $j-$th IPP round, running from  $k = log_2(n)$  down to  $1$. 
 
 That is, although recursive according to the nature of the IP Proof, the naive implementation strictly follows the definition without any attempt to optimise.  
 
@@ -602,11 +600,11 @@ The basic optimisation strategy is based on the observation that every coefficie
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod 2^(j-1) == 0 ) { `
+​			`if (i mod 2^j == 0) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-2); `
+​				` l = i + 2^(j-1); `
 
 ​				` s[l] = s[l]*(u_j^{b(l,j)} `; 
 
@@ -632,18 +630,18 @@ The following table displays the costs of the Naive Algorithm together with othe
 
 <div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
-| Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % relative to [NA] |      |
-| :--------------- | -------------------: | ---------------: | ----------------: | ---------------: | ---------------: | --------------------------------------: | ---: |
-| $n = 4$          |                  $4$ |              $4$ |               $4$ |              $4$ |              $4$ |                               [All]  0% |      |
-| $n = 8$          |                 $12$ |             $12$ |              $12$ |             $12$ |             $12$ |                               [All]  0% |      |
-| $n = 16$         |                 $28$ |             $28$ |              $28$ |             $24$ |             $24$ |                          [A3,A4] 14.29% |      |
-| $n = 32$         |                 $60$ |             $48$ |              $60$ |             $48$ |             $56$ |                             [A1,A3] 20% |      |
-| $n = 64$         |                $124$ |             $88$ |              $96$ |             $92$ |             $92$ |                             [A1] 29.03% |      |
-| $n = 128$        |                $252$ |            $168$ |             $168$ |            $164$ |            $164$ |                         [A3, A4] 34.92% |      |
-| $n = 256$        |                $508$ |            $316$ |             $312$ |            $304$ |            $304$ |                         [A3, A4] 40.16% |      |
-| $n = 512$        |               $1020$ |            $612$ |             $600$ |            $616$ |            $816$ |                             [A2] 41.78% |      |
-| $n = 1024$       |               $2044$ |           $1140$ |            $1144$ |           $1140$ |           $1332$ |                          [A1,A3] 44.23% |      |
-| $n = 2048$       |               $4092$ |           $2184$ |            $2244$ |           $2234$ |           $2364$ |                             [A1] 46.63% |      |
+| Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % relative to [NA] |
+| :--------------- | -------------------: | ---------------: | ----------------: | ---------------: | ---------------: | --------------------------------------: |
+| $n = 4$          |                  $4$ |              $4$ |               $4$ |              $4$ |              $4$ |                               [All]  0% |
+| $n = 8$          |                 $12$ |             $12$ |              $12$ |             $12$ |             $12$ |                               [All]  0% |
+| $n = 16$         |                 $28$ |             $28$ |              $28$ |             $24$ |             $24$ |                          [A3,A4] 14.29% |
+| $n = 32$         |                 $60$ |             $48$ |              $60$ |             $48$ |             $56$ |                             [A1,A3] 20% |
+| $n = 64$         |                $124$ |             $88$ |              $96$ |             $92$ |             $92$ |                             [A1] 29.03% |
+| $n = 128$        |                $252$ |            $168$ |             $168$ |            $164$ |            $164$ |                         [A3, A4] 34.92% |
+| $n = 256$        |                $508$ |            $316$ |             $312$ |            $304$ |            $304$ |                         [A3, A4] 40.16% |
+| $n = 512$        |               $1020$ |            $612$ |             $600$ |            $616$ |            $816$ |                             [A2] 41.78% |
+| $n = 1024$       |               $2044$ |           $1140$ |            $1144$ |           $1140$ |           $1332$ |                          [A1,A3] 44.23% |
+| $n = 2048$       |               $4092$ |           $2184$ |            $2244$ |           $2234$ |           $2364$ |                             [A1] 46.63% |
 
 
 
@@ -864,31 +862,7 @@ Find here details of the algorithms investigated to optimise computations of the
 
 
 
-`**Naive Algorithm**`
-
-` initialise 	s[n] = [1,1,1, ... ,1]; ` 
-
-` initialise 	k = log_2(n)` 
-
-`... %running inside IPP`
-
-`int main(){`
-
-​	` for (j = k; j > 0; j--){`
-
-​		`for (i = 0; i < n; i++){`
-
-​			`	 s[i] = s[i]*(u_j)^{b(i,j)} `;
-
-​		`}`
-
-​	`}`	  
-
-`return = 0; ` 
-
-`}`
-
-
+**Optimisation Approach**
 
 The basic approach to formulation of efficient and cost-saving algorithms is as follows; 
 
@@ -931,7 +905,7 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
 
-​	`s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
+​	`s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
 
 ​	`t = k-3;`
 
@@ -939,11 +913,11 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod 2^(j-1) == 0 ) { `
+​			`if ( i mod 2^j == 0 ) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-2); `
+​				` l = i + 2^(j-1); `
 
 ​				` s[l] = s[l]*(u_j^{b(l,j)} `;
 
@@ -951,9 +925,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ` %if k-3 > 0 then program proceeds as follows  `
 
-​	` s[1] = u_{k-3}^{-1};  s[1+2^{k-1}] = u_{k-3};`
+​	` s[1] = u_{k-3}^{-1}; s[1+2^{k-4}] = u_{k-3}; `
 
-​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; `
+​	` s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+2^{k-1}] = s[1+2^{k-4}]; `
 
 ` %if k-4 > 0 then program proceeds as follows  ` 
 
@@ -963,11 +937,11 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if (i mod (1+2^(j-1)) == 0 ) { `
+​			`if (i mod (1+2^(k-1)) == 0) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-2); `
+​				` l = i + 2^j; `
 
 ​				` s[l] = s[l]*(u_j^{b(l,j)} `;
 
@@ -985,7 +959,7 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 
 
-**Algorithm 2**: This algorithm starts exactly like Algorithm 1, by forming only new and distict doubles and turning them into triples in the next immediate IPP round, but goes beyond the triples by immediately forming the next possible quadruples.    
+**Algorithm 2**: This algorithm starts exactly like Algorithm 1, by forming only new and distinct doubles and turning them into triples in the next immediate IPP round, but goes beyond the triples by immediately forming the next possible quadruples.    
 
 
 
@@ -1009,11 +983,11 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod 2^(j-1) == 0 ) { `
+​			`if ( i mod 2^j == 0 ) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-2); `
+​				` l = i + 2^(j-1); `
 
 ​				` s[l] = s[l]*(u_j^{b(l,j)} `;
 
@@ -1021,9 +995,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ` %if k-4 > 0 then program proceeds as follows  `
 
-​	` s[1] = u_{k-4}^{-1};  s[1+2^{k-1}] = u_{k-4};`
+​	` s[1] = u_{k-4}^{-1};  s[1+2^{k-4}] = u_{k-4};`
 
-​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; ` 
+​	`s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+(2^{k-1})] = s[1+2^{k-4}]; ` 
 
 ` %if k-5 > 0 then program proceeds as follows  `
 
@@ -1033,11 +1007,11 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod (1+2^(j-1)) == 0 ) { `
+​			`if ( i mod (1+2^(k-1) == 0 ) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-2); `
+​				` l = i + 2^j; `
 
 ​				` s[l] = s[l]*(u_j^{b(l,j)} `;
 
@@ -1079,11 +1053,11 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod 2^(j-1) == 0 ) { `
+​			`if ( i mod 2^j == 0 ) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-2); `
+​				` l = i + 2^(j-1); `
 
 ​				` s[l] = s[l]*(u_j^{b(l,j)} `;
 
@@ -1103,11 +1077,11 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod (1+2^(j-1)) == 0 ) { `
+​			`if ( i mod 1+2^(k-1) == 0 ) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-2); `
+​				` l = i + 2^j; `
 
 ​				` s[l] = s[l]*(u_j^{b(l,j)} `;
 
@@ -1134,6 +1108,97 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 `**Algorithm 4 or [A4]**`
 
 `The exact same pseudocode of Algorithm 3 applies to Algorithm 4`
+
+
+
+
+
+
+
+**Example 1 (Algorithm 1 or [A1])** 
+
+
+
+Let  $n = 32$  so that  $k = 5$. The coefficients  $s_i$  for  $i \in {0, 1, 2, ... , 15}$  are  $32$  quintets; 
+
+ $$u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}$$ 
+
+The number of multiplications per IPP-round is given at the bottom of each column. The table displays only the updated and computed values from the initialisation 
+$\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s_{n-1} = 1 ).$ 
+
+
+
+
+
+<div align="center"><b>Table 2: Sub-products and their Multiplication Costs using Algorithm 1  </b></div>  
+
+
+
+| [A1] $\text{ for }$ $ n=2^5$ | j = 5      | j = 4                 | j = 3                            | j = 2      | j = 1               |
+| ----------------------- | ---------- | --------------------- | -------------------------------- | ---------- | ------------------- |
+| $s_0$                    | $u_5^{-1}$ | $u_5^{-1}*u_4^{-1}$ | $u_5^{-1}*u_4^{-1}*u_3^{-1}$ |             |                     |
+| $s_1$                    |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1}*u_1$ |
+| $s_2$                    |            |                       |                                  |            |                     |
+| $s_3$                    |            |                       |                                  | $u_2$      | $u_2*u_1^{-1}$      |
+| $s_4$                    |            |                       | $u_5^{-1}*u_4^{-1}*u_3$          |            |                     |
+| $s_5$                    |            |                       |                                  |            |                     |
+| $s_6$                    |            |                       |                                  |            |                     |
+| $s_7$                    |            |                       |                                  |            |                     |
+| $s_8$                    | $u_5^{-1}$ | $u_5^{-1}*u_4$ | $u_5^{-1}*u_4*u_3^{-1} $ |             |                     |
+| $s_9$                    |            |                       |                                  |            |     |
+| $s_{10}$                 |            |                       |                                  |            |                     |
+| $s_{11}$                 |            |                       |                                  |            |                     |
+| $s_{12}$      |              |                 | $u_5^{-1}*u_4*u_3$  |               |                    |
+| $s_{13}$       |               |           |               |                |                 |
+| $s_{14}$                 |            |                       |                                  |            |                     |
+| $s_{15}$                 |            |                       |                                  |            |                     |
+| $s_{16}$                 | $u_5$      | $u_5*u_4^{-1}$        | $u_5*u_4^{-1}*u_3^{-1} $         |            |                     |
+| $s_{17}$                 |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1}*u_1^{-1}$ |
+| $s_{18}$                 |            |                       |                                  |            |                     |
+| $s_{19}$                 |            |                       |                                  | $u_2$      | $u_2*u_1$           |
+| $s_{20}$                 |            |                       | $ u_5*u_4^{-1}*u_3$              |            |                     |
+| $s_{21}$                 |            |                       |                                  |            |                     |
+| $s_{22}$                 |            |                       |                                  |            |                     |
+| $s_{23}$                 |            |                       |                                  |            |                     |
+| $s_{24}$ | $u_5$ | $u_5*u_4 $ | $u_5 * u_4 * u_3^{-1} $ |  |  |
+| $s_{25}$                 |            |                       |                                  |            |                     |
+| $s_{26}$                 |            |                       |                                  |            |                     |
+| $s_{27}$ |  |  |   |  |  |
+| $ s_{28} $ |          |        | $u_5 * u_4 * u_3 $ |        |        |
+| $s_{29}$                 |            |                       |                                  |            |                     |
+| $s_{30}$                 |            |                       |                                  |            |                     |
+| $s_{31}$                 |            |                       |                                  |            |                     |
+| mult. cost               | $0$        | $4$                   | $8$                              | $0$        | $4$                 |
+
+
+
+
+
+
+
+At the end of the  $k$  IPP rounds, there are  $8$  distinct triples and 4 distinct doubles. These are sufficient to form all the required  $32$  quintuplets, and it takes exactly  $32$  multiplications form them all. 
+
+The **total cost** of computing the coefficients for  $n = 32$  using  *Algorithm 1*  is  $\mathbf{4 + 8 + 4 + 32 = 48}$.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
