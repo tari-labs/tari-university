@@ -92,7 +92,7 @@ The whole research on scalability is in pursuit of such an algorithm  $\mathcal{
 
 
 
-##Bulletproofs Range Proofs 
+## Bulletproofs Range Proofs 
 
 The Bulletproofs system itself provides a framework for building non-interactive 
 zero-knowledge proofs without any need for a trusted setup. And, 
@@ -544,15 +544,13 @@ That is, although recursive according to the nature of the IP Proof, the naive i
 
 
 
-
-
 `**Naive Algorithm**`
 
 ` initialise 	s[n] = [1,1,1, ... ,1]; ` 
 
 ` initialise 	k = log_2(n)` 
 
-`...`
+`... %running inside IPP`
 
 `int main(){`
 
@@ -572,7 +570,7 @@ That is, although recursive according to the nature of the IP Proof, the naive i
 
 
 
-An input vector  $\mathbf{G}$  to the IP Proof, of size  $n = 256$ , costs the verifier at least  $508$  multiplications. If  $n = 1024$, the cost is  $2044$. And this is excluding all the other computations the verifier has to compute. 
+Using the Naive Algorithm, an input vector  $\mathbf{G}$  to the IP Proof, of size  $n = 256$ , costs the verifier at least  $508$  multiplications. If  $n = 1024$, the cost is  $2044$. And this is excluding all the other computations the verifier has to compute. 
 
  
 
@@ -592,11 +590,15 @@ The basic optimisation strategy is based on the observation that every coefficie
 
 ` initialise 	k = log_2(n)` 
 
-`...`
+`... %running inside IPP `
 
 `int main(){`
 
-​	` 		for (j = k; j > t; j--){`
+​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
+
+​	`s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
+
+​	` 		for (j = k - 1; j > t; j--){`
 
 ​		`		for (i = 0; i < n; i++){`
 
@@ -618,9 +620,7 @@ The basic optimisation strategy is based on the observation that every coefficie
 
 
 
-The value  t  in the first for-loop can be varied in order to form either products of two, or three, or four, and so on. The optimised algorithms depending whether they only form 'doubles' or 'triples' or 'quadruples'. 
-
-
+The value  t  in the first for-loop can be varied in order to form either products of two, or three, or four, and so on. The optimisation of these algorithms depends on whether they only form 'doubles' or 'triples' or 'quadruples', and how they form them. Unlike the Naive Algorithm which keeps spending multiplication disregarding existence of commn factors among the coefficients  $s_i$ , the optimised algorithm uses multiplication only if the new product formed is unique. 
 
 
 
@@ -630,7 +630,7 @@ The following table displays the costs of the Naive Algorithm together with othe
 
 <div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
-| Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] | Best Algo & Savings  % relative to [NA] |      |
+| Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % relative to [NA] |      |
 | :--------------- | -------------------: | ---------------: | ----------------: | ---------------: | ---------------: | --------------------------------------: | ---: |
 | $n = 4$          |                  $4$ |              $4$ |               $4$ |              $4$ |              $4$ |                               [All]  0% |      |
 | $n = 8$          |                 $12$ |             $12$ |              $12$ |             $12$ |             $12$ |                               [All]  0% |      |
@@ -645,7 +645,7 @@ The following table displays the costs of the Naive Algorithm together with othe
 
 
 
-The best algorithm is Algorithm 1 or  [A1]  for several reasons; 
+All these algorithms are fairly competent in saving multiplication costs, but the above results indicate that the best algorithm is Algorithm 1 or  [A1]  for several reasons; 
 
 (a) It is the most frequent winner in all the 10 cases investigated, with a score of 6 out of 10, 
 
@@ -661,11 +661,11 @@ The best algorithm is Algorithm 1 or  [A1]  for several reasons;
 
 ### Concluding the Amortized Inner-Product Proof
 
-The amortization strategies herein applied to the Bulletproofs Inner-Product are tangible and significantly enhance it.   
+The amortization strategies herein applied to the Bulletproofs Inner-Product are tangible and significantly enhance the proof.   
 
-With the above amortization of the IP Proof, the prover sends  $3log_2(n) +  n$   inner-product proof elements. That is the set of all  $log_2(n)$  triple  $L_j$, $R_j$ and $u^{-1}$ as well as the  $n$  coefficients  $s_i$'s. 
+With the above amortization of the IP Proof, the prover sends  $3log_2(n) +  n$   inner-product proof elements. That is the set of all  $log_2(n)$  triples  $L_j$, $R_j$ and $u^{-1}$ as well as the  $n$  coefficients  $s_i$'s. 
 
-Given the Verifier's Test of the coefficients and the optimisation of the computations solidifies the proposed  amortization of the Inner-product proof. 
+The given Verifier's Test of the coefficients and the optimisation of their computations solidify the proposed  amortization of the Inner-product proof. 
 
 
 
@@ -868,7 +868,7 @@ Find here details of the algorithms investigated to optimise computations of the
 
 ` initialise 	k = log_2(n)` 
 
-`...`
+`... %running inside IPP`
 
 `int main(){`
 
@@ -888,7 +888,7 @@ Find here details of the algorithms investigated to optimise computations of the
 
 
 
-The basic approach to formulation of efficient and cost-saving algorithm is as follows; 
+The basic approach to formulation of efficient and cost-saving algorithms is as follows; 
 
 - each algorithm aims at reducing verification costs in terms of the number of multiplications, 
 
@@ -913,7 +913,7 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 
 
-**Algorithm 1**: This algorithm computes new doubles as soon as it is possible to compute a new set of distinct doubles. These new doubles are turned into triples in the next immediate IPP round. This process is repeated until all IPP rounds are completed. Only then are next larger-sized sub-products computed, but consumption of the smallest existing 'tuples' is given priority. 
+**Algorithm 1**: This algorithm computes new distinct doubles as soon as it is possible to do so. These new doubles are turned into triples in the next immediate IPP round. This process is repeated until all IPP rounds are completed. Only then are next larger-sized sub-products computed, but consumption of the smallest existing 'tuples' is given priority. 
 
 
 
@@ -923,11 +923,17 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ` initialise 	k = log_2(n)` 
 
-`...`
+`... %running inside IPP`
 
-`int main(){`
+`int main(){` 
 
-​	` 		for (j = k; j > k-3; j--){`
+​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
+
+​	`s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
+
+​	`t = k-3;`
+
+​	` 		for (j = k - 1; j > t; j--){`
 
 ​		`		for (i = 0; i < n; i++){`
 
@@ -937,23 +943,33 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​				` s[i + 2^(j-2)] = s[i];`
 
-​			`}` `}` `}`	  
+​			`}` `}` `}` 
 
-​	` 		for (j = k-3; j > k-6; j--){`
+` %if k-3 > 0 then program proceeds as follows  `
+
+​	` s[1] = u_{k-3}^{-1};  s[1+2^{k-1}] = u_{k-3};`
+
+​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; `
+
+` %if k-6 > 0 then program proceeds as follows  ` 
+
+`t = k-6;` 
+
+​	` 		for (j = k-4; j > t; j--){`
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod (2^(j-1) + 1) == 0 ) { `
+​			`if ( i mod (1+2^(j-1)) == 0 ) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
 ​				` s[i + 2^(j-2)] = s[i];`
 
-​			`}` `}` `}`
+​			`}` `}` `}` 
 
-​	`% continues forming triples until j=1 `
+`% program continues forming new and distinct triples until k=1 `
 
-​	`% after which all 'legal' (2^k) k-tuples are formed` 	  
+`% after which all (2^k) 'legal' k-tuples are formed` 	  
 
 `return = 0; ` 
 
@@ -963,31 +979,151 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 
 
-**Algorithm 2**: This algorithm starts exactly like Algorithm 1 but goes beyond the triples by immediately forming the next possible quadruples.    
+**Algorithm 2**: This algorithm starts exactly like Algorithm 1, by forming only new and distict doubles and turning them into triples in the next immediate IPP round, but goes beyond the triples by immediately forming the next possible quadruples.    
 
 
 
-[INSERT A PSEUDO-CODE OF ALGORITHM 2]
+`**Algorithm 2 or [A2]**`
+
+` initialise 	s[n] = [1,1,1, ... ,1]; ` 
+
+` initialise 	k = log_2(n)` 
+
+`... %running inside IPP`
+
+`int main(){` 
+
+​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
+
+​	`s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
+
+​	`t = k-4;`
+
+​	` 		for (j = k - 1; j > t; j--){`
+
+​		`		for (i = 0; i < n; i++){`
+
+​			`if ( i mod 2^(j-1) == 0 ) { `
+
+​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+
+​				` s[i + 2^(j-2)] = s[i];`
+
+​			`}` `}` `}` 
+
+` %if k-4 > 0 then program proceeds as follows  `
+
+​	` s[1] = u_{k-3}^{-1};  s[1+2^{k-1}] = u_{k-3};`
+
+​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; ` 
+
+` %if k-8 > 0 then program proceeds as follows  `
+
+​	`t = k-8;` 
+
+​	` 		for (j = k-4; j > t; j--){`
+
+​		`		for (i = 0; i < n; i++){`
+
+​			`if ( i mod (1+2^(j-1)) == 0 ) { `
+
+​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+
+​				` s[i + 2^(j-2)] = s[i];`
+
+​			`}` `}` `}` 
+
+​	`% continues forming new and distinct quadruples until k=1 `
+
+​	`% after which all (2^k) 'legal' k-tuples are formed` 	  
+
+`return = 0; ` 
+
+`}`
 
 
 
 
 
-**Algorithm 3**:
+**Algorithm 3**: This algorithm computes new distinct doubles as soon as it is possible to do so until the end of the IPP rounds. The program then forms any possible triples and then quadruples. Then next, larger-sized sub-products are computed by firstly consuming the smallest existing 'tuples'. 
 
 
 
 [INSERT A PSEUDO-CODE  OF ALGORITHM 3] 
 
+`**Algorithm 3 or [A3]**`
+
+`initialise 	s[n] = [1,1,1, ... ,1]; ` 
+
+` initialise 	k = log_2(n)` 
+
+`... %running inside IPP`
+
+`int main(){` 
+
+​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
+
+​	`s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
+
+​	`t = k-2;`
+
+​	` 		for (j = k - 1; j > t; j--){`
+
+​		`		for (i = 0; i < n; i++){`
+
+​			`if ( i mod 2^(j-1) == 0 ) { `
+
+​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+
+​				` s[i + 2^(j-2)] = s[i];`
+
+​			`}` `}` `}` 
+
+` %if k-2 > 0 then program proceeds as follows  `
+
+​	` s[1] = u_{k-2}^{-1};  s[1+2^{k-1}] = u_{k-2};`
+
+​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; `
+
+` %if k-3 > 0 then program proceeds as follows  ` 
+
+`t = k-3;` 
+
+​	` 		for (j = k-3; j > t; j--){`
+
+​		`		for (i = 0; i < n; i++){`
+
+​			`if ( i mod (1+2^(j-1)) == 0 ) { `
+
+​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+
+​				` s[i + 2^(j-2)] = s[i];`
+
+​			`}` `}` `}` 
+
+`% program continues forming new and distinct doubles until k=1 `
+
+`% after which all (2^k) 'legal' k-tuples are formed` 	  
+
+`return = 0; ` 
+
+`}`
 
 
 
 
-**Algorithm 4**: 
 
 
 
-[INSERT A PSEUDO-CODE  OF ALGORITHM 4] 
+**Algorithm 4**: This algorithm is the same as Algorithm 3 throughout the IPP rounds. At the end of the IPP rounds the program gives preference to the formation all possible distinct quadruples. Then next, larger-sized sub-products are computed by firstly consuming the largest existing 'tuples'. 
+
+
+
+`**Algorithm 4 or [A4]**`
+
+`The exact same pseudocode of Algorithm 3 applies to Algorithm 4`
+
+
 
 
 
