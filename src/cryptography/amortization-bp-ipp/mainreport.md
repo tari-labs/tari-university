@@ -951,15 +951,15 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; `
 
-` %if k-6 > 0 then program proceeds as follows  ` 
+` %if k-4 > 0 then program proceeds as follows  ` 
 
-`t = k-6;` 
+​	`t = k-6;` 
 
 ​	` 		for (j = k-4; j > t; j--){`
 
 ​		`		for (i = 0; i < n; i++){`
 
-​			`if ( i mod (1+2^(j-1)) == 0 ) { `
+​			`if (i mod (1+2^(j-1)) == 0 ) { `
 
 ​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
@@ -1013,15 +1013,15 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ` %if k-4 > 0 then program proceeds as follows  `
 
-​	` s[1] = u_{k-3}^{-1};  s[1+2^{k-1}] = u_{k-3};`
+​	` s[1] = u_{k-4}^{-1};  s[1+2^{k-1}] = u_{k-4};`
 
 ​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; ` 
 
-` %if k-8 > 0 then program proceeds as follows  `
+` %if k-5 > 0 then program proceeds as follows  `
 
 ​	`t = k-8;` 
 
-​	` 		for (j = k-4; j > t; j--){`
+​	` 		for (j = k-5; j > t; j--){`
 
 ​		`		for (i = 0; i < n; i++){`
 
@@ -1045,11 +1045,9 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 
 
-**Algorithm 3**: This algorithm computes new distinct doubles as soon as it is possible to do so until the end of the IPP rounds. The program then forms any possible triples and then quadruples. Then next, larger-sized sub-products are computed by firstly consuming the smallest existing 'tuples'. 
+**Algorithm 3**: This algorithm computes new distinct doubles as soon as it is possible to do so until the end of the IPP rounds. The program then forms any possible triples. Then next, larger-sized sub-products are computed by firstly consuming the smallest existing 'tuples'. 
 
-
-
-[INSERT A PSEUDO-CODE  OF ALGORITHM 3] 
+ 
 
 `**Algorithm 3 or [A3]**`
 
@@ -1087,7 +1085,7 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 ` %if k-3 > 0 then program proceeds as follows  ` 
 
-`t = k-3;` 
+​	`t = k-3;` 
 
 ​	` 		for (j = k-3; j > t; j--){`
 
@@ -1115,7 +1113,7 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 
 
-**Algorithm 4**: This algorithm is the same as Algorithm 3 throughout the IPP rounds. At the end of the IPP rounds the program gives preference to the formation all possible distinct quadruples. Then next, larger-sized sub-products are computed by firstly consuming the largest existing 'tuples'. 
+**Algorithm 4**: This algorithm is the same as Algorithm 3 throughout the IPP rounds. But at the end of the IPP rounds the program gives preference to the formation all possible distinct quadruples. Then next, larger-sized sub-products are computed by firstly consuming the largest existing 'tuples'. 
 
 
 
