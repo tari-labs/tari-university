@@ -746,7 +746,7 @@ showing more than  20\%  savings for vectors of sizes  64  and above.
 
 The above results indicate that algorithm  [A1] is the best of the four for several reasons; 
 
-(a) It is the second most frequent winner in all the 11 cases investigated, with a score of 7 out of 10, 
+(a) It is the second most frequent winner in all the 11 cases investigated, with a score of 7 out of 11, 
 
 (b) In order to account for the other 4 cases; it is 2 times second best, and twice in 3rd place,  
 
