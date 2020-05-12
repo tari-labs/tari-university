@@ -6,7 +6,7 @@
 - [Notation and Assumptions](#notation-and-assumptions) 
 - [Zero-Knowledge Proofs](#zero-knowledge-proofs) 
 - [Bulletproofs Range Proofs](#bulletproofs-range-proofs) 
-- [What is Recursive Proof Composition?](#what-is-recursive-proof-composition-?) 
+- [What is Recursive Proof Composition?](#what-is-recursive-proof-composition) 
 	- [Recursive Functions](#recursive-functions)
 	- [Recursion in Bulletproofs Inner-Product Proofs](#recursion-in-bulletproofs-inner-product-proof)
 	- [Inductive Proofs](#inductive-proofs) 
@@ -52,7 +52,8 @@ of proving the validity of transactions, while masked, by compressing computatio
 the bare minimum," [[6]]. 
 
 For blockchains with confidential transactions such as Mimblewimble, Bulletproofs range proofs 
-are the most crucial zero-knowledge proofs involved in validation of blockchain transactions. The huge bulk of computations in these range proofs is the inner-product proof.  
+are the most crucial zero-knowledge proofs involved in validation of blockchain transactions. 
+The huge bulk of computations in these range proofs take place in the inner-product proof.  
 
 The aim in this report is to investigate how the innovative amortization strategies of 
 the Halo protocol can be used to enhance the Bulletproofs inner-product proof. 
@@ -65,8 +66,13 @@ the Halo protocol can be used to enhance the Bulletproofs inner-product proof.
 
 The settings and notations used in this report follow the Bulletproofs framework as 
 in the Dalek notes [[7]], this includes the underlying field  $\mathbb{F}_p$, elliptic curve, 
-elliptic curve group and generators  $G$  and  $H$. The details are left out in this report because they have been covered in other TLU reports. 
-Note that properties such as completeness, soundness or public coin, as well as the discrete log difficulty, are assumed here. 
+elliptic curve group and generators  $G$  and  $H$. The details have been covered in other 
+TLU reports, and therefore are left out in this report. 
+Note that properties such as completeness, soundness or public coin, as well as 
+he discrete log difficulty, are assumed here. 
+
+Since the Ristretto implementation of the curve25519 is used in the Bulletproofs setting, 
+unless otherwise stated, all vectors of size  $n$  will be referring to  $n$  32 bytes. 
 
 
 
@@ -81,12 +87,18 @@ $w$  called the *witness* without disclosing any more information about  $w$  to
 
 How does this work? 
 
-The prover receives a challenge  $x$  from the verifier and does two things. He firstly makes a commitment  $P$  of the witness which hides the value of  $w$, and secondly creates a proof  $\pi$  that attests knowledge of the correct  $w$. He then sends these two to the verifier. 
+The prover receives a challenge  $x$  from the verifier and does two things. He firstly makes 
+a commitment  $P$  of the witness which hides the value of  $w$, and secondly creates a 
+proof  $\pi$  that attests knowledge of the correct  $w$. He then sends these two to the verifier. 
 
-The verifier then checks correctness of the proof  $\pi$ . This means she tests if some particular relation  $\mathcal{R}$  between  $w$  and  $x$  holds true. The proof  $\pi$  is deemed correct if  $\mathcal{R}(x,w) = 1$  and incorrect if  $\mathcal{R}(x,w) = 0$. 
-Since the verifier does not know  $w$,  she uses some verification algorithm  $\mathcal{V}$  such that  $\mathcal{V}(x, \pi )  =  \mathcal{R}(x,w)$. 
+The verifier then checks correctness of the proof  $\pi$ . This means she tests if some 
+particular relation  $\mathcal{R}$  between  $w$  and  $x$  holds true. The proof  $\pi$  is 
+deemed correct if  $\mathcal{R}(x,w) = 1$  and incorrect if  $\mathcal{R}(x,w) = 0$. 
+Since the verifier does not know  $w$,  she uses some verification algorithm  $\mathcal{V}$  
+such that  $\mathcal{V}(x, \pi )  =  \mathcal{R}(x,w)$. 
 
-The whole research on scalability is in pursuit of such an algorithm  $\mathcal{V}$  that is most efficient and secure. 
+The whole research on scalability is in pursuit of such an algorithm  $\mathcal{V}$  that is 
+most efficient and secure. 
 
 
 
@@ -96,12 +108,15 @@ The whole research on scalability is in pursuit of such an algorithm  $\mathcal{
 
 The Bulletproofs system itself provides a framework for building non-interactive 
 zero-knowledge proofs without any need for a trusted setup. And, 
-according to Cathie Yun, "it allows for proving a much wider class of statements than just range proofs" [[8]]. 
+according to Cathie Yun, "it allows for proving a much wider class of statements than just 
+range proofs" [[8]]. 
 
 The Bulletproofs framework uses the *Pedersen commitment scheme* which is 
 known for its hiding and binding properties. 
 
-A *Pedersen commitment* of a value  $v$  is given by  $Com(v) = v \cdot B  +  \tilde{v} \cdot \tilde{B}$  where  $B$  and  $\tilde{B}$  are the generators of the elliptic curve group, and  $\tilde{v}$  is a blinding factor, [[7]]. 
+A *Pedersen commitment* of a value  $v$  is given by  $Com(v) = v \cdot B  +  \tilde{v} \cdot \tilde{B}$  
+where  $B$  and  $\tilde{B}$  are the generators of the elliptic curve group, and  $\tilde{v}$  is 
+a blinding factor, [[7]]. 
 
 In a Bulletproofs range proof, 
 
@@ -113,14 +128,16 @@ In a Bulletproofs range proof,
 
 The Bulletproofs range proof achieves its goal by first rewriting the statement 
 $v \in [ 0 , 2^n )$  in terms of its binary vectors, as well as expressing it as a single inner-product 
-$t(x) = \langle \mathbf{l}(x) , \mathbf{r}(x) \rangle$  of specially defined binary polynomial vectors  $\mathbf{l}(x)$  and  $\mathbf{r}(x)$.
+$t(x) = \langle \mathbf{l}(x) , \mathbf{r}(x) \rangle$  of specially defined binary polynomial 
+vectors  $\mathbf{l}(x)$  and  $\mathbf{r}(x)$.
 
 Thus a so-called *vector Pedersen commitment* is also used in these type of proofs, 
 and it is defined as follows. 
 
 A *vector Pedersen commitment* of vectors 
  $\mathbf{a}_L$ and $\mathbf{a}_R$  is given by 
- $ Com(\mathbf{a}_L , \mathbf{a}_R )  =  \langle \mathbf{a}_L , \mathbf{G} \rangle + \langle \mathbf{a}_R , \mathbf{H} \rangle + \tilde{a} \tilde{B} $ 
+ $ Com(\mathbf{a}_L , \mathbf{a}_R )  =  \langle \mathbf{a}_L ,
+  \mathbf{G} \rangle + \langle \mathbf{a}_R , \mathbf{H} \rangle + \tilde{a} \tilde{B} $ 
 where  $\mathbf{G}$  and  $\mathbf{H}$  are vectors of generators of the elliptic curve group, [[7]]. 
 
 The major component of a Bulletproofs range proof is no doubt its Inner-product proof (IPP). 
@@ -128,7 +145,9 @@ This became even more apparent when Bootle et al introduced an inner-product pro
 requires only  $2log_2(n) + 2$  proof-elements instead of  $2n$, [[9]]. 
 Henry de Valence of Interstellar puts it this way, 
 
-"The inner-product proof allows the prover to convince a verifier that some scalar is the inner-product of two length-$n$  vectors using  $\mathcal{O}(log(n))$  steps, and it’s the reason that Bulletproofs are compact," [[10]]. 
+"The inner-product proof allows the prover to convince a verifier that some scalar is 
+the inner-product of two length-$n$  vectors using  $\mathcal{O}(log(n))$  steps, and 
+it’s the reason that Bulletproofs are compact," [[10]]. 
 
 No wonder the Halo creators also looked at the IPP, particulaly taking advantage of 
 its recursive nature, in their amortization strategies. 
@@ -142,24 +161,32 @@ Close attention is therefore given to the IPP as described by Bootle et al [[9]]
 
 The aim with Recursive Proof Compositions is to construct "proofs that verify other proofs" 
 or "proofs that are capable of verifying other instances of themselves", [[6]]. 
-These take advantage of the recursive nature of some components of known zero-knowledge proofs. 
+These take advantage of the recursive nature of some components of known 
+zero-knowledge proofs. 
 
 Before discussing recursive proofs, or proof recursion, a brief discussion on 
 the recursive function concept and the efficiency of recursive algorithms is given. 
 The inner-product proof, or IPP, as used in a Bulletproofs range proof is given as 
 an example of a recursive algorithm. A diagram that depicts the recursive nature of 
-the IPP is given below, and will later be helpful in understanding some of Halo's amortization strategies. 
+the IPP is given below, and will later be helpful in understanding some of 
+Halo's amortization strategies. 
 
 
 
 ### Recursive Functions 
 
-Recursion is used to define functions or sequences of values that depict a consistent pattern. 
-And, when written as a formula, it becomes apparent that a  $(j-1)$-th  member of such a sequence is needed in computing the  $j$-th  member of the same sequence. 
+Recursion is used to define functions or sequences of values that depict a consistent 
+pattern. 
+And, when written as a formula, it becomes apparent that a  $(j-1)$-th  member of 
+such a sequence is needed in computing the  $j$-th  member of the same sequence. 
 
-A function  $F(x)$  that yields a sequence of values  $ F(0) , F(1), ... , F(n)$  for some positive integer  $ n $  is a recursive function if  $F(k) = F(k - 1) + g(k)$  for all  $0 < k \leq n$,  where  $g(x)$  is some function of  $ x $  an  indeterminate. 
+A function  $F(x)$  that yields a sequence of values  $ F(0) , F(1), ... , F(n)$  for some 
+positive integer  $ n $  is a recursive function if  $F(k) = F(k - 1) + g(k)$  for all  $0 < k \leq n$,  
+where  $g(x)$  is some function of  $ x $  an  indeterminate. 
 
-A typical recursive function  $F(j)$  for  $j \in \{ 0 , 1 , ... , n \} $  can be represented in terms of a chart flow below, depicting how values of the sequence  $F(0) , F(1), ... , F(n)$  are computed. 
+A typical recursive function  $F(j)$  for  $j \in \{ 0 , 1 , ... , n \} $  can be represented 
+in terms of a chart flow below, depicting how values of the sequence  $F(0) , F(1), ... , F(n)$  
+are computed. 
 
 
 <p align="center"><img src="sources/Basic-recursive-function.png" width="300" /></p>
@@ -169,61 +196,63 @@ A typical recursive function  $F(j)$  for  $j \in \{ 0 , 1 , ... , n \} $  can b
 In computer programming, algorithms that involve recursive functions are efficiently executed 
 by the use of 'for-loops' and 'while-loops'. 
 One can say that computers were made and designed to specifically carry out 
-repetitive computation without much error. However, although recursive proof composition is pointedly applicable to recursive algorithms, there's more to it than just recursiveness. 
+repetitive computation without much error. However, although recursive proof composition 
+is pointedly applicable to recursive algorithms, there's more to it than just recursiveness. 
 That is, proof recursion is not defined by recursiveness but rather takes advantage it. 
 
 
 
 ### Recursion in Bulletproofs Inner-Product Proof
 
-In Bulletproofs range proofs, a prover commits to a value  $v$  and seeks to construct an inner-product proof to the fact that  $v \in [ 0 , 2^n ) $.  Pedersen commitments are used to keep the value of  $v$  confidential, and are expressed as inner-products. 
+In Bulletproofs range proofs, a prover commits to a value  $v$  and seeks to construct 
+an inner-product proof to the fact that  $v \in [ 0 , 2^n ) $.  
+Pedersen commitments are used to keep the value of  $v$  confidential, and are 
+expressed as inner-products. 
 
 The main recursive part of a range proof is the Inner-product proof or IPP. 
-The inner-product of two vectors  $\mathbf{a}$,  $\mathbf{b}$  and the associated Pedersen commitment can be expressed as 
+The inner-product of two vectors  $\mathbf{a}$,  $\mathbf{b}$  and the associated 
+Pedersen commitment can be expressed as 
 
 $$ P_k = \langle \mathbf{a} , \mathbf{G} \rangle + \langle \mathbf{b} , \mathbf{H} \rangle + \langle \mathbf{a} , \mathbf{b} \rangle \cdot Q $$
 
-where  $\mathbf{a}$  and  $\mathbf{b}$  are size-$n$  vectors of scalars in the field  $\mathbb{F}_p$, while  $\mathbf{G}$  and  $\mathbf{H}$  are vectors of points in an elliptic curve  $\mathbb{E} ( \mathbb{F}_p)$  and  $k = log_2(n)$ , see [[11]]. 
+where  $\mathbf{a}$  and  $\mathbf{b}$  are size-$n$  vectors of scalars in 
+the field  $\mathbb{F}_p$, while  $\mathbf{G}$  and  $\mathbf{H}$  are vectors of 
+points in an elliptic curve  $\mathbb{E} ( \mathbb{F}_p)$  and  $k = log_2(n)$ , see [[11]]. 
 
-Recursion is seen in a  $k-$  round non-interactive IPP-argument where these commitments are written in terms of challenges  $u_k$  sent by the verifier, 
+Recursion is seen in a  $k-$  round non-interactive IPP-argument where these 
+commitments are written in terms of challenges  $u_k$  sent by the verifier, 
 
 $$ P_{k - 1} = P_k + L_k \cdot u_k^{2} + R_k \cdot u_k^{-2} $$ 
 
-where  $ L_k $  and  $ R_k $  are specifically defined as linear combinations of inner-products of vectors that are half the size of vectors in the  $k - 1$  round. 
+where  $ L_k $  and  $ R_k $  are specifically defined as linear combinations of 
+inner-products of vectors that are half the size of vectors in the  $k - 1$  round. 
 
-In the IP proof the prover convinces the verifier of the veracity of the commitment  $P_k$  by sending only  $k = log(n)$  pairs of values  $L_j$  and  $R_j$  where  $j \in \{ 1, 2, 3, ... , k \}$.  
-It is due to this recursion that Bootle et al reduced the previous complexity of zero-knowledge proofs from  $O(\sqrt{n})$  to  $O(log(n))$. 
+In the IP proof the prover convinces the verifier of the veracity of the commitment  $P_k$  by 
+sending only  $k = log(n)$  pairs of values  $L_j$  and  $R_j$  where  $j \in \{ 1, 2, 3, ... , k \}$.  
+It is due to this recursion that Bootle et al reduced the previous complexity of 
+zero-knowledge proofs from  $O(\sqrt{n})$  to  $O(log(n))$. 
 
 See the diagram below for an overview of the prover's side of the IPP. 
 
-The input to the IP proof is the quadruple 
+The input to the IP proof is the quadruple of size  $ n = 2^k $  vectors  
 $\big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)$ 
 which is initially 
 $\big( \mathbf{a} , \mathbf{b} , \mathbf{G} , \mathbf{H} \big) $. 
-
 But when  $j < k$   the input is updated to 
 $ \big(\mathbf{a}^{(j-1)} , \mathbf{b}^{(j-1)} , \mathbf{G}^{(j-1)} , \mathbf{H}^{(j-1)} \big)$ 
-where 
-$\mathbf{a}^{(j-1)}$,  $\mathbf{b}^{(j-1)}$,  $\mathbf{G}^{(j-1)}$,  $\mathbf{H}^{(j-1)}$ 
-are vectors of size 
-$2^{j-1}$, 
-and 
-$\mathbf{a}^{(j-1)} = \mathbf{a}_{lo} \cdot u_j + \mathbf{a}_{hi} \cdot u_j^{-1}$, 
-$\mathbf{b}^{(j-1)} = \mathbf{b}_{lo}  \cdot u_j^{-1}  + \mathbf{b}_{hi} \cdot u_j$, 
-$\mathbf{G}^{(j-1)} = \mathbf{G}_{lo}  \cdot u_j^{-1}  + \mathbf{G}_{hi} \cdot u_j$, 
-$\mathbf{H}^{(j-1)} = \mathbf{H}_{lo}  \cdot u_j  + \mathbf{H}_{hi} \cdot u_j^{-1}$ 
-with 
-$u_k$ 
-is the verifier's challenge, 
-$\mathbf{a}_{lo}$ 
-and
-$\mathbf{a}_{hi} $ 
-being the left and the right halves of the vector 
-$\mathbf{a}$, 
+quadruple vectors each of size  $2^{k-1}$  where  
+$ \mathbf{a}^{(j-1)} = \mathbf{a}\_{lo} \cdot u\_j + \mathbf{a}\_{hi} \cdot u\_j^{-1} $, \ \ 
+$\mathbf{b}^{(j-1)} = \mathbf{b}\_{lo}  \cdot u\_j^{-1}  + \mathbf{b}\_{hi} \cdot u\_j$, \ \ 
+$\mathbf{G}^{(j-1)} = \mathbf{G}\_{lo}  \cdot u\_j^{-1}  + \mathbf{G}\_{hi} \cdot u\_j$,\ \ 
+$\mathbf{H}^{(j-1)} = \mathbf{H}\_{lo}  \cdot u\_j  + \mathbf{H}\_{hi} \cdot u\_j^{-1}$, and  $u_k$ 
+is the verifier's challenge. 
+The vectors\ \ 
+$\mathbf{a}\_{lo}, \mathbf{b}\_{lo}, \mathbf{G}\_{lo}, \mathbf{H}\_{lo}$\ \ 
+and\ \ 
+$\mathbf{a}\_{hi}, \mathbf{b}\_{hi}, \mathbf{G}_{hi}, \mathbf{H}\_{hi} $\ \ 
+being the left and the right halves of the vectors\ \ 
+$\mathbf{a}, \mathbf{b}, \mathbf{G}, \mathbf{H}$, 
 respectively. 
-
-
-
 
 
 
@@ -232,7 +261,9 @@ respectively.
 
 
 
-The above diagram is included here not only to display the recursive nature of the IP Proof, but it will come handy and pivotal to understanding amortization strategies that will be applied to the range proofs. 
+The above diagram is included here not only to display the recursive nature of 
+the IP Proof, but it will come handy and pivotal to understanding amortization strategies 
+that will be applied to the inner-product proof. 
 
 
 
@@ -241,14 +272,17 @@ The above diagram is included here not only to display the recursive nature of t
 ### Inductive Proofs 
 
 As noted earlier, 'for-loops' and 'while-loops' are powerful in efficiently executing 
-repetitive computations but not sufficient to reach the level of scalability needed in blockchains. 
-The basic reason being that the iterative executions compute each instance of the recursive function. 
+repetitive computations but not sufficient to reach the level of scalability needed in 
+blockchains. 
+The basic reason being that the iterative executions compute each instance of 
+the recursive function. 
 This is very expensive and clearly undesirable because the aim in 
 blockchain validation is not to compute every instance but to prove that 
 the current instance was correctly executed. 
 
 The diagram below, depicts how instances of a recursive function are linked, and 
-clearly resembles how each block in a blockchain is linked to the previous block via hash values. 
+clearly resembles how each block in a blockchain is linked to the previous block 
+via hash values. 
 
 
 
@@ -257,20 +291,21 @@ clearly resembles how each block in a blockchain is linked to the previous block
 
 
 
-The amortization strategy that recursive proof composition, or proof recursion, uses 
+The amortization strategy that recursive proof composition, or proof recursion, 
+uses 
 is based on the ancient but powerful mathematical tool called 
 the *Principle of Mathematical Induction*. 
 It is so ancient it dates back to the sixteenth century, [[12]]. 
 
 Suppose one has to prove that a given sequence of values 
  $ F(0) , F(1), ... , F(n)$ 
-are 
-correct instances of a recursive function 
+are correct instances of a recursive function 
  $F(n) = F(n - 1) + g(n)$ 
 for all positive integer  $ n $  and  $g(n)$  some function. 
 
 According to the **Principle of Mathematical Induction**, 
-it is sufficient to prove the above statement in the following two steps; 
+it is sufficient to prove the above statement in the following 
+two steps; 
 
 - (Base step): Prove that the first possible instance 
  $F(0)$ 
@@ -289,18 +324,20 @@ is also correct'.)
 These two steps together are sufficient to form a complete proof for 
 the verifier to be convinced. And such a proof is valid even if 
 the current instance is the zillionth. 
-Thus saving the verifier the trouble of checking every instance of the function 
- $F(n)$. 
+Thus saving the verifier the trouble of checking every instance of 
+the function  $F(n)$. 
 
-Michael Straka describes a similar inductive proof which he refers to as 'proof recursion', [[13]]. 
-Here's his explanation of the simplest case a recursive proof will prove a relation 
+Michael Straka describes a similar inductive proof which he 
+refers to as 'proof recursion', [[13]]. 
+Here's his explanation of the simplest case a recursive proof 
+will prove a relation 
 $\mathcal{R}$ 
 inductively: 
 
 The verifier has; 
 
 - a “base” proof 
- $\pi_0$  
+ $\pi_0$ 
 which attests to the prover knowing some input 
  $( x_0 , w_0 )$ 
  such that 
@@ -314,7 +351,7 @@ $( x_n , w_n )$
 such that 
 $\mathcal{R}(x_n , w_n ) = 1$ 
 and that a proof 
-$\pi_{n-1}$  
+$\pi_{n-1}$ 
 was produced attesting to the knowledge of 
 $(x_{n−1} , w_{n−1})$. 
 
@@ -327,18 +364,22 @@ The following diagram illustrates the above proof.
 
 
 
-Straka continues to explain how an arithmetic circuit for the verfier could be build in order the above proof. 
+Straka continues to explain how an arithmetic circuit for the verfier could be build in order 
+to carry out the above proof. 
 Such a circuit a circuit  $\mathcal{C}$  would either verify 
  $\mathcal{R}( x_0 , w_0 ) = 1$ 
  (for the base case) or verify 
-  $\mathcal{R}( x_i , w_i ) = 1$  
+  $\mathcal{R}( x_i , w_i ) = 1$ 
  and then check 
   $\mathcal{V}( x_{i - 1} , π_{i−1} ) = 1$ , [[13]].
 
-Proof systems that utilise this type of inductive proofs for verification solve the blockchain's distributed validation problem. 
-A participant in the blockchain network need only download the current state of the network as well as a single proof that this state is correct.
+Proof systems that utilise this type of inductive proofs for verification solve 
+the blockchain's distributed validation problem. 
+A participant in the blockchain network need only download the current state of 
+the network as well as a single proof that this state is correct.
 
-Recursive proof composition is described in [[14]] as "proofs that can feasibly attest to the correctness of other instances of themselves". 
+Recursive proof composition is described in [[14]] as "proofs that can feasibly 
+attest to the correctness of other instances of themselves". 
 
  
 
@@ -366,32 +407,36 @@ The ideal property of such a proof
  $\pi_z$ 
  is *succinctness*, which means the proof 
   $\pi_z$ 
-  must be asymptotically smaller and less expensive to check than the delegated computation itself, [[14]].  
+  must be asymptotically smaller and less expensive to check than 
+  the delegated computation itself, [[14]].  
 
 
 
 ### Incrementally Verifiable Computation
 
-The idea here is to attest to validity of a previous proof in addition to application of 
-verifiable computation. The best thing about this amortization strategy is that 
-one proof can be used to inductively demonstrate the correctness of many previous proofs. 
+The idea here is to attest to validity of a previous proof in addition to 
+application of verifiable computation. 
+The best thing about this amortization strategy is that 
+one proof can be used to inductively demonstrate the correctness of 
+many previous proofs. 
 
-So then, any participator in a blockchain network who wishes to validate 
-the current state of the chain need only download two things, 
+So then, any participator in a blockchain network who wishes 
+to validate the current state of the chain need only download two things, 
 
 - the current state of the chain network, and 
 - a single proof that this state is correct.  
 
-Any further proofs of state changes in a blockchain can be constructed with 
-the latest proof alone, allowing active participants to prune old state changes, [[14]]. 
+Any further proofs of state changes in a blockchain can be constructed 
+with the latest proof alone, allowing active participants to prune old state 
+changes, [[14]]. 
 
 Thus, with incrementally verifiable computation, a large and 
 virtually unbounded amount of computation can be verified with a single proof, 
 and with this proof alone the computation can be extended to further proofs.  
 
 It due to this strategy that Halo achieves better scalability than most known 
-SNARKs constructions. That is, by "allowing a single proof to inductively demonstrate 
-the correctness of many previous proofs" [[14]]. 
+SNARKs constructions. That is, by "allowing a single proof to inductively 
+demonstrate the correctness of many previous proofs" [[14]]. 
 
 
 
@@ -399,16 +444,29 @@ the correctness of many previous proofs" [[14]].
 
 This strategy can be used as part of the above two amortization strategies. 
 
-Whenever the verifier has to compute an expensive fixed operation  $F$  that is invoked with some input  $x$  the prover is allowed to witness  $y = F(x)$  and send the pair  $( x , y )$  to the verifier. The verification circuit takes  $( x , y )$  as a public input. "The circuit can then proceed under the assumption that  $y$  is correct, delegating the responsibility of checking the correctness of  $y$  to the verifier of the proof" [[14]]. 
+Whenever the verifier has to compute an expensive fixed operation  $F$  
+that is invoked with some input  $x$  the prover is allowed to witness  $y = F(x)$  and 
+send the pair  $( x , y )$  to the verifier. The verification circuit takes  $( x , y )$  as 
+a public input. 
+"The circuit can then proceed under the assumption that  $y$  is correct, delegating 
+the responsibility of checking the correctness of  $y$  to the verifier of the proof" [[14]]. 
 
-Now, increasing instances of  $( x , y )$  will accumulate as proofs are continually composed, simply because the verification circuit will not check these proofs but rather continually delegate the checking to its verifier. The problem here is that computational cost will escalate. 
+Now, increasing instances of  $( x , y )$  will accumulate as proofs are continually 
+composed, simply because the verification circuit will not check these proofs 
+but rather continually delegate the checking to its verifier. 
+The problem here is that computational cost will escalate. 
 
 It is here that the amortization strategy of *collapsing computations* is needed: 
 
-- given instances  $( x , y )$  and  $( x′ , y′ )$ , the prover will provide a non-interactive proof  $\pi_{y,y'}$  that  $y = F(x)$  and  $y' = F(x')$  as a witness to the verification circuit, and 
+- given instances  $( x , y )$  and  $( x′ , y′ )$ , the prover will provide a 
+non-interactive proof  $\pi_{y,y'}$  that  $y = F(x)$  and  $y' = F(x')$  is a witness 
+to the verification circuit, and 
 - the verification circuit will check  $\pi_{y,y'}$  proof.
 
-If the cost of checking correctness of  $\pi_{y,y'}$  is equivalent to invoking the operation  $F$  then the verifier will have collapsed the two instances  $( x , y )$  and  $( x' , y' )$  into a single fresh instance  $( x'' , y'' )$.  That's how the cost of invoking  $F$  can be amortized away. 
+If the cost of checking correctness of  $\pi_{y,y'}$  is equivalent to invoking 
+the operation  $F$  then the verifier will have collapsed the 
+two instances  $( x , y )$  and  $( x' , y' )$  into a single fresh instance  $( x'' , y'' )$.  
+That's how the cost of invoking  $F$  can be amortized away. 
 
 
 <p align="center"><img src="sources/Collapsing-computations-00.png" width="400" /></p>
@@ -420,9 +478,11 @@ binary tree of accumulated instances, helping to reduce verification costs of
 the final single proof from linear-time to sub-linear marginal verification time. 
 
 
-
-As mentioned above, the aim with Recursive Proof Compositions is two-pronged. Construction of "proofs that verify other proofs" as well as construction of "proofs that are capable of verifying other instances of themselves", [[6]]. The discussions in this report focuses on the latter, while the former will be part of forthcoming reports as it requires delving into understanding cycles of elliptic curves. 
-
+As mentioned above, the aim with Recursive Proof Compositions is two-pronged. 
+Construction of "proofs that verify other proofs" as well as construction of 
+"proofs that are capable of verifying other instances of themselves", [[6]]. 
+The discussion in this report focuses on the latter, while the former will be part of forthcoming reports 
+as it requires delving into understanding cycles of elliptic curves. 
 
 
 
@@ -430,23 +490,31 @@ As mentioned above, the aim with Recursive Proof Compositions is two-pronged. Co
 
 ## Amortized Inner-Product Proof
 
-One application in point, of the armotization strategies discussed thus far, is the Bulletproofs Inner-Product Proof. The aim here is to investigate how much significance can these strategies bring to this powerful and pervasive proof, especially the blockchain technology where efficiency of zero-knowledge proof is pursued.
+One application in point, of the armotization strategies discussed thus far, is 
+the Bulletproofs Inner-Product Proof. 
+The aim here is to investigate how much significance can these strategies bring to 
+this powerful and pervasive proof, especially in the blockchain technology where 
+efficiency of zero-knowledge proof is pursued.
 
 
 
 ### Bulletproofs Inner Product Proof Verification   
 
-Consider the Bulletproofs Inner-Product Proof or IPP, originally described by Bootle et al [[9]], but following the Dalek's Bulletproofs settings [[11]]. The IPP is no doubt recursive in the way it is executed. [Figure 1](#recursion-in-bulletproofs-inner-product-proof) and [Figure 2](#bulletproofs-inner-product-proof-verification)  make this apparent. It is therefore the most relevant a case study to amortize verification costs.  
+Consider the Bulletproofs Inner-Product Proof or IP Proof, originally described by 
+Bootle et al [[9]], but following the Dalek's Bulletproofs settings [[11]]. 
+The IPP is no doubt recursive in the way it is executed. 
+[Figure 1](#recursion-in-bulletproofs-inner-product-proof) and 
+[Figure 2](#bulletproofs-inner-product-proof-verification)  make this apparent. 
+It is therefore the most relevant a case study to amortize verification costs 
+especially in the context of recursive proofs. 
 
 
-
-See below, a diagram of a naive implementation of the verification side of the Bulletproofs IP Proof.  
+See below, a diagram of a naive implementation of the verifier's side of the Bulletproofs IP Proof.  
 
 
 
 <p align="center"><img src="sources/IPProof-verifier-side-1.png" width="750" /></p>
 <div align="center"><b>Figure 6: Bulletproofs IP Proof - Verifier Side </b></div>
-
 
 
 
@@ -460,15 +528,35 @@ See below, a diagram of a naive implementation of the verification side of the B
 
 **Delegating Inversion of Verifier's Challenges** 
 
-One of the details omitted from the IPP-verfier-side [diagram](#bulletproofs-inner-product-proof-verification) above is the computation of inverses of the verifier's challenges  $u_j$  needed to complete verification. The verifier for example needs  $u_j^{-2}$  in order to compute  $- L_j \cdot u_j^2 - R_j \cdot u^{-2}$.  Verifiable computation strategy is therefore applicable to the Inner-Product Proof, where the verifier delegates inversion of challenges to the prover. 
+One of the details omitted from the IPP-verfier-side [diagram](#bulletproofs-inner-product-proof-verification) above 
+is the computation of inverses of the verifier's challenges  $u_j$  needed to complete verification. 
+The verifier for example needs  $u_j^{-2}$  in order to compute  $- L_j \cdot u_j^2 - R_j \cdot u^{-2}$.  
+Verifiable computation strategy is therefore applicable to the Inner-Product Proof, 
+where the verifier delegates inversion of challenges to the prover. 
 
-As Sean Bowe et al proposed, in arithmetic circuits where a field inversion of a variable  $u$  can be computed (i.e.,  $u^{p−2}$ ), which would normally require  $log(p)$  multiplication constraints, the prover could witness  $v = u^{− 1}$  instead. And the verifier could simply check if  $uv = 1$  taking only a single multiplication constraint, [[3]]. 
+As Sean Bowe et al proposed, in arithmetic circuits where a field inversion of 
+a variable  $u$  can be computed (i.e.,  $u^{p−2}$ ), which 
+would normally require  $log(p)$  multiplication constraints, 
+the prover could witness  $v = u^{− 1}$  instead [[3]]. 
+And the verifier could simply check if  $uv = 1$  taking only a single multiplication constraint. 
 Thus one trades  $log(p)$  multiplication constraints for only one. 
 
-The prover is requested to compute each  $u_j^{- 1}$  and send it to the verifier together with  $L_j$  and  $R_j$  for  $j \in \{ 1, 2 , ... , log_2(n) \}$. 
+So, to amortize away some verification costs, the prover in the Bulletproofs IP Proof is 
+requested to compute each  $u_j^{- 1}$  and send it to the verifier. That's in addition to 
+values  $L_j$  and  $R_j$  for  $j \in \{ 1, 2 , ... , log_2(n) \}$. 
 
-Worth noting is that the prover will have computed these inverses anyway, because he needs them in "halving" of the input vectors to the IP Proof. So this delegation of inversion comes with *no extra cost* to the prover. Such a delegation will have a huge savings on the other verifier's side. Instead of a verification cost of  $(log(p))\*(log_2(n))$  multiplication constraints, it will only cost  $log_2(n)$  multiplication constraints in a single Inner-Product Proof for checking all inverses. 
-The savings are huge considering the fact that  $n$ , which is the size of the initial input vectors to the inner-product proof, is typically very small compared to  $p$ , which is the prime order of the elliptic curve group. 
+Worth noting is that the prover will have computed these inverses anyway, because 
+he needs them in "halving" of the input vectors to the IP Proof. 
+The delegation of inversion therefore comes with *no extra cost* to the prover. 
+
+This amortization strategy has huge savings on verification costs in the form of 
+the number of multiplications by the verifier. 
+Instead of a verification cost of  $(log(p))\*(log_2(n))$  multiplication constraints on 
+inversion alone, it now will only cost  $log_2(n)$  multiplication constraints for 
+a single Inner-Product Proof. 
+The savings are huge considering the fact that  $n$ , which is the size of 
+the initial input vectors to the inner-product proof, is typically very small 
+compared to  $p$  the prime order of the elliptic curve group. 
 
  As noted [above](example-application), this amortization strategy reduces the verification costs by factor of  $log(p)$. 
 
@@ -506,13 +594,13 @@ Note that the verifier has to compute the values  $u_j^2$  and  $u_j^{-2}$ for a
 
 **Theorem 1. [Some properties of the set of coefficients  $\{ s_i \}$ ]** 
 
-Let  $n = 2^k$ and  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  for all  $j \in \{ 1, 2, 3, ... , k \}$  where each  $G_i$  the $i-$th component of the initial input vector   $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$ , then 
+Let  $n = 2^k$ and  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  for all  $j \in \\{ 1, 2, 3, ... , k \\}$  where each  $G_i$  the $i-$th component of the initial input vector   $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$ , then 
 
-(a)	$\ \ s_i \cdot s_{(n-1) - i}  = 1_{\mathbb{F}_p}$  for all  $i \in \{ 0, 1, 2, ... , n-1 \}$.
+(a)	$\ \ s_i \cdot s_{(n-1) - i}  = 1_{\mathbb{F}\_p}$  for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}$.
 
-(b)	$\ \ s_{2^{(j-1)}} \cdot s_{n-1}  = u_j^2 $  for all  $j \in \{ 1, 2, 3, ... , k \}$.
+(b)	$\ \ s_{2^{(j-1)}} \cdot s_{n-1}  = u\_j^2 $  for all  $j \in \\{ 1, 2, 3, ... , k \\}$.
 
-(c)	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}}  = u_j^{-2} $  for all  $j \in \{ 1, 2, 3, ... , k \}$. 
+(c)	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}}  = u\_j^{-2} $  for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
 
 
@@ -522,17 +610,17 @@ The proof of part (a) of this theorem follows by induction on the size  $n$  of 
 
 
 
-**Verifier's Test of the $\{ s_i \}$ Values** : The verifier tests the correctness of the coefficients  $s_i$  with the following statement, 
+**Verifier's Test of the $\{ s_i \}$ values** : The verifier tests the correctness of the coefficients  $s_i$  with the following statement, 
 
 $$\ \ (s_{1} \cdot s_{n-1}  = u_1^2) \and (s_{2} \cdot s_{n-1}  = u_2^2) \and (s_{4} \cdot s_{n-1}  = u_3^2) \and\ \ ...\ \ \and (s_{2^{(k-1)}} \cdot s_{n-1}  = u_k^2)  \and \\ \ \ (s_0 \cdot s_{(n-1) - 2^{(0)}}  = u_1^{-2}) \and (s_0 \cdot s_{(n-1) - 2^{(1)}}  = u_2^{-2}) \and\ \ ...\ \ \and (s_0 \cdot s_{(n-1) - 2^{(k-1)}}  = u_k^{-2})  \and \\ \ \ ( s_{r_1} \cdot s_{(n-1) - {r_1}}  = 1_{\mathbb{F}_p} ) \and (s_{r_2} \cdot s_{(n-1) - {r_2}}  = 1_{\mathbb{F}_p}) \and (s_{r_3} \cdot s_{(n-1) - {r_3}}  = 1_{\mathbb{F}_p}) \and\ \ ...\ \ \and (s_{r_k} \cdot s_{(n-1) - r_k}  = 1_{\mathbb{F}_p})  $$
 
-for randomly sampled values  $ \{ r_1, r_2, ... , r_k \} \subset \{ 0, 1, 2, ... , n-1 \} $  where  $k = log_2(n)$.
+for randomly sampled values  $ \\{ r_1, r_2, ... , r_k \\} \subset \\{ 0, 1, 2, ... , n-1 \\} $  where  $k = log_2(n)$.
 
 
 
 
 
-**Optimizing Prover's Computation of the  $\{ s_i \}$  Values**
+**Optimizing Prover's Computation of the  $\{ s_i \}$  values**
 
 The naively implemented computation of the coefficients  $s_i$  as depicted in [diagram](#bulletproofs-inner-product-proof-verification) is very expensive in terms of number multiplications. 
 
@@ -624,11 +712,17 @@ The value  t  in the first for-loop can be varied in order to form either produc
 
 
 
-The following table displays the costs of the Naive Algorithm together with other four algorithms. Full descriptions of these algorithms are given below. These algorithms are simply referred to as; Algorithm 1, Algorithm 2, Algorithm 3 and Algorithm 4.  
+The following table displays the multiplication cost of the Naive Algorithm together with other four algorithms. Full descriptions of these algorithms are given in the [Appendix](#appendix-a). These algorithms are simply referred to as; Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3]  and Algorithm 4  or [A4].  
+
+
 
 
 
 <div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
+
+
+
+
 
 | Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % relative to [NA] |
 | :--------------- | -------------------: | ---------------: | ----------------: | ---------------: | ---------------: | --------------------------------------: |
@@ -639,21 +733,28 @@ The following table displays the costs of the Naive Algorithm together with othe
 | $n = 64$         |                $124$ |             $88$ |              $96$ |             $92$ |             $92$ |                             [A1] 29.03% |
 | $n = 128$        |                $252$ |            $168$ |             $168$ |            $164$ |            $164$ |                         [A3, A4] 34.92% |
 | $n = 256$        |                $508$ |            $316$ |             $312$ |            $304$ |            $304$ |                         [A3, A4] 40.16% |
-| $n = 512$        |               $1020$ |            $612$ |             $600$ |            $616$ |            $816$ |                             [A2] 41.78% |
+| $n = 512$        |               $1020$ |            $612$ |             $600$ |            $584$ |            $816$ |                             [A3] 42.75% |
 | $n = 1024$       |               $2044$ |           $1140$ |            $1144$ |           $1140$ |           $1332$ |                          [A1,A3] 44.23% |
-| $n = 2048$       |               $4092$ |           $2184$ |            $2244$ |           $2234$ |           $2364$ |                             [A1] 46.63% |
+| $n = 2048$       |               $4092$ |           $2184$ |            $2244$ |           $2234$ |           $2364$ |                             [A1] 46.63% | 
+| $n = 4096$      |               $8188$ |          $4272$ |           $4436$ |        $4424$ |          $4424$ |                 [A1] 47.83% | 
 
 
 
-All these algorithms are fairly competent in saving multiplication costs, but the above results indicate that the best algorithm is Algorithm 1 or  [A1]  for several reasons; 
 
-(a) It is the most frequent winner in all the 10 cases investigated, with a score of 6 out of 10, 
+All four algorithms  [A1], [A2], [A3] and [A4]  are fairly competent in saving multiplication costs, 
+showing more than  20\%  savings for vectors of sizes  64  and above. 
 
-(b) In order to account for the other 4 cases; it is 3 times second best, and only once in 3rd place,  
+The above results indicate that algorithm  [A1] is the best of the four for several reasons; 
 
-(c) The best savings percentage of  46.63%  relative to the Naive Algorithm,   
+(a) It is the second most frequent winner in all the 11 cases investigated, with a score of 7 out of 10, 
 
-(d) The only case it is in par with the Naive Algorithm is when all other algorithms are in par.  
+(b) In order to account for the other 4 cases; it is 2 times second best, and twice in 3rd place,  
+
+(c) The best savings percentage of  47.83\%  relative to the Naive Algorithm,   
+
+(d) The only case it is in par with the Naive Algorithm is when all other algorithms are in par, and 
+that for the smallest cases  $n = 4$  and  $n = 8$. 
+
 
 
 
@@ -665,7 +766,7 @@ The amortization strategies herein applied to the Bulletproofs Inner-Product are
 
 With the above amortization of the IP Proof, the prover sends  $3log_2(n) +  n$   inner-product proof elements. That is the set of all  $log_2(n)$  triples  $L_j$, $R_j$ and $u^{-1}$ as well as the  $n$  coefficients  $s_i$'s. 
 
-The given Verifier's Test of the coefficients and the optimisation of their computations solidify the proposed  amortization of the Inner-product proof. 
+The given Verifier's Test of the coefficients and the optimisation of their computations solidify the proposed  amortization of the Inner-product proof. Given the Bulletproofs setting, that a vector of size  $n$  refers to  $n$  number of  32-byte values, even seemingly small savings are significant. 
 
 
 
@@ -684,7 +785,7 @@ This report not only elucidates the often obscured parts of the Inner-Product Pr
 
 The Amortized Inner-Product Proof as discussed above does not veer off the Dalek's Bulletproofs setting which is preferred for the Tari Blockchain. 
 
-These amortization strategies though minimal in the changes they bring into the Inner-Product Proof as we are accustomed to have huge savings to the verification costs, cutting down on the number of multiplications a factor of  $log(p)$  for the prime  $p$  deliberately chosen to be very large. 
+These amortization strategies though minimal in the changes they bring into the Inner-Product Proof as we are accustomed to have huge savings to the verification costs, cutting down on the number of multiplications by a factor of  $log(p)$  where the prime  $p$  deliberately chosen to be very large. 
 
 The amortized inner-product proof lends itself useful in implementations of any zero-knowledge proof that involves an inner-products especially in the Bulletproofs framework. 
 
@@ -1123,8 +1224,10 @@ Let  $n = 32$  so that  $k = 5$. The coefficients  $s_i$  for  $i \in {0, 1, 2, 
 
  $$u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}$$ 
 
-The number of multiplications per IPP-round is given at the bottom of each column. The table displays only the updated and computed values from the initialisation 
-$\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s_{n-1} = 1 ).$ 
+The number of multiplications per IPP-round is given at the bottom of each column. The vector of coefficients is initialised to 
+$\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s\_{n-1} = 1 )$. 
+The table only displays the updated and computed values  $s_i$  since the initialisation of 
+$\mathbf{s}$.  
 
 
 
@@ -1136,38 +1239,38 @@ $\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s_{n-1} = 1 ).$
 
 | [A1] $\text{ for }$ $ n=2^5$ | j = 5      | j = 4                 | j = 3                            | j = 2      | j = 1               |
 | ----------------------- | ---------- | --------------------- | -------------------------------- | ---------- | ------------------- |
-| $s_0$                    | $u_5^{-1}$ | $u_5^{-1}*u_4^{-1}$ | $u_5^{-1}*u_4^{-1}*u_3^{-1}$ |             |                     |
-| $s_1$                    |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1}*u_1$ |
+| $s_0$                    | $u_5^{-1}$ | $u_5^{-1} \* u_4^{-1}$ | $u_5^{-1} \* u_4^{-1} \* u_3^{-1}$ |             |                     |
+| $s_1$                    |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1} \* u_1$ |
 | $s_2$                    |            |                       |                                  |            |                     |
-| $s_3$                    |            |                       |                                  | $u_2$      | $u_2*u_1^{-1}$      |
-| $s_4$                    |            |                       | $u_5^{-1}*u_4^{-1}*u_3$          |            |                     |
+| $s_3$                    |            |                       |                                  | $u_2$      | $u_2 \* u_1^{-1}$     |
+| $s_4$                    |            |                       | $u_5^{-1} \* u_4^{-1} \* u_3$       |            |                     |
 | $s_5$                    |            |                       |                                  |            |                     |
 | $s_6$                    |            |                       |                                  |            |                     |
 | $s_7$                    |            |                       |                                  |            |                     |
-| $s_8$                    | $u_5^{-1}$ | $u_5^{-1}*u_4$ | $u_5^{-1}*u_4*u_3^{-1} $ |             |                     |
+| $s_8$                    | $u_5^{-1}$ | $u_5^{-1} \* u_4$ | $u_5^{-1} \* u_4 \* u_3^{-1}$ |             |                     |
 | $s_9$                    |            |                       |                                  |            |     |
-| $s_{10}$                 |            |                       |                                  |            |                     |
-| $s_{11}$                 |            |                       |                                  |            |                     |
-| $s_{12}$      |              |                 | $u_5^{-1}*u_4*u_3$  |               |                    |
-| $s_{13}$       |               |           |               |                |                 |
-| $s_{14}$                 |            |                       |                                  |            |                     |
-| $s_{15}$                 |            |                       |                                  |            |                     |
-| $s_{16}$                 | $u_5$      | $u_5*u_4^{-1}$        | $u_5*u_4^{-1}*u_3^{-1} $         |            |                     |
-| $s_{17}$                 |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1}*u_1^{-1}$ |
-| $s_{18}$                 |            |                       |                                  |            |                     |
-| $s_{19}$                 |            |                       |                                  | $u_2$      | $u_2*u_1$           |
-| $s_{20}$                 |            |                       | $ u_5*u_4^{-1}*u_3$              |            |                     |
-| $s_{21}$                 |            |                       |                                  |            |                     |
-| $s_{22}$                 |            |                       |                                  |            |                     |
-| $s_{23}$                 |            |                       |                                  |            |                     |
-| $s_{24}$ | $u_5$ | $u_5*u_4 $ | $u_5 * u_4 * u_3^{-1} $ |  |  |
-| $s_{25}$                 |            |                       |                                  |            |                     |
-| $s_{26}$                 |            |                       |                                  |            |                     |
-| $s_{27}$ |  |  |   |  |  |
-| $ s_{28} $ |          |        | $u_5 * u_4 * u_3 $ |        |        |
-| $s_{29}$                 |            |                       |                                  |            |                     |
-| $s_{30}$                 |            |                       |                                  |            |                     |
-| $s_{31}$                 |            |                       |                                  |            |                     |
+| $s\_{10}$                 |            |                       |                                  |            |                     |
+| $s\_{11}$                 |            |                       |                                  |            |                     |
+| $s\_{12}$     |              |                 | $u_5^{-1} \* u_4 \* u_3$ |               |                    |
+| $s\_{13}$       |               |           |               |                |                 |
+| $s\_{14}$                 |            |                       |                                  |            |                     |
+| $s\_{15}$                 |            |                       |                                  |            |                     |
+| $s\_{16}$                 | $u_5$      | $u_5 \* u_4^{-1}$        | $u_5 \* u_4^{-1} \* u_3^{-1} $         |            |                     |
+| $s \_{17}$                 |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1} \* u_1^{-1}$ |
+| $s\_{18}$                 |            |                       |                                  |            |                     |
+| $s\_{19}$                 |            |                       |                                  | $u_2$      | $u_2 \* u_1$           |
+| $s\_{20}$                 |            |                       | $ u_5 \* u_4^{-1} \* u_3$              |            |                     |
+| $s\_{21}$                 |            |                       |                                  |            |                     |
+| $s\_{22}$                 |            |                       |                                  |            |                     |
+| $s\_{23}$                 |            |                       |                                  |            |                     |
+| $s\_{24}$ | $u_5$ | $u_5 \* u_4 $ | $u_5 * u_4 * u_3^{-1} $ |  |  |
+| $s\_{25}$                 |            |                       |                                  |            |                     |
+| $s\_{26}$                 |            |                       |                                  |            |                     |
+| $s\_{27}$ |     |     |      |     |       |
+| $ s\_{28} $ |          |        | $u_5 * u_4 * u_3 $ |        |        |
+| $s\_{29}$                 |            |                       |                                  |            |                     |
+| $s\_{30}$                 |            |                       |                                  |            |                     |
+| $s\_{31}$                 |            |                       |                                  |            |                     |
 | mult. cost               | $0$        | $4$                   | $8$                              | $0$        | $4$                 |
 
 
@@ -1176,7 +1279,7 @@ $\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s_{n-1} = 1 ).$
 
 
 
-At the end of the  $k$  IPP rounds, there are  $8$  distinct triples and 4 distinct doubles. These are sufficient to form all the required  $32$  quintuplets, and it takes exactly  $32$  multiplications form them all. 
+At the end of the  $k$  IPP rounds, there are  $8$  distinct triples and 4 distinct doubles. These are sufficient to form all the required  $32$  quintets, and it takes exactly  $32$  multiplications form them all. 
 
 The **total cost** of computing the coefficients for  $n = 32$  using  *Algorithm 1*  is  $\mathbf{4 + 8 + 4 + 32 = 48}$.  
 
