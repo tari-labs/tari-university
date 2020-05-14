@@ -669,60 +669,37 @@ There are at least four competing algorithms that optimise computation of the co
 The basic optimisation strategy is based on the observation that every coefficient has at least one common factor with  $2^{k-1}- 1$  other coefficients, two common factors with  $2^{k-2}-1$ ,  three with  $2^{k-3}- 1$,  and so on. It is therefore cost-effective in terms of number of multiplications to aim at computing these common factors and only form the required coefficients later.     
 
 
+**Typical Optimised Algorithm**
 
-`**Typical Optimised Algorithm**`
-
-` initialise 	s[n] = [1,1,1, ... ,1]; ` 
-
-` initialise 	k = log_2(n)` 
-
-`... %running inside IPP `
-
-`int main(){`
-
-​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
-
-​	`s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
-
-​	` 		for (j = k - 1; j > t; j--){`
-
-​		`		for (i = 0; i < n; i++){`
-
-​			`if (i mod 2^j == 0) { `
-
-​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
-
-​				` l = i + 2^(j-1); `
-
-​				` s[l] = s[l]*(u_j^{b(l,j)} `; 
-
-​			`}`
-
-​		`}`
-
-​	`}`	  
-
-`return = 0; ` 
-
-`}`
+```text
+initialise     s[n] = [1,1,1, ... ,1];  
+initialise     k = log_2(n) 
+%running inside IPP 
+int main() {
+    s[0] = u_k^{-1};  s[2^{k-1}] = u_k;
+​    s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; 
+​    for (j = k - 1; j > t; j--) {
+​        for (i = 0; i < n; i++) {
+​            if (i mod 2^j == 0) {
+​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
+​                l = i + 2^(j-1); 
+                s[l] = s[l]*(u_j^{b(l,j)} ; 
+​            }
+​        }
+​    }      
+    return = 0;  
+}
+```
 
 
-
-The value  t  in the first for-loop can be varied in order to form either products of two, or three, or four, and so on. The optimisation of these algorithms depends on whether they only form 'doubles' or 'triples' or 'quadruples', and how they form them. Unlike the Naive Algorithm which keeps spending multiplication disregarding existence of commn factors among the coefficients  $s_i$ , the optimised algorithm uses multiplication only if the new product formed is unique. 
-
-
+The value  t  in the first for-loop can be varied in order to form either products of two, or three, or four, and so on. 
+The optimisation of these algorithms depends on whether they only form 'doubles' or 'triples' or 'quadruples', and how 
+they form them. Unlike the Naive Algorithm which keeps spending multiplication disregarding existence of commn factors 
+among the coefficients  $s_i$ , the optimised algorithm uses multiplication only if the new product formed is unique. 
 
 The following table displays the multiplication cost of the Naive Algorithm together with other four algorithms. Full descriptions of these algorithms are given in the [Appendix](#appendix-a). These algorithms are simply referred to as; Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3]  and Algorithm 4  or [A4].  
 
-
-
-
-
 <div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
-
-
-
-
 
 | Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % relative to [NA] |
 | :--------------- | -------------------: | ---------------: | ----------------: | ---------------: | ---------------: | --------------------------------------: |
@@ -795,7 +772,7 @@ The amortized inner-product proof lends itself useful in implementations of any 
 
 
 
-
+s
 
 
 
@@ -807,7 +784,7 @@ The amortized inner-product proof lends itself useful in implementations of any 
 
 Available: https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf. Date accessed: 2019&#8209;12&#8209;07. 
 
-[1]: https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf	"DIZK: A Distributed Zero Knowledge Proof System"
+[1]: https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf "DIZK: A Distributed Zero Knowledge Proof System"
 
 
 
@@ -817,7 +794,7 @@ Available: https://www.usenix.org/system/files/conference/usenixsecurity18/sec18
 
 Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed: 2020&#8209;04&#8209;21. 
 
-[2]: &lt;http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf&gt;	"Bulletproofs: Short Proofs for Confidential Transactions and More"
+[2]: &lt;http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf&gt; "Bulletproofs: Short Proofs for Confidential Transactions and More"
 
 
 
@@ -827,7 +804,7 @@ Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed
 
 Available: https://electriccoin.co/blog/halo-recursive-proof-composition-without-a-trusted-setup/. Date accessed: 2020‑04‑24. 
 
-[3]: https://electriccoin.co/blog/halo-recursive-proof-composition-without-a-trusted-setup/	"Halo: Recursive Proof Composition without a Trusted Setup"
+[3]: https://electriccoin.co/blog/halo-recursive-proof-composition-without-a-trusted-setup/ "Halo: Recursive Proof Composition without a Trusted Setup"
 
 
 
@@ -837,7 +814,7 @@ Available: https://electriccoin.co/blog/halo-recursive-proof-composition-without
 
 Available: https://cdn.codaprotocol.com/v2/static/coda-whitepaper-05-10-2018-0.pdf. Date accessed: 2020&#8209;04&#8209;27. 
 
-[4]: https://cdn.codaprotocol.com/v2/static/coda-whitepaper-05-10-2018-0.pdf	"Coda: Decentralized cryptocurrency at scale"
+[4]: https://cdn.codaprotocol.com/v2/static/coda-whitepaper-05-10-2018-0.pdf "Coda: Decentralized cryptocurrency at scale"
 
 
 
@@ -847,7 +824,7 @@ Available: https://cdn.codaprotocol.com/v2/static/coda-whitepaper-05-10-2018-0.p
 
 Available: https://eprint.iacr.org/2019/099.pdf. Date accessed: 2020&#8209;04&#8209;27. 
 
-[5]: https://eprint.iacr.org/2019/099.pdf	"Sonic: Zero-Knowledge SNARKs from Linear-Size Universal and Updatable Structured Reference Strings"
+[5]: https://eprint.iacr.org/2019/099.pdf "Sonic: Zero-Knowledge SNARKs from Linear-Size Universal and Updatable Structured Reference Strings"
 
 
 
@@ -857,7 +834,7 @@ Available: https://eprint.iacr.org/2019/099.pdf. Date accessed: 2020&#8209;04&#8
 
 Available: https://www.coindesk.com/you-can-now-prove-a-whole-blockchain-with-one-math-problem-really. Date accessed: 2020&#8209;04&#8209;27. 
 
-[6]: https://www.coindesk.com/you-can-now-prove-a-whole-blockchain-with-one-math-problem-really	"You Can Now Prove a Whole Blockchain With One Math Problem – Really"
+[6]: https://www.coindesk.com/you-can-now-prove-a-whole-blockchain-with-one-math-problem-really "You Can Now Prove a Whole Blockchain With One Math Problem – Really"
 
 
 
@@ -867,7 +844,7 @@ Available: https://www.coindesk.com/you-can-now-prove-a-whole-blockchain-with-on
 
 Available: https://doc-internal.dalek.rs/bulletproofs/notes/index.html. Date accessed: 2020‑05‑01.
 
-[7]: https://doc-internal.dalek.rs/bulletproofs/notes/index.html	"Module Bulletproofs::notes ::index"
+[7]: https://doc-internal.dalek.rs/bulletproofs/notes/index.html "Module Bulletproofs::notes ::index"
 
  
 
@@ -877,7 +854,7 @@ Available: https://doc-internal.dalek.rs/bulletproofs/notes/index.html. Date acc
 
 Available: <https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8>. Date accessed: 2020‑04‑27.
 
-[8]: https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8	"Building on Bulletproofs"
+[8]: https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8 "Building on Bulletproofs"
 
 
 
@@ -887,7 +864,7 @@ Available: <https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8>
 
 Available: https://eprint.iacr.org/2016/263.pdf. Date accessed: 2019‑12‑21. 
 
-[9]: https://eprint.iacr.org/2016/263.pdf	"Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting"
+[9]: https://eprint.iacr.org/2016/263.pdf "Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting"
 
 
 
@@ -897,7 +874,7 @@ Available: https://eprint.iacr.org/2016/263.pdf. Date accessed: 2019‑12‑21.
 
 Available: https://medium.com/@hdevalence/merlin-flexible-composable-transcripts-for-zero-knowledge-proofs-28d9fda22d9a. Date accessed: 2019‑12‑21. 
 
-[10]: https://medium.com/@hdevalence/merlin-flexible-composable-transcripts-for-zero-knowledge-proofs-28d9fda22d9a	"Merlin: flexible, composable transcripts for zero-knowledge proofs"
+[10]: https://medium.com/@hdevalence/merlin-flexible-composable-transcripts-for-zero-knowledge-proofs-28d9fda22d9a "Merlin: flexible, composable transcripts for zero-knowledge proofs"
 
 
 
@@ -907,7 +884,7 @@ Available: https://medium.com/@hdevalence/merlin-flexible-composable-transcripts
 
 Available: https://doc-internal.dalek.rs/bulletproofs/notes/inner_product_proof/index.html. Date accessed: 2020‑04‑27. 
 
-[11]: https://doc-internal.dalek.rs/bulletproofs/notes/inner_product_proof/index.html	"Module Bulletproofs:: notes :: inner-product-proof"
+[11]: https://doc-internal.dalek.rs/bulletproofs/notes/inner_product_proof/index.html "Module Bulletproofs:: notes :: inner-product-proof"
 
 
 
@@ -917,7 +894,7 @@ Available: https://doc-internal.dalek.rs/bulletproofs/notes/inner_product_proof/
 
 Available: https://hsm.stackexchange.com/questions/524/who-introduced-the-principle-of-mathematical-induction-for-the-first-time. Date accessed: 2020‑04‑30. 
 
-[12]: https://hsm.stackexchange.com/questions/524/who-introduced-the-principle-of-mathematical-induction-for-the-first-time	"Who introduced the Principle of Mathematical Induction for the first time?"
+[12]: https://hsm.stackexchange.com/questions/524/who-introduced-the-principle-of-mathematical-induction-for-the-first-time "Who introduced the Principle of Mathematical Induction for the first time?"
 
 
 
@@ -927,7 +904,7 @@ Available: https://hsm.stackexchange.com/questions/524/who-introduced-the-princi
 
 Available: https://www.michaelstraka.com/posts/recursivesnarks/. Date accessed: 2020‑04‑30. 
 
-[13]: https://www.michaelstraka.com/posts/recursivesnarks/	"Recursive Zero-Knowledge Proofs: A Comprehensive Primer"
+[13]: https://www.michaelstraka.com/posts/recursivesnarks/ "Recursive Zero-Knowledge Proofs: A Comprehensive Primer"
 
    
 
@@ -937,7 +914,7 @@ Available: https://www.michaelstraka.com/posts/recursivesnarks/. Date accessed: 
 
 Available: https://eprint.iacr.org/2019/1021.pdf. Date accessed: 2020‑04‑24. 
 
-[14]: https://eprint.iacr.org/2019/1021.pdf	"Recursive Proof Composition without a Trusted Setup"
+[14]: https://eprint.iacr.org/2019/1021.pdf "Recursive Proof Composition without a Trusted Setup"
 
 
 
@@ -996,61 +973,61 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 `**Algorithm 1 or [A1]**`
 
-` initialise 	s[n] = [1,1,1, ... ,1]; ` 
+` initialise  s[n] = [1,1,1, ... ,1]; ` 
 
-` initialise 	k = log_2(n)` 
+` initialise  k = log_2(n)` 
 
 `... %running inside IPP`
 
 `int main(){` 
 
-​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
+​ ` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
 
-​	`s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
+​ `s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
 
-​	`t = k-3;`
+​ `t = k-3;`
 
-​	` 		for (j = k - 1; j > t; j--){`
+​ `   for (j = k - 1; j > t; j--){`
 
-​		`		for (i = 0; i < n; i++){`
+​  `  for (i = 0; i < n; i++){`
 
-​			`if ( i mod 2^j == 0 ) { `
+​   `if ( i mod 2^j == 0 ) { `
 
-​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-1); `
+​    ` l = i + 2^(j-1); `
 
-​				` s[l] = s[l]*(u_j^{b(l,j)} `;
+​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
 
-​			`}` `}` `}` 
+​   `}` `}` `}` 
 
 ` %if k-3 > 0 then program proceeds as follows  `
 
-​	` s[1] = u_{k-3}^{-1}; s[1+2^{k-4}] = u_{k-3}; `
+​ ` s[1] = u_{k-3}^{-1}; s[1+2^{k-4}] = u_{k-3}; `
 
-​	` s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+2^{k-1}] = s[1+2^{k-4}]; `
+​ ` s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+2^{k-1}] = s[1+2^{k-4}]; `
 
 ` %if k-4 > 0 then program proceeds as follows  ` 
 
-​	`t = k-6;` 
+​ `t = k-6;` 
 
-​	` 		for (j = k-4; j > t; j--){`
+​ `   for (j = k-4; j > t; j--){`
 
-​		`		for (i = 0; i < n; i++){`
+​  `  for (i = 0; i < n; i++){`
 
-​			`if (i mod (1+2^(k-1)) == 0) { `
+​   `if (i mod (1+2^(k-1)) == 0) { `
 
-​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^j; `
+​    ` l = i + 2^j; `
 
-​				` s[l] = s[l]*(u_j^{b(l,j)} `;
+​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
 
-​			`}` `}` `}` 
+​   `}` `}` `}` 
 
 `% program continues forming new and distinct triples until k=1 `
 
-`% after which all (2^k) 'legal' k-tuples are formed` 	  
+`% after which all (2^k) 'legal' k-tuples are formed`    
 
 `return = 0; ` 
 
@@ -1066,61 +1043,61 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 `**Algorithm 2 or [A2]**`
 
-` initialise 	s[n] = [1,1,1, ... ,1]; ` 
+` initialise  s[n] = [1,1,1, ... ,1]; ` 
 
-` initialise 	k = log_2(n)` 
+` initialise  k = log_2(n)` 
 
 `... %running inside IPP`
 
 `int main(){` 
 
-​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
+​ ` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
 
-​	`s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
+​ `s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
 
-​	`t = k-4;`
+​ `t = k-4;`
 
-​	` 		for (j = k - 1; j > t; j--){`
+​ `   for (j = k - 1; j > t; j--){`
 
-​		`		for (i = 0; i < n; i++){`
+​  `  for (i = 0; i < n; i++){`
 
-​			`if ( i mod 2^j == 0 ) { `
+​   `if ( i mod 2^j == 0 ) { `
 
-​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-1); `
+​    ` l = i + 2^(j-1); `
 
-​				` s[l] = s[l]*(u_j^{b(l,j)} `;
+​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
 
-​			`}` `}` `}` 
+​   `}` `}` `}` 
 
 ` %if k-4 > 0 then program proceeds as follows  `
 
-​	` s[1] = u_{k-4}^{-1};  s[1+2^{k-4}] = u_{k-4};`
+​ ` s[1] = u_{k-4}^{-1};  s[1+2^{k-4}] = u_{k-4};`
 
-​	`s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+(2^{k-1})] = s[1+2^{k-4}]; ` 
+​ `s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+(2^{k-1})] = s[1+2^{k-4}]; ` 
 
 ` %if k-5 > 0 then program proceeds as follows  `
 
-​	`t = k-8;` 
+​ `t = k-8;` 
 
-​	` 		for (j = k-5; j > t; j--){`
+​ `   for (j = k-5; j > t; j--){`
 
-​		`		for (i = 0; i < n; i++){`
+​  `  for (i = 0; i < n; i++){`
 
-​			`if ( i mod (1+2^(k-1) == 0 ) { `
+​   `if ( i mod (1+2^(k-1) == 0 ) { `
 
-​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^j; `
+​    ` l = i + 2^j; `
 
-​				` s[l] = s[l]*(u_j^{b(l,j)} `;
+​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
 
-​			`}` `}` `}` 
+​   `}` `}` `}` 
 
-​	`% continues forming new and distinct quadruples until k=1 `
+​ `% continues forming new and distinct quadruples until k=1 `
 
-​	`% after which all (2^k) 'legal' k-tuples are formed` 	  
+​ `% after which all (2^k) 'legal' k-tuples are formed`    
 
 `return = 0; ` 
 
@@ -1136,61 +1113,61 @@ Note that by "disctinct" sub-products we refer to those with no common factor.
 
 `**Algorithm 3 or [A3]**`
 
-`initialise 	s[n] = [1,1,1, ... ,1]; ` 
+`initialise  s[n] = [1,1,1, ... ,1]; ` 
 
-` initialise 	k = log_2(n)` 
+` initialise  k = log_2(n)` 
 
 `... %running inside IPP`
 
 `int main(){` 
 
-​	` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
+​ ` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
 
-​	`s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
+​ `s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
 
-​	`t = k-2;`
+​ `t = k-2;`
 
-​	` 		for (j = k - 1; j > t; j--){`
+​ `   for (j = k - 1; j > t; j--){`
 
-​		`		for (i = 0; i < n; i++){`
+​  `  for (i = 0; i < n; i++){`
 
-​			`if ( i mod 2^j == 0 ) { `
+​   `if ( i mod 2^j == 0 ) { `
 
-​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^(j-1); `
+​    ` l = i + 2^(j-1); `
 
-​				` s[l] = s[l]*(u_j^{b(l,j)} `;
+​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
 
-​			`}` `}` `}` 
+​   `}` `}` `}` 
 
 ` %if k-2 > 0 then program proceeds as follows  `
 
-​	` s[1] = u_{k-2}^{-1};  s[1+2^{k-1}] = u_{k-2};`
+​ ` s[1] = u_{k-2}^{-1};  s[1+2^{k-1}] = u_{k-2};`
 
-​	`s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; `
+​ `s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; `
 
 ` %if k-3 > 0 then program proceeds as follows  ` 
 
-​	`t = k-3;` 
+​ `t = k-3;` 
 
-​	` 		for (j = k-3; j > t; j--){`
+​ `   for (j = k-3; j > t; j--){`
 
-​		`		for (i = 0; i < n; i++){`
+​  `  for (i = 0; i < n; i++){`
 
-​			`if ( i mod 1+2^(k-1) == 0 ) { `
+​   `if ( i mod 1+2^(k-1) == 0 ) { `
 
-​				`	 s[i] = s[i]*(u_j)^{b(i,j)} `; 
+​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
 
-​				` l = i + 2^j; `
+​    ` l = i + 2^j; `
 
-​				` s[l] = s[l]*(u_j^{b(l,j)} `;
+​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
 
-​			`}` `}` `}` 
+​   `}` `}` `}` 
 
 `% program continues forming new and distinct doubles until k=1 `
 
-`% after which all (2^k) 'legal' k-tuples are formed` 	  
+`% after which all (2^k) 'legal' k-tuples are formed`    
 
 `return = 0; ` 
 
