@@ -30,9 +30,9 @@ is the current sizes of zero-knowledge proofs. Although much research has focuse
 proofs, seen in the form of zero-knowledge Succinct Non-interactive Argument of Knowledge (zk-SNARKs) [[1]] and 
 Bulletproofs [[2]], scalability remains a big challenge. 
 
-Recent efforts in minimizing verification costs have gone the route of recursive proofs. Sean Bowe et al. [[14]] lead the pack 
-on recursive proof composition without a trusted setup, with the Halo protocol. Other applications of recursive proof 
-composition still rely on some kind of a trusted setup [[3]]. For example, Coda [[4]] and Sonic [[5]] use a Common 
+Recent efforts in minimizing verification costs have gone the route of recursive proofs. Sean Bowe et al. [[14]] lead 
+the pack on recursive proof composition without a trusted setup, with the Halo protocol. Other applications of recursive 
+proof composition still rely on some kind of a trusted setup [[3]]. For example, Coda [[4]] and Sonic [[5]] use a Common 
 Reference String (CRS) and an updatable structured reference string, respectively. 
 
 Coindesk previously commented that "In essence, Bowe and Co. discovered a new method of proving the validity of 
@@ -42,41 +42,41 @@ For blockchains with confidential transactions such as Mimblewimble, Bulletproof
 zero-knowledge proofs involved in validation of blockchain transactions. The bulk of computations in these range proofs 
 take place in the Inner-product Proof (IPP).
 
-The aim of this report is to investigate how the innovative amortization strategies of the Halo protocol can be used to 
+This report investigates how the innovative amortization strategies of the Halo protocol can be used to 
 enhance the Bulletproofs IPP. 
 
 ## Notation and Assumptions
 
-The settings and notations used in this report follow the Bulletproofs framework as in the Dalek notes [[7]], this 
-includes the underlying field  $\mathbb{F}_p$, elliptic curve, elliptic curve group and generators $G$ and $H$. The 
-details have been covered in other Tari Labs University (TLU) reports, and are therefore not included in this report. 
-Note that properties such as completeness, soundness or public coin, as well as discrete log difficulty, are assumed here. 
+The settings and notations used in this report follow the Bulletproofs framework as in the Dalek notes [[7]]. This 
+includes the underlying field  $\mathbb{F}_p$, elliptic curve, elliptic curve group, and generators $G$ and $H$. The 
+details are not included here, as they have been covered in other Tari Labs University (TLU) reports. 
+Note that properties such as completeness, soundness or public coin, and discrete log difficulty, are assumed here. 
 
 Since the Ristretto implementation of the curve25519 is used in the Bulletproofs setting, unless otherwise stated, all 
-vectors of size $n$ will be referring to $n$ 32 bytes. 
+vectors of size $n$ refer to $n$ 32 bytes. 
 
 ## Zero-knowledge Proofs
 
 There are two parties in a zero-knowledge proof: the prover and the verifier. The prover seeks to convince the verifier 
-that he or she has knowledge of a secret value $w$ ,called the *witness*, without disclosing any more information about 
-$w$ to the verifier. 
+that he or she has knowledge of a secret value $w$, called the *witness*, without disclosing any more information about 
+$w$ to the verifier. How does this work?
 
-How does this work? The prover receives a challenge $x$ from the verifier and:
+The prover receives a challenge $x$ from the verifier and:
 
-- firstly, makes a commitment $P$ of the witness, which hides the value of $w$; and 
-- secondly, creates a proof $\pi$ that attests knowledge of the correct $w$. 
+- makes a commitment $P$ of the witness, which hides the value of $w$; then 
+- creates a proof $\pi$ that attests knowledge of the correct $w$. 
 
-The prover sends these two to the verifier. The verifier then checks correctness of the proof $\pi$. This means that 
-they test if some particular relation $\mathcal{R}$ between $w$ and $x$ holds true. The proof $\pi$ is deemed correct if 
-$\mathcal{R}(x,w) = 1$ and incorrect if $\mathcal{R}(x,w) = 0$. Since the verifier does not know $w$, they use some 
-verification algorithm $\mathcal{V}$ such that $\mathcal{V}(x, \pi) = \mathcal{R}(x,w)$. 
+The prover sends these two to the verifier, who checks correctness of the proof $\pi$. This means that 
+the verifier tests if some particular relation $\mathcal{R}$ between $w$ and $x$ holds true. The proof $\pi$ is deemed 
+correct if $\mathcal{R}(x,w) = 1$ and incorrect if $\mathcal{R}(x,w) = 0$. Since the verifier does not know $w$, they 
+use some verification algorithm $\mathcal{V}$ such that $\mathcal{V}(x, \pi) = \mathcal{R}(x,w)$. 
 
 The entire research on scalability is in pursuit of such an algorithm $\mathcal{V}$ that is most efficient and secure. 
 
 ## Bulletproofs Range Proofs 
 
 The Bulletproofs system provides a framework for building non-interactive zero-knowledge proofs without any need for a 
-trusted setup. Also, ccording to Cathie Yun, "it allows for proving a much wider class of statements than just 
+trusted setup. Also, according to Cathie Yun, "it allows for proving a much wider class of statements than just 
 range proofs" [[8]]. 
 
 The Bulletproofs framework uses the *Pedersen commitment scheme*, which is known for its hiding and binding properties. 
@@ -96,7 +96,7 @@ The Bulletproofs range proof achieves its goal by rewriting the statement $v \in
 vectors, as well as expressing it as a single inner product $t(x) = \langle \mathbf{l}(x), \mathbf{r}(x) \rangle$ 
 of specially defined binary polynomial vectors $\mathbf{l}(x)$ and $\mathbf{r}(x)$.
 
-Thus a so-called *vector Pedersen commitment* is also used in these type of proofs, and it is defined as follows: 
+Thus a so-called *vector Pedersen commitment* is also used in these type of proofs, and is defined as follows: 
 
 A *vector Pedersen commitment* of vectors 
  $\mathbf{a}_L$ and $\mathbf{a}_R$ is given by 
@@ -105,7 +105,7 @@ A *vector Pedersen commitment* of vectors
 where $\mathbf{G}$ and $\mathbf{H}$ are vectors of generators of the elliptic curve group [[7]]. 
 
 The major component of a Bulletproofs range proof is no doubt its IPP. This became even more 
-apparent when Bootle et al. [[9]] introduced an IPP that requires only  $2log_2(n) + 2$ proof elements instead of $2n$ [[9]]. 
+apparent when Bootle et al. [[9]] introduced an IPP that requires only $2log_2(n) + 2$ proof elements instead of $2n$ [[9]]. 
 Henry de Valence of Interstellar puts it this way: 
 
 "The inner-product proof allows the prover to convince a verifier that some scalar is the inner-product of two length-$n$
@@ -120,7 +120,7 @@ The aim of Recursive Proof Composition is to construct "proofs that verify other
 verifying other instances of themselves" [[6]]. These take advantage of the recursive nature of some components of known 
 zero-knowledge proofs. 
 
-Before discussing recursive proofs, or proof recursion, the recursive function concept and the efficiency of recursive 
+Before discussing recursive proofs or proof recursion, the recursive function concept and the efficiency of recursive 
 algorithms are briefly discussed. The IPP, as used in a Bulletproofs range proof, is given as an example of a 
 recursive algorithm. [Figure 1](#recursion-in-bulletproofs-inner-product-proof) shows the recursive nature of the IPP, 
 and will later be helpful in explaining some of Halo's amortization strategies. 
@@ -128,15 +128,15 @@ and will later be helpful in explaining some of Halo's amortization strategies.
 ### Recursive Functions 
 
 Recursion is used to define functions or sequences of values that depict a consistent pattern. When written as a formula, 
-it becomes apparent that a $(j-1)$-th member of such a sequence is needed in computing the $j$-th  ember of the same 
+it becomes apparent that a $(j-1)$-th member of such a sequence is needed in computing the $j$-th member of the same 
 sequence. 
 
-A function $F(x)$ that yields a sequence of values $ F(0) , F(1), ... , F(n)$ for some positive integer $ n $  is a 
-recursive function if  $F(k) = F(k - 1) + g(k)$  for all  $0 < k \leq n$, where $g(x)$ is some function of $ x $ an 
+A function $F(x)$ that yields a sequence of values $ F(0) , F(1), ... , F(n)$ for some positive integer $ n $ is a 
+recursive function if $F(k) = F(k - 1) + g(k)$ for all  $0 < k \leq n$, where $g(x)$ is some function of $ x $, an 
 indeterminate. 
 
-A typical recursive function $F(j)$ for $j \in \{ 0 , 1 , ... , n \} $ can be represented in terms of a flow chart, as
-shown in [Figure 1](#recursive-functions), depicting how values of the sequence $F(0) , F(1), ... , F(n)$ are computed. 
+A typical recursive function $F(j)​$ for $j \in \{ 0 , 1 , ... , n \} ​$ can be represented in terms of a flow chart, as
+shown in [Figure 1](#recursive-functions), depicting how values of the sequence $F(0) , F(1), ... , F(n)​$ are computed. 
 
 <p align="center"><img src="sources/Basic-recursive-function.png" width="300" /></p>
 <div align="center"><b>Figure 1: Recursive Function Flow Chart</b></div> 
@@ -149,8 +149,8 @@ of it.
 
 ### Recursion in Bulletproofs Inner-product Proofs
 
-In Bulletproofs range proofs, a prover commits to a value $v$ and seeks to construct an IPP to the fact 
-that $v \in [ 0 , 2^n ) $. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
+In Bulletproofs range proofs, a prover commits to a value $v​$ and seeks to construct an IPP to the fact 
+that $v \in [ 0 , 2^n ) ​$. Pedersen commitments are used to keep the value of $v​$ confidential, and are expressed as 
 inner-products. 
 
 The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}$, $\mathbf{b}$ and the 
@@ -159,15 +159,15 @@ associated Pedersen commitment can be expressed as:
 $$ P_k = \langle \mathbf{a} , \mathbf{G} \rangle + \langle \mathbf{b} , \mathbf{H} \rangle + \langle \mathbf{a} ,\mathbf{b} \rangle \cdot Q $$
 
 where $\mathbf{a}$ and $\mathbf{b}$ are size-$n$ vectors of scalars in the field $\mathbb{F}_p$, while $\mathbf{G}$ and 
-$\mathbf{H}$  are vectors of points in an elliptic curve $\mathbb{E} ( \mathbb{F}_p)$ and $k = log_2(n)$; refer to [[11]]. 
+$\mathbf{H}$ are vectors of points in an elliptic curve $\mathbb{E} ( \mathbb{F}_p)$ and $k = log_2(n)$; refer to [[11]]. 
 
-Recursion is seen in a $k-$ round non-interactive IPP argument, where these commitments are written in terms of 
+Recursion is seen in a $k-$round non-interactive IPP argument, where these commitments are written in terms of 
 challenges $u_k$ sent by the verifier: 
 
-$$ P_{k - 1} = P_k + L_k \cdot u_k^{2} + R_k \cdot u_k^{-2} $$ 
+$$ P_{k - 1} = P_k + L_k \cdot u_k^{2} + R_k \cdot u_k^{-2} ​$$ 
 
 where $ L_k $ and $ R_k $ are specifically defined as linear combinations of inner-products of vectors that are half the 
-size of vectors in the  $k - 1$  round. 
+size of vectors in the $k - 1$ round. 
 
 In the IP proof, the prover convinces the verifier of the veracity of the commitment $P_k$ by sending only $k = log(n)$ 
 pairs of values $L_j$ and $R_j$, where $j \in \{ 1, 2, 3, ... , k \}$.  
@@ -176,34 +176,34 @@ $O(\sqrt{n})$ to $O(log(n))$.
 
 Refer to [Figure 2](#recursion-in-bulletproofs-inner-product-proofs) for an overview of the prover's side of the IPP. 
 
-The input to the IP proof is the quadruple of size $ n = 2^k $ vectors 
-$\big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)$, which is initially 
-$\big( \mathbf{a} , \mathbf{b} , \mathbf{G} , \mathbf{H} \big) $. However, when $j < k$, the input is updated to 
-$\big(\mathbf{a}^{(j-1)}, \mathbf{b}^{(j-1)}, \mathbf{G}^{(j-1)},\mathbf{H}^{(j-1)} \big)$ quadruple vectors each of 
-size $2^{k-1}$, where $\mathbf{a}^{(j-1)} = \mathbf{a}\_{lo} \cdot u\_j + \mathbf{a}\_{hi} \cdot u\_j^{-1} $, \ \ 
-$\mathbf{b}^{(j-1)} = \mathbf{b}\_{lo} \cdot u\_j^{-1} + \mathbf{b}\_{hi} \cdot u\_j$, \ \ 
-$\mathbf{G}^{(j-1)} = \mathbf{G}\_{lo} \cdot u\_j^{-1} + \mathbf{G}\_{hi} \cdot u\_j$,\ \ 
-$\mathbf{H}^{(j-1)} = \mathbf{H}\_{lo} \cdot u\_j  + \mathbf{H}\_{hi} \cdot u\_j^{-1}$, and $u_k$ is the verifier's 
-challenge. The vectors\ \ $\mathbf{a}\_{lo}, \mathbf{b}\_{lo}, \mathbf{G}\_{lo}, \mathbf{H}\_{lo}$\ \ and \ \ 
-$\mathbf{a}\_{hi}, \mathbf{b}\_{hi}, \mathbf{G}_{hi}, \mathbf{H}\_{hi} $\ \ 
-being the left and the right halves of the vectors \ \ $\mathbf{a}, \mathbf{b}, \mathbf{G}, \mathbf{H}$, respectively. 
+The input to the IP proof is the quadruple of size $ n = 2^k ​$ vectors 
+$\big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)​$, which is initially 
+$\big( \mathbf{a} , \mathbf{b} , \mathbf{G} , \mathbf{H} \big) ​$. However, when $j < k​$, the input is updated to 
+$\big(\mathbf{a}^{(j-1)}, \mathbf{b}^{(j-1)}, \mathbf{G}^{(j-1)},\mathbf{H}^{(j-1)} \big)​$ quadruple vectors each of 
+size $2^{k-1}​$, where $\mathbf{a}^{(j-1)} = \mathbf{a}\_{lo} \cdot u\_j + \mathbf{a}\_{hi} \cdot u\_j^{-1} ​$, \ \ 
+$\mathbf{b}^{(j-1)} = \mathbf{b}\_{lo} \cdot u\_j^{-1} + \mathbf{b}\_{hi} \cdot u\_j​$, \ \ 
+$\mathbf{G}^{(j-1)} = \mathbf{G}\_{lo} \cdot u\_j^{-1} + \mathbf{G}\_{hi} \cdot u\_j​$,\ \ 
+$\mathbf{H}^{(j-1)} = \mathbf{H}\_{lo} \cdot u\_j  + \mathbf{H}\_{hi} \cdot u\_j^{-1}​$, and $u_k​$ is the verifier's 
+challenge. The vectors\ \ $\mathbf{a}\_{lo}, \mathbf{b}\_{lo}, \mathbf{G}\_{lo}, \mathbf{H}\_{lo}​$\ \ and \ \ 
+$\mathbf{a}\_{hi}, \mathbf{b}\_{hi}, \mathbf{G}_{hi}, \mathbf{H}\_{hi} ​$\ \ 
+being the left and the right halves of the vectors \ \ $\mathbf{a}, \mathbf{b}, \mathbf{G}, \mathbf{H}​$, respectively. 
 
 <p align="center"><img src="sources/IPProof-prover-side-0.png" width="550" /></p>
 <div align="center"><b>Figure 2: Inner-product Proof - Prover Side </b></div> 
 
-[Figure 2](#recursion-in-bulletproofs-inner-product-proofs) is included here not only to display the recursive nature of the IPP, but will also be handy and pivotal to 
-understanding amortization strategies that will be applied to the IPP. 
+[Figure 2](#recursion-in-bulletproofs-inner-product-proofs) is included here not only to display the recursive nature of 
+the IPP, but will also be handy and pivotal in understanding amortization strategies that will be applied to the IPP. 
 
 ### Inductive Proofs 
 
-As noted earlier, "for-loops" and "while-loops" are powerful in efficiently executing repetitive computations. but not 
-sufficient to reach the level of scalability needed in blockchains. The basic reason for this is that the iterative 
-executions compute each instance of the recursive function. This is very expensive and clearly undesirable, because the 
-aim in blockchain validation is not to compute every instance, but to prove that the current instance was correctly 
-executed. 
+As noted earlier, "for-loops" and "while-loops" are powerful in efficiently executing repetitive computations. However, 
+they are not sufficient to reach the level of scalability needed in blockchains. The basic reason for this is that the 
+iterative executions compute each instance of the recursive function. This is very expensive and clearly undesirable, 
+because the aim in blockchain validation is not to compute every instance, but to prove that the current instance was 
+correctly executed. 
 
-[Figure 3](#inductive-proofs) shows how instances of a recursive function are linked, and how each block in a blockchain is linked to the 
-previous block via hash values. 
+[Figure 3](#inductive-proofs) shows how instances of a recursive function are linked, and how each block in a blockchain 
+is linked to the previous block via hash values. 
 
 <p align="center"><img src="sources/Recursive-funct-resembles-blockchain.png" width="650" /></p>
 <div align="center"><b>Figure 3: Recursive Function Resembles Blockchain </b></div> 
@@ -214,20 +214,20 @@ mathematical tool called the *Principle of Mathematical Induction*, which dates 
 Suppose one has to prove that a given sequence of values $ F(0) , F(1), ... , F(n)$ are correct instances of a recursive 
 function $F(n) = F(n - 1) + g(n)$ for all positive integer $ n $ and $g(n)$ some function. 
 
-According to the **Principle of Mathematical Induction**, it is sufficient to prove the above statement in the following 
+According to the *Principle of Mathematical Induction*, it is sufficient to prove the above statement in the following 
 two steps: 
 
 - (Base step): Prove that the first possible instance $F(0)$ is correct. 
 
-- (Inductive step): For any integer $ k > 0 $, prove that "if the previous instance $F(k - 1)$ is correct, then the 
-current instance $F(k)$ is also correct", i.e. "$F(k - 1)$ is correct" implies "$F(k)$ is also correct". 
+- (Inductive step): For any integer $ k > 0 ​$, prove that "if the previous instance $F(k - 1)​$ is correct, then the 
+current instance $F(k)​$ is also correct", i.e. "$F(k - 1)​$ is correct" implies "$F(k)​$ is also correct". 
 
 These two steps together are sufficient to form a complete proof for the verifier to be convinced. Such a proof is valid 
 even if the current instance is the zillionth. This saves the verifier the trouble of checking every instance of the 
 function  $F(n)$. 
 
 Michael Straka describes a similar inductive proof, which he refers to as "proof recursion"[[13]]. His explanation of 
-the simplest case a recursive proof will prove a relation $\mathcal{R}$ inductively, is as follows: 
+the simplest case that a recursive proof will prove a relation $\mathcal{R}$ inductively, is as follows: 
 
 The verifier has: 
 
@@ -242,8 +242,8 @@ and that a proof $\pi_{n-1}$ was produced, attesting to the knowledge of $(x_{n�
 <div align="center"><b>Figure 4: Proof Recursion Diagram [[13]] </b></div>
 
 Straka continues to explain how an arithmetic circuit for the verifier could be built in order to carry out the above 
-proof. Such a circuit $\mathcal{C}$ would either verify $\mathcal{R}( x_0 , w_0 ) = 1$ (for the base case) or 
-verify $\mathcal{R}( x_i , w_i ) = 1$ and then check $\mathcal{V}( x_{i - 1} , π_{i−1} ) = 1$ [[13]].
+proof. Such a circuit $\mathcal{C}​$ would either verify $\mathcal{R}( x_0 , w_0 ) = 1​$ (for the base case) or 
+verify $\mathcal{R}( x_i , w_i ) = 1​$ and then check $\mathcal{V}( x_{i - 1} , π_{i−1} ) = 1​$ [[13]].
 
 Proof systems that use this type of inductive proof for verification solve the blockchain's distributed validation 
 problem. A participant in the blockchain network  only needs to download the current state of the network as well as a 
@@ -270,11 +270,11 @@ smaller and less expensive to check than the delegated computation itself [[14]]
 
 ### Incrementally Verifiable Computation
 
-The idea here is to attest to validity of a previous proof in addition to application of verifiable computation. The 
+The idea here is to attest to the validity of a previous proof in addition to application of verifiable computation. The 
 best thing about this amortization strategy is that one proof can be used to inductively demonstrate the correctness of 
 many previous proofs. 
 
-Then, any participator in a blockchain network who wishes to validate the current state of the chain need only 
+Then, any participator in a blockchain network who wishes to validate the current state of the chain, need only 
 download two things: 
 
 - the current state of the chain network; and 
@@ -326,7 +326,7 @@ requires delving into understanding cycles of elliptic curves.
 
 ## Amortized Inner-product Proof
 
-One application of the armotization strategies discussed thus far, is the Bulletproofs IPP. The aim here is to 
+One application of the amortization strategies discussed thus far, is the Bulletproofs IPP. The aim here is to 
 investigate how much significance these strategies bring to this powerful and pervasive proof, especially in blockchain 
 technology, where efficiency of zero-knowledge proof is pursued.
 
@@ -417,8 +417,8 @@ for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ...
 
 **Optimizing Prover's Computation of $\{ s_i \}$ Values**
 
-The naively implemented computation of the coefficients $s_i$ as depicted in 
-[Figure 6](#bulletproofs-inner-product-proof-verification) is very expensive in terms of number multiplications. 
+The naively implemented computation of the coefficients $s_i$, as depicted in 
+[Figure 6](#bulletproofs-inner-product-proof-verification), is very expensive in terms of number multiplications. 
 
 **Naive Algorithm:** The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
 by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th IPP round, running from $k = log_2(n)$  own 
@@ -486,9 +486,9 @@ they form them. Unlike the naive algorithm, which keeps spending multiplication 
 factors among the coefficients $s_i$, the optimized algorithm uses multiplication only if the new product formed is 
 unique. 
 
-[Table 1](#verifiable-computation---application-2) displays the multiplication cost of the naive algorithm together with 
-other four algorithms. Full descriptions of these algorithms are given in the [Appendix](#appendix-a). These algorithms 
-are simply referred to as Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and Algorithm 4 or [A4].  
+[Table 1](#verifiable-computation---application-2) gives the multiplication cost of the naive algorithm together with 
+other four algorithms. The [Appendix](#appendix-a) contains full descriptions of these algorithms, which 
+are simply referred to as Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and Algorithm 4 or [A4]. 
 
 <div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
@@ -506,7 +506,7 @@ are simply referred to as Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 
 | $n = 2048$       |               $4092$ |           $2184$ |            $2244$ |           $2234$ |           $2364$ |                             [A1] 46.63% |
 | $n = 4096$      |               $8188$ |          $4272$ |           $4436$ |        $4424$ |          $4424$ |                 [A1] 47.83% |
 
-All four algorithms,  [A1], [A2], [A3] and [A4],  are fairly competent in saving multiplication costs, showing more than 
+All four algorithms, [A1], [A2], [A3] and [A4], are fairly competent in saving multiplication costs, showing more than 
 20\% savings for vectors of sizes 64 and above. 
 
 The above results indicate that algorithm [A1] is the best of the four for several reasons: 
@@ -646,9 +646,11 @@ without a Trusted Setup"
 This appendix contains details of the algorithms investigated to optimize computations of the coefficients 
 $\{ s_i \}$ of $G_i$ the component of the vector input to the IPP, $\mathbf{G} = (G_0 , G_1 , G_2 , ... , G_{n-1})$. 
 
-**Naive Algorithm**: The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
+**Naive Algorithm**
+
+The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
 by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th round of the IPP, running from 
-$k = log_2(n)$ to $1$. Outlined below:  
+$k = log_2(n)$ to $1$. 
 
 **Optimization Approach**
 
@@ -673,12 +675,11 @@ $u_{10}^{b(i,10)} \cdot u_{9}^{b(i,9)} \cdot u_{8}^{b(i,8)}$ or
 $u_{4}^{b(i,4)} \cdot u_{3}^{b(i,3)} \cdot u_{2}^{b(i,2)} \cdot u_{1}^{b(i,1)}$ are herein referred to as "doubles" or 
 "triples" or "quadruples", respectively.
 
-**Defining the optimized algorithms**
+**Defining Optimized Algorithms**
 
 Since the main strategy in using these algorithms is to avoid insisting on immediate updates of the values $s_i$, they 
-differ in their scheduling of when "doubles" or "triples" or "quadruples" are computed. 
-
-Note that "distinct" sub-products refers to those sub-products with no common factor. 
+differ in their scheduling of when "doubles" or "triples" or "quadruples" are computed. Note that "distinct" 
+sub-products refers to those sub-products with no common factor. 
 
 **Algorithm 1**: This algorithm computes new distinct doubles as soon as it is possible to do so. These new doubles are 
 turned into triples in the next immediate IPP round. This process is repeated until all IPP rounds are completed. Only 
