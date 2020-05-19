@@ -7,7 +7,7 @@
 - [What is Recursive Proof Composition?](#what-is-recursive-proof-composition?)
 	- [Recursive Functions](#recursive-functions)
 	- [Recursion in Bulletproofs Inner-product Proofs](#recursion-in-bulletproofs-inner-product-proofs)
-	- [Inductive Proofs](#inductive-proofs) 
+	- [Inductive Proof](#inductive-proof) 
 - [Verification Amortization Strategies](#verification-amortization-strategies)
 	- [Application of Verifiable Computation](#application-of-verifiable-computation)
 	- [Incrementally Verifiable Computation](#incrementally-verifiable-computation) 
@@ -112,7 +112,7 @@ Henry de Valence of Interstellar puts it this way:
 vectors using $\mathcal{O}(log(n))$ steps, and it’s the reason that Bulletproofs are compact" [[10]]. 
 
 No wonder the Halo creators also looked at the IPP in their amortization strategies, particularly taking advantage of its 
-recursive nature, . Close attention is therefore given to the IPP as described by Bootle et al. [[9]]. 
+recursive nature. Close attention is therefore given to the IPP as described by Bootle et al. [[9]]. 
 
 ## What is Recursive Proof Composition? 
 
@@ -147,7 +147,7 @@ without much error. However, although recursive proof composition is pointedly a
 there's more to it than just recursiveness. Proof recursion is not defined by recursiveness, but rather takes advantage 
 of it. 
 
-### Recursion in Bulletproofs Inner-product Proofs
+### Recursion in Bulletproofs Inner-product Proof
 
 In Bulletproofs range proofs, a prover commits to a value $v​$ and seeks to construct an IPP to the fact 
 that $v \in [ 0 , 2^n ) ​$. Pedersen commitments are used to keep the value of $v​$ confidential, and are expressed as 
@@ -418,10 +418,10 @@ for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ...
 **Optimizing Prover's Computation of $\{ s_i \}$ Values**
 
 The naively implemented computation of the coefficients $s_i$, as depicted in 
-[Figure 6](#bulletproofs-inner-product-proof-verification), is very expensive in terms of number multiplications. 
+[Figure 6](#bulletproofs-inner-product-proof-verification), is very expensive in terms of the number of multiplications. 
 
 **Naive Algorithm:** The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
-by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th IPP round, running from $k = log_2(n)$  own 
+by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th IPP round, running from $k = log_2(n)$ down 
 to $1$. 
 
 That is, although recursive according to the nature of the IPP, the naive implementation strictly follows the definition
@@ -454,8 +454,8 @@ the naive algorithm, with some reducing the verification cost by 40%.
 
 The basic optimization strategy is based on the observation that every coefficient has at least one common factor with 
 $2^{k-1}- 1$ other coefficients, two common factors with $2^{k-2}-1$ other coefficients, three common factors with 
-$2^{k-3}- 1$ other coefficients, and so on. It is therefore cost-effective in terms of number of multiplications to aim 
-at computing these common factors and only form the required coefficients later.
+$2^{k-3}- 1$ other coefficients, and so on. It is therefore cost-effective in terms of the number of multiplications to 
+aim at computing these common factors and only form the required coefficients later.
 
 **Typical Optimized Algorithm**
 
@@ -517,8 +517,8 @@ The above results indicate that algorithm [A1] is the best of the four for sever
 
 (c) It has the best savings percentage of 47.83\% relative to the naive algorithm.   
 
-(d) The only case in which it is on par with the naive algorithm, is when all other algorithms are on par, and when for 
-the smallest cases $n = 4$ and  $n = 8$. 
+(d) The only case in which it is on par with the naive algorithm is when all other algorithms are on par, and for the 
+smallest cases, when $n = 4$ and $n = 8$. 
 
 ### Concluding Amortized Inner-product Proof
 
@@ -658,9 +658,9 @@ The basic approach to the formulation of efficient and cost-saving algorithms is
 
 - Each algorithm aims at reducing verification costs in terms of the number of multiplications. 
 
-- Each algorithm takes advantage of the fact that each coefficient has common sub-product $2^{k-2}$ coefficients. 
+- Each algorithm takes advantage of the fact that each coefficient has common sub-products with other $2^{k-2}$ coefficients. 
 
-- The intermediate values of the coefficients are not used anywhere in the IPP. Only the final values make up all 
+- The intermediate values of the coefficients are not used anywhere in the IPP. Only the final values made up of all 
 $k$ factors $u_j^{b(i,j)}$. Hence their sub-products can be separately computed and only put together at the end of the 
 IPP's $k-$th round. 
 
@@ -796,7 +796,7 @@ consuming the smallest existing "tuples".
 ```
 
 **Algorithm 4**: This algorithm is the same as Algorithm 3 throughout the IPP rounds. However, at the end of the IPP 
-rounds, the program gives preference to the formation all possible distinct quadruples. Larger-sized sub-products are then 
+rounds, the program gives preference to the formation of all possible distinct quadruples. Larger-sized sub-products are then 
 computed by firstly consuming the largest existing "tuples". 
 ```text
 `**Algorithm 4 or [A4]**`
@@ -804,7 +804,7 @@ computed by firstly consuming the largest existing "tuples".
 ```
 **Example 1 (Algorithm 1 or [A1])** 
 
-Let $n = 32$ so that $k = 5$. The coefficients $s_i$ for $i \in {0, 1, 2, ... , 15}$ are 32$ quintets: 
+Let $n = 32$ so that $k = 5$. The coefficients $s_i$ for $i \in {0, 1, 2, ... , 15}$ are $32$ quintets: 
 $$u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}$$ 
 
 The number of multiplications per IPP round is given at the bottom of each column. The vector of coefficients is 
