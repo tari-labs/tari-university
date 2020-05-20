@@ -6,8 +6,8 @@
 - [Bulletproofs Range Proofs](#bulletproofs-range-proofs)
 - [What is Recursive Proof Composition?](#what-is-recursive-proof-composition?)
 	- [Recursive Functions](#recursive-functions)
-	- [Recursion in Bulletproofs Inner-product Proofs](#recursion-in-bulletproofs-inner-product-proofs)
-	- [Inductive Proof](#inductive-proof) 
+	- [Recursion in Bulletproofs Inner-product Proof](#recursion-in-bulletproofs-inner-product-proof)
+	- [Inductive Proofs](#inductive-proofs) 
 - [Verification Amortization Strategies](#verification-amortization-strategies)
 	- [Application of Verifiable Computation](#application-of-verifiable-computation)
 	- [Incrementally Verifiable Computation](#incrementally-verifiable-computation) 
@@ -398,10 +398,12 @@ entails such relationships between these squares and the coefficients $s_i$.
 **Theorem 1 [Some properties of the set of coefficients $\{ s_i \}$]** 
 
 Let $n = 2^k$ and $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$ where each $G_i$ 
-is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$, then 
+is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$, then: 
 
 (a)	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}$.
+
 (b)	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u\_j^2 $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$.
+
 (c)	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
 The proof of part (a) of this theorem follows by induction on the size $n$ f the initial input vector 
@@ -517,8 +519,8 @@ The above results indicate that algorithm [A1] is the best of the four for sever
 
 (c) It has the best savings percentage of 47.83\% relative to the naive algorithm.   
 
-(d) The only case in which it is on par with the naive algorithm is when all other algorithms are on par, and for the 
-smallest cases, when $n = 4$ and $n = 8$. 
+(d) The only case in which it is on par with the naive algorithm is when all other algorithms are on par, i.e. when 
+$n = 4$ and $n = 8$. 
 
 ### Concluding Amortized Inner-product Proof
 
