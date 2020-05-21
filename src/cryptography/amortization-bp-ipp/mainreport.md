@@ -4,22 +4,40 @@
 - [Notation and Assumptions](#notation-and-assumptions)
 - [Zero-knowledge Proofs](#zero-knowledge-proofs) 
 - [Bulletproofs Range Proofs](#bulletproofs-range-proofs)
-- [What is Recursive Proof Composition?](#what-is-recursive-proof-composition?)
-	- [Recursive Functions](#recursive-functions)
-	- [Recursion in Bulletproofs Inner-product Proof](#recursion-in-bulletproofs-inner-product-proof)
-	- [Inductive Proofs](#inductive-proofs) 
+- [What is Recursive Proof Composition?](#what-is-recursive-proof-composition)
+  - [Recursive Functions](#recursive-functions)
+  - [Recursion in Bulletproofs Inner-product Proof](#recursion-in-bulletproofs-inner-product-proof)
+  - [Inductive Proofs](#inductive-proofs) 
 - [Verification Amortization Strategies](#verification-amortization-strategies)
-	- [Application of Verifiable Computation](#application-of-verifiable-computation)
-	- [Incrementally Verifiable Computation](#incrementally-verifiable-computation) 
-	- [Nested Amortization](#nested-amortization)
+  - [Application of Verifiable Computation](#application-of-verifiable-computation)
+  - [Incrementally Verifiable Computation](#incrementally-verifiable-computation)
+  - [Nested Amortization](#nested-amortization)
 - [Amortized Inner-product Proof](#amortized-inner-product-proof) 
-	- [Bulletproofs Inner-product Proof Verification](#bulletproofs-inner-product-proof-verification)
-	- [Verifiable Computation - Application 1](#verifiable-computation---application-1)
-	- [Verifiable Computation - Application 2](#verifiable-computation---application-2)
-	- [Concluding Amortized Inner-product Proof](#concluding-amortized-inner-product-proof) 
+  - [Bulletproofs Inner-product Proof Verification](#bulletproofs-inner-product-proof-verification)
+  - [Verifiable Computation](#verifiable-computation)
+    - [Application 1 - Delegating Inversion of Verifier's Challenges](#application-1---delegating-inversion-of-verifiers-challenges)
+    - [Application 2 - Delegating Computation of $G_i$s Coefficient](#application-2---delegating-computation-of-g_is-coefficient)
+  - [Verifier's Tests](#verifiers-tests)
+    - [Test of Prover's $s_i​$ Values](#test-of-provers-s_i-values)
+    - [Test of $\{ s_i \}$ Values](#test-of--s_i--values)
+  - [Optimizing Prover's Computation of $\{ s_i \}$ Values](#optimizing-provers-computation-of--s_i--values)
+    - [Naive Algorithm](#naive-algorithm)
+    - [Optimized Algorithms](#optimized-algorithms)
+  - [Concluding Amortized Inner-product Proof](#concluding-amortized-inner-product-proof) 
 - [Application to Tari Blockchain](#application-to-tari-blockchain) 
 - [References](#references)
-- [Appendix A](#appendix-a) 
+- [Appendices](#appendices)
+  - [Appendix A](#appendix-a-details-of-algorithms-investigated) 
+    - [Naive Algorithms](#naive-algorithms)
+    - [Optimized Algorithms](#optimized-algorithms-1)
+    - [Basic Approach](#basic-approach)
+    - [Defining Optimized Algorithms](#defining-optimized-algorithms)
+      - [Algorithm 1](#algorithm-1)
+      - [Algorithm 2](#algorithm-2)
+      - [Algorithm 3](#algorithm-3)
+      - [Algorithm 4](#algorithm-4)
+      - [Example 1 (Algorithm 1 or [A1])](#example-1-algorithm-1-or-a1)
+- [Contributors](#contributors)
 
 ## Introduction 
 
@@ -96,7 +114,7 @@ The Bulletproofs range proof achieves its goal by rewriting the statement $v \in
 vectors, as well as expressing it as a single inner product $t(x) = \langle \mathbf{l}(x), \mathbf{r}(x) \rangle$ 
 of specially defined binary polynomial vectors $\mathbf{l}(x)$ and $\mathbf{r}(x)$.
 
-Thus a so-called *vector Pedersen commitment* is also used in these type of proofs, and is defined as follows: 
+Thus a so-called *vector Pedersen commitment* is also used in these types of proofs, and is defined as follows: 
 
 A *vector Pedersen commitment* of vectors 
  $\mathbf{a}_L$ and $\mathbf{a}_R$ is given by 
@@ -153,7 +171,7 @@ In Bulletproofs range proofs, a prover commits to a value $v​$ and seeks to co
 that $v \in [ 0 , 2^n ) ​$. Pedersen commitments are used to keep the value of $v​$ confidential, and are expressed as 
 inner-products. 
 
-The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}$, $\mathbf{b}$ and the 
+The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}​$, $\mathbf{b}​$ and the 
 associated Pedersen commitment can be expressed as: 
 
 $$ P_k = \langle \mathbf{a} , \mathbf{G} \rangle + \langle \mathbf{b} , \mathbf{H} \rangle + \langle \mathbf{a} ,\mathbf{b} \rangle \cdot Q $$
@@ -169,24 +187,54 @@ $$ P_{k - 1} = P_k + L_k \cdot u_k^{2} + R_k \cdot u_k^{-2} ​$$
 where $ L_k $ and $ R_k $ are specifically defined as linear combinations of inner-products of vectors that are half the 
 size of vectors in the $k - 1$ round. 
 
-In the IP proof, the prover convinces the verifier of the veracity of the commitment $P_k$ by sending only $k = log(n)$ 
-pairs of values $L_j$ and $R_j$, where $j \in \{ 1, 2, 3, ... , k \}$.  
+In the IP proof, the prover convinces the verifier of the veracity of the commitment $P_k​$ by sending only $k = log(n)​$ 
+pairs of values $L_j​$ and $R_j​$, where $j \in \{ 1, 2, 3, ... , k \}​$.  
 It is due to this recursion that Bootle et al. [[9]] reduced the previous complexity of zero-knowledge proofs from 
-$O(\sqrt{n})$ to $O(log(n))$. 
+$O(\sqrt{n})​$ to $O(log(n))​$. 
 
 Refer to [Figure 2](#recursion-in-bulletproofs-inner-product-proofs) for an overview of the prover's side of the IPP. 
 
 The input to the IP proof is the quadruple of size $ n = 2^k ​$ vectors 
-$\big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)​$, which is initially 
-$\big( \mathbf{a} , \mathbf{b} , \mathbf{G} , \mathbf{H} \big) ​$. However, when $j < k​$, the input is updated to 
-$\big(\mathbf{a}^{(j-1)}, \mathbf{b}^{(j-1)}, \mathbf{G}^{(j-1)},\mathbf{H}^{(j-1)} \big)​$ quadruple vectors each of 
-size $2^{k-1}​$, where $\mathbf{a}^{(j-1)} = \mathbf{a}\_{lo} \cdot u\_j + \mathbf{a}\_{hi} \cdot u\_j^{-1} ​$, \ \ 
-$\mathbf{b}^{(j-1)} = \mathbf{b}\_{lo} \cdot u\_j^{-1} + \mathbf{b}\_{hi} \cdot u\_j​$, \ \ 
-$\mathbf{G}^{(j-1)} = \mathbf{G}\_{lo} \cdot u\_j^{-1} + \mathbf{G}\_{hi} \cdot u\_j​$,\ \ 
-$\mathbf{H}^{(j-1)} = \mathbf{H}\_{lo} \cdot u\_j  + \mathbf{H}\_{hi} \cdot u\_j^{-1}​$, and $u_k​$ is the verifier's 
-challenge. The vectors\ \ $\mathbf{a}\_{lo}, \mathbf{b}\_{lo}, \mathbf{G}\_{lo}, \mathbf{H}\_{lo}​$\ \ and \ \ 
-$\mathbf{a}\_{hi}, \mathbf{b}\_{hi}, \mathbf{G}_{hi}, \mathbf{H}\_{hi} ​$\ \ 
-being the left and the right halves of the vectors \ \ $\mathbf{a}, \mathbf{b}, \mathbf{G}, \mathbf{H}​$, respectively. 
+
+$$
+\big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)​
+$$
+
+which is initially 
+
+$$
+\big( \mathbf{a} , \mathbf{b} , \mathbf{G} , \mathbf{H} \big) ​
+$$
+
+However, when $j < k​$, the input is updated to 
+
+$$
+\big(\mathbf{a}^{(j-1)}, \mathbf{b}^{(j-1)}, \mathbf{G}^{(j-1)},\mathbf{H}^{(j-1)} \big)​
+$$
+
+quadruple vectors each of size $2^{k-1}​$, where 
+
+$$
+\mathbf{a}^{(j-1)} = \mathbf{a}\_{lo} \cdot u\_j + \mathbf{a}\_{hi} \cdot u\_j^{-1} ​\\\\ 
+\mathbf{b}^{(j-1)} = \mathbf{b}\_{lo} \cdot u\_j^{-1} + \mathbf{b}\_{hi} \cdot u\_j​ \\\\
+\mathbf{G}^{(j-1)} = \mathbf{G}\_{lo} \cdot u\_j^{-1} + \mathbf{G}\_{hi} \cdot u\_j​ \\\\ 
+\mathbf{H}^{(j-1)} = \mathbf{H}\_{lo} \cdot u\_j  + \mathbf{H}\_{hi} \cdot u\_j^{-1} \\\\ 
+$$
+
+and $u_k​$ is the verifier's challenge. The vectors
+
+$$
+\mathbf{a}\_{lo}, \mathbf{b}\_{lo}, \mathbf{G}\_{lo}, \mathbf{H}\_{lo}​ \\\\
+\mathbf{a}\_{hi}, \mathbf{b}\_{hi}, \mathbf{G}_{hi}, \mathbf{H}\_{hi} ​
+$$
+
+are the left and the right halves of the vectors
+
+$$
+\mathbf{a}, \mathbf{b}, \mathbf{G}, \mathbf{H}​
+$$
+
+respectively. 
 
 <p align="center"><img src="sources/IPProof-prover-side-0.png" width="550" /></p>
 <div align="center"><b>Figure 2: Inner-product Proof - Prover Side </b></div> 
@@ -343,19 +391,19 @@ Figure 6 shows a naive implementation of the verifier's side of the Bulletproofs
 <p align="center"><img src="sources/IPProof-verifier-side-1.png" width="700" /></p>
 <div align="center"><b>Figure 6: Bulletproofs Inner-product Proof - Verifier Side </b></div>
 
-### Verifiable Computation - Application 1
+### Verifiable Computation
 
-**Delegating Inversion of Verifier's Challenges** 
+#### Application 1 - Delegating Inversion of Verifier's Challenges
 
 One of the details omitted from [Figure 6](#bulletproofs-inner-product-proof-verification) is the computation of inverses 
-of the verifier's challenges $u_j$ needed to complete verification. The verifier, for example, needs $u_j^{-2}$ in order 
-to compute $- L_j \cdot u_j^2 - R_j \cdot u^{-2}$. Verifiable computation strategy is therefore applicable to the IPP, 
+of the verifier's challenges $u_j​$ needed to complete verification. The verifier, for example, needs $u_j^{-2}​$ in order 
+to compute $- L_j \cdot u_j^2 - R_j \cdot u^{-2}​$. Verifiable computation strategy is therefore applicable to the IPP, 
 where the verifier delegates inversion of challenges to the prover. 
 
-As Bowe et al. [[14]] proposed, in arithmetic circuits where a field inversion of a variable $u$ can be computed, i.e. 
-$u^{p−2}$, which would normally require $log(p)$ multiplication constraints, the prover could witness $v = u^{− 1}$ 
-instead [[3]]. The verifier could then simply check if $uv = 1$, taking only a single multiplication constraint. 
-Thus one trades $log(p)$ multiplication constraints for only one. 
+As Bowe et al. [[14]] proposed, in arithmetic circuits where a field inversion of a variable $u​$ can be computed, i.e. 
+$u^{p−2}​$, which would normally require $log(p)​$ multiplication constraints, the prover could witness $v = u^{− 1}​$ 
+instead [[3]]. The verifier could then simply check if $uv = 1​$, taking only a single multiplication constraint. 
+Thus one trades $log(p)​$ multiplication constraints for only one. 
 
 Therefore, to amortize some verification costs, the prover in the Bulletproofs IPP is requested to compute each $u_j^{- 1}$ 
 and send it to the verifier. That is in addition to values $L_j$ and $R_j$ for $j \in \{ 1, 2 , ... , log_2(n) \}$. 
@@ -371,58 +419,64 @@ of the elliptic curve group.
 
 As noted earlier, this amortization strategy reduces the verification costs by factor of $log(p)$. 
 
-### Verifiable Computation - Application 2
+#### Application 2 - Delegating Computation of $G_i$s Coefficient
 
-**Delegating Computation of $G_i$'s Coefficient**
-
-Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$, one of the four initial 
+Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )​$, one of the four initial 
 input vectors to the IPP. In verifying the prover's IPP, the verifier has to compute the vector 
-$\mathbf{s} = ( s_0 , s_1 , s_2 , ... , s_{(n-1)} )$, where each $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ is the 
-so-called coefficient of $G_i$, while $j \in \{ 1 , 2 , 3 , ... , k \}$  with  $k = log_2(n)$. Refer to 
+$\mathbf{s} = ( s_0 , s_1 , s_2 , ... , s_{(n-1)} )​$, where each $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ is the 
+so-called coefficient of $G_i​$, while $j \in \{ 1 , 2 , 3 , ... , k \}​$  with  $k = log_2(n)​$. Refer to 
 [Figure 6](#bulletproofs-inner-product-proof-verification). Note that
-$$ b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases} $$
-determines whether the factor multiplied into  $s_i$  is the verifier's challenge $u_j$ or its inverse.  
+$$ b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases} ​$$
+determines whether the factor multiplied into  $s_i​$  is the verifier's challenge $u_j​$ or its inverse.  
 
 Computations of these coefficients can be delegated to the prover or some third party called "helper", henceforth 
 referred to as the prover. Since each of these coefficients is a product of field elements, they have strong algebraic 
 properties that can be exploited in two ways:
+
 - Firstly, the verifier can use these properties to check if the $s_i$s were correctly computed by the prover.
 - Secondly, they can be used to minimize the prover's computational costs. 
 
-**Verifier's Test of Prover's $s_i$ Values** 
+### Verifier's Tests
+
+#### Test of Prover's $s_i$ Values 
 
 Note that the verifier has to compute the values $u_j^2$  and  $u_j^{-2}$ for all $j \in \{ 1, 2, 3, ... , k \}$. The 
 idea here is to use a verifier's test that involves these squares of the challenges and their inverses. The next theorem 
 entails such relationships between these squares and the coefficients $s_i$. 
 
-**Theorem 1 [Some properties of the set of coefficients $\{ s_i \}$]** 
+**Theorem 1 [Some properties of the set of coefficients $\{ s_i \}​$]** 
 
 Let $n = 2^k$ and $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$ where each $G_i$ 
 is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$, then: 
 
-(a)	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}$.
+(a)	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}​$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}​$.
 
 (b)	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u\_j^2 $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$.
 
 (c)	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
-The proof of part (a) of this theorem follows by induction on the size $n$ f the initial input vector 
+The proof of part (a) of this theorem follows by induction on the size $n$ of the initial input vector 
 $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (b) and (c) follow by induction on $k$ . 
 
-**Verifier's Test of $\{ s_i \}$ Values**
+#### Test of $\{ s_i \}$ Values
 
 The verifier tests the correctness of the coefficients $s_i$ with the following statement: 
 
-$$\ \ (s_{1} \cdot s_{n-1}  = u_1^2) \and (s_{2} \cdot s_{n-1} = u_2^2) \and (s_{4} \cdot s_{n-1}  = u_3^2) \and\ \ ...\ \ \and (s_{2^{(k-1)}} \cdot s_{n-1}  = u_k^2) \and \\ \ \ (s_0 \cdot s_{(n-1) - 2^{(0)}}  = u_1^{-2}) \and (s_0 \cdot s_{(n-1) - 2^{(1)}}  = u_2^{-2}) \and\ \ ...\ \ \and (s_0 \cdot s_{(n-1) - 2^{(k-1)}}  = u_k^{-2})  \and \\ \ \ ( s_{r_1} \cdot s_{(n-1) - {r_1}}  = 1_{\mathbb{F}_p} ) \and (s_{r_2} \cdot s_{(n-1) - {r_2}}  = 1_{\mathbb{F}_p}) \and (s_{r_3} \cdot s_{(n-1) - {r_3}}  = 1_{\mathbb{F}_p}) \and\ \ ...\ \ \and (s_{r_k} \cdot s_{(n-1) - r_k}  = 1_{\mathbb{F}_p})  $$
-
+$$
+(s_{1} \cdot s_{n-1}  = u_1^2) \land (s_{2} \cdot s_{n-1} = u_2^2) \land (s_{4} \cdot s_{n-1}  = u_3^2) \land\ \dots \ \land (s_{2^{(k-1)}} \cdot s_{n-1}  = u_k^2) \land \\\\ 
+(s_0 \cdot s_{(n-1) - 2^{(0)}}  = u_1^{-2}) \land (s_0 \cdot s_{(n-1) - 2^{(1)}}  = u_2^{-2}) \land\ \dots \ \land (s_0 \cdot s_{(n-1) - 2^{(k-1)}}  = u_k^{-2})  \land \\\\ 
+( s_{r_1} \cdot s_{(n-1) - {r_1}}  = 1_{\mathbb{F}\_p} ) \land (s_{r_2} \cdot s_{(n-1) - {r_2}}  = 1_{\mathbb{F}\_p}) \land (s_{r_3} \cdot s_{(n-1) - {r_3}}  = 1_{\mathbb{F}\_p}) \land\ \dots \ \land (s_{r_k} \cdot s_{(n-1) - r_k}  = 1_{\mathbb{F}\_p})  
+$$
 for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ... , n-1 \\} $ where $k = log_2(n)$.
 
-**Optimizing Prover's Computation of $\{ s_i \}$ Values**
+### Optimizing Prover's Computation of $\{ s_i \}$ Values
+
+#### Naive Algorithm
 
 The naively implemented computation of the coefficients $s_i$, as depicted in 
 [Figure 6](#bulletproofs-inner-product-proof-verification), is very expensive in terms of the number of multiplications. 
 
-**Naive Algorithm:** The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
+The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
 by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th IPP round, running from $k = log_2(n)$ down 
 to $1$. 
 
@@ -430,28 +484,28 @@ That is, although recursive according to the nature of the IPP, the naive implem
 without any attempt to optimize.  
 
 ```text
-`**Naive Algorithm**`
+**Naive Algorithm**
 
-` initialize     s[n] = [1,1,1, ... ,1]; ` 
-` initialize     k = log_2(n)` 
-`... %running inside IPP`
-`int main(){`
-​    ` for (j = k; j > 0; j--){`
-​        `for (i = 0; i < n; i++){`
-​            `     s[i] = s[i]*(u_j)^{b(i,j)} `;
-​        `}`
-​    `}`	  
+ initialize     s[n] = [1,1,1, ... ,1]; 
+ initialize     k = log_2(n) 
+... %running inside IPP
+`int main(){
+​     for (j = k; j > 0; j--){
+​        for (i = 0; i < n; i++){
+​                 s[i] = s[i]*(u_j)^{b(i,j)} ;
+​        }
+​    }	  
 
-`return = 0; ` 
+return = 0; 
 }
 ```
 
 Using the naive algorithm, an input vector $\mathbf{G}$ to the IPP, of size $n = 256$, costs the verifier at least $508$ 
 multiplications. If $n = 1024$, the cost is $2044$. This excludes all the other computations the verifier has to compute. 
 
-**Optimized Algorithms** 
+#### Optimized Algorithms 
 
-At least four competing algorithms  optimize computation of the coefficients $\{ s_i \}$. Each one is much better than 
+At least four competing algorithms optimize computation of the coefficients $\{ s_i \}$. Each one is much better than 
 the naive algorithm, with some reducing the verification cost by 40%. 
 
 The basic optimization strategy is based on the observation that every coefficient has at least one common factor with 
@@ -459,9 +513,9 @@ $2^{k-1}- 1$ other coefficients, two common factors with $2^{k-2}-1$ other coeff
 $2^{k-3}- 1$ other coefficients, and so on. It is therefore cost-effective in terms of the number of multiplications to 
 aim at computing these common factors and only form the required coefficients later.
 
+```text
 **Typical Optimized Algorithm**
 
-```text
 initialize     s[n] = [1,1,1, ... ,1];  
 initialize     k = log_2(n) 
 %running inside IPP 
@@ -494,7 +548,7 @@ are simply referred to as Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 
 
 <div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
-| Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % relative to [NA] |
+| Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % Relative to [NA] |
 | :--------------- | -------------------: | ---------------: | ----------------: | ---------------: | ---------------: | --------------------------------------: |
 | $n = 4$          |                  $4$ |              $4$ |               $4$ |              $4$ |              $4$ |                               [All]  0% |
 | $n = 8$          |                 $12$ |             $12$ |              $12$ |             $12$ |             $12$ |                               [All]  0% |
@@ -525,11 +579,11 @@ $n = 4$ and $n = 8$.
 ### Concluding Amortized Inner-product Proof
 
 The amortization strategies herein applied to the Bulletproofs IPP are tangible and significantly enhance the proof. 
-With the above amortization of the IPP, the prover sends $3log_2(n) + n$ IPP elements, i.e. the set of all $log_2(n)$ 
-triples $L_j$, $R_j$ and $u^{-1}$ as well as the $n$ coefficients $s_i$s. 
+With the above amortization of the IPP, the prover sends $3log_2(n) + n​$ IPP elements, i.e. the set of all $log_2(n)​$ 
+triples $L_j​$, $R_j​$ and $u^{-1}​$ as well as the $n​$ coefficients $s_i​$s. 
 
 The given verifier's test of the coefficients and the optimization of their computations solidify the proposed 
-amortization of the IPP. Given the Bulletproofs setting, that a vector of size $n$ refers to $n$ number of 32-byte 
+amortization of the IPP. Given the Bulletproofs setting, that a vector of size $n​$ refers to $n​$ number of 32-byte 
 values, even seemingly small savings are significant. 
 
 ## Application to Tari Blockchain 
@@ -541,8 +595,8 @@ The amortized IPP as discussed above does not veer off the Dalek's Bulletproofs 
 blockchain. 
 
 These amortization strategies, though minimal in the changes they bring into the IPP to which we are accustomed, have 
-huge savings for the verification costs, cutting down on the number of multiplications by a factor of $log(p)$, where 
-the prime $p$ is deliberately chosen to be very large. 
+huge savings for the verification costs, cutting down on the number of multiplications by a factor of $log(p)​$, where 
+the prime $p​$ is deliberately chosen to be very large. 
 
 The amortized IPP lends itself to implementations of any zero-knowledge proof that involves inner-products, especially 
 in the Bulletproofs framework. 
@@ -643,18 +697,22 @@ Company, 2019. Available: <https://eprint.iacr.org/2019/1021.pdf>. Date accessed
 [14]: https://eprint.iacr.org/2019/1021.pdf "Recursive Proof Composition 
 without a Trusted Setup"
 
-## Appendix A 
+# Appendices
+
+## Appendix A: Details of Algorithms Investigated 
 
 This appendix contains details of the algorithms investigated to optimize computations of the coefficients 
 $\{ s_i \}$ of $G_i$ the component of the vector input to the IPP, $\mathbf{G} = (G_0 , G_1 , G_2 , ... , G_{n-1})$. 
 
-**Naive Algorithm**
+### Naive Algorithms
 
-The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
-by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th round of the IPP, running from 
-$k = log_2(n)$ to $1$. 
+The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ 
+by cumulatively multiplying the correct factor $u_j^{b(i,j)}​$ in each $j-​$th round of the IPP, running from 
+$k = log_2(n)​$ to $1​$. 
 
-**Optimization Approach**
+### Optimized Algorithms
+
+#### Basic Approach
 
 The basic approach to the formulation of efficient and cost-saving algorithms is as follows: 
 
@@ -677,137 +735,165 @@ $u_{10}^{b(i,10)} \cdot u_{9}^{b(i,9)} \cdot u_{8}^{b(i,8)}$ or
 $u_{4}^{b(i,4)} \cdot u_{3}^{b(i,3)} \cdot u_{2}^{b(i,2)} \cdot u_{1}^{b(i,1)}$ are herein referred to as "doubles" or 
 "triples" or "quadruples", respectively.
 
-**Defining Optimized Algorithms**
+#### Defining Optimized Algorithms
 
 Since the main strategy in using these algorithms is to avoid insisting on immediate updates of the values $s_i$, they 
 differ in their scheduling of when "doubles" or "triples" or "quadruples" are computed. Note that "distinct" 
 sub-products refers to those sub-products with no common factor. 
 
-**Algorithm 1**: This algorithm computes new distinct doubles as soon as it is possible to do so. These new doubles are 
+##### Algorithm 1
+
+This algorithm computes new distinct doubles as soon as it is possible to do so. These new doubles are 
 turned into triples in the next immediate IPP round. This process is repeated until all IPP rounds are completed. Only 
 then are next larger-sized sub-products computed, but consumption of the smallest existing "tuples" is given priority. 
-```text
-`**Algorithm 1 or [A1]**`
 
-` initialize  s[n] = [1,1,1, ... ,1]; ` 
-` initialize  k = log_2(n)` 
-`... %running inside IPP`
-`int main(){` 
-​ ` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
-​ `s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
-​ `t = k-3;`
-​ `   for (j = k - 1; j > t; j--){`
-​  `  for (i = 0; i < n; i++){`
-​   `if ( i mod 2^j == 0 ) { `
-​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
-​    ` l = i + 2^(j-1); `
-​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
-​   `}` `}` `}` 
-` %if k-3 > 0 then program proceeds as follows  `
-​ ` s[1] = u_{k-3}^{-1}; s[1+2^{k-4}] = u_{k-3}; `
-​ ` s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+2^{k-1}] = s[1+2^{k-4}]; `
-` %if k-4 > 0 then program proceeds as follows  ` 
-​ `t = k-6;` 
-​ `   for (j = k-4; j > t; j--){`
-​  `  for (i = 0; i < n; i++){`
-​   `if (i mod (1+2^(k-1)) == 0) { `
-​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
-​    ` l = i + 2^j; `
-​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
-​   `}` `}` `}` 
-`% program continues forming new and distinct triples until k=1 `
-`% after which all (2^k) "legal" k-tuples are formed`    
-`return = 0; ` 
-`}`
+```text
+**Algorithm 1 or [A1]**
+
+initialize s[n] = [1,1,1, ... ,1];  
+initialize k = log_2(n);
+%running inside IPP
+int main() { 
+  ​  s[0] = u_k^{-1};  
+    s[2^{k-1}] = u_k;
+​    s[2^{k-2}] = s[0]; 
+    s[3*2^{k-2}] = s[2^{k-1}]; 
+​    t = k-3;
+​    for (j = k - 1; j > t; j--) {
+    ​    for (i = 0; i < n; i++) {
+    ​        if ( i mod 2^j == 0 ) {
+          ​      s[i] = s[i]*(u_j)^{b(i,j)};
+           ​     l = i + 2^(j-1); 
+           ​     s[l] = s[l]*(u_j^{b(l,j)};
+         ​   } 
+        } 
+    } 
+    %if k-3 > 0, then the program proceeds as follows:  
+​    s[1] = u_{k-3}^{-1}; 
+    s[1+2^{k-4}] = u_{k-3}; 
+​    s[1+2^{k-1}] = s[1]; 
+    s[(1+2^{k-4})+2^{k-1}] = s[1+2^{k-4}]; 
+    %if k-4 > 0, then the program proceeds as follows:  
+​    t = k-6; 
+​    for (j = k-4; j > t; j--) {
+​        for (i = 0; i < n; i++) {
+​            if (i mod (1+2^(k-1)) == 0) { 
+​                s[i] = s[i]*(u_j)^{b(i,j)}; 
+​                l = i + 2^j;
+​                s[l] = s[l]*(u_j^{b(l,j)};
+​            } 
+        } 
+    } 
+    % program continues forming new and distinct triples until k=1 
+    % after which all (2^k) "legal" k-tuples are formed 
+    return = 0; 
+}
 ```
 
-**Algorithm 2**: This algorithm starts exactly like Algorithm 1, by forming only new and distinct doubles and turning 
+##### Algorithm 2
+
+This algorithm starts exactly like Algorithm 1, by forming only new and distinct doubles and turning 
 them into triples in the next immediate IPP round, but goes beyond the triples by immediately forming the next possible 
 quadruples.
-```text
-`**Algorithm 2 or [A2]**`
 
-` initialize  s[n] = [1,1,1, ... ,1]; ` 
-` initialize  k = log_2(n)` 
-`... %running inside IPP`
-`int main(){` 
-​ ` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
-​ `s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; `
-​ `t = k-4;`
-​ `   for (j = k - 1; j > t; j--){`
-​  `  for (i = 0; i < n; i++){`
-​   `if ( i mod 2^j == 0 ) { `
-​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
-​    ` l = i + 2^(j-1); `
-​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
-​   `}` `}` `}` 
-` %if k-4 > 0, then program proceeds as follows  `
-​ ` s[1] = u_{k-4}^{-1};  s[1+2^{k-4}] = u_{k-4};`
-​ `s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+(2^{k-1})] = s[1+2^{k-4}]; ` 
-` %if k-5 > 0, then program proceeds as follows  `
-​ `t = k-8;` 
-​ `   for (j = k-5; j > t; j--){`
-​  `  for (i = 0; i < n; i++){`
-​   `if ( i mod (1+2^(k-1) == 0 ) { `
-​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
-​    ` l = i + 2^j; `
-​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
-​   `}` `}` `}` 
-​ `% continues forming new and distinct quadruples until k=1 `
-​ `% after which all (2^k) "legal" k-tuples are formed`    
-`return = 0; ` 
-`}`
+```text
+**Algorithm 2 or [A2]**
+
+initialize s[n] = [1,1,1, ... ,1];  
+initialize k = log_2(n) 
+%running inside IPP
+int main(){ 
+​    s[0] = u_k^{-1};  s[2^{k-1}] = u_k;
+​    s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; 
+​    t = k-4;
+​    for (j = k - 1; j > t; j--){
+​        for (i = 0; i < n; i++){
+​            if ( i mod 2^j == 0 ) { 
+​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
+​                l = i + 2^(j-1); 
+​                s[l] = s[l]*(u_j^{b(l,j)} ;
+​            } 
+        } 
+    } 
+%if k-4 > 0, then the program proceeds as follows:  
+​s[1] = u_{k-4}^{-1};  s[1+2^{k-4}] = u_{k-4};
+s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+(2^{k-1})] = s[1+2^{k-4}];  
+%if k-5 > 0, then the program proceeds as follows:  
+​t = k-8; 
+​for (j = k-5; j > t; j--){
+​        for (i = 0; i < n; i++){
+​            if ( i mod (1+2^(k-1) == 0 ) { 
+​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
+​                l = i + 2^j; 
+​                s[l] = s[l]*(u_j^{b(l,j)} ;
+​            } 
+} 
+​% program continues forming new and distinct quadruples until k=1 
+​% after which all (2^k) "legal" k-tuples are formed    
+return = 0;  
+}
 ```
 
-**Algorithm 3**: This algorithm computes new distinct doubles as soon as it is possible to do so, until the end of the 
+##### Algorithm 3
+
+This algorithm computes new distinct doubles as soon as it is possible to do so, until the end of the 
 IPP rounds. The program then forms any possible triples. Larger-sized sub-products are then computed by firstly 
 consuming the smallest existing "tuples". 
-```text
-`**Algorithm 3 or [A3]**`
 
-`initialize  s[n] = [1,1,1, ... ,1]; ` 
-` initialize  k = log_2(n)` 
-`... %running inside IPP`
-`int main(){` 
-​ ` s[0] = u_k^{-1};  s[2^{k-1}] = u_k;`
-​ `s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; `
-​ `t = k-2;`
-​ `   for (j = k - 1; j > t; j--){`
-​  `  for (i = 0; i < n; i++){`
-​   `if ( i mod 2^j == 0 ) { `
-​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
-​    ` l = i + 2^(j-1); `
-​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
-​   `}` `}` `}` 
-` %if k-2 > 0, then program proceeds as follows  `
-​ ` s[1] = u_{k-2}^{-1};  s[1+2^{k-1}] = u_{k-2};`
-​ `s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; `
-` %if k-3 > 0, then program proceeds as follows  ` 
-​ `t = k-3;` 
-​ `   for (j = k-3; j > t; j--){`
-​  `  for (i = 0; i < n; i++){`
-​   `if ( i mod 1+2^(k-1) == 0 ) { `
-​    `  s[i] = s[i]*(u_j)^{b(i,j)} `; 
-​    ` l = i + 2^j; `
-​    ` s[l] = s[l]*(u_j^{b(l,j)} `;
-​   `}` `}` `}` 
-`% program continues forming new and distinct doubles until k=1 `
-`% after which all (2^k) "legal" k-tuples are formed` 
-`return = 0; ` 
-`}`
+```text
+**Algorithm 3 or [A3]**
+
+initialize s[n] = [1,1,1, ... ,1];  
+initialize k = log_2(n) 
+%running inside IPP
+int main(){ 
+​    s[0] = u_k^{-1};  s[2^{k-1}] = u_k;
+​    s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; 
+​    t = k-2;
+​    for (j = k - 1; j > t; j--){
+​        for (i = 0; i < n; i++){
+​            if ( i mod 2^j == 0 ) { 
+​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
+​                l = i + 2^(j-1); 
+​                s[l] = s[l]*(u_j^{b(l,j)} ;
+​            } 
+        } 
+    } 
+%if k-2 > 0, then program proceeds as follows:  
+​s[1] = u_{k-2}^{-1};  s[1+2^{k-1}] = u_{k-2};
+​s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; 
+%if k-3 > 0, then the program proceeds as follows:   
+​t = k-3; 
+​for (j = k-3; j > t; j--){
+​        for (i = 0; i < n; i++){
+​            if ( i mod 1+2^(k-1) == 0 ) { 
+​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
+​                l = i + 2^j; 
+​                s[l] = s[l]*(u_j^{b(l,j)} ;
+​            } 
+        } 
+} 
+% program continues forming new and distinct doubles until k=1 
+% after which all (2^k) "legal" k-tuples are formed 
+return = 0;  
+}
 ```
 
-**Algorithm 4**: This algorithm is the same as Algorithm 3 throughout the IPP rounds. However, at the end of the IPP 
+##### Algorithm 4
+
+This algorithm is the same as Algorithm 3 throughout the IPP rounds. However, at the end of the IPP 
 rounds, the program gives preference to the formation of all possible distinct quadruples. Larger-sized sub-products are then 
 computed by firstly consuming the largest existing "tuples". 
-```text
-`**Algorithm 4 or [A4]**`
-`The same pseudocode used for Algorithm 3 applies to Algorithm 4`
-```
-**Example 1 (Algorithm 1 or [A1])** 
 
-Let $n = 32$ so that $k = 5$. The coefficients $s_i$ for $i \in {0, 1, 2, ... , 15}$ are $32$ quintets: 
-$$u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}$$ 
+```text
+**Algorithm 4 or [A4]**
+
+The same pseudocode used for Algorithm 3 applies to Algorithm 4
+```
+##### Example 1 (Algorithm 1 or [A1]) 
+
+Let $n = 32​$ so that $k = 5​$. The coefficients $s_i​$ for $i \in {0, 1, 2, ... , 15}​$ are $32​$ quintets: 
+$$u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}​$$ 
 
 The number of multiplications per IPP round is given at the bottom of each column. The vector of coefficients is 
 initialized to $\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s\_{n-1} = 1 )$. 
@@ -856,3 +942,9 @@ all the required $32$ quintets, and it takes exactly $32$ multiplications to for
 
 The **total cost** of computing the coefficients for $n = 32$ using *Algorithm 1* is $\mathbf{4 + 8 + 4 + 32 = 48}$.  
 
+## Contributors
+
+- <https://github.com/empiech007>
+- <https://github.com/hansieodendaal>
+- <https://github.com/anselld>
+  
