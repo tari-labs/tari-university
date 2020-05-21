@@ -27,9 +27,8 @@
 - [Application to Tari Blockchain](#application-to-tari-blockchain) 
 - [References](#references)
 - [Appendices](#appendices)
-  - [Appendix A](#appendix-a-details-of-algorithms-investigated) 
-    - [Naive Algorithms](#naive-algorithms)
-    - [Optimized Algorithms](#optimized-algorithms-1)
+  - [Appendix A: Naive Algorithms](#appendix-a-naive-algorithms) 
+  - [Appendix B: Optimized Algorithms](#appendix-b-optimized-algorithms)
     - [Basic Approach](#basic-approach)
     - [Defining Optimized Algorithms](#defining-optimized-algorithms)
       - [Algorithm 1](#algorithm-1)
@@ -287,7 +286,9 @@ and that a proof $\pi_{n-1}$ was produced, attesting to the knowledge of $(x_{n�
 [Figure 4](#inductive-proofs) illustrates the above proof: 
 
 <p align="center"><img src="sources/proof-recursion-michaelStraka1.png" width="350" /></p>
-<div align="center"><b>Figure 4: Proof Recursion Diagram [[13]] </b></div>
+<div align="center"><b>Figure 4: Proof Recursion Diagram [<a href="https://www.michaelstraka.com/posts/recursivesnarks/" title="Recursive Zero-knowledge 
+Proofs: A Comprehensive Primer">13</a>] </b></div>
+
 
 Straka continues to explain how an arithmetic circuit for the verifier could be built in order to carry out the above 
 proof. Such a circuit $\mathcal{C}​$ would either verify $\mathcal{R}( x_0 , w_0 ) = 1​$ (for the base case) or 
@@ -449,11 +450,11 @@ entails such relationships between these squares and the coefficients $s_i$.
 Let $n = 2^k$ and $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$ where each $G_i$ 
 is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$, then: 
 
-(a)	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}​$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}​$.
+1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}​$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}​$.
 
-(b)	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u\_j^2 $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$.
+1.	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u\_j^2 $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$.
 
-(c)	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
+1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
 The proof of part (a) of this theorem follows by induction on the size $n$ of the initial input vector 
 $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (b) and (c) follow by induction on $k$ . 
@@ -486,15 +487,16 @@ without any attempt to optimize.
 ```text
 **Naive Algorithm**
 
- initialize     s[n] = [1,1,1, ... ,1]; 
- initialize     k = log_2(n) 
-... %running inside IPP
-`int main(){
-​     for (j = k; j > 0; j--){
-​        for (i = 0; i < n; i++){
-​                 s[i] = s[i]*(u_j)^{b(i,j)} ;
+%initialize
+s[n] = [1,1,1, ... ,1];
+k = log_2(n);
+%running inside IPP
+int main() {
+​     for (j = k; j > 0; j--) {
+​        for (i = 0; i < n; i++) {
+​            s[i] = s[i]*(u_j)^{b(i,j)};
 ​        }
-​    }	  
+​    }
 
 return = 0; 
 }
@@ -516,22 +518,23 @@ aim at computing these common factors and only form the required coefficients la
 ```text
 **Typical Optimized Algorithm**
 
-initialize     s[n] = [1,1,1, ... ,1];  
-initialize     k = log_2(n) 
+%initialize
+s[n] = [1,1,1, ... ,1];
+k = log_2(n);
 %running inside IPP 
 int main() {
     s[0] = u_k^{-1};  s[2^{k-1}] = u_k;
-​    s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; 
+​    s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}];
 ​    for (j = k - 1; j > t; j--) {
 ​        for (i = 0; i < n; i++) {
 ​            if (i mod 2^j == 0) {
-​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
-​                l = i + 2^(j-1); 
-                s[l] = s[l]*(u_j^{b(l,j)} ; 
+​                s[i] = s[i]*(u_j)^{b(i,j)};
+​                l = i + 2^(j-1);
+                s[l] = s[l]*(u_j^{b(l,j)};
 ​            }
 ​        }
-​    }      
-    return = 0;  
+​    }
+    return = 0;
 }
 ```
 
@@ -543,24 +546,25 @@ factors among the coefficients $s_i$, the optimized algorithm uses multiplicatio
 unique. 
 
 [Table 1](#verifiable-computation---application-2) gives the multiplication cost of the naive algorithm together with 
-other four algorithms. The [Appendix](#appendix-a) contains full descriptions of these algorithms, which 
-are simply referred to as Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and Algorithm 4 or [A4]. 
+other four algorithms. The [Appendix](#appendices) contains full descriptions of these algorithms, which 
+are simply referred to as Naive Algorithm or [NA], Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and Algorithm 4 or [A4]. 
 
 <div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
-| Vector Size  $n$ | Naive Algorithm [NA] | Algorithm 1 [A1] | Algorithm 2  [A2] | Algorithm 3 [A3] | Algorithm 4 [A4] |Best Algo & Savings % Relative to [NA] |
-| :--------------- | -------------------: | ---------------: | ----------------: | ---------------: | ---------------: | --------------------------------------: |
-| $n = 4$          |                  $4$ |              $4$ |               $4$ |              $4$ |              $4$ |                               [All]  0% |
-| $n = 8$          |                 $12$ |             $12$ |              $12$ |             $12$ |             $12$ |                               [All]  0% |
-| $n = 16$         |                 $28$ |             $28$ |              $28$ |             $24$ |             $24$ |                          [A3,A4] 14.29% |
-| $n = 32$         |                 $60$ |             $48$ |              $60$ |             $48$ |             $56$ |                             [A1,A3] 20% |
-| $n = 64$         |                $124$ |             $88$ |              $96$ |             $92$ |             $92$ |                             [A1] 29.03% |
-| $n = 128$        |                $252$ |            $168$ |             $168$ |            $164$ |            $164$ |                         [A3, A4] 34.92% |
-| $n = 256$        |                $508$ |            $316$ |             $312$ |            $304$ |            $304$ |                         [A3, A4] 40.16% |
-| $n = 512$        |               $1020$ |            $612$ |             $600$ |            $584$ |            $816$ |                             [A3] 42.75% |
-| $n = 1024$       |               $2044$ |           $1140$ |            $1144$ |           $1140$ |           $1332$ |                          [A1,A3] 44.23% |
-| $n = 2048$       |               $4092$ |           $2184$ |            $2244$ |           $2234$ |           $2364$ |                             [A1] 46.63% |
-| $n = 4096$      |               $8188$ |          $4272$ |           $4436$ |        $4424$ |          $4424$ |                 [A1] 47.83% |
+| Vector Size $n$ | [NA]   | [A1]   | [A2]   | [A3]   | [A4]   | Best Algo & <br> Savings % <br> Relative to [NA] |
+|--:--------------|--:-----|--:-----|--:-----|--:-----|--:-----|--:-----------------------------------------------|
+| $n = 4$         | $4$    | $4$    | $4$    | $4$    | $4$    | [All]  0%                                        |
+| $n = 8$         | $12$   | $12$   | $12$   | $12$   | $12$   | [All]  0%                                        |
+| $n = 16$        | $28$   | $28$   | $28$   | $24$   | $24$   | [A3,A4] 14.29%                                   |
+| $n = 32$        | $60$   | $48$   | $60$   | $48$   | $56$   | [A1,A3] 20%                                      |
+| $n = 64$        | $124$  | $88$   | $96$   | $92$   | $92$   | [A1] 29.03%                                      |
+| $n = 128$       | $252$  | $168$  | $168$  | $164$  | $164$  | [A3, A4] 34.92%                                  |
+| $n = 256$       | $508$  | $316$  | $312$  | $304$  | $304$  | [A3, A4] 40.16%                                  |
+| $n = 512$       | $1020$ | $612$  | $600$  | $584$  | $816$  | [A3] 42.75%                                      |
+| $n = 1024$      | $2044$ | $1140$ | $1144$ | $1140$ | $1332$ | [A1,A3] 44.23%                                   |
+| $n = 2048$      | $4092$ | $2184$ | $2244$ | $2234$ | $2364$ | [A1] 46.63%                                      |
+| $n = 4096$      | $8188$ | $4272$ | $4436$ | $4424$ | $4424$ | [A1] 47.83%                                      |
+
 
 All four algorithms, [A1], [A2], [A3] and [A4], are fairly competent in saving multiplication costs, showing more than 
 20\% savings for vectors of sizes 64 and above. 
@@ -699,18 +703,17 @@ without a Trusted Setup"
 
 # Appendices
 
-## Appendix A: Details of Algorithms Investigated 
-
-This appendix contains details of the algorithms investigated to optimize computations of the coefficients 
-$\{ s_i \}$ of $G_i$ the component of the vector input to the IPP, $\mathbf{G} = (G_0 , G_1 , G_2 , ... , G_{n-1})$. 
-
-### Naive Algorithms
+## Appendix A: Naive Algorithms
 
 The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ 
 by cumulatively multiplying the correct factor $u_j^{b(i,j)}​$ in each $j-​$th round of the IPP, running from 
 $k = log_2(n)​$ to $1​$. 
 
-### Optimized Algorithms
+
+## Appendix B: Optimized Algorithms
+
+This appendix contains details of the algorithms investigated to optimize computations of the coefficients 
+$\{ s_i \}$ of $G_i$ the component of the vector input to the IPP, $\mathbf{G} = (G_0 , G_1 , G_2 , ... , G_{n-1})$. 
 
 #### Basic Approach
 
@@ -730,9 +733,9 @@ that each
   corresponds to a $k-$tuple of field elements 
   $$\Big( u_k^{b(i,k)}, u_{k-1}^{b(i,k-1)}, ... , u_2^{b(i,2)}, u_1^{b(i,1)}\Big)\ \ \in\ \ \mathbb{F}_p^k .$$ 
 
-Hence sub-products such as $u_4^{b(i,4)} \cdot u_{3}^{b(i,3)}$ or 
-$u_{10}^{b(i,10)} \cdot u_{9}^{b(i,9)} \cdot u_{8}^{b(i,8)}$ or 
-$u_{4}^{b(i,4)} \cdot u_{3}^{b(i,3)} \cdot u_{2}^{b(i,2)} \cdot u_{1}^{b(i,1)}$ are herein referred to as "doubles" or 
+Hence sub-products such as $\ \ u_4^{b(i,4)} \cdot u_{3}^{b(i,3)} \ \ $ or 
+$\ \ u_{10}^{b(i,10)} \cdot u_{9}^{b(i,9)} \cdot u_{8}^{b(i,8)}\ \ $ or 
+$\ \ u_{4}^{b(i,4)} \cdot u_{3}^{b(i,3)} \cdot u_{2}^{b(i,2)} \cdot u_{1}^{b(i,1)}\ \ $ are herein referred to as "doubles" or 
 "triples" or "quadruples", respectively.
 
 #### Defining Optimized Algorithms
@@ -750,14 +753,15 @@ then are next larger-sized sub-products computed, but consumption of the smalles
 ```text
 **Algorithm 1 or [A1]**
 
-initialize s[n] = [1,1,1, ... ,1];  
-initialize k = log_2(n);
+%initialize
+s[n] = [1,1,1, ... ,1];
+k = log_2(n);
 %running inside IPP
 int main() { 
-  ​  s[0] = u_k^{-1};  
+  ​  s[0] = u_k^{-1};
     s[2^{k-1}] = u_k;
 ​    s[2^{k-2}] = s[0]; 
-    s[3*2^{k-2}] = s[2^{k-1}]; 
+    s[3*2^{k-2}] = s[2^{k-1}];
 ​    t = k-3;
 ​    for (j = k - 1; j > t; j--) {
     ​    for (i = 0; i < n; i++) {
@@ -768,12 +772,12 @@ int main() {
          ​   } 
         } 
     } 
-    %if k-3 > 0, then the program proceeds as follows:  
+    %if k-3 > 0, then the program proceeds as follows:
 ​    s[1] = u_{k-3}^{-1}; 
     s[1+2^{k-4}] = u_{k-3}; 
 ​    s[1+2^{k-1}] = s[1]; 
     s[(1+2^{k-4})+2^{k-1}] = s[1+2^{k-4}]; 
-    %if k-4 > 0, then the program proceeds as follows:  
+    %if k-4 > 0, then the program proceeds as follows:
 ​    t = k-6; 
 ​    for (j = k-4; j > t; j--) {
 ​        for (i = 0; i < n; i++) {
@@ -781,12 +785,12 @@ int main() {
 ​                s[i] = s[i]*(u_j)^{b(i,j)}; 
 ​                l = i + 2^j;
 ​                s[l] = s[l]*(u_j^{b(l,j)};
-​            } 
-        } 
-    } 
-    % program continues forming new and distinct triples until k=1 
-    % after which all (2^k) "legal" k-tuples are formed 
-    return = 0; 
+​            }
+        }
+    }
+    % program continues forming new and distinct triples until k=1
+    % after which all (2^k) "legal" k-tuples are formed
+    return = 0;
 }
 ```
 
@@ -799,38 +803,44 @@ quadruples.
 ```text
 **Algorithm 2 or [A2]**
 
-initialize s[n] = [1,1,1, ... ,1];  
-initialize k = log_2(n) 
+%initialize
+s[n] = [1,1,1, ... ,1];
+k = log_2(n) 
 %running inside IPP
-int main(){ 
-​    s[0] = u_k^{-1};  s[2^{k-1}] = u_k;
-​    s[2^{k-2}] = s[0]; s[3*2^{k-2}] = s[2^{k-1}]; 
+int main() { 
+​    s[0] = u_k^{-1};
+    s[2^{k-1}] = u_k;
+​    s[2^{k-2}] = s[0];
+    s[3*2^{k-2}] = s[2^{k-1}];
 ​    t = k-4;
-​    for (j = k - 1; j > t; j--){
-​        for (i = 0; i < n; i++){
-​            if ( i mod 2^j == 0 ) { 
-​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
-​                l = i + 2^(j-1); 
-​                s[l] = s[l]*(u_j^{b(l,j)} ;
-​            } 
-        } 
-    } 
-%if k-4 > 0, then the program proceeds as follows:  
-​s[1] = u_{k-4}^{-1};  s[1+2^{k-4}] = u_{k-4};
-s[1+2^{k-1}] = s[1]; s[(1+2^{k-4})+(2^{k-1})] = s[1+2^{k-4}];  
-%if k-5 > 0, then the program proceeds as follows:  
-​t = k-8; 
-​for (j = k-5; j > t; j--){
-​        for (i = 0; i < n; i++){
-​            if ( i mod (1+2^(k-1) == 0 ) { 
-​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
-​                l = i + 2^j; 
-​                s[l] = s[l]*(u_j^{b(l,j)} ;
-​            } 
-} 
-​% program continues forming new and distinct quadruples until k=1 
-​% after which all (2^k) "legal" k-tuples are formed    
-return = 0;  
+​    for (j = k - 1; j > t; j--) {
+​        for (i = 0; i < n; i++) {
+​            if ( i mod 2^j == 0 ) {
+​                s[i] = s[i]*(u_j)^{b(i,j)};
+​                l = i + 2^(j-1);
+​                s[l] = s[l]*(u_j^{b(l,j)};
+​            }
+        }
+    }
+    %if k-4 > 0, then the program proceeds as follows:  
+    ​s[1] = u_{k-4}^{-1};
+    s[1+2^{k-4}] = u_{k-4};
+    s[1+2^{k-1}] = s[1];
+    s[(1+2^{k-4})+(2^{k-1})] = s[1+2^{k-4}];
+    %if k-5 > 0, then the program proceeds as follows:  
+    ​t = k-8; 
+    ​for (j = k-5; j > t; j--) {
+​        for (i = 0; i < n; i++) {
+​            if ( i mod (1+2^(k-1) == 0 ) {
+​                s[i] = s[i]*(u_j)^{b(i,j)};
+​                l = i + 2^j;
+​                s[l] = s[l]*(u_j^{b(l,j)};
+​            }
+        }
+    }
+    ​% program continues forming new and distinct quadruples until k=1
+    ​% after which all (2^k) "legal" k-tuples are formed
+    return = 0;  
 }
 ```
 
@@ -843,39 +853,44 @@ consuming the smallest existing "tuples".
 ```text
 **Algorithm 3 or [A3]**
 
-initialize s[n] = [1,1,1, ... ,1];  
-initialize k = log_2(n) 
+%initialize
+s[n] = [1,1,1, ... ,1];
+k = log_2(n);
 %running inside IPP
-int main(){ 
-​    s[0] = u_k^{-1};  s[2^{k-1}] = u_k;
-​    s[2^{k-2}] = s[0]; s[2^{k-1} + 2^{k-2}] = s[2^{k-1}]; 
+int main() {
+​    s[0] = u_k^{-1};
+    s[2^{k-1}] = u_k;
+​    s[2^{k-2}] = s[0];
+    s[2^{k-1} + 2^{k-2}] = s[2^{k-1}];
 ​    t = k-2;
-​    for (j = k - 1; j > t; j--){
-​        for (i = 0; i < n; i++){
-​            if ( i mod 2^j == 0 ) { 
-​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
-​                l = i + 2^(j-1); 
-​                s[l] = s[l]*(u_j^{b(l,j)} ;
+​    for (j = k - 1; j > t; j--) {
+​        for (i = 0; i < n; i++) {
+​            if ( i mod 2^j == 0 ) {
+​                s[i] = s[i]*(u_j)^{b(i,j)};
+​                l = i + 2^(j-1);
+​                s[l] = s[l]*(u_j^{b(l,j)};
 ​            } 
         } 
     } 
-%if k-2 > 0, then program proceeds as follows:  
-​s[1] = u_{k-2}^{-1};  s[1+2^{k-1}] = u_{k-2};
-​s[1+2^{k-2}] = s[1]; s[1+3*(2^{k-2})] = s[1+2^{k-1}]; 
-%if k-3 > 0, then the program proceeds as follows:   
-​t = k-3; 
-​for (j = k-3; j > t; j--){
-​        for (i = 0; i < n; i++){
-​            if ( i mod 1+2^(k-1) == 0 ) { 
-​                s[i] = s[i]*(u_j)^{b(i,j)} ; 
-​                l = i + 2^j; 
-​                s[l] = s[l]*(u_j^{b(l,j)} ;
-​            } 
-        } 
-} 
-% program continues forming new and distinct doubles until k=1 
-% after which all (2^k) "legal" k-tuples are formed 
-return = 0;  
+    %if k-2 > 0, then program proceeds as follows:  
+    ​s[1] = u_{k-2}^{-1};
+    s[1+2^{k-1}] = u_{k-2};
+    ​s[1+2^{k-2}] = s[1];
+    s[1+3*(2^{k-2})] = s[1+2^{k-1}];
+    %if k-3 > 0, then the program proceeds as follows:
+    ​t = k-3; 
+    ​for (j = k-3; j > t; j--) {
+​        for (i = 0; i < n; i++) {
+​            if ( i mod 1+2^(k-1) == 0 ) {
+​                s[i] = s[i]*(u_j)^{b(i,j)};
+​                l = i + 2^j;
+​                s[l] = s[l]*(u_j^{b(l,j)};
+​            }
+        }
+    }
+    % program continues forming new and distinct doubles until k=1 
+    % after which all (2^k) "legal" k-tuples are formed 
+    return = 0;  
 }
 ```
 
