@@ -256,7 +256,7 @@ respectively.
 
 
 
-<p align="center"><img src="sources/IPProof-prover-side-0.png" width="600" /></p>
+<p align="center"><img src="sources/IPProof-prover-side-10.png" width="600" /></p>
 <div align="center"><b>Figure 2: IP Proof - Prover Side </b></div> 
 
 
@@ -612,7 +612,11 @@ The proof of part (a) of this theorem follows by induction on the size  $n$  of 
 
 **Verifier's Test of the $\{ s_i \}$ values** : The verifier tests the correctness of the coefficients  $s_i$  with the following statement, 
 
-$$\ \ (s_{1} \cdot s_{n-1}  = u_1^2) \and (s_{2} \cdot s_{n-1}  = u_2^2) \and (s_{4} \cdot s_{n-1}  = u_3^2) \and\ \ ...\ \ \and (s_{2^{(k-1)}} \cdot s_{n-1}  = u_k^2)  \and \\ \ \ (s_0 \cdot s_{(n-1) - 2^{(0)}}  = u_1^{-2}) \and (s_0 \cdot s_{(n-1) - 2^{(1)}}  = u_2^{-2}) \and\ \ ...\ \ \and (s_0 \cdot s_{(n-1) - 2^{(k-1)}}  = u_k^{-2})  \and \\ \ \ ( s_{r_1} \cdot s_{(n-1) - {r_1}}  = 1_{\mathbb{F}_p} ) \and (s_{r_2} \cdot s_{(n-1) - {r_2}}  = 1_{\mathbb{F}_p}) \and (s_{r_3} \cdot s_{(n-1) - {r_3}}  = 1_{\mathbb{F}_p}) \and\ \ ...\ \ \and (s_{r_k} \cdot s_{(n-1) - r_k}  = 1_{\mathbb{F}_p})  $$
+$$
+(s_{1} \cdot s_{n-1}  = u_1^2) \land (s_{2} \cdot s_{n-1} = u_2^2) \land (s_{4} \cdot s_{n-1}  = u_3^2) \land\ \dots \ \land (s_{2^{(k-1)}} \cdot s_{n-1}  = u_k^2) \land \\\\ 
+(s_0 \cdot s_{(n-1) - 2^{(0)}}  = u_1^{-2}) \land (s_0 \cdot s_{(n-1) - 2^{(1)}}  = u_2^{-2}) \land\ \dots \ \land (s_0 \cdot s_{(n-1) - 2^{(k-1)}}  = u_k^{-2})  \land \\\\ 
+( s_{r_1} \cdot s_{(n-1) - {r_1}}  = 1_{\mathbb{F}\_p} ) \land (s_{r_2} \cdot s_{(n-1) - {r_2}}  = 1_{\mathbb{F}\_p}) \land (s_{r_3} \cdot s_{(n-1) - {r_3}}  = 1_{\mathbb{F}\_p}) \land\ \dots \ \land (s_{r_k} \cdot s_{(n-1) - r_k}  = 1_{\mathbb{F}\_p})  
+$$ 
 
 for randomly sampled values  $ \\{ r_1, r_2, ... , r_k \\} \subset \\{ 0, 1, 2, ... , n-1 \\} $  where  $k = log_2(n)$.
 
