@@ -401,10 +401,10 @@ of the verifier's challenges $u_j​$ needed to complete verification. The verif
 to compute $- L_j \cdot u_j^2 - R_j \cdot u^{-2}​$. Verifiable computation strategy is therefore applicable to the IPP, 
 where the verifier delegates inversion of challenges to the prover. 
 
-As Bowe et al. [[14]] proposed, in arithmetic circuits where a field inversion of a variable $u​$ can be computed, i.e. 
-$u^{p−2}​$, which would normally require $log(p)​$ multiplication constraints, the prover could witness $v = u^{− 1}​$ 
-instead [[3]]. The verifier could then simply check if $uv = 1​$, taking only a single multiplication constraint. 
-Thus one trades $log(p)​$ multiplication constraints for only one. 
+As Bowe et al. [[14]] proposed, in arithmetic circuits where a field inversion of a variable $u$ can be computed, i.e. 
+$u^{p−2}$, which would normally require $log(p)$ multiplication constraints, the prover could witness $v = u^{− 1}$ 
+instead [[3]]. The verifier could then simply check if $uv = 1$, taking only a single multiplication constraint. 
+Thus one trades $log(p)$ multiplication constraints for only one. 
 
 Therefore, to amortize some verification costs, the prover in the Bulletproofs IPP is requested to compute each $u_j^{- 1}$ 
 and send it to the verifier. That is in addition to values $L_j$ and $R_j$ for $j \in \{ 1, 2 , ... , log_2(n) \}$. 
