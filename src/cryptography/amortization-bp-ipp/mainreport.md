@@ -16,11 +16,11 @@
   - [Bulletproofs Inner-product Proof Verification](#bulletproofs-inner-product-proof-verification)
   - [Verifiable Computation](#verifiable-computation)
     - [Application 1 - Delegating Inversion of Verifier's Challenges](#application-1---delegating-inversion-of-verifiers-challenges)
-    - [Application 2 - Delegating Computation of $G_i$s Coefficient](#application-2---delegating-computation-of-g_is-coefficient)
-  - [Verifier's Test of Prover's $s_i$ Values](#verifiers-test-of-provers-s_i-values)
-    - [Properties of the $s_i​$ Values](#properties-of-the-s_i-values)
-    - [Test of the $s_i$ Values](#test-of-the-s_i-values)
-  - [Optimizing Prover's Computation of $\{ s_i \}$ Values](#optimizing-provers-computation-of--s_i--values)
+    - [Application 2 - Delegating Computation of $G_i$s Coefficients](#application-2---delegating-computation-of-g_is-coefficients)
+  - [Verifier's Test of $G_i$s Coefficients](#verifiers-test-of-g_is-coefficients)
+    - [Properties of the $G_i$s Coefficients](#properties-of-the-g_is-coefficients)
+    - [Test of the $G_i$s Coefficients](#test-of-the-g_is-coefficients)
+  - [Optimizing Prover's Computation of $G_i$s Coefficients](#optimizing-provers-computation-of-g_is-coefficients)
     - [Naive Algorithm](#naive-algorithm)
     - [Optimized Algorithms](#optimized-algorithms)
   - [Concluding Amortized Inner-product Proof](#concluding-amortized-inner-product-proof) 
@@ -420,7 +420,7 @@ of the elliptic curve group.
 
 As noted earlier, this amortization strategy reduces the verification costs by factor of $log(p)$. 
 
-#### Application 2 - Delegating Computation of $G_i$s Coefficient
+#### Application 2 - Delegating Computation of $G_i$s Coefficients
 
 Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )​$, one of the four initial 
 input vectors to the IPP. In verifying the prover's IPP, the verifier has to compute the vector 
@@ -437,9 +437,9 @@ properties that can be exploited in two ways:
 - Firstly, the verifier can use these properties to check if the $s_i$s were correctly computed by the prover.
 - Secondly, they can be used to minimize the prover's computational costs. 
 
-### Verifier's Test of Prover's $s_i$ Values
+### Verifier's Test of $G_i$s Coefficients
 
-#### Properties of the $s_i$ Values 
+#### Properties of the $G_i$s Coefficients
 
 Note that the verifier has to compute the values $u_j^2$  and  $u_j^{-2}$ for all $j \in \{ 1, 2, 3, ... , k \}$. The 
 idea here is to use a verifier's test that involves these squares of the challenges and their inverses. The next theorem 
@@ -459,7 +459,7 @@ is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , 
 The proof of part (a) of this theorem follows by induction on the size $n$ of the initial input vector 
 $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (b) and (c) follow by induction on $k$ . 
 
-#### Test of the $s_i$ Values
+#### Test of the $G_i$s Coefficients
 
 The verifier tests the correctness of the coefficients $s_i$ with the following statement: 
 
@@ -470,7 +470,7 @@ $$
 $$
 for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ... , n-1 \\} $ where $k = log_2(n)$.
 
-### Optimizing Prover's Computation of $\{ s_i \}$ Values
+### Optimizing Prover's Computation of $G_i$s Coefficients
 
 #### Naive Algorithm
 
