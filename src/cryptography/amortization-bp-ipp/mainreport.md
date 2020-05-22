@@ -139,7 +139,7 @@ zero-knowledge proofs.
 
 Before discussing recursive proofs or proof recursion, the recursive function concept and the efficiency of recursive 
 algorithms are briefly discussed. The IPP, as used in a Bulletproofs range proof, is given as an example of a 
-recursive algorithm. [Figure 1](#recursion-in-bulletproofs-inner-product-proof) shows the recursive nature of the IPP, 
+recursive algorithm. [Figure&nbsp;1](#fig_brf) shows the recursive nature of the IPP, 
 and will later be helpful in explaining some of Halo's amortization strategies. 
 
 ### Recursive Functions 
@@ -153,9 +153,9 @@ recursive function if $F(k) = F(k - 1) + g(k)$ for all  $0 < k \leq n$, where $g
 indeterminate. 
 
 A typical recursive function $F(j)​$ for $j \in \{ 0 , 1 , ... , n \} ​$ can be represented in terms of a flow chart, as
-shown in [Figure 1](#recursive-functions), depicting how values of the sequence $F(0) , F(1), ... , F(n)​$ are computed. 
+shown in [Figure&nbsp;1](#fig_brf), depicting how values of the sequence $F(0) , F(1), ... , F(n)​$ are computed. 
 
-<p align="center"><img src="sources/Basic-recursive-function.png" width="300" /></p>
+<p align="center"><a name="fig_brf"> </a><img src="sources/Basic-recursive-function.png" width="300" /></p>
 <div align="center"><b>Figure 1: Recursive Function Flow Chart</b></div> 
 
 In computer programming, algorithms that involve recursive functions are efficiently executed by the use of "for-loops" 
@@ -191,7 +191,7 @@ pairs of values $L_j​$ and $R_j​$, where $j \in \{ 1, 2, 3, ... , k \}​$.
 It is due to this recursion that Bootle et al. [[9]] reduced the previous complexity of zero-knowledge proofs from 
 $O(\sqrt{n})​$ to $O(log(n))​$. 
 
-Refer to [Figure 2](#recursion-in-bulletproofs-inner-product-proofs) for an overview of the prover's side of the IPP. 
+Refer to [Figure&nbsp;2](#fig_ipprs) for an overview of the prover's side of the IPP. 
 
 The input to the IP proof is the quadruple of size $ n = 2^k ​$ vectors 
 
@@ -235,10 +235,10 @@ $$
 
 respectively. 
 
-<p align="center"><img src="sources/IPProof-prover-side-0.png" width="550" /></p>
+<p align="center"><a name="fig_ipprs"> </a><img src="sources/IPProof-prover-side-10.png" width="450" /></p>
 <div align="center"><b>Figure 2: Inner-product Proof - Prover Side </b></div> 
 
-[Figure 2](#recursion-in-bulletproofs-inner-product-proofs) is included here not only to display the recursive nature of 
+[Figure&nbsp;2](#fig_ipprs) is included here not only to display the recursive nature of 
 the IPP, but will also be handy and pivotal in understanding amortization strategies that will be applied to the IPP. 
 
 ### Inductive Proofs 
@@ -249,10 +249,10 @@ iterative executions compute each instance of the recursive function. This is ve
 because the aim in blockchain validation is not to compute every instance, but to prove that the current instance was 
 correctly executed. 
 
-[Figure 3](#inductive-proofs) shows how instances of a recursive function are linked, and how each block in a blockchain 
+[Figure&nbsp;3](#fig_rfrb) shows how instances of a recursive function are linked, and how each block in a blockchain 
 is linked to the previous block via hash values. 
 
-<p align="center"><img src="sources/Recursive-funct-resembles-blockchain.png" width="650" /></p>
+<p align="center"><a name="fig_rfrb"> </a><img src="sources/Recursive-funct-resembles-blockchain.png" width="600" /></p>
 <div align="center"><b>Figure 3: Recursive Function Resembles Blockchain </b></div> 
 
 The amortization strategy used by recursive proof composition or proof recursion is based on the old but powerful 
@@ -273,7 +273,7 @@ These two steps together are sufficient to form a complete proof for the verifie
 even if the current instance is the zillionth. This saves the verifier the trouble of checking every instance of the 
 function  $F(n)$. 
 
-Michael Straka describes a similar inductive proof, which he refers to as "proof recursion"[[13]]. His explanation of 
+Michael Straka describes a similar inductive proof, which he refers to as "proof recursion" [[13]]. His explanation of 
 the simplest case that a recursive proof will prove a relation $\mathcal{R}$ inductively, is as follows: 
 
 The verifier has: 
@@ -283,9 +283,9 @@ The verifier has:
 - the proof $\pi_n$ for any $n>0$ will then prove that the prover knows $( x_n , w_n )$, such that $\mathcal{R}(x_n , w_n ) = 1$ 
 and that a proof $\pi_{n-1}$ was produced, attesting to the knowledge of $(x_{n−1} , w_{n−1})$. 
 
-[Figure 4](#inductive-proofs) illustrates the above proof: 
+[Figure&nbsp;4](#fig_prms) illustrates the above proof: 
 
-<p align="center"><img src="sources/proof-recursion-michaelStraka1.png" width="350" /></p>
+<p align="center"><a name="fig_prms"> </a><img src="sources/proof-recursion-michaelStraka1.png" width="350" /></p>
 <div align="center"><b>Figure 4: Proof Recursion Diagram [<a href="https://www.michaelstraka.com/posts/recursivesnarks/" title="Recursive Zero-knowledge 
 Proofs: A Comprehensive Primer">13</a>] </b></div>
 
@@ -359,9 +359,9 @@ $y = F(x)$ and $y' = F(x')$ is a witness to the verification circuit; and
 
 If the cost of checking the correctness of $\pi_{y,y'}$ is equivalent to invoking the operation $F$, then the verifier 
 will have collapsed the two instances $( x , y )$ and $( x' , y' )$ into a single fresh instance $( x'' , y'' )$, as 
-shown in [Figure 5](#nested-amortization). This is how the cost of invoking $F$ can be amortized. 
+shown in [Figure&nbsp;5](#fig_cc). This is how the cost of invoking $F$ can be amortized. 
 
-<p align="center"><img src="sources/Collapsing-computations-00.png" width="300" /></p>
+<p align="center"><a name="fig_cc"> </a><img src="sources/Collapsing-computations-00.png" width="300" /></p>
 <div align="center"><b>Figure 5: Collapsing Computations </b></div>
 
 
@@ -383,20 +383,20 @@ technology, where efficiency of zero-knowledge proof is pursued.
 
 Consider the Bulletproofs IPP, originally described by Bootle et al. [[9]], but following the Dalek's Bulletproofs 
 settings [[11]]. The IPP is no doubt recursive in the way in which it is executed. 
-[Figure 1](#recursion-in-bulletproofs-inner-product-proof) and [Figure 2](#bulletproofs-inner-product-proof-verification) 
+[Figure&nbsp;1](#fig_brf) and [Figure&nbsp;2](#fig_ipprs) 
 make this apparent. It is therefore the most relevant case study in amortizing verification costs, especially in the 
 context of recursive proofs. 
 
 Figure 6 shows a naive implementation of the verifier's side of the Bulletproofs IPP.  
 
-<p align="center"><img src="sources/IPProof-verifier-side-1.png" width="700" /></p>
+<p align="center"><a name="fig_bpippvs"> </a><img src="sources/IPProof-verifier-side-1.png" width="650" /></p>
 <div align="center"><b>Figure 6: Bulletproofs Inner-product Proof - Verifier Side </b></div>
 
 ### Verifiable Computation
 
 #### Application 1 - Delegating Inversion of Verifier's Challenges
 
-One of the details omitted from [Figure 6](#bulletproofs-inner-product-proof-verification) is the computation of inverses 
+One of the details omitted from [Figure&nbsp;6](#fig_bpippvs) is the computation of inverses 
 of the verifier's challenges $u_j​$ needed to complete verification. The verifier, for example, needs $u_j^{-2}​$ in order 
 to compute $- L_j \cdot u_j^2 - R_j \cdot u^{-2}​$. Verifiable computation strategy is therefore applicable to the IPP, 
 where the verifier delegates inversion of challenges to the prover. 
@@ -426,7 +426,7 @@ Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , 
 input vectors to the IPP. In verifying the prover's IPP, the verifier has to compute the vector 
 $\mathbf{s} = ( s_0 , s_1 , s_2 , ... , s_{(n-1)} )​$, where each $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ is the 
 so-called coefficient of $G_i​$, while $j \in \{ 1 , 2 , 3 , ... , k \}​$  with  $k = log_2(n)​$. Refer to 
-[Figure 6](#bulletproofs-inner-product-proof-verification). Note that
+[Figure&nbsp;6](#fig_bpippvs). Note that
 $$ b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases} ​$$
 determines whether the factor multiplied into  $s_i​$  is the verifier's challenge $u_j​$ or its inverse.  
 
@@ -475,7 +475,7 @@ for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ...
 #### Naive Algorithm
 
 The naively implemented computation of the coefficients $s_i$, as depicted in 
-[Figure 6](#bulletproofs-inner-product-proof-verification), is very expensive in terms of the number of multiplications. 
+[Figure&nbsp;6](#fig_bpippvs), is very expensive in terms of the number of multiplications. 
 
 The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
 by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th IPP round, running from $k = log_2(n)$ down 
@@ -545,11 +545,11 @@ they form them. Unlike the naive algorithm, which keeps spending multiplication 
 factors among the coefficients $s_i$, the optimized algorithm uses multiplication only if the new product formed is 
 unique. 
 
-[Table 1](#verifiable-computation---application-2) gives the multiplication cost of the naive algorithm together with 
+[Table 1](#tab_cmc) gives the multiplication cost of the naive algorithm together with 
 other four algorithms. The [Appendix](#appendices) contains full descriptions of these algorithms, which 
 are simply referred to as Naive Algorithm or [NA], Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and Algorithm 4 or [A4]. 
 
-<div align="center"><b>Table 1: Comparison of Multiplication Costs </b></div>  
+<div align="center"><a name="tab_cmc"> </a><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
 | Vector Size $n$ | [NA]   | [A1]   | [A2]   | [A3]   | [A4]   | Best Algo & <br> Savings % <br> Relative to [NA] |
 |--:--------------|--:-----|--:-----|--:-----|--:-----|--:-----|--:-----------------------------------------------|
