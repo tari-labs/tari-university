@@ -173,7 +173,9 @@ inner-products.
 The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}​$, $\mathbf{b}​$ and the 
 associated Pedersen commitment can be expressed as: 
 
-$$ P_k = \langle \mathbf{a} , \mathbf{G} \rangle + \langle \mathbf{b} , \mathbf{H} \rangle + \langle \mathbf{a} ,\mathbf{b} \rangle \cdot Q $$
+$$
+P_k = \langle \mathbf{a} , \mathbf{G} \rangle + \langle \mathbf{b} , \mathbf{H} \rangle + \langle \mathbf{a} ,\mathbf{b} \rangle \cdot Q 
+$$
 
 where $\mathbf{a}$ and $\mathbf{b}$ are size-$n$ vectors of scalars in the field $\mathbb{F}_p$, while $\mathbf{G}$ and 
 $\mathbf{H}$ are vectors of points in an elliptic curve $\mathbb{E} ( \mathbb{F}_p)$ and $k = log_2(n)$; refer to [[11]]. 
@@ -181,7 +183,9 @@ $\mathbf{H}$ are vectors of points in an elliptic curve $\mathbb{E} ( \mathbb{F}
 Recursion is seen in a $k-$round non-interactive IPP argument, where these commitments are written in terms of 
 challenges $u_k$ sent by the verifier: 
 
-$$ P_{k - 1} = P_k + L_k \cdot u_k^{2} + R_k \cdot u_k^{-2} ​$$ 
+$$
+P_{k - 1} = P_k + L_k \cdot u_k^{2} + R_k \cdot u_k^{-2}
+$$
 
 where $ L_k $ and $ R_k $ are specifically defined as linear combinations of inner-products of vectors that are half the 
 size of vectors in the $k - 1$ round. 
@@ -427,7 +431,11 @@ input vectors to the IPP. In verifying the prover's IPP, the verifier has to com
 $\mathbf{s} = ( s_0 , s_1 , s_2 , ... , s_{(n-1)} )​$, where each $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ is the 
 so-called coefficient of $G_i​$, while $j \in \{ 1 , 2 , 3 , ... , k \}​$  with  $k = log_2(n)​$. Refer to 
 [Figure&nbsp;6](#fig_bpippvs). Note that
-$$ b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases} ​$$
+
+$$
+b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases}
+$$
+
 determines whether the factor multiplied into  $s_i​$  is the verifier's challenge $u_j​$ or its inverse.  
 
 Computations of these coefficients can be delegated to the prover or some third party called "helper", henceforth 
@@ -456,8 +464,8 @@ is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , 
 
 1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
-The proof of part (a) of this theorem follows by induction on the size $n$ of the initial input vector 
-$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (b) and (c) follow by induction on $k$ . 
+The proof of part (1.) of this theorem follows by induction on the size $n$ of the initial input vector 
+$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2.) and (3.) follow by induction on $k$ . 
 
 #### Test of the $G_i$s Coefficients
 
@@ -468,6 +476,7 @@ $$
 (s_0 \cdot s_{(n-1) - 2^{(0)}}  = u_1^{-2}) \land (s_0 \cdot s_{(n-1) - 2^{(1)}}  = u_2^{-2}) \land\ \dots \ \land (s_0 \cdot s_{(n-1) - 2^{(k-1)}}  = u_k^{-2})  \land \\\\ 
 ( s_{r_1} \cdot s_{(n-1) - {r_1}}  = 1_{\mathbb{F}\_p} ) \land (s_{r_2} \cdot s_{(n-1) - {r_2}}  = 1_{\mathbb{F}\_p}) \land (s_{r_3} \cdot s_{(n-1) - {r_3}}  = 1_{\mathbb{F}\_p}) \land\ \dots \ \land (s_{r_k} \cdot s_{(n-1) - r_k}  = 1_{\mathbb{F}\_p})  
 $$
+
 for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ... , n-1 \\} $ where $k = log_2(n)$.
 
 ### Optimizing Prover's Computation of $G_i$s Coefficients
@@ -571,13 +580,13 @@ All four algorithms, [A1], [A2], [A3] and [A4], are fairly competent in saving m
 
 The above results indicate that algorithm [A1] is the best of the four for several reasons: 
 
-(a) It is the second most frequent winner in all 11 cases investigated, with a score of 7 out of 11.
+- It is the second most frequent winner in all 11 cases investigated, with a score of 7 out of 11.
 
-(b) In order to account for the other four cases; it takes second place twice and third place twice. 
+- In order to account for the other four cases; it takes second place twice and third place twice. 
 
-(c) It has the best savings percentage of 47.83\% relative to the naive algorithm.   
+- It has the best savings percentage of 47.83\% relative to the naive algorithm.   
 
-(d) The only case in which it is on par with the naive algorithm is when all other algorithms are on par, i.e. when 
+- The only case in which it is on par with the naive algorithm is when all other algorithms are on par, i.e. when 
 $n = 4$ and $n = 8$. 
 
 ### Concluding Amortized Inner-product Proof
@@ -729,9 +738,15 @@ IPP's $k-$th round.
 
 - Due to the algebraic structure of the sets of coefficients, they can be systematically computed. Note specifically 
 that each 
-  $$s_i\ \ =\ \ \prod\limits_{j = 1}^k u_j^{b(i,j)}\ \ =\ \ u_k^{b(i,k)} \cdot u_{k-1}^{b(i,k-1)} \cdot\ \ ...\ \ \cdot u_2^{b(i,2)} \cdot u_1^{b(i,1)} $$ 
-  corresponds to a $k-$tuple of field elements 
-  $$\Big( u_k^{b(i,k)}, u_{k-1}^{b(i,k-1)}, ... , u_2^{b(i,2)}, u_1^{b(i,1)}\Big)\ \ \in\ \ \mathbb{F}_p^k .$$ 
+  $$
+  s_i\ \ =\ \ \prod\limits_{j = 1}^k u_j^{b(i,j)}\ \ =\ \ u_k^{b(i,k)} \cdot u_{k-1}^{b(i,k-1)} \cdot\ \ ...\ \ \cdot u_2^{b(i,2)} \cdot u_1^{b(i,1)}
+  $$
+  
+  corresponds to a $k-$tuple of field elements
+  
+  $$
+  \Big( u_k^{b(i,k)}, u_{k-1}^{b(i,k-1)}, ... , u_2^{b(i,2)}, u_1^{b(i,1)}\Big)\ \ \in\ \ \mathbb{F}_p^k
+  $$
 
 Hence sub-products such as $\ \ u_4^{b(i,4)} \cdot u_{3}^{b(i,3)} \ \ $ or 
 $\ \ u_{10}^{b(i,10)} \cdot u_{9}^{b(i,9)} \cdot u_{8}^{b(i,8)}\ \ $ or 
@@ -908,7 +923,10 @@ The same pseudocode used for Algorithm 3 applies to Algorithm 4
 ##### Example 1 (Algorithm 1 or [A1]) 
 
 Let $n = 32​$ so that $k = 5​$. The coefficients $s_i​$ for $i \in {0, 1, 2, ... , 15}​$ are $32​$ quintets: 
-$$u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}​$$ 
+
+$$
+u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}
+​$$
 
 The number of multiplications per IPP round is given at the bottom of each column. The vector of coefficients is 
 initialized to $\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s\_{n-1} = 1 )$. 
@@ -916,41 +934,41 @@ Table 2 only displays the updated and computed values $s_i$ since the initializa
 
 <div align="center"><b>Table 2: Sub-products and their Multiplication Costs using Algorithm 1  </b></div>  
 
-| [A1] $\text{ for }$ $ n=2^5$ | j = 5      | j = 4                 | j = 3                            | j = 2      | j = 1               |
-| ----------------------- | ---------- | --------------------- | -------------------------------- | ---------- | ------------------- |
-| $s_0$                    | $u_5^{-1}$ | $u_5^{-1} \* u_4^{-1}$ | $u_5^{-1} \* u_4^{-1} \* u_3^{-1}$ |             |                     |
-| $s_1$                    |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1} \* u_1$ |
-| $s_2$                    |            |                       |                                  |            |                     |
-| $s_3$                    |            |                       |                                  | $u_2$      | $u_2 \* u_1^{-1}$     |
-| $s_4$                    |            |                       | $u_5^{-1} \* u_4^{-1} \* u_3$       |            |                     |
-| $s_5$                    |            |                       |                                  |            |                     |
-| $s_6$                    |            |                       |                                  |            |                     |
-| $s_7$                    |            |                       |                                  |            |                     |
-| $s_8$                    | $u_5^{-1}$ | $u_5^{-1} \* u_4$ | $u_5^{-1} \* u_4 \* u_3^{-1}$ |             |                     |
-| $s_9$                    |            |                       |                                  |            |     |
-| $s\_{10}$                 |            |                       |                                  |            |                     |
-| $s\_{11}$                 |            |                       |                                  |            |                     |
-| $s\_{12}$     |              |                 | $u_5^{-1} \* u_4 \* u_3$ |               |                    |
-| $s\_{13}$       |               |           |               |                |                 |
-| $s\_{14}$                 |            |                       |                                  |            |                     |
-| $s\_{15}$                 |            |                       |                                  |            |                     |
-| $s\_{16}$                 | $u_5$      | $u_5 \* u_4^{-1}$        | $u_5 \* u_4^{-1} \* u_3^{-1} $         |            |                     |
-| $s \_{17}$                 |            |                       |                                  | $u_2^{-1}$ | $u_2^{-1} \* u_1^{-1}$ |
-| $s\_{18}$                 |            |                       |                                  |            |                     |
-| $s\_{19}$                 |            |                       |                                  | $u_2$      | $u_2 \* u_1$           |
-| $s\_{20}$                 |            |                       | $ u_5 \* u_4^{-1} \* u_3$              |            |                     |
-| $s\_{21}$                 |            |                       |                                  |            |                     |
-| $s\_{22}$                 |            |                       |                                  |            |                     |
-| $s\_{23}$                 |            |                       |                                  |            |                     |
-| $s\_{24}$ | $u_5$ | $u_5 \* u_4 $ | $u_5 * u_4 * u_3^{-1} $ |  |  |
-| $s\_{25}$                 |            |                       |                                  |            |                     |
-| $s\_{26}$                 |            |                       |                                  |            |                     |
-| $s\_{27}$ |     |     |      |     |       |
-| $ s\_{28} $ |          |        | $u_5 * u_4 * u_3 $ |        |        |
-| $s\_{29}$                 |            |                       |                                  |            |                     |
-| $s\_{30}$                 |            |                       |                                  |            |                     |
-| $s\_{31}$                 |            |                       |                                  |            |                     |
-| mult. cost               | $0$        | $4$                   | $8$                              | $0$        | $4$                 |
+| [A1] $\text{ for }$ $ n=2^5$ | j = 5      | j = 4                  | j = 3                              | j = 2      | j = 1                  |
+|------------------------------|------------|------------------------|------------------------------------|------------|------------------------|
+| $s_0$                        | $u_5^{-1}$ | $u_5^{-1} \* u_4^{-1}$ | $u_5^{-1} \* u_4^{-1} \* u_3^{-1}$ |            |                        |
+| $s_1$                        |            |                        |                                    | $u_2^{-1}$ | $u_2^{-1} \* u_1$      |
+| $s_2$                        |            |                        |                                    |            |                        |
+| $s_3$                        |            |                        |                                    | $u_2$      | $u_2 \* u_1^{-1}$      |
+| $s_4$                        |            |                        | $u_5^{-1} \* u_4^{-1} \* u_3$      |            |                        |
+| $s_5$                        |            |                        |                                    |            |                        |
+| $s_6$                        |            |                        |                                    |            |                        |
+| $s_7$                        |            |                        |                                    |            |                        |
+| $s_8$                        | $u_5^{-1}$ | $u_5^{-1} \* u_4$      | $u_5^{-1} \* u_4 \* u_3^{-1}$      |            |                        |
+| $s_9$                        |            |                        |                                    |            |                        |
+| $s\_{10}$                    |            |                        |                                    |            |                        |
+| $s\_{11}$                    |            |                        |                                    |            |                        |
+| $s\_{12}$                    |            |                        | $u_5^{-1} \* u_4 \* u_3$           |            |                        |
+| $s\_{13}$                    |            |                        |                                    |            |                        |
+| $s\_{14}$                    |            |                        |                                    |            |                        |
+| $s\_{15}$                    |            |                        |                                    |            |                        |
+| $s\_{16}$                    | $u_5$      | $u_5 \* u_4^{-1}$      | $u_5 \* u_4^{-1} \* u_3^{-1} $     |            |                        |
+| $s \_{17}$                   |            |                        |                                    | $u_2^{-1}$ | $u_2^{-1} \* u_1^{-1}$ |
+| $s\_{18}$                    |            |                        |                                    |            |                        |
+| $s\_{19}$                    |            |                        |                                    | $u_2$      | $u_2 \* u_1$           |
+| $s\_{20}$                    |            |                        | $ u_5 \* u_4^{-1} \* u_3$          |            |                        |
+| $s\_{21}$                    |            |                        |                                    |            |                        |
+| $s\_{22}$                    |            |                        |                                    |            |                        |
+| $s\_{23}$                    |            |                        |                                    |            |                        |
+| $s\_{24}$                    | $u_5$      | $u_5 \* u_4 $          | $u_5 * u_4 * u_3^{-1} $            |            |                        |
+| $s\_{25}$                    |            |                        |                                    |            |                        |
+| $s\_{26}$                    |            |                        |                                    |            |                        |
+| $s\_{27}$                    |            |                        |                                    |            |                        |
+| $ s\_{28} $                  |            |                        | $u_5 * u_4 * u_3 $                 |            |                        |
+| $s\_{29}$                    |            |                        |                                    |            |                        |
+| $s\_{30}$                    |            |                        |                                    |            |                        |
+| $s\_{31}$                    |            |                        |                                    |            |                        |
+| mult. cost                   | $0$        | $4$                    | $8$                                | $0$        | $4$                    |
 
 At the end of the $k$ IPP rounds, there are $eight$ distinct triples and $four$ distinct doubles. These are sufficient to form 
 all the required $32$ quintets, and it takes exactly $32$ multiplications to form them all. 
