@@ -1,6 +1,5 @@
 
 
- 
 
 ## Appendix C: Proof of Theorem 1 
 
