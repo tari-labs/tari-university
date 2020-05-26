@@ -152,7 +152,7 @@ A function $F(x)$ that yields a sequence of values $ F(0) , F(1), ... , F(n)$ fo
 recursive function if $F(k) = F(k - 1) + g(k)$ for all  $0 < k \leq n$, where $g(x)$ is some function of $ x $, an 
 indeterminate. 
 
-A typical recursive function $F(j)​$ for $j \in \{ 0 , 1 , ... , n \} ​$ can be represented in terms of a flow chart, as
+A typical recursive function $F(j)​$ for $j \in \\{ 0 , 1 , ... , n \\} ​$ can be represented in terms of a flow chart, as
 shown in [Figure&nbsp;1](#fig_brf), depicting how values of the sequence $F(0) , F(1), ... , F(n)​$ are computed. 
 
 <p align="center"><a name="fig_brf"> </a><img src="sources/Basic-recursive-function.png" width="300" /></p>
@@ -191,7 +191,7 @@ where $ L_k $ and $ R_k $ are specifically defined as linear combinations of inn
 size of vectors in the $k - 1$ round. 
 
 In the IP proof, the prover convinces the verifier of the veracity of the commitment $P_k​$ by sending only $k = log(n)​$ 
-pairs of values $L_j​$ and $R_j​$, where $j \in \{ 1, 2, 3, ... , k \}​$.  
+pairs of values $L_j​$ and $R_j​$, where $j \in \\{ 1, 2, 3, ... , k \\}​$.  
 It is due to this recursion that Bootle et al. [[9]] reduced the previous complexity of zero-knowledge proofs from 
 $O(\sqrt{n})​$ to $O(log(n))​$. 
 
@@ -411,7 +411,7 @@ instead [[3]]. The verifier could then simply check if $uv = 1$, taking only a s
 Thus one trades $log(p)$ multiplication constraints for only one. 
 
 Therefore, to amortize some verification costs, the prover in the Bulletproofs IPP is requested to compute each $u_j^{- 1}$ 
-and send it to the verifier. That is in addition to values $L_j$ and $R_j$ for $j \in \{ 1, 2 , ... , log_2(n) \}$. 
+and send it to the verifier. That is in addition to values $L_j$ and $R_j$ for $j \in \\{ 1, 2 , ... , log_2(n) \\}$. 
 
 Worth noting is that the prover will have computed these inverses anyway, because they need them in "halving" of the 
 input vectors to the IPP. The delegation of inversion therefore comes with *no extra cost* to the prover. 
@@ -429,11 +429,11 @@ As noted earlier, this amortization strategy reduces the verification costs by f
 Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )​$, one of the four initial 
 input vectors to the IPP. In verifying the prover's IPP, the verifier has to compute the vector 
 $\mathbf{s} = ( s_0 , s_1 , s_2 , ... , s_{(n-1)} )​$, where each $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ is the 
-so-called coefficient of $G_i​$, while $j \in \{ 1 , 2 , 3 , ... , k \}​$  with  $k = log_2(n)​$. Refer to 
+so-called coefficient of $G_i​$, while $j \in \\{ 1 , 2 , 3 , ... , k \\}​$  with  $k = log_2(n)​$. Refer to 
 [Figure&nbsp;6](#fig_bpippvs). Note that
 
 $$
-b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases}
+b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}}  \\\  {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases}
 $$
 
 determines whether the factor multiplied into  $s_i​$  is the verifier's challenge $u_j​$ or its inverse.  
@@ -449,7 +449,7 @@ properties that can be exploited in two ways:
 
 #### Properties of the $G_i$s Coefficients
 
-Note that the verifier has to compute the values $u_j^2$  and  $u_j^{-2}$ for all $j \in \{ 1, 2, 3, ... , k \}$. The 
+Note that the verifier has to compute the values $u_j^2$  and  $u_j^{-2}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$. The 
 idea here is to use a verifier's test that involves these squares of the challenges and their inverses. The next theorem 
 entails such relationships between these squares and the coefficients $s_i$. 
 
@@ -979,5 +979,4 @@ The **total cost** of computing the coefficients for $n = 32$ using *Algorithm 1
 
 - <https://github.com/empiech007>
 - <https://github.com/hansieodendaal>
-- <https://github.com/anselld>
-  
+- <https://github.com/anselld> 
