@@ -170,7 +170,7 @@ of it.
 ### Recursion in Bulletproofs Inner-product Proof
 
 In Bulletproofs range proofs, a prover commits to a value $v$ and seeks to construct an IPP to the fact 
-that $v \in [ 0 , 2^n ) $. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
+that $v \in ( 0 , 2^n ) $. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
 inner-products. 
 
 The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}$, $\mathbf{b}$ and the 
@@ -286,9 +286,10 @@ the simplest case that a recursive proof will prove a relation $\mathcal{R}$ ind
 The verifier has: 
 
 - a “base” proof $\pi_0$, which attests to the prover knowing some input $( x_0 , w_0 )$, such that 
- $\mathcal{R}( x_0 ,w_0 ) = 1$. 
-- the proof $\pi_n$ for any $n>0$ will then prove that the prover knows $( x_n , w_n )$, such that $\mathcal{R}(x_n , w_n ) = 1$ 
-and that a proof $\pi_{n-1}$ was produced, attesting to the knowledge of $(x_{n−1} , w_{n−1})$. 
+  $\mathcal{R}( x_0 ,w_0 ) = 1$. 
+- the proof $\pi_n$ for any $n>0$ will then prove that the prover knows $( x_n , w_n )$, such that 
+  $\mathcal{R}(x_n , w_n ) = 1$ and that a proof $\pi_{n-1}$ was produced, attesting to the knowledge of 
+  $(x_{n−1} , w_{n−1})$. 
 
 [Figure&nbsp;4](#fig_prms) illustrates the above proof: 
 
@@ -389,10 +390,9 @@ technology, where efficiency of zero-knowledge proof is pursued.
 ### Bulletproofs Inner-product Proof Verification
 
 Consider the Bulletproofs IPP, originally described by Bootle et al. [[9]], but following the Dalek's Bulletproofs 
-settings [[11]]. The IPP is no doubt recursive in the way in which it is executed. 
-[Figure&nbsp;1](#fig_brf) and [Figure&nbsp;2](#fig_ipprs) 
-make this apparent. It is therefore the most relevant case study in amortizing verification costs, especially in the 
-context of recursive proofs. 
+settings [[11]]. The IPP is no doubt recursive in the way in which it is executed. [Figure&nbsp;1](#fig_brf) and 
+[Figure&nbsp;2](#fig_ipprs) make this apparent. It is therefore the most relevant case study in amortizing verification 
+costs, especially in the context of recursive proofs. 
 
 Figure 6 shows a naive implementation of the verifier's side of the Bulletproofs IPP.  
 
@@ -468,7 +468,8 @@ is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , 
 1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
 The proof of Part (1.) of Theorem 1 follows by induction on the size $n$ of the initial input vector 
-$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2.) and (3.) follow by induction on $k$ . Full details of the proof are captured in [Appendix B](#appendix-b-proof-of-theorem-1-and-its-preliminaries).
+$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2.) and (3.) follow by induction on $k$ . 
+Full details of the proof are captured in [Appendix B](#appendix-b-proof-of-theorem-1-and-its-preliminaries).
 
 
 
@@ -561,7 +562,8 @@ unique.
 
 [Table 1](#tab_cmc) gives the multiplication cost of the naive algorithm together with 
 other four algorithms. The [Appendix](#appendices) contains full descriptions of these algorithms, which 
-are simply referred to as Naive Algorithm or [NA], Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and Algorithm 4 or [A4]. 
+are simply referred to as Naive Algorithm or [NA], Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and 
+Algorithm 4 or [A4]. 
 
 <div align="center"><a name="tab_cmc"> </a><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
@@ -733,14 +735,16 @@ The basic approach to the formulation of efficient and cost-saving algorithms is
 
 - Each algorithm aims at reducing verification costs in terms of the number of multiplications. 
 
-- Each algorithm takes advantage of the fact that each coefficient has common sub-products with other $2^{k-2}$ coefficients. 
+- Each algorithm takes advantage of the fact that each coefficient has common sub-products with other $2^{k-2}$ 
+  coefficients. 
 
 - The intermediate values of the coefficients are not used anywhere in the IPP. Only the final values made up of all 
 $k$ factors $u_j^{b(i,j)}$. Hence their sub-products can be separately computed and only put together at the end of the 
 IPP's $k-$th round. 
 
 - Due to the algebraic structure of the sets of coefficients, they can be systematically computed. Note specifically 
-that each 
+  that each 
+  
   $$
   s_i\ \ =\ \ \prod\limits_{j = 1}^k u_j^{b(i,j)}\ \ =\ \ u_k^{b(i,k)} \cdot u_{k-1}^{b(i,k-1)} \cdot\ \ ...\ \ \cdot u_2^{b(i,2)} \cdot u_1^{b(i,1)}
   $$
@@ -814,9 +818,8 @@ int main() {
 
 ##### Algorithm 2
 
-This algorithm starts exactly like Algorithm 1, by forming only new and distinct doubles and turning 
-them into triples in the next immediate IPP round, but goes beyond the triples by immediately forming the next possible 
-quadruples.
+This algorithm starts exactly like Algorithm 1, by forming only new and distinct doubles and turning them into triples 
+in the next immediate IPP round, but goes beyond the triples by immediately forming the next possible quadruples.
 
 ```text
 **Algorithm 2 or [A2]**
@@ -914,9 +917,9 @@ int main() {
 
 ##### Algorithm 4
 
-This algorithm is the same as Algorithm 3 throughout the IPP rounds. However, at the end of the IPP 
-rounds, the program gives preference to the formation of all possible distinct quadruples. Larger-sized sub-products are then 
-computed by firstly consuming the largest existing "tuples". 
+This algorithm is the same as Algorithm 3 throughout the IPP rounds. However, at the end of the IPP rounds, the program 
+gives preference to the formation of all possible distinct quadruples. Larger-sized sub-products are then computed by 
+firstly consuming the largest existing "tuples". 
 
 ```text
 **Algorithm 4 or [A4]**
@@ -973,9 +976,8 @@ Table 2 only displays the updated and computed values $s_i$ since the initializa
 | $s\_{31}$                    |            |                        |                                    |            |                        |
 | mult. cost                   | $0$        | $4$                    | $8$                                | $0$        | $4$                    |
 
-At the end of the $k$ IPP rounds, there are $eight$ distinct triples and $four$ distinct doubles. 
-These are sufficient to form 
-all the required $32$ quintets, and it takes exactly $32$ multiplications to form them all. 
+At the end of the $k$ IPP rounds, there are $eight$ distinct triples and $four$ distinct doubles. These are sufficient 
+to form all the required $32$ quintets, and it takes exactly $32$ multiplications to form them all. 
 
 The **total cost** of computing the coefficients for $n = 32$ using *Algorithm 1* is $\mathbf{4 + 8 + 4 + 32 = 48}$.  
 
@@ -997,7 +999,7 @@ these are captured here in.
 The letters  $j$,  $k$  and  $ l$  denote non-negative integers unless otherwise stated. In addition, 
 $n = 2^k$, $ i \in \{ 0, 1, 2, ... , n-1 \}$, and  $j \in \{ 1, 2, ... , k \}$. 
 
-The multiplicative identity of the field  $\mathbb{F}_p$  is denoted by  $1_{\mathbb{F}_p}$. 
+The multiplicative identity of the field  $\mathbb{F}\_p$  is denoted by  $1\_{\mathbb{F}\_p}$. 
 
 The IPP verifier's  $j-$th challenge is denoted by  $u_j$  and its parity exponent is 
 defined by, 
@@ -1019,71 +1021,70 @@ mostly in tables of formulas.
 
 **Lemma 1**
 
-For an indeterminate  $x$ , we have  $ \ \ x^k - 1 = (x - 1)(x^{k-1} + x^{k-2} + ... + x + 1) .$ 
+For an indeterminate  $x$ , we have  $ \ \ x^k - 1 = (x - 1)(x^{k-1} + x^{k-2} + ... + x + 1)$ 
 
 
 
 **Corollary 1**
 
-(a) $ \ \ 2^k - 1\ \ =\ \ 2^{k-1} + 2^{k-2} + \dots + 2 + 1$. 
+1. $ \ \ 2^k - 1\ \ =\ \ 2^{k-1} + 2^{k-2} + \dots + 2 + 1$
 
-(b) $ \ \ 2^k - 1\ \ \geq\ \ 2^{k-1}\ \ $ for all $ k \geq 1$. 
+1. $ \ \ 2^k - 1\ \ \geq\ \ 2^{k-1}\ \ $ for all $ k \geq 1$
 
-(c) $ \ \ (2^l - 1) \text{ mod } 2^j = 2^{j-1} + 2^{j-2} + \dots +  2 + 1\ \ $  for any  $l \geq j$.
+1. $ \ \ (2^l - 1) \text{ mod } 2^j = 2^{j-1} + 2^{j-2} + \dots +  2 + 1\ \ $  for any  $l \geq j$
 
-(d) $ \ \ ((n - 1) - 2^{j-1}) \text{ mod } 2^j = 2^{j-2} + 2^{j-3} + \dots +  2 + 1 $.
+1. $ \ \ ((n - 1) - 2^{j-1}) \text{ mod } 2^j = 2^{j-2} + 2^{j-3} + \dots +  2 + 1 $
 
-(e) $ \ \ i\ \  =\ \ c_{l-1} \cdot 2^{l-1} + c_{l-2} \cdot 2^{l-2} + \dots + c_1 \cdot 2 + c_0\ \ $ for  $ l < k $ 
-and some  $ c_{l-i} \in \{ 0 , 1 \}$.
+1. $ \ \ i\ \  =\ \ c_{l-1} \cdot 2^{l-1} + c_{l-2} \cdot 2^{l-2} + \dots + c_1 \cdot 2 + c_0\ \ $ for  $ l < k $ 
+and some  $ c_{l-i} \in \{ 0 , 1 \}$
 
 
 
 **Lemma 2**
 
-(a) $ \ \ b(0,j) = -1 $. 
+1. $ \ \ b(0,j) = -1 $
 
-(b) $ \ \ b(1,1) = +1 $.
+1. $ \ \ b(1,1) = +1 $
 
-(c) $ \ \ b(n-2,1) = -1 $.
+1. $ \ \ b(n-2,1) = -1 $
 
-(d) $ \ \ b(1,j) = -1 ,\ \ \forall\ \ j > 1 $.
+1. $ \ \ b(1,j) = -1 ,\ \ \forall\ \ j > 1 $
 
-(e) $ \ \ b(n-1,j) = +1 $.
+1. $ \ \ b(n-1,j) = +1 $
 
-(f) $ \ \ b(n-2,j) = +1 ,\ \ \forall\ \ j > 1 $.
+1. $ \ \ b(n-2,j) = +1 ,\ \ \forall\ \ j > 1 $
 
-(g) $ \ \ b( 2^j , j ) = -1  $.
+1. $ \ \ b( 2^j , j ) = -1  $
 
-(h) $ \ \ b( 2^{j-1} , j ) = +1 $. 
+1. $ \ \ b( 2^{j-1} , j ) = +1 $
 
-(i) $ \ \ b(2^l,j) = -1,\ \ \forall\ \ l < j-1  $.
+1. $ \ \ b(2^l,j) = -1,\ \ \forall\ \ l < j-1  $
 
-(j) $  \ \ b(2^l,j) = -1,\ \ \forall\ \ l > j $.
+1. $  \ \ b(2^l,j) = -1,\ \ \forall\ \ l > j $
 
-(k) $ \ \ b((n-1)-2^{j-1}, j) = -1 $.
+1. $ \ \ b((n-1)-2^{j-1}, j) = -1 $
 
 
 
 **Corollary 2** 
 
-(a) $ \ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $.  
+1. $ \ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $
 
-(b) $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \text{ for all }  i \text{ and for all  }  j $.  
+1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \text{ for all }  i \text{ and for all  }  j $
 
-(c) $ \ \ b( 2^{j-1} , j ) = b(n-1,j)\ \ \text{ for all } j $ . 
+1. $ \ \ b( 2^{j-1} , j ) = b(n-1,j)\ \ \text{ for all } j $
 
-(d) $ \ \ b(0,j) = b((n-1)-2^{j-1}, j)\ \ \text{ for all } j $. 
+1. $ \ \ b(0,j) = b((n-1)-2^{j-1}, j)\ \ \text{ for all } j $
 
 ***Proof of Corollary 2, Part (b)***
 
 By induction on  $k$ , where  $j \in \{ 1, 2, 3, \dots , k \} $. 
 
-For  $j = 1$  where  $ i $  is *even*:  Note that  $ i \text{ mod } 2^1  = 0 < 2^0 = 1 $ ,  and thus  
-$ b(i,1) = -1 $. On the other hand  $ ((n-1)-i)$  is *odd*, hence  $ ((n-1)-i) \text{ mod } 2^1 = 1 = 2^0 $. 
-So that  $ b((n-1)-i, j) = +1 $ . 
+For  $j = 1$  where  $ i $  is *even*:  Note that  $ i \text{ mod } 2^1  = 0 < 2^0 = 1 $ ,  and thus $ b(i,1) = -1 $. 
+On the other hand  $ ((n-1)-i)$  is *odd*, hence  $ ((n-1)-i) \text{ mod } 2^1 = 1 = 2^0 $, so that $ b((n-1)-i, j) = +1 $.
 
 For  $j = 1$  where  $ i $  is *odd*:  Similarly  $ i \text{ mod } 2^1  = 1 = 2^0 $ and  $ b(i,1) = +1 $ . 
-Since  $  ((n-1)-i) $  is *even*,  $ ((n-1)-i) \text{ mod } 2^1 = 0 < 2^0 $. And therefore  $ b((n-1)-i, j) = -1 $. 
+Since  $  ((n-1)-i) $  is *even*,  $ ((n-1)-i) \text{ mod } 2^1 = 0 < 2^0 $, and therefore  $ b((n-1)-i, j) = -1 $. 
 
 This proves the base case. i.e.,  $ b(i,1) = (-1) \cdot b((n-1)-i, j) $. 
 
@@ -1102,7 +1103,7 @@ $  b(i, j) = -1 $. Then  $ c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots
 which means  $ c_{j-1}  = 0 $. This also implies $  ((n-1)-i) \text{ mod } 2^j \geq 2^{j-1} $.  Hence  $ b((n-1)-i) = +1 $. 
 Again, the converse argument here follows the reverse argument. 
 
-The above two cases prove the inductive step. i.e., $  b(i, j) = (-1) \cdot b((n-1)-i) $.  $ \ \ \Box $
+The above two cases prove the inductive step. i.e., $  b(i, j) = (-1) \cdot b((n-1)-i) $.
 
 
 
@@ -1115,17 +1116,17 @@ Let  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  be the coefficient of  $G_i$  
 of the initial IPP input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$.  
 Then, 
 
-1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}_p}\ \ $ for all $i \in \{ 0, 1, 2, ... , n-1 \}$.
+1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}_p}\ \ $ for all $i \in \{ 0, 1, 2, ... , n-1 \}$
 
-2.	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u_j^2\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$.
+1.	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u_j^2\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$
 
-3.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u_j^{-2}\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$.
+1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u_j^{-2}\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$
 
 
 
 **Proof** 
 
-1. By induction on  $n$ , where  $ i \in \{ 0, 1, 2, \dots , n-1 \} $.  
+1. By induction on  $n$ , where  $ i \in \{ 0, 1, 2, \dots , n-1 \} $.
 
    For  $ i = 0 $. By Part (a)  of  Corollary 2,  $\ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $ . 
    But this holds true *if and only if*  $ \  \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} $. 
@@ -1142,9 +1143,9 @@ Then,
    $\ \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} .$  It therefore follows that 
    $  s_i \cdot s\_{(n-1)-i} = 1\_{\mathbb{F}_p} \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} = 1\_{\mathbb{F}_p} \cdot 1\_{\mathbb{F}_p} = 1\_{\mathbb{F}_p}$. 
 
-2. This part follows readily from  Part (c)  of  Corollary 2.      
+1. This part follows readily from  Part (c)  of  Corollary 2.      
 
-3. This part also follows readily from  Part (d)  of  Corollary 2. $ \ \ \Box$ 
+1. This part also follows readily from  Part (d)  of  Corollary 2.
 
 
 
