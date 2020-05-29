@@ -27,15 +27,18 @@
 - [Application to Tari Blockchain](#application-to-tari-blockchain) 
 - [References](#references)
 - [Appendices](#appendices)
-  - [Appendix A: Naive Algorithms](#appendix-a-naive-algorithms) 
-  - [Appendix B: Optimized Algorithms](#appendix-b-optimized-algorithms)
+  - [Appendix A: Optimized Algorithms](#appendix-a-optimized-algorithms) 
     - [Basic Approach](#basic-approach)
     - [Defining Optimized Algorithms](#defining-optimized-algorithms)
       - [Algorithm 1](#algorithm-1)
       - [Algorithm 2](#algorithm-2)
       - [Algorithm 3](#algorithm-3)
       - [Algorithm 4](#algorithm-4)
-      - [Example 1 (Algorithm 1 or [A1])](#example-1-algorithm-1-or-a1)
+      - [Example 1 (Algorithm 1 or [A1])](#example-1-algorithm-1-or-a1) 
+  - [Appendix B: Proof of Theorem 1 and its Preliminaries](#appendix-b-proof-of-theorem-1-and-its-preliminaries) 
+    - [Notation and Definitions](#notation-and-definitions) 
+    - [Preliminary Lemmas and Corollaries](#preliminary-lemmas-and-corollaries) 
+    - [Proof of Theorem 1](#proof-of-theorem-1) 
 - [Contributors](#contributors)
 
 ## Introduction 
@@ -152,8 +155,8 @@ A function $F(x)$ that yields a sequence of values $ F(0) , F(1), ... , F(n)$ fo
 recursive function if $F(k) = F(k - 1) + g(k)$ for all  $0 < k \leq n$, where $g(x)$ is some function of $ x $, an 
 indeterminate. 
 
-A typical recursive function $F(j)​$ for $j \in \\{ 0 , 1 , ... , n \\} ​$ can be represented in terms of a flow chart, as
-shown in [Figure&nbsp;1](#fig_brf), depicting how values of the sequence $F(0) , F(1), ... , F(n)​$ are computed. 
+A typical recursive function $F(j)$ for $j \in \\{ 0 , 1 , ... , n \\} $ can be represented in terms of a flow chart, as
+shown in [Figure&nbsp;1](#fig_brf), depicting how values of the sequence $F(0) , F(1), ... , F(n)$ are computed. 
 
 <p align="center"><a name="fig_brf"> </a><img src="sources/Basic-recursive-function.png" width="300" /></p>
 <div align="center"><b>Figure 1: Recursive Function Flow Chart</b></div> 
@@ -166,11 +169,11 @@ of it.
 
 ### Recursion in Bulletproofs Inner-product Proof
 
-In Bulletproofs range proofs, a prover commits to a value $v​$ and seeks to construct an IPP to the fact 
-that $v \in [ 0 , 2^n ) ​$. Pedersen commitments are used to keep the value of $v​$ confidential, and are expressed as 
+In Bulletproofs range proofs, a prover commits to a value $v$ and seeks to construct an IPP to the fact 
+that $v \in [ 0 , 2^n ) $. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
 inner-products. 
 
-The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}​$, $\mathbf{b}​$ and the 
+The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}$, $\mathbf{b}$ and the 
 associated Pedersen commitment can be expressed as: 
 
 $$
@@ -190,14 +193,14 @@ $$
 where $ L_k $ and $ R_k $ are specifically defined as linear combinations of inner-products of vectors that are half the 
 size of vectors in the $k - 1$ round. 
 
-In the IP proof, the prover convinces the verifier of the veracity of the commitment $P_k​$ by sending only $k = log(n)​$ 
-pairs of values $L_j​$ and $R_j​$, where $j \in \\{ 1, 2, 3, ... , k \\}​$.  
+In the IP proof, the prover convinces the verifier of the veracity of the commitment $P_k$ by sending only $k = log(n)$ 
+pairs of values $L_j$ and $R_j$, where $j \in \\{ 1, 2, 3, ... , k \\}$.  
 It is due to this recursion that Bootle et al. [[9]] reduced the previous complexity of zero-knowledge proofs from 
-$O(\sqrt{n})​$ to $O(log(n))​$. 
+$O(\sqrt{n})$ to $O(log(n))$. 
 
 Refer to [Figure&nbsp;2](#fig_ipprs) for an overview of the prover's side of the IPP. 
 
-The input to the IP proof is the quadruple of size $ n = 2^k ​$ vectors 
+The input to the IP proof is the quadruple of size $ n = 2^k $ vectors 
 
 $$
 \big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)​
@@ -209,13 +212,13 @@ $$
 \big( \mathbf{a} , \mathbf{b} , \mathbf{G} , \mathbf{H} \big) ​
 $$
 
-However, when $j < k​$, the input is updated to 
+However, when $j < k$, the input is updated to 
 
 $$
 \big(\mathbf{a}^{(j-1)}, \mathbf{b}^{(j-1)}, \mathbf{G}^{(j-1)},\mathbf{H}^{(j-1)} \big)​
 $$
 
-quadruple vectors each of size $2^{k-1}​$, where 
+quadruple vectors each of size $2^{k-1}$, where 
 
 $$
 \mathbf{a}^{(j-1)} = \mathbf{a}\_{lo} \cdot u\_j + \mathbf{a}\_{hi} \cdot u\_j^{-1} ​\\\\ 
@@ -224,7 +227,7 @@ $$
 \mathbf{H}^{(j-1)} = \mathbf{H}\_{lo} \cdot u\_j  + \mathbf{H}\_{hi} \cdot u\_j^{-1} \\\\ 
 $$
 
-and $u_k​$ is the verifier's challenge. The vectors
+and $u_k$ is the verifier's challenge. The vectors
 
 $$
 \mathbf{a}\_{lo}, \mathbf{b}\_{lo}, \mathbf{G}\_{lo}, \mathbf{H}\_{lo}​ \\\\
@@ -270,8 +273,8 @@ two steps:
 
 - (Base step): Prove that the first possible instance $F(0)$ is correct. 
 
-- (Inductive step): For any integer $ k > 0 ​$, prove that "if the previous instance $F(k - 1)​$ is correct, then the 
-current instance $F(k)​$ is also correct", i.e. "$F(k - 1)​$ is correct" implies "$F(k)​$ is also correct". 
+- (Inductive step): For any integer $ k > 0 $, prove that "if the previous instance $F(k - 1)$ is correct, then the 
+current instance $F(k)$ is also correct", i.e. "$F(k - 1)$ is correct" implies "$F(k)$ is also correct". 
 
 These two steps together are sufficient to form a complete proof for the verifier to be convinced. Such a proof is valid 
 even if the current instance is the zillionth. This saves the verifier the trouble of checking every instance of the 
@@ -295,8 +298,8 @@ Proofs: A Comprehensive Primer">13</a>] </b></div>
 
 
 Straka continues to explain how an arithmetic circuit for the verifier could be built in order to carry out the above 
-proof. Such a circuit $\mathcal{C}​$ would either verify $\mathcal{R}( x_0 , w_0 ) = 1​$ (for the base case) or 
-verify $\mathcal{R}( x_i , w_i ) = 1​$ and then check $\mathcal{V}( x_{i - 1} , π_{i−1} ) = 1​$ [[13]].
+proof. Such a circuit $\mathcal{C}$ would either verify $\mathcal{R}( x_0 , w_0 ) = 1$ (for the base case) or 
+verify $\mathcal{R}( x_i , w_i ) = 1$ and then check $\mathcal{V}( x_{i - 1} , π_{i−1} ) = 1$ [[13]].
 
 Proof systems that use this type of inductive proof for verification solve the blockchain's distributed validation 
 problem. A participant in the blockchain network  only needs to download the current state of the network as well as a 
@@ -401,8 +404,8 @@ Figure 6 shows a naive implementation of the verifier's side of the Bulletproofs
 #### Application 1 - Delegating Inversion of Verifier's Challenges
 
 One of the details omitted from [Figure&nbsp;6](#fig_bpippvs) is the computation of inverses 
-of the verifier's challenges $u_j​$ needed to complete verification. The verifier, for example, needs $u_j^{-2}​$ in order 
-to compute $- L_j \cdot u_j^2 - R_j \cdot u^{-2}​$. Verifiable computation strategy is therefore applicable to the IPP, 
+of the verifier's challenges $u_j$ needed to complete verification. The verifier, for example, needs $u_j^{-2}$ in order 
+to compute $- L_j \cdot u_j^2 - R_j \cdot u^{-2}$. Verifiable computation strategy is therefore applicable to the IPP, 
 where the verifier delegates inversion of challenges to the prover. 
 
 As Bowe et al. [[14]] proposed, in arithmetic circuits where a field inversion of a variable $u$ can be computed, i.e. 
@@ -426,17 +429,17 @@ As noted earlier, this amortization strategy reduces the verification costs by f
 
 #### Application 2 - Delegating Computation of $G_i$s Coefficients
 
-Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )​$, one of the four initial 
+Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$, one of the four initial 
 input vectors to the IPP. In verifying the prover's IPP, the verifier has to compute the vector 
-$\mathbf{s} = ( s_0 , s_1 , s_2 , ... , s_{(n-1)} )​$, where each $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ is the 
-so-called coefficient of $G_i​$, while $j \in \\{ 1 , 2 , 3 , ... , k \\}​$  with  $k = log_2(n)​$. Refer to 
+$\mathbf{s} = ( s_0 , s_1 , s_2 , ... , s_{(n-1)} )$, where each $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ is the 
+so-called coefficient of $G_i$, while $j \in \\{ 1 , 2 , 3 , ... , k \\}$  with  $k = log_2(n)$. Refer to 
 [Figure&nbsp;6](#fig_bpippvs). Note that
 
 $$
 b(i,j) = \begin{cases} {-1} & {\text{if}\ \  (i\ \ mod\ \ 2^j) < 2^{j-1}}  \\\  {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq  2^{j-1}} \end{cases}
 $$
 
-determines whether the factor multiplied into  $s_i​$  is the verifier's challenge $u_j​$ or its inverse.  
+determines whether the factor multiplied into  $s_i$  is the verifier's challenge $u_j$ or its inverse.  
 
 Computations of these coefficients can be delegated to the prover or some third party called "helper", henceforth 
 referred to as the prover. Since each of these coefficients is a product of field elements, they have strong algebraic 
@@ -453,19 +456,21 @@ Note that the verifier has to compute the values $u_j^2$  and  $u_j^{-2}$ for al
 idea here is to use a verifier's test that involves these squares of the challenges and their inverses. The next theorem 
 entails such relationships between these squares and the coefficients $s_i$. 
 
-**Theorem 1 [Some properties of the set of coefficients $\{ s_i \}​$]** 
+**Theorem 1 [Some properties of the set of coefficients $\{ s_i \}$]** 
 
 Let $n = 2^k$ and $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$ where each $G_i$ 
 is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$, then: 
 
-1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}​$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}​$.
+1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}$.
 
 1.	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u\_j^2 $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$.
 
 1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
-The proof of part (1.) of this theorem follows by induction on the size $n$ of the initial input vector 
-$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2.) and (3.) follow by induction on $k$ . 
+The proof of Part (1.) of Theorem 1 follows by induction on the size $n$ of the initial input vector 
+$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2.) and (3.) follow by induction on $k$ . Full details of the proof are captured in [Appendix B](#appendix-b-proof-of-theorem-1-and-its-preliminaries).
+
+
 
 #### Test of the $G_i$s Coefficients
 
@@ -592,11 +597,11 @@ $n = 4$ and $n = 8$.
 ### Concluding Amortized Inner-product Proof
 
 The amortization strategies herein applied to the Bulletproofs IPP are tangible and significantly enhance the proof. 
-With the above amortization of the IPP, the prover sends $3log_2(n) + n​$ IPP elements, i.e. the set of all $log_2(n)​$ 
-triples $L_j​$, $R_j​$ and $u^{-1}​$ as well as the $n​$ coefficients $s_i​$s. 
+With the above amortization of the IPP, the prover sends $3log_2(n) + n$ IPP elements, i.e. the set of all $log_2(n)$ 
+triples $L_j$, $R_j$ and $u^{-1}$ as well as the $n$ coefficients $s_i$s. 
 
 The given verifier's test of the coefficients and the optimization of their computations solidify the proposed 
-amortization of the IPP. Given the Bulletproofs setting, that a vector of size $n​$ refers to $n​$ number of 32-byte 
+amortization of the IPP. Given the Bulletproofs setting, that a vector of size $n$ refers to $n$ number of 32-byte 
 values, even seemingly small savings are significant. 
 
 ## Application to Tari Blockchain 
@@ -608,8 +613,8 @@ The amortized IPP as discussed above does not veer off the Dalek's Bulletproofs 
 blockchain. 
 
 These amortization strategies, though minimal in the changes they bring into the IPP to which we are accustomed, have 
-huge savings for the verification costs, cutting down on the number of multiplications by a factor of $log(p)​$, where 
-the prime $p​$ is deliberately chosen to be very large. 
+huge savings for the verification costs, cutting down on the number of multiplications by a factor of $log(p)$, where 
+the prime $p$ is deliberately chosen to be very large. 
 
 The amortized IPP lends itself to implementations of any zero-knowledge proof that involves inner-products, especially 
 in the Bulletproofs framework. 
@@ -712,14 +717,12 @@ without a Trusted Setup"
 
 # Appendices
 
-## Appendix A: Naive Algorithms
+## Appendix A: Optimized Algorithms 
 
-The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}​$ 
-by cumulatively multiplying the correct factor $u_j^{b(i,j)}​$ in each $j-​$th round of the IPP, running from 
-$k = log_2(n)​$ to $1​$. 
+The naive algorithm codes computation of the coefficients $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ 
+by cumulatively multiplying the correct factor $u_j^{b(i,j)}$ in each $j-$th round of the IPP, running from 
+$k = log_2(n)$ to $1$. 
 
-
-## Appendix B: Optimized Algorithms
 
 This appendix contains details of the algorithms investigated to optimize computations of the coefficients 
 $\{ s_i \}$ of $G_i$ the component of the vector input to the IPP, $\mathbf{G} = (G_0 , G_1 , G_2 , ... , G_{n-1})$. 
@@ -922,11 +925,11 @@ The same pseudocode used for Algorithm 3 applies to Algorithm 4
 ```
 ##### Example 1 (Algorithm 1 or [A1]) 
 
-Let $n = 32​$ so that $k = 5​$. The coefficients $s_i​$ for $i \in {0, 1, 2, ... , 15}​$ are $32​$ quintets: 
+Let $n = 32$ so that $k = 5$. The coefficients $s_i$ for $i \in {0, 1, 2, ... , 15}$ are $32$ quintets: 
 
 $$
 u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}
-​$$
+$$
 
 The number of multiplications per IPP round is given at the bottom of each column. The vector of coefficients is 
 initialized to $\mathbf{s} = ( s_0 = 1, s_1 = 1, s_2 = 1, ... , s\_{n-1} = 1 )$. 
@@ -970,10 +973,180 @@ Table 2 only displays the updated and computed values $s_i$ since the initializa
 | $s\_{31}$                    |            |                        |                                    |            |                        |
 | mult. cost                   | $0$        | $4$                    | $8$                                | $0$        | $4$                    |
 
-At the end of the $k$ IPP rounds, there are $eight$ distinct triples and $four$ distinct doubles. These are sufficient to form 
+At the end of the $k$ IPP rounds, there are $eight$ distinct triples and $four$ distinct doubles. 
+These are sufficient to form 
 all the required $32$ quintets, and it takes exactly $32$ multiplications to form them all. 
 
 The **total cost** of computing the coefficients for $n = 32$ using *Algorithm 1* is $\mathbf{4 + 8 + 4 + 32 = 48}$.  
+
+
+
+## Appendix B: Proof of Theorem 1 and its Preliminaries 
+
+
+
+The proof of **Theorem 1** makes use of a few basic properties of the parity values  $b(i,j)$, and 
+
+these are captured here in. 
+
+
+
+
+### Notation and Definitions
+
+The letters  $j$,  $k$  and  $ l$  denote non-negative integers unless otherwise stated. In addition, 
+$n = 2^k$, $ i \in \{ 0, 1, 2, ... , n-1 \}$, and  $j \in \{ 1, 2, ... , k \}$. 
+
+The multiplicative identity of the field  $\mathbb{F}_p$  is denoted by  $1_{\mathbb{F}_p}$. 
+
+The IPP verifier's  $j-$th challenge is denoted by  $u_j$  and its parity exponent is 
+defined by, 
+$b(i,j) = \begin{cases} {-1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq 2^{j-1}} \end{cases} $  
+
+
+
+
+### Preliminary Lemmas and Corollaries 
+
+Details of preliminary results needed to complete the proof of Theorem 1 are detailed and 
+captured here in the form of lemmas and corollaries. 
+
+Proofs of these lemmas and their corollaries follow readily from the definition of the 
+parity exponent  $b(i,j)$  of verifier challenges and their multiplicative inverses. 
+
+The next lemma is a well-known fact entailed in undergraduate Mathematics text books, 
+mostly in tables of formulas.  
+
+**Lemma 1**
+
+For an indeterminate  $x$ , we have  $ \ \ x^k - 1 = (x - 1)(x^{k-1} + x^{k-2} + ... + x + 1) .$ 
+
+
+
+**Corollary 1**
+
+(a) $ \ \ 2^k - 1\ \ =\ \ 2^{k-1} + 2^{k-2} + \dots + 2 + 1$. 
+
+(b) $ \ \ 2^k - 1\ \ \geq\ \ 2^{k-1}\ \ $ for all $ k \geq 1$. 
+
+(c) $ \ \ (2^l - 1) \text{ mod } 2^j = 2^{j-1} + 2^{j-2} + \dots +  2 + 1\ \ $  for any  $l \geq j$.
+
+(d) $ \ \ ((n - 1) - 2^{j-1}) \text{ mod } 2^j = 2^{j-2} + 2^{j-3} + \dots +  2 + 1 $.
+
+(e) $ \ \ i\ \  =\ \ c_{l-1} \cdot 2^{l-1} + c_{l-2} \cdot 2^{l-2} + \dots + c_1 \cdot 2 + c_0\ \ $ for  $ l < k $ 
+and some  $ c_{l-i} \in \{ 0 , 1 \}$.
+
+
+
+**Lemma 2**
+
+(a) $ \ \ b(0,j) = -1 $. 
+
+(b) $ \ \ b(1,1) = +1 $.
+
+(c) $ \ \ b(n-2,1) = -1 $.
+
+(d) $ \ \ b(1,j) = -1 ,\ \ \forall\ \ j > 1 $.
+
+(e) $ \ \ b(n-1,j) = +1 $.
+
+(f) $ \ \ b(n-2,j) = +1 ,\ \ \forall\ \ j > 1 $.
+
+(g) $ \ \ b( 2^j , j ) = -1  $.
+
+(h) $ \ \ b( 2^{j-1} , j ) = +1 $. 
+
+(i) $ \ \ b(2^l,j) = -1,\ \ \forall\ \ l < j-1  $.
+
+(j) $  \ \ b(2^l,j) = -1,\ \ \forall\ \ l > j $.
+
+(k) $ \ \ b((n-1)-2^{j-1}, j) = -1 $.
+
+
+
+**Corollary 2** 
+
+(a) $ \ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $.  
+
+(b) $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \text{ for all }  i \text{ and for all  }  j $.  
+
+(c) $ \ \ b( 2^{j-1} , j ) = b(n-1,j)\ \ \text{ for all } j $ . 
+
+(d) $ \ \ b(0,j) = b((n-1)-2^{j-1}, j)\ \ \text{ for all } j $. 
+
+***Proof of Corollary 2, Part (b)***
+
+By induction on  $k$ , where  $j \in \{ 1, 2, 3, \dots , k \} $. 
+
+For  $j = 1$  where  $ i $  is *even*:  Note that  $ i \text{ mod } 2^1  = 0 < 2^0 = 1 $ ,  and thus  
+$ b(i,1) = -1 $. On the other hand  $ ((n-1)-i)$  is *odd*, hence  $ ((n-1)-i) \text{ mod } 2^1 = 1 = 2^0 $. 
+So that  $ b((n-1)-i, j) = +1 $ . 
+
+For  $j = 1$  where  $ i $  is *odd*:  Similarly  $ i \text{ mod } 2^1  = 1 = 2^0 $ and  $ b(i,1) = +1 $ . 
+Since  $  ((n-1)-i) $  is *even*,  $ ((n-1)-i) \text{ mod } 2^1 = 0 < 2^0 $. And therefore  $ b((n-1)-i, j) = -1 $. 
+
+This proves the base case. i.e.,  $ b(i,1) = (-1) \cdot b((n-1)-i, j) $. 
+
+Now for  $j > 1$. Note that by Part (e) of Corollary 1, 
+$\ \ i  \text{ mod } 2^j  = c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0  $  and 
+$ ((n-1)-i) \text{ mod } 2^j = (2^{j-1} + 2^{j-2} + \dots +  2 + 1) - (c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0) $. 
+
+Suppose that 
+$ b(i, j) = +1 $. Then  $ c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0 \geq 2^{j-1}$, 
+which means  $ c_{j-1}  =  1$. This implies  
+$ ((n-1)-i) \text{ mod } 2^j = (2^{j-2} + 2^{j-3} + \dots +  2 + 1) - (c_{j-2} \cdot 2^{j-2} + c_{j-3} \cdot 2^{j-3} + \dots + c_1 \cdot 2 + c_0) < 2^{j-1} $. 
+Yielding  $ b((n-1)-i) = -1 $. The converse argument is the same. 
+
+Suppose that 
+$  b(i, j) = -1 $. Then  $ c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0 < 2^{j-1} $ 
+which means  $ c_{j-1}  = 0 $. This also implies $  ((n-1)-i) \text{ mod } 2^j \geq 2^{j-1} $.  Hence  $ b((n-1)-i) = +1 $. 
+Again, the converse argument here follows the reverse argument. 
+
+The above two cases prove the inductive step. i.e., $  b(i, j) = (-1) \cdot b((n-1)-i) $.  $ \ \ \Box $
+
+
+
+### Proof of Theorem 1
+
+
+**Theorem 1 [Some properties of the set of coefficients $\{ s_i \}$]** 
+
+Let  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  be the coefficient of  $G_i$  the $i-$th component 
+of the initial IPP input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$.  
+Then, 
+
+1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}_p}\ \ $ for all $i \in \{ 0, 1, 2, ... , n-1 \}$.
+
+2.	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u_j^2\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$.
+
+3.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u_j^{-2}\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$.
+
+
+
+**Proof** 
+
+1. By induction on  $n$ , where  $ i \in \{ 0, 1, 2, \dots , n-1 \} $.  
+
+   For  $ i = 0 $. By Part (a)  of  Corollary 2,  $\ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $ . 
+   But this holds true *if and only if*  $ \  \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} $. 
+   And hence 
+   $ s_0 \cdot s_{n-1}  =  1_{\mathbb{F}_p} $, proving the base case. 
+
+   The inductive step: Suppose 
+   $ s\_{i-1} \cdot s\_{(n-1) - (i-1)}  =  1\_{\mathbb{F}_p}  .\ \ $  
+   And now,  $$ s_i \cdot s\_{(n-1)-i} = \big( s\_{i-1} \cdot s\_{(n-1) - (i-1)} \big) \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} .$$  
+
+   By the inductive step, this yields,  $$ s_i \cdot s_{(n-1)-i} = 1_{\mathbb{F}_p} \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} .$$ 
+
+   According to Part (b) of Corollary 2,  $b(i,j) = (-1) \cdot b((n-1)-i,j)$. Which holds true *if and only if* 
+   $\ \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} .$  It therefore follows that 
+   $  s_i \cdot s\_{(n-1)-i} = 1\_{\mathbb{F}_p} \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} = 1\_{\mathbb{F}_p} \cdot 1\_{\mathbb{F}_p} = 1\_{\mathbb{F}_p}$. 
+
+2. This part follows readily from  Part (c)  of  Corollary 2.      
+
+3. This part also follows readily from  Part (d)  of  Corollary 2. $ \ \ \Box$ 
+
+
 
 ## Contributors
 
