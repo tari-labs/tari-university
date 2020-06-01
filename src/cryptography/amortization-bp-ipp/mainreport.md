@@ -170,7 +170,7 @@ of it.
 ### Recursion in Bulletproofs Inner-product Proof
 
 In Bulletproofs range proofs, a prover commits to a value $v$ and seeks to construct an IPP to the fact 
-that $v \in ( 0 , 2^n ) $. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
+that $v \in $ [ 0 , 2^n - 1 ]$. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
 inner-products. 
 
 The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}$, $\mathbf{b}$ and the 
