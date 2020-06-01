@@ -170,7 +170,7 @@ of it.
 ### Recursion in Bulletproofs Inner-product Proof
 
 In Bulletproofs range proofs, a prover commits to a value $v$ and seeks to construct an IPP to the fact 
-that $v \in $ [ 0 , 2^n - 1 ]$. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
+that $v \in  [ 0 , 2^n - 1 ]$. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
 inner-products. 
 
 The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}$, $\mathbf{b}$ and the 
@@ -1055,13 +1055,13 @@ and some $ c_{l-i} \in \{ 0 , 1 \}$
 
 **Corollary 2** 
 
-1. $ \ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $
+1. $ \ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \forall\ \ j $
 
-1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \text{ for all } i \text{ and for all } j $
+1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \forall\ \ i \text{ and }\ \ \forall\ \ j $
 
-1. $ \ \ b( 2^{j-1} , j ) = b(n-1,j)\ \ \text{ for all } j $
+1. $ \ \ b( 2^{j-1} , j ) = b(n-1,j)\ \ \forall\ \ j $
 
-1. $ \ \ b(0,j) = b((n-1)-2^{j-1}, j)\ \ \text{ for all } j $
+1. $ \ \ b(0,j) = b((n-1)-2^{j-1}, j)\ \ \forall\ \ j $
 
 **Proof of Corollary 2, Part (b)**
 
