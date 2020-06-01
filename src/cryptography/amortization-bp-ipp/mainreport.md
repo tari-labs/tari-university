@@ -995,7 +995,7 @@ $n = 2^k$, $i \in \{ 0, 1, 2, ... , n-1 \}$ and $j \in \{ 1, 2, ... , k \}$.
 The multiplicative identity of the field  $\mathbb{F}\_p$  is denoted by $1\_{\mathbb{F}\_p}$. 
 
 The IPP verifier's $j-$th challenge is denoted by $u_j$ and its parity exponent is defined by 
-$b(i,j) = \begin{cases} {-1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq 2^{j-1}} \end{cases} $  
+$b(i,j) = \begin{cases} {-1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) < 2^{j-1}} \\\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq 2^{j-1}} \end{cases} $  
 
 ### Preliminary Lemmas and Corollaries 
 
@@ -1107,17 +1107,17 @@ Let  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  be the coefficient of  $G_i$, 
 input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$.  
 Then, 
 
-1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}_p}\ \ $ for all $i \in \{ 0, 1, 2, ... , n-1 \}$
+1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}_p}\ \ $ for all $i \in \\{ 0, 1, 2, ... , n-1 \\}$
 
-1.	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u_j^2\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$
+1.	$\ \ s_{2^{(j-1)}} \cdot s_{n-1} = u_j^2\ \ $ for all $j \in \\{ 1, 2, 3, ... , k \\}$
 
-1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u_j^{-2}\ \ $ for all $j \in \{ 1, 2, 3, ... , k \}$
+1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u_j^{-2}\ \ $ for all $j \in \\{ 1, 2, 3, ... , k \\}$
 
 
 
 **Proof** 
 
-1. By induction on  $n$ , where  $ i \in \{ 0, 1, 2, \dots , n-1 \} $.
+1. By induction on  $n$ , where  $ i \in \\{ 0, 1, 2, \dots , n-1 \\} $.
 
    For  $ i = 0 $. By Part (1)  of  Corollary 2,  $\ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $ . 
    But this holds true *if, and only if*  $ \  \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} $. 
