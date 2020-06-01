@@ -1055,13 +1055,13 @@ and some $ c_{l-i} \in \{ 0 , 1 \}$
 
 **Corollary 2** 
 
-1. $ \ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \forall\ \ j $
+1. $ \ \ b(0,j) = (-1) \cdot b(n-1,j),\ \ \forall\ \ j $
 
-1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \forall\ \ i \text{ and }\ \ \forall\ \ j $
+1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ),\ \ \forall\ \ i \text{ and }\ \ \forall\ \ j $
 
-1. $ \ \ b( 2^{j-1} , j ) = b(n-1,j)\ \ \forall\ \ j $
+1. $ \ \ b( 2^{j-1} , j ) = b(n-1,j),\ \ \forall\ \ j $
 
-1. $ \ \ b(0,j) = b((n-1)-2^{j-1}, j)\ \ \forall\ \ j $
+1. $ \ \ b(0,j) = b((n-1)-2^{j-1}, j),\ \ \forall\ \ j $
 
 **Proof of Corollary 2, Part (b)**
 
