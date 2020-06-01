@@ -989,7 +989,7 @@ this appendix.
 
 ### Notation and Definitions
 
-The letters $j$, $k$ nd $l$ denote non-negative integers, unless otherwise stated. In addition: 
+The letters $j$, $k$ and $l$ denote non-negative integers, unless otherwise stated. In addition: 
 $n = 2^k$, $i \in \{ 0, 1, 2, ... , n-1 \}$ and $j \in \{ 1, 2, ... , k \}$. 
 
 The multiplicative identity of the field  $\mathbb{F}\_p$  is denoted by $1\_{\mathbb{F}\_p}$. 
