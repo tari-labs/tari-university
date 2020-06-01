@@ -1025,7 +1025,7 @@ $ \ \ x^k - 1 = (x - 1)(x^{k-1} + x^{k-2} + ... + x + 1)
 1. $ \ \ ((n - 1) - 2^{j-1}) \text{ mod } 2^j = 2^{j-2} + 2^{j-3} + \dots +  2 + 1 $
 
 1. $ \ \ i\ \  =\ \ c_{l-1} \cdot 2^{l-1} + c_{l-2} \cdot 2^{l-2} + \dots + c_1 \cdot 2 + c_0\ \ $ for  $ l < k $ 
-and some $ c_{l-i} \in \{ 0 , 1 \}$
+and some $ c_{l-i} \in \\{ 0 , 1 \\}$
 
 **Lemma 2**
 
@@ -1057,15 +1057,15 @@ and some $ c_{l-i} \in \{ 0 , 1 \}$
 
 1. $ \ \ b(0,j) = (-1) \cdot b(n-1,j),\ \ \forall\ \ j $
 
-1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ),\ \ \forall\ \ i \text{ and }\ \ \forall\ \ j $
+1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ),\ \ \forall\ \ i\ \ \text{and}\ \ \forall\ \ j $
 
 1. $ \ \ b( 2^{j-1} , j ) = b(n-1,j),\ \ \forall\ \ j $
 
 1. $ \ \ b(0,j) = b((n-1)-2^{j-1}, j),\ \ \forall\ \ j $
 
-**Proof of Corollary 2, Part (b)**
+**Proof of Corollary 2, Part (2)**
 
-By induction on  $k$, where $j \in \{ 1, 2, 3, \dots , k \} $. 
+By induction on  $k$, where $j \in \\{ 1, 2, 3, \dots , k \\} $. 
 
 For  $j = 1$,  where  $ i $  is *even*: Note that  $ i \text{ mod } 2^1  = 0 < 2^0 = 1 $, and thus $ b(i,1) = -1 $. 
 On the other hand, $ ((n-1)-i)$ is *odd*, hence $ ((n-1)-i) \text{ mod } 2^1 = 1 = 2^0 $, so that $ b((n-1)-i, j) = +1 $.
@@ -1075,7 +1075,7 @@ Since $ ((n-1)-i) $ is *even*, $ ((n-1)-i) \text{ mod } 2^1 = 0 < 2^0 $, and the
 
 This proves the base case, i.e. $ b(i,1) = (-1) \cdot b((n-1)-i, j) $. 
 
-Now for $j > 1$\: Note that by Part (e) of Corollary 1, 
+Now for $j > 1$\: Note that by Part (5) of Corollary 1, 
 
 $\ \ i  \text{ mod } 2^j  = c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0  
 $  and 
@@ -1119,24 +1119,24 @@ Then,
 
 1. By induction on  $n$ , where  $ i \in \{ 0, 1, 2, \dots , n-1 \} $.
 
-   For  $ i = 0 $. By Part (a)  of  Corollary 2,  $\ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $ . 
+   For  $ i = 0 $. By Part (1)  of  Corollary 2,  $\ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $ . 
    But this holds true *if, and only if*  $ \  \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} $. 
    And hence 
    $ s_0 \cdot s_{n-1}  =  1_{\mathbb{F}_p} $, proving the base case. 
 
    The inductive step: Suppose 
    $ s\_{i-1} \cdot s\_{(n-1) - (i-1)}  =  1\_{\mathbb{F}_p}  .\ \ $  
-   And now,  $$ s_i \cdot s\_{(n-1)-i} = \big( s\_{i-1} \cdot s\_{(n-1) - (i-1)} \big) \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} .$$  
+   And now,  $$ s_i \cdot s\_{(n-1)-i} = \big( s\_{i-1} \cdot s\_{(n-1) - (i-1)} \big) \cdot u_j^{b(i,j)} \cdot u_j^{b((n-1)-i,j)} .$$  
 
-   By the inductive step, this yields,  $$ s_i \cdot s_{(n-1)-i} = 1_{\mathbb{F}_p} \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} .$$ 
+   By the inductive step, this yields,  $$ s_i \cdot s_{(n-1)-i} = 1_{\mathbb{F}_p} \cdot u_j^{b(i,j)} \cdot u_j^{b((n-1)-i,j)} .$$ 
 
-   According to Part (b) of Corollary 2,  $b(i,j) = (-1) \cdot b((n-1)-i,j)$. Which holds true *if, and only if* 
-   $\ \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} .$  It therefore follows that 
-   $  s_i \cdot s\_{(n-1)-i} = 1\_{\mathbb{F}_p} \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} = 1\_{\mathbb{F}_p} \cdot 1\_{\mathbb{F}_p} = 1\_{\mathbb{F}_p}$. 
+   According to Part (2) of Corollary 2,  $b(i,j) = (-1) \cdot b((n-1)-i,j)$. Which holds true *if, and only if* 
+   $\ \  u_j^{b(i,j)} = \Big( u_j^{b((n-1)-i,j)} \Big)^{-1} .$  It therefore follows that 
+   $  s\_i \cdot s\_{(n-1)-i} = 1\_{\mathbb{F}_p} \cdot u_j^{b(i,j)} \cdot u\_j^{b((n-1)-i,j)} = 1\_{\mathbb{F}\_p} \cdot 1\_{\mathbb{F}\_p} = 1\_{\mathbb{F}_p}$. 
 
-1. This part follows readily from  Part (c)  of  Corollary 2.      
+1. This part follows readily from  Part (3)  of  Corollary 2.      
 
-1. This part also follows readily from  Part (d)  of  Corollary 2.
+1. This part also follows readily from  Part (4)  of  Corollary 2.
 
 
 
