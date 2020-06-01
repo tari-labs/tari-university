@@ -18,8 +18,8 @@
     - [Application 1 - Delegating Inversion of Verifier's Challenges](#application-1---delegating-inversion-of-verifiers-challenges)
     - [Application 2 - Delegating Computation of $G_i$s Coefficients](#application-2---delegating-computation-of-g_is-coefficients)
   - [Verifier's Test of $G_i$s Coefficients](#verifiers-test-of-g_is-coefficients)
-    - [Properties of the $G_i$s Coefficients](#properties-of-the-g_is-coefficients)
-    - [Test of the $G_i$s Coefficients](#test-of-the-g_is-coefficients)
+    - [Properties of $G_i$s Coefficients](#properties-of-g_is-coefficients)
+    - [Test of $G_i$s Coefficients](#test-of-g_is-coefficients)
   - [Optimizing Prover's Computation of $G_i$s Coefficients](#optimizing-provers-computation-of-g_is-coefficients)
     - [Naive Algorithm](#naive-algorithm)
     - [Optimized Algorithms](#optimized-algorithms)
@@ -200,7 +200,7 @@ $O(\sqrt{n})$ to $O(log(n))$.
 
 Refer to [Figure&nbsp;2](#fig_ipprs) for an overview of the prover's side of the IPP. 
 
-The input to the IP proof is the quadruple of size $ n = 2^k $ vectors 
+The input to the IPP is the quadruple of size $ n = 2^k $ vectors 
 
 $$
 \big( \mathbf{a}^{(j)} , \mathbf{b}^{(j)} , \mathbf{G}^{(j)} , \mathbf{H}^{(j)} \big)​
@@ -303,7 +303,7 @@ proof. Such a circuit $\mathcal{C}$ would either verify $\mathcal{R}( x_0 , w_0 
 verify $\mathcal{R}( x_i , w_i ) = 1$ and then check $\mathcal{V}( x_{i - 1} , π_{i−1} ) = 1$ [[13]].
 
 Proof systems that use this type of inductive proof for verification solve the blockchain's distributed validation 
-problem. A participant in the blockchain network  only needs to download the current state of the network as well as a 
+problem. A participant in the blockchain network only needs to download the current state of the network as well as a 
 single proof that this state is correct.
 
 Recursive proof composition is described in [[14]] as "proofs that can feasibly attest to the correctness of other 
@@ -371,7 +371,6 @@ shown in [Figure&nbsp;5](#fig_cc). This is how the cost of invoking $F$ can be a
 
 <p align="center"><a name="fig_cc"> </a><img src="sources/Collapsing-computations-00.png" width="300" /></p>
 <div align="center"><b>Figure 5: Collapsing Computations </b></div>
-
 
 Therefore, a nested amortization is achieved on the instances of a binary tree of accumulated instances, helping to 
 reduce verification costs of the final single proof from linear time to sub-linear marginal verification time. 
@@ -441,7 +440,7 @@ $$
 
 determines whether the factor multiplied into  $s_i$  is the verifier's challenge $u_j$ or its inverse.  
 
-Computations of these coefficients can be delegated to the prover or some third party called "helper", henceforth 
+Computations of these coefficients can be delegated to the prover or some third party called the "helper", henceforth 
 referred to as the prover. Since each of these coefficients is a product of field elements, they have strong algebraic 
 properties that can be exploited in two ways:
 
@@ -450,15 +449,15 @@ properties that can be exploited in two ways:
 
 ### Verifier's Test of $G_i$s Coefficients
 
-#### Properties of the $G_i$s Coefficients
+#### Properties of $G_i$s Coefficients
 
-Note that the verifier has to compute the values $u_j^2$  and  $u_j^{-2}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$. The 
+Note that the verifier has to compute the values $u_j^2$  and $u_j^{-2}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$. The 
 idea here is to use a verifier's test that involves these squares of the challenges and their inverses. The next theorem 
-entails such relationships between these squares and the coefficients $s_i$. 
+describes such relationships between these squares and the coefficients $s_i$. 
 
-**Theorem 1 [Some properties of the set of coefficients $\{ s_i \}$]** 
+**Theorem 1 (Some properties of the set of coefficients $\{ s_i \}$)** 
 
-Let $n = 2^k$ and $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$ where each $G_i$ 
+Let $n = 2^k$ and $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$, where each $G_i$ 
 is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$, then: 
 
 1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}\_p}$ for all  $i \in  \\{ 0, 1, 2, ... , n-1 \\}$.
@@ -467,13 +466,13 @@ is the $i-$th component of the initial input vector $\mathbf{G} = ( G_0 , G_1 , 
 
 1.	$\ \ s_0 \cdot s_{(n-1) - 2^{(j-1)}} = u\_j^{-2} $ for all  $j \in \\{ 1, 2, 3, ... , k \\}$. 
 
-The proof of Part (1.) of Theorem 1 follows by induction on the size $n$ of the initial input vector 
-$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2.) and (3.) follow by induction on $k$ . 
-Full details of the proof are captured in [Appendix B](#appendix-b-proof-of-theorem-1-and-its-preliminaries).
+The proof of Part (1) of Theorem 1 follows by induction on the size $n$ of the initial input vector 
+$\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2) and (3) follow by induction on $k$. 
+[Appendix B](#appendix-b-proof-of-theorem-1-and-its-preliminaries) contains full details of the proof.
 
 
 
-#### Test of the $G_i$s Coefficients
+#### Test of $G_i$s Coefficients
 
 The verifier tests the correctness of the coefficients $s_i$ with the following statement: 
 
@@ -518,7 +517,7 @@ return = 0;
 ```
 
 Using the naive algorithm, an input vector $\mathbf{G}$ to the IPP, of size $n = 256$, costs the verifier at least $508$ 
-multiplications. If $n = 1024$, the cost is $2044$. This excludes all the other computations the verifier has to compute. 
+multiplications. If $n = 1,024$, the cost is $2,044$. This excludes all the other computations the verifier has to compute. 
 
 #### Optimized Algorithms 
 
@@ -561,7 +560,7 @@ factors among the coefficients $s_i$, the optimized algorithm uses multiplicatio
 unique. 
 
 [Table 1](#tab_cmc) gives the multiplication cost of the naive algorithm together with 
-other four algorithms. The [Appendix](#appendices) contains full descriptions of these algorithms, which 
+other four algorithms. [Appendix A](#appendix-a-optimized-algorithms) contains full descriptions of these algorithms, which 
 are simply referred to as Naive Algorithm or [NA], Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and 
 Algorithm 4 or [A4]. 
 
@@ -985,45 +984,35 @@ The **total cost** of computing the coefficients for $n = 32$ using *Algorithm 1
 
 ## Appendix B: Proof of Theorem 1 and its Preliminaries 
 
-
-
-The proof of **Theorem 1** makes use of a few basic properties of the parity values  $b(i,j)$, and 
-
-these are captured here in. 
-
-
-
+The proof of **Theorem 1** makes use of a few basic properties of the parity values $b(i,j)​$, which are described in 
+this appendix.
 
 ### Notation and Definitions
 
-The letters  $j$,  $k$  and  $ l$  denote non-negative integers unless otherwise stated. In addition, 
-$n = 2^k$, $ i \in \{ 0, 1, 2, ... , n-1 \}$, and  $j \in \{ 1, 2, ... , k \}$. 
+The letters $j$, $k$ nd $l$ denote non-negative integers, unless otherwise stated. In addition: 
+$n = 2^k$, $i \in \{ 0, 1, 2, ... , n-1 \}$ and $j \in \{ 1, 2, ... , k \}$. 
 
-The multiplicative identity of the field  $\mathbb{F}\_p$  is denoted by  $1\_{\mathbb{F}\_p}$. 
+The multiplicative identity of the field  $\mathbb{F}\_p$  is denoted by $1\_{\mathbb{F}\_p}$. 
 
-The IPP verifier's  $j-$th challenge is denoted by  $u_j$  and its parity exponent is 
-defined by, 
+The IPP verifier's $j-$th challenge is denoted by $u_j$ and its parity exponent is defined by 
 $b(i,j) = \begin{cases} {-1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) < 2^{j-1}} \\ {+1} & {\text{if}\ \ (i\ \ mod\ \ 2^j) \geq 2^{j-1}} \end{cases} $  
-
-
-
 
 ### Preliminary Lemmas and Corollaries 
 
-Details of preliminary results needed to complete the proof of Theorem 1 are detailed and 
-captured here in the form of lemmas and corollaries. 
+Details of preliminary results needed to complete the proof of Theorem 1 are provided here in the form of lemmas and 
+corollaries. 
 
-Proofs of these lemmas and their corollaries follow readily from the definition of the 
-parity exponent  $b(i,j)$  of verifier challenges and their multiplicative inverses. 
+Proofs of these lemmas and their corollaries follow readily from the definition of the parity exponent $b(i,j)$ of 
+verifier challenges and their multiplicative inverses. 
 
-The next lemma is a well-known fact entailed in undergraduate Mathematics text books, 
-mostly in tables of formulas.  
+The next lemma is a well-known fact contained in undergraduate mathematics text books, mostly in tables of formulas.  
 
 **Lemma 1**
 
-For an indeterminate  $x$ , we have  $ \ \ x^k - 1 = (x - 1)(x^{k-1} + x^{k-2} + ... + x + 1)$ 
+For an indeterminate $x$, we have 
 
-
+$ \ \ x^k - 1 = (x - 1)(x^{k-1} + x^{k-2} + ... + x + 1)
+​$ 
 
 **Corollary 1**
 
@@ -1031,14 +1020,12 @@ For an indeterminate  $x$ , we have  $ \ \ x^k - 1 = (x - 1)(x^{k-1} + x^{k-2} +
 
 1. $ \ \ 2^k - 1\ \ \geq\ \ 2^{k-1}\ \ $ for all $ k \geq 1$
 
-1. $ \ \ (2^l - 1) \text{ mod } 2^j = 2^{j-1} + 2^{j-2} + \dots +  2 + 1\ \ $  for any  $l \geq j$
+1. $ \ \ (2^l - 1) \text{ mod } 2^j = 2^{j-1} + 2^{j-2} + \dots +  2 + 1\ \ $ for any $l \geq j$
 
 1. $ \ \ ((n - 1) - 2^{j-1}) \text{ mod } 2^j = 2^{j-2} + 2^{j-3} + \dots +  2 + 1 $
 
 1. $ \ \ i\ \  =\ \ c_{l-1} \cdot 2^{l-1} + c_{l-2} \cdot 2^{l-2} + \dots + c_1 \cdot 2 + c_0\ \ $ for  $ l < k $ 
-and some  $ c_{l-i} \in \{ 0 , 1 \}$
-
-
+and some $ c_{l-i} \in \{ 0 , 1 \}$
 
 **Lemma 2**
 
@@ -1058,7 +1045,7 @@ and some  $ c_{l-i} \in \{ 0 , 1 \}$
 
 1. $ \ \ b( 2^{j-1} , j ) = +1 $
 
-1. $ \ \ b(2^l,j) = -1,\ \ \forall\ \ l < j-1  $
+1. $ \ \ b(2^l,j) = -1,\ \ \forall\ \ l < j-1 $
 
 1. $  \ \ b(2^l,j) = -1,\ \ \forall\ \ l > j $
 
@@ -1070,27 +1057,31 @@ and some  $ c_{l-i} \in \{ 0 , 1 \}$
 
 1. $ \ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $
 
-1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \text{ for all }  i \text{ and for all  }  j $
+1. $ \ \ b(i,j)  = (-1) \cdot b( (n-1)-i , j ) \ \ \text{ for all } i \text{ and for all } j $
 
 1. $ \ \ b( 2^{j-1} , j ) = b(n-1,j)\ \ \text{ for all } j $
 
 1. $ \ \ b(0,j) = b((n-1)-2^{j-1}, j)\ \ \text{ for all } j $
 
-***Proof of Corollary 2, Part (b)***
+**Proof of Corollary 2, Part (b)**
 
-By induction on  $k$ , where  $j \in \{ 1, 2, 3, \dots , k \} $. 
+By induction on  $k$, where $j \in \{ 1, 2, 3, \dots , k \} $. 
 
-For  $j = 1$  where  $ i $  is *even*:  Note that  $ i \text{ mod } 2^1  = 0 < 2^0 = 1 $ ,  and thus $ b(i,1) = -1 $. 
-On the other hand  $ ((n-1)-i)$  is *odd*, hence  $ ((n-1)-i) \text{ mod } 2^1 = 1 = 2^0 $, so that $ b((n-1)-i, j) = +1 $.
+For  $j = 1$,  where  $ i $  is *even*: Note that  $ i \text{ mod } 2^1  = 0 < 2^0 = 1 $, and thus $ b(i,1) = -1 $. 
+On the other hand, $ ((n-1)-i)$ is *odd*, hence $ ((n-1)-i) \text{ mod } 2^1 = 1 = 2^0 $, so that $ b((n-1)-i, j) = +1 $.
 
-For  $j = 1$  where  $ i $  is *odd*:  Similarly  $ i \text{ mod } 2^1  = 1 = 2^0 $ and  $ b(i,1) = +1 $ . 
-Since  $  ((n-1)-i) $  is *even*,  $ ((n-1)-i) \text{ mod } 2^1 = 0 < 2^0 $, and therefore  $ b((n-1)-i, j) = -1 $. 
+For $j = 1$, where  $ i $  is *odd*:  Similarly, $ i \text{ mod } 2^1 = 1 = 2^0 $ and $ b(i,1) = +1 $. 
+Since $ ((n-1)-i) $ is *even*, $ ((n-1)-i) \text{ mod } 2^1 = 0 < 2^0 $, and therefore $ b((n-1)-i, j) = -1 $. 
 
-This proves the base case. i.e.,  $ b(i,1) = (-1) \cdot b((n-1)-i, j) $. 
+This proves the base case, i.e. $ b(i,1) = (-1) \cdot b((n-1)-i, j) $. 
 
-Now for  $j > 1$. Note that by Part (e) of Corollary 1, 
-$\ \ i  \text{ mod } 2^j  = c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0  $  and 
-$ ((n-1)-i) \text{ mod } 2^j = (2^{j-1} + 2^{j-2} + \dots +  2 + 1) - (c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0) $. 
+Now for $j > 1$\: Note that by Part (e) of Corollary 1, 
+
+$\ \ i  \text{ mod } 2^j  = c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0  
+$  and 
+
+$ ((n-1)-i) \text{ mod } 2^j = (2^{j-1} + 2^{j-2} + \dots +  2 + 1) - (c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0)
+$. 
 
 Suppose that 
 $ b(i, j) = +1 $. Then  $ c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0 \geq 2^{j-1}$, 
@@ -1099,21 +1090,21 @@ $ ((n-1)-i) \text{ mod } 2^j = (2^{j-2} + 2^{j-3} + \dots +  2 + 1) - (c_{j-2} \
 Yielding  $ b((n-1)-i) = -1 $. The converse argument is the same. 
 
 Suppose that 
-$  b(i, j) = -1 $. Then  $ c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0 < 2^{j-1} $ 
+$  b(i, j) = -1 $. Then  $ c_{j-1} \cdot 2^{j-1} + c_{j-2} \cdot 2^{j-2} + \dots + c_1 \cdot 2 + c_0 < 2^{j-1} $, 
 which means  $ c_{j-1}  = 0 $. This also implies $  ((n-1)-i) \text{ mod } 2^j \geq 2^{j-1} $.  Hence  $ b((n-1)-i) = +1 $. 
 Again, the converse argument here follows the reverse argument. 
 
-The above two cases prove the inductive step. i.e., $  b(i, j) = (-1) \cdot b((n-1)-i) $.
+The above two cases prove the inductive step, i.e. $  b(i, j) = (-1) \cdot b((n-1)-i) $.
 
 
 
 ### Proof of Theorem 1
 
 
-**Theorem 1 [Some properties of the set of coefficients $\{ s_i \}$]** 
+**Theorem 1 (Some properties of the set of coefficients $\{ s_i \}$)** 
 
-Let  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  be the coefficient of  $G_i$  the $i-$th component 
-of the initial IPP input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$.  
+Let  $s_i = \prod\limits_{j = 1}^k u_j^{b(i,j)}$  be the coefficient of  $G_i$,  the $i-$th component of the initial IPP
+input vector $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1})$.  
 Then, 
 
 1.	$\ \ s_i \cdot s_{(n-1) - i} = 1_{\mathbb{F}_p}\ \ $ for all $i \in \{ 0, 1, 2, ... , n-1 \}$
@@ -1129,7 +1120,7 @@ Then,
 1. By induction on  $n$ , where  $ i \in \{ 0, 1, 2, \dots , n-1 \} $.
 
    For  $ i = 0 $. By Part (a)  of  Corollary 2,  $\ \ b(0,j) = (-1) \cdot b(n-1,j)\ \ \text{ for all } j $ . 
-   But this holds true *if and only if*  $ \  \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} $. 
+   But this holds true *if, and only if*  $ \  \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} $. 
    And hence 
    $ s_0 \cdot s_{n-1}  =  1_{\mathbb{F}_p} $, proving the base case. 
 
@@ -1139,7 +1130,7 @@ Then,
 
    By the inductive step, this yields,  $$ s_i \cdot s_{(n-1)-i} = 1_{\mathbb{F}_p} \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} .$$ 
 
-   According to Part (b) of Corollary 2,  $b(i,j) = (-1) \cdot b((n-1)-i,j)$. Which holds true *if and only if* 
+   According to Part (b) of Corollary 2,  $b(i,j) = (-1) \cdot b((n-1)-i,j)$. Which holds true *if, and only if* 
    $\ \  u_j^{b(0,j)} = \Big( u_j^{b(n-1,j)} \Big)^{-1} .$  It therefore follows that 
    $  s_i \cdot s\_{(n-1)-i} = 1\_{\mathbb{F}_p} \cdot u_j^{b(0,j)} \cdot u_j^{b(n-1,j)} = 1\_{\mathbb{F}_p} \cdot 1\_{\mathbb{F}_p} = 1\_{\mathbb{F}_p}$. 
 
