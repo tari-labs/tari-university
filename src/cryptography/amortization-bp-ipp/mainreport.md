@@ -16,11 +16,11 @@
   - [Bulletproofs Inner-product Proof Verification](#bulletproofs-inner-product-proof-verification)
   - [Verifiable Computation](#verifiable-computation)
     - [Application 1 - Delegating Inversion of Verifier's Challenges](#application-1---delegating-inversion-of-verifiers-challenges)
-    - [Application 2 - Delegating Computation of $G_i$s Coefficients](#application-2---delegating-computation-of-g_is-coefficients)
-  - [Verifier's Test of $G_i$s Coefficients](#verifiers-test-of-g_is-coefficients)
-    - [Properties of $G_i$s Coefficients](#properties-of-g_is-coefficients)
-    - [Test of $G_i$s Coefficients](#test-of-g_is-coefficients)
-  - [Optimizing Prover's Computation of $G_i$s Coefficients](#optimizing-provers-computation-of-g_is-coefficients)
+    - [Application 2 - Delegating Computation of $G_i$'s Coefficients](#application-2---delegating-computation-of-g_is-coefficients)
+  - [Verifier's Test of $G_i$'s Coefficients](#verifiers-test-of-g_is-coefficients)
+    - [Properties of $G_i$'s Coefficients](#properties-of-g_is-coefficients)
+    - [Test of $G_i$'s Coefficients](#test-of-g_is-coefficients)
+  - [Optimizing Prover's Computation of $G_i$'s Coefficients](#optimizing-provers-computation-of-g_is-coefficients)
     - [Naive Algorithm](#naive-algorithm)
     - [Optimized Algorithms](#optimized-algorithms)
   - [Concluding Amortized Inner-product Proof](#concluding-amortized-inner-product-proof) 
@@ -170,7 +170,7 @@ of it.
 ### Recursion in Bulletproofs Inner-product Proof
 
 In Bulletproofs range proofs, a prover commits to a value $v$ and seeks to construct an IPP to the fact 
-that $v \in  [ 0 , 2^n - 1 ]$. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
+that $v \in  [ 0 , 2^n ) $. Pedersen commitments are used to keep the value of $v$ confidential, and are expressed as 
 inner-products. 
 
 The main recursive part of a range proof is the IPP. The inner-product of two vectors $\mathbf{a}$, $\mathbf{b}$ and the 
@@ -256,7 +256,7 @@ iterative executions compute each instance of the recursive function. This is ve
 because the aim in blockchain validation is not to compute every instance, but to prove that the current instance was 
 correctly executed. 
 
-[Figure&nbsp;3](#fig_rfrb) shows how instances of a recursive function are linked, and how each block in a blockchain 
+[Figure&nbsp;3](#fig_rfrb) shows how instances of a recursive function are linked, the same way each block in a blockchain 
 is linked to the previous block via hash values. 
 
 <p align="center"><a name="fig_rfrb"> </a><img src="sources/Recursive-funct-resembles-blockchain.png" width="600" /></p>
@@ -274,7 +274,7 @@ two steps:
 - (Base step): Prove that the first possible instance $F(0)$ is correct. 
 
 - (Inductive step): For any integer $ k > 0 $, prove that "if the previous instance $F(k - 1)$ is correct, then the 
-current instance $F(k)$ is also correct", i.e. "$F(k - 1)$ is correct" implies "$F(k)$ is also correct". 
+current instance $F(k)$ is also correct", i.e. prove that  "$F(k - 1)$ is correct" implies "$F(k)$ is also correct". 
 
 These two steps together are sufficient to form a complete proof for the verifier to be convinced. Such a proof is valid 
 even if the current instance is the zillionth. This saves the verifier the trouble of checking every instance of the 
@@ -362,7 +362,7 @@ The problem here is that computational cost will escalate.
 It is here that the amortization strategy of *collapsing computations* is needed: 
 
 - given instances $( x , y )$ and $( x′ , y′ )$, the prover will provide a non-interactive proof $\pi_{y,y'}$ that 
-$y = F(x)$ and $y' = F(x')$ is a witness to the verification circuit; and 
+$y = F(x)$ and $y' = F(x')$ as a witness to the verification circuit; and 
 - the verification circuit will check  $\pi_{y,y'}$ proof.
 
 If the cost of checking the correctness of $\pi_{y,y'}$ is equivalent to invoking the operation $F$, then the verifier 
@@ -389,13 +389,13 @@ technology, where efficiency of zero-knowledge proof is pursued.
 ### Bulletproofs Inner-product Proof Verification
 
 Consider the Bulletproofs IPP, originally described by Bootle et al. [[9]], but following the Dalek's Bulletproofs 
-settings [[11]]. The IPP is no doubt recursive in the way in which it is executed. [Figure&nbsp;1](#fig_brf) and 
-[Figure&nbsp;2](#fig_ipprs) make this apparent. It is therefore the most relevant case study in amortizing verification 
+settings [[11]]. The IPP is no doubt recursive in the way in which it is executed. 
+[Figure&nbsp;2](#fig_ipprs) and [Figure&nbsp;6](#fig_bpippvs) make this apparent. It is therefore the most relevant case study in amortizing verification 
 costs, especially in the context of recursive proofs. 
 
 Figure 6 shows a naive implementation of the verifier's side of the Bulletproofs IPP.  
 
-<p align="center"><a name="fig_bpippvs"> </a><img src="sources/IPProof-verifier-side-1.png" width="650" /></p>
+<p align="center"><a name="fig_bpippvs"> </a><img src="sources/IPProof-verifier-side-11.png" width="650" /></p>
 <div align="center"><b>Figure 6: Bulletproofs Inner-product Proof - Verifier Side </b></div>
 
 ### Verifiable Computation
@@ -426,7 +426,7 @@ of the elliptic curve group.
 
 As noted earlier, this amortization strategy reduces the verification costs by factor of $log(p)$. 
 
-#### Application 2 - Delegating Computation of $G_i$s Coefficients
+#### Application 2 - Delegating Computation of $G_i$'s Coefficients
 
 Consider the vector of group-generators $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$, one of the four initial 
 input vectors to the IPP. In verifying the prover's IPP, the verifier has to compute the vector 
@@ -440,18 +440,19 @@ $$
 
 determines whether the factor multiplied into  $s_i$  is the verifier's challenge $u_j$ or its inverse.  
 
-Computations of these coefficients can be delegated to the prover or some third party called the "helper", henceforth 
-referred to as the prover. Since each of these coefficients is a product of field elements, they have strong algebraic 
+Computations of these coefficients can be delegated to the prover or some third party called the "helper". In this application these coefficients are delegated to the helper, and this means the verifier will need a way to test if the values the helper sends are correct. Thus a verifiable computation is created in the next subsection. Since each of these coefficients is a product of field elements, they have strong algebraic 
 properties that can be exploited in two ways:
 
-- Firstly, the verifier can use these properties to check if the $s_i$s were correctly computed by the prover.
+- Firstly, the verifier can use these properties to check if the $s_i$'s were correctly computed by the helper.
 - Secondly, they can be used to minimize the prover's computational costs. 
 
-### Verifier's Test of $G_i$s Coefficients
+### Verifier's Test of $G_i$'s Coefficients
 
-#### Properties of $G_i$s Coefficients
+#### Properties of $G_i$'s Coefficients
 
-Note that the verifier has to compute the values $u_j^2$  and $u_j^{-2}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$. The 
+Note that the verifier has to compute the values $u_j^2$  and $u_j^{-2}$ for all $j \in \\{ 1, 2, 3, ... , k \\}$. 
+
+The 
 idea here is to use a verifier's test that involves these squares of the challenges and their inverses. The next theorem 
 describes such relationships between these squares and the coefficients $s_i$. 
 
@@ -472,7 +473,7 @@ $\mathbf{G} = ( G_0 , G_1 , G_2 , ... , G_{n-1} )$ to the IPP, while parts (2) a
 
 
 
-#### Test of $G_i$s Coefficients
+#### Test of $G_i$'s Coefficients
 
 The verifier tests the correctness of the coefficients $s_i$ with the following statement: 
 
@@ -482,9 +483,13 @@ $$
 ( s_{r_1} \cdot s_{(n-1) - {r_1}}  = 1_{\mathbb{F}\_p} ) \land (s_{r_2} \cdot s_{(n-1) - {r_2}}  = 1_{\mathbb{F}\_p}) \land (s_{r_3} \cdot s_{(n-1) - {r_3}}  = 1_{\mathbb{F}\_p}) \land\ \dots \ \land (s_{r_k} \cdot s_{(n-1) - r_k}  = 1_{\mathbb{F}\_p})  
 $$
 
-for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ... , n-1 \\} $ where $k = log_2(n)$.
+for randomly sampled values $ \\{r_1, r_2, ... , r_k \\} \subset \\{0, 1, 2, ... , n-1 \\} $ where $k = log_2(n)$. 
 
-### Optimizing Prover's Computation of $G_i$s Coefficients
+The multiplication cost of the *Test of $G_i$'s Coefficients* as stated above is sub-linear with respect to $n$, costing the verifier only $3log(n)$ multiplications. That's because all three parts of Theorem 1 are tested. However, it would still suffice for the verifier to test only two out of the three parts of Theorem 1, reducing the cost to $2log(n)$. 
+
+Note that the values of the coefficients $s_i$ and the squares $u_j^2$ and $u_j^{-2}$ do not exist by default nor are they automatically computed in the Bulletproofs system. In fact, according to Dalek's internal documents on the Inner-product Proof [[7]], specifically under [Verification equation](https://doc-internal.dalek.rs/bulletproofs/inner_product_proof/index.html#verification-equation), these values can be provided by the system. Either way, these values need to be computed. The next subsection therefore focuses on optimising the computations of the $s_i$'s. 
+
+### Optimizing Prover's Computation of $G_i$'s Coefficients
 
 #### Naive Algorithm
 
@@ -516,13 +521,13 @@ return = 0;
 }
 ```
 
-Using the naive algorithm, an input vector $\mathbf{G}$ to the IPP, of size $n = 256$, costs the verifier at least $508$ 
-multiplications. If $n = 1,024$, the cost is $2,044$. This excludes all the other computations the verifier has to compute. 
+Using the naive algorithm, an input vector $\mathbf{G}$ to the IPP of size $n$, costs the verifier $n*\[ log_2(n) - 1 \]$ 
+multiplications. If $n = 256$, the cost is $1,792$. This is rather expensive irrespective of whether the $s_i$'s are computed by a third party or by the proof system.  
 
 #### Optimized Algorithms 
 
-At least four competing algorithms optimize computation of the coefficients $\{ s_i \}$. Each one is much better than 
-the naive algorithm, with some reducing the verification cost by 40%. 
+At least four competing algorithms optimize computation of the coefficients $\{ s_i \}$. Each one is far much better than 
+the naive algorithm. 
 
 The basic optimization strategy is based on the observation that every coefficient has at least one common factor with 
 $2^{k-1}- 1$ other coefficients, two common factors with $2^{k-2}-1$ other coefficients, three common factors with 
@@ -556,17 +561,21 @@ int main() {
 The value t in the first for-loop can be varied in order to form either products of two or three or four, and so on. 
 The optimization of these algorithms depends on whether they only form "doubles" or "triples" or "quadruples", and how 
 they form them. Unlike the naive algorithm, which keeps spending multiplication disregarding the existence of common 
-factors among the coefficients $s_i$, the optimized algorithm uses multiplication only if the new product formed is 
+factors among the coefficients $s_i$, the optimized algorithms use multiplication only if the new product formed is 
 unique. 
 
-[Table 1](#tab_cmc) gives the multiplication cost of the naive algorithm together with 
-other four algorithms. [Appendix A](#appendix-a-optimized-algorithms) contains full descriptions of these algorithms, which 
-are simply referred to as Naive Algorithm or [NA], Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and 
+Since the multiplication cost of the naive algorithm is ludicrously expensive, it will not be used as a point of reference. No programmer would implement the computation of the $s_i$'s using the naive algorithm. So instead, a minimally optimized algorithm called **Algorithm 0** or [A0] will henceforth be the yardstick. 
+
+In terms of the pseudo-code of a *Typical Optimized Algorithm* given above, algorithm [A0] is defined by setting 't = 0'. That means, [A0] aims at computing the largest possible and distinct products as soon as the new challenge $u_j$ is received from the verifier. 
+
+[Table 1](#tab_cmc) gives the multiplication cost of [A0] together with 
+other four optimised algorithms. [Appendix A](#appendix-a-optimized-algorithms) contains full descriptions of these algorithms, which 
+are simply referred to as Algorithm 1 or [A1], Algorithm 2 or [A2], Algorithm 3 or [A3] and 
 Algorithm 4 or [A4]. 
 
 <div align="center"><a name="tab_cmc"> </a><b>Table 1: Comparison of Multiplication Costs </b></div>  
 
-| Vector Size $n$ | [NA]   | [A1]   | [A2]   | [A3]   | [A4]   | Best Algo & <br> Savings % <br> Relative to [NA] |
+| Vector Size $n$ | [A0]   | [A1]   | [A2]   | [A3]   | [A4]   | Best Algo & <br> Savings % <br> Relative to [A0]   |
 |--:--------------|--:-----|--:-----|--:-----|--:-----|--:-----|--:-----------------------------------------------|
 | $n = 4$         | $4$    | $4$    | $4$    | $4$    | $4$    | [All]  0%                                        |
 | $n = 8$         | $12$   | $12$   | $12$   | $12$   | $12$   | [All]  0%                                        |
@@ -581,7 +590,7 @@ Algorithm 4 or [A4].
 | $n = 4096$      | $8188$ | $4272$ | $4436$ | $4424$ | $4424$ | [A1] 47.83%                                      |
 
 
-All four algorithms, [A1], [A2], [A3] and [A4], are fairly competent in saving multiplication costs, showing more than 
+All four optimized algorithms, [A1], [A2], [A3] and [A4], are fairly competent in saving multiplication costs, showing more than 
 20\% savings for vectors of sizes 64 and above. 
 
 The above results indicate that algorithm [A1] is the best of the four for several reasons: 
@@ -590,18 +599,18 @@ The above results indicate that algorithm [A1] is the best of the four for sever
 
 - In order to account for the other four cases; it takes second place twice and third place twice. 
 
-- It has the best savings percentage of 47.83\% relative to the naive algorithm.   
+- It has the best savings percentage of 47.83\% relative to [A0].   
 
-- The only case in which it is on par with the naive algorithm is when all other algorithms are on par, i.e. when 
-$n = 4$ and $n = 8$. 
+- The only three cases in which it is on par with the minimally optimized algorithm [A0] is when all other algorithms are on par; i.e. when 
+$n = 4$ and $n = 8$; as well as when the best optimized algorithm saves a mere $4$ multiplications. 
 
 ### Concluding Amortized Inner-product Proof
 
 The amortization strategies herein applied to the Bulletproofs IPP are tangible and significantly enhance the proof. 
-With the above amortization of the IPP, the prover sends $3log_2(n) + n$ IPP elements, i.e. the set of all $log_2(n)$ 
-triples $L_j$, $R_j$ and $u^{-1}$ as well as the $n$ coefficients $s_i$s. 
+With the above amortization of the IPP, the prover sends $3log_2(n)$ IPP elements, i.e. the set of all $log_2(n)$ 
+triples $L_j$, $R_j$ and $u^{-1}$. The $n$ coefficients $s_i$'s will either be sent by the third-party helper or provided by the system according to Dalek's internal documents. See IPP's [Verification equation](https://doc-internal.dalek.rs/bulletproofs/inner_product_proof/index.html#verification-equation) in [[7]]. 
 
-The given verifier's test of the coefficients and the optimization of their computations solidify the proposed 
+The given verifier's test of the $G_i$'s coefficients and the optimization of their computations solidify the proposed 
 amortization of the IPP. Given the Bulletproofs setting, that a vector of size $n$ refers to $n$ number of 32-byte 
 values, even seemingly small savings are significant. 
 
@@ -665,9 +674,9 @@ a Whole Blockchain With
 One Math Problem – Really"
 
 [[7]] Dalek's Bulletproofs documents, "Module Bulletproofs::notes ::index" [online]. 
-Available: <https://doc-internal.dalek.rs/bulletproofs/notes/index.html>. Date accessed: 2020&#8209;05&#8209;01.
+Available: <https://doc-internal.dalek.rs/bulletproofs/inner_product_proof/index.html>. Date accessed: 2020&#8209;05&#8209;01.
 
-[7]: https://doc-internal.dalek.rs/bulletproofs/notes/index.html "Module Bulletproofs::notes ::index"
+[7]: https://doc-internal.dalek.rs/bulletproofs/inner_product_proof/index.html "Module Bulletproofs::notes ::index"
 
 [[8]] C. Yun, "Building on Bulletproofs" [online]. Available: <https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8>.
 Date accessed: 2020&#8209;04&#8209;27.
