@@ -125,7 +125,7 @@ A *vector Pedersen commitment* of vectors
 where $\mathbf{G}$ and $\mathbf{H}$ are vectors of generators of the elliptic curve group [[7]]. 
 
 The major component of a Bulletproofs range proof is no doubt its IPP. This became even more 
-apparent when Bootle et al. [[9]] introduced an IPP that requires only $2log_2(n) + 2$ proof elements instead of $2n$ [[9]]. 
+apparent when Bootle et al. introduced an IPP that requires only $2log_2(n) + 2$ proof elements instead of $2n$ in [[9]]. 
 Henry de Valence of Interstellar puts it this way: 
 
 "The inner-product proof allows the prover to convince a verifier that some scalar is the inner-product of two length-$n$
@@ -936,7 +936,7 @@ The same pseudocode used for Algorithm 3 applies to Algorithm 4
 ```
 ##### Example 1 (Algorithm 1 or [A1]) 
 
-Let $n = 32$ so that $k = 5$. The coefficients $s_i$ for $i \in {0, 1, 2, ... , 15}$ are $32$ quintets: 
+Let $n = 32$ so that $k = 5$. The coefficients $s_i$ for $i \in \\{0, 1, 2, ... , 15 \\}$ are $32$ quintets: 
 
 $$
 u_5^{b(i,5)} * u_4^{b(i,4)} * u_3^{b(i,3)} * u_2^{b(i,2)} * u_1^{b(i,1)}
@@ -999,7 +999,7 @@ this appendix.
 ### Notation and Definitions
 
 The letters $j$, $k$ and $l$ denote non-negative integers, unless otherwise stated. In addition: 
-$n = 2^k$, $i \in \{ 0, 1, 2, ... , n-1 \}$ and $j \in \{ 1, 2, ... , k \}$. 
+$n = 2^k$, $i \in \\{ 0, 1, 2, ... , n-1 \\}$ and $j \in \\{ 1, 2, ... , k \\}$. 
 
 The multiplicative identity of the field  $\mathbb{F}\_p$  is denoted by $1\_{\mathbb{F}\_p}$. 
 
