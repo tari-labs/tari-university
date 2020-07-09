@@ -12,7 +12,7 @@
   - [What is a PCD?](#what-is-a-pcd) 
   - [Trustlessness via PCDs](#trustlessness-via-pcds)
 - [Cycles of Elliptic Curves](#cycles-of-elliptic-curves) 
-  - [Why a Cycle of Elliptic Curves?](#why-a-cycle-of-elliptic-curves)
+  - [Why Cycle of Elliptic Curves?](#why-cycle-of-elliptic-curves)
     - [The Native Field Arithmetic](#the-native-field-arithmetic)
     - [Example 2](#example-2)
     - [The Order of the Scalar Field](#the-order-of-the-scalar-field) 
@@ -257,7 +257,7 @@ Note that, given the above discussion on PCDs, the cryptographic technique of us
 a *cycle of elliptic curves* is not much about scalability but rather about efficiency of 
 arithmetic circuits. The main trick is to exploit the proof system's field structure. 
 
-### Why a Cycle of Elliptic Curves?
+### Why Cycle of Elliptic Curves?
 
 Why then the need for a second elliptic curve that warrants the use of a cycle of elliptic curves? 
 
