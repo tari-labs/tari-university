@@ -191,7 +191,7 @@ These strategies are briefly mentioned here but their detailed descriptions can 
 
 **Verifiable Computation** 
 allows a verifier to delegate expensive computations to untrusted third parties and be able 
-check correctness of the proofs these third parties submit.   
+to check correctness of the proofs these third parties submit.   
 
 **Inductive proofs** 
 take advantage of whatever recursion that may be found in a computational problem. 
