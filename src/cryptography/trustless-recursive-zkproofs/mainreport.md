@@ -19,10 +19,11 @@
     - [No Prover-Verifier Dichotomy](#no-prover-verifier-dichotomy)
   - [Pairing-friendly Elliptic Curves](#pairing-friendly-elliptic-curves) 
   - [Amicable Pairs of Elliptic Curves](#amicable-pairs-of-elliptic-curves) 
-- [Why the interest in Halo Protocol?](#why-the-interest-in-halo-protocol) 
-  - [Brief Survey: Recursive Proofs Protocols](#brief-survey-recursive-proofs-protocols) 
-  - [Halo Protocol Design and Bulletproofs](# ) 
-- [Implications to Tari Blockchain](#implications-to-tari-blockchain) 
+- [Brief Survey: Recursive Proofs Protocols](#brief-survey-recursive-proofs-protocols) 
+  - [Coda Protocol](#coda-protocol) 
+  - [Sonic Protocol](#sonic-protocol)
+  - [Halo Protocol](#halo-protocol) 
+- [Conclusion](#conclusion) 
 - [References](#references)
 - [Appendices](#appendices) 
   - [Pairing Cryptography](#pairing-cryptography) 
@@ -37,16 +38,22 @@ In pursuit of blockchain scalability investigation in this report focuses on
 the second leg of recursive proof composition: 
 "proofs that verify other proofs". 
 
-Recursive proof composition is like a machinery with many moving parts. 
-For the sake of completion, the aim here is to present only the most crucial 
+Recursive proof composition is like a huge machinery with many moving parts. 
+For the sake of brevity, the aim here is to present only the most crucial 
 cryptographic tools and techniques required to achieve recursive proof composition. 
 
-Amortization strategies that recursive proof composition uses to accomplish reduced 
+Amortization strategies that recursive proofs use to accomplish reduced 
 verification costs are enabled by a powerful tool called a 
-[Proof-Carrying Data](#proof-carrying-data), first introduced by Alessandro Chiesa in his PhD thesis [[4]]. 
+[Proof-Carrying Data](#proof-carrying-data) or PCD, first introduced by Alessandro Chiesa in his PhD thesis [[4]]. 
 The resulting proof system is made efficient and more practical by the use of a technique 
 that utilises [cycles of elliptic curves](#cycles-of-elliptic-curves), first realised by Eli Ben-Sasson et al [[2]]. 
+These two are what the report hinges around.  
 
+The details of recursive proof composition are in the mathematics. So effort is taken 
+to simplify concepts, while keeping technical reader's interests in mind. 
+At the end the reader will appreciate the power of recursive proof composition, how 
+they use PCDs and cycles of elliptic curves, as well as why they need the two to achieve 
+significant blockchain scalability. 
 
 
 ## Notation and Preliminaries 
@@ -108,7 +115,7 @@ $p-1$ and $p^n-1$, [[6], Proposition 6.1].
  under the defined 'addition' of points. 
  
  <p align="center"><a name="fig_pad"> </a><img src="sources/points-addition-and-doubling.png" width="600" /></p>
-<div align="center"><b>Figure 1: Points Addition and Doubling [[17]] </b></div>
+<div align="center"><b>Figure 1: Points Addition and Doubling [[17]] </b></div>  
  
  
 - A **scalar field** of an elliptic curve $E$ over a base field $\mathbb{F}$ comes in when 
@@ -336,9 +343,7 @@ Note the following common practices when implementing proof systems (gleaning in
 - The most natural field arithmetic for the arithmetic circuit is the scalar field's, 
 $\mathbb{F}_r$-arithmetic 
 - When computing operations on elliptic curve points inside the proof system verifier, the 
-base field arithmetic is used. i.e., verifier uses $\mathbb{F}_q$-arithmetic 
-
-See [Figure A1, BLS signature verification](#fig_bls) below for an illustration of how verification arithmetic can differ from 'prover' arithmetic. 
+base field arithmetic is used. i.e., verifier uses $\mathbb{F}_q$-arithmetic.  
 
 Normally, when there is a clear dichotomy between a prover and a verifier, the use of two 
 distinct field arithmetics would not be an issue. 
@@ -360,8 +365,10 @@ scalar field $\mathbb{F}_q$ if possible.
 This is the reason why pairing-friendly curves, and recently Amicable pairs of elliptic curves, have 
 come to be deployed in zero-knowledge proof systems such as zkSNARKs. 
 
-
-
+The proof system aimed at is illustrated in [Figure 3](#fig_app) below.
+ 
+<p align="center"><a name="fig_apps"> </a><img src="sources/amicable-pair-1way-circuit.png" width="600" /></p>
+<div align="center"><b>Figure 3: Amicable Pair-based Proof System </b></div>  
 
 
 
@@ -370,7 +377,7 @@ come to be deployed in zero-knowledge proof systems such as zkSNARKs.
 
 It was Groth in [[18]] who first constructed "a pairing-based 
 (preprocessing) SNARK for arithmetic circuit satisfiability, which is an NP-complete language". 
-When it comes to a scalable zero-knowledge proof system, it was Ben-Sasson et al in [[2]] 
+But when it comes to a scalable zero-knowledge proof system, it was Ben-Sasson et al in [[2]] 
 who first presented a practical recursive proof composition that uses a cycle of elliptic curves. 
 
 **Definition 1:** 
@@ -383,40 +390,38 @@ of the largest cyclic subgroup of the elliptic curve $E(\mathbb{F}_q)$.
 For implementing pairing-based cryptographic systems, elliptic curves with small embedding degree $k$ 
 and large prime-order subgroups are called **pairing-friendly**.  
 
-According to Freeman et al [[14]], "pairing-friendly curves are rare and thus require specific constructions". 
-They furnish what they call a "single coherent framework" of constructions of pairing-friendly 
-elliptic curves known to the authors at the time of publication. 
+According to Freeman et al [[14]], "pairing-friendly curves are rare and thus require specific constructions." 
+In the same paper, the authors furnish what they call a "single coherent framework" of constructions of pairing-friendly 
+elliptic curves. 
 
 The Coda block chain [[19]] is an example of a deployed protocol using the Ben-Sasson approach in [[2]] 
 using pairing-friendly MNT curves of embedding degrees 4 and 6. 
 
 
-
 ### Amicable Pairs of Elliptic Curves 
 
 According to Bowe et al in [[8]], pairing-based curves of small embedding degree like 
-MNT4/MNT6 constructions used in Coda require curves of size 
-approaching 800 bits for the 128-bit security level. 
+MNT constructions used in Coda require curves of size 
+approaching 800 bits for 128-bit security level. 
 
-Constructions of pairing-friendly curves were mostly restricted to embedding degrees 
+Previously, constructions of pairing-friendly curves were mostly restricted to embedding degrees 
 less than $k \leq 6$, until Barreto and Naehrig constructed curves of prime order and 
 embedding degree $k = 12$ in [[20]].  
 
 Some researchers, such as Chiesa et al [[21]], do not make any distinction between 
-a cycle of pairing-friendly elliptic curves and Aliquot cycle of elliptic curves defined below. 
-Except that Aliquot cycles are more concerned with primality. 
+a cycle of pairing-friendly elliptic curves and Aliquot cycle of elliptic curves, to be defined below. 
+It is perhaps due the fact that Aliquot cycles are more concerned with elliptic curves of prime orders, 
+than pairing-friendly curves. 
 
-
-Minimum required properties of the second elliptic curve that forms an Amicable Pair with the 
+Minimum required properties for a second elliptic curve that forms an Amicable Pair with the 
 elliptic curve group $E(\mathbb{F}_q)$ are, 
 - the second curve must also be of a large prime order, 
 - it must be compatible with the first in the sense that the verifier operations can be 
-efficiently carried out in the second, 
-- its DLP must be comparably as difficult as in the first $E(\mathbb{F}_q)$.  
+efficiently carried out in it, and
+- its Discrete Log Problem must be comparably as difficult as in the first curve $E(\mathbb{F}_q)$.  
 
 An elliptic curve $E$ over a field $\mathbb{F}$ has a **good reduction** at a prime $p$ if 
 the elliptic curve group $E(\mathbb{F}_p)$ has all the above mentioned properties. 
-
 
 **Definition 3:** [[16]] 
 An **Aliquot Cycle** of an elliptic curve $E$ over $\mathbb{Q}$ refers to a sequence of 
@@ -425,7 +430,7 @@ $p_i$ and such that
 $$  \\# E(\mathbb{F}\_{p\_{1}}) = p_2 ,\ \ \\# E(\mathbb{F}\_{p\_{2}}) = p_3 ,\ \ \dots\ \ , 
 \\# E(\mathbb{F}\_{p\_{l-1}}) = p\_l ,\ \ \\# E(\mathbb{F}\_{p\_{l}}) = p\_1 $$
 
-An Aliquot cycle is a generalized concept of an Amicable pair. So an Amicable pair is in fact 
+An Aliquot cycle is a generalized concept of an Amicable pair. So an Amicable pair is
 an Aliquot cycle of length 2. That is, a cycle of only two elliptic curves. 
 
 **Definition 4:** [[16]] 
@@ -435,63 +440,112 @@ at $p$ and $q$ such that
 
 
 Depending on the curve in case, and unlike pairing-friendly curves, some curves have a large number of amicable pairs. 
-For instance, Silverman and Stange report in [[16]] that the curve of $y^2 = x^3 + 2$ has 
+For instance, Silverman and Stange report [[16]] that the curve of $y^2 = x^3 + 2$ has 
 more than 800 amicable pairs using prime numbers that are less than $10^6$. 
 
-See below a simplified depiction of a recursive proof system using 
+See [Figure 3](#fig_apps) above for a simplified depiction of a recursive proof system using 
 an Amicable pair of elliptic curves. 
- 
-<p align="center"><a name="fig_apps"> </a><img src="sources/amicable-pair-1way-circuit.png" width="600" /></p>
-<div align="center"><b>Figure 4: Amicable Pair Proof System </b></div> 
 
 
 
 
+## Brief Survey: Recursive Proofs Protocols 
+
+There are two recursive proof protocols using amicable pairs of elliptic curves 
+that are of keen interest; Coda and Halo. The Sonic protocol is mentioned here 
+because it is a close predecessor of Halo, and it utilises a few Bulletproofs techniques. 
+
+### Coda Protocol 
+
+The Coda Protocol seems to be more successful at scalability than Halo, though the two have 
+fundamental differences. 
+
+It is claimed in [[19]] that Coda can handle a
+throughput of thousands of transactions per second. And this could perhaps be attributed to its 
+architecture, a **decentralized ledger** instead of a fully-fledged blockchain. 
+
+Coda follows Ben-Sasson et al's approach to cycle of curves by constructing two SNARKs, 
+Tic and Toc, that verify each other. Note that this means the recursive proof composition circuit, as seen in 
+[Figure 3](#fig_apps), is actually a two-way circuit.  
+
+The main disadvantage of Coda is that it uses a trusted setup. But also, 
+to achieve 128-bit security at low embedding degrees it requires 750-bit-sized curves. 
+
+<p align="center"><a name="fig_ttc"> </a><img src="sources/mnt-4-mnt-6-coda.png" width="500" /></p>
+<div align="center"><b>Figure 4: MNT4/MNT6: Coda Protocol's Pair of Elliptic Curves [[22]] </b></div> 
 
 
+### Sonic Protocol 
+
+The Sonic protocol aims at providing zero-knowledge arguments of knowledge for 
+the satisfiability of constraint systems representing NP-hard languages [[23]]. Its 
+constraint system is defined with respect to a two-variate polynomial used in Bulletproofs but 
+originally designed by Bootle et al [[24]]. 
+
+It is basically a zk-SNARK that uses an updatable Structured Reference String (SRS). 
+It achieves non-interaction via the Fiat-Shamir transformation. 
+The SRS is made updatable not only to continual strengthening, but also to allow reusability. 
+Unlike the SRS used in Groth's scheme [[18]] which grows quadraticallly with the size 
+of its arithmetic circuit, Sonic only grows linearly. 
+
+Sonic is built from a polynomial commitment scheme and 
+a signature of correct computation. The latter primitive seems to achieve what a PCD 
+does, allowing a third party helper to provide solutions to a computation as well as proof that 
+the computation was correctly carried out. 
+
+It makes use of an elliptic curve construction known as BLS12-381 in order to achieve 
+128-bit security at the minimum [[24]]. 
 
 
-## Why the interest in Halo Protocol? 
+### Halo Protocol 
 
-   
+Although Halo is a variant of Sonic, the two differ mainly in that Halo uses no trusted setup. 
+It however inherits all Bulletproofs techniques that Sonic employs, including the polynomial 
+commitment scheme and the constraint system. 
 
-### Brief Survey: Recursive Proofs protocols 
+Halo has been adjusted to leverage the nested amortization technique. 
+It also uses a modified version of the Bulletproofs inner-product proof, 
+which is appropriately adopted to suit its polynomial commitment scheme and the 
+constraint system [[11]]. 
 
-- table - comparison () [[7]]  
-Coda (2018) - Common Reference String  
-Sonic (2019) - updatable Structured Reference String  
-Halo (2019) - no Trusted Setup   
-- Coda & Halo (cf. my presentation on Amortized IPP)
+An Amicable pair of 255-bit sized curves, named Tweedledee and Tweedledum, are 
+employed in Halo, [[11], Section 6.1]. Again, the target security level is 128-bit. 
 
+In [[1]] the authors purportedly present a collection of results that establish the theoretical foundations for 
+a generalization of the approach used in Halo. 
 
-<p align="center"><a name="fig_tth"> </a><img src="sources/tweedledum-tweedledee-halo.png" width="500" /></p>
+<p align="center"><a name="fig_tth"> </a><img src="sources/tweedledum-tweedledee-halo.png" width="550" /></p>
 <div align="center"><b>Figure 5: Tweedledee and Tweedledum: Halo Protocol's Pair of Elliptic Curves [[22]] </b></div> 
 
-
-### Halo Protocol Design and Bulletproofs
-
-First of all, Halo uses no trusted setup. 
-
-The designers have taken some Bulletproofs techniques and modified for use in Halo 
-- Pedersen Commitment Scheme generalized ~ Polynomial Commitment Schemes
-- Modified Inner-product  
-A generalized Schnorr Protocol ... giving it a Mimblewimble touch 
+Halo is no doubt the closest recursive proofs protocol closest to Bulletproofs, and hence 
+of keen interest for Tari Blockchain in possibly developing proofs system that achieves scalability. 
 
 
+## Conclusion 
 
+Recursive proofs composition is not only fascinating but also powerful, even as 
+evidenced by real life applications such as the Coda Protocol and the Halo Protocol. 
 
+This report completes the necessary theory needed to understand what is 
+recursive proofs composition, what it entails, how its various components work, and 
+why the technique of cycles of curves is necessary. 
 
+Thus it still remains to consider the feasibility of designing and implementing a 
+recursive proofs composition that can achieve significant scalability for the Tari Blockchain 
+or Tari DAN. 
 
-## Implications to Tari Blockchain 
+It is not known if the technique of using Amicable pairs could directly apply to the Bulletproofs 
+setting, since Curve25519 has enormous embedding degree, which is in the order of $10^{75}$. 
+Talks have started on 'half-pairing-friendly' curves, where only one curve in a 
+cycle of curves can be required to be pairing-friendly [[11], Section 7]. 
 
-We have focused on recursive proof composition, 
- ... Buenz et al say, 
+The big take away from this research work is the PCD and what it is capable of. 
+Buenz et al say, 
 "PCD supports computations defined on (possibly infinite) directed acyclic graphs, 
-with messages passed along directed edges" [[1]] 
-but what comes for free with this report is that PCDs can be used in Layer 2 for verification 
-of digital assets. 
-A kind-of-a PCD-powered hashgraph could be considered for the DAN.   
-
+with messages passed along directed edges" [[1]]. 
+This implies, just as much as Coda has achieved immense blockchain scalability, with an 
+ingenious combination of a DLT and a PCD one could possibly develop 
+a "proof of proofs" gadget of sorts. 
 
 
 ## References 
@@ -510,12 +564,9 @@ Date accessed: 2020&#8209;07&#8209;01.
 [2]: https://eprint.iacr.org/2014/595.pdf "Scalable Zero Knowledge via Cycles of Elliptic Curves" 
 
 
+[[3]] A. Chiesa and E. Tromer, "Proof-Carrying Data and Hearsay Arguments from Signature Cards", ICS 2010 [online]. Available: <https://people.eecs.berkeley.edu/~alexch/docs/CT10.pdf>. Date accessed: 2020&#8209;07&#8209;01. 
 
-[[3]] A. Chiesa and E. Tromer, “Proof-Carrying Data and Hearsay Arguments from Signature Cards”, 
-ICS ’10. 2010 [online]. Available: <https://people.eecs.berkeley.edu/~alexch/docs/CT10.pdf>. 
-Date accessed: 2020&#8209;07&#8209;01.
-
-[3]: https://people.eecs.berkeley.edu/~alexch/docs/CT10.pdf “Proof-Carrying Data and Hearsay Arguments from Signature Cards”
+[3]: https://people.eecs.berkeley.edu/~alexch/docs/CT10.pdf "Proof-Carrying Data and Hearsay Arguments from Signature Cards"
 
 
 
@@ -647,7 +698,19 @@ Available: <https://www.youtube.com/watch?v=OhkHDw54C04>. Date accessed: 2020&#8
 [22]: https://www.youtube.com/watch?v=OhkHDw54C04 "Halo: Recursive Proofs without Trusted Setups (video)"
 
 
+[[23]] M. Maller, S. Bowe, M. Kohlweiss and S. Meiklejohn, "Sonic: Zero-Knowledge SNARKs 
+from Linear-Size Universal and Updateable Structured Reference Strings," 
+Cryptology ePrint Archive: Report 2019/099. Last revised July 8, 2019. [online]. 
+Available: <https://eprint.iacr.org/2019/099>
 
+[23]: https://eprint.iacr.org/2019/099 "Sonic: Zero-Knowledge SNARKs 
+from Linear-Size Universal and Updateable Structured Reference Strings" 
+
+
+
+[[24]] J. Bootle, A. Cerulli, P. Chaidos, J. Groth and C. Petit, "Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting" [online]. Annual International Conference on the Theory and Applications of Cryptographic Techniques, pp. 327‑357. Springer, 2016. Available: <https://eprint.iacr.org/2016/263.pdf>. Date accessed: 2019‑12‑21. 
+
+[24]: https://eprint.iacr.org/2016/263.pdf "Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting" 
 
 
 
@@ -662,7 +725,6 @@ a special element $\mathcal{O}$, and a multiplicative group.
 Although applications of pairing-based cryptography were known for a long time in the form of 
 one-round three-party key agreements, they became more popular with the emergence of 
 identity-based encryption. 
-
 
 Let $n$ be a prime number, $P$ a generator of an additively-written group of $G_1 = ⟨P⟩$ with identity $\mathcal{O}$, and $G_T$ a multiplicatively-written group of order $n$ with identity $1$.
 
@@ -692,8 +754,7 @@ hash function $H : \\{ 0, 1 \\}^n \to G_1 \backslash \mathcal{O}$.
 How can Bob or any party verify Alice's signature?
 - By first computing $M = H(m)$ and then check if $\hat{e}(P,S) = \hat{e}(A,M)$ 
 
-
-This why the verification works, 
+This is why the verification works, 
 $$\hat{e}(P,S) = \hat{e}(P, aM) = \hat{e}(P,M)^a$$ 
 $$\hat{e}(A,M) = \hat{e}(aP,M) = \hat{e}(P,M)^a $$ 
 
