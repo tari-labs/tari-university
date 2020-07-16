@@ -164,7 +164,7 @@ the base field will be a field of a large prime order $p$, denoted by $\mathbb{F
 A zero-knowledge proof typically involves two parties, the prover $\mathcal{P}$ and the verifier $\mathcal{V}$; 
 the prover $\mathcal{P}$ has to convince the verifier $\mathcal{V}$ that he knows the correct solution to a 
 set computational problem without disclosing the exact solution. 
-So the prover has to produce a proof $\pi$ that attests to the his knowledge of the correct solution, and 
+So the prover has to produce a proof $\pi$ that attests to his knowledge of the correct solution, and 
 the verifier must be able to check its veracity without accepting false 
 proofs. 
 
@@ -206,7 +206,7 @@ in addition to delegating computations to several untrusted parties, the verifie
 verification as often as he receives proofs from third parties but rather collects these proofs and 
 only executes a single proof at the end. 
 
-**Nested Amortization**
+**Nested Amortization**, 
 the strategy here is to reduce the cost of an expensive computation to a sub-linear 
 cost (logarithmic relative to the cost of the original) by collapsing the 
 cost of two computations to a cost of one.  
@@ -234,7 +234,7 @@ history leading to the messages comply with a specified predicate.
 The assumption here is that there are specific invariant properties that all propagated
 messages need to maintain. 
 
-An obvious example of a distributed computation is PoW blockchains is mining. And of course, 
+An obvious example of a distributed computation in PoW blockchains is mining. And of course, 
 the integrity of any PoW blockchains relies on the possibility for proper validation of the PoW. 
 
 ### Trustlessness via PCDs
@@ -244,7 +244,7 @@ distributed computations, and a protocol compiler $\mathbf{\Pi}$ is used to enfo
 compliance to a predicate specified by the proof system designer. 
 Such a compiler is typically defined as a function 
 $$\mathbf{\Pi}(m\_i, m\_{loc,i}, \mathbf{m}\_{inc} ) \in \\{ 0, 1 \\}$$
-taking as inputs a newly formed message $m_i$ at node $i$, a local data $m\_{loc,i}$ only known to 
+taking as inputs a newly formed message $m_i$ at node $i$, local data $m\_{loc,i}$ only known to 
 node $i$, and a vector $\mathbf{m}\_{inc}$ of all incoming messages received by node $i$.  
 
 Since a PCD is equipped with a protocol compiler $\Pi$ that ensures that every 
@@ -293,8 +293,7 @@ and multiplication modulo $p$,
 subgroup of $E(\mathbb{F}\_p)$, so in this case the arithmetic consists of addition modulo $r$ 
 and multiplication modulo $r$. 
 
-The question now is which arithmetic is better to use in a circuit instantiated with $E(\mathbb{F}_p)$. 
-
+The question now is which arithmetic is better to use in a circuit instantiated with $E(\mathbb{F}_p)$? 
 The next example makes the choice obvious. 
 
 #### Example 2 
@@ -325,10 +324,10 @@ Also, either $\\# (\mathbb{F}\_q^{\times}) = p - 1$ or $\\# (\mathbb{F}_q^{\time
 According to a well-known result, called Lagrange's Theorem, the order of any subgroup of a 
 finite group $\mathbb{G}$ must divide  $\\# (\mathbb{G})$. 
 
-It follows then that the order of any scalar field $\mathbb{F}\_q$ divides either 
+It follows then that the order of any scalar field $\mathbb{F}\_r$ divides either 
 $p - 1$ or $p^n -1$. 
 
-It is therefore mathematically impossible for the scalar field of the elliptic curve $E(\mathbb{F}_q)$ 
+It is therefore mathematically impossible for the scalar field $\mathbb{F}\_r$ of the elliptic curve $E(\mathbb{F}_q)$ 
 to have the same order as the base field $\mathbb{F}_q$. 
 
 
@@ -354,11 +353,9 @@ we will need to simulate $\mathbb{F}_q$ arithmetic inside of $\mathbb{F}_r$ arit
 Basically, the problem is that there is no efficient way to use both field arithmetics when 
 there is no prover-verifier dichotomy. 
 
-The ideal solution would be choosing the elliptic curve $E(\mathbb{F}_q)$ in such a way 
-that $q = r$. 
-However, it is mathematically impossible for 
-$\\# (\mathbb{F}_r)$ to equal $\\# (\mathbb{F}_q)$, 
-as observed above [here](#the-order-of-the-scalar-field). 
+The ideal solution would be choosing the elliptic curve $E(\mathbb{F}_q)$ such that $q = r$. 
+However, as observed above [here](#the-order-of-the-scalar-field), it is 
+mathematically impossible for $\\# (\mathbb{F}_r)$ to equal $\\# (\mathbb{F}_q)$. 
 
 The adopted solution is to find a second elliptic curve, say $E(\mathbb{F}_r)$, with a 
 scalar field $\mathbb{F}_q$ if possible. 
@@ -387,14 +384,14 @@ of the largest cyclic subgroup of the elliptic curve $E(\mathbb{F}_q)$.
  
 
 **Definition 2:** 
-For implementing pairing-based cryptographic systems, elliptic curves with small embedding degree $k$ 
-and large prime-order subgroups are called **pairing-friendly**.  
+For secure implementation of pairing-based cryptographic systems, elliptic curves with small embedding degree $k$ 
+and large prime-order subgroups are used. Such elliptic curves are called **pairing-friendly**.  
 
 According to Freeman et al [[14]], "pairing-friendly curves are rare and thus require specific constructions." 
 In the same paper, the authors furnish what they call a "single coherent framework" of constructions of pairing-friendly 
 elliptic curves. 
 
-The Coda block chain [[19]] is an example of a deployed protocol using the Ben-Sasson approach in [[2]] 
+The Coda block chain [[19]] is an example of a deployed protocol using the Ben-Sasson approach in [[2]], 
 using pairing-friendly MNT curves of embedding degrees 4 and 6. 
 
 
@@ -405,18 +402,18 @@ MNT constructions used in Coda require curves of size
 approaching 800 bits for 128-bit security level. 
 
 Previously, constructions of pairing-friendly curves were mostly restricted to embedding degrees 
-less than $k \leq 6$, until Barreto and Naehrig constructed curves of prime order and 
+$k \leq 6$, until Barreto and Naehrig constructed curves of prime order and 
 embedding degree $k = 12$ in [[20]].  
 
-Some researchers, such as Chiesa et al [[21]], do not make any distinction between 
-a cycle of pairing-friendly elliptic curves and Aliquot cycle of elliptic curves, to be defined below. 
-It is perhaps due the fact that Aliquot cycles are more concerned with elliptic curves of prime orders, 
-than pairing-friendly curves. 
+Some researchers, such as Chiesa et al [[21]], do not make much distinction between 
+a cycle of pairing-friendly elliptic curves and Aliquot cycle of elliptic curves (to be defined below). 
+It is perhaps due the fact that, unlike pairing-friendly curves, Aliquot cycles are more concerned 
+with elliptic curves of prime orders. 
 
 Minimum required properties for a second elliptic curve that forms an Amicable Pair with the 
 elliptic curve group $E(\mathbb{F}_q)$ are, 
 - the second curve must also be of a large prime order, 
-- it must be compatible with the first in the sense that the verifier operations can be 
+- it must be compatible with the first curve in the sense that the verifier operations can be 
 efficiently carried out in it, and
 - its Discrete Log Problem must be comparably as difficult as in the first curve $E(\mathbb{F}_q)$.  
 
@@ -440,7 +437,7 @@ at $p$ and $q$ such that
 
 
 Depending on the curve in case, and unlike pairing-friendly curves, some curves have a large number of amicable pairs. 
-For instance, Silverman and Stange report [[16]] that the curve of $y^2 = x^3 + 2$ has 
+For instance, in [[16]], Silverman and Stange report that the curve of $y^2 = x^3 + 2$ has 
 more than 800 amicable pairs using prime numbers that are less than $10^6$. 
 
 See [Figure 3](#fig_apps) above for a simplified depiction of a recursive proof system using 
@@ -458,11 +455,9 @@ because it is a close predecessor of Halo, and it utilises a few Bulletproofs te
 ### Coda Protocol 
 
 The Coda Protocol seems to be more successful at scalability than Halo, though the two have 
-fundamental differences. 
-
-It is claimed in [[19]] that Coda can handle a
+fundamental differences. It is claimed in [[19]] that Coda can handle a
 throughput of thousands of transactions per second. And this could perhaps be attributed to its 
-architecture, a **decentralized ledger** instead of a fully-fledged blockchain. 
+architecture, a **decentralized ledger** instead of a typical blockchain. 
 
 Coda follows Ben-Sasson et al's approach to cycle of curves by constructing two SNARKs, 
 Tic and Toc, that verify each other. Note that this means the recursive proof composition circuit, as seen in 
@@ -479,12 +474,12 @@ to achieve 128-bit security at low embedding degrees it requires 750-bit-sized c
 
 The Sonic protocol aims at providing zero-knowledge arguments of knowledge for 
 the satisfiability of constraint systems representing NP-hard languages [[23]]. Its 
-constraint system is defined with respect to a two-variate polynomial used in Bulletproofs but 
+constraint system is defined with respect to a two-variate polynomial used in Bulletproofs, 
 originally designed by Bootle et al [[24]]. 
 
 It is basically a zk-SNARK that uses an updatable Structured Reference String (SRS). 
 It achieves non-interaction via the Fiat-Shamir transformation. 
-The SRS is made updatable not only to continual strengthening, but also to allow reusability. 
+The SRS is made updatable not only for continual strengthening, but also to allow reusability. 
 Unlike the SRS used in Groth's scheme [[18]] which grows quadraticallly with the size 
 of its arithmetic circuit, Sonic only grows linearly. 
 
@@ -493,7 +488,7 @@ a signature of correct computation. The latter primitive seems to achieve what a
 does, allowing a third party helper to provide solutions to a computation as well as proof that 
 the computation was correctly carried out. 
 
-It makes use of an elliptic curve construction known as BLS12-381 in order to achieve 
+Lastly, Sonic makes use of an elliptic curve construction known as BLS12-381 in order to achieve 
 128-bit security at the minimum [[24]]. 
 
 
@@ -509,16 +504,17 @@ which is appropriately adopted to suit its polynomial commitment scheme and the
 constraint system [[11]]. 
 
 An Amicable pair of 255-bit sized curves, named Tweedledee and Tweedledum, are 
-employed in Halo, [[11], Section 6.1]. Again, the target security level is 128-bit. 
-
-In [[1]] the authors purportedly present a collection of results that establish the theoretical foundations for 
-a generalization of the approach used in Halo. 
+employed in Halo, see [[11], Section 6.1]. Again, the target security level is 128-bit. 
 
 <p align="center"><a name="fig_tth"> </a><img src="sources/tweedledum-tweedledee-halo.png" width="550" /></p>
 <div align="center"><b>Figure 5: Tweedledee and Tweedledum: Halo Protocol's Pair of Elliptic Curves [[22]] </b></div> 
 
-Halo is no doubt the closest recursive proofs protocol closest to Bulletproofs, and hence 
-of keen interest for Tari Blockchain in possibly developing proofs system that achieves scalability. 
+In [[1]] the authors purportedly present a collection of results that establish the theoretical foundations for 
+a generalization of the approach used in Halo. 
+
+Halo is no doubt the closest recursive proofs protocol to Bulletproofs, and hence 
+of keen interest to Tari, for possibly developing a recursive proofs system that achieves scaling of
+the Tari Blockchain. 
 
 
 ## Conclusion 
@@ -743,7 +739,7 @@ Take the Boneh-Lynn-Shacham short signature, or BLS-signature, as an example of 
 pairing-based cryptographic primitive. 
   
 **Example A1** 
-The BLS-signature uses a bilinear map $\hat{e}$ on $(G_1, G_T)$ for which the Diffie-Hellman Problem 
+The **BLS-signature** uses a bilinear map $\hat{e}$ on $(G_1, G_T)$ for which the Diffie-Hellman Problem 
 is intractable. 
 Say, Alice wants to send a message to Bob with an attached signature.  
 - Alice randomly selects an integer $a \in \[ 1, n-1 \]$ and creates a public key $A = aP$ where $P$ 
@@ -762,8 +758,3 @@ See the diagram below that illustrates the verification.
 
 <p align="center"><a name="fig_bls"> </a><img src="sources/bls-signature.png" width="600" /></p>
 <div align="center"><b>Figure A1: BLS Signature Verification </b></div>
-
-
-
-
-
