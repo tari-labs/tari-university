@@ -25,10 +25,8 @@
   - [Halo Protocol](#halo-protocol) 
 - [Conclusion](#conclusion) 
 - [References](#references)
-- [Appendices](#appendices) 
-  - [Pairing Cryptography](#pairing-cryptography) 
-
- 
+- [Appendix A: Pairing Cryptography](#appendix-a-pairing-cryptography) 
+- [Contributors](#contributors)
 
 
 
@@ -127,7 +125,7 @@ Thus if $\\# E(\mathbb{F}) = p$, then the scalar field is $\mathbb{F}_p$.
 
 So then, unlike an elliptic curve $E$ over a field $\mathbb{F}$, an elliptic curve group $E(\mathbb{F})$ is discrete, 
 consisting of only a finite number of points. The sizes of these groups are bounded by what is known as 
-the Hasse bound [[12]]. Algorithms used to compute these sizes are also known, see [[13]].
+the Hasse bound [[12]]. Algorithms used to compute these sizes are also known, see [[13]].  
  
  #### Example 1 
  
@@ -156,8 +154,7 @@ $\mathbb{Q}$ is the base field.
 
 In order to be in line with the literature, an elliptic curve will henceforth be 
 referring to an elliptic curve group $E(\mathbb{F})$. And unless otherwise stated, 
-the base field will be a field of a large prime order $p$, denoted by $\mathbb{F}_p$.
-
+the base field will be a field of a large prime order $p$, denoted by $\mathbb{F}_p$.  
 
 ### Arithmetic Circuits and R1CS 
 
@@ -182,8 +179,7 @@ In their recent paper, Benedikt Buenz et al. report that,
 such as incrementally-verifiable computation (IVC) and proof-carrying data (PCD)," 
 in [[1]]. 
 Thus recognising the two main components of recursive proof composition, IVC and PCD. 
-The former was adequately investigated in [[9]], and the latter is now the focus of this report. 
- 
+The former was adequately investigated in [[9]], and the latter is now the focus of this report.  
  
 ### Verification Amortization Strategies
 
@@ -191,26 +187,24 @@ These strategies are briefly mentioned here but their detailed descriptions can 
 
 **Verifiable Computation** 
 allows a verifier to delegate expensive computations to untrusted third parties and be able 
-to check correctness of the proofs these third parties submit.   
+to check correctness of the proofs these third parties submit.  
 
 **Inductive proofs** 
 take advantage of whatever recursion that may be found in a computational problem. 
 Thus a verifier need only check correctness of the "base step" and the 
 "inductive step" according to the Principle of Mathematical Induction. 
 Making this a powerful tool when it comes to the scalability problem 
-particularly for blockchains.
-
+particularly for blockchains.  
 
 **Incrementally Verifiable Computation** 
 in addition to delegating computations to several untrusted parties, the verifier does not execute 
 verification as often as he receives proofs from third parties but rather collects these proofs and 
-only executes a single proof at the end. 
+only executes a single proof at the end.  
 
 **Nested Amortization**, 
 the strategy here is to reduce the cost of an expensive computation to a sub-linear 
-cost (logarithmic relative to the cost of the original) by collapsing the 
-cost of two computations to a cost of one.  
-
+cost (logarithmic relative to the cost of the original) by collapsing the cost of two 
+computations to a cost of one.  
 
 
 
@@ -368,8 +362,6 @@ The proof system aimed at is illustrated in [Figure 3](#fig_app) below.
 <div align="center"><b>Figure 3: Amicable Pair-based Proof System </b></div>  
 
 
-
-
 ### Pairing-friendly Elliptic Curves 
 
 It was Groth in [[18]] who first constructed "a pairing-based 
@@ -380,8 +372,7 @@ who first presented a practical recursive proof composition that uses a cycle of
 **Definition 1:** 
 Given an elliptic curve $E$ over a field $\mathbb{F}$, the **embedding degree** of an elliptic curve 
 $E(\mathbb{F}_q)$ is the smallest positive integer $k$ such that $r\$  divides $p^k - 1$, where $r$ is the order 
-of the largest cyclic subgroup of the elliptic curve $E(\mathbb{F}_q)$. 
- 
+of the largest cyclic subgroup of the elliptic curve $E(\mathbb{F}_q)$.  
 
 **Definition 2:** 
 For secure implementation of pairing-based cryptographic systems, elliptic curves with small embedding degree $k$ 
@@ -435,15 +426,12 @@ An **Amicable Pair** of an elliptic curve $E$ over $\mathbb{Q}$ is any pair of p
 at $p$ and $q$ such that 
  $$\\# E(\mathbb{F}\_p) = q \text{  }  \text{  and  }  \text{  } \\# E(\mathbb{F}\_q) = p $$
 
-
-Depending on the curve in case, and unlike pairing-friendly curves, some curves have a large number of amicable pairs. 
+Depending on the curve at hand, and unlike pairing-friendly curves, some curves have a large number of amicable pairs. 
 For instance, in [[16]], Silverman and Stange report that the curve of $y^2 = x^3 + 2$ has 
 more than 800 amicable pairs using prime numbers that are less than $10^6$. 
 
 See [Figure 3](#fig_apps) above for a simplified depiction of a recursive proof system using 
 an Amicable pair of elliptic curves. 
-
-
 
 
 ## Brief Survey: Recursive Proofs Protocols 
@@ -467,8 +455,7 @@ The main disadvantage of Coda is that it uses a trusted setup. But also,
 to achieve 128-bit security at low embedding degrees it requires 750-bit-sized curves. 
 
 <p align="center"><a name="fig_ttc"> </a><img src="sources/mnt-4-mnt-6-coda.png" width="500" /></p>
-<div align="center"><b>Figure 4: MNT4/MNT6: Coda Protocol's Pair of Elliptic Curves [[22]] </b></div> 
-
+<div align="center"><b>Figure 4: MNT4/MNT6: Coda Protocol's Pair of Elliptic Curves [[22]] </b></div>  
 
 ### Sonic Protocol 
 
@@ -489,8 +476,7 @@ does, allowing a third party helper to provide solutions to a computation as wel
 the computation was correctly carried out. 
 
 Lastly, Sonic makes use of an elliptic curve construction known as BLS12-381 in order to achieve 
-128-bit security at the minimum [[24]]. 
-
+128-bit security at the minimum [[23]].  
 
 ### Halo Protocol 
 
@@ -560,6 +546,7 @@ Date accessed: 2020&#8209;07&#8209;01.
 [2]: https://eprint.iacr.org/2014/595.pdf "Scalable Zero Knowledge via Cycles of Elliptic Curves" 
 
 
+
 [[3]] A. Chiesa and E. Tromer, "Proof-Carrying Data and Hearsay Arguments from Signature Cards", ICS 2010 [online]. Available: <https://people.eecs.berkeley.edu/~alexch/docs/CT10.pdf>. Date accessed: 2020&#8209;07&#8209;01. 
 
 [3]: https://people.eecs.berkeley.edu/~alexch/docs/CT10.pdf "Proof-Carrying Data and Hearsay Arguments from Signature Cards"
@@ -570,7 +557,6 @@ Date accessed: 2020&#8209;07&#8209;01.
 <https://pdfs.semanticscholar.org/6c6b/bf89c608c74be501a6c6406c976b1cf1e3b4.pdf>.  Date accessed: 2020&#8209;07&#8209;01.  
  
 [4]: https://pdfs.semanticscholar.org/6c6b/bf89c608c74be501a6c6406c976b1cf1e3b4.pdf "Proof-Carrying Data"
-
 
 
 
@@ -688,10 +674,12 @@ Available: <https://www.math.uwaterloo.ca/~ajmeneze/publications/pairings.pdf>. 
 [21]: https://arxiv.org/pdf/1803.02067.pdf "On cycles of pairing-friendly elliptic curves" 
 
 
+
 [[22]] S. Bowe, "Halo: Recursive Proofs without Trusted Setups (video)", Zero Knowledge Presentations Nov 15, 2019 [online]. 
 Available: <https://www.youtube.com/watch?v=OhkHDw54C04>. Date accessed: 2020&#8209;07&#8209;13.
 
 [22]: https://www.youtube.com/watch?v=OhkHDw54C04 "Halo: Recursive Proofs without Trusted Setups (video)"
+
 
 
 [[23]] M. Maller, S. Bowe, M. Kohlweiss and S. Meiklejohn, "Sonic: Zero-Knowledge SNARKs 
@@ -710,9 +698,7 @@ from Linear-Size Universal and Updateable Structured Reference Strings"
 
 
 
-## Appendices 
-
-### Pairing Cryptography 
+## Appendix: Pairing Cryptography 
 
 Pairing-based cryptographic systems are defined on pairings like the Weil pairing and the Tate pairing all 
 characterised by a bilinear mapping defined on a pair of groups; an additively group including 
@@ -757,4 +743,11 @@ $$\hat{e}(A,M) = \hat{e}(aP,M) = \hat{e}(P,M)^a $$
 See the diagram below that illustrates the verification. 
 
 <p align="center"><a name="fig_bls"> </a><img src="sources/bls-signature.png" width="600" /></p>
-<div align="center"><b>Figure A1: BLS Signature Verification </b></div>
+<div align="center"><b>Figure A1: BLS Signature Verification </b></div> 
+
+
+## Contributors 
+
+- <https://github.com/empiech007> 
+- <https://github.com/anselld> 
+
