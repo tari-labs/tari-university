@@ -6,7 +6,7 @@
   - [Fields and Elliptic Curves](#fields-and-elliptic-curves)
      - [Example 1](#example-1)
   - [Arithmetic Circuits and R1CS](#arithmetic-circuits-and-r1cs) 
-- [Recursive Proof Composition Overview](#recursive-proof-composition-overview) 
+- [Recursive Proofs Composition Overview](#recursive-proofs-composition-overview) 
   - [Verification Amortization Strategies](#verification-amortization-strategies)
 - [Proof-Carrying Data](#proof-carrying-data) 
   - [What is a PCD?](#what-is-a-pcd) 
@@ -33,12 +33,12 @@
 ## Introduction 
 
 In pursuit of blockchain scalability investigation in this report focuses on 
-the second leg of recursive proof composition: 
+the second leg of recursive proofs composition: 
 "proofs that verify other proofs". 
 
-Recursive proof composition is like a huge machinery with many moving parts. 
+Recursive proofs composition is like a huge machinery with many moving parts. 
 For the sake of brevity, the aim here is to present only the most crucial 
-cryptographic tools and techniques required to achieve recursive proof composition. 
+cryptographic tools and techniques required to achieve recursive proofs composition. 
 
 Amortization strategies that recursive proofs use to accomplish reduced 
 verification costs are enabled by a powerful tool called a 
@@ -47,17 +47,17 @@ The resulting proof system is made efficient and more practical by the use of a 
 that utilises [cycles of elliptic curves](#cycles-of-elliptic-curves), first realised by Eli Ben-Sasson et al [[2]]. 
 These two are what the report hinges around.  
 
-The details of recursive proof composition are in the mathematics. So effort is taken 
+The details of recursive proofs composition are in the mathematics. So effort is taken 
 to simplify concepts, while keeping technical reader's interests in mind. 
-At the end the reader will appreciate the power of recursive proof composition, how 
-they use PCDs and cycles of elliptic curves, as well as why they need the two to achieve 
+At the end the reader will appreciate the power of recursive proofs composition, how 
+it uses PCDs and cycles of elliptic curves, as well as why it needs the two to achieve 
 significant blockchain scalability. 
 
 
 ## Notation and Preliminaries 
 
 Notation and terminology in this report is standard. But in order to achieve a clear understanding of
-the concept of [cycle of elliptic curves](#cycle-of-elliptic-curves), a few basic facts about elliptic curves are herein ironed 
+the concept of [cycles of elliptic curves](#cycles-of-elliptic-curves), a few basic facts about elliptic curves are herein ironed 
 out. 
 
 ### Fields and Elliptic Curves
@@ -172,13 +172,13 @@ $\mathcal{C}$, and if and only if the prover has the correct solution to the ori
 
 
 
-## Recursive Proof Composition Overview 
+## Recursive Proofs Composition Overview 
 
 In their recent paper, Benedikt Buenz et al. report that,
-"Recursive proof composition has been shown to lead to powerful primitives 
+"Recursive proofs composition has been shown to lead to powerful primitives 
 such as incrementally-verifiable computation (IVC) and proof-carrying data (PCD)," 
 in [[1]]. 
-Thus recognising the two main components of recursive proof composition, IVC and PCD. 
+Thus recognising the two main components of recursive proofs composition, IVC and PCD. 
 The former was adequately investigated in [[9]], and the latter is now the focus of this report.  
  
 ### Verification Amortization Strategies
@@ -197,20 +197,20 @@ Making this a powerful tool when it comes to the scalability problem
 particularly for blockchains.  
 
 **Incrementally Verifiable Computation** 
-in addition to delegating computations to several untrusted parties, the verifier does not execute 
+is the strategy where, in addition to delegating computations to several untrusted parties, the verifier does not execute 
 verification as often as he receives proofs from third parties but rather collects these proofs and 
 only executes a single proof at the end.  
 
 **Nested Amortization**, 
 the strategy here is to reduce the cost of an expensive computation to a sub-linear 
-cost (logarithmic relative to the cost of the original) by collapsing the cost of two 
+cost (logarithmic relative to the cost of the original computation) by collapsing the cost of two 
 computations to a cost of one.  
 
 
 
 ## Proof-Carrying Data 
 
-Recursive proof composition uses an abstraction called *proof-carrying data* (PCD) when dealing with 
+Recursive proofs composition uses an abstraction called *proof-carrying data* (PCD) when dealing with 
 distributed computations. These PCDs are powerful tools that enable practical implementation 
 of the above verification amortization strategies. 
 
@@ -249,7 +249,7 @@ that run indefinitely, and
 - due to proof strings attached to all previous messages, any node $j$ can verify any intermediate state of the computation and propagate a 
 new message $m_j$ with its proof string $\pi_j$ attached to it.  
 
-It now becomes clear how recursive proof composition accomplishes blockchain scalability. 
+It now becomes clear how recursive proofs composition accomplishes blockchain scalability. 
 Any new node can take advantage of IVC and a PCD to succinctly verify the current state of 
 the blockchain without concern about the chain's historical integrity.  
 
@@ -327,7 +327,7 @@ to have the same order as the base field $\mathbb{F}_q$.
 
 #### No Prover-Verifier Dichotomy
 
-In the envisaged proof-of-proofs system using recursive proof composition, the tremendous 
+In the envisaged proof-of-proofs system using recursive proofs composition, the tremendous 
 accomplishment is to allow every participant to simultaneously be a prover and a verifier. 
 However, this presents a serious practical problem. 
 
@@ -367,7 +367,7 @@ The proof system aimed at is illustrated in [Figure 3](#fig_app) below.
 It was Groth in [[18]] who first constructed "a pairing-based 
 (preprocessing) SNARK for arithmetic circuit satisfiability, which is an NP-complete language". 
 But when it comes to a scalable zero-knowledge proof system, it was Ben-Sasson et al in [[2]] 
-who first presented a practical recursive proof composition that uses a cycle of elliptic curves. 
+who first presented a practical recursive proofs composition that uses a cycle of elliptic curves. 
 
 **Definition 1:** 
 Given an elliptic curve $E$ over a field $\mathbb{F}$, the **embedding degree** of an elliptic curve 
@@ -382,7 +382,7 @@ According to Freeman et al [[14]], "pairing-friendly curves are rare and thus re
 In the same paper, the authors furnish what they call a "single coherent framework" of constructions of pairing-friendly 
 elliptic curves. 
 
-The Coda block chain [[19]] is an example of a deployed protocol using the Ben-Sasson approach in [[2]], 
+The Coda blockchain [[19]] is an example of a deployed protocol using the Ben-Sasson approach in [[2]], 
 using pairing-friendly MNT curves of embedding degrees 4 and 6. 
 
 
@@ -419,7 +419,7 @@ $$  \\# E(\mathbb{F}\_{p\_{1}}) = p_2 ,\ \ \\# E(\mathbb{F}\_{p\_{2}}) = p_3 ,\ 
 \\# E(\mathbb{F}\_{p\_{l-1}}) = p\_l ,\ \ \\# E(\mathbb{F}\_{p\_{l}}) = p\_1 $$
 
 An Aliquot cycle is a generalized concept of an Amicable pair. So an Amicable pair is
-an Aliquot cycle of length 2. That is, a cycle of only two elliptic curves. 
+an Aliquot cycle of length $l = 2$. That is, a cycle of only two elliptic curves. 
 
 **Definition 4:** [[16]] 
 An **Amicable Pair** of an elliptic curve $E$ over $\mathbb{Q}$ is any pair of primes $(p, q)$ such that $E$ has good reduction 
@@ -428,15 +428,15 @@ at $p$ and $q$ such that
 
 Depending on the curve at hand, and unlike pairing-friendly curves, some curves have a large number of amicable pairs. 
 For instance, in [[16]], Silverman and Stange report that the curve of $y^2 = x^3 + 2$ has 
-more than 800 amicable pairs using prime numbers that are less than $10^6$. 
+more than $800$ amicable pairs using prime numbers that are less than $10^6$. 
 
-See [Figure 3](#fig_apps) above for a simplified depiction of a recursive proof system using 
+See [Figure 3](#fig_apps) above for a simplified depiction of a recursive proofs system using 
 an Amicable pair of elliptic curves. 
 
 
 ## Brief Survey: Recursive Proofs Protocols 
 
-There are two recursive proof protocols using amicable pairs of elliptic curves 
+There are two recursive proofs protocols using amicable pairs of elliptic curves 
 that are of keen interest; Coda and Halo. The Sonic protocol is mentioned here 
 because it is a close predecessor of Halo, and it utilises a few Bulletproofs techniques. 
 
@@ -448,7 +448,7 @@ throughput of thousands of transactions per second. And this could perhaps be at
 architecture, a **decentralized ledger** instead of a typical blockchain. 
 
 Coda follows Ben-Sasson et al's approach to cycle of curves by constructing two SNARKs, 
-Tic and Toc, that verify each other. Note that this means the recursive proof composition circuit, as seen in 
+Tic and Toc, that verify each other. Note that this means the recursive proofs composition circuit, as seen in 
 [Figure 3](#fig_apps), is actually a two-way circuit.  
 
 The main disadvantage of Coda is that it uses a trusted setup. But also, 
@@ -499,7 +499,7 @@ In [[1]] the authors purportedly present a collection of results that establish 
 a generalization of the approach used in Halo. 
 
 Halo is no doubt the closest recursive proofs protocol to Bulletproofs, and hence 
-of keen interest to Tari, for possibly developing a recursive proofs system that achieves scaling of
+of keen interest to Tari for possibly developing a recursive proofs system that achieves scaling of
 the Tari Blockchain. 
 
 
@@ -698,7 +698,7 @@ from Linear-Size Universal and Updateable Structured Reference Strings"
 
 
 
-## Appendix: Pairing Cryptography 
+## Appendix A: Pairing Cryptography 
 
 Pairing-based cryptographic systems are defined on pairings like the Weil pairing and the Tate pairing all 
 characterised by a bilinear mapping defined on a pair of groups; an additively group including 
@@ -708,11 +708,12 @@ Although applications of pairing-based cryptography were known for a long time i
 one-round three-party key agreements, they became more popular with the emergence of 
 identity-based encryption. 
 
-Let $n$ be a prime number, $P$ a generator of an additively-written group of $G_1 = ⟨P⟩$ with identity $\mathcal{O}$, and $G_T$ a multiplicatively-written group of order $n$ with identity $1$.
+Let $n$ be a prime number, $P$ a generator of an additively-written group  $G_1 = ⟨P⟩$ with identity $\mathcal{O}$, and $G_T$ a multiplicatively-written group of order $n$ with identity $1$.
 
 **Definition A1:** [[17]] 
 A **bilinear pairing** on $(G_1, G_T)$  is a map 
 $$ \hat{e} : G_1 \times G_1  \to G_T$$ 
+satisfying the following properties,  
 (a) (*bilinear*) For all $R$, $S$, $T \in G_1$, $\ \ \hat{e} (R + S,T) = \hat{e} (R,T) \hat{e}(S,T)\ \ $ and 
 $\ \ \hat{e} ( R , S + T ) = \hat{e} ( R , S ) \hat{e} ( R , T )$   
 (b) (*non-degeneracy*) $\hat{e} (P, P ) \not= 1$  
