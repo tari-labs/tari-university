@@ -254,7 +254,7 @@ Any new node can take advantage of IVC and a PCD to succinctly verify the curren
 the blockchain without concern about the chain's historical integrity.  
 
 The PCD abstraction is no doubt the very secret to achieving blockchain scaling 
-especially via recursive proof composition. 
+especially via recursive proofs composition. 
 
 
 ## Cycles of Elliptic Curves 
