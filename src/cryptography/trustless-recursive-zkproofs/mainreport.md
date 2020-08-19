@@ -303,7 +303,7 @@ The next example makes the choice obvious.
 #### Example 2 
 
 Consider the elliptic curve $E(\mathbb{Q})$ from [Example 1](#example-1). 
-Since $E(\mathbb{Q})$ is isomorphic to $\mathbb{F}_7$, group addiction of two elements 
+Since $E(\mathbb{Q})$ is isomorphic to $\mathbb{F}_7$, group addition of two elements 
 in $E(\mathbb{Q})$ amounts to 
 adding their scalars modulo $7$. 
 That is, 
@@ -485,11 +485,12 @@ originally designed by Bootle et al [[24]].
 It is basically a zk-SNARK that uses an updatable Structured Reference String (SRS). 
 It achieves non-interaction via the Fiat-Shamir transformation. 
 The SRS is made updatable not only for continual strengthening, but also to allow reusability. 
-Unlike the SRS used in Groth's scheme [[18]] which grows quadraticallly with the size 
-of its arithmetic circuit, Sonic only grows linearly. 
+Unlike the SRS used in Groth's scheme [[18]] which grows quadratically with the size 
+of its arithmetic circuit, Sonic's only grows linearly. 
 
 Sonic is built from a polynomial commitment scheme and 
-a signature of correct computation. The latter primitive seems to achieve what a PCD 
+a *signature of correct computation*. 
+The latter primitive seems to achieve what a PCD 
 does, allowing a third party helper to provide solutions to a computation as well as proof that 
 the computation was correctly carried out. 
 
