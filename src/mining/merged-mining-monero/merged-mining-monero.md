@@ -9,7 +9,7 @@
 ## Overview
 
 The following diagram depicts the necessary components needed for merged mining from the Monero application ecosystem.
-<div  class=mermaid>
+<div class="mermaid">
 stateDiagram
     MoneroD --> XMRig
     XMRig --> MoneroD
@@ -18,7 +18,7 @@ stateDiagram
 </div>
 
 The following diagram depicts how merged mining with Monero is currently implemented for Tari.
-<div  class=mermaid>
+<div class="mermaid">
 stateDiagram
     MoneroD --> Tari_Merge_Mining_Proxy
     Tari_Merge_Mining_Proxy --> MoneroD
@@ -33,7 +33,7 @@ stateDiagram
 </div>
 
 Lastly the following diagram illustrates how pool software interacts with Monero.
-<div  class=mermaid>
+<div class="mermaid">
 stateDiagram
     MoneroD --> Monero_Pool
     MoneroD --> Monero_Onion_Block_Explorer
@@ -165,7 +165,7 @@ appended with `/json_rpc`.
 
 The following sequence diagram illustrates the merge mining process across the applications involved [[5]]
 
-<div  class=mermaid>
+<div class="mermaid">
 sequenceDiagram
 loop Mining
 XMRig -->>+ Tari_Merge_Mining_Proxy: get_height
