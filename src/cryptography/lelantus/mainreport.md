@@ -82,26 +82,28 @@ While the implementation of Lelantus MW [[[9]]] as implemented by Beam is based 
 
 #### Minting
 
-Beam uses the same Pedersen commitments as Lelantus: \(C_i = v_i \cdot{H} + k_i \cdot{G} + s_i \cdot{J} \).
+As with normal Lelantus, Beam uses a normal output as input to the same Pedersen commitments: \(C_i = v_i \cdot{H} + k_i \cdot{G} + s_i \cdot{J} \).
 To ensure that the value \(v\) is positive, Beam modified their bulletproof implementation to allow for the additional generator \(J\).
 When a Lelantus UTXO is added to the shielded pool the following values are added:
 
-Shielded set:  \(C_i \)
+Shielded set:  \(C_i  + k_{excess} \cdot{G}\)
 Kernel excess: \(s_i \cdot{J} + k_{excess} \cdot{G}\)
+
+It is important to note that the \(excess\) that would have been added to the kernel is this was a normal MW transactions should be added to the commitment in the shielded set. 
 
 #### Spending
 
 When spending a Lelantus UTXO, the spender provides a spent proof and a new spending Pedersen commitment \(C_o = v_o\cdot{H} + k_o \cdot{G} \).
-Assuming that the commitment \(C_i\) is spent, the public serial number \(s_i \cdot{J}\) is revealed, and \(C_o + s_i \cdot{G}\) is subtracted from all commitments in the pool(or set used). The Sigma-protocol provides a proof of knowledge in terms of \(G\), which is \(k_i \cdot{G} - k_o \cdot{G}\). 
+Assuming that the commitment \(C_i\) is spent, the public serial number \(s_i \cdot{J}\) is revealed, and \(C_o + s_i \cdot{G}\) is subtracted from all commitments in the pool(or set used). The Sigma-protocol provides a proof of knowledge in terms of \(G\), which is \(k \cdot{G} - k_o \cdot{G}\) where \(k \cdot{G}\) is public key for the transaction which is: \(k_i \cdot{G} + k_{excess} \cdot{G}\).
 In essence, the following data is provided for spending:
-\(C_o\), \(s_i \cdot{J}\)
+\(C_o\), \(s_i \cdot{J}\), \(k \cdot{G}\)
 
-In the shielded pool, there should exists a Lelantus UTXO  \(C_i = v_i \cdot{H} + k_i \cdot{G} + s_i \cdot{J} \). 
-When spending, \(C_o + s_i \cdot{J}\) minus one of the inputs in the shielded pool, minus the spend proof \(k_i \cdot{G} - k_o \cdot{G}\), should be 0 if it is a valid spend.
+In the shielded pool, there should exists some Lelantus UTXO  \(C_i = v_i \cdot{H} + k_i \cdot{G} + s_i \cdot{J} + k_{excess} \cdot(G)\). 
+When spending, \(C_o + s_i \cdot{J}\) minus one of the inputs in the shielded pool (in this example \(C_i\)), minus the spend proof \(k_i \cdot{G} + k_{excess} \cdot{G} - k_o \cdot{G}\), should be 0 if it is a valid spend.
 
 #### Verification
 
-Verification happens as explained above. But because you keep working with the entire set of shielded Lelantus UTXO's proofing for the entire 65536 UTXO's can take around a second for a single proof, and an addition 15ms for each additional proof, if they use the same anonymity set [[[10]]]. 
+Verification happens as explained above, any participating user in the network should be able to verify it. But because you keep working with the entire set of shielded Lelantus UTXO's proofing for the entire 65536 UTXO's can take around a second for a single proof, and an addition 15ms for each additional proof, if they use the same anonymity set [[[10]]]. 
 
 #### Video
 Here is a nice short video by Grant Hawkins explaining Lelantus as implemented by Beam
