@@ -16,7 +16,7 @@
 
 ## Introduction 
 
-Lelantus [[[1]]] was designed as a transaction scheme based on cryptographic assumptions with strong anonymity support and confidentiality but at the same time to not require a trusted setup. This is to allow efficiently support strong anonymity and confidentiality properties for direct blockchain payments. Lelantus was designed to work with any UTXO based base layer cryptocurrency but was first Implemented with Zcoin and Beam. 
+Lelantus [[[1]]] was designed as a transaction scheme based on cryptographic assumptions with strong anonymity support and confidentiality but at the same time to not require a trusted setup. This is to efficiently support strong anonymity and confidentiality properties for direct blockchain payments. Lelantus was designed to work with any UTXO based base layer cryptocurrency but was first Implemented with Zcoin and Beam. 
 
 ## Lelantus
 
@@ -32,7 +32,7 @@ Lelantus can be summarized into 3 steps:
 
 1. **Mint**: For minting a new coin, the user generates a unique coin serial number secret \( s \) then commits to \( s \) using the Pedersen commitment scheme with value \(v\) and a fresh blinding factor \( k \). 
 2. **Spend:** The user reveals the serial number \(s\), and then generates a one-out-of-N proof [[[2]]] of knowledge for verification
-3. **Verify**: All network participants can take the revealed serial number \( s \) and check that it does not appear in any previous spend transaction. Next they can homomorphically subtract this serial number from all coins in the pool and and then check the validity of the  provided one-out-of-N proof against this new composed set of commitments.
+3. **Verify**: All network participants can take the revealed serial number \( s \) and check that it does not appear in any previous spend transaction. Next they can homomorphically subtract this serial number from all coins in the pool and then check the validity of the  provided one-out-of-N proof against this new composed set of commitments.
 
 ### Minting
 
@@ -48,11 +48,11 @@ $$
  {C_0, C_1, ...C_{N−1} } - Comm(S,0,0)
 $$
 
-This results in a new set of commitments where one will obviously be opening to 0. The spender generated one-out-of-N proof will proof knowledge this secret commitment opening to 0 without revealing its index in the referred set.
+This results in a new set of commitments where one will obviously be opening to 0. The spender generated one-out-of-N proof will prove knowledge this secret commitment opening to 0 without revealing its index in the referred set.
 
 ### Verification
 
-Anyone can use the provided one-out-of-N proof to verify that the set \( {C_0, C_1, ...C_{N−1} } - Comm(S,0,0)\) contains some Pedersin commitment \(Comm(0,v,r)\). This proofs that the value exists, and that the blinding factor \(r\) is known. Because users needs to verify the one-out-of-N proof against the entire set, verification times can be slow. Where possible batch verification should be used with spenders using the same verification set. As can be seen from the below tables [[[3]]] verification time only increases logarithmically with size.  
+Anyone can use the provided one-out-of-N proof to verify that the set \( {C_0, C_1, ...C_{N−1} } - Comm(S,0,0)\) contains some Pedersen commitment \(Comm(0,v,r)\). This proves that the value exists, and that the blinding factor \(r\) is known. Because users need to verify the one-out-of-N proof against the entire set, verification times can be slow. Where possible batch verification should be used with transactions using the same verification set. As can be seen from the below tables [[[3]]] verification time only increases logarithmically with size.  
 
 <p align="center"><img src="sources/verification_time.png" width="" /></p>
 
@@ -66,7 +66,7 @@ Here is a talk at CESC 2019 of Aram Jivanyan presenting Lelantus.
 
 ## Firo
 
-Firo [[[4]]] is a privacy crypto currency. It was previously known the by the name Zcoin, but was rebranded to Firo as of Oct 2020. Firo activated Lelantus on their main net in Jan 2021 [[[5]]], but had to deactivate it in Feb 2021 due to a security breach. As of writing this they are yet to activate it again.
+Firo [[[4]]] is a privacy crypto currency. It was previously known by the name Zcoin, but was rebranded to Firo as of Oct 2020. Firo activated Lelantus on their main net in Jan 2021 [[[5]]], but had to deactivate it in Feb 2021 due to a security breach. As of writing this they are yet to activate it again.
 
 Here is a nice short video by Grant Hawkins explaining Lelantus as implemented by Firo
 
@@ -74,7 +74,7 @@ Here is a nice short video by Grant Hawkins explaining Lelantus as implemented b
 
 ## Beam
 
-Beam[[[7]]] is a MW based crypto currency. Beam activated a version Lelantus called Lelantus-MW in June 2020 [[[8]]].
+Beam[[[7]]] is a MW based crypto currency. Beam activated a version of Lelantus called Lelantus-MW in June 2020 [[[8]]].
 
 ### Lelantus MW
 
@@ -89,7 +89,7 @@ When a Lelantus UTXO is added to the shielded pool the following values are adde
 Shielded set:  \(C_i  + k_{excess} \cdot{G}\)
 Kernel excess: \(s_i \cdot{J} + k_{excess} \cdot{G}\)
 
-It is important to note that the \(excess\) that would have been added to the kernel is this was a normal MW transactions should be added to the commitment in the shielded set. 
+It is important to note that the \(excess\) that would have been added to the kernel if this was a normal MW transaction should be added to the commitment in the shielded set. 
 
 #### Spending
 
