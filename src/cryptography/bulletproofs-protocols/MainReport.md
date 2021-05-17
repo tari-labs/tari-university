@@ -136,8 +136,8 @@ Two variations of the Pedersen Commitment scheme share the same security attribu
   non-interactive commitment to a value ([[1]], [[3]], [[8]], [[14]], [[15]]).
   - The generalized Pedersen Commitment definition follows (refer to [Notation Used](#notation-used)):
     - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $. 
-    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $. 
-    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $. 
+    - Let $ h $ be a random generator of cyclic subgroup $ \mathbb Q $ of order $ q $.
+    - Let $ a $ be a random value and element of $ \mathbb Q $ and calculate $ g $ such that $ g = h^a $. 
     - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $. 
     - The commitment to value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $, which is called the Pedersen 
     Commitment.
