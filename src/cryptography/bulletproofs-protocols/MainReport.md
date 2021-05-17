@@ -211,8 +211,8 @@ $  C(x,r) =  h^{r^\prime} g^{x^\prime} $. This means, even though Bob can find v
 $ r^\prime $ and $ x^\prime $ that produce $ C $, he cannot know if those are the specific $ x $ and $ r $ that Alice 
 chose, because there are so many that can produce the same $ C $. Pedersen Commitments are thus perfectly *hiding*.
 
-Although the Pederson Commitment is perfectly *hiding*, it does rely on the fact that Alice has NOT cracked the DLP to be 
-able to calculate other pairs of input values to open the commitment to another value when challenged. The Pederson 
+Although the Pedersen Commitment is perfectly *hiding*, it does rely on the fact that Alice has NOT cracked the DLP to be 
+able to calculate other pairs of input values to open the commitment to another value when challenged. The Pedersen 
 Commitment is thus only computationally *binding*.
 
 
