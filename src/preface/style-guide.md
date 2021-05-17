@@ -80,7 +80,7 @@ min = minute, s = second, h = hour, g = gram.
 ### Abbreviations 
 
 - If it is necessary to use abbreviations in a report, write the abbreviation out in full at its first occurrence in 
-the text, followed by the abbreviation in brackets. Thereafter, use the abbreviation only.
+the text, followed by the abbreviation in parentheses. Thereafter, use the abbreviation only.
 
   *Example*
 
