@@ -1,4 +1,18 @@
-## RGB Protocol, an Introduction
+----
+theme: default
+paginate: true
+footer: © Tari Labs, 2018-2021. (License : CC BY-NC-SA 4.0)
+_class: lead
+backgroundColor: #fff
+----
+
+<style>
+section {
+  font-size: 1.5em;
+}
+</style>
+
+# RGB Protocol, an Introduction
 
 - Introduction
 - Digital Assets
@@ -8,25 +22,25 @@
 - Maturity
 - References
 
----
+----
 
-## Introduction
+# Introduction
 
-- The RGB Protocol is an open-source, community driven development of standards and best practices to issue, transmit and store "Bitcoin-base non-bitcoin assets" <span style="font-size:0.2em;">[[1]](https://github.com/rgb-org/spec)</span>
+- The RGB Protocol is an open-source, community driven development of standards and best practices to issue, transmit and store "Bitcoin-base non-bitcoin assets"[[1]](https://github.com/rgb-org/spec)
 - The standard is being created to overcome major shortcomings of previous attempts to store digital assets on the blockchain.
-- The protocol is currently based on Bitcoin, and is meant to provide an acceptable level of scalability, confidentiality and standardization. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md) </span>
+- The protocol is currently based on Bitcoin, and is meant to provide an acceptable level of scalability, confidentiality and standardization. [[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)
 
----
+----
 
-## Digital Assets
+# Digital Assets
 
-- Growing interest in a digital proxy for securities, utilities or collectibles. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span>
-- The current methods of issuing and transferring these assets is slow, expensive and inefficient. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span>
-- There is now more demand for digital assets. <span style="font-size:0.2em;">[[3]](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b)</span>
+- Growing interest in a digital proxy for securities, utilities or collectibles. [[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)
+- The current methods of issuing and transferring these assets is slow, expensive and inefficient. [[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)
+- There is now more demand for digital assets. [[3]](https://medium.com/coinmonks/a-nonfungible-token-stampede-is-coming-224fe44a9d3b)
 
-+++
+----
 
-### Bitcoin-based (non-bitcoin) Assets
+## Bitcoin-based (non-bitcoin) Assets
 
 - There are still many uses for the current methods of digital assets.
 - Putting digital assets on the blockchain presents its own list of problems:
@@ -34,24 +48,24 @@
   - New and not well understood technology
   - Regulatory issues, such as pseudo-anonymity / complete openness. 
 
-+++
+----
 
-### So Why Do It?
+## So Why Do It?
 
 **Asset Independence**
 
 - The asset is completely independent from the centralized issuer right after the issuance moment.
 - Decentralized mechanisms enabling autonomous, trustless, and censorship-resistant mechanisms to enforce rights/benefits connected to the assets.
-  -  The "self-enforced-right" proposition is more interesting but still not realistic: applications of this kind are still far from any actual implementation. <span style="font-size:0.2em;">[[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md)</span> 
+  -  The "self-enforced-right" proposition is more interesting but still not realistic: applications of this kind are still far from any actual implementation. [[2]](https://github.com/rgb-org/spec/blob/master/00-introduction.md) 
 
-+++
+----
 
 **Asset Blindness**
 
 - To a certain degree, the issuer of the digital asset is "blind" to the exact asset when they act on it.
-- There may be legal ramifications such as KYC/AML <span style="font-size:0.2em;">[[4]](https://bitcointalk.org/index.php?topic=454795.0)</span> legislation.
+- There may be legal ramifications such as KYC/AML [[4]](https://bitcointalk.org/index.php?topic=454795.0) legislation.
 
-+++
+----
 
 **Asset Auditability**
 
@@ -59,7 +73,7 @@
 - It would make it difficult to inflate supply / change attributes / forge tokens / censor users.
 - This could move towards relaxing the current, expensive account/auditing requirements.
 
-+++
+----
 
 **Asset Standardization**
 
@@ -67,17 +81,17 @@
 - There can be standardized libraries to interact with this protocol.
 - With standardization comes liquidity, frameworks, APIs etc.
   
----
+----
 
-## Alternatives
+# Alternatives
 
 - Ethereum based ERC20 protocol, currently the most used standard.
 - Meta-protocols on Bitcoin, are not standardized.
 - Colored Coins, further exacerbate the fungibility issue of bitcoin and being on-chain leads to bloating.
 
----
+----
 
-## Goals For RGB
+# Goals For RGB
 
 - A new better proposal for blockchain-based asset management standard.
 - Meet the market requirements for standardization, auditability, blindness, independence.
@@ -86,9 +100,9 @@
 - Particular focus is paid to Lightning Network.
 - The protocol proposal will contain an additional, specific and native “layer 2” solution based on the "Proofmarshal" idea
 
----
+----
 
-## Design
+# Design
 
 **Contract Engine**
 
@@ -97,7 +111,7 @@
 - Popular contract blueprints to cover most of the use-cases.
 - Another more general purpose blueprint that embeds a meta-script executor, which allows very complex contract to be created.
 
-+++
+----
 
 **Extended URI**
 
@@ -105,9 +119,9 @@
   - Use address passing.
   - When a payee generates an address he transmits the coordinates of the selected Publishing Server.
   - He generates a number called the "dark-tag" and passes it to the payer along with the address and publishing information.
-  - This feature can be developed by extending the BOLT Invoice Protocol. <span style="font-size:0.2em;">[[5]](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)</span>
+  - This feature can be developed by extending the BOLT Invoice Protocol. [[5]](https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md)
 
-+++
+----
 
 **Publisher Servers**
 
@@ -117,7 +131,7 @@
 - The proofs could be stored and communicated via decentralized systems, but there is extra complexity with that. 
 - Proofmarshal Integration requires a centralized third party to be effectively leveraged for Lightning Network Integration.
 
-+++
+----
 
 **Lightning Network Integration**
 
@@ -127,7 +141,7 @@
 - It can leverage off of the scalability and privacy features of the Lightning Network.
 - LN-enabled atomic swaps and LN-based path discovery for decentralized asset exchange.
 
-+++
+----
 
 **Proofmarshal Integration**
 
@@ -135,7 +149,7 @@
 - An asset-specific implementation of the “Proofmarshal” concept, based on:
   - “Single-Use-Seals”
   - “Proof-of-Publication-Ledgers”
-+++
+----
 
 **Proofmarshal Benefits**
 
@@ -144,14 +158,14 @@
 - This could decouple the anti-double-spending function of the Bitcoin blockchain from the specific asset transactions
   - Thereby "sealing" large amounts of transactions spent on a single Bitcoin UTXO.
 
----
+----
 
-## Maturity
+# Maturity
 
 The project is still in its infancy.
 
----
-## References
+----
+# References
 
 - \[1\] RGB Protocol Specifications for Bitcoin-Based Digital Assets. 2018. [https://github.com/rgb-org/spec/blob/master/README.md](https://github.com/rgb-org/spec/blob/master/README.md), (Date accessed: 2018-08-05).
 - \[2\] RGB Protocol Specification #00: Introduction. 2018. [https://github.com/rgb-org/spec/blob/master/00-introduction.md](https://github.com/rgb-org/spec/blob/master/00-introduction.md), (Date accessed: 2018-08-05).

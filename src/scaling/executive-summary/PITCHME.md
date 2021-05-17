@@ -1,4 +1,19 @@
-## Scaling Executive Summary
+---
+theme: default
+paginate: true
+footer: © Tari Labs, 2018-2021. (License : CC BY-NC-SA 4.0)
+_class: lead
+backgroundColor: #fff
+---
+
+<style>
+section {
+  font-size: 1.5em;
+}
+</style>
+
+
+# Scaling Executive Summary
 
 - Scaling Landscape
 
@@ -14,9 +29,9 @@
 
 *See [Layer 2 Scaling Survey](https://tlu.tarilabs.com/scaling/layer2scaling-landscape/layer2scaling-survey.html) for the full report.*
 
----
+----
 
-## Scaling Landscape
+# Scaling Landscape
 
 - Layer 2 Scaling can be roughly grouped into these groups:
   - Off-chain matching engines
@@ -25,22 +40,22 @@
   - Two Way Pegged (2WP) secondary chains
   - Tiered block chains
 
+----
 
+![L2ScalingLandscape w:900px](sources/L2ScalingLandscape.png)
 
-![L2ScalingLandscape](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/executive-summary/sources/L2ScalingLandscape.png)
-
-+++
+----
 
 - Other scaling technologies investigated, mainly directly on the primary block chain
   - DAG derivative protocols
   - Transaction data compression
   - Scriptless scripts
 
-![Non_L2S](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/executive-summary/sources/Non_L2S.png)
+![Non_L2S w:700px](sources/Non_L2S.png)
 
----
+----
 
-## How will this be Applicable to Tari?
+# How will this be Applicable to Tari?
 
 - Tari is a high-throughput protocol -> tens of thousands of transactions per second imagined
 - This will be impossible to do with primary block chain scaling solutions alone
@@ -54,9 +69,9 @@
     - Steve created his own digital collectible
     - Steve developed a website with the Tari API to display his digital cards, update their status in real time, and facilitate trading and interacting
 
----
+----
 
-## Scaling Context for Tari
+# Scaling Context for Tari
 
 - Scaling technologies worth investigating further 
   - *TumbleBit,* as an off-chain matching engine (L2S)
@@ -64,20 +79,20 @@
   - *Scriptless Scripts & Schnorr Signature Aggregation*, as Layer 1 scaling
   - *SPECTRE, PHANTOM*, as DAG derivative protocol alternative to a traditional block chain, also Layer 1 scaling
 
-![L2ContextTari](https://raw.githubusercontent.com/tari-labs/tari-university/master/src/scaling/executive-summary/sources/L2ContextTari.png)
+----
 
----
+![L2ContextTari](sources/L2ContextTari.png)
 
-#### #1 Why TumbleBit?
+----
 
-![TumbleBitOverview](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/TumbleBitOverview.png)
+### #1 Why TumbleBit?
+
+![TumbleBitOverview](../layer2scaling-landscape/sources/TumbleBitOverview.png)
 
 - **Notes**: 
   - *The most important Bitcoin functionality used here are hashing conditions, signing conditions, conditional execution, 2-of-2 multi signatures and timelocking*
 
-+++
-
-#### #1 Why TumbleBit? (cont'd)
+----
 
 - TumbleBit has many excellent properties as trustless matching engine
 - TumbleBit can perform off-chain payments in batch mode
@@ -87,15 +102,13 @@
 - **Notes**: 
   - *TumbleBit is tailor made for Bitcoin; not all features that make it work currently part of Mimblewimble*
 
----
+----
 
-#### #2 Why Federated Nodes/Masternodes?
+### #2 Why Federated Nodes/Masternodes?
 
-![CounterpartyStack](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/CounterpartyStack.png)
+![CounterpartyStack](../layer2scaling-landscape/sources/CounterpartyStack.png)
 
-+++
-
-#### #2 Why Federated Nodes/Masternodes?
+----
 
 - A federated node is a special case of a masternode, with emphasis on the federated trust model.
 - Federated Nodes provides a protocol and network of nodes for creating smart contract applications using a customized virtual machine or other mechanism and linked to the primary block chain.
@@ -103,24 +116,20 @@
 - The Federated Node software stack model lends itself for high volume processing.
 - Federated Nodes does not have to use embedded consensus (*although Counterparty does*); improved **consensus models like Federated Byzantine Agreement (FBA) can be implemented**.
 
----
+----
 
-#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation?
+### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation?
 
-![Mimblewimble](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/Mimblewimble.png)
+![Mimblewimble](../layer2scaling-landscape/sources/Mimblewimble.png)
 
-+++
+----
 
-#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
+- **Data savings:** Signature aggregation using an appropriate Schnorr-based multi-signature scheme (*e.g. MuSig*) provides data compression on the block chain
+- **Privacy:** Nothing about the *Scriptless Script* smart contract, other than the settlement transaction,  is ever recorded on the block chain. No one will ever know that an underlying smart contract was executed.
+- **Multiplicity:** Multiple digital assets can be transferred between two parties in a single settlement transaction.
+- **Implicit scalability:** Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction. Transactions are only broadcasted to the block chain once all preconditions are met.
 
-- <u>Data savings:</u> Signature aggregation using an appropriate Schnorr-based multi-signature scheme (*e.g. MuSig*) provides data compression on the block chain
-- <u>Privacy:</u> Nothing about the *Scriptless Script* smart contract, other than the settlement transaction,  is ever recorded on the block chain. No one will ever know that an underlying smart contract was executed.
-- <u>Multiplicity:</u> Multiple digital assets can be transferred between two parties in a single settlement transaction.
-- <u>Implicit scalability:</u> Scalability on the block chain is achieved by virtue of compressing multiple transactions into a single settlement transaction. Transactions are only broadcasted to the block chain once all preconditions are met.
-
-+++
-
-#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
+----
 
 - Signature aggregation properties sought here are:
   - Must be provably secure in the *plain public-key model*;
@@ -130,24 +139,19 @@
   - Must allow each signer to sign the same message;
   - Must allow each signer to sign their own message.
 
-Note: 
+**Notes:** 
 
-(1) Plain public-key model: allows for signature aggregation, mathematically combining several signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). 
+1. Plain public-key model: allows for signature aggregation, mathematically combining several 
+  signatures into a single signature, without having to prove Knowledge of Secret Keys (KOSK). 
+2. KOSK requires that users prove knowledge (or possession) of the secret key during public key 
+  registration with a certification authority.
 
-(2) KOSK requires that users prove knowledge (or possession) of the secret key during public key registration with a certification authority.
-
-+++
-
-#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
+----
 
 - Possible software stack:
   - The Mimblewimble *Scriptless Script*s logic could be implemented by Federated Nodes with FBA on layer 2
   - The MuSig Schnorr-based multi-signature scheme with key aggregation can be used
   - Secrets revealed by virtue of the MuSig Schnorr signatures can instantiate normal smart contracts inside the Federated Nodes, with intermediate state updates confirmed by FBA
-
-+++
-
-#### #3 Why Scriptless Scripts & Schnorr Sig. Aggregation? (cont'd)
 
 - Challenges: 
   - No space allowed to embed data other than Tx inputs and outputs in the form of coin amounts
@@ -156,28 +160,24 @@ Note:
   - HTLC not supported
   - Standard Mimblewimble Tx does not support signaling a Federated Node
 
----
+----
 
-#### #4 Why SPECTRE, PHANTOM?
+### #4 Why SPECTRE, PHANTOM?
 
-![SPECTRE](https://github.com/tari-labs/tari-university/raw/master/src/scaling/layer2scaling-landscape/sources/SPECTRE.png)
+![SPECTRE](../layer2scaling-landscape/sources/SPECTRE.png)
 
-+++
-
-#### #4 Why SPECTRE, PHANTOM? (cont'd)
+----
 
 - DAG derivative protocols SPECTRE and PHANTOM offer an alternative to a block chain, i.e. block DAG
 - Strengths:
-  - <u>Layer 1 scaling:</u> Increased transaction throughput on the main block chain
+  - Layer 1 scaling: Increased transaction throughput on the main block chain
 
-  - <u>Fairness:</u> Better payoff for weak miners
-  - <u>Decentralization mitigation:</u> Weaker miners also get profits
-  - <u>Transaction confirmation times:</u> Confirmation times of several seconds (SPECTRE)
-  - <u>Smart contracts:</u> Support smart contracts (PHANTOM)
+  - Fairness: Better payoff for weak miners
+  - Decentralization mitigation: Weaker miners also get profits
+  - Transaction confirmation times: Confirmation times of several seconds (SPECTRE)
+  - Smart contracts: Support smart contracts (PHANTOM)
 
-+++
-
-#### #4 Why SPECTRE, PHANTOM? (cont'd)
+----
 
 SPECTRE:
 - High throughput and fast confirmation times [***GOOD***]
@@ -195,15 +195,14 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 **SPECTRE and PHANTOM can be combined**
 
-Note:
+**Notes:**
 
-(1) Strong liveness: all conflicts decided in finite time
+1. Strong liveness: all conflicts decided in finite time
+2. Weak liveness: no guarantee a resolution can be reached for conflicting transactions published soon one after the other
 
-(2) Weak liveness: no guarantee a resolution can be reached for conflicting transactions published soon one after the other
+----
 
----
-
-## Observations
+# Observations
 
 - Not all protocols presented here have production or even reference implementations 
 
