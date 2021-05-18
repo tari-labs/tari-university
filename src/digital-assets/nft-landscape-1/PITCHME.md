@@ -369,7 +369,7 @@ This means that parties will have their money a lot earlier, instead of waiting 
 
 ---
 
-* Each ticket has its own unique identifier, which is generated using a special encryption algorithm developed and thus is guarantees that the ticket cannot be counterfeited
+- Each ticket has its own unique identifier, which is generated using a special encryption algorithm developed and thus is guarantees that the ticket cannot be counterfeited
 
 <https://crypto.tickets/forticketbuyers>
 
