@@ -302,7 +302,7 @@ of 50 000 tickets for more than 75 events
 
 ---
 
-* Their primary business is selling event tickets. They implement blockchain to enable them to provide the best value for customers
+- Their primary business is selling event tickets. They implement blockchain to enable them to provide the best value for customers
 
 <https://www.hellosugoi.com>
 
