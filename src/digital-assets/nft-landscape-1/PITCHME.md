@@ -272,7 +272,7 @@ of 50 000 tickets for more than 75 events
 
 ---
 
-* In Q4 2018 Eticket4 plans to introduce the blockchain-based functionality and new loyalty reward system based on ET4 crypto tokens
+- In Q4 2018 Eticket4 plans to introduce the blockchain-based functionality and new loyalty reward system based on ET4 crypto tokens
 * The token conforms to ERC20
 * The token will be prepared in cooperation with Phenom (Crypto payment system) using a smart contract written on Solidity
 
