@@ -207,7 +207,7 @@ The main objective of using non-fungible tokens in the event ticketing industry 
 
 ---
 
-* The software also allows event promoters to keep an easy record of who owns the ticket, which means they can control the prices
+- The software also allows event promoters to keep an easy record of who owns the ticket, which means they can control the prices
 * Public sale began in the 4th quater of 2017
 * For the 2018 FIFA Word Cup, Aventus will join forces with another company, Blocside, and expects to work with football clubs next year on season tickets.
 * Aventus has announced Rob Edwards (previously of Select Tochnologies and Ticket.com) as their new COO
