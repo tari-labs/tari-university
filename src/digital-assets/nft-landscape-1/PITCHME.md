@@ -288,7 +288,7 @@ of 50 000 tickets for more than 75 events
 
 ---
 
-* Other payment gateways such as credit cards and bank transfers will be later integrated through third parties
+- Other payment gateways such as credit cards and bank transfers will be later integrated through third parties
 * Advisors include, Randy Jackson and Everette Harp
 
 [WhitePaper](https://blocktix.io/public/doc/blocktix-wp-draft.pdf)
