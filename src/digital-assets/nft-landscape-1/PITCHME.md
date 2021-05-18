@@ -256,7 +256,7 @@ of 50 000 tickets for more than 75 events
 
 ---
 
-* The tokenisation model focuses on real time conversion of ticket price into AMI Tokens (value from exchange) and usage by both buyers and sellers
+- The tokenisation model focuses on real time conversion of ticket price into AMI Tokens (value from exchange) and usage by both buyers and sellers
 * The AMI token will be listed on exchanges and will be transferable to other cryptocurrencies and fiat currencies
 * The AMI token will be the only means of transaction on the AmicorumLive platform
 
