@@ -35,12 +35,12 @@ how cryptographic operations are implemented on computers.
 
 ## Video
 
-<iframe width="750" height="400" src="https://www.youtube-nocookie.com/embed/tH_pdYyqK4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1000" height="800" src="https://www.youtube-nocookie.com/embed/tH_pdYyqK4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## Slides
 
-<embed src="Fast Safe Pure-Rust Elliptic Curve Cryptography (Slides).pdf" 
-type="application/pdf" width="750" height="500" />
+<embed src="Fast Safe Pure-Rust Elliptic Curve Cryptography (Slides).pdf"
+type="application/pdf" width="1000" height="800" />
 
 <br>
