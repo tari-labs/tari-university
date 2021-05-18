@@ -240,7 +240,7 @@ of 50 000 tickets for more than 75 events
 
 ---
 
-* The owner of such a smart ticket is free to anonymously sell a ticket but can only do so within the decentralised and issuance price restricting infrastructure/rule-structure of the GET protocol
+- The owner of such a smart ticket is free to anonymously sell a ticket but can only do so within the decentralised and issuance price restricting infrastructure/rule-structure of the GET protocol
 * This ensures that ticket trades are done safely and within a set price margin
 * Over the counter trade or additional off-chain fee surcharges are not possible as trade is anonymous and the tickets QR code non-static
 
