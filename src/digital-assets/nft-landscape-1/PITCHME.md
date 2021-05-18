@@ -224,7 +224,7 @@ The main objective of using non-fungible tokens in the event ticketing industry 
 
 ---
 
-* Blocside currently has partnerships with 25 football clubs worldwide- and is fuelled by a series of events during the 2018 FIFA World Cup across the US, UK and Europe (totalling over 10 000 tickets)
+- Blocside currently has partnerships with 25 football clubs worldwide- and is fuelled by a series of events during the 2018 FIFA World Cup across the US, UK and Europe (totalling over 10 000 tickets)
 * Blocside launched in Q2 of 2018
 
 [WhitePaper](https://blocside.io/assets/BlocSide_White_Paper.pdf)
