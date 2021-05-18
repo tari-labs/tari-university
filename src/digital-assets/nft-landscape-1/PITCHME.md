@@ -316,7 +316,7 @@ of 50 000 tickets for more than 75 events
 
 ---
 
-* When a payment has been completed, the monetary amounts of tickets, that were sold will be divided as indicated in the request over the different parties
+- When a payment has been completed, the monetary amounts of tickets, that were sold will be divided as indicated in the request over the different parties
 * Paying these parties will happen as soon as either a set threshold is reached or multiple days of inactivity have passed.
 This means that parties will have their money a lot earlier, instead of waiting for an event to occur
 
