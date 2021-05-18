@@ -192,7 +192,6 @@ http://www.nexthoughts.com/nonfungibletoken/
 
 The main objective of using non-fungible tokens in the event ticketing industry is to decentralise the industry, allowing ticketing applications and promoters to automatically sell tickets for other events and gain commission for doing so. This enables event organisers to reach a wider audience.
 
----
 
 * Thirty percent of all tickets are resold with mark-ups between 30% and 700%
 * The event ticket market is known to be non-transparent, inexplicable transaction costs added to tickets are a common practice among ticketing services.
@@ -396,4 +395,3 @@ This means that parties will have their money a lot earlier, instead of waiting 
 * Decentralised governance - TIX and AVT have instilled the reliance on the constant involvement of their tokens holders in the maintaining of the protocol
 * Transaction and processing costs? (The value of GET is guaranteed by covering for these transition and trading costs, with a minimum price of ETH 0.50 per smart ticket)
 * Token Velocity - the incentive for holding the token
-
