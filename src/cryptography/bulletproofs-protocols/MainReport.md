@@ -136,8 +136,8 @@ Two variations of the Pedersen Commitment scheme share the same security attribu
   non-interactive commitment to a value ([[1]], [[3]], [[8]], [[14]], [[15]]).
   - The generalized Pedersen Commitment definition follows (refer to [Notation Used](#notation-used)):
     - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $. 
-    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $. 
-    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $. 
+    - Let $ h $ be a random generator of cyclic subgroup $ \mathbb Q $ of order $ q $.
+    - Let $ a $ be a random value and element of $ \mathbb Q $ and calculate $ g $ such that $ g = h^a $. 
     - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $. 
     - The commitment to value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $, which is called the Pedersen 
     Commitment.
@@ -211,8 +211,8 @@ $  C(x,r) =  h^{r^\prime} g^{x^\prime} $. This means, even though Bob can find v
 $ r^\prime $ and $ x^\prime $ that produce $ C $, he cannot know if those are the specific $ x $ and $ r $ that Alice 
 chose, because there are so many that can produce the same $ C $. Pedersen Commitments are thus perfectly *hiding*.
 
-Although the Pederson Commitment is perfectly *hiding*, it does rely on the fact that Alice has NOT cracked the DLP to be 
-able to calculate other pairs of input values to open the commitment to another value when challenged. The Pederson 
+Although the Pedersen Commitment is perfectly *hiding*, it does rely on the fact that Alice has NOT cracked the DLP to be 
+able to calculate other pairs of input values to open the commitment to another value when challenged. The Pedersen 
 Commitment is thus only computationally *binding*.
 
 
