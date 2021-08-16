@@ -123,11 +123,7 @@
             <!-- Custom content: Unset theme in localstorage on homepage -->
             <script>
               window.homepagecheck = function() {
-                var check = false;
-                if(document.location.pathname === "/"){
-                  check=true;
-                  }
-                return check;
+                return document.location.pathname === "/";
               }
 
               if(window.homepagecheck()){
