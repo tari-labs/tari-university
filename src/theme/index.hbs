@@ -37,6 +37,9 @@
         <link rel="stylesheet" href="{{ path_to_root }}FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="{{ path_to_root }}highlight.css">
@@ -47,7 +50,7 @@
         {{#each additional_css}}
         <link rel="stylesheet" href="{{ this }}">
         {{/each}}
-        
+
         <!-- Matomo Analytics -->
         <script type="text/javascript">
           var _paq = window._paq || [];
@@ -84,7 +87,7 @@
 
         <style>
         div.wrap_beg {
-            width: 95%; 
+            width: 95%;
             word-wrap: break-word;
             background: #FFE599;
             font-size: 1.0em;
@@ -94,7 +97,7 @@
         </style>
         <style>
         div.wrap_int {
-            width: 95%; 
+            width: 95%;
             word-wrap: break-word;
             background: #B6D7A8;
             font-size: 1.0em;
@@ -104,7 +107,7 @@
         </style>
         <style>
             div.wrap_adv {
-            width: 95%; 
+            width: 95%;
             word-wrap: break-word;
             background: #A2C4C9;
             font-size: 1.0em;
@@ -115,6 +118,26 @@
 
     </head>
     <body class="light">
+
+
+            <!-- Custom content: Unset theme in localstorage on homepage -->
+            <script>
+              window.homepagecheck = function() {
+                var check = false;
+                if(document.location.pathname === "/"){
+                  check=true;
+                  }
+                return check;
+              }
+
+              if(window.homepagecheck()){
+                localStorage.clear();
+              } else {
+                localStorage.setItem('mdbook-theme', 'light');
+              }
+            </script>
+
+
         <!-- Provide site root to javascript -->
         <script type="text/javascript">var path_to_root = "{{ path_to_root }}";</script>
 
@@ -137,7 +160,7 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
@@ -156,7 +179,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <img src="{{ path_to_root }}theme/images/tlu.png" class="tlu">
+            <a href="/"><img src="{{ path_to_root }}theme/images/tlu-white.png" class="tlu"></a>
 
             {{#toc}}{{/toc}}
         </nav>
@@ -193,7 +216,7 @@
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M0,6.12859037 L0,12.5315952 L9.50941704,23 L23,12.5722492 L23,6.12859037 L9.56098655,0 L0,6.12859037 Z M8.37488789,18.3349536 L2.3103139,11.6575342 L2.3103139,8.02916483 L8.37488789,9.56385329 L8.37488789,18.3349536 Z M10.6748879,19.2090146 L10.6748879,10.1533363 L19.4932735,12.3893062 L10.6748879,19.2090146 Z M20.7,7.57180734 L20.7,10.3464428 L4.17713004,6.15908087 L9.74663677,2.58152894 L20.7,7.57180734 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
-</svg></h1> 
+</svg></h1>
 
                         <div class="right-buttons">
                             <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
