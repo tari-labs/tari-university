@@ -14,7 +14,7 @@
 a:visited,
 a > .hljs {
     /*color: var(--links);*/
-    color: #932FFF;
+    color: #6416B8;
     font-weight:700;
 }
 
@@ -26,8 +26,9 @@ a > .hljs {
     top: 0;
     z-index: 99;
     margin: auto calc(0px - var(--page-padding));
-    background: #fff;
-    border-bottom:1px solid #e8e8e8;
+    background: #FAFAFA;
+    border-bottom: none;
+    box-shadow: 8px 4px 23px rgba(0, 0, 0, 0.1);
 }
 #menu-bar > #menu-bar-sticky-container {
     display: flex;
@@ -80,7 +81,7 @@ html:not(.sidebar-visible) #menu-bar:not(:hover).folded > #menu-bar-sticky-conta
     display: flex;
     margin: 0 5px;
 }
-.no-js .left-buttons { 
+.no-js .left-buttons {
     display: none;
 }
 
@@ -153,7 +154,7 @@ html:not(.sidebar-visible) #menu-bar:not(:hover).folded > #menu-bar-sticky-conta
     display: none;
 }
 
-.mobile-nav-chapters { 
+.mobile-nav-chapters {
     font-size: 2.5em;
     text-align: center;
     text-decoration: none;
@@ -316,9 +317,10 @@ ul#searchresults span.teaser em {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
     background-color: var(--sidebar-bg);
-    background: #fff;
+    background: #1A0627;
     border-right: 1px solid #e8e8e8;
     z-index: 100;
+    box-shadow: 8px 4px 23px rgba(0, 0, 0, 0.1);
 }
 
 li .section {
@@ -370,11 +372,12 @@ li .section li .section {
     display: block;
     padding: 0;
     text-decoration: none;
+    font-weight: 400;
 }
-.chapter li a:hover { text-decoration: none; color:#932FFF; }
+.chapter li a:hover { text-decoration: none; color:#B36CFF; }
 .chapter li .active {
     /* Animate color change */
-    color: #932FFF;
+    color: #B36CFF;
 }
 
 .spacer {
@@ -386,7 +389,7 @@ li .section li .section {
     background-color: var(--sidebar-spacer);
 }
 
-@media (-moz-touch-enabled: 1), (pointer: coarse) { 
+@media (-moz-touch-enabled: 1), (pointer: coarse) {
     .chapter li a { padding: 5px 0; }
     .spacer { margin: 10px 0; }
 }
@@ -437,4 +440,7 @@ li .section li .section {
 .theme-popup .theme:hover:last-child {
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
+}
+#theme-toggle {
+  display: none;
 }
