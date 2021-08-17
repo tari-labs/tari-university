@@ -1,28 +1,29 @@
 # Laser Beam
 
-- [Introduction](#introduction)
-- [Eltoo](#eltoo)
-- [Graftroot](#graftroot)
-- [Statechain Detail](#statechain-detail)
-- [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
-- [References](#references)
-- [Contributors](#contributors)
+- [Laser Beam](#laser-beam)
+  - [Introduction](#introduction)
+  - [Eltoo](#eltoo)
+  - [Graftroot](#graftroot)
+  - [Statechain Detail](#statechain-detail)
+  - [Conclusions, Observations and Recommendations](#conclusions-observations-and-recommendations)
+  - [References](#references)
+  - [Contributors](#contributors)
 
 
 ## Introduction
 
 Statechains ([[1]]) is a layer-2 scaling technology for bitcoin. This makes use of a side-chain between a user and a statechain entity. 
-Being layer-2 means that most of the transitioning takes place of of the blockchain. But it inherits all of the security of layer-1, 
-which is the code blockchain, so that it still is secure. This was first discussed in a conference talk at "Scaling Bitcoin" in Tokyo ([[2]]). 
+Being layer-2 means that most of the transitioning takes place of the blockchain. But it inherits all of the security of layer-1, 
+which is the code blockchain so that it still is secure. This was first discussed in a conference talk at "Scaling Bitcoin" in Tokyo ([[2]]). 
 
-Statechains is built using Eltoo ([[3]]) and Graftroot ([[4]]). Eltoo is a  way to create and manage a list of ordered transactions that dont have to be all published to the blockchain and only the last update transaction needs to be publish. Graftroot is a new way to obtain threshold signature scripts. 
+Statechains is built using Eltoo ([[3]]) and Graftroot ([[4]]). Eltoo is a  way to create and manage a list of ordered transactions that don’t have to be all published to the blockchain and only the last update transaction needs to be published. Graftroot is a new way to obtain threshold signature scripts. 
 
 ## Eltoo
-Eltoo ([[5]]) was created by Decker et al. This is a layer 2 protocol that allows the user the create a string of transaction while only publishing the initial setup transaction and the final update transaction. 
+Eltoo ([[5]]) was created by Decker et al. This is a layer 2 protocol that allows the user the create a string of transactions while only publishing the initial setup transaction and the final update transaction. 
 
-One of the biggest problems in a blockchain is a sequence of transactions. This is usually solved by confirming the transaction in the blockchain first. This allows the order to be recoded in the ledger of the blockchain. If transactions are not yet recoded on the blockchain ordering is near impossible since the order is only decided by the miner, and they decide purely on fees and not on the actual order of transactions. Eltoo tries to bring in ordering of the transactions so that blockchain can know which one came first. 
+One of the biggest problems in a blockchain is the sequence of transactions. This is usually solved by confirming the transaction in the blockchain first. This allows the order to be recorded in the ledger of the blockchain. If transactions are not yet recorded on the blockchain ordering is near impossible since the order is only decided by the miner, and they decide purely on fees and not on the actual order of transactions. Eltoo tries to bring in the ordering of transactions so that blockchain can know which one came first. 
 
-Eltoo ([[6]]) has 3 phases: setup, negotiating ans settlement. The setup phase of Eltoo is made up of the parties creating the on-chain Eltoo UTXO. This utxo is created with a 2-of-2 multisig utxo with a settlement transaction contained in it. This UTXO contains what can be described as a if else. The first part is the settlement and the later is the spending of the utxo. An example of which can be seen below:
+Eltoo ([[6]]) has 3 phases: setup, negotiating, and settlement. The setup phase of Eltoo is made up of the parties creating the on-chain Eltoo UTXO. This utxo is created with a 2-of-2 multisig utxo with a settlement transaction contained in it. This UTXO contains what can be described as an if-else. The first part is the settlement and the latter is the spending of the utxo. An example of which can be seen below:
 
 ```
 OP_IF
@@ -34,15 +35,15 @@ OP_ELSE
 OP_ENDIF
 ```
 
-The first branch of the if, contains the settlement transactions which is a timelock transaction, in this case 10 blocks. The latter part contains the update branch, this is only valid if both parties work together to sign the 2-of-2 multisig. The working of this UTXO is very similar to that of a HTLC UTXO, but crucially much simpler.
+The first branch of the if, contains the settlement transactions, which is a timelock transaction, in this case, 10 blocks. The latter part contains the update branch, this is only valid if both parties work together to sign the 2-of-2 multi-sig. The working of this UTXO is very similar to that of an HTLC UTXO, but crucially much simpler.
 
-Phase 2 of Eltoo is the update phase. This transaction "double" spends the settlement part of the funding transaction. Every new "update" transaction will contain the same script as above. The one problem here is now, is that we need to order of update transactions to know which one is valid if they spend each other and the need to follow each other, and they all need to be on the blockchain. But Eltoo skips update transaction so that not everyone needs to be published. 
+Phase 2 of Eltoo is the update phase. This transaction "double" spends the settlement part of the funding transaction. Every new "update" transaction will contain the same script as above. The one problem here is now, is that we need to order the update transactions to know which one is valid. If they spend each other and need to follow each other, and they all need to be on the blockchain. But Eltoo skips update transaction so that not everyone needs to be published. 
 
-The problem with skipping transactions is that you need to specify the inputs before the transaction can be validated. Eltoo goes around this with a new script flag: `SIGHASH_NOINPUT`. This creates a new floating transaction. This is only matched to the previous transaction by matching the scripts. By using this flag, you can create new transactions in any order. But the transactions still needs to be ordered. 
+The problem with skipping transactions is that you need to specify the inputs before the transaction can be validated. Eltoo goes around this with a new script flag: `SIGHASH_NOINPUT`. This creates a new floating transaction. This is only matched to the previous transaction by matching the scripts. By using this flag, you can create new transactions in any order. But the transactions still need to be ordered. 
 
-Eltoo does this by reusing the timelock fields in the transactions. The timestamps in transactions use a unix timestamp. But the bitcoin protocol assumes if this number is below 500 million, the timestamp is a block height as this will be too low for the block to have been created in that timestamp in bitcoin. Eltoo takes this one step further and assumes timestamps between 500 million and 1.5 billion as not lock hights but rather tx counters. This does not break the current lock heights in bitcoin as these timestamps have all past. By using these the Eltoo can order the transactions. 
+Eltoo does this by reusing the timelock fields in the transactions. The timestamps in transactions use a Unix timestamp. But the bitcoin protocol assumes if this number is below 500 million, the timestamp is a block height as this will be too low for the block to have been created in that timestamp in bitcoin. Eltoo takes this one step further and assumes timestamps between 500 million and 1.5 billion as not lock hights but rather tx counters. This does not break the current lock heights in bitcoin as these timestamps have all passed. By using these the Eltoo can order the transactions. 
 
-This update step is repeated until the transaction either closes with the settlement phase or via both parties creating a new finalized state. This allows the parites to only publish some of the update transactions. All are valid. But only one needs to be published to the blockchain for them to finalized. An example can be seen below in figure 1 and figure 2. 
+This update step is repeated until the transaction either closes with the settlement phase or via both parties creating a new finalized state. This allows the parties to only publish some of the update transactions. All are valid. But only one needs to be published to the blockchain for them to finalize. An example can be seen below in figure 1 and figure 2. 
 
 <p align="center"><img src="sources/eltoo_tx_flow.png" width="700" /></p>
 <div align="center"><b>Figure&nbsp;1: Eltoo transaction flow</b></div>
@@ -55,24 +56,24 @@ Figure 1 shows the setup and how the transactions are created. Figure 2 shows ho
 
 ## Graftroot
 
-Bitcoin has a proposal to expand its scripting to include Taproot ([[7]]). But the Taproot smart contract system can be very complex. Graftroot provides a very similar benefits without the complexity ([[4]]).  Both of these proposal were written by Gregory Maxwell. With Graftroot participants only creates a threshold signatures in contrast with Taproot where participants needs to tweak the threshold public key as wel. 
+Bitcoin has a proposal to expand its scripting to include Taproot ([[7]]). But the Taproot smart contract system can be very complex. Graftroot provides very similar benefits without the complexity ([[4]]).  Both of these proposals were written by Gregory Maxwell. With Graftroot participants only creates threshold signatures, in contrast with Taproot where participants need to tweak the threshold public key as well. 
 
-In Graftroot participants create scripts wich contain the alternative conditions under which the Bitcoin can be spent. These are then signed with the threshold signatures. The participants will only create a threshold signature for the script they participates in. All participants have to sign all the scripts thou. This requires that all the creation of a Graftroot signature script be interactive.  
+In Graftroot participants create scripts that contain the alternative conditions under which the Bitcoin can be spent. These are then signed with the threshold signatures. The participants will only create a threshold signature for the script they participate in. All participants have to sign all the scripts thou. This requires that all the creation of a Graftroot signature script be interactive.  
 
 ## Statechain Detail
 
-Statechains begin with signing a 2-of-2 multisig with a statechain entity. This entity s represented by a group of members, that is controlled by a n-of-m multisig similar to other sidechains. Users sign their UTXO's into an Eltoo transaction that is party controlled by the statechain entity. 
+Statechains begin with signing a 2-of-2 multi-sig with a statechain entity. This entity s represented by a group of members, that is controlled by an n-of-m multi-sig similar to other sidechains. Users sign their UTXO's into an Eltoo transaction that is partly controlled by the statechain entity. 
 
-When users want to transact with their UTXO they with the statechain entity create a new Eltoo update transaction that signs over the UTXO to a new user. The user gives his key over user he is transaction with, signs an adaptor signature with the statechain entity. These signatures will allow someone to detect shenanigans. 
+When users want to transact with their UTXO they with the statechain entity create a new Eltoo update transaction that signs over the UTXO to a new user. The user gives his key over he is using in the transaction and signs an adaptor signature with the statechain entity. These signatures will allow someone to detect shenanigans. 
 
-The statechain entity can only move the money in cooperation with users. It can move the money in cooperation with any of the users. But it promises to only do so with the last user of the utxo. The adaptor signatures are used to detect if this was not the case. But this will only be apparent if a user comes forward with a different adpator signature. 
+The statechain entity can only move the money in cooperation with users. It can move the money in cooperation with any of the users. But it promises to only do so with the last user of the utxo. The adaptor signatures are used to detect if this was not the case. But this will only be apparent if a user comes forward with a different adaptor signature. 
 
-Because statechains are not on chain, they can do atomic swaps. But one limitation of statechains is that users can only transfer single complete UTXO's over to another party. If smaller UTXO's are desired they need to be swapped for another users who has the correct amount or a lightning channel needs to be opened on the chanel. Statechains allow users to use a lightning channel utxo  as well. This allows users to change and swop to larger UTXO's for use in their lightning chanel. The statechain entity does not even know its a lightning channel. 
+Because statechains are not on-chain, they can do atomic swaps. But one limitation of statechains is that users can only transfer single complete UTXO's over to another party. If smaller UTXO's are desired they need to be swapped for other users who have the correct amount or a lightning channel needs to be opened on the channel. Statechains allow users to use a lightning channel utxo as well. This allows users to change and swop to larger UTXO's for use in their lightning channel. The statechain entity does not even know it’s a lightning channel. 
 
 
 ## Conclusions, Observations and Recommendations
 
-Statechains is a relatively intreating idea, but it does go against the scope of most of the blockchain space in that is not entirely trustless. Although coins in the statechain is relatively safe in that the statechain entity cannot steal the funds of users and users themselves cannot steal funds. It is till possible for the two to collude and steal the funds. All that stops this is reputation of the statechain entity.
+Statechains is a relatively intreating idea, but it does go against the scope of most of the blockchain space in that is not entirely trustless. Although coins in the statechain are relatively safe in that the statechain entity cannot steal the funds of users and users themselves cannot steal funds. It is still possible for the two to collide and steal the funds. All that stops this is the reputation of the statechain entity.
 
 ## References
 
