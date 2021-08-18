@@ -15,7 +15,7 @@ a:visited,
 a > .hljs {
     /*color: var(--links);*/
     color: #6416B8;
-    font-weight:700;
+    font-weight:500;
 }
 
 /* Menu Bar */
