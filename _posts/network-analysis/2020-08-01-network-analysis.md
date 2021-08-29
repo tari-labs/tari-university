@@ -5,6 +5,7 @@ date:   2020-08-01 12:00:00 +0300
 image:  '/images/banner-08.jpg'
 category: Network-Analysis
 tags:   [network-analysis]
+icon: '/images/index/jewel-08.svg'
 featured: true
 excerpttext: As networks with large numbers of geographically distributed nodes evolve, issues such as processing delays and data transfers may arise, potentially creating an environment for adversarial attacks.
 ---

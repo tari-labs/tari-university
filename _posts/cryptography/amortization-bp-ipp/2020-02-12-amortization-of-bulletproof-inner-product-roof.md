@@ -172,7 +172,7 @@ indeterminate.
 A typical recursive function $F(j)$ for $j \in \\{ 0 , 1 , ... , n \\} $ can be represented in terms of a flow chart, as
 shown in [Figure&nbsp;1](#fig_brf), depicting how values of the sequence $F(0) , F(1), ... , F(n)$ are computed.
 
-<p align="center"><a name="fig_brf"> </a><img src="sources/Basic-recursive-function.png" width="300" /></p>
+<p align="center"><a name="fig_brf"> </a><img src="/images/cryptography/amortization-bp-ipp/Basic-recursive-function.png" width="300" /></p>
 <div align="center"><b>Figure 1: Recursive Function Flow Chart</b></div>
 
 In computer programming, algorithms that involve recursive functions are efficiently executed by the use of "for-loops"
@@ -256,7 +256,7 @@ $$
 
 respectively.
 
-<p align="center"><a name="fig_ipprs"> </a><img src="sources/IPProof-prover-side-10.png" width="450" /></p>
+<p align="center"><a name="fig_ipprs"> </a><img src="/images/cryptography/amortization-bp-ipp/IPProof-prover-side-10.png" width="450" /></p>
 <div align="center"><b>Figure 2: Inner-product Proof - Prover Side </b></div>
 
 [Figure&nbsp;2](#fig_ipprs) is included here not only to display the recursive nature of
@@ -273,7 +273,7 @@ correctly executed.
 [Figure&nbsp;3](#fig_rfrb) shows how instances of a recursive function are linked, the same way each block in a blockchain
 is linked to the previous block via hash values.
 
-<p align="center"><a name="fig_rfrb"> </a><img src="sources/Recursive-funct-resembles-blockchain.png" width="600" /></p>
+<p align="center"><a name="fig_rfrb"> </a><img src="/images/cryptography/amortization-bp-ipp/Recursive-funct-resembles-blockchain.png" width="600" /></p>
 <div align="center"><b>Figure 3: Recursive Function Resembles Blockchain </b></div>
 
 The amortization strategy used by recursive proof composition or proof recursion is based on the old but powerful
@@ -307,7 +307,7 @@ The verifier has:
 
 [Figure&nbsp;4](#fig_prms) illustrates the above proof:
 
-<p align="center"><a name="fig_prms"> </a><img src="sources/proof-recursion-michaelStraka1.png" width="350" /></p>
+<p align="center"><a name="fig_prms"> </a><img src="/images/cryptography/amortization-bp-ipp/proof-recursion-michaelStraka1.png" width="350" /></p>
 <div align="center"><b>Figure 4: Proof Recursion Diagram [<a href="https://www.michaelstraka.com/posts/recursivesnarks/" title="Recursive Zero-knowledge
 Proofs: A Comprehensive Primer">13</a>] </b></div>
 
@@ -383,7 +383,7 @@ If the cost of checking the correctness of $\pi_{y,y'}$ is equivalent to invokin
 will have collapsed the two instances $( x , y )$ and $( x' , y' )$ into a single fresh instance $( x'' , y'' )$, as
 shown in [Figure&nbsp;5](#fig_cc). This is how the cost of invoking $F$ can be amortized.
 
-<p align="center"><a name="fig_cc"> </a><img src="sources/Collapsing-computations-00.png" width="300" /></p>
+<p align="center"><a name="fig_cc"> </a><img src="/images/cryptography/amortization-bp-ipp/Collapsing-computations-00.png" width="300" /></p>
 <div align="center"><b>Figure 5: Collapsing Computations </b></div>
 
 Therefore, a nested amortization is achieved on the instances of a binary tree of accumulated instances, helping to
@@ -409,7 +409,7 @@ costs, especially in the context of recursive proofs.
 
 Figure 6 shows a naive implementation of the verifier's side of the Bulletproofs IPP.  
 
-<p align="center"><a name="fig_bpippvs"> </a><img src="sources/IPProof-verifier-side-11.png" width="650" /></p>
+<p align="center"><a name="fig_bpippvs"> </a><img src="/images/cryptography/amortization-bp-ipp/IPProof-verifier-side-11.png" width="650" /></p>
 <div align="center"><b>Figure 6: Bulletproofs Inner-product Proof - Verifier Side </b></div>
 
 ### Verifiable Computation

@@ -5,6 +5,8 @@ date:   2020-02-01 15:01:35 +0300
 image:  '/images/banner-01.jpg'
 category: Cryptography
 tags:   [cryptography]
+icon: '/images/index/jewel-01.svg'
+featured: true
 excerpttext: The purpose of cryptography is to protect data transmitted in the likely presence of an adversary
 ---
 

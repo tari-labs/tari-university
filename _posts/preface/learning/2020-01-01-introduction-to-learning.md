@@ -5,6 +5,7 @@ date:   2020-01-01 12:00:00 +0300
 image:  '/images/banner-02.jpg'
 category: learning-paths
 tags:   [learning-paths]
+icon: '/images/index/jewel-02.svg'
 featured: true
 excerpttext: With a field that is rapidly developing it is very important to stay updated with the latest trends, protocols and products that have incorporated this technology.
 ---

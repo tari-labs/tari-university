@@ -38,11 +38,24 @@ layout: default-home
 <div class="container" style="margin-top: 200px; margin-bottom: 50px;">
   <div class="row">
     <div class="col col-12">
-
-        <div>
-            {% include featuredcard-light.html %}
+      <div class="container__inner section">
+        <div class="section-top">
+          <h5 class="section-title">Latest Posts</h5>
         </div>
 
+
+
+        <div class="contaniner__inner-box">
+          <div class="row grid">
+            {% if site.posts.size > 0 %}
+              {% for post in paginator.posts %}
+                {% include article-content.html %}
+              {% endfor %}
+            {% endif %}
+          </div>
+          {% include pagination.html %}
+        </div>
+      </div>
     </div>
   </div>
 </div>

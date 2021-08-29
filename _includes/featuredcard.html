@@ -1,0 +1,31 @@
+{% for post in site.posts %}
+  {% if post.featured == true %}
+    {% assign is-featured = true %}
+  {% endif %}
+{% endfor %}
+
+{% if is-featured == true %}
+  {% for post in site.posts %}
+  {% if post.featured == true %}
+  <div>
+    {% if post.image %}
+    <a href="{{post.url | prepend: site.baseurl}}">
+      <div class="tlu-card-container">
+        <div class="fadein tlu-card-img" style="background-image: url({{site.baseurl}}{{post.image}});">
+          <p class="tlu-post-title">{{post.title}}</p>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+
+    <div class="tlu-excerpt">
+      <a href="{{ post.url | prepend: site.baseurl }}">
+          {% if post.excerpttext %}
+            {{post.excerpttext | strip_newlines | truncatewords: 35}}
+          {% endif %}
+        </a>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+{% endif %}

@@ -320,7 +320,7 @@ to a random power $ x $ (the challenge) chosen by the *verifier* $ \mathcal{V} $
 $ \mathbf {a}, \mathbf {b} $ from [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2)
 satisfy $ c = \langle \mathbf {a} , \mathbf {b} \rangle $.
 
-<p align="center"><img src="sources/Protocol-1.png" width="470" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-1.png" width="470" /></p>
 <div align="center"><b>Figure&nbsp;1: Bulletproofs Protocol 1
 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential
 Transactions
@@ -496,7 +496,7 @@ $$
 
 Figure&nbsp;2 shows Protocol 2:
 
-<p align="center"><img src="sources/Protocol-2.png" width="570" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-2.png" width="570" /></p>
 <div align="center"><b>Figure&nbsp;2: Bulletproofs Protocol 2
 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential
 Transactions
@@ -523,7 +523,7 @@ and
 Figure&nbsp;3 gives a diagrammatic overview of a range proof protocol implementation using Elliptic Curve Pedersen
 Commitments<sup>[def][ecpc~]</sup>:
 
-<p align="center"><img src="sources/RangeProofDiagram.png" width="1000" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/RangeProofDiagram.png" width="1000" /></p>
 <div align="center"><b>Figure&nbsp;3: Range Proof Protocol Implementation
 Example [<a href="https://doc.dalek.rs/bulletproofs/index.html" title="Dalek Cryptography -
 Crate Bulletproofs">22</a>]</b></div>
@@ -609,7 +609,7 @@ Relation (8) cannot be used in its current form without revealing information ab
 blinding vectors $ \mathbf {s}_L , \mathbf {s}_R \in \mathbb Z_p^n $ are introduced with the *prover* $ \mathcal{P} $
 and *verifier* $ \mathcal{V} $ engaging in the zero-knowledge protocol shown in Figure&nbsp;4:
 
-<p align="center"><img src="sources/Protocol-2b-part-a.png" width="550" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-2b-part-a.png" width="550" /></p>
 <div align="center"><b>Figure&nbsp;4: Bulletproofs Inner-product Range Proof
 Part A [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for
 Confidential Transactions
@@ -642,7 +642,7 @@ In order to do so, the *prover* $ \mathcal{P} $ convinces the *verifier* $ \math
 remaining coefficients of $ t(X) $, namely $ t_1,t_2 \in \mathbb Z_p $, by checking the value of $ t(X) $ at a random
 point $ x \in \mathbb Z_p^* $. This is illustrated in Figure&nbsp;5:
 
-<p align="center"><img src="sources/Protocol-2b-part-b.png" width="655" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-2b-part-b.png" width="655" /></p>
 <div align="center"><b>Figure&nbsp;5: Bulletproofs Inner-product Range Proof
 Part B [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for
 Confidential Transactions
@@ -660,7 +660,7 @@ $ ( \mathbf {a}_L \mspace{3mu} , \mspace{3mu} \mathbf {a}_R \circ \mathbf {y}^n 
 \mspace{3mu} \mathbf {s}_R \circ \mathbf {y}^n ) $ respectively, with respect to the new generators
 $ (g, h ^\backprime, h) ​$. This is illustrated in Figure&nbsp;6.
 
-<p align="center"><img src="sources/Protocol-2b-part-c.png" width="640" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-2b-part-c.png" width="640" /></p>
 <div align="center"><b>Figure&nbsp;6: Bulletproofs Inner-product Range Proof
 Part C [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for
 Confidential Transactions
@@ -789,7 +789,7 @@ component is the (homomorphic) sum of each party's proof components and each sha
 zero-knowledge proof. Figure&nbsp;7 shows an example of the MPC protocol implementation using three rounds with linear
 communication [[29]]:
 
-<p align="center"><img src="sources/MPC-diagram.png" width="850" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/MPC-diagram.png" width="850" /></p>
 <div align="center"><b>Figure&nbsp;7: MPC Implementation Example
 [<a href="https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html" title="Dalek Cryptography -
 Module bulletproofs::range_proof_mpc">29</a>]</b></div>
@@ -871,7 +871,7 @@ all linearly independent.
 
 Figure&nbsp;8 presents Part 1 of the protocol, where the *prover* $ \mathcal{P} $ commits to $ l(X),r(X),t(X) $:
 
-<p align="center"><img src="sources/Protocol-3-part-1.png" width="690" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-3-part-1.png" width="690" /></p>
 <div align="center"><b>Figure&nbsp;8: Bulletproofs' Protocol 3 (Part 1)
 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential
 Transactions
@@ -884,7 +884,7 @@ Figure&nbsp;9 presents Part 2 of the protocol, where the *prover*
 $ \mathcal{P} ​$ convinces the *verifier*
 $ \mathcal{V} ​$ that the polynomials are well formed and that $ \langle l(X),r(X) \rangle = t(X) ​$:
 
-<p align="center"><img src="sources/Protocol-3-part-2.png" width="690" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-3-part-2.png" width="690" /></p>
 <div align="center"><b>Figure&nbsp;9: Bulletproofs' Protocol 3 (Part 2)
 [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential
 Transactions
@@ -950,7 +950,7 @@ challenge from [Protocol&nbsp;1](#inner-product-argument-protocol-1), $ x_j $ th
 [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2), and $ L_j , R_j $ the $ L ,
 R $ values from round $ j $ of [Protocol&nbsp;2](#inner-product-verification-through-multi-exponentiation-protocol-2).
 
-<p align="center"><img src="sources/Protocol-4.png" width="570" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/Protocol-4.png" width="570" /></p>
 <div align="center"><b>Figure&nbsp;10: Bulletproofs Optimized Verifier using Multi-exponentiation and Batch
 Verification [<a href="http://web.stanford.edu/%7Ebuenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for
 Confidential Transactions
@@ -1032,7 +1032,7 @@ Each protocol built on top of the Bulletproofs library must create its own colle
 complete constraint system out of them. Figure&nbsp;11 shows the Interstellar Bulletproof zero-knowledge proof protocol
 built with their programmable constraint system:
 
-<p align="center"><img src="sources/InterstellarConstraintSystem.png" width="870" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-protocols/InterstellarConstraintSystem.png" width="870" /></p>
 <div align="center"><b>Figure&nbsp;11: Interstellar Bulletproof Zero-knowledge Proof Protocol
 [<a href="https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7"
 title="Programmable Constraint Systems for Bulletproofs,
@@ -1334,7 +1334,7 @@ in the cited references.
   can calculate $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial
   is shown here ([[11]], [[20]]):
 
- <p align="center"><img src="sources/ArithmiticCircuit.png" width="300" /></p>
+ <p align="center"><img src="/images/cryptography/bulletproofs-protocols/ArithmiticCircuit.png" width="300" /></p>
 
 [ac~]: #ac
 "An arithmetic circuit C over a

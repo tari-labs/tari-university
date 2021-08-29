@@ -106,7 +106,7 @@ logarithmic number of rounds by the *prover* and *verifier* into a single multi-
 $ 2n + 2 \log_2(n) + 1 ​$. This single multi-exponentiation can then be calculated much faster than $ n ​$ separate ones.
 All of this is made non-interactive using the Fiat-Shamir Heuristic<sup>[def][fsh~]</sup>.
 
-<p align="center"><img src="sources/VectorCutNHalf.png" width="450" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/VectorCutNHalf.png" width="450" /></p>
 
 <p align="center"><b>Figure&nbsp;1: Vector Pedersen Commitment Cut and Half ([<a href="https://eprint.iacr.org/2016/263.pdf"
 title="Efficient zero-knowledge arguments for arithmetic
@@ -123,7 +123,7 @@ circuit proofs, with $ n ​$ denoting the multiplicative complexity. Additional
 *prover* to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from
 different parties into one proof (refer to Figure&nbsp;2) ([[1]], [[3]], [[5]]).
 
-<p align="center"><img src="sources/AggregateBulletproofsSize.png" width="650" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/AggregateBulletproofsSize.png" width="650" /></p>
 
 <p align="center"><b>Figure&nbsp;2: Logarithmic Aggregate Bulletproofs Proof Sizes
 [<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bullet Proofs (Slides),
@@ -144,7 +144,7 @@ blockchain per
 payment reduce by ~73% and the average USD-based fees reduce by ~94.5% for the period 30&nbsp;August&nbsp;2018 to
 28&nbsp;November&nbsp;2018 (refer to Figure&nbsp;3).
 
-<p align="center"><img src="sources/xmr-tx-size.png" width="650" /></p>
+<p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/xmr-tx-size.png" width="650" /></p>
 
 <p align="center"><b>Figure&nbsp;3: Monero Payment, Block and Data Size Statistics</b></p>
 
@@ -207,7 +207,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
    computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract,
    thereby creating privacy-preserving smart contracts (refer to Figure&nbsp;4).
 
-  <p align="center"><img src="sources/RefereedDelegation.png" width="600" /></p>
+  <p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/RefereedDelegation.png" width="600" /></p>
   <div align="center"><b>Figure&nbsp;4: Bulletproofs for Refereed Delegation Model
   [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx"
   title="Bulletproofs: Short Proofs for Confidential Transactions
@@ -232,7 +232,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
    nodes do not need to share the actual instructions with a *verifier*, but the *verifier* can show that they executed
    the same set without having knowledge of the instructions.
 
-  <p align="center"><img src="sources/VerifiableShuffles.png" width="600" /></p>
+  <p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/VerifiableShuffles.png" width="600" /></p>
   <div align="center"><b>Figure&nbsp;5: Bulletproofs for Verifiable Shuffles
   [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx"
   title="Bulletproofs: Short Proofs for Confidential Transactions
@@ -935,7 +935,7 @@ circuit that can calculate $ f $, whereas *lower bounding* is to find the smalle
 $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown
 below ([[29]], [[47]]).
 
- <p align="center"><img src="sources/ArithmiticCircuit.png" width="300" /></p>
+ <p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/ArithmiticCircuit.png" width="300" /></p>
 
 [ac~]: #ac
 "An arithmetic circuit C over a

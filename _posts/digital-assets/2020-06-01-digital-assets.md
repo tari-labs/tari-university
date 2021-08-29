@@ -5,6 +5,7 @@ date:   2020-06-01 12:00:00 +0300
 image:  '/images/banner-06.jpg'
 category: digital-assets
 tags:   [digital-assets]
+icon: '/images/index/jewel-06.svg'
 featured: true
 excerpttext: All digital assets provide value, but not all digital assets are valued equally
 ---
