@@ -1,0 +1,26 @@
+<!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="{{ site.baseurl }}/">
+              {%if site.logo %}
+              <img class="logo__image" src="{{ site.baseurl }}{{ site.logo }}" alt="{{ site.title }}">
+              {% else %}
+              {{ site.title }}
+              {% endif %}
+            </a>
+          </div>
+          {% if site.description %}
+          <div class="header__desc">{{site.description}}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+{% include search.html %}

@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          {% if page.image %}
+          <div class="page-top">
+            <div class="page-image-box">
+              <img class="page-image" src="{{site.baseurl}}{{page.image}}" alt="{{page.title}}">
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-8 col-d-12">
+      <!-- begin page -->
+      <article class="page section">
+        <div class="page-head">
+          <h1 class="page-title">{{ page.title | escape }}</h1>
+        </div>
+        <div class="page__content">
+          {{ content }}
+        </div>
+      </article>
+      <!-- end page -->
+    </div>
+    <div class="col col-4 col-d-12">
+      {% include sidebar-widgets/widget-author.html %}
+      {% include sidebar-widgets/widget-featured-posts.html %}
+      {% include sidebar-widgets/widget-tags.html %}
+    </div>
+  </div>
+</div>

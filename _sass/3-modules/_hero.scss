@@ -1,0 +1,273 @@
+/* Hero */
+.hero {
+  position: relative;
+  margin-bottom: 20px;
+  @media only screen and (max-width: $mobile) {
+    box-shadow: none;
+  }
+}
+
+/* Nav */
+.hero__nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-nav {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.main-nav__box {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  padding-top: 200px;
+  margin: 0 auto;
+
+  .nav__icon-close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: $link-color;
+    transition: all .25s ease;
+    cursor: pointer;
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  @media only screen and (max-width: $tablet) {
+    padding-top: 100px;
+    .nav__icon-close {
+      top: 22px;
+      right: 42px;
+    }
+  }
+
+  @media only screen and (max-width: $mobile) {
+    width: 90%;
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav {
+  margin-right: 25px;
+  .nav__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    .nav__item {
+      display: inline-block;
+      margin-right: 25px;
+      line-height: 16px;
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .nav__link {
+        font-size: 14px;
+        line-height: 1;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        color: $link-color;
+        &:hover {
+          color: $brand-color;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: $tablet) {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  .nav__list {
+    display: block;
+    .nav__item {
+      display: block;
+      margin-bottom: 20px;
+      text-align: center;
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .nav__link {
+        font-size: 14px;
+        line-height: 1;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        color: $text-color;
+        &:hover {
+          color: $brand-color;
+        }
+      }
+
+      @media only screen and (max-width: $mobile) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: $link-color;
+
+  .nav__icon-menu {
+    display: none;
+    @media only screen and (max-width: $tablet) {
+      display: block;
+    }
+  }
+
+  .nav__icon {
+    transition: $global-transition;
+    cursor: pointer;
+    &:hover {
+      color: $brand-color;
+    }
+    &:first-child {
+      margin-right: 15px;
+    }
+  }
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  background-color: $hero-background-overlay;
+  transition: all 0.5s ease-in-out;
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter: saturate(180%) blur(10px);
+    background-color: rgba($hero-background-overlay, .9);
+  }
+  @media only screen and (min-width: $desktop) {
+    display: none;
+  }
+}
+
+.nav-grid {
+  width: 100%;
+  height: 75vh;
+  overflow-y: auto;
+}
+
+.nav-grid__item {
+  margin-bottom: 30px;
+  @media only screen and (max-width: $tablet) {
+    height: auto;
+  }
+}
+
+.nav-grid__title {
+  position: relative;
+  margin-bottom: 50px;
+  padding-bottom: 15px;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: $text-color;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: $base-meta-color;
+  }
+  @media only screen and (max-width: $tablet) {
+    margin-bottom: 20px;
+  }
+}
+
+.hero__inner {
+  position: relative;
+}
+
+.hero__image {
+  padding-top: 50%;
+  min-height: 160px;
+  margin-top: 20px;
+  border-radius: 5px;
+  user-select: none;
+  background-color: $background-color;
+  img {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: opacity .6s ease-in-out;
+  }
+  @media only screen and (max-width: $desktop) {
+    padding-top: 55%;
+  }
+  @media only screen and (max-width: $tablet) {
+    padding-top: 75%;
+  }
+}
+
+/* TLU Hero Section */
+.tlu-hero {
+  margin-top: 20px;
+  text-align: center;
+}
+.tlu-hero-img {
+  padding: 80px 10px 80px 10px;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: top center;
+}
+.tlu-hero-title {
+  font-family: $base-font-family;
+  color: #FFF;
+  font-size: 36px;
+  line-height: 1em;
+  margin-bottom: 15px;
+}
+.tlu-hero-tags a {
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-top: -10px;
+}

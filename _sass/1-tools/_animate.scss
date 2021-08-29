@@ -1,0 +1,61 @@
+/* Animate */
+
+// Animate In Top
+.animate-in-top {
+  animation: animateInTop cubic-bezier(.300,.450,.450,.950) .75s;
+  animation-duration: 0.75s;
+  animation-iteration-count: 1;
+  transition: transform .2s;
+
+  @keyframes animateInTop {
+    0% {
+      opacity:0;
+      transform:  translate(0px,50px);
+    }
+    100% {
+      opacity:1;
+      transform:  translate(0px,0px);
+    }
+  }
+}
+
+
+// Animate In Bottom
+.animate-in-bottom {
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
+  animation-name: animateInBottom;
+  
+  @keyframes animateInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+}
+
+.delay-05 {
+  animation-delay: .5s;
+}
+
+.delay-75 {
+  animation-delay: .75s;
+}
+
+.delay-100 {
+  animation-delay: 1s;
+}
+
+
+// Fade In
+.fadein {
+  opacity: 0;
+}
+
+.inview {
+  opacity: 1;
+}

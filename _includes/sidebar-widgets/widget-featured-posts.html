@@ -1,0 +1,29 @@
+{% for post in site.posts %}
+  {% if post.featured == true %}
+    {% assign is-featured = true %}
+  {% endif %}
+{% endfor %}
+
+{% if is-featured == true %}
+<div class="widget-sidebar widget-featured {{class}}">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Featured Posts</h4>
+  </div>
+  {% for post in site.posts %}
+  {% if post.featured == true %}
+  <div class="featured-posts">
+    {% if post.image %}
+    <a class="featured-posts__image fadein" href="{{post.url | prepend: site.baseurl}}" style="background-image: url({{site.baseurl}}{{post.image}})"></a>
+    {% endif %}
+    <div class="featured-posts__content">
+      <div class="featured-posts__date">
+        <time
+          datetime="{{ post.date | date_to_xmlschema }}">{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}{{ post.date | date: date_format }}</time>
+      </div>
+      <h6 class="featured-posts__title"><a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a></h6>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endif %}

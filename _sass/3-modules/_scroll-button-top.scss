@@ -1,0 +1,33 @@
+/* Scroll Button */
+.top {
+  position: fixed;
+  bottom: 25px;
+  right: -100px;
+  z-index: 5;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: $dark;
+  color: $white;
+  cursor: pointer;
+  transition: all .25s ease;
+  &:hover {
+    background-color: $brand-color;
+  }
+  
+  &.is-active {
+    right: 30px;
+  }
+}
+
+@media only screen and (max-width: $tablet) {
+  .top {
+    bottom: 15px;
+    &.is-active {
+      right: 25px;
+    }
+  }
+}

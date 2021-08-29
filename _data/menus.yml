@@ -1,0 +1,51 @@
+header:
+  - url: /learning-paths/introduction-to-learning
+    title: 01. Learning Paths
+    identifier: learning-paths
+    weight: 1
+    icon: /images/index/jewel-02.svg
+  - url: /cryptography/cryptography
+    title: 02. Cryptography
+    identifier: cryptography
+    weight: 2
+    icon: /images/index/jewel-01.svg
+  - url: /consensus-mechanisms/consensus-mechanisms
+    title: 03. Consensus Mechanisms
+    identifier: consensus-mechanisms
+    weight: 3
+    icon: /images/index/jewel-03.svg
+  - url: /scaling/scaling
+    title: 04. Scaling
+    identifier: scaling
+    weight: 4
+    icon: /images/index/jewel-04.svg
+  - url: /mining/mining
+    title: 05. Mining
+    identifier: mining
+    weight: 5
+    icon: /images/index/jewel-05.svg
+  - url: /digital-assets/digital-assets
+    title: 06. Digital Assets
+    identifier: digital-assets
+    weight: 6
+    icon: /images/index/jewel-06.svg
+  - url: /protocols/protocols
+    title: 07. Protocols
+    identifier: protocols
+    weight: 7
+    icon: /images/index/jewel-07.svg
+  - url: /network-analysis/network-analysis
+    title: 08. Network Analysis
+    identifier: network-analysis
+    weight: 8
+    icon: /images/index/jewel-08.svg
+  - url: /labs/labs
+    title: 09. Labs
+    identifier: labs
+    weight: 9
+    icon: /images/index/jewel-09.svg
+  - url: /style-guide/style-guide
+    title: 10. Style Guide
+    identifier: style-guide
+    weight: 10
+    icon: /images/index/jewel-10.svg

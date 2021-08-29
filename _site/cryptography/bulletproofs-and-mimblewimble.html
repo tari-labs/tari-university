@@ -1,0 +1,2408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bulletproofs and Mimblewimble</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/cryptography/bulletproofs-and-mimblewimble">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:50px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.error-page__head h1,.error-page__head h2{margin-bottom:20px}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px}.error-page__head h2{font-size:60px}}
+
+  </style>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-01.jpg');">
+              <h1 class="tlu-hero-title">Bulletproofs and Mimblewimble</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/cryptography" class="post-tags__tag tlu-hero-tags">cryptography</a>
+                      
+                      <a href="/tag/bulletproofs" class="post-tags__tag tlu-hero-tags">bulletproofs</a>
+                      
+                      <a href="/tag/mimblewimble" class="post-tags__tag tlu-hero-tags">mimblewimble</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+
+
+        <div class="post__content">
+          <h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li>
+<a href="#introduction">Introduction</a>
+    <ul>
+      <li><a href="#bulletproofs">Bulletproofs</a></li>
+      <li><a href="#mimblewimble">Mimblewimble</a></li>
+    </ul>
+  </li>
+  <li><a href="#how-do-bulletproofs-work">How do Bulletproofs Work?</a></li>
+  <li><a href="#applications-for-bulletproofs">Applications for Bulletproofs</a></li>
+  <li><a href="#comparison-to-other-zero-knowledge-proof-systems">Comparison to other Zero-knowledge Proof Systems</a></li>
+  <li>
+<a href="#interesting-bulletproofs-implementation-snippets">Interesting Bulletproofs Implementation Snippets</a>
+    <ul>
+      <li><a href="#current-and-past-efforts">Current and Past Efforts</a></li>
+      <li><a href="#security-considerations">Security Considerations</a></li>
+      <li>
+<a href="#wallet-reconstruction-and-switch-commitment---grin">Wallet Reconstruction and Switch Commitment - Grin</a>
+        <ul>
+          <li><a href="#initial-implementation">Initial Implementation</a></li>
+          <li><a href="#improved-implementation">Improved Implementation</a></li>
+          <li><a href="#github-extracts">GitHub Extracts</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</a></li>
+  <li><a href="#references">References</a></li>
+  <li>
+<a href="#appendices">Appendices</a>
+    <ul>
+      <li><a href="#appendix-a-definition-of-terms">Appendix A: Definition of Terms</a></li>
+      <li><a href="#appendix-b-notation-used">Appendix B: Notation Used</a></li>
+    </ul>
+  </li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="bulletproofs">Bulletproofs</h3>
+
+<p>Bulletproofs form part of the family of distinct <em>Zero-knowledge Proof</em><sup><a href="#zk">def</a></sup> systems, such as Zero-Knowledge
+Succinct Non-Interactive ARguments of Knowledge (zk-SNARK); Succinct Transparent ARgument of Knowledge (STARK); and Zero
+Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a <em>prover</em> is
+able to indirectly verify that a statement is true without having to provide any information beyond the verification of
+the statement, e.g. to prove that a number is found that solves a cryptographic puzzle and fits the hash value
+without having to reveal the <em>Nonce</em><sup><a href="#nonce">def</a></sup> ([<a href="https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs" title="Bulletproofs (Transcript)">2</a>], [<a href="https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040" title="Decoding zk-SNARKs">4</a>]).</p>
+
+<p>The Bulletproofs technology is a Non-interactive Zero-knowledge (NIZK) proof protocol for general <em>Arithmetic
+Circuits</em><sup><a href="#ac">def</a></sup> with very short proofs (<em>Arguments of Knowledge Systems</em><sup><a href="#afs">def</a></sup>) and without
+requiring a trusted setup. They rely on the <em>Discrete Logarithm</em><sup><a href="#dlp">def</a></sup> (DL) assumption and are made
+non-interactive using the <em>Fiat-Shamir Heuristic</em><sup><a href="#fsh">def</a></sup>. The name “Bulletproof” originated from a
+non-technical summary from one of the original authors of the scheme’s properties: “<i>Short like a bullet with
+bulletproof security assumptions</i>” ([[1]], [[29]]).</p>
+
+<p>Bulletproofs also implement a Multi-party Computation (MPC) protocol, whereby distributed proofs of multiple <em>provers</em>
+with secret committed values are aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent
+to the <em>verifier</em>, thereby minimizing rounds of communication. Secret committed values will stay secret ([[1]], [<a href="http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts)">6</a>]).</p>
+
+<p>The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined
+by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not
+related) <em>binding</em><sup><a href="#cs">def</a></sup> vector <em>Pedersen Commitments</em><sup><a href="#ecpc">def</a></sup> that satisfied the given
+inner-product relation. Bulletproofs build on these techniques, which yield communication-efficient, zero-knowledge
+proofs, but offer a further replacement for the inner product argument that reduces overall communication by a factor of
+three ([[1]], [[29]]).</p>
+
+<h3 id="mimblewimble">Mimblewimble</h3>
+
+<p><a href="../../protocols/mimblewimble-1/MainReport.md">Mimblewimble</a> is a blockchain protocol designed for confidential
+transactions. The essence is that a Pedersen Commitment to $ 0 $ can be viewed as an Elliptic Curve Digital Signature
+Algorithm (ECDSA) public key, and that for a valid confidential transaction, the difference between outputs, inputs and
+transaction fees must be $ 0 $. A <em>prover</em> constructing a confidential transaction can therefore sign the transaction
+with the difference of the outputs and inputs as the public key. This enables a greatly simplified blockchain in which
+all spent transactions can be pruned, and new nodes can efficiently validate the entire blockchain without downloading
+any old and spent transactions. The blockchain consists only of block-headers, remaining Unspent Transaction Outputs
+(UTXO) with their range proofs and an unprunable transaction kernel per transaction. Mimblewimble also allows
+transactions to be aggregated before being committed to the blockchain ([[1]], [<a href="https://www.weusecoins.com/mimble-wimble-andrew-poelstra" title="Mimblewimble Explained">20</a>]).</p>
+
+<h2 id="how-do-bulletproofs-work">How do Bulletproofs Work?</h2>
+
+<p>The basis of confidential transactions is to replace the input and output amounts with <em>Pedersen
+Commitments</em><sup><a href="#ecpc">def</a></sup>. It is then publicly verifiable that the transactions balance (the sum of the
+committed inputs is greater than the sum of the committed outputs, and all outputs are positive), while keeping the
+specific committed amounts hidden. This makes it a zero-knowledge transaction. The transaction amounts must be encoded
+as $ integers \mod q ​$, which can overflow, but are prevented from doing so by making use of range proofs. This is where
+Bulletproofs come in. The essence of Bulletproofs is its ability to calculate proofs, including range proofs, from
+inner-products.</p>
+
+<p>The <em>prover</em> must convince the <em>verifier</em> that commitment $ C(x,r) = xH + rG $ contains a number such that $ x \in
+[0,2^n - 1] $. If $ \mathbf {a} = (a_1 \mspace{3mu} , \mspace{3mu} … \mspace{3mu} , \mspace{3mu} a_n) \in {0,1}^n
+$ is the vector containing the bits of $ x $, the basic idea is to hide all the bits of the amount in a single
+vector Pedersen Commitment. It must then be proven that each bit satisfies $ \omega(\omega-1) = 0 $, i.e. each
+$ \omega $ is either $ 0 $ or $ 1 $, and that they sum to $ x $. As part of the ensuing protocol, the <em>verifier</em> sends
+random linear combinations of constraints and challenges $ \in \mathbb{Z_p} $ to the <em>prover</em>. The
+<em>prover</em> is then able to construct a vectorized inner product relation containing the elements of $ \mathbf {a} $, the
+constraints and challenges $ \in \mathbb{Z_p} $, and appropriate blinding vectors $ \in \mathbb Z_p^n $.</p>
+
+<p>These inner product vectors have size $ n ​$ that would require many expensive exponentiations. The Pedersen Commitment
+scheme, shown in Figure 1, allows for a vector to be cut in half, and for the two halves to be compressed together,
+each time calculating a new set of Pedersen Commitment generators. Applying the same trick repeatedly, $ \log _2 n ​$
+times, produces a single value. This is applied to the inner product vectors; they are reduced interactively with a
+logarithmic number of rounds by the <em>prover</em> and <em>verifier</em> into a single multi-exponentiation of size
+$ 2n + 2 \log_2(n) + 1 ​$. This single multi-exponentiation can then be calculated much faster than $ n ​$ separate ones.
+All of this is made non-interactive using the Fiat-Shamir Heuristic<sup><a href="#fsh">def</a></sup>.</p>
+
+<p align="center"><img src="sources/VectorCutNHalf.png" width="450"></p>
+
+<p align="center"><b>Figure 1: Vector Pedersen Commitment Cut and Half ([<a href="https://eprint.iacr.org/2016/263.pdf" title="Efficient zero-knowledge arguments for arithmetic
+circuits in the discrete log setting, Bootle J et al.">12</a>],
+[<a href="https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb/" title="How to do Zero-Knowledge from Discrete-Logs
+in under 7kB, Bootle J.">63</a>])</b></p>
+
+<p>Bulletproofs only rely on the discrete logarithm assumption. In practice, this means that Bulletproofs are
+compatible with any secure elliptic curve, making them extremely versatile. The proof sizes are short; only
+$ [2 \log_2(n) + 9] ​$ elements are required for the range proofs and $ [\log_2(n) + 13] ​$ elements for arithmetic
+circuit proofs, with $ n ​$ denoting the multiplicative complexity. Additionally, the logarithmic proof size enables the
+<em>prover</em> to aggregate multiple range proofs into a single short proof, as well as to aggregate multiple range proofs from
+different parties into one proof (refer to Figure 2) ([[1]], [<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bulletproofs (Slides)">3</a>], [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)">5</a>]).</p>
+
+<p align="center"><img src="sources/AggregateBulletproofsSize.png" width="650"></p>
+
+<p align="center"><b>Figure 2: Logarithmic Aggregate Bulletproofs Proof Sizes
+[<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bullet Proofs (Slides),
+Bitcoin Milan Meetup 2018-02-02,
+Andrew Poelstra">3</a>]</b></p>
+<p>If all Bitcoin transactions were confidential, approximately 50 million UTXOs from approximately 22 million
+transactions would result in roughly 160GB range proof data, when using current/linear proof systems and assuming use of
+52 bits to represent any value from 1 satoshi up to 21 million bitcoins. Aggregated Bulletproofs would reduce the
+data storage
+requirement to less than 17GB [[1]].</p>
+
+<p>In Mimblewimble, the blockchain grows with the size of the UTXO set. Using Bulletproofs as a drop-in replacement for
+range proofs in confidential transactions, the size of the blockchain would only grow with the number of transactions
+that have unspent outputs. This is much smaller than the size of the UTXO set [[1]].</p>
+
+<p>The recent implementation of Bulletproofs in Monero on 18 October 2018 saw the average data size on the
+blockchain per
+payment reduce by ~73% and the average USD-based fees reduce by ~94.5% for the period 30 August 2018 to
+28 November 2018 (refer to Figure 3).</p>
+
+<p align="center"><img src="sources/xmr-tx-size.png" width="650"></p>
+
+<p align="center"><b>Figure 3: Monero Payment, Block and Data Size Statistics</b></p>
+
+<h2 id="applications-for-bulletproofs">Applications for Bulletproofs</h2>
+
+<p>Bulletproofs were designed for range proofs. However, they also generalize to arbitrary arithmetic circuits.
+In practice, this means that Bulletproofs have wide application and can be efficiently used for many types of proofs.
+Use cases of Bulletproofs are listed in this section, but this list may not be exhaustive, as use cases for Bulletproofs
+continue to evolve ([[1]], [<a href="https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs" title="Bulletproofs (Transcript)">2</a>], [<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bulletproofs (Slides)">3</a>], [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)">5</a>], [<a href="http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts)">6</a>], [[59]]).</p>
+
+<ol>
+  <li>
+    <p>Range proofs</p>
+
+    <p>Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval.
+It prevents any numbers coming near the magnitude of a large prime, say $ 2^{256} $, that can cause wraparound when
+adding a small number, e.g. proof that $ x \in [0,2^{52} - 1] ​$.</p>
+  </li>
+  <li>
+    <p>Merkle proofs</p>
+
+    <p>Hash preimages in a Merkle tree [<a href="https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs" title="Merkle Root and Merkle Proofs">7</a>] can be leveraged to create zero-knowledge Merkle proofs using Bulletproofs, to
+create efficient proofs of inclusion in massive data sets.</p>
+  </li>
+  <li>
+    <p>Proof of solvency</p>
+
+    <p>Proofs of solvency are a specialized application of Merkle proofs; coins can be added into a giant Merkle tree. It
+can then be proven that some outputs are in the Merkle tree and that those outputs add up to some amount that the
+cryptocurrency exchange claims they have control over without revealing any private information. A Bitcoin exchange
+with 2 million customers needs approximately 18GB to prove solvency in a confidential manner using the Provisions
+protocol [<a href="https://eprint.iacr.org/2015/1008.pdf" title="Provisions: Privacy-preserving Proofs of Solvency for Bitcoin Exchanges">58</a>]. Using Bulletproofs and its variant protocols proposed in [[1]], this size could be reduced to
+approximately 62MB.</p>
+  </li>
+  <li>
+    <p>Multi-signatures with deterministic nonces</p>
+
+    <p>With Bulletproofs, every signatory can prove that their nonce was generated deterministically. A SHA256 arithmetic
+circuit could be used in a deterministic way to show that the de-randomized nonces were generated deterministically.
+This would still work if one signatory were to leave the conversation and rejoin later, with no memory of interacting
+with the other parties they were previously interacting with.</p>
+  </li>
+  <li>
+    <p>Scriptless scripts</p>
+
+    <p>Scriptless scripts is a way to do smart contracts exploiting the linear property of Schnorr signatures, using an
+older form of zero-knowledge proofs called a Sigma protocol. This can all be done with Bulletproofs, which could be
+extended to allow assets that are functions of other assets, i.e. crypto derivatives.</p>
+  </li>
+  <li>
+    <p>Smart contracts and crypto derivatives</p>
+
+    <p>Traditionally, a new trusted setup is needed for each smart contract when verifying privacy-preserving smart
+contracts, but with Bulletproofs, no trusted setup is needed. Verification time, however, is linear, and it might be
+too complex to prove every step in a smart contract. The Refereed Delegation Model [<a href="https://eprint.iacr.org/2011/518.pdf" title="Two 1-Round Protocols for Delegation of Computation">33</a>] has been proposed as an
+efficient protocol to verify smart contracts with public verifiability in the off-line stage, by making use of a
+specific verification circuit linked to a smart contract.</p>
+
+    <p>A <em>challenger</em> will input the proof to the verification circuit and get a binary response as to the validity of the
+proof. The <em>challenger</em> can then complain to the smart contract, claim the proof is invalid and send the proof,
+together with the output from a chosen gate in the verification circuit, to the smart contract. Interactive binary
+searches are then used to identify the gate where the proof turns invalid. Hence the smart contract must only
+check a single gate in the verification procedure to decide whether the <em>challenger</em> or <em>prover</em> was correct. The
+cost is logarithmic in the number of rounds and amount of communications, with the smart contract only doing one
+computation. A Bulletproof can be calculated as a short proof for the arbitrary computation in the smart contract,
+thereby creating privacy-preserving smart contracts (refer to Figure 4).</p>
+  </li>
+</ol>
+
+<p align="center"><img src="sources/RefereedDelegation.png" width="600"></p>
+<div align="center"><b>Figure 4: Bulletproofs for Refereed Delegation Model
+  [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions
+  and More (Slides), Blockchain Protocol Analysis and
+  Security Engineering 2018,
+  Bünz B. et al">5</a>]</b></div>
+
+<ol>
+  <li>
+    <p>Verifiable shuffles</p>
+
+    <p>Alice has some computation and wants to prove to Bob that she has done it correctly and has some secret inputs to
+this computation. It is possible to create a complex function that either evaluates to 1 if all secret inputs are
+correct and to 0 otherwise. Such a function can be encoded in an arithmetic circuit and can be implemented with
+Bulletproofs to prove that the transaction is valid.</p>
+
+    <p>When a proof is needed that one list of values $[x_1, … , x_n]$ is a permutation of a second list of values
+$[y_1, … , y_n]$, it is called a verifiable shuffle. It has many applications, e.g. voting, blind signatures
+for untraceable payments and solvency proofs. Currently, the most efficient shuffle has size $O \sqrt{n}$.
+Bulletproofs can be used very efficiently to prove verifiable shuffles of size $O \log(n)$, as shown in Figure 5.</p>
+
+    <p>Another potential use case is to verify that two nodes executed the same list of independent instructions
+$ [x1,x4,x3,x2] $ and $ [x1,x2,x3,x4] $, which may be in different order, to arrive at the same next state $ N $. The
+nodes do not need to share the actual instructions with a <em>verifier</em>, but the <em>verifier</em> can show that they executed
+the same set without having knowledge of the instructions.</p>
+  </li>
+</ol>
+
+<p align="center"><img src="sources/VerifiableShuffles.png" width="600"></p>
+<div align="center"><b>Figure 5: Bulletproofs for Verifiable Shuffles
+  [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions
+  and More (Slides), Blockchain Protocol Analysis and
+  Security Engineering 2018,
+  Bünz B. et al">5</a>]</b></div>
+
+<ol>
+  <li>
+    <p>Batch verifications</p>
+
+    <p>Batch verifications can be done using one of the Bulletproofs derivative protocols. This has application where the
+<em>verifier</em> needs to verify multiple (separate) range proofs at once, e.g. a blockchain full node receiving a
+block of transactions needs to verify all transactions as well as range proofs. This batch verification is then
+implemented as one large multi-exponentiation; it is applied to reduce the number of expensive exponentiations.</p>
+  </li>
+</ol>
+
+<h2 id="comparison-to-other-zero-knowledge-proof-systems">Comparison to other Zero-knowledge Proof Systems</h2>
+
+<p>Table 1 ([<a href="https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs" title="Bulletproofs (Transcript)">2</a>], [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)">5</a>]) shows a high-level comparison between Sigma protocols (i.e. interactive public-coin
+protocols) and the different Zero-knowledge proof systems mentioned in this report. (The most desirable outcomes for
+each measurement are shown in <strong><em>bold italics</em></strong>.) The aim will be to have a proof system that is not interactive, has
+short proof sizes, has linear <em>prover</em> runtime scalability, has efficient (sub-linear) <em>verifier</em> runtime scalability,
+has no trusted setup, is practical and is at least DL secure. Bulletproofs are unique in that they are not interactive,
+have a short proof size, do not require a trusted setup, have very fast execution times and are practical to implement.
+These attributes make Bulletproofs extremely desirable to use as range proofs in cryptocurrencies.</p>
+
+<div align="center"><b>Table 1: Comparison to other Zero-knowledge Proof Systems</b></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Proof System</th>
+      <th>Sigma Protocols</th>
+      <th>zk-SNARK</th>
+      <th>STARK</th>
+      <th>ZKBoo</th>
+      <th>Bulletproofs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Interactive</b></td>
+      <td>yes</td>
+      <td><strong><em>no</em></strong></td>
+      <td><strong><em>no</em></strong></td>
+      <td><strong><em>no</em></strong></td>
+      <td><strong><em>no</em></strong></td>
+    </tr>
+    <tr>
+      <td><b>Proof Size</b></td>
+      <td>long</td>
+      <td><strong><em>short</em></strong></td>
+      <td>shortish</td>
+      <td>long</td>
+      <td><strong><em>short</em></strong></td>
+    </tr>
+    <tr>
+      <td><b>Prover Runtime Scalability</b></td>
+      <td><strong><em>linear</em></strong></td>
+      <td>quasilinear</td>
+      <td>quasilinear (big memory requirement)</td>
+      <td><strong><em>linear</em></strong></td>
+      <td><strong><em>linear</em></strong></td>
+    </tr>
+    <tr>
+      <td><b>Verifier Runtime Scalability</b></td>
+      <td>linear</td>
+      <td><em>efficient</em></td>
+      <td><strong><em>efficient</em> (<em>poly-logarithmically</em>)</strong></td>
+      <td><strong><em>efficient</em></strong></td>
+      <td>linear</td>
+    </tr>
+    <tr>
+      <td><b>Trusted Setup</b></td>
+      <td><strong><em>no</em></strong></td>
+      <td>required</td>
+      <td><strong><em>no</em></strong></td>
+      <td><strong><em>no</em></strong></td>
+      <td><strong><em>no</em></strong></td>
+    </tr>
+    <tr>
+      <td><b>Practical</b></td>
+      <td><strong><em>yes</em></strong></td>
+      <td><strong><em>yes</em></strong></td>
+      <td>not   quite</td>
+      <td>somewhat</td>
+      <td><strong><em>yes</em></strong></td>
+    </tr>
+    <tr>
+      <td><b>Security Assumptions</b></td>
+      <td><strong><em>DL</em></strong></td>
+      <td>non-falsifiable, but not on par with DL</td>
+      <td><strong><em>quantum secure One-way Function (<a href="#owf">OWF</a>) [<a href="https://en.wikipedia.org/wiki/One-way_function" title="Wikipedia: One-way Function">50</a>], which is better than DL</em></strong></td>
+      <td><strong><em>similar to STARKs</em></strong></td>
+      <td><strong><em>DL</em></strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>“A one-way function is a function that is easy to
+compute on every input, but hard to invert
+given the image of a random input.”</p>
+
+<h2 id="interesting-bulletproofs-implementation-snippets">Interesting Bulletproofs Implementation Snippets</h2>
+
+<p>Bulletproofs development is currently still evolving, as can be seen when following the different community development
+projects. Different implementations of Bulletproofs also offer different levels of efficiency, security and functionality.
+This section describes some of these aspects.</p>
+
+<h3 id="current-and-past-efforts">Current and Past Efforts</h3>
+
+<p>The initial prototype Bulletproofs’ implementation was done by <a href="https://github.com/bbuenz">Benedikt Bünz</a> in Java
+located at <code class="language-plaintext highlighter-rouge">GitHub:bbuenz/BulletProofLib</code> [[27]].</p>
+
+<p>The initial work that provided cryptographic support for a Mimblewimble implementation was mainly done by
+<a href="https://github.com/sipa">Pieter Wuille</a>, <a href="https://github.com/gmaxwell">Gregory Maxwell</a> and
+<a href="https://github.com/apoelstra">Andrew Poelstra</a> in C located at <code class="language-plaintext highlighter-rouge">GitHub:ElementsProject/secp256k1-zkp</code> [[25]].
+This effort was forked as <code class="language-plaintext highlighter-rouge">GitHub:apoelstra/secp256k1-mw</code> [[26]] with main contributors being
+<a href="https://github.com/apoelstra">Andrew Poelstra</a>, <a href="https://github.com/sipa">Pieter Wuille</a>, and
+<a href="https://github.com/gmaxwell">Gregory Maxwell</a> where Mimblewimble primitives and support for many of the Bulletproof
+protocols (e.g. zero knowledge proofs, range proofs and arithmetic circuits) were added. Current effort also involves
+MuSig [<a href="https://eprint.iacr.org/2018/068.pdf" title="Simple Schnorr Multi-signatures with Applications to Bitcoin">48</a>] support.</p>
+
+<p>The Grin project (an open source Mimblewimble implementation in Rust) subsequently forked
+<code class="language-plaintext highlighter-rouge">GitHub:ElementsProject/secp256k1-zkp</code> [[25]] as <code class="language-plaintext highlighter-rouge">GitHub:mimblewimble/secp256k1-zkp</code> [[30]] and has added Rust wrappers
+to it as <code class="language-plaintext highlighter-rouge">mimblewimble/rust-secp256k1-zkp</code> [<a href="https://github.com/mimblewimble/rust-secp256k1-zkp" title="GitHub: mimblewimble/rust-secp256k1-zkp">45</a>] for use in its blockchain. The Beam project (another open source
+Mimblewimble implementation in C++) links directly to <code class="language-plaintext highlighter-rouge">GitHub:ElementsProject/secp256k1-zkp</code> [[25]] as its cryptographic
+sub-module. Refer to <a href="../../protocols/grin-protocol-overview/MainReport.md">Mimblewimble-Grin Blockchain Protocol Overview</a>
+and <a href="../../protocols/grin-beam-comparison/MainReport.md">Grin vs. BEAM, a Comparison</a> for more information about the
+Mimblewimble implementation of Grin and Beam.</p>
+
+<p>An independent implementation for Bulletproof range proofs was done for the Monero project (an open source CryptoNote
+implementation in C++) by <a href="https://github.com/SarangNoether">Sarang Noether</a> [[49]] in Java as the precursor and
+<a href="https://github.com/moneromooo-monero">moneromooo-monero</a> [<a href="https://github.com/monero-project/monero/tree/master/src/ringct" title="GitHub: monero-project/monero">46</a>] in C++ as the final implementation. Its implementation
+supports single and aggregate range proofs.</p>
+
+<p>Adjoint, Inc. has also done an independent open source implementation of Bulletproofs in Haskell at
+<code class="language-plaintext highlighter-rouge">GitHub: adjoint-io/bulletproofs</code> [[29]]. It has an open source implementation of a private permissioned blockchain
+with multiparty workflow aimed at the financial industry.</p>
+
+<p>Chain/Interstellar has done another independent open source implementation of Bulletproofs in Rust from the ground up at
+<code class="language-plaintext highlighter-rouge">GitHub:dalek-cryptography/bulletproofs</code> [[28]]. It has implemented parallel Edwards formulas [<a href="https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf" title="Twisted Edwards Curves Revisited">39</a>] using Intel®
+Advanced Vector Extensions 2 (AVX2) to accelerate curve operations. Initial testing suggests approximately 50% speedup
+(twice as fast) over the original <code class="language-plaintext highlighter-rouge">libsecp256k1</code>-based Bulletproofs implementation.</p>
+
+<h3 id="security-considerations">Security Considerations</h3>
+
+<p>Real-world implementation of Elliptic-curve Cryptography (ECC) is largely based on official standards that govern the
+selection of curves in order to try and make the Elliptic-curve Discrete-logarithm Problem (ECDLP) hard to solve, i.e.
+finding an ECC user’s secret key given the user’s public key. Many attacks break real-world ECC without solving ECDLP
+due to problems in ECC security, where implementations can produce incorrect results and also leak secret data. Some
+implementation considerations also favor efficiency over security. Secure implementations of the standards-based curves
+are theoretically possible, but highly unlikely ([<a href="https://signal.org/docs/specifications/xeddsa" title="The XEdDSA and VXEdDSA Signature Schemes">14</a>], [<a href="http://safecurves.cr.yp.to/" title="SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography">32</a>]).</p>
+
+<p>Grin, Beam and Adjoint use ECC curve secp256k1 [[24]] for their Bulletproofs implementation, which fails one out of the
+four ECDLP security criteria and three out of the four ECC security criteria. Monero and Chain/Interstellar use the
+ECC curve Curve25519 [<a href="https://cr.yp.to/ecdh/curve25519-20060209.pdf" title="Curve25519: New Diﬃe-Hellman Speed Records">38</a>] for their Bulletproofs implementation, which passes all ECDLP and ECC security criteria [<a href="http://safecurves.cr.yp.to/" title="SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography">32</a>].</p>
+
+<p>Chain/Interstellar goes one step further with its use of Ristretto, a technique for constructing prime order elliptic
+curve groups with non-malleable encodings, which allows an existing Curve25519 library to implement a prime-order group
+with only a thin abstraction layer. This makes it possible for systems using Ed25519 signatures to be safely extended
+with zero-knowledge protocols, with no additional cryptographic assumptions and minimal code changes [<a href="https://ristretto.group/ristretto.html" title="The Ristretto Group">31</a>].</p>
+
+<p>The Monero project has also had security audits done on its Bulletproofs’ implementation, which resulted in a number of
+serious and critical bug fixes as well as some other code improvements  ([[8]], [[9]], [[11]]).</p>
+
+<h3 id="wallet-reconstruction-and-switch-commitment---grin">Wallet Reconstruction and Switch Commitment - Grin</h3>
+
+<p>Grin implemented a switch commitment [[43]] as part of a transaction output to be ready for the age of quantum
+adversaries and to pose as a defense mechanism. It had an original implementation that was discarded (completely
+removed) due to it being complex, using a lot of space in the blockchain and allowing inclusion of arbitrary data. Grin
+also employed a complex scheme to embed the transaction amount inside a Bulletproof range proof for wallet
+reconstruction, which was linked to the original switch commitment hash implementation. The latest implementation
+improved on all those aspects and uses a much simpler method to regain the transaction amount from a Bulletproof range
+proof.</p>
+
+<h4 id="initial-implementation">Initial Implementation</h4>
+
+<p>The initial Grin implementation ([<a href="https://github.com/mimblewimble/grin/issues/721" title="Message Hiding in Bulletproofs #721">21</a>], [[34]]. [<a href="https://github.com/mimblewimble/grin/issues/273" title="GitHub: mimblewimble/grin, Bulletproofs #273">35</a>], [<a href="https://github.com/mimblewimble/grin/pull/730" title="GitHub: mimblewimble/grin, Bulletproof messages #730">54</a>]) hides two things in the Bulletproof range proof: a
+transaction amount for wallet reconstruction and an optional switch commitment hash to make the transaction perfectly
+<em>binding</em><sup><a href="#cs">def</a></sup> later on, as opposed to currently being perfectly <em>hiding</em><sup><a href="#cs">def</a></sup>.
+<em>Perfect</em> in this sense means that a quantum adversary (an attacker with infinite computing power) cannot tell what
+amount has been committed to and is also unable to produce fake commitments. <em>Computational</em> means that no efficient
+algorithm running in a practical amount of time can reveal the commitment amount or produce fake commitments, except
+with small probability. The Bulletproof range proofs are stored in the transaction kernel and will thus remain
+persistent in the blockchain.</p>
+
+<p>In this implementation, a Grin transaction output contains the original (Elliptic Curve) <em>Pedersen
+Commitment</em><sup><a href="#ecpc">def</a></sup> as well as the optional switch commitment hash. The switch commitment hash takes the
+resultant blinding factor $ b $, a third cyclic group random generator $ J $ and a wallet-seed derived random
+value $ r $ as input. The transaction output has the following form:</p>
+
+\[(vG + bH \mspace{3mu} , \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r))
+\tag{1}\]
+
+<p>where $ \mathrm{H_{B2}} $ is the BLAKE2 hash function [<a href="https://blake2.net" title="BLAKE2 — Fast Secure Hashing">44</a>] and $  \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r)  $
+the switch commitment hash. In order for such an amount to be spent, the owner needs to reveal $ b , r $ so that the
+<em>verifier</em> can check the opening of $ \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) $ by confirming that it matches
+the value stored in the switch commitment hash portion of the transaction output. Grin implemented the BLAKE2 hash
+function, which outperforms all mainstream hash function implementations in terms of hashing speed with similar security
+to the latest Secure Hash Algorithm 3 (SHA-3) standard [<a href="https://blake2.net" title="BLAKE2 — Fast Secure Hashing">44</a>].</p>
+
+<p>In the event of quantum adversaries, the owner of an output can choose to stay anonymous and not claim ownership or
+reveal $ bJ $ and $ r $, whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.</p>
+
+<p>In the Bulletproof range proof protocol, two 32-byte scalar nonces $ \tau_1 , \alpha $ (<em>not important to know what they
+are</em>) are generated with a secure random number generator. If the seed for the random number generator is known, the
+scalar values $ \tau_1 , \alpha $ can be recalculated when needed. Sixty-four (64) bytes worth of message space (out of
+674 bytes worth of range proof) are made available by embedding a message into those variables using a logic
+$ \mathrm{XOR} $ gate. This message space is used for the transaction amount for wallet reconstruction.</p>
+
+<p>To ensure that the transaction amount of the output cannot be spent by only opening the (Elliptic Curve) Pedersen
+Commitment $ vG + bH $, the switch commitment hash and embedded message are woven into the Bulletproof range proof
+calculation. The initial part is done by seeding the random number generator used to calculate $ \tau_1 , \alpha $ with
+the output from a seed function $ \mathrm S $ that uses as input a nonce $ \eta $ (which may be equal to the original
+blinding factor $ b $), the (Elliptic Curve) Pedersen Commitment<sup><a href="#ecpc">def</a></sup> $ P $ and the switch commitment
+hash</p>
+
+\[\mathrm S (\eta \mspace{3mu} , \mspace{3mu} P \mspace{3mu} ,  \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} ,
+\mspace{3mu} r) ) = \eta \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{S256}}
+(P \mspace{3mu} \Vert \mspace{3mu} \mathrm{H_{B2}}(bJ \mspace{3mu} , \mspace{3mu} r) )
+\tag{2}\]
+
+<p>where $ \mathrm{H_{S256}}$ is the SHA256 hash function. The Bulletproof range proof is then calculated with an adapted
+pair $ \tilde{\alpha} , \tilde{\tau_1} $, using the original $ \tau_1 , \alpha $ and two<br>32-byte words $ m_{w1} $ and
+$m_{w2} $ that make up the 64-byte embedded message as follows:</p>
+
+\[\tilde{\alpha} = \mathrm {XOR} ( \alpha \mspace{3mu} , \mspace{3mu} m_{w1}) \mspace{12mu} \mathrm{and} \mspace{12mu} \tilde{\tau_1} = \mathrm {XOR} ( \tau_1 \mspace{3mu} , \mspace{3mu} m_{w2} )
+\tag{3}\]
+
+<p>To retrieve the embedded message, the process is simply inverted. Note that the owner of an output needs to keep record
+of the blinding factor $ b $, the nonce $ \eta $ if not equal to the blinding factor $ b $, as well as the wallet-seed
+derived random value $ r $ to be able to claim such an output.</p>
+
+<h4 id="improved-implementation">Improved Implementation</h4>
+
+<p>The latter Grin implementation ([<a href="https://github.com/mimblewimble/grin/issues/998" title="GitHub: mimblewimble/grin, switch commitment discussion #998">56</a>], [<a href="https://github.com/mimblewimble/grin/pull/2007" title="GitHub: mimblewimble/grin, [DNM] Switch commitments #2007">57</a>]) uses Bulletproof range proof rewinding so that wallets can recognize
+their own transaction outputs. This negated the requirement to remember the wallet-seed derived random value $ r $,
+nonce $ \eta $ for the seed function $ \mathrm S $ and use of the adapted pair $ \tilde{\alpha} , \tilde{\tau_1}
+$ in the Bulletproof range proof calculation.</p>
+
+<p>In this implementation, it is not necessary to remember a hash of the switch commitment as part of the transaction output
+set and for it to be passed around during a transaction. The switch commitment looks exactly like the original
+(Elliptic Curve) Pedersen Commitment $ vG + bH $, but in this instance the blinding factor $ b $ is tweaked to be</p>
+
+\[b = b^\prime + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J )
+\tag{4}\]
+
+<p>with $ b^\prime $ being the user generated blinding factor. The (Elliptic Curve) Pedersen Commitment then becomes</p>
+
+\[vG + b^\prime H + \mathrm{H_{B2}} ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) H
+\tag{5}\]
+
+<p>After activation of the switch commitment in the age of quantum adversaries, users can reveal
+$ ( vG + b^\prime H \mspace{3mu} , \mspace{3mu} b^\prime J ) $, and <em>verifiers</em> can check if it is computed correctly and
+use it as if it were the <em>ElGamal Commitment</em><sup><a href="#egc">def</a></sup> $ ( vG + b H \mspace{3mu} , \mspace{3mu} b J ) $.</p>
+
+<h4 id="github-extracts">GitHub Extracts</h4>
+
+<p>The following extracts of discussions depict the initial and improved implementations of the switch commitment and
+retrieving transactions amounts from Bulletproofs for wallet reconstruction.</p>
+
+<p><strong>Bulletproofs #273</strong> [<a href="https://github.com/mimblewimble/grin/issues/273" title="GitHub: mimblewimble/grin, Bulletproofs #273">35</a>]</p>
+
+<p>{<strong>yeastplume</strong>} “The only thing I think we’re missing here from being able to use this implementation is the ability
+to store an amount within the range proof (for wallet reconstruction). From conversations with @apoelstra earlier, I
+believe it’s possible to store 64 bytes worth of ‘message’ (not nearly as much as the current range proofs).”</p>
+
+<p>{<strong>apoelstra</strong>} “Ok, I can get you 64 bytes without much trouble (xoring them into* <code class="language-plaintext highlighter-rouge">tau_1</code> and <code class="language-plaintext highlighter-rouge">alpha</code> which are easy
+to extract from <code class="language-plaintext highlighter-rouge">tau_x</code> and <code class="language-plaintext highlighter-rouge">mu</code> if you know the original seed used to produce the randomness). I think it’s possible to
+get another 32 bytes into <code class="language-plaintext highlighter-rouge">t</code> but that’s way more involved since <code class="language-plaintext highlighter-rouge">t</code> is a big inner-product*.”</p>
+
+<p><strong>Message hiding in Bulletproofs #721</strong> [<a href="https://github.com/mimblewimble/grin/issues/721" title="Message Hiding in Bulletproofs #721">21</a>]</p>
+
+<p>“Breaking out from #273, we need the wind a message into a bulletproof similarly to how it could be done in ‘Rangeproof
+Classic’. This is an absolute requirement as we need to embed an output’s <code class="language-plaintext highlighter-rouge">SwitchCommitHash</code> (which is otherwise not
+committed to) and embed an output amount for wallet reconstruction. We should be able to embed up to 64 bytes of message
+without too much difficulty, and another 32 with more difficulty (see original issue). 64 should be enough for the time
+being.”</p>
+
+<p><strong>Switch Commits/Bulletproofs - Status #734</strong> [[34]]</p>
+
+<p>“The <strong>prove</strong> function takes a <strong>value</strong>, a <strong>secret key</strong> (blinding factor in our case), a <strong>nonce</strong>, optional
+<strong>extra_data</strong> and a <strong>generator</strong> and produces a 674 byte proof. I’ve also modified it to optionally take a <strong>message</strong>
+(more about this in a bit). It creates the Pedersen <strong>commitment</strong> it works upon internally with these values.”</p>
+
+<p>“The <strong>verify</strong> function takes a <strong>proof</strong>, a Pedersen <strong>commitment</strong> and optional <strong>extra_data</strong> and returns true if
+<strong>proof</strong> demonstrates that the value within the Pedersen <strong>commitment</strong> is in the range [0..2^64] (and the
+<strong>extra_data</strong> is correct).”</p>
+
+<p>“Additionally, I’ve added an <strong>unwind</strong> function which takes a <strong>proof</strong>, a Pedersen <strong>commitment</strong>, optional
+<strong>extra_data</strong> and a 32 bit <strong>nonce</strong> (which needs to be the same as the original nonce used in order to return the same
+message) and returns the hidden <strong>message</strong>.”</p>
+
+<p>“If you have the correct Pedersen <strong>commitment</strong> and <strong>proof</strong> and <strong>extra_data</strong>, and attempt to unwind a <strong>message</strong>
+out using the wrong <strong>nonce</strong>, the attempt won’t fail, you’ll get out gibberish or just wildly incorrect values as you
+parse back the bytes.”</p>
+
+<p>“The <code class="language-plaintext highlighter-rouge">SwitchCommitHash</code>  is currently a field of an output, and while it is stored in the Txo set and passed around
+during a transaction, it is not currently included in the output’s hash. It is passed in as the <strong>extra_data</strong> field
+above, meaning that anyone validating the range proof also needs to have the correct switch commit in order to validate
+the range proof.”</p>
+
+<p><strong>Removed all switch commitment usages, including restore #841</strong> [[55]]</p>
+
+<p>{<strong>ignopeverell</strong>} “After some discussion with @antiochp, @yeastplume and @tromp, we decided switch commitments weren’t
+worth the cost of maintaining them and their drawbacks. Removing them.”</p>
+
+<p>{<strong>ignopeverell</strong>} “For reference, switch commitments were found to:</p>
+<ul>
+  <li>add a lot of complexity and assumptions</li>
+  <li>take additional space for little benefit right now</li>
+  <li>allow the inclusion of arbitrary data, potentially for the worst</li>
+  <li>provide little to no advantage in case of quantamageddon (as range proofs are still a weakness)”</li>
+</ul>
+
+<p>{<strong>apoelstra</strong>} “After chatting with @yeastplume on IRC, I realize that we can actually use rangeproof rewinding for
+wallets to recognize their own outputs, which even avoids the “gap” problem of just scanning for pre-generated keys.
+With that in mind, it’s true that the benefit of switch commitments for MW are not spectacular.”</p>
+
+<p><strong>Switch commitment discussion #998</strong> [<a href="https://github.com/mimblewimble/grin/issues/998" title="GitHub: mimblewimble/grin, switch commitment discussion #998">56</a>]</p>
+
+<p>{<strong>antiochp</strong>} “Sounds like there is a “zero cost” way of getting switch commitments in as part of the commitment
+itself, so we would not need to store and maintain a separate “switch commitment” on each output. I saw that switch
+commitments have been removed for various reasons.”</p>
+
+<p>“Let me suggest a variant (idea suggested by Pieter Wuille initially): The switch commitment is (vG + bH), where
+b = b’ + hash(vG + b’H,b’J). (So this “tweaks” the commitment, in a pay-to-contract / taproot style). Before the switch,
+this is just used like a normal Pedersen Commitment vG + bH. After the switch, users can reveal (vG + b’H, b’J), and
+verifiers check if it’s computed correctly and use as if it were the ElGamal commitment (vG + bH, bJ).”</p>
+
+<p>{<strong>@ignopeverell</strong>} modified the milestones: Beta / testnet3, Mainnet on 11 Jul.</p>
+
+<p>{<strong>@ignopeverell</strong>} added the must-have label on 24 Aug.</p>
+
+<h2 id="conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</h2>
+
+<ul>
+  <li>
+    <p>Bulletproofs are not Bulletproofs are not Bulletproofs. This is evident by comparing the functionality, security and
+performance of all the current different Bulletproof implementations as well as the evolving nature of Bulletproofs.</p>
+  </li>
+  <li>
+    <p>The security audit instigated by the Monero project on their Bulletproofs implementation as well as the resulting
+findings and corrective actions prove that every implementation of Bulletproofs has potential risk. This risk is due to
+the nature of confidential transactions; transacted values and token owners are not public.</p>
+  </li>
+  <li>
+    <p>The growing number of open source Bulletproof implementations should strengthen the development of a new confidential
+blockchain protocol such as Tari.</p>
+  </li>
+  <li>
+    <p>In the pure implementation of Bulletproof range proofs, a discrete-log attacker (<em>e.g. a bad actor employing a quantum
+computer</em>) would be able to exploit Bulletproofs to silently inflate any currency that used them. Bulletproofs are perfectly
+<em>hiding</em><sup><a href="#cs">def</a></sup> (<em>i.e. confidential</em>), but only computationally <em>binding</em><sup><a href="#cs">def</a></sup> (<em>i.e. not
+quantum resistant</em>). Unconditional soundness is lost due to the data compression being employed ([[1]], [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)">5</a>], [<a href="http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts)">6</a>]
+and [[10]]).</p>
+  </li>
+  <li>
+    <p>Bulletproofs are not only about range proofs. All the different Bulletproof use cases have a potential implementation
+in a new confidential blockchain protocol such as Tari; in the base layer as well as in the probable second layer.</p>
+  </li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<p>[[1]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, “Bulletproofs: Short Proofs for Confidential
+Transactions and More”, Blockchain Protocol Analysis and Security Engineering 2018 [online].
+Available: <a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf">http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf</a>. Date accessed: 2018‑09‑18.</p>
+
+<p>[1]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf “Bulletproofs: Short Proofs for Confidential Transactions and
+More”</p>
+
+<p>[<a href="https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs" title="Bulletproofs (Transcript)">2</a>] A. Poelstra, “Bulletproofs” (Transcript), Bitcoin Milan Meetup 2018‑02‑02 [online]. Available:
+<a href="https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-Bulletproofs">https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-Bulletproofs</a>. Date accessed: 2018‑09‑10.</p>
+
+<p>[<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view" title="Bulletproofs (Slides)">3</a>] A. Poelstra, “Bulletproofs” (Slides), Bitcoin Milan Meetup 2018‑02‑02 [online]. Available:
+<a href="https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view">https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view</a>. Date accessed: 2018‑09‑10.</p>
+
+<p>[<a href="https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040" title="Decoding zk-SNARKs">4</a>] B. Feng, “Decoding zk-SNARKs” [online]. Available:
+<a href="https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040">https://medium.com/wolverineblockchain/decoding-zk-snarks-85e73886a040</a>. Date accessed: 2018‑09‑17.</p>
+
+<p>[<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)">5</a>] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, “Bulletproofs: Short Proofs for
+Confidential Transactions and More” (Slides) [online]. Available:
+<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx">https://cyber.stanford.edu/sites/default/files/bpase18.pptx</a>. Date accessed: 2018‑09‑18.</p>
+
+<p>[<a href="http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts)">6</a>] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, “Bulletproofs: Short Proofs for
+Confidential Transactions and More (Transcripts)” [online]. Available:
+<a href="http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/Bulletproofs">http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/Bulletproofs</a>. Date accessed:
+2018‑09‑18.</p>
+
+<p>[<a href="https://bitcoin.stackexchange.com/questions/69018/merkle-root-and-merkle-proofs" title="Merkle Root and Merkle Proofs">7</a>] “Merkle Root and Merkle Proofs” [online]. Available:
+<a href="https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs">https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs</a>. Date accessed: 2018‑10‑10.</p>
+
+<p>[[8]] “Bulletproofs Audit: Fundraising” [online]. Available:
+<a href="https://forum.getmonero.org/22/completed-tasks/90007/Bulletproofs-audit-fundraising">https://forum.getmonero.org/22/completed-tasks/90007/Bulletproofs-audit-fundraising</a>. Date accessed: 2018‑10‑23.</p>
+
+<p>[8]: https://forum.getmonero.org/22/completed-tasks/90007/bulletproofs-audit-fundraising “Bulletproofs Audit:
+Fundraising”</p>
+
+<p>[[9]] “The QuarksLab and Kudelski Security Audits of Monero Bulletproofs are Complete” [online]. Available:
+<a href="https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-Bulletproofs-are-complete">https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-Bulletproofs-are-complete</a>. Date accessed:
+2018‑10‑23.</p>
+
+<p>[9]: https://ostif.org/the-quarkslab-and-kudelski-security-audits-of-monero-bulletproofs-are-complete “The QuarksLab and
+Kudelski Security Audits of Monero Bulletproofs are Complete”</p>
+
+<p>[[10]] A. Poelstra, “Bulletproofs Presentation at Feb 2 Milan Meetup, Reddit” [online]. Available:
+<a href="https://www.reddit.com/r/Bitcoin/comments/7w72pq/Bulletproofs_presentation_at_feb_2_milan_meetup">https://www.reddit.com/r/Bitcoin/comments/7w72pq/Bulletproofs_presentation_at_feb_2_milan_meetup</a>. Date accessed:
+2018‑09‑10.</p>
+
+<p>[10]: https://www.reddit.com/r/Bitcoin/comments/7w72pq/bulletproofs_presentation_at_feb_2_milan_meetup “Bulletproofs
+Presentation at Feb 2 Milan Meetup”</p>
+
+<p>[[11]] “The OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched [online]”. Available:
+<a href="https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-Bulletproofs-is-complete-critical-bug-patched">https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-Bulletproofs-is-complete-critical-bug-patched</a>. Date
+accessed: 2018-10-23.</p>
+
+<p>[11]: https://ostif.org/the-ostif-and-quarkslab-audit-of-monero-bulletproofs-is-complete-critical-bug-patched/ “The
+OSTIF and QuarksLab Audit of Monero Bulletproofs is Complete – Critical Bug Patched”</p>
+
+<p>[[12]] J. Bootle, A. Cerulli1, P. Chaidos, J. Groth and C. Petit, “Efficient Zero-knowledge Arguments for Arithmetic
+Circuits in the Discrete Log Setting”, Annual International Conference on the Theory and Applications of Cryptographic
+Techniques, pages 327-357. Springer, 2016 [online]. Available: <a href="https://eprint.iacr.org/2016/263.pdf">https://eprint.iacr.org/2016/263.pdf</a>. Date accessed:
+2018‑09‑21.</p>
+
+<p>[12]: https://eprint.iacr.org/2016/263.pdf “Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete
+Log Setting”</p>
+
+<p>[[13]] J. Groth, “Linear Algebra with Sub-linear Zero-knowledge Arguments” [online]. Available:
+<a href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf">https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf</a>. Date accessed: 2018‑09‑21.</p>
+
+<p>[13]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-03356-8_12.pdf “Linear Algebra with Sub-linear
+Zero-knowledge Arguments”</p>
+
+<p>[<a href="https://signal.org/docs/specifications/xeddsa" title="The XEdDSA and VXEdDSA Signature Schemes">14</a>] T. Perrin, “The XEdDSA and VXEdDSA Signature Schemes”, 2016-10-20 [online]. Available:
+<a href="https://signal.org/docs/specifications/xeddsa">https://signal.org/docs/specifications/xeddsa</a> and <a href="https://signal.org/docs/specifications/xeddsa/xeddsa.pdf">https://signal.org/docs/specifications/xeddsa/xeddsa.pdf</a>. Date
+accessed: 2018‑10‑23.</p>
+
+<p>[<a href="https://blockstream.com/bitcoin17-final41.pdf" title="Confidential Assets">15</a>] A. Poelstra, A. Back, M. Friedenbach, G. Maxwell and P. Wuille, “Confidential Assets”, Blockstream [online].
+Available: <a href="https://blockstream.com/bitcoin17-final41.pdf">https://blockstream.com/bitcoin17-final41.pdf</a>. Date accessed: 2018‑09‑25.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Zero-knowledge_proof" title="Wikipedia - Zero-knowledge Proof">16</a>] Wikipedia: “Zero-knowledge Proof” [online]. Available: <a href="https://en.wikipedia.org/wiki/Zero-knowledge_proof">https://en.wikipedia.org/wiki/Zero-knowledge_proof</a>.
+Date accessed: 2018‑09‑18.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Discrete_logarithm" title="Wikipedia: Discrete Logarithm">17</a>] Wikipedia: “Discrete Logarithm” [online]. Available: <a href="https://en.wikipedia.org/wiki/Discrete_logarithm">https://en.wikipedia.org/wiki/Discrete_logarithm</a>. Date
+accessed: 2018‑09‑20.</p>
+
+<p>[[18]] A. Fiat and A. Shamir, “How to Prove Yourself: Practical Solutions to Identification and Signature Problems”.
+CRYPTO 1986: pp. 186‑194 [online]. Available: <a href="https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf">https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf</a>.
+Date accessed: 2018‑09‑20.</p>
+
+<p>[18]: https://link.springer.com/content/pdf/10.1007%2F3-540-47721-7_12.pdf “How to Prove Yourself: Practical Solutions
+to Identification and Signature Problems”</p>
+
+<p>[[19]] D. Bernhard, O. Pereira and B. Warinschi, “How not to Prove Yourself: Pitfalls of the Fiat-Shamir Heuristic and
+Applications to Helios” [online]. Available: <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf">https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf</a>.
+Date accessed: 2018‑09‑20.</p>
+
+<p>[19]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34961-4_38.pdf “How not to Prove Yourself: Pitfalls of
+the Fiat-Shamir Heuristic and Applications to Helios”</p>
+
+<p>[<a href="https://www.weusecoins.com/mimble-wimble-andrew-poelstra" title="Mimblewimble Explained">20</a>] “Mimblewimble Explained” [online]. Available: <a href="https://www.weusecoins.com/mimble-wimble-andrew-poelstra/">https://www.weusecoins.com/mimble-wimble-andrew-poelstra/</a>. Date
+accessed: 2018‑09‑10.</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/issues/721" title="Message Hiding in Bulletproofs #721">21</a>] GitHub: “Message Hiding in Bulletproofs #721” [online]. Available: <a href="https://github.com/mimblewimble/grin/issues/721">https://github.com/mimblewimble/grin/issues/721</a>.
+Date accessed: 2018‑09‑10.</p>
+
+<p>[[22]] Pedersen-commitment: “An Implementation of Pedersen Commitment Schemes” [online]. Available:
+<a href="https://hackage.haskell.org/package/pedersen-commitment">https://hackage.haskell.org/package/pedersen-commitment</a>. Date accessed: 2018-09-25.</p>
+
+<p>[22]: https://hackage.haskell.org/package/pedersen-commitment “Pedersen-commitment: An Implementation of Pedersen
+Commitment Schemes”</p>
+
+<p>[<a href="https://zkproof.org/documents.html" title="Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative">23</a>] “Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative” [online]. Available:
+<a href="https://zkproof.org/documents.html">https://zkproof.org/documents.html</a>. Date accessed: 2018‑09‑26.</p>
+
+<p>[[24]] “SEC 2: Recommended Elliptic Curve Domain Parameters, Standards for Efficient Cryptography”, 20 September 2000
+[online]. Available: <a href="http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf">http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf</a>. Date accessed: 2018‑09‑26.</p>
+
+<p>[24]: http://safecurves.cr.yp.to/www.secg.org/SEC2-Ver-1.0.pdf “SEC 2: Recommended Elliptic Curve Domain Parameters,
+Standards for Efficient Cryptography”</p>
+
+<p>[[25]] GitHub: “ElementsProject/secp256k1-zkp, Experimental Fork of libsecp256k1 with Support for Pedersen Commitments
+and Range Proofs” [online]. Available: <a href="https://github.com/ElementsProject/secp256k1-zkp">https://github.com/ElementsProject/secp256k1-zkp</a>. Date accessed: 2018‑09‑18.</p>
+
+<p>[25]: https://github.com/ElementsProject/secp256k1-zkp “GitHub: ElementsProject/secp256k1-zkp, Experimental Fork of
+libsecp256k1 with Support for Pedersen Commitments and Range Proofs”</p>
+
+<p>[[26]] GitHub: “apoelstra/secp256k1-mw, Fork of libsecp-zkp <code class="language-plaintext highlighter-rouge">d78f12b</code> to Add Support for Mimblewimble Primitives”
+[online]. Available: <a href="https://github.com/apoelstra/secp256k1-mw/tree/Bulletproofs">https://github.com/apoelstra/secp256k1-mw/tree/Bulletproofs</a>. Date accessed: 2018‑09‑18.</p>
+
+<p>[26]: https://github.com/apoelstra/secp256k1-mw/tree/bulletproofs “GitHub: apoelstra/secp256k1-mw, Fork of libsecp-zkp
+<code class="language-plaintext highlighter-rouge">d78f12b</code> to Add Support for Mimblewimble Primitives”</p>
+
+<p>[[27]] GitHub: “bbuenz/BulletProofLib, Library for Generating Non-interactive Zero Knowledge Proofs without Trusted
+Setup (Bulletproofs)” [online]. Available: <a href="https://github.com/bbuenz/BulletProofLib">https://github.com/bbuenz/BulletProofLib</a>. Date accessed: 2018‑09‑18.</p>
+
+<p>[27]: https://github.com/bbuenz/BulletProofLib “GitHub: bbuenz/BulletProofLib, Library for Generating Non-interactive
+Zero Knowledge Proofs without Trusted Setup (Bulletproofs)”</p>
+
+<p>[[28]] GitHub: “dalek-cryptography/Bulletproofs, A Pure-Rust Implementation of Bulletproofs using Ristretto” [online].
+Available: <a href="https://github.com/dalek-cryptography/Bulletproofs">https://github.com/dalek-cryptography/Bulletproofs</a>. Date accessed: 2018-09-18.</p>
+
+<p>[28]: https://github.com/dalek-cryptography/bulletproofs “GitHub: dalek-cryptography/Bulletproofs, A Pure-Rust
+Implementation of Bulletproofs using Ristretto”</p>
+
+<p>[[29]] GitHub: “adjoint-io/Bulletproofs, Bulletproofs are Short Non-interactive Zero-knowledge Proofs that Require no
+Trusted Setup” [online]. Available: <a href="https://github.com/adjoint-io/Bulletproofs">https://github.com/adjoint-io/Bulletproofs</a>. Date accessed: 2018‑09‑10.</p>
+
+<p>[29]: https://github.com/adjoint-io/bulletproofs “GitHub: adjoint-io/Bulletproofs, Bulletproofs are Short
+Non-interactive Zero-knowledge Proofs that Require no Trusted Setup”</p>
+
+<p>[[30]] GitHub: “mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the Grin/MimbleWimble project” [online]. Available:
+<a href="https://github.com/mimblewimble/secp256k1-zkp">https://github.com/mimblewimble/secp256k1-zkp</a>. Date accessed: 2018-09-18.</p>
+
+<p>[30]: https://github.com/mimblewimble/secp256k1-zkp “GitHub: mimblewimble/secp256k1-zkp, Fork of secp256k1-zkp for the
+Grin/MimbleWimble project”</p>
+
+<p>[<a href="https://ristretto.group/ristretto.html" title="The Ristretto Group">31</a>] “The Ristretto Group” [online]. Available: <a href="https://ristretto.group/ristretto.html">https://ristretto.group/ristretto.html</a>. Date accessed: 2018‑10‑23.</p>
+
+<p>[<a href="http://safecurves.cr.yp.to/" title="SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography">32</a>] “SafeCurves: Choosing Safe Curves for Elliptic-curve Cryptography” [online]. Available:
+<a href="http://safecurves.cr.yp.to/">http://safecurves.cr.yp.to/</a>. Date accessed: 2018‑10‑23.</p>
+
+<p>[<a href="https://eprint.iacr.org/2011/518.pdf" title="Two 1-Round Protocols for Delegation of Computation">33</a>] R. Canetti, B. Riva and G. N. Rothblum, “Two 1-Round Protocols for Delegation of Computation” [online].
+Available: <a href="https://eprint.iacr.org/2011/518.pdf">https://eprint.iacr.org/2011/518.pdf</a>. Date accessed: 2018‑10‑11.</p>
+
+<p>[[34]] GitHub: “mimblewimble/grin, Switch Commits / Bulletproofs - Status #734” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/issues/734">https://github.com/mimblewimble/grin/issues/734</a>. Date accessed: 2018-09-10.</p>
+
+<p>[34]: https://github.com/mimblewimble/grin/issues/734 “GitHub: mimblewimble/grin, Switch Commits / Bulletproofs - Status
+#734”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/issues/273" title="GitHub: mimblewimble/grin, Bulletproofs #273">35</a>] GitHub: “mimblewimble/grin, Bulletproofs #273” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/issues/273">https://github.com/mimblewimble/grin/issues/273</a>. Date accessed: 2018‑09‑10.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Commitment_scheme" title="Wikipedia: Commitment Scheme">36</a>] Wikipedia: “Commitment Scheme” [online]. Available: <a href="https://en.wikipedia.org/wiki/Commitment_scheme">https://en.wikipedia.org/wiki/Commitment_scheme</a>. Date
+accessed: 2018‑09‑26.</p>
+
+<p>[<a href="http://cryptography.wikia.com/wiki/Commitment_scheme" title="Cryptography Wikia: Commitment Scheme">37</a>] Cryptography Wikia: “Commitment Scheme” [online]. Available:
+<a href="http://cryptography.wikia.com/wiki/Commitment_scheme">http://cryptography.wikia.com/wiki/Commitment_scheme</a>. Date accessed: 2018‑09‑26.</p>
+
+<p>[<a href="https://cr.yp.to/ecdh/curve25519-20060209.pdf" title="Curve25519: New Diﬃe-Hellman Speed Records">38</a>] D. J. Bernstein, “Curve25519: New Diﬃe-Hellman Speed Records” [online]. Available:
+<a href="https://cr.yp.to/ecdh/curve25519-20060209.pdf">https://cr.yp.to/ecdh/curve25519-20060209.pdf</a>. Date accessed: 2018‑09‑26.</p>
+
+<p>[<a href="https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf" title="Twisted Edwards Curves Revisited">39</a>] H. Hisil, K. Koon-Ho Wong, G. Carter and E. Dawson, “Twisted Edwards Curves Revisited”, Information Security
+Institute, Queensland University of Technology [online]. Available:
+<a href="https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf">https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf</a>. Date accessed: 2018‑09‑26.</p>
+
+<p>[[40]] A. Sadeghi and M. Steiner, “Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real
+Difference” [online]. Available: <a href="http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf">http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf</a>. Date accessed:
+2018-09-24.</p>
+
+<p>[40]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf “Assumptions Related to Discrete Logarithms: Why
+Subtleties Make a Real Difference”</p>
+
+<p>[<a href="http://cryptography.wikia.com/wiki/Cryptographic_nonce" title="Crypto Wiki: Cryptographic Nonce">41</a>] Crypto Wiki: “Cryptographic Nonce” [online]. Available: <a href="http://cryptography.wikia.com/wiki/Cryptographic_nonce">http://cryptography.wikia.com/wiki/Cryptographic_nonce</a>.
+Date accessed: 2018‑10‑08.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Cryptographic_nonce" title="Wikipedia: Cryptographic Nonce">42</a>] Wikipedia: “Cryptographic Nonce” [online]. Available: <a href="https://en.wikipedia.org/wiki/Cryptographic_nonce">https://en.wikipedia.org/wiki/Cryptographic_nonce</a>.
+Date accessed: 2018-10-08.</p>
+
+<p>[[43]] T. Ruffing and G. Malavolta, “ Switch Commitments: A Safety Switch for Confidential Transactions”, Saarland
+University [online]. Available: <a href="https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf">https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf</a>. Date
+accessed: 2018‑10‑08.</p>
+
+<p>[43]: https://people.mmci.uni-saarland.de/~truffing/papers/switch-commitments.pdf “Switch Commitments: A Safety Switch
+for Confidential Transactions”</p>
+
+<p>[<a href="https://blake2.net" title="BLAKE2 — Fast Secure Hashing">44</a>] “BLAKE2 — Fast Secure Hashing” [online]. Available: <a href="https://blake2.net">https://blake2.net</a>. Date accessed: 2018‑10‑08.</p>
+
+<p>[<a href="https://github.com/mimblewimble/rust-secp256k1-zkp" title="GitHub: mimblewimble/rust-secp256k1-zkp">45</a>] GitHub: “mimblewimble/rust-secp256k1-zkp” [online]. Available:
+<a href="https://github.com/mimblewimble/rust-secp256k1-zkp">https://github.com/mimblewimble/rust-secp256k1-zkp</a>. Date accessed: 2018‑11‑16.</p>
+
+<p>[<a href="https://github.com/monero-project/monero/tree/master/src/ringct" title="GitHub: monero-project/monero">46</a>] GitHub: “monero-project/monero [online]”. Available:
+<a href="https://github.com/monero-project/monero/tree/master/src/ringct">https://github.com/monero-project/monero/tree/master/src/ringct</a>. Date accessed: 2018‑11‑16.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity" title="Wikipedia: Arithmetic Circuit Complexity">47</a>] Wikipedia: “Arithmetic Circuit Complexity [online]”. Available:
+<a href="https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity">https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity</a>. Date accessed: 2018‑11‑08.</p>
+
+<p>[<a href="https://eprint.iacr.org/2018/068.pdf" title="Simple Schnorr Multi-signatures with Applications to Bitcoin">48</a>] G. Maxwell, A. Poelstra1, Y. Seurin and P. Wuille, “Simple Schnorr Multi-signatures with Applications to
+Bitcoin”, 20 May 2018 [online]. Available: <a href="https://eprint.iacr.org/2018/068.pdf">https://eprint.iacr.org/2018/068.pdf</a>. Date accessed: 2018‑07‑24.</p>
+
+<p>[[49]] GitHub: “b-g-goodell/research-lab” [online]. Available:
+<a href="https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java">https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java</a>. Date accessed: 2018‑11‑16.</p>
+
+<p>[49]: https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java “GitHub:
+b-g-goodell/research-lab”</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/One-way_function" title="Wikipedia: One-way Function">50</a>] Wikipedia: “One-way Function” [online]. Available: <a href="https://en.wikipedia.org/wiki/One-way_function">https://en.wikipedia.org/wiki/One-way_function</a>. Date
+accessed: 2018‑11‑27.</p>
+
+<p>[<a href="http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf" title="Intensified ElGamal Cryptosystem (IEC)">51</a>] P. Sharma, A. K. Gupta and S. Sharma, “Intensified ElGamal Cryptosystem (IEC)”, <em>International Journal of
+Advances in Engineering &amp; Technology</em>, January 2012 [online]. Available:
+<a href="http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf">http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf</a>. Date accessed: 2018‑10‑09.</p>
+
+<p>[[52]] Y. Tsiounis and M Yung, “On the Security of ElGamal Based Encryption” [online]. Available:
+<a href="https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view">https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view</a>. Date accessed: 2018‑10‑09.</p>
+
+<p>[52]: https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view “On the Security of ElGamal Based
+Encryption”</p>
+
+<p>[[53]] Wikipedia: “Decisional Diffie–Hellman Assumption” [online]. Available:
+<a href="https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption">https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption</a>. Date accessed: 2018‑10‑09.</p>
+
+<p>[53]: https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption “Wikipedia: Decisional Diffie–Hellman
+Assumption”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/pull/730" title="GitHub: mimblewimble/grin, Bulletproof messages #730">54</a>] GitHub: “mimblewimble/grin, Bulletproof messages #730” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/pull/730">https://github.com/mimblewimble/grin/pull/730</a>. Date accessed: 2018‑11‑29.</p>
+
+<p>[[55]] GitHub: “mimblewimble/grin, Removed all switch commitment usages, including restore #841” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/pull/841">https://github.com/mimblewimble/grin/pull/841</a>. Date accessed: 2018‑11‑29.</p>
+
+<p>[55]: https://github.com/mimblewimble/grin/pull/841 “GitHub: mimblewimble/grin, Removed all switch commitment usages,
+including restore #841”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/issues/998" title="GitHub: mimblewimble/grin, switch commitment discussion #998">56</a>] GitHub: “mimblewimble/grin, switch commitment discussion #998” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/issues/998">https://github.com/mimblewimble/grin/issues/998</a>. Date accessed: 2018‑11‑29.</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/pull/2007" title="GitHub: mimblewimble/grin, [DNM] Switch commitments #2007">57</a>] GitHub: “mimblewimble/grin, [DNM] Switch commitments #2007” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/pull/2007">https://github.com/mimblewimble/grin/pull/2007</a>. Date accessed: 2018‑11‑29.</p>
+
+<p>[<a href="https://eprint.iacr.org/2015/1008.pdf" title="Provisions: Privacy-preserving Proofs of Solvency for Bitcoin Exchanges">58</a>] G. G. Dagher, B. Bünz, J. Bonneauy, J. Clark and D. Boneh1, “Provisions: Privacy-preserving Proofs of Solvency
+for Bitcoin Exchanges”, October 2015 [online]. Available: <a href="https://eprint.iacr.org/2015/1008.pdf">https://eprint.iacr.org/2015/1008.pdf</a>. Date accessed:
+2018‑11‑29.</p>
+
+<p>[[59]] A. Poelstra, “Bulletproofs: Faster Rangeproofs and Much More”, February 2018 [online]. Available:
+<a href="https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/">https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/</a>. Date accessed: 2018‑11‑30.</p>
+
+<p>[59]: https://blockstream.com/2018/02/21/bulletproofs-faster-rangeproofs-and-much-more/ “Bulletproofs: Faster
+Rangeproofs and Much More”</p>
+
+<p>[<a href="http://cryptonite.info/files/HMBC.pdf" title="Homomorphic Mini-blockchain Scheme">60</a>] B. Franca, “Homomorphic Mini-blockchain Scheme”, April 2015 [online]. Available:
+<a href="http://cryptonite.info/files/HMBC.pdf">http://cryptonite.info/files/HMBC.pdf</a>. Date accessed: 2018‑11‑22.</p>
+
+<p>[[61]] C. Franck and J. Großschädl, “Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves”,
+University of Luxembourg [online]. Available: <a href="http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf">http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf</a>. Date
+accessed: 2018‑11‑22.</p>
+
+<p>[61]: http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf “Efficient Implementation of Pedersen Commitments Using
+Twisted Edwards Curves”</p>
+
+<p>[[62]] A. Gibson, “An Investigation into Confidential Transactions”, July 2018 [online]. Available:
+<a href="https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf">https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf</a>. Date accessed: 2018‑11‑22.</p>
+
+<p>[62]: https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf “An Investigation into
+Confidential Transactions”</p>
+
+<p>[[63]] J. Bootle, “How to do Zero-knowledge from Discrete-Logs in under 7kB”, October 2016 [online]. Available:
+<a href="https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb">https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb</a>. Date accessed:
+2019‑01‑18.</p>
+
+<p>[63]: https://www.benthamsgaze.org/2016/10/25/how-to-do-zero-knowledge-from-discrete-logs-in-under-7kb “How to do
+Zero-knowledge from Discrete-Logs in under 7kB”</p>
+
+<h2 id="appendices">Appendices</h2>
+
+<h3 id="appendix-a-definition-of-terms">Appendix A: Definition of Terms</h3>
+
+<p>Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available
+in the cited references.</p>
+
+<ul>
+  <li>
+<strong>Arithmetic Circuits:</strong><a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables
+$ (x_1, …, x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be
+described as a list of addition and multiplication gates with a collection of linear consistency equations relating the
+inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being
+the length of the longest directed path. <em>Upper bounding</em> the complexity of a polynomial $ f $ is to find any arithmetic
+circuit that can calculate $ f $, whereas <em>lower bounding</em> is to find the smallest arithmetic circuit that can calculate
+$ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown
+below ([[29]], [<a href="https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity" title="Wikipedia: Arithmetic Circuit Complexity">47</a>]).</li>
+</ul>
+
+<p align="center"><img src="sources/ArithmiticCircuit.png" width="300"></p>
+
+<p>“An arithmetic circuit C over a
+field F and variables (x_1, …, x_n)
+is a directed acyclic graph …”</p>
+
+<ul>
+  <li>
+<strong>Argument of Knowledge System:</strong><a name="afs"> </a>Proof systems with computational soundness like
+Bulletproofs are sometimes called argument systems. The terms <em>proof</em> and <em>argument of knowledge</em> have exactly the same
+meaning and can be used interchangeably [[29]].</li>
+</ul>
+
+<p>“Proof systems with computational
+soundness like Bulletproofs are
+sometimes called argument systems.”</p>
+
+<ul>
+  <li>
+<strong>Commitment Scheme:</strong><a name="cs"> </a>A commitment scheme in a Zero-knowledge Proof<sup><a href="#zk">def</a></sup>
+is a cryptographic primitive that allows a <em>prover</em> to commit to only a single chosen value/statement from a finite set
+without the ability to change it later (<em>binding</em> property) while keeping it hidden from a <em>verifier</em> (<em>hiding</em> property).
+Both <em>binding</em> and <em>hiding</em> properties are then further classified in increasing levels of security to be
+<em>computational</em>, <em>statistical</em> or <em>perfect</em>. No commitment scheme can at the same time be perfectly <em>binding</em> and
+perfectly <em>hiding</em> ([<a href="https://en.wikipedia.org/wiki/Commitment_scheme" title="Wikipedia: Commitment Scheme">36</a>], [<a href="http://cryptography.wikia.com/wiki/Commitment_scheme" title="Cryptography Wikia: Commitment Scheme">37</a>]).</li>
+</ul>
+
+<p>“A commitment scheme in a
+zero-knowledge proof is a
+cryptographic primitive …”</p>
+
+<ul>
+  <li>
+<strong>Discrete Logarithm/Discrete Logarithm Problem (DLP):</strong><a name="dlp"> </a>In the mathematics of real
+numbers, the logarithm $ \log_b^a $ is a number $ x $ such that $ b^x=a $, for given numbers $ a $ and $ b $.
+Analogously, in any group  $ G $, powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm
+$ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the
+assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of
+elliptic curves over finite fields has no efficient solution ([<a href="https://en.wikipedia.org/wiki/Discrete_logarithm" title="Wikipedia: Discrete Logarithm">17</a>], [[40]]).</li>
+</ul>
+
+<p>“In the mathematics of the real
+numbers, the logarithm log_b(a)
+is a number x such that …”</p>
+
+<ul>
+  <li>**Elliptic Curve Pedersen Commitment:<a name="ecpc">** </a>An efficient implementation of the Pedersen
+Commitment ([<a href="https://blockstream.com/bitcoin17-final41.pdf" title="Confidential Assets">15</a>], [[22]]) will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure
+of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead
+of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers
+(integers) and upper case letters for curve points ([<a href="http://cryptonite.info/files/HMBC.pdf" title="Homomorphic Mini-blockchain Scheme">60</a>], [[61]], [[62]]).
+    <ul>
+      <li>The generalized Elliptic Curve Pedersen Commitment definition follows
+(refer to <a href="#appendix-b-notation-used">Appendix B: Notation Used</a>):
+        <ul>
+          <li>Let $ \mathbb F_p $ be the group of elliptic curve points, where $ p $ is a large prime.</li>
+          <li>Let $ G \in  \mathbb F_p $ be a random generator point (base point) and let $ H \in  \mathbb F_p $ be specially
+chosen so that the value $ x_H $ to satisfy $ H = x_H G $ cannot be found except if the Elliptic Curve DLP (ECDLP)
+is solved.</li>
+          <li>Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p $.</li>
+          <li>The commitment to value $ x \in \mathbb Z_p $ is then determined by calculating $ C(x,r) = rH + xG $, which is
+called the Elliptic Curve Pedersen Commitment.</li>
+        </ul>
+      </li>
+      <li>
+        <p>Elliptic curve point addition is analogous to multiplication in the originally defined Pedersen Commitment. Thus
+$ g^x $, the number $ g $ multiplied by itself $ m $ times, is analogous to $ xG $, the elliptic curve point $ G $
+added to itself $ x $ times. In this context $ xG $ is also a point in $ \mathbb F_p $.</p>
+      </li>
+      <li>
+        <p>In the Elliptic Curve context $ C(x,r) = rH + xG $ is then analogous to  $ C(x,r) = h^r g^x $.</p>
+      </li>
+      <li>
+        <p>The number $ H $ is what is known as a Nothing Up My Sleeve (NUMS) number. With secp256k1, the value of $ H $ is the
+SHA256 hash of a simple encoding of the pre-specified generator point $ G $.</p>
+      </li>
+      <li>
+        <p>Similar to Pedersen Commitments, the Elliptic Curve Pedersen Commitments are also additionally homomorphic, such
+that for messages $ x $, $ x_0 $ and $ x_1 $, blinding factors $ r $, $ r_0 $ and $ r_1 $ and scalar $ k $ the
+following relation holds: $ C(x_0,r_0) + C(x_1,r_1) = C(x_0+x_1,r_0+r_1) $ and
+$ C(k \cdot x, k \cdot r) = k \cdot C(x, r) $.</p>
+      </li>
+      <li>
+        <p>In secure implementations of ECC, it is as hard to guess $ x $ from $ xG $ as it is to guess $ x $ from $g^x $.
+This is called the Elliptic Curve DLP (ECDLP).</p>
+      </li>
+      <li>Practical implementations usually consist of three algorithms: <code>Setup()</code> to set up the commitment
+parameters; <code>Commit()</code> to commit to the message using the commitment parameters; and <code>Open()</code>
+to open and verify the commitment.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>“An efficient implementation of the
+Pedersen Commitment  will use secure
+Elliptic Curve Cryptography, which is …”</p>
+
+<ul>
+  <li>
+<strong>ElGamal Commitment/Encryption:</strong><a name="egc"> </a>An ElGamal commitment is a Pedersen Commitment ([<a href="https://blockstream.com/bitcoin17-final41.pdf" title="Confidential Assets">15</a>],
+[[22]]) with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the
+Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states
+that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. <strong>Note:</strong> The
+ElGamal encryption scheme should not be confused with the ElGamal signature scheme ([[1]], [<a href="http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf" title="Intensified ElGamal Cryptosystem (IEC)">51</a>], [[52]], [[53]]).</li>
+</ul>
+
+<p>“An ElGamal Commitment is a
+Pedersen Commitment with
+additional commitment …”</p>
+
+<ul>
+  <li>
+<strong>Fiat‑Shamir Heuristic/Transformation:</strong><a name="fsh"> </a>The Fiat‑Shamir heuristic is a technique in
+cryptography to convert an interactive public-coin protocol (Sigma protocol) between a <em>prover</em> and a <em>verifier</em> into a
+one-message (non-interactive) protocol using a cryptographic hash function ([[18]], [[19]]).
+    <ul>
+      <li>
+        <p>The <em>prover</em> will use a <code>Prove()</code> algorithm to calculate a commitment $ A $ with a statement $ Y $ that
+is shared with the <em>verifier</em> and a secret witness value $ w $ as inputs. The commitment $ A $ is then hashed to obtain
+the challenge $ c $, which is further processed with the <code>Prove()</code> algorithm to calculate the response $ f $.
+The single message sent to the <em>verifier</em> then contains the challenge $ c $ and response $ f $.</p>
+      </li>
+      <li>
+        <p>The <em>verifier</em> is then able to compute the commitment $ A $ from the shared statement $ Y $, challenge $ c $ and
+response $ f $. The <em>verifier</em> will then use a <code>Verify()</code> algorithm to verify the combination of shared
+statement $ Y $, commitment $ A $, challenge $ c $ and response $ f $.</p>
+      </li>
+      <li>
+        <p>A weak Fiat‑Shamir transformation can be turned into a strong Fiat‑Shamir transformation if the hashing function
+is applied to the commitment $ A $ and shared statement $ Y $ to obtain the challenge $ c $ as opposed to only the
+commitment $ A ​$.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>“The Fiat‑Shamir heuristic is a
+technique in cryptography to
+convert an interactive …”</p>
+
+<ul>
+  <li>
+<strong>Nonce:</strong><a name="nonce"> </a>In security engineering, <strong><em>nonce</em></strong> is an abbreviation of <i><strong>n</strong>umber used
+<strong>once</strong></i>. In cryptography, a nonce is an arbitrary number that can be used just once. It is often a random or
+pseudo-random number issued in an authentication protocol to ensure that old communications cannot be reused in replay
+attacks ([<a href="http://cryptography.wikia.com/wiki/Cryptographic_nonce" title="Crypto Wiki: Cryptographic Nonce">41</a>], [<a href="https://en.wikipedia.org/wiki/Cryptographic_nonce" title="Wikipedia: Cryptographic Nonce">42</a>]).</li>
+</ul>
+
+<p>“In security engineering, nonce is an
+abbreviation of number used once.
+In cryptography, a nonce is an arbitrary
+number …”</p>
+
+<ul>
+  <li>
+<strong>Zero-knowledge Proof/Protocol:</strong><a name="zk"> </a>In cryptography, a zero-knowledge proof/protocol is a
+method by which one party (the <em>prover</em>) can convince another party (the <em>verifier</em>) that a statement $ Y $ is true,
+without conveying any information apart from the fact that the <em>prover</em> knows the value of $ Y $. The proof system must
+be complete, sound and zero-knowledge ([<a href="https://en.wikipedia.org/wiki/Zero-knowledge_proof" title="Wikipedia - Zero-knowledge Proof">16</a>], [<a href="https://zkproof.org/documents.html" title="Zero Knowledge Proof Standardization - An Open Industry/Academic Initiative">23</a>]):
+    <ul>
+      <li>
+        <p>Complete - if the statement is true and both <em>prover</em> and <em>verifier</em> follow the protocol, the <em>verifier</em> will accept.</p>
+      </li>
+      <li>
+        <p>Sound - if the statement is false, and the <em>verifier</em> follows the protocol, the <em>verifier</em> will not be convinced.</p>
+      </li>
+      <li>
+        <p>Zero-knowledge - if the statement is true and the <em>prover</em> follows the protocol, the <em>verifier</em> will not learn any
+confidential information from the interaction with the <em>prover</em>, apart from the fact that the statement is true.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>“In cryptography, a zero-knowledge
+proof/protocol is a method by which
+one party (the prover) can convince …”</p>
+
+<h3 id="appendix-b-notation-used">Appendix B: Notation Used</h3>
+
+<p>The general notation of mathematical expressions when specifically referenced is given here, based on [[1]].</p>
+
+<ul>
+  <li>Let  $ p $ and $ q $ be large prime numbers.</li>
+  <li>Let $ \mathbb G $ and $ \mathbb Q $ denote cyclic groups of prime order $ p $ and $ q $ respectively.</li>
+  <li>let $ \mathbb Z_p $ and $ \mathbb Z_q $ denote the ring of integers $ modulo \mspace{4mu} p $ and
+$ modulo \mspace{4mu} q $ respectively.</li>
+  <li>Let generators of $ \mathbb G $ be denoted by $ g, h, v, u \in \mathbb G $. In other words, there exists a number
+$ g \in \mathbb G  $ such that $  \mathbb G  = \lbrace 1 \mspace{3mu} , \mspace{3mu} g \mspace{3mu} , \mspace{3mu}
+g^2 \mspace{3mu} , \mspace{3mu} g^3 \mspace{3mu} , \mspace{3mu} … \mspace{3mu} , \mspace{3mu}  g^{p-1} \rbrace
+\equiv  \mathbb Z_p $.
+Note that not every element of $ \mathbb Z_p $ is a generator of $ \mathbb G $.</li>
+  <li>Let $ \mathbb Z_p^* $ denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote
+$ \mathbb Z_q \setminus \lbrace 0 \rbrace $, that is all invertible elements of  $ \mathbb Z_p $ and $ \mathbb Z_q $
+respectively. This excludes the element $ 0 $ which is not invertible.</li>
+</ul>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li><a href="https://github.com/hansieodendaal">https://github.com/hansieodendaal</a></li>
+  <li><a href="https://github.com/CjS77">https://github.com/CjS77</a></li>
+  <li><a href="https://github.com/SWvheerden">https://github.com/SWvheerden</a></li>
+  <li><a href="https://github.com/philipr-za">https://github.com/philipr-za</a></li>
+  <li><a href="https://github.com/neonknight64">https://github.com/neonknight64</a></li>
+  <li><a href="https://github.com/anselld">https://github.com/anselld</a></li>
+</ul>
+
+        </div>
+
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/cryptography/bulletproofs-and-mimblewimble"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Bulletproofs%20and%20Mimblewimble&url=/cryptography/bulletproofs-and-mimblewimble"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/cryptography/bulletproofs-and-mimblewimble&amp;media=/images/banner-01.jpg&amp;description=Bulletproofs%20and%20Mimblewimble"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/cryptography/fraud-proofs" style="background-image: url(/images/banner-01.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/cryptography/fraud-proofs"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/cryptography/fraud-proofs">Fraud Proofs and SPV (Lightweight) Clients - Easier Said than Done?</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/cryptography/building-on-bulletproofs">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/cryptography/building-on-bulletproofs">Building on Bulletproofs</a></h4>
+    </div>
+    <a class="next__image fadein" href="/cryptography/building-on-bulletproofs" style="background-image: url(/images/banner-01.jpg)"></a>
+  </div>
+  
+</div>
+
+      </article>
+      <!-- end post -->
+    </div>
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    01. Learning Paths
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">01. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/cryptography/cryptography" title="Go to 02. Cryptography">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    02. Cryptography
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography/cryptography" title="Go to 02. Cryptography">02. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    03. Consensus Mechanisms
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">03. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/scaling/scaling" title="Go to 04. Scaling">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    04. Scaling
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling/scaling" title="Go to 04. Scaling">04. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/mining/mining" title="Go to 05. Mining">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    05. Mining
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining/mining" title="Go to 05. Mining">05. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    06. Digital Assets
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">06. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/protocols/protocols" title="Go to 07. Protocols">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    07. Protocols
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols/protocols" title="Go to 07. Protocols">07. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    08. Network Analysis
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">08. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/labs/labs" title="Go to 09. Labs">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    09. Labs
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs/labs" title="Go to 09. Labs">09. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/style-guide/style-guide" title="Go to 10. Style Guide">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    10. Style Guide
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5>
+<span class="widget__tag-count">12</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5>
+<span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5>
+<span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5>
+<span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/mimblewimble-mb-bp-utxo">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Mimblewimble Multiparty Bulletproof UTXO</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/mimblewimble-mb-bp-utxo">
+                  
+                    Mimblewimble is a privacy-oriented, cryptocurrency technology. It differs from Bitcoin in some key areas...
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                  <a href="/tag/mimblewimble" class="article__tag">mimblewimble</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/grin-design-choice-algorithms">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Grin Design Choice Criticisms - Truth or Fiction</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/grin-design-choice-algorithms">
+                  
+                    Grin is a cryptocurrency, implemented in Rust, that makes use of Mimblewimble transactions and the Cuckatoo algorithm to perform Proof-of-Work (PoW) calculations.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                  <a href="/tag/mimblewimble" class="article__tag">mimblewimble</a>
+                  
+                  <a href="/tag/grin" class="article__tag">grin</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/grin-vs-beam-comparison">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Grin vs. BEAM, a Comparison</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/grin-vs-beam-comparison">
+                  
+                    Grin and BEAM are two open-source cryptocurrency projects based on the Mimblewimble protocol.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                  <a href="/tag/mimblewimble" class="article__tag">mimblewimble</a>
+                  
+                  <a href="/tag/grin" class="article__tag">grin</a>
+                  
+                  <a href="/tag/beam" class="article__tag">beam</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

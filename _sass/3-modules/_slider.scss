@@ -1,0 +1,44 @@
+/* Slider */
+.slider {
+  margin-bottom: 20px;
+}
+
+.slider__inner {
+  position: relative;
+  .slick-track {
+    margin-left: 0;
+  }
+  .slick-list {
+    margin-right: -20px;
+  }
+  .main-slider__item {
+    padding-right: 20px;
+    a {
+      outline: none;
+    }
+  } 
+  .slider-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    outline: none;
+    .main__item-prev,
+    .main__item-next {
+      width: 27px;
+      height: 27px;
+      line-height: 27px;
+      text-align: center;
+      border-radius: 2px;
+      outline: none;
+      border: none;
+      color: $link-color;
+      background-color: $slider-button-background;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      transition: $global-transition;
+      cursor: pointer;
+      &:hover {
+        color: $brand-color;
+      }
+    }
+  }
+}

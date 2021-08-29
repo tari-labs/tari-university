@@ -1,0 +1,54 @@
+/* Buttons */
+.button {
+  display: inline-block;
+  padding: 0 1.8rem;
+  white-space: nowrap;
+  vertical-align: middle;
+  font: inherit;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    color: $white;
+  }
+
+  &--primary {
+    height: 50px;
+    font-weight: 700;
+    line-height: 50px;
+    box-shadow: 0 4px 5px -1px rgba(0,0,0,.1), 0 2px 5px -1px rgba(0,0,0,.06);
+    background-color: $brand-color;
+    &:hover {
+      background-color: darken($brand-color, 5%);
+    }
+  }
+
+  &--middle {
+    height: 50px;
+    width: 100%;
+    max-width: 280px;
+    line-height: 50px;
+    font-weight: 600;
+  }
+
+  &--big {
+    display: block;
+    width: 100%;
+  }
+
+  &--dark {
+    background-color: $dark;
+    &:hover {
+      background-color: $brand-color;
+    }
+  }
+}

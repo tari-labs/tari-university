@@ -1,0 +1,81 @@
+// *****************
+// LIGHT THEME
+// *****************
+
+// *****************
+// Color Variables
+// *****************
+$brand-color: #6416B8;
+$dark: #1b202b;
+$gray: #757575;
+$blue-gray: #748094;
+$blue-darkest: #51586a;
+$blue-light: #fafafb;
+$gray-darkest: #202024;
+$gray-darker: #272a2d;
+$white: #fff;
+$gray-medium: #CCC;
+$gray-light: #eee;
+$gray-lighter: lighten($white, 60);
+$gray-lightest: lighten($white, 80);
+
+
+// ********************
+// Page specific colors
+// ********************
+
+// Body Colors
+$text-color: $blue-darkest;
+$background-color: #F5F5F7;
+
+// Preloader color
+$preloader-color: $white;
+
+// Headings Color
+$heading-color: $dark;
+
+// Links Color
+$link-color: $dark;
+
+// Header Colors
+$logo-color: $dark;
+$logo-color-hover: $dark;
+$header-description: $blue-gray;
+$header-link-color: $white;
+
+// Table Colors
+$table-th-color: $gray-darker;
+$table-tr-color: $gray-light;
+$table-border-color: $gray-light;
+
+// Author Colors
+$author-color: $dark;
+$author-background-color: $white;
+
+// Hero Colors
+$hero-background-overlay: $white;
+
+// Section Colors
+$section-color: $white;
+
+// Slider Colors
+$slider-button-background: $white;
+
+// Social Links Color
+$social-link-color: $dark;
+$social-link-background: #f6f6f6;
+
+// Meta Color
+$base-meta-color: $blue-gray;
+
+// Tags Color
+$base-tags-color: $dark;
+
+// Border Color
+$base-border-color: $gray-light;
+
+// Highlight Color
+$highlight-background-color: #f6f7f9;
+
+// Box Shadow
+$base-box-shadow: 0px 0px 20px rgba(57,79,122,0.1);

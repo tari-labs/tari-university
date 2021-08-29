@@ -1,0 +1,54 @@
+---
+layout: default
+title: Author Page
+permalink: /author/
+---
+
+<!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          <div class="page-top">
+            <div class="author-profile" {% if site.author.cover %} style="background-image: url({{site.author.cover}});"
+              {% endif %}>
+              <div class="author-profile__inner animate-in-top">
+                {% if site.author.avatar %}
+                <div class="author-image-box">
+                  <div class="author__image" style="background-image: url({{site.baseurl}}{{site.author.avatar}})"></div>
+                </div>
+                {% endif %}
+                <h1 class="author-title">{{ site.author.name }}</h1>
+                {% if site.author.location %}
+                <div class="author-location">{{ site.author.location }}</div>
+                {% endif %}
+                {% if site.author.bio %}
+                <h2 class="author-bio">{{ site.author.bio }}</h2>
+                {% endif %}
+                <div class="author-meta">
+                  {% if site.author.twitter %}
+                  <a class="twitter-link icon-link" href="{{site.author.twitter}}" target="_blank" rel="noopener"><i
+                      class="ion ion-logo-twitter"></i></a>
+                  {% endif %}
+                  {% if site.author.facebook %}
+                  <a class="facebook-link icon-link" href="{{site.author.facebook}}" target="_blank" rel="noopener"><i
+                      class="ion ion-logo-facebook"></i></a>
+                  {% endif %}
+                  {% if site.author.website %}
+                  <a class="author-link icon-link" href="{{site.author.website}}" target="_blank" rel="noopener"><i
+                      class="ion ion-ios-link"></i></a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+{% include slider.html %}

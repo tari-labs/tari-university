@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Grin vs. BEAM, a Comparison</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/protocols/grin-vs-beam-comparison">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:50px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.error-page__head h1,.error-page__head h2{margin-bottom:20px}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px}.error-page__head h2{font-size:60px}}
+
+  </style>
+
+
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-07.jpg');">
+              <h1 class="tlu-hero-title">Grin vs. BEAM, a Comparison</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/protocols" class="post-tags__tag tlu-hero-tags">protocols</a>
+                      
+                      <a href="/tag/mimblewimble" class="post-tags__tag tlu-hero-tags">mimblewimble</a>
+                      
+                      <a href="/tag/grin" class="post-tags__tag tlu-hero-tags">grin</a>
+                      
+                      <a href="/tag/beam" class="post-tags__tag tlu-hero-tags">beam</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+
+
+        <div class="post__content">
+          <h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#comparison-of-features-and-implementation-in-grin-vs-beam">Comparison of Features and Implementation in Grin vs. BEAM</a>
+    <ul>
+      <li><a href="#grin-unique-features">Grin Unique Features</a></li>
+      <li><a href="#beam-unique-features">BEAM Unique Features</a></li>
+    </ul>
+  </li>
+  <li><a href="#proof-of-work-mining-algorithm">Proof of Work Mining Algorithm</a></li>
+  <li><a href="#governance-models-and-monetary-policy">Governance Models and Monetary Policy</a></li>
+  <li><a href="#conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</a></li>
+  <li><a href="#references">References</a></li>
+  <li>
+<a href="#appendices">Appendices</a>
+    <ul>
+      <li><a href="#appendix-a-cuckoocuckatoo-cycle-proof-of-work-algorithm">Appendix A: Cuckoo/Cuckatoo Cycle Proof of Work Algorithm</a></li>
+    </ul>
+  </li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Grin and BEAM are two open-source cryptocurrency projects based on the Mimblewimble protocol. The Mimblewimble protocol
+was first proposed by an anonymous user using the pseudonym Tom Elvis Jedusor (the French translation of Voldemort’s
+name from the Harry Potter series of books). This user logged onto a bitcoin research Internet Relay Chat (IRC) channel
+and posted a link to a text article hosted on a Tor hidden service [<a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt" title="MIMBLEWIMBLE">1</a>]. This article provided the basis for a new way
+to construct blockchain-style transactions that provided inherent privacy and the ability to dramatically reduce the
+size of the blockchain by compressing the transaction history of the chain. The initial article presented the main ideas
+of the protocol, but left out a number of critical elements required for a practical implementation and even contained a
+mistake in the cryptographic formulation. Andrew Poelstra published a follow-up paper that addresses many of these
+issues and refines the core concepts of Mimblewimble [<a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf" title="Mimblewimble">2</a>], which have been applied to the practical implementation of
+this protocol in both the Grin [<a href="https://github.com/mimblewimble/grin/blob/master/doc/intro.md">3</a>] and BEAM [<a href="https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf">4</a>] projects.</p>
+
+<p>The Mimblewimble protocol describes how transacting parties will interactively work to build a valid transaction using
+their public/private key pairs (which are used to prove ownership of transaction outputs) and interactively chosen blinding
+factors. Blinding factors are used to obfuscate the participants’ public keys from everyone, including each
+other, and to hide the value of the transaction from everyone except the counterparty in that specific transaction. The
+protocol also performs a process called cut-through, which condenses transactions by eliminating intermediary
+transactions. This improves privacy and compresses the amount of data that is maintained on the blockchain [<a href="https://github.com/mimblewimble/grin/blob/master/doc/intro.md">3</a>]. This
+cut-through process precludes general-purpose scripting systems such as those found in Bitcoin. However, Andrew Poelstra
+proposed the concept of Scriptless scripts, which make use of Schnorr signatures to build adaptor signatures that
+allow for encoding of many of the behaviors that scripts are traditionally used to achieve. Scriptless scripts enable
+functionality such as payment channels (e.g. Lightning Network) and atomic swaps [<a href="https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/">5</a>].</p>
+
+<p>The Grin and BEAM projects both implement the Mimblewimble protocol, but both have been built from scratch. Grin is
+written in RUST and BEAM in C++. This report describes some of the aspects of each project that set them apart. Both
+projects are still in their early development cycles and many of these details are changing on a daily basis. Furthermore,
+the BEAM project documentation is mostly available only in Russian. As of the writing of this report, not all the
+technical details are available for English readers. Therefore the discussion in this report will most likely become
+outdated as the projects evolve.</p>
+
+<p>This report is structured as follows:</p>
+
+<ul>
+  <li>Firstly, some implementation details are given and unique features of
+the projects are discussed.</li>
+  <li>Secondly, the differences in the projects’ Proof-of-Work (PoW) algorithms are examined.</li>
+  <li>Finally, the projects’ governance models are discussed.</li>
+</ul>
+
+<h2 id="comparison-of-features-and-implementation-in-grin-vs-beam">Comparison of Features and Implementation in Grin vs. BEAM</h2>
+
+<p>The two projects are being independently built from scratch by different teams in different languages (Rust [<a href="https://github.com/mimblewimble/grin" title="Grin Github Repository">6</a>] and
+C++ [<a href="https://github.com/beam-mw/beam" title="BEAM Github Repository">7</a>]), so there will be many differences in the raw implementations. For example, Grin uses the Lightning
+Memory-mapped Database (LMDB) for its embedded
+database and BEAM uses SQLite. Although they have performance differences, they are functionally similar. Grin uses a
+Directed Acyclic Graph (DAG) to represent its mempool to avoid transaction reference loops [<a href="https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md" title="Grin - Transaction Pool">8</a>], while BEAM uses a
+multiset key-value data structure with logic to enable some of its extended features [<a href="https://github.com/beam-mw/beam" title="BEAM Github Repository">7</a>].</p>
+
+<p>From the perspective of features, the two projects exhibit all the features inherent to Mimblewimble. Grin’s stated
+goal is to produce a simple and easy to maintain implementation of the Mimblewimble protocol [<a href="https://github.com/mimblewimble/grin/blob/master/doc/intro.md">3</a>]. BEAM’s
+implementation, however, contains a number of modifications to the Mimblewimble approach, with the aim to provide some
+unique features for its implementation. Before we get into the features and design elements that set the two projects
+apart, let’s discuss an interesting feature that both projects have implemented.</p>
+
+<p>Both Grin and BEAM have incorporated a version of the Dandelion relay protocol, which supports transaction aggregation.
+One of the major outstanding challenges for privacy that cryptocurrencies face is that it is possible to track
+transactions as they are added to the mempool and propagate across the network, and to link those transactions to their
+originating IP addresses. This information can be used to deanonymize users, even on networks with strong transaction
+privacy. The Dandelion network propagation scheme was proposed to improve privacy during the propagation of transactions
+to the network [<a href="https://arxiv.org/abs/1701.04439">9</a>]. In this scheme, transactions are propagated in two phases: the Anonymity (or “stem”) phase and the
+Spreading (or “fluff”) phase, as illustrated in Figure 1.</p>
+
+<ul>
+  <li>
+    <p>In the <strong>stem</strong> (anonymity) phase, a transaction is
+propagated to only a single randomly selected peer from the current node’s peer list. After a random number of hops
+along the network, each hop propagating to only a single random peer, the propagation process enters the second phase.</p>
+  </li>
+  <li>
+    <p>During the <strong>fluff</strong> (spreading) phase, the transaction is propagated using a full flood/diffusion method, as found
+in most networks. This approach means that the transaction has first propagated to a random point in the network
+before flooding the network, thereby making it much more difficult to track its origin.</p>
+  </li>
+</ul>
+
+<p align="center">
+  <img src="sources/dandelion-stem-fluff.png" width="450">
+  </p>
+<p>
+    </p>
+<center><strong>
+      Figure 1: Two Phases of Dandelion Peer-to-peer Transaction Propagation
+      [<a href="https://arxiv.org/abs/1701.04439" title="Dandelion: Redesigning the Bitcoin Network for Anonymity.">9</a>]
+    </strong></center>
+  
+
+
+<p>Both projects have adapted this approach to work with Mimblewimble transactions. Grin’s implementation allows for
+transaction aggregation and cut-through in the stem phase of propagation, which provides even greater anonymity to the
+transactions before they spread during the fluff phase [<a href="https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md">10</a>]. In addition to transaction aggregation and cut-through,
+BEAM introduces “dummy” transactions that are added in the stem phase to compensate for situations when real
+transactions are not available [<a href="https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation">33</a>].</p>
+
+<h3 id="grin-unique-features">Grin Unique Features</h3>
+
+<p>Grin is aiming to be a simple and minimal reference implementation of a Mimblewimble blockchain. It is therefore not aiming
+to include many features to extend the core Mimblewimble functionality, as discussed. However, the Grin implementation
+does include some interesting implementation choices that it has documented in depth on its growing Github
+repository’s wiki.</p>
+
+<p>For example, Grin has implemented a method for a node to sync the blockchain very quickly by only downloading a partial
+history [<a href="https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md" title="Grin - Blockchain Syncing">11</a>]. A new node entering the network will query the current head block of the chain and then request the
+block header at a horizon. In the example, the horizon is initially set at 5,000 blocks before the current head. The
+node then checks if there is enough data to confirm consensus. If there isn’t consensus, the node will increase its
+horizon until consensus is reached. At that point, it will download the full Unspent Transaction Output (UTXO) set of
+the horizon block. This approach does introduce a few security risks, but mitigations are provided and the result is
+that a node can sync to the network with an order of magnitude less data.</p>
+
+<p>Since the initial writing of this article (October 2018), BEAM has published its solution for fast node
+synchronization using macroblocks. A macroblock is a complete state of all UTXOs, periodically created by BEAM
+nodes [<a href="https://github.com/beam-mw/beam/wiki/Node-initial-synchronization">12</a>].</p>
+
+<h3 id="beam-unique-features">BEAM Unique Features</h3>
+
+<p>BEAM has set out to extend the feature set of Mimblewimble in a number of ways. BEAM supports setting an explicit
+incubation period on a UTXO, which limits its ability to be spent to a specific number of blocks after its
+creation [<a href="https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW">13</a>]. This is different to a timelock, which prevents a transaction from being added to a block before a
+certain time. BEAM also supports the traditional timelock feature, but includes the ability to also specify an upper
+time limit, after which the transaction can no longer be included in a block [<a href="https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW">13</a>]. This feature means that a party can
+be sure that if a transaction is not included in a block on the main blockchain after a certain time, it will never
+appear.</p>
+
+<p>Another unique feature of BEAM is the implementation of an auditable wallet. For a business to operate in a given
+regulatory environment, it will need to demonstrate its compliance to the relevant authorities. BEAM has proposed a
+wallet designed for compliant businesses, which generates additional public/private key pairs specifically for audit
+purposes. These signatures are used to tag transactions so that only the auditing authority that is given the public
+key can identify those transactions on the blockchain, but cannot create transactions with this tag. This
+allows a business to provide visibility of its transactions to a given authority without compromising its privacy
+to the public [<a href="https://github.com/beam-mw/beam/wiki/Wallet-audit" title="BEAM - Wallet Audit">14</a>].</p>
+
+<p>BEAM’s implementation of Dandelion improves privacy by adding decoy transaction outputs at the stem phase. Each such
+output has a value of zero, but is indistinguishable from regular outputs. At a later stage (a randomly calculated
+number of blocks for each output), the UTXOs are added as inputs to new transactions, thus spending them and removing
+them from the blockchain.</p>
+
+<p>BEAM has also proposed another feature aimed at keeping the blockchain as compact as possible. In Mimblewimble, as
+transactions are added, cut-through is performed, which eliminates all intermediary transaction commitments [<a href="https://github.com/mimblewimble/grin/blob/master/doc/intro.md">3</a>].
+However, the transaction kernels for every transaction are never removed. BEAM has proposed a scheme to reuse these
+transaction kernels to validate subsequent transactions [<a href="https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW">13</a>]. In order to consume the existing kernels without
+compromising the transaction irreversibility principle, BEAM proposes that a multiplier be applied to an old kernel
+by the same user who has visibility of the old kernel, and that this be used in a new transaction. In order to incentivize
+transactions to be built in this way, BEAM includes a fee refund model for these types of transactions. This feature
+will not be part of the initial release.</p>
+
+<p>When constructing a valid Mimblewimble transaction, the parties involved need to collaborate in order to choose blinding
+factors that balance. This interactive negotiation requires a number of steps and it implies that the parties need to
+be in communication to finalize the transaction. Grin facilitates this process by the two parties connecting directly
+to one another using a socket-based channel for a “real-time” session. This means that both parties need to be online
+simultaneously. BEAM has implemented a Secure Bulletin Board System (SBBS) that is run on BEAM full-nodes to allow for
+asynchronous negotiation of transactions ([<a href="https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919">30</a>], [<a href="https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)" title="Beam's SBBS Specification">31</a>]).</p>
+
+<p>Requiring the interactive participation of both parties in constructing a transaction can be a point of friction in
+using a Mimblewimble blockchain. In addition to the secure BBS communication channel, BEAM also plans to support
+one-sided transactions where the payee in a transaction who expects to be paid a certain amount can construct their
+half of the transaction and send this half-constructed transaction to the payer. The payer can then finish constructing
+the transaction and publish it to the blockchain. Under the normal Mimblewimble system this is not possible, because it
+would involve revealing your blinding factor to the counterparty. BEAM solves this problem by using a process it calls
+<em>kernel fusion</em>, whereby a kernel can include a reference to another kernel so that it is only valid if both kernels are
+present in the transaction. In this way, the payee can build their half of the transaction with a secret blinding factor
+and a kernel that compensates for their blinding factor, which <strong>must</strong> be included when the payer completes the
+transaction [<a href="https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW">13</a>].</p>
+
+<p>Both projects make use of a number of Merkle tree structures to keep track of various aspects of the respective
+blockchains. Details of the exact trees and what they record are documented for both projects ([<a href="https://github.com/mimblewimble/grin/blob/master/doc/merkle.md" title="GRIN - Merkle Structures">16</a>], [<a href="https://github.com/beam-mw/beam/wiki/Merkle-trees" title="BEAM - Merkle Trees">17</a>]). BEAM,
+however, makes use of a Radix-Hash tree structure for some of its trees. This structure is a modified Merkle tree that
+is also a binary search tree. This provides a number of features that the standard Merkle trees do not have, and which
+BEAM exploits in its implementation [<a href="https://github.com/beam-mw/beam/wiki/Merkle-trees" title="BEAM - Merkle Trees">17</a>].</p>
+
+<p>The features discussed here can all be seen in the code at the time of writing (May 2019), although this is not a
+guarantee that they are working. A couple of features, which have been mentioned in the literature as planned for the
+future, have not yet been implemented. These include embedding signed textual content into transactions that can be used
+to record contract text [<a href="https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW">13</a>], and issuing confidential assets [<a href="https://github.com/beam-mw/beam/wiki/Confidential-assets" title="BEAM - Confidential Assets">18</a>].</p>
+
+<h2 id="proof-of-work-mining-algorithm">Proof-of-Work Mining Algorithm</h2>
+
+<p>BEAM has announced that it will employ the Equihash PoW mining algorithm with the parameters set to
+n=150, k=5 [<a href="https://github.com/BeamMW/beam/wiki/BEAM-Mining" title="Beam's Mining Specification">32</a>]. Equihash was proposed in 2016 as a memory-hard PoW algorithm that relied heavily on memory usage to
+achieve Application Specific Integrated Circuit (ASIC) resistance [<a href="https://www.cryptolux.org/images/b/b9/Equihash.pdf">19</a>]. The goal was to produce an algorithm that
+would be more efficient to run on consumer Graphics Processing Units (GPUs) as opposed to the growing field of ASIC
+miners, mainly produced by Bitmain at the time. It was hoped this would assist cryptocurrencies that used this
+algorithm, to decentralize the mining power. The idea behind Equihash’s ASIC resistance was that at the time,
+implementing memory in an ASIC was expensive and GPUs were more efficient at calculating the Equihash PoW. This ASIC
+resistance lasted for a while, but in early 2018, Bitmain released an ASIC for Equihash that was significantly more
+efficient than GPUs for the Equihash configurations used by Zcash, Bitcoin Gold and Zencash, to name a few. It is
+possible to tweak the parameters of the Equihash algorithm to make it more memory intensive and thus make current ASICs
+and the older GPU mining farms obsolete, but it remains to be seen if BEAM will do this. No block time has been published
+at the time of writing of this report (May 2019).</p>
+
+<p>Grin initially opted to use the new Cuckoo Cycle PoW algorithm, also purported to be ASIC resistant due to being memory
+latency bound [<a href="https://github.com/tromp/cuckoo" title="Cuckoo Cycle">20</a>]. This means that the algorithm is bound by memory bandwidth rather than raw processor speed, with
+the hope that it will make mining possible on commodity hardware.</p>
+
+<p>In August 2018, the Grin team announced at the launch of its mainnet that it had become aware that it was likely
+that an ASIC would be available for the Cuckoo cycle algorithm [<a href="https://www.grin-forum.org/t/proof-of-work-update/713" title="Proof of Work Update">21</a>]. While acknowledging that ASIC mining is
+inevitable, Grin is concerned that the current ASIC market is very centralized (i.e. Bitmain), and it wants to
+foster a grassroots GPU mining community for two years, in the early days of Grin. After two years, Grin hopes that
+ASICs will have become more of a commodity and thus decentralized.</p>
+
+<p>To address this, it was proposed to use two PoW algorithms initially: one that is ASIC Friendly (AF) and one that is
+ASIC Resistant (AR), and then to select which PoW is used per block to balance the mining rewards between
+the two algorithms, over a 24‑hour period. The Governance committee resolved on 25 September 2018 to go
+ahead with this approach, using a modified version of the Cuckoo Cycle algorithm, called the Cuckatoo Cycle. The AF
+algorithm at launch will be Cuckatoo32+, which will gradually increase its memory requirements to make older single-chip
+ASICs obsolete over time. The AR algorithm is still not defined [<a href="https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874">23</a>].</p>
+
+<h2 id="governance-models-and-monetary-policy">Governance Models and Monetary Policy</h2>
+
+<p>Both the Grin and BEAM projects are open-source and available on Github ([<a href="https://github.com/mimblewimble/grin" title="Grin Github Repository">6</a>], [<a href="https://github.com/beam-mw/beam" title="BEAM Github Repository">7</a>]). The Grin project has 75
+contributors, eight of which have contributed the vast majority of the code. BEAM has 10 contributors, four of
+which have contributed the vast majority of the code (at the time of writing). The two projects have opted for different
+models of governance. BEAM has opted to set up a foundation that includes the core developers, to manage the project.
+This is the route taken by most cryptocurrency projects in this space. The Grin community has decided
+against setting up a central foundation and has compiled an interesting discussion of the pros and cons of a
+centralized foundation [<a href="https://github.com/mimblewimble/docs/wiki/Regarding-Foundations" title="Regarding Foundations">22</a>]. This document contains a very in-depth discussion that weighs up the various governance
+functions that a foundation might serve, and evaluates each use case. The Grin community came to the
+conclusion that while foundations are useful, they do not provide the only solution to governance problems, and
+have therefore opted to remain a completely decentralized community-driven project. Currently, decisions are made at
+periodic governance meetings that are convened on Gitter with community members, where an agenda is discussed and
+decisions are ratified. Agendas and minutes of these meetings can be found in the Grin Forums governance section.
+An example of the outcomes of such a meeting can be seen in [<a href="https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874">23</a>].</p>
+
+<p>Neither project will engage in an Initial Coin Offering (ICO) or pre-mine, but the two projects also have different
+funding models. BEAM set up a Limited Liability Company (LLC) and has attracted investors to it for its initial round of
+non-profit BEAM Foundation that will take over the management of the protocol during the first year after launch [<a href="https://www.beam-mw.com/features" title="BEAM Features">24</a>].
+The goal of the Foundation will be to support maintenance and further development of BEAM; promote relevant
+cryptographic research; support awareness and education in the areas of financial privacy; and support academic work in
+adjacent areas. In the industry, this treasury mechanism is called a <em>dev tax</em>. Grin will not levy a <em>dev tax</em> on the
+mining rewards, and will rely on community participation and community funding. The Grin project does accept financial
+support, but these funding campaigns are conducted according to their “Community Funding Principles” [<a href="https://grin-tech.org/funding.html" title="Grin's Community Funding Principles">25</a>], which will
+be conducted on a “need-by-need” basis. A campaign will specify a specific need it aims to fulfill (e.g. “Hosting
+fees for X for the next year”) and the funding will be received by the community member who ran the campaign. This will
+provide 100% visibility regarding who is responsible for the received funds. An example of a funding campaign is the
+Developer Funding Campaign run by Yeastplume to fund his full-time involvement in the project from October 2018 to
+February 2019. Refer to [<a href="https://grin-tech.org/yeastplume.html">26</a>].</p>
+
+<p>In terms of the monetary policy of the two projects, BEAM has stated that it will be using a deflationary model with
+periodic halving of its mining reward and a maximum supply of BEAM of 262,800,000 coins. BEAM will start with
+100 coins emitted per block. The first halving will occur after one year. Halving will then happen every four years
+[<a href="https://github.com/BeamMW/beam/wiki/BEAM-Mining" title="Beam's Mining Specification">32</a>]. Grin has opted for an inflationary model where the block reward will remain constant, making its arguments
+for this approach in [<a href="https://github.com/mimblewimble/docs/wiki/Monetary-Policy" title="Monetary Policy">27</a>]. This approach will asymptotically tend towards a zero percent dilution as the supply
+increases, instead of enforcing a set supply [<a href="https://github.com/mimblewimble/grin/wiki/fees-mining">28</a>]. Grin has not yet specified its mining reward or fees structure,
+but based on its current documentation, it is planning on a 60 grin per block reward. Neither project has made a
+final decision regarding how to structure fees, but the Grin project has started to explore how to set a fee baseline by
+using a metric of “fees per reward per minute” [<a href="https://github.com/mimblewimble/grin/wiki/fees-mining">28</a>].</p>
+
+<h2 id="conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</h2>
+
+<p>In summary, Grin and BEAM are two open-source projects that are implementing the Mimblewimble blockchain scheme. Both
+projects are building from scratch. Grin uses Rust while BEAM uses C++; therefore there are many technical
+differences in their design and implementation. However, from a functional perspective, both projects will support all
+the core Mimblewimble functionality. Each project does contain some unique functionality, but as Grin’s goal is to produce
+a minimalistic implementation of Mimblewimble, most of the unique features that extend Mimblewimble lie in the
+BEAM project. The following list summarizes the functional similarities and differences between the two projects.</p>
+
+<ul>
+  <li>Similarities:
+    <ul>
+      <li>Core Mimblewimble feature set.</li>
+      <li>Dandelion relay protocol.</li>
+    </ul>
+  </li>
+  <li>Grin unique features:
+    <ul>
+      <li>Partial history syncing.</li>
+      <li>DAG representation of Mempool to prevent duplicate UTXOs and cyclic transaction references.</li>
+    </ul>
+  </li>
+  <li>BEAM unique features:
+    <ul>
+      <li>Secure BBS hosted on the nodes for establishing communication between wallets. Removes the need for sender and
+receiver to be online at the same time.</li>
+      <li>Use of decoy outputs in Dandelion stem phase. Decoy outputs are later spent to avoid clutter on blockchain.</li>
+      <li>Explicit UTXO incubation period.</li>
+      <li>Timelocks with a minimum and maximum threshold.</li>
+      <li>Auditable transactions as part of the roadmap.</li>
+      <li>One-sided transaction construction for non-interactive payments.</li>
+      <li>Use of Radix-Hash trees.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Both projects are still very young. At the time of writing this report (May 2019), both are still in the testnet
+phase, and many of
+their core design choices have not yet been built or tested. Much of the BEAM wiki is still in Russian, so it is likely
+that there are details to which we are not yet privy. It will be interesting to keep an eye on these projects
+to see how their various decisions play out, both technically and in terms of their monetary policy and governance models.</p>
+
+<h2 id="references">References</h2>
+
+<p>[<a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt" title="MIMBLEWIMBLE">1</a>] T. E. Jedusor, “MIMBLEWIMBLE” [online]. Available:
+<a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf" title="Mimblewimble">2</a>] A. Poelstra, “Mimblewimble” [online]. Available:
+<a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/blob/master/doc/intro.md">3</a>] “Introduction to Mimblewimble and Grin” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/blob/master/doc/intro.md">https://github.com/mimblewimble/grin/blob/master/doc/intro.md</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>“Introduction to
+Mimblewimble and Grin”</p>
+
+<p>[<a href="https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf">4</a>] “BEAM: The Scalable Confidential Cryptocurrency” [online]. Available:
+<a href="https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf">https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf</a>. Date accessed: 2018‑09‑28.</p>
+
+<p>“BEAM: The Scalable
+Confidential Cryptocurrency”</p>
+
+<p>[<a href="https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/">5</a>] A. Gibson, “Flipping the Scriptless Script on Schnorr” [online].
+Available: <a href="https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/">https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>“Flipping the Scriptless
+Script on Schnorr”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin" title="Grin Github Repository">6</a>] “Grin Github Repository” [online]. Available: <a href="https://github.com/mimblewimble/grin">https://github.com/mimblewimble/grin</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://github.com/beam-mw/beam" title="BEAM Github Repository">7</a>] “BEAM Github Repository” [online]. Available: <a href="https://github.com/beam-mw/beam">https://github.com/beam-mw/beam</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md" title="Grin - Transaction Pool">8</a>] “Grin - Transaction Pool” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md">https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md</a>. Date accessed: 2018‑10‑22.</p>
+
+<p>[<a href="https://arxiv.org/abs/1701.04439">9</a>] S. B. Venkatakrishnan, G. Fanti and P. Viswanath, “Dandelion: Redesigning the Bitcoin Network for Anonymity”
+[online]. Available: <a href="https://arxiv.org/abs/1701.04439">https://arxiv.org/abs/1701.04439</a>. Proc. ACM Meas. Anal. Comput. Syst. 1, 1, 2017.
+Date accessed: 2018‑10‑22.</p>
+
+<p>“Dandelion: Redesigning the Bitcoin
+Network for Anonymity”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md">10</a>] “Dandelion in Grin: Privacy-Preserving Transaction Aggregation and Propagation” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md">https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>“Dandelion in Grin:
+Privacy-Preserving Transaction
+Aggregation and Propagation”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md" title="Grin - Blockchain Syncing">11</a>] “Grin - Blockchain Syncing” [online]. Available:
+<a href="https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md">https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md</a>. Date accessed: 2018‑10‑22.</p>
+
+<p>[<a href="https://github.com/beam-mw/beam/wiki/Node-initial-synchronization">12</a>] “BEAM - Node Initialization Synchronization” [online]. Available:
+<a href="https://github.com/beam-mw/beam/wiki/Node-initial-synchronization">https://github.com/beam-mw/beam/wiki/Node-initial-synchronization</a>. Date accessed: 2018‑12‑24.</p>
+
+<p>“BEAM - Node Initialization
+Synchronization”</p>
+
+<p>[<a href="https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW">13</a>] “BEAM Description. Comparison with Classical MW” [online]. Available:
+<a href="https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW">https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW</a>. Date accessed: 2018‑10‑18.</p>
+
+<p>“BEAM Description. Comparison
+with Classical MW”</p>
+
+<p>[<a href="https://github.com/beam-mw/beam/wiki/Wallet-audit" title="BEAM - Wallet Audit">14</a>] “BEAM - Wallet Audit” [online]. Available: <a href="https://github.com/beam-mw/beam/wiki/Wallet-audit">https://github.com/beam-mw/beam/wiki/Wallet-audit</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system/">15</a>] “Beam’s Offline Transaction using Secure BBS System” [online]. Available:
+<a href="https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system">https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system</a>.
+Date accessed: 2018‑10‑22.</p>
+
+<p>“Beam’s Offline Transaction
+using Secure BBS System”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/blob/master/doc/merkle.md" title="GRIN - Merkle Structures">16</a>] “GRIN - Merkle Structures” [online]. Available: <a href="https://github.com/mimblewimble/grin/blob/master/doc/merkle.md">https://github.com/mimblewimble/grin/blob/master/doc/merkle.md</a>.
+Date accessed: 2018‑10‑22.</p>
+
+<p>[<a href="https://github.com/beam-mw/beam/wiki/Merkle-trees" title="BEAM - Merkle Trees">17</a>] “BEAM - Merkle Trees” [online]. Available: <a href="https://github.com/beam-mw/beam/wiki/Merkle-trees">https://github.com/beam-mw/beam/wiki/Merkle-trees</a>.
+Date accessed: 2018‑10‑22.</p>
+
+<p>[<a href="https://github.com/beam-mw/beam/wiki/Confidential-assets" title="BEAM - Confidential Assets">18</a>] “BEAM - Confidential Assets” [online]. Available: <a href="https://github.com/beam-mw/beam/wiki/Confidential-assets">https://github.com/beam-mw/beam/wiki/Confidential-assets</a>.
+Date accessed: 2018‑10‑22.</p>
+
+<p>[<a href="https://www.cryptolux.org/images/b/b9/Equihash.pdf">19</a>] A. Biryukov and D. Khovratovich, “Equihash: Asymmetric Proof-of-work based on the Generalized Birthday Problem”
+[online] Available: <a href="https://www.cryptolux.org/images/b/b9/Equihash.pdf">https://www.cryptolux.org/images/b/b9/Equihash.pdf</a>. Proceedings of NDSS, 2016.
+Date accessed: 2018‑09‑30.</p>
+
+<p>“Equihash: Asymmetric Proof-of-work
+based on the Generalized
+Birthday Problem”</p>
+
+<p>[<a href="https://github.com/tromp/cuckoo" title="Cuckoo Cycle">20</a>] “Cuckoo Cycle” [online]. Available: <a href="https://github.com/tromp/cuckoo">https://github.com/tromp/cuckoo</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://www.grin-forum.org/t/proof-of-work-update/713" title="Proof of Work Update">21</a>] I. Peverell, “Proof of Work Update” [online]. Available: <a href="https://www.grin-forum.org/t/proof-of-work-update/713">https://www.grin-forum.org/t/proof-of-work-update/713</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://github.com/mimblewimble/docs/wiki/Regarding-Foundations" title="Regarding Foundations">22</a>] “Regarding Foundations” [online]. Available: <a href="https://github.com/mimblewimble/docs/wiki/Regarding-Foundations">https://github.com/mimblewimble/docs/wiki/Regarding-Foundations</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874">23</a>] “Meeting Notes: Governance, Sep 25 2018” [online]. Available:
+<a href="https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874">https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>“Meeting Notes:
+Governance, Sep 25 2018”</p>
+
+<p>[<a href="https://www.beam-mw.com/features" title="BEAM Features">24</a>] “BEAM Features” [online]. Available: <a href="https://www.beam-mw.com/features">https://www.beam-mw.com/features</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://grin-tech.org/funding.html" title="Grin's Community Funding Principles">25</a>] “Grin’s Community Funding Principles” [online]. Available: <a href="https://grin-tech.org/funding.html">https://grin-tech.org/funding.html</a>.
+Date accessed: 2018‑09‑28.</p>
+
+<p>[<a href="https://grin-tech.org/yeastplume.html">26</a>] “Oct 2018 - Feb 2019 Developer Funding - Yeastplume” [online]. Available: <a href="https://grin-tech.org/yeastplume.html">https://grin-tech.org/yeastplume.html</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>“Oct 2018 - Feb 2019
+Developer Funding - Yeastplume”</p>
+
+<p>[<a href="https://github.com/mimblewimble/docs/wiki/Monetary-Policy" title="Monetary Policy">27</a>] “Monetary Policy” [online]. Available: <a href="https://github.com/mimblewimble/docs/wiki/Monetary-Policy">https://github.com/mimblewimble/docs/wiki/Monetary-Policy</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/wiki/fees-mining">28</a>] “Economic Policy: Fees and Mining Reward” [online]. Available: <a href="https://github.com/mimblewimble/grin/wiki/fees-mining">https://github.com/mimblewimble/grin/wiki/fees-mining</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>“Economic Policy: Fees
+and Mining Reward”</p>
+
+<p>[<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>] “Grin’s Proof-of-Work” [online]. Available: <a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md">https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919">30</a>]: R Lahat, “The Secure Bulletin Board System (SBBS) Implementation in Beam” [online]. Available:
+<a href="https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919">https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919</a>.
+Date accessed: 2018‑12‑24.</p>
+
+<p>“The Secure Bulletin Board
+System (SBBS) Implementation in Beam”</p>
+
+<p>[<a href="https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)" title="Beam's SBBS Specification">31</a>]: “Secure Bulletin Board System (SBBS)” [online]. Available:
+<a href="https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)">https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)</a>. Date accessed: 2018‑12‑24.</p>
+
+<p>[<a href="https://github.com/BeamMW/beam/wiki/BEAM-Mining" title="Beam's Mining Specification">32</a>]: “Beam’s Mining Specification” [online]. Available: <a href="https://github.com/BeamMW/beam/wiki/BEAM-Mining">https://github.com/BeamMW/beam/wiki/BEAM-Mining</a>.
+Date accessed: 2018‑12‑24.</p>
+
+<p>[<a href="https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation">33</a>]: “Beam’s Transaction Graph Obfuscation” [online]. Available:
+<a href="https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation">https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation</a>. Date accessed: 2018‑12‑24.</p>
+
+<p>“Beam’s Transaction Graph
+Obfuscation”</p>
+
+<h2 id="appendices">Appendices</h2>
+
+<p>This section contains some information on topics discussed in the report, details of which are not directly relevant to
+the Grin vs.
+BEAM discussion.</p>
+
+<h3 id="appendix-a-cuckoocuckatoo-cycle-proof-of-work-algorithm">Appendix A: Cuckoo/Cuckatoo Cycle Proof-of-Work Algorithm</h3>
+
+<p>The Cuckoo Cycle algorithm is based on finding cycles of a certain length of edges in a bipartite graph of N nodes and
+M edges. The graph is bipartite because it consists of two separate groups of nodes with edges that connect nodes from
+one set to the other. As an example, let’s consider nodes with even indices to be in one group and nodes with odd
+indices to be in another group. Figure 2 shows eight nodes with four randomly placed edges, N = 8 and M = 4.
+So if
+we are looking for cycles of length 4, we can easily confirm that none exist in Figure 2. By adjusting the number
+of edges present in the graph vs. the number of nodes, we can control the probability that a cycle of a certain length
+exists in the graph. When looking for cycles of length 4, the difficulty, as illustrated in Figure 2, is that a
+4/8 (M/N) graph
+would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>].</p>
+
+<p align="center">
+   <img src="sources/cuckoo_base_numbered_few_edges.png" width="250">
+   </p>
+<p>
+     </p>
+<center><strong>
+       Figure 2: Eight Nodes with Four Edges, no Solution
+       [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]
+     </strong></center>
+   
+
+
+<p>If we increase the number of edges in the graph relative to the number of nodes, we adjust the probability of a cycle
+occurring in the randomly chosen set of edges. Figure 3 shows an example of M = 7 and N = 8,
+and it can be seen that a four-edged cycle appeared. Thus, we can control the probability of a cycle of a certain length
+occurring by adjusting the ratio of M/N [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>].</p>
+
+<p align="center">
+  <img src="sources/cuckoo_base_numbered_few_edges_cycle.png" width="250">
+  </p>
+<p>
+    </p>
+<center>
+<strong>
+      Figure 3: Cycle Found from 0-5-4-1-0
+      [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]
+    &lt;/center&gt;</strong>
+  &lt;/p&gt;
+&lt;/p&gt;
+
+Detecting that a cycle of a certain length has occurred in a graph with randomly selected edges becomes significantly
+more difficult as the number of graphs gets larger. Figure 4 shows a 22‑node graph with 14 random edges in it.
+Can you determine if a cycle of eight edges is present? [[29]]
+
+<p align="center">
+  <img src="sources/cuckoo_base_numbered_many_edges.png" width="650">
+  </p>
+<p>
+    </p>
+<center>
+<strong>
+      Figure 4: 22 Nodes with 14 Edges, can you find a Cycle Eight Edges Long?
+      [<a href="https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md" title="Grin's Proof-of-Work">29</a>]
+    &lt;/center&gt;</strong>
+  &lt;/p&gt;
+&lt;/p&gt;
+
+The Cuckoo cycle PoW algorithm is built to solve this problem. The bipartite graph that is analyzed is called a "Cuckoo
+Hashtable", where a key is inserted into two arrays, each with its own hash function, in a location based on the
+hash of the key. Each key inserted in this way produces an edge between the locations generated by the two hashing
+functions. Nonces are enumerated for the hashing functions until a cycle of the desired length is detected. This
+algorithm has two main control parameters. It is difficult to establish the M/N ratio and the number of nodes in the
+graph. There are a number of variants of this algorithm that make speed/memory trade-offs [[20]]. In Grin, a third
+difficulty parameter was introduced to more finely tune the difficulty of the PoW algorithm to ensure a one-minute block
+time in the face of changing network hash rates. This was done by taking a Blake2b hash of the set of nonces and
+ensuring that the result is above a difficulty threshold [[29]].
+
+## Contributors
+
+- &lt;https://github.com/philipr-za&gt;
+- &lt;https://github.com/hansieodendaal&gt;
+- &lt;https://github.com/SWvheerden&gt;
+- &lt;https://github.com/anselld&gt;
+- Some clarification by BEAM CEO Alexander Zaidelson &lt;https://github.com/azaidelson&gt;
+</center>
+</center>
+
+        </div>
+
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/protocols/grin-vs-beam-comparison"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Grin%20vs.%20BEAM,%20a%20Comparison&url=/protocols/grin-vs-beam-comparison"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/protocols/grin-vs-beam-comparison&amp;media=/images/banner-07.jpg&amp;description=Grin%20vs.%20BEAM,%20a%20Comparison"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/protocols/grin-protocol-overview" style="background-image: url(/images/banner-07.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/protocols/grin-protocol-overview"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/protocols/grin-protocol-overview">Mimblewimble-Grin Blockchain Protocol Overview</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/protocols/grin-design-choice-algorithms">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/protocols/grin-design-choice-algorithms">Grin Design Choice Criticisms - Truth or Fiction</a></h4>
+    </div>
+    <a class="next__image fadein" href="/protocols/grin-design-choice-algorithms" style="background-image: url(/images/banner-07.jpg)"></a>
+  </div>
+  
+</div>
+
+      </article>
+      <!-- end post -->
+    </div>
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    01. Learning Paths
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">01. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/cryptography/cryptography" title="Go to 02. Cryptography">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    02. Cryptography
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography/cryptography" title="Go to 02. Cryptography">02. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    03. Consensus Mechanisms
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">03. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/scaling/scaling" title="Go to 04. Scaling">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    04. Scaling
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling/scaling" title="Go to 04. Scaling">04. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/mining/mining" title="Go to 05. Mining">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    05. Mining
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining/mining" title="Go to 05. Mining">05. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    06. Digital Assets
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">06. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/protocols/protocols" title="Go to 07. Protocols">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    07. Protocols
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols/protocols" title="Go to 07. Protocols">07. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    08. Network Analysis
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">08. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/labs/labs" title="Go to 09. Labs">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    09. Labs
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs/labs" title="Go to 09. Labs">09. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/style-guide/style-guide" title="Go to 10. Style Guide">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    10. Style Guide
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5>
+<span class="widget__tag-count">12</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5>
+<span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5>
+<span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5>
+<span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/mimblewimble-mb-bp-utxo">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Mimblewimble Multiparty Bulletproof UTXO</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/mimblewimble-mb-bp-utxo">
+                  
+                    Mimblewimble is a privacy-oriented, cryptocurrency technology. It differs from Bitcoin in some key areas...
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                  <a href="/tag/mimblewimble" class="article__tag">mimblewimble</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/distributed-hash-tables">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Distributed Hash Tables</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/distributed-hash-tables">
+                  
+                    A hash table is a data structure that maps keys to values.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/intro-to-tor-and-i2p">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Introduction to Tor and I2P</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/intro-to-tor-and-i2p">
+                  
+                    Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

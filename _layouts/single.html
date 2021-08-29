@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          <div class="single-box">
+
+            {% if page.image %}
+            <div class="single-box__image" style="background-image: url({{site.baseurl}}{{page.image}});"></div>
+            {% else %}
+
+            {% for post in site.posts %}
+              {% if post.featured == true %}
+                {% assign is-featured = true %}
+              {% endif %}
+            {% endfor %}
+            
+            {% if is-featured == true %}
+            <div class="featured-slider">
+              <div class="featured-slider__box">
+                {% for post in site.posts %}
+                {% if post.featured == true %}
+                <div class="featured-slider__item" style="background-image: url({{site.baseurl}}{{post.image}});"></div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+
+            {% endif %}
+          </div>
+          {{ content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->

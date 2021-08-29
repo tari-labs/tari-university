@@ -1,0 +1,48 @@
+{% for post in site.posts %}
+  {% if post.featured == true %}
+    {% assign is-featured = true %}
+  {% endif %}
+{% endfor %}
+
+{% if is-featured == true %}
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <!-- begin slider -->
+      <div class="slider section" id="slider">
+        <div class="slider__inner">
+          <div class="section-top">
+            <h5 class="section-title">Topics</h5>
+          </div>
+          <div class="main-slider">
+            <!-- Start Featured Post -->
+            {% for post in site.posts %}
+            {% if post.featured == true %}
+            <div class="main-slider__item">
+              <div class="article grid__post">
+                {% if post.image %}
+                <a href="{{post.url | prepend: site.baseurl}}">
+                  <div class="tlu-card-container">
+                  <div class="fadein tlu-card-img" style="background-image: url({{site.baseurl}}{{post.image}});">
+                  <p class="tlu-post-title">{{post.title}}</p>
+                  </div>
+                  </div>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- End Featured Post -->
+          </div>
+          <div class="slider-buttons">
+            <i class="main__item-prev prev ion ion-ios-arrow-back"></i>
+            <i class="main__item-next next ion ion-ios-arrow-forward"></i>
+          </div>
+        </div>
+      </div>
+      <!-- end slider -->
+    </div>
+  </div>
+</div>
+{% endif %}
