@@ -1,0 +1,113 @@
+/* Contact */
+.contact-title {
+  margin-bottom: 8px;
+  font-size: 43px;
+  line-height: 48px;
+  @media only screen and (max-width: $mobile) {
+    font-size: 33px;
+    line-height: 33px;
+  }
+}
+
+.contact-description {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 26px;
+  @media only screen and (max-width: $mobile) {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+.form-container {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  padding: 3vw;
+}
+
+.form__inner {
+  max-width: 550px;
+  width: 100%;
+  padding: 40px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  background-color: $section-color;
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter: saturate(180%) blur(10px);
+    background-color: rgba($section-color, .8);
+  }
+  @media only screen and (max-width: $mobile) {
+    padding: 20px 15px;
+  }
+}
+
+.form__group {
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  textarea {
+    resize: none;
+  }
+}
+
+.form__label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  span {
+    font-weight: 400;
+  }
+}
+
+.form__input {
+  width: 100%;
+  padding: 13px;
+  font-size: 13px;
+  border: 1px solid $gray-light;
+  border-radius: 3px;
+  outline: none;
+  transition: 250ms;
+  &:focus {
+    border: 1px solid $brand-color;
+  }
+}
+
+.form-select {
+  width: 100%;
+  border: 1px solid $gray-light;
+  background-color: inherit;
+  outline: none;
+  &:focus {
+    border: 1px solid $brand-color;
+  }
+}
+
+
+.single-box,
+.featured-slider {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: $gray-light;
+
+  .single-box__image,
+  .featured-slider__item {
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.featured-slider div {
+  height: 100%;
+}

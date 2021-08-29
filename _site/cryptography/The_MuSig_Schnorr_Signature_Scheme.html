@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The MuSig Schnorr Signature Scheme</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/cryptography/The_MuSig_Schnorr_Signature_Scheme">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:50px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.error-page__head h1,.error-page__head h2{margin-bottom:20px}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px}.error-page__head h2{font-size:60px}}
+
+  </style>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-01.jpg');">
+              <h1 class="tlu-hero-title">The MuSig Schnorr Signature Scheme</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/cryptography" class="post-tags__tag tlu-hero-tags">cryptography</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+
+
+        <div class="post__content">
+          <h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li>
+<a href="#introduction">Introduction</a>
+    <ul>
+      <li><a href="#schnorr-signatures-and-their-attack-vectors">Schnorr Signatures and their Attack Vectors</a></li>
+      <li><a href="#musig">MuSig</a></li>
+      <li><a href="#key-aggregation">Key Aggregation</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#overview-of-multi-signatures">Overview of Multi-signatures</a>
+    <ul>
+      <li>
+<a href="#bitcoin--m-of-n--multi-signatures">Bitcoin $m-of-n$ Multi-signatures</a>
+        <ul>
+          <li><a href="#what-are--m-of-n--transactions">What are $m-of-n$ Transactions?</a></li>
+          <li><a href="#use-cases-for--m-of-n--multi-signatures">Use Cases for $m-of-n$ Multi-signatures</a></li>
+        </ul>
+      </li>
+      <li><a href="#rogue-attacks">Rogue Attacks</a></li>
+      <li>
+<a href="#interactive-aggregate-signatures">Interactive Aggregate Signatures</a>
+        <ul>
+          <li><a href="#applications-of-interactive-aggregate-signatures">Applications of Interactive Aggregate Signatures</a></li>
+          <li><a href="#native-multi-signature-support">Native Multi-signature Support</a></li>
+          <li><a href="#cross-input-multi-signatures">Cross-input Multi-signatures</a></li>
+          <li><a href="#protection-against-rogue-key-attacks">Protection against Rogue-key Attacks</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<a href="#formation-of-musig">Formation of MuSig</a>
+    <ul>
+      <li><a href="#notation-used">Notation Used</a></li>
+      <li><a href="#recap-on-schnorr-signature-scheme">Recap on Schnorr Signature Scheme</a></li>
+      <li><a href="#design-of-schnorr-multi-signature-scheme">Design of Schnorr Multi-signature Scheme</a></li>
+      <li><a href="#bellare-and-neven-signature-scheme">Bellare and Neven Signature Scheme</a></li>
+      <li><a href="#musig-signature-scheme">MuSig Signature Scheme</a></li>
+      <li><a href="#revisions">Revisions</a></li>
+      <li><a href="#turning-bellare-and-nevens-scheme-into-an-ias-scheme">Turning Bellare and Neven’s Scheme into an IAS Scheme</a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</a></li>
+  <li><a href="#references">References</a></li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This report investigates Schnorr Multi-Signature Schemes (MuSig), which make use of key aggregation and are provably
+secure in the <em>plain public-key model</em>.</p>
+
+<p>Signature aggregation involves mathematically combining several signatures into a single signature, without having to
+prove Knowledge of Secret Keys (KOSK). This is known as the <em>plain public-key model,</em> where the only requirement is that
+each potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the
+secret key during public key registration with a certification authority. It is one way to generically prevent rogue-key
+attacks.</p>
+
+<p>Multi-signatures are a form of technology used to add multiple participants to cryptocurrency transactions. A
+traditional multi-signature protocol allows a group of signers to produce a joint multi-signature on a common message.</p>
+
+<h3 id="schnorr-signatures-and-their-attack-vectors">Schnorr Signatures and their Attack Vectors</h3>
+
+<p>Schnorr signatures produce a smaller on-chain size, support faster validation and have better privacy. They natively
+allow for combining multiple signatures into one through aggregation, and they permit more complex spending policies.</p>
+
+<p>Signature aggregation also has its challenges. This includes the rogue-key attack, where a participant steals funds
+using a specifically constructed key. Although this is easily solved for simple multi-signatures through an enrollment
+procedure that involves the keys signing themselves, supporting it across multiple inputs of a transaction requires
+<em>plain public-key security</em>, meaning there is no setup.</p>
+
+<p>There is an additional attack, named the Russel attack, after Russel O’Connor, who discovered that for multiparty
+schemes, a party could claim ownership of someone else’s private key and so spend the other outputs.</p>
+
+<p>P. Wuille [<a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures/" title="Key Aggregation for Schnorr Signatures">1</a>] addressed some of these issues and provided a solution that refines the Bellare-Neven (BN)
+scheme. He also discussed the performance improvements that were implemented for the scaler multiplication of the BN
+scheme and how they enable batch validation on the blockchain [<a href="https://blockstream.com/2018/02/15/schnorr-signatures-bpase/" title="Schnorr Signatures for Bitcoin - BPASE '18">2</a>].</p>
+
+<h3 id="musig">MuSig</h3>
+
+<p>Multi-signature protocols, introduced by [<a href="https://scinapse.io/papers/200023587/">3</a>], allow a group of signers (that individually possess their own private/
+public key pair) to produce a single signature $ \sigma $ on a message $ m $. Verification of the given signature
+$ \sigma $ can be publicly performed, given the message and the set of public keys of all signers.</p>
+
+<p>A simple way to change a standard signature scheme into a multi-signature scheme is to have each signer produce a
+stand-alone signature for $ m $ with their private key, and to then concatenate all individual signatures.</p>
+
+<p>The transformation of a standard signature scheme into a multi-signature scheme needs to be useful and practical. The
+newly calculated multi-signature scheme must therefore produce signatures where the size is independent of the number
+of signers and similar to that of the original signature scheme [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>].</p>
+
+<p>A traditional multi-signature scheme is a combination of a signing and verification algorithm, where multiple signers
+(each with their own private/public key) jointly sign a single message, resulting in a combined signature. This can then
+be verified by anyone knowing the message and the public keys of the signers, where a trusted setup with KOSK is a
+requirement.</p>
+
+<p>MuSig is a multi-signature scheme that is novel in combining:</p>
+
+<ul>
+  <li>support for key aggregation; and</li>
+  <li>security in the <em>plain public-key model</em>.</li>
+</ul>
+
+<p>There are two versions of MuSig that are provably secure, and which differ based on the number of communication rounds:</p>
+
+<ol>
+  <li>Three-round MuSig, which only relies on the Discrete Logarithm (DL) assumption, on which Elliptic Curve Digital
+Signature Algorithm (ECDSA) also relies.</li>
+  <li>Two-round MuSig, which instead relies on the slightly stronger One-More Discrete Logarithm (OMDL) assumption.</li>
+</ol>
+
+<h3 id="key-aggregation">Key Aggregation</h3>
+
+<p>The term <em>key aggregation</em> refers to multi-signatures that look like a single-key signature, but with respect to an
+aggregated public key that is a function of only the participants’ public keys. Thus, verifiers do not require the
+knowledge of the original participants’ public keys. They can just be given the aggregated key. In some use cases, this
+leads to better privacy and performance. Thus, MuSig is effectively a key aggregation scheme for Schnorr signatures.</p>
+
+<p>To make the traditional approach more effective and without needing a trusted setup, a multi-signature scheme must
+provide sublinear signature aggregation, along with the following properties:</p>
+
+<ul>
+  <li>It must be provably secure in the <em>plain public-key model</em>.</li>
+  <li>It must satisfy the normal Schnorr equation, whereby the resulting signature can be written as a function of a
+combination of the public keys.</li>
+  <li>It must allow for Interactive Aggregate Signatures (IAS), where the signers are required to cooperate.</li>
+  <li>It must allow for Non-interactive Aggregate Signatures (NAS). where the aggregation can be done by anyone.</li>
+  <li>It must allow each signer to sign the same message.</li>
+  <li>It must allow each signer to sign their own message.</li>
+</ul>
+
+<p>This is different to a normal multi-signature scheme, where one message is signed by all. MuSig potentially provides all
+of these properties.</p>
+
+<p>Other multi-signature schemes that already exist, provide key aggregation for Schnorr signatures. However, they come
+with some limitations, such as needing to verify that participants actually have the private key corresponding to the
+pubic keys that they claim to have. <em>Security in the plain public-key model</em> means that no limitations exist. All that
+is needed from the participants is their public keys [<a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures/" title="Key Aggregation for Schnorr Signatures">1</a>].</p>
+
+<h2 id="overview-of-multi-signatures">Overview of Multi-signatures</h2>
+
+<p>Recently, the most obvious use case for multi-signatures is with regard to Bitcoin, where it can function as a more
+efficient replacement of $ n-of-n $ multisig scripts (where the signatures required to spend and the signatures possible
+are equal in quantity) and other policies that permit a number of possible combinations of keys.</p>
+
+<p>A key aggregation scheme also lets one reduce the number of public keys per input to one, as a user can send coins to
+the aggregate of all involved keys rather than including them all in the script. This leads to a smaller on-chain
+footprint, faster validation and better privacy.</p>
+
+<p>Instead of creating restrictions with one signature per input, one signature can be used for the entire transaction.
+Traditionally, key aggregation cannot be used across multiple inputs, as the public keys are committed to by the
+outputs, and those can be spent independently. MuSig can be used here, with key aggregation done by the verifier.</p>
+
+<p>No non-interactive aggregation scheme is known that only relies on the DL assumption, but interactive schemes are
+trivial to construct where a multi-signature scheme has every participant sign the concatenation of all messages.
+Reference [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>], focused on key aggregation for Schnorr Signatures, showed that this is not always a desirable
+construction, and gave an IAS variant of BN with better properties instead [<a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures/" title="Key Aggregation for Schnorr Signatures">1</a>].</p>
+
+<h3 id="bitcoin--m-of-n--multi-signatures">Bitcoin $ m-of-n $ Multi-signatures</h3>
+
+<h4 id="what-are--m-of-n--transactions">What are $ m-of-n $ Transactions?</h4>
+
+<p>Currently, standard transactions on the Bitcoin network can be referred to as single-signature transactions, as they
+require only one signature, from the owner of the private key associated with the Bitcoin address. However, the Bitcoin
+network supports far more complicated transactions, which can require the signatures of multiple people before the
+funds can be transferred. These are often referred to as $ m-of-n $ transactions, where m represents the number of
+signatures required to spend, while n represents the number of signatures possible [<a href="https://wiki.bitcoin.com/w/Multisignature" title="Multisignature">5</a>].</p>
+
+<h4 id="use-cases-for--m-of-n--multi-signatures">Use Cases for $ m-of-n $ Multi-signatures</h4>
+
+<p>The use cases for $ m-of-n $ multi-signatures are as follows:</p>
+
+<ul>
+  <li>
+    <p>When $ m=1 $ and $ n&gt;1 ​$, it is considered a <strong>shared wallet</strong>, which could be used for small group funds that do not
+require much security. This is the least secure multi-signature option, because it is not multifactor. Any compromised
+individual would jeopardize the entire group. Examples of use cases include funds for a weekend or evening event, or a
+shared wallet for some kind of game. Besides being convenient to spend from, the only benefit of this setup is that
+all   but one of the backup/password pairs could be lost and all of the funds would be recoverable.</p>
+  </li>
+  <li>
+    <p>When $ m=n $, it is considered a <strong>partner wallet</strong>, which brings with it some nervousness, as no keys can be lost. As
+the number of signatures required increases, the risk also increases. This type of multi-signature can be considered to
+be a hard multifactor authentication.</p>
+  </li>
+  <li>
+    <p>When $ m&lt;0.5n $, it is considered a <strong>buddy account</strong>, which could be used for spending from corporate group funds. The
+consequence for the colluding minority needs to be greater than possible benefits. It is considered less convenient
+than a shared wallet, but much more secure.</p>
+  </li>
+  <li>
+    <p>When $ m&gt;0.5n $, it is referred to as a <strong>consensus account</strong>. The classic multi-signature wallet is a two of three,
+and is a special case of a consensus account. A two of three scheme has the best characteristics for creating new
+ Bitcoin addresses, and for secure storing and spending. One compromised signatory does not compromise the funds. A
+ single secret key can be lost and the funds can still be recovered. If done correctly, off-site backups are created
+ during wallet setup. The way to recover funds is known by more than one party. The balance of power with a
+ multi-signature wallet can be shifted by having one party control more keys than the other parties. If one party
+ controls multiple keys, there is a greater risk of those keys not remaining as multiple factors.</p>
+  </li>
+  <li>
+    <p>When $ m=0.5n $, it is referred to as a <strong>split account</strong>. This is an interesting use case, as there would be three of
+six, where one person holds three keys and three people hold one key. In this way, one person could control their own
+money, but the funds could still be recoverable, even if the primary key holder were to disappear with all of their keys.
+As $ n $ increases, the level of trust in the secondary parties can decrease. A good use case might be a family savings
+account that would automatically become an inheritance account if the primary account holder were to die [<a href="https://wiki.bitcoin.com/w/Multisignature" title="Multisignature">5</a>].</p>
+  </li>
+</ul>
+
+<h3 id="rogue-attacks">Rogue Attacks</h3>
+
+<p>Refer to <a href="../digital_signatures/schnorr_signatures.md#key-cancellation-attack">Key cancellation attack</a> demonstration in
+<a href="../digital_signatures/introduction.md">Introduction to Schnorr Signatures</a>.</p>
+
+<p>Rogue attacks are a significant concern when implementing multi-signature schemes. Here, a subset of corrupted signers
+manipulate the public keys computed as functions of the public keys of honest users, allowing them to easily produce
+forgeries for the set of public keys (despite them not knowing the associated secret keys).</p>
+
+<p>Initial proposals from [<a href="https://link.springer.com/content/pdf/10.1007%2FBFb0053435.pdf">10</a>], [<a href="https://ieeexplore.ieee.org/abstract/document/326780" title="Group-oriented (t, n) Threshold Digital Signature Scheme and Digital Multisignature">11</a>], [<a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf">12</a>], [<a href="https://link.springer.com/chapter/10.1007/3-540-57332-1_11">13</a>], [<a href="https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf" title="Weaknesses in Some Threshold Cryptosystem">14</a>], [<a href="https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf">15</a>] and [<a href="http://search.ieice.org/bin/summary.php?id=e82-a_1_21&category=A&year=1999&lang=E&abst=">16</a>] were thus undone before a formal model
+was put forward along with a provably secure scheme from [<a href="https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf" title="Accountable-subgroup Multisignatures">17</a>]. Unfortunately, despite being provably secure, their
+scheme is costly and an impractical interactive key generation protocol [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>].</p>
+
+<p>A means of generically preventing rogue-key attacks is to make it mandatory for users to prove knowledge (or possession)
+of the secret key during public key registration with a certification authority [<a href="https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf">18</a>]. Certification authority is a
+setting known as the KOSK assumption. The pairing-based multi-signature schemes described in [<a href="https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf">19</a>] and
+[<a href="https://eprint.iacr.org/2006/096.pdf">20</a>] rely on the KOSK assumption in order to maintain security. However, according to [<a href="https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf">18</a>] and [<a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">21</a>],
+the cost of complexity and expense of the scheme, and the unrealistic and burdensome assumptions on the Public-key
+Infrastructure (PKI), have made this solution problematic.</p>
+
+<p>As it stands, [<a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">21</a>] provides one of the most practical multi-signature schemes, based on the
+Schnorr signature scheme, which is provably secure and that does not contain any assumption on the key setup. Since the
+only requirement of this scheme is that each potential signer has a public key, this setting is referred to as the
+<em>plain-key model.</em></p>
+
+<p>Reference [<a href="https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf" title="Accountable-subgroup Multisignatures">17</a>] solves the rogue-key attack using a sophisticated interactive key
+generation protocol.</p>
+
+<p>In [<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.544.2947&rep=rep1&type=pdf" title="Multisignatures Secure under the Discrete Logarithm Assumption and a Generalized Forking Lemma">22</a>], the number of rounds was reduced from three to two, using a homomorphic commitment scheme.
+Unfortunately, this increases the signature size and the computational cost of signing and verification.</p>
+
+<p>Reference [<a href="https://link.springer.com/article/10.1007/s10623-009-9313-z">23</a>] proposed a signature scheme that involved the “double hashing” technique, which sees the reduction of
+the signature size compared to [<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.544.2947&rep=rep1&type=pdf" title="Multisignatures Secure under the Discrete Logarithm Assumption and a Generalized Forking Lemma">22</a>], while using only two rounds.</p>
+
+<p>However, neither of these two variants allows for key aggregation.</p>
+
+<p>Multi-signature schemes supporting key aggregation are easier to come by in the KOSK model. In particular,
+[<a href="https://arxiv.org/pdf/1503.08768.pdf" title="Keeping Authorities 'Honest or Bust' with Decentralized Witness Cosigning">24</a>] proposed the CoSi scheme, which can be seen as the naive Schnorr multi-signature scheme, where the
+cosigners are organized in a tree structure for fast signature generation.</p>
+
+<h3 id="interactive-aggregate-signatures">Interactive Aggregate Signatures</h3>
+
+<p>In some situations, it may be useful to allow each participant to sign a different message rather than a single common
+one. An IAS is one where each signer has their own message $ m_{i} $ to sign, and the joint signature proves that the
+$ i $ -th signer has signed $ m_{i} ​$. These schemes are considered to be more general than multi-signature schemes.
+However, they are not as flexible as non-interactive aggregate signatures ([<a href="http://crypto.stanford.edu/~dabo/papers/aggreg.pdf">25</a>], [<a href="https://cseweb.ucsd.edu/~mihir/papers/agg.pdf" title="Unrestricted Aggregate Signatures">26</a>]) and sequential aggregate
+signatures [<a href="https://hovav.net/ucsd/dist/rsaagg.pdf">27</a>].</p>
+
+<p>According to [<a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">21</a>], a generic way of turning any multi-signature scheme into an IAS scheme, is for the
+signer running the multi-signature protocol to use the tuple of all public keys/message pairs involved in the IAS protocol,
+as the message.</p>
+
+<p>For BN’s scheme and Schnorr multi-signatures, this does not increase the number of communication rounds, as messages can
+be sent together with shares $ R_{i} $.</p>
+
+<h4 id="applications-of-interactive-aggregate-signatures">Applications of Interactive Aggregate Signatures</h4>
+
+<p>With regard to digital currency schemes, where all participants have the ability to validate transactions, these
+transactions consist of outputs (which have a verification key and amount) and inputs (which are references to outputs
+of earlier transactions). Each input contains a signature of a modified version of the transaction to be validated with
+its referenced output’s key. Some outputs may require multiple signatures to be spent. Transactions spending such an
+output are referred to as <em>m</em>-of-<em>n</em> multi-signature transactions [<a href="https://bitcoin.org/en/glossary/multisig" title="M-of-N Standard Transactions">28</a>], and the current implementation corresponds to
+the trivial way of building a multi-signature scheme by concatenating individual signatures. Additionally, a threshold
+policy can be enforced where only $ m $ valid signatures out of the $ n $ possible ones are needed to redeem the
+transaction. (Again, this is the most straightforward way to turn a multi-signature scheme into some kind of basic
+threshold signature scheme.)</p>
+
+<p>While several multi-signature schemes could offer an improvement over the currently available method, two properties
+increase the possible impact:</p>
+
+<ul>
+  <li>The availability of key aggregation removes the need for verifiers to see all the involved keys, improving bandwidth,
+privacy and validation cost.</li>
+  <li>Security under the <em>plain public-key model</em> enables multi-signatures across multiple inputs of a transaction, where
+the choice of signers cannot be committed to in advance. This greatly increases the number of situations in which
+multi-signatures are beneficial.</li>
+</ul>
+
+<h4 id="native-multi-signature-support">Native Multi-signature Support</h4>
+
+<p>An improvement is to replace the need for implementing $ n-of-n $ multi-signatures with a constant-size, multi-signature
+primitive such as BN. While this is an improvement in terms of size, it still needs to contain all of the
+signers’ public keys. Key aggregation improves upon this further, as a single-key predicate can be used instead. This
+is smaller and has lower computational cost for verification. Predicate encryption is an encryption paradigm that
+gives a master secret key owner fine-grained control over access to encrypted data [<a href="https://www.iacr.org/archive/tcc2009/54440456/54440456.pdf" title="Predicate Privacy in Encryption Systems">29</a>]. It also improves privacy, as
+the participant keys and their count remain private to the signers.</p>
+
+<p>When generalizing to the $ m-of-n $ scenario, several options exist. One is to forego key aggregation, and still include
+all potential signer keys in the predicates, while still only producing a single signature for the chosen combination of
+keys. Alternatively, a Merkle tree [<a href="https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf">30</a>] where the leaves are permitted combinations of public keys (in aggregated
+form), can be employed. The predicate in this case would take as input an aggregated public key, a signature and a
+proof. Its validity would depend on the signature being valid with the provided key, and the proof establishing that the
+key is in fact one of the leaves of the Merkle tree, identified by its root hash. This approach is very generic, as it
+works for any subset of combinations of keys, and as a result has good privacy, as the exact policy is not visible from
+the proof.</p>
+
+<p>Some key aggregation schemes that do not protect against rogue-key attacks can be used instead in the above cases,
+under the assumption that the sender is given a proof of knowledge/possession for the receivers’ private keys. However,
+these schemes are difficult to prove secure, except by using very large proofs of knowledge. As those proofs of
+knowledge/possession do not need to be seen by verifiers, they are effectively certified by the sender’s validation.
+However, passing them around to senders is inconvenient, and easy to get wrong. Using a scheme that is secure in the
+<em>plain public-key model</em> categorically avoids these concerns.</p>
+
+<p>Another alternative is to use an algorithm whose key generation requires a trusted setup, e.g. in the KOSK model.
+While many of these schemes have been proven secure, they rely on mechanisms that are usually not implemented by
+certification authorities ([<a href="https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf">18</a>], [<a href="https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf">19</a>], [<a href="https://eprint.iacr.org/2006/096.pdf">20</a>]), [<a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">21</a>]).</p>
+
+<h4 id="cross-input-multi-signatures">Cross-input Multi-signatures</h4>
+
+<p>The previous sections explained how the numbers of signatures per input can generally by reduced to one. However, it is
+possible to go further and replace this with a single signature per transaction. Doing so requires a fundamental change
+in validation semantics, as the validity of separate inputs is no longer independent. As a result, the outputs can no
+longer be modeled as predicates, where the secret key owner is given access to encrypted data. Instead, they are modeled
+as functions that return a Boolean (data type with only two possible values) plus a set of zero or more public keys.</p>
+
+<p>Overall validity requires all returned Booleans to be <code class="language-plaintext highlighter-rouge">True</code> and a multi-signature of the transaction with $ L $ the
+union of all returned keys.</p>
+
+<p>With regard to Bitcoin, this can be implemented by providing an alternative to the signature checking opcode
+OP_CHECKSIG and related opcodes in the Script language. Instead of returning the result of an actual ECDSA verification,
+they always return <code class="language-plaintext highlighter-rouge">True</code>, but additionally add the public key with which the verification would have taken place to a
+transaction-wide multi-set of keys. Finally, after all inputs are verified, a multi-signature present in the transaction
+is verified against that multi-set. In case the transaction spends inputs from multiple owners, they will need to
+collaborate to produce the multi-signature, or choose to only use the original opcodes. Adding these new opcodes is
+possible in a backward-compatible way [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>].</p>
+
+<h4 id="protection-against-rogue-key-attacks">Protection against Rogue-key Attacks</h4>
+
+<p>In Bitcoin, when taking cross-input signatures into account, there is no published commitment to the set of signers, as
+each transaction input can independently spend an output that requires authorization from distinct participants. This
+functionality was not restricted, as it would then interfere with fungibility improvements such as CoinJoin [<a href="https://bitcointalk.org/index.php?topic=279249.0" title="CoinJoin: Bitcoin Privacy for the Real World">31</a>]. Due
+to the lack of certification, security against rogue-key attacks is of great importance.</p>
+
+<p>If it is assumed that transactions used a single multi-signature that was vulnerable to rogue-attacks, an attacker could
+identify an arbitrary number of outputs they want to steal, with the public keys $ X_{1},…,X_{n-t} $ and then use the
+rogue-key attack to determine $ X_{n-t+1},…,X_{n} $ such that they can sign for the aggregated key $ \tilde{X} $. They
+would then send a small amount of their own money to outputs with predicates corresponding to the keys
+$ X_{n-t+1},…,X_{n} $. Finally, they can create a transaction that spends all of the victims’ coins together with the
+ones they have just created by forging a multi-signature for the whole transaction.</p>
+
+<p>It can be seen that in the case of multi-signatures across inputs, theft can occur through the ability to forge a
+signature over a set of keys that includes at least one key which is not controlled by the attacker. According to the
+<em>plain public-key model</em>, this is considered a win for the attacker. This is in contrast to the single-input
+multi-signature case, where theft is only possible by forging a signature for the exact (aggregated) keys contained in an
+existing output. As a result, it is no longer possible to rely on proofs of knowledge/possession that are private to the
+signers.</p>
+
+<h2 id="formation-of-musig">Formation of MuSig</h2>
+
+<h3 id="notation-used">Notation Used</h3>
+
+<p>This section gives the  general notation of mathematical expressions when specifically referenced. This information
+is important pre-knowledge for the remainder of the report.</p>
+
+<ul>
+  <li>Let  $ p $  be a large prime number.</li>
+  <li>Let $ \mathbb{G} $ denote cyclic group of the prime order $ p $.</li>
+  <li>Let $ \mathbb Z_p $ denote the ring of integer $ modulo \mspace{4mu} p ​$.</li>
+  <li>Let a generator of  $ \mathbb{G} $ be denoted by $ g $. Thus, there exists a number $ g \in\mathbb{G}  $ such that
+$ \mathbb{G} =  \lbrace 1, \mspace{3mu}g,  \mspace{3mu}g^2,\mspace{3mu}g^3, …, \mspace{3mu}g^{p-1} \rbrace   ​$.</li>
+  <li>Let $ \textrm{H} $ denote the hash function.</li>
+  <li>Let $ S= \lbrace (X_{1}, m_{1}),…, (X_{n}, m_{n}) \rbrace  ​$ be the multi-set of all public key/message pairs of all
+participants, where $  X_{1}=g^{x_{1}}  ​$.</li>
+  <li>Let $ \langle S \rangle $ denote a lexicographically encoding of the multi-set of public key/message pairs in $ S $.</li>
+  <li>Let $ L= \lbrace X_{1}=g^{x_{1}},…,X_{n}=g^{x_{n}} \rbrace  ​$ be the multi-set of all public keys.</li>
+  <li>Let $ \langle L \rangle ​$ denote a lexicographically encoding of the multi-set of public keys
+$ L= \lbrace X_{1}…X_{n} \rbrace  ​$.</li>
+  <li>Let $ \textrm{H}_{com} $ denote the hash function in the commitment phase.</li>
+  <li>Let $ \textrm{H}_{agg} $ denote the hash function used to compute the aggregated key.</li>
+  <li>Let $ \textrm{H}_{sig} ​$ denote the hash function used to compute the signature.</li>
+  <li>Let $ X_{1} $ and $ x_{1} $ be the public and private key of a specific signer.</li>
+  <li>Let $ m $ be the message that will be signed.</li>
+  <li>Let $ X_{2},…,X_{n} $ be the public keys of other cosigners.</li>
+</ul>
+
+<h3 id="recap-on-schnorr-signature-scheme">Recap on Schnorr Signature Scheme</h3>
+
+<p>The Schnorr signature scheme [<a href="https://link.springer.com/article/10.1007/BF00196725" title="Efficient Signature Generation by Smart Cards">6</a>] uses group parameters $(\mathbb{G\mathrm{,p,g)}}$ and a hash function $ \textrm{H} $.</p>
+
+<p>A private/public key pair is a pair</p>
+
+\[(x,X) \in  \lbrace 0,...,p-1 \rbrace  \mspace{6mu} \mathsf{x} \mspace{6mu} \mathbb{G}\]
+
+<p>where $  X=g^{x} $</p>
+
+<p>To sign a message $ m $, the signer draws a random integer $ r \in Z_{p} $ and computes</p>
+
+\[\begin{aligned}
+R &amp;= g^{r} \\\\
+c &amp;= \textrm{H}(X,R,m) \\\\
+s &amp;= r+cx
+\end{aligned}\]
+
+<p>The signature is the pair $ (R,s) $, and its validity can be checked by verifying whether
+\(g^{s} = RX^{c}\)</p>
+
+<p>This scheme is referred to as the “key-prefixed” variant of the scheme, which sees the public key hashed together with
+$ R ​$ and $ m ​$ [<a href="https://ed25519.cr.yp.to/ed25519-20110705.pdf" title="High-speed High-security Signatures">7</a>]. This variant was thought to have a better multi-user security bound than the classic
+variant [<a href="https://eprint.iacr.org/2015/996.pdf" title="Multi-user Schnorr Security, Revisited">8</a>]. However, in [<a href="https://eprint.iacr.org/2016/191.pdf">9</a>], the key-prefixing was seen as unnecessary to enable good multi-user security for
+Schnorr signatures.</p>
+
+<p>For the development of the MuSig Schnorr-based multi-signature scheme [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>], key-prefixing is a requirement for the
+security proof, despite not knowing the form of an attack. The rationale also follows the process in reality, as
+messages signed in Bitcoin always indirectly commit to the public key.</p>
+
+<h3 id="design-of-schnorr-multi-signature-scheme">Design of Schnorr Multi-signature Scheme</h3>
+
+<p>The naive way to design a Schnorr multi-signature scheme would be as follows:</p>
+
+<p>A group of $ n $ signers want to cosign a message $ m $.
+Each cosigner randomly generates and communicates to others a share</p>
+
+\[R_i = g^{r_{i}}\]
+
+<p>Each of the cosigners then computes:</p>
+
+\[R = \prod \_{i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)\]
+
+<p>where $$ \tilde{X} = \prod_{i=1}^{n}X_{i} $$</p>
+
+<p>is the product of individual public. The partial signature is then given by</p>
+
+\[s_{i} = r_{i}+cx_{i}\]
+
+<p>All partial signatures are then combined into a single signature $(R,s)​$ where</p>
+
+\[s = \displaystyle\sum_{i=1}^{n}s_i \mod p ​\]
+
+<p>The validity of a signature $ (R,s) $ on message $ m $ for public keys $  \lbrace X_{1},…X_{n} \rbrace  $ is
+equivalent to</p>
+
+\[g^{s} = R\tilde{X}^{c}\]
+
+<p>where</p>
+
+\[\tilde{X} = \prod\_{i=1}^{n} X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m)\]
+
+<p>Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to
+public key $ \tilde{X} $, a property termed <em>key aggregation</em>.
+However, these protocols are vulnerable to a rogue-key attack ([<a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf">12</a>], [<a href="https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf" title="Weaknesses in Some Threshold Cryptosystem">14</a>], [<a href="https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf">15</a>] and [<a href="https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf" title="Accountable-subgroup Multisignatures">17</a>]) where a corrupted
+signer sets its public key to</p>
+
+\[X_{1}=g^{x_{1}} (\prod\_{i=2}^{n} X_{i})^{-1}\]
+
+<p>allowing the signer to produce signatures for public keys $  \lbrace X_{1},…X_{n} \rbrace  ​$ by themselves.</p>
+
+<h3 id="bellare-and-neven-signature-scheme">Bellare and Neven Signature Scheme</h3>
+
+<p>Bellare and Neven [<a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">21</a>] proceeded differently in order to avoid any key setup. A group of $ n $ signers want to
+cosign a message $ m $. Their main idea is to have each cosigner use a distinct “challenge” when computing their
+partial signature</p>
+
+\[s_{i} = r_{i}+c_{i}x_{i}\]
+
+<p>defined as</p>
+
+\[c_{i} = \textrm{H}( \langle L \rangle , X_{i},R,m)\]
+
+<p>where</p>
+
+\[R = \prod_{i=1}^{n}R_{i}\]
+
+<p>The equation to verify signature $ (R,s) $ on message $ m $ for the public keys $ L $ is</p>
+
+\[g^s = R\prod_{i=1}^{n}X_{i}^{c_{i}}\]
+
+<p>A preliminary round is also added to the signature protocol, where each signer commits to its share $ R_i $ by sending
+$ t_i = \textrm{H}^\prime(R_i) $ to other cosigners first.</p>
+
+<p>This stops any cosigner from setting $ R = \prod_{i=1}^{n}R_{i}  ​$ to some maliciously chosen value, and also allows the
+reduction to simulate the signature oracle in the security proof.</p>
+
+<p>Bellare and Neven [<a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">21</a>] showed that this yields a multi-signature scheme provably secure in the <em>plain public-key</em>
+model under the Discrete Logarithm assumptions, modeling $ \textrm{H} $ and $ \textrm{H}^\prime $ as random oracles.
+However, this scheme does not allow key aggregation anymore, since the entire list of public keys is required for
+verification.</p>
+
+<h3 id="musig-signature-scheme">MuSig Signature Scheme</h3>
+
+<p>MuSig is paramaterized by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions
+$ ( \textrm{H}_{com}  ,  \textrm{H}_{agg} ,  \textrm{H}_{sig} ) $ from $  \lbrace 0,1 \rbrace ^{*} $ to
+$  \lbrace 0,1 \rbrace ^{l} $ (constructed from a single hash, using proper domain separation).</p>
+
+<h4 id="round-1">Round 1</h4>
+
+<p>A group of $ n $ signers want to cosign a message $ m $. Let $ X_1 $ and $ x_1 $ be the public and private key of a
+specific signer, let $ X_2 , . . . , X_n $ be the public keys of other cosigners and let $ \langle L \rangle $ be the
+multi-set of all public keys involved in the signing process.</p>
+
+<p>For $ i\in  \lbrace 1,…,n \rbrace  ​$ , the signer computes the following</p>
+
+\[a_{i} = \textrm{H}\_{agg}(\langle L \rangle,X\_{i})\]
+
+<p>as well as the “aggregated” public key</p>
+
+\[\tilde{X} = \prod_{i=1}^{n}X_{i}^{a_{i}} ​\]
+
+<h4 id="round-2">Round 2</h4>
+
+<p>The signer generates a random private nonce $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $ R_{1} = g^{r_{1}} $
+(the public nonce) and commitment $ t_{1} = \textrm{H}_{com}(R_{1}) $ and sends $t_{1}​$ to all other cosigners.</p>
+
+<p>When receiving the commitments $t_{2},…,t_{n}$ from the other cosigners, the signer sends $R_{1}$ to all other
+cosigners. This ensures that the public nonce is not exposed until all commitments have been received.</p>
+
+<p>Upon receiving $R_{2},…,R_{n}​$ from other cosigners, the signer verifies that $t_{i}=\textrm{H}_{com}(R_{i})​$
+for all $ i\in  \lbrace 2,…,n \rbrace  ​$.</p>
+
+<p>The protocol is aborted if this is not the case.</p>
+
+<h4 id="round-3">Round 3</h4>
+
+<p>If all commitment and random challenge pairs can be verified with $ \textrm{H}_{agg} $, the following is computed:</p>
+
+\[\begin{aligned}
+R &amp;= \prod^{n}\_{i=1}R\_{i} \\\\
+c &amp;= \textrm{H}\_{sig} (\tilde{X},R,m) \\\\
+s\_{1} &amp;= r\_{1} + ca\_{1} x\_{1} \mod p
+\end{aligned}\]
+
+<p>Signature $s_{1}​$ is sent to all other cosigners.
+When receiving $ s_{2},…s_{n} ​$ from other cosigners, the signer can compute $ s = \sum_{i=1}^{n}s_{i} \mod p​$. The
+signature is $ \sigma = (R,s) ​$.</p>
+
+<p>In order to verify the aggregated signature $ \sigma = (R,s) ​$, given a lexicographically encoded multi-set of public
+keys $ \langle L \rangle ​$ and message $ m ​$, the verifier computes:</p>
+
+\[\begin{aligned}
+a_{i} &amp;= \textrm{H}\_{agg}(\langle L \rangle,X\_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
+\tilde{X} &amp;= \prod\_{i=1}^{n}X\_{i}^{a\_{i}} \\\\
+c &amp;=  \textrm{H}\_{sig} (\tilde{X},R,m)
+\end{aligned}\]
+
+<p>then accepts the signature if</p>
+
+\[g^{s} = R\prod_{i=1}^{n}X_{i}^{a_{i}c}=R\tilde{X^{c}.}\]
+
+<h3 id="revisions">Revisions</h3>
+
+<p>In a previous version of [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>], published on 15 January 2018, a two-round variant of MuSig was proposed, where the
+initial commitment round is omitted, claiming a security proof under the One More Discrete
+Logarithm (OMDL) assumptions ([<a href="https://cseweb.ucsd.edu/~mihir/papers/gq.pdf">32</a>], [<a href="https://eprint.iacr.org/2001/002.pdf" title="The One-More-RSA-Inversion Problems and the Security of Chaum’s Blind Signature Scheme*">33</a>]). The authors of [<a href="https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb">34</a>] then discovered a flaw in the security proof and
+showed that through a meta-reduction, the initial multi-signature scheme cannot be proved secure using an algebraic black
+box reduction under the DL or OMDL assumption.</p>
+
+<p>In more detail, it was observed that in the two-round variant of MuSig, an adversary (controlling public keys
+$ X_{2},…,X_{n} $) can impose the value of $ R=\Pi_{i=1}^{n}R_{i} $ used in signature protocols since they can choose
+$ R_{2},…,R_{n} $ after having received $ R_{1} $ from the honest signer (controlling public key $ X_{1}=g^{x_{1}} $ ).
+This prevents one from using the initial method of simulating the honest signer in the Random Oracle model without knowing
+$ x_{1} $ by randomly drawing $ s_{1} $ and $ c $, computing $ R_1=g^{s_1}(X_1)^{-a_1c}$, and later programming
+$ \textrm{H}_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c_1 $ since the adversary might have made the random oracle query
+$ \textrm{H}_{sig}(\tilde{X}, R, m) $ <em>before</em> engaging the corresponding signature protocol.</p>
+
+<p>Despite this, there is no attack currently known against the two-round variant of MuSig and it might be secure,
+although this is not provable under standard assumptions from existing techniques [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>].</p>
+
+<h3 id="turning-bellare-and-nevens-scheme-into-an-ias-scheme">Turning Bellare and Neven’s Scheme into an IAS Scheme</h3>
+
+<p>In order to change the BN multi-signature scheme into an IAS scheme, [<a href="https://eprint.iacr.org/2018/068.pdf">4</a>] proposed the following scheme, which includes
+a fix to make the execution of the signing algorithm dependent on the message index.</p>
+
+<p>If $ X = g^{x_i} $ is the public key of a specific signer and $ m $ the message they want to sign, and</p>
+
+\[S^\prime =  \lbrace (X^\prime\_{1}, m^\prime\_{1}),..., (X^\prime\_{n-1}, m^\prime\_{n-1}) \rbrace\]
+
+<p>is the set of the public key/message pairs of other signers, this specific signer merges $ (X, m) $ and $ S^\prime $
+into the ordered set</p>
+
+\[\langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu}  S =  \lbrace (X_{1}, m_{1}),..., (X_{n}, m_{n}) \rbrace\]
+
+<p>and retrieves the resulting message index $ i ​$ such that</p>
+
+\[(X_{1}, m_{i}) = (X, m)\]
+
+<p>Each signer then draws $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} ​$, computes $  R_{i} = g^{r_{i}} ​$ and subsequently
+sends commitment $  t_{i} = H^\prime(R_{i}) ​$ in a first round and then $ R_{i} ​$ in a second round, and then computes</p>
+
+\[R = \prod_{i=1}^{n}R_{i}\]
+
+<p>The signer with message index $ i ​$ then computes:</p>
+
+\[c_{i} = H(R,  \langle S \rangle, i) \mspace{30mu} \\\\
+s_{i} = r_{i} + c_{i}x_{i} \mod p\]
+
+<p>and then sends $ s_{i} ​$ to other signers. All signers can compute</p>
+
+\[s = \displaystyle\sum_{i=1}^{n}s_{i} \mod p\]
+
+<p>The signature is $ \sigma = (R, s) ​$.</p>
+
+<p>Given an ordered set
+$ \langle S \rangle \mspace{6mu} \mathrm{of} \mspace{6mu} S =  \lbrace (X_{1}, m_{1}),…,(X_{n}, m_{n}) \rbrace  $
+and a signature $ \sigma = (R, s) $  then $ \sigma $ is valid for $ S ​$ when</p>
+
+\[g^s = R\prod_{i=1}^{n}X_{i} ^{H(R, \langle S \rangle, i)}\]
+
+<p>There is no need to include $ \langle L \rangle $ in the hash computation nor the public key
+$ X_i $ of the local signer, since they are already “accounted for” through ordered set $ \langle S \rangle $ and the
+message index $ i $.</p>
+
+<p><strong>Note:</strong> As of writing of this report, the secure IAS scheme presented here still needs to undergo a complete security
+analysis.</p>
+
+<h2 id="conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</h2>
+
+<ul>
+  <li>MuSig leads to both native and private multi-signature transactions with signature aggregation.</li>
+  <li>Signature data for multi-signatures can be large and cumbersome. MuSig will allow users to create more complex
+transactions without burdening the network and revealing compromising information.</li>
+  <li>The IAS case where each signer signs their own message must still be proven by a complete security analysis.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<p>[<a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures/" title="Key Aggregation for Schnorr Signatures">1</a>] P. Wuille, “Key Aggregation for Schnorr Signatures”, 2018. Available:
+<a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures/">https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures/</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://blockstream.com/2018/02/15/schnorr-signatures-bpase/" title="Schnorr Signatures for Bitcoin - BPASE '18">2</a>] Blockstream, “Schnorr Signatures for Bitcoin - BPASE ’18”, 2018. Available:
+<a href="https://blockstream.com/2018/02/15/schnorr-signatures-bpase/">https://blockstream.com/2018/02/15/schnorr-signatures-bpase/</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://scinapse.io/papers/200023587/">3</a>] K. Itakura, “A Public-key Cryptosystem Suitable for Digital Multisignatures”, NEC J. Res. Dev., Vol. 71, 1983.
+Available: <a href="https://scinapse.io/papers/200023587/">https://scinapse.io/papers/200023587/</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“A Public-key Cryptosystem Suitable for
+Digital Multisignatures”</p>
+
+<p>[<a href="https://eprint.iacr.org/2018/068.pdf">4</a>] G. Maxwell, A. Poelstra, Y. Seurin and P. Wuille, “Simple Schnorr Multi-signatures with Applications to Bitcoin”,
+pp. 1–34, 2018. Available: <a href="https://eprint.iacr.org/2018/068.pdf">https://eprint.iacr.org/2018/068.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“Simple Schnorr Multi-signatures
+with Applications to Bitcoin”</p>
+
+<p>[<a href="https://wiki.bitcoin.com/w/Multisignature" title="Multisignature">5</a>] B. W. Contributors, “Multisignature”, 2017. Available: <a href="https://wiki.bitcoin.com/w/Multisignature">https://wiki.bitcoin.com/w/Multisignature</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://link.springer.com/article/10.1007/BF00196725" title="Efficient Signature Generation by Smart Cards">6</a>] C. P. Schnorr, “Efficient Signature Generation by Smart Cards”, <em>Journal of Cryptology</em>, Vol. 4, No. 3,
+pp. 161‑174, 1991. Available: <a href="https://link.springer.com/article/10.1007/BF00196725">https://link.springer.com/article/10.1007/BF00196725</a>. Date accessed:
+2019‑01‑20.</p>
+
+<p>[<a href="https://ed25519.cr.yp.to/ed25519-20110705.pdf" title="High-speed High-security Signatures">7</a>] D. J. Bernstein, N. Duif, T. Lange, P. Schwabe and B. Yang, “High-speed High-security Signatures”, <em>Journal of
+Cryptographic Engineering</em>, Vol. 2, No. 2, pp. 77‑89, 2012. Available:
+<a href="https://ed25519.cr.yp.to/ed25519-20110705.pdf">https://ed25519.cr.yp.to/ed25519-20110705.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://eprint.iacr.org/2015/996.pdf" title="Multi-user Schnorr Security, Revisited">8</a>] D. J. Bernstein, “Multi-user Schnorr Security, Revisited”, <em>IACR Cryptology ePrint Archive</em>, Vol. 2015,
+p. 996, 2015.
+Available: <a href="https://eprint.iacr.org/2015/996.pdf">https://eprint.iacr.org/2015/996.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://eprint.iacr.org/2016/191.pdf">9</a>] E. Kiltz, D. Masny and J. Pan,  “Optimal Security Proofs for Signatures from Identification Schemes”, <em>Annual
+Cryptology Conference</em>, pp. 33‑61, Springer, 2016. Available: <a href="https://eprint.iacr.org/2016/191.pdf">https://eprint.iacr.org/2016/191.pdf</a>. Date
+accessed:
+2019‑01‑20.</p>
+
+<p>“Optimal Security Proofs for Signatures
+from Identification Schemes”</p>
+
+<p>[<a href="https://link.springer.com/content/pdf/10.1007%2FBFb0053435.pdf">10</a>] C. M. Li, T. Hwang and N. Y. Lee, “Threshold-multisignature Schemes where Suspected Forgery Implies Traceability
+of Adversarial Shareholders”, <em>Workshop on the Theory and Application of Cryptographic Techniques</em>,
+pp. 194‑204, Springer, 1994. Available: <a href="https://link.springer.com/content/pdf/10.1007%2FBFb0053435.pdf">https://link.springer.com/content/pdf/10.1007%2FBFb0053435.pdf</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>“Threshold-multisignature Schemes
+where Suspected Forgery Implies
+Traceability of Adversarial Shareholders”</p>
+
+<p>[<a href="https://ieeexplore.ieee.org/abstract/document/326780" title="Group-oriented (t, n) Threshold Digital Signature Scheme and Digital Multisignature">11</a>] L. Harn, “Group-oriented (t, n) Threshold Digital Signature Scheme and Digital Multisignature”, <em>IEEE</em>
+<em>Proceedings-Computers and Digital Techniques</em>, Vol. 141, No. 5, pp. 307‑313, 1994.
+Available: <a href="https://ieeexplore.ieee.org/abstract/document/326780">https://ieeexplore.ieee.org/abstract/document/326780</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf">12</a>] P. Horster, M. Michels and H. Petersen, “Meta-Multisignature Schemes Based on the Discrete Logarithm Problem”, <em>Information Security-the Next Decade</em>, pp. 128‑142, Springer, 1995.
+Available: <a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf">https://link.springer.com/content/pdf/10.1007%2F978-0-387-34873-5_11.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“Meta-Multisignature Schemes
+Based on the Discrete Logarithm Problem”</p>
+
+<p>[<a href="https://link.springer.com/chapter/10.1007/3-540-57332-1_11">13</a>] K. Ohta and T. Okamoto, “A Digital Multisignature Scheme Based on the Fiat-Shamir Scheme,” <em>International
+Conference on the Theory and Application of Cryptology</em>, pp. 139‑148, Springer, 1991.
+Available: <a href="https://link.springer.com/chapter/10.1007/3-540-57332-1_11">https://link.springer.com/chapter/10.1007/3-540-57332-1_11</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“A Digital Multisignature Scheme
+Based on the Fiat-Shamir Scheme”</p>
+
+<p>[<a href="https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf" title="Weaknesses in Some Threshold Cryptosystem">14</a>] S. K. Langford, “Weaknesses in Some Threshold Cryptosystems”, <em>Annual International Cryptology Conference</em>,
+pp. 74‑82, Springer, 1996. Available: <a href="https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf">https://link.springer.com/content/pdf/10.1007%2F3-540-68697-5_6.pdf</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf">15</a>] M. Michels and P. Horster, “On the Risk of Disruption in Several Multiparty Signature Schemes”, <em>International
+Conference on the Theory and Application of Cryptology and Information Security</em>, pp. 334‑345, Springer, 1996.
+Available: <a href="https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf">https://pdfs.semanticscholar.org/d412/e5ab35fd397931cef0f8202324308f44e545.pdf</a>. Date accessed:
+2019‑01‑20.</p>
+
+<p>“On the Risk of Disruption in
+Several Multiparty Signature Schemes”</p>
+
+<p>[<a href="http://search.ieice.org/bin/summary.php?id=e82-a_1_21&category=A&year=1999&lang=E&abst=">16</a>] K. Ohta and T. Okamoto, “Multi-signature Schemes Secure Against Active Insider Attacks”, <em>IEICE Transactions on</em>
+<em>Fundamentals of Electronics, Communications and Computer Sciences</em>, Vol. 82, No. 1, pp. 21‑31, 1999.
+Available: <a href="http://search.ieice.org/bin/summary.php?id=e82-a_1_21&category=A&year=1999&lang=E&abst=">http://search.ieice.org/bin/summary.php?id=e82-a_1_21&category=A&year=1999&lang=E&abst=</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>“Multi-signature Schemes Secure
+Against Active Insider Attacks”</p>
+
+<p>[<a href="https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf" title="Accountable-subgroup Multisignatures">17</a>] S. Micali, K. Ohtaz and L. Reyzin, “Accountable-subgroup Multisignatures”, <em>Proceedings of the 8th ACM C
+onference on Computer and Communications Security</em>, pp. 245#8209;254, ACM, 2001.
+Available: <a href="https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf">https://pdfs.semanticscholar.org/6bf4/f9450e7a8e31c106a8670b961de4735589cf.pdf</a>. Date accessed:
+2019‑01‑20.</p>
+
+<p>[<a href="https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf">18</a>] T. Ristenpart and S. Yilek, “The Power of Proofs-of-possession: Securing Multiparty Signatures Against Rogue-key
+Attacks”, <em>Annual International Conference on the Theory and Applications of Cryptographic Techniques</em>,
+pp. 228‑245,
+Springer, 2007. Available: <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf">https://link.springer.com/content/pdf/10.1007%2F978-3-540-72540-4_13.pdf</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>“The Power of Proofs-of-possession:
+Securing Multiparty Signatures
+Against Rogue-key Attacks”</p>
+
+<p>[<a href="https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf">19</a>] A. Boldyreva, “Threshold Signatures, Multisignatures and Blind Signatures Based on the Gap-Diffie-Hellman-group
+Signature Scheme”, <em>International Workshop on Public Key Cryptography</em>, pp. 31‑46, Springer, 2003.
+Available: <a href="https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf">https://www.iacr.org/archive/pkc2003/25670031/25670031.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“Threshold Signatures, Multisignatures
+and Blind Signatures Based on the
+Gap-Diffie-Hellman-Group Signature Scheme”</p>
+
+<p>[<a href="https://eprint.iacr.org/2006/096.pdf">20</a>] S. Lu, R. Ostrovsky, A. Sahai, H. Shacham and B. Waters, “Sequential Aggregate Signatures and Multisignatures
+without Random Oracles,” <em>Annual International Conference on the Theory and Applications of Cryptographic Techniques</em>,
+pp. 465‑485, Springer, 2006. Available: <a href="https://eprint.iacr.org/2006/096.pdf">https://eprint.iacr.org/2006/096.pdf</a>. Date accessed:
+2019‑01‑20.</p>
+
+<p>“Sequential Aggregate Signatures and
+Multisignatures without Random Oracles”</p>
+
+<p>[<a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">21</a>] M. Bellare and G. Neven, “Multi-Signatures in the Plain Public-Key Model and a General Forking Lemma”, <em>Acm
+Ccs</em>, pp. 390‑399, 2006. Available: <a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf">https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>“Multi-Signatures in the Plain
+Public-Key Modeland a General
+Forking Lemma”</p>
+
+<p>[<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.544.2947&rep=rep1&type=pdf" title="Multisignatures Secure under the Discrete Logarithm Assumption and a Generalized Forking Lemma">22</a>] A. Bagherzandi, J. H. Cheon and S. Jarecki, “Multisignatures Secure under the Discrete Logarithm Assumption and a
+Generalized Forking Lemma”, <em>Proceedings of the 15th ACM Conference on Computer and Communications Security - CCS ‘08</em>,
+p. 449, 2008. Available: <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.544.2947&rep=rep1&type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.544.2947&rep=rep1&type=pdf</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://link.springer.com/article/10.1007/s10623-009-9313-z">23</a>] C. Ma, J. Weng, Y. Li and R. Deng, “Efficient Discrete Logarithm Based Multi-signature Scheme in the Plain Public
+Key Model”, <em>Designs, Codes and Cryptography</em>, Vol. 54, No. 2, pp. 121‑133, 2010.
+Available: <a href="https://link.springer.com/article/10.1007/s10623-009-9313-z">https://link.springer.com/article/10.1007/s10623-009-9313-z</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“Efficient Discrete Logarithm
+Based Multi-signature Scheme in the
+Plain Public Key Model”</p>
+
+<p>[<a href="https://arxiv.org/pdf/1503.08768.pdf" title="Keeping Authorities 'Honest or Bust' with Decentralized Witness Cosigning">24</a>] E. Syta, I. Tamas, D. Visher, D. I. Wolinsky, P. Jovanovic, L. Gasser, N. Gailly, I. Khoffi and B. Ford, “Keeping
+Authorities ‘Honest or Bust’ with Decentralized Witness Cosigning”, <em>Security and Privacy (SP), 2016 IEEE Symposium</em>
+on pp. 526‑545, IEEE, 2016. Available: <a href="https://arxiv.org/pdf/1503.08768.pdf">https://arxiv.org/pdf/1503.08768.pdf</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="http://crypto.stanford.edu/~dabo/papers/aggreg.pdf">25</a>] D. Boneh, C. Gentry, B. Lynn and H. Shacham, “Aggregate and Verifiably Encrypted Signatures from Bilinear Maps”,
+in <em>International Conference on the Theory and Applications of Cryptographic Techniques</em>, pp. 416‑432,
+Springer, 2003.
+Available: <a href="http://crypto.stanford.edu/~dabo/papers/aggreg.pdf">http://crypto.stanford.edu/~dabo/papers/aggreg.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“Aggregate and Verifiably Encrypted
+Signatures from Bilinear Maps”</p>
+
+<p>[<a href="https://cseweb.ucsd.edu/~mihir/papers/agg.pdf" title="Unrestricted Aggregate Signatures">26</a>] M. Bellare, C. Namprempre and G. Neven,  “Unrestricted Aggregate Signatures”, <em>International Colloquium on
+Automata, Languages, and Programming</em>, pp. 411‑422, Springer, 2007. Available:
+<a href="https://cseweb.ucsd.edu/~mihir/papers/agg.pdf">https://cseweb.ucsd.edu/~mihir/papers/agg.pdf</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://hovav.net/ucsd/dist/rsaagg.pdf">27</a>] A. Lysyanskaya, S. Micali, L. Reyzin and H. Shacham, “Sequential Aggregate Signatures from Trapdoor Permutations”,
+in <em>International Conference on the Theory and Applications of Cryptographic Techniques</em>, pp. 74‑90,
+Springer, 2004. Available: <a href="https://hovav.net/ucsd/dist/rsaagg.pdf">https://hovav.net/ucsd/dist/rsaagg.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“Sequential Aggregate Signatures
+from Trapdoor Permutations”</p>
+
+<p>[<a href="https://bitcoin.org/en/glossary/multisig" title="M-of-N Standard Transactions">28</a>] G. Andersen, “M-of-N Standard Transactions”, 2011. Available: <a href="https://bitcoin.org/en/glossary/multisig">https://bitcoin.org/en/glossary/multisig</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://www.iacr.org/archive/tcc2009/54440456/54440456.pdf" title="Predicate Privacy in Encryption Systems">29</a>] E. Shen, E. Shi and B. Waters, “Predicate Privacy in Encryption Systems”, <em>Theory of Cryptography Conference</em>,
+pp. 457‑473, Springer, 2009. Available: <a href="https://www.iacr.org/archive/tcc2009/54440456/54440456.pdf">https://www.iacr.org/archive/tcc2009/54440456/54440456.pdf</a>. Date
+accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf">30</a>] R. C. Merkle, “A Digital Signature Based on a Conventional Encryption Function”, <em>Conference on the Theory and
+Application of Cryptographic Techniques</em>, pp. 369‑378, Springer, 1987.
+Available: <a href="https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf">https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>“A Digital Signature Based on
+a Conventional Encryption Function”</p>
+
+<p>[<a href="https://bitcointalk.org/index.php?topic=279249.0" title="CoinJoin: Bitcoin Privacy for the Real World">31</a>] G. Maxwell, “CoinJoin: Bitcoin Privacy for the Real World”, 2013.
+Available: <a href="https://bitcointalk.org/index.php?topic=279249.0">https://bitcointalk.org/index.php?topic=279249.0</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://cseweb.ucsd.edu/~mihir/papers/gq.pdf">32</a>] M. Bellare and A. Palacio, “GQ and Schnorr Identification Schemes: Proofs of Security against Impersonation under
+Active and Concurrent Attacks”, <em>Annual International Cryptology Conference</em>, pp. 162–177, Springer, 2002.
+Available: <a href="https://cseweb.ucsd.edu/~mihir/papers/gq.pdf">https://cseweb.ucsd.edu/~mihir/papers/gq.pdf</a>. Date accessed: 2019-01-20.</p>
+
+<p>“GQ and Schnorr Identification Schemes:
+Proofs of Security Against Impersonation
+Under Active and Concurrent Attacks”</p>
+
+<p>[<a href="https://eprint.iacr.org/2001/002.pdf" title="The One-More-RSA-Inversion Problems and the Security of Chaum’s Blind Signature Scheme*">33</a>] M. Bellare, C. Namprempre,  D. Pointcheval and M. Semanko, “The One-More-RSA Inversion Problems and the Security
+of Chaum’s Blind Signature Scheme”, <em>Journal of Cryptology</em>, Vol. 16, No. 3, 2003. Available:
+<a href="https://eprint.iacr.org/2001/002.pdf">https://eprint.iacr.org/2001/002.pdf</a>. Date accessed: 2019‑01‑20.</p>
+
+<p>[<a href="https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb">34</a>] M. Drijvers, K. Edalatnejad, B. Ford, and G. Neven, “Okamoto Beats Schnorr: On the Provable Security of
+Multi-signatures”, Tech. Rep., 2018. Available:
+<a href="https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb">https://www.semanticscholar.org/paper/Okamoto-Beats-Schnorr%3A-On-the-Provable-Security-of-Drijvers-Edalatnejad/154938a12885ff30301129597ebe11dd153385bb</a>.
+Date accessed: 2019‑01‑20.</p>
+
+<p>“Okamoto Beats Schnorr: On the
+Provable Security of Multi-signatures”</p>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li><a href="https://github.com/kevoulee">https://github.com/kevoulee</a></li>
+  <li><a href="https://github.com/hansieodendaal">https://github.com/hansieodendaal</a></li>
+  <li><a href="https://github.com/CjS77">https://github.com/CjS77</a></li>
+  <li><a href="https://github.com/anselld">https://github.com/anselld</a></li>
+</ul>
+
+        </div>
+
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/cryptography/The_MuSig_Schnorr_Signature_Scheme"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=The%20MuSig%20Schnorr%20Signature%20Scheme&url=/cryptography/The_MuSig_Schnorr_Signature_Scheme"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/cryptography/The_MuSig_Schnorr_Signature_Scheme&amp;media=/images/banner-01.jpg&amp;description=The%20MuSig%20Schnorr%20Signature%20Scheme"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/cryptography/introduction-to-scriptless-scripts" style="background-image: url(/images/banner-01.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/cryptography/introduction-to-scriptless-scripts"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/cryptography/introduction-to-scriptless-scripts">Introduction to Scriptless Scripts</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/cryptography/fraud-proofs">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/cryptography/fraud-proofs">Fraud Proofs and SPV (Lightweight) Clients - Easier Said than Done?</a></h4>
+    </div>
+    <a class="next__image fadein" href="/cryptography/fraud-proofs" style="background-image: url(/images/banner-01.jpg)"></a>
+  </div>
+  
+</div>
+
+      </article>
+      <!-- end post -->
+    </div>
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    01. Learning Paths
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">01. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/cryptography/cryptography" title="Go to 02. Cryptography">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    02. Cryptography
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography/cryptography" title="Go to 02. Cryptography">02. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    03. Consensus Mechanisms
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">03. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/scaling/scaling" title="Go to 04. Scaling">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    04. Scaling
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling/scaling" title="Go to 04. Scaling">04. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/mining/mining" title="Go to 05. Mining">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    05. Mining
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining/mining" title="Go to 05. Mining">05. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    06. Digital Assets
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">06. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/protocols/protocols" title="Go to 07. Protocols">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    07. Protocols
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols/protocols" title="Go to 07. Protocols">07. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    08. Network Analysis
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">08. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/labs/labs" title="Go to 09. Labs">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    09. Labs
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs/labs" title="Go to 09. Labs">09. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/style-guide/style-guide" title="Go to 10. Style Guide">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    10. Style Guide
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5>
+<span class="widget__tag-count">12</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5>
+<span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5>
+<span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5>
+<span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/cryptography/trustless-recursive-zero-knowledge-proofs">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-01.jpg);">
+            <p class="tlu-post-title">Trustless Recursive Zero-Knowledge Proofs</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/cryptography/trustless-recursive-zero-knowledge-proofs">
+                  
+                    In pursuit of blockchain scalability investigation in this report focuses on the second leg of recursive proofs composition...
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/cryptography" class="article__tag">cryptography</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/cryptography/amortization-of-bulletproof-inner-product-roof">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-01.jpg);">
+            <p class="tlu-post-title">Amortization of Bulletproofs Inner-product Proof</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/cryptography/amortization-of-bulletproof-inner-product-roof">
+                  
+                    One of the main attractions of blockchains is the idea of trustlessness.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/cryptography" class="article__tag">cryptography</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/cryptography/rank-1">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-01.jpg);">
+            <p class="tlu-post-title">Rank-1 Constraint System with Application to Bulletproofs</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/cryptography/rank-1">
+                  
+                    This report explains the technical underpinnings of Rank-1 Constraint Systems as applied to Bulletproofs.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/cryptography" class="article__tag">cryptography</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

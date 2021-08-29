@@ -1,0 +1,22 @@
+<div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-recent">
+    <div class="widget__head">
+      <h4 class="widget__title">Recent Posts</h4>
+    </div>
+    {% for post in site.posts limit:2 %}
+    <div class="recent-posts">
+      {% if post.image %}
+      <a class="recent-posts__image fadein" href="{{ post.url }}"
+        style="background-image: url({{site.baseurl}}{{post.image}})"></a>
+      {% else %}
+      {% endif %}
+      <div class="recent-posts__content">
+        <div class="recent-posts__date">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{post.date | date: "%b %-d, %Y"}}</time>
+        </div>
+        <h6 class="recent-posts__title"><a href="{{ post.url }}">{{ post.title }}</a></h6>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

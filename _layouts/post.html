@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+<!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          {% if page.image %}
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('{{site.baseurl}}{{page.image}}');">
+              <h1 class="tlu-hero-title">{{ page.title | escape }}</h1>
+                  <div class="post__meta">
+                    {% if page.tags.size >= 1 %}
+                    <div class="post-tags">
+                      {% for tag in page.tags %}
+                      <a href="{{ site.baseurl }}/tag/{{ tag }}" class="post-tags__tag tlu-hero-tags">{{ tag }}</a>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+
+
+        <div class="post__content">
+          {{ content }}
+        </div>
+
+        <!-- {% include post-share.html %} -->
+        <hr />
+        {% include post-navigation.html %}
+
+      </article>
+      <!-- end post -->
+    </div>
+    <div class="col col-3 col-d-12">
+      {% include sidebar-widgets/toc.html %}
+      {% include sidebar-widgets/widget-tags.html %}
+    </div>
+  </div>
+</div>
+
+{% include related-posts.html %}

@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Introduction to Tor and I2P</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/protocols/intro-to-tor-and-i2p">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:50px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.error-page__head h1,.error-page__head h2{margin-bottom:20px}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px}.error-page__head h2{font-size:60px}}
+
+  </style>
+
+
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-07.jpg');">
+              <h1 class="tlu-hero-title">Introduction to Tor and I2P</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/protocols" class="post-tags__tag tlu-hero-tags">protocols</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+
+
+        <div class="post__content">
+          <h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#i2p-network">I2P Network</a>
+    <ul>
+      <li><a href="#what-is-i2p">What is I2P?</a></li>
+      <li><a href="#how-does-i2p-work">How does I2P Work?</a></li>
+      <li>
+<a href="#i2p-infrastructure">I2P Infrastructure</a>
+        <ul>
+          <li><a href="#routing-infrastructure-and-anonymity">Routing Infrastructure and Anonymity</a></li>
+          <li><a href="#distributed-network-database">Distributed Network Database</a></li>
+          <li><a href="#floodfill-routers">Floodfill Routers</a></li>
+          <li><a href="#garlic-routing">Garlic Routing</a></li>
+        </ul>
+      </li>
+      <li>
+<a href="#i2p-threats-security-and-vulnerability">I2P Threats, Security and Vulnerability</a>
+        <ul>
+          <li><a href="#sybil-attacks">Sybil Attacks</a></li>
+          <li><a href="#eclipse-attacks">Eclipse Attacks</a></li>
+          <li><a href="#brute-force-attacks">Brute Force Attacks</a></li>
+          <li><a href="#intersection-attacks">Intersection Attacks</a></li>
+          <li>
+<a href="#denial-of-service-attacks">Denial of Service Attacks</a>
+            <ul>
+              <li><a href="#greedy-user-attack">Greedy User Attack</a></li>
+              <li><a href="#starvation-attack">Starvation Attack</a></li>
+              <li><a href="#flooding-attack">Flooding Attack</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<a href="#tor-network">Tor Network</a>
+    <ul>
+      <li><a href="#what-is-tor">What is Tor?</a></li>
+      <li><a href="#how-does-tor-work">How does Tor Work</a></li>
+      <li><a href="#how-does-onion-routing-work">How does Onion Routing Work?</a></li>
+      <li>
+<a href="#types-of-tor-relaysnodes-routing">Types of Tor Relays/Nodes Routing</a>
+        <ul>
+          <li><a href="#guard-or-entry-relay-non-exit-relay-nodes">Guard or Entry Relay (Non-exit Relay) Nodes</a></li>
+          <li><a href="#middle-relay-nodes">Middle Relay Nodes</a></li>
+          <li><a href="#exit-relay-nodes">Exit Relay Nodes</a></li>
+          <li><a href="#bridge-relay-nodes">Bridge Relay Nodes</a></li>
+        </ul>
+      </li>
+      <li><a href="#pitfalls-of-using-tor-anonymously---is-it-broken">Pitfalls of Using Tor Anonymously - is it Broken?</a></li>
+      <li><a href="#advantages-and-disadvantages">Advantages and Disadvantages</a></li>
+    </ul>
+  </li>
+  <li><a href="#differences-between-i2p-and-tor">Differences between I2P and Tor</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+  <li><a href="#references">References</a></li>
+  <li>
+<a href="#appendices">Appendices</a>
+    <ul>
+      <li><a href="#appendix-a-tor-further-investigation">Appendix A: Tor Further Investigation</a></li>
+      <li><a href="#appendix-b-tor-links-of-interest">Appendix B: Tor Links of Interest</a></li>
+    </ul>
+  </li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks. They are all
+designed in different ways and for specific uses, although most people use them with the intent of privately browsing the
+Internet. These network functions have very similar characteristics, but also have important differentiators
+in how they work to anonymize and secure users’ Internet traffic.</p>
+
+<p>In this report we’ll examine what Tor and the I2P networks are, the paradigms of how they work, their security
+infrastructure and their potential or known use-cases in the blockchain domain.</p>
+
+<h2 id="i2p-network">I2P Network</h2>
+
+<h3 id="what-is-i2p">What is I2P?</h3>
+
+<p>I2P (known as the Invisible Internet Project - founded in 2003) is a low-latency network layer that runs on a distributed
+network of computers across the globe. It is primarily built into applications such as email, Internet Relay Chat (IRC)
+and file sharing [<a href="https://delaat.net/rp/2017-2018/p97/report.pdf">6</a>]. I2P works by automatically making each client in the network a node, through which data and
+traffic are routed. These nodes are responsible for providing encrypted, one-way connections to and from other computers
+within the network.</p>
+
+<h3 id="how-does-i2p-work">How does I2P Work?</h3>
+
+<p>I2P is an enclosed network that runs within the Internet infrastructure (referred to as the clearnet in this paradigm).
+Unlike VPNs and Tor, which are inherently “outproxy” networks designed for anonymous and private communication with the
+Internet, I2P is designed as a peer-to-peer network. This means it has very little to no communication with the
+Internet. It also means each node in I2P is not identified with an Internet Protocol (IP) address, but with a
+cryptographic identifier ([<a href="https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work">1</a>], [<a href="https://geti2p.net/en/docs/api/i2ptunnel" title="I2PTunnel">2</a>]). A node in the I2P network can be either a server that hosts a darknet service
+(similar to a website on the Internet), or a client who accesses the servers and services hosted by other nodes [<a href="https://delaat.net/rp/2017-2018/p97/report.pdf">6</a>].
+Tor, on the other hand, works by using a group of volunteer-operated relay servers/nodes that allow people to privately
+and securely access the Internet. This means people can choose to volunteer as a relay node in the network and hence
+donate bandwidth [<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: How it works">13</a>]. Compared to Tor, each client/server in I2P is automatically a relay node. Whether data is
+routed through a specific node is normally bandwidth dependent.</p>
+
+<p>Since there is no Internet in I2P, the network is made up of its own anonymous and hidden sites, called <strong>eepsites</strong>.
+These exist only within the network and are only accessible to people using I2P. Services such as <strong>I2PTunnel</strong>,
+which use a standard web server, can be used to create such sites.</p>
+
+<h3 id="i2p-infrastructure">I2P Infrastructure</h3>
+
+<h4 id="routing-infrastructure-and-anonymity">Routing Infrastructure and Anonymity</h4>
+
+<p>I2P works by installing an I2P routing service within a client’s device. This router creates temporary, encrypted,
+one-way connections with I2P routers on other devices. Connections are referred to as one way because they are made up
+of an <em>Outbound Tunnel</em> and an <em>Inbound Tunnel</em>. During any communication, data leaves the client’s devices via the
+outbound tunnels and is received on other devices through their inbound tunnels. This means that messages do not
+travel in two directions within the same tunnel. Therefore, a single round-trip request message and its response between
+two parties needs four tunnels [<a href="https://censorbib.nymity.ch/pdf/Hoang2018a.pdf">4</a>], as shown in Figure 1. Messages sent from one device do not travel directly to
+the inbound tunnel of the destination device. Instead, the outbound router queries a distributed network database for
+the corresponding address of the inbound router. This database is comprised of a custom Kademlia-style Distributed Hash
+Table (DHT) that contains the router information and destination information. For each application or client, the I2P
+router keeps a pool of tunnel pairs. Exploratory tunnels for interactions with the network database are shared among all
+users of a router. If a tunnel in the pool is about to expire or if the tunnel is no longer usable, the router creates a
+new tunnel and adds it to the pool. It is important to recall later that tunnels periodically expire every 10 minutes,
+and thus need to be refreshed frequently. This is one of I2P’s security measures that are performed to prevent
+long-lived tunnels from becoming a threat to anonymity [<a href="https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf">3</a>].</p>
+
+<p align="center"><a name="fig_eca"> </a><img src="assets/network-topology.png" width="950"></p>
+<p align="center"><b>Figure 1: Network Topology [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">6</a>]</b></p>
+
+<h4 id="distributed-network-database">Distributed Network Database</h4>
+
+<p>The Network Database (NetDB) is implemented as a DHT and is propagated via nodes known as
+floodfill routers using the Kademlia protocol. The NetDB is one of the characteristics that make I2P decentralized.
+To start participating in the network, a router installs a part of the NetDB. Obtaining the partial NetDB is called
+bootstrapping and happens by ‘reseeding’ the router. By default, a router will reseed the first time by querying some
+bootstrapped domain names. When a router successfully establishes a connection to one of these domains, a Transport
+Layer Security (TLS) connection is set up through which the router downloads a signed partial copy of the NetDB. Once
+the router can reach at least one other participant in the network, the router will query for other parts of the NetDB
+it does not have itself [<a href="https://www.delaat.net/rp/2018-2019/p63/report.pdf" title="Invisible Internet Project - MSc Security and Network Engineering Research Project">12</a>].</p>
+
+<p>The NetDB stores two types of data:</p>
+<ol>
+  <li>
+<strong>RouterInfo.</strong>
+ When a message is leaving one router, it needs to know some key pieces of data (known as <em>RouterInfo</em>) about the
+ other router. The destination RouterInfo is stored in the NetDB with the router’s identity as the key. To request a
+ resource (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If
+ the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge
+ of participating nodes and returns the node it considers to be nearest to the key [<a href="https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf">3</a>]. The RouterInfo in the NetDB
+ is made up of ([<a href="https://censorbib.nymity.ch/pdf/Hoang2018a.pdf">4</a>], [<a href="https://delaat.net/rp/2017-2018/p97/report.pdf">6</a>]):
+    <ul>
+      <li>The router’s identity - an encryption key, a signing key and a certificate.</li>
+      <li>The contact addresses at which it can be reached - protocol, IP and port.</li>
+      <li>When this was created or published.</li>
+      <li>Options - a set of arbitrary text options, e.g. bandwidth of router.</li>
+      <li>The signature of the above, generated by the identity’s signing key.</li>
+    </ul>
+  </li>
+  <li>
+<strong>LeaseSets.</strong>
+ The LeaseSet specifies a tunnel entry point to reach an endpoint. This specifies the routers that can directly
+ contact the desired destination. It contains the following data:
+    <ul>
+      <li>Tunnel gateway router - given by specifying its identity.</li>
+      <li>Tunnel ID - tunnel used to send messages.</li>
+      <li>Tunnel expiration - when the tunnel will expire.</li>
+      <li>Destination itself - similar to router identity.</li>
+      <li>Signature - used to verify the LeaseSet.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="floodfill-routers">Floodfill Routers</h4>
+
+<p>Special routers, referred to as <em>floodfill routers</em>, are responsible for storing the NetDB. Participation in the floodfill
+pool can be automatic or manual. Automatic participation occurs whenever the number of floodfill routers drops below a
+certain threshold, which is currently 6% of all nodes in the network ([<a href="https://delaat.net/rp/2017-2018/p97/report.pdf">6</a>], [<a href="https://geti2p.net/en/docs/how/network-database" title="The Network Database">7</a>]). When this happens, a node is
+selected to participate as a floodfill router based on criteria such as uptime and bandwidth. It should be noted that
+approximately 95% of floodfill routers are automatic [<a href="http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf">8</a>]. The NetDB is stored in a DHT format within the floodfill
+routers. A resource is requested from the floodfill router considered to be closest to that key. To have a higher
+success rate on a lookup, the client is able to iteratively look up the key. This means that the lookup continues with
+the next-closest peer should the initial lookup request fail.</p>
+
+<h4 id="garlic-routing">Garlic Routing</h4>
+
+<p>Garlic routing is a way of building paths or tunnels through which messages in the I2P network travel. When a message
+leaves the application or client, it is encrypted to the recipient’s public key. The encrypted message is then encrypted
+with instructions specifying the next hop. The message travels in this way through each hop until it reaches the
+recipient. During the transportation of the message, it is bundled with other messages. This means that any message
+travelling in the network could contain a number of other messages bundled with it. In essence, garlic routing does two
+things:</p>
+
+<ul>
+  <li>provides layered encryption; and</li>
+  <li>bundles multiple messages together.</li>
+</ul>
+
+<p>Figure 2 illustrates the end-to-end message bundling:</p>
+<p align="center"><a name="fig_eca"> </a><img src="assets/garliccloves.png" width="1050"></p>
+<p align="center"><b>Figure 2: Garlic Routing <a href="https://github.com/ElementsProject/confidential-assets-demo" title="ElementsProject/confidential-assets-demo"></a></b></p>
+
+<h3 id="i2p-threats-security-and-vulnerability">I2P Threats, Security and Vulnerability</h3>
+
+<p>The I2P project has no specific threat model, but rather talks about common attacks and existing defenses.
+Overall, the design of I2P is motivated by threats similar to those addressed by Tor: the attacker can observe traffic
+locally, but not all traffic flowing through the network; and the integrity of all cryptographic primitives is assumed.
+Furthermore, an attacker is only allowed to control a limited number of peers in the network (the website talks about
+not more than 20% of nodes participating in the NetDB and a similar percentage of the total number of nodes controlled
+by the malicious entity). In this section, we’ll look at different threat models affecting the network [<a href="https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf">3</a>].</p>
+
+<h4 id="sybil-attacks">Sybil Attacks</h4>
+
+<p>The Sybil attack, illustrated in Figure 3, is a well-known anonymity system attack in which the malicious user
+creates multiple identities in an effort to increase control over the network. Running this attack over the I2P network
+is rather difficult. This is because participants/clients in the network evaluate the performance of peers when
+selecting peers to interact with, instead of using a random sample. Since running multiple identities on the same host
+affects the performance of each of those instances, the number of additional identities running in parallel is
+effectively limited by the need to provide each of them with enough resources to be considered as peers. This means that
+the malicious user will need substantial resources to create multiple identities.</p>
+
+<p align="center"><a name="fig_eca"> </a><img src="assets/Sybil%20Attack.png" width="750"></p>
+<p align="center"><b>Figure 3: Sybil Attack [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">5</a>]</b></p>
+
+<h4 id="eclipse-attacks">Eclipse Attacks</h4>
+
+<p>In eclipse attacks, a set of malicious and colluding nodes arranges that a good node can
+only communicate with malicious nodes. The union of malicious nodes therefore fools the good node into writing its
+addresses into neighbouring lists of good nodes. In a Sybil attack, a single malicious node has a large number of
+identities in the network in order to control some part of the network. If an attacker wants to continue a Sybil attack
+into an eclipse attack, the attacker will try to place malicious nodes in the strategic routing path in such a way that
+all traffic will pass through the attacker’s node [<a href="http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf">8</a>].</p>
+
+<h4 id="brute-force-attacks">Brute Force Attacks</h4>
+
+<p>Brute force attacks on the I2P network can be mounted by actively watching the network’s messages as they pass between
+all of the nodes and attempting to correlate messages and their routes. Since all peers in the network are frequently
+sending messages, this attack is trivial. The attacker can send out large amounts of data (more than 2GB), observe all
+the nodes and narrow down those that routed the message. Transmission of a large chunk of data is necessary because
+inter-router communication is encrypted and streamed, i.e. 1,024 byte data is indistinguishable from
+2,048 byte data. Mounting this attack is, however, very difficult and one would need to be an Internet Service
+Provider (ISP) or government entity in order to observe a large chunk of the network.</p>
+
+<h4 id="intersection-attacks">Intersection Attacks</h4>
+
+<p>Intersection attacks involve observing the network and node churns over time. In order to narrow down specific targets,
+when a message is transferred through the network, the peers that are online are intersected. It is theoretically
+possible to mount this attack if the network is small, but impractical with a larger network.</p>
+
+<h4 id="denial-of-service-attacks">Denial of Service Attacks</h4>
+
+<p>Denial of service attacks include the following:</p>
+
+<h5 id="greedy-user-attack">Greedy User Attack</h5>
+
+<p>A greedy user attack occurs when a user is consuming significantly more resources than they are willing to contribute.
+I2P has strong defenses against these attacks, as users within the network are routers by default and hence contribute
+to the network by design.</p>
+
+<h5 id="starvation-attack">Starvation Attack</h5>
+
+<p>A user/node may try to launch a starvation attack by creating a number of bad nodes that do not provide any resources or
+services to the network, causing existing peers to search through a larger network database, or request more tunnels
+than should be necessary. An attempt to find useful nodes can be difficult, as there are no differences between them and
+failing or loaded nodes. However, I2P, by design, maintains a profile of all peers and attempts to identify and ignore
+poorly performing nodes, making this attack difficult.</p>
+
+<h5 id="flooding-attack">Flooding Attack</h5>
+
+<p>In a flooding attack, the malicious user sends a large number of messages to the target’s inbound tunnels or to the
+network at large.</p>
+
+<p>The targeted user can, however:</p>
+
+<ul>
+  <li>detect this by the contents of the message and because the tunnel’s
+tests will fail;</li>
+  <li>identify the unresponsive tunnels, ignore them and build new ones;</li>
+  <li>choose to throttle the number of messages a tunnel can receive.</li>
+</ul>
+
+<p>Although I2P has no defences against a network flooding
+attack, it is incredibly difficult to flood the network.</p>
+
+<h2 id="tor-network">Tor Network</h2>
+
+<h3 id="what-is-tor">What is Tor?</h3>
+
+<p>Tor is a free and open-source anonymity/privacy tool, meant to protect a user’s location and identity. The name is derived
+from the acronym for the original software project name, <strong>The Onion Router</strong> ([<a href="https://www.torproject.org/" title="Tor Project: Download for Tor Browser">17</a>], [<a href="https://en.wikipedia.org/wiki/Tor_(anonymity_network)" title="Wikipedia: Tor (Anonymity Network)">18</a>]). This refers to the way
+in which Tor protects a user’s data, by wrapping it in multiple layers of encryption, similar to the layers of an onion.</p>
+
+<p>Tor uses a unique system that was originally developed by the US Navy to protect government intelligence communications.
+Naval Research Laboratory released the Tor code under a free license and the Tor Project was founded in 2006. With the
+help of the Electronic Frontier Foundation (EFF), further research and development of Tor have continued as a Free and
+Open Source Project. The Tor network service is run by a worldwide community of volunteers and are not controlled by any
+corporate or government agencies.</p>
+
+<p>The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such as OnionShare, run on top
+of or via the Tor network. These tools are meant to make using the Tor network as simple and secure as possible.</p>
+
+<p>Some tools, such as the Tor Browser Bundle, come as a single downloadable and installable package containing everything
+needed to use the Tor network and be anonymous.</p>
+
+<p>Almost any network tool or application that can be configured to use a Socket Secure (SOCKS) proxy can be set up to use
+the Tor network service.</p>
+
+<h3 id="how-does-tor-work">How does Tor Work?</h3>
+
+<p>Before Tor data enters the Tor network, it is bundled into nested layers of encrypted packets of the same size. These
+packets are then routed through a random series of volunteer-operated servers called relay nodes. Each
+time the Tor data passes through one of these relays, a layer of encryption is removed to reveal the location of the
+next relay. When the data reaches the final relay on its path, the last layer of encryption is removed and the data is
+sent to its final destination.</p>
+
+<p>Relay nodes, such as I2P’s nodes, are responsible for creating hops through which data is routed before reaching its
+intended destination on the Internet. They work by incrementally building a circuit of encrypted connections through
+relays on the network. The circuit is extended one hop at a time. Each relay along the way knows only which relay gave
+it data and which relay it is giving data to. No individual relay ever knows the complete path that a data packet has
+taken. Also, no request uses the same path. Later requests are given a new circuit, to keep people from linking a user’s
+earlier actions to new actions. This process is also known as Onion Routing [<a href="https://svn.torproject.org/svn/projects/design-paper/tor-design.html" title="Tor: The Second-Generation Onion Router">14</a>], and is illustrated in Figure 4:</p>
+
+<p align="center"><a name="fig_eca"> </a><img src="assets/htw3.png" width="625"></p>
+<p align="center"><b>Figure 4: How Tor Works [<a href="https://2019.www.torproject.org/about/overview.html.en" title="How Tor Works">13</a>]</b></p>
+
+<h3 id="how-does-onion-routing-work">How does Onion Routing Work?</h3>
+
+<p>Onion Routing is essentially a distributed overlay network designed to anonymize Transmission Control Protocol (TCP)
+based applications such as web browsing, secure shell and instant messaging. Clients choose a path through the network
+and build a circuit in which each node in the path knows its predecessor and successor, but no other nodes in the
+circuit. Traffic flows down the circuit in fixed-size cells, which are unwrapped by a symmetric key at each node
+(similar to the layers of an onion) and relayed downstream [<a href="https://svn.torproject.org/svn/projects/design-paper/tor-design.html" title="Tor: The Second-Generation Onion Router">14</a>]. Each relay can only decrypt enough data to learn the
+location of the previous and next relay. Since each path is randomly generated and the relays do not keep records, it is
+nearly impossible for your activity to be traced back to you through Tor’s complex network [<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: Overview">21</a>].</p>
+
+<p>An <code class="language-plaintext highlighter-rouge">.onion</code> address points to some resource on the Tor network called a hidden service or an <code class="language-plaintext highlighter-rouge">onion</code> service. Onion
+services are generally only accessible by using the Tor network. As an example, if the DuckDuckGo Search engine onion
+address (https://3g2upl4pq6kufc4m.onion/) is visited, the request is routed through the Tor network without the client
+knowing the host IP address of the server. The onion address is practically meaningless without it being routed through
+and resolved by the Tor network. Traffic between a Tor client and an <code class="language-plaintext highlighter-rouge">.onion</code> site should never leave the Tor network,
+thus making the network traffic safer and more anonymous than publicly hosted sites. An <code class="language-plaintext highlighter-rouge">.onion</code> address is a domain
+name that is not easy to remember or find, as there are no directory services. It generally consists of opaque,
+non-mnemonic, 16- or 56-character alpha-semi-numerical strings that are generated on a cryptographically hashed public
+key. The Top Level Domain (TLD) <code class="language-plaintext highlighter-rouge">.onion</code> is not a true domain and cannot be found or queried on the Internet, but only
+inside the Tor network ([<a href="https://3g2upl4pq6kufc4m.onion/">19</a>]], [<a href="https://en.wikipedia.org/wiki/.onion" title="Wikipedia: .onion">23</a>], [<a href="https://2019.www.torproject.org/docs/faq#AccessOnionServices" title="Tor Project: How do I access onion services?">24</a>]).</p>
+
+<p>The designated use of relay nodes in the Tor network gives the network the following important characteristics [<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: How it works">13</a>]:</p>
+<ul>
+  <li>The stability of the network is proportional to the number of relay nodes in the network. The fewer the number of
+relay nodes, the less stable the network becomes.</li>
+  <li>The security of the network is also proportional to the number of relay nodes. A network with more active relay
+nodes is less vulnerable to attacks.</li>
+  <li>Finally, the speed of the network is proportional to the number of relay nodes. The more nodes there are, the faster
+the network becomes.</li>
+</ul>
+
+<h3 id="types-of-tor-relaysnodes-routing">Types of Tor Relays/Nodes Routing</h3>
+
+<p>Tor’s relay nodes do not all function in the same way. As shown in Figure 5, there are four types of relay nodes: an
+entry or guard relay node, a middle relay node, an exit relay node and a bridge relay node.</p>
+
+<p align="center"><a name="fig_eca"> </a><img src="assets/torCircuit.png" width="650"></p>
+<p align="center"><b>Figure 5: Tor Circuit [<a href="https://medium.com/coinmonks/tor-nodes-explained-580808c29e2d" title="The Tor Circuit">14</a>]</b></p>
+
+<h4 id="guard-or-entry-relay-non-exit-relay-nodes">Guard or Entry Relay (Non-exit Relay) Nodes</h4>
+
+<p>A guard relay node is the first relay node in the Tor circuit. Each client that wants to connect to the Tor network will
+first connect to a guard relay node. This means that guard relay nodes can see the IP address of the client attempting
+to connect. It is worth noting that Tor publishes its guard relay nodes and anyone can see them on websites such as the
+one in [<a href="https://torstatus.blutmagie.de/" title="Tor Network Status">15</a>]. Since it is possible to see the IP address of a client, there have been cases where attackers have
+filtered out traffic on the network using circuit fingerprinting techniques such as documented in [<a href="https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf" title="Circuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service">16</a>].</p>
+
+<h4 id="middle-relay-nodes">Middle Relay Nodes</h4>
+
+<p>Middle relay nodes cover most parts of the Tor network and act as hops. They consist of relays through which data is
+passed in encrypted format. No node knows more than its predecessor and descendant. All the available middle relay nodes
+show themselves to the guard and exit relay nodes so that any may connect to them for transmission. Middle relay nodes
+can never be exit relay nodes within the network [<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: How it works">13</a>].</p>
+
+<h4 id="exit-relay-nodes">Exit Relay Nodes</h4>
+
+<p>Exit relay nodes act as a bridge between the Tor network and the Internet. They are Internet public-facing relays, where
+the last layer of Tor encryption is removed from traffic that can then leave the Tor network as normal traffic that
+merges into the Internet on its way to its desired destinations on the Internet.</p>
+
+<p>The services to which Tor clients are connecting (website, chat service, email provider, etc.) will see the IP address
+of the exit relay instead of the real IP addresses of Tor users. Because of this, exit relay node owners are often
+subjected to numerous complaints, legal notices and shutdown threats [<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: How it works">13</a>].</p>
+
+<h4 id="bridge-relay-nodes">Bridge Relay Nodes</h4>
+
+<p>The design of the Tor network means that the IP addresses of Tor relays are public, as previously mentioned, and as
+shown in [<a href="https://torstatus.blutmagie.de/" title="Tor Network Status">15</a>]. Because of this, Tor can be blocked by governments or ISPs blacklisting the IP addresses of these
+public Tor nodes. In response to blocking tactics, a special kind of relay called a Bridge should be used, which is a
+node in the network that is not listed in the public Tor directory. Bridge selection is done when installing the Tor
+Browser bundle, and makes it less likely to have to deal with complaints or have Internet traffic blocked by ISPs and
+governments.</p>
+
+<p>Bridge relay nodes are meant for people who want to run Tor from their homes, have a static IP address or do not have much bandwidth to donate [<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: How it works">13</a>].</p>
+
+<h3 id="pitfalls-of-using-tor-anonymously---is-it-broken">Pitfalls of Using Tor Anonymously - is it Broken?</h3>
+
+<p>Although traffic between nodes on the Tor network is encrypted, this does not guarantee anonymity for users. There are a
+number of pitfalls of using Tor anonymously.</p>
+
+<p>Internet browsers and operating systems, what might seem like a simple request to a URL, could deanonymize somebody.</p>
+
+<p>Older Tor setups needed a user to know how to configure their proxy settings in their operating system and/or browser,
+in order to use Tor services. This was very easy to get wrong or incomplete, and some users’ information or details
+could be leaked.</p>
+
+<p>For example, Domain Name System (DNS) requests intended for the Tor network, i.e. <code class="language-plaintext highlighter-rouge">.onion</code> address, might be sent
+directly to the public DNS server, if the <code class="language-plaintext highlighter-rouge">network.proxy.socks_remote_dns</code> was not set to true in FireFox. These DNS
+requests could be used to track where a user might be surfing and thus deanonymize the user.</p>
+
+<p>Tor is not broken if Tor services are correctly set up or if the Tor Browser is used correctly. It is very easy to do
+something that would deanonymize a user, such as use an older browser or tool that is not configured to proxy all
+traffic via Tor network services.</p>
+
+<p>Another example is if the user logs into a remote service such as Facebook or Gmail, their anonymity at this site is
+lost. What many people do not know is that other sites use tracking techniques, such as cookies, which could deanonymize
+the user on other sites too. Further information about online tracking can be found in [<a href="https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/">25</a>]</p>
+
+<p>However, recent releases of the Tor Browser notify users of updates and also work toward keeping each site isolated
+in their own Tab or session, addressing old and possibly insecure releases and user tracking via cookies.</p>
+
+<p>Tor some has weaknesses, e.g. if a user is the only person using Tor on their home, office or school network,
+they could be deanonymized. Another is that a site knows when it has been accessed using Tor. These shortcomings
+might not be directly an issue with Tor or its encryption, but an expectation of a novice user, using Tor or
+one of the Tor tools and services.</p>
+
+<p>For an interesting talk about some of the Tor attacks, refer to [<a href="https://www.youtube.com/watch?v=eQ2OZKitRwc">26</a>]. The following are two real instances where
+people using Tor were discovered:</p>
+
+<ul>
+  <li>On 16 December 2013, Harvard University received a bomb threat that was tracked down to Eldo Kim, who was one of the
+few people using Tor on the campus network when the email had been sent. After questioning, Kim admitted he had sent
+the hoax bomb threat, as he wanted to get out of an exam [<a href="https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/">27</a>].</li>
+  <li>Hector Xavier Monsegur (Sabu) normally used Tor for connecting to IRC, but was caught not using it once, and the FBI
+found his home IP. After being caught, he started to collaborate with the FBI. While Monsegur was chatting to Jeremy
+Hammond on IRC, Hammond let slip details of where he had been arrested before and other groups with which he had been
+involved. This helped reduce the number of suspects and the FBI was able to get a court order to monitor Internet
+access and to correlate when Hammond was using Tor [<a href="https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/">28</a>].</li>
+</ul>
+
+<h3 id="advantages-and-disadvantages">Advantages and Disadvantages</h3>
+
+<p>Advantages of Tor:</p>
+
+<ul>
+  <li>It is free and open source.</li>
+  <li>It supports Linux, OSX and Windows.</li>
+  <li>It is easy to install for supported operating systems.</li>
+  <li>It is not controlled by corporate or government agencies.</li>
+</ul>
+
+<p>Disadvantages of Tor:</p>
+
+<ul>
+  <li>It can be slow.</li>
+  <li>It does not necessarily encrypt data leaving <code class="language-plaintext highlighter-rouge">Exit Node</code>. This data can be intercepted.</li>
+  <li>It does not stop somebody from deanonymizing themselves.</li>
+  <li>It does not stop interceptors from knowing you are using Tor.</li>
+  <li>Its network is not user-friendly, due to its secure and hidden nature.</li>
+  <li>Its nodes (relay/bridge) are run by volunteers, who can sometimes be unreliable.</li>
+</ul>
+
+<h2 id="differences-between-i2p-and-tor">Differences between I2P and Tor</h2>
+
+<!-- <div align="center"><b>Table 1: Differences between I2P and Tor</b></div> -->
+
+<table>
+  <thead>
+    <tr>
+      <th>I2P</th>
+      <th>Tor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fully peer to peer: self-organizing nodes</td>
+      <td>Fully peer to peer: volunteer relay nodes</td>
+    </tr>
+    <tr>
+      <td>Queries NetDB to find destination’s inbound tunnel gateway</td>
+      <td>Relays data to the closest relay</td>
+    </tr>
+    <tr>
+      <td>Limited to no exit nodes; internal communication only</td>
+      <td>Designed and optimized for exit traffic, with a large number of exit nodes</td>
+    </tr>
+    <tr>
+      <td>Designed primarily for file sharing</td>
+      <td>Designed for anonymous Internet access</td>
+    </tr>
+    <tr>
+      <td>Unidirectional tunnels</td>
+      <td>Rendezvous point</td>
+    </tr>
+    <tr>
+      <td>Significantly smaller user base</td>
+      <td>Generally bigger user base</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Source:</strong> ([<a href="https://pdfs.semanticscholar.org/aa81/79d3da24b643a4d004c44ebe543000295d51.pdf">9</a>], [<a href="https://geti2p.net/en/comparison/tor" title="I2P Compared to Tor">10</a>], [<a href="http://www.geti2p.org/how_networkcomparisons.html">11</a>]).</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In summary, Tor and I2P are two network types that anonymize and encrypt data transferred within them. Each network is
+uniquely designed for a respective function. The I2P network is designed for moving data in a peer-to-peer format,
+whereas the Tor network is designed for accessing the Internet privately.</p>
+
+<p>Regarding Tor, the following should be kept in mind:</p>
+
+<ul>
+  <li>Anonymity is not confidentiality; Tor by itself does not guarantee anonymity. Total anonymity has many obstacles,
+not only technology related, but also the human component.</li>
+  <li>Tor is not a Virtual Private Network (VPN).</li>
+  <li>Tor data leaving the Tor network can be intercepted.</li>
+</ul>
+
+<p>Extensive research exists and continues to find ways to improve the security of these networks in their respective
+operational designs. This research becomes especially important when control of a network may mean monetary loss, loss
+of privacy or denial of service.</p>
+
+<h2 id="references">References</h2>
+
+<p>[<a href="https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work">1</a>] B. Mann, “What Is I2P &amp; How Does It Compare vs. Tor Browser?” [Online.]
+Available: <a href="https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work">https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work</a>. Date accessed: 2019‑06‑18.</p>
+
+<p>“What Is I2P &amp;
+How Does It Compare vs.
+Tor Browser?”</p>
+
+<p>[<a href="https://geti2p.net/en/docs/api/i2ptunnel" title="I2PTunnel">2</a>]: I2P: “I2PTunnel” [online]. Available: <a href="https://geti2p.net/en/docs/api/i2ptunnel">https://geti2p.net/en/docs/api/i2ptunnel</a>. Date accessed: 2019‑06‑18.</p>
+
+<p>[<a href="https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf">3</a>]: C. Egger, J. Schlumberger, C. Kruegel and G. Vigna, “Practical Attacks Against the I2P Network” - Paper [online].
+Available: <a href="https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf">https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf</a>. Date accessed: 2019‑06‑18.</p>
+
+<p>“Practical Attacks Against
+the I2P Network”</p>
+
+<p>[<a href="https://censorbib.nymity.ch/pdf/Hoang2018a.pdf">4</a>] N. P. Hoang, P. Kintis, M. Antonakakis and M. Polychronakis, “An Empirical Study of the I2P Anonymity Network and
+its Censorship Resistance” [online]. Available: <a href="https://censorbib.nymity.ch/pdf/Hoang2018a.pdf">https://censorbib.nymity.ch/pdf/Hoang2018a.pdf</a>. Date accessed:
+2019‑06‑18.</p>
+
+<p>“An Empirical Study
+of the I2P Anonymity
+Network and its
+Censorship Resistance”</p>
+
+<p>[<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf">5</a>] K. Alachkar and D. Gaastra, “Mitigating Sybil Attacks on the I2P Network Using Blockchain” - Presentation [online].
+Available: <a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf">https://www.delaat.net/rp/2017-2018/p97/presentation.pdf</a>. Date accessed: 2019‑06‑20.</p>
+
+<p>“Mitigating Sybil Attacks
+on the I2P Network
+Using Blockchain”</p>
+
+<p>[<a href="https://delaat.net/rp/2017-2018/p97/report.pdf">6</a>] K. Alachkar and D. Gaastra, “Blockchain-based Sybil Attack Mitigation: A Case Study of the I2P Network” - Report
+[online]. Available: <a href="https://delaat.net/rp/2017-2018/p97/report.pdf">https://delaat.net/rp/2017-2018/p97/report.pdf</a>. Date accessed: 2019‑06‑20.</p>
+
+<p>“Blockchain-based Sybil
+Attack Mitigation:
+A Case Study of the
+I2P Network”</p>
+
+<p>[<a href="https://geti2p.net/en/docs/how/network-database" title="The Network Database">7</a>] I2P: “The Network Database” [online]. Available: <a href="https://geti2p.net/en/docs/how/network-database">https://geti2p.net/en/docs/how/network-database</a>. Date accessed:
+2019‑06‑20.</p>
+
+<p>[<a href="http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf">8</a>] H. Vhora and G. Khilari, “Defending Eclipse Attack in I2P using Structured
+Overlay Network” [online]. Available: <a href="http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf">http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf</a>.
+Date accessed: 2019‑06‑20.</p>
+
+<p>“Defending Eclipse Attack
+in I2P using Structured
+Overlay Network”</p>
+
+<p>[<a href="https://pdfs.semanticscholar.org/aa81/79d3da24b643a4d004c44ebe543000295d51.pdf">9</a>] M. Ehlert, “I2P Usability vs. Tor Usability - A Bandwidth and Latency Comparison” [online].
+Available: <a href="https://pdfs.semanticscholar.org/aa81/79d3da24b643a4d004c44ebe543000295d51.pdf">https://pdfs.semanticscholar.org/aa81/79d3da24b643a4d004c44ebe543000295d51.pdf</a>. Date accessed: 2019‑06‑20.</p>
+
+<p>“I2P Usability vs.
+Tor Usability -
+A Bandwidth and Latency
+Comparison”</p>
+
+<p>[<a href="https://geti2p.net/en/comparison/tor" title="I2P Compared to Tor">10</a>] I2P: “I2P Compared to Tor” [online]. Available: <a href="https://geti2p.net/en/comparison/tor">https://geti2p.net/en/comparison/tor</a>. Date accessed: 2019‑06‑20.</p>
+
+<p>[<a href="http://www.geti2p.org/how_networkcomparisons.html">11</a>] I2P: “I2P Compared to Tor and Freenet” [online]. Available: <a href="http://www.geti2p.org/how_networkcomparisons.html">http://www.geti2p.org/how_networkcomparisons.html</a>.
+Date accessed: 2019‑06‑20.</p>
+
+<p>“I2P Compared to Tor
+and Freenet”</p>
+
+<p>[<a href="https://www.delaat.net/rp/2018-2019/p63/report.pdf" title="Invisible Internet Project - MSc Security and Network Engineering Research Project">12</a>] T. de Boer and V. Breider: “Invisible Internet Project - MSc Security and Network Engineering Research Project.” [online].
+Available: <a href="https://www.delaat.net/rp/2018-2019/p63/report.pdf">https://www.delaat.net/rp/2018-2019/p63/report.pdf</a> Date accessed: 2019‑07‑10.</p>
+
+<p>[<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: How it works">13</a>] Tor, “Tor Project: How it works” [online].
+Available: <a href="https://2019.www.torproject.org/about/overview.html.en">https://2019.www.torproject.org/about/overview.html.en</a> Date accessed: 2019‑08‑05.</p>
+
+<p>[<a href="https://svn.torproject.org/svn/projects/design-paper/tor-design.html" title="Tor: The Second-Generation Onion Router">14</a>] R. Dingledine, N Mathewson and P. Syverson, “Tor: The Second-Generation Onion Router” [online]
+Available: <a href="https://svn.torproject.org/svn/projects/design-paper/tor-design.html">https://svn.torproject.org/svn/projects/design-paper/tor-design.html</a> Date accessed: 2019‑08‑05.</p>
+
+<p>[<a href="https://torstatus.blutmagie.de/" title="Tor Network Status">15</a>] Tor, “Tor Network Status” [online]<br>
+Available: <a href="https://torstatus.blutmagie.de/">https://torstatus.blutmagie.de/</a> Date accessed: 2019‑08‑05.</p>
+
+<p>[<a href="https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf" title="Circuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service">16</a>] A. Kwon, M. AlSabah, D. Lazar, M. Dacier and S. Devadas, “Circuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service” [online]
+Available: <a href="https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf">https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf</a> Date accessed: 2019‑08‑05.</p>
+
+<p>[<a href="https://www.torproject.org/" title="Tor Project: Download for Tor Browser">17</a>] Tor Project: “Download for Tor Browser” [online]. Available: <a href="https://www.torproject.org/">https://www.torproject.org/</a>. Date accessed: 2019‑05‑16.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Tor_(anonymity_network)" title="Wikipedia: Tor (Anonymity Network)">18</a>] Wikipedia: “Tor (Anonymity Network)” [online]. Available: <a href="https://en.wikipedia.org/wiki/Tor_(anonymity_network)">https://en.wikipedia.org/wiki/Tor_(anonymity_network)</a>.
+Date accessed: 2019‑05‑16.</p>
+
+<p>[<a href="https://3g2upl4pq6kufc4m.onion/">19</a>] DuckDuckGo Search Engine inside Tor [online]. Available: <a href="https://3g2upl4pq6kufc4m.onion/">https://3g2upl4pq6kufc4m.onion/</a>. <strong>Note:</strong> This link
+will not work unless Tor or the Tor Browser is used. Date accessed: 2019‑05‑16.</p>
+
+<p>“DuckDuckGo Search Engine -
+link will not work unless
+Tor or Tor Browser is used”</p>
+
+<p>[<a href="https://check.torproject.org/">20</a>] Tor Project: “Check” [online]. Available: <a href="https://check.torproject.org/">https://check.torproject.org/</a>. <strong>Note:</strong> This link will help the user
+identify if Tor or the Tor Browser is been used. Date accessed: 2019‑05‑16</p>
+
+<p>“Tor Project: Check -
+link will help user identify
+Tor or Tor Browser is been used”</p>
+
+<p>[<a href="https://2019.www.torproject.org/about/overview.html.en" title="Tor Project: Overview">21</a>] Tor Project: “Overview” [online]. Available: <a href="https://2019.www.torproject.org/about/overview.html.en">https://2019.www.torproject.org/about/overview.html.en</a>.
+Date accessed: 2019‑05‑16.</p>
+
+<p>[<a href="https://trac.torproject.org/projects/tor/wiki/TorRelayGuide" title="Tor Project: The Tor Relay Guide">22</a>] Tor Project: “The Tor Relay Guide” [online]. Available:
+<a href="https://trac.torproject.org/projects/tor/wiki/TorRelayGuide">https://trac.torproject.org/projects/tor/wiki/TorRelayGuide</a>. Date accessed: 2019‑08‑14.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/.onion" title="Wikipedia: .onion">23</a>] Wikipedia: “.onion” [online]. Available:
+<a href="https://en.wikipedia.org/wiki/.onion">https://en.wikipedia.org/wiki/.onion</a>. Date accessed: 2019‑08‑22.</p>
+
+<p>[<a href="https://2019.www.torproject.org/docs/faq#AccessOnionServices" title="Tor Project: How do I access onion services?">24</a>] Tor Project: “How do I access onion services?” [online]. Available:
+<a href="https://2019.www.torproject.org/docs/faq#AccessOnionServices">https://2019.www.torproject.org/docs/faq#AccessOnionServices</a>. Date accessed: 2019‑08‑22.</p>
+
+<p>[<a href="https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/">25</a>] R. Heaton: “How Does Online Tracking Actually Work?” [online]. Available:
+<a href="https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/">https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/</a>. Date accessed: 2019‑07‑25.</p>
+
+<p>“Robert Heaton: How does online
+tracking actually work?”</p>
+
+<p>[<a href="https://www.youtube.com/watch?v=eQ2OZKitRwc">26</a>] YouTube: “DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: How People Got Caught” [online]. Available:
+<a href="https://www.youtube.com/watch?v=eQ2OZKitRwc">https://www.youtube.com/watch?v=eQ2OZKitRwc</a>. Date accessed: 2019‑06‑18.</p>
+
+<p>“YouTube: DEF CON 22 - Adrian Crenshaw -
+Dropping Docs on Darknets:
+How People Got Caught”</p>
+
+<p>[<a href="https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/">27</a>] Ars Technica: “Use of Tor helped FBI ID suspect in bomb hoax case” [online]. Available:
+<a href="https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/">https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/</a>.
+Date accessed: 2019‑07‑11.</p>
+
+<p>“Ars Technica: Use of Tor helped
+FBI ID suspect in bomb hoax case”</p>
+
+<p>[<a href="https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/">28</a>] Ars Technica: “Stakeout: How the FBI tracked and busted a Chicago Anon” [online]. Available:
+<a href="https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/">https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/</a>.
+Date accessed: 2019‑07‑11.</p>
+
+<p>“Ars Technica: Stakeout: How the
+FBI tracked and busted a Chicago Anon”</p>
+
+<h2 id="appendices">Appendices</h2>
+
+<h3 id="appendix-a-tor-further-investigation">Appendix A: Tor Further Investigation</h3>
+
+<p>Onion Services - Tor services that don’t leave the Tor network: <a href="https://2019.www.torproject.org/docs/onion-services.html.en">https://2019.www.torproject.org/docs/onion-services.html.en</a>.</p>
+
+<h3 id="appendix-b-tor-links-of-interest">Appendix B: Tor Links of Interest</h3>
+
+<ul>
+  <li><a href="https://www.le-vpn.com/what-is-tor-browser/">What is Tor Browser?</a></li>
+  <li><a href="https://www.vpnmentor.com/blog/tor-browser-work-relate-using-vpn/">The Ultimate Guide to Tor Browser (with Important Tips) 2019</a></li>
+  <li><a href="https://metrics.torproject.org">Metrics of the Tor Project</a></li>
+  <li><a href="https://onionshare.org">Sharing files using Tor</a></li>
+  <li><a href="https://blog.torproject.org/new-release-onionshare-2">Blog Post about OnionShare2 and its release</a></li>
+  <li><a href="https://2019.www.torproject.org/projects/projects.html.en">List of Tor Projects</a></li>
+  <li><a href="https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf">Isis Lovecruft’s PDF covering Privacy and Anonymity</a></li>
+</ul>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li>
+<a href="https://github.com/mhlangagc">https://github.com/mhlangagc</a> and <a href="https://github.com/leet4tari">https://github.com/leet4tari</a>
+</li>
+  <li><a href="https://github.com/neonknight64">https://github.com/neonknight64</a></li>
+  <li><a href="https://github.com/SWvheerden">https://github.com/SWvheerden</a></li>
+  <li><a href="https://github.com/sdbondi">https://github.com/sdbondi</a></li>
+  <li><a href="https://github.com/anselld">https://github.com/anselld</a></li>
+</ul>
+
+        </div>
+
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/protocols/intro-to-tor-and-i2p"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Introduction%20to%20Tor%20and%20I2P&url=/protocols/intro-to-tor-and-i2p"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/protocols/intro-to-tor-and-i2p&amp;media=/images/banner-07.jpg&amp;description=Introduction%20to%20Tor%20and%20I2P"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/protocols/AtomicSwaps" style="background-image: url(/images/banner-07.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/protocols/AtomicSwaps"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/protocols/AtomicSwaps">Atomic Swaps</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/protocols/distributed-hash-tables">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/protocols/distributed-hash-tables">Distributed Hash Tables</a></h4>
+    </div>
+    <a class="next__image fadein" href="/protocols/distributed-hash-tables" style="background-image: url(/images/banner-07.jpg)"></a>
+  </div>
+  
+</div>
+
+      </article>
+      <!-- end post -->
+    </div>
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    01. Learning Paths
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths/introduction-to-learning" title="Go to 01. Learning Paths">01. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/cryptography/cryptography" title="Go to 02. Cryptography">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    02. Cryptography
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography/cryptography" title="Go to 02. Cryptography">02. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    03. Consensus Mechanisms
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms/consensus-mechanisms" title="Go to 03. Consensus Mechanisms">03. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/scaling/scaling" title="Go to 04. Scaling">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    04. Scaling
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling/scaling" title="Go to 04. Scaling">04. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/mining/mining" title="Go to 05. Mining">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    05. Mining
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining/mining" title="Go to 05. Mining">05. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    06. Digital Assets
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets/digital-assets" title="Go to 06. Digital Assets">06. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/protocols/protocols" title="Go to 07. Protocols">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    07. Protocols
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols/protocols" title="Go to 07. Protocols">07. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    08. Network Analysis
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis/network-analysis" title="Go to 08. Network Analysis">08. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/labs/labs" title="Go to 09. Labs">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    09. Labs
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs/labs" title="Go to 09. Labs">09. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                  <a href="/style-guide/style-guide" title="Go to 10. Style Guide">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    10. Style Guide
+                  </a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5>
+<span class="widget__tag-count">12</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5>
+<span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5>
+<span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5>
+<span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5>
+<span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5>
+<span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5>
+<span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5>
+<span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/mimblewimble-mb-bp-utxo">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Mimblewimble Multiparty Bulletproof UTXO</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/mimblewimble-mb-bp-utxo">
+                  
+                    Mimblewimble is a privacy-oriented, cryptocurrency technology. It differs from Bitcoin in some key areas...
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                  <a href="/tag/mimblewimble" class="article__tag">mimblewimble</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/distributed-hash-tables">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Distributed Hash Tables</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/distributed-hash-tables">
+                  
+                    A hash table is a data structure that maps keys to values.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols/AtomicSwaps">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Atomic Swaps</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols/AtomicSwaps">
+                  
+                    Atomic swaps or cross-chain atomic swaps, in a nutshell, are decentralized exchanges, but only for cryptocurrencies.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/contact/" class="nav__link">Contact</a>
+      </li>
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

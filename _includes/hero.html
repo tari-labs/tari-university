@@ -1,0 +1,18 @@
+<!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          {% if site.hero-image %}
+          <div class="hero__image">
+            <img class="fadein" src="{{site.baseurl}}{{site.hero-image}}" alt="{{site.title}}">
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->

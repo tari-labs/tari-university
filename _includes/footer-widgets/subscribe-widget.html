@@ -1,0 +1,23 @@
+{% if site.mailchimp %}
+<div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-subscribe">
+    <div class="widget__head">
+      <h4 class="widget__title">Get Interesting News</h4>
+    </div>
+    <p class="subscribe-subtitle">{{ site.mailchimp-text }}</p>
+    <form class="subscribe-form validate"
+      action="{% if site.mailchimp-identifier %}//{{site.mailchimp-identifier}}{% else %}#{% endif %}" method="POST"
+      id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+      <div class="subscribe-group">
+        <div class="subscribe-group-top">
+          <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+          <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL"
+            placeholder="Email Address">
+          <button class="subscribe-button button button--primary" id="membedded-subscribe" type="submit"
+            name="subscribe">Subscribe</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}

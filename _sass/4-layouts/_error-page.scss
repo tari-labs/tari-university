@@ -1,0 +1,57 @@
+/* Error Page */
+.error-page {
+  position: relative;
+  margin-top: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.error-page__inner {
+  position: relative;
+  z-index: 1;
+  padding: 4vw;
+  @media only screen and (max-width: $mobile) {
+    padding: 3vw;
+  }
+}
+
+.error-page__head {
+  max-width: 500px;
+  width: 100%;
+  padding: 50px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  background-color: $section-color;
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter: saturate(180%) blur(10px);
+    background-color: rgba($section-color, .8);
+  }
+
+  h1, h2 {
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 100px;
+    line-height: 1;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+
+  @media only screen and (max-width: $mobile) {
+    padding: 20px 15px;
+
+    h1 {
+      font-size: 27px;
+    }
+    
+    h2 {
+      font-size: 60px;
+    }
+  }
+}

@@ -1,0 +1,113 @@
+/* Author Page */
+.author-profile {
+  padding: 3vw;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #f6f7f9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .author-profile__inner {
+    max-width: 600px;
+    width: 100%;
+    padding: 30px 40px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 5px;
+    background-color: $author-background-color;
+    @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      backdrop-filter: saturate(180%) blur(10px);
+      background-color: rgba($author-background-color, .8);
+    }
+
+    .author-image-box {
+      margin-bottom: 10px;
+    }
+  }
+
+
+  .author__image {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 5px solid $base-border-color;
+    box-shadow: 0 1px 2px -1px rgba(0,0,0,.1), 0 2px 2px -1px rgba(0,0,0,.06);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: $background-color;
+  }
+
+  .author-title {
+    margin-bottom: 5px;
+    font-size: 33px;
+    line-height: 43px;
+  }
+
+  .author-location {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+    color: $base-meta-color;
+  }
+
+  .author-bio {
+    max-width: 500px;
+    margin: 20px auto 0;
+    font-size: 17px;
+    line-height: 28px;
+    font-weight: 400;
+    color: $author-color;
+  }
+
+  .author-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 10px;
+    .icon-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 28px;
+      height: 28px;
+      margin: 0 1px;
+      font-size: 14px;
+      line-height: 25px;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px -1px rgba(0,0,0,.1), 0 2px 2px -1px rgba(0,0,0,.06);
+      color: $social-link-color;
+      background-color: $social-link-background;
+      &:hover {
+        color: $white;
+        background-color: $brand-color;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $mobile) {
+    .author-profile__inner {
+      padding: 20px 10px;
+    }
+
+    .author-meta {
+      margin: 15px 0 10px;
+    }
+
+    .author-title {
+      font-size: 25px;
+      line-height: 35px;
+    }
+
+    .author-bio {
+      margin: 15px auto 0;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+}
