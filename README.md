@@ -10,9 +10,3 @@ To run the theme locally, navigate to the theme directory and run `bundle instal
 
 I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on Jekyll website.
 
-
-* * *
-
-### Documentation
-
-Before using the Clifford theme, please read the attached documentation.
