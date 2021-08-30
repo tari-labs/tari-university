@@ -3,9 +3,10 @@ layout: post
 title:  Consensus Mechanisms
 date:   2020-03-01 12:00:00 +0300
 image:  '/images/banner-03.jpg'
-category: consensus-mechanisms
+category: 
 tags:   [consensus-mechanisms]
 icon: '/images/index/jewel-03.svg'
+line: '/images/index/line-orange.svg'
 featured: true
 excerpttext: Consensus mechanisms are crucial for a blockchain in order to function correctly
 ---

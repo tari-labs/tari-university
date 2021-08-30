@@ -1,59 +1,59 @@
 header:
-  - url: /learning-paths/introduction-to-learning
-    title: 01. Learning Paths
+  - url: /learning-paths
+    title: 1. Learning Paths
     identifier: learning-paths
     weight: 1
     icon: /images/index/jewel-02.svg
     image: /images/banner-02.jpg
-  - url: /cryptography/cryptography
-    title: 02. Cryptography
+  - url: /cryptography
+    title: 2. Cryptography
     identifier: cryptography
     weight: 2
     icon: /images/index/jewel-01.svg
     image: /images/banner-01.jpg
-  - url: /consensus-mechanisms/consensus-mechanisms
-    title: 03. Consensus Mechanisms
+  - url: /consensus-mechanisms
+    title: 3. Consensus Mechanisms
     identifier: consensus-mechanisms
     weight: 3
     icon: /images/index/jewel-03.svg
     image: /images/banner-03.jpg
-  - url: /scaling/scaling
-    title: 04. Scaling
+  - url: /scaling
+    title: 4. Scaling
     identifier: scaling
     weight: 4
     icon: /images/index/jewel-04.svg
     image: /images/banner-04.jpg
-  - url: /mining/mining
-    title: 05. Mining
+  - url: /mining
+    title: 5. Mining
     identifier: mining
     weight: 5
     icon: /images/index/jewel-05.svg
     image: /images/banner-05.jpg
-  - url: /digital-assets/digital-assets
-    title: 06. Digital Assets
+  - url: /digital-assets
+    title: 6. Digital Assets
     identifier: digital-assets
     weight: 6
     icon: /images/index/jewel-06.svg
     image: /images/banner-06.jpg
-  - url: /protocols/protocols
-    title: 07. Protocols
+  - url: /protocols
+    title: 7. Protocols
     identifier: protocols
     weight: 7
     icon: /images/index/jewel-07.svg
     image: /images/banner-07.jpg
-  - url: /network-analysis/network-analysis
-    title: 08. Network Analysis
+  - url: /network-analysis
+    title: 8. Network Analysis
     identifier: network-analysis
     weight: 8
     icon: /images/index/jewel-08.svg
     image: /images/banner-08.jpg
-  - url: /labs/labs
-    title: 09. Labs
+  - url: /labs
+    title: 9. Labs
     identifier: labs
     weight: 9
     icon: /images/index/jewel-09.svg
     image: /images/banner-09.jpg
-  - url: /style-guide/style-guide
+  - url: /style-guide
     title: 10. Style Guide
     identifier: style-guide
     weight: 10

@@ -44,7 +44,7 @@ crucial in the lighting network [[3]].
 
 Here is a quick example of how an HTLC works:
 
-![alt](sources/Characters.png)
+![alt](/images/digital-assets/atomic-swaps/Characters.png)
 
 In this example, Alex wants to pay Carla, but he does not have an open payment channel to Carla. However, he does have an
 open channel to Bart, who does have an open channel to Carla.

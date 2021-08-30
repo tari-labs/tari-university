@@ -40,7 +40,7 @@ by the average block creation time, the block size limit, and the number of newe
 (confirmation time). These factors make "*over the counter*" type transactions similar to Master Card or Visa nearly
 impossible if done on the main blockchain (on-chain).
 
-<p align="center"><img src="sources/waiting.png" width="470" /></p>
+<p align="center"><img src="/images/scaling/layer2/waiting.png" width="470" /></p>
 
 Let's postulate that blockchain and cryptocurrency "take over the world" and are responsible for all global non-cash
 transactions performed, i.e. 433.1 billion in 2014 to 2015 [[24]]. This means 13,734 transactions per second (tx/s) on
@@ -63,7 +63,7 @@ Layer&nbsp;1 refers to the physical layer and Layer&nbsp;2 to the data link laye
 functions of Layer&nbsp;2 and up; it just delivers transmission and reception of raw data. In turn, Layer&nbsp;2 only
 knows about Layer&nbsp;1 and defines the protocols that deliver node-to-node data transfer [[1]].
 
-<p align="center"><img src="sources/OSI_Model.png" width="770" /></p>
+<p align="center"><img src="/images/scaling/layer2/OSI_Model.png" width="770" /></p>
 
 Analogous to the OSI layers for communication, in blockchain technology, decentralized Layer&nbsp;2 protocols, also commonly
 referred to as Layer&nbsp;2 scaling, refers to transaction throughput scaling solutions. Decentralized Layer&nbsp;2
@@ -71,7 +71,7 @@ protocols run on top of the main blockchain (off-chain), while preserving the at
 (e.g. crypto-economic consensus). Instead of each transaction, only the result of a number of transactions is embedded
 on-chain [[2]].
 
-<p align="center"><img src="sources/layer2scaling.png" width="620" /></p>
+<p align="center"><img src="/images/scaling/layer2/layer2scaling.png" width="620" /></p>
 
 Also:
 
@@ -114,7 +114,7 @@ Several channel designs have been proposed or implemented over the years, includ
 With specific focus on Hashed Time-Locked Contracts:
 This technique can allow payments to be securely routed across multiple payment channels. HTLCs are integral to the
 design of more advanced payment channels such as those used by the
-[Lightning Network](../../protocols/lightning-network-for-dummies/sources/PITCHME.link.md).
+[Lightning Network](../../protocols/lightning-network-for-dummies//images/scaling/layer2/PITCHME.link.md).
 
 The Lightning Network is a second-layer payment protocol that operates on top of a blockchain. It enables instant
 transactions between participating nodes. The Lightning Network features a peer-to-peer system for making micropayments
@@ -126,7 +126,7 @@ relevant blockchain. This is followed by making any number of Lightning transact
 distribution of the channel's funds without broadcasting to the blockchain; and optionally followed by closing the
 payment channel by broadcasting the final version of the transaction to distribute the channel's funds.
 
-<p align="center"><img src="sources/bitcoin-lightning-network-basic.png" width="920" /></p>
+<p align="center"><img src="/images/scaling/layer2/bitcoin-lightning-network-basic.png" width="920" /></p>
 
 *Who uses them?*
 
@@ -181,7 +181,7 @@ Any change of state within a state channel requires explicit cryptographic conse
     mechanism, called balance proofs, which are also secured by a time-out. These can be settled on the Ethereum
     blockchain at any time. Raiden Network uses HTLCs in exactly the same manner as the Lightning Network.
 
-<p align="center"><img src="sources/Raiden.png" width="470" /></p>
+<p align="center"><img src="/images/scaling/layer2/Raiden.png" width="470" /></p>
 
 - Counterfactual ([[16]], [[19]], [[31]])
 
@@ -199,7 +199,7 @@ Any change of state within a state channel requires explicit cryptographic conse
     unique identifier.
   - A typical Counterfactual state channel is composed of counterfactually instantiated objects.
 
-<p align="center"><img src="sources/Counterfactual.png" width="900" /></p>
+<p align="center"><img src="/images/scaling/layer2/Counterfactual.png" width="900" /></p>
 
 - Funfair ([[16]], [[23]], [[32]])
 
@@ -257,7 +257,7 @@ contract tokens and vice versa [[5]].
   - A single invocation transaction on NEO can contain many smart contract calls. Batch commit of matched orders in one
   on-chain transaction is possible.
 
-  <p align="center"><img src="sources/NEX-matching-engine.png" width="350" /></p>
+  <p align="center"><img src="/images/scaling/layer2/NEX-matching-engine.png" width="350" /></p>
 
 - 0x ([[33]], [[34]])
   - An Ethereum ERC20-based smart contract token (ZRX).
@@ -269,7 +269,7 @@ contract tokens and vice versa [[5]].
   - Consensus is governed with the publicly available DEX smart contract: addresses, token balances, token exchange,
     fees, signatures, order status and final transfer.
 
-  <p align="center"><img src="sources/0xSequence.png" width="620" /></p>
+  <p align="center"><img src="/images/scaling/layer2/0xSequence.png" width="620" /></p>
 
 *Strengths*
 
@@ -388,7 +388,7 @@ proofs enforce an interactive protocol of rapid fund withdrawals in case of foul
 cases where bad actors in a lower-level tier want to commit blocks to the root chain without broadcasting this to the
 higher-level tiers [[4]].
 
-<p align="center"><img src="sources/Plasma-example-01.png" width="750" /></p>
+<p align="center"><img src="/images/scaling/layer2/Plasma-example-01.png" width="750" /></p>
 
 Plasma is a framework for incentivized and enforced execution of smart contracts, scalable to a significant amount of
 state updates per second, enabling the root blockchain to be able to represent a significant amount of dApps, each
@@ -400,7 +400,7 @@ contract). Nakamoto Consensus incentives discourage block withholding or other B
 Byzantine, it has the option of going to any of its parents (including the root blockchain) to continue operation or
 exit with the current committed state [[4]].
 
-<p align="center"><img src="sources/Plasma-example.png" width="750" /></p>
+<p align="center"><img src="/images/scaling/layer2/Plasma-example.png" width="750" /></p>
 
 MapReduce is a programming model and an associated implementation for processing and generating large data sets. Users
 specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce
@@ -452,7 +452,7 @@ computation is incorrect, the solver loses their deposit. TrueBit uses an econom
 game", where an incentive is created for other parties, called *challengers,* to check the solvers' work ([[16]],
 [[40]], [[43]]).
 
-<p align="center"><img src="sources/TrueBit_Diagram.png" width="600" /></p>
+<p align="center"><img src="/images/scaling/layer2/TrueBit_Diagram.png" width="600" /></p>
 
 *Who uses it?*
 
@@ -497,7 +497,7 @@ cryptosystem's blinding properties to prevent bad acting from either users or Tu
 TumbleBit also supports anonymizing through Tor to ensure that the Tumbler server can operate as a hidden service
 ([[87]], [[88]], [[94]], [[95]], [[96]]).
 
-<p align="center"><img src="./sources/TumbleBitOverview.png" width="600" /></p>
+<p align="center"><img src="/images/scaling/layer2/TumbleBitOverview.png" width="600" /></p>
 
 TumbleBit combines off-chain cryptographic computations with standard on-chain Bitcoin scripting functionalities to
 realize smart contracts [[97]] that are not dependent on Segwit. The most important Bitcoin functionality used here
@@ -582,7 +582,7 @@ address with a corresponding amount of XCP. XCP is used for payment of asset cre
 for difference/binary options, and often as a base token in decentralized exchange transactions (largely due to the
 complexities of using Bitcoin (BTC) in such trades).
 
-<p align="center"><img src="./sources/CounterpartyStack.png" width="500" /></p>
+<p align="center"><img src="/images/scaling/layer2/CounterpartyStack.png" width="500" /></p>
 
 Support for the Ethereum Virtual Machine (EVM) was implemented, but never included on the MainNet version [[73]]. With
 the Counterparty EVM implementation, all published Counterparty smart contracts “live” at Bitcoin addresses that start
@@ -669,7 +669,7 @@ main Bitcoin blockchain, the secondary blockchain is referred to as a Hybrid Sid
 The following figure shows an example of a 2WP Bitcoin secondary blockchain using a Hybrid Sidechain-Drivechain-Federated
 Peg security protocol [[65]]:
 
-<p align="center"><img src="./sources/RSK_HybridSideDriveChain.png" width="550" /></p>
+<p align="center"><img src="/images/scaling/layer2/RSK_HybridSideDriveChain.png" width="550" /></p>
 
 BTC on the main Bitcoin blockchain are locked by using a P2SH transaction, where BTC can be sent to a script hash
 instead of a public key hash. To unlock the BTC in the P2SH transaction, the recipient must provide a script matching
@@ -685,7 +685,7 @@ blockchain so that Bitcoin users can speculate in Prediction Markets [[67]].
 - Blockstream is implementing a Federated Sidechain called Liquid, with the functionaries/notaries being made up of
 participating exchanges and Bitcoin businesses [[72]].
 
-<p align="center"><img src="./sources/Blockstream-Federated-Sidechain.png" width="800" /></p>
+<p align="center"><img src="/images/scaling/layer2/Blockstream-Federated-Sidechain.png" width="800" /></p>
 
 *Strengths*
 
@@ -730,7 +730,7 @@ the other containing all transaction IDs (hash of the signed SigRec). This secon
 the Segwit witness tree, thus forming the witness part. Docking is the process where SicRec and signature data can be
 pruned from the blockchain if valid linked PTI information exists [[103]].
 
-<p align="center"><img src="./sources/LuminoDataPruning.png" width="650" /></p>
+<p align="center"><img src="/images/scaling/layer2/LuminoDataPruning.png" width="650" /></p>
 
 *Who does it?*
 
@@ -790,7 +790,7 @@ known as Zero-Knowledge Contingent payments ([[77]], [[80]]).
 
 Mimblewimble is being cited by Andrew Poelstra as being the ultimate *Scriptless Script* [[80]].
 
-<p align="center"><img src="./sources/Mimblewimble.png" width="500" /></p>
+<p align="center"><img src="/images/scaling/layer2/Mimblewimble.png" width="500" /></p>
 
 *Strengths*
 
@@ -833,7 +833,7 @@ In mathematics and computer science, a Directed Acyclic Graph (DAG) is a finite 
 A directed graph is acyclic if and only if it has a topological ordering, i.e. for every directed edge *uv* from vertex
 *u* to vertex *v*, *u* comes before *v* in the ordering (age) [[85]].
 
-<p align="center"><img src="./sources/DAG.png" width="400" /></p>
+<p align="center"><img src="/images/scaling/layer2/DAG.png" width="400" /></p>
 
 DAGs in blockchain were first proposed as the GHOST protocol ([[87]], [[88]]), a version of which is implemented in
 Ethereum as the Ethash PoW algorithm (based on Dagger-Hashimoto ([[102]], [[103]])). Then Braiding ([[83]], [[84]]),
@@ -841,7 +841,7 @@ Jute [[86]], SPECTRE [[89]] and PHANTOM [[95]] were presented. The principle of 
 to include traditional off-chain blocks into the ledger, which is governed by mathematical rules. A parent that is
 simultaneously an ancestor of another parent is disallowed:
 
-<p align="center"><img src="./sources/DAGTopologicalOrdering.png" width="550" /></p>
+<p align="center"><img src="/images/scaling/layer2/DAGTopologicalOrdering.png" width="550" /></p>
 
 The main problems to be solved by the DAG derivative protocols are:
 
@@ -850,7 +850,7 @@ The main problems to be solved by the DAG derivative protocols are:
 
 The underlying concept is still in the research and exploration phase [[82]].
 
-<p align="center"><img src="./sources/GHOST.png" width="550" /></p>
+<p align="center"><img src="/images/scaling/layer2/GHOST.png" width="550" /></p>
 
 In most DAG derivative protocols, blocks containing conflicting transactions, i.e. conflicting blocks, are not orphaned.
 A subsequent block is built on top of both of the conflicting blocks, but the conflicting transactions themselves are
@@ -861,13 +861,13 @@ block reward ([[82]], [[93]], [[94]]).
 
 **Note:** Braiding requires that parents and siblings may not contain conflicting transactions.
 
-<p align="center"><img src="./sources/SPECTRE.png" width="750" /></p>
+<p align="center"><img src="/images/scaling/layer2/SPECTRE.png" width="750" /></p>
 
 Inclusive (DAG derivative) protocols that integrate the contents of traditional off-chain blocks into the ledger result
 in incentives for behavior changes by the nodes, which leads to an increased throughput, and a better payoff for weak
 miners [[88]].
 
-<p align="center"><img src="./sources/InclusiveProtocolDAG.png" width="550" /></p>
+<p align="center"><img src="/images/scaling/layer2/InclusiveProtocolDAG.png" width="550" /></p>
 
 DAG derivative protocols are not Layer 2 Scaling solutions, but they offer significant scaling of the primary blockchain.
 
@@ -1544,9 +1544,9 @@ Date accessed: 2018&#8209;07&#8209;30.
 "DAGLabs Website"
 
 [[97]] "Beyond Distributed and Decentralized: what is a federated network?" [Online.] Available:
-<http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network>. Date accessed: 2018&#8209;08&#8209;13.
+<http://networkcultures.org/unlikeus/re/images/scaling/layer2/articles/what-is-a-federated-network>. Date accessed: 2018&#8209;08&#8209;13.
 
-[97]: http://networkcultures.org/unlikeus/resources/articles/what-is-a-federated-network
+[97]: http://networkcultures.org/unlikeus/re/images/scaling/layer2/articles/what-is-a-federated-network
 "Beyond Distributed and Decentralized: what is a federated network?"
 
 [[98]] "Federated Byzantine Agreement" [online]. Available:

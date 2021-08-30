@@ -8,7 +8,6 @@ date:   2020-07-05 15:00:00 +0300
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols, mimblewimble, grin]
-usemathjax: true
 featured:
 excerpttext: Grin is a cryptocurrency, implemented in Rust, that makes use of Mimblewimble transactions and the Cuckatoo algorithm to perform Proof-of-Work (PoW) calculations.
 ---
@@ -40,7 +39,7 @@ will be made as to how these problems could be mitigated or addressed.
 This report will also investigate Grin's selected emission scheme, PoW algorithm, choice of cryptographic curve used for
  signatures, and selection of key-store library. Each of these topics will be discussed in detail.
 
-<p align="center"><img src="sources/intro.png" width="700" /></p>
+<p align="center"><img src="/images/digital-assets/grin-design/intro.png" width="700" /></p>
 
 ## Monetary Policy due to Choice of Static Emission Scheme
 
@@ -129,7 +128,7 @@ This is achieved by using plain bits for ternary counters and requiring large am
 (SRAM) to speed up the memory latency bound access of random node bits. SRAM tends to be limited on GPU and CPU
 processors, but increasing SRAM on ASIC processors is much easier to implement [[17]].
 
-<p align="center"><img src="sources/attack51.jpg" width="550" /></p>
+<p align="center"><img src="/images/digital-assets/grin-design/attack51.jpg" width="550" /></p>
 
 ASIC miners tend to be specialized hardware that is very efficient at calculating and solving specific PoW algorithms.
 Encouraging ASIC miners on a network might not seem like a bad idea, as the mining network will have a higher hash rate.
@@ -143,7 +142,7 @@ farms. Having most of the network's hash rate localized in large mining farms wi
 vulnerable to potential 51% attacks [[18]], especially when specific ASIC manufacturers recommend or enforce their
 hardware to make use of specific mining pools that are controlled by single bodies.
 
-<p align="center"><img src="sources/gpu_mining.jpg" width="450" /></p>
+<p align="center"><img src="/images/digital-assets/grin-design/gpu_mining.jpg" width="450" /></p>
 
 Using general-purpose and multi-use hardware such as CPUs and GPUs that are primarily used for gaming and large
 workstations ensures that the network of miners is more widely distributed and that it is not controlled by a single
@@ -161,7 +160,7 @@ Elliptic curve cryptography is used for generating Private and Public key pairs 
 as well as authorization for individuals and transactions. It is much more secure and requires smaller keys for similar
 security compared to other Public-key cryptography techniques such as RSA [[19]].
 
-<p align="center"><img src="sources/publickey.png" width="700" /></p>
+<p align="center"><img src="/images/digital-assets/grin-design/publickey.png" width="700" /></p>
 
 Secp256k1 is an elliptic curve defined in the Standards for Efficient Cryptography [[20]] and is used for digital
 signatures in a number of cryptocurrencies such as Bitcoin, Ethereum, EOS and Litecoin [[21]]. Grin also makes use

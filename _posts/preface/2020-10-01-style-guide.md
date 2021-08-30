@@ -3,9 +3,10 @@ layout: post
 title:  Style Guide
 date:   2020-10-01 15:01:35 +0300
 image:  '/images/banner-10.jpg'
-category: style-guide
+category: 
 tags:   [style-guide]
 icon: '/images/index/jewel-10.svg'
+line: '/images/index/line-purple.svg'
 featured: true
 excerpttext: The purpose of this Style Guide is to provide contributors reports with standards for content and layout.
 ---

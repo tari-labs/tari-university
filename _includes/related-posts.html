@@ -23,7 +23,7 @@
       <h5 class="section-title">You might also be interested in</h5>
     </div>
     <div class="row grid">
-    {% for post in site.posts %}
+    {% for post in site.posts reversed %}
 
       {% assign sameTagCount = 0 %}
       {% assign commonTags = '' %}

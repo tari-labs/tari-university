@@ -98,7 +98,7 @@ in most networks. This approach means that the transaction has first propagated 
 before flooding the network, thereby making it much more difficult to track its origin.
 
 <p align="center">
-  <img src="sources/dandelion-stem-fluff.png" width="450" />
+  <img src="/images/digital-assets/grin-beam/dandelion-stem-fluff.png" width="450" />
   <p>
     <center><strong>
       Figure 1: Two Phases of Dandelion Peer-to-peer Transaction Propagation
@@ -535,7 +535,7 @@ exists in the graph. When looking for cycles of length 4, the difficulty, as ill
 would mean that the four edges would need to be randomly chosen in an exact cycle for one to exist [[29]].
 
 <p align="center">
-   <img src="sources/cuckoo_base_numbered_few_edges.png" width="250"/>
+   <img src="/images/digital-assets/grin-beam/cuckoo_base_numbered_few_edges.png" width="250"/>
    <p>
      <center><strong>
        Figure 2: Eight Nodes with Four Edges, no Solution
@@ -551,7 +551,7 @@ and it can be seen that a four-edged cycle appeared. Thus, we can control the pr
 occurring by adjusting the ratio of M/N [[29]].
 
 <p align="center">
-  <img src="sources/cuckoo_base_numbered_few_edges_cycle.png" width="250"/>
+  <img src="/images/digital-assets/grin-beam/cuckoo_base_numbered_few_edges_cycle.png" width="250"/>
   <p>
     <center><strong>
       Figure 3: Cycle Found from 0-5-4-1-0
@@ -565,7 +565,7 @@ more difficult as the number of graphs gets larger. Figure&nbsp;4 shows a 22&#82
 Can you determine if a cycle of eight edges is present? [[29]]
 
 <p align="center">
-  <img src="sources/cuckoo_base_numbered_many_edges.png" width="650"/>
+  <img src="/images/digital-assets/grin-beam/cuckoo_base_numbered_many_edges.png" width="650"/>
   <p>
     <center><strong>
       Figure 4: 22 Nodes with 14 Edges, can you find a Cycle Eight Edges Long?

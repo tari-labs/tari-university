@@ -5,7 +5,7 @@
 {% endfor %}
 
 {% if is-featured == true %}
-  {% for post in site.posts %}
+  {% for post in site.posts reversed %}
   {% if post.featured == true %}
   <div>
     {% if post.image %}

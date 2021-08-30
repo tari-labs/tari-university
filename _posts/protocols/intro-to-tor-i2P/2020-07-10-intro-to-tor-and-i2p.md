@@ -8,7 +8,6 @@ date:   2020-07-10 15:00:00 +0300
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols]
-usemathjax: true
 featured:
 excerpttext: Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks.
 ---
@@ -108,7 +107,7 @@ new tunnel and adds it to the pool. It is important to recall later that tunnels
 and thus need to be refreshed frequently. This is one of I2P's security measures that are performed to prevent
 long-lived tunnels from becoming a threat to anonymity [[3]].
 
-<p align="center"><a name="fig_eca"> </a><img src="assets/network-topology.png" width="950" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/network-topology.png" width="950" /></p>
 <p align="center"><b>Figure&nbsp;1: Network Topology [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">6</a>]</b></p>
 
 
@@ -171,7 +170,7 @@ things:
 - bundles multiple messages together.
 
 Figure&nbsp;2 illustrates the end-to-end message bundling:
-<p align="center"><a name="fig_eca"> </a><img src="assets/garliccloves.png" width="1050" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/garliccloves.png" width="1050" /></p>
 <p align="center"><b>Figure&nbsp;2: Garlic Routing <a href="https://github.com/ElementsProject/confidential-assets-demo" title="ElementsProject/confidential-assets-demo"></a></b></p>
 
 
@@ -194,7 +193,7 @@ affects the performance of each of those instances, the number of additional ide
 effectively limited by the need to provide each of them with enough resources to be considered as peers. This means that
 the malicious user will need substantial resources to create multiple identities.
 
-<p align="center"><a name="fig_eca"> </a><img src="assets/Sybil Attack.png" width="750" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/Sybil Attack.png" width="750" /></p>
 <p align="center"><b>Figure&nbsp;3: Sybil Attack [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">5</a>]</b></p>
 
 
@@ -294,7 +293,7 @@ it data and which relay it is giving data to. No individual relay ever knows the
 taken. Also, no request uses the same path. Later requests are given a new circuit, to keep people from linking a user's
 earlier actions to new actions. This process is also known as Onion Routing [[14]], and is illustrated in Figure 4:
 
-<p align="center"><a name="fig_eca"> </a><img src="assets/htw3.png" width="625" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/htw3.png" width="625" /></p>
 <p align="center"><b>Figure&nbsp;4: How Tor Works [<a href="https://2019.www.torproject.org/about/overview.html.en" title="How Tor Works">13</a>]</b></p>
 
 
@@ -336,7 +335,7 @@ the network becomes.
 Tor's relay nodes do not all function in the same way. As shown in Figure 5, there are four types of relay nodes: an
 entry or guard relay node, a middle relay node, an exit relay node and a bridge relay node.
 
-<p align="center"><a name="fig_eca"> </a><img src="assets/torCircuit.png" width="650" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/torCircuit.png" width="650" /></p>
 <p align="center"><b>Figure&nbsp;5: Tor Circuit [<a href="https://medium.com/coinmonks/tor-nodes-explained-580808c29e2d" title="The Tor Circuit">14</a>]</b></p>
 
 

@@ -22,15 +22,16 @@
   margin: 0 auto;
   text-align: center;
   border-radius: 5px;
-  background-color: $section-color;
+  background-color: none;
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     -webkit-backdrop-filter: saturate(180%) blur(10px);
     backdrop-filter: saturate(180%) blur(10px);
-    background-color: rgba($section-color, .8);
+    background-color: none;
   }
 
   h1, h2 {
     margin-bottom: 20px;
+    color: #FFF;
   }
 
   h2 {
@@ -40,6 +41,7 @@
 
   p {
     font-size: 18px;
+    color: #FFF;
   }
 
 
@@ -48,10 +50,12 @@
 
     h1 {
       font-size: 27px;
+      color: #FFF;
     }
-    
+
     h2 {
       font-size: 60px;
+      color: #FFF;
     }
   }
 }

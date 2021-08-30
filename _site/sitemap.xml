@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>/learning-paths/introduction-to-learning</loc>
+<loc>/learning-paths</loc>
 <lastmod>2020-01-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -17,7 +17,7 @@
 <lastmod>2020-01-03T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/cryptography/cryptography</loc>
+<loc>/cryptography</loc>
 <lastmod>2020-02-01T14:01:35+02:00</lastmod>
 </url>
 <url>
@@ -65,7 +65,7 @@
 <lastmod>2020-02-13T14:01:35+02:00</lastmod>
 </url>
 <url>
-<loc>/consensus-mechanisms/consensus-mechanisms</loc>
+<loc>/consensus-mechanisms</loc>
 <lastmod>2020-03-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -77,7 +77,7 @@
 <lastmod>2020-03-03T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/scaling/scaling</loc>
+<loc>/scaling</loc>
 <lastmod>2020-04-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -93,7 +93,7 @@
 <lastmod>2020-04-04T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/mining/mining</loc>
+<loc>/mining</loc>
 <lastmod>2020-05-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -109,7 +109,7 @@
 <lastmod>2020-05-04T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/digital-assets/digital-assets</loc>
+<loc>/digital-assets</loc>
 <lastmod>2020-06-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -121,7 +121,7 @@
 <lastmod>2020-06-03T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/protocols/protocols</loc>
+<loc>/protocols</loc>
 <lastmod>2020-07-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -161,7 +161,7 @@
 <lastmod>2020-07-12T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/network-analysis/network-analysis</loc>
+<loc>/network-analysis</loc>
 <lastmod>2020-08-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -169,7 +169,7 @@
 <lastmod>2020-08-02T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/labs/labs</loc>
+<loc>/labs</loc>
 <lastmod>2020-09-01T11:00:00+02:00</lastmod>
 </url>
 <url>
@@ -177,7 +177,7 @@
 <lastmod>2020-09-01T14:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/style-guide/style-guide</loc>
+<loc>/style-guide</loc>
 <lastmod>2020-10-01T14:01:35+02:00</lastmod>
 </url>
 <url>

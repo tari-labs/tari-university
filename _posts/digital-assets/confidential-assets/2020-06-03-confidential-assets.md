@@ -386,7 +386,7 @@ transactions on the blockchain. *Fred* is a miner and does not care about the de
 blocks on the blockchain when transactions enter his miner mempool. The demonstration also includes generating the
 different types of assets.
 
-<p align="center"><a name="fig_eca"> </a><img src="sources/elements-tx-example.png" width="650" /></p>
+<p align="center"><a name="fig_eca"> </a><img src="/images/digital-assets/confidential/elements-tx-example.png" width="650" /></p>
 
 <p align="center"><b>Figure&nbsp;2: Elements Confidential Assets Transfer Demonstration
 [<a href="https://github.com/ElementsProject/confidential-assets-demo"
@@ -716,7 +716,7 @@ a Ricardian contract are (also refer to [Figure&nbsp;1](#fig_rc)):
 - can be identified securely, where security means that any attempts to change the linkage between a reference and the
 contract are impractical.
 
-<p align="center"><a name="fig_rc"> </a><img src="sources/ricardian_contract.png" width="690" /></p>
+<p align="center"><a name="fig_rc"> </a><img src="/images/digital-assets/confidential/ricardian_contract.png" width="690" /></p>
 
 <p align="center"><b>Figure&nbsp;1: Bowtie Diagram of a Ricardian Contract
 [<a href="https://www.elinext.com/industries/financial/trends/smart-vs-ricardian-contracts" title="Smart vs.

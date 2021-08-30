@@ -2,9 +2,9 @@
   
     {
       "title"    : "Style Guide",
-      "category" : "style-guide",
+      "category" : "",
       "tags"     : "style-guide",
-      "url"      : "/style-guide/style-guide",
+      "url"      : "/style-guide",
       "date"     : "Oct 1, 2020",
       "image"    : "/images/banner-10.jpg"
     } ,
@@ -20,9 +20,9 @@
   
     {
       "title"    : "TLU Labs",
-      "category" : "Labs",
+      "category" : "",
       "tags"     : "labs",
-      "url"      : "/labs/labs",
+      "url"      : "/labs",
       "date"     : "Sep 1, 2020",
       "image"    : "/images/banner-09.jpg"
     } ,
@@ -38,9 +38,9 @@
   
     {
       "title"    : "Network Analysis",
-      "category" : "Network-Analysis",
+      "category" : "",
       "tags"     : "network-analysis",
-      "url"      : "/network-analysis/network-analysis",
+      "url"      : "/network-analysis",
       "date"     : "Aug 1, 2020",
       "image"    : "/images/banner-08.jpg"
     } ,
@@ -128,9 +128,9 @@
   
     {
       "title"    : "Blockchain-related Protocols",
-      "category" : "Protocols",
+      "category" : "",
       "tags"     : "protocols",
-      "url"      : "/protocols/protocols",
+      "url"      : "/protocols",
       "date"     : "Jul 1, 2020",
       "image"    : "/images/banner-07.jpg"
     } ,
@@ -155,9 +155,9 @@
   
     {
       "title"    : "Digital Assets",
-      "category" : "digital-assets",
+      "category" : "",
       "tags"     : "digital-assets",
-      "url"      : "/digital-assets/digital-assets",
+      "url"      : "/digital-assets",
       "date"     : "Jun 1, 2020",
       "image"    : "/images/banner-06.jpg"
     } ,
@@ -191,9 +191,9 @@
   
     {
       "title"    : "Mining",
-      "category" : "Mining",
+      "category" : "",
       "tags"     : "mining",
-      "url"      : "/mining/mining",
+      "url"      : "/mining",
       "date"     : "May 1, 2020",
       "image"    : "/images/banner-05.jpg"
     } ,
@@ -227,9 +227,9 @@
   
     {
       "title"    : "Scaling",
-      "category" : "Scaling",
+      "category" : "",
       "tags"     : "scaling",
-      "url"      : "/scaling/scaling",
+      "url"      : "/scaling",
       "date"     : "Apr 1, 2020",
       "image"    : "/images/banner-04.jpg"
     } ,
@@ -254,9 +254,9 @@
   
     {
       "title"    : "Consensus Mechanisms",
-      "category" : "consensus-mechanisms",
+      "category" : "",
       "tags"     : "consensus-mechanisms",
-      "url"      : "/consensus-mechanisms/consensus-mechanisms",
+      "url"      : "/consensus-mechanisms",
       "date"     : "Mar 1, 2020",
       "image"    : "/images/banner-03.jpg"
     } ,
@@ -362,9 +362,9 @@
   
     {
       "title"    : "Cryptography",
-      "category" : "Cryptography",
+      "category" : "",
       "tags"     : "cryptography",
-      "url"      : "/cryptography/cryptography",
+      "url"      : "/cryptography",
       "date"     : "Feb 1, 2020",
       "image"    : "/images/banner-01.jpg"
     } ,
@@ -398,9 +398,9 @@
   
     {
       "title"    : "Learning Paths",
-      "category" : "learning-paths",
+      "category" : "",
       "tags"     : "learning-paths",
-      "url"      : "/learning-paths/introduction-to-learning",
+      "url"      : "/learning-paths",
       "date"     : "Jan 1, 2020",
       "image"    : "/images/banner-02.jpg"
     } 

@@ -3,9 +3,10 @@ layout: post
 title:  Blockchain-related Protocols
 date:   2020-07-01 12:00:00 +0300
 image:  '/images/banner-07.jpg'
-category: Protocols
+category: 
 tags:   [protocols]
 icon: '/images/index/jewel-07.svg'
+line: '/images/index/line-blue.svg'
 featured: true
 excerpttext: Users often take blockchain protocols for granted when analyzing the potential of a cryptocurrency. The different blockchain protocols used can play a prominent role in the success of a cryptocurrency.
 ---

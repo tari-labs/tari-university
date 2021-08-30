@@ -88,7 +88,7 @@ a {
   height: auto;
 }
 .top-block {
-  max-width: 850px;
+  max-width: 900px;
   margin: -80px auto 0 auto;
   background: #110416;
   padding: 50px;
@@ -187,6 +187,10 @@ a {
 }
 .cardHeading {
   margin-top: -30px;
+  margin-bottom: 0;
+}
+.cardLine {
+  margin: 25px 0;
 }
 .card:hover {
   transform: scale(1.05);
@@ -527,4 +531,26 @@ a {
   .tlu-cards {
     flex-direction: row;
   }
+}
+
+#breadcrumbs {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #748094;
+}
+
+#breadcrumbs a {
+  color: #748094;
+}
+
+#breadcrumbs a:hover {
+  color: #6416B8;
+}
+.note {
+  padding: 15px;
+}
+
+.warning {
+  background: #EFEFEF;
 }

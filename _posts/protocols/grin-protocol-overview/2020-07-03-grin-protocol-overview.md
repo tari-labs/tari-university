@@ -8,7 +8,6 @@ date:   2020-07-03 15:00:00 +0300
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols, mimblewimble, grin]
-usemathjax: true
 featured:
 excerpttext: Depending on whom you ask, Mimblewimble is either a tongue-tying curse or a blockchain protocol designed to be private and scalable.
 ---
@@ -54,18 +53,18 @@ information can be found in [[2]] and [[3]].
 Mimblewimble publishes all transactions as confidential transactions. All inputs, outputs and change are expressed in
 the following form:
 
-​	$$ r \cdot G + v \cdot H $$
+​	$ r \cdot G + v \cdot H $
 
-where $$ G $$ and $$ H $$ are elliptic curves, $$ r $$ a private key used as a blinding factor, $$ v $$ the value and
-"$$ \cdot $$" is Elliptic-curve cryptography (ECC) multiplication.  
+where $ G $ and $ H $ are elliptic curves, $ r $ a private key used as a blinding factor, $ v $ the value and
+"$ \cdot $" is Elliptic-curve cryptography (ECC) multiplication.  
 
 An example transaction can be expressed as input = output + change.
 
-​	$$ (r_i \cdot G + v_i \cdot H) = (r_o \cdot G + v_o \cdot H) + (r_c \cdot G + v_c + \cdot H) $$  
+​	$ (r_i \cdot G + v_i \cdot H) = (r_o \cdot G + v_o \cdot H) + (r_c \cdot G + v_c + \cdot H) $  
 
 But this requires that
 
-​	$$ r_i = r_o + r_c $$
+​	$ r_i = r_o + r_c $
 
 A more detailed explanation of how Mimblewimble works can be found in the Grin GitHub documents [[4]].
 
@@ -77,7 +76,7 @@ Grin includes something called "cut-through" in the transaction pool. Cut-throug
 pool, which have already been spent as new inputs, using the fact that every transaction in a block should sum to zero.
 This is shown below:
 
-​	$$ output - inputs = kernel_-excess +(part \mspace{3mu} of)kernel_- offset $$
+​	$ output - inputs = kernel_-excess +(part \mspace{3mu} of)kernel_- offset $
 
 The kernel offset is used to hide which kernel belongs to which transaction and we only have a summed kernel offset
 stored in the header of each block.
@@ -85,7 +84,7 @@ stored in the header of each block.
 We don't have to record these transactions inside the block, although we still have to record the kernel as the kernel
 proof transfer of ownership to make sure that the whole block sums to zero, as expressed in the following formula:
 
-​	$$ sum(ouputs) - sum(inputs) = sum(kernel_-excess) + kernel_-offset $$
+​	$ sum(ouputs) - sum(inputs) = sum(kernel_-excess) + kernel_-offset $
 
 An example of cut-through follows:
 
@@ -178,20 +177,20 @@ specifically, the kernel signature [[4]].
 
 When Alice wants to pay Bob, the transaction will be performed using the following steps:
 
-1. Alice selects her inputs and her change. The sum of all blinding factors (change output minus inputs) is $$ r_s $$.
-2. Alice picks a random nonce ks and sends her partial transaction, $$ k_s\cdot G $$ and $$ r_s\cdot G $$ to Bob.
-3. Bob picks his own random nonce $$ k_r $$ and the blinding factor for his output $$ r_r $$. Using $$ r_r $$, Bob adds his
+1. Alice selects her inputs and her change. The sum of all blinding factors (change output minus inputs) is $ r_s $.
+2. Alice picks a random nonce ks and sends her partial transaction, $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
+3. Bob picks his own random nonce $ k_r $ and the blinding factor for his output $ r_r $. Using $ r_r $, Bob adds his
     output to the transaction.
 4. Bob computes the following:
-   - message $$ m = fee \Vert lock_-height $$;
-   - Schnorr challenge $$ e = SHA256(m \Vert k_r \cdot G + k_s\cdot  G \Vert r_r\cdot G + r_s\cdot G) $$; and
-   - his side of the signature, $$ s_r = k_r + e\cdot G $$.
-5. Bob sends $$ s_r $$ and $$ k_r\cdot G $$ and $$ r_r\cdot G $$  to Alice.
-6. Alice computes $$ e $$, just like Bob did, and can check that $$ s_r\cdot G = k_r\cdot G + e\cdot r_r \cdot G $$.
-7. Alice sends her side of the signature, $$ s_s = k_s + e\cdot r_s $$, to Bob.
-8. Bob validates $$ s_s\cdot G $$, just like Alice did for $$ s_r\cdot G $$ in step 5, and can produce the final signature
-    $$ sig = (s_s + s_r , \mspace{6mu} k_s\cdot G + k_s\cdot G) $$ as well as the final transaction kernel, including $$ sig $$ and the public key
-    $$ r_r\cdot G + r_s\cdot G$$.
+   - message $ m = fee \Vert lock_-height $;
+   - Schnorr challenge $ e = SHA256(m \Vert k_r \cdot G + k_s\cdot  G \Vert r_r\cdot G + r_s\cdot G) $; and
+   - his side of the signature, $ s_r = k_r + e\cdot G $.
+5. Bob sends $ s_r $ and $ k_r\cdot G $ and $ r_r\cdot G $  to Alice.
+6. Alice computes $ e $, just like Bob did, and can check that $ s_r\cdot G = k_r\cdot G + e\cdot r_r \cdot G $.
+7. Alice sends her side of the signature, $ s_s = k_s + e\cdot r_s $, to Bob.
+8. Bob validates $ s_s\cdot G $, just like Alice did for $ s_r\cdot G $ in step 5, and can produce the final signature
+    $ sig = (s_s + s_r , \mspace{6mu} k_s\cdot G + k_s\cdot G) $ as well as the final transaction kernel, including $ sig $ and the public key
+    $ r_r\cdot G + r_s\cdot G$.
 
 
 ## Contracts
@@ -204,7 +203,7 @@ In a normal Grin transaction, the signature [[4]], just the normal fee, gets sig
 time-locked transaction, the message can be modified taking the block height and appending the fee to that. A block with
 a kernel that includes a lock height greater than the current block height is then rejected.
 
-​	$$ m = fee \Vert h $$
+​	$ m = fee \Vert h $
 
 #### 	Relative
 
@@ -213,7 +212,7 @@ relative block height and not the absolute height, but also adding a specific ke
 signature references a specific block as height. The same principle counts as with absolute time-locked transactions in
 that a block with a kernel containing a relative time-locked transaction that has not passed, is rejected.
 
-​	$$ m = fee \Vert h \Vert c $$
+​	$ m = fee \Vert h \Vert c $
 
 ### Multisig
 
@@ -223,15 +222,15 @@ need to agree before a transaction can be spent.
 When Bob and Alice [[6]] want to do a 2&#8209;of&#8209;2 multisig contract, the contract can be done using the following
 steps:
 
-1. Bob picks a blinding factor $$ r_b $$ and sends $$ r_b\cdot G $$ to Alice.
-2. Alice picks a blinding factor $$ r_a $$ and builds the commitment $$ C= r_a\cdot G + r_b\cdot G + v\cdot H $$; she
+1. Bob picks a blinding factor $ r_b $ and sends $ r_b\cdot G $ to Alice.
+2. Alice picks a blinding factor $ r_a $ and builds the commitment $ C= r_a\cdot G + r_b\cdot G + v\cdot H $; she
 sends the commitment to Bob.
-3. Bob creates a range proof for $$ v $$ using $$ C $$ and $$ r_b $$, and sends it to Alice.
-4. Alice generates her own range proof and aggregates it with Bob, finalizing the multiparty output $$ O_{ab} $$.
+3. Bob creates a range proof for $ v $ using $ C $ and $ r_b $, and sends it to Alice.
+4. Alice generates her own range proof and aggregates it with Bob, finalizing the multiparty output $ O_{ab} $.
 5. The kernel is built following the same procedure as used with [Trustless Transactions](#trustless-transactions).
 
-We observe that the output $$ O_{ab} $$ is unknown to both parties, because neither knows the whole blinding factor. To be
-able to build a transaction spending $$ O_{ab} $$, someone would need to know $$ r_a + r_b $$ to produce a kernel
+We observe that the output $ O_{ab} $ is unknown to both parties, because neither knows the whole blinding factor. To be
+able to build a transaction spending $ O_{ab} $, someone would need to know $ r_a + r_b $ to produce a kernel
 signature. To produce the original spending kernel, Alice and Bob need to collaborate.
 
 ## Atomic Swaps
@@ -244,37 +243,37 @@ TLU has a section about [Atomic Swaps](../atomic-swaps/AtomicSwaps.md) [[7]].
 
 Atomic swaps work with 2&#8209;of&#8209;2 multisig contracts, one public key being Alice's, the other being the hash of
 a preimage
-that Bob has to reveal. Consider public key derivation $$ x\cdot G $$ to be the hash function and by Bob revealing
-$$ x $$, Alice can then produce an adequate signature, proving she knows $$ x $$ (in addition to her own private key).
+that Bob has to reveal. Consider public key derivation $ x\cdot G $ to be the hash function and by Bob revealing
+$ x $, Alice can then produce an adequate signature, proving she knows $ x $ (in addition to her own private key).
 
 Alice will swap Grin with Bob for Bitcoin. We assume Bob created an output on the Bitcoin blockchain that allows
-spending by Alice if she learns a hash preimage $$ x $$, or by Bob after time $$ T_b $$. Alice is ready to send her Grin
-to Bob if he reveals $$ x $$.
+spending by Alice if she learns a hash preimage $ x $, or by Bob after time $ T_b $. Alice is ready to send her Grin
+to Bob if he reveals $ x $.
 
-Alice will send her Grin to a multiparty timelock contract with a refund time $$ T_a < T_b $$. To send the
+Alice will send her Grin to a multiparty timelock contract with a refund time $ T_a < T_b $. To send the
 2&#8209;of&#8209;2 output
 to Bob and execute the swap, Alice and Bob start as if they were building a normal trustless transaction:
 
-1. Alice picks a random nonce $$ k_s $$ and her blinding sum $$ r_s $$ and sends $$ k_s\cdot G $$ and $$ r_s\cdot G $$ to Bob.
-2. Bob picks a random blinding factor $$ r_r $$ and a random nonce $$ k_r $$. However, this time, instead of simply sending
-$$ s_r = k_r + e\cdot r_r $$ with his $$ r_r\cdot G $$ and $$ k_r\cdot G $$, Bob sends $$ s_r' = k_r + x + e\cdot r_r $$ as
-well as $$ x\cdot G $$.
-3. Alice can validate that $$ s_r'\cdot G = k_r\cdot G + x\cdot G + r_r\cdot G $$. She can also check that Bob has money
-locked with $$ x\cdot G $$ on the other chain.
-4. Alice sends back her $$ s_s = k_s + e\cdot x_s $$ as she normally would, now that she can also compute
-$$ e = SHA256(m \Vert k_s\cdot G+k_r\cdot G) $$.
-5. To complete the signature, Bob computes $$ s_r = k_r + e\cdot r_r $$ and the final signature is
-$$ (s_r + s_s, \mspace{6mu} k_r\cdot G + k_s\cdot G) $$.
-6. As soon as Bob broadcasts the final transaction to get his Grin, Alice can compute $$ s_r' - s_r $$ to get $$ x $$.
+1. Alice picks a random nonce $ k_s $ and her blinding sum $ r_s $ and sends $ k_s\cdot G $ and $ r_s\cdot G $ to Bob.
+2. Bob picks a random blinding factor $ r_r $ and a random nonce $ k_r $. However, this time, instead of simply sending
+$ s_r = k_r + e\cdot r_r $ with his $ r_r\cdot G $ and $ k_r\cdot G $, Bob sends $ s_r' = k_r + x + e\cdot r_r $ as
+well as $ x\cdot G $.
+3. Alice can validate that $ s_r'\cdot G = k_r\cdot G + x\cdot G + r_r\cdot G $. She can also check that Bob has money
+locked with $ x\cdot G $ on the other chain.
+4. Alice sends back her $ s_s = k_s + e\cdot x_s $ as she normally would, now that she can also compute
+$ e = SHA256(m \Vert k_s\cdot G+k_r\cdot G) $.
+5. To complete the signature, Bob computes $ s_r = k_r + e\cdot r_r $ and the final signature is
+$ (s_r + s_s, \mspace{6mu} k_r\cdot G + k_s\cdot G) $.
+6. As soon as Bob broadcasts the final transaction to get his Grin, Alice can compute $ s_r' - s_r $ to get $ x $.
 
 Prior to completing the atomic swap, Bob needs to know Alice's public key. Bob would then create an output on the
 Bitcoin blockchain with a 2&#8209;of&#8209;2 multisig similar to `alice_pubkey secret_pubkey 2 OP_CHECKMULTISIG`. This
 should be
 wrapped in an `OP_IF` so Bob can get his money back after an agreed-upon time. All of this can even be wrapped in a
-Pays To Script Hash (P2SH). Here, `secret_pubkey` is $$x\cdot G$$ from the previous section.
+Pays To Script Hash (P2SH). Here, `secret_pubkey` is $x\cdot G$ from the previous section.
 
-To verify the output, Alice would take $$x\cdot G$$, recreate the bitcoin script, hash it and check that her hash matches
-what's in theP2SH (step&nbsp;2 in the [Multisig](#multisig) section). Once she gets $$x$$ (step&nbsp;6), she can build the
+To verify the output, Alice would take $x\cdot G$, recreate the bitcoin script, hash it and check that her hash matches
+what's in theP2SH (step&nbsp;2 in the [Multisig](#multisig) section). Once she gets $x$ (step&nbsp;6), she can build the
 two signatures necessary
 to spend the 2&#8209;of&#8209;2, having both private keys, and get her bitcoin.
 
