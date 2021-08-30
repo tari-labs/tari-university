@@ -1,13 +1,6 @@
-# Clifford
-
-Clifford is a clean and modern theme for Blog, Magazine, or any news website. This theme is specifically designed to help you create your own blog and share your thoughts, ideas, or news.
+# Tari Labs University
 
 
-* * *
-
-### Demo
-
-Check the theme in action [Demo](https://clifford-jekyll.netlify.app/)
 
 * * *
 
