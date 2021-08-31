@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post-main
 title:  Learning Paths
 date:   2020-01-01 12:00:00 +0300
 image:  '/images/banner-02.jpg'
-category: 
+category:
 tags:   [learning-paths]
 icon: '/images/index/jewel-01.svg'
 line: '/images/index/line-blue.svg'

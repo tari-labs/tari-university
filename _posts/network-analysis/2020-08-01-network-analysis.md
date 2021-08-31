@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post-main
 title:  Network Analysis
 date:   2020-08-01 12:00:00 +0300
 image:  '/images/banner-08.jpg'
-category: 
+category:
 tags:   [network-analysis]
 icon: '/images/index/jewel-08.svg'
 line: '/images/index/line-orange.svg'

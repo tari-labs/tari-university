@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post-main
 title:  Digital Assets
 date:   2020-06-01 12:00:00 +0300
 image:  '/images/banner-06.jpg'
-category: 
+category:
 tags:   [digital-assets]
 icon: '/images/index/jewel-06.svg'
 line: '/images/index/line-purple.svg'

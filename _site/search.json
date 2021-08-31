@@ -145,6 +145,15 @@
     } ,
   
     {
+      "title"    : "Non-Fungible Tokens Survey",
+      "category" : "digital-assets",
+      "tags"     : "digital-assets",
+      "url"      : "/digital-assets/nft-survey",
+      "date"     : "Jun 2, 2020",
+      "image"    : "/images/banner-06.jpg"
+    } ,
+  
+    {
       "title"    : "Application of Howey to Blockchain Network Token Sales",
       "category" : "digital-assets",
       "tags"     : "digital-assets",
@@ -217,6 +226,15 @@
     } ,
   
     {
+      "title"    : "Layer 2 Scaling - Executive Summary",
+      "category" : "scaling",
+      "tags"     : "scaling",
+      "url"      : "/scaling/executive-summary",
+      "date"     : "Apr 2, 2020",
+      "image"    : "/images/banner-01.jpg"
+    } ,
+  
+    {
       "title"    : "Layer 2 Scaling Survey",
       "category" : "scaling",
       "tags"     : "scaling",
@@ -240,6 +258,15 @@
       "tags"     : "consensus-mechanisms",
       "url"      : "/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms",
       "date"     : "Mar 3, 2020",
+      "image"    : "/images/banner-03.jpg"
+    } ,
+  
+    {
+      "title"    : "BFT Consensus Mechanisms",
+      "category" : "consensus-mechanisms",
+      "tags"     : "consensus-mechanisms",
+      "url"      : "/consensus-mechanisms/bft-consensus-mechanisms",
+      "date"     : "Mar 2, 2020",
       "image"    : "/images/banner-03.jpg"
     } ,
   
@@ -357,6 +384,15 @@
       "tags"     : "cryptography",
       "url"      : "/cryptography/introduction-to-scriptless-scripts",
       "date"     : "Feb 3, 2020",
+      "image"    : "/images/banner-01.jpg"
+    } ,
+  
+    {
+      "title"    : "Elliptic Curves",
+      "category" : "cryptography",
+      "tags"     : "cryptography",
+      "url"      : "/cryptography/elliptic-curves",
+      "date"     : "Feb 1, 2020",
       "image"    : "/images/banner-01.jpg"
     } ,
   

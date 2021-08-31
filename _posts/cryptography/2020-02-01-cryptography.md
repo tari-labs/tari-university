@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post-main
 title:  Cryptography
-date:   2020-02-01 15:01:35 +0300
+date:   2020-02-01 12:00:00 +0300
 image:  '/images/banner-01.jpg'
-category: 
+category:
 tags:   [cryptography]
 icon: '/images/index/jewel-02.svg'
 line: '/images/index/line-purple.svg'
@@ -26,7 +26,6 @@ authentication, and non-repudiation are central to modern cryptography [[2]].
 method of protecting information and communications through the use of codes so that only those for whom the information
 is intended can read and process it. The prefix "crypt" means "hidden" or "vault" and the suffix "graphy" stands for
 "writing" [[3]].
-
 
 ## References
 

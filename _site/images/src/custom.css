@@ -554,3 +554,16 @@ a {
 .warning {
   background: #EFEFEF;
 }
+
+.tlu-rel {
+  display: flex;
+  padding: 0;
+}
+.tlu-rel-img {
+  width: 90px;
+  height: 90px;
+  margin-right: 20px;
+  background-size: cover;
+  border-radius: 5px;
+  margin-left: 10px;
+}

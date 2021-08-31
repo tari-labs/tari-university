@@ -3,7 +3,7 @@ layout: post
 title:  Application of Howey to Blockchain Network Token Sales
 menus:
   digital-assets:
-    weight: 3
+    weight: 1
 date:   2020-06-01 15:00:00 +0300
 image:  '/images/banner-06.jpg'
 category: digital-assets

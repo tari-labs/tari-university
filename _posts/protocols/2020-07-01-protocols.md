@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post-main
 title:  Blockchain-related Protocols
 date:   2020-07-01 12:00:00 +0300
 image:  '/images/banner-07.jpg'
-category: 
+category:
 tags:   [protocols]
 icon: '/images/index/jewel-07.svg'
 line: '/images/index/line-blue.svg'
