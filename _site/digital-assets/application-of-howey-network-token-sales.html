@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Application of Howey to Blockchain Network Token Sales</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/digital-assets/application-of-howey-network-token-sales">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:30px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:none}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:none}}.error-page__head h1,.error-page__head h2{margin-bottom:20px;color:#FFF}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px;color:#FFF}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px;color:#FFF}.error-page__head h2{font-size:60px;color:#FFF}}
+
+  </style>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-06.jpg');">
+              <h1 class="tlu-hero-title">Application of Howey to Blockchain Network Token Sales</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/digital-assets" class="post-tags__tag tlu-hero-tags">digital-assets</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/elliptic-curves" title="Go to Elliptic Curves">Elliptic Curves</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/bft-consensus-mechanisms" title="Go to BFT Consensus Mechanisms">BFT Consensus Mechanisms</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/scaling" title="Go to 4. Scaling">4. Scaling</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling" title="Go to 4. Scaling">4. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/executive-summary" title="Go to Layer 2 Scaling - Executive Summary">Layer 2 Scaling - Executive Summary</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/mining" title="Go to 5. Mining">5. Mining</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining" title="Go to 5. Mining">5. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/nft-survey" title="Go to Non-Fungible Tokens Survey">Non-Fungible Tokens Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/protocols" title="Go to 7. Protocols">7. Protocols</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols" title="Go to 7. Protocols">7. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/labs" title="Go to 9. Labs">9. Labs</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs" title="Go to 9. Labs">9. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <!-- <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5><span class="widget__tag-count">13</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5><span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5><span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5><span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5><span class="widget__tag-count">5</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5><span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+ -->
+    </div>
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+        <div id="breadcrumbs">
+
+<a href="/">Home</a>
+
+  
+    / <a href="/digital-assets/">Digital assets</a>
+  
+
+  
+    / Application of Howey to Blockchain Network Token Sales
+  
+
+</div>
+        <hr>
+        <div class="post__content">
+          <h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#what-is-a-security">What is a Security?</a></li>
+  <li><a href="#what-is-an-investment-contract-ie-howey-test">What is an Investment Contract (i.e. <em>Howey</em> Test)?</a></li>
+  <li><a href="#fourth-prong-of-howey-test---efforts-of-others">Fourth Prong of Howey Test - Efforts of Others</a></li>
+  <li>
+<a href="#decentralization-consumptive-purpose-and-priming-purchasers-expectations">Decentralization, Consumptive Purpose and Priming Purchasers’ Expectations</a>
+    <ul>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#decentralization">Decentralization</a></li>
+      <li><a href="#consumptive-purpose">Consumptive Purpose</a></li>
+      <li><a href="#priming-purchasers-expectations">Priming Purchasers’ Expectations</a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusion">Conclusion</a></li>
+  <li><a href="#footnotes">Footnotes</a></li>
+  <li><a href="#references">References</a></li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Many blockchain networks use, or intend to use, cryptographic tokens (“tokens” or “digital assets”) for various
+purposes. These purposes include an incentive for network participants to contribute computing power to the network;
+or to gain access to certain goods, services or other network functionality. Some promoters of such a network sell
+tokens, or the right to receive tokens once the network has launched. They then use the sales proceeds to finance
+development and maintenance of the networks.</p>
+
+<p>The U.S. Securities and Exchange Commission (SEC) has determined that many of the token offerings and sales over the
+past few years have been in violation of federal securities laws. In some cases, the SEC has taken action against the
+promoters of the offerings.</p>
+
+<p>Refer to the following Orders under the Order Instituting Cease-and-Desist Proceedings Pursuant to [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 8A]:</p>
+
+<ul>
+  <li>Making Findings, and Imposing a Cease-and-Desist Order against Munchee Inc. (the <em>Munchee</em> Order);</li>
+  <li>Making Findings, and Imposing Penalties and a Cease-and-Desist Order against CarrierEQ, Inc.,
+D/B/A/ Airfox (the <em>Airfox</em> Order);</li>
+  <li>Making Findings, and Imposing Penalties and a Cease-and-Desist Order against Paragon Coin, Inc. (the <em>Paragon</em> Order); and</li>
+  <li>Making Findings, and Imposing a Cease-and-Desist Order against GladiusNetwork LLC (the <em>Gladius</em> Order).</li>
+</ul>
+
+<p>In each case, the SEC’s decision to take action has been underpinned by its determination that the digital assets that
+were offered and sold were securities pursuant to Section 2(a)(1) of the Securities Act of 1933 - the “Securities Act”
+or “Act” [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>]. Under [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 5], it is generally unlawful for any person, directly or indirectly, to offer or
+sell a security without complying with the registration requirement of Section 5, unless the securities offering
+qualifies for an exemption from registration.</p>
+
+<p>The sanctions for a violation of [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 5] can be significant. They include a preliminary and permanent
+injunction; rescission; disgorgement; prejudgment interest; and civil money penalties. It is important that those
+seeking to promote token offerings and sales do so only after ensuring that the tokens to be sold are not securities
+under [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>], or that the offering, if it involves securities, complies with [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 5], or otherwise qualifies for
+an exemption from registration thereunder.</p>
+
+<p>While the Securities Act [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>]; relevant case law and administrative proceedings; as well as guidance and statements of
+the SEC and its officials shed much light on many of the considerations involved in an analysis of whether a given
+digital asset is a security, the facts and circumstances relating to each token, token offering and sale are typically
+quite unique. Many who seek to undertake token offerings and sales struggle to achieve clarity regarding whether such
+offerings and sales must be registered under [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>], or have to fit within an exemption from the Act’s registration
+requirements. As a result, there is significant regulatory uncertainty surrounding the offering and sale of tokens.</p>
+
+<p>The Commission recognizes the need for more guidance in this area and continues to assist those seeking to achieve a
+greater understanding of whether the U.S. federal securities laws apply to the offer or sale of a particular digital
+asset. This report:</p>
+
+<ul>
+  <li>
+    <p>Reviews [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>] (the “Framework”, which was recently published by the SEC’s Strategic Hub for Innovation and Financial
+Technology, along with previous statements by William Hinman, the Director of the SEC’s Division of Corporation Finance.
+<strong>Note:</strong> “The Framework” represents the views of SEC Staff. It is not a rule, regulation or statement of the SEC, and
+it is not binding on the Divisions of the SEC or the SEC itself.</p>
+  </li>
+  <li>
+    <p>Explains how [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>] is indicative of the SEC’s approach to applying the investment contract test laid out in [<a href="https://www.loc.gov/item/uscode1964-003015002b/">3</a>] to
+digital assets. The SEC adopted this test, commonly referred to as the <em>Howey</em> test [<a href="https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.">4</a>], and has applied the test in
+subsequent actions involving digital assets.<sup><a href="#footnote_1">f1</a></sup> <strong>Note:</strong> [<a href="https://www.loc.gov/item/uscode1964-003015002b/">3</a>, Section 21(a)] authorizes the
+SEC to investigate violations of the federal securities laws and, in its discretion, to “publish information concerning
+any such violations”. The Report does not constitute an adjudication of any fact or issue, nor does it make any findings
+of violations by any individual or entity.</p>
+  </li>
+</ul>
+
+<p>In particular, this report examines some of the SEC Staff’s statements relating to the fourth prong of the <em>Howey</em> test,
+i.e. the “efforts of others”, and discusses factors for promoters of token offerings to consider when assessing whether
+a token purchaser may have a reasonable expectation of earning profits from the significant efforts of others. It
+should be noted that this report is in no way intended to constitute or be relied upon as legal advice, or to substitute
+for obtaining competent legal advice from an experienced attorney.</p>
+
+<h2 id="what-is-a-security">What is a Security?</h2>
+
+<p>Section 2(a)(1) of the Securities Act [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>] defines a security as follows:</p>
+
+<blockquote>
+  <p>The term “security” means any note, stock, treasury stock, security future, security-based swap, bond, debenture,
+evidence of indebtedness, certificate of interest or participation in any profit-sharing agreement, collateral-trust
+certificate, preorganization certificate or subscription, transferable share, investment contract, voting-trust
+certificate, certificate of deposit for a security, fractional undivided interest in oil, gas, or other mineral rights,
+any put, call, straddle, option, or privilege on any security, certificate of deposit, or group or index of securities
+(including any interest therein or based on the value thereof), or any put, call, straddle, option, or privilege entered
+into on a national securities exchange relating to foreign currency, or, in general, any interest or instrument commonly
+known as a “security”, or any certificate of interest or participation in, temporary or interim certificate for, receipt
+for, guarantee of, or warrant or right to subscribe to or purchase, any of the foregoing.</p>
+</blockquote>
+
+<p>While blockchain network tokens (as well as a wide variety of other instruments) are not explicitly included in the
+definition of “security” under the Act, courts have abstracted the common elements of an “investment contract”, which is
+included in the definition of “security” under Section 2(a)(1) (and Section 3(a)(10) of the Exchange Act of 1934, which
+is contained in [<a href="https://www.loc.gov/item/uscode1964-003015002b/">3</a>]), to establish a “flexible rather than a static principle, one that is capable of adaptation to
+meet the countless and variable schemes devised by those who seek the use of the money of others on the promise of
+profits” [<a href="https://www.loc.gov/item/uscode1964-003015002b/">3</a>, paragraph 299].</p>
+
+<p>Accordingly, a determination of whether an instrument not specifically enumerated under Section 2(a)(1) of the Act may
+be deemed to be a security that implicates the federal securities laws must include an analysis of whether it is an
+investment contract under <em>Howey</em>.</p>
+
+<h2 id="what-is-an-investment-contract-ie-howey-test">What is an Investment Contract (i.e. <em>Howey</em> Test)?</h2>
+
+<p><em>Howey</em> (and its progeny) established the framework of a four-part test to determine whether an instrument is an
+investment contract and therefore a security subject to the U.S. federal securities laws. <em>Howey</em> provides that an
+investment contract exists if there is:</p>
+
+<ol>
+  <li>an <strong>investment of money</strong>;</li>
+  <li>into a <strong>common enterprise</strong>;</li>
+  <li>with a <strong>reasonable expectation of profits</strong>;</li>
+  <li>derived from the entrepreneurial or managerial <strong>efforts of others</strong>.</li>
+</ol>
+
+<p>For an instrument to be an investment contract, each element of the <em>Howey</em> test must be met. If any element of the test
+is not met, the instrument is not an investment contract.</p>
+
+<h2 id="fourth-prong-of-howey-test---efforts-of-others">Fourth Prong of Howey Test - Efforts of Others</h2>
+
+<p>While the “efforts of others” prong of the <em>Howey</em> test is, at some level, no more important in an application of
+<em>Howey</em> than any of the other prongs, it is frequently the prong on which the most uncertainty hangs. The “efforts of
+others” is often the focus when it comes to public blockchain networks. This is because the decentralization of control
+that many such projects seek to foster prompts the following question: do the kind and degree of the existing
+decentralization mean that any expectation of profits token purchasers may have does not come from the efforts of others for
+purposes of <em>Howey</em>? The determination that token purchasers reasonably expected profits to come from the efforts of a
+centralized (or at least coordinated) person or group has been central in the SEC’s findings that the tokens were
+securities in each of the recent SEC enforcement actions relating to token offerings and
+sales.<sup><a href="#footnote_1">f1</a></sup></p>
+
+<h2 id="decentralization-consumptive-purpose-and-priming-purchasers-expectations">Decentralization, Consumptive Purpose and Priming Purchasers’ Expectations</h2>
+
+<h3 id="background">Background</h3>
+
+<p>On 14 June 2018, Hinman delivered a speech<sup><a href="#footnote_2" title="William Hinman, Director of the Division of Corp. Fin., SEC...">f2</a></sup> addressing whether “a digital asset that was
+originally offered in a securities offering [can] ever later be sold in a manner that does not constitute an offering of
+a security”, and noted two cases where he believed this was indeed possible:</p>
+
+<ul>
+  <li>
+    <p>“where there is no longer any central enterprise being invested in”, e.g. purchases of the digital assets related to a
+decentralized enterprise or network; and</p>
+  </li>
+  <li>
+    <p>“where the digital asset is sold only to be used to purchase a good or service available through the network on which
+it was created”, e.g. purchases of digital assets for a consumptive purpose.</p>
+  </li>
+</ul>
+
+<p>He posed a set of six questions directly related to the application of the “efforts of others” prong of the Howey test
+to offerings and sales of digital assets:</p>
+
+<blockquote>
+  <ol>
+    <li>
+      <p>Is there a person or group that has sponsored or promoted the creation and sale of the digital asset, the efforts
+  of whom play a significant role in the development and maintenance of the asset and its potential increase in value?</p>
+    </li>
+    <li>
+      <p>Has this person or group retained a stake or other interest in the digital asset such that it would be motivated to
+  expend efforts to cause an increase in value in the digital asset? Would purchasers reasonably believe such efforts will
+  be undertaken and may result in a return on their investment in the digital asset?</p>
+    </li>
+    <li>
+      <p>Has the promoter raised an amount of funds in excess of what may be needed to establish a functional network, and,
+  if so, has it indicated how those funds may be used to support the value of the tokens or to increase the value of the
+  enterprise? Does the promoter continue to expend funds from proceeds or operations to enhance the functionality and/or
+  value of the system within which the tokens operate?</p>
+    </li>
+    <li>
+      <p>Are purchasers ‘investing’, that is seeking a return? In that regard, is the instrument marketed and sold to the
+  general public instead of to potential users of the network for a price that reasonably correlates with the market value
+  of the good or service in the network?</p>
+    </li>
+    <li>
+      <p>Does application of the Securities Act protections make sense? Is there a person or entity others are relying on
+  that plays a key role in the profit-making of the enterprise such that disclosure of their activities and plans would be
+  important to investors? Do informational asymmetries exist between the promoters and potential purchasers/investors in
+  the digital asset?</p>
+    </li>
+    <li>
+      <p>Do persons or entities other than the promoter exercise governance rights or meaningful influence?</p>
+    </li>
+  </ol>
+</blockquote>
+
+<p>(He also posed a separate set of seven questions exploring “contractual or technical ways to structure digital assets so
+they function more like a consumer item and less like a security”).</p>
+
+<p>Hinman noted that these questions are useful to consider when assessing the facts and circumstances surrounding
+offerings and sales of digital assets to determine “whether a third party - be it a person, entity or coordinated group
+of actors - drives the expectation of a return”. If such a party does drive an expectation of a return on a purchased
+digital asset, i.e. priming purchasers’ expectations, there is a greater likelihood that the asset will be deemed to
+be an investment contract and therefore a security.</p>
+
+<p>In the Framework [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>], the SEC Staff similarly focuses attention on whether a purchaser of a digital asset has a
+reasonable expectation of profits derived from the efforts of others. These three themes: decentralization, consumptive
+purpose and priming purchasers’ expectations, provide useful context for much of its discussion. The following offers
+for consideration select implications of the Framework’s [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>] guidance and Hinman’s speech, as industry
+participants seek a greater understanding of whether or not a digital asset is a security.</p>
+
+<h3 id="decentralization"><strong>Decentralization</strong></h3>
+
+<p>The Framework [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>] reinforces that the degree and nature of a promoter’s involvement will have a bearing on the <em>Howey</em>
+analysis. The facts and circumstances relating to a promoter are key. If a promoter does not play a significant role in
+the “development, improvement (or enhancement), operation, or promotion of the network” [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, Section 3] underlying the
+tokens, it cuts against finding the “efforts of others” prong has been met. A promoter may seek to play a more
+limited role in these areas. Or, along similar lines, influence over the “essential tasks and responsibilities” of the
+network may be widely dispersed, i.e. decentralized, among many unaffiliated network stakeholders so that there is no
+identifiable “person or group” that continues to play a significant role, especially as compared to the role that the
+dispersed stakeholders play [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, Section 4]<sup><a href="#footnote_3">f3</a></sup>.</p>
+
+<p>The SEC has placed particular attention on promoter efforts to impact a token’s supply and/or demand and has also
+focused on a promoter’s efforts to use the proceeds from a token offering to create an ecosystem that will drive demand
+for the tokens once the network is functional.<sup><a href="#footnote_1">f1</a></sup> Further, the SEC has singled out promoter
+efforts to maintain a token’s price by intervening in the buying and selling of tokens, separate from developing and
+maintaining the underlying network.</p>
+
+<p>Further, the SEC’s Senior Advisor for Digital Assets, Valerie Szczepanik, noted promoter efforts in this area may
+implicate U.S. securities law, recently stating she has “seen stablecoins that purport to control price through some
+kind of pricing mechanism… controlled through supply and demand in some way to keep the price within a certain band”,
+and “[W]here there is one central party controlling the price fluctuation over time, [that] might be getting into the
+land of securities” [<a href="https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-lawsquot">6</a>].</p>
+
+<p>In contrast to the kinds of efforts that meet <em>Howey</em>’s fourth prong, to the extent that a token’s value is driven by
+market forces (supply and demand conditions), it suggests that the value of the token is attributable to factors other
+than the promoter’s efforts. This is assuming that the promoter does not put some mechanism in place to manage token
+supply or demand in order to maintain a token’s price.</p>
+
+<p>In addition, decentralization of control calls into question whether the application of the Securities Act [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>] makes
+sense to begin with. A main purpose of [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>] is to ensure that securities issuers “tell the public the truth about
+their businesses, the securities they are selling, and the risks involved in investing” [<a href="https://www.sec.gov/Article/whatwedo.html">5</a>]. Typically, the issuer
+of a security plays a key role in the success of the enterprise. Investors rely on the experience, judgment and skill of
+the enterprise’s management team and board of directors to drive profits. The disclosure requirements of [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>] focus
+primarily on issuers of securities. A decentralized network, where no central person or entity plays a key role,
+however, challenges both identification of a party who should be subject to the disclosure obligations of [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>], and the
+information expected to be disclosed. Indeed, speaking about Bitcoin, Hinman acknowledged as much, stating he “[does]
+not see a central third party whose efforts are a key determining factor in the enterprise. The network on which Bitcoin
+functions is operational and appears to have been decentralized for some time. Applying the disclosure regime of the
+federal securities laws to the offer and resale of Bitcoin would seem to add little value”. Decentralization ultimately
+invokes consideration of whether application of [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>] truly serves its purpose. as well as the practical realities of
+how doing so would even work.</p>
+
+<h3 id="consumptive-purpose">Consumptive Purpose</h3>
+
+<p>Token purchasers who plan to use their tokens to access a network’s functionality typically are not speculating that
+the tokens will increase in value. The finding that a token was offered to potential purchasers in a manner inconsistent
+with a consumptive purpose has been a factor in several of the SEC’s recent orders, for example:</p>
+
+<ul>
+  <li>
+    <p>From paragraph 18 of the <em>Munchee</em> Order [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 8A]: “[The] marketing did not use the Munchee App or otherwise
+specifically target current users of the Munchee App to promote how purchasing MUN tokens might let them qualify for
+higher tiers and bigger payments on future reviews… Instead, Munchee and its agents promoted the MUN token offering in
+forums aimed at people interested in investing in Bitcoin and other digital assets”).</p>
+  </li>
+  <li>
+    <p>From paragraph 16 of the <em>Airfox</em> Order [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 8A]: “AirFox primarily aimed its promotional efforts for the
+initial coin offering at digital token investors rather than anticipated users of AirTokens”).</p>
+  </li>
+</ul>
+
+<p>Accordingly, a promoter may seek to limit the offering and sale of tokens to prospective network users. A promoter may
+also seek to ensure that, in both its content and intended audience, the marketing, and other communication related to
+the token offering, is consistent with consumption being the reason for purchasing tokens. The SEC Staff has indicated
+that the argument that purchasers are acquiring tokens for consumption will be stronger once the network is functional
+and tokens can actually be used to purchase goods or access services through the network.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>
+    <p>Reference [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, Section 9] states that it is less likely the <em>Howey</em> test is met if various characteristics are
+present, including “[h]olders of the digital asset are immediately able to use it for its intended functionality on the
+network”).</p>
+  </li>
+  <li>
+    <p>Paragraph 7 of the <em>Airfox</em> Order [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 8A] states “The terms of AirFox’s initial coin offering purported to
+require purchasers to agree that they were buying AirTokens for their utility as a medium of exchange for mobile airtime,
+and not as an investment or a security. At the time of the ICO, this functionality was not available… Despite the
+reference to AirTokens as a medium of exchange, at the time of the ICO, investors purchased AirTokens based upon
+anticipation that the value of the tokens would rise through AirFox’s future managerial and entrepreneurial efforts.”</p>
+  </li>
+</ul>
+
+<p>Promoters may also consider whether “restrictions on the transferability of the digital asset are consistent with the
+asset’s use and not facilitating a speculative market” [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, Section 10].</p>
+
+<h3 id="priming-purchasers-expectations">Priming Purchasers’ Expectations</h3>
+
+<p>The SEC has given much attention to whether token purchasers were led to expect that the promoter would make efforts to
+increase token value. In this respect, in bringing enforcement actions, the SEC has highlighted statements made by
+promoters that specifically tout the opportunity to profit from purchasing a token.</p>
+
+<p>For example, from paragraph 17 of the <em>Munchee</em> Order [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 8A]:</p>
+
+<blockquote>
+  <p>Munchee made public statements or endorsed other people’s public statements that touted the opportunity to profit.
+For example… Munchee created a public posting on Facebook, linked to a third-party YouTube video, and wrote ‘199% GAINS
+on MUN token at ICO price! Sign up for PRE‑SALE NOW!’ The linked video featured a person who said ‘Today we are going
+to talk about Munchee. Munchee is a crazy ICO… Pretty much, if you get into it early enough, you’ll probably most likely
+get a return on it.’ This person… ‘speculate[d]’ that a \$1,000 investment could create a $94,000 return.</p>
+</blockquote>
+
+<p>Promotional statements explaining that tokens would be listed on digital asset exchanges for secondary trading also draw
+attention. Refer to the following examples.</p>
+
+<ul>
+  <li>
+    <p>From paragraph 13 of the <em>Munchee</em> Order [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 8A]: Munchee stated it would work to ensure that MUN holders
+would be able to sell their MUN tokens on secondary markets, saying that “Munchee will ensure that MUN token is available
+on a number of exchanges in varying jurisdictions to ensure that this is an option for all token-holders.”);</p>
+  </li>
+  <li>
+    <p>From paragraph 22 of the <em>Gladius</em> Order [<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>, Section 8A]: During and following the offering, Gladius attempted to
+make GLA Tokens available for trading on major digital asset trading platforms. On Gladius Web Pages, Gladius principals
+and agents stated that “[w]e’ve been approached by some of the largest exchanges, they’re very interested,” and
+represented that the GLA Token would be available to trade on ‘major’ trading platforms after the ICO.</p>
+  </li>
+  <li>
+    <p>From [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, page 5], which states that it is more likely that there is a reasonable expectation of profit if various
+characteristics are present, including if the digital asset is marketed using “[t]he availability of a market for the
+trading of the digital asset, particularly where the [promoter] implicitly or explicitly promises to create or otherwise
+support a trading market for the digital asset”.</p>
+  </li>
+</ul>
+
+<p>Secondary trading on exchanges provides token holders an alternative to using the token on the network and, especially
+when facilitated and highlighted by the promoter, can support a finding of investment intent for token purchasers, i.e.
+buying with an eye on reselling for a profit instead of consuming goods or services through the network.</p>
+
+<p>The Framework [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, Section 6] states that it is more likely there is a reasonable expectation of profit if various
+characteristics are present, including if “the digital asset is offered broadly to potential purchasers as compared to
+being targeted to expected users of the goods or services or those who have a need for the functionality of the
+network”, and/or “[t]he digital asset is offered and purchased in quantities indicative of investment intent instead of
+quantities indicative of a user of the network”.</p>
+
+<p>The Framework [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>] also notes that purchasers may have an expectation that the promoter will “undertake efforts to
+promote its own interests and enhance the value of the network or digital assets” [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, Section 5]. Token purchasers who
+are not aware of the promoter’s interest in the network’s success, such as through the promoter having retained a stake
+in the tokens, should not have any reason to expect the promoter to undertake any efforts to drive token value in order
+to increase its own profits.</p>
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+
+<p>Parties seeking to undertake offerings and sales of tokens in compliance with U.S. securities laws may look to the
+various actions and statements of the SEC for guidance as to whether the token is a security under the Act. As tokens
+are not specifically enumerated under the definition of “security”, the analysis hinges on the application of the
+<em>Howey</em> test to determine if the token is an “investment contract” under the Act, and therefore a security. The
+decentralization of control many public blockchain projects seek to foster places <em>Howey</em>’s “efforts of others” prong
+as a key area of focus. Questions regarding the application of this prong generally relate to:</p>
+
+<ul>
+  <li>decentralization of the enterprise underlying the tokens;</li>
+  <li>consumptive purpose of token purchasers; and</li>
+  <li>whether token purchasers were led to have an expectation that the promoter would take efforts to drive token value.</li>
+</ul>
+
+<p>This report has offered insight into some of the factors that promoters of token offerings may consider in assessing
+whether the kind and degree of decentralization that exists means that any expectation of profits token purchasers may
+have does not come from the efforts of others. It is also indicative of the SEC’s approach to evaluating the offer and
+sale of digital assets.</p>
+
+<h2 id="footnotes">Footnotes</h2>
+
+<p><strong>f1:</strong>   <a name="footnote_1"> </a>For examples, refer to paragraph 32 of the <em>Munchee</em> Order and
+paragraph 21 of the <em>Airfox</em> Order and accompanying text. <br>
+<strong>Paragraph 32 of <em>Munchee</em> Order:</strong> “MUN token
+purchasers had a reasonable expectation of profits from their investment in the Munchee enterprise. The proceeds of the
+MUN token offering were intended to be used by Munchee to build an “ecosystem” that would create demand for MUN tokens
+and make MUN tokens more valuable”.<br> <strong>Paragraph 21 of <em>Airfox</em> Order:</strong> “AirFox told investors that the company
+would improve the AirFox App, add new functionality, enter into agreements with third-party telecommunication companies,
+and take other steps to encourage the use of AirTokens and foster the growth of the ecosystem. Investors reasonably
+expected they would profit from the success of AirFox’s efforts to grow the ecosystem and the concomitant rise in the
+value of AirTokens”.</p>
+
+<p>“For examples, refer to paragraph 32 of the <em>Munchee</em> Order
+and paragraph 21 of the <em>Airfox</em> Order and accompanying text…’”</p>
+
+<p><strong>f2:</strong>   <a name="footnote_2"> </a>William Hinman, Director of the Division of Corp. Fin., SEC, Remarks
+at the Yahoo Finance All Markets Summit: Crypto: Digital Asset Transactions: When Howey Met Gary (Plastic) (14 June 2018).</p>
+
+<p><strong>f3:</strong>   <a name="footnote_3"> </a>Reference [<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>, Section 4] states that it is more likely that the
+purchaser of a digital asset is relying on the efforts of others if various characteristics are present. This includes
+“[t]here are essential tasks or responsibilities performed and expected to be performed by [a promoter], rather than an
+unaffiliated, dispersed community of network users”.</p>
+
+<p>“This section states that it is more likely that the purchaser of
+a digital asset is relying on the efforts of others if…”</p>
+
+<h2 id="references">References</h2>
+
+<p>[<a href="https://www.loc.gov/item/uscode1934-001015002a/">1</a>] “U.S. Congress. United States Code: Securities Act of, 15 U.S.C. §§  77a-77mm 1934” [online].
+Available: <a href="https://www.loc.gov/item/uscode1934-001015002a/">https://www.loc.gov/item/uscode1934-001015002a/</a>. Date accessed: 2019‑03‑07.</p>
+
+<p>“U.S. Congress. United States Code:
+Securities Act of, 15 U.S.C.
+§§ 77a-77mm 1934.”</p>
+
+<p>[<a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">2</a>] “Framework for ‘Investment Contract’ Analysis of Digital Assets” [online].
+Available: <a href="https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets">https://www.sec.gov/corpfin/framework-investment-contract-analysis-digital-assets</a>&gt;. Date accessed:
+2019‑03‑10.</p>
+
+<p>“Framework for ‘Investment Contract’
+Analysis of Digital Assets.”</p>
+
+<p>[<a href="https://www.loc.gov/item/uscode1964-003015002b/">3</a>] “U.S. Congress. United States Code: Securities Exchanges, 15 U.S.C. §§ 78a-78jj, 1964” [online].
+Available: <a href="https://www.loc.gov/item/uscode1964-003015002b/">https://www.loc.gov/item/uscode1964-003015002b/</a>. Date accessed: 2019‑03‑07.</p>
+
+<p>“U.S. Congress. United States Code:
+Securities Exchanges, 15 U.S.C.
+§§ 78a-78jj. 1964.”</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.">4</a>] “SEC v. W. J. Howey Co., 328 U.S. 293 (1946)” [online]. Available: <a href="https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.)">https://en.wikipedia.org/wiki/SEC_v._W._J._Howey_Co.)</a>.
+Date accessed: 2019‑04‑05.</p>
+
+<p>“SEC v. W. J. Howey Co.,
+328 U.S. 293 (1946).”</p>
+
+<p>[<a href="https://www.sec.gov/Article/whatwedo.html">5</a>] “U.S. Securities and Exchange Commission, What We Do” [online]. Available: <a href="https://www.sec.gov/Article/whatwedo.html">https://www.sec.gov/Article/whatwedo.html</a>.
+Date accessed: 2018‑03‑07.</p>
+
+<p>“U.S. Securities and Exchange
+Commission, What We Do”</p>
+
+<p>[<a href="https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-lawsquot">6</a>] Guillermo Jimenez, SEC’s Crypto Czar: “Stablecoins might be Violating Securities Laws”, Decrypt (2019) [online].
+Available: <a href="https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-laws">https://decryptmedia.com/5940/secs-crypto-czar-stablecoins-might-be-violating-securities-laws</a>.
+Date accessed: 2019‑03‑19.</p>
+
+<p>“Stablecoins might be
+Violating Securities Laws”</p>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li><a href="https://github.com/willacy">https://github.com/willacy</a></li>
+  <li><a href="https://github.com/hansieodendaal">https://github.com/hansieodendaal</a></li>
+  <li><a href="https://github.com/anselld">https://github.com/anselld</a></li>
+</ul>
+
+        </div>
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/digital-assets/application-of-howey-network-token-sales"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Application%20of%20Howey%20to%20Blockchain%20Network%20Token%20Sales&url=/digital-assets/application-of-howey-network-token-sales"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/digital-assets/application-of-howey-network-token-sales&amp;media=/images/banner-06.jpg&amp;description=Application%20of%20Howey%20to%20Blockchain%20Network%20Token%20Sales"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/digital-assets" style="background-image: url(/images/banner-06.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/digital-assets"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/digital-assets">Digital Assets</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/digital-assets/nft-survey">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/digital-assets/nft-survey">Non-Fungible Tokens Survey</a></h4>
+    </div>
+    <a class="next__image fadein" href="/digital-assets/nft-survey" style="background-image: url(/images/banner-06.jpg)"></a>
+  </div>
+  
+</div>
+      </article>
+      <!-- end post -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/digital-assets">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-06.jpg);">
+            <p class="tlu-post-title">Digital Assets</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/digital-assets">
+                  
+                    All digital assets provide value, but not all digital assets are valued equally
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/digital-assets" class="article__tag">digital-assets</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/digital-assets/nft-survey">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-06.jpg);">
+            <p class="tlu-post-title">Non-Fungible Tokens Survey</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/digital-assets/nft-survey">
+                  
+                    Fungibility is, essentially, a characteristic of an asset, or token, that determines whether items or quantities of the same or similar type can be completely interchangeable during exchange or utility
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/digital-assets" class="article__tag">digital-assets</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/digital-assets/confidential-assets">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-06.jpg);">
+            <p class="tlu-post-title">Confidential Assets</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/digital-assets/confidential-assets">
+                  
+                    Confidential assets, in the context of blockchain technology and blockchain-based cryptocurrencies, can have different meanings to different audiences, and can also be something totally different or unique depending on the use case.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/digital-assets" class="article__tag">digital-assets</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

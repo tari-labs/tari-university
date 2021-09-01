@@ -1,0 +1,23 @@
+<script src="{{ site.baseurl }}/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="{{ site.baseurl }}/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "{{site.baseurl}}/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="{{ site.baseurl }}/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="{{ site.baseurl }}/js/vendors/jquery.fitvids.js"></script>
+<script src="{{ site.baseurl }}/js/vendors/transition.js"></script>
+<script src="{{ site.baseurl }}/js/vendors/zoom.min.js"></script>
+<script src="{{ site.baseurl }}/js/vendors/slick.min.js"></script>
+<script src="{{ site.baseurl }}/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '{{ paginator.next_page }}',
+    pagination_available_pages_number = '{{ paginator.total_pages }}';
+</script>

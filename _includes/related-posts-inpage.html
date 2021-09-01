@@ -1,0 +1,71 @@
+{% assign maxRelated = 100 %}
+{% assign minCommonTags =  1 %}
+{% assign maxRelatedCounter = 0 %}
+
+{% for post in site.posts %}
+  {% assign sameTagCount = 0 %}
+  {% assign commonTags = '' %}
+  {% for tag in post.tags %}
+    {% if post.url != page.url %}
+      {% if page.tags contains tag %}
+        {% assign sameTagCount = sameTagCount | plus: 1 %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% if sameTagCount >= minCommonTags %}
+    {% assign class = 'is-related' %}
+  {% endif %}
+{% endfor %}
+
+    <div class="section-top">
+      <h2>Articles in this chapter</h2>
+    </div>
+    <div class="row grid">
+    {% for post in site.posts reversed %}
+
+      {% assign sameTagCount = 0 %}
+      {% assign commonTags = '' %}
+
+      {% for tag in post.tags %}
+        {% if post.url != page.url %}
+          {% if page.tags contains tag %}
+            {% assign sameTagCount = sameTagCount | plus: 1 %}
+            {% capture tagmarkup %} <span class="label label-default">{{ tag }}</span> {% endcapture %}
+            {% assign commonTags = commonTags | append: tagmarkup %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% if sameTagCount >= minCommonTags %}
+
+        <div class="tlu-rel">
+
+          {% if post.image %}
+          <a href="{{post.url | prepend: site.baseurl}}">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-rel-img" style="background-image: url({{site.baseurl}}{{post.image}})">
+            </div>
+            </div>
+            </a>
+          {% endif %}
+
+          <div>
+            <div class="tlu-excerpt" style="border-bottom: 0;">
+              <a href="{{ post.url | prepend: site.baseurl }}">
+                <h5 style="margin: 0;">{{post.title}}</h5>
+                  {% if post.excerpttext %}
+                    {{post.excerpttext | strip_newlines}}
+                  {% endif %}
+                </a>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+        {% if maxRelatedCounter >= maxRelated %}
+          {% break %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    </div>

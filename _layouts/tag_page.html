@@ -1,0 +1,51 @@
+---
+layout: default
+---
+{% assign slider_tag = page.tag %}
+<!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          <div class="page-top">
+            <div class="tag-slider">
+              <div class="tag-slider__box">
+                {% for post in site.tags[slider_tag] %}
+                <div class="tag-slider__item" style="background-image: url({{site.baseurl}}{{post.image}});"></div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="archive">
+              <div class="archive__box animate-in-top">
+                <h1 class="archive-title">{{ page.tag }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col col-12 col-d-10 col-m-12 push-m-0 push-d-1">
+      <div class="container__inner section">
+        <div class="contaniner__inner-box">
+          <div class="section-top">
+            <h5 class="section-title">All posts tagged - {{ page.tag }}</h5>
+          </div>
+          <div class="row grid">
+            {% for post in page.posts %}
+              {% include article-content.html %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Mimblewimble Multiparty Bulletproof UTXO</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/protocols/mimblewimble-mb-bp-utxo">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:30px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:none}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:none}}.error-page__head h1,.error-page__head h2{margin-bottom:20px;color:#FFF}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px;color:#FFF}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px;color:#FFF}.error-page__head h2{font-size:60px;color:#FFF}}
+
+  </style>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-07.jpg');">
+              <h1 class="tlu-hero-title">Mimblewimble Multiparty Bulletproof UTXO</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/protocols" class="post-tags__tag tlu-hero-tags">protocols</a>
+                      
+                      <a href="/tag/mimblewimble" class="post-tags__tag tlu-hero-tags">mimblewimble</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/elliptic-curves" title="Go to Elliptic Curves">Elliptic Curves</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/bft-consensus-mechanisms" title="Go to BFT Consensus Mechanisms">BFT Consensus Mechanisms</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/scaling" title="Go to 4. Scaling">4. Scaling</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling" title="Go to 4. Scaling">4. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/executive-summary" title="Go to Layer 2 Scaling - Executive Summary">Layer 2 Scaling - Executive Summary</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/mining" title="Go to 5. Mining">5. Mining</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining" title="Go to 5. Mining">5. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/nft-survey" title="Go to Non-Fungible Tokens Survey">Non-Fungible Tokens Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/protocols" title="Go to 7. Protocols">7. Protocols</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols" title="Go to 7. Protocols">7. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/labs" title="Go to 9. Labs">9. Labs</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs" title="Go to 9. Labs">9. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <!-- <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5><span class="widget__tag-count">13</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5><span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5><span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5><span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5><span class="widget__tag-count">5</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5><span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+ -->
+    </div>
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+        <div id="breadcrumbs">
+
+<a href="/">Home</a>
+
+  
+    / <a href="/protocols/">Protocols</a>
+  
+
+  
+    / Mimblewimble Multiparty Bulletproof UTXO
+  
+
+</div>
+        <hr>
+        <div class="post__content">
+          
+<style>
+div.mywrap {
+  width: 95%;
+  word-wrap: break-word;
+  background: #f1f1f1;
+  font-size: 0.875em;
+  font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
+  padding: 2.0em;
+  color: #6e6b5e;
+}
+</style>
+
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#background">Background</a>
+    <ul>
+      <li><a href="#bitcoin--mtext-of-n--multisig-in-a-nutshell">Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell</a></li>
+      <li><a href="#security-of-the-mimblewimble-blockchain">Security of the Mimblewimble Blockchain</a></li>
+      <li><a href="#the-importance-of-range-proofs">The importance of Range Proofs</a></li>
+      <li><a href="#secure-sharing-protocol">Secure Sharing Protocol</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#mimblewimble--ntext-of-n--multiparty-bulletproof-utxo">Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO</a>
+    <ul>
+      <li><a href="#simple-sharing-protocol">Simple Sharing Protocol</a></li>
+      <li><a href="#setting-up-the-multiparty-funding-transaction">Setting up the Multiparty Funding Transaction</a></li>
+      <li>
+<a href="#creating-the-multiparty-bulletproof-range-proof">Creating the Multiparty Bulletproof Range Proof</a>
+        <ul>
+          <li><a href="#utilizing-bulletproofs-mpc-protocol">Utilizing Bulletproofs MPC Protocol</a></li>
+          <li><a href="#utilizing-grins-shared-bulletproof-computation">Utilizing Grin’s Shared Bulletproof Computation</a></li>
+          <li><a href="#comparison-of-the-two-bulletproof-methods">Comparison of the two Bulletproof Methods</a></li>
+        </ul>
+      </li>
+      <li><a href="#spending-the-multiparty-utxo">Spending the Multiparty UTXO</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#mimblewimble--mtext-of-n--multiparty-bulletproof-utxo">Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO</a>
+    <ul>
+      <li><a href="#secret-sharing">Secret Sharing</a></li>
+      <li><a href="#multiple-rounds-data">Multiple Rounds’ Data</a></li>
+      <li><a href="#how-it-works">How it Works</a></li>
+      <li><a href="#spending-protocol">Spending Protocol</a></li>
+    </ul>
+  </li>
+  <li><a href="#comparison-to-bitcoin">Comparison to Bitcoin</a></li>
+  <li><a href="#conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</a></li>
+  <li><a href="#references">References</a></li>
+  <li>
+<a href="#appendices">Appendices</a>
+    <ul>
+      <li><a href="#appendix-a-notation-used">Appendix A: Notation Used</a></li>
+      <li><a href="#appendix-b-definition-of-terms">Appendix B: Definition of Terms</a></li>
+      <li><a href="#appendix-c-shamirs-secret-sharing-example">Appendix C: Shamir’s Secret Sharing Example</a></li>
+    </ul>
+  </li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In <a href="../mimblewimble-1/MainReport.md">Mimblewimble</a>, the concept of a Bitcoin-type multi-signature (multisig) applied to
+an Unspent Transaction Output (UTXO) does not really exist.</p>
+
+<p>In Bitcoin, multisig payments are usually combined with Pay to Script Hash (P2SH) functionality as a means to send funds
+to a P2SH payment address, and then to manage its expenditure from there. The redeem script itself sets the conditions
+that must be fulfilled for the UTXOs linked to the P2SH payment address to be spent ([<a href="https://blockgeeks.com/guides/bitcoin-script-guide-part-2" title="The Best Step-by-Step Bitcoin Script Guide Part 2">1</a>], [<a href="https://en.bitcoin.it/wiki/Script" title="Script">2</a>]).</p>
+
+<p>Unlike Bitcoin, Mimblewimble transactions do not involve payment addresses, as all transactions are confidential. The
+only requirement for a Mimblewimble UTXO to be spent is the ability to open (or unlock) the
+<a href="../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments">Pedersen Commitment</a>
+that contains the tokens; it does not require an “owner” signature. A typical Mimblewimble UTXO looks like this [<a href="https://grinexplorer.net/block/0000016c1ceb1cf588a45d0c167dbfb15d153c4d1d33a0fbfe0c55dbf7635410" title="GitHub: gavinandresen/TwoOfThree.sh">9</a>]:</p>
+
+<div class="mywrap">08c15e94ddea81e6a0a31ed558ef5e0574e5369c4fcba92808fe992fbff68884cc</div>
+
+<p>Another fundamental difference is that for any Mimblewimble transaction, all parties, i.e. all senders and all
+receivers, must interact to conclude the transaction.</p>
+
+<h2 id="background">Background</h2>
+
+<h3 id="bitcoin--mtext-of-n--multisig-in-a-nutshell">Bitcoin $ m\text{-of-}n $ Multisig in a Nutshell</h3>
+
+<p>Multiple use cases of $ m\text{-of-}n $ multisig applications exist, e.g. a $ 1\text{-of-}2 $ petty cash account,
+a $ 2\text{-of-}2 $ two-factor authentication wallet and a $ 2\text{-of-}3 $ board of directors account [<a href="https://en.bitcoin.it/wiki/Multisignature" title="Multisignature">3</a>].
+A typical $ 2\text{-of-}3 $ Bitcoin P2SH multisig redeem script (where any two of the three predefined public keys must sign the
+transaction) has the following form:</p>
+
+<pre><code class="language-Text">redeemScript     = &lt;OP_2&gt; &lt;A pubkey&gt; &lt;B pubkey&gt; &lt;C pubkey&gt; &lt;OP_3&gt; OP_CHECKMULTISIG
+</code></pre>
+
+<p>The P2SH payment address is the result of the redeem script double hashed with SHA-256 and RIPEMD-160 and then
+Base58Check encoded with a prefix of <code class="language-plaintext highlighter-rouge">0x05</code>:</p>
+
+<pre><code class="language-Text">redeemScriptHash = RIPEMD160(SHA256(redeemScript))
+P2SHAddress      = base58check.Encode("05", redeemScriptHash)
+</code></pre>
+
+<p>Multiple payments can now be sent to the P2SH payment address. A generic funding transaction’s output script for the
+P2SH payment address has the following form, irrespective of the redeem script’s contents:</p>
+
+<pre><code class="language-Text">scriptPubKey      =     OP_HASH160 &lt;redeemScriptHash&gt; OP_EQUAL
+</code></pre>
+
+<p>with <code class="language-plaintext highlighter-rouge">OP_HASH160</code> being the combination of SHA-256 and RIPEMD-160. The $ 2\text{-of-}3 $ multisig redeem transaction’s input script
+would have the following form:</p>
+
+<pre><code class="language-Text">scriptSig         =  OP_0 &lt;A sig&gt; &lt;C sig&gt; &lt;redeemScript&gt;
+</code></pre>
+
+<p>and the combined spending and funding transaction script (validation script) would be</p>
+
+<pre><code class="language-Text">validationScript    = OP_0 &lt;A sig&gt; &lt;C sig&gt; &lt;redeemScript&gt; OP_HASH160 &lt;redeemScriptHash&gt; OP_EQUAL
+</code></pre>
+
+<p>When <code class="language-plaintext highlighter-rouge">validationScript</code> is executed, all values are added to the execution stack in sequence. When opcode <code class="language-plaintext highlighter-rouge">OP_HASH160</code>
+is encountered, the preceding value <code class="language-plaintext highlighter-rouge">&lt;redeemScript&gt;</code> is hashed and added to the stack; and when opcode <code class="language-plaintext highlighter-rouge">OP_EQUAL</code> is
+encountered, the previous two values, hash of the <code class="language-plaintext highlighter-rouge">&lt;redeemScript&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;redeemScriptHash&gt;</code>, are compared and removed
+from the stack if equal. The top of the stack then contains <code class="language-plaintext highlighter-rouge">&lt;redeemScript&gt;</code>, which is evaluated with the two entries on
+top of that, <code class="language-plaintext highlighter-rouge">&lt;A sig&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;C sig&gt;</code>. The last value in the stack, <code class="language-plaintext highlighter-rouge">OP_0</code>, is needed for a glitch in the <code class="language-plaintext highlighter-rouge">OP_CHECKMULTISIG</code>
+opcode implementation, which makes it pop one more item than those that are available on the stack ([<a href="https://blockgeeks.com/guides/bitcoin-script-guide-part-2" title="The Best Step-by-Step Bitcoin Script Guide Part 2">1</a>], [<a href="https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions">5</a>]).</p>
+
+<p><em>What is signed?</em></p>
+
+<p>Partial signatures are created in the same sequence in which the public keys are defined in <code class="language-plaintext highlighter-rouge">redeemScript</code>. A simplified
+serialized hexadecimal version of the transaction - consisting of the input transaction ID and UTXO index, amount to be
+paid, <code class="language-plaintext highlighter-rouge">scriptPubKey</code> and transaction locktime - is signed. Each consecutive partial signature includes a serialization
+of the previous partial signature with the simplified transaction data to be signed, creating multiple cross-references
+in the signed data. This, combined with the public keys, proves the transaction was created by the real owners of the
+bitcoins in question ([<a href="https://en.bitcoin.it/wiki/Transaction" title="Transaction">4</a>], [<a href="https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions">5</a>], [<a href="https://gist.github.com/gavinandresen/3966071" title="GitHub: gavinandresen/TwoOfThree.sh">6</a>]).</p>
+
+<p><em>How is change redirected to the multisig P2SH?</em></p>
+
+<p>Bitcoin transactions can have multiple recipients, and one of the recipients of the funds from a P2SH multisig
+transaction can be the original <code class="language-plaintext highlighter-rouge">P2SHAddress</code>, thus sending change back to itself. Circular payments to the same
+addresses are allowed, but they will suffer from a lack of confidentiality. Another way to do this would be to create a
+new <code class="language-plaintext highlighter-rouge">redeemScript</code> with a new set of public keys every time a P2SH multisig transaction is done to collect the change,
+but this would be more complex to manage [<a href="https://en.bitcoin.it/wiki/Transaction" title="Transaction">4</a>].</p>
+
+<h3 id="security-of-the-mimblewimble-blockchain">Security of the Mimblewimble Blockchain</h3>
+
+<p>A <a href="../mimblewimble-1/MainReport.md">Mimblewimble</a> blockchain relies on two complementary aspects to provide security:
+<a href="../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments">Pedersen Commitments</a>
+and range proofs (in the form of <a href="../../cryptography/bulletproofs-and-mimblewimble/MainReport.md">Bulletproof range proofs</a>).
+Pedersen Commitments, e.g. $ C(v,k) = (vH + kG) $, provide perfectly hiding and computationally binding commitments.
+(Refer to <a href="#appendix-a-notation-used">Appendix A</a> for all notation used.)</p>
+
+<p>In Mimblewimble, this means that an adversary, with infinite computing power, can determine alternate pairs
+$ v ^\prime , k ^\prime $ such that $ C(v,k) = C(v ^\prime , k ^\prime) $ in a reasonable time, to open the commitment
+to another value when challenged (computationally binding). However, it will be impossible to determine the specific
+pair $ v, k $ used to create the commitment, because there are multiple pairs that can produce the same $ C $ (perfectly
+hiding).</p>
+
+<p>In addition to range proofs assuring that all values are positive and not too large, strictly in the range
+$ [0,2^{64} - 1] $, it also prohibits third parties locking away one’s funds, as demonstrated in the next section. Since
+Mimblewimble commitments are totally confidential and ownership cannot be proved, anyone can try to spend or mess with
+unspent coins embedded in those commitments. Fortunately, any new UTXO requires a range proof, and this is impossible to
+create if the input commitment cannot be opened.</p>
+
+<h3 id="the-importance-of-range-proofs">The importance of Range Proofs</h3>
+
+<p>The role that Bulletproof range proofs play in securing the blockchain can be demonstrated as follows. Let
+$ C_a(v_1 , k_1) $ be the “closed” input UTXO commitment from Alice that a bad actor, Bob, is trying to lock away.
+Bob knows that all commitments in a Mimblewimble blockchain are additionally homomorphic. This means that he can
+theoretically use Alice’s commitment as input and create a new opposing output in a transaction that sums to a
+commitment of the value $ 0 $, i.e. $ (\mathbf{0}) $. For this opposing output, Bob will attempt to add an additional
+blinding factor $ k_{x} $ to the commitment in such a way that the miners validating the transactions will not complain.</p>
+
+<p>A valid Mimblewimble transaction would have the following form:</p>
+
+\[\begin{aligned}
+C\_\mathrm{locked}(v\_1 , k\_1 + k\_x) - C\_a(v\_1 , k\_1) - C\_b(v\_2 , k\_2) + \mathrm{fee} \cdot H &amp;= (\mathbf{0}) \\\\
+\\\\
+(v\_1 H + (k\_1 + k\_x) G) - (v\_1 H + k\_1 G) - (v\_2 H + k\_2 G) + \mathrm{fee} \cdot H &amp;= (\mathbf{0})
+\end{aligned}
+\tag{1}\]
+
+<p>where the unspent-hiding-blinding commitment from Alice is $ (v_1 H + k_1 G) $ and the value of $ (v_2 H + k_2 G) $
+is equal to $ \mathrm{fee} \cdot H $ to be paid to the miner. The newly created commitment
+$ (v_1 H + (k_1 + k_x) G) $ would be equally unspendable by Alice and Bob, because neither of them would know the
+total blinding factor $ k_1 + k_x $. Fortunately, in order to construct a Bulletproof range proof for the new output
+$ (v_1 H + (k_1 + k_x) G) $ as required by transaction validation rules, the values of $ v_1 $ and $ k_1 + k_x $
+must be known, otherwise the prover (i.e. Bob) would not be able to convince an honest verifier (i.e. the miner) that
+$ v_1 $ is non-negative (i.e. in the range $ [0,2^n - 1] $).</p>
+
+<p>If Bob can convince Alice that she must create a fund over which both of them have signing powers ($ 2\text{-of-}2 $
+multisig), it would theoretically be possible to create the required Bulletproof range proof for relation (1) if they
+work together to create it.</p>
+
+<h3 id="secure-sharing-protocol">Secure Sharing Protocol</h3>
+
+<p>Multiple parties working together to create a single transaction that involves multiple steps, need to share information
+in such a way that what they shared cannot work against them. Each step requires a proof, and it should not be possible
+to replay an individual step’s proof in a different context. Merlin transcripts [<a href="https://doc-internal.dalek.rs/merlin/index.html" title="Merlin Transcripts">7</a>] is an excellent example of a
+protocol implementation that achieves this. For the purposes of this report, a simple information sharing protocol
+is proposed that can be implemented with Merlin transcripts [<a href="https://doc-internal.dalek.rs/merlin/index.html" title="Merlin Transcripts">7</a>].</p>
+
+<h2 id="mimblewimble--ntext-of-n--multiparty-bulletproof-utxo">Mimblewimble $ n\text{-of-}n $ Multiparty Bulletproof UTXO</h2>
+
+<h3 id="simple-sharing-protocol">Simple Sharing Protocol</h3>
+
+<p>Alice, Bob and Carol agree to set up a multiparty $ 3\text{-of-}3 $ multisig fund that they can control together. They
+decide to use a sharing hash function $ val_H = \text{H}_{s}(arg) $ as a handshaking mechanism for all information
+they need to share. The first step is to calculate the hash $ val_H $ for the value $ arg $ they want to
+commit to in sharing, and to distribute it to all parties. They then wait until all other parties’ commitments have been
+received. The second step is to send the actual value they committed to all parties, to then verify each
+value against its commitment. If everything matches up, they proceed; otherwise they stop and discard everything they
+have done.</p>
+
+<p>This ensures that public values for each step are not exposed until all commitments have been received. They will apply
+this simple sharing protocol to all information they need to share with each other. This will be denoted by
+$ \text{share:} $.</p>
+
+<h3 id="setting-up-the-multiparty-funding-transaction">Setting up the Multiparty Funding Transaction</h3>
+
+<p>In the transaction Alice, Bob and Carol want to set up, $ C_m $ is the multiparty shared commitment that contains the
+funds, and $ C_a $, $ C_b $ and $ C_c $ are their respective input contributions. This transaction looks as follows:</p>
+
+\[\begin{aligned}
+C\_m(v\_1, \sum \_{j=1}^3 k\_jG) - C\_a(v\_a, k\_a) - C\_b(v\_b, k\_b) - C\_c(v\_c, k\_c) + \mathrm{fee} \cdot H &amp;= (\mathbf{0}) \\\\
+(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H &amp;= (\mathbf{0})
+\end{aligned}
+\tag{2}\]
+
+<p>In order for this scheme to work, they must be able to jointly sign the transaction with a Schnorr signature, while
+keeping their portion of the shared blinding factor secret. Each of them creates their own private blinding factor
+$ k_n $ for the multiparty shared commitment and shares the public blinding factor $ k_nG $ with the group:</p>
+
+\[\text{share:} \mspace{9mu} \lbrace k\_1G, k\_2G, k\_3G \rbrace
+\tag{3}\]
+
+<p>They proceed to calculate their own total excess blinding factors as
+$ x_{sn} = \sum k_{n(change)} - \sum k_{n(inputs)} - \phi_n $, with $ \phi_n\ $ being a random offset of their own
+choosing (in this example there is no change):</p>
+
+\[\begin{aligned}
+x\_{sa} &amp;= 0 - k\_a - \phi\_a \\\\
+x\_{sb} &amp;= 0 - k\_b - \phi\_b \\\\
+x\_{sc} &amp;= 0 - k\_c - \phi\_c
+\end{aligned}
+\tag{4}\]
+
+<p>The offset $ \phi_n $ is introduced to prevent someone else linking this transaction’s inputs and outputs when
+analyzing the Mimblewimble block, and will be used later on to balance the transaction. They consequently share the
+public value of the excess $ x_{sn}G $ with each other:</p>
+
+\[\text{share:} \mspace{9mu} \lbrace x\_{sa}G, x\_{sb}G, x\_{sc}G \rbrace
+\tag{5}\]
+
+<p>They now have enough information to calculate the aggregated public key for the signature:</p>
+
+\[\begin{aligned}
+P\_{agg} = (k\_1G + x\_{sa}G) + (k\_2G + x\_{sb}G) + (k\_3G + x\_{sc}G) \\\\
+P\_{agg} = (k\_1G - (k\_a + \phi\_a)G) + (k\_2G - (k\_b + \phi\_b)G) + (k\_3G - (k\_c + \phi\_c)G)
+\end{aligned}
+\tag{6}\]
+
+<p>Each party also selects a private nonce $ r_n $, shares the public value $ r_nG $ with the group,</p>
+
+\[\text{share:} \mspace{9mu} \lbrace r\_aG, r\_bG, r\_cG \rbrace
+\tag{7}\]
+
+<p>and calculates the aggregated public nonce for the signature:</p>
+
+\[R\_{agg} = r\_aG + r\_bG + r\_cG
+\tag{8}\]
+
+<p>The signature challenge $ e $ can now be calculated:</p>
+
+\[e = \text{Hash}\(R\_{agg} \|| P\_{agg} \|| m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H \||height
+\tag{9}\]
+
+<p>Each party now uses their private nonce $ r_n $, secret blinding factor $ k_n $ and excess $ x_{sn} $ to calculate a
+partial Schnorr signature $ s_n $:</p>
+
+\[\begin{aligned}
+s\_a &amp;= r_a + e \cdot (k\_1 + x\_{sa}) \\\\
+s\_b &amp;= r_b + e \cdot (k\_2 + x\_{sb}) \\\\
+s\_c &amp;= r_c + e \cdot (k\_3 + x\_{sc})
+\end{aligned}
+\tag{10}\]
+
+<p>These partial signatures are then shared with the group to be aggregated:</p>
+
+\[\text{share:} \mspace{9mu} \lbrace s\_a, s\_b, s\_c \rbrace
+\tag{11}\]
+
+<p>The aggregated Schnorr signature for the transaction is then simply calculated as</p>
+
+\[s\_{agg} = s\_a + s\_b + s\_c
+\tag{12}\]
+
+<p>The resulting signature for the transaction is the tuple $ (s_{agg},R_{agg}) $. To validate the signature, publicly
+shared aggregated values $ R_{agg} $ and $ P_{agg} $ will be needed:</p>
+
+\[s\_{agg}G \overset{?}{=} R\_{agg} + e \cdot P\_{agg}
+\tag{13}\]
+
+<p>To validate that no funds are created, the total offset must also be stored in the transaction kernel, so the parties
+also share their offset and calculate the total:</p>
+
+\[\begin{aligned}
+\text{share:} \mspace{9mu} \lbrace \phi\_a, \phi\_b, \phi\_c \rbrace \\\\
+\phi\_{tot} = \phi\_a + \phi\_b + \phi\_c
+\end{aligned}
+\tag{14}\]
+
+<p>The transaction balance can then be validated to be equal to a commitment to the value $ 0 $ as follows:</p>
+
+\[(v\_1H + (k\_1 + k\_2 + k\_3)G) - (v\_aH + k\_aG) - (v\_bH + k\_bG) - (v\_cH + k\_cG) + \mathrm{fee} \cdot H \overset{?}{=}
+(0H + (P\_{agg} + \phi\_{tot}G))
+\tag{15}\]
+
+<h3 id="creating-the-multiparty-bulletproof-range-proof">Creating the Multiparty Bulletproof Range Proof</h3>
+
+<p>One crucial aspect in validating the transaction is still missing, i.e. each new UTXO must also include a Bulletproof
+range proof. Up to now, Alice, Bob and Carol could each keep their portion of the shared blinding factor $ k_n $
+secret. The new combined commitment they created $ (v_1H + (k_1 + k_2 + k_3)G) $ cannot be used as is to calculate
+the Bulletproof range proof, otherwise the three parties would have to give up their portion of the shared blinding
+factor. Now they need to use a secure method to calculate their combined Bulletproof range proof.</p>
+
+<h4 id="utilizing-bulletproofs-mpc-protocol">Utilizing Bulletproofs MPC Protocol</h4>
+
+<p>This scheme involves coloring the UTXO to enable attachment of additional proof data, a flag to let the miners know that
+they must employ a different set of validation rules and a hash of the UTXO and all metadata. The
+<a href="../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-for-bulletproofs">Bulletproofs Multiparty Computation</a>
+(MPC) protocol can be used in a special way to construct a range proof that can be validated by the miners. Aggregating
+the range proofs using this protocol provides a huge space saving; a single Bulletproof range proof consists of
+672 bytes, whereas aggregating 16 only consists of 928 bytes [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)">11</a>]. For this scheme, the simple information
+sharing protocol will not be adequate; an efficient, robust and secure implementation of the Bulletproof MPC range proof
+such as that done by Dalek Cryptography [<a href="https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html">10</a>] is suggested.</p>
+
+<p>This scheme works as follows. Alice, Bob and Carol proceed to calculate an aggregated MPC Bulletproof range proof for
+the combined multiparty funds, but with each using their own secret blinding factor in the commitment. They therefore
+construct fake commitments that will be used to calculate fake range proofs as follows:</p>
+
+\[\begin{aligned}
+\text{Alice's fake commitment:} \mspace{18mu} C\_1(\frac{v\_1}3,k\_1) &amp;= (\frac{v\_1}3H + k\_1G) \\\\
+\text{Bob's fake commitment:} \mspace{18mu} C\_2(\frac{v\_1}3,k\_2) &amp;= (\frac{v\_1}3H + k\_2G) \\\\
+\text{Carol's fake commitment:} \mspace{18mu} C\_3(\frac{v\_1}3,k\_3) &amp;= (\frac{v\_1}3H + k\_3G)
+\end{aligned}
+\tag{16}\]
+
+<p>Notice that</p>
+
+\[\begin{aligned}
+C\_m(v\_1, k\_1 + k\_2 + k\_3) &amp;= C\_1(\frac{v\_1}3,k\_1) + C\_2(\frac{v\_1}3,k\_2) + C\_3(\frac{v\_1}3,k\_3) \\\\
+(v\_1H + (k\_1 + k\_2 + k\_3)G) &amp;= (\frac{v\_1}3H + k\_1G) + (\frac{v\_1}3H + k\_1G) + (\frac{v\_1}3H + k\_1G)
+\end{aligned}
+\tag{17}\]
+
+<p>and that rounding implementation of $ ^{v_1} / _3 $ can ensure that adding these components for all parties will
+produce the original value $ v_1 $.</p>
+
+<p>Running the Bulletproof MPC range proof will result in a proof share for each party for their fake commitments, which
+will be aggregated by the dealer according to the MPC protocol. Any one of the party members can be the dealer, as the
+objective here is just to create the aggregated range proof. Let the aggregated range proof for the set
+$ \lbrace C_1, C_2, C_3 \rbrace $ be depicted by $ RP_{agg} $. The UTXO will then consist of the tuple
+$ (C_m , RP_{agg}) $ and metadata $ \lbrace flag, C_1, C_2, C_3, hash_{C_{m}} \rbrace $. The hash that will secure
+the metadata is proposed as:</p>
+
+\[hash\_{C\_m} = \text{Hash}\(C\_m \|| RP\_{agg} \|| flag \|| C\_1 \|| C\_2 \|| C\_3)
+\tag{18}\]
+
+<p>Range proof validation by miners will involve</p>
+
+\[\begin{aligned}
+hash\_{C\_m} &amp;\overset{?}{=} \text{Hash}\(C\_m \|| RP\_{agg} \|| flag \|| C\_1 \|| C\_2 \|| C\_3) \\
+C\_m &amp;\overset{?}{=} C\_1 + C\_2 + C\_3 \\\\
+\text{verify: } &amp;RP\_{agg} \text{ for set } \lbrace C\_1, C\_2, C\_3 \rbrace
+\end{aligned}
+\tag{19}\]
+
+<p>instead of</p>
+
+\[\text{verify: } RP\_m \text{ for } C\_m
+\tag{20}\]
+
+<h4 id="utilizing-grins-shared-bulletproof-computation">Utilizing Grin’s Shared Bulletproof Computation</h4>
+
+<p>Grin extended the
+<a href="../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof">Inner-product Range Proof</a>
+implementation to allow for multiple parties to jointly construct a single Bulletproof range proof $ RP_m $ for a known
+value $ v $, where each party can keep their partial blinding factor secret. The parties must share committed values
+deep within the inner-product range proof protocol ([<a href="https://i.imgur.com/s7exNSf.png" title="Grin Multiparty Bulletproof - jaspervdm">12</a>], [<a href="https://github.com/mimblewimble/secp256k1-zkp/pull/24" title="GitHub: Multi-party bulletproof PR#24">13</a>], [<a href="https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/bulletproofs/tests_impl.h">14</a>]).</p>
+
+<p>In order to construct the shared Bulletproof range proof $ RP_m $, each party starts to calculate their own range proof
+for commitment $ C_m(v_1, \sum _{j=1}^3 k_jG) $ as follows:</p>
+
+\[\begin{aligned}
+\text{Alice:} \mspace{18mu} C\_1(v\_1,k\_1) &amp;= (v\_1H + k\_1G) \\\\
+\text{Bob:} \mspace{18mu} C\_2(0,k\_2) &amp;= (0H + k\_2G) \\\\
+\text{Carol:} \mspace{18mu} C\_3(0,k\_3) &amp;= (0H + k\_3G)
+\end{aligned}
+\tag{21}\]
+
+<p>With this implementation, Alice needs to act as the dealer. When they get to <a href="../../cryptography/bulletproofs-protocols/MainReport.md#inner-product-range-proof">steps (53) to (61) in Figure 5</a> of the inner-product range proof
+protocol, they introduce the following changes:</p>
+
+<ol>
+  <li>Each party shares $ T_{1_j} $ and $ T_{2_j} $ with all other parties.</li>
+  <li>Each party calculates $ T_1 = \sum_{j=1}^k T_{1_j} $ and $ T_2 = \sum_{j=1}^k T_{2_j} $.</li>
+  <li>Each party calculates $ \tau_{x_j} $ based on $ T_1 $ and $ T_2 $.</li>
+  <li>Each party shares $ \tau_{x_j} $ with the dealer.</li>
+  <li>The dealer calculates $\tau_x = \sum_{j=1}^k \tau_{x_j} $.</li>
+  <li>The dealer completes the protocol, using their own private $ k_1 $, where a further blinding factor is required, and
+calculates $ RP_m $.</li>
+</ol>
+
+<p>Using this approach, the resulting shared commitment for Alice, Bob and Carol is</p>
+
+\[C\_m(v\_1, \sum \_{j=1}^3 k\_jG) = (v\_1H + \sum \_{j=1}^3 k\_jG) = (v\_1H + (k\_1 + k\_2 + k\_3)G)
+\tag{22}\]
+
+<p>with the UTXO tuple being $ (C_m , RP_m) $. Range proof validation by miners will involve verifying $ RP_m $ for
+$ C_m $.</p>
+
+<h4 id="comparison-of-the-two-bulletproof-methods">Comparison of the Two Bulletproof Methods</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Consideration</th>
+      <th>Using Dalek’s Bulletproofs MPC Protocol</th>
+      <th>Using Grin’s Multiparty Bulletproof</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rounds of communication</td>
+      <td>Three</td>
+      <td>Two</td>
+    </tr>
+    <tr>
+      <td>Information sharing security</td>
+      <td>Use of Merlin transcripts, combined with the MPC protocol, makes this method more secure against replay attacks.</td>
+      <td>No specific sharing protocol suggested, but potentially easy to implement, as described <a href="#simple-sharing-protocol">here</a>.</td>
+    </tr>
+    <tr>
+      <td>Guarantee of honest dealer</td>
+      <td>With the standard MPC protocol implementation, there is no guarantee that the dealer behaves honestly according to the protocol and generates challenges honestly, but this aspect could be improved <a href="../../cryptography/bulletproofs-protocols/MainReport.md#mpc-protocol-security-discussion">as suggested</a> in that report.</td>
+      <td>Although each party independently computes challenges themselves, it isn’t clear what the implications of a dishonest dealer would be in practice.</td>
+    </tr>
+    <tr>
+      <td>Size of the Bulletproof</td>
+      <td>Logarithmic Bulletproof range proof size, i.e. 672 bytes up to 928 bytes for 16 range proofs.</td>
+      <td>Single Bulletproof range proof size of 672 bytes.</td>
+    </tr>
+    <tr>
+      <td>Colored coin</td>
+      <td>Coins are colored, i.e. distinguishable from normal commitments in the blockchain due to additional metadata.</td>
+      <td>Coins do not need to be colored, i.e. it may look exactly like any other commitment.</td>
+    </tr>
+    <tr>
+      <td>Wallet reconstructability</td>
+      <td>Each individual range proof’s data is accessible within the aggregated range proof. It is possible to identify the colored coin and then to reconstruct the wallet if the initial blinding factor seed is remembered in conjunction with <a href="../../cryptography/bulletproofs-and-mimblewimble/MainReport.md#improved-implementation">Bulletproof range proof rewinding</a>.</td>
+      <td>The wallet cannot be reconstructed, as a single party’s blinding factor cannot be distinguished from the combined range proof. Even if these coins were colored with a flag to make them identifiable, it would not help.</td>
+    </tr>
+    <tr>
+      <td>Hiding and binding commitment</td>
+      <td>The main commitment and additional commitments in the UTXO’s metadata retain all hiding and binding security aspects of the Pederson Commitment.</td>
+      <td>The commitment retains all hiding and binding security aspects of the Pederson Commitment.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="spending-the-multiparty-utxo">Spending the Multiparty UTXO</h3>
+
+<p>Alice, Bob and Carol had a private bet going that Carol won, and they agree to spend the multiparty UTXO to pay Carol
+her winnings, with the change being used to set up a consecutive multiparty UTXO. This transaction looks as follows:</p>
+
+\[\begin{aligned}
+C^{'}\_c(v^{'}\_c, k^{'}\_c) + C^{'}_m(v^{'}\_1, \sum \_{j=1}^3 k^{'}\_{j}G) - C_m(v\_1, \sum \_{j=1}^3 k\_jG) + \mathrm{fee} \cdot H &amp;= (\mathbf{0}) \\\\
+(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H &amp;= (\mathbf{0})
+\end{aligned}
+\tag{23}\]
+
+<p>Similar to the initial transaction, they each create their own private blinding factor $ k^{‘}_n $ for the new
+multiparty UTXO and share the public blinding factor $ k^{‘}_nG $ with the group. Carol also shares the public
+blinding factor $ k^{‘}_cG $ for her winnings:</p>
+
+\[\begin{aligned}
+\text{share:} \mspace{9mu} &amp;\lbrace k^{'}\_1G, k^{'}\_2G, k^{'}\_3G \rbrace \\\\
+\text{share:} \mspace{9mu} &amp;\lbrace k^{'}\_cG \rbrace
+\end{aligned}
+\tag{24}\]
+
+<p>As before, they calculate their own total excess blinding factors as
+$ x^{‘}_{sn} = \sum k^{‘}_{n(change)} - \sum k^{‘}_{n(inputs)} - \phi^{‘}_n $:</p>
+
+\[\begin{aligned}
+x^{'}\_{sa} &amp;= 0 - k\_1 - \phi^{'}\_a \\\\
+x^{'}\_{sb} &amp;= 0 - k\_2 - \phi^{'}\_b \\\\
+x^{'}\_{sc} &amp;= 0 - k\_3 - \phi^{'}\_c
+\end{aligned}
+\tag{25}\]
+
+<p>They share the public value of the excess $ x^{‘}_{sn}G $ with each other:</p>
+
+\[\text{share:} \mspace{9mu} \lbrace x^{'}\_{sa}G, x^{'}\_{sb}G, x^{'}\_{sc}G \rbrace
+\tag{26}\]
+
+<p>The aggregated public key for the signature can then be calculated as:</p>
+
+\[P^{'}\_{agg} = (k^{'}\_1G + x^{'}\_{sa}G) + (k^{'}\_2G + x^{'}\_{sb}G) + (k^{'}\_3G + x^{'}\_{sc}G + k^{'}\_cG) \\\\
+P^{'}\_{agg} = (k^{'}\_1G - (k\_1 + \phi^{'}\_a)G) + (k^{'}\_2G - (k\_2 + \phi^{'}\_a)G) + (k^{'}\_3G - (k\_3 + \phi^{'}\_a)G + k^{'}\_cG)
+\tag{27}\]
+
+<p>Each party again selects a private nonce $ r^{‘}_n $, shares the public value $ r^{‘}_nG $ with the group,</p>
+
+\[\text{share:} \mspace{9mu} \lbrace r^{'}\_aG, r^{'}\_bG, r^{'}\_cG \rbrace
+\tag{28}\]
+
+<p>and calculates the aggregated public nonce for the signature:</p>
+
+\[R^{'}\_{agg} = r^{'}\_aG + r^{'}\_bG + r^{'}\_cG
+\tag{29}\]
+
+<p>The new signature challenge $ e^{‘} $ is then calculated as:</p>
+
+\[e^{'} = \text{Hash}\(R^{'}\_{agg} \|| P^{'}\_{agg} \|| m) \mspace{18mu} \text{ with } \mspace{18mu} m = \mathrm{fee} \cdot H \||height
+\tag{30}\]
+
+<p>Each party now calculates their partial Schnorr signature $ s^{‘}_n $ as before, except that Carol also adds her
+winnings’ blinding factor $ k^{‘}_c $ to her signature:</p>
+
+\[\begin{aligned}
+s^{'}\_a &amp;= r^{'}\_a + e^{'} \cdot (k^{'}\_1 + x^{'}\_{sa})\\\\
+s^{'}\_b &amp;= r^{'}\_b + e^{'} \cdot (k^{'}\_2 + x^{'}\_{sa})\\\\
+s^{'}\_c &amp;= r^{'}\_c + e^{'} \cdot (k^{'}\_3 + x^{'}\_{sa} + k^{'}\_c)
+\end{aligned}
+\tag{31}\]
+
+<p>These partial signatures are then shared with the group</p>
+
+\[\text{share:} \mspace{9mu} \lbrace s^{'}\_a, s^{'}\_b, s^{'}\_c \rbrace
+\tag{32}\]
+
+<p>to enable calculation of the aggregated Schnorr signature as</p>
+
+\[s^{'}\_{agg} = s^{'}\_a + s^{'}\_b + s^{'}\_c
+\tag{33}\]
+
+<p>The resulting signature for the transaction is the tuple $ (s^{‘}_{agg},R^{‘}_{agg}) $. The signature is again
+validated as done previously, using the publicly shared aggregated values $ R^{‘}_{agg} $ and $ P^{‘}_{agg} $:</p>
+
+\[s^{'}\_{agg}G \overset{?}{=} R^{'}\_{agg} + e^{'} \cdot P^{'}\_{agg}
+\tag{34}\]
+
+<p>Again the parties also share their own personal offset so that the total offset can be calculated:</p>
+
+\[\text{share:} \mspace{9mu} \lbrace \phi^{'}\_a, \phi^{'}\_b, \phi^{'}\_c \rbrace \\\\
+\phi^{'}\_{tot} = \phi^{'}\_a + \phi^{'}\_b + \phi^{'}\_c
+\tag{35}\]
+
+<p>Lastly, the transaction balance can be validated to be equal to a commitment to the value $ 0 $:</p>
+
+\[(v^{'}\_cH + k^{'}\_cG) + (v^{'}\_1H + (k^{'}\_1 + k^{'}\_2 + k^{'}\_3)G) - (v\_1H + (k\_1 + k\_2 + k\_3)G) + \mathrm{fee} \cdot H \overset{?}{=}
+(0H + (P^{'}\_{agg} + \phi^{'}\_{tot}G))
+\tag{36}\]
+
+<h2 id="mimblewimble--mtext-of-n--multiparty-bulletproof-utxo">Mimblewimble $ m\text{-of-}n $ Multiparty Bulletproof UTXO</h2>
+
+<p>As mentioned in the <a href="#introduction">Introduction</a>, Mimblewimble transactions cannot utilize a smart/redeem script in the
+form of a P2SH, but similar functionality can be implemented in the users’ wallets. For the $ m\text{-of-}n $ multiparty
+Bulletproof UTXO, <a href="#ssss">Shamir’s Secret Sharing Scheme</a> (SSSS) ([<a href="https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf">8</a>], [<a href="http://iml.univ-mrs.fr/~kohel/tch/MATH3024/Lectures/lectures_11.pdf">15</a>]) will be used to enable
+$ m\text{-of-}n $ parties to complete a transaction. The SSSS is a method for $ n $ parties to carry one shard (share)
+$ f(i) $ for $ i \in \lbrace 1 , \ldots , n \rbrace $ each of a secret $ s $, such that any $ m $ of them can
+reconstruct the message. The basic idea behind the SSSS is that it is possible to draw an infinite number of polynomials
+of degree $ m $ through $ m $ points, whereas $ m+1 $ points are required to define a unique polynomial of degree $ m $.
+A simplified illustration is shown in Figure 1; the SSSS uses polynomials over a finite field, which is not representable on a two-dimensional plane [<a href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing" title="Wikipedia: Shamir's Secret Sharing">19</a>].</p>
+
+<p align="center"><img src="/images/protocols/utxo/shamir_simple.png" width="220"></p>
+<div align="center"><b>Figure 1: Infinite Number of Polynomials of Degree 2 Possible through 2 Points</b></div>
+
+<p>The shards will be distributed according to <a href="#pvss">Pedersen’s Verifiable Secret Sharing</a> (VSS) scheme, which extends
+the SSSS, where the dealer commits to the secret $ s $ itself and the coefficients of the sharing polynomial $ f(x) $.
+This is broadcast to all parties, with each receiving a blinding factor shard $ g(i) $ corresponding to their
+secret shard $ f(i) $. This will enable each party to verify that their shard is correct.</p>
+
+<h3 id="secret-sharing">Secret Sharing</h3>
+
+<p>Our friends Alice, Bob and Carol decide to set up a $ 2\text{-of-}3 $ scheme, whereby any two of them can authorize a
+spend of their multiparty UTXO. They also want to be able to set up the scheme such that they can perform three rounds
+of spending, with the last round being the closing round. Something they were all thinking about was how to share pieces
+of their blinding factor with each other in a secure and reconstructable fashion. They have heard of Pedersen’s VSS scheme
+and decide to use that.</p>
+
+<h3 id="multiple-rounds-data">Multiple Rounds’ Data</h3>
+
+<p>The parties will each pre-calculate $ three $ private blinding factors $ k_{n\text{-}i} $ and shard it according to
+<a href="#pvss">Pedersen’s VSS</a> scheme. The scheme requires $ three $ shard tuples
+$ (k_{n\text{-}party\text{-}i}, b_{n\text{-}party\text{-}i}) $ and $ three $ vectors of commitments
+$\mathbf{C}_{2}( k_{party\text{-}1})$ for each round. (<a href="#appendix-c-shamirs-secret-sharing-example">Appendix C</a>
+shows an example of Alice’s sharing shards for one private blinding factor.) Whenever a set of information for each
+blinding factor is shared, the parties immediately verify the correctness of the shards they received by following the
+verification step in Pedersen’s VVS protocol. They continue to do this until they have all their information set up,
+ready and stored in their wallets.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Round</th>
+      <th>Blinding<br>Factor</th>
+      <th>Vectors of <br>Commitments</th>
+      <th>Alice’s <br>Shards</th>
+      <th>Bob’s <br>Shards</th>
+      <th>Carol’s <br>Shards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Alice: $ (k_{1\text{-}1}, b_{1\text{-}1}) $ <br>Bob:   $ (k_{2\text{-}1}, b_{2\text{-}1}) $ <br>Carol: $ (k_{3\text{-}1}, b_{3\text{-}1})$</td>
+      <td>$\mathbf{C_{2}}( k_{1\text{-}1})$ <br>$ \mathbf{C_{2}}( k_{2\text{-}1}) $ <br>$\mathbf{C_{2}}( k_{3\text{-}1}) $</td>
+      <td>$ (k_{1\text{-}a1}, b_{1\text{-}a1}) $ <br>$ (k_{2\text{-}a1}, b_{2\text{-}a1}) $ <br>$ (k_{3\text{-}a1}, b_{3\text{-}a1}) $</td>
+      <td>$ (k_{1\text{-}b1}, b_{1\text{-}b1}) $ <br>$ (k_{2\text{-}b1}, b_{2\text{-}b1}) $ <br>$ (k_{3\text{-}b1}, b_{3\text{-}b1}) $</td>
+      <td>$ (k_{1\text{-}c1}, b_{1\text{-}c1}) $ <br>$ (k_{2\text{-}c1}, b_{2\text{-}c1}) $ <br>$ (k_{3\text{-}c1}, b_{3\text{-}c1}) $</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Alice: $ (k_{1\text{-}2}, b_{1\text{-}2}) $ <br>Bob:   $ (k_{2\text{-}2}, b_{2\text{-}2}) $ <br>Carol: $ (k_{3\text{-}2}, b_{3\text{-}2}) $</td>
+      <td>$ \mathbf{C_{2}}( k_{1\text{-}2}) $ <br>$ \mathbf{C_{2}}( k_{2\text{-}2}) $ <br>$ \mathbf{C_{2}}( k_{3\text{-}2}) $</td>
+      <td>$ (k_{1\text{-}a2}, b_{1\text{-}a2}) $ <br>$ (k_{2\text{-}a2}, b_{2\text{-}a2}) $ <br>$ (k_{3\text{-}a2}, b_{3\text{-}a2}) $</td>
+      <td>$ (k_{1\text{-}b2}, b_{1\text{-}b2}) $ <br>$ (k_{2\text{-}}b2, b_{2\text{-}b2}) $ <br>$ (k_{3\text{-}},b2 b_{3\text{-}b2}) $</td>
+      <td>$ (k_{1\text{-}c2}, b_{1\text{-}c2}) $ <br>$ (k_{2\text{-}}c2, b_{2\text{-}c2}) $ <br>$ (k_{3\text{-}},c2 b_{3\text{-}c2}) $</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Alice: $ (k_{1\text{-}3}, b_{1\text{-}3}) $ <br>Bob:   $ (k_{2\text{-}3}, b_{2\text{-}3}) $ <br>Carol: $ (k_{3\text{-}3}, b_{3\text{-}3}) $</td>
+      <td>$ \mathbf{C_{2}}( k_{1\text{-}3}) $ <br>$ \mathbf{C_{2}}( k_{2\text{-}3}) $ <br>$ \mathbf{C_{2}}( k_{3\text{-}3}) $</td>
+      <td>$ (k_{1\text{-}a3}, b_{1\text{-}a3}) $ <br>$ (k_{2\text{-}a3}, b_{2\text{-}a3}) $ <br>$ (k_{3\text{-}a3}, b_{3\text{-}a3}) $</td>
+      <td>$ (k_{1\text{-}b3}, b_{1\text{-}b3}) $ <br>$ (k_{2\text{-}}b3, b_{2\text{-}b3}) $ <br>$ (k_{3\text{-}},b3 b_{3\text{-}b3}) $</td>
+      <td>$ (k_{1\text{-}c3}, b_{1\text{-}c3}) $ <br>$ (k_{2\text{-}}c3, b_{2\text{-}c3}) $ <br>$ (k_{3\text{-}},c3 b_{3\text{-}c3}) $</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="how-it-works">How it Works</h3>
+
+<p>The three parties set up the initial multiparty <a href="#setting-up-the-multiparty-funding-transaction">funding transaction</a>
+and <a href="#creating-the-multiparty-bulletproof-range-proof">Bulletproof range proof</a> exactly the same as they did for the
+$ 3\text{-of-}3 $ case. For this, they use the private blinding factors they pre-calculated for round 1. Now, when
+they decide to spend the multiparty UTXO, only two of them need to be present.</p>
+
+<p>Bob and Carol decide to spend funds, exactly <a href="#spending-the-multiparty-utxo">like before</a>, and for this they need to
+reconstruct Alice’s private blinding factor for round 1 and round 2. Because Alice did not win anything, she
+does not need to be present to set up a private blinding factor for an output UTXO the way Carol needs to do. Bob and
+Carol consequently share the shards Alice gave them:</p>
+
+\[\text{share:} \mspace{9mu} \lbrace (k\_{1\text{-}b1}, b\_{1\text{-}b1}),  (k\_{1\text{-}c1}, b\_{1\text{-}c1}),
+ (k\_{1\text{-}b2}, b\_{1\text{-}b2}) ,  (k\_{1\text{-}c2}, b\_{1\text{-}c2}) \rbrace
+\tag{37}\]
+
+<p>They are now able to reconstruct the blinding factors and verify the commitments to it. If the verification fails, they
+stop the protocol and schedule a meeting with Alice to have a word with her. With all three together, they will be able
+to identify the source of the misinformation.</p>
+
+\[\begin{aligned}
+\text{reconstruct:} \mspace{9mu} (k\_{1\text{-}1}, b\_{1\text{-}1}), (k\_{1\text{-}2}, b\_{1\text{-}2}) \\\\
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}1}, b\_{1\text{-}1})\_{shared} \overset{?}{=} (k\_{1\text{-}1}H + b\_{1\text{-}1}G) \\\\
+\text{verify:} \mspace{9mu} C(k\_{1\text{-}2}, b\_{1\text{-}2})\_{shared} \overset{?}{=} (k\_{1\text{-}2}H + b\_{1\text{-}2}G)
+\end{aligned}
+\tag{38}\]
+
+<p>For this round they choose Bob to play Alice’s part when they set up and conclude the transaction. Bob is able to do
+this, because he now has Alice’s private blinding factors $ k_{1\text{-}1} $ and $ k_{1\text{-}2} $. When constructing
+the signature on Alice’s behalf, he chooses a private nonce $ r^{‘}_n $ she does not know, as it will only be used to
+construct the signature and then never again. Bob and Carol conclude the transaction, let Alice know this and inform her
+that a consecutive multi-spend needs to start at round 2.</p>
+
+<p>The next time two of our friends want to spend some or all of the remainder of their multiparty UTXO, they will just
+repeat these steps, starting at round 2. The only thing that will be different will be the person nominated to play
+the part of the party that is absent; they have to take turns at this.</p>
+
+<h3 id="spending-protocol">Spending Protocol</h3>
+
+<p>Alice, Bob and Carol are now seasoned at setting up their $ 2\text{-of-}3 $ scheme and spending the UTXO until all funds
+are depleted. They have come to an agreement on a simple spending protocol, something to help keep all of them honest:</p>
+
+<ul>
+  <li>
+    <p>All parties must always know who shared shards and who played the missing party’s role for each round. Therefore, all
+parties must always be included in all sharing communication, even if they are offline. They can then receive those
+messages when they become available again.</p>
+  </li>
+  <li>
+    <p>The spend is aborted if any verification step does not complete successfully. To recommence, the parties have to
+cancel all unused shards, calculate new shards for the remainder and start again. For this, all parties need to be
+present.</p>
+  </li>
+  <li>
+    <p>No party may play the role of an absent party twice in a row. If Alice is absent, which usually happens, Bob and Carol
+must take turns.</p>
+  </li>
+</ul>
+
+<h2 id="conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</h2>
+
+<h3 id="comparison-to-bitcoin">Comparison to Bitcoin</h3>
+
+<p>Given the basic differences between Bitcoin and Mimblewimble as mentioned in the <a href="#introduction">Introduction</a>, and the
+multiparty payment scheme introduced here, the following observations can be made:</p>
+
+<ol>
+  <li>
+    <p>Miner Validation</p>
+
+    <p>In Bitcoin, the P2SH multisig redeem script is validated by miners whenever a multisig payment is invoked. In
+addition, they also validate the public keys used in the transaction.</p>
+
+    <p>With Mimblewimble multiparty transactions, miners cannot validate who may be part of a multiparty transaction, only
+that the transaction itself complies with basic Mimblewimble rules and that all Bulletproof range proofs are valid.
+The onus is on the parties themselves to enforce basic spending protocol validation rules.</p>
+  </li>
+  <li>
+    <p>$ m\text{-of-}n $</p>
+
+    <p>In both Bitcoin and Mimblewimble, $ m\text{-of-}n $ transactions are possible. The difference is in where and how
+validation rules are applied.</p>
+  </li>
+  <li>
+    <p>Security</p>
+
+    <p>Bitcoin multiparty transactions are more secure due to the validation rules being enforced by the miners.</p>
+  </li>
+  <li>
+    <p>Complexity</p>
+
+    <p>Implementing $ m\text{-of-}n $ multiparty transactions in Mimblewimble will involve wallets to store more data and
+implement more functionality than when compared to Bitcoin, e.g. Pedersen’s VSS scheme.</p>
+  </li>
+</ol>
+
+<h3 id="general">General</h3>
+
+<ol>
+  <li>
+    <p>Bulletproof Range Proof</p>
+
+    <p>The choice between using Dalek’s Bulletproofs MPC Protocol or Grin’s multiparty Bulletproof to construct a multiparty
+range proof is important. Although using Dalek’s method involves more rounds of communication, with a slightly larger
+proof size and the requirement to have the coins colored, it has definite advantages. It trumps on wallet
+reconstructability and information sharing security while executing the protocol, although the latter could easily be
+enhanced for the Grin implementation.</p>
+  </li>
+  <li>
+    <p>Practicality</p>
+
+    <p>The Mimblewimble multiparty Bulletproof UTXO as proposed can be practically implemented for both the
+$ n\text{-of-}n $ and $ m\text{-of-}n $ cases.</p>
+  </li>
+  <li>
+    <p>Information Sharing Protocol</p>
+
+    <p>The <a href="#simple-sharing-protocol">Simple Sharing Protocol</a> as suggested here may need some more work to make it optimal.</p>
+  </li>
+  <li>
+    <p>Generalization</p>
+
+    <p>Although all examples presented here were for three parties, this could easily be generalized.</p>
+  </li>
+</ol>
+
+<h2 id="references">References</h2>
+
+<p>[<a href="https://blockgeeks.com/guides/bitcoin-script-guide-part-2" title="The Best Step-by-Step Bitcoin Script Guide Part 2">1</a>] “The Best Step-by-Step Bitcoin Script Guide Part 2” [online]. Available:
+<a href="https://blockgeeks.com/guides/bitcoin-script-guide-part-2">https://blockgeeks.com/guides/bitcoin-script-guide-part-2</a>. Date accessed: 2019‑05‑02.</p>
+
+<p>[<a href="https://en.bitcoin.it/wiki/Script" title="Script">2</a>] “Script” [online]. Available: <a href="https://en.bitcoin.it/wiki/Script">https://en.bitcoin.it/wiki/Script</a>. Date accessed: 2019‑05‑06.</p>
+
+<p>[<a href="https://en.bitcoin.it/wiki/Multisignature" title="Multisignature">3</a>] “Multisignature” [online]. Available: <a href="https://en.bitcoin.it/wiki/Multisignature">https://en.bitcoin.it/wiki/Multisignature</a>.
+Date accessed: 2019‑05‑06.</p>
+
+<p>[<a href="https://en.bitcoin.it/wiki/Transaction" title="Transaction">4</a>] “Transaction” [online]. Available: <a href="https://en.bitcoin.it/wiki/Transaction">https://en.bitcoin.it/wiki/Transaction</a>. Date accessed: 2019‑05‑06.</p>
+
+<p>[<a href="https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions">5</a>] S. Pour, “Bitcoin Multisig the Hard Way: Understanding Raw P2SH Multisig Transactions” [online]. Available: <a href="https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions">https://www.soroushjp.com/2014/12/20/bitcoin-multisig-the-hard-way-understanding-raw-multisignature-bitcoin-transactions</a>.
+Date accessed: 2019‑05‑06.</p>
+
+<p>“Bitcoin Multisig the Hard Way:
+Understanding Raw P2SH Multisig Transactions”</p>
+
+<p>[<a href="https://gist.github.com/gavinandresen/3966071" title="GitHub: gavinandresen/TwoOfThree.sh">6</a>] GitHub: “gavinandresen/TwoOfThree.sh” [online]. Available: <a href="https://gist.github.com/gavinandresen/3966071">https://gist.github.com/gavinandresen/3966071</a>.
+Date accessed: 2019‑05‑06.</p>
+
+<p>[<a href="https://doc-internal.dalek.rs/merlin/index.html" title="Merlin Transcripts">7</a>] H.de Valence, I. Lovecruft and O. Andreev, “Merlin Transcripts” [online]. Available: <a href="https://merlin.cool/index.html">https://merlin.cool/index.html</a>
+and <a href="https://doc-internal.dalek.rs/merlin/index.html">https://doc-internal.dalek.rs/merlin/index.html</a>. Date accessed: 2019‑05‑10.</p>
+
+<p>[<a href="https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf">8</a>] T. Pedersen, “Non-interactive and Information-theoretic Secure Verifiable Secret Sharing”
+[online]. Available: <a href="https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf">https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf</a>.
+Date accessed: 2019‑05‑10.</p>
+
+<p>“Non-interactive and Information-theoretic
+Secure Verifiable Secret Sharing”</p>
+
+<p>[<a href="https://grinexplorer.net/block/0000016c1ceb1cf588a45d0c167dbfb15d153c4d1d33a0fbfe0c55dbf7635410" title="GitHub: gavinandresen/TwoOfThree.sh">9</a>] “GrinExplorer, Block 164,690” [online]. Available: <a href="https://grinexplorer.net/block/0000016c1ceb1cf588a45d0c167dbfb15d153c4d1d33a0fbfe0c55dbf7635410">https://grinexplorer.net/block/0000016c1ceb1cf588a45d0c167dbfb15d153c4d1d33a0fbfe0c55dbf7635410</a>.
+Date accessed: 2019‑05‑10.</p>
+
+<p>[<a href="https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html">10</a>] “Dalek Cryptography - Crate Bulletproofs - Module bulletproofs::range_proof_mpc” [online]. Available:
+<a href="https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html">https://doc-internal.dalek.rs/bulletproofs/range_proof_mpc/index.html</a>. Date accessed: 2019‑05‑10.</p>
+
+<p>“Dalek Cryptography - Crate Bulletproofs
+Module bulletproofs::range_proof_mpc”</p>
+
+<p>[<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx" title="Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)">11</a>] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, “Bulletproofs: Short Proofs for
+Confidential Transactions and More” (Slides) [online]. Available:
+<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx">https://cyber.stanford.edu/sites/default/files/bpase18.pptx</a>. Date accessed: 2019‑05‑11.</p>
+
+<p>[<a href="https://i.imgur.com/s7exNSf.png" title="Grin Multiparty Bulletproof - jaspervdm">12</a>] “Grin Multiparty Bulletproof - jaspervdm” [online]. Available: <a href="https://i.imgur.com/s7exNSf.png">https://i.imgur.com/s7exNSf.png</a>.
+Date accessed: 2019‑05‑10.</p>
+
+<p>[<a href="https://github.com/mimblewimble/secp256k1-zkp/pull/24" title="GitHub: Multi-party bulletproof PR#24">13</a>] GitHub: “Multi-party bulletproof PR#24” [online]. Available: <a href="https://github.com/mimblewimble/secp256k1-zkp/pull/24">https://github.com/mimblewimble/secp256k1-zkp/pull/24</a>.
+Date accessed: 2019‑05‑10.</p>
+
+<p>[<a href="https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/bulletproofs/tests_impl.h">14</a>] GitHub: “secp256k1-zkp/src/modules/bulletproofs/tests_impl.h, test_multi_party_bulletproof” [online]. Available:
+<a href="https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/bulletproofs/tests_impl.h">https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/bulletproofs/tests_impl.h</a>.
+Date accessed: 2019‑05‑10.</p>
+
+<p>“GitHub: secp256k1-zkp/src/modules/bulletproofs/tests_impl.h,
+test_multi_party_bulletproof”</p>
+
+<p>[<a href="http://iml.univ-mrs.fr/~kohel/tch/MATH3024/Lectures/lectures_11.pdf">15</a>] “MATH3024 Elementary Cryptography and Protocols: Lecture 11, Secret Sharing”, University of Sydney, School of
+Mathematics and Statistics [online]. Available: <a href="http://iml.univ-mrs.fr/~kohel/tch/MATH3024/Lectures/lectures_11.pdf">http://iml.univ-mrs.fr/~kohel/tch/MATH3024/Lectures/lectures_11.pdf</a>.
+Date accessed: 2018‑09‑18.</p>
+
+<p>“MATH3024 Elementary Cryptography and Protocols:
+Lecture 11, Secret Sharing”</p>
+
+<p>[<a href="https://iancoleman.io/shamir" title="Online Tool: Shamir Secret Sharing Scheme">16</a>] I. Coleman, “Online Tool: Shamir Secret Sharing Scheme” [online]. Available: <a href="https://iancoleman.io/shamir">https://iancoleman.io/shamir</a>.
+Date accessed: 2019‑05‑27.</p>
+
+<p>[<a href="https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf" title="Cryptographic Protocols (MTAT.07.005): Secret Sharing">17</a>] P. Laud, “Cryptographic Protocols (MTAT.07.005): Secret Sharing”, Cybernetica [online]. Available: <a href="https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf">https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf</a>.
+Date accessed: 2019‑05‑29.</p>
+
+<p>[<a href="https://doi.org/10.7146/dpb.v21i388.6621">18</a>] T. Pedersen, “Distributed Provers and Verifiable Secret Sharing Based on the Discrete Logarithm Problem”, DPB, vol. 21, no. 388, Mar. 1992 [online]. Available: <a href="https://doi.org/10.7146/dpb.v21i388.6621">https://doi.org/10.7146/dpb.v21i388.6621</a>.
+Date accessed: 2019‑06‑03.</p>
+
+<p>“Distributed Provers and Verifiable Secret Sharing
+Based on the Discrete Logarithm Problem”</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing" title="Wikipedia: Shamir's Secret Sharing">19</a>] Wikipedia: “Shamir’s Secret Sharing” [online]. Available: <a href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing">https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing</a>.
+Date accessed: 2019‑05‑06.</p>
+
+<h2 id="appendices">Appendices</h2>
+
+<h3 id="appendix-a-notation-used">Appendix A: Notation Used</h3>
+
+<p>This section gives the general notation of mathematical expressions used. It provides important pre-knowledge for the
+remainder of the report.</p>
+
+<ul>
+  <li>
+    <p>All Pedersen Commitments will be of the <a href="(../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments)">elliptic derivative</a>
+depicted by $ C(v,k) = (vH + kG) $ with $ v $ being the value committed to and $ k $ being the blinding factor.</p>
+  </li>
+  <li>
+    <p>Scalar multiplication will be depicted by “$ \cdot $”, e.g. $ e \cdot (vH + kG) = e \cdot vH + e \cdot kG $.</p>
+  </li>
+  <li>
+    <p>A Pedersen Commitment to the value of $ 0 $ will be depicted by $ C(0,k) = (0H + kG) = (kG) = (\mathbf{0}) $.</p>
+  </li>
+  <li>
+    <p>Let $ \text{H}_{s}(arg) $ be a collision-resistant hash function used in an information sharing protocol where
+$ arg $ is the value being committed to.</p>
+  </li>
+  <li>
+    <p>Let $ RP_n $ be Bulletproof range proof data for commitment $ C_n $.</p>
+  </li>
+  <li>
+    <p>Let $ RP_{agg} $ be aggregated Bulletproof range proof data for a set of commitments
+$ \lbrace C_1, C_2, … , C_n \rbrace $.</p>
+  </li>
+  <li>
+    <p>Let $ \mathbf {C_{m}}(v) $ be a vector of commitments $ (C_0 , \ldots , C_{m-1}) $ for value $ v $.</p>
+  </li>
+</ul>
+
+<h3 id="appendix-b-definition-of-terms">Appendix B: Definition of Terms</h3>
+
+<p>Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in
+the cited references.</p>
+
+<ul>
+  <li>
+    <p><strong>Shamir’s Secret Sharing Scheme:</strong><a name="ssss"> </a>A $ (m, n) $ threshold secret sharing scheme is a method for
+$ n $ parties to carry shards/shares of a secret message $ s $ such that any $ m $ of them can reconstruct the message.
+The threshold scheme is perfect if knowledge of $ m − 1 $ or fewer shards provides no information regarding $ s $.
+Shamir’s Secret Sharing Scheme provides a perfect $ (m, n) $ threshold scheme using Lagrange interpolation
+([<a href="http://iml.univ-mrs.fr/~kohel/tch/MATH3024/Lectures/lectures_11.pdf">15</a>], [<a href="https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf" title="Cryptographic Protocols (MTAT.07.005): Secret Sharing">17</a>, [<a href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing" title="Wikipedia: Shamir's Secret Sharing">19</a>]).</p>
+
+    <ul>
+      <li>Given $ m $ distinct points $ (x_i, y_i) $ of the form $ (x_i, f(x_i)) $, where $ f(x) $ is a polynomial of
+degree less than $ m $, then according to the Lagrange interpolation formula $ f(x) $ and $ f(0) $ is determined by</li>
+    </ul>
+
+\[f(x) = \sum \_{i=1}^{m} y \_{i} \prod \_{1 \leq j \leq m \atop i \neq j} \frac{x - x \_{j}}{x \_{i} - x \_{j}} \\\\
+\tag{B1}\]
+
+\[f(0) = \sum \_{i=1}^{m} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+\tag{B2}\]
+
+    <ul>
+      <li>Shamir’s scheme is defined for a secret message $ s \in \mathbb{Z}/p\mathbb{Z} $ with prime $ p $, by setting
+$ a_0 = f(0) = s$ for a polynomial $ f(x) $, and choosing the other coefficients $ a_1, \ldots , a_{m−1} $ at
+random in $ \mathbb{Z}/p\mathbb{Z} $. The trusted party computes $ f(i) $ for all $ 1 \leq i \leq n $, where</li>
+    </ul>
+
+\[f(x) = \sum \_{k=0}^{m - 1} a \_{k} x^{k} = a\_0x^0 + a\_1x^1 + a\_2x^2 + \ldots + a\_{m-1}x^{m-1}
+\tag{B3}\]
+
+    <ul>
+      <li>The shards $ (i, f(i)) $ are distributed to the $ n $ distinct parties. Since the secret is the constant term
+$ s = a_0 = f(0) $, it is recovered from any $ m $ shards $ (i, f(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace $
+by</li>
+    </ul>
+
+\[s = \sum \_{i \in I} f(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+\tag{B4}\]
+  </li>
+</ul>
+
+<p>“Appendix B:
+Shamir’s Secret Sharing Scheme is an (m, n)
+threshold scheme for n parties to carry shares
+of a secret message such that any m of them
+can reconstruct the message.”</p>
+
+<ul>
+  <li>
+    <p><strong>Pedersen Verifiable Secret Sharing:</strong><a name="pvss"> </a>The Pedersen Verifiable Secret Sharing scheme is a
+non-interactive $ (m, n) $ threshold VSS scheme that combines
+<a href="../../cryptography/bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments">Pedersen Commitments</a>
+and <a href="#ssss">Shamir’s Secret Sharing Scheme</a> ([<a href="https://www.cs.cornell.edu/courses/cs754/2001fa/129.pdf">8</a>], [<a href="https://research.cyber.ee/~peeter/teaching/krprot07s/ss.pdf" title="Cryptographic Protocols (MTAT.07.005): Secret Sharing">17</a>], [<a href="https://doi.org/10.7146/dpb.v21i388.6621">18</a>). This is to ensure the dealer gives consistent shares
+to all parties and that any party can know that the recovered secret is correct.</p>
+
+    <ul>
+      <li>
+        <p>The dealer creates a commitment to the secret $ s $ for a randomly chosen blinding factor $ r $ as
+$ C_0(s,r) = (sH + rG) $.</p>
+      </li>
+      <li>
+        <p>The dealer constructs the SSSS sharing polynomial $ f(x) $ as before by setting $ a_0 = s $, and randomly
+choosing $ a_1, \ldots , a_{m−1} $.</p>
+      </li>
+      <li>
+        <p>The dealer also constructs a blinding factor polynomial $ g(x) $, similar to the SSSS polynomial, by setting
+$ b_0 = r $, and randomly choosing $ b_1, \ldots , b_{m−1} $.</p>
+      </li>
+      <li>
+        <p>The dealer constructs commitments to the secret coefficients of $ f(x) $ as $ C_i(a_i,b_i) = (a_iH + b_iG) $
+for $ i \in \lbrace 1, \ldots, m-1 \rbrace $.</p>
+      </li>
+      <li>
+        <p>The dealer broadcasts the vector of commitments $ \mathbf {C_{m}} = (C_0 , \ldots , C_{m-1}) $ to all parties.</p>
+      </li>
+      <li>
+        <p>The dealer calculates $ (f(i), g(i)) $ from polynomials $ f(x), g(x) $ for $ i \in \lbrace 1, \ldots, n \rbrace $
+and distributes the individual shards $ (i, f(i), g(i)) $ to the $ n $ distinct parties.</p>
+      </li>
+      <li>
+        <p>Upon receipt of their shard $ (i, f(i), g(i)) $, each party calculates their own commitment $ (f(i)H + g(i)G) $ and
+verifies that:</p>
+      </li>
+    </ul>
+
+\[\begin{aligned}
+(f(i)H + g(i)G) &amp;\overset{?}{=} \sum \_{j=0}^{m-1} C\_j \cdot i^j \\\\
+(a\_0i^0 + a\_1i^1 + \ldots + a\_{m-1}i^{m-1})H + (b\_0i^0 + b\_1i^1 + \ldots + b\_{m-1}i^{m-1})G &amp;\overset{?}{=} \\\\
+\quad (a\_0H + b\_0G) \cdot i^0 + (a\_1H + b\_1G) \cdot i^1 + &amp;\ldots + (a\_{m-1}H + b\_{m-1}G) \cdot i^{m-1}
+\end{aligned}
+\tag{B5}\]
+
+    <ul>
+      <li>
+        <p>The secret $ s $ is recovered as before as per the SSSS from any $ m $ shards.</p>
+      </li>
+      <li>
+        <p>In addition to reconstructing the secret $ s $, the following can be done:</p>
+
+        <ul>
+          <li>Since the blinding factor is the constant term $ r = b_0 = g(0) $, the blinding factor is recovered from any
+$ m $ shards $ (i, g(i)) $ for $ I \subset \lbrace 1, \ldots, n \rbrace $ by</li>
+        </ul>
+
+\[r = \sum \_{i \in I} g(i) \prod \_{j \in I \atop j \neq i} \frac{i}{j - i}
+\tag{B6}\]
+
+        <ul>
+          <li>Since $ C_0 $ is the first entry in the vector of commitments $ \mathbf {C_{m}} $, the parties can verify the
+correctness of the original secret $ s $ that was committed to in the first place when the shards have been shared
+among the parties as:</li>
+        </ul>
+
+\[C\_0(s,r) \overset{?}{=} (sH + rG)
+\tag{B7}\]
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>“Appendix B:
+The Pedersen Verifiable Secret Sharing scheme
+is a non-interactive (m, n) threshold scheme
+that combines Pedersen commitments and Shamir’s
+Secret Sharing Scheme.”</p>
+
+<h3 id="appendix-c-shamirs-secret-sharing-example">Appendix C: Shamir’s Secret Sharing Example</h3>
+
+<p>One of the private blinding factors Alice calculated and wants to share with Bob and Carol is</p>
+
+<div class="mywrap">29bb078b7b2b01e62dd684cd20742b510ece6175fa58d7a79cceeefe5297a804</div>
+
+<p>Alice’s shard:</p>
+
+<div class="mywrap">
+80168f0598f73bc29f90aaeb0d87caf44a8f6baaaeabcf15af20dd1d27e28f30b7afb6c889da2eefc6cca9a1505a92d8b65f968f554dede39a23b293aa7ddd4d50499d0fbfe86d60b4ff87938609cda5d3aecf37d7fc8ff54f777e26ad2dc4d1268a7a4ba0c94706a017e0a1e3fd969e7c2627e28dc3e8ecb7f73426ffe2c5b72467905d072528f060c29f9d221a93dfb213add323fee3373ff11cace1a87f0b095029b32f0fcf6735ce8611f823c9b697452b728a34f0dee13d2b2a5f30f70d096cd7ba6cf9f7b0431673373ffa1e358d9d8c02f9bec54b53f66ec76069499cd21d95099f826a91d92665a6709f607793c1b2548ccb1f6b46c3cbc0af6ed55b02a
+</div>
+
+<p>Bob’s shard:</p>
+
+<div class="mywrap">
+802d0fdb203e66552ef14417dadf843884df16949c965ffb4f91abfb9fc50fb16f4ebd80d2759c1e5d889292a0a4f5a0bcaefd0f7a8a1a1725976527453a7b5b7082fbdebe111b1169eedf270c025a9ba74c5fbfafe8de3a8f3eed9d4b9a59a24d05355691835e0d402fc143c7eafd2d399c4fc50a57c018bfee684dee158b6e48ff256bdb4a44b0cbb52b6b9094f2ceb1d740864d4c1c9e64c2226819113587d7c0472645ee5a8e614cd8a3e467888d242a42c50029e49c17cb9d6575e1e4fbd6187a551dc23500834ce3ae6ba5f8bb0f9ad315e8ec5f47736cc9feca035838714affa2f424c1c3a69cc12ce44f1a8f22136ec90cd7fa8758878c31457c7e17d02
+</div>
+
+<p>Carol’s shard:</p>
+
+<div class="mywrap">
+803b80deb8c95d97b161eefcd7584eccce507d3e323d90eee0b176e6b8278081d8e10b485bafb2f19b443b33f0fe67780af16b802fc7f7f4bfb4d7b4ef47a61620cb66d101f97671dd1158b48a0b973e74e29088781451cfc04993bbe6b79d736b8f4f1d314a190be03821e224176bb345ba6827879428f408195c6b11f74ed96c88b676df6f6fc0ad67b786b11e62310094eb0568d2f9f95d633894fe894cbcdd006de56cf1969952c25d321f14472bb50f6ae7896d1752f596b01f2ce115a6dc74aeff726bc490c37a93d9572fe58e812759571762994c231aa459ac2a17e4a07769cb6df6a8427cbaa2aa97f07cd8b2a2dabd839ce69c1d4441d1ec32a8dcd1a
+</div>
+
+<p>Using any two of these shards with the tool provided in [<a href="https://iancoleman.io/shamir" title="Online Tool: Shamir Secret Sharing Scheme">16</a>], Alice’s original private blinding factor can be recreated. Try it out!</p>
+
+<p><strong>Note:</strong> This example shows blinding factor shards created with the SSSS tool developed by Coleman [<a href="https://iancoleman.io/shamir" title="Online Tool: Shamir Secret Sharing Scheme">16</a>]. It was merely developed for demonstration purposes and does not make any claims to meet cryptographic security rules other than using secure randomness.</p>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li><a href="https://github.com/hansieodendaal">https://github.com/hansieodendaal</a></li>
+  <li><a href="https://github.com/anselld">https://github.com/anselld</a></li>
+  <li><a href="https://github.com/SWvheerden">https://github.com/SWvheerden</a></li>
+  <li><a href="https://github.com/CjS77">https://github.com/CjS77</a></li>
+</ul>
+
+        </div>
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/protocols/mimblewimble-mb-bp-utxo"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Mimblewimble%20Multiparty%20Bulletproof%20UTXO&url=/protocols/mimblewimble-mb-bp-utxo"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/protocols/mimblewimble-mb-bp-utxo&amp;media=/images/banner-07.jpg&amp;description=Mimblewimble%20Multiparty%20Bulletproof%20UTXO"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/protocols/distributed-hash-tables" style="background-image: url(/images/banner-07.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/protocols/distributed-hash-tables"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/protocols/distributed-hash-tables">Distributed Hash Tables</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/network-analysis">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/network-analysis">Network Analysis</a></h4>
+    </div>
+    <a class="next__image fadein" href="/network-analysis" style="background-image: url(/images/banner-08.jpg)"></a>
+  </div>
+  
+</div>
+      </article>
+      <!-- end post -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/learning-paths/mimblewimble">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-02.jpg);">
+            <p class="tlu-post-title">Mimblewimble Implementation</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/learning-paths/mimblewimble">
+                  
+                    Mimblewimble is a blockchain protocol that focuses on privacy through the implementation of confidential transactions.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/learning-paths" class="article__tag">learning-paths</a>
+                  
+                  <a href="/tag/mimblewimble" class="article__tag">mimblewimble</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/cryptography/bulletproofs-and-mimblewimble">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-01.jpg);">
+            <p class="tlu-post-title">Bulletproofs and Mimblewimble</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/cryptography/bulletproofs-and-mimblewimble">
+                  
+                    Bulletproofs form part of the family of distinct *Zero-knowledge Proof*<sup>[def][zk~]</sup> systems, such as Zero-Knowledge
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/cryptography" class="article__tag">cryptography</a>
+                  
+                  <a href="/tag/bulletproofs" class="article__tag">bulletproofs</a>
+                  
+                  <a href="/tag/mimblewimble" class="article__tag">mimblewimble</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/protocols">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-07.jpg);">
+            <p class="tlu-post-title">Blockchain-related Protocols</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/protocols">
+                  
+                    Users often take blockchain protocols for granted when analyzing the potential of a cryptocurrency. The different blockchain protocols used can play a prominent role in the success of a cryptocurrency.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/protocols" class="article__tag">protocols</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

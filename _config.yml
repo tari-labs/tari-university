@@ -1,0 +1,98 @@
+#-------------------------------
+# General Site Settings
+title: Tari Labs University
+logo: '/images/tlu.png'
+description:
+hero-image: '/images/banner-01.jpg'
+baseurl: "" # The subpath of your site, e.g. /blog
+url: "" # The base hostname & protocol for your site, e.g. http://example.com
+
+blog-theme: light # You can use a `dark` or `light` theme.
+
+#-------------------------------
+# Authors Settings
+author:
+  name:     TLU
+  bio:      Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.
+  location:
+  avatar:   /images/tari-labs.png
+  twitter:  https://twitter.com/tari_labs
+  facebook: https://www.facebook.com/tarilabs
+  website:  https://tarilabs.com/
+  cover:    /images/banner-01.jpg
+
+
+#-------------------------------
+# Featured Slider
+slider: true # NOTE - By default, the slider is set to display featured posts. To add featured post to the slider, add the field, featured: true in the YAML front matter block. If you do not want to use the slider, leave the slider field empty.
+
+
+#-------------------------------
+# Contact Settings
+contact:
+  email: your@email.com # Add your email for contant form
+  description: The Force is strong with this one. I have you now. I find your lack of faith disturbing. Hey, Luke! May the Force be with you. # Add a description of your form
+
+# NOTE
+# Clifford theme comes with a contact form built-in. You can use this form with Formspree service and get up to 50 submissions for free. Also, you can easily switch to another service if you want.
+
+
+#-------------------------------
+# Footer section
+# Example of adding a new link to the footer - {icon: "ion-logo-github", link: "https://github.com"}
+# Other icons can be found at https://ionicons.com
+social:
+- {icon: "ion-logo-twitter", link: "https://twitter.com/tari_labs"}
+- {icon: "ion-logo-facebook", link: "https://www.facebook.com/tarilabs"}
+- {icon: "ion ion-logo-github", link: "https://github.com/tari-labs"}
+
+
+#-------------------------------
+# Comment Section (Disqus)
+disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example mr-brown
+
+
+#-------------------------------
+# Google Analytics
+google-analytics: # Add your identifier. For example UA-99631805-1.
+
+
+#-------------------------------
+# Newsletter
+mailchimp: true # To enable the mailchimp form, use the value true. To turn off use the value false.
+mailchimp-text: Subscribe to our newsletter and we’ll send you the emails of latest posts. # Add your description.
+mailchimp-identifier: # Add your MailChimp form identifier. For example - blogenjoyfreedom.us16.list-manage.com/subscribe/post?u=cd56155d76ddeeb4c0bc4d080&amp;id=7a526cd13e
+
+
+#-------------------------------
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll/tagging
+  - jekyll-menus
+  - jekyll-spaceship
+
+paginate: 6
+paginate_path: "/page/:num"
+
+# Pages Path
+defaults:
+  - scope:
+      path: '_pages'
+    values:
+      permalink: /:basename:output_ext
+
+include:
+  - _pages
+
+# Tags
+tag_page_dir:         tag
+tag_page_layout:      tag_page
+tag_permalink_style:  /:title
+
+sass:
+  sass_dir: _sass
+  style: compressed

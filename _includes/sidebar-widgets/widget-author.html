@@ -1,0 +1,28 @@
+{% if site.author %}
+<div class="widget-sidebar widget-author">
+  {% if site.author.avatar %}
+  <div class="widget-image-box">
+    <a href="{{ site.baseurl }}/author/{{ page.author }}" class="widget-author-image"
+      style="background-image: url({{site.baseurl}}{{site.author.avatar}});" aria-label="{{site.author.name}}'s Picture"></a>
+  </div>
+  {% endif %}
+
+  <h5 class="widget-author-name"><a href="{{site.baseurl}}/author/{{ page.author }}">{{site.author.name}}</a></h5>
+  <div class="widget-author-bio">{{site.author.bio}}</div>
+
+  <div class="widget-author-meta">
+    {% if site.author.twitter %}
+    <a class="twitter-link icon-link" href="{{site.author.twitter}}" target="_blank" rel="noopener"><i
+        class="ion ion-logo-twitter"></i></a>
+    {% endif %}
+    {% if site.author.facebook %}
+    <a class="facebook-link icon-link" href="{{site.author.facebook}}" target="_blank" rel="noopener"><i
+        class="ion ion-logo-facebook"></i></a>
+    {% endif %}
+    {% if site.author.website %}
+    <a class="author-link icon-link" href="{{site.author.website}}" target="_blank" rel="noopener"><i
+        class="ion ion-ios-link"></i></a>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,33 @@
+---
+layout: single
+title: Contact
+permalink: /contact/
+image: '/images/314.jpg'
+---
+
+<div class="form-container">
+  <div class="form__inner animate-in-top">
+    <h1 class="contact-title">{{page.title}}</h1>
+    {% if site.contact.description %}
+    <p class="contact-description">{{site.contact.description}}</p>
+    {% endif %}
+    <form class="form"
+      action="{% if site.contact.email %}https://formspree.io/{{site.contact.email}}{% else %}#{% endif %}" method="POST">
+      <div class="form__group">
+        <label class="form__label screen-reader-text" for="form-name">Your Name</label>
+        <input class="form__input" id="form-name" type="text" name="name" placeholder="Name..." required>
+      </div>
+      <div class="form__group">
+        <label class="form__label screen-reader-text" for="form-email">Your Email</label>
+        <input class="form__input" id="form-email" type="email" name="_replyto" placeholder="Email..." required>
+      </div>
+      <div class="form__group">
+        <label class="form__label screen-reader-text" for="form-text">Your Message</label>
+        <textarea class="form__input" id="form-text" name="text" rows="7" placeholder="Message..." required></textarea>
+      </div>
+      <div class="form__group">
+        <button class="button button--primary" type="submit">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,2720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Introduction to Applications of Byzantine Consensus Mechanisms</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:30px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:none}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:none}}.error-page__head h1,.error-page__head h2{margin-bottom:20px;color:#FFF}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px;color:#FFF}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px;color:#FFF}.error-page__head h2{font-size:60px;color:#FFF}}
+
+  </style>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-03.jpg');">
+              <h1 class="tlu-hero-title">Introduction to Applications of Byzantine Consensus Mechanisms</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/consensus-mechanisms" class="post-tags__tag tlu-hero-tags">consensus-mechanisms</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/elliptic-curves" title="Go to Elliptic Curves">Elliptic Curves</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/bft-consensus-mechanisms" title="Go to BFT Consensus Mechanisms">BFT Consensus Mechanisms</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/scaling" title="Go to 4. Scaling">4. Scaling</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling" title="Go to 4. Scaling">4. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/executive-summary" title="Go to Layer 2 Scaling - Executive Summary">Layer 2 Scaling - Executive Summary</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/mining" title="Go to 5. Mining">5. Mining</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining" title="Go to 5. Mining">5. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/nft-survey" title="Go to Non-Fungible Tokens Survey">Non-Fungible Tokens Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/protocols" title="Go to 7. Protocols">7. Protocols</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols" title="Go to 7. Protocols">7. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/labs" title="Go to 9. Labs">9. Labs</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs" title="Go to 9. Labs">9. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <!-- <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5><span class="widget__tag-count">13</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5><span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5><span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5><span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5><span class="widget__tag-count">5</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5><span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+ -->
+    </div>
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+        <div id="breadcrumbs">
+
+<a href="/">Home</a>
+
+  
+    / <a href="/consensus-mechanisms/">Consensus mechanisms</a>
+  
+
+  
+    / Introduction to Applications of Byzantine Consensus Mechanisms
+  
+
+</div>
+        <hr>
+        <div class="post__content">
+          <h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms">Brief Survey of Byzantine Fault-tolerant Consensus Mechanisms</a></li>
+  <li>
+<a href="#permissioned-byzantine-fault-tolerant-protocols">Permissioned Byzantine Fault-tolerant Protocols</a>
+    <ul>
+      <li><a href="#background">Background</a></li>
+      <li>
+<a href="#protocols">Protocols</a>
+        <ul>
+          <li><a href="#hyperledger-fabric">Hyperledger Fabric</a></li>
+          <li>
+<a href="#tendermint">Tendermint</a>
+            <ul>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#sentry-nodes">Sentry Nodes</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<a href="#permissionless-byzantine-fault-tolerant-protocols">Permissionless Byzantine Fault-tolerant Protocols</a>
+    <ul>
+      <li><a href="#background">Background</a></li>
+      <li>
+<a href="#protocols-and-algorithms">Protocols and Algorithms</a>
+        <ul>
+          <li><a href="#paxos">Paxos</a></li>
+          <li><a href="#chandra-toueg">Chandra Toueg</a></li>
+          <li><a href="#raft">Raft</a></li>
+          <li>
+<a href="#hashgraph">Hashgraph</a>
+            <ul>
+              <li><a href="#background">Background</a></li>
+              <li><a href="#gossip-protocol">Gossip Protocol</a></li>
+              <li><a href="#ancestors">Ancestors</a></li>
+              <li><a href="#strongly-seeing">Seeing</a></li>
+              <li><a href="#strongly-seeing">Strongly Seeing</a></li>
+              <li><a href="#construct-of-gossiping">Construct of Gossiping</a></li>
+              <li><a href="#internal-consensus">Internal Consensus</a></li>
+              <li><a href="#criticisms">Criticisms</a></li>
+            </ul>
+          </li>
+          <li><a href="#sintra">SINTRA</a></li>
+          <li><a href="#honeybadgerbft">HoneyBadgerBFT</a></li>
+          <li><a href="#stellar-consensus-protocol">Stellar Consensus Protocol</a></li>
+          <li><a href="#linbft">LinBFT</a></li>
+          <li><a href="#algorand">Algorand</a></li>
+          <li><a href="#thunderella">Thunderella</a></li>
+          <li><a href="#snowflake-to-avalanche">Snowflake to Avalanche</a></li>
+          <li><a href="#parsec">PARSEC</a></li>
+          <li><a href="#democratic-bft">Democratic BFT</a></li>
+        </ul>
+      </li>
+      <li><a href="#summary-of-findings">Summary of Findings</a></li>
+    </ul>
+  </li>
+  <li><a href="#references">References</a></li>
+  <li>
+<a href="#appendices">Appendices</a>
+    <ul>
+      <li>
+<a href="#appendix-a-terminology">Appendix A: Terminology</a>
+        <ul>
+          <li><a href="#consensus">Consensus</a></li>
+          <li><a href="#binary-consensus">Binary Consensus</a></li>
+          <li><a href="#byzantine-fault-tolerance">Byzantine Fault Tolerance</a></li>
+          <li><a href="#practical-byzantine-fault-tolerant-variants">Practical Byzantine Fault-tolerant Variants</a></li>
+          <li><a href="#deterministic-and-non-deterministic-protocols">Deterministic and Non-deterministic Protocols</a></li>
+          <li><a href="#scalability-performance-trade-off">Scalability-Performance Trade-off</a></li>
+        </ul>
+      </li>
+      <li>
+<a href="#appendix-b-timing-assumptions">Appendix B: Timing Assumptions</a>
+        <ul>
+          <li>
+<a href="#forms-of-timing-assumptions---degrees-of-synchrony">Forms of Timing Assumptions (Degrees of Synchrony)</a>
+            <ul>
+              <li><a href="#synchrony">Synchrony</a></li>
+              <li>
+<a href="#partial-synchrony">Partial Synchrony</a>
+                <ul>
+                  <li><a href="#unknown-t-model">Unknown-△T Model</a></li>
+                  <li><a href="#eventually-synchronous">Eventually Synchronous</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#weak-synchrony">Weak Synchrony</a></li>
+          <li><a href="#random-synchrony">Random Synchrony</a></li>
+          <li>
+<a href="#asynchrony">Asynchrony</a>
+            <ul>
+              <li><a href="#asynchronous-networks-and-protocols">Asynchronous Networks and Protocols</a></li>
+              <li><a href="#counting-rounds-in-asynchronous-networks">Counting Rounds in Asynchronous Networks</a></li>
+            </ul>
+          </li>
+          <li>
+<a href="#problem-with-timing-assumptions">Problem with Timing Assumptions</a>
+            <ul>
+              <li><a href="#general">General</a></li>
+              <li><a href="#denial-of-service-attack">Denial of Service Attack</a></li>
+            </ul>
+          </li>
+          <li><a href="#flp-impossibility">FLP Impossibility</a></li>
+          <li><a href="#randomized-agreement">Randomized Agreement</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>When considering how Tari will potentially build its second layer, an analysis of the most promising Byzantine
+Consensus Mechanisms and their applications was sought.</p>
+
+<p>Important to consider is the “scalability trilemma”. This phrase, referred to in [[1]], takes into account the potential
+trade-offs regarding decentralization, security and scalability:</p>
+
+<ul>
+  <li>
+    <p><strong>Decentralization.</strong> A core principle on which the majority of the systems are built, taking into account
+censorship-resistance and ensuring that everyone, without prejudice, is permitted to participate in the decentralized
+system.</p>
+  </li>
+  <li>
+    <p><strong>Scalability.</strong> Encompasses the ability of the network to process transactions. Thus, if a public blockchain is
+deemed to be efficient, effective and usable, it should be designed to handle millions of users on the network.</p>
+  </li>
+  <li>
+    <p><strong>Security.</strong> Refers to the immutability of the ledger and takes into account threats of 51% attacks, Sybil attacks,
+Distributed Denial of Service (DDoS) attacks, etc.</p>
+  </li>
+</ul>
+
+<p>Through the recent development of this ecosystem, most blockchains have focused on two of the three factors, namely
+decentralization and security, at the expense of scalability. The primary reason for this is that nodes must reach
+consensus before transactions can be processed [[1]].</p>
+
+<p>This report examines proposals considering Byzantine Fault-tolerant (BFT) consensus mechanisms, and considers their
+feasibility and efficiency in meeting the characteristics of scalability, decentralization and security. In each
+instance, the following are assessed:</p>
+
+<ul>
+  <li>protocol assumptions;</li>
+  <li>reference implementations; and</li>
+  <li>discernment regarding whether the protocol may be used for Tari as a means to maintain the distributed asset state.</li>
+</ul>
+
+<p><a href="#appendix-a-terminology">Appendix A</a> contains terminology related to consensus mechanisms, including definitions of
+<a href="#consensus">Consensus</a>; <a href="#binary-consensus">Binary Consensus</a>; <a href="#byzantine-fault-tolerance">Byzantine Fault Tolerance</a>;
+<a href="#practical-byzantine-fault-tolerant-variants">Practical Byzantine Fault-tolerant Variants</a>; <a href="#deterministic-and-non-deterministic-protocols">Deterministic and
+Non-deterministic Protocols</a>; and
+<a href="#scalability-performance-trade-off">Scalability-Performance Trade-off</a>.</p>
+
+<p><a href="#appendix-b-timing-assumptions">Appendix B</a> discusses timing assumptions, including degrees of synchrony, which range
+from <a href="#synchrony">Synchrony</a> and <a href="#partial-synchrony">Partial Synchrony</a> to  <a href="#weak-synchrony">Weak Synchrony</a>,
+<a href="#random-synchrony">Random Synchrony</a> and <a href="#asynchrony">Asynchrony</a>; as well as the problem with timing assumptions,
+including <a href="#denial-of-service-attack">Denial of Service (DoS) Attack</a>, <a href="#flp-impossibility">FLP Impossibility</a>
+and <a href="#randomized-agreem#the-flp-impossibilityent">Randomized Agreement</a>.</p>
+
+<h2 id="brief-survey-of-byzantine-fault-tolerant-consensus-mechanisms">Brief Survey of Byzantine Fault-tolerant Consensus Mechanisms</h2>
+
+<p>Many peer-to-peer, online, real-time strategy games use a modified lockstep protocol as a consensus protocol in order to
+manage the game state between players in a game. Each game action results in a game state delta broadcast to all other
+players in the game, along with a hash of the total game state. Each player validates the change by applying the delta
+to their own game state and comparing the game state hashes. If the hashes do not agree, then a vote is cast, and those
+players whose game states are in the minority are disconnected and removed from the game (known as a desync) [<a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)" title="Wikipedia: Consensus Mechanisms">2</a>].</p>
+
+<h2 id="permissioned-byzantine-fault-tolerant-protocols">Permissioned Byzantine Fault-tolerant Protocols</h2>
+
+<h3 id="background">Background</h3>
+
+<p>Byzantine agreement schemes are considered well suited for permissioned blockchains, where the identity of the
+participants is known. Examples include Hyperledger and Tendermint. Here, the Federated Consensus Algorithm is
+implemented [[3]].</p>
+
+<h3 id="protocols">Protocols</h3>
+
+<h4 id="hyperledger-fabric">Hyperledger Fabric</h4>
+
+<p>Hyperledger Fabric (HLF) began as a project under the LinX Foundation in early 2016 [[4]]. The aim was to create an
+open-source, cross-industry, standard platform for distributed ledgers. HLF is an implementation of a distributed ledger
+platform for running smart contracts and leveraging familiar and proven technologies. It has a modular architecture,
+allowing pluggable implementations of various functions. The distributed ledger protocol of the fabric is run on the
+peers. The fabric distinguishes peers as:</p>
+
+<ul>
+  <li>
+<strong>validating peers</strong> (they run the consensus algorithm, thus validating the transactions); and</li>
+  <li>
+<strong>non-validating peers</strong> (they act as a proxy that helps in connecting clients to validating peers).</li>
+</ul>
+
+<p>The validating peers run a BFT consensus protocol for executing a replicated state machine that accepts deploy, invoke
+and query transactions as operations [[5]].</p>
+
+<p>The blockchain’s hash chain is computed based on the executed transactions and resulting persistent state. The
+replicated execution of chaincode (the transaction that involves accepting the code of the smart contract to be
+deployed) is used for validating the transactions. It is assumed that among <em>n</em> validating peers, at most <em>f&lt;n/3</em> (where
+<em>f</em> is the number of faulty nodes and <em>n</em> is the number of nodes present in the network) may behave arbitrarily, while
+others will execute correctly, thus adapting to concept BFT consensus. Since HLF proposes to follow a Practical Byzantine
+Fault-tolerant (PBFT) consensus protocol, the chaincode transactions must be deterministic in nature, otherwise
+different peers might have different persistent states. The SIEVE protocol is used to filter out the
+non-deterministic transactions, thus assuring a unique persistent state among peers [[5]].</p>
+
+<p>While being redesigned for a v1.0 release, the format’s goal was to achieve extensibility. This version allowed for
+modules such as membership and consensus mechanism to be exchanged. Being permissioned, this consensus mechanism is
+mainly responsible for receiving the transaction request from the clients and establishing a total execution order. So
+far, these pluggable consensus modules include a centralized, single order for testing purposes, and a crash-tolerant
+ordering service based on Apache Kafka [[3]].</p>
+
+<h4 id="tendermint">Tendermint</h4>
+
+<h5 id="overview">Overview</h5>
+
+<p>Tendermint Core is a BFT Proof-of-Stake (PoS) protocol, which is composed of two protocols in one: a consensus algorithm
+and a peer-to-peer networking protocol. Inspired by the design goal behind <a href="./Permissionless-Byzantine-Fault-Tolerant-Protocols(Part1).md#raft">Raft</a>,
+the authors of [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>] specified Tendermint as being an easy-to-understand, developer-friendly algorithm that can do
+algorithmically complex systems engineering.</p>
+
+<p>Tendermint is modeled as a deterministic protocol, live under partial synchrony, which achieves throughput within the
+bounds of the latency of the network and individual processes themselves.</p>
+
+<p>Tendermint rotates through the validator set, in a weighted round-robin fashion. The higher the stake (i.e. voting
+power) that a validator possesses, the greater its weighting; and the more times, proportionally, it will be elected as a
+leader. Thus, if one validator has the same amount of voting power as another validator, they will both be elected by
+the protocol an equal amount of times [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<p>Critics have argued that Tendermint is not decentralized, and that one can distinguish and target leadership, launching
+a DDoS attack against them, and sniffling the progression of the chain. Although Sentry Architecture (containing sentry
+nodes, refer to <a href="#sentry-nodes">Sentry Nodes</a>) has been implemented in Tendermint, the argument regarding the degree of
+decentralization is still questionable.</p>
+
+<h5 id="sentry-nodes">Sentry Nodes</h5>
+
+<p>Sentry nodes are guardians of a validator node and provide validator nodes with access to the rest of the network. They
+are well connected to other full nodes on the network. Sentry nodes may be dynamic, but should maintain persistent
+connections to some evolving random subset of each other. They should always expect to have direct incoming connections
+from the validator node and its backup(s). They do not report the validator node’s address in the Peer Exchange Reactor
+(PEX) and may be more strict about the quality of peers they keep.</p>
+
+<p>Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual
+Private Network (VPN) with one another, but only report each other sparingly in the PEX [<a href="https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md" title="Tendermint Peer Discovery">7</a>].</p>
+
+<h2 id="permissionless-byzantine-fault-tolerant-protocols">Permissionless Byzantine Fault-tolerant Protocols</h2>
+
+<h3 id="background-1">Background</h3>
+
+<p>BFT protocols face several limitations when utilized in permissionless blockchains. They do not scale well with the
+number of participants, resulting in performance deterioration for the targeted network sizes. In addition, they are
+not well established in this setting, thus they are prone to security issues such as Sybil attacks. Currently, there
+are approaches that attempt to circumvent or solve this problem [[3]].</p>
+
+<h3 id="protocols-and-algorithms">Protocols and Algorithms</h3>
+
+<h4 id="paxos">Paxos</h4>
+
+<p>The Paxos family of protocols includes a spectrum of trade-offs between the number of processors, number of message
+delays before learning the agreed value, activity level of individual participants, number of messages sent and types
+of failures. Although the FLP theorem (named after the authors Michael J. Fischer, Nancy Lynch, and Mike Paterson)
+states that there is no deterministic fault-tolerant consensus protocol that can guarantee progress in an asynchronous
+network, Paxos guarantees safety (consistency), and the conditions that could prevent it from making progress are
+difficult to provoke [<a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)" title="Wikipedia: Paxos">8</a>].</p>
+
+<p>Paxos achieves consensus as long as there are <em>f</em> failures, where <em>f &lt; (n-1)/2</em>. These failures cannot be Byzantine,
+otherwise the BFT proof would be violated. Thus it is assumed that messages are never corrupted, and that nodes do not
+collude to subvert the system.</p>
+
+<p>Paxos proceeds through a set of negotiation rounds, with one node having “Leadership” status. Progress will stall if
+the leader becomes unreliable, until a new leader is elected, or if an old leader suddenly comes back online and a
+dispute between two leader nodes arises.</p>
+
+<h4 id="chandra-toueg">Chandra-Toueg</h4>
+
+<p>The Chandra–Toueg consensus algorithm [[9]], published in 1996, relies on a special node that acts as a failure
+detector. In essence, it pings other nodes to make sure they are still responsive. This implies that the detector stays
+online and that the detector must continuously be made aware when new nodes join the network.</p>
+
+<p>The algorithm itself is similar to the Paxos algorithm, which also relies on failure detectors and requires
+<em>f&lt;n/2</em>, where n is the total number of processes.</p>
+
+<h4 id="raft">Raft</h4>
+
+<p>Raft is a consensus algorithm designed as an alternative to Paxos. It was meant to be more understandable than Paxos by
+means of separation of logic, but it is also formally proven safe and offers some additional features [<a href="https://en.wikipedia.org/wiki/Raft_(computer_science)" title="Wikipedia: Raft">10</a>].</p>
+
+<p>Raft achieves consensus via an elected leader. Each follower has a timeout in which it expects the heartbeat from the
+leader. It is thus a synchronous protocol. If the leader fails, an election is held to find a new leader. This entails
+nodes nominating themselves on a first-come, first-served basis. Hung votes require the election to be scrapped and
+restarted. This suggests that a high degree of cooperation is required by nodes, and that malicious nodes could easily
+collude to disrupt a leader and then prevent a new leader from being elected. Raft is a simple algorithm, but is clearly
+unsuitable for consensus in cryptocurrency applications.</p>
+
+<p>While Paxos, Raft and many other well-known protocols tolerate crash faults, BFT protocols, beginning with PBFT,
+tolerate even arbitrary corrupted nodes. Many subsequent protocols offer improved performance, often through optimistic
+execution that provides excellent performance when there are no faults; when clients do not contend much; and when the
+network is well behaved, and there is at least some progress.</p>
+
+<p>In general, BFT systems are evaluated in deployment scenarios where latency and the central processing unit (CPU) are
+the bottleneck. Thus the most effective protocols reduce the number of rounds and minimize expensive cryptographic
+operations.</p>
+
+<p>In a recent line of work, [[11]] advocated improvement of the worst-case performance, providing service quality
+guarantees even when the system is under attack, even if this comes at the expense of performance in the optimistic
+case. However, although the “Robust BFT protocols in this vein gracefully tolerate comprised nodes, they still rely on
+timing assumptions about the underlying network” [<a href="https://eprint.iacr.org/2016/199.pdf" title="The Honey Badger of BFT Protocols">28</a>]. Thus, focus shifted to asynchronous networks.</p>
+
+<h4 id="hashgraph">Hashgraph</h4>
+
+<h5 id="background-2">Background</h5>
+
+<p>The Hashgraph consensus algorithm [<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Hashgraph White Paper">12</a>] was released in 2016. It claims Byzantine Fault Tolerance (BFT) under complete
+<strong>asynchrony</strong> assumptions, no leaders, no round robin, no Proof-of-Work (PoW), eventual consensus with probability one,
+and high speed in the absence of faults.</p>
+
+<p>Hashgraph is based on the gossip protocol, which is a fairly efficient distribution strategy that entails nodes randomly
+sharing information with each other, similar to how human beings gossip.</p>
+
+<p>Nodes jointly build a Hashgraph reflecting all of the gossip events. This allows Byzantine agreement to be achieved
+through virtual voting. Alice does not send Bob a vote over the Internet. Instead, Bob calculates what vote Alice would
+have sent, based on his knowledge of what Alice knows.</p>
+
+<p>Hashgraph uses digital signatures to prevent undetectable changes to transmitted messages. It does not violate the FLP
+theorem, since it is <em>non-deterministic</em>.</p>
+
+<p>The Hashgraph has some similarities to a blockchain. To quote the white paper: “The Hashgraph consensus algorithm is
+equivalent to a blockchain in which the ‘chain’ is constantly branching, without any pruning, where no blocks are ever
+stale, and where each miner is allowed to mine many new blocks per second, without proof-of-work” [<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Hashgraph White Paper">12</a>].</p>
+
+<p>Because each node keeps track of the Hashgraph, there is no need to have voting rounds in Hashgraph; each node already
+knows what all of its peers will vote for, and thus consensus is reached purely by analyzing the graph.</p>
+
+<h5 id="gossip-protocol">Gossip Protocol</h5>
+
+<p>The gossip protocol works like this:</p>
+
+<ul>
+  <li>Alice selects a random peer node, say Bob, and sends him <em>everything she knows</em>. She then selects another random node
+and repeats the process indefinitely.</li>
+  <li>Bob, on receiving Alice’s information, marks this as a gossip event and fills in any gaps in his knowledge from
+Alice’s information. Once done, he continues gossiping, using his updated information.</li>
+</ul>
+
+<p>The basic idea behind the gossip protocol is the following: A node wants to share some information with the other nodes
+in the network. Then, periodically, it randomly selects a node from the set of nodes and exchanges the information. The
+node that receives the information then randomly selects a node from the set of nodes and exchanges the information,
+and so on. The information is periodically sent to <em>N</em> targets, where <em>N</em> is the fanout [<a href="https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/" title="Introduction to Gossip">13</a>].</p>
+
+<p>The <em>cycle</em> is the number of rounds to spread the information. The <em>fanout</em> is the number of nodes a node gossips with
+in each cycle.</p>
+
+<p>With a fanout = 1, $O(LogN)$ cycles are necessary for the update to reach all the nodes. In this way, information
+spreads throughout the network in an exponential fashion [<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Hashgraph White Paper">12</a>].</p>
+
+<p>The gossip history can be represented as a directed graph, as shown in Figure 1.</p>
+
+<p align="center"><img src="/images/consensus-mechanisms/bft-consensus-mechanisms-applications/gossip.png" width="400"></p>
+<p align="center"><b>Figure 1: Gossip Protocol Directed Graph</b></p>
+
+<p>Hashgraph introduces a few important concepts that are used repeatedly in later BFT consensus algorithms: famous
+witnesses and strongly seeing.</p>
+
+<h5 id="ancestors">Ancestors</h5>
+
+<p>If an event (<em>x1</em>) comes before another event (<em>x2</em>) and they are connected by a line, the older event is an <em>ancestor</em>
+of that event. If both events were created by the <em>same node</em>, then <em>x1</em> is a <em>self-ancestor</em> of <em>x2</em>.</p>
+
+<p><strong>Note:</strong> The gossip protocol defines an event as being a (self-)ancestor of itself!</p>
+
+<h5 id="seeing">Seeing</h5>
+
+<p>If an event <em>x1</em> is an ancestor of <em>x2</em>, then we say that <em>x1</em> <strong>sees</strong> <em>x2</em>, as long as the node is not aware of any
+forks from <em>x2</em>. So in the absence of forks, all events will <em>see</em> all of their ancestors.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     +-----&gt; y
+     |
+x +--+
+     |
+     +-----&gt; z
+</code></pre></div></div>
+
+<p>In the preceding example, <em>x</em> is an ancestor of both y and z. However, because there is no ancestor relationship between
+<em>y</em> and <em>z</em>, the <em>seeing</em> condition fails, and so <em>y</em> cannot see <em>x</em>, and <em>z</em> cannot see <em>x</em>.</p>
+
+<p>It may be the case that it takes time before nodes in the protocol detect the fork. For instance, Bob may create
+<em>z</em> and <em>y</em>, but share <em>z</em> with Alice and <em>y</em> with Charlie. Both Alice and Charlie will eventually learn about the
+deception, but until that point, Alice will believe that <em>y</em> sees <em>x</em>, and Charlie will believe that <em>z</em> sees <em>x</em>. This
+is where the concept of <em>strongly seeing</em> comes in.</p>
+
+<h5 id="strongly-seeing">Strongly Seeing</h5>
+
+<p>If a node examines its Hashgraph and notices that an event <em>z</em> <em>sees</em> an event <em>x</em>, and not only that, but it can draw
+an ancestor relationship (usually via multiple routes) through a super-majority of peer nodes, and that a different
+event from each node also sees <em>x</em>, then it is said that according to this node, <em>z</em> <em>strongly sees</em> <em>x</em>. The example in
+Figure 2 comes from [<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Hashgraph White Paper">12</a>]:</p>
+
+<p align="center"><img src="/images/consensus-mechanisms/bft-consensus-mechanisms-applications/strongly-seeing.png" width="600"></p>
+<p align="center"><b>Figure 2: Illustration of Strongly-seeing </b></p>
+
+<h5 id="construct-of-gossiping">Construct of Gossiping</h5>
+
+<p>The main consensus algorithm loop consists of every node (Alice), selecting a random peer node (Bob) and sharing their
+graph history. Now Alice and Bob have the same graph history.</p>
+
+<p>Alice and Bob both create a new event with the new knowledge they have just learnt from their peer. Alice repeats this
+process continuously.</p>
+
+<h5 id="internal-consensus">Internal Consensus</h5>
+
+<p>After a sync, a node will determine the order for as many events as possible, using three procedures. The algorithm uses
+constant <em>n</em> (the number of nodes) and a small constant value <em>c</em>&gt;2.</p>
+
+<ul>
+  <li>Firstly, we have the <strong>Swirlds Hashgraph consensus algorithm</strong>. Each member runs this in parallel. Each sync brings in
+new events, which are then added to the Hashgraph. All known events are then divided into rounds. Then the first events
+in each round are decided on as being famous or not (through purely local Byzantine agreement with virtual voting). Then
+the total order is found on those events for which enough information is available. If two members independently assign
+a position in history to an event, they are guaranteed to assign the same position, and guaranteed to never change it,
+even as more information comes in. Furthermore, each event is eventually assigned such a position, with a probability
+of
+one [<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Hashgraph White Paper">12</a>].</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>in parallel:
+    loop
+      sync all known events to a random member
+    end loop
+
+    loop
+      receive a sync
+      create a new event
+      call divideRounds
+      call decideFame
+      call findOrder
+    end loop
+</code></pre></div></div>
+
+<ul>
+  <li>Secondly, we have the <strong>divideRounds procedure</strong>. As soon as an event x is known, it is assigned a round number
+x.round, and the Boolean value x.witness is calculated, indicating whether it is the first event that a member created
+in that round [<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Hashgraph White Paper">12</a>].</li>
+</ul>
+
+<p>```procedure divideRounds
+      for each event x
+        r ← max round of parents of x ( or 1 if none exist )
+        if x can strongly see more than 2/3*n round r witnesses
+          x.round ← r + 1
+        else
+          x.round ← r
+        x.witness ← ( x has no self parent ) || ( x.round &gt; x.selfParent.round )</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- Thirdly, we have the **decideFame procedure**. For each witness event (i.e. an event x where x.witness is true),
+  decide whether it is famous (i.e. assign a Boolean to x.famous). This decision is done by a Byzantine agreement protocol
+  based on virtual voting. Each member runs it locally, on their own copy of the Hashgraph, with no additional
+  communication. The protocol treats the events in the Hashgraph as if they were sending votes to each other, although the
+  calculation is purely local to a member’s computer. The member assigns votes to the witnesses of each round, for
+  several rounds, until more than two-thirds of the population agrees [[12]].   
+
+```procedure decideFame
+      for each event x in order from earlier rounds to later
+        x.famous ← UNDECIDED
+        for each event y in order from earlier rounds to later
+          if x.witness and y.witness and y.round &gt; x.round
+            d ← y.round - x.round
+            s ← the set of witness events in round y.round-1 that y can strongly see
+            v ← majority vote in s ( is TRUE for a tie )
+            t ← number of events in s with a vote of v
+            if d = 1 // first round of the election
+              y.vote ← can y see x ?
+            else if d mod c &gt; 0 // this is a normal round
+                if t &gt; 2* n /3 // if supermajority, then decide
+                  x.famous ← v
+                  y.vote ← v
+                  break // y loop
+                else // else, just vote
+                  y.vote ← v
+            else if t &gt; 2* n /3 // this is a coin round
+              y.vote ← v
+            else // else flip a coin
+              y.vote ← middle bit of y.signature
+</code></pre></div></div>
+
+<h5 id="criticisms">Criticisms</h5>
+
+<p>An attempt to address some of the following criticisms has been presented [<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Swirlds and Sybil Attacks">14</a>]:</p>
+
+<ul>
+  <li>The Hashgraph protocol is patented and is not open source.</li>
+  <li>In addition, the Hashgraph white paper assumes that <em>n</em>, the number of nodes in the network, is constant. In practice,
+<em>n</em> can increase, but performance likely degrades badly as <em>n</em> becomes large [[15]].</li>
+  <li>Hashgraph is not as “fair” as claimed in their paper, with at least one attack being proposed [<a href="https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647" title="Hashgraph: A Whitepaper Review">16</a>].</li>
+</ul>
+
+<h4 id="sintra">SINTRA</h4>
+
+<p>SINTRA is a Secure INtrusion-Tolerant Replication Architecture used for the coordination in asynchronous networks
+subject to Byzantine faults. It consists of a collection of protocols and is implemented in Java, providing secure
+replication and coordination among a group of servers connected by a wide-area network, such as the Internet. For a
+group consisting of <em>n</em> servers, it tolerates up to $t&lt;n/3$ servers failing in arbitrary, malicious ways, which is
+optimal for the given model. The servers are connected only by asynchronous point-to-point communication links. Thus,
+SINTRA automatically tolerates timing failures as well as attacks that exploit timing. The SINTRA group model is static.
+This means that failed servers must be recovered by mechanisms outside of SINTRA, and the group must be initialized by a
+trusted process.</p>
+
+<p>The protocols exploit randomization, which is needed to solve Byzantine agreement in such asynchronous distributed
+systems. Randomization is provided by a threshold-cryptographic pseudorandom generator, a coin-tossing protocol based
+on the Diffie-Hellman problem. Threshold cryptography is a fundamental concept in SINTRA, as it allows the group to
+perform a common cryptographic operation for which the secret key is shared among the servers such that no single
+server or small coalition of corrupted servers can obtain useful information about the key. SINTRA provides
+threshold-cryptographic schemes for digital signatures, public-key encryption and unpredictable pseudorandom number
+generation (coin-tossing). It contains broadcast primitives for reliable and consistent broadcasts, which provide
+agreement on individual messages sent by distinguished senders. However, these primitives cannot guarantee a total order
+for a stream of multiple messages delivered by the system, which is needed to build fault-tolerant services using the
+state machine replication paradigm. This is the problem of atomic broadcast and requires more expensive protocols based
+on Byzantine agreement. SINTRA provides multiple randomized Byzantine agreement protocols, for binary and multi-valued
+agreement, and implements an atomic broadcast channel on top of agreement. An atomic broadcast that also maintains a
+causal order in the presence of Byzantine faults is provided by the secure causal atomic broadcast channel [[17]].</p>
+
+<p>Figure 3 illustrates SINTRA’s modular design. Modularity greatly simplifies the construction and analysis of the complex
+protocols needed to tolerate Byzantine faults.</p>
+
+<p align="center"><img src="/images/consensus-mechanisms/bft-consensus-mechanisms-applications/design-of-sintra.png" width="300"></p>
+<p align="center"><b>Figure 3: Design of SINTRA </b></p>
+
+<h4 id="honeybadgerbft">HoneyBadgerBFT</h4>
+
+<p>HoneyBadgerBFT was released in November 2016 and is seen as the first practical <strong>asynchronous</strong> BFT consensus
+algorithm. It was designed with cryptocurrencies in mind, where bandwidth is considered scarce, but an abundance of CPU
+power is available. Thus, the protocol implements public-private key encryption to increase the efficiency of the
+establishment of consensus. The protocol works with a fixed set of servers to run the consensus. However, this leads to
+centralization and allows an attacker to specifically target these servers [[3]].</p>
+
+<p>In its threshold encryption scheme, any one party can encrypt a message using a master public key, and it requires f+1
+correct nodes to compute and reveal decryption shares for a ciphertext before the plaintext can be recovered.</p>
+
+<p>The work of HoneyBadgerBFT is closely related to <a href="./Permissionless-Byzantine-Fault-Tolerant-Protocols(Part1).md#sintra">SINTRA</a>,
+which, as mentioned earlier, is a system implementation based on the asynchronous atomic broadcast protocol from [<a href="https://www.shoup.net/papers/ckps.pdf" title="Secure and Efficient Asynchronous Broadcast Protocols">18</a>].
+This protocol consists of a reduction from Atomic Broadcast Channel (ABC) to Asynchronous Common Subset (ACS), as well
+as a reduction from ACS to Multi-value Validated Agreement (MVBA).</p>
+
+<p>HoneyBadger offers a novel reduction from ABC to ACS that provides better efficiency (by O(N) factor) through batching,
+while using threshold encryption to preserve censorship resilience. Better efficiency is also obtained by cherry-picking
+improved instantiations of subcomponents. For example, the expensive MVBA is circumvented by using an alternative ACS
+along with an efficient reliable broadcast (RBC) [<a href="https://eprint.iacr.org/2016/199.pdf" title="The Honey Badger of BFT Protocols">28</a>].</p>
+
+<h4 id="stellar-consensus-protocol">Stellar Consensus Protocol</h4>
+
+<p>Stellar Consensus Protocol (SCP) is an <strong>asynchronous</strong> protocol proposed. It considered to be a global consensus
+protocol consisting of nomination protocol and ballot protocol. SCP is said to be BFT, by bringing with it the concept
+of quorum slices and defeated BFT [[5]].</p>
+
+<p>Each participant forms a quorum of other users, thus creating a trust hierarchy, which requires complex trust decisions [[3]].
+Initially, the nomination proctor is run. During this, new values called candidate values are proposed for agreement.
+Each node receiving these values will vote for a single value among these. Eventually, it results in unanimously
+selected values for that slot.</p>
+
+<p>After successful execution of nomination protocol, the nodes deploy the ballot protocol. This involves the federated
+voting to either commit or abort the values resulting from nomination protocol. This results in externalizing the ballot
+for the current slot. The aborted ballots are now declared irrelevant. However, there can be stuck states where nodes
+cannot reach a conclusion regarding whether to abort or commit a value. This situation is avoided by moving it to a
+higher-valued ballot, and considering it in a new ballot protocol execution. This aids in case a node believes that this
+stuck ballot was committed. Thus SCP assures avoidance and management of stuck states and provides liveliness.</p>
+
+<p>The concept of quorum slices in case of SCP provides asymptotic security and flexible trust, making it more acceptable
+than other earlier consensus algorithms utilizing Federated BFT, such as the Ripple protocol consensus algorithm [[29]].
+Here, the user is provided more independence in deciding whom to trust [<a href="http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf" title="Tendermint: Consensus without Mining">30</a>].</p>
+
+<p>SCP protocol claims to be free of blocked states, and provides decentralized control, asymptotic security, flexible
+trust and low latency. However, it does not guarantee safety all the time. If the user node chooses an inefficient
+quorum slice, security is not guaranteed. In the event of partition or misbehaving nodes, it halts progress of the
+network until consensus can be reached.</p>
+
+<h4 id="linbft">LinBFT</h4>
+
+<p>LinBFT is a BFT protocol for blockchain systems. It allows for the amortized communication volume per block <em>O(n)</em> under
+reasonable conditions (where <em>n</em> is the number of participants) while satisfying deterministic guarantees on safety and
+liveness. It satisfies liveness in a <strong>partially synchronous</strong> network.</p>
+
+<p>LinBFT cuts down its <em>O(n</em><sup>4</sup><em>)</em> complexity by implementing changes by <em>O(n)</em>: linear view change, threshold
+signature and verifiable random functions. This is clearly optimal, in that disseminating a block already takes <em>O(n)</em>
+transmissions.</p>
+
+<p>LinBFT is designed to be implemented for permissionless, public blockchain systems and takes into account anonymous
+participants without a public-key infrastructure, PoS, rotating leader and dynamic participant set [[31]]. For instance,
+participants can be anonymous, without a centralized public key infrastructure (PKI) public key among
+themselves, and participate in a distributed key generation (DKG) protocol required to create threshold signatures,
+both of which are communication-heavy processes.</p>
+
+<p>LinBFT is compatible with PoS, which counters Sybil attacks and deters dishonest behavior through slashing [[31]].</p>
+
+<h4 id="algorand">Algorand</h4>
+
+<p>The Algorand white paper was released in May 2017. Algorand is a <strong>synchronous</strong> BFT consensus mechanism, where the
+blocks are added at a minimum rate [<a href="https://arxiv.org/pdf/1607.01341.pdf" title="Algorand White Paper">19</a>]. It allows participants to privately check whether they are chosen for
+consensus participation and requires only one message per user, thus limiting possible attacks [[3]].</p>
+
+<p>Alogrand scales up to 500,000 users by employing verifiable random functions, which are pseudorandom functions able to
+provide verifiable proofs that the output of said function is correct [[3]]. It introduces the concept of a <em>concrete coin</em>.
+Most of these BFT algorithms require some type of randomness oracle, but all nodes need to see the same value if the
+oracle is consulted. This had previously been achieved through a <em>common __coin</em> idea. The <em>concrete coin</em> uses a much
+simpler approach, but only returns a binary value [<a href="https://arxiv.org/pdf/1607.01341.pdf" title="Algorand White Paper">19</a>].</p>
+
+<h4 id="thunderella">Thunderella</h4>
+
+<p>Thunderella implements an asynchronous strategy, where a <strong>synchronous</strong> strategy is used as a fallback in the event of
+a malfunction [<a href="https://eprint.iacr.org/2017/913.pdf" title="Thunderella White Paper">20</a>], thus it achieves both robustness and speed. It can be applied in permissionless networks using PoW.
+Network robustness and “instant confirmations” require 75% of the network to be honest, as well as the presence of a
+leader node.</p>
+
+<h4 id="snowflake-to-avalanche">Snowflake to Avalanche</h4>
+
+<p>This consensus protocol was first seen in [<a href="https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV" title="Snowflake to Avalanche...">39</a>]. The paper outlines four protocols that are building blocks forming a
+protocol family. These leaderless BFT protocols, published by Team Rocket, are built on a metastable mechanism. They are
+called Slush, Snowflake, Snowball and Avalanche.</p>
+
+<p>The protocols differ from the traditional consensus protocols and the Nakamoto consensus protocols by not requiring an
+elected leader. Instead, the protocol simply guides all the nodes to consensus.</p>
+
+<p>These four protocols are described as a new family of protocols due to this concept of metastability: a means to
+establish consensus by guiding all nodes towards an emerging consensus without requiring leaders, while still
+maintaining the same level of security and inducing a speed that exceeds current protocols.</p>
+
+<p>This is achieved through the formation of “sub-quorums”, which are small, randomized samples from nodes on the network.
+This allows for greater throughputs and sees parallel consensuses running before they merge to form the overarching
+consensus, which can be seen as similar in nature to the gossip protocol.</p>
+
+<p>With regard to safety, throughput (the number of transactions per second) and scalability (the number of people
+supported by the network), Slush, Snowflake, Snowball and Avalanche seem to be able to achieve all three. They impart a
+probabilistic safety guarantee in the presence of Byzantine adversaries and achieve a high throughput and scalability
+due to their concurrent nature. A <strong>synchronous</strong> network is assumed.</p>
+
+<p>The current problem facing the design of BFT protocols is that a system can be very fast when a small number of nodes
+are active, as there are fewer decisions to make. However, when there are many users and an increase in transactions,
+the system cannot be maintained.</p>
+
+<p>Unlike the PoW implementation, which requires constant active participation from the miners, Avalanche can function even
+when nodes are dormant.</p>
+
+<p>While traditional consensus protocols require <em>O</em>(n<sup>2</sup>) communication, their communication complexity ranges
+from <em>O(kn log n)</em> to <em>O(kn)</em> for some security parameter <em>k«n</em>. In a sense, Team Rocket highlight that the
+communication complexity of their protocols is less intensive than that of <em>O</em>(n<sup>2</sup>) communications, thus
+making these protocols faster and more scalable.</p>
+
+<p>To backtrack a bit, Big <em>O</em> notation is used in Computer Science to describe the performance or complexity of an
+algorithm. It describes the worst-case scenario and can be used to describe the execution time required by an algorithm [<a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" title="A Beginner's Guide to Big O Notation">21</a>].
+In the case of consensus algorithms, <em>O</em> describes a finite expected number of steps or operations [<a href="http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf" title="Fast Randomized Consensus using Shared Memory">22</a>]. For example,
+<em>O</em>(1) describes an algorithm that will always execute in the same time, regardless of the size of the input data set.
+<em>O</em>(n) describes an algorithm whose performance will grow linearly and in direct proportion to the size of the input
+data set. <em>O</em>(n<sup>2</sup>) represents an algorithm whose performance is directly proportional to the square of the
+size of the input data set.</p>
+
+<p>The reason for this is <em>O(n<sup>2</sup>)</em> suggests that the rate of growth of function is determined by <em>n<sup>2</sup></em>,
+where <em>n</em> is the number of people on the network. Thus, the addition of a person exponentially increases the time taken
+to disseminate the information on the network, while traditional consensus protocols require everyone to communicate
+with one another, making it a laborious process [<a href="https://flatoutcrypto.com/home/avalancheprotocol" title="Protocol Spotlight: Avalanche Part 1">32</a>].</p>
+
+<p>Despite assuming a synchronous network, which is susceptible to the DoS attacks, this new family of protocols “reaches
+a level of security that is simply good enough while surging forward with other advancements” [<a href="https://flatoutcrypto.com/home/avalancheprotocol" title="Protocol Spotlight: Avalanche Part 1">32</a>].</p>
+
+<h4 id="parsec">PARSEC</h4>
+
+<p>PARSEC is a BFT consensus algorithm possessing <strong>weak synchrony</strong> assumptions (highly asynchronous, assuming random
+delays with finite expected value). Similar to Hashgraph, it has no leaders, no round robin, no PoW and reaches eventual
+consensus with probability one. It
+differs from Hashgraph, in that it provides high speed in the absence and presence of faults. Thus, it avoids the
+structures of delegated PoS (DPoS), which requires a trusted set of leaders, and does not have a round robin (where a
+permissioned set of miners sign each block).</p>
+
+<p>PARSEC is fully open, unlike Hashgraph, which is patented and closed sourced. The reference implementation of PARSEC,
+written in Rust, was released a few weeks after the white paper ([[33]], [[23]]).</p>
+
+<p>The general problem in reaching Byzantine agreement on any value is reduced to the simple problem of reaching binary
+Byzantine agreement on the nodes participating in each decision. This has allowed PARSEC to reuse the binary
+Byzantine agreement protocol (Signature-free Asynchronous Byzantine Consensus) after adapting it to the gossip protocol [[34]].</p>
+
+<p>Similar to HoneybadgerBFT, this protocol is composed through the additions of interesting ideas presented in literature.
+Similar to Hashgraph and Avalanche, a gossip protocol is used to allow efficient communication between nodes [[33]].</p>
+
+<p>Finally, the need for a trusted leader or a trusted setup phase implied in [[27]] is removed by porting the key ideas
+to an asynchronous setting [<a href="https://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Distributed%20Computation/BYZANTYNE%20AGREEMENT%20MADE%20TRIVIAL.pdf" title="Byzantine Agreement Made Trivial">35</a>].</p>
+
+<p>The network is set to <em>N of N</em> instances of the algorithm communicating via randomly synchronous connections. Due to
+random synchrony, all users can reach an agreement as to what is going on. There is no guarantee for nodes on the
+timing that they should be receiving messages, and a possibility of up to <em>t</em> Byzantine (arbitrary) failures are
+allowed, where <em>3t</em>&lt;N. The instances where no failures have occurred are deemed correct or honest, while the failed
+instances are termed faulty or malicious. Since a Byzantine failure model allows for malicious behavior, any set of
+instances containing more than 2/3N of them is referred to as the supermajority.</p>
+
+<p>When a node receives a gossip request, it creates a new event and sends a response back (in Hashgraph, the response was
+optional). Each gossip event contains [<a href="https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2" title="Project Spotlight: Maidsafe and PARSEC Part 2">24</a>]:</p>
+
+<ol>
+  <li>The data being transmitted.</li>
+  <li>The self-parent (the hash of another gossip event created by the same node).</li>
+  <li>The other-parent (a hash of another gossip event created by a different node).</li>
+  <li>The <em>Cause</em> for creation, which can be a Request for information, a <em>Response</em> to another node’s request, or an
+<em>Observation</em>. An observation is when a node creates a gossip event to record an observation that the node made
+themselves.</li>
+  <li>The creator ID (public key).</li>
+  <li>The signature – signing the preceding information.</li>
+</ol>
+
+<p>The self-parent and other-parent prevent tampering because they are signed and related to other gossip events [<a href="https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2" title="Project Spotlight: Maidsafe and PARSEC Part 2">24</a>].</p>
+
+<p>As with Hashgraph, it is difficult for adversaries to interfere with the consensus algorithm, because all voting is
+<em>virtual</em> and done without sharing details of votes cast. Each node figures out what other nodes would have voted, based
+on their copy of the gossip graph.</p>
+
+<p>PARSEC also uses the concept of a <em>concrete coin</em>, from Algorand. This is used to break ties, particularly in cases
+where an adversary is carefully managing communication between nodes in order to maintain a deadlock on votes.</p>
+
+<p>In step 1, nodes try and converge on a “true” result for a set of results. If this is not achieved, they move on to
+step  2, which is trying to converge on a “false” result. If consensus still cannot be reached, a coin flip is made
+and they go back to step 1 in another voting round.</p>
+
+<h4 id="democratic-bft">Democratic BFT</h4>
+
+<p>This is a deterministic Byzantine consensus algorithm that relies on a new weak coordinator. This protocol is
+implemented in the Red Belly blockchain and is said to achieve 30,000 transactions per second on Amazon Cloud Trials
+[<a href="https://www.ccn.com/tag/red-belly-blockchain/" title="Red Belly Blockchain">25</a>]. Through the coupling with an optimized variant of the reduction of multivalve to binary consensus from [[26]],
+the Democratic BFT (DBFT) consensus algorithm was generated. It terminates in four message delays in the good case,
+when all non-faulty processes propose the same value [[36]].</p>
+
+<p>The term weak coordinator is used to describe the ability of the algorithm to terminate in the presence of a faulty or
+slow coordinator, unlike previous algorithms that do not have the ability to terminate. The fundamental idea here is to
+allow processes to complete asynchronous rounds as soon as they receive a threshold of messages, instead of having to
+wait for a message from a coordinator that may be slow. The resulting algorithm assumes partial synchrony; is resilience
+and time optimal; and does not require signatures.</p>
+
+<p>Moving away from the impossibility of solving consensus in asynchronous message systems, where processes can be faulty
+or Byzantine, the technique of randomization or additional synchrony is adopted.</p>
+
+<p>Randomized algorithms can use per-process “local” coins, or a shared <em>common coin</em> to solve consensus probabilistically
+among <em>n</em> processes despite $t&lt;n/3​$ Byzantine processes. When based on local coins, the existing algorithms converge
+<em>O(n</em><sup>2.5</sup><em>)</em> expected time.</p>
+
+<p>A recent randomized algorithm that does not contain a signature solves consensus in <em>O</em>(1) expected time under a fair
+scheduler, where <em>O</em> is the binary.</p>
+
+<p>To solve the consensus problem deterministically and prevent the use of the common coin, researchers have assumed partial
+or eventual synchrony. Here, these solutions require a unique coordinator process, referred to as the leader, in order
+to remain non-faulty.</p>
+
+<p>There are advantages and disadvantages to this technique:</p>
+
+<ul>
+  <li>
+    <p>The advantage is that if the coordinator is non-faulty, and if the messages are delivered in a timely manner in an
+asynchronous round, then the coordinator broadcasts its proposal to all processes and this value is decided after a
+constant number of message delays.</p>
+  </li>
+  <li>
+    <p>The disadvantage is that a faulty coordinator can dramatically impact the algorithm performance by leveraging the
+power it has in a round, and imposing its value on all. Non-faulty processes thus have no other choice but to decide
+nothing in this round.</p>
+  </li>
+</ul>
+
+<p>This protocol sees the use of a weak coordinator, which allows for the introduction of a new deterministic Byzantine
+consensus algorithm that is time optimal, resilience optimal and does not require the use of signatures. Unlike the
+classic, strong coordinator, the weak coordinator does not impose its value. It allows non-faulty processes to decide
+a value quickly, without the need of the coordinator, while helping the algorithm to terminate if non-faulty processes
+know that they proposed distinct values that might all be decided. In addition, the presence of a weak coordinator
+allows rounds to be executed optimistically without waiting for a specific message. This is unlike classic BFT
+algorithms that have to wait for a particular message from their coordinator, and occasionally have to recover from a
+slow network or faulty coordinator.</p>
+
+<p>With regard to the problem of a slow of Byzantine coordinator, the weak coordinator helps agreement by contributing a
+value while still allowing termination in a constant number of message delays. It is thus unlike the classic coordinator
+or the eventual leader, which cannot be implemented in the Binary Byzantine Consensus Algorithm, BAMP<sub>n,t</sub>[<em>t&lt;n/3</em>].</p>
+
+<p>The validation of protocol was conducted similarly to that of the HoneyBadger blockchain, where “Coin”, the randomization
+algorithm from [[27]] was used. Using the 100 Amazon Virtual Machines located in five data centers on different
+continents, it was shown that the DBFT algorithm outperforms that of “Coin”, which is known to terminate in <em>O</em>(1) rounds
+in expectation. In addition, since Byzantine behaviors have been seen to severely affect the performance of strong
+coordinator-based consensus, four different Byzantine attacks have been tested in the validation.</p>
+
+<h2 id="summary-of-findings">Summary of Findings</h2>
+
+<p><a href="#table_bft">Table 1</a> highlights the characteristics of the above-mentioned BFT Protocols. Asymptotic Security,
+Permissionless Blockchain, Timing Assumptions, Decentralized Control, Low Latency and Flexible Trust form part of the
+value system.</p>
+
+<ul>
+  <li>Asymptotic Security - this depends only on digital signatures (and hash functions) for security.</li>
+  <li>Permissionless Protocol - this allows anybody to create an address and begin interacting with the protocol.</li>
+  <li>Timing Assumptions - refer to <a href="#forms-of-timing-assumptions---degrees-of-synchrony">Forms of Timing Assumptions - Degrees of Synchrony</a>.</li>
+  <li>Decentralized Control - consensus is achieved and defended by protecting the identity of that node until its job is
+done, through a leaderless node.</li>
+  <li>Low Latency - this describes a computer network that is optimized to process a very high volume of data messages with
+minimal delay.</li>
+  <li>Flexible Trust - where users have the freedom to trust any combinations of parties they see fit.</li>
+</ul>
+
+<p align="center"><b><a name="table_bft"> </a>Table 1: Characteristics of BFT Protocols</b></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Protocol</th>
+      <th style="text-align: center">Permissionless Protocol</th>
+      <th style="text-align: center">Timing Assumptions</th>
+      <th style="text-align: center">Decentralized Control</th>
+      <th style="text-align: center">Low Latency</th>
+      <th style="text-align: center">Flexible Trust</th>
+      <th style="text-align: center">Asymptotic Security</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hyperledger Fabric (HLF)</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Partially synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Tendermint</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Partially synchronous</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td>Paxos</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Partially synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Chandra-Toureg</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Partially synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Raft</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Weakly synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>HashGraph</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Asynchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>SINTRA</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Asynchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>HoneyBadgerBFT</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Asynchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td>Stellar Consensus Protocol</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Asynchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td>LinBFT</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Partially synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Algorand</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Thunderella</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Avalanche</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>PARSEC</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Weakly synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Democratic BFT</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">Partially synchronous</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>BFT consensus protocols have been considered as a means to disseminate and validate information. The question of whether
+Schnorr multisignatures can perform the same function in validating information through the action of signing will form
+part of the next review.</p>
+
+<h2 id="references">References</h2>
+
+<p>[[1]] B. Asolo, “Breaking down the Blockchain Scalability Trilemma” [online].
+Available: <a href="https://bitcoinist.com/breaking-down-the-scalability-trilemma/">https://bitcoinist.com/breaking-down-the-scalability-trilemma/</a>. Date accessed: 2018‑10‑01.</p>
+
+<p>[1]: https://bitcoinist.com/breaking-down-the-scalability-trilemma/ “Breaking down the Blockchain
+Scalability Trilemma”</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)" title="Wikipedia: Consensus Mechanisms">2</a>] Wikipedia: “Consensus Mechanisms” [online]. Available: <a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">https://en.wikipedia.org/wiki/Consensus_(computer_science)</a>.
+Date accessed: 2018‑10‑01.</p>
+
+<p>[[3]] S. Rusch, “High-performance Consensus Mechanisms for Blockchains” [online].
+Available: <a href="http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf">http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf</a>. Date accessed: 2018‑08‑30.</p>
+
+<p>[3]: http://conferences.inf.ed.ac.uk/EuroDW2018/papers/eurodw18-Rusch.pdf “High-Performance Consensus Mechanisms for
+Blockchains”</p>
+
+<p>[[4]] C. Cachin “Architecture of the Hyperledger Blockchain Fabric” [online].
+Available: <a href="https://www.zurich.ibm.com/dccl/papers/cachin_dccl.pdf">https://www.zurich.ibm.com/dccl/papers/cachin_dccl.pdf</a>. Date accessed: 2018‑09‑16.</p>
+
+<p>[4]: https://www.zurich.ibm.com/dccl/papers/cachin_dccl.pdf “Architecture of the Hyperledger
+Blockchain Fabric”</p>
+
+<p>[[5]] L. S. Sankar, M. Sindhu and M. Sethumadhavan, “Survey of Consensus Protocols on Blockchain Applications” [online].
+Available: <a href="https://ieeexplore.ieee.org/document/8014672/">https://ieeexplore.ieee.org/document/8014672/</a>. Date accessed: 2018‑08‑30.</p>
+
+<p>[5]: https://ieeexplore.ieee.org/document/8014672/ “Survey of Consensus Protocols of Blockchain Applications,
+4th International Conference on Advanced Computing
+and Communication Systems.”</p>
+
+<p>[<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>] “Tendermint Explained - Bringing BFT-based PoS to the Public Blockchain Domain” [online].
+Available: <a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>“Tendermint Explained - Bringing BFT-based
+PoS to the Public Blockchain Domain”</p>
+
+<p>[<a href="https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md" title="Tendermint Peer Discovery">7</a>] “Tendermint Peer Discovery” [online]. Available: <a href="https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md">https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md</a>.
+Date accessed: 2018‑10‑22.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)" title="Wikipedia: Paxos">8</a>] Wikipedia: “Paxos” [online]. Available: <a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">https://en.wikipedia.org/wiki/Paxos_(computer_science)</a>. Date accessed:
+2018‑10‑01.</p>
+
+<p>[[9]] Wikipedia: “Chandra-Toueg Consensus Algorithm” [online]. Available:
+<a href="https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm">https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm</a>.
+Date accessed: 2018‑09‑13.</p>
+
+<p>[9]: https://en.wikipedia.org/wiki/Chandra%E2%80%93Toueg_consensus_algorithm “Wikipedia: Chandra-Toueg Consensus
+Algorithm”</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Raft_(computer_science)" title="Wikipedia: Raft">10</a>] Wikipedia: “Raft” [online]. Available: <a href="https://en.wikipedia.org/wiki/Raft_(computer_science)">https://en.wikipedia.org/wiki/Raft_(computer_science)</a>. Date accessed:
+2018‑09‑13.</p>
+
+<p>[[11]] A. Clement, E. Wong, L. Alvisi, M. Dahlin and M. Marchetti, “Making Byzantine Fault Tolerant Systems Tolerate
+Byzantine Faults” [online]. Available: <a href="https://www.usenix.org/legacy/event/nsdi09/tech/full_papers/clement/clement.pdf">https://www.usenix.org/legacy/event/nsdi09/tech/full_papers/clement/clement.pdf</a>.
+Date accessed 2018‑10‑22.</p>
+
+<p>[11]: https://www.usenix.org/legacy/event/nsdi09/tech/full_papers/clement/clement.pdf “Making Byzantine Fault Tolerant
+Systems Tolerate Byzantine Faults”</p>
+
+<p>[<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Hashgraph White Paper">12</a>] L. Baird, “The Swirlds Hashgraph Consensus Algorithm: Fair, Fast, Byzantine Fault Tolerance” [online].
+Available: <a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf">https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf</a>. Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/" title="Introduction to Gossip">13</a>] “Just My Thoughts: Introduction to Gossip” [online]. Available:
+<a href="https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/">https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/</a>.
+Date accessed 2018‑10‑22.</p>
+
+<p>[<a href="https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf" title="Swirlds and Sybil Attacks">14</a>] L. Baird, “Swirlds and Sybil Attacks” [online]. Available: <a href="http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf">http://www.swirlds.com/downloads/Swirlds-and-Sybil-Attacks.pdf</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[[15]] Y. Jia, “Demystifying Hashgraph: Benefits and Challenges” [online].
+Available: <a href="https://hackernoon.com/demystifying-Hashgraph-benefits-and-challenges-d605e5c0cee5">https://hackernoon.com/demystifying-Hashgraph-benefits-and-challenges-d605e5c0cee5</a>. Date accessed:
+2018‑09‑30.</p>
+
+<p>[15]: https://hackernoon.com/demystifying-hashgraph-benefits-and-challenges-d605e5c0cee5 “Demystifying Hashgraph:
+Benefits and Challenges”</p>
+
+<p>[<a href="https://medium.com/opentoken/hashgraph-a-whitepaper-review-f7dfe2b24647" title="Hashgraph: A Whitepaper Review">16</a>] M. Graczyk, “Hashgraph: A Whitepaper Review” [online]. Available:
+<a href="https://medium.com/opentoken/Hashgraph-a-whitepaper-review-f7dfe2b24647">https://medium.com/opentoken/Hashgraph-a-whitepaper-review-f7dfe2b24647</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[[17]] C. Cachin and J. A. Poritz, “Secure Intrusion-tolerant Replication on the Internet” [online].
+Available: <a href="https://cachin.com/cc/papers/sintra.pdf">https://cachin.com/cc/papers/sintra.pdf</a>. Date accessed: 2018‑10‑22.</p>
+
+<p>[17]: https://cachin.com/cc/papers/sintra.pdf “Secure Intrusion-tolerant Replication
+on the Internet”</p>
+
+<p>[<a href="https://www.shoup.net/papers/ckps.pdf" title="Secure and Efficient Asynchronous Broadcast Protocols">18</a>] C. Cachin, K. Kursawe, F. Petzold and V. Shoup, “Secure and Efficient Asynchronous Broadcast Protocols” [online].
+Available: <a href="https://www.shoup.net/papers/ckps.pdf">https://www.shoup.net/papers/ckps.pdf</a>. Date accessed 2018‑10‑22.</p>
+
+<p>[<a href="https://arxiv.org/pdf/1607.01341.pdf" title="Algorand White Paper">19</a>] J. Chen and S. Micali, “Algorand” White Paper” [online]. Available: <a href="https://arxiv.org/pdf/1607.01341.pdf">https://arxiv.org/pdf/1607.01341.pdf</a>.
+Date accessed: 2018‑09‑13.</p>
+
+<p>[<a href="https://eprint.iacr.org/2017/913.pdf" title="Thunderella White Paper">20</a>] R. Pass and E. Shi, “Thunderella: Blockchains with Optimistic Instant Confirmation” White Paper [online].
+Available: <a href="https://eprint.iacr.org/2017/913.pdf">https://eprint.iacr.org/2017/913.pdf</a>. Date accessed: 2018‑09‑13.</p>
+
+<p>[<a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" title="A Beginner's Guide to Big O Notation">21</a>] “A Beginner’s Guide to Big O Notation” [online]. Available:
+<a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/">https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/</a>.
+Date accessed: 2018‑10‑22.</p>
+
+<p>[<a href="http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf" title="Fast Randomized Consensus using Shared Memory">22</a>] J. Aspnes and M. Herlihy, “Fast Randomized Consensus using Shared Memory” [online].
+Available: <a href="http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf">http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf</a>. Date accessed: 2018‑10‑22.</p>
+
+<p>[[23]] “Prototol for Asynchronous, Reliable, Secure and Efficient Consensus” [online]. Available:
+<a href="https://github.com/maidsafe/parsec">https://github.com/maidsafe/parsec</a>.
+Date accessed 2018‑10‑22.</p>
+
+<p>[23]: https://github.com/maidsafe/parsec “GitHub repository: Protocol for Asynchronous,
+Reliable, Secure and Efficient Consensus”</p>
+
+<p>[<a href="https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2" title="Project Spotlight: Maidsafe and PARSEC Part 2">24</a>] “Project Spotlight: Maidsafe and PARSEC Part 2” [online]. Available:
+<a href="https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2">https://flatoutcrypto.com/home/maidsafeparsecexplanationpt2</a>.
+Date accessed: 2018‑09‑18.</p>
+
+<p>[<a href="https://www.ccn.com/tag/red-belly-blockchain/" title="Red Belly Blockchain">25</a>] “Red Belly Blockchain” [online]. Available: <a href="https://www.ccn.com/tag/red-belly-blockchain/">https://www.ccn.com/tag/red-belly-blockchain/</a>. Date accessed:
+2018‑10‑10.</p>
+
+<p>[[26]] M. Ben-Or, B. Kelmer and T Rabin, “Asynchronous Secure Computations with Optimal Resilience” [online].
+Available: <a href="https://dl.acm.org/citation.cfm?id=198088">https://dl.acm.org/citation.cfm?id=198088</a>. Date accessed 2018‑10‑22.</p>
+
+<p>[26]: https://dl.acm.org/citation.cfm?id=198088 “Asynchronous Secure Computations with
+Optimal Resilience”</p>
+
+<p>[[27]] A. Mostefaoui, M.Hamouna and Michel Raynal, “Signature-free Asynchronous Byzantine Consensus with $t&lt;n/3$ and
+<em>O</em>(n<sup>2</sup>) Messages” [online]. Available: <a href="https://hal.inria.fr/hal-00944019v2/document">https://hal.inria.fr/hal-00944019v2/document</a>.
+Date accessed 2018‑10‑22.</p>
+
+<p>[27]: https://hal.inria.fr/hal-00944019v2/document “Signature-Free Asynchronous Byzantine
+Consensus with $t&lt;n/3​$ and <em>O</em>(n<sup>2</sup>) Messages”</p>
+
+<p>[<a href="https://eprint.iacr.org/2016/199.pdf" title="The Honey Badger of BFT Protocols">28</a>] A. Miller, Y. Xia, K. Crowman, E. Shi and D. Song, “The Honey Badger of BFT Protocols”, White Paper [online].
+Available: <a href="https://eprint.iacr.org/2016/199.pdf">https://eprint.iacr.org/2016/199.pdf</a>. Date accessed: 2018‑08‑30.</p>
+
+<p>[[29]] D. Schwartz, N. Youngs and A. Britto, “The Ripple Protocol Consensus Algorithm” [online].
+Available: <a href="https://ripple.com/files/ripple_consensus_whitepaper.pdf">https://ripple.com/files/ripple_consensus_whitepaper.pdf</a>. Date accessed: 2018‑09‑13.</p>
+
+<p>[29]: https://ripple.com/files/ripple_consensus_whitepaper.pdf “The Ripple Protocol Consensus
+Algorithm”</p>
+
+<p>[<a href="http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf" title="Tendermint: Consensus without Mining">30</a>] J. Kwon, “TenderMint: Consensus without Mining”  [online].
+Available: <a href="http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf">http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf</a>.
+Date accessed: 2018‑09‑20.</p>
+
+<p>[[31]] Y. Yang, “LinBFT: Linear-Communication Byzantine Fault Tolerance for Public Blockchains” [online].
+Available: <a href="https://arxiv.org/pdf/1807.01829.pdf">https://arxiv.org/pdf/1807.01829.pdf</a>. Date accessed: 2018‑09‑20.</p>
+
+<p>[31]: https://arxiv.org/pdf/1807.01829.pdf “LinBFT: Linear-Communication Byzantine
+Fault Tolerance for Public Blockchains”</p>
+
+<p>[<a href="https://flatoutcrypto.com/home/avalancheprotocol" title="Protocol Spotlight: Avalanche Part 1">32</a>] “Protocol Spotlight: Avalanche Part 1” [online]. Available: <a href="https://flatoutcrypto.com/home/avalancheprotocol">https://flatoutcrypto.com/home/avalancheprotocol</a>.
+Date Accessed: 2018‑09‑09.</p>
+
+<p>[[33]] P. Chevalier, B. Kaminski, F. Hutchison, Q. Ma and S. Sharma, “Protocol for Asynchronous, Reliable, Secure and
+Efficient Consensus (PARSEC)”. White Paper [online]. Available: <a href="http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf">http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf</a>.
+Date accessed: 2018‑08‑30.</p>
+
+<p>[33]: http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf “Protocol for Asynchronous, Reliable,
+Secure and Efficient Consensus (PARSEC)”</p>
+
+<p>[[34]] “Project Spotlight: Maidsafe and PARSEC Part 1” [online].
+Available: <a href="https://medium.com/@flatoutcrypto/project-spotlight-maidsafe-and-parsec-part-1-4830cec8d9e3">https://medium.com/@flatoutcrypto/project-spotlight-maidsafe-and-parsec-part-1-4830cec8d9e3</a>.
+Date accessed: 2018‑08‑30.</p>
+
+<p>[34]: https://medium.com/@flatoutcrypto/project-spotlight-maidsafe-and-parsec-part-1-4830cec8d9e3 “Project Spotlight:
+Maidsafe and PARSEC Part 1”</p>
+
+<p>[<a href="https://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Distributed%20Computation/BYZANTYNE%20AGREEMENT%20MADE%20TRIVIAL.pdf" title="Byzantine Agreement Made Trivial">35</a>] S. Micali, “Byzantine Agreement Made Trivial” [online]. Available: <a href="https://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Distributed%20Computation/BYZANTYNE%20AGREEMENT%20MADE%20TRIVIAL.pdf">https://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Distributed%20Computation/BYZANTYNE%20AGREEMENT%20MADE%20TRIVIAL.pdf</a>.
+Date accessed: 2018‑08‑30.</p>
+
+<p>[[36]] T. Crain, V. Gramoli, M. Larrea and M. Raynal, “DBFT: Efficient Byzantine Consensus with a Weak Coordinator and
+its Application to Consortium Blockchains” [online]. Available: <a href="http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf">http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[36]: http://gramoli.redbellyblockchain.io/web/doc/pubs/DBFT-preprint.pdf “DBFT: Efficient Byzantine Consensus
+with a Weak Coordinator and its Application
+to Consortium Blockchains”</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Byzantine_fault_tolerance" title="Byzantine Fault Tolerance, Wikipedia">37</a>] Wikipedia: “Byzantine Fault Tolerance” [online]. Available: <a href="https://en.wikipedia.org/wiki/Byzantine_fault_tolerance">https://en.wikipedia.org/wiki/Byzantine_fault_tolerance</a>.
+Date accessed: 2018‑09‑30.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Liveness" title="Liveness, Wikipedia">38</a>] Wikipedia: “Liveness” [online]. Available: <a href="https://en.wikipedia.org/wiki/Liveness">https://en.wikipedia.org/wiki/Liveness</a>. Date accessed:
+2018‑09‑30.</p>
+
+<p>[<a href="https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV" title="Snowflake to Avalanche...">39</a>] Team Rocket, “Snowflake to Avalanche: A Novel Metastable Consensus Protocol Family for
+Cryptocurrencies” [online]. Available: <a href="https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV">https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV</a>. Date
+accessed: 2018‑09‑30.</p>
+
+<h2 id="appendices">Appendices</h2>
+
+<h3 id="appendix-a-terminology">Appendix A: Terminology</h3>
+
+<p>In order to gain a full understanding of the field of consensus mechanisms, specifically BFT consensus mechanisms,
+certain terms and concepts need to be defined and fleshed out.</p>
+
+<h4 id="consensus">Consensus</h4>
+
+<p>Distributed agents (these could be computers, generals coordinating an attack, or sensors in a nuclear plant) that
+communicate via a network (be it digital, courier or mechanical) need to agree on facts in order to act
+as a coordinated whole.</p>
+
+<p>When all non-faulty agents agree on a given fact, then we say that the network is in consensus. Consensus is achieved
+when all non-faulty agents agree on a prescribed fact.</p>
+
+<p>A consensus protocol may adhere to a host of formal requirements, including:</p>
+
+<ul>
+  <li>
+<strong>Agreement</strong> - where all correct processes agree on the same fact.</li>
+  <li>
+<strong>Weak Validity</strong> - where, for all correct processes, the output must be the input for some correct process.</li>
+  <li>
+<strong>Strong Validity</strong> - where, if all correct processes receive the same input value, they must all output that value.</li>
+  <li>
+<strong>Termination</strong> - where all processes must eventually decide on an output value [<a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)" title="Wikipedia: Consensus Mechanisms">2</a>].</li>
+</ul>
+
+<h4 id="binary-consensus">Binary Consensus</h4>
+
+<p>There is a unique case of the consensus problem, referred to as the binary consensus, which restricts the input and
+hence the output domain to a single binary digit {0,1}.</p>
+
+<p>When the input domain is large, relative to the number of processes, e.g. an input set of all the natural numbers, it
+can be shown that consensus is impossible in a synchronous message passing model [<a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)" title="Wikipedia: Consensus Mechanisms">2</a>].</p>
+
+<h4 id="byzantine-fault-tolerance">Byzantine Fault Tolerance</h4>
+
+<p>Byzantine failures are considered the most general and most difficult class of failures among the failure modes. The
+so-called fail-stop failure mode occupies the simplest end of the spectrum. Whereas fail-stop failure mode simply means
+that the only way to fail is a node crash, detected by other nodes, Byzantine failures imply no restrictions, which
+means that the failed node can generate arbitrary data, pretending to be a correct one. Thus, Byzantine failures can
+confuse failure detection systems, which makes fault tolerance difficult [<a href="https://en.wikipedia.org/wiki/Byzantine_fault_tolerance" title="Byzantine Fault Tolerance, Wikipedia">37</a>].</p>
+
+<p>Several papers in the literature contextualize the problem using generals at different camps, situated outside the enemy
+castle, needing to decide whether or not to attack. A consensus algorithm that would fail, would perhaps see one general
+attack while all the others stay back, resulting in the vulnerability of first general.</p>
+
+<p>One key property of a blockchain system is that the nodes do not trust each other, meaning that some may behave in
+a Byzantine manner. The consensus protocol must therefore tolerate Byzantine failures.</p>
+
+<p>A network is Byzantine Fault Tolerant (BFT) when it can provide service and reach a consensus despite faults or failures
+of the system. The processes use a protocol for consensus or atomic broadcast (a broadcast where all correct processes
+in a system of multiple processes receive the same set of messages in the same order); i.e. the same sequence of
+messages [[46]]) agree on a common sequence of operations to execute [<a href="https://eprint.iacr.org/2017/913.pdf" title="Thunderella White Paper">20</a>].</p>
+
+<p>The literature on distributed consensus is vast, and there are many variants of previously proposed protocols being
+developed for blockchains. They can be largely classified along a spectrum:</p>
+
+<ul>
+  <li>
+    <p>One extreme consists of purely
+computation-based protocols, which use proof of computation to randomly select a node that single-handedly decides the
+next operation.</p>
+  </li>
+  <li>
+    <p>The other extreme is purely communication-based protocols, in which nodes have equal votes and go
+through multiple rounds of communication to reach consensus, Practical Byzantine Fault Tolerance (PBFT) being the prime
+example,
+which is a replication algorithm designed to be BFT [<a href="https://en.wikipedia.org/wiki/Raft_(computer_science)" title="Wikipedia: Raft">10</a>].</p>
+  </li>
+</ul>
+
+<p>For systems with <em>n</em> nodes, of which <em>f</em> are Byzantine, it has been shown that <em>no algorithm exists</em> that solves the
+consensus problem for <em>f &gt; n/3</em> [<a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" title="A Beginner's Guide to Big O Notation">21</a>].</p>
+
+<p>So how then does the Bitcoin protocol get away with only needing 51% honest nodes to reach consensus? Well, strictly
+speaking, Bitcoin is NOT a BFT-CM, because there is never absolute finality in bitcoin ledgers; there is
+always a chance (however small) that someone can 51% attack the network and rewrite the entire history. Bitcoin is a
+probabilistic consensus, rather than deterministic.</p>
+
+<h4 id="practical-byzantine-fault-tolerant-variants">Practical Byzantine Fault-tolerant Variants</h4>
+
+<p>PoW suffers from non-finality, i.e. a block appended to a blockchain is not confirmed until it is extended by many other
+blocks. Even then, its existence in the blockchain is only probabilistic. For example, eclipse attacks on Bitcoin
+exploit this probabilistic guarantee to allow double spending. In contrast, the original PBFT protocol is
+deterministic [<a href="https://en.wikipedia.org/wiki/Raft_(computer_science)" title="Wikipedia: Raft">10</a>].</p>
+
+<h4 id="deterministic-and-non-deterministic-protocols">Deterministic and Non-deterministic Protocols</h4>
+
+<p>Deterministic, bounded Byzantine agreement relies on consensus being finalized for each epoch before moving to the next
+one, ensuring that there is some safety about a consensus reference point prior to continuing. If, instead, you allow an
+unbounded number of consensus agreements within the same epoch, then there is no overall consensus reference point with
+which to declare finality, and thus safety is compromised [<a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)" title="Wikipedia: Paxos">8</a>].</p>
+
+<p>For non-deterministic or probabilistic protocols, the probability that an honest node is undecided after <em>r</em> rounds
+approaches zero as r approaches infinity.</p>
+
+<p>Non-deterministic protocols that solve consensus under the purely asynchronous case potentially rely on random oracles
+and generally incur high message complexity overhead, as they depend on reliable broadcasting for all communication.</p>
+
+<p>Protocols such as HoneyBadgerBFT fall into this class of nondeterministic protocols under asynchrony. Normally, they
+require three instances of reliable broadcast for a single round of communication [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<h4 id="scalability-performance-trade-off">Scalability-Performance Trade-off</h4>
+
+<p>As briefly mentioned in the <a href="#introduction">Introduction</a>, the scalability of BFT protocols considering the number of
+participants is highly limited and the performance of most protocols deteriorates as the number of involved replicas
+increases. This effect is especially problematic for BFT deployment in permissionless blockchains [<a href="https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md" title="Tendermint Peer Discovery">7</a>].</p>
+
+<p>The problem of BFT scalability is twofold: a high throughput, as well as a large consensus group with good
+reconfigurability that can tolerate a high number of failures are both desirable properties in BFT protocols. However,
+they are often in direct conflict.</p>
+
+<p>Bitcoin mining, for example, supports thousands of participants, offers good reconfigurability, i.e. nodes can join or
+leave the network at any time, and can tolerate a high number of failures. However, they are only able to process a
+severely limited number of transactions per second. Most BFT protocols achieve a significantly higher throughput, but
+are limited to small groups of participants of less than 20 nodes and the group reconfiguration is not easily achievable.</p>
+
+<p>Several approaches have been employed to remedy these problems, e.g. threshold cryptography, creating new consensus
+groups for every round and limiting the number of necessary messages to reach consensus [[3]].</p>
+
+<h3 id="appendix-b-timing-assumptions">Appendix B: Timing Assumptions</h3>
+
+<h4 id="forms-of-timing-assumptions---degrees-of-synchrony">Forms of Timing Assumptions - Degrees of Synchrony</h4>
+
+<h5 id="synchrony">Synchrony</h5>
+
+<p>Here, the time for nodes to wait and receive information is predefined. If a node has not received an input within the
+redefined time structure, there is a problem [[5]].</p>
+
+<p>In synchronous systems, it is assumed that all communications proceed in rounds. In one round, a process may send all
+the messages it requires, while receiving all messages from other processes. In this manner, no message from one round
+may influence any messages sent within the same round [<a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" title="A Beginner's Guide to Big O Notation">21</a>].</p>
+
+<p>A △T-synchronous network guarantees that every message sent is delivered after, at most, a delay of △T (where △T is a
+measure of real time) [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>]. Synchronous protocols come to a consensus after △T [[5]].</p>
+
+<h5 id="partial-synchrony">Partial Synchrony</h5>
+
+<p>Here, the network retains some form of a predefined timing structure. However, it can operate without knowing said
+assumption of how fast nodes can exchange messages over the network. Instead of pushing out a block every x seconds, a
+partially synchronous blockchain would gauge the limit, with messages always being sent and received within the unknown
+deadline.</p>
+
+<p>Partially synchronous protocols come to a consensus in an unknown, but finite period [[5]].</p>
+
+<h6 id="unknown-t-model">Unknown-△T Model</h6>
+
+<p>The protocol is unable to use the delay bound as a parameter [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<h6 id="eventually-synchronous">Eventually Synchronous</h6>
+
+<p>The message delay bound △ is only guaranteed to hold after some (unknown instant, called the “Global Stabilization
+Time” [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<h5 id="weak-synchrony">Weak Synchrony</h5>
+
+<p>Most existing BFT systems, even those called “robust”, assume some variation of <em>weak synchrony</em>, where messages are
+guaranteed to be delivered after a certain bound △T, but △T may be time-varying or unknown to the protocol designer.</p>
+
+<p>However, the liveness properties of weakly synchronous protocols can fail completely when the expected timing assumptions
+are violated, e.g. due to a malicious network adversary. In general, liveness refers to a set of properties of concurrent
+systems, that require a system to make progress despite the fact that its concurrently executing components may have to
+“take turns” in critical sections. These are parts of the program that cannot be simultaneously run by multiple
+components [<a href="https://en.wikipedia.org/wiki/Liveness" title="Liveness, Wikipedia">38</a>].</p>
+
+<p>Even when the weak synchrony assumptions are satisfied in practice, weakly synchronous protocols degrade significantly in
+throughput when the underlying network is unpredictable. Unfortunately, weakly asynchronous protocols require timeout
+parameters that are difficult to tune, especially in cryptocurrency application settings; and when the chosen timeout
+values are either too long or too short, throughput can be hampered.</p>
+
+<p>In terms of feasibility, both weak and partially synchronous protocols are equivalent. A protocol that succeeds in one
+setting can be systematically adapted for another. In terms of concrete performance, however, adjusting for weak
+synchrony means gradually increasing the timeout parameter over time, e.g. by an exponential back-off policy. This
+results in delays when recovering from transient network partition. Protocols typically manifest these assumptions in
+the form of a timeout event. For example, if parties detect that no progress has been made within a certain interval,
+then they take a corrective action such as electing a new leader. Asynchronous protocols do not rely on timers, and make
+progress whenever messages are delivered, regardless of actual clock time [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<h5 id="random-synchrony">Random Synchrony</h5>
+
+<p>Messages are delivered with random delays, such that the average delay is finite. There may be periods of arbitrarily
+long days (this is a weaker assumption than weak synchrony, and only a bit stronger than full asynchrony, where the only
+guarantee is that messages are eventually delivered). It is impossible to tell whether an instance has failed by
+completely stopping, or if there is just a delay in message delivery [[1]].</p>
+
+<h5 id="asynchrony">Asynchrony</h5>
+
+<h6 id="asynchronous-networks-and-protocols">Asynchronous Networks and Protocols</h6>
+
+<p>In an asynchronous network, the adversary can deliver messages in any order and at any time. However, the message must
+eventually be delivered between correct nodes. Nodes in an asynchronous network effectively have no use for real-time
+clocks, and can only take actions based on the ordering of messages they receive [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>]. The speed is determined by the
+speed at which the network communicates, instead of a fixed limit of x seconds.</p>
+
+<p>An asynchronous protocol requires a different means to decide when all nodes are able to come to a consensus.</p>
+
+<p>As will be discussed in <a href="#flp-impossibility">FLP Impossibility</a>, FLP result rules out the possibility of the
+deterministic asynchronous protocols for atomic broadcast and many other tasks. A deterministic protocol must therefore
+make some stronger timing assumptions [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<h6 id="counting-rounds-in-asynchronous-networks">Counting Rounds in Asynchronous Networks</h6>
+
+<p>Although the guarantee of eventual delivery is decoupled from notions of “real time”, it is nonetheless desirable to
+characterize the running time of asynchronous protocols. The standard approach is for the adversary to assign each
+message a virtual round number, subject to the condition that every (<em>r</em>-1) message between correct nodes must be
+delivered before any (<em>r</em>+1) message is sent.</p>
+
+<h4 id="problem-with-timing-assumptions">Problem with Timing Assumptions</h4>
+
+<h5 id="general">General</h5>
+
+<p>The problem with both synchronous and partially synchronous assumptions is that “the protocols based on timing
+assumptions are unsuitable for decentralized, cryptocurrency settings, where network links can be unreliable, network
+speeds change rapidly, and network delays may even be adversarially induced” [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<h5 id="denial-of-service-attack">Denial of Service Attack</h5>
+
+<p>Basing a protocol on timings, exposes the network to Denial of Service (DoS) attacks. A synchronous protocol will be
+deemed unsafe if a DoS slows down the network sufficiently. Even though a partially synchronous protocol would be safe,
+it would be unable to operate, as the messages would be exposed to interference.</p>
+
+<p>An asynchronous protocol would be able to function under a DoS attack. However, it is difficult to reach consensus, as
+it is impossible to know if the network is under attack, or if a particular message is delayed by the protocol itself.</p>
+
+<h4 id="flp-impossibility">FLP Impossibility</h4>
+
+<p>Reference [<a href="http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf" title="Fast Randomized Consensus using Shared Memory">22</a>] maps out what it is possible to achieve with distributed processes in an asynchronous environment.</p>
+
+<p>The result, referred to as the FLP result, which raised the problem of consensus, i.e. getting a distributed network of
+processors to agree on a common value. This problem was known to be solvable in a synchronous setting, where processes
+could proceed in simultaneous steps. The synchronous solution was seen as resilient to faults, where processors crash
+and take no further part in the computation. Synchronous models allow failures to be detected by waiting one entire step
+length for a reply from a processor, and presuming that it has crashed if no reply is received.</p>
+
+<p>This kind of failure detection is not possible in an asynchronous setting, as there are no bounds on the amount of time
+a processor might take to complete its work and then respond. The FLP result shows that in an asynchronous setting,
+where only one processor might crash, there is no distributed algorithm that solves the consensus problem [[23]].</p>
+
+<h4 id="randomized-agreement">Randomized Agreement</h4>
+
+<p>The consensus problem involves an asynchronous system of processes, some of which may be unreliable. The problem is for
+the reliable processes to agree on a binary value. Every protocol for this problem has the possibility of
+nontermination [<a href="http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf" title="Fast Randomized Consensus using Shared Memory">22</a>]. While the vast majority of PBFT protocols steer clear of this impossibility result by making
+timing assumptions, randomness (and, in particular, cryptography) provides an alternative route. Asynchronous BFT
+protocols have been used for a variety of tasks such as binary agreement (ABA), reliable broadcast (RBC) and more [<a href="https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb">6</a>].</p>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li><a href="https://github.com/kevoulee">https://github.com/kevoulee</a></li>
+  <li><a href="https://github.com/CjS77">https://github.com/CjS77</a></li>
+  <li><a href="https://github.com/hansieodendaal">https://github.com/hansieodendaal</a></li>
+  <li><a href="https://github.com/anselld">https://github.com/anselld</a></li>
+</ul>
+
+        </div>
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Introduction%20to%20Applications%20of%20Byzantine%20Consensus%20Mechanisms&url=/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms&amp;media=/images/banner-03.jpg&amp;description=Introduction%20to%20Applications%20of%20Byzantine%20Consensus%20Mechanisms"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/consensus-mechanisms/bft-consensus-mechanisms" style="background-image: url(/images/banner-03.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/consensus-mechanisms/bft-consensus-mechanisms"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/consensus-mechanisms/bft-consensus-mechanisms">BFT Consensus Mechanisms</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/scaling">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/scaling">Scaling</a></h4>
+    </div>
+    <a class="next__image fadein" href="/scaling" style="background-image: url(/images/banner-04.jpg)"></a>
+  </div>
+  
+</div>
+      </article>
+      <!-- end post -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/consensus-mechanisms">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-03.jpg);">
+            <p class="tlu-post-title">Consensus Mechanisms</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/consensus-mechanisms">
+                  
+                    Consensus mechanisms are crucial for a blockchain in order to function correctly
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/consensus-mechanisms" class="article__tag">consensus-mechanisms</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/consensus-mechanisms/understanding_bft_consensus">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-03.jpg);">
+            <p class="tlu-post-title">Understanding Byzantine Fault-tolerant Consensus</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/consensus-mechanisms/understanding_bft_consensus">
+                  
+                    When considering the concept of consensus in cryptocurrency and cryptographic protocols
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/consensus-mechanisms" class="article__tag">consensus-mechanisms</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/consensus-mechanisms/bft-consensus-mechanisms">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-03.jpg);">
+            <p class="tlu-post-title">BFT Consensus Mechanisms</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/consensus-mechanisms/bft-consensus-mechanisms">
+                  
+                    This is very brief overview. There are better, and more complete introductions out there
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/consensus-mechanisms" class="article__tag">consensus-mechanisms</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

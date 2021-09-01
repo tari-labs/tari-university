@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Rank-1 Constraint System with Application to Bulletproofs</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/cryptography/rank-1">
+  <link rel="alternate" type="application/rss+xml" title="Tari Labs University" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="/images/src/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.show{display:block}.hide{display:none}.invisible{visibility:hidden}.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:20px}.highlight{background:#f6f7f9}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#6565ff}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#e03460}.highlight .sc{color:#e03460}.highlight .sd{color:#e03460}.highlight .s2{color:#e03460}.highlight .se{color:#e03460}.highlight .sh{color:#e03460}.highlight .si{color:#e03460}.highlight .sx{color:#e03460}.highlight .sr{color:#009926}.highlight .s1{color:#e03460}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1300px;padding-left:20px;padding-right:20px;margin:0 auto}.container-big{max-width:1600px;padding-left:20px;padding-right:20px;margin:0 auto}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-10px;margin-right:-10px}.col{padding-left:10px;padding-right:10px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 992px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#F5F5F7;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.zoom-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background:rgba(245,245,247,0.8)}}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate-in-top{animation:animateInTop cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.75s;animation-iteration-count:1;transition:transform .2s}@keyframes animateInTop{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}.animate-in-bottom{animation-duration:0.7s;animation-fill-mode:both;animation-name:animateInBottom}@keyframes animateInBottom{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.delay-05{animation-delay:.5s}.delay-75{animation-delay:.75s}.delay-100{animation-delay:1s}.fadein{opacity:0}.inview{opacity:1}.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}*,*::after,*::before{box-sizing:border-box}body{font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;color:#51586a;background-color:#F5F5F7;background:url(/images/main-bg.png) no-repeat top center #F5F5F7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body.is-in::after{visibility:hidden;opacity:0;pointer-events:none}body::after{content:"";position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:15;transition:1s}body input,body textarea{border:1px solid #eee;outline:none}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px}}::placeholder{color:#757575}*::selection{color:#fff;background-color:#6416B8}h1,h2,h3,h4,h5,h6{font-family:"Montserrat",sans-serif;font-weight:600;line-height:1.4em;color:#1b202b}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}p{text-rendering:optimizelegibility;font-smooth:always;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote{position:relative;padding:20px 20px 20px 50px;margin-bottom:0;font-family:"Montserrat",sans-serif;font-size:22px;line-height:38px;font-weight:600;color:#1b202b}blockquote:before{content:'\201C';position:absolute;font-family:"Montserrat",sans-serif;top:0.3em;left:-0.01em;font-size:4em;color:#6416B8}blockquote p{margin-bottom:15px}blockquote cite{font-size:15px;font-style:normal;font-weight:500;color:#51586a}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 576px){blockquote{padding:20px 20px 20px 35px;font-size:18px;line-height:28px}}pre{overflow:auto;padding:15px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code[class*=language-],pre[class*=language-]{white-space:pre-wrap;word-break:break-all;line-height:inherit}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;padding:15px;font-size:14px;line-height:1;font-style:normal;font-weight:500;text-align:center;color:#748094}a{text-decoration:none;color:#1b202b;transition:all 0.25s}a:hover{color:#6416B8}hr{display:block;width:100%;height:1px;margin:30px 0;border:0;background:#eee}.table-container{display:block;max-width:100%;overflow-x:auto}table{font-size:12px;color:#1b202b;width:100%;border-width:1px;border-color:#eee;border-collapse:collapse}table th{padding:10px;font-size:16px;text-align:left;border:1px solid #eee;color:#fff;font-weight:600;background-color:#272a2d}table tr{background-color:#eee;transition:all .3s ease}table tr:nth-child(even){background-color:transparent}table td{padding:10px;font-size:14px;font-weight:500;border:1px solid #eee}table tr:hover{color:#fff;background-color:#6416B8}.hero{position:relative;margin-bottom:20px}@media only screen and (max-width: 576px){.hero{box-shadow:none}}.hero__nav{position:relative;display:flex;justify-content:center;align-items:center}.main-nav{width:100%;max-width:1300px;margin:0 auto}.main-nav__box{display:flex;align-items:center;width:80%;padding-top:200px;margin:0 auto}.main-nav__box .nav__icon-close{position:absolute;top:20px;right:40px;z-index:5;display:flex;align-items:center;justify-content:center;font-size:30px;width:40px;height:40px;text-align:center;line-height:40px;color:#1b202b;transition:all .25s ease;cursor:pointer}.main-nav__box .nav__icon-close:hover{transform:rotate(90deg)}@media only screen and (max-width: 768px){.main-nav__box{padding-top:100px}.main-nav__box .nav__icon-close{top:22px;right:42px}}@media only screen and (max-width: 576px){.main-nav__box{width:90%}}.navigation{display:flex;align-items:center}.top-nav{margin-right:25px}.top-nav .nav__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.top-nav .nav__list .nav__item{display:inline-block;margin-right:25px;line-height:16px}.top-nav .nav__list .nav__item:last-child{margin-right:0}.top-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#1b202b}.top-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.top-nav{display:none}}.mobile-nav .nav__list{display:block}.mobile-nav .nav__list .nav__item{display:block;margin-bottom:20px;text-align:center}.mobile-nav .nav__list .nav__item:last-child{margin-bottom:0}.mobile-nav .nav__list .nav__item .nav__link{font-size:14px;line-height:1;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;color:#51586a}.mobile-nav .nav__list .nav__item .nav__link:hover{color:#6416B8}@media only screen and (max-width: 576px){.mobile-nav .nav__list .nav__item{margin-bottom:15px}}.nav-buttons{display:flex;align-items:center;font-size:24px;color:#1b202b}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 768px){.nav-buttons .nav__icon-menu{display:block}}.nav-buttons .nav__icon{transition:all 0.25s;cursor:pointer}.nav-buttons .nav__icon:hover{color:#6416B8}.nav-buttons .nav__icon:first-child{margin-right:15px}.menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.menu-overlay.is-open{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.menu-overlay{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}@media only screen and (min-width: 992px){.menu-overlay{display:none}}.nav-grid{width:100%;height:75vh;overflow-y:auto}.nav-grid__item{margin-bottom:30px}@media only screen and (max-width: 768px){.nav-grid__item{height:auto}}.nav-grid__title{position:relative;margin-bottom:50px;padding-bottom:15px;font-size:30px;font-weight:700;text-align:center;color:#51586a}.nav-grid__title::after{content:"";position:absolute;left:50%;bottom:0;transform:translate(-50%, -50%);display:block;width:25px;height:2px;background-color:#748094}@media only screen and (max-width: 768px){.nav-grid__title{margin-bottom:20px}}.hero__inner{position:relative}.hero__image{padding-top:50%;min-height:160px;margin-top:20px;border-radius:5px;user-select:none;background-color:#F5F5F7}.hero__image img{position:absolute;top:0px;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out}@media only screen and (max-width: 992px){.hero__image{padding-top:55%}}@media only screen and (max-width: 768px){.hero__image{padding-top:75%}}.tlu-hero{margin-top:20px;text-align:center}.tlu-hero-img{padding:80px 10px 80px 10px;border-radius:5px;background-size:cover;background-position:top center}.tlu-hero-title{font-family:"Montserrat",sans-serif;color:#FFF;font-size:36px;line-height:1em;margin-bottom:15px}.tlu-hero-tags a{font-size:13px;letter-spacing:1px;margin-top:-10px}.top{position:fixed;bottom:25px;right:-100px;z-index:5;width:30px;height:30px;line-height:30px;font-size:15px;text-align:center;border-radius:3px;background-color:#1b202b;color:#fff;cursor:pointer;transition:all .25s ease}.top:hover{background-color:#6416B8}.top.is-active{right:30px}@media only screen and (max-width: 768px){.top{bottom:15px}.top.is-active{right:25px}}.header{width:100%;margin:40px 0;transition:all 0.25s;color:#fff}@media only screen and (max-width: 992px){.header{margin:25px 0}}.logo__image{max-height:50px}.logo__link{font-size:60px;line-height:1;font-weight:700;font-family:"Caveat",cursive;color:#1b202b}.logo__link:hover{color:#1b202b}@media only screen and (max-width: 576px){.logo__link{font-size:43px}}.main__header{display:flex;flex-direction:column;align-items:center;text-align:center}.header__desc{width:100%;max-width:650px;margin:10px auto 0;font-size:18px;line-height:28px;font-weight:500;color:#748094}@media only screen and (max-width: 576px){.header__desc{margin:5px auto 0;font-size:16px;line-height:26px}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;opacity:0;visibility:hidden;background-color:#fff;transition:all 0.5s ease-in-out}.search.is-visible{opacity:1;visibility:visible}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.search{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.9)}}.search__box{position:relative;max-width:550px;width:100%;margin:0 auto;padding-top:200px}.search__box .search__close{position:absolute;right:-5px;top:175px;padding:0 5px;font-size:30px;line-height:1;color:#1b202b;transition:all .25s;cursor:pointer}.search__box .search__close:hover{transform:rotate(90deg);color:#000}@media only screen and (max-width: 768px){.search__box .search__close{top:75px}}@media only screen and (max-width: 768px){.search__box{width:80%;padding-top:100px}}@media only screen and (max-width: 576px){.search__box{width:90%}}.search__group{margin-bottom:30px}.search__group .search__text{width:100%;height:auto;padding:0 20px 12px 0;font-family:"Montserrat",sans-serif;font-size:30px;font-weight:700;line-height:1;border:0;border-bottom:5px solid #1b202b;color:#1b202b;background-color:transparent}.search__group .search__text::-webkit-input-placeholder{font-weight:700;color:#1b202b}.search__group .search__text::placeholder{font-weight:700;color:#1b202b}.search__group .search__text::-ms-clear{display:none}@media only screen and (max-width: 576px){.search__group .search__text{font-size:30px}}.search__group .search__text:focus{color:#1b202b;border-bottom-color:#6416B8}.search-results-list{height:55vh;padding:0 0 25px 0;margin:0;list-style:circle;font-weight:700;color:#51586a;overflow:auto;white-space:normal}.search-results-list .search-results__item{display:flex;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e1e1e1}.search-results-list .search-results__item .search-results__link{color:#1b202b}.search-results-list .search-results__item:hover .search-results__link{color:#6416B8}.search-results-list .search-results__image{position:relative;display:inline-block;margin-right:15px;min-width:60px;height:60px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat}.search-results-list .search-results__link{position:relative;display:block;padding:10px 0 10px 0;font-family:"Montserrat",sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b202b;transition:all .15s ease-in-out}.search-results-list .search-results-date{display:block;margin-bottom:5px;font-family:"Montserrat",sans-serif;font-size:12px;line-height:1;font-weight:400;color:#748094}.search-results-list .no-results{list-style:none;font-weight:500}.load-more{margin:0 auto}.load-more-section{margin:40px auto;text-align:center}@media only screen and (max-width: 576px){.load-more-section{margin:30px auto}}.footer{position:relative;padding:50px 30px 0;margin-top:40px;background-color:#fff;box-shadow:0 0 1px rgba(57,79,122,0.1)}.footer .row .col{flex-grow:1}.footer .row .col:last-child>.widget{padding-right:0}.footer .footer__inner{margin:40px 0 0;padding:40px 0;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}@media only screen and (max-width: 992px){.footer .footer__inner{flex-direction:column}}@media only screen and (max-width: 576px){.footer{padding:50px 0 0;margin-top:25px}}@media only screen and (max-width: 992px){.widget{margin-bottom:40px}}.widget__title{position:relative;margin-bottom:20px;font-size:18px;line-height:26px;color:#1b202b}.recent-posts{position:relative;display:flex;padding-right:15px;margin-bottom:15px}.recent-posts:hover .recent-posts__title a{color:#6416B8}.recent-posts:last-child{margin-bottom:0}@media only screen and (max-width: 992px){.recent-posts{padding-right:0}}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.recent-posts__title{margin-bottom:0;font-size:16px;line-height:24px;font-weight:600}.recent-posts__title a{color:#1b202b}.recent-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;color:#748094;font-weight:500}.widget-nav .nav__item{margin-bottom:10px}.widget-nav .nav__link{font-size:14px;text-transform:uppercase;font-weight:500;color:#1b202b}.widget-nav .nav__link:hover{color:#6416B8}@media only screen and (max-width: 768px){.widget-subscribe{margin-bottom:0}}.subscribe-subtitle{width:100%;margin-bottom:20px;font-size:16px;line-height:26px;color:#748094}@media only screen and (max-width: 768px){.subscribe-subtitle{max-width:100%}}.subscribe-group-top{display:flex;align-items:center}.subscribe-group-top .subscribe-email{position:relative;width:100%;height:50px;padding:15px;font-size:14px;border-radius:3px;line-height:16px;color:#1b202b;background-color:#fff;border:1px solid #c6c6c6;outline:0;-webkit-appearance:none;box-sizing:border-box;transition:border-color .2s ease-in-out;cursor:text}.subscribe-group-top .subscribe-email:focus{border-color:#6416B8}.subscribe-group-top .subscribe-button{height:50px;margin-left:8px;line-height:50px;box-shadow:none}.subscribe-form .alert{display:none}.alert.alert--loading{color:#ff970d}.alert.alert--success{color:#09815c}.alert.alert--error{color:#cd3d3d}.subscribe-form.loading .alert--loading,.subscribe-form.error .alert--error,.subscribe-form.success .alert--success{display:block;margin-top:10px;font-size:14px;line-height:26px}.copyright{font-size:13px;text-align:center;color:#748094}.copyright a{color:#1b202b}.copyright a:hover{color:#6416B8}@media only screen and (max-width: 992px){.copyright{order:1}}.social{text-align:center}.social .social__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.social .social__item{display:inline-block;margin-left:4px}.social .social__item:first-child{margin-left:0}.social .social__link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.social .social__link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 992px){.social{margin-bottom:15px}}.button{display:inline-block;padding:0 1.8rem;white-space:nowrap;vertical-align:middle;font:inherit;border:none;border-radius:3px;outline:none;-webkit-appearance:none;font-size:13px;letter-spacing:0.5px;text-align:center;text-decoration:none;text-transform:uppercase;color:#fff;transition:all 0.2s ease;cursor:pointer}.button:hover{color:#fff}.button--primary{height:50px;font-weight:700;line-height:50px;box-shadow:0 4px 5px -1px rgba(0,0,0,0.1),0 2px 5px -1px rgba(0,0,0,0.06);background-color:#6416B8}.button--primary:hover{background-color:#5813a1}.button--middle{height:50px;width:100%;max-width:280px;line-height:50px;font-weight:600}.button--big{display:block;width:100%}.button--dark{background-color:#1b202b}.button--dark:hover{background-color:#6416B8}.slider{margin-bottom:20px}.slider__inner{position:relative}.slider__inner .slick-track{margin-left:0}.slider__inner .slick-list{margin-right:-20px}.slider__inner .main-slider__item{padding-right:20px}.slider__inner .main-slider__item a{outline:none}.slider__inner .slider-buttons{position:absolute;top:0;right:0;outline:none}.slider__inner .slider-buttons .main__item-prev,.slider__inner .slider-buttons .main__item-next{width:27px;height:27px;line-height:27px;text-align:center;border-radius:2px;outline:none;border:none;color:#1b202b;background-color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.12);transition:all 0.25s;cursor:pointer}.slider__inner .slider-buttons .main__item-prev:hover,.slider__inner .slider-buttons .main__item-next:hover{color:#6416B8}.widget-sidebar{padding:30px 20px;margin-bottom:20px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}.widget-sidebar .widget__title{margin:0}.widget-sidebar:last-child{position:sticky;top:20px}@media only screen and (max-width: 576px){.widget-sidebar{padding:30px 20px}}.widget-author{position:relative;text-align:center}.widget-author .widget-image-box{margin-bottom:20px}.widget-author .widget-author-image{position:relative;display:block;width:160px;height:160px;margin:0 auto;border:none;border-radius:50%;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;box-shadow:3px 5px 15px #e1e1e1}.widget-author .widget-author-name{margin-bottom:15px;font-size:21px;line-height:24px}.widget-author .widget-author-name a{color:#1b202b}.widget-author .widget-author-name a:hover{color:#6416B8}.widget-author .widget-author-bio{margin:0 auto 15px;max-width:300px;width:100%;font-size:16px;line-height:26px;color:#748094}.widget-author .widget-author-meta{display:flex;justify-content:center;align-items:center;padding:1px 0}.widget-author .widget-author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:28px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.widget-author .widget-author-meta .icon-link:hover{color:#fff;background-color:#6416B8}.featured-posts{display:flex;margin-bottom:15px}.featured-posts:hover .featured-posts__title a{color:#6416B8}.featured-posts__header{margin-right:15px}.featured-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;border-radius:5px;background-size:cover;background-color:#F5F5F7;background-position:center;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.featured-posts__title{font-size:16px;line-height:24px;font-weight:600;margin:0}.featured-posts__title a{color:#1b202b}.featured-posts__date{margin-bottom:5px;font-size:12px;line-height:16px;font-weight:500;color:#748094}.widget__tag{display:flex;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee}.widget__tag:hover .widget__tag-name{color:#6416B8}.widget__tag:hover .widget__tag-count{background-color:#6416B8}.widget__tag-name{font-size:15px;font-weight:500;margin:0;transition:all 0.25s}.widget__tag-count{width:22px;height:22px;display:inline-block;font-size:13px;line-height:22px;font-weight:500;text-align:center;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.15);color:#fff;background-color:#1b202b;transition:all 0.25s}.article{align-items:stretch;flex-grow:1;margin-bottom:20px}.section{padding:20px 30px 30px;border-radius:5px;box-shadow:0px 0px 20px rgba(57,79,122,0.1);background-color:#fff}@media only screen and (max-width: 576px){.section{padding:20px}}.section-top{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #eee}.section-top .section-title{margin:0;font-size:18px;line-height:26px;font-weight:700}.article__title{margin:10px 0 10px;font-size:16px;line-height:22x;font-weight:600}.article__title a{color:#1b202b}.article__title a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__title{margin:5px 0 10px;font-size:18px}}.article__content{margin-top:15px}.article__image{position:relative;display:block;width:100%;padding-top:67%;border-radius:5px;overflow:hidden;transform:translate(0);background-color:#F5F5F7}.article__image:hover img{transform:scale(1.02)}.article__image img{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;transition:opacity .6s ease-in-out, transform .35s ease;backface-visibility:hidden}.featured-post{position:absolute;top:0;right:0;z-index:10;width:45px;height:45px;display:flex;justify-content:center;align-items:center;font-size:21px;color:#fff;user-select:none}.featured-post i{position:relative}.article__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start}.article-tags{display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.article-tags__box a{font-size:14px;font-weight:500;color:#1b202b}.article-tags__box a:hover{color:#6416B8}.article-tags__box a:after{content:",";margin:0 1px;display:inline-block;color:#1b202b}.article-tags__box a:last-child:after{content:""}@media only screen and (max-width: 576px){.article-tags__box a{height:20px;font-size:13px;line-height:18px}}.article--members,.article--paid{position:absolute;left:15px;bottom:15px;z-index:1;display:flex;align-items:center}.article--members .members,.article--paid .paid{display:block}.members,.paid{height:23px;padding:0 10px;text-transform:uppercase;font-size:10px;line-height:23px;display:none;letter-spacing:1px;font-weight:600;border-radius:5px;border:1px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.9)}.article--public{display:none}.article__date{font-size:14px;color:#748094;font-weight:500}.article__date::after{content:"–";position:relative;bottom:0.05rem;display:inline-block;margin:0 .45rem 0 .45rem}@media only screen and (max-width: 576px){.article__date{display:none}}.article__author{display:flex;align-items:center;color:#1b202b}.article__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.article__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.article__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.article__author a{font-size:13px;line-height:18px}}.article__author-footer{margin-left:7px;line-height:14px}.post{position:relative;margin-bottom:20px;padding:40px}@media only screen and (max-width: 576px){.post{padding:20px}}.post-tags{position:relative;display:flex;flex-wrap:wrap;align-items:center;line-height:1}.post-tags a{font-size:14px;font-weight:500;color:#FFF;opacity:0.7}.post-tags a:hover{color:#CCC}.post-tags a:after{content:",";margin:0 5px 0 0;display:inline-block;color:#FFF}.post-tags a:last-child:after{content:""}@media only screen and (max-width: 576px){.post-tags a{font-size:13px;height:20px;line-height:18px}}.post-head{margin:30px 0}.post-title{margin:15px 0 15px;font-size:43px;font-weight:600;text-align:center}@media only screen and (max-width: 768px){.post-title{font-size:38px}}@media only screen and (max-width: 576px){.post-title{font-size:28px;line-height:34px}}.post__meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}.post__author{display:flex;justify-content:center;align-items:center;color:#1b202b}.post__author-image{display:inline-block;width:23px;height:23px;border-radius:50%;border:2px solid #eee;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1b202b}.post__author a{font-size:14px;line-height:20px;font-weight:600;color:#1b202b}.post__author a:hover{color:#6416B8}@media only screen and (max-width: 576px){.post__author a{font-size:13px;line-height:18px}}.post__author-footer{margin-left:7px;line-height:14px}.post__date{font-size:14px;color:#748094;font-weight:500}.post__date::after{content:"–";position:relative;bottom:.05rem;display:inline-block;margin:0 .45rem 0 .45rem}.post__content a:hover{color:#1b202b;text-decoration:underline}.post__share{margin:10px 0 50px}.post__share .share__head{text-align:center}.post__share .share__title{position:relative;display:inline-block;margin-bottom:15px;font-size:18px;font-weight:700;text-align:center;color:#1b202b}.post__share .share__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.post__share .share__item{margin:3px;text-align:center}.post__share .share__link{display:flex;align-items:center;font-size:13px;font-weight:600;padding:15px 20px;line-height:1;border-radius:3px;color:#fff;transition:all 0.25s}.post__share .share__link .share-name::before{content:"";position:relative;top:0;display:inline-block;margin:0 8px;width:1px;height:9px;background-color:rgba(255,255,255,0.5)}.post__share .share__link.share__facebook{background-color:#3b5998}.post__share .share__link.share__facebook:hover{background-color:#2d4373}.post__share .share__link.share__twitter{background-color:#55acee}.post__share .share__link.share__twitter:hover{background-color:#2795e9}.post__share .share__link.share__pinterest{background-color:#bd081c}.post__share .share__link.share__pinterest:hover{background-color:#8c0615}@media only screen and (max-width: 576px){.post__share{margin:0 0 40px}.post__share .share__link{padding:10px 15px}.post__share .share__link .share-name{display:none}}.post__navigation{display:flex;align-items:center;justify-content:space-between}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;margin-bottom:30px}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;min-width:100px;height:90px;border-radius:3px;background-size:cover;background-color:#F5F5F7;background-position:left;background-repeat:no-repeat;transition:opacity .6s ease-in-out}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:20px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:20px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:12px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#748094}.post__navigation .post__prev .post__nav:hover,.post__navigation .post__next .post__nav:hover{color:#6416B8}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:16px;line-height:26px;font-weight:600}.post__navigation .post__prev .post__nav__title a,.post__navigation .post__next .post__nav__title a{color:#1b202b}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#6416B8}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation .post__prev,.post__navigation .post__next{flex-direction:column}.post__navigation .post__prev .prev__image,.post__navigation .post__next .next__image{margin:0 0 5px;height:160px}.post__navigation .next__box{order:1}}.post__comments{margin-bottom:20px}.related-posts{display:none}.related-posts.is-related{display:block}.page{position:relative;margin-bottom:30px;padding:20px 50px 30px}@media only screen and (max-width: 576px){.page{padding:20px}}.page-title{font-size:43px;margin-bottom:20px;text-align:center}@media only screen and (max-width: 768px){.page-title{font-size:38px}}@media only screen and (max-width: 768px){.page-title{font-size:28px}}.page-image{position:absolute;top:0;width:100%;height:100%;border-radius:5px;object-fit:cover;user-select:none}.page-image-box{position:relative;padding-top:48%;min-height:160px;margin-top:20px;background-color:#f6f7f9}@media only screen and (max-width: 992px){.page-image-box{padding-top:55%}}@media only screen and (max-width: 768px){.page-image-box{padding-top:75%}}@media only screen and (max-width: 576px){.page-image-box{margin-top:15px}}.page-head{margin:30px 0}.archive{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9}.archive__box{position:relative;max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px}@media only screen and (max-width: 576px){.archive__box{padding:20px 10px}}.archive-title{margin:0;font-size:33px;line-height:1;color:#FFF}@media only screen and (max-width: 576px){.archive-title{font-size:25px}}.archive-description{margin:10px auto;font-size:16px;line-height:28px;color:#1b202b}@media only screen and (max-width: 576px){.archive-description{margin:5px auto 0;font-size:14px;line-height:22px}}.tag-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px}.tag-slider div{height:100%}.tag-slider .tag-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.author-profile{padding:3vw;margin-top:20px;border-radius:5px;background-color:#f6f7f9;background-size:cover;background-position:center;background-repeat:no-repeat}.author-profile .author-profile__inner{max-width:600px;width:100%;padding:30px 40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.author-profile .author-profile__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}.author-profile .author-profile__inner .author-image-box{margin-bottom:10px}.author-profile .author__image{display:block;width:150px;height:150px;margin:0 auto;border-radius:50%;border:5px solid #eee;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#F5F5F7}.author-profile .author-title{margin-bottom:5px;font-size:33px;line-height:43px}.author-profile .author-location{font-size:12px;font-weight:500;line-height:1;text-transform:uppercase;color:#748094}.author-profile .author-bio{max-width:500px;margin:20px auto 0;font-size:17px;line-height:28px;font-weight:400;color:#1b202b}.author-profile .author-meta{display:flex;justify-content:center;align-items:center;margin:20px 0 10px}.author-profile .author-meta .icon-link{display:flex;justify-content:center;align-items:center;width:28px;height:28px;margin:0 1px;font-size:14px;line-height:25px;border-radius:3px;box-shadow:0 1px 2px -1px rgba(0,0,0,0.1),0 2px 2px -1px rgba(0,0,0,0.06);color:#1b202b;background-color:#f6f6f6}.author-profile .author-meta .icon-link:hover{color:#fff;background-color:#6416B8}@media only screen and (max-width: 576px){.author-profile .author-profile__inner{padding:20px 10px}.author-profile .author-meta{margin:15px 0 10px}.author-profile .author-title{font-size:25px;line-height:35px}.author-profile .author-bio{margin:15px auto 0;font-size:14px;line-height:22px}}.contact-title{margin-bottom:8px;font-size:43px;line-height:48px}@media only screen and (max-width: 576px){.contact-title{font-size:33px;line-height:33px}}.contact-description{margin-bottom:20px;font-size:16px;line-height:26px}@media only screen and (max-width: 576px){.contact-description{font-size:14px;line-height:22px}}.form-container{position:relative;z-index:1;margin-top:20px;padding:3vw}.form__inner{max-width:550px;width:100%;padding:40px;margin:0 auto;text-align:center;border-radius:5px;background-color:#fff}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.form__inner{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:rgba(255,255,255,0.8)}}@media only screen and (max-width: 576px){.form__inner{padding:20px 15px}}.form__group{margin-bottom:10px}.form__group:last-child{margin-bottom:0}.form__group textarea{resize:none}.form__label{display:inline-block;margin-bottom:8px;font-size:14px;font-weight:600}.form__label span{font-weight:400}.form__input{width:100%;padding:13px;font-size:13px;border:1px solid #eee;border-radius:3px;outline:none;transition:250ms}.form__input:focus{border:1px solid #6416B8}.form-select{width:100%;border:1px solid #eee;background-color:inherit;outline:none}.form-select:focus{border:1px solid #6416B8}.single-box,.featured-slider{position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#eee}.single-box .single-box__image,.single-box .featured-slider__item,.featured-slider .single-box__image,.featured-slider .featured-slider__item{height:100%;background-position:center;background-size:cover;background-repeat:no-repeat}.featured-slider div{height:100%}.error-page{position:relative;margin-top:20px;border-radius:5px;overflow:hidden}.error-page__inner{position:relative;z-index:1;padding:4vw}@media only screen and (max-width: 576px){.error-page__inner{padding:3vw}}.error-page__head{max-width:500px;width:100%;padding:50px;margin:0 auto;text-align:center;border-radius:5px;background-color:none}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){.error-page__head{-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);background-color:none}}.error-page__head h1,.error-page__head h2{margin-bottom:20px;color:#FFF}.error-page__head h2{font-size:100px;line-height:1}.error-page__head p{font-size:18px;color:#FFF}@media only screen and (max-width: 576px){.error-page__head{padding:20px 15px}.error-page__head h1{font-size:27px;color:#FFF}.error-page__head h2{font-size:60px;color:#FFF}}
+
+  </style>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+<body>
+  
+
+  <!-- begin header -->
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="main__header">
+          <div class="logo">
+            <a class="logo__link" href="/">
+              
+              <img class="logo__image" src="/images/tlu.png" alt="Tari Labs University">
+              
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__close">
+            <i class="ion ion-md-close"></i>
+          </div>
+          <div class="search__group">
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+          <div id="js-results-container" class="search-results-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- begin content -->
+  <main class="content" aria-label="Content">
+    <!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        <div class="hero__nav">
+  <div class="menu-overlay">
+    <nav class="main-nav">
+      <div class="main-nav__box">
+
+        <div class="nav__icon-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="nav-grid">
+          <div class="nav-grid__item">
+            <h2 class="nav-grid__title">Menu</h2>
+            <div class="mobile-nav">
+              <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navigation">
+
+    <div class="top-nav">
+      <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+    </div>
+
+    <div class="nav-buttons">
+      <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+      <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+    </div>
+
+  </div>
+</div>
+        <div class="hero__inner">
+          
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('/images/banner-01.jpg');">
+              <h1 class="tlu-hero-title">Rank-1 Constraint System with Application to Bulletproofs</h1>
+                  <div class="post__meta">
+                    
+                    <div class="post-tags">
+                      
+                      <a href="/tag/cryptography" class="post-tags__tag tlu-hero-tags">cryptography</a>
+                      
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-3 col-d-12">
+      <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-02.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/learning-paths" title="Go to 1. Learning Paths">1. Learning Paths</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/blockchain-basics" title="Go to Learning about Blockchain Basics">Learning about Blockchain Basics</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/mimblewimble" title="Go to Mimblewimble Implementation">Mimblewimble Implementation</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/learning-paths/bulletproofs" title="Go to Learning about Bulletproofs">Learning about Bulletproofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-01.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/cryptography" title="Go to 2. Cryptography">2. Cryptography</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/elliptic-curves" title="Go to Elliptic Curves">Elliptic Curves</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/introduction-to-scriptless-scripts" title="Go to Introduction to Scriptless Scripts">Introduction to Scriptless Scripts</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/The_MuSig_Schnorr_Signature_Scheme" title="Go to The MuSig Schnorr Signature Scheme">The MuSig Schnorr Signature Scheme</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/fraud-proofs" title="Go to Fraud Proofs">Fraud Proofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/bulletproofs-and-mimblewimble" title="Go to Bulletproofs and Mimblewimble">Bulletproofs and Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/building-on-bulletproofs" title="Go to Building on Bulletproofs">Building on Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/the-bulletproof-protocols" title="Go to The Bulletproof Protocols">The Bulletproof Protocols</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/pure-rust-elliptic-curve-cryptography" title="Go to Pure-Rust Elliptic Curve Cryptography">Pure-Rust Elliptic Curve Cryptography</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/zk-snarks" title="Go to zk-SNARKs">zk-SNARKs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/rank-1" title="Go to Rank-1 Constraint System with Application to Bulletproofs">Rank-1 Constraint System with Application to Bulletproofs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/amortization-of-bulletproof-inner-product-roof" title="Go to Amortization of Bulletproofs Inner-product Proof">Amortization of Bulletproofs Inner-product Proof</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/cryptography/trustless-recursive-zero-knowledge-proofs" title="Go to Trustless Recursive Zero-Knowledge Proofs">Trustless Recursive Zero-Knowledge Proofs</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-03.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/consensus-mechanisms" title="Go to 3. Consensus Mechanisms">3. Consensus Mechanisms</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/understanding_bft_consensus" title="Go to Understanding Byzantine Fault-tolerant Consensus">Understanding Byzantine Fault-tolerant Consensus</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/bft-consensus-mechanisms" title="Go to BFT Consensus Mechanisms">BFT Consensus Mechanisms</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/consensus-mechanisms/Introduction-to-Applications-of-Byzantine-Consensus-Mechanisms" title="Go to Introduction to Applications of Byzantine Consensus Mechanisms">Introduction to Applications of Byzantine Consensus Mechanisms</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-04.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/scaling" title="Go to 4. Scaling">4. Scaling</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/scaling" title="Go to 4. Scaling">4. Scaling</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/layer2scaling-survey" title="Go to Layer 2 Scaling Survey">Layer 2 Scaling Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/executive-summary" title="Go to Layer 2 Scaling - Executive Summary">Layer 2 Scaling - Executive Summary</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/dags" title="Go to Directed Acyclic Graphs">Directed Acyclic Graphs</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/scaling/laser-beam" title="Go to Laser Beam">Laser Beam</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-05.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/mining" title="Go to 5. Mining">5. Mining</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/mining" title="Go to 5. Mining">5. Mining</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining" title="Go to Merged Mining">Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/merged-mining-monero" title="Go to Monero Merged Mining">Monero Merged Mining</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/mining/pool-mining" title="Go to Pool Mining">Pool Mining</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-06.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/digital-assets" title="Go to 6. Digital Assets">6. Digital Assets</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/application-of-howey-network-token-sales" title="Go to Application of Howey to Blockchain Network Token Sales">Application of Howey to Blockchain Network Token Sales</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/nft-survey" title="Go to Non-Fungible Tokens Survey">Non-Fungible Tokens Survey</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/digital-assets/confidential-assets" title="Go to Confidential Assets">Confidential Assets</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-07.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/protocols" title="Go to 7. Protocols">7. Protocols</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/protocols" title="Go to 7. Protocols">7. Protocols</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble" title="Go to Mimblewimble">Mimblewimble</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-transactions-explained" title="Go to Mimblewimble Transactions Explained">Mimblewimble Transactions Explained</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-protocol-overview" title="Go to Mimblewimble-Grin Blockchain Protocol Overview">Mimblewimble-Grin Blockchain Protocol Overview</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-vs-beam-comparison" title="Go to Grin vs. BEAM, a Comparison">Grin vs. BEAM, a Comparison</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/grin-design-choice-algorithms" title="Go to Grin Design Choice Criticisms - Truth or Fiction">Grin Design Choice Criticisms - Truth or Fiction</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/AtomicSwaps" title="Go to Atomic Swaps">Atomic Swaps</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/intro-to-tor-and-i2p" title="Go to Introduction to Tor and I2P">Introduction to Tor and I2P</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/distributed-hash-tables" title="Go to Distributed Hash Tables">Distributed Hash Tables</a>
+                    </li>
+                  
+                    <li class="menu-item-">
+                      <a href="/protocols/mimblewimble-mb-bp-utxo" title="Go to Mimblewimble Multiparty Bulletproof UTXO">Mimblewimble Multiparty Bulletproof UTXO</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-08.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/network-analysis" title="Go to 8. Network Analysis">8. Network Analysis</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/network-analysis/byzantine_takeover_of_the_DAN" title="Go to Probability of a Byzantine Takeover of the Digital Assets Network">Probability of a Byzantine Takeover of the Digital Assets Network</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-09.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/labs" title="Go to 9. Labs">9. Labs</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/labs" title="Go to 9. Labs">9. Labs</a></h5>
+            
+                  <ol>
+                  
+                    <li class="menu-item-">
+                      <a href="/labs/mermaid-demo" title="Go to Mermaid Demo">Mermaid Demo</a>
+                    </li>
+                  
+                  </ol>
+                  
+            </div>
+          </div>
+        
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-">
+                    <!-- <img src="/images/index/jewel-10.svg" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="/style-guide" title="Go to 10. Style Guide">10. Style Guide</a></h5>
+            
+            </div>
+          </div>
+        
+        </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>
+
+      <!-- <div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Tags</h4>
+  </div>
+  <div class="widget-tags__inner">
+    
+    
+
+    
+    
+    <a href="/tag/beam" class="widget__tag"><h5 class="widget__tag-name">beam</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/blockchain" class="widget__tag"><h5 class="widget__tag-name">blockchain</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/bulletproofs" class="widget__tag"><h5 class="widget__tag-name">bulletproofs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/consensus-mechanisms" class="widget__tag"><h5 class="widget__tag-name">consensus-mechanisms</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/cryptography" class="widget__tag"><h5 class="widget__tag-name">cryptography</h5><span class="widget__tag-count">13</span></a>
+    
+    
+    <a href="/tag/digital-assets" class="widget__tag"><h5 class="widget__tag-name">digital-assets</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/grin" class="widget__tag"><h5 class="widget__tag-name">grin</h5><span class="widget__tag-count">3</span></a>
+    
+    
+    <a href="/tag/labs" class="widget__tag"><h5 class="widget__tag-name">labs</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/learning-paths" class="widget__tag"><h5 class="widget__tag-name">learning-paths</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/mermaid" class="widget__tag"><h5 class="widget__tag-name">mermaid</h5><span class="widget__tag-count">1</span></a>
+    
+    
+    <a href="/tag/mimblewimble" class="widget__tag"><h5 class="widget__tag-name">mimblewimble</h5><span class="widget__tag-count">7</span></a>
+    
+    
+    <a href="/tag/mining" class="widget__tag"><h5 class="widget__tag-name">mining</h5><span class="widget__tag-count">4</span></a>
+    
+    
+    <a href="/tag/network-analysis" class="widget__tag"><h5 class="widget__tag-name">network-analysis</h5><span class="widget__tag-count">2</span></a>
+    
+    
+    <a href="/tag/protocols" class="widget__tag"><h5 class="widget__tag-name">protocols</h5><span class="widget__tag-count">10</span></a>
+    
+    
+    <a href="/tag/scaling" class="widget__tag"><h5 class="widget__tag-name">scaling</h5><span class="widget__tag-count">5</span></a>
+    
+    
+    <a href="/tag/style-guide" class="widget__tag"><h5 class="widget__tag-name">style-guide</h5><span class="widget__tag-count">1</span></a>
+    
+  </div>
+</div>
+ -->
+    </div>
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+        <div id="breadcrumbs">
+
+<a href="/">Home</a>
+
+  
+    / <a href="/cryptography/">Cryptography</a>
+  
+
+  
+    / Rank-1 Constraint System with Application to Bulletproofs
+  
+
+</div>
+        <hr>
+        <div class="post__content">
+          <h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#arithmetic-circuits">Arithmetic Circuits</a>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#definition-of-arithmetic-circuit">Definition of Arithmetic Circuit</a></li>
+      <li><a href="#example-of-arithmetic-circuit">Example of Arithmetic Circuit</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#rank-1-constraint-systems">Rank-1 Constraint Systems</a>
+    <ul>
+      <li><a href="#overview-1">Overview</a></li>
+      <li><a href="#definition-of-constraint-system">Definition of Constraint System</a></li>
+      <li><a href="#r1cs-definition-of-zksnarks">R1CS Definition of zk-SNARKs</a></li>
+      <li><a href="#example-of-rank-1-constraint-system">Example of Rank-1 Constraint System</a></li>
+    </ul>
+  </li>
+  <li><a href="#from-arithmetic-circuits-to-programmable-constraint-systems-for-bulletproofs">From Arithmetic Circuits to Programmable Constraint Systems for Bulletproofs </a></li>
+  <li>
+<a href="#interstellars-bulletproof-constraint-system">Interstellar’s Bulletproof Constraint System</a>
+    <ul>
+      <li><a href="#overview-2">Overview</a></li>
+      <li><a href="#easy-to-build-constraint-systems">Easy-to-build Constraint Systems</a></li>
+      <li><a href="#about-gadgets">About Gadgets</a></li>
+      <li><a href="#interstellars-concluding-remarks">Interstellar’s Concluding Remarks</a></li>
+      <li><a href="#r1cs-factorization-example-for-bulletproofs">R1CS Factorization Example for Bulletproofs </a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</a></li>
+  <li><a href="#references">References</a></li>
+  <li>
+<a href="#appendices">Appendix</a>
+    <ul>
+      <li><a href="#appendix-a-definition-of-terms">Appendix A: Definition of Terms</a></li>
+      <li><a href="#appendix-b-notation-used">Appendix B: Notation Used</a></li>
+    </ul>
+  </li>
+  <li><a href="#contributors">Contributors</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This report explains the technical underpinnings of Rank-1 Constraint Systems (R1CSs) as applied
+to Bulletproofs.</p>
+
+<p>The literature on the use of R1CSs in zero-knowledge (ZK) proofs, for example in zero-knowledge Succinct Non-interactive
+ARguments of Knowledge (zk‑SNARKs), shows that this mathematical tool is used simply as one part of many in
+a complex process towards achieving the proof [<a href="https://electriccoin.co/blog/snark-explain5/" title="Explaining SNARKs Part V: From Computations to Polynomials">1</a>]. Not much attention is given to it, not even in explaining
+what “rank-1” actually means. Although the terminology is similar to the traditional <em>rank of a matrix</em> in
+linear algebra, examples on the Internet do not yield a <em>reduced matrix with only one non-zero row or column</em>.</p>
+
+<p>R1CSs became more prominent for Bulletproofs due to research work done by Cathie Yun and her colleagues at Interstellar.
+The constraint
+system, in particular R1CS, is used as an add-on to Bulletproof protocols. The title of
+Yun’s article, “Building on Bulletproofs”
+[<a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8" title="Building on Bulletproofs">2</a>], suggests this is true. One of the Interstellar team’s goals is to use the constraint system in their
+Confidential Asset Protocol called the Cloak and in their envisaged Spacesuit.
+Despite their work on using R1CS being research in progress, their detailed notes on constraint systems and their
+implementation in RUST are available in [<a href="https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html" title="Module Bulletproofs::Notes::r1cs_proof">3</a>].</p>
+
+<p>The aim of this report is to:</p>
+
+<ul>
+  <li>highlight the connection between arithmetic circuits and R1CSs;</li>
+  <li>clarify the difference R1CSs make in Bulletproofs and in range proofs;</li>
+  <li>compare ZK proofs for arithmetic circuits and programmable constraint systems.</li>
+</ul>
+
+<h2 id="arithmetic-circuits">Arithmetic Circuits</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>Many problems in <em>Symbolic Computation</em><sup><a href="#sc">def</a></sup> and cryptography can be expressed as the task of computing
+some polynomials. Arithmetic circuits are the most standard model for studying the complexity of such computations.
+ZK proofs form a core building block of many cryptographic protocols. Of special interest are ZK proof systems capable
+of proving the correct computation of arbitrary arithmetic circuits ([<a href="https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591" title="Generic Zero-knowledge and MultiQuadratic Systems">6</a>], [[7]]).</p>
+
+<h3 id="definition-of-arithmetic-circuit">Definition of Arithmetic Circuit</h3>
+
+<p>An arithmetic circuit $\mathcal{A}$ over the field<sup><a href="#fd" title="Any set of elements together with binary operations 'addition' and 'multiplication' satisfying field axioms ... ">def</a></sup> $\mathcal{F}$ and the set of variables
+$X = \lbrace {x_1,\dots,x_n} \rbrace$ is a directed acyclic graph such that the vertices of $\mathcal{A}$ are called
+<em>gates</em>, while the edges are called <em>wires</em> [[7]]:</p>
+
+<ul>
+  <li>A gate is of in-degree $l$ if it has $l$ incoming wires, and similarly, of out-degree $k$ if
+ it has $k$ outgoing wires.</li>
+  <li>Every gate in $\mathcal{A}$ of in-degree 0 is labeled with either a variable ${x_i}$ or some field
+ element from $\mathcal{F}$. Such a gate is called an input gate. Every gate of out-degree 0 is called an
+ output gate or the root.</li>
+  <li>Every other gate in $\mathcal{A}$ is labeled with either $\otimes$ or $\oplus$, and called a
+ multiplication gate or addition gate, respectively.</li>
+  <li>An arithmetic circuit is called a formula if it is a directed tree whose edges are directed from the leaves
+ to the root.</li>
+  <li>The depth of a node is the number of edges in the longest directed path between the node and the root.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>The size of $\mathcal{A}$, denoted $</td>
+          <td>\mathcal{A}</td>
+          <td>$, is the number of wires, i.e. edges, in $\mathcal{A}$.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>Arithmetic circuits of interest and most applicable to this report are those with gates of in-degree 2 and out-degree 1.
+A typical multiplication gate has a left input $a_L$, a right input $a_R$ and
+an output $a_O$ (shown in Figure 1). Note that $ a_L \cdot a_R - a_O = 0 $.</p>
+
+<p align="center"><img src="/images/cryptography/r1cs-bulletproofs/basic-multiplication-gate.png" width="170"></p>
+<div align="center"><b>Figure 1: Typical Multiplication Gate</b></div>
+
+<p>In cases where the inputs and outputs are all vectors of size
+$n$, i.e.
+$\mathbf{a_L} = ( a_{L, 1}, a_{L, 2}, \dots, a_{L, n})$,
+$\mathbf{a_R} = ( a_{R, 1}, a_{R, 2}, \dots, a_{R, n})$
+and
+$\mathbf{a_O} = ( a_{O, 1}, a_{O, 2}, \dots, a_{O, n})$,
+then multiplication of
+$ \mathbf{a_L} $
+and
+$ \mathbf{a_R} $
+is defined as an entry-wise
+product called the <strong>Hadamard product</strong>:</p>
+
+\[\mathbf{a_L}\circ \mathbf{a_R} = \big(( a_{L, 1} \cdot a_{R, 1} ), ( a_{L, 2} \cdot a_{R, 2} ), \dots, ( a_{L, n} \cdot
+a_{R, n} ) \big) = \mathbf{a_O}\]
+
+<p>The equation ${ \mathbf{a_L}\circ \mathbf{a_R} = \mathbf{a_O} }$
+is referred to as a multiplicative constraint,
+but is also known as the Hadamard relation [<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>].</p>
+
+<h3 id="example-of-arithmetic-circuit">Example of Arithmetic Circuit</h3>
+
+<p>An arithmetic circuit computes a polynomial in a natural way, as shown in this example. Consider the following
+arithmetic circuit $\mathcal{A}$ with inputs $\lbrace x_1, x_2, 1 \rbrace$ over some field $\mathcal{F}​$:</p>
+
+<p align="center"><img src="/images/cryptography/r1cs-bulletproofs/polynomial-eg-ac.png" width="400"></p>
+<div align="center"><b>Figure 2: Arithmetic Circuit</b></div>
+
+<p>The output of $\mathcal{A}​$ above is the polynomial $x^2_1 \cdot x_2 + x_1 + 1 ​$ of total degree three. A typical
+computational problem would involve finding the solution to, let’s say, $x^2_1 \cdot x_2 + x_1 + 1 = 22​$. Or, in a
+proof of knowledge scenario, the prover has to prove to the verifier that they have the correct solution to such an
+equation. Following the wires in the example shows that an arithmetic circuit actually breaks down the given computation
+into smaller equations corresponding to each gate:</p>
+
+\[u = x_1 \cdot x_1 \text{,} \ \  v = u \cdot x_2 \text{,} \ \ y = x_1 + 1 \ \text {and} \ z = v + y\]
+
+<p>The variables $u, v​$ and $ y ​$ are called auxiliary variables or low-level variables, while
+${ z }​$ is the output of $ \mathcal{A} ​$. Thus, in addition to computing polynomials naturally, an
+arithmetic circuit helps in reducing a computation to a low-level language involving only two variables,
+one operation and an output.</p>
+
+<p>ZK proofs in general require that statements to be proved are expressed in their
+simplest terms for efficiency. A ZK proof’s end-to-end journey is to create a <em>function</em>
+to write proofs about, yet such a function needs to work with specific constructs.
+In making ZK proofs more efficient: “these functions have to be specified as sequences of very simple terms,
+namely, additions and multiplications of only two terms in a particular field” [<a href="http://coders-errand.com/constraint-systems-for-zk%E2%80%91SNARKs/" title="Constraint Systems for ZK SNARKs">8</a>]. This is where arithmetic circuits
+come in.</p>
+
+<p>In verifying a ZK proof, the verifier needs to carry out a step-by-step check of the computations. When these
+computations are expressed in terms of arithmetic circuits, the process translates to checking
+whether the output $ a_O $ of each gate is correct with respect to the given inputs
+$ a_L $ and $ a_R $. That is, testing if $ a_L \cdot a_R - a_O = 0 $ for each multiplication
+gate.</p>
+
+<h2 id="rank-1-constraint-systems">Rank-1 Constraint Systems</h2>
+
+<h3 id="overview-1">Overview</h3>
+
+<p>Although a computational problem is typically expressed in terms of a high-level programming language, a ZK proof
+requires
+it to be expressed in terms of a set of quadratic constraints, which are closely related to circuits of logical gates.</p>
+
+<p>Other than in Bulletproof constructions, R1CS types of constraint systems have been featured in several
+constructions of zk‑SNARKs. At times they were simply referred to as quadratic constraints or quadratic equations;
+refer to
+[<a href="https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591" title="Generic Zero-knowledge and MultiQuadratic Systems">6</a>], [<a href="https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf">9</a>] and [[10]].</p>
+
+<h3 id="definition-of-constraint-system">Definition of Constraint System</h3>
+
+<p>A constraint system was originally defined by Bootle et al. in [[5]], who first expressed arithmetic circuit
+satisfiability in terms of the Hadamard relation and linear constraints:</p>
+
+\[\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = c }\]
+
+<p>where $\mathbf{c}​$ is a vector of constant terms used in linear constraints, and $\mathbf{W_L, W_R}​$ and $\mathbf{W_O}​$
+are weights applied to respective input vectors and output vectors. Bunz et al. [<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>] incorporated a vector $\mathbf{v}​$ and
+vector of weights $\mathbf{W_V}​$ into the Bootle et al. definition:
+\(\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} }\)</p>
+
+<p>where $\mathbf{v} = {(v_1, v_2, \dots, v_m )}$ is a secret vector of openings ${v_i}$ of the
+<a href="../bulletproofs-protocols/MainReport.md#pedersen-commitments-and-elliptic-curve-pedersen-commitments">Pedersen Commitments</a>
+$V_i$, $ i \in (1, 2, \cdots, m) $ and
+$\mathbf{W_V}$ is a vector of weights for all commitments $V_i$. This incorporation of the secret vector $\mathbf{v}$
+and the corresponding vector of weights $\mathbf{W_V}​$ into the linear consistency constraints enabled them to provide a
+protocol for a more general setting [<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>, page 24].</p>
+
+<p>The Dalek team give a more general definition of a constraint system [<a href="https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html" title="Module Bulletproofs::Notes::r1cs_proof">3</a>]. A <strong>constraint system</strong> is a collection of
+arithmetic constraints over a set of variables. There are two kinds of
+variables in the constraint system:</p>
+
+<ul>
+  <li>${m}$ <strong>high-level</strong> variables, the input secrets ${ \mathbf{v}}$;</li>
+  <li>$ n$ <strong>low-level</strong> variables, the internal input vectors ${ \mathbf{a}_L}$ and
+ ${ \mathbf{a}_R},$ and output vectors ${ \mathbf{a}_O } $ of the multiplication gates.</li>
+</ul>
+
+<p>Specifically, an R1CS is a system that consists of two sets of constraints [<a href="https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html" title="Module Bulletproofs::Notes::r1cs_proof">3</a>]:</p>
+
+<ul>
+  <li>${ n}$ multiplicative constraints, $ \mathbf{ a_L \circ a_R = a_O } $; and</li>
+  <li>${ q}$ linear constraints, $\mathbf{W_L\cdot { a_L} + W_R\cdot { a_R} + W_O\cdot { a_O } = W_V\cdot { v + c} } $.</li>
+</ul>
+
+<h3 id="r1cs-definition-of-zksnarks">R1CS Definition of zk‑SNARKs</h3>
+
+<p>Arithmetic circuits and R1CS are more naturally applied to zk‑SNARKs, and these are implemented in
+cryptocurrencies such as Zerocoin and Zcash; refer to [<a href="https://electriccoin.co/blog/snark-explain5/" title="Explaining SNARKs Part V: From Computations to Polynomials">1</a>].
+To illustrate the simplicity of this concept, a definition (from [[11]]) of an R1CS as it applies to zk‑SNARKs is
+provided in this paragraph.</p>
+
+<p>An R1CS is a sequence of groups of three vectors ${ \bf{a_L}}, { \bf{a_R}}, { \bf{a_O}},$ and the
+solution to an R1CS is a vector ${ \bf{s}}$ that satisfies the equation:</p>
+
+\[{ \langle {\mathbf{a_L}, \mathbf{s}} \rangle \cdot \langle {\mathbf{a_R}, \mathbf{s}} \rangle - \langle {\mathbf{a_O}, \mathbf{s}} \rangle = 0 }\]
+
+<p>where</p>
+
+\[\langle {\mathbf{a_L}, \mathbf{s}} \rangle = a_{L, 1} \cdot s_1 + a_{L, 2} \cdot s_2 + \cdots + a_{L, n} \cdot s_n ​\]
+
+<p>which is the inner product of the vectors
+$ \mathbf{a_{L}} = (a_{L,1}, a_{L,2}, …, a_{L,n} )​$
+and
+$ {\mathbf{s}} = (s_1, s_2, …, s_n) ​$.</p>
+
+<h3 id="example-of-rank-1-constraint-system">Example of Rank-1 Constraint System</h3>
+
+<p>One solution to the equation ${x^2_1 x_2 + x_1 + 1 = 22}$, from the preceding example of an arithmetic circuit, is
+${ x_1 = 3}$
+and ${ { x_2 = 2 }}$ belonging to the appropriate field ${ \mathcal{F}}$. Thus the solution vector
+${ { s = ( const, x_1, x_2, z, u, v, y )}}$ becomes ${ { s = ( 1, 3, 2, 22, 9, 18, 4 )}}$.</p>
+
+<p>It is easy to check that the R1CS for the computation problem in the preceding example is as follows (one need only test
+if ${ \langle {\mathbf{a_L}, \mathbf{s}} \rangle \cdot \langle {\mathbf{a_R}, \mathbf{s}} \rangle - \langle {\mathbf{a_O}, \mathbf{s}} \rangle = 0}​$
+for each equation).</p>
+
+<div align="center"><b>Table 1: Equations and Rank-1 Constraint System Vectors</b></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Equation</th>
+      <th>Rank-1 Constraint System Vectors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>${ u = x_1\cdot x_1}$</td>
+      <td>$ {\bf{a_L}} = ( 0, 1, 0, 0, 0, 0, 0 ), \ \ {\bf{a_R}} = ( 0, 1, 0, 0, 0, 0, 0  ),\ \ {\bf{a_O}} = ( 0, 0, 0, 0, 1, 0, 0  ) $</td>
+    </tr>
+    <tr>
+      <td>$ { v = u\cdot x_2 }$</td>
+      <td>$ {\bf{a_L}} = ( 0, 0, 0, 0, 1, 0, 0 ),\ \ {\bf{a_R}} = ( 0, 0, 1, 0, 0, 0, 0  ),\ \ {\bf{a_O}} = ( 0, 0, 0, 0, 0, 1, 0 )  $</td>
+    </tr>
+    <tr>
+      <td>$ { y = 1\cdot( x_1 + 1 ) } $</td>
+      <td>${\bf{a_L}} = ( 1, 1, 0, 0, 0, 0, 0 ),\ \ {\bf{a_R}} = ( 1, 0, 0, 0, 0, 0, 0 ),\ \ {\bf{a_O}} = ( 0, 0, 0, 0, 0, 0, 1 ) $</td>
+    </tr>
+    <tr>
+      <td>$ { z = 1\cdot( v + y )} $</td>
+      <td>${\bf{a_L}} = ( 0, 0, 0, 0, 0, 1, 1 ),\ \ {\bf{a_R}} = ( 1, 0, 0, 0, 0, 0, 0 ),\ \ {\bf{a_O}} = ( 0, 0, 0, 1, 0, 0, 0 )$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In a more formal definition, an <strong>R1CS</strong> is a set of three matrices ${\bf{ A_L, A_R }}$ and ${\bf A_O}$,
+where the rows of each matrix are formed by the corresponding vectors $ {\bf{a_L }}$, ${ \bf{a_R }}$ and
+${ \bf{a_O}} $, respectively, as shown in Table 1:</p>
+
+\[\bf{A_L} = \bf{\begin{bmatrix} 0&amp;1&amp;0&amp;0&amp;0&amp;0&amp;0 \\\\ 0&amp;0&amp;0&amp;0&amp;1&amp;0&amp;0 \\\\ 1&amp;1&amp;0&amp;0&amp;0&amp;0&amp;0 \\\\ 0&amp;0&amp;0&amp;0&amp;0&amp;1&amp;1 \end{bmatrix}} \text{,} \quad
+\bf{A_R} = \bf{\begin{bmatrix} 0&amp;1&amp;0&amp;0&amp;0&amp;0&amp;0 \\\\ 0&amp;0&amp;1&amp;0&amp;0&amp;0&amp;0 \\\\ 1&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0 \\\\ 1&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0 \end{bmatrix}} \text{,} \quad
+\bf{A_O} = \bf{\begin{bmatrix} 0&amp;0&amp;0&amp;0&amp;1&amp;0&amp;0 \\\\ 0&amp;0&amp;0&amp;0&amp;0&amp;1&amp;0 \\\\ 0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;1 \\\\ 0&amp;0&amp;0&amp;1&amp;0&amp;0&amp;0 \end{bmatrix}}\]
+
+<p>Observe that ${ \bf{ (A_L * s^T) \cdot (A_R * s^T ) - (A_O * s^T)} = 0 }$, where “$ * $” is
+<em>matrix multiplication</em> and ${ \bf s^T}$ is the transpose of the solution vector ${ \bf{s}}$ [<a href="http://coders-errand.com/constraint-systems-for-zk%E2%80%91SNARKs/" title="Constraint Systems for ZK SNARKs">8</a>].</p>
+
+<h2 id="from-arithmetic-circuits-to-programmable-constraint-systems-for-bulletproofs">From Arithmetic Circuits to Programmable Constraint Systems for Bulletproofs</h2>
+
+<p>Interstellar’s “Programmable Constraint Systems for Bulletproofs” [[12]]
+is an extension of “Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete
+Log Setting” by Bootle et al. [[5]], enabling protocols that
+support proving of arbitrary statements in ZK using constraint systems. Although the focus here is on the
+two works of research [[5]] and [[12]], the Bulletproofs paper by Bunz et al. [<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>] is here recognized as a bridge
+between the two. Table 2 compares these three research documents.</p>
+
+<p>All these ZK proofs are based on the difficulty of the discrete logarithm problem.</p>
+
+<div align="center"><b>Table 2: Comparison of Three Research Documents on ZK Proofs</b></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete Log Setting [<a href="https://eprint.iacr.org/2016/263.pdf">5</a>] (2016)</th>
+      <th>Bulletproofs: Short Proofs for Confidential Transactions and More [<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>] (2017)</th>
+      <th>Programmable Constraint Systems [<a href="https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7">12</a>] (2018)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.</td>
+      <td>Introduces the Hadamard relation and linear constraints.</td>
+      <td>Turns the Hadamard relation and linear constraints into a single linear constraint, and these are in fact the R1CS.</td>
+      <td>Generalizes constraint systems and uses what is called gadgets as building blocks for constraint systems.</td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td>Improves on Groth’s work [<a href="https://iacr.org/archive/crypto2009/56770190/56770190.pdf" title="Linear Algebra with Sub-linear Zero-knowledge Arguments">13</a>] on ZK proofs. Reducing a $\sqrt{N}$ complexity to $6log_2(N) + 13$, where $N$ is the circuit size.</td>
+      <td>Improves on Bootle et al.’s work [<a href="https://eprint.iacr.org/2016/263.pdf">5</a>]. Reducing a $6log_2(N) + 13$ complexity to $2log_2(N) + 13$, where $N$ is the circuit size.</td>
+      <td>Adds constraint systems to Bunz et al.’s work on Bulletproofs, which are short proofs. The complexity advantage is seen in proving several statements at once.</td>
+    </tr>
+    <tr>
+      <td>3.</td>
+      <td>Introduces logarithm-sized inner-product ZK proofs.</td>
+      <td>Introduces Bulletproofs, extending proofs to proofs of arbitrary statements. The halving method is used on the inner-products, resulting in the above reduction in complexity.</td>
+      <td>Introduces gadgets that are actually add-ons to an ordinary ZK proof. A range proof is an example of a gadget.</td>
+    </tr>
+    <tr>
+      <td>4.</td>
+      <td>Uses Fiat-Shamir heuristics in order to achieve non-interactive ZK proofs.</td>
+      <td>Bulletproofs also use the Fiat Shamir heuristics to achieve non-interaction.</td>
+      <td>Merlin transcripts are specifically used for a Fiat-Shamir transformation to achieve non-interaction.</td>
+    </tr>
+    <tr>
+      <td>5.</td>
+      <td>The Pedersen commitments are used in order to achieve ZK property.</td>
+      <td>Eliminates the need for a commitment algorithm by including Pedersen commitments among the inputs to the verification proof.</td>
+      <td>Low-level variables, representing inputs and outputs to multiplication gates, are computed per proof and committed using a single vector Pedersen commitment.</td>
+    </tr>
+    <tr>
+      <td>6.</td>
+      <td>The ZK proof involves conversion of the arithmetic circuit into an R1CS.</td>
+      <td>The mathematical expression of a Hadamard relation is closely related to an arithmetic circuit. The use of this relation plus linear constraints as a single constraint amounts to using a constraint system.</td>
+      <td>Although arithmetic circuits are not explicitly used here, the Hadamard relation remains the same as first seen in Bulletproofs, more so in the inner-product proof.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Interstellar is building an Application Programming Interface (API) that allows developers to choose their own
+collection of gadgets suitable for the protocol they wish to develop, as discussed in the
+<a href="#interstellars-bulletproof-constraint-system">next section</a>.</p>
+
+<h2 id="interstellars-bulletproof-constraint-system">Interstellar’s Bulletproof Constraint System</h2>
+
+<h3 id="overview-2">Overview</h3>
+
+<p>The Interstellar team paved the way for the implementation of several cryptographic primitives in the RUST language,
+including <em>Ristretto</em> [<a href="https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html" title="Ristretto">14</a>], a construction
+of a prime-order group using a cofactor-8 curve known as Curve25519. They reported on how they implemented Bulletproofs
+in Henry de Valence’s article, “Bulletproofs Pre-release” [<a href="https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b" title="Bulletproofs pre-release">15</a>].
+An update on their progress in extending the implementation of Bulletproofs [<a href="http://github.com/dalek-cryptography/bulletproofs/" title="Dalek's Bulletproofs Implementation">16</a>]
+to a constraint system API, which enables ZK proofs of arbitrary statements, was given in Cathie Yun’s
+article, “Programmable Constraint Systems for Bulletproofs”
+[[12]]. The Hadamard relation and linear constraints together
+form the constraint system as formalized by the Interstellar team. Most of the mathematical background of these
+constraints and bulletproofs is contained in Bunz et al.’s paper [<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>].</p>
+
+<p>Dalek’s constraint system, as defined earlier in <a href="#definition-of-constraint-system">Definition of Constraint System</a>, is
+a collection of two types of arithmetic constraints: multiplicative constraints and linear constraints, over a set of
+high-level and low-level variables.</p>
+
+<h3 id="easy-to-build-constraint-systems">Easy-to-build Constraint Systems</h3>
+
+<p>In this Bulletproofs framework, a prover can build a constraint system in two steps:</p>
+
+<ul>
+  <li>Firstly, committing to secret inputs and allocating high-level variables corresponding to the inputs.</li>
+  <li>secondly, selecting a suitable combination of multiplicative constraints and linear constraints, as well as requesting a random
+  scalar in response to the high-level variables already committed [<a href="https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html" title="Module Bulletproofs::Notes::r1cs_proof">3</a>].</li>
+</ul>
+
+<p>Reference [<a href="https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82">17</a>] gives an excellent outline of ZK proofs that use Bulletproofs:</p>
+
+<ol>
+  <li>The prover commits to a value(s) that they want to prove knowledge of.</li>
+  <li>The prover generates the proof by enforcing the constraints over the committed values and any additional public
+ values. The constraints might require the prover to commit to some additional variables.</li>
+  <li>The prover sends the verifier all the commitments made in step 1 and step 2, along with the proof from step 2.</li>
+  <li>The verifier now verifies the proof by enforcing the same constraints over the commitments, plus any public values.</li>
+</ol>
+
+<h3 id="about-gadgets">About Gadgets</h3>
+
+<p>Consider a verifiable shuffle: given two lists of committed values ${ x_1, x_2, . . ., x_n}$ and
+${ y_1, y_2, . . ., y_n},$ prove that the second list is a permutation of the first. Bunz et al. ([<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>, page 5])
+mention that
+the use of bulletproofs improves the complexity of such a verifiable shuffle to size $\mathcal{O}(log(n))​$ compared to
+previous implementation results. Although not referred to as a <em>gadget</em> in the paper, this is in
+fact a shuffle gadget. The term <em>gadget</em> was used and popularized by the Interstellar team, who introduced gadgets
+as building blocks of constraint systems; refer to [<a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8" title="Building on Bulletproofs">2</a>].</p>
+
+<p>A <em>shuffle gadget</em> (Figure 3) is any function whose outputs are but a permutation of its inputs. By definition of a
+permutation, the
+number of inputs to a shuffle gadget is always the same as the number of outputs.</p>
+
+<p align="center"><img src="/images/cryptography/r1cs-bulletproofs/simple-shuffle-diagram.png" width="550"></p>
+<div align="center"><b>Figure 3: Simple Shuffle Gadgets with Two Inputs
+[<a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8" title="Building on Bulletproofs">2</a>]
+</b></div>
+
+<p>The Interstellar team mentions other gadgets: “merge”, “split” and a “range proof” that are implemented in their
+Confidential Assets scheme called the Cloak.
+Just as a shuffle gadget creates constraints that prove that
+two sets of variables are equal up to a permutation, a range-proof gadget checks that a given value is in the interval
+$ [ 0, 2^n ] $
+where
+$ n $
+is the size of the input vector
+[<a href="https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html" title="Module Bulletproofs::Notes::r1cs_proof">3</a>].</p>
+
+<p>Gadgets in their simplest form merely receive some variables as inputs and produce corresponding output values. However,
+they
+may allocate more variables, sometimes called auxiliary variables, for internal use, and produce constraints involving
+all these variables. The main advantage of gadgets is that they are composable, thus a more complex
+gadget can always be created from a number of single gadgets. Interstellar’s Bulletproofs API allows developers to choose their own collection of gadgets suitable for the protocol they wish to develop.</p>
+
+<h3 id="interstellars-concluding-remarks">Interstellar’s Concluding Remarks</h3>
+
+<p>Cathie Yun reports in [[12]] that their “work on Cloak and Spacesuit is far from complete” and mentions that they
+still have two goals to achieve:</p>
+
+<ul>
+  <li>Firstly, in order to “ensure that challenge-based variables cannot be inspected” and prevent the user from
+ accidentally breaking soundness of their gadgets, the Bulletproofs protocol needs to be slightly extended, enabling it
+ to commit “to a portion of low-level variables using a single vector Pedersen commitment without an overhead of
+ additional individual high-level Pedersen commitments” [[12]].</li>
+  <li>Secondly, to “improve privacy in Cloak” by enabling “multi-party proving of a single constraint system”. That is,
+ “building a joint proof of a single constraint system by multiple parties, without sharing their secret inputs with
+ each other”.</li>
+</ul>
+
+<p>All-in-all, Yun regards constraint systems as “very powerful because they can represent any efficiently
+verifiable program” [<a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8" title="Building on Bulletproofs">2</a>].</p>
+
+<h3 id="r1cs-factorization-example-for-bulletproofs">R1CS Factorization Example for Bulletproofs</h3>
+
+<p>In [<a href="https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82">17</a>], Harchandani explores the Dalek Bulletproofs API, using various examples. Of interest
+is the factorization problem, which is one out of the six R1CS Bulletproof examples
+discussed in the article.
+The computational challenge is to “<em>prove knowledge of factors</em> p
+<em>and</em> q <em>of a given number</em> r <em>without revealing the factors</em>”.</p>
+
+<p>Table 3 gives an outline of the description and the code lines of the example. Harchandani’s complete
+code of this example can be found in [<a href="https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17" title="Factors R1CS Bulletproofs Example">18</a>]. Important to note is that the verifier must have an exact copy of the R1CS
+circuit used by the prover.</p>
+
+<div align="center"><b>Table 3: Example of Bulletproof Constraint</b></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th style="text-align: left">Description</th>
+      <th>Code Lines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.</td>
+      <td style="text-align: left">Create two pairs of generators; one pair for the <br>Pedersen commitments and the other for the <br>Bulletproof.</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">let pc_gens = PedersenGens::default();</code><br><code class="language-plaintext highlighter-rouge">let bp_gens = BulletproofGens::new(128, 1);</code>
+</td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td style="text-align: left">Instantiate the prover using the commitment <br>and Bulletproofs generators of Step 1, to <br>produce the prover’s transcript.</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">let mut prover_transcript = Transcript::new(b"Factors");</code><br><code class="language-plaintext highlighter-rouge">let mut prover = Prover::new(&amp;bp_gens, &amp;pc_gens, &amp;mut prover_transcript);</code>
+</td>
+    </tr>
+    <tr>
+      <td>3.</td>
+      <td style="text-align: left">Prover commits to variables using the Pedersen <br>commitments, creates variables corresponding to <br>each commitment and adds the variables to the <br>transcript.</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">let x1 = Scalar::random(&amp;mut rng);</code><br><code class="language-plaintext highlighter-rouge">let (com_p, var_p) = prover.commit(p.into(), x1);</code><br><code class="language-plaintext highlighter-rouge">let x2 = Scalar::random(&amp;mut rng);</code><br><code class="language-plaintext highlighter-rouge">let (com_q, var_q) = prover.commit(q.into(), x2);</code>
+</td>
+    </tr>
+    <tr>
+      <td>4.</td>
+      <td style="text-align: left">Prover constrains the variables in two steps: <br>a. Prover multiplies the variables of step 3 and captures <br>the product in the “output” variable O. <br>b. Prover wants to ensure the difference of the product O and r is zero.</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">let (_, _, o) = prover.multiply(var_p.into(), var_q.into());</code><br><code class="language-plaintext highlighter-rouge">let r_lc: LinearCombination = vec![(Variable::One(), r.into())].iter().collect();</code><br><code class="language-plaintext highlighter-rouge">prover.constrain(o - r_lc);</code>
+</td>
+    </tr>
+    <tr>
+      <td>5.</td>
+      <td style="text-align: left">Prover creates the proof.</td>
+      <td><code class="language-plaintext highlighter-rouge">let proof = prover.prove().unwrap();</code></td>
+    </tr>
+    <tr>
+      <td>6.</td>
+      <td style="text-align: left">Instantiation of the verifier using the Pedersen <br>commitments and Bulletproof generators. The <br>verifier creates its own transcript.</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">let mut verifier_transcript = Transcript::new(b"Factors");</code><br><code class="language-plaintext highlighter-rouge">let mut verifier = Verifier::new(&amp;bp_gens, &amp;pc_gens, &amp;mut verifier_transcript);</code>
+</td>
+    </tr>
+    <tr>
+      <td>7.</td>
+      <td style="text-align: left">Verifier records commitments for p and q sent by <br>prover in the transcript, and creates variables for <br>them similar to the prover’s.</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">let var_p = verifier.commit(commitments.0);</code><br><code class="language-plaintext highlighter-rouge">let var_q = verifier.commit(commitments.1);</code>
+</td>
+    </tr>
+    <tr>
+      <td>8.</td>
+      <td style="text-align: left">Verifier constrains variables corresponding to <br>the commitments.</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">let (_, _, o) = verifier.multiply(var_p.into(), var_q.into());</code><br><code class="language-plaintext highlighter-rouge">let r_lc: LinearCombination = vec![(Variable::One(), r.into())].iter().collect();</code><br><code class="language-plaintext highlighter-rouge">verifier.constrain(o - r_lc);</code>
+</td>
+    </tr>
+    <tr>
+      <td>9.</td>
+      <td style="text-align: left">Verifier verifies the proof.</td>
+      <td><code class="language-plaintext highlighter-rouge">verifier.verify(&amp;proof)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="conclusions-observations-and-recommendations">Conclusions, Observations and Recommendations</h2>
+
+<p>Constraint systems form a natural language for most computational problems expressed as arithmetic circuits, and have
+found ample application in both zk‑SNARKs and Bulletproofs. The use of ZK proofs for arithmetic circuits and
+programmable constraint systems has evolved considerably as illustrated in Table 2. Although much work still needs
+to be done, Bulletproofs with constraint systems built on them promise to be powerful tools for efficient handling of
+verifiable programs. The leverage that developers have, in choosing whatever gadgets they wish to implement, leaves
+enough room to build proof systems that have some degree of modularity. Proof system examples by both Dalek and
+Harchandani are valuable examples of what can be achieved with Bulletproofs and R1CSs. This framework provides great
+opportunities in building blockchain-enabled confidential digital asset schemes.</p>
+
+<h2 id="references">References</h2>
+
+<p>[<a href="https://electriccoin.co/blog/snark-explain5/" title="Explaining SNARKs Part V: From Computations to Polynomials">1</a>] A. Gabizon, “Explaining SNARKs Part V: From Computations to Polynomials” [online]. Available:
+<a href="https://electriccoin.co/blog/snark-explain5/">https://electriccoin.co/blog/snark-explain5/</a>. Date accessed: 2020‑01‑03.</p>
+
+<p>[<a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8" title="Building on Bulletproofs">2</a>] C. Yun, “Building on Bulletproofs” [online].
+Available: <a href="https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8">https://medium.com/@cathieyun/building-on-bulletproofs-2faa58af0ba8</a>.
+Date accessed: 2020‑01‑03.</p>
+
+<p>[<a href="https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html" title="Module Bulletproofs::Notes::r1cs_proof">3</a>] Dalek’s R1CS documents, “Module Bulletproofs::r1cs_proof” [online]. Available: <a href="https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html">https://doc-internal.dalek.rs/bulletproofs/notes/r1cs_proof/index.html</a>. Date accessed: 2020‑01‑07.</p>
+
+<p>[<a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf" title="Bulletproofs: Short Proofs for Confidential Transactions and More">4</a>] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, “Bulletproofs: Short Proofs for Confidential
+Transactions and More” [online], Blockchain Protocol Analysis and Security Engineering 2018 .
+Available: <a href="http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf">http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf</a>. Date accessed: 2019‑11‑21.</p>
+
+<p>[[5]] J. Bootle, A. Cerulli, P. Chaidos, J. Groth and C. Petit, “Efficient Zero-knowledge Arguments for Arithmetic
+Circuits in the Discrete Log Setting” [online], Annual International Conference on the Theory and Applications of Cryptographic
+Techniques, pp. 327‑357. Springer, 2016 . Available: <a href="https://eprint.iacr.org/2016/263.pdf">https://eprint.iacr.org/2016/263.pdf</a> Date accessed: 2019‑12‑21.</p>
+
+<p>[5]: https://eprint.iacr.org/2016/263.pdf “Efficient Zero-knowledge Arguments for Arithmetic Circuits in the Discrete
+Log Setting”</p>
+
+<p>[<a href="https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591" title="Generic Zero-knowledge and MultiQuadratic Systems">6</a>] A. Szepieniec and B. Preneel, “Generic Zero-knowledge and Multivariate Quadratic Systems” [online]. Available:
+<a href="https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591">https://pdfs.semanticscholar.org/06c8/ea507b2c4aaf7b421bd0c93e6145e3ff7517.pdf?_ga=2.124585865.240482160.1578465071-151955209.1571053591</a>.
+Date accessed: 2019‑12‑31.</p>
+
+<p>[[7]] A. Shpilka and A. Yehudayoff, “Arithmetic Circuits: A Survey of Recent Results and Open Questions” [online],
+Technion-Israel Institute of Technology, Haifa, Israel, 2010 . Available: <a href="http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf">http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf</a>.
+Date accessed: 2019‑12‑21.</p>
+
+<p>[7]: http://www.cs.tau.ac.il/~shpilka/publications/SY10.pdf “Arithmetic Circuits: A Survey of Recent Results and Open
+Questions”</p>
+
+<p>[<a href="http://coders-errand.com/constraint-systems-for-zk%E2%80%91SNARKs/" title="Constraint Systems for ZK SNARKs">8</a>] A. Pinto, “Constraint Systems for ZK SNARKs” [online]. Available:
+<a href="http://coders-errand.com/constraint-systems-for-zk%E2%80%91SNARKs/">http://coders-errand.com/constraint-systems-for-zk‑SNARKs/</a>. Date accessed: 2019‑12‑23.</p>
+
+<p>[<a href="https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf">9</a>] H. Wu, W. Zheng, A. Chiesa, R. Ada Popa, and I. Stoica, “DIZK: A Distributed Zero Knowledge
+Proof System” [online], Proceedings of the 27th USENIX Security Symposium, August 15–17, 2018. Available:
+<a href="https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf">https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-wu.pdf</a>. Date accessed: 2019‑12‑14.</p>
+
+<p>“DIZK: A Distributed Zero
+Knowledge Proof System”</p>
+
+<p>[[10]] E. Ben-Sasson, A. Chiesa, D. Genkin, E. Tromer and M. Virza, “SNARKs for C: Verifying Program
+Executions Succinctly and in Zero Knowledge (extended version)” [online], October 2013. Available:
+<a href="https://eprint.iacr.org/2013/507.pdf">https://eprint.iacr.org/2013/507.pdf</a>. Date accessed: 2019‑12‑17.</p>
+
+<p>[10]: https://eprint.iacr.org/2013/507.pdf “SNARKs for C: Verifying Program Executions Succinctly and in Zero Knowledge
+(extended version)”</p>
+
+<p>[[11]] V. Buterin, “Quadratic Arithmetic Programs: from Zero to Hero” [online], 12 December 2016. Available:
+<a href="https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649">https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649</a>.
+Date accessed: 2019‑12‑19.</p>
+
+<p>[11]: https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649 “Quadratic
+Arithmetic Programs: from Zero to Hero”</p>
+
+<p>[[12]] C. Yun, “Programmable Constraint Systems for Bulletproofs” [online]. Available:
+<a href="https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7">https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7</a>.
+Date accessed: 2019‑12‑04.</p>
+
+<p>[12]: https://medium.com/interstellar/programmable-constraint-systems-for-bulletproofs-365b9feb92f7 “Programmable
+Constraint Systems for Bulletproofs”</p>
+
+<p>[<a href="https://iacr.org/archive/crypto2009/56770190/56770190.pdf" title="Linear Algebra with Sub-linear Zero-knowledge Arguments">13</a>] J. Groth, “Linear Algebra with Sub-linear Zero-knowledge Arguments” [online], Advances in Cryptology – CRYPTO 2009,
+pages 192–208, 2009. Available: <a href="https://iacr.org/archive/crypto2009/56770190/56770190.pdf">https://iacr.org/archive/crypto2009/56770190/56770190.pdf</a>.
+Date accessed: 2019‑12‑04.</p>
+
+<p>[<a href="https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html" title="Ristretto">14</a>] Dalek, “Ristretto” [online]. Available: <a href="https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html">https://docs.rs/curve25519-dalek/0.15.1/curve25519_dalek/ristretto/index.html</a>
+Date accessed: 2019‑10‑17</p>
+
+<p>[<a href="https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b" title="Bulletproofs pre-release">15</a>] H. Valence, “Bulletproofs Pre-release” [online]. Available: <a href="https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b">https://medium.com/interstellar/bulletproofs-pre-release-fcb1feb36d4b</a>
+Date accessed: 2019‑11‑21.</p>
+
+<p>[<a href="http://github.com/dalek-cryptography/bulletproofs/" title="Dalek's Bulletproofs Implementation">16</a>] Dalek, “Bulletproofs Implementation” [online]. Available:
+<a href="http://github.com/dalek-cryptography/bulletproofs/">http://github.com/dalek-cryptography/bulletproofs/</a> Date accessed: 2019‑10‑02.</p>
+
+<p>[<a href="https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82">17</a>] L. Harchandani, “Zero Knowledge Proofs using Bulletproofs” [online]. Available:
+<a href="https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82">https://medium.com/coinmonks/zero-knowledge-proofs-using-bulletproofs-4a8e2579fc82</a>.
+Date accessed: 2020‑01‑03.</p>
+
+<p>“Zero Knowledge Proofs
+using Bulletproofs”</p>
+
+<p>[<a href="https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17" title="Factors R1CS Bulletproofs Example">18</a>] L. Harchandani, “Factors R1CS Bulletproofs Example” [online].
+Available: <a href="https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17">https://github.com/lovesh/bulletproofs/blob/e477511a20bdb8de8f4fa82cb789ba71cc66afd8/tests/basic_r1cs.rs#L17</a>.
+Date accessed: 2019‑10‑02.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Computer_algebra" title="Computer Algebra - Wikipedia">19</a>] “Computer Algebra” [online]. Available: <a href="https://en.wikipedia.org/wiki/Computer_algebra">https://en.wikipedia.org/wiki/Computer_algebra</a>.
+Date accessed: 2020‑02‑05.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Binary_operation" title="Field Theory - WolframMathWorld">20</a>] Wikipedia: “Binary Operation” [online]. Available: <a href="https://en.wikipedia.org/wiki/Binary_operation%20">https://en.wikipedia.org/wiki/Binary_operation </a>.
+Date accessed: 2020‑02‑06.</p>
+
+<p>[<a href="http://mathworld.wolfram.com/FieldAxioms.html" title="Field Theory - WolframMathWorld">21</a>] WolframMathWorld, “Field Theory” [online]. Available: <a href="http://mathworld.wolfram.com/FieldAxioms.html">http://mathworld.wolfram.com/FieldAxioms.html</a>.
+Date accessed: 2020‑02‑06.</p>
+
+<p>[<a href="https://en.wikipedia.org/wiki/Finite_field" title="Field Theory - Wikipedia">22</a>] Wikipedia: “Finite Theory” [online]. Available: <a href="https://en.wikipedia.org/wiki/Finite_field">https://en.wikipedia.org/wiki/Finite_field</a>.
+Date accessed: 2020‑02‑06.</p>
+
+<h2 id="appendices">Appendices</h2>
+
+<h3 id="appendix-a-definition-of-terms">Appendix A: Definition of Terms</h3>
+
+<p>Definitions of terms presented here are high level and general in nature. Full mathematical definitions are available in
+the cited references.</p>
+
+<ul>
+  <li>
+<strong>Symbolic Computation:</strong><a name="sc"> </a>The study and development of algorithms and software for manipulating
+mathematical expressions and other mathematical objects [<a href="https://en.wikipedia.org/wiki/Computer_algebra" title="Computer Algebra - Wikipedia">19</a>].</li>
+</ul>
+
+<p>“The study and development of algorithms
+and software for manipulating …”</p>
+
+<ul>
+  <li>
+    <p><strong>Binary Operation:</strong> An operation $ * $ or a calculation that combines two elements $ \mathcal{a} $ and
+$ \mathcal{b}$, called operands, to produce another element $ \mathcal{a} * \mathcal{b} $ [<a href="https://en.wikipedia.org/wiki/Binary_operation" title="Field Theory - WolframMathWorld">20</a>].</p>
+  </li>
+  <li>
+    <p><strong>Field:</strong> <a name="fd"> </a>Any set $ \mathcal{F} $ of elements together with <em>Binary Operations</em> $ + $ and
+$ \cdot $, called addition and multiplication, respectively, is a <strong>field</strong> if for any three elements
+$ \mathcal{a}, \mathcal{b} $ and $ \mathcal{c} $ in $ \mathcal{F} $ satisfy the field axioms given in the following table.
+A <strong>Finite field</strong> is any field $ \mathcal{F} $ that contains a finite number of elements ([<a href="http://mathworld.wolfram.com/FieldAxioms.html" title="Field Theory - WolframMathWorld">21</a>], [<a href="https://en.wikipedia.org/wiki/Finite_field" title="Field Theory - Wikipedia">22</a>]).</p>
+  </li>
+</ul>
+
+<div align="center"><b>Table A.1: Axioms of a Field </b></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Addition</th>
+      <th>Multiplication</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>associativity</td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline1.gif" alt="(a+b)+c=a+(b+c)"></td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline2.gif" alt="(ab)c=a(bc)"></td>
+    </tr>
+    <tr>
+      <td>commutativity</td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline3.gif" alt="a+b=b+a"></td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline4.gif" alt="ab=ba"></td>
+    </tr>
+    <tr>
+      <td>distributivity</td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline5.gif" alt="a(b+c)=ab+ac"></td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline6.gif" alt="(a+b)c=ac+bc"></td>
+    </tr>
+    <tr>
+      <td>identity</td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline7.gif" alt="a+0=a=0+a"></td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline8.gif" alt="a·1=a=1·a"></td>
+    </tr>
+    <tr>
+      <td>inverses</td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline9.gif" alt="a+(-a)=0=(-a)+a"></td>
+      <td><img src="http://mathworld.wolfram.com/images/equations/FieldAxioms/Inline10.gif" alt="aa^(-1)=1=a^(-1)a if a!=0"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="appendix-b-notation-used">Appendix B: Notation Used</h3>
+
+<ul>
+  <li>
+    <p>Let $ \mathcal{F} $ be a field.</p>
+  </li>
+  <li>
+    <p>Let $ \mathbf{a} = (a_1, a_2, …, a_n ) $ be a vector with $n$ components $ a_1, a_2, …, a_n $, which
+are elements of some field $ \mathcal{F} ​$.</p>
+  </li>
+  <li>
+    <p>Let $\mathbf{s}^T​$ be the transpose of a vector $ \mathbf{s} = ( s_1, s_2, \dots, s_n )​$ of size $ n ​$ such that
+ $ \mathbf{s}^T = \begin{bmatrix} s_1 \\\ s_2 \\\ \cdot \\\ \cdot \\\ \cdot \\\ s_n \end{bmatrix} ​$</p>
+  </li>
+</ul>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li><a href="https://github.com/Empiech007">https://github.com/Empiech007</a></li>
+  <li><a href="https://github.com/hansieodendaal">https://github.com/hansieodendaal</a></li>
+  <li><a href="https://github.com/anselld">https://github.com/anselld</a></li>
+</ul>
+
+        </div>
+        <!-- <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/cryptography/rank-1"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i><span class="share-name">Facebook</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Rank-1%20Constraint%20System%20with%20Application%20to%20Bulletproofs&url=/cryptography/rank-1"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i><span class="share-name">Twitter</span></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/cryptography/rank-1&amp;media=/images/banner-01.jpg&amp;description=Rank-1%20Constraint%20System%20with%20Application%20to%20Bulletproofs"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i><span class="share-name">Pinterest</span></a>
+    </li>
+  </ul>
+</div> -->
+        <hr>
+        <div class="post__navigation">
+  
+  <div class="post__prev">
+    <a class="prev__image fadein" href="/cryptography/zk-snarks" style="background-image: url(/images/banner-01.jpg)"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="/cryptography/zk-snarks"><i class="ion ion-ios-arrow-back"></i> Previous
+        Page</a>
+      <h4 class="post__nav__title"><a href="/cryptography/zk-snarks">zk-SNARKs</a></h4>
+    </div>
+  </div>
+  
+
+  
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="/cryptography/amortization-of-bulletproof-inner-product-roof">Next Page <i class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="/cryptography/amortization-of-bulletproof-inner-product-roof">Amortization of Bulletproofs Inner-product Proof</a></h4>
+    </div>
+    <a class="next__image fadein" href="/cryptography/amortization-of-bulletproof-inner-product-roof" style="background-image: url(/images/banner-01.jpg)"></a>
+  </div>
+  
+</div>
+      </article>
+      <!-- end post -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <div class="section-top">
+      <h5 class="section-title">You might also be interested in</h5>
+    </div>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/cryptography">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-01.jpg);">
+            <p class="tlu-post-title">Cryptography</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/cryptography">
+                  
+                    The purpose of cryptography is to protect data transmitted in the likely presence of an adversary
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/cryptography" class="article__tag">cryptography</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/cryptography/elliptic-curves">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-01.jpg);">
+            <p class="tlu-post-title">Elliptic Curves</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/cryptography/elliptic-curves">
+                  
+                    This is very brief overview. There are better, and more complete introductions out there
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/cryptography" class="article__tag">cryptography</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+        <div class="article col col-4 col-d-6 col-t-12 grid__post">
+
+          
+          <a href="/cryptography/introduction-to-scriptless-scripts">
+            <div class="tlu-card-container">
+            <div class="fadein tlu-card-img" style="background-image: url(/images/banner-01.jpg);">
+            <p class="tlu-post-title">Introduction to Scriptless Scripts</p>
+            </div>
+            </div>
+            </a>
+          
+
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="/cryptography/introduction-to-scriptless-scripts">
+                  
+                    Scriptless Scripts are a means to execute smart contracts off-chain, through the use of Schnorr signatures.
+                  
+                </a>
+            </div>
+              <div class="article-tags">
+                
+                <div class="article-tags__box">
+                  
+                  <a href="/tag/cryptography" class="article__tag">cryptography</a>
+                  
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        
+        
+          
+    </div>
+  </div>
+</div>
+
+
+  </main>
+  <!-- end content -->
+
+  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+  <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <div class="col col-4">
+      <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-nav">
+    <div class="widget__head">
+      <h4 class="widget__title">Menu</h4>
+    </div>
+    <ul class="nav__list list-reset">
+  <li class="nav__item">
+    <a href="/" class="nav__link">Home</a>
+  </li>
+  
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/about/" class="nav__link">About</a>
+      </li>
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      <li class="nav__item">
+        <a href="/topics/" class="nav__link">Topics</a>
+      </li>
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
+  </div>
+</div>
+      </div>
+      <div class="col col-8">
+        <div class="tlu-footerbio-container">
+        <img class="tlu-footer-img" src="/images/tari-labs.png">
+        <div class="tlu-footerbio">
+          <h5>Tari Labs University</h5>
+          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
+          </div>
+        </div>
+        </div>
+      <div class="col col-12">
+        <div class="footer__inner">
+          <div class="copyright">2021 © <a href="/"><strong>Tari Labs University</strong></a>.</div>
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/tari_labs"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/tarilabs"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/tari-labs"><i class="ion ion ion-logo-github"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="/js/vendors/jquery-3.3.1.min.js"></script>
+<script src="/js/vendors/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "/search.json",
+    searchResultTemplate: '<div class="search-results__item"><a class="search-results__image" href="{url}" style="background-image: url({image})"></a> <a class="search-results__link" href="{url}"><span class="search-results-date"> <time datetime="{date}">{date}</time></span><div class="result-title">{title}</div></a></div>',
+    noResultsText: '<li class="no-results"><h3>No results found</h3></li>'
+  });
+</script>
+<script src="/js/vendors/jquery.viewportchecker.min.js"></script>
+<script src="/js/vendors/jquery.fitvids.js"></script>
+<script src="/js/vendors/transition.js"></script>
+<script src="/js/vendors/zoom.min.js"></script>
+<script src="/js/vendors/slick.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '',
+    pagination_available_pages_number = '';
+</script>
+</body>
+
+</html>

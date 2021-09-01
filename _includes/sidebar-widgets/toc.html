@@ -1,0 +1,36 @@
+<div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+        <div class="acc-container-2">
+          {% for item in site.menus.header %}
+          <div id="accordion-2">
+            <div class="acc-heading">
+                <h5 class="menu-item-{{ loop.index }}">
+                    <!-- <img src="{{ item.icon }}" style="width: 26px; margin-right: 10px;"/> -->
+                    <a href="{{ item.url }}" title="Go to {{ item.title }}">{{ item.title }}</a>
+                </h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <h5><a href="{{ item.url }}" title="Go to {{ item.title }}">{{ item.title }}</a></h5>
+            {% if item.children %}
+                  <ol>
+                  {% for item in item.children %}
+                    <li class="menu-item-{{ loop.index }}">
+                      <a href="{{ item.url }}" title="Go to {{ item.title }}">{{ item.title }}</a>
+                    </li>
+                  {% endfor %}
+                  </ol>
+                  {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+
+      <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="/images/index/accordion.js"></script>
+    </div>
+
+  </div>

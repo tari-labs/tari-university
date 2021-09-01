@@ -1,0 +1,230 @@
+/* Article */
+.article {
+  align-items: stretch;
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.section {
+  padding: 20px 30px 30px;
+  border-radius: 5px;
+  box-shadow: $base-box-shadow;
+  background-color: $section-color;
+
+  @media only screen and (max-width: $mobile) {
+    padding: 20px;
+  }
+}
+
+.section-top {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $base-border-color;
+  .section-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 700;
+  }
+}
+
+.article__title {
+  margin: 10px 0 10px;
+  font-size: 16px;
+  line-height: 22x;
+  font-weight: 600;
+  a {
+    color: $link-color;
+    &:hover {
+      color: $brand-color;
+    }
+  }
+  @media only screen and (max-width: $mobile) {
+    margin: 5px 0 10px;
+    font-size: 18px;
+  }
+}
+
+.article__content {
+  margin-top: 15px;
+}
+
+.article__image {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-top: 67%;
+  border-radius: 5px;
+  overflow: hidden;
+  transform: translate(0);
+  background-color: $background-color;
+  &:hover {
+    img {
+      transform: scale(1.02);
+    }
+  }
+  img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: opacity .6s ease-in-out, transform .35s ease;
+    backface-visibility: hidden;
+  }
+}
+
+.featured-post {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 21px;
+  color: $white;
+  user-select: none;
+  i {
+    position: relative;
+  }
+}
+
+.article__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1;
+}
+
+.article-tags__box {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1;
+  a {
+    font-size: 14px;
+    font-weight: 500;
+    color: $base-tags-color;
+    &:hover {
+      color: $brand-color;
+    }
+    &:after {
+      content: ",";
+      margin: 0 1px;
+      display: inline-block;
+      color: $base-tags-color;
+    }
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+
+    @media only screen and (max-width: $mobile) {
+      height: 20px;
+      font-size: 13px;
+      line-height: 18px;
+    }
+  }
+}
+
+.article--members,
+.article--paid {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.article--members .members,
+.article--paid .paid {
+  display: block;
+}
+
+.members,
+.paid {
+  height: 23px;
+  padding: 0 10px;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 23px;
+  display: none;
+  letter-spacing: 1px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid rgba($white, .6);
+  color: rgba($white, .9);
+}
+
+.article--public {
+  display: none;
+}
+
+.article__date {
+  font-size: 14px;
+  color: $base-meta-color;
+  font-weight: 500;
+  &::after {
+    content: "–";
+    position: relative;
+    bottom: 0.05rem;
+    display: inline-block;
+    margin: 0 .45rem 0 .45rem;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.article__author {
+  display: flex;
+  align-items: center;
+  color: $author-color;
+  &-image {
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 2px solid $base-border-color;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: $background-color;
+  }
+  a {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: $link-color;
+    &:hover {
+      color: $brand-color;
+    }
+  }
+
+  @media only screen and (max-width: $mobile) {
+    a {
+      font-size: 13px;
+      line-height: 18px;
+    }
+  }
+}
+
+.article__author-footer {
+  margin-left: 7px;
+  line-height: 14px;
+}

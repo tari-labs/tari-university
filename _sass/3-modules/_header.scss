@@ -1,0 +1,51 @@
+/* Header */
+.header {
+  width: 100%;
+  margin: 40px 0;
+  transition: $global-transition;
+  color: $header-link-color;
+  @media only screen and (max-width: $desktop) {
+    margin: 25px 0;
+  }
+}
+
+/* Logo */
+.logo__image {
+  max-height: 50px;
+}
+
+.logo__link {
+  font-size: 60px;
+  line-height: $logo-font-height;
+  font-weight: $logo-font-weight;
+  font-family: $logo-font-family;
+  color: $logo-color;
+  &:hover {
+    color: $logo-color-hover;
+  }
+  @media only screen and (max-width: $mobile) {
+    font-size: 43px;
+  }
+}
+
+.main__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.header__desc {
+  width: 100%;
+  max-width: 650px;
+  margin: 10px auto 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  color: $header-description;
+  @media only screen and (max-width: $mobile) {
+    margin: 5px auto 0;
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
