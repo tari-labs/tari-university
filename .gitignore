@@ -8,3 +8,5 @@
 *.code-workspace
 
 _site
+vendor
+.jekyll-cache
