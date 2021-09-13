@@ -1,5 +1,4 @@
 .~*
-book
 .DS_Store
 .idea
 *.iml
@@ -7,3 +6,5 @@ book
 *.userprefs
 .vscode/
 *.code-workspace
+
+_site
