@@ -1,0 +1,16 @@
+
+
+  <div class="cards desktop">
+    {% for post in site.posts reversed %}
+    {% if post.featured == true %}
+        <a href="{{ post.url | prepend: site.baseurl }}">
+        <div class="card">
+          <img src="{{post.icon}}" class="jewelsvgs"/>
+          <h5 class="cardHeading">{{post.title}}</h5>
+          <img class="cardLine" src="{{post.line}}" />
+          <p>{{post.excerpttext}}</p>
+        </div>
+        </a>
+    {% endif %}
+  {% endfor %}
+</div>

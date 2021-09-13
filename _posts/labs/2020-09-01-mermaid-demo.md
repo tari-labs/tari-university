@@ -1,9 +1,6 @@
 ---
 layout: post
 title:  Mermaid Demo
-menus:
-  labs:
-    weight: 1
 date:   2020-09-01 15:00:00 +0300
 image:  '/images/banner-09.jpg'
 category: labs
@@ -15,14 +12,6 @@ excerpttext: TLU can now support mermaid diagrams! Flowcharts, sequence diagrams
 TLU can now support mermaid diagrams! Flowcharts, sequence diagrams and more!
 
 ### How to write mermaid diagrams.
-@startmermaid
-graph TD
-    A{Does your flowchart have arrows?} --> B[No]
-    A --> C[yes]
-    B --> D(Add them already)
-    C --> E(Yay, what a great flowchart!)
-    D -.->|you can even add text to them| A
-@endmermaid
 
 1. [RTFM](https://mermaidjs.github.io).
 2. Wrap your mermaid code in `<div>` tags. Add the `class=mermaid` attribute to the tag. So your code will look like
@@ -72,7 +61,7 @@ graph LR
     C -->|Two| E[Result two]
 @endmermaid
 
-@startmermaid
+@startmermaid   
 graph LR
     A[Hard edge] -->|Link text| B(Round edge)
     B --> C{Decision}
@@ -132,4 +121,4 @@ gantt
        Describe gantt syntax               :after doc1, 3d
        Add gantt diagram to demo page      :20h
        Add another diagram to demo page    :48h
-@endmermaid    
+@endmermaid

@@ -1,0 +1,67 @@
+div.playpen {
+  position: relative;
+  font-size: 14pt;
+}
+div > .buttons {
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  top: 10px;
+  background-color: #fff;
+  border-radius: 3px;
+  color: #364149;
+  cursor: pointer;
+}
+div > .buttons :hover {
+  color: #008cff;
+}
+div > .buttons i {
+  margin-left: 8px;
+}
+div > .buttons button {
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: inherit;
+}
+div > .result {
+  margin-top: 10px;
+}
+
+.playpen,
+.tutorials .card {
+  max-width: 80rem;
+}
+
+.playpen .result {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 1.25rem;
+}
+
+.playpen .result {
+  color: #493ee8 !important;
+}
+
+.playpen .editable {
+  margin: 20px 0px 20px 0px;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+}
+
+.tutorials .btn {
+  margin: 20px 0px 20px 0px;
+}
+
+.tutorials .card {
+  font-size: 1.5rem;
+}

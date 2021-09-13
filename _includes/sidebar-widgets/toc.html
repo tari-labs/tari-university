@@ -9,10 +9,8 @@
           <div id="accordion-2">
             <div class="acc-heading">
                 <h5 class="menu-item-{{ loop.index }}">
-                  <a href="{{ item.url }}" title="Go to {{ item.title }}">
                     <!-- <img src="{{ item.icon }}" style="width: 26px; margin-right: 10px;"/> -->
-                    {{ item.title }}
-                  </a>
+                    <a href="{{ item.url }}" title="Go to {{ item.title }}">{{ item.title }}</a>
                 </h5>
               <i class="fas fa-angle-down arrow fas-2"></i>
             </div>
