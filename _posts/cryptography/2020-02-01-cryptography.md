@@ -3,7 +3,8 @@ layout: post-main
 title:  Cryptography
 date:   2020-02-01 12:00:00 +0300
 image:  '/images/banner-01.jpg'
-category:
+category: cryptography
+permalink: /cryptography
 tags:   [cryptography]
 icon: '/images/index/jewel-02.svg'
 line: '/images/index/line-purple.svg'

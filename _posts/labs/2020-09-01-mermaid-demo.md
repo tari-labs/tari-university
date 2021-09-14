@@ -1,9 +1,6 @@
 ---
 layout: post
 title:  Mermaid Demo
-menus:
-  labs:
-    weight: 1
 date:   2020-09-01 15:00:00 +0300
 image:  '/images/banner-09.jpg'
 category: labs

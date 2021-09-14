@@ -72,7 +72,6 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll/tagging
-  - jekyll-menus
   - jekyll-spaceship
 
 paginate: 6
