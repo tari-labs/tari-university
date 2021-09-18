@@ -1,0 +1,69 @@
+
+<div class="widget-sidebar widget-tags">
+  <div class="widget__head section-top">
+    <h4 class="widget__title">Explore Topics</h4>
+  </div>
+  <div class="widget-tags__inner">
+
+    <div class="acc-container-2">
+      {% for category in site.categories  %}
+        {% capture category_name %}{{ category | first }}{% endcapture %}
+        <div id="accordion-2">
+          <div class="acc-heading">
+            <!-- <div id="#{{ category_name | slugize}}"></div> -->
+            <h5>{{ category_name | replace:'-',' ' | capitalize }}</h5>
+            <i class="fas fa-angle-down arrow fas-2"></i>
+            <!-- <a name="{{ category_name | slugize }}"></a> -->
+          </div>
+          <div class="content">
+            <ol>
+            {% for post in site.categories[category_name] reversed %}
+            {% if post.featured %}
+            <a href="{{ site.baseurl }}{{ post.url }}"><h5 style="margin-left: -20px;">{{post.title}}</h5></a>
+            {% else %}
+              <li><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></li>
+            {% endif %}
+            {% endfor %}
+            </ol>
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- <div id="archives">
+    {% for category in site.categories  %}
+      <div class="archive-group">
+        {% capture category_name %}{{ category | first }}{% endcapture %}
+        <div id="#{{ category_name | slugize}}"></div>
+        <p></p>
+
+        <h5 class="category-head">{{ category_name }}</h5>
+        <a name="{{ category_name | slugize }}"></a>
+        <ol>
+        {% for post in site.categories[category_name] reversed %}
+        {% if post.featured %}
+        <a href="{{ site.baseurl }}{{ post.url }}" style="font-weight: bold; margin-left: -20px; margin-bottom: 10px; display: block;">{{post.title}}</a>
+        {% else %}
+          <li><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></li>
+        {% endif %}
+        {% endfor %}
+        </ol>
+      </div>
+    {% endfor %}
+    </div> -->
+
+    <!-- <ul>
+      {% for post in site.posts reversed %}
+      {% if post.featured %}
+      <li><a href="{{ post.url }}" style="font-weight: bold;">{{ post.title }}</a></li>
+      {% else %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul> -->
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="/images/index/accordion.js"></script>
+  </div>
+
+</div>

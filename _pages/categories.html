@@ -1,0 +1,29 @@
+---
+layout: toc
+permalink: /categories/
+title: Categories
+image: '/images/banner-01.jpg'
+---
+
+<h2>Table of Contents</h2>
+<div class="tlu-maintoc">
+{% for category in site.categories  %}
+  <hr />
+  <div class="tlu-cards">
+    {% capture category_name %}{{ category | first }}{% endcapture %}
+    <!-- <div id="#{{ category_name | slugize}}"></div> -->
+    <!-- <p class="tlu-cardHeading">{{ category_name }}</p> -->
+    <!-- <a name="{{ category_name | slugize }}"></a> -->
+    <ol>
+    {% for post in site.categories[category_name] reversed %}
+    {% if post.featured %}
+    <!-- <div class="tlu-cardicons"><img src="{{post.icon}}" /></div> -->
+    <a href="{{ site.baseurl }}{{ post.url }}"><h5 style="margin-left: -20px;">{{post.title}}</h5></a>
+    {% else %}
+      <li><a href="{{ site.baseurl }}{{ post.url }}" style="color: #333;">{{post.title}}</a></li>
+    {% endif %}
+    {% endfor %}
+    </ol>
+  </div>
+{% endfor %}
+</div>

@@ -1,9 +1,6 @@
 ---
 layout: post
 title:  Non-Fungible Tokens Survey
-menus:
-  digital-assets:
-    weight: 2
 date:   2020-06-02 15:00:00 +0300
 image:  '/images/banner-06.jpg'
 category: digital-assets

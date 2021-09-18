@@ -121,9 +121,11 @@
 
 .post__content {
   a {
+    color: $brand-color;
+    font-weight: 500;
     &:hover {
-      color: $link-color;
-      text-decoration: underline;
+      color: $dark;
+      text-decoration: none;
     }
   }
 }
