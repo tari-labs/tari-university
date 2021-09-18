@@ -547,13 +547,6 @@ a {
 #breadcrumbs a:hover {
   color: #6416B8;
 }
-.note {
-  padding: 15px;
-}
-
-.warning {
-  background: #EFEFEF;
-}
 
 .tlu-rel {
   display: flex;
