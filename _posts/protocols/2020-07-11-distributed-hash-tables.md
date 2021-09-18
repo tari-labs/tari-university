@@ -55,7 +55,7 @@ key.
 A DHT network design allows the network to tolerate nodes coming and going without failure, and allows the network size
 to increase indefinitely.
 
-![XKCD-Network](/images/protocols/dht/xkcd-network.png)
+    ![XKCD-Network](/images/protocols/dht/xkcd-network.png)
 
 Image from [XKCD #350 - Network](https://xkcd.com/350/) - [License](https://xkcd.com/license.html)
 
