@@ -45,10 +45,14 @@ View our pipeline<sup id="a1">[*](#f1)</sup> below.
 
 \# | Topic 
 ---- | ----
-1 | An Introduction to the I2P Network
-2 | Tor |!2 Tor 
-3 | Cryptographic Accumulators 
-4 | Probabilistic Attack Vector Analysis Building Blocks 
+1 | Rank-1 Constraint System with Application to Bulletproofs 
+2 | Bulletproof Range Proofs vs. R1CS Gadget Range Proofs
+3 | Cost Based Steady-State Analysis of Multiple PoW 
+4 | Permissionless Sidechain Multi-party Payment Channel for Mimblewimble 
+
+
+
+
 
 
 <i><b id="f1">*</b> Future topics in the pipeline are subject to change. [↩](#a1)</i>

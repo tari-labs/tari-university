@@ -1,7 +1,19 @@
+---
+marp: true
+theme: default
+paginate: true
+footer: © Tari Labs, 2018-2021. (License : CC BY-NC-SA 4.0)
+---
+
+<style>
+section {
+  font-size: 1.5em;
+}
+</style>
 ## Application of *Howey* to Blockchain network token sales
 
 - Recent Events
- 
+
 - What is a Security?
 
 - What is an Investment Contract (i.e. Howey Test)?
@@ -9,7 +21,7 @@
 - Fourth Prong of Howey Test - Efforts of Others
 
 - Decentralization, Consumptive Purpose and Priming Purchasers' Expectations
-  
+
 - Conclusion
 
 ---
@@ -72,11 +84,11 @@
     - Direct efforts to impact a token's supply and/or demand (e.g. buying and selling)
     - Indirect efforts (e.g. creating ecosystem)
   - If the value of a token is driven by market forces, it suggests its value is attributable to factors other than the promoter's efforts
-  - "Essential tasks and responsibilities" widely dispersed 
+  - "Essential tasks and responsibilities" widely dispersed
 - Does it make sense to apply U.S. federal securities laws to a particular token offering or sale?
   - Who should be subject to the disclosure obligations?
   - What information is expected to be disclosed?
-  
+
 ---
 
 ## Consumptive Purpose
@@ -87,7 +99,7 @@
   - Promoter may also seek to ensure content of and audience for marketing other communication related to the token offering  is consistent with consumption being the reason for purchasing tokens
   - Promoters may also consider whether restrictions on transferability of the token are consistent with its use and not facilitating a speculative market
 - Argument that purchasers are acquiring tokens for consumption will be stronger once the network is functional and tokens can actually be used to purchase goods or access services through the network
-  
+
 ---
 
 ## Priming Purchasers' Expectations
@@ -100,7 +112,7 @@
 ---
 
 ## Conclusion
-  
+
 - Various SEC actions and statements offer guidance as to whether a particular token is a security under the Act.
 - Analysis hinges on the application of the Howey test to determine if the token is an "investment contract" under the Act, and therefore a security.
 - Decentralization of control many public blockchain projects seek to foster places Howey's "efforts of others" prong as a key area of focus. Questions regarding the application of this prong generally relate to:

@@ -136,8 +136,8 @@ Two variations of the Pedersen Commitment scheme share the same security attribu
   non-interactive commitment to a value ([[1]], [[3]], [[8]], [[14]], [[15]]).
   - The generalized Pedersen Commitment definition follows (refer to [Notation Used](#notation-used)):
     - Let $ q $ be a large prime and $ p $ be a large safe prime such that $ p = 2q + 1 $. 
-    - Let $ h $ be a random generator of cyclic group $ \mathbb G $ such that $ h $ is an element of $ \mathbb Z_q^* $. 
-    - Let $ a $ be a random value and element of $ \mathbb Z_q^* $ and calculate $ g $ such that $ g = h^a $. 
+    - Let $ h $ be a random generator of cyclic subgroup $ \mathbb Q $ of order $ q $.
+    - Let $ a $ be a random value and element of $ \mathbb Q $ and calculate $ g $ such that $ g = h^a $. 
     - Let $ r $ (the blinding factor) be a random value and element of $ \mathbb Z_p^* $. 
     - The commitment to value $ x $ is then determined by calculating $ C(x,r) = h^r g^x $, which is called the Pedersen 
     Commitment.
@@ -211,8 +211,8 @@ $  C(x,r) =  h^{r^\prime} g^{x^\prime} $. This means, even though Bob can find v
 $ r^\prime $ and $ x^\prime $ that produce $ C $, he cannot know if those are the specific $ x $ and $ r $ that Alice 
 chose, because there are so many that can produce the same $ C $. Pedersen Commitments are thus perfectly *hiding*.
 
-Although the Pederson Commitment is perfectly *hiding*, it does rely on the fact that Alice has NOT cracked the DLP to be 
-able to calculate other pairs of input values to open the commitment to another value when challenged. The Pederson 
+Although the Pedersen Commitment is perfectly *hiding*, it does rely on the fact that Alice has NOT cracked the DLP to be 
+able to calculate other pairs of input values to open the commitment to another value when challenged. The Pedersen 
 Commitment is thus only computationally *binding*.
 
 
@@ -813,7 +813,7 @@ Bootle et al. [[2]] showed how an arbitrary arithmetic circuit with $ n $ multip
 relation containing a Hadamard Product<sup>[def][hdmp~]</sup> relation with additional linear consistency constraints. 
 The communication cost of the addition gates in the argument was removed by providing a technique that can directly 
 handle a set of Hadamard products and linear relations together. For a two-input multiplication gate, let $ \mathbf a_L , 
-\mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_L + \mathbf a_R = \mathbf a_O $ is the 
+\mathbf a_R $ be the left and right input vectors respectively, then $ \mathbf a_O = \mathbf a_L \circ \mathbf a_R $ is the 
 vector of outputs. Let $ Q \leqslant 2 \cdot n $ be the number of linear consistency constraints, 
 $ \mathbf W_{L,q} \mspace{3mu} , \mathbf W_{R,q} \mspace{3mu}, \mathbf W_{O,q} \in \mathbb Z_p^n $ be the gate weights 
 and $ c_q \in \mathbb Z_p $ for all $ q \in [1,Q] $, then the linear consistency constraints have the form

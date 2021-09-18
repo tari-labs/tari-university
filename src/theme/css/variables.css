@@ -90,11 +90,11 @@
 }
 
 .light {
+    background: #F5F5F7;
     --bg: hsl(0, 0%, 100%);
-    --fg: #333333;
-background:#f9f9f9;
+    --fg: #45414B;
     --sidebar-bg: #fafafa;
-    --sidebar-fg: #364149;
+    --sidebar-fg: #FFF;
     --sidebar-non-existant: #aaaaaa;
     --sidebar-active: #008cff;
     --sidebar-spacer: #f4f4f4;
