@@ -309,7 +309,7 @@ Overall validity requires all returned Booleans to be `True` and a multi-signatu
 union of all returned keys.
 
 With regard to Bitcoin, this can be implemented by providing an alternative to the signature checking opcode
-OP\_CHECKSIG and related opcodes in the Script language. Instead of returning the result of an actual ECDSA verification,
+OP_CHECKSIG and related opcodes in the Script language. Instead of returning the result of an actual ECDSA verification,
 they always return `True`, but additionally add the public key with which the verification would have taken place to a
 transaction-wide multi-set of keys. Finally, after all inputs are verified, a multi-signature present in the transaction
 is verified against that multi-set. In case the transaction spends inputs from multiple owners, they will need to
@@ -416,7 +416,7 @@ Each of the cosigners then computes:
 
 
 $$
-R = \prod \_{i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
+R = \prod _{i=1}^{n} R_{i} \mspace{30mu} \mathrm{and} \mspace{30mu} c = \textrm{H} (\tilde{X},R,m)
 $$
 
 where $$ \tilde{X} = \prod_{i=1}^{n}X_{i} $$
@@ -443,7 +443,7 @@ $$
 where
 
 $$
-\tilde{X} = \prod\_{i=1}^{n} X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m)
+\tilde{X} = \prod_{i=1}^{n} X_{i} \mspace{30mu} \mathrm{and} \mspace{30mu}  c = \textrm{H}(\tilde{X},R,m)
 $$
 
 Note that this is exactly the verification equation for a traditional key-prefixed Schnorr signature with respect to
@@ -452,7 +452,7 @@ However, these protocols are vulnerable to a rogue-key attack ([[12]], [[14]], [
 signer sets its public key to
 
 $$
-X_{1}=g^{x_{1}} (\prod\_{i=2}^{n} X_{i})^{-1}
+X_{1}=g^{x_{1}} (\prod_{i=2}^{n} X_{i})^{-1}
 $$
 
 allowing the signer to produce signatures for public keys $  \lbrace X_{1},...X_{n} \rbrace  ​$ by themselves.
@@ -499,7 +499,7 @@ verification.
 ### MuSig Signature Scheme
 
 MuSig is paramaterized by group parameters $(\mathbb{G\mathrm{,p,g)}}$ and three hash functions
-$ ( \textrm{H}\_{com}  ,  \textrm{H}\_{agg} ,  \textrm{H}\_{sig} ) $ from $  \lbrace 0,1 \rbrace ^{*} $ to
+$ ( \textrm{H}_{com}  ,  \textrm{H}_{agg} ,  \textrm{H}_{sig} ) $ from $  \lbrace 0,1 \rbrace ^{*} $ to
 $  \lbrace 0,1 \rbrace ^{l} $ (constructed from a single hash, using proper domain separation).
 
 #### Round 1
@@ -511,7 +511,7 @@ multi-set of all public keys involved in the signing process.
 For $ i\in  \lbrace 1,...,n \rbrace  ​$ , the signer computes the following
 
 $$
-a_{i} = \textrm{H}\_{agg}(\langle L \rangle,X\_{i})
+a_{i} = \textrm{H}_{agg}(\langle L \rangle,X_{i})
 $$
 
 as well as the "aggregated" public key
@@ -524,13 +524,12 @@ $$
 #### Round 2
 
 The signer generates a random private nonce $ r_{1}\leftarrow\mathbb{Z_{\mathrm{p}}} $, computes $ R_{1} = g^{r_{1}} $
-(the public nonce) and commitment $ t_{1} = \textrm{H}\_{com}(R\_{1}) $ and sends $t_{1}​$ to all other cosigners.
+(the public nonce) and commitment $ t_{1} = \textrm{H}_{com}(R_{1}) $ and sends $t_{1}​$ to all other cosigners.
 
 When receiving the commitments $t_{2},...,t_{n}$ from the other cosigners, the signer sends $R_{1}$ to all other
 cosigners. This ensures that the public nonce is not exposed until all commitments have been received.
 
-Upon receiving $R_{2},...,R_{n}​$ from other cosigners, the signer verifies that $t\_{i}=\textrm{H}\_{com}(R_{i})​$
-for all $ i\in  \lbrace 2,...,n \rbrace  ​$.
+Upon receiving $R_{2},...,R_{n}​$ from other cosigners, the signer verifies that $t_{i}=\textrm{H}\_{com}(R_{i})​$ for all $ i\in \lbrace 2,...,n \rbrace ​$.
 
 The protocol is aborted if this is not the case.
 
@@ -540,9 +539,9 @@ If all commitment and random challenge pairs can be verified with $ \textrm{H}_{
 
 $$
 \begin{aligned}
-R &= \prod^{n}\_{i=1}R\_{i} \\\\
-c &= \textrm{H}\_{sig} (\tilde{X},R,m) \\\\
-s\_{1} &= r\_{1} + ca\_{1} x\_{1} \mod p
+R &= \prod^{n}_{i=1}R_{i} \\\\
+c &= \textrm{H}_{sig} (\tilde{X},R,m) \\\\
+s_{1} &= r_{1} + ca_{1} x_{1} \mod p
 \end{aligned}
 $$
 
@@ -555,9 +554,9 @@ keys $ \langle L \rangle ​$ and message $ m ​$, the verifier computes:
 
 $$
 \begin{aligned}
-a_{i} &= \textrm{H}\_{agg}(\langle L \rangle,X\_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
-\tilde{X} &= \prod\_{i=1}^{n}X\_{i}^{a\_{i}} \\\\
-c &=  \textrm{H}\_{sig} (\tilde{X},R,m)
+a_{i} &= \textrm{H}_{agg}(\langle L \rangle,X_{i}) \mspace{9mu} \textrm {for} \mspace{9mu}  i \in  \lbrace 1,...,n \rbrace  \\\\
+\tilde{X} &= \prod_{i=1}^{n}X_{i}^{a_{i}} \\\\
+c &=  \textrm{H}_{sig} (\tilde{X},R,m)
 \end{aligned}
 $$
 
@@ -579,8 +578,8 @@ In more detail, it was observed that in the two-round variant of MuSig, an adver
 $ X_{2},...,X_{n} $) can impose the value of $ R=\Pi_{i=1}^{n}R_{i} $ used in signature protocols since they can choose
 $ R_{2},...,R_{n} $ after having received $ R_{1} $ from the honest signer (controlling public key $ X_{1}=g^{x_{1}} $ ).
 This prevents one from using the initial method of simulating the honest signer in the Random Oracle model without knowing
-$ x_{1} $ by randomly drawing $ s_{1} $ and $ c $, computing $ R\_1=g^{s\_1}(X\_1)^{-a\_1c}$, and later programming
-$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c\_1 $ since the adversary might have made the random oracle query
+$ x_{1} $ by randomly drawing $ s_{1} $ and $ c $, computing $ R_1=g^{s_1}(X_1)^{-a_1c}$, and later programming
+$ \textrm{H}\_{sig}(\tilde{X}, R, m) \mspace{2mu} : = c_1 $ since the adversary might have made the random oracle query
 $ \textrm{H}\_{sig}(\tilde{X}, R, m) $ *before* engaging the corresponding signature protocol.  
 
 Despite this, there is no attack currently known against the two-round variant of MuSig and it might be secure,
@@ -594,7 +593,7 @@ a fix to make the execution of the signing algorithm dependent on the message in
 If $ X = g^{x_i} $ is the public key of a specific signer and $ m $ the message they want to sign, and
 
 $$
-S^\prime =  \lbrace (X^\prime\_{1}, m^\prime\_{1}),..., (X^\prime\_{n-1}, m^\prime\_{n-1}) \rbrace
+S^\prime =  \lbrace (X^\prime_{1}, m^\prime_{1}),..., (X^\prime_{n-1}, m^\prime_{n-1}) \rbrace
 $$
 
 is the set of the public key/message pairs of other signers, this specific signer merges $ (X, m) $ and $ S^\prime $

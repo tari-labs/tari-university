@@ -14,13 +14,15 @@ TLU can now support mermaid diagrams! Flowcharts, sequence diagrams and more!
 ### How to write mermaid diagrams.
 
 1. [RTFM](https://mermaidjs.github.io).
-2. Wrap your mermaid code in `<div>` tags. Add the `class=mermaid` attribute to the tag. So your code will look like
-```html
-<div class="mermaid">
+2. Wrap your mermaid code in `@`startmermaid and `@`endmermaid tags. So your code will look like
+
+
+@`startmermaid
 graph LR
 ...
-</div>
-```
+@endmermaid`
+
+
 3. **Note:** You can't have blank lines in your diagrams, unfortunately, because the markdown renderer will interpret
  this as a new paragraph and break your diagram. However, you can _sort of_ workaround this by putting a `#` as a
  spacer (see first example).

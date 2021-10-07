@@ -232,17 +232,21 @@ $$
 quadruple vectors each of size $2^{k-1}$, where
 
 $$
-\mathbf{a}^{(j-1)} = \mathbf{a}\_{lo} \cdot u\_j + \mathbf{a}\_{hi} \cdot u\_j^{-1} ​\\\\
-\mathbf{b}^{(j-1)} = \mathbf{b}\_{lo} \cdot u\_j^{-1} + \mathbf{b}\_{hi} \cdot u\_j​ \\\\
-\mathbf{G}^{(j-1)} = \mathbf{G}\_{lo} \cdot u\_j^{-1} + \mathbf{G}\_{hi} \cdot u\_j​ \\\\
-\mathbf{H}^{(j-1)} = \mathbf{H}\_{lo} \cdot u\_j  + \mathbf{H}\_{hi} \cdot u\_j^{-1} \\\\
+\displaylines{
+\mathbf{a}^{(j-1)} = \mathbf{a}_{lo} \cdot u_j + \mathbf{a}_{hi} \cdot u_j^{-1} ​\\
+\mathbf{b}^{(j-1)} = \mathbf{b}_{lo} \cdot u_j^{-1} + \mathbf{b}_{hi} \cdot u_j​ \\
+\mathbf{G}^{(j-1)} = \mathbf{G}_{lo} \cdot u_j^{-1} + \mathbf{G}_{hi} \cdot u_j​ \\
+\mathbf{H}^{(j-1)} = \mathbf{H}_{lo} \cdot u_j  + \mathbf{H}_{hi} \cdot u_j^{-1} \\
+}
 $$
 
 and $u_k$ is the verifier's challenge. The vectors
 
 $$
-\mathbf{a}\_{lo}, \mathbf{b}\_{lo}, \mathbf{G}\_{lo}, \mathbf{H}\_{lo}​ \\\\
-\mathbf{a}\_{hi}, \mathbf{b}\_{hi}, \mathbf{G}_{hi}, \mathbf{H}\_{hi} ​
+\displaylines{
+\mathbf{a}_{lo}, \mathbf{b}_{lo}, \mathbf{G}_{lo}, \mathbf{H}_{lo}​ \\
+\mathbf{a}_{hi}, \mathbf{b}_{hi}, \mathbf{G}_{hi}, \mathbf{H}_{hi} ​
+}
 $$
 
 are the left and the right halves of the vectors
@@ -602,7 +606,7 @@ Algorithm 4 or [A4].
 
 
 All four optimized algorithms, [A1], [A2], [A3] and [A4], are fairly competent in saving multiplication costs, showing more than
-20\% savings for vectors of sizes 64 and above.
+20% savings for vectors of sizes 64 and above.
 
 The above results indicate that algorithm [A1] is the best of the four for several reasons:
 
@@ -610,7 +614,7 @@ The above results indicate that algorithm [A1] is the best of the four for sever
 
 - In order to account for the other four cases; it takes second place twice and third place twice.
 
-- It has the best savings percentage of 47.83\% relative to [A0].   
+- It has the best savings percentage of 47.83% relative to [A0].   
 
 - The only three cases in which it is on par with the minimally optimized algorithm [A0] is when all other algorithms are on par; i.e. when
 $n = 4$ and $n = 8$; as well as when the best optimized algorithm saves a mere $4$ multiplications.

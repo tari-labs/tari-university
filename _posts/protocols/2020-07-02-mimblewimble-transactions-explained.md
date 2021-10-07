@@ -105,16 +105,10 @@ $$ C_i = n_i.H + k_i.G $$
 where _G_ is another generator on the same curve, this completely _blinds_ the inputs and outputs so that no pre-image
 attack is possible. This formulation is called a _Pedersen commitment_ [[3]].
 
-<div class="note warning">
+<span class="note warning" style="display: block;">
 The two generators, _H_ and _G_ must be selected in a way that it's impossible to convert values from one generator to
-the other [[2]]. Specifically, if _G_ is the base generator, then there exists some _k_ where $$ H = kG $$
-
-If anyone is able to figure out this _k_, the whole security of Confidential Transactions falls apart. It's left as an
-exercise for the reader to figure out why.
-
-For a semi-gentle introduction to these concepts, Adam Gibson's paper on the subject is excellent [[5]].
-
-</div>
+the other [[2]]. Specifically, if _G_ is the base generator, then there exists some _k_ where $ H = kG $. <br />If anyone is able to figure out this _k_, the whole security of Confidential Transactions falls apart. It's left as an exercise for the reader to figure out why. <br />For a semi-gentle introduction to these concepts, Adam Gibson's paper on the subject is excellent [[5]].
+</span>
 
 
 ### Alice Prepares a Transaction
