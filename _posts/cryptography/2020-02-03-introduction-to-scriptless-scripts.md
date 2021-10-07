@@ -88,7 +88,7 @@ $$
 where
 
 $$
-e=H(P||R||m) \text{, } P=xG
+e=H(P\|R\|m) \text{, } P=xG
 $$
 
 The position on the line chosen is taken as the hash of all the data that one needs to commit to, the digital signature.
@@ -150,12 +150,12 @@ where $t$ is the shared secret, $G$ is the generator of discrete log hard group 
 
 Using this information, the second party generates
 $$
-H(P||R+T||m)x
+H(P\|R+T\|m)x
 $$
 where the coins to be swapped are contained within message $m$. The first party can now calculate the complete
 signature $s$ such that  
 $$
-s=r+t+H(P||R+T||m)x
+s=r+t+H(P\|R+T\|m)x
 $$
 The first party then calculates and publishes the adaptor signature $s'$ to the second party (and anyone else listening)
 $$
@@ -163,7 +163,7 @@ s'=s-t
 $$
 The second party can verify the adaptor signature $s'$ by asserting $s'G$
 $$
-s'G \overset{?}{=} R+H(P||R+T||m)P
+s'G \overset{?}{=} R+H(P\|R+T\|m)P
 $$
 However, this is not a valid signature, as the hashed nonce point is $R+T$ and not $R$.
 

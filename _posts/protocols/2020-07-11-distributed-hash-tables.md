@@ -155,16 +155,16 @@ network. The following figure shows a binary tree structure in a three-bit key s
 
 @startmermaid
 graph TD
-AR[ ] --- |0| A0( )
-AR --- |1| A1[ ]
-A0 --- |0| A00[ ]
-A0 --- |1| A01[ ]
+AR[ ] --- |0| A0
+AR --- |1| A1
+A0 --- |0| A00
+A0 --- |1| A01
 A00 --- |0| N000[Node 000]
 A00 --- |1| N001[Node 001]
 A01 --- |0| N010[Node 010]
 A01 --- |1| N011[Node 011]
-A1 --- |0| A10[ ]
-A1 --- |1| A11[ ]
+A1 --- |0| A10
+A1 --- |1| A11
 A10 --- |0| A100[Node 100]
 A10 --- |1| A101[Node 101]
 A11 --- |0| A110[Node 110]
@@ -390,10 +390,13 @@ is sufficient to prevent adaptive join-leave attacks with high probability.
 Sen, Freedman [[7]] modelled and analysed the cuckoo rule and found that, in practice, it tolerates very few
 adversarial nodes.
 
-|                                                                                                                                                                                        |     |                                                                                                                                                                                                                                                     |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                           ![Commensal Cuckoo Figure1](/images/protocols/dht/Commensal-Cuckoo-Figure1.png)                                                           |     |                                                                                         ![Commensal Cuckoo Figure2](/images/protocols/dht/Commensal-Cuckoo-Figure2.png)                                                                                          |
-| (Cuckoo rule) Minimum group size <br>needed to tolerate different $\epsilon$ for 100,000 rounds.<br>Groups must be large (i.e. 100s to 1,000s of nodes) to guarantee correctness [[7]] |     | (Cuckoo rule) Number of rounds the system maintained correctness with an average group<br> size of 64 nodes, varied. Simulation was halted<br> after 100,000 rounds. Failure rates drop dramatically past a certain threshold for different N [[7]] |
+| :----: |
+| ![Commensal Cuckoo Figure1](/images/protocols/dht/Commensal-Cuckoo-Figure1.png) |
+| (Cuckoo rule) Minimum group size <br>needed to tolerate different $\epsilon$ for 100,000 rounds.<br>Groups must be large (i.e. 100s to 1,000s of nodes) to guarantee correctness [[7]] |
+
+| :----: |
+| ![Commensal Cuckoo Figure2](/images/protocols/dht/Commensal-Cuckoo-Figure2.png) |
+| (Cuckoo rule) Number of rounds the system maintained correctness with an average group<br> size of 64 nodes, varied. Simulation was halted<br> after 100,000 rounds. Failure rates drop dramatically past a certain threshold for different N [[7]] |
 
 Notably, they show that rounds to failure (i.e. more than one-third of nodes in a given group are adversarial) decreases
 dramatically with an increasing but small global fraction of adversarial nodes. An amendment rule is proposed, which

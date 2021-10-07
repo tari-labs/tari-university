@@ -121,7 +121,6 @@ $ \mathbf {k}^n = (1,k,k^2, \mspace{3mu} ... \mspace{3mu} ,k^{n-1}) \in (\mathbb
 - Let $ \mathcal{P_{IP}} $ and $ \mathcal{V_{IP}} ​$ denote the *prover* and *verifier* in relation to inner-product
 calculations respectively.
 
-
 ### Pedersen Commitments and Elliptic Curve Pedersen Commitments
 
 The basis of confidential transactions is the Pedersen Commitment scheme defined in [[15]].
@@ -277,6 +276,7 @@ vector commitments that satisfy a given inner product relation. Let inputs to th
 generators $ g,h \in \mathbb G^n $, a scalar $ c \in \mathbb Z_p $ and $ P \in \mathbb G $. The argument lets the
 *prover* $ \mathcal{P} $ convince a *verifier* $ \mathcal{V} $ that the *prover* $ \mathcal{P} $ knows two vectors
 $ \mathbf a, \mathbf b \in \mathbb Z^n_p ​$ such that
+
 $$
 P =\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \mspace{30mu} \mathrm{and} \mspace{30mu} c =
 \langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle
@@ -286,10 +286,10 @@ $ P ​$ is referred to as the binding vector commitment to $ \mathbf a, \mathbf
 efficient proof system for the following relation:
 
 $$
-\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} P \in \mathbb G , \mspace{12mu} c \in \mathbb Z_p ;
+(\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} P \in \mathbb G , \mspace{12mu} c \in \mathbb Z_p ;
 \mspace{12mu} \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) \mspace{3mu} : \mspace{15mu} P =
 \mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \mspace{3mu} \wedge \mspace{3mu} c =
-\langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle \}
+\langle \mathbf {a} \mspace{3mu}, \mspace{3mu} \mathbf {b} \rangle
 \tag{1}
 $$
 
@@ -303,9 +303,9 @@ Here $ u \in \mathbb G $ is a fixed group element with an unknown discrete-log r
 $ \mathbf {g},\mathbf {h} \in \mathbb G^n ​$.
 
 $$
-\{ (\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} u,P \in \mathbb G ;
+(\mathbf {g},\mathbf {h} \in \mathbb G^n , \mspace{12mu} u,P \in \mathbb G ;
 \mspace{12mu} \mathbf {a}, \mathbf {b} \in \mathbb Z^n_p ) : \mspace{15mu} P =
-\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle } \}
+\mathbf{g}^\mathbf{a}\mathbf{h}^\mathbf{b} \cdot u^{ \langle \mathbf {a}, \mathbf {b} \rangle }
 \tag{2}
 $$
 
@@ -339,7 +339,7 @@ logarithm relation between $ \mathbf {g} , \mathbf {h} , u $ or extracting a val
 
 Protocol 1 uses an inner product argument of two vectors $ \mathbf a, \mathbf b \in \mathbb Z^n_p $ of size $ n $.
 The Pedersen Commitment scheme allows a vector to be cut in half and the two halves to then be compressed together.
-Let $ \mathrm H : \mathbb Z^{2n+1}\_p \to \mathbb G $ be a hash function for commitment $ P $, with
+Let $ \mathrm H : \mathbb Z^{2n+1}_p \to \mathbb G $ be a hash function for commitment $ P $, with
 $ P = \mathrm H(\mathbf a , \mathbf b, \langle \mathbf a, \mathbf b \rangle) $. Note that commitment $ P $ and thus
 $ \mathrm H $ is additively homomorphic, therefore sliced vectors of $  \mathbf a, \mathbf b \in \mathbb Z^n_p  $ can be
 hashed together with inner product $ c = \langle \mathbf a , \mathbf b \rangle \in \mathbb Z_p$. If $ n ^\prime = n/2 ​$,
@@ -355,10 +355,10 @@ $$
 \mathrm H(\mathbf a_{[: n ^\prime]} \mspace{3mu} , \mspace{3mu} \mathbf a_{[n ^\prime :]} \mspace{3mu} ,
 \mspace{3mu} \mathbf b_{[: n ^\prime]} \mspace{3mu} , \mspace{3mu} \mathbf b_{[n ^\prime :]} \mspace{3mu} ,
 \mspace{3mu} \langle \mathbf {a}, \mathbf {b} \rangle) &=
-\mathbf g ^ {\mathbf a_{[: n ^\prime]}} \_{[: n ^\prime]} \cdot \mathbf g ^ {\mathbf a^\prime_{[n ^\prime :]}}
-\_{[n ^\prime :]} \cdot
-\mathbf h ^ {\mathbf b_{[: n ^\prime]}} \_{[: n ^\prime]} \cdot \mathbf h ^ {\mathbf b^\prime_{[n ^\prime :]}}
-\_{[n ^\prime :]} \cdot
+\mathbf g ^ {\mathbf a_{[: n ^\prime]}} _{[: n ^\prime]} \cdot \mathbf g ^ {\mathbf a^\prime_{[n ^\prime :]}}
+_{[n ^\prime :]} \cdot
+\mathbf h ^ {\mathbf b_{[: n ^\prime]}} _{[: n ^\prime]} \cdot \mathbf h ^ {\mathbf b^\prime_{[n ^\prime :]}}
+_{[n ^\prime :]} \cdot
 u^{\langle \mathbf {a}, \mathbf {b} \rangle}
 \mspace{20mu} \in \mathbb G
 \end{aligned}
@@ -396,8 +396,8 @@ it to the *verifier* $ \mathcal{V} ​$:
 
 $$
 \begin{aligned}
-\mathbf a ^\prime &= x\mathbf a \_{[: n ^\prime]} + x^{-1} \mathbf a \_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p \\\\
-\mathbf b ^\prime &= x^{-1}\mathbf b \_{[: n ^\prime]} + x \mathbf b \_{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p
+\mathbf a ^\prime &= x\mathbf a _{[: n ^\prime]} + x^{-1} \mathbf a _{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p \\\\
+\mathbf b ^\prime &= x^{-1}\mathbf b _{[: n ^\prime]} + x \mathbf b _{[n ^\prime :]} \in \mathbb Z^{n^\prime}_p
 \end{aligned}
 $$
 
@@ -417,8 +417,8 @@ tuple $ ( L , R , \mathbf a^\prime , \mathbf b^\prime ) $, approximately half th
 $   \mathbf a, \mathbf b \in \mathbb Z^n_p   $. The test in relation (3) is the same as testing that
 $$
 P^\prime =
-(\mathbf g ^ {x^{-1}} \_{[: n ^\prime]} \circ \mathbf g ^ x \_{[n ^\prime :]})^{\mathbf a^\prime} \cdot
-(\mathbf h ^ x \_{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} \_{[n ^\prime :]})^{\mathbf b^\prime} \cdot
+(\mathbf g ^ {x^{-1}} _{[: n ^\prime]} \circ \mathbf g ^ x _{[n ^\prime :]})^{\mathbf a^\prime} \cdot
+(\mathbf h ^ x _{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} _{[n ^\prime :]})^{\mathbf b^\prime} \cdot
 u^{\langle \mathbf a^\prime , \mathbf b^\prime \rangle}
 \tag{4}
 $$
@@ -427,16 +427,16 @@ Thus, the *prover* $ \mathcal{P} ​$ and *verifier* $ \mathcal{V} ​$ can recu
 for $ P^\prime ​$ with respect to generators
 
 $$
-(\mathbf g ^ {x^{-1}} \_{[: n ^\prime]} \circ \mathbf g ^ x \_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu}
-\mathbf h ^ x \_{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} \_{[n ^\prime :]} \mspace{6mu} , \mspace{6mu}
+(\mathbf g ^ {x^{-1}} _{[: n ^\prime]} \circ \mathbf g ^ x _{[n ^\prime :]} \mspace{6mu} , \mspace{6mu}
+\mathbf h ^ x _{[: n ^\prime]} \circ \mathbf h ^ {x^{-1}} _{[n ^\prime :]} \mspace{6mu} , \mspace{6mu}
 u )
 $$
 
 which will result in a $ \log _2 n $ round protocol with $ 2 \log _2 n $ elements in $ \mathbb G $ and $ 2 $ elements in
 $ \mathbb Z _p $. The *prover* $ \mathcal{P} $ ends up sending the following terms to the *verifier* $ \mathcal{V} ​$:
 $$
-(L_1 , R_1) \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} (L\_{\log _2 n} ,
-R \_{\log _2 n}) \mspace{3mu} , \mspace{3mu} (a , b)
+(L_1 , R_1) \mspace{3mu} , \mspace{3mu} . . . \mspace{3mu} , \mspace{3mu} (L_{\log _2 n} ,
+R _{\log _2 n}) \mspace{3mu} , \mspace{3mu} (a , b)
 $$
 
 where $ a,b \in \mathbb Z _p ​$ are only sent right at the end. This protocol can be made non-interactive using the
@@ -537,8 +537,8 @@ The proof system will convince the *verifier* $ \mathcal{V} ​$ that commitment
 $ v \in [0,2^n - 1] ​$ such that
 
 $$
-\{ (g,h \in \mathbb{G}) , V , n \mspace{3mu} ; \mspace{12mu} v, \gamma \in \mathbb{Z_p} ) \mspace{3mu} :
-\mspace{3mu} V =h^\gamma g^v \mspace{5mu} \wedge \mspace{5mu} v \in [0,2^n - 1] \}
+(g,h \in \mathbb{G}) , V , n \mspace{3mu} ; \mspace{12mu} v, \gamma \in \mathbb{Z_p} ) \mspace{3mu} :
+\mspace{3mu} V =h^\gamma g^v \mspace{5mu} \wedge \mspace{5mu} v \in [0,2^n - 1]
 $$
 
 without revealing $ v ​$. Let $ \mathbf {a}_L = (a_1 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} ,
@@ -702,10 +702,10 @@ if a single *prover* $ \mathcal{P} $ needs to perform multiple range proofs at t
 A proof system must be presented for the following relation:
 
 $$
-\{ (g,h \in \mathbb{G}) , \mspace{9mu} \mathbf {V} \in \mathbb{G}^m \mspace{3mu} ;
+(g,h \in \mathbb{G}) , \mspace{9mu} \mathbf {V} \in \mathbb{G}^m \mspace{3mu} ;
 \mspace{9mu} \mathbf {v}, \gamma \in \mathbb Z_p^m ) \mspace{6mu} : \mspace{6mu} V_j =
 h^{\gamma_j} g^{v_j} \mspace{6mu} \wedge \mspace{6mu} v_j \in [0,2^n - 1] \mspace{15mu} \forall \mspace{15mu} j \in
-[1,m] \}
+[1,m]
 \tag{9}
 $$
 
@@ -1343,7 +1343,7 @@ is a directed acyclic graph ..."
 numbers, the logarithm $ \log_b^a $ is a number $ x $ such that
 $ b^x=a $​, for given numbers $ a $ and $ b ​$.
 Analogously, in any group $ G $ , powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm
-$ \log\_ba $ is an integer $ k $ such that $ b^k=a $​. Algorithms in public-key cryptography base their security on the
+$ \log_ba $ is an integer $ k $ such that $ b^k=a $​. Algorithms in public-key cryptography base their security on the
 assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of
 elliptic curves over finite fields has no efficient solution ([[5]], [[16]]).
 

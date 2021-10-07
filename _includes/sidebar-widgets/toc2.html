@@ -5,7 +5,7 @@
   </div>
   <div class="widget-tags__inner">
 
-    <div class="acc-container-2">
+    <div class="acc-container-2" id="acc-menu">
       {% for category in site.categories  %}
         {% capture category_name %}{{ category | first }}{% endcapture %}
         <div id="accordion-2">
@@ -19,9 +19,9 @@
             <ol>
             {% for post in site.categories[category_name] reversed %}
             {% if post.featured %}
-            <a href="{{ site.baseurl }}{{ post.url }}"><h5 style="margin-left: -20px;">{{post.title}}</h5></a>
+            <h5 style="margin-left: -20px;"><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h5>
             {% else %}
-              <li><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></li>
+              <li ><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></li>
             {% endif %}
             {% endfor %}
             </ol>

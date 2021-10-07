@@ -86,7 +86,7 @@ $$
 \begin{aligned}
   -\text{Inputs}(0)+\text{MultiSig}(0)+\text{fee}
     &= \text{Excess}(0) \\\\
-  -\Big((v^{\prime\prime}\_{0_{a}}H+k^{\prime\prime}\_{0_{a}}G)+(v^{\prime\prime}\_{0_{b}}H+k^{\prime\prime}\_{0_{b}}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH
+  -\Big((v^{\prime\prime}_{0_{a}}H+k^{\prime\prime}_{0_{a}}G)+(v^{\prime\prime}_{0_{b}}H+k^{\prime\prime}_{0_{b}}G)\Big)+\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big)+fH
     &= \mathcal{X}_{0}
 \end{aligned}
 \tag{1}
@@ -112,14 +112,14 @@ nonce and public blinding factor respectively. The $N\_{\text{th}}$ refund proce
 
 
 Alice and Bob set up Alice's intermediate MultiSig funding transaction (Figure&nbsp;2), spending the original funding
-MultiSig UTXO. The lock height $h\_{N}$ corresponds to the current blockchain height.
+MultiSig UTXO. The lock height $h_{N}$ corresponds to the current blockchain height.
 
 $$
 \begin{aligned}
-  -\text{MultiSig}(0)+\text{MultiSig}(N)\_{A}+\text{fee}
-       & =\text{Excess}(N)\_{A1} \\\\
-  -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(\hat{k}\_{N\_{a}}+k\_{N\_{b}})G\Big) + fH
-       &= \mathcal{X}\_{N\_{A1}}
+  -\text{MultiSig}(0)+\text{MultiSig}(N)_{A}+\text{fee}
+       & =\text{Excess}(N)_{A1} \\\\
+  -\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big) + fH
+       &= \mathcal{X}_{N_{A1}}
 \end{aligned}
 \tag{2}
 $$
@@ -130,8 +130,8 @@ aggregated signature, $s\_{N\_{AA1}}$, hidden.
 
 $$
 \begin{aligned}
-  \mathcal{X}\_{N\_{A1}} &= (-k_{0\_{a}}+\hat{k}\_{N\_{a}})G+(-k\_{0\_{b}}+k\_{N\_{b}})G \\\\
-                         &= P\_{N\_{AA1}}+P\_{N\_{AB1}}
+  \mathcal{X}_{N_{A1}} &= (-k_{0_{a}}+\hat{k}_{N_{a}})G+(-k_{0_{b}}+k_{N_{b}})G \\\\
+                         &= P_{N_{AA1}}+P_{N_{AB1}}
 \end{aligned}
 \tag{3}
 $$
@@ -139,8 +139,8 @@ $$
 
 $$
 \begin{aligned}
-  \text{Challenge:}\quad\mathcal{H}(R_{N\_{AA1}}+R\_{N\_{AB1}}\parallel P\_{N\_{AA1}}+P\_{N\_{AB1}}\parallel
-    f\parallel h\_{N})
+  \text{Challenge:}\quad\mathcal{H}(R_{N_{AA1}}+R_{N_{AB1}}\parallel P_{N_{AA1}}+P_{N_{AB1}}\parallel
+    f\parallel h_{N})
 \end{aligned}
 \tag{4}
 $$
@@ -148,14 +148,14 @@ $$
 
 $$
 \begin{aligned}
-  \text{Final signature tuple, kept secret:}\quad(s\_{N\_{AA1}}+s\_{N\_{AB1}},R\_{N\_{AA1}}+R\_{N\_{AB1}})
+  \text{Final signature tuple, kept secret:}\quad(s_{N_{AA1}}+s_{N_{AB1}},R_{N_{AA1}}+R_{N_{AB1}})
 \end{aligned}
 \tag{5}
 $$
 
 $$
 \begin{aligned}
-  \text{Kernel of this transaction:}\quad\mathcal{K}\_{N\_{AA1}}
+  \text{Kernel of this transaction:}\quad\mathcal{K}_{N_{AA1}}
 \end{aligned}
 \tag{6}
 $$
@@ -163,34 +163,34 @@ $$
 #### Bob - Part 1
 
 Alice and Bob set up Bob's intermediate MultiSig funding transaction (Figure&nbsp;2), also spending the original funding
-MultiSig UTXO. The lock height $h\_{N}$ again corresponds to the current blockchain height.
+MultiSig UTXO. The lock height $h_{N}$ again corresponds to the current blockchain height.
 
 $$
 \begin{aligned}
-  -\text{MultiSig}(0)+\text{MultiSig}(N)\_{B}+\text{fee}
-       & =\text{Excess}(N)\_{B1} \\\\
-  -\Big(v\_{0}H+(k_{0\_{a}}+k\_{0\_{b}})G\Big) + \Big((v\_{0}-f)H+(k\_{N\_{a}}+\hat{k}\_{N\_{b}})G\Big) + fH
-       &= \mathcal{X}\_{N\_{B1}}
+  -\text{MultiSig}(0)+\text{MultiSig}(N)_{B}+\text{fee}
+       & =\text{Excess}(N)_{B1} \\\\
+  -\Big(v_{0}H+(k_{0_{a}}+k_{0_{b}})G\Big) + \Big((v_{0}-f)H+(k_{N_{a}}+\hat{k}_{N_{b}})G\Big) + fH
+       &= \mathcal{X}_{N_{B1}}
 \end{aligned}
 \tag{7}
 $$
 
-They collaborate to create $\text{MultiSig}(N)\_{A}$, its Bulletproof range proof, the signature challenge and Alice's
+They collaborate to create $\text{MultiSig}(N)_{A}$, its Bulletproof range proof, the signature challenge and Alice's
 portion of the signature. Bob does not share the final kernel and thus keeps his part of the aggregated signature
 hidden.
 
 $$
 \begin{aligned}
-  \mathcal{X}\_{N\_{B1}} &= (-k_{0\_{a}}+k\_{N\_{a}})G+(-k\_{0\_{b}}+\hat{k}\_{N\_{b}})G \\\\
-                         &= P\_{N\_{BA1}}+P\_{N\_{BB1}}
+  \mathcal{X}_{N_{B1}} &= (-k_{0_{a}}+k_{N_{a}})G+(-k_{0_{b}}+\hat{k}_{N_{b}})G \\\\
+                         &= P_{N_{BA1}}+P_{N_{BB1}}
 \end{aligned}
 \tag{8}
 $$
 
 $$
 \begin{aligned}
-  \text{Challenge:}\quad\mathcal{H}(R_{N\_{BA1}}+R\_{N\_{BB1}}\parallel P\_{N\_{BA1}}+P\_{N\_{BB1}}\parallel
-    f\parallel h\_{N})
+  \text{Challenge:}\quad\mathcal{H}(R_{N_{BA1}}+R_{N_{BB1}}\parallel P_{N_{BA1}}+P_{N_{BB1}}\parallel
+    f\parallel h_{N})
 \end{aligned}
 \tag{9}
 $$
@@ -198,14 +198,14 @@ $$
 
 $$
 \begin{aligned}
-  \text{Final signature tuple, kept secret:}\quad(s\_{N\_{BA1}}+s\_{N\_{BB1}},R\_{N\_{BA1}}+R\_{N\_{BB1}})
+  \text{Final signature tuple, kept secret:}\quad(s_{N_{BA1}}+s_{N_{BB1}},R_{N_{BA1}}+R_{N_{BB1}})
 \end{aligned}
 \tag{10}
 $$
 
 $$
 \begin{aligned}
-  \text{Kernel of this transaction:}\quad\mathcal{K}\_{N\_{BB1}}
+  \text{Kernel of this transaction:}\quad\mathcal{K}_{N_{BB1}}
 \end{aligned}
 \tag{11}
 $$
@@ -222,11 +222,11 @@ blinding factors are identified by superscript $^{\prime}$.
 
 $$
 \begin{aligned}
-  -\text{MultiSig}(N)\_{A}+\text{Outputs}(N)+\text{fee}
-    & =\text{Excess}(N)\_{A2} \\\\
-  -\Big((v\_{0}-f)H+(\hat{k}\_{N_{a}}+k\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
-    {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
-    &=\mathcal{X}\_{N\_{A2}}  \\\\
+  -\text{MultiSig}(N)_{A}+\text{Outputs}(N)+\text{fee}
+    & =\text{Excess}(N)_{A2} \\\\
+  -\Big((v_{0}-f)H+(\hat{k}_{N_{a}}+k_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
+    {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH
+    &=\mathcal{X}_{N_{A2}}  \\\\
 \end{aligned}
 \tag{12}
 $$
@@ -237,16 +237,16 @@ Bob. The signature challenge is determined as follows:
 
 $$
 \begin{aligned}
-  \mathcal{X}\_{N\_{A2}} &= (-\hat{k}\_{N_{a}}+k\_{N\_{a}}^{\prime})G + (-k\_{N\_{b}}+k\_{N\_{b}}^{\prime})G \\\\
-                         &= P\_{N\_{AA2}}+P\_{N\_{AB2}} \\\\
+  \mathcal{X}_{N_{A2}} &= (-\hat{k}_{N_{a}}+k_{N_{a}}^{\prime})G + (-k_{N_{b}}+k_{N_{b}}^{\prime})G \\\\
+                         &= P_{N_{AA2}}+P_{N_{AB2}} \\\\
 \end{aligned}
 \tag{13}
 $$
 
 $$
 \begin{aligned}
-  \text{Challenge:}\quad\mathcal{H}(R\_{N\_{AA2}}+R\_{N\_{AB2}}\parallel P\_{N\_{AA2}}+P\_{N\_{AB2}}\parallel f
-    \parallel\mathcal{H}(\mathcal{K}\_{N\_{AA1}})\parallel h\_{rel})
+  \text{Challenge:}\quad\mathcal{H}(R_{N_{AA2}}+R_{N_{AB2}}\parallel P_{N_{AA2}}+P_{N_{AB2}}\parallel f
+    \parallel\mathcal{H}(\mathcal{K}_{N_{AA1}})\parallel h_{rel})
 \end{aligned}
 \tag{14}
 $$
@@ -259,11 +259,11 @@ are identified by superscript $^{\prime}$.
 
 $$
 \begin{aligned}
-  -\text{MultiSig}(N)\_{B}+\text{Outputs}(N)+\text{fee}
-    & =\text{Excess}(N)\_{B2} \\\\
-  -\Big((v\_{0}-f)H+(k\_{N_{a}}+\hat{k}\_{N\_{b}})G\Big)+\Big((v\_{N\_{a}}^{\prime}H+k\_{N\_{a}}^{\prime}G)+(v\_{N\_{b}}^
-  {\prime}H+k\_{N\_{b}}^{\prime}G)\Big)+fH
-    &=\mathcal{X}\_{N\_{B2}} \\\\
+  -\text{MultiSig}(N)_{B}+\text{Outputs}(N)+\text{fee}
+    & =\text{Excess}(N)_{B2} \\\\
+  -\Big((v_{0}-f)H+(k_{N_{a}}+\hat{k}_{N_{b}})G\Big)+\Big((v_{N_{a}}^{\prime}H+k_{N_{a}}^{\prime}G)+(v_{N_{b}}^
+  {\prime}H+k_{N_{b}}^{\prime}G)\Big)+fH
+    &=\mathcal{X}_{N_{B2}} \\\\
 \end{aligned}
 \tag{15}
 $$
@@ -274,16 +274,16 @@ Alice. The signature challenge is determined as follows:
 
 $$
 \begin{aligned}
-  \mathcal{X}\_{N\_{B2}} &= (-k\_{N_{a}}+k\_{N\_{a}}^{\prime})G + (-\hat{k}\_{N\_{b}}+k\_{N\_{b}}^{\prime})G \\\\
-                         &= P\_{N\_{BA2}}+P\_{N\_{BB2}}
+  \mathcal{X}_{N_{B2}} &= (-k_{N_{a}}+k_{N_{a}}^{\prime})G + (-\hat{k}_{N_{b}}+k_{N_{b}}^{\prime})G \\\\
+                         &= P_{N_{BA2}}+P_{N_{BB2}}
 \end{aligned}
 \tag{16}
 $$
 
 $$
 \begin{aligned}
-  \text{Challenge:}\quad\mathcal{H}(R\_{N\_{BA2}}+R\_{N\_{BB2}}\parallel P\_{N\_{BA2}}+P\_{N\_{BB2}}\parallel f
-    \parallel\mathcal{H}(\mathcal{K}\_{N\_{BB1}})\parallel h\_{rel})
+  \text{Challenge:}\quad\mathcal{H}(R_{N_{BA2}}+R_{N_{BB2}}\parallel P_{N_{BA2}}+P_{N_{BB2}}\parallel f
+    \parallel\mathcal{H}(\mathcal{K}_{N_{BB1}})\parallel h_{rel})
 \end{aligned}
 \tag{17}
 $$
@@ -306,9 +306,9 @@ Alice:
 
 $$
 \begin{aligned}
-  \text{MultiSig}(N-1)\_{A}:\quad\Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big)
+  \text{MultiSig}(N-1)_{A}:\quad\Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big)
     & \quad & \lbrace\text{Alice's commitment}\rbrace \\\\
-  \hat{k}\_{(N-1)\_{a}}
+  \hat{k}_{(N-1)_{a}}
     & \quad & \lbrace\text{Alice shares with Bob}\rbrace \\\\
 \end{aligned}
 \tag{18}
@@ -318,9 +318,9 @@ Bob:
 
 $$
 \begin{aligned}
-  \text{MultiSig}(N-1)\_{B}:\quad\Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big)
+  \text{MultiSig}(N-1)_{B}:\quad\Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big)
     & \quad & \lbrace\text{Bob's commitment}\rbrace \\\\
-  \hat{k}\_{(N-1)\_{b}}
+  \hat{k}_{(N-1)_{b}}
     & \quad & \lbrace\text{Bob shares with Alice}\rbrace
 \end{aligned}
 \tag{19}
@@ -335,8 +335,8 @@ Alice verifies:
 
 $$
 \begin{aligned}  
-  \Big((v\_{0}-f)H+(k\_{(N-1)\_{a}}+\hat{k}\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ k\_{(N-1)\_{a}}+
-    \hat{k}\_{(N-1)\_{b}})
+  \Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0}-f,\ k_{(N-1)_{a}}+
+    \hat{k}_{(N-1)_{b}})
 \end{aligned}
 \tag{20}
 $$
@@ -346,8 +346,8 @@ Bob verifies:
 
 $$
 \begin{aligned}
-  \Big((v\_{0}-f)H+(\hat{k}\_{(N-1)\_{a}}+k\_{(N-1)\_{b}})G\Big) \overset{?}{=} C(v\_{0}-f,\ \hat{k}\_{(N-1)\_{a}}+
-    k\_{(N-1)\_{b}})
+  \Big((v_{0}-f)H+(\hat{k}_{(N-1)_{a}}+k_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0}-f,\ \hat{k}_{(N-1)_{a}}+
+    k_{(N-1)_{b}})
 \end{aligned}
 \tag{21}
 $$
@@ -473,7 +473,7 @@ BeamMW/beam Wiki"
 [[6]] F. Jahr, "Beam - Lightning Network Position Paper. (v 1.0)" \[online\]. Available:
 <https://docs.beam.mw/Beam_lightning_network_position_paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
 
-[6]: https://docs.beam.mw/Beam\_lightning\_network\_position\_paper.pdf
+[6]: https://docs.beam.mw/Beam_lightning_network_position_paper.pdf
 "Beam - Lightning network
 position paper. (v 1.0)"
 
@@ -484,18 +484,18 @@ position paper. (v 1.0)"
 "GitHub: fjahr/lightning-mw,
 Lightning Network Specifications"
 
-[[8]] The Beam Team, "GitHub: beam/node/laser\_beam\_demo at master - BeamMW/beam" \[online\]. Available:
+[[8]] The Beam Team, "GitHub: beam/node/laser_beam_demo at master - BeamMW/beam" \[online\]. Available:
 <https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo>. Date accessed: 2019&#8209;07&#8209;05.
 
-[8]: https://github.com/BeamMW/beam/tree/master/node/laser\_beam\_demo
-"GitHub: beam/node/laser\_beam\_demo
+[8]: https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo
+"GitHub: beam/node/laser_beam_demo
 at master - BeamMW/beam"
 
-[[9]] The Beam Team, "GitHub: beam/ecc\_bulletproof.cpp at mainnet - BeamMW/beam" \[online\]. Available:
+[[9]] The Beam Team, "GitHub: beam/ecc_bulletproof.cpp at mainnet - BeamMW/beam" \[online\]. Available:
 <https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp>. Date accessed: 2019&#8209;07&#8209;05.
 
 [9]: https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp
-"GitHub: beam/ecc\_bulletproof.cpp
+"GitHub: beam/ecc_bulletproof.cpp
 at mainnet - BeamMW/beam"
 
 [[10]] D. Smith, N. Kohen, and C. Stewart, “Lightning 101 for Exchanges” \[online\]. Available:

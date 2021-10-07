@@ -445,8 +445,8 @@ distinct primes $(p_1, p_2, \dots , p_l)$ such that $E$ has good reduction at ea
 $p_i$ and
 
 $$
-\\# E(\mathbb{F}\_{p\_{1}}) = p_2 ,\ \ \\# E(\mathbb{F}\_{p\_{2}}) = p_3 ,\ \ \dots\ \ ,
-\\# E(\mathbb{F}\_{p\_{l-1}}) = p\_l ,\ \ \\# E(\mathbb{F}\_{p\_{l}}) = p\_1
+\# E(\mathbb{F}_{p_{1}}) = p_2 ,\ \ \# E(\mathbb{F}_{p_{2}}) = p_3 ,\ \ \dots\ \ ,
+\# E(\mathbb{F}_{p_{l-1}}) = p_l ,\ \ \# E(\mathbb{F}_{p_{l}}) = p_1
 $$
 
 An Aliquot cycle as defined above has length $l$.

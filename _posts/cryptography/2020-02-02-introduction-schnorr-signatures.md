@@ -112,7 +112,7 @@ The approach to creating signatures always follows this recipe:
 The actual signature is created by hashing the combination of all the public information above to create a _challenge_, $e$:
 
 $$
-    e = H(R || P || m)
+    e = H(R \| P \| m)
 $$
 
 The hashing function is chosen so that _e_ has the same range as your private keys. In our case, we want something that
@@ -150,7 +150,7 @@ Why do we need a nonce in the standard signature?
 Let's say we naïvely sign a message $m$ with
 
 $$
-e = H(P || m)
+e = H(P \| m)
 $$
 
 and then the signature would be \\(s = ek \\).
@@ -245,7 +245,7 @@ supply a nonce, we can try:
 $$
 \begin{align}
   P_{agg} &= P_a + P_b \\\\
-  e &= H(R_a || R_b || P_a || P_b || m) \\\\
+  e &= H(R_a \| R_b \| P_a \| P_b \| m) \\\\
   s_{agg} &= r_a + r_b + (k_a + k_b)e \\\\
         &= (r_a + k_ae) + (r_b + k_ae) \\\\
         &= s_a + s_b
@@ -268,7 +268,7 @@ Now Bob lies and says that his public key is \\( P_b' = P_b - P_a \\) and public
 
 Note that Bob doesn't know the private keys for these faked values, but that doesn't matter.
 
-Everyone assumes that \\(s\_{agg} = R_a + R_b' + e(P_a + P_b') \\) as per the aggregation scheme.
+Everyone assumes that \\(s_{agg} = R_a + R_b' + e(P_a + P_b') \\) as per the aggregation scheme.
 
 But Bob can create this signature himself:
 
@@ -317,8 +317,8 @@ The scheme works as follows:
 
 $$
     \begin{align}
-        \ell &= H(X_1 || \dots || X_n) \\\\
-        a_i &= H(\ell || X_i) \\\\
+        \ell &= H(X_1 \| \dots \| X_n) \\\\
+        a_i &= H(\ell \| X_i) \\\\
         X &= \sum a_i X_i \\\\
     \end{align}
 $$
@@ -327,7 +327,7 @@ Note that in the preceding ordering of public keys, some deterministic conventio
 order of the serialized keys.
 
 1. Everyone also calculates the shared nonce, \\( R = \sum R_i \\).
-2. The challenge, $e$ is \\( H(R || X || m) \\).
+2. The challenge, $e$ is $ H(R \|\| X \|\| m) $.
 3. Each signer provides their contribution to the signature as:
 
 $$
@@ -379,12 +379,12 @@ This leads to both Alice and Bob calculating the following "shared" values:
 
 $$
 \begin{align}
-  \ell &= H(X_a || X_f) \\\\
-  a_a &= H(\ell || X_a) \\\\
-  a_f &= H(\ell || X_f) \\\\
+  \ell &= H(X_a \| X_f) \\\\
+  a_a &= H(\ell \| X_a) \\\\
+  a_f &= H(\ell \| X_f) \\\\
   X &= a_a X_a + a_f X_f \\\\
   R &= R_a + R_f (= R_b) \\\\
-  e &= H(R || X || m)
+  e &= H(R \| X \| m)
 \end{align}
 $$
 
@@ -421,7 +421,7 @@ But even if this is the case, let's say an attacker can trick us into signing a 
 ceremony to the point where partial signatures are generated. At this point, the attacker provides a different message,
 \\( e' = H(...||m') \\) to sign. Not suspecting any foul play, each party calculates their partial signature:
 
-$$ s'\_i = r_i + a_i k_i e' $$
+$$ s'_i = r_i + a_i k_i e' $$
 However, the attacker still has access to the first set of signatures: \\( s_i = r_i + a_i k_i e \\). He now simply
 subtracts them:
 
