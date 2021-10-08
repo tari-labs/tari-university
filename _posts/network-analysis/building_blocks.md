@@ -2,6 +2,7 @@
 layout: post
 title:  Probabilistic Attack Vector Analysis Building Blocks
 date:   2020-08-01 15:00:00 +0300
+redirect_from: /network-analysis/probabilistic-attack/building_blocks.html
 image:  '/images/banner-08.jpg'
 category: network-analysis
 tags:   [network-analysis]

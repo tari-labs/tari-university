@@ -2,6 +2,7 @@
 layout: post
 title:  Mermaid Demo
 date:   2020-09-01 15:00:00 +0300
+redirect_from: /labs/mermaid-demo.html
 image:  '/images/banner-09.jpg'
 category: labs
 tags:   [labs, mermaid]

@@ -2,6 +2,7 @@
 layout: post
 title:  Introduction to Applications of Byzantine Consensus Mechanisms
 date:   2020-03-03 15:00:00 +0300
+redirect_from: /consensus-mechanisms/BFT-consensus-mechanisms-applications/MainReport.html
 image:  '/images/banner-03.jpg'
 category: consensus-mechanisms
 tags:   [consensus-mechanisms]

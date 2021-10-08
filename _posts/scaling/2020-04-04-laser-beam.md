@@ -2,6 +2,7 @@
 layout: post
 title:  Laser Beam
 date:   2020-04-04 15:00:00 +0300
+redirect_from: /scaling/laser-beam/MainReport.html
 image:  '/images/banner-04.jpg'
 category: scaling
 tags:   [scaling]

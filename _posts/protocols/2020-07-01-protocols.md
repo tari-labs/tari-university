@@ -2,6 +2,7 @@
 layout: post-main
 title:  Blockchain-related Protocols
 date:   2020-07-01 12:00:00 +0300
+redirect_from: /protocols/protocols.html
 image:  '/images/banner-07.jpg'
 category: protocols
 permalink: /protocols/

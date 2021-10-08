@@ -2,6 +2,7 @@
 layout: post
 title:  Pool Mining
 date:   2020-05-04 15:00:00 +0300
+redirect_from: /mining/pool-mining/pool-mining.html
 image:  '/images/banner-05.jpg'
 category: mining
 tags:   [mining]

@@ -2,6 +2,7 @@
 layout: post
 title:  Understanding Byzantine Fault-tolerant Consensus
 date:   2020-03-01 15:00:00 +0300
+redirect_from: /consensus-mechanisms/BFT/understanding_bft_consensus.html
 image:  '/images/banner-03.jpg'
 category: consensus-mechanisms
 tags:   [consensus-mechanisms]

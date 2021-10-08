@@ -2,6 +2,7 @@
 layout: post
 title:  Probability of a Byzantine Takeover of the Digital Assets Network
 date:   2020-08-02 15:00:00 +0300
+redirect_from: /network-analysis/probabilistic-attack/byzantine_takeover_of_the_DAN.html
 image:  '/images/banner-08.jpg'
 category: network-analysis
 tags:   [network-analysis]

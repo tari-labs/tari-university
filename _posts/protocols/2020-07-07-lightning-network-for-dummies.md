@@ -2,6 +2,7 @@
 layout: post
 title:  Lightning Network for Dummies
 date:   2020-07-07 15:00:00 +0300
+redirect_from: /protocols/lightning-network-for-dummies/sources/PITCHME.link.html
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols]

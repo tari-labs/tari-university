@@ -31,7 +31,7 @@ slider: true # NOTE - By default, the slider is set to display featured posts. T
 # Contact Settings
 contact:
   email: your@email.com # Add your email for contant form
-  description: The Force is strong with this one. I have you now. I find your lack of faith disturbing. Hey, Luke! May the Force be with you. # Add a description of your form
+  description: Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material. # Add a description of your form
 
 # NOTE
 # Clifford theme comes with a contact form built-in. You can use this form with Formspree service and get up to 50 submissions for free. Also, you can easily switch to another service if you want.
@@ -54,7 +54,7 @@ disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example
 
 #-------------------------------
 # Google Analytics
-google-analytics: # Add your identifier. For example UA-99631805-1.
+google-analytics: UA-115476091-2
 
 
 #-------------------------------
@@ -73,6 +73,7 @@ plugins:
   - jekyll-sitemap
   - jekyll/tagging
   - jekyll-spaceship
+  - jekyll-redirect-from
 
 paginate: 6
 paginate_path: "/page/:num"

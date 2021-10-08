@@ -2,6 +2,7 @@
 layout: post
 title:  Introduction to Scriptless Scripts
 date:   2020-02-03 15:01:35 +0300
+redirect_from: /cryptography/scriptless-scripts/introduction-to-scriptless-scripts.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography]

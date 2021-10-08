@@ -2,6 +2,7 @@
 layout: post
 title:  Introduction to Tor and I2P
 date:   2020-07-10 15:00:00 +0300
+redirect_from: /protocols/intro-to-tor-i2P/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols]

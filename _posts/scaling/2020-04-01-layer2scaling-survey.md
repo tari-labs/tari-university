@@ -2,6 +2,7 @@
 layout: post
 title:  Layer 2 Scaling Survey
 date:   2020-04-01 15:00:00 +0300
+redirect_from: /scaling/layer2scaling-landscape/layer2scaling-survey.html
 image:  '/images/banner-04.jpg'
 category: scaling
 tags:   [scaling]
