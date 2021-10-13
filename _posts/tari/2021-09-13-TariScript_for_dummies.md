@@ -2,7 +2,7 @@
 layout: post
 title:  Understanding TariScript
 author: Cayle Sharrock <CjS77>
-date:   2020-03-01 15:00:00 +0300
+date:   2021-10-13 15:00:00 +0300
 image:  '/images/banner-05.jpg'
 category: Tari
 tags:   [TariScript, Smart contracts, Blockchain]
@@ -30,12 +30,12 @@ returns are due. It also means that "standard" things like tip jars are _não f�
 Some of the other things we want to be able to do in Tari that are hard (though not impossible in some cases, thanks to
 [scriptless scripts](/cryptography/introduction-to-scriptless-scripts) include:
 
-* n-of-m multisig
+* m-of-n multisig
 * Payment channels
 * Atomic swaps
 * Cross-chain atomic swaps
 * Side chain peg-in and peg-out transactions
-* Digital asset "cold storage."
+* Digital asset "cold storage"
 
 ... and many other things we haven't thought of yet.
 
@@ -170,9 +170,9 @@ Alice signs the script along with some other housekeeping chores and broadcasts 
 Later, when Bob comes online, his wallet scans the blockchain for UTXOs that have the script matching his public key
 hash.
 
-Now to spend this UTXO, Bob needs the keys for both locks. He gets the key for the first (Mimblewimble) lock using Diffie-Hellmann key exchange with Alice's public data in the transaction.
+Now to spend this UTXO, Bob needs the keys for both locks. He gets the key for the first (Mimblewimble) lock using [Diffie-Hellmann key exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange) with Alice's public data in the transaction.
 
-He must make it so that the script executes and returns the second key,  his public key, as a result.
+He must make it so that the script executes and returns the second key, his public key, as a result.
 
 When TariScript is validated, the script is run against an _input stack_ provided by Bob. In this case,
 Bob must provide a single element, his public key (`P_b`), as the script input.
@@ -200,7 +200,7 @@ The next instruction, `HashBlake256` hashes the top stack item and pushes the re
 | Script | PushHash(H_b) EqualVerify |
 | Stack  | `H_b P_b`                 |
 
-Next, we have `PushHash(H_b)`. As you might guess, the pushes the value `H_b` onto the stack:
+Next, we have `PushHash(H_b)`. As you might guess, this pushes the value `H_b` onto the stack:
 
 | Step   | 3(`PushHash(H_b)`) |
 |:-------|:-------------------|
@@ -223,7 +223,7 @@ knows. Bob proves that he knows this key by providing a signature in the transac
 In this way, we've achieved one-sided payments in Tari.
 Incidentally, the script Alice used here is nearly identical to
 the most common Bitcoin script called "Pay to public-key hash", or P2PKH. With TariScript, as with Bitcoin, there are
-many other ways Alice could have used to lock the UTXO for Bob's exclusive use.
+many other scripts Alice could have used to lock the UTXO for Bob's exclusive use.
 
 "Pay to public key" (P2PK) is the simplest and would have been `PushPublicKey(P_b)`. Bob would not need to provide any
 input at all here because the stack would already have his public key after the single instruction completes.
@@ -424,7 +424,7 @@ attacks:
 
 As you can see, the road from the initial idea of "Hey, let's incorporate scripting into Mimblewimble" to the final
 product was an adventurous one.
-This feature is particularly gratifying because it was a complete team effort, with at least half a dozen contributors making vital additions. Special thanks go to @BlackwolfSA for
-breaking my first three or four iterations of this concept, @DavidBurkett for reviewing and coming up with the basic
-script key idea and @MikeTheTike, @SimianZa, @Bizzle and @HansieOdendaal for helping refine and polish TariScript into its
+This feature is particularly gratifying because it was a complete team effort, with at least half a dozen contributors making vital additions. Special thanks go to @[BlackwolfSA](https://github.com/swvheerden) for
+breaking my first three or four iterations of this concept, @[DavidBurkett](https://github.com/DavidBurkett) for reviewing and coming up with the basic
+script key idea and @[MikeTheTike](https://github.com/mikethetike), @[SimianZa](https://github.com/philipr-za), @[Bizzle](https://github.com/delta1) and @[HansieOdendaal](https://github.com/hansieodendaal) for helping refine and polish TariScript into its
 final form.
