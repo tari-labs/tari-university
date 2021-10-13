@@ -48,7 +48,7 @@ the flexibility of Bitcoin script to Mimblewimble while having a minor effect on
 
 In standard Mimblewimble, to spend a UTXO, one needs knowledge of
 
-* The spending key of the UTXO commitment,
+* The spend key of the UTXO commitment,
 * The value of the UTXO commitment.
 
 You use this knowledge to construct a valid transaction, which contains
@@ -56,7 +56,7 @@ You use this knowledge to construct a valid transaction, which contains
 * Range proofs for new UTXOs, proving the values are non-negative AND knowledge of the spend key and value,
 * A signature on the kernel, proving knowledge of the transaction excess.
 
-Mimblewimble transactions are _interactive_ because the transaction contains information (the spending keys)
+Mimblewimble transactions are _interactive_ because the transaction contains information (the spend keys)
 that must remain secret to each party.
 
 So how can we implement something like one-sided payments in Mimblewimble?
@@ -67,7 +67,7 @@ This is where TariScript comes in.
 
 What if we changed things slightly and added some extra UTXO-spending rules?
 
-Let's say that, in addition to knowing the spending key and commitment value, we also require you to prove possession of
+Let's say that, in addition to knowing the spend key and commitment value, we also require you to prove possession of
 _another_ private key, which we'll call the _script key_.
 
 The twist is that we don't know the script public key until the UTXO script has finished executing [^1].
@@ -177,7 +177,9 @@ He must make it so that the script executes and returns the second key, his publ
 When TariScript is validated, the script is run against an _input stack_ provided by Bob. In this case,
 Bob must provide a single element, his public key (`P_b`), as the script input.
 
-Before the first instruction is executed, the stack and script look like this:
+Before the first instruction is executed, the stack[^2] and script look like this:
+
+[^2]: In these illustrations, the top of the stack is the left-most item.
 
 | Step   | 0                                           |
 |:-------|:--------------------------------------------|
@@ -426,5 +428,5 @@ As you can see, the road from the initial idea of "Hey, let's incorporate script
 product was an adventurous one.
 This feature is particularly gratifying because it was a complete team effort, with at least half a dozen contributors making vital additions. Special thanks go to @[BlackwolfSA](https://github.com/swvheerden) for
 breaking my first three or four iterations of this concept, @[DavidBurkett](https://github.com/DavidBurkett) for reviewing and coming up with the basic
-script key idea and @[MikeTheTike](https://github.com/mikethetike), @[SimianZa](https://github.com/philipr-za), @[Bizzle](https://github.com/delta1) and @[HansieOdendaal](https://github.com/hansieodendaal) for helping refine and polish TariScript into its
+script offset idea and @[MikeTheTike](https://github.com/mikethetike), @[SimianZa](https://github.com/philipr-za), @[Bizzle](https://github.com/delta1) and @[HansieOdendaal](https://github.com/hansieodendaal) for helping refine and polish TariScript into its
 final form.
