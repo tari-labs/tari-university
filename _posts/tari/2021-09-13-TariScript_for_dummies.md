@@ -381,6 +381,22 @@ $ \gamma_T \cdot G \stackrel?= \sum{K_{sj}} - \sum{K_{Oi}} $  is all that's requ
 
 The sender offset key also prevents _replay attacks_.
 
+In the naïve implementation of TariScript, consider the following scenario:
+
+1. Alice sends a one-sided payment to Bob (Alice has the key for the first lock, because the commitment spend key is a shared secret).
+2. Bob later spends the UTXO by sending funds to Charlie. Bob has the key for the second lock, and presents the proof of such when constructing the transaction.
+3. Later, Alice sends another one-sided payment to Bob. Again, Alice has a key for the first lock.
+4. She then conspires with Charlie, to _reuse_ the signature that Bob used when sending funds to Charlie. Even though they don't have the key to the first
+   lock, the input signature is sufficient to convince everyone that they do know it.
+
+There are some steps one could take to make this attack more difficult, such as adding the commitment to the signature
+challenge. This still would not eliminate the attack, since Alice would then be careful to use the same shared secret
+and value (and thus the same commitment) in her second transaction to Bob.
+
+However, the sender offset key _does_ block the replay attack.
+Alice and Bob cannot construct the replay transaction without knowledge of the second script offset, which only Bob
+knows, and unless he is very silly, uses a new random offset for every transaction.
+
 
 ### Horizon attacks
 
