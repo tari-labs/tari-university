@@ -2,6 +2,7 @@
 layout: post
 title:  Mimblewimble-Grin Blockchain Protocol Overview
 date:   2020-07-03 15:00:00 +0300
+redirect_from: /protocols/grin-protocol-overview/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols, mimblewimble, grin]

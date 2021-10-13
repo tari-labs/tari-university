@@ -2,6 +2,7 @@
 layout: post
 title:  Learning about Bulletproofs
 date:   2020-01-03 15:00:00 +0300
+redirect_from: /preface/learning/bulletproofs.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
 tags:   [learning-paths, bulletproofs]

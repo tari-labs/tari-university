@@ -2,6 +2,7 @@
 layout: post
 title:  Mimblewimble Transactions Explained
 date:   2020-07-02 15:00:00 +0300
+redirect_from: /protocols/mimblewimble-1/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols, mimblewimble]

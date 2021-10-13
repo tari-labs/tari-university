@@ -2,6 +2,7 @@
 layout: post
 title:  Style Guide
 date:   2020-10-01 15:01:35 +0300
+redirect_from: /preface/style-guide.html
 image:  '/images/banner-10.jpg'
 category: style-guide
 permalink: /style-guide/

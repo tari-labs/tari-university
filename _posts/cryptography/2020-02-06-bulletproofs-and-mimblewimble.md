@@ -2,6 +2,7 @@
 layout: post
 title:  Bulletproofs and Mimblewimble
 date:   2020-02-06 15:01:35 +0300
+redirect_from: /cryptography/bulletproofs-and-mimblewimble/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography, bulletproofs, mimblewimble]

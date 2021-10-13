@@ -2,6 +2,7 @@
 layout: post
 title:  The MuSig Schnorr Signature Scheme
 date:   2020-02-04 15:01:35 +0300
+redirect_from: /cryptography/musig-schnorr-sig-scheme/The_MuSig_Schnorr_Signature_Scheme.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography]

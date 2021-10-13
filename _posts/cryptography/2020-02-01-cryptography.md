@@ -2,6 +2,7 @@
 layout: post-main
 title:  Cryptography
 date:   2020-02-01 12:00:00 +0300
+redirect_from: /cryptography/cryptography.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 permalink: /cryptography

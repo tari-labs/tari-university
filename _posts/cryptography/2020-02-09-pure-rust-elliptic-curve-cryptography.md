@@ -2,6 +2,7 @@
 layout: post
 title:  Pure-Rust Elliptic Curve Cryptography
 date:   2020-02-09 15:01:35 +0300
+redirect_from: /cryptography/pure-rust-ecc/pure-rust-ecc.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography]

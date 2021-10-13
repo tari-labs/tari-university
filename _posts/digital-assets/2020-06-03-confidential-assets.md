@@ -2,6 +2,7 @@
 layout: post
 title:  Confidential Assets
 date:   2020-06-03 15:00:00 +0300
+redirect_from: /digital-assets/confidential-assets/MainReport.html
 image:  '/images/banner-06.jpg'
 category: digital-assets
 tags:   [digital-assets]

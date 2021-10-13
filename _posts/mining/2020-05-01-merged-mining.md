@@ -2,6 +2,7 @@
 layout: post
 title:  Merged Mining
 date:   2020-05-01 15:00:00 +0300
+redirect_from: /mining/merged-mining/merged-mining.html
 image:  '/images/banner-05.jpg'
 category: mining
 tags:   [mining]

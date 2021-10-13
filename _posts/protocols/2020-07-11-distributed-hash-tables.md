@@ -2,6 +2,7 @@
 layout: post
 title:  Distributed Hash Tables
 date:   2020-07-11 15:00:00 +0300
+redirect_from: /protocols/dht/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols]
