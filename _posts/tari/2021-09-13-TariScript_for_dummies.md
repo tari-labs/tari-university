@@ -396,7 +396,7 @@ challenge. This still would not eliminate the attack, since Alice would then be 
 and value (and thus the same commitment) in her second transaction to Bob.
 
 However, the sender offset key _does_ block the replay attack.
-Alice and Bob cannot construct the replay transaction without knowledge of the second script offset, which only Bob
+Alice and Charlie cannot construct the replay transaction without knowledge of the second script offset, which only Bob
 knows, and unless he is very silly, uses a new random offset for every transaction.
 
 
