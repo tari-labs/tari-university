@@ -430,6 +430,6 @@ attacks:
 As you can see, the road from the initial idea of "Hey, let's incorporate scripting into Mimblewimble" to the final
 product was an adventurous one.
 This feature is particularly gratifying because it was a complete team effort, with at least half a dozen contributors making vital additions. Special thanks go to @[BlackwolfSA](https://github.com/swvheerden) for
-breaking my first three or four iterations of this concept, @[DavidBurkett](https://github.com/DavidBurkett) for reviewing and coming up with the basic
+breaking my first three or four iterations of this concept and first proposing the script key concept, @[DavidBurkett](https://github.com/DavidBurkett) for reviewing and coming up with the basic
 script offset idea and @[MikeTheTike](https://github.com/mikethetike), @[SimianZa](https://github.com/philipr-za), @[Bizzle](https://github.com/delta1) and @[HansieOdendaal](https://github.com/hansieodendaal) for helping refine and polish TariScript into its
 final form.
