@@ -116,7 +116,7 @@ In this section, we'll examine the TariScript scheme in detail. By the end of it
 of how TariScript actually works.  And why it was such a long journey to get to this point.
 
 {: .note .warning }
-Math ahead! This section also builds on the concepts we discussed in [Mimblewimble - all the bits](??) and
+Math ahead! This section also builds on the concepts we discussed in [Mimblewimble - all the bits](/protocols/mimblewimble) and
 [Mimblewimble transactions](/protocols/mimblewimble-transactions-explained).
 
 
