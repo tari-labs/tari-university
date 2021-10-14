@@ -70,9 +70,12 @@ What if we changed things slightly and added some extra UTXO-spending rules?
 Let's say that, in addition to knowing the spend key and commitment value, we also require you to prove possession of
 _another_ private key, which we'll call the _script key_.
 
-The twist is that we don't know the script public key until the UTXO script has finished executing [^1].
+The twist is that we don't know the script public key until the UTXO script has finished executing [^1]. By definition,
+the script public key is whatever remains on the stack after the script has successfully completed execution. Any errors
+in the script execution, or if there is not exactly one valid public key on the stack after the script has finished running
+will result in the transaction being rejected.
 
-[^1]: If this sounds a lot like Bitcoin, you'd be right. This is an idea taken straight from Bitcoin itself.
+[^1]: If this sounds a lot like Bitcoin, you'd be right. This is an idea adapted from Bitcoin itself.
 
 Think of this as having a door with two locks. Standard Mimblewimble just has one lock. TariScript introduces a second
 lock, and you need to unlock both to open the door and spend the UTXO.
@@ -381,7 +384,7 @@ $ \gamma_T \cdot G \stackrel?= \sum{K_{sj}} - \sum{K_{Oi}} $  is all that's requ
 
 ### Replay attacks
 
-The sender offset key also prevents _replay attacks_.
+The sender offset key also prevents [_replay attacks_](https://github.com/tari-project/tari/blob/development/docs/src/replay_attacks.md).
 
 In the naïve implementation of TariScript, consider the following scenario:
 
@@ -395,9 +398,9 @@ There are some steps one could take to make this attack more difficult, such as 
 challenge. This still would not eliminate the attack, since Alice would then be careful to use the same shared secret
 and value (and thus the same commitment) in her second transaction to Bob.
 
-However, the sender offset key _does_ block the replay attack.
-Alice and Charlie cannot construct the replay transaction without knowledge of the second script offset, which only Bob
-knows, and unless he is very silly, uses a new random offset for every transaction.
+Ultimately, there is no simple way to block this attack. For Tari, we decided to disallow duplicate excesses on transactions.
+This requires us to track an index of all transactions in Tari history, but look-ups are reasonably efficient and it
+stops the replay attacks.
 
 
 ### Horizon attacks
