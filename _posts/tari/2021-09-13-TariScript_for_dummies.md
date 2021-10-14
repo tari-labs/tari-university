@@ -173,7 +173,10 @@ Alice signs the script along with some other housekeeping chores and broadcasts 
 Later, when Bob comes online, his wallet scans the blockchain for UTXOs that have the script matching his public key
 hash.
 
-Now to spend this UTXO, Bob needs the keys for both locks. He gets the key for the first (Mimblewimble) lock using [Diffie-Hellmann key exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange) with Alice's public data in the transaction.
+Now to spend this UTXO, Bob needs the keys for both locks. He gets the key for the first (Mimblewimble) lock using
+[Diffie-Hellmann key exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange) with Alice's public data in the transaction.
+
+He also gets the value that Alice sent him by [decrypting part of the bullet-proof](https://github.com/dalek-cryptography/bulletproofs/issues/335).
 
 He must make it so that the script executes and returns the second key, his public key, as a result.
 
