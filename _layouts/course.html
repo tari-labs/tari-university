@@ -1,0 +1,114 @@
+---
+layout: default
+---
+
+<!-- begin hero -->
+<div class="container" style=" margin-bottom: 120px;">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          {% if page.image %}
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('{{site.baseurl}}{{page.image}}');">
+              <img src="/images/icons/light-course.svg" class="topicon" />
+              <h1 class="tlu-hero-title">
+                Course {{ page.courseno }}:<br />
+                {{ page.title | escape }}</h1>
+                  <div class="post__meta">
+                    {% if page.tags.size >= 1 %}
+                    <div class="post-tags">
+                      {% for tag in page.tags %}
+                      <a href="{{ site.baseurl }}/tag/{{ tag }}.html" class="post-tags__tag tlu-hero-tags">{{ tag | capitalize | replace:'-',' ' }}</a>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          <div>
+          <div class="container" style="padding-top: 10px;">
+            <div class="row" style="align-items: center;">
+              <div class="col col-6 col-d-12">
+                <img src="/images/laptop-1.png" class="laptop">
+              </div>
+              <div class="col col-6 col-d-12">
+                <p style="font-weight: 500; font-size: 20px; line-height: 28px; margin-top: 30px;">{{ page.description }}</p>
+                <p style="font-weight: 600;">Audience: {{ page.audience }}</p>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+{% if page.goals %}
+<div class="banner-inner grey-bg">
+  <div class="centered">
+    <div>
+      <img src="/images/title-learn2.svg"/>
+    </div>
+    <div class="highlight-wrapper">
+        <div class="heading-highlight hl3"></div>
+        <div><h3 class="highlight-headings">What you'll learn</h3></div>
+    </div>
+    <ul>
+      {% for item in page.goals %}
+          <li>{{ item.goal }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+<div class="home-inner">
+  <div class="centered">
+    <div>
+      <img src="/images/title-modules2.svg"/>
+    </div>
+    <div class="highlight-wrapper">
+        <div class="heading-highlight hl2"></div>
+        <div><h3 class="highlight-headings">Modules</h3></div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="modules">
+    {% for post in site.posts reversed %}
+    {% if post.course == page.category %}
+      <a href="{{ post.url }}">
+      <div class="module">
+        <img src="/images/icons/{{ post.level }}-{{ post.format }}.svg" class="modulesvgs"/>
+        <div class="moduleInner">
+          <span class="moduleTime"><img src="/images/clock-white.svg"> {{ post.time }}</span>
+          <h5 class="moduleHeading">Module {{ post.modno }}:<br />
+            {{ post.title }}</h5>
+          <img class="moduleLine" src="/images/icons/line-{{ post.level }}.svg" />
+          <p>{{ post.description }}</p>
+          <span class="moduleTick" id="tickmark-{{ post.postid }}"><img src="/images/tickmark.svg"></span>
+        </div>
+      </div>
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+  <div class="key" style="margin-bottom: 100px;">
+    <div class="key-item"><img src="/images/icons/key-beginner.svg">Beginner</div>
+    <div class="key-item"><img src="/images/icons/key-intermediate.svg">Intermediate</div>
+    <div class="key-item"><img src="/images/icons/key-advanced.svg">Advanced</div>
+    <div class="key-item"><img src="/images/icons/key-article.svg">Article</div>
+    <div class="key-item"><img src="/images/icons/key-presentation.svg">Presentation</div>
+    <div class="key-item"><img src="/images/icons/key-report.svg">Report</div>
+    <div class="key-item"><img src="/images/icons/key-video.svg">Video</div>
+  </div>
+
+</div>
+
+<script src="/assets/js/modules.js"></script>

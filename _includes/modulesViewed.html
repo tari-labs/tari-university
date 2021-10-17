@@ -1,0 +1,15 @@
+{% if page.modno %}
+
+<script>
+
+  let thisModNo = {{ page.postid }};
+  let storedModules = JSON.parse(localStorage.getItem("modulesViewed")) || [];
+
+  if (storedModules.indexOf(thisModNo) === -1) {
+    storedModules.push(thisModNo);
+    localStorage.setItem("modulesViewed", JSON.stringify(storedModules));
+  }
+
+</script>
+
+{% endif %}

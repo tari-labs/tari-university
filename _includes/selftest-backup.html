@@ -1,0 +1,35 @@
+{% if page.selftest %}
+<div class="banner learn" style="margin-top: 50px; margin-bottom: 50px; padding: 50px; ">
+  <div class="container">
+    <div style="position: relative; width: 100%;">
+    <img src="/images/circles-blue.png" style="position: absolute; bottom: -50px; left: -300px;"/>
+    <img src="/images/circles-blue.png" style="position: absolute; top: -100px; right: -300px;"/>
+      <div class="row">
+        <div class="col col-1 col-d-12">
+        </div>
+        <div class="col col-10 col-d-12 container__inner section" style="position: relative;">
+          <img src="/images/title-selftest.svg" style="margin-bottom: 50px; margin-top: -150px; text-align: center;"/>
+
+          <div class="acc-container-3">
+            {% for item in page.selftest %}
+            <div id="accordion-3">
+              <div class="acc-heading">
+                <h3>{{ item.title }}</h3>
+                <i class="fas fa-angle-down arrow"></i>
+              </div>
+              <div class="content">
+                <p><strong>Answer: </strong>{{ item.content }}</p>
+              </div>
+            </div>
+            {% endfor %}
+            <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+            <script src="/images/index/accordion.js"></script>
+          </div>
+        </div>
+        <div class="col col-1 col-d-12">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

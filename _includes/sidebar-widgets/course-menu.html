@@ -1,0 +1,32 @@
+
+<div class="widget-sidebar widget-tags" style="position: sticky; top: 20px;">
+  <div class="widget__head section-top">
+    <h4 class="widget__title"><a href="{{ site.baseurl }}/{{ page.course | downcase | slugify }}/"><img src="/images/icons/key-course.svg" style="margin: -5px 5px 0 -10px; width: 30px;"/>{{ page.course | replace:'-',' ' | capitalize }}</a></h4>
+  </div>
+  <div class="widget-tags__inner">
+    <ol id="sideMenu">
+      {% for post in site.posts reversed %}
+        {% if post.course == page.course %}
+          <li ><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+    <hr />
+    <p><a href="{{ site.baseurl }}/{{ page.course | downcase | slugify }}/"><svg style="width: 12px; margin-right: 5px; margin-bottom: -2px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg>Back to course home</a></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function highlightLink() {
+  let currentLocation = window.location.href;
+  const container = document.querySelector("#sideMenu");
+  const items = container.querySelectorAll("a");
+  for (let i = 0; i < items.length; i++ ) {
+     if (items[i].href === currentLocation) {
+       items[i].className = "menu-active";
+       break;
+     }
+   }
+ }
+window.onload = highlightLink();
+</script>

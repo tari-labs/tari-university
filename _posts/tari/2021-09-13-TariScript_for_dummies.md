@@ -3,11 +3,13 @@ layout: post
 title:  Understanding TariScript
 author: Cayle Sharrock <CjS77>
 date:   2021-10-13 15:00:00 +0300
-image:  '/images/banner-05.jpg'
+format: article
+level: intermediate
+image:  '/images/banner-11.jpg'
 category: Tari
-tags:   [TariScript, Smart contracts, Blockchain]
+tags:   [tariscript, smart-contracts, blockchain]
 featured: false
-level: Intermediate
+level: intermediate
 excerpttext: TariScript brings Bitcoin's flexibility into Mimblewimble.
 ---
 

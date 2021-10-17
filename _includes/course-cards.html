@@ -1,0 +1,25 @@
+<div class="modules">
+  {% for post in site.posts reversed %}
+    {% if post.format == "course" %}
+      <a href="{{ post.url }}">
+      <div class="module">
+        <img src="{{ post.icon }}" class="modulesvgs"/>
+        <div class="moduleInner">
+          <span class="moduleTime"><img src="/images/clock-white.svg"> {{ post.time }}</span>
+          <h4 class="moduleHeading">Course {{ post.courseno }}:<br />
+            {{ post.title }}</h4>
+          <img class="moduleLine" src="/images/icons/line-{{ post.level }}.svg" />
+          <p>{{ post.description }}</p>
+          <span class="moduleTick"><img src="/images/tickmark.svg"></span>
+        </div>
+      </div>
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div class="key">
+  <div class="key-item"><img src="/images/icons/key-beginner.svg">Beginner</div>
+  <div class="key-item"><img src="/images/icons/key-intermediate.svg">Intermediate</div>
+  <div class="key-item"><img src="/images/icons/key-advanced.svg">Advanced</div>
+</div>

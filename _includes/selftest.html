@@ -1,0 +1,28 @@
+{% if page.selftest %}
+<div class="learn">
+  <div class="container">
+    <div style="position: relative; width: 100%;">
+    <img src="/images/circles-blue.png" style="position: absolute; bottom: -50px; left: -300px;"/>
+    <img src="/images/circles-blue.png" style="position: absolute; top: -100px; right: -300px;"/>
+      <div class="row">
+        <div class="col col-2 col-d-12">
+        </div>
+        <div class="col col-8 col-d-12 container__inner section" style="position: relative;">
+          <div style="margin: -150px 0 50px 0; text-align: center;">
+            <img src="/images/title-selftest.svg"/>
+          </div>
+          <ul class="jekyllcodex_accordion">
+              {% for item in page.selftest %}
+                  <li><input id="accordion{{ forloop.index }}" type="checkbox" />
+                      <label for="accordion{{ forloop.index }}">{{ item.title | markdownify }}</label>
+                    <div><strong>Answer:</strong> {{ item.content | markdownify }}</div></li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div class="col col-2 col-d-12">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

@@ -1,7 +1,4 @@
 <div class="article col col-4 col-d-6 col-t-12 grid__post">
-
-
-
   {% if post.image %}
   <a href="{{post.url | prepend: site.baseurl}}">
     <div class="tlu-card-container">
@@ -11,29 +8,22 @@
     </div>
     </a>
   {% endif %}
-
-
-
-<div class="article__content">
-
-<div class="tlu-excerpt">
-  <a href="{{ post.url | prepend: site.baseurl }}">
-      {% if post.excerpttext %}
-        {{post.excerpttext | strip_newlines | truncatewords: 35}}
-      {% endif %}
-    </a>
-</div>
-
-<div class="article-tags">
-  {% if post.tags.size >= 1 %}
-  <div class="article-tags__box">
-    {% for tag in post.tags %}
-    <a href="{{ site.baseurl }}/tag/{{ tag }}" class="article__tag">{{ tag }}</a>
-    {% endfor %}
+  <div class="article__content">
+    <div class="tlu-excerpt">
+      <a href="{{ post.url | prepend: site.baseurl }}">
+        {% if post.description %}
+          {{post.description | strip_newlines | truncatewords: 35}}
+        {% endif %}
+        </a>
+    </div>
+    <div class="article-tags">
+    {% if post.tags.size >= 1 %}
+      <div class="article-tags__box">
+        {% for tag in post.tags %}
+        <a href="{{ site.baseurl }}/tag/{{ tag }}.html" class="article__tag">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+    </div>
   </div>
-  {% endif %}
-</div>
-
-</div>
-
 </div>

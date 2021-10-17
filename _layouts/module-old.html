@@ -1,0 +1,87 @@
+---
+layout: default
+---
+<!-- begin hero -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="hero section">
+        {% include hero-navigation.html %}
+        <div class="hero__inner">
+          {% if page.image %}
+          <div class="tlu-hero">
+            <div class="tlu-hero-img" style="background-image: url('{{site.baseurl}}{{page.image}}');">
+              {% if page.format %}
+                <img src="/images/icons/light-{{ page.format }}.svg" class="topicon" />
+              {% endif %}
+              <h1 class="tlu-hero-title">{{ page.title | escape }}</h1>
+                  <div class="post__meta">
+                    {% if page.tags.size >= 1 %}
+                    <div class="post-tags">
+                      {% for tag in page.tags %}
+                      <a href="{{ site.baseurl }}/tag/{{ tag }}.html" class="post-tags__tag tlu-hero-tags">{{ tag | capitalize | replace:'-',' ' }}</a>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end hero -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-3 col-d-12">
+      {% include sidebar-widgets/course-menu.html %}
+    </div>
+    <div class="col col-9 col-d-12">
+      <!-- begin post -->
+      <article class="post section">
+        {% include breadcrumbs.html %}
+        <hr />
+        <div class="post__content">
+          {{ content }}
+        </div>
+      </article>
+      <!-- end post -->
+    </div>
+  </div>
+</div>
+
+{% include selftest.html %}
+
+<div class="container" style="margin-bottom: 30px; margin-top: 10px;">
+<div class="post__navigation">
+  {% if page.previous.url %}
+  <div class="post__prev">
+    <a class="prev__image fadein" href="{{page.previous.url}}"
+      style="background-image: url({{site.baseurl}}{{page.previous.image}})"></a>
+    <div class="prev__box">
+      <a class="post__nav post__nav__prev" href="{{page.previous.url}}"><i class="ion ion-ios-arrow-back"></i> Previous
+        Module</a>
+      <h4 class="post__nav__title"><a href="{{page.previous.url}}">{{page.previous.title}}</a></h4>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if page.next.url %}
+  <div class="post__next">
+    <div class="next__box">
+      <a class="post__nav post__nav__next" href="{{page.next.url}}">Next Module <i
+          class="ion ion-ios-arrow-forward"></i></a>
+      <h4 class="post__nav__title"><a href="{{page.next.url}}">{{page.next.title}}</a></h4>
+    </div>
+    <a class="next__image fadein" href="{{page.next.url}}"
+      style="background-image: url({{site.baseurl}}{{page.next.image}})"></a>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+{% include related-posts.html %}
+{% include modulesViewed.html %}

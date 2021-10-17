@@ -1,0 +1,63 @@
+---
+layout: page-fullwidth
+title: Filter
+permalink: /filter/
+image: '/images/banner-11.jpg'
+icon: '/images/icons/ico-search.svg'
+---
+
+<p style="margin-top: 30px;">Our articles have been sorted into categories, formats and levels. Use the filters below to find what you are looking for.</p>
+
+<h5>Explanation of levels</h5>
+<p><b>Beginner:</b>	No / little previous knowledge of blockchain is necessary<br />
+<b>Intermediate:</b>	Familiarity with the major blockchain concepts is assumed<br />
+<b>Advanced:</b>	Specialised topics, or very deep analyses of blockchain and cryptographic topics<br />
+<b>Meta:</b>	Non-blockchain content / Introductions / Metacontent</p>
+
+<div class="filtering">
+    <div class="filter-grid">
+
+        {% assign categories = site.posts | map: 'category' | uniq %}
+        {% assign formats = site.posts | map: 'format' | uniq %}
+        {% assign levels = site.posts | map: 'level' | uniq %}
+        {% assign sortedlevels = 'beginner,intermediate,advanced,meta' | split: ',' %}
+
+        <div>
+            <select class="form-control cat1">
+                <option value="cat-all">All Categories</option>
+                {% for category in categories reversed %}
+                    <option value="cat-{{ category }}">{{ category | capitalize | replace: "-", " " }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <select class="form-control cat2">
+                <option value="cat-all">All Formats</option>
+                {% for format in formats reversed %}
+                    <option value="cat-{{ format }}">{{ format | capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <select class="form-control cat3">
+                <option value="cat-all">All Levels</option>
+                {% for level in sortedlevels %}
+                  <option value="cat-{{ level }}">{{ level | capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="filter-cat-results ">
+      <div class="results-grid">
+        {% for post in site.posts reversed %}
+        <div class="f-cat" data-cat="cat-{{ post.category }}" data-cat2="cat-{{ post.format }}" data-cat3="cat-{{ post.level }}">
+          {% include article-card.html %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src="/assets/js/filter.js"></script>

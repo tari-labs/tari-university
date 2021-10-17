@@ -2,13 +2,13 @@
 
   <div class="cards desktop">
     {% for post in site.posts reversed %}
-    {% if post.featured == true %}
+    {% if post.featured == true and post.frontpage != false %}
         <a href="{{ post.url | prepend: site.baseurl }}">
         <div class="card">
           <img src="{{post.icon}}" class="jewelsvgs"/>
-          <h5 class="cardHeading">{{post.title}}</h5>
+          <h4 class="cardHeading">{{post.title}}</h4>
           <img class="cardLine" src="{{post.line}}" />
-          <p>{{post.excerpttext}}</p>
+          <p>{{post.description}}</p>
         </div>
         </a>
     {% endif %}
