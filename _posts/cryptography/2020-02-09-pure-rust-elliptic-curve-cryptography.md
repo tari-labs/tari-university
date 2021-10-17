@@ -2,12 +2,13 @@
 layout: post
 title:  Pure-Rust Elliptic Curve Cryptography
 date:   2020-02-09 15:01:35 +0300
+postid: cr09
 redirect_from: /cryptography/pure-rust-ecc/pure-rust-ecc.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography]
 featured:
-excerpttext: Fast, Safe, Pure-Rust Elliptic Curve Cryptography by Isis Lovecruft & Henry De Valence.
+description: Fast, Safe, Pure-Rust Elliptic Curve Cryptography by Isis Lovecruft & Henry De Valence.
 ---
 
 <div>

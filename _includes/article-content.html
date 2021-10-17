@@ -18,8 +18,8 @@
 
 <div class="tlu-excerpt">
   <a href="{{ post.url | prepend: site.baseurl }}">
-      {% if post.excerpttext %}
-        {{post.excerpttext | strip_newlines | truncatewords: 35}}
+      {% if post.description %}
+        {{post.description | strip_newlines | truncatewords: 35}}
       {% endif %}
     </a>
 </div>

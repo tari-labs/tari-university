@@ -2,12 +2,13 @@
 layout: post
 title:  The Bulletproof Protocols
 date:   2020-02-08 15:01:35 +0300
+postid: cr08
 redirect_from: /cryptography/bulletproofs-protocols/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography]
 featured:
-excerpttext: The overview of Bulletproofs given in Bulletproofs and Mimblewimble was largely based on the original work done by Bünz et al.
+description: The overview of Bulletproofs given in Bulletproofs and Mimblewimble was largely based on the original work done by Bünz et al.
 ---
 
 ## Table of Contents

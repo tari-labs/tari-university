@@ -2,12 +2,13 @@
 layout: post
 title:  Confidential Assets
 date:   2020-06-03 15:00:00 +0300
+postid: da03
 redirect_from: /digital-assets/confidential-assets/MainReport.html
 image:  '/images/banner-06.jpg'
 category: digital-assets
 tags:   [digital-assets]
 featured:
-excerpttext: Confidential assets, in the context of blockchain technology and blockchain-based cryptocurrencies, can have different meanings to different audiences, and can also be something totally different or unique depending on the use case.
+description: Confidential assets, in the context of blockchain technology and blockchain-based cryptocurrencies, can have different meanings to different audiences, and can also be something totally different or unique depending on the use case.
 ---
 
 ## Table of Contents

@@ -2,13 +2,14 @@
 layout: post
 title:  Monero Merged Mining
 date:   2020-05-03 15:00:00 +0300
+postid: mi03
 redirect_from: /mining/merged-mining-monero/merged-mining-monero.html
 image:  '/images/banner-05.jpg'
 category: mining
 tags:   [mining]
 usemathjax: true
 featured:
-excerpttext: The purpose of merged mining is to allow the mining of more than one cryptocurrency without necessitating additional Proof-of-Work effort.
+description: The purpose of merged mining is to allow the mining of more than one cryptocurrency without necessitating additional Proof-of-Work effort.
 ---
 
 ## Table of Contents

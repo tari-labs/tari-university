@@ -74,6 +74,7 @@ plugins:
   - jekyll/tagging
   - jekyll-spaceship
   - jekyll-redirect-from
+  - jekyll-seo-tag
 
 paginate: 6
 paginate_path: "/page/:num"

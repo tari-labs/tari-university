@@ -2,12 +2,13 @@
 layout: post
 title:  Learning about Bulletproofs
 date:   2020-01-03 15:00:00 +0300
+postid: le03
 redirect_from: /preface/learning/bulletproofs.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
 tags:   [learning-paths, bulletproofs]
 featured:
-excerpttext: Bulletproofs are short non-interactive zero-knowledge proofs that require no trusted setup.
+description: Bulletproofs are short non-interactive zero-knowledge proofs that require no trusted setup.
 ---
 
 ## Table of Contents

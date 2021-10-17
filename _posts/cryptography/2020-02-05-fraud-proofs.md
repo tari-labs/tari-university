@@ -2,12 +2,13 @@
 layout: post
 title:  Fraud Proofs and SPV (Lightweight) Clients - Easier Said than Done?
 date:   2020-02-05 15:01:35 +0300
+postid: cr05
 redirect_from: /cryptography/fraud-proofs-1/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography]
 featured:
-excerpttext: The bitcoin blockchain was, as of June 2018, approximately 173 GB in size.
+description: The bitcoin blockchain was, as of June 2018, approximately 173 GB in size.
 ---
 
 ## Table of Contents

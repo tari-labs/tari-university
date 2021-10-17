@@ -2,12 +2,13 @@
 layout: post
 title:  The RGB Protocol - An Introduction
 date:   2020-07-09 15:00:00 +0300
+postid: pr09
 redirect_from: /protocols/rgb-introduction/sources/PITCHME.link.html
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols]
 featured:
-excerpttext: This is very brief overview. There are better, and more complete introductions out there
+description: This is very brief overview. There are better, and more complete introductions out there
 ---
 
 <iframe class="tlu-iframe" src="/images/protocols/rgb-introduction/PITCHME.html"></iframe>

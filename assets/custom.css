@@ -11,6 +11,9 @@ body {
   --boxshadow: 7px 10px 28px rgba(35, 11, 73, 0.09);
   --sidepadding: 40px;
   --borderradius: 10px;
+  --beginner: #EEA562;
+  --intermediate: #B6D7A8;
+  --advanced: #A2C4C9;
 }
 .header1 {
   background: url("/images/index/header-bg-1.jpeg") no-repeat bottom center;
@@ -130,9 +133,10 @@ a {
   background: var(--darkpurple);
   padding: 10px 60px;
   border-radius: var(--borderradius);
-  font-size: 24px;
+  font-size: 18px;
   letter-spacing: 0.05em;
   font-weight: bold;
+  z-index: 10;
 }
 .purpleBtn:hover {
   background: var(--purple);
@@ -318,8 +322,8 @@ a {
   width: 100%;
   max-width: var(--maxwidth);
   margin: 80px auto;
-  padding-left: var(--sidepadding);
-  padding-right: var(--sidepadding);
+  padding-left: 25px;
+  padding-right: 25px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -425,6 +429,56 @@ a {
 }
 #accordion-2 .content li {
   font-size: 15px;
+}
+
+/* accordion-3 */
+#accordion-3 h3 {
+  font-size: 18px;
+  margin: 20px 0px;
+}
+#accordion-3 {
+  position: relative;
+  margin: 0;
+  background-color: #FFFFFF;
+  border-top: 2px solid #F1F1F1;
+}
+
+#accordion-3 .acc-heading{
+  color: var(--headingcolor);
+  padding: 10px 30px 10px 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#accordion-3 .arrow{
+  color: #563e6e;
+  transition: 0.25s ease;
+  opacity: 0.3;
+  transform: rotate(-90deg);
+}
+
+#accordion-3 .acc-heading:hover .arrow{
+  opacity: 1;
+}
+
+#accordion-3 .acc-heading:hover, #accordion-1 .active{
+}
+
+#accordion-3 .arrow-animate{
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+#accordion-3 .content{
+  display: none;
+  padding: 20px 30px;
+  color: #333333;
+}
+#accordion-3 p {
+  margin-bottom: 15px;
 }
 
 .fas-2 {
@@ -623,5 +677,60 @@ a.menu-active {
   font-weight: 600;
 }
 
-#accordion-2 li a {
+.key {
+  border-top: 2px solid #F1F1F1;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1235px) {
+  .key {
+    flex-direction: row;
+  }
+  }
+
+.key-item {
+  padding: 10px;
+  font-size: 13px;
+}
+.key-icon {
+  font-size: 15px;
+  padding-right: 5px;
+}
+.list-icon {
+  background: #CCC;
+  padding: 5px;
+  width: 35px;
+  margin-right: 10px;
+  font-size: 20px;
+  border-radius: 4px;
+  color: #FFF;
+  text-align: center;
+}
+.beg {
+  background: var(--beginner);
+}
+.int {
+  background: var(--intermediate);
+}
+.adv {
+  background: var(--advanced);
+}
+.beginner {
+  color: var(--beginner);
+}
+.intermediate {
+  color: var(--intermediate);
+}
+.advanced {
+  color: var(--advanced);
+}
+.tlu-hero-banner {
+  padding: 30px;
+}
+@media(min-width: 768px) {
+  .tlu-hero-banner {
+  padding: 100px 150px;
+  }
 }

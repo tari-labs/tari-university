@@ -225,7 +225,7 @@
 }
 
 .hero__image {
-  padding-top: 50%;
+  // padding-top: 50%;
   min-height: 160px;
   margin-top: 20px;
   border-radius: 5px;
@@ -241,10 +241,10 @@
     transition: opacity .6s ease-in-out;
   }
   @media only screen and (max-width: $desktop) {
-    padding-top: 55%;
+    // padding-top: 55%;
   }
   @media only screen and (max-width: $tablet) {
-    padding-top: 75%;
+    // padding-top: 75%;
   }
 }
 

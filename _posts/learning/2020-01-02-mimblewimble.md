@@ -2,12 +2,13 @@
 layout: post
 title:  Mimblewimble Implementation
 date:   2020-01-02 15:00:00 +0300
+postid: le02
 redirect_from: /preface/learning/mimblewimble.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
 tags:   [learning-paths, mimblewimble]
 featured:
-excerpttext: Mimblewimble is a blockchain protocol that focuses on privacy through the implementation of confidential transactions.
+description: Mimblewimble is a blockchain protocol that focuses on privacy through the implementation of confidential transactions.
 ---
 
 ## Table of Contents
@@ -26,7 +27,7 @@ Transaction Outputs (UTXO) with their range proofs and an unprunable transaction
 
 | Topics                                           |                             Type                             |
 | ------------------------------------------------ | :----------------------------------------------------------: |
-| Mimblewimble                                     | <span class="wrap_beg">[presentation](/cryptography/bulletproofs-and-mimblewimble)</span> |
+| Mimblewimble                                     | <span class="wrap_beg">[presentation](/protocols/mimblewimble)</span> |
 | Introduction to Schnorr Signatures               | <span class="wrap_int">[report](/cryptography/introduction-schnorr-signatures)</span> |
 | Introduction to Scriptless Scripts               | <span class="wrap_int">[report](/cryptography/introduction-to-scriptless-scripts)</span> |
 | Mimblewimble-Grin Block Chain Protocol Overview  | <span class="wrap_int">[report](/protocols/grin-protocol-overview)</span> |

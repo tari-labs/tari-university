@@ -2,12 +2,13 @@
 layout: post
 title:  Bulletproofs and Mimblewimble
 date:   2020-02-06 15:01:35 +0300
+postid: cr06
 redirect_from: /cryptography/bulletproofs-and-mimblewimble/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
 tags:   [cryptography, bulletproofs, mimblewimble]
 featured:
-excerpttext: Bulletproofs form part of the family of distinct *Zero-knowledge Proof*<sup>[def][zk~]</sup> systems, such as Zero-Knowledge
+description: Bulletproofs form part of the family of distinct *Zero-knowledge Proof*<sup>[def][zk~]</sup> systems, such as Zero-Knowledge
 ---
 
 ## Table of Contents

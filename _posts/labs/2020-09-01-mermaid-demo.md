@@ -2,12 +2,13 @@
 layout: post
 title:  Mermaid Demo
 date:   2020-09-01 15:00:00 +0300
+postid: la01
 redirect_from: /labs/mermaid-demo.html
 image:  '/images/banner-09.jpg'
 category: labs
 tags:   [labs, mermaid]
 featured:
-excerpttext: TLU can now support mermaid diagrams! Flowcharts, sequence diagrams and more!
+description: TLU can now support mermaid diagrams! Flowcharts, sequence diagrams and more!
 ---
 
 TLU can now support mermaid diagrams! Flowcharts, sequence diagrams and more!

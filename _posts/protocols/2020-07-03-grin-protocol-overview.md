@@ -2,12 +2,13 @@
 layout: post
 title:  Mimblewimble-Grin Blockchain Protocol Overview
 date:   2020-07-03 15:00:00 +0300
+postid: pr03
 redirect_from: /protocols/grin-protocol-overview/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
 tags:   [protocols, mimblewimble, grin]
 featured:
-excerpttext: Depending on whom you ask, Mimblewimble is either a tongue-tying curse or a blockchain protocol designed to be private and scalable.
+description: Depending on whom you ask, Mimblewimble is either a tongue-tying curse or a blockchain protocol designed to be private and scalable.
 ---
 
 ## Table of Contents

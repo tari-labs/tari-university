@@ -2,12 +2,13 @@
 layout: post
 title:  Laser Beam
 date:   2020-04-04 15:00:00 +0300
+postid: sc04
 redirect_from: /scaling/laser-beam/MainReport.html
 image:  '/images/banner-04.jpg'
 category: scaling
 tags:   [scaling]
 featured:
-excerpttext: The principle of (DAGs) in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules.
+description: The principle of (DAGs) in blockchain is to present a way to include traditional off-chain blocks into the ledger, which is governed by mathematical rules.
 ---
 
 ## Table of Contents
