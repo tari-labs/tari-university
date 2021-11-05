@@ -54,6 +54,19 @@ layout: default
   </div>
 </div>
 
+{% if page.selftest %}
+<div class="banner learn" style="margin-top: 150px; margin-bottom: 150px; padding: 30px; ">
+  <div class="container">
+    <div style="position: relative; width: 100%;">
+    <img src="/images/circles-blue.png" style="position: absolute; bottom: -50px; left: -300px;"/>
+    <img src="/images/circles-blue.png" style="position: absolute; top: -100px; right: -300px;"/>
+      <div class="container__inner section" style="display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; max-width: 1000px;">
+        <img src="/images/title-selftest.svg" style="margin-bottom: 50px; margin-top: -110px; text-align: center;"/>
+          {% include selftest.html %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 
-{% include selftest.html %}
 {% include related-posts.html %}

@@ -1,0 +1,33 @@
+---
+layout: course
+title: Introduction to Blockchain
+permalink: /course1/
+image: '/images/banner-01.jpg'
+courseno: 1
+description: A very high-level and gentle introduction to blockchain concepts. This course gives you the tools you need to be able to read and understand the Bitcoin whitepaper.
+audience: Everyone
+goals:
+  - goal: Understand how blockchains work conceptually
+  - goal: Have a basic understanding of digital signatures and their function
+  - goal: Have enough background knowledge to read the Bitcoin Whitepaper
+  - goal: Have read the Bitcoin Whitepaper
+  - goal: Be on your way to becoming a cryptocurrency expert and developer
+---
+
+<div class="modules">
+  {% for course in site.data.course1 %}
+    <a href="{{ course.url }}">
+    <div class="module">
+      <img src="/images/{{ course.level }}-{{ course.type }}.svg" class="modulesvgs"/>
+      <div class="moduleInner">
+        <span class="moduleTime"><img src="/images/clock.svg"> {{ course.time }}</span>
+        <h5 class="moduleHeading">Module {{ course.modno }}:<br />
+          {{ course.title }}</h5>
+        <img class="moduleLine" src="/images/line-{{ course.level }}.svg" />
+        <p>{{ course.desc }}</p>
+        <span class="moduleTick"><img src="/images/tickmark.svg"></span>
+      </div>
+    </div>
+    </a>
+  {% endfor %}
+</div>
