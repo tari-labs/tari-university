@@ -97,7 +97,7 @@ When you "send" bitcoin to an address, say `1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy`.
 This is just a convenient metaphor for us greybeards who grew up in a time when cheques were literally posted to their recipients.
 
 In fact, what you are doing is locking up a UTXO with a _script_ that effectively says, "Anyone who can prove that
-the know the private key of the public key that when hashed gives you `1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy`, can have this bitcoin".
+they know the private key of the public key that when hashed gives you `1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy`, can have this bitcoin".
 
 [Chapter 6 of _Mastering Bitcoin_](https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch06.asciidoc#tx_script)
 dives into Bitcoin transactions and script in great detail, and I strongly recommend you read it.
@@ -131,7 +131,7 @@ This is for a good reason.
 If you've followed this space at all, you're no doubt jaded by the endless stream of headlines marking the various
 [hacks](https://therecord.media/hacker-steals-600-million-from-poly-network-in-biggest-cryptocurrency-hack-ever/),
 [leaks](https://www.gemini.com/cryptopedia/the-dao-hack-makerdao), and
-[oopsies](https://github.com/openethereum/parity-ethereum/issues/6995) stemming at least partly from the fact that smart contracting
+[oopsies](https://github.com/openethereum/parity-ethereum/issues/6995) stemming at least partly from the fact that smart contract
 platforms like Ethereum and Polygon offer [Turing-complete](https://en.wikipedia.org/wiki/Turing_completeness)
 scripting functionality.
 
