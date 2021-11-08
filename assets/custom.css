@@ -69,7 +69,7 @@ body {
 .learn {
      background: #75C2C2;
      margin-top: 50px;
-     margin-bottom: 50px; 
+     margin-bottom: 50px;
      padding: 50px;
 }
 .banner li {
@@ -169,16 +169,16 @@ a {
   height: auto;
 }
 .purpleBtn {
-  max-width: 445px;
-  text-transform: uppercase;
-  color: #FFF;
+  color: #FFF !important;
   border: none;
   background: var(--darkpurple);
-  padding: 10px 60px;
+  padding: 10px 30px;
   border-radius: var(--borderradius);
-  font-size: 24px;
-  letter-spacing: 0.05em;
   font-weight: bold;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
 }
 .purpleBtn:hover {
   background: var(--purple);
@@ -718,10 +718,6 @@ a.menu-active {
   font-weight: 600;
 }
 
-#accordion-2 li a {
-}
-
-
 /* Modules */
 
 .modules {
@@ -866,3 +862,15 @@ a.menu-active {
     display: block;
   }
 }
+
+/* Selftest Accordion */
+
+ul.jekyllcodex_accordion {position: relative; margin: 1.4rem 0!important; border-bottom: 2px solid #60B2B2; padding-bottom: 0;}
+ul.jekyllcodex_accordion li {border-top: 2px solid #60B2B2; list-style: none; margin-left: 0;}
+ul.jekyllcodex_accordion li input {display: none;}
+ul.jekyllcodex_accordion li label {display: block; cursor: pointer; padding: 1.4rem 2.4rem 1.4rem 0; margin: 0; font-weight: bold; color: #1b202b;}
+ul.jekyllcodex_accordion li div {display: none; padding-bottom: 1.2rem;}
+ul.jekyllcodex_accordion li input:checked + label {font-weight: bold;}
+ul.jekyllcodex_accordion li input:checked + label + div {display: block;}
+ul.jekyllcodex_accordion li label::before {content: ">"; font-family: 'Manrope', sans-serif; color: #6416B8; font-weight: normal; font-size: 150%; line-height: 1.1rem; padding: 0; position: absolute; right: 0.5rem; transition: all 0.2s ease-in-out;}
+ul.jekyllcodex_accordion li input:checked + label::before {transform: rotate(90deg);}
