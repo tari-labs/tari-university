@@ -25,9 +25,23 @@ goals:
           {{ course.title }}</h5>
         <img class="moduleLine" src="/images/line-{{ course.level }}.svg" />
         <p>{{ course.desc }}</p>
-        <span class="moduleTick"><img src="/images/tickmark.svg"></span>
+        <span class="moduleTick" id="tickmark-{{ course.modno }}"><img src="/images/tickmark.svg"></span>
       </div>
     </div>
     </a>
   {% endfor %}
 </div>
+
+<script>
+
+  let storedModules = JSON.parse(localStorage.getItem("modulesViewed"));
+
+  function modulesCompleted() {
+    for (let i = 0; i < storedModules.length; i++) {
+      document.getElementById(`tickmark-${storedModules[i]}`).classList.add("tickShow");
+    }
+  }
+
+  modulesCompleted();
+
+</script>

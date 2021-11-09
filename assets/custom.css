@@ -757,10 +757,13 @@ a.menu-active {
 }
 .moduleTick {
   text-align: right;
-  display: block;
+  display: none;
   position: absolute;
   bottom: 15px;
   right: 15px;
+}
+.tickShow {
+  display: block;
 }
 .moduleInner {
   width: 100%;
