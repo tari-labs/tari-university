@@ -2,7 +2,7 @@
 
   <div class="cards desktop">
     {% for post in site.posts reversed %}
-    {% if post.featured == true %}
+    {% if post.featured == true and post.frontpage != false %}
         <a href="{{ post.url | prepend: site.baseurl }}">
         <div class="card">
           <img src="{{post.icon}}" class="jewelsvgs"/>
