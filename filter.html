@@ -1,0 +1,77 @@
+---
+layout: page-fullwidth
+title: Filter
+permalink: /filter/
+image: '/images/banner-01.jpg'
+---
+
+<div class="filtering">
+    <div class="filter-grid">
+
+        {% assign categories = site.posts | map: 'category' | uniq %}
+        {% assign formats = site.posts | map: 'format' | uniq %}
+        {% assign levels = site.posts | map: 'level' | uniq %}
+
+        <div>
+            <select class="form-control cat1">
+                <option value="cat-all">All Categories</option>
+                {% for category in categories reversed %}
+                    <option value="cat-{{ category }}">{{ category | capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <select class="form-control cat2">
+                <option value="cat-all">All Formats</option>
+                {% for format in formats reversed %}
+                    <option value="cat-{{ format }}">{{ format | capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <select class="form-control cat3">
+                <option value="cat-all">All Levels</option>
+                {% for level in levels reversed %}
+                    <option value="cat-{{ level }}">{{ level | capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="filter-cat-results ">
+      <div class="results-grid">
+        {% for post in site.posts reversed %}
+        <div class="f-cat" data-cat="cat-{{ post.category }}" data-cat2="cat-{{ post.format }}" data-cat3="cat-{{ post.level }}">
+          <a href="{{ post.url | prepend: site.baseurl }}">
+            <div class="tlu-card-container">
+              <div class="tlu-card-img" style="background-image: url({{site.baseurl}}{{post.image}});">
+                <p class="tlu-post-title">{{post.title}}</p>
+              </div>
+            </div>
+          </a>
+          <div class="article__content">
+            <div class="tlu-excerpt">
+              <a href="{{ post.url | prepend: site.baseurl }}">
+                {% if post.description %}
+                  {{post.description | strip_newlines | truncatewords: 35}}
+                {% endif %}
+                </a>
+            </div>
+            <div class="article-tags">
+            {% if post.tags.size >= 1 %}
+              <div class="article-tags__box">
+                {% for tag in post.tags %}
+                <a href="{{ site.baseurl }}/tag/{{ tag }}" class="article__tag">{{ tag }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src="/assets/js/filter.js"></script>
