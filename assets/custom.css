@@ -543,6 +543,7 @@ a {
   background-repeat: no-repeat;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  flex-direction: column;
 }
 .tlu-card-img:hover {
   opacity: 0.9;
@@ -865,7 +866,10 @@ a.menu-active {
     display: block;
   }
 }
-
+.topicon {
+  width: 70px;
+  margin-bottom: 10px;
+}
 /* Selftest Accordion */
 
 ul.jekyllcodex_accordion {position: relative; margin: 1.4rem 0!important; border-bottom: 2px solid #60B2B2; padding-bottom: 0;}

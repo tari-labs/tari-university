@@ -39,9 +39,9 @@ layout: default
           <div class="section-top">
             <h5 class="section-title">All posts tagged - {{ page.tag | capitalize }}</h5>
           </div>
-          <div class="row grid">
-            {% for post in page.posts %}
-              {% include article-content.html %}
+          <div class="results-grid">
+            {% for post in page.posts reversed %}
+              {% include article-card.html %}
             {% endfor %}
           </div>
         </div>

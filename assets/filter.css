@@ -21,9 +21,6 @@
   grid-template-columns: repeat(3, 1fr);
 }
 }
-.f-cat {
-  padding-bottom: 20px;
-}
 .filter-cat {
   margin: 1em 0;
 }
