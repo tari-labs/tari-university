@@ -3,6 +3,7 @@ layout: post
 title:  Application of Howey to Blockchain Network Token Sales
 date:   2020-06-01 15:00:00 +0300
 postid: da01
+format: article
 redirect_from: /digital-assets/howey-application-to-blockchain/MainReport.html
 image:  '/images/banner-06.jpg'
 category: digital-assets

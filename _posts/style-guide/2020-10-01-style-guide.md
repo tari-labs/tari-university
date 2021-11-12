@@ -3,6 +3,7 @@ layout: post
 title:  Style Guide
 date:   2020-10-01 15:01:35 +0300
 postid: sg00
+format: article
 redirect_from: /preface/style-guide.html
 image:  '/images/banner-10.jpg'
 category: style-guide

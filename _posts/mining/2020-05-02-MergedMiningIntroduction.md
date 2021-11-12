@@ -3,6 +3,7 @@ layout: post
 title:  Merged Mining Introduction
 date:   2020-05-02 15:00:00 +0300
 postid: mi02
+format: article
 redirect_from: /mining/merged-mining/merged-mining-scene/MergedMiningIntroduction.html
 image:  '/images/banner-05.jpg'
 category: mining

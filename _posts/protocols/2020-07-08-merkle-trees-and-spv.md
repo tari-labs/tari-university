@@ -3,6 +3,7 @@ layout: post
 title:  Introduction to SPV, Merkle Trees and Bloom Filters
 date:   2020-07-08 15:00:00 +0300
 postid: pr08
+format: presentation
 redirect_from: /protocols/merkle-trees-and-spv-1/sources/PITCHME.link.html
 image:  '/images/banner-07.jpg'
 category: protocols

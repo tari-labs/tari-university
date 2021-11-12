@@ -3,6 +3,7 @@ layout: post
 title:  Amortization of Bulletproofs Inner-product Proof
 date:   2020-02-12 15:01:35 +0300
 postid: cr12
+format: article
 redirect_from: /cryptography/amortization-bp-ipp/mainreport.html
 image:  '/images/banner-01.jpg'
 category: cryptography

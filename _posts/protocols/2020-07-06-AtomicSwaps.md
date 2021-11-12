@@ -3,6 +3,7 @@ layout: post
 title:  Atomic Swaps
 date:   2020-07-06 15:00:00 +0300
 postid: pr06
+format: article
 redirect_from: /protocols/atomic-swaps/AtomicSwaps.html
 image:  '/images/banner-07.jpg'
 category: protocols

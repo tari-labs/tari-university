@@ -3,6 +3,7 @@ layout: post
 title:  Mimblewimble Transactions Explained
 date:   2020-07-02 15:00:00 +0300
 postid: pr02
+format: article
 redirect_from: /protocols/mimblewimble-1/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols

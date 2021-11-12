@@ -3,6 +3,7 @@ layout: post
 title:  Elliptic Curves
 date:   2020-02-01 15:00:00 +0300
 postid: cr01
+format: presentation
 redirect_from: /cryptography/crypto-1/sources/PITCHME.link.html
 image:  '/images/banner-01.jpg'
 category: cryptography

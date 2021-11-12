@@ -3,6 +3,7 @@ layout: post
 title:  Merged Mining
 date:   2020-05-01 15:00:00 +0300
 postid: mi01
+format: article
 redirect_from:
   - /mining/merged-mining/merged-mining.html
   - /merged-mining/merged-mining-scene/MergedMiningIntroduction.html

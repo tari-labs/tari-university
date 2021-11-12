@@ -16,7 +16,7 @@ image: '/images/banner-11.jpg'
             <select class="form-control cat1">
                 <option value="cat-all">All Categories</option>
                 {% for category in categories reversed %}
-                    <option value="cat-{{ category }}">{{ category | capitalize }}</option>
+                    <option value="cat-{{ category }}">{{ category | capitalize | replace: "-", " " }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -32,7 +32,7 @@ image: '/images/banner-11.jpg'
             <select class="form-control cat3">
                 <option value="cat-all">All Levels</option>
                 {% for level in levels reversed %}
-                    <option value="cat-{{ level }}">{{ level | capitalize }}</option>
+                  <option value="cat-{{ level }}">{{ level | capitalize }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -44,7 +44,10 @@ image: '/images/banner-11.jpg'
         <div class="f-cat" data-cat="cat-{{ post.category }}" data-cat2="cat-{{ post.format }}" data-cat3="cat-{{ post.level }}">
           <a href="{{ post.url | prepend: site.baseurl }}">
             <div class="tlu-card-container">
-              <div class="tlu-card-img" style="background-image: url({{site.baseurl}}{{post.image}});">
+              <div class="tlu-card-img" style="background-image: url({{site.baseurl}}{{post.image}}); flex-direction: column;">
+                {% if post.format %}
+                  <img src="/images/icons/light-{{ post.format }}.svg" style="width: 60px;" />
+                {% endif %}
                 <p class="tlu-post-title">{{post.title}}</p>
               </div>
             </div>

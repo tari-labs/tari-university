@@ -3,6 +3,7 @@ layout: post
 title:  The Bulletproof Protocols
 date:   2020-02-08 15:01:35 +0300
 postid: cr08
+format: article
 redirect_from: /cryptography/bulletproofs-protocols/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography

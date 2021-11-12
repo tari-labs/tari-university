@@ -3,6 +3,7 @@ layout: post-main
 title:  Learning Paths
 date:   2020-01-01 12:00:00 +0300
 postid: le00
+format: article
 redirect_from: /preface/learning/introduction-to-learning.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
