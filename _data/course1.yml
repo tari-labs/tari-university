@@ -1,7 +1,7 @@
 - modno: 1
   title: Introduction to Bitcoin
-  time: 30 mins
-  url: /course1/module1
+  time: 37 mins
+  url: /intro-to-blockchain/module1
   type: video
   level: beginner
   desc: Andreas Antonopolous is the master of explaining extremely technical concepts in simple, everyday terms. This half-hour introduction to Bitcoin from 2016 is the perfect primer for this module and will absolutely get you so excited about the topic that you will be unable to stop yourself diving headfirst into the other modules of this course. You’re fucking welcome.
@@ -9,7 +9,7 @@
 - modno: 2
   title: How does Bitcoin work?
   time: 27 mins
-  url: /course1/module2
+  url: /intro-to-blockchain/module2
   type: video
   level: beginner
   desc: this is the description
@@ -17,15 +17,15 @@
 - modno: 3
   title: ELI 5 Bitcoin
   time: 6 mins
-  url: /course1/module3
+  url: /intro-to-blockchain/module3
   type: article
   level: beginner
-  desc: this is the description
+  desc: If you don’t like videos, read this instead of Module 1
 
 - modno: 4
   title: The history of money
-  time: 30mins
-  url: /course1/module4
+  time: 1 hour
+  url: /intro-to-blockchain/module4
   type: article
   level: beginner
   desc: You will never really “get” Bitcoin until you have a deep appreciation for what money actually is. Nick Szabo is a .. controversial .. figure in the crypto space, but he is undoubtedly a very deep thinker and has made many groundbreaking contributions to cryptocurrency and introduced some of its foundational ideas, including smart contracts. In this essay, Nick gives a brief history of money as one of humanity’s most important technological innovations.
@@ -33,7 +33,7 @@
 - modno: 5
   title: So you think you need a blockchain - part 1
   time: 14 mins
-  url: /course1/module5
+  url: /intro-to-blockchain/module5
   type: article
   level: intermediate
   desc: We talk about the four core properties of Bitcoin and discover that blockchains are but one of them.
@@ -41,15 +41,15 @@
 - modno: 6
   title: So you think you need a blockchain - part 2
   time: 13 mins
-  url: /course1/module6
+  url: /intro-to-blockchain/module6
   type: article
   level: intermediate
   desc: Bitcoin has these features through its four key enabling technologies - a block chain, a distributed public ledger, digital signatures and proof-of-work. In this article, we’ll use these four features as a checklist to determine whether some of the most loudly touted use-cases of Blockchain really need one.
 
 - modno: 7
   title: The Bitcoin white paper - with notes
-  time: 30mins
-  url: /course1/module7
+  time: 30 mins
+  url: /intro-to-blockchain/module7
   type: article
   level: intermediate
   desc: this is the description
