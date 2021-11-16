@@ -13,7 +13,9 @@
           </div>
           <ul class="jekyllcodex_accordion">
               {% for item in page.selftest %}
-                  <li><input id="accordion{{ forloop.index }}" type="checkbox" /><label for="accordion{{ forloop.index }}">{{ item.title }}</label><div><strong>Answer:</strong> {{ item.content }}</div></li>
+                  <li><input id="accordion{{ forloop.index }}" type="checkbox" />
+                      <label for="accordion{{ forloop.index }}">{{ item.title | markdownify }}</label>
+                    <div><strong>Answer:</strong> {{ item.content | markdownify }}</div></li>
               {% endfor %}
           </ul>
         </div>
