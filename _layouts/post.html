@@ -19,7 +19,7 @@ layout: default
                     {% if page.tags.size >= 1 %}
                     <div class="post-tags">
                       {% for tag in page.tags %}
-                      <a href="{{ site.baseurl }}/tag/{{ tag }}" class="post-tags__tag tlu-hero-tags">{{ tag }}</a>
+                      <a href="{{ site.baseurl }}/tag/{{ tag }}" class="post-tags__tag tlu-hero-tags">{{ tag | capitalize | replace:'-',' ' }}</a>
                       {% endfor %}
                     </div>
                     {% endif %}

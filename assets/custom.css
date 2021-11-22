@@ -881,3 +881,9 @@ ul.jekyllcodex_accordion li input:checked + label {font-weight: bold;}
 ul.jekyllcodex_accordion li input:checked + label + div {display: block;}
 ul.jekyllcodex_accordion li label::before {content: ">"; font-family: 'Manrope', sans-serif; color: #6416B8; font-weight: normal; font-size: 150%; line-height: 1.1rem; padding: 0; position: absolute; right: 0.5rem; transition: all 0.2s ease-in-out;}
 ul.jekyllcodex_accordion li input:checked + label::before {transform: rotate(90deg);}
+.jekyllcodex_accordion p {margin-bottom: 0;}
+
+
+.post__navigation .post__prev, .post__navigation .post__next {
+  margin-top: 30px;
+}

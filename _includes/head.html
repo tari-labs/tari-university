@@ -39,25 +39,4 @@
   {{ include_to_scssify | scssify }}
   </style>
 
-  <script type="text/javascript">
-
-    function highlightMenu() {
-
-    var currentLocation = window.location.href;
-    const container = document.querySelector("#acc-menu");
-    const items = container.querySelectorAll("a");
-
-    for (let i = 0; i < items.length; i++ ) {
-       if (items[i].href === currentLocation) {
-         items[i].className = "menu-active";
-         items[i].closest("div.content").style.display = "block";
-         break;
-       }
-     }
-   }
-
-  window.onload = highlightMenu;
-
-  </script>
-
 </head>

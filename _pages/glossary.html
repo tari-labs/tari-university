@@ -1,0 +1,252 @@
+---
+layout: post
+title: Glossary
+permalink: /glossary/
+format: article
+image: '/images/banner-11.jpg'
+icon: '/images/icons/ico-search.svg'
+---
+
+<p>Below are a list of terms and their definitions that are used throughout the Tari code and documentation. Let's use this
+glossary to disambiguate ideas, and work towards a
+<a href="https://blog.carbonfive.com/2016/10/04/ubiquitous-language-the-joy-of-naming/" target="_blank">ubiquitous language</a> for this project.</p>
+<h3 id="archive-node"><a href="#archive-node">Archive node</a></h3>
+<p>This is a full history <a href="#base-node" title="A full Tari node running on the base layer, validating and propagating Tari coin transactions
+and blocks">base node</a>. It will keep a complete history of every transaction ever received and it will not
+implement pruning.</p>
+<h3 id="assetcollateral"><a href="#assetcollateral">AssetCollateral</a></h3>
+<p>The amount of tari coin that a <a href="#validator-node" title="A second-layer node that manages and validates digital asset state transitions">Validator Node</a> must put up on the <a href="#base-layer" title="The Tari layer handling payments and secured by proof of work">base layer</a> in order to become part of an asset
+<a href="#committee" title="A group of validator nodes that are responsible for managing a specific Digital Asset">committee</a>.</p>
+<h3 id="asset-issuer"><a href="#asset-issuer">Asset Issuer</a></h3>
+<p>An entity that creates digital assets on the Tari DAN. The Asset Issuer will specify the parameters of the contract
+template that defines the rules that govern the asset and the number and nature of its constituent tokens on issuance.
+The Asset Issuer will, generally, be the initial owner of the tokens.</p>
+<h3 id="bad-actor"><a href="#bad-actor">Bad Actor</a></h3>
+<p>A participant that acts maliciously or negligently to the detriment of the network or another participant.</p>
+<h3 id="base-layer"><a href="#base-layer">Base layer</a></h3>
+<p>The Tari Base layer is a merge-mined <a href="#blockchain" title="The linked sequence of Tari blocks on the Tari base layer">blockchain</a> secured by proof-of-work. The base layer is primarily responsible for
+the emission of new Tari, for securing and managing <a href="#tari-coin" title="The base layer token">Tari coin</a> transfers.</p>
+<h3 id="base-node"><a href="#base-node">Base Node</a></h3>
+<p>A full Tari node running on the base layer. It's primary role is validating and propagating <a href="#tari-coin" title="The base layer token">Tari coin</a> transactions
+and blocks to the rest of the network.</p>
+<h3 id="block"><a href="#block">Block</a></h3>
+<p>A collection of transactions and associated metadata recorded as a single entity in the Tari blockchain. The ordering of
+Tari transactions is set purely by the block height of the block they are recorded in.</p>
+<h3 id="block-header"><a href="#block-header">Block Header</a></h3>
+<p>A data structure that validates the information contained in a <a href="#block" title="A collection of transactions and associated metadata recorded as a single entity in the Tari blockchain">block</a>.</p>
+<h3 id="block-body"><a href="#block-body">Block Body</a></h3>
+<p>A data structure containing the transaction inputs, outputs, and kernels that make up the block.</p>
+<h3 id="block-reward"><a href="#block-reward">Block reward</a></h3>
+<p>The amount of Tari created by the coinbase transaction in every block. The block reward is set by the
+<a href="#emission-schedule">emission schedule</a>.</p>
+<h3 id="blockchain"><a href="#blockchain">Blockchain</a></h3>
+<p>A sequence of tari <a href="#block" title="A collection of transactions and associated metadata recorded as a single entity in the Tari blockchain">block</a>s. Each block contains a hash of the previous valid block. Thus the blocks form a chain
+with the property that changing anything in a block other than the head block requires rewriting the entire
+blockchain from that point on.</p>
+<h3 id="blockchain-state"><a href="#blockchain-state">Blockchain state</a></h3>
+<p>The complete state of the blockchain at a specific block height. This means a pruned <a href="#unspent-transaction-outputs">utxo</a> set, a complete set of
+kernels and headers up to that block height from the genesis block.</p>
+<h3 id="broadcaststrategy"><a href="#broadcaststrategy">BroadcastStrategy</a></h3>
+<p>A strategy for propagating messages amongst nodes in a peer-to-peer network. Example implementations of
+<code>BroadcastStrategy</code> include the Gossip protocol and flood fill.</p>
+<h3 id="chain-reorganization"><a href="#chain-reorganization">Chain Reorganization</a></h3>
+<p>A chain reorganization occurs after a chain split occurs on the network, which commonly occurs due to network latency
+and connectivity issues. When a chain split occurs one chain will have the higher accumulated proof-of-work, this chain
+is considered the best chain. Nodes on the poorer chain will need to rewind and resync their chains to best chain. In
+this process transaction in the mempool could become orphaned or invalid.</p>
+<h3 id="checkpoint"><a href="#checkpoint">Checkpoint</a></h3>
+<p>A hash of the state of a Digital Asset that is recorded on the base layer.</p>
+<h3 id="coinbase-transaction"><a href="#coinbase-transaction">Coinbase transaction</a></h3>
+<p>The first transaction in every Tari block yields a <a href="#block-reward" title="The amount of Tari created in every block">Block Reward</a> according to the Tari <a href="#emission-schedule">emission Schedule</a> and is
+awarded to the miner that performed the Proof of Work for the block.</p>
+<h3 id="committee"><a href="#committee">Committee</a></h3>
+<p>A group of <a href="#validator-node" title="A second-layer node that manages and validates digital asset state transitions">Validator Node</a>s that are responsible for managing the state of a specific <a href="#digital-asset" title="Sets of Native digital tokens, both fungible and non-fungible that are created by
+asset issuers on the Tari 2nd layer">Digital Asset</a>. A committee is
+selected during asset issuance and can be updated at <a href="#checkpoint" title="A summary of the state of a Digital Asset that is recorded on the base layer">Checkpoint</a>s.</p>
+<h3 id="committeeselectionstrategy"><a href="#committeeselectionstrategy">CommitteeSelectionStrategy</a></h3>
+<p>A strategy for an Asset Issuer to select candidates for the committee from the available registered Validator Nodes who
+responded to the nomination call for that asset.</p>
+<h3 id="consensusstrategy"><a href="#consensusstrategy">ConsensusStrategy</a></h3>
+<p>The approach that will be taken for a committee to reach consensus on the validity of instructions that are performed
+on a given Digital Asset.</p>
+<h3 id="commitment"><a href="#commitment">Commitment</a></h3>
+<p>A commitment is a cryptographic primitive that allows one to commit to a chosen value while keeping it hidden from
+others, with the ability to reveal the committed value later. Commitments are designed so that one cannot change the
+value or statement after they have committed to it.</p>
+<h3 id="communication-node"><a href="#communication-node">Communication Node</a></h3>
+<p>A Communication Node is either a Validator Node or Base Node that is part of the Tari communication network. It
+maintains the network and is responsible for forwarding and propagating joining requests, discovery requests and data
+messages on the communication network.</p>
+<h3 id="communication-client"><a href="#communication-client">Communication Client</a></h3>
+<p>A Communication Client is a Wallet or Asset Manager that makes use of the Tari communication network to send joining and
+discovery requests. A Communication Client does not maintain the communication network and is not responsible for
+forwarding or propagating any requests or data messages.</p>
+<h3 id="creator-nomination-mode"><a href="#creator-nomination-mode">Creator Nomination Mode</a></h3>
+<p>An asset runs in creator nomination mode when <em>every</em> validator node in a validator committee is a <a href="#trusted-node" title="A permissioned Validator Node nominated by an Asset Issuer">Trusted Node</a> that
+was directly nominated by the <a href="#asset-issuer" title="An entity that creates digital assets on the Tari DAN">Asset Issuer</a>.</p>
+<h3 id="current-head"><a href="#current-head">Current head</a></h3>
+<p>The last <a href="#block" title="A collection of transactions and associated metadata recorded as a single entity in the Tari blockchain">block</a> of the base layer that represents the latest valid block. This <a href="#block" title="A collection of transactions and associated metadata recorded as a single entity in the Tari blockchain">block</a> must be from the longest
+proof-of-work chain to be the current head.</p>
+<h3 id="cut-through"><a href="#cut-through">Cut-Through</a></h3>
+<p>Cut-through is the process where outputs spent within a single block may be removed without breaking the standard <a href="#mimblewimble">MimbleWimble</a>
+validation rules. Simplistically, <code>Alice -&gt; Bob -&gt; Carol</code> may be &quot;cut-through&quot; to <code>Alice -&gt; Carol</code>. Bob's commitments may be removed.</p>
+<p>On Tari, for reasons described in <a href="./RFC-0201_TariScript.html#utxo-data-commitments">RFC-0201_TariScript</a>, cut-through is prevented from ever happening.</p>
+<h3 id="digital-asset"><a href="#digital-asset">Digital asset</a></h3>
+<p>Digital assets (DAs) are the sets or collections of native digital tokens (both fungible and non-fungible) that are
+created by <a href="#asset-issuer" title="An entity that creates digital assets on the Tari DAN">asset issuer</a>s on the Tari 2nd layer. For example, a promoter might create a DA for a music concert event.
+The event is the digital asset, and the tickets for the event are digital asset <a href="#digital-asset-tokens" title="or just, &quot;tokens&quot;. The tokens associated with a given digital asset. Tokens are created
+ by asset issuers">tokens</a>.</p>
+<h3 id="digital-asset-network"><a href="#digital-asset-network">Digital Asset Network</a></h3>
+<p>The Tari second layer. All digital asset interactions are managed on the Tari Digital Assets Network (DAN). These
+interactions (defined in <a href="#instructions" title="Second-layer network commands for managing digital asset state">instruction</a>s) are processed and validated by <a href="#validator-node" title="A second-layer node that manages and validates digital asset state transitions">Validator Node</a>s.</p>
+<h3 id="digitalassettemplate"><a href="#digitalassettemplate">DigitalAssetTemplate</a></h3>
+<p>A DigitalAssetTemplate is one of a set of contract types supported by the DAN. These contracts are non-turing complete
+and consist of rigid rule-sets with parameters that can be set by Asset Issuers.</p>
+<h3 id="digital-asset-tokens"><a href="#digital-asset-tokens">Digital asset tokens</a></h3>
+<p>Digital asset tokens (or often, just &quot;tokens&quot;) are the finite set of digital entities associated with a given digital
+asset. Depending on the DA created, tokens can represent tickets, in-game items, collectibles or loyalty points. They
+are bound to the <a href="#digital-asset" title="Sets of Native digital tokens, both fungible and non-fungible that are created by
+asset issuers on the Tari 2nd layer">digital asset</a> that created them.</p>
+<h3 id="hashed-time-locked-contract"><a href="#hashed-time-locked-contract">Hashed Time Locked Contract</a></h3>
+<p>A time locked contract that only pays out after a certain criteria has been met or refunds the originator if a certain
+period has expired.</p>
+<h3 id="emission-schedule"><a href="#emission-schedule">Emission schedule</a></h3>
+<p>An explicit formula as a function of the block height, <em>h</em>, that determines the block reward for the
+<em>h</em><sup>th</sup> block.</p>
+<h3 id="instructions"><a href="#instructions">Instructions</a></h3>
+<p>Instructions are the <a href="#digital-asset-network" title="The Tari second layer. All digital asset interactions are managed here.">digital asset network</a> equivalent of <a href="#transaction" title="Base layer tari coin transfers.">transaction</a>s. Instructions are issued by asset issuers and
+client applications and are relayed by the DAN to the <a href="#validator-node" title="A second-layer node that manages and validates digital asset state transitions">validator node</a>s that are managing the associated
+<a href="#digital-asset" title="Sets of Native digital tokens, both fungible and non-fungible that are created by
+asset issuers on the Tari 2nd layer">digital asset</a>.</p>
+<h3 id="mempool"><a href="#mempool">Mempool</a></h3>
+<p>The mempool consists of the transaction pool, pending pool, orphan pool and reorg pool, and is responsible for managing
+unconfirmed transactions that have not yet been included in the longest proof-of-work chain. Miners usually draw
+verified transactions from the mempool to build up transaction <a href="#block" title="A collection of transactions and associated metadata recorded as a single entity in the Tari blockchain">block</a>s.</p>
+<h3 id="metadata-signature"><a href="#metadata-signature">Metadata Signature</a></h3>
+<p>The metadata signature is an aggregated Commitment Signature (&quot;ComSig&quot;) signature, attached to a transaction output and
+signed with a combination of the homomorphic commitment private values \( (v_i \, , \, k_i )\), the spending key
+known only to the receiver, and sender offset private key \(k_{Oi}\) known only to the sender. This prevents
+malleability of the UTXO metadata.</p>
+<h3 id="mimblewimble"><a href="#mimblewimble">Mimblewimble</a></h3>
+<p>Mimblewimble is a privacy-centric cryptocurrency protocol. It was
+<a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt">dropped</a> in the Bitcoin Developers chatroom by an
+anonymous author and has since been refined by several authors, including Andrew Poelstra.</p>
+<h3 id="mining-server"><a href="#mining-server">Mining Server</a></h3>
+<p>A Mining Server is responsible for constructing new blocks by bundling transactions from the <a href="#mempool" title="A memory pool for unconfirmed transactions on the base layer">mempool</a> of a connected
+<a href="#base-node" title="A full Tari node running on the base layer, validating and propagating Tari coin transactions
+and blocks">Base Node</a>. It also distributes Proof-of-Work tasks to Mining Workers and verifies PoW solutions.</p>
+<h3 id="mining-worker"><a href="#mining-worker">Mining Worker</a></h3>
+<p>A Mining Worker is responsible for performing Proof-of-Work tasks received from its parent <a href="#mining-server">Mining Server</a>.</p>
+<h3 id="multisig"><a href="#multisig">Multisig</a></h3>
+<p>Multi-signatures (Multisigs) are also known as N-of-M signatures, this means that a minimum of N number of the M peers
+need to agree before a transaction can be spent. N and M can be equal; which is a special case and is often referred to
+as an N-of-N Multisig.</p>
+<p><a href="https://tlu.tarilabs.com/cryptography/musig-schnorr-sig-scheme/The_MuSig_Schnorr_Signature_Scheme.html">TLU musig</a></p>
+<h3 id="node-id"><a href="#node-id">Node ID</a></h3>
+<p>A node ID is a unique identifier that specifies the location of a <a href="#communication-node" title="A communication node that is responsible for maintaining the Tari
+communication network">communication node</a> or <a href="#communication-client" title="A communication client that makes use of the Tari communication network,
+but does not maintain it">communication client</a> in the
+Tari communication network. The node ID can either be obtained from registration on the <a href="#base-layer" title="The Tari layer handling payments and secured by proof of work">Base Layer</a> or can be derived
+from the public identification key of a <a href="#communication-node" title="A communication node that is responsible for maintaining the Tari
+communication network">communication node</a> or <a href="#communication-client" title="A communication client that makes use of the Tari communication network,
+but does not maintain it">communication client</a>.</p>
+<h3 id="non-fungible-token-nft"><a href="#non-fungible-token-nft">Non-fungible Token (NFT)</a></h3>
+<p>A Non-fungible token is a specific instance of a token issued as part of a <a href="#digital-asset" title="Sets of Native digital tokens, both fungible and non-fungible that are created by
+asset issuers on the Tari 2nd layer">digital asset</a>. It is another name for a
+[digital asset token]. NFTs are contained within specially marked <a href="#unspent-transaction-outputs">UTXO</a>s on the Tari Base Layer.</p>
+<h3 id="orphan-pool"><a href="#orphan-pool">Orphan Pool</a></h3>
+<p>The orphan pool is part of the <a href="#mempool" title="A memory pool for unconfirmed transactions on the base layer">mempool</a> and manages all <a href="#transaction" title="Base layer tari coin transfers.">transaction</a>s that have been verified but attempt to spend
+<a href="#unspent-transaction-outputs">UTXO</a>s that do not exist or haven't been created yet.</p>
+<h3 id="pending-pool"><a href="#pending-pool">Pending Pool</a></h3>
+<p>The pending pool is part of the <a href="#mempool" title="A memory pool for unconfirmed transactions on the base layer">mempool</a> and manages all <a href="#transaction" title="Base layer tari coin transfers.">transaction</a>s that have a time-lock restriction on when it
+can be processed or attempts to spend <a href="#unspent-transaction-outputs">UTXO</a>s with time-locks.</p>
+<p>This is a local setting for each node to help reduce syncing time and bandwidth. This is the number of blocks from the
+chain tip beyond which a chain will be pruned.</p>
+<h3 id="public-nomination-mode"><a href="#public-nomination-mode">Public Nomination Mode</a></h3>
+<p>An asset runs in public nomination mode when the <a href="#asset-issuer" title="An entity that creates digital assets on the Tari DAN">Asset Issuer</a> broadcasts a call for nominations to the network and VNs
+from the network nominate themselves as candidates to become members of the <a href="#committee" title="A group of validator nodes that are responsible for managing a specific Digital Asset">committee</a> for the asset. The
+<a href="#asset-issuer" title="An entity that creates digital assets on the Tari DAN">Asset Issuer</a> will then employ the <a href="#committeeselectionstrategy" title="A strategy for an Asset Issuer to select candidates for the
+committee from the available registered Validator Nodes who responded to the nomination call for that asset">CommitteeSelectionStrategy</a> to select the committee from the list of available
+candidates.</p>
+<h3 id="range-proof"><a href="#range-proof">Range proof</a></h3>
+<p>A mathematical demonstration that a value inside a <a href="#commitment">commitment</a> (i.e. it is hidden) lies within a certain range. For
+<a href="#mimblewimble" title="a privacy-centric cryptocurrency protocol">Mimblewimble</a>, range proofs are used to prove that outputs are positive values.</p>
+<h3 id="registration-deposit"><a href="#registration-deposit">Registration Deposit</a></h3>
+<p>An amount of tari coin that is locked up on the base layer when a <a href="#validator-node" title="A second-layer node that manages and validates digital asset state transitions">Validator Node</a> is registered. In order to make Sybil
+attacks expensive and to provide an authorative base layer registry of <a href="#validator-node" title="A second-layer node that manages and validates digital asset state transitions">validator node</a>s they will need to lock up a
+amount of <a href="#tari-coin" title="The base layer token">Tari Coin</a> on the <a href="#base-layer" title="The Tari layer handling payments and secured by proof of work">Base Layer</a> using a registration transaction to begin acting as a VN on the DAN.</p>
+<h3 id="registration-term"><a href="#registration-term">Registration Term</a></h3>
+<p>The minimum amount of time that a VN registration lasts, the <a href="#registration-deposit" title="An amount of tari coin that is locked up on the base layer when a
+[Validator Node] is registered">Registration Deposit</a> can only be released after this
+minimum period has elapsed.</p>
+<h3 id="reorg-pool"><a href="#reorg-pool">Reorg Pool</a></h3>
+<p>The reorg pool is part of the <a href="#mempool" title="A memory pool for unconfirmed transactions on the base layer">mempool</a> and stores all <a href="#transaction" title="Base layer tari coin transfers.">transaction</a>s that have recently been included in blocks in case
+a blockchain reorganization occurs and the transactions need to be restored to the <a href="#transaction-pool" title="A pool in the Mempool for valid and verified unconfirmed transactions">transaction pool</a>.</p>
+<h3 id="script-keypair"><a href="#script-keypair">Script Keypair</a></h3>
+<p>The script private - public keypair, \((k_{Si}\),\(K_{Si})\), is used in <a href="#tariscript" title="The Tari scripting system for transactions">TariScript</a> to unlock and execute the
+script associated with an output. Afterwards the execution stack must contain exactly one value that must be equal to
+the script public key.</p>
+<h3 id="script-offset"><a href="#script-offset">Script Offset</a></h3>
+<p>The script offset provides a proof that every script public key \( K_{Si} \) and sender offset public key
+\( K_{Oi} \) provided for the a transaction's inputs and outputs are correct.</p>
+<h3 id="sender-offset-keypair"><a href="#sender-offset-keypair">Sender Offset Keypair</a></h3>
+<p>The sender offset private - public keypair, (\( k_{Oi} \),\( K_{Oi} \)), is used by the sender of an output to
+lock all its metadata by virtue of a [sender metadata signature].</p>
+<h3 id="spending-key"><a href="#spending-key">Spending Key</a></h3>
+<p>A private spending key is a private key that permits spending of a <a href="#unspent-transaction-outputs">UTXO</a>. It is also sometimes referred to as a
+Blinding Factor, since is Tari (and Mimblewimble) outputs, the value of a UTXO is <em>blinded</em> by the spending key:</p>
+<p>$$ C = v.H + k.G $$</p>
+<p>The public key, \(P = k.G\) is known as the <em>public</em> spending key.</p>
+<h3 id="synchronisationstate"><a href="#synchronisationstate">SynchronisationState</a></h3>
+<p>The current synchronisation state of a <a href="#base-node" title="A full Tari node running on the base layer, validating and propagating Tari coin transactions
+and blocks">Base Node</a>. This can either be</p>
+<ul>
+<li><code>starting</code> - The node has freshly started up and is still waiting for first round of chain_metadata responses from its
+neighbours on which to base its next state change.</li>
+<li><code>header_sync</code> - The node is in the process of synchronising headers with chosen sync peer.</li>
+<li><code>horizon_sync</code> - The node is in the process of syncing blocks from the tip to its [pruning horizon]</li>
+<li><code>block_sync</code> -   The node is in the process of syncing all blocks back to the genesis block</li>
+<li><code>listening</code> - The node has completed its syncing strategy and will continue to listen for new blocks and monitor
+its neighbours to detect if it falls behind.</li>
+</ul>
+<h3 id="synchronisationstrategy"><a href="#synchronisationstrategy">SynchronisationStrategy</a></h3>
+<p>The generalised approach for a <a href="#base-node" title="A full Tari node running on the base layer, validating and propagating Tari coin transactions
+and blocks">Base Node</a> to obtain the current state of the blockchain from the peer-to-peer network.
+Specific implementations may differ based on different trade-offs and constraints with respect to bandwidth, local
+network conditions etc.</p>
+<h3 id="tari-coin"><a href="#tari-coin">Tari Coin</a></h3>
+<p>The base layer token. Tari coins are released according to the <a href="#emission-schedule">emission schedule</a> on the Tari <a href="#base-layer" title="The Tari layer handling payments and secured by proof of work">base layer</a>
+<a href="#blockchain" title="The linked sequence of Tari blocks on the Tari base layer">blockchain</a> in <a href="#coinbase-transaction">coinbase transaction</a>s.</p>
+<h3 id="tariscript"><a href="#tariscript">TariScript</a></h3>
+<p>Tari uses a scripting system for transactions, not unlike <a href="https://en.bitcoin.it/wiki/Script">Bitcoin's scripting system</a>,
+called TariScript. It is also simple, stack-based, processed from left to right, not Turing-complete, with no loops. It
+is a list of instructions linked in a non malleable way to each output, specifying its conditions of spending.</p>
+<h3 id="transaction"><a href="#transaction">Transaction</a></h3>
+<p>Transactions are activities recorded on the Tari <a href="#blockchain" title="The linked sequence of Tari blocks on the Tari base layer">blockchain</a> running on the <a href="#base-layer" title="The Tari layer handling payments and secured by proof of work">base layer</a>. Transactions always involve a
+transfer of <a href="#tari-coin" title="The base layer token">Tari coin</a>s. A <a href="#mimblewimble">mimblewimble</a> transaction body consists of one or more blinded inputs and outputs.</p>
+<h3 id="transaction-pool"><a href="#transaction-pool">Transaction Pool</a></h3>
+<p>The transaction pool is part of the <a href="#mempool" title="A memory pool for unconfirmed transactions on the base layer">mempool</a> and manages all <a href="#transaction" title="Base layer tari coin transfers.">transaction</a>s that have been verified, that spend valid
+<a href="#unspent-transaction-outputs">UTXO</a>s and don't have any time-lock restrictions.</p>
+<h3 id="trusted-node"><a href="#trusted-node">Trusted Node</a></h3>
+<p>A permissioned Validator Node nominated by an Asset Issuer that will form part of the committee for that Digital Asset.</p>
+<h3 id="token-wallet"><a href="#token-wallet">Token Wallet</a></h3>
+<p>A Tari Token Wallet is responsible for managing <a href="#digital-asset" title="Sets of Native digital tokens, both fungible and non-fungible that are created by
+asset issuers on the Tari 2nd layer">Digital asset</a>s and <a href="#digital-asset-tokens" title="or just, &quot;tokens&quot;. The tokens associated with a given digital asset. Tokens are created
+ by asset issuers">Tokens</a>, and for constructing and negotiating
+<a href="#instructions" title="Second-layer network commands for managing digital asset state">instruction</a>s for transferring and receiving Assets and Tokens on the <a href="#digital-asset-network" title="The Tari second layer. All digital asset interactions are managed here.">Digital Asset Network</a>.</p>
+<h3 id="transaction-weight"><a href="#transaction-weight">Transaction Weight</a></h3>
+<p>The weight of a transaction / block measured in &quot;grams&quot;.
+See <a href="./RFC-0110_BaseNodes.html#blocktransaction-weight">Block / Transaction weight</a> for more details.</p>
+<h3 id="unspent-transaction-outputs"><a href="#unspent-transaction-outputs">Unspent transaction outputs</a></h3>
+<p>An unspent transaction output (UTXO) is a discrete number of Tari that are available to be spent. The sum of all
+UTXOs represents all the Tari currently in circulation. In addition, the sum of all UTXO values equals the sum of the
+<a href="#block-reward" title="The amount of Tari created in every block">block reward</a>s for all blocks up to the current block height.</p>
+<p>UTXO values are hidden by their <a href="#commitment">commitment</a>s. Only the owner of the UTXO and (presumably) the creator of the UTXO
+(either a <a href="#coinbase-transaction">Coinbase transaction</a> or previous spender) know the value of the UTXO.</p>
+<h3 id="validator-node"><a href="#validator-node">Validator Node</a></h3>
+<p>Validator nodes (VNs) make up the Tari second layer, or <a href="#digital-asset-network" title="The Tari second layer. All digital asset interactions are managed here.">Digital Asset Network</a>. VNs are responsible for creating and
+updating <a href="#digital-asset" title="Sets of Native digital tokens, both fungible and non-fungible that are created by
+asset issuers on the Tari 2nd layer">digital asset</a>s living on the Tari network.</p>
+<h3 id="wallet"><a href="#wallet">Wallet</a></h3>
+<p>A Tari Wallet is responsible for managing key pairs, and for constructing and negotiating <a href="#transaction" title="Base layer tari coin transfers.">transaction</a>s for
+transferring and receiving <a href="#tari-coin" title="The base layer token">tari coin</a>s on the <a href="#base-layer" title="The Tari layer handling payments and secured by proof of work">Base Layer</a>.</p>
