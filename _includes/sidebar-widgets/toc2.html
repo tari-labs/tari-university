@@ -1,10 +1,9 @@
 
-<div class="widget-sidebar widget-tags">
+<div class="widget-sidebar widget-tags" style="position: sticky; top: 20px;">
   <div class="widget__head section-top">
     <h4 class="widget__title">Explore Topics</h4>
   </div>
   <div class="widget-tags__inner">
-
     <div class="acc-container-2" id="acc-menu">
       {% for category in site.categories  %}
         {% capture category_name %}{{ category | first }}{% endcapture %}
@@ -26,44 +25,26 @@
             {% endfor %}
             </ol>
           </div>
-
         </div>
       {% endfor %}
     </div>
-
-    <!-- <div id="archives">
-    {% for category in site.categories  %}
-      <div class="archive-group">
-        {% capture category_name %}{{ category | first }}{% endcapture %}
-        <div id="#{{ category_name | slugize}}"></div>
-        <p></p>
-
-        <h5 class="category-head">{{ category_name }}</h5>
-        <a name="{{ category_name | slugize }}"></a>
-        <ol>
-        {% for post in site.categories[category_name] reversed %}
-        {% if post.featured %}
-        <a href="{{ site.baseurl }}{{ post.url }}" style="font-weight: bold; margin-left: -20px; margin-bottom: 10px; display: block;">{{post.title}}</a>
-        {% else %}
-          <li><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></li>
-        {% endif %}
-        {% endfor %}
-        </ol>
-      </div>
-    {% endfor %}
-    </div> -->
-
-    <!-- <ul>
-      {% for post in site.posts reversed %}
-      {% if post.featured %}
-      <li><a href="{{ post.url }}" style="font-weight: bold;">{{ post.title }}</a></li>
-      {% else %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-      {% endif %}
-      {% endfor %}
-    </ul> -->
-
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="/images/index/accordion.js"></script>
   </div>
-
 </div>
+
+<script type="text/javascript">
+function highlightMenu() {
+  let currentLocation = window.location.href;
+  const container = document.querySelector("#acc-menu");
+  const items = container.querySelectorAll("a");
+
+  for (let i = 0; i < items.length; i++ ) {
+     if (items[i].href === currentLocation) {
+       items[i].className = "menu-active";
+       items[i].closest("div.content").style.display = "block";
+       break;
+     }
+   }   
+ }
+window.onload = highlightMenu;
+</script>

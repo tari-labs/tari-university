@@ -19,7 +19,7 @@ layout: default
             </div>
             <div class="archive">
               <div class="archive__box animate-in-top">
-                <h1 class="archive-title">{{ page.tag | capitalize }}</h1>
+                <h1 class="archive-title">{{ page.tag | capitalize | replace:'-',' ' }}</h1>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ layout: default
       <div class="container__inner section">
         <div class="contaniner__inner-box">
           <div class="section-top">
-            <h5 class="section-title">All posts tagged - {{ page.tag | capitalize }}</h5>
+            <h5 class="section-title">All posts tagged - {{ page.tag | capitalize | replace:'-',' ' }}</h5>
           </div>
           <div class="results-grid">
             {% for post in page.posts reversed %}
