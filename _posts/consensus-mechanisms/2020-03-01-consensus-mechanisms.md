@@ -4,6 +4,7 @@ title:  Consensus Mechanisms
 date:   2020-03-01 12:00:00 +0300
 postid: cm00
 format: article
+level: meta
 redirect_from: /consensus-mechanisms/consensus-mechanisms.html
 image:  '/images/banner-03.jpg'
 category: consensus-mechanisms

@@ -1,3 +1,4 @@
+{% assign categories = site.posts | map: 'category' | uniq %}
 
 <div class="widget-sidebar widget-tags" style="position: sticky; top: 20px;">
   <div class="widget__head section-top">
@@ -5,30 +6,27 @@
   </div>
   <div class="widget-tags__inner">
     <div class="acc-container-2" id="acc-menu">
-      {% for category in site.categories  %}
-        {% capture category_name %}{{ category | first }}{% endcapture %}
+      {% for cat in categories reversed %}
         <div id="accordion-2">
           <div class="acc-heading">
-            <!-- <div id="#{{ category_name | slugize}}"></div> -->
-            <h5>{{ category_name | replace:'-',' ' | capitalize }}</h5>
-            <i class="fas fa-angle-down arrow fas-2"></i>
-            <!-- <a name="{{ category_name | slugize }}"></a> -->
-          </div>
-          <div class="content">
-            <ol>
-            {% for post in site.categories[category_name] reversed %}
-            {% if post.featured %}
-            <h5 style="margin-left: -20px;"><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h5>
-            {% else %}
-              <li ><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></li>
-            {% endif %}
+              <h5>{{ cat | capitalize | replace: "-", " " }}</h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <ul>
+            {% for post in site.posts reversed %}
+              {% if post.category == cat and post.featured == true %}
+               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+              {% elsif post.category == cat %}
+               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+              {% endif %}
             {% endfor %}
-            </ol>
+            </ul>
           </div>
         </div>
       {% endfor %}
     </div>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="/images/index/accordion.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="/images/index/accordion.js"></script>
   </div>
 </div>
 
@@ -44,7 +42,7 @@ function highlightMenu() {
        items[i].closest("div.content").style.display = "block";
        break;
      }
-   }   
+   }
  }
 window.onload = highlightMenu;
 </script>

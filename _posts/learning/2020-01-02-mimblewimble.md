@@ -4,6 +4,7 @@ title:  Mimblewimble Implementation
 date:   2020-01-02 15:00:00 +0300
 postid: le02
 format: article
+level: meta
 redirect_from: /preface/learning/mimblewimble.html
 image:  '/images/banner-02.jpg'
 category: learning-paths

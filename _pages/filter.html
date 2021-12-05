@@ -12,6 +12,7 @@ icon: '/images/icons/ico-search.svg'
         {% assign categories = site.posts | map: 'category' | uniq %}
         {% assign formats = site.posts | map: 'format' | uniq %}
         {% assign levels = site.posts | map: 'level' | uniq %}
+        {% assign sortedlevels = 'beginner,intermediate,advanced,meta' | split: ',' %}
 
         <div>
             <select class="form-control cat1">
@@ -32,7 +33,7 @@ icon: '/images/icons/ico-search.svg'
         <div>
             <select class="form-control cat3">
                 <option value="cat-all">All Levels</option>
-                {% for level in levels reversed %}
+                {% for level in sortedlevels %}
                   <option value="cat-{{ level }}">{{ level | capitalize }}</option>
                 {% endfor %}
             </select>

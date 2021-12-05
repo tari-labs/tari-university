@@ -4,6 +4,7 @@ title:  Non-Fungible Tokens Survey
 date:   2020-06-02 15:00:00 +0300
 postid: da02
 format: presentation
+level: beginner
 redirect_from: /digital-assets/nft-landscape-1/sources/PITCHME.link.html
 image:  '/images/banner-06.jpg'
 category: digital-assets

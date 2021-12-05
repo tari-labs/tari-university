@@ -4,6 +4,7 @@ title:  Network Analysis
 date:   2020-08-01 12:00:00 +0300
 postid: na00
 format: article
+level: meta
 redirect_from: /network-analysis/network-analysis.html
 image:  '/images/banner-08.jpg'
 category: network-analysis
