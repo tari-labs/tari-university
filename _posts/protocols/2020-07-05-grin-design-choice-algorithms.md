@@ -4,6 +4,7 @@ title:  Grin Design Choice Criticisms - Truth or Fiction
 date:   2020-07-05 15:00:00 +0300
 postid: pr05
 format: article
+level: intermediate
 redirect_from: /protocols/grin-design-choice-criticisms/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols

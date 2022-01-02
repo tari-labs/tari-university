@@ -4,6 +4,7 @@ title:  Introduction to Tor and I2P
 date:   2020-07-10 15:00:00 +0300
 postid: pr10
 format: article
+level: beginner
 redirect_from: /protocols/intro-to-tor-i2P/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols

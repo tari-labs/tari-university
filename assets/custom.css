@@ -1,3 +1,68 @@
+@font-face {
+    font-family: 'Avenir-Black';
+    src: url('/assets/fonts/Avenir-Black.woff2') format('woff2'),
+         url('/assets/fonts/Avenir-Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Book';
+    src: url('/assets/fonts/Avenir-Book.woff2') format('woff2'),
+         url('/assets/fonts/Avenir-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Heavy';
+    src: url('/assets/fonts/Avenir-Heavy.woff2') format('woff2'),
+         url('/assets/fonts/Avenir-Heavy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Light';
+    src: url('/assets/fonts/Avenir-Light.woff2') format('woff2'),
+         url('/assets/fonts/Avenir-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Medium';
+    src: url('/assets/fonts/Avenir-Medium.woff2') format('woff2'),
+         url('/assets/fonts/Avenir-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Roman';
+    src: url('/assets/fonts/Avenir-Roman.woff2') format('woff2'),
+         url('/assets/fonts/Avenir-Roman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Din';
+    src: url('/assets/fonts/Din.woff2') format('woff2'),
+         url('/assets/fonts/Din.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Din-Bold';
+    src: url('/assets/fonts/Din-Bold.woff2') format('woff2'),
+         url('/assets/fonts/Din-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -94,10 +159,15 @@ body {
 
 /* Typography */
 
-h1, h2, h3, h4, h5, h6, p, a, li {
-  font-family: 'Montserrat', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Avenir-Black', sans-serif !important;
   line-height: 1.5em;
-  color: #4D4E4E;
+  color: #000;
+}
+p, a, li {
+  font-family: 'Avenir-Roman', sans-serif;
+  line-height: 1.5em;
+  color: #444;
 }
 h1.mainheading {
   font-size: 30px;

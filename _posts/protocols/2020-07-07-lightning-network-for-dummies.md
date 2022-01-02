@@ -4,6 +4,7 @@ title:  Lightning Network for Dummies
 date:   2020-07-07 15:00:00 +0300
 postid: pr07
 format: presentation
+level: beginner
 redirect_from: /protocols/lightning-network-for-dummies/sources/PITCHME.link.html
 image:  '/images/banner-07.jpg'
 category: protocols

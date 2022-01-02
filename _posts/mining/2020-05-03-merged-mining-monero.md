@@ -4,6 +4,7 @@ title:  Monero Merged Mining
 date:   2020-05-03 15:00:00 +0300
 postid: mi03
 format: article
+level: advanced
 redirect_from: /mining/merged-mining-monero/merged-mining-monero.html
 image:  '/images/banner-05.jpg'
 category: mining

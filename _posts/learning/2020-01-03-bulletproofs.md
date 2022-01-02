@@ -4,6 +4,7 @@ title:  Learning about Bulletproofs
 date:   2020-01-03 15:00:00 +0300
 postid: le03
 format: article
+level: meta
 redirect_from: /preface/learning/bulletproofs.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
