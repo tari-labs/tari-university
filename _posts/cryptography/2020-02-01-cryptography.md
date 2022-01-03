@@ -8,7 +8,7 @@ level: meta
 redirect_from: /cryptography/cryptography.html
 image:  '/images/banner-01.jpg'
 category: cryptography
-permalink: /cryptography
+permalink: /cryptography/
 tags:   [cryptography]
 icon: '/images/index/jewel-02.svg'
 line: '/images/index/line-purple.svg'
