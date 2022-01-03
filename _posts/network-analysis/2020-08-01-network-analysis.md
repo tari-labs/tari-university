@@ -8,7 +8,7 @@ level: meta
 redirect_from: /network-analysis/network-analysis.html
 image:  '/images/banner-08.jpg'
 category: network-analysis
-permalink: network-analysis
+permalink: /network-analysis/
 tags:   [network-analysis]
 icon: '/images/index/jewel-08.svg'
 line: '/images/index/line-orange.svg'
