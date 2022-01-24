@@ -49,36 +49,65 @@ layout: default
 <!-- end hero -->
 
 {% if page.goals %}
-<div class="banner learn" style="margin-top: 250px; margin-bottom: 150px; position: relative; height: 500px;">
-  <div class="container">
-    <div style="position: relative; width: 100%;">
-    <img src="/images/circles-blue.png" style="position: absolute; bottom: -50px; left: -300px;"/>
-    <img src="/images/circles-blue.png" style="position: absolute; top: -100px; right: -300px;"/>
-      <div class="container__inner section" style="display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
-        <img src="/images/title-learn.svg" style="margin-bottom: 50px; margin-top: -110px; text-align: center;"/>
-          <ul>
-          {% for item in page.goals %}
-              <li>{{ item.goal }}</li>
-          {% endfor %}
-          </ul>
-      </div>
+<div class="home-inner grey-bg">
+  <div class="centered">
+    <div>
+      <img src="/images/title-learn2.svg"/>
     </div>
+    <div class="highlight-wrapper">
+        <div class="heading-highlight hl3"></div>
+        <div><h3 class="highlight-headings">What you'll learn</h3></div>
+    </div>
+    <ul>
+      {% for item in page.goals %}
+          <li>{{ item.goal }}</li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 {% endif %}
 
-<div style="text-align: center;">
-  <img src="/images/title-modules.svg" />
+<div class="home-inner">
+  <div class="centered">
+    <div>
+      <img src="/images/title-modules2.svg"/>
+    </div>
+    <div class="highlight-wrapper">
+        <div class="heading-highlight hl2"></div>
+        <div><h3 class="highlight-headings">Modules</h3></div>
+    </div>
+  </div>
+
+  <div class="modules">
+    {% for post in site.posts reversed %}
+    {% if post.course == page.category %}
+      <a href="{{ post.url }}">
+      <div class="module">
+        <img src="/images/icons/{{ post.level }}-{{ post.format }}.svg" class="modulesvgs"/>
+        <div class="moduleInner">
+          <span class="moduleTime"><img src="/images/clock-white.svg"> {{ post.time }}</span>
+          <h5 class="moduleHeading">Module {{ post.modno }}:<br />
+            {{ post.title }}</h5>
+          <img class="moduleLine" src="/images/icons/line-{{ post.level }}.svg" />
+          <p>{{ post.description }}</p>
+          <span class="moduleTick" id="tickmark-{{ post.postid }}"><img src="/images/tickmark.svg"></span>
+        </div>
+      </div>
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="key" style="margin-bottom: 100px;">
+    <div class="key-item"><img src="/images/icons/key-beginner.svg">Beginner</div>
+    <div class="key-item"><img src="/images/icons/key-intermediate.svg">Intermediate</div>
+    <div class="key-item"><img src="/images/icons/key-advanced.svg">Advanced</div>
+    <div class="key-item"><img src="/images/icons/key-article.svg">Article</div>
+    <div class="key-item"><img src="/images/icons/key-presentation.svg">Presentation</div>
+    <div class="key-item"><img src="/images/icons/key-report.svg">Report</div>
+    <div class="key-item"><img src="/images/icons/key-video.svg">Video</div>
+  </div>
+
 </div>
 
-{{ content }}
-
-<div class="key" style="margin-bottom: 100px;">
-  <div class="key-item"><img src="/images/icons/key-beginner.svg">Beginner</div>
-  <div class="key-item"><img src="/images/icons/key-intermediate.svg">Intermediate</div>
-  <div class="key-item"><img src="/images/icons/key-advanced.svg">Advanced</div>
-  <div class="key-item"><img src="/images/icons/key-article.svg">Article</div>
-  <div class="key-item"><img src="/images/icons/key-presentation.svg">Presentation</div>
-  <div class="key-item"><img src="/images/icons/key-report.svg">Report</div>
-  <div class="key-item"><img src="/images/icons/key-video.svg">Video</div>
-</div>
+<script src="/assets/js/modules.js"></script>

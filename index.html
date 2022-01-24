@@ -2,38 +2,40 @@
 layout: default-home
 ---
 <div class="header1">
-<div class="tlu-container">
-  <img src="images/index/logo-white.png" width="538" height="78" class="tlu-logo">
-</div>
-
-<div class="light-nav">{% include hero-navigation.html %}</div>
-<div class="intro">
-  <h1 class="mainheading">Blockchain learning for developers.<br />By developers.</h1>
-  <img src="images/separator.svg" style="margin-bottom: 30px;"/>
-  <h4>Dipping your toes into crypto?<br />
-    Or a seasoned campaigner excited by Tari’s potential?<br />
-    We want this to be your go-to portal for learning and giving back.</h4>
-</div>
-
-<div class="floats">
-    <div class="rellax" data-rellax-speed="9">
-      <img src="./images/index/graphic5.png" height="500px" width="1215px"/>
+  <div class="intro">
+    <div>
+      <div class="light-logo"><img src="images/index/logo-white.png" width="538" height="78" class="tlu-logo"></div>
+      <div class="light-nav">{% include hero-navigation.html %}</div>
     </div>
-    <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
-    <script>
-      // Accepts any class name
-      var rellax = new Rellax('.rellax');
-    </script>
-</div>
+    <div style="text-align: center;">
+      <h1 class="step1">Blockchain learning for developers.</h1>
+      <h1 class="step2">By developers.</h1>
+      <img class="intro-separator step3" src="images/separator.svg"/>
+      <h4 class="step4">Dipping your toes into crypto?<br />
+        Or a seasoned campaigner excited by Tari’s potential?<br />
+        We want this to be your go-to portal for learning and giving back.</h4>
+    </div>
+  </div>
+
+  <div class="floats">
+      <div class="rellax" data-rellax-speed="9">
+        <img src="./images/index/graphic5.png" height="500px" width="1215px"/>
+      </div>
+      <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+      <script>
+        // Accepts any class name
+        var rellax = new Rellax('.rellax');
+      </script>
+  </div>
 </div>
 
-<div class="container" style="margin-top: -50px">
-  <div class="row container__inner section" style="padding-top: 100px; padding-bottom: 100px;">
+<div class="container" style="margin-top: -50px;">
+  <div class="row container__inner section" style="padding-top: 120px; padding-bottom: 120px; margin-left: 40px; margin-right: 40px;">
     <div class="col col-3 col-d-12" style="text-align: center;">
       <img src="images/ico-1.svg" />
     </div>
     <div class="col col-9 col-d-12">
-      <p style="font-size: 18px; border-bottom: 3px solid #DE7A7C; padding-bottom: 30px;">We’ve gone and curated the best content on the web and added it to the great articles and videos  published by the Tari community and brought it together to form <strong>TariLabs University</strong>.</p>
+      <p class="intro-text">We’ve gone and curated the best content on the web and added it to the great articles and videos  published by the Tari community and brought it together to form <strong>TariLabs University</strong>.</p>
       <p>Our team has collected resources into <strong><a href="#courses">courses</a></strong> that you can consume in a linear fashion and build up your knowledge as you would in any online course.</p>
       <p>Or you can dive straight into the <strong><a href="#topics">subject areas</a></strong> that interest you and cut through the courses following themes such as <strong>cryptography</strong> or <strong>economics</strong>.</p>
       <p><strong>Finally, do you know more than us?</strong> Is there something missing here that should be added? Boy, are we happy to see you! TLU is 100% open source and we’d love to consider your corrections, suggestions or even complete articles or videos for inclusion on TLU.</p>
@@ -42,63 +44,28 @@ layout: default-home
     <img src="images/dots-3lines.png" style="float: right; margin-right: 150px;"/>
 </div>
 
-
-<div class="tlu-container-main" id="courses">
-<div class="container" style="margin-top: 200px; margin-bottom: 50px;">
-  <div class="row">
-    <div style="width: 100%; text-align: center; margin-top: -150px; margin-bottom: 50px;">
-      <img src="images/courses-title.svg" />
-    </div>
-    <div class="col col-12">
-      <div class="modules">
-        {% for course in site.data.courses %}
-          <a href="{{ course.url }}">
-          <div class="module">
-            <img src="/images/icon-1.svg" class="modulesvgs"/>
-            <div class="moduleInner">
-              <span class="moduleTime"><img src="/images/clock.svg"> {{ course.time }}</span>
-              <h5 class="moduleHeading">Course {{ course.courseno }}:<br />
-                {{ course.title }}</h5>
-              <img class="moduleLine" src="/images/icons/line-{{ course.level }}.svg" />
-              <p>{{ course.desc }}</p>
-              <span class="moduleTick"><img src="/images/tickmark.svg"></span>
-            </div>
-          </div>
-          </a>
-        {% endfor %}
+<div class="container" id="courses">
+  <div class="home-inner">
+    <div class="centered">
+      <div>
+        <img src="/images/course-icon.svg"/>
       </div>
-      <div class="key">
-        <div class="key-item"><img src="/images/icons/key-beginner.svg">Beginner</div>
-        <div class="key-item"><img src="/images/icons/key-intermediate.svg">Intermediate</div>
-        <div class="key-item"><img src="/images/icons/key-advanced.svg">Advanced</div>
+      <div class="highlight-wrapper">
+          <div class="heading-highlight hl1"></div>
+          <div><h3 class="highlight-headings">Courses</h3></div>
       </div>
     </div>
+    {% include course-cards.html %}
   </div>
 </div>
-
-<div class="topics-banner" id="topics">
-  <div style="width: 700px; position: relative;">
-    <img src="/images/white-circle-1.png" style="position: absolute; bottom: -50px; left: -300px;"/>
-    <img src="/images/white-circle-1.png" style="position: absolute; top: -100px; right: -300px;"/>
-    <img src="images/ico-2.svg" />
-    <img src="images/arrow-2.svg" class="topics-img1"/>
-      <div style="position: relative;">
-        <h3 style="color: #4D4E4E;">Don't like the rigid<br /> course structure?</h3>
-        <h4 style="color: #4D4E4E;">Browse the topics instead</h4>
-      </div>
+<div class="home-inner grey-bg" id="topics">
+    <img src="/images/title-topics.svg" />
+    <h3 class="highlight-headings">Don't like the rigid<br />course structure?</h3>
+    <h4>Browse the topics instead</h4>
+</div>
+<div class="container">
+  <div class="home-inner">
+    {% include featuredcard-light.html %}
   </div>
-</div>
-
-<div class="tlu-container-main">
-<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
-  <div class="row">
-    <div class="col col-12">
-            {% include featuredcard-light.html %}
-    </div>
-  </div>
-</div>
-
-<!-- <div class="centerBtn"><a href="/learning-paths" class="purpleBtn">Start Learning!</a></div> -->
-</div>
 </div>
 {% include search.html %}

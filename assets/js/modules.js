@@ -1,7 +1,9 @@
-function modulesCompleted() {
-  let storedModules = JSON.parse(localStorage.getItem("modulesViewed"));
+let storedModules = JSON.parse(localStorage.getItem("modulesViewed"));
+if (storedModules) {
   for (let i = 0; i < storedModules.length; i++) {
-    document.getElementById(`tickmark-${storedModules[i]}`).classList.add("tickShow");
+  let tickmarkId = document.getElementById(`tickmark-${storedModules[i]}`);
+    if (tickmarkId) {
+      tickmarkId.classList.add("tickShow");
+    }
   }
 }
-modulesCompleted();
