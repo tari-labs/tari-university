@@ -2,7 +2,7 @@
 
 <script>
 
-  let thisModNo = {{ page.modno }};
+  let thisModNo = {{ page.postid }};
   let storedModules = JSON.parse(localStorage.getItem("modulesViewed")) || [];
 
   if (storedModules.indexOf(thisModNo) === -1) {

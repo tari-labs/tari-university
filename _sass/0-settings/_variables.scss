@@ -16,7 +16,7 @@ $base-font-size: 16px;
 $base-font-style: normal;
 $base-font-variant: normal;
 $base-font-weight: normal;
-$base-font-family: 'Montserrat', sans-serif;
+$base-font-family: 'Avenir-Medium', sans-serif;
 $base-line-height: 1.6;
 
 // Logo
@@ -26,14 +26,21 @@ $logo-font-height: 1;
 
 
 // Headings
-$heading-font-weight: 600;
-$heading-font-family: 'Montserrat', sans-serif;
+$heading-font-weight: 500;
+$heading-font-family: 'Avenir-Heavy', sans-serif;
 
-$font-size-h1:  36px;
-$font-size-h2:  28px;
-$font-size-h3:  24px;
-$font-size-h4:  20px;
-$font-size-h5:  18px;
-$font-size-h6:  16px;
+$font-size-h1:  2.25rem;
+$font-size-h2:  1.75rem;
+$font-size-h3:  1.5rem;
+$font-size-h4:  1.25rem;
+$font-size-h5:  1.12rem;
+$font-size-h6:  1rem;
+
+// $font-size-h1:  36px;
+// $font-size-h2:  28px;
+// $font-size-h3:  24px;
+// $font-size-h4:  20px;
+// $font-size-h5:  18px;
+// $font-size-h6:  16px;
 
 $heading-line-height: 1.4em;

@@ -52,14 +52,22 @@ layout: default
       <div class="post section">
         <!-- start selftest -->
         {% if page.selftest %}
-          <div style="text-align: center; margin-top: -115px;">
-            <img src="/images/title-selftest2.svg"/>
+          <div class="container">
+              <div class="centered">
+                <div>
+                  <img src="/images/title-selftest3.svg"/>
+                </div>
+                <div class="highlight-wrapper">
+                    <div class="heading-highlight hl1"></div>
+                    <div><h3 class="highlight-headings">Self Test</h3></div>
+                </div>
+              </div>
           </div>
           <ul class="jekyllcodex_accordion">
               {% for item in page.selftest %}
                   <li><input id="accordion{{ forloop.index }}" type="checkbox" />
                       <label for="accordion{{ forloop.index }}">{{ item.title | markdownify }}</label>
-                    <div><strong>Answer:</strong> {{ item.content | markdownify }}</div></li>
+                    <div><strong>Answer:</strong> <span class="accordion-content">{{ item.content | markdownify }}</span></div></li>
               {% endfor %}
           </ul>
         {% endif %}
