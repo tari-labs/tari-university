@@ -45,6 +45,9 @@ layout: default
         {% include breadcrumbs.html %}
         <hr />
         <div class="post__content">
+          {% if page.author %}
+            <p class="author">By {{ page.author }} (original post on <a href="{{ page.sourceurl }}" target="_blank">{{ page.sourcename }}</a>)</p>
+          {% endif %}
           {{ content }}
         </div>
       </article>

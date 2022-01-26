@@ -65,11 +65,6 @@
 :root {
   font-size: 14px;
 }
-@media(min-width: 769px) {
-  :root {
-    font-size: 16px;
-  }
-}
 body {
   margin: 0;
   padding: 0;
@@ -82,8 +77,16 @@ body {
   --maxwidth: 1440px;
   --boxshadow: 0 5px 15px 0 rgba(78, 19, 126, 0.1);
   --boxshadow-hover: 10px 20px 30px 0 rgba(78, 19, 126, 0.1);
-  --sidepadding: 40px;
+  --sidepadding: 20px;
   --borderradius: 10px;
+}
+@media(min-width: 769px) {
+  :root {
+    font-size: 16px;
+  }
+  body {
+  --sidepadding: 40px;
+  }
 }
 .header1 {
   background: url("/images/index/header-bg-3.jpg") no-repeat bottom center;
@@ -98,8 +101,7 @@ body {
   align-items: center;
   height: 95vh;
   min-height: 800px;
-  padding-left: var(--sidepadding);
-  padding-right: var(--sidepadding);
+  padding: 20px var(--sidepadding) 80px var(--sidepadding);
 }
 .intro h1,
 .intro h4 {
@@ -242,7 +244,7 @@ a {
   padding: 20px;
 }
 .tlu-logo {
-  padding-top: 40px;
+  padding-top: 0px;
   max-width: 90%;
   height: auto;
 }
@@ -280,13 +282,13 @@ a {
   padding: 10px 20px;
   border-radius: var(--borderradius);
   font-weight: bold;
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   display: block;
   text-align: center;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   letter-spacing: 0.05em;
 }
 .purpleBtn:hover {
@@ -1067,11 +1069,19 @@ ul.jekyllcodex_accordion li input:checked + label::before {transform: rotate(90d
   letter-spacing: 1px;
   margin-top: -10px;
 }
-
+.author {
+  font-style: italic;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 30px;
+}
 /* Footer */
 .footer {
   margin-top: 5px !important;
 }
 .copyright a {
   font-size: 13px;
+}
+p img {
+  display: block;
+  margin: 10px auto;
 }
