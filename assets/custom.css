@@ -77,8 +77,8 @@ body {
   --maxwidth: 1440px;
   --boxshadow: 0 5px 15px 0 rgba(78, 19, 126, 0.1);
   --boxshadow-hover: 10px 20px 30px 0 rgba(78, 19, 126, 0.1);
-  --sidepadding: 20px;
-  --borderradius: 10px;
+  --sidepadding: 5px;
+  --borderradius: 5px;
 }
 @media(min-width: 769px) {
   :root {
@@ -92,20 +92,43 @@ body {
   background: url("/images/index/header-bg-3.jpg") no-repeat bottom center;
   background-size: cover;
   height: calc(100vh + 50px);
-  min-height: 750px;
+  min-height: 500px;
 }
 .intro {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 95vh;
-  min-height: 800px;
-  padding: 20px var(--sidepadding) 80px var(--sidepadding);
+  min-height: 500px;
+  height: 100vh;
+  padding: 30px var(--sidepadding) 10px var(--sidepadding);
 }
 .intro h1,
 .intro h4 {
   color: #FFF;
+}
+.home-intro2 {
+  padding: 40px var(--sidepadding) 20px var(--sidepadding);
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  background: #FFF;
+  border-radius: var(--borderradius);
+  box-shadow: var(--boxshadow);
+}
+@media (min-width: 769px) {
+  .header1 {
+    min-height: 750px;
+  }
+  .home-intro2 {
+    padding: 120px var(--sidepadding) 120px var(--sidepadding);
+    margin-left: 40px !important;
+    margin-right: 40px !important;
+  }
+  .intro {
+    height: 100vh;
+    min-height: 800px;
+    padding: 30px var(--sidepadding) 0px var(--sidepadding);
+  }
 }
 .topics-banner {
    background: rgba(219, 217, 232, 0.26);
@@ -245,7 +268,7 @@ a {
 }
 .tlu-logo {
   padding-top: 0px;
-  max-width: 90%;
+  max-width: 80%;
   height: auto;
 }
 .top-block {
@@ -382,14 +405,22 @@ a {
 }
 .intro h1 {
   font-family: "Avenir-Black", sans-serif;
-  font-size: 2.7rem;
+  font-size: 2.2rem;
   animation-name: fadein;
   opacity: 0;
   margin-bottom: 0;
 }
 .intro h4 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   opacity: 0;
+}
+@media (min-width: 481px) {
+  .intro h1 {
+    font-size: 2.7rem;
+  }
+  .intro h4 {
+    font-size: 1.4rem;
+  }
 }
 .step1 {
   animation: fadein 1s ease-in 1s forwards;
@@ -416,8 +447,12 @@ a {
   from {opacity: 0;}
   to {opacity: 1;}
 }
+
+.light-logo {
+  text-align: center;
+}
 /* Tablet and up */
-@media (min-width: 451px) {
+@media (min-width: 481px) {
   .cards {
     grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
     max-width: var(--maxwidth);
@@ -439,7 +474,7 @@ a {
   }
   .tlu-logo {
     padding-top: 0;
-    max-width: 90%;
+    max-width: 80%;
     height: auto;
   }
   h1.mainheading {
@@ -451,9 +486,6 @@ a {
     animation-name: fadein;
     opacity: 0;
     margin-bottom: 0;
-  }
-  .light-logo {
-    text-align: center;
   }
   .intro h4 {
     font-size: 1.8rem;
@@ -707,10 +739,7 @@ a {
   justify-content: space-between;
 }
 .tlu-footer-img {
-  width: 160px;
-  height: 160px;
-  box-shadow: 3px 5px 15px #e1e1e1;
-  border-radius: 100px;
+ display: none;
 }
 .tlu-footerbio p {
   margin-bottom: 0;
@@ -723,9 +752,16 @@ a {
   max-width: 700px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 769px) {
   .tlu-footerbio-container {
     flex-direction: row;
+  }
+  .tlu-footer-img {
+    width: 160px;
+    height: 160px;
+    box-shadow: 3px 5px 15px #e1e1e1;
+    border-radius: 100px;
+    display: block;
   }
 }
 
@@ -1060,7 +1096,7 @@ ul.jekyllcodex_accordion li input:checked + label::before {transform: rotate(90d
 }
 .tlu-hero-title {
   color: #FFF;
-  font-size: 36px;
+  font-size: 2.25rem;
   line-height: 1em;
   margin-bottom: 15px;
 }
@@ -1081,7 +1117,37 @@ ul.jekyllcodex_accordion li input:checked + label::before {transform: rotate(90d
 .copyright a {
   font-size: 13px;
 }
+.bottom-nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  gap: 5px;
+  width: 100%;
+}
+.bottom-nav a {
+  flex-basis: 150px;
+  flex-grow: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  font-size: 14px;
+}
 p img {
   display: block;
   margin: 10px auto;
+}
+
+@media(min-width: 769px) {
+  .bottom-nav {
+    max-width: 300px;
+  }
+  .bottom-nav a {
+    flex-basis: 130px;
+  }
+  .bottom-nav-separator {
+    display: none;
+  }
+}
+.flex-reverse {
+  flex-wrap: wrap-reverse !important;
 }
