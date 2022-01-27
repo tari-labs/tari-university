@@ -78,6 +78,7 @@ layout: default
     </div>
   </div>
 
+<div class="container">
   <div class="modules">
     {% for post in site.posts reversed %}
     {% if post.course == page.category %}
@@ -97,7 +98,7 @@ layout: default
       {% endif %}
     {% endfor %}
   </div>
-
+</div>
   <div class="key" style="margin-bottom: 100px;">
     <div class="key-item"><img src="/images/icons/key-beginner.svg">Beginner</div>
     <div class="key-item"><img src="/images/icons/key-intermediate.svg">Intermediate</div>
