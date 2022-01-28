@@ -1,7 +1,7 @@
 ---
 layout: module
 title:  The bitcoin whitepaper - with notes
-date:   2021-01-07 12:00:00 +0300
+date:   2021-01-06 12:00:00 +0300
 postid: 106
 image:  '/images/banner-01.jpg'
 category: intro-to-blockchain
