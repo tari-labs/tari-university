@@ -1,7 +1,7 @@
 ---
 layout: module
 title:  The bitcoin whitepaper - with notes
-date:   2021-01-07 12:00:00 +0300
+date:   2021-01-06 12:00:00 +0300
 postid: 106
 image:  '/images/banner-01.jpg'
 category: intro-to-blockchain
@@ -38,4 +38,4 @@ Don't worry if you don't understand all the details at first! Very few people gr
 You'll find yourself coming back to this paper time and time again. Every time, you'll gain a little more insight into
 the technology that will change society's relationship with money forever.
 
-<a href="https://fermatslibrary.com/s/bitcoin" target="_blank" class="purpleBtn" >Read the full article here</a>
+<a href="/pdf/bitcoin.pdf" target="_blank" class="purpleBtn" >Read the whitepaper</a>

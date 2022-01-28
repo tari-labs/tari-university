@@ -8,7 +8,7 @@
 
     {% for item in (0..site.tags.size) %}{% unless forloop.last %}
     {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
-    <a href="{{ site.baseurl }}/tag/{{ this_word | cgi_escape }}" class="widget__tag"><h5 class="widget__tag-name">{{ this_word }}</h5><span class="widget__tag-count">{{ site.tags[this_word].size }}</span></a>
+    <a href="{{ site.baseurl }}/tag/{{ this_word | cgi_escape }}.html" class="widget__tag"><h5 class="widget__tag-name">{{ this_word }}</h5><span class="widget__tag-count">{{ site.tags[this_word].size }}</span></a>
     {% endunless %}{% endfor %}
   </div>
 </div>
