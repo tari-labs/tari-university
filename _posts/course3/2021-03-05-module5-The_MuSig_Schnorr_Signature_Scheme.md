@@ -7,7 +7,8 @@ format: article
 level: advanced
 redirect_from: /cryptography/musig-schnorr-sig-scheme/The_MuSig_Schnorr_Signature_Scheme.html
 image:  '/images/banner-01.jpg'
-category: cryptography
+course: cryptography-101
+category: cryptography-101
 tags:   [cryptography]
 featured:
 description: This report investigates Schnorr Multi-Signature Schemes (MuSig), which make use of key aggregation and are provably secure in the *plain public-key model*.

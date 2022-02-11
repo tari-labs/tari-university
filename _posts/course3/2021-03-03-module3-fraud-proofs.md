@@ -7,10 +7,11 @@ format: article
 level: intermediate
 redirect_from: /cryptography/fraud-proofs-1/MainReport.html
 image:  '/images/banner-01.jpg'
-category: cryptography
+course: cryptography-101
+category: cryptography-101
 tags:   [cryptography]
 featured:
-description: The bitcoin blockchain was, as of June 2018, approximately 173 GB in size.
+description: How do you prove, using cryptography, that someone broke the rules?
 ---
 
 ## Table of Contents

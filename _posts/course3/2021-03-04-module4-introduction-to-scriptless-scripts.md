@@ -7,7 +7,8 @@ format: article
 level: advanced
 redirect_from: /cryptography/scriptless-scripts/introduction-to-scriptless-scripts.html
 image:  '/images/banner-01.jpg'
-category: cryptography
+course: cryptography-101
+category: cryptography-101
 tags:   [cryptography]
 featured:
 description: Scriptless Scripts are a means to execute smart contracts off-chain, through the use of Schnorr signatures.

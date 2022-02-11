@@ -7,10 +7,11 @@ format: presentation
 level: intermediate
 redirect_from: /cryptography/crypto-1/sources/PITCHME.link.html
 image:  '/images/banner-01.jpg'
-category: cryptography
+course: cryptography-101
+category: cryptography-101
 tags:   [cryptography]
 featured:
-description: This is very brief overview. There are better, and more complete introductions out there
+description: This is very brief overview of how elliptic curves work.
 ---
 
 <iframe class="tlu-iframe" src="/images/cryptography/crypto-1/PITCHME.html"></iframe>
