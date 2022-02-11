@@ -2,12 +2,13 @@
 layout: post
 title:  Grin vs. BEAM, a Comparison
 date:   2020-07-04 15:00:00 +0300
-postid: pr04
+postid: mw02
 format: article
 level: intermediate
 redirect_from: /protocols/grin-beam-comparison/MainReport.html
 image:  '/images/banner-07.jpg'
-category: protocols
+category: mimblewimble
+course: mimblewimble-basics
 tags:   [protocols, mimblewimble, grin, beam]
 usemathjax: true
 featured:

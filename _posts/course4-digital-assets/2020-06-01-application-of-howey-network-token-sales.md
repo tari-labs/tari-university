@@ -8,6 +8,7 @@ level: beginner
 redirect_from: /digital-assets/howey-application-to-blockchain/MainReport.html
 image:  '/images/banner-06.jpg'
 category: digital-assets
+course: digital-assets
 tags:   [digital-assets]
 featured:
 description: Many blockchain networks use, or intend to use, cryptographic tokens ("tokens" or "digital assets") for various purposes.

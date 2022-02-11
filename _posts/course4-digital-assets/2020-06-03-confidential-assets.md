@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /digital-assets/confidential-assets/MainReport.html
 image:  '/images/banner-06.jpg'
 category: digital-assets
+course: digital-assets
 tags:   [digital-assets]
 featured:
 description: Confidential assets, in the context of blockchain technology and blockchain-based cryptocurrencies, can have different meanings to different audiences, and can also be something totally different or unique depending on the use case.
