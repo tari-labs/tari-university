@@ -20,7 +20,7 @@ layout: default
                     {% if page.tags.size >= 1 %}
                     <div class="post-tags">
                       {% for tag in page.tags %}
-                      <a href="{{ site.baseurl }}/tag/{{ tag }}" class="post-tags__tag tlu-hero-tags">{{ tag | capitalize | replace:'-',' ' }}</a>
+                      <a href="{{ site.baseurl }}/tag/{{ tag }}.html" class="post-tags__tag tlu-hero-tags">{{ tag | capitalize | replace:'-',' ' }}</a>
                       {% endfor %}
                     </div>
                     {% endif %}
@@ -78,6 +78,7 @@ layout: default
     </div>
   </div>
 
+<div class="container">
   <div class="modules">
     {% for post in site.posts reversed %}
     {% if post.course == page.category %}
@@ -97,7 +98,7 @@ layout: default
       {% endif %}
     {% endfor %}
   </div>
-
+</div>
   <div class="key" style="margin-bottom: 100px;">
     <div class="key-item"><img src="/images/icons/key-beginner.svg">Beginner</div>
     <div class="key-item"><img src="/images/icons/key-intermediate.svg">Intermediate</div>
