@@ -8,6 +8,7 @@ level: meta
 redirect_from: /labs/mermaid-demo.html
 image:  '/images/banner-09.jpg'
 category: labs
+time: 2
 tags:   [labs, mermaid]
 featured:
 description: TLU can now support mermaid diagrams! Flowcharts, sequence diagrams and more!

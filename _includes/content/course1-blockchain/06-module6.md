@@ -1,0 +1,35 @@
+The Bitcoin white paper appeared on [The Cryptography Mailing list](https://satoshi.nakamotoinstitute.org/emails/cryptography/) on 31 October, 2008. The email was sent by one
+"Satoshi Nakamoto" and said:
+
+    I've been working on a new electronic cash system that's fully
+    peer-to-peer, with no trusted third party.
+
+    The paper is available at:
+    http://www.bitcoin.org/bitcoin.pdf
+
+    The main properties:
+    Double-spending is prevented with a peer-to-peer network.
+    No mint or other trusted parties.
+    Participants can be anonymous.
+    New coins are made from Hashcash style proof-of-work.
+    The proof-of-work for new coin generation also powers the
+    network to prevent double-spending.
+
+This is the last module in this introductory course. You should have all the tools necessary to read and get a high-level
+understanding of the white paper.
+
+Don't worry if you don't understand all the details at first! Very few people grok the entire thing on the first reading.
+You'll find yourself coming back to this paper time and time again. Every time, you'll gain a little more insight into
+the technology that will change society's relationship with money forever.
+
+<div id="adobe-dc-view" style="width: 100%;"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+	document.addEventListener("adobe_dc_view_sdk.ready", function(){
+		var adobeDCView = new AdobeDC.View({clientId: "1669aff07fac4f42b1c3ba917d60cf9f", divId: "adobe-dc-view"});
+		adobeDCView.previewFile({
+			content:{location: {url: "/pdf/bitcoin.pdf"}},
+			metaData:{fileName: "Bitcoin Whitepaper.pdf"}
+		}, {embedMode: "IN_LINE"});
+	});
+</script>

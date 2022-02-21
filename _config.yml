@@ -54,7 +54,7 @@ disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example
 
 #-------------------------------
 # Google Analytics
-google-analytics: UA-115476091-2
+#google-analytics: UA-115476091-2
 
 
 #-------------------------------
@@ -92,6 +92,7 @@ include:
 exclude:
   - .env
   - deploy.sh
+  - .idea
 
 # Tags
 tag_page_dir:         tag

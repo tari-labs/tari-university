@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /mining/merged-mining-monero/merged-mining-monero.html
 image:  '/images/banner-05.jpg'
 category: mining
+time: 5
 tags:   [mining]
 usemathjax: true
 featured:

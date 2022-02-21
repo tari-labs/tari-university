@@ -8,13 +8,10 @@ level: beginner
 redirect_from: /scaling/executive-summary/sources/PITCHME.link.html
 image:  '/images/banner-04.jpg'
 category: scaling
+time: 10
 tags:   [scaling]
 featured:
 description: Scaling Executive Summary
 ---
 
-<iframe class="tlu-iframe" src="/images/scaling/executive-summary/PITCHME.html"></iframe>
-
-### Having trouble viewing this presentation?
-
-View it in a [separate window](/images/scaling/executive-summary/PITCHME.html).
+{% include content/scaling/02-executive-summary.md %}
