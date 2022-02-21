@@ -6,7 +6,26 @@
   </div>
   <div class="widget-tags__inner">
     <div class="acc-container-2" id="acc-menu">
-      {% for cat in categories reversed %}
+      {% for cat in site.data.menu-categories %}
+        <div id="accordion-2">
+          <div class="acc-heading">
+              <h5>{{ cat.category | capitalize | replace: "-", " " }}</h5>
+              <i class="fas fa-angle-down arrow fas-2"></i>
+            </div>
+            <div class="content">
+            <ul>
+            {% for post in site.posts reversed %}
+              {% if post.category == cat.category and post.featured == true %}
+               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+              {% elsif post.category == cat.category %}
+               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- {% for cat in categories reversed %}
         <div id="accordion-2">
           <div class="acc-heading">
               <h5>{{ cat | capitalize | replace: "-", " " }}</h5>
@@ -24,7 +43,7 @@
             </ul>
           </div>
         </div>
-      {% endfor %}
+      {% endfor %} -->
     </div>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="/images/index/accordion.js"></script>
   </div>

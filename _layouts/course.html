@@ -78,6 +78,36 @@ layout: default
     </div>
   </div>
 
+  <!-- Begin test module section -->
+  <div class="container">
+    <div class="modules">
+      {% assign modno = 0 %}
+      {% for module in page.modules %}
+        {% for post in site.posts %}
+          {% if module == post.postid %}
+          {% capture modno %}{{ modno | plus:1 }}{% endcapture %}
+            <a href="{{ post.url }}">
+            <div class="module">
+              <img src="/images/icons/{{ post.level }}-{{ post.format }}.svg" class="modulesvgs"/>
+              <div class="moduleInner">
+                {% if post.time %}
+                <span class="moduleTime"><img src="/images/clock-white.svg"> {{ post.time }}</span>
+                {% endif %}
+                <h5 class="moduleHeading">Module {{ modno }}:<br />
+                  {{ post.title }}</h5>
+                <img class="moduleLine" src="/images/icons/line-{{ post.level }}.svg" />
+                <p>{{ post.description }}</p>
+                <span class="moduleTick" id="tickmark-{{ post.postid }}"><img src="/images/tickmark.svg"></span>
+              </div>
+            </div>
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+  <!-- End test module section -->
+
 <div class="container">
   <div class="modules">
     {% for post in site.posts reversed %}
