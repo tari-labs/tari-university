@@ -8,6 +8,7 @@ level: meta
 redirect_from: /preface/learning/bulletproofs.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
+time: 1
 tags:   [learning-paths, bulletproofs]
 featured:
 description: Bulletproofs are short non-interactive zero-knowledge proofs that require no trusted setup.

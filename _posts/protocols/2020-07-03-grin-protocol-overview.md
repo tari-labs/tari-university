@@ -8,6 +8,7 @@ level: intermediate
 redirect_from: /protocols/grin-protocol-overview/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
+time: 10
 tags:   [protocols, mimblewimble, grin]
 featured:
 description: Depending on whom you ask, Mimblewimble is either a tongue-tying curse or a blockchain protocol designed to be private and scalable.

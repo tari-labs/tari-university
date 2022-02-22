@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /cryptography/bulletproofs-and-mimblewimble/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
+time: 25
 tags:   [cryptography, bulletproofs, mimblewimble]
 featured:
 description: Bulletproofs form part of the family of distinct *Zero-knowledge Proof*<sup>[def][zk~]</sup> systems, such as Zero-Knowledge

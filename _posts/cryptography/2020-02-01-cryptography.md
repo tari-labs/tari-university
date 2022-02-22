@@ -8,6 +8,7 @@ level: meta
 redirect_from: /cryptography/cryptography.html
 image:  '/images/banner-01.jpg'
 category: cryptography
+time: 1
 permalink: /cryptography/
 tags:   [cryptography]
 icon: '/images/index/jewel-02.svg'

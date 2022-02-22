@@ -8,7 +8,8 @@ level: beginner
 redirect_from: /protocols/intro-to-tor-i2P/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
-tags:   [protocols]
+time: 25
+tags: [protocols]
 featured:
 description: Invisible Internet Project (I2P), Tor and Virtual Private Networks (VPNs) are well-known anonymity networks.
 ---

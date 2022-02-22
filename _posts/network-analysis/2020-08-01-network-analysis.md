@@ -8,6 +8,7 @@ level: meta
 redirect_from: /network-analysis/network-analysis.html
 image:  '/images/banner-08.jpg'
 category: network-analysis
+time: 1
 permalink: /network-analysis/
 tags:   [network-analysis]
 icon: '/images/index/jewel-08.svg'

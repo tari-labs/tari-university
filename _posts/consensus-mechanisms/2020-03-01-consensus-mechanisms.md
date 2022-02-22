@@ -8,6 +8,7 @@ level: meta
 redirect_from: /consensus-mechanisms/consensus-mechanisms.html
 image:  '/images/banner-03.jpg'
 category: consensus-mechanisms
+time: 1
 permalink: /consensus-mechanisms/
 tags:   [consensus-mechanisms]
 icon: '/images/index/jewel-03.svg'

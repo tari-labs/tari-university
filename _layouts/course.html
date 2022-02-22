@@ -91,7 +91,18 @@ layout: default
               <img src="/images/icons/{{ post.level }}-{{ post.format }}.svg" class="modulesvgs"/>
               <div class="moduleInner">
                 {% if post.time %}
-                <span class="moduleTime"><img src="/images/clock-white.svg"> {{ post.time }}</span>
+                  {% assign timeUnit = "min" %}
+                  {% assign postTime = post.time %}
+                  {% if post.time > 1 and post.time <= 59 %}
+                    {% assign timeUnit = "mins" %}
+                  {% elsif post.time >= 60 and post.time <= 119 %}
+                    {% assign timeUnit = "hour" %}
+                    {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
+                  {% elsif post.time >= 120 %}
+                    {% assign timeUnit = "hours" %}
+                    {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
+                  {% endif %}
+                  <span class="moduleTime"><img src="/images/clock-white.svg"> {{ postTime }} {{ timeUnit }}</span>
                 {% endif %}
                 <h5 class="moduleHeading">Module {{ modno }}:<br />
                   {{ post.title }}</h5>
@@ -116,7 +127,20 @@ layout: default
       <div class="module">
         <img src="/images/icons/{{ post.level }}-{{ post.format }}.svg" class="modulesvgs"/>
         <div class="moduleInner">
-          <span class="moduleTime"><img src="/images/clock-white.svg"> {{ post.time }}</span>
+            {% if post.time %}
+              {% assign timeUnit = "min" %}
+              {% assign postTime = post.time %}
+              {% if post.time > 1 and post.time <= 59 %}
+                {% assign timeUnit = "mins" %}
+              {% elsif post.time >= 60 and post.time <= 119 %}
+                {% assign timeUnit = "hour" %}
+                {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
+              {% elsif post.time >= 120 %}
+                {% assign timeUnit = "hours" %}
+                {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
+              {% endif %}
+              <span class="moduleTime"><img src="/images/clock-white.svg"> {{ postTime }} {{ timeUnit }}</span>
+            {% endif %}
           <h5 class="moduleHeading">Module {{ post.modno }}:<br />
             {{ post.title }}</h5>
           <img class="moduleLine" src="/images/icons/line-{{ post.level }}.svg" />

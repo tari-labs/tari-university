@@ -8,6 +8,7 @@ level: beginner
 redirect_from: /consensus-mechanisms/BFT/understanding_bft_consensus.html
 image:  '/images/banner-03.jpg'
 category: consensus-mechanisms
+time: 60
 tags:   [consensus-mechanisms]
 featured: false
 description: When considering the concept of consensus in cryptocurrency and cryptographic protocols

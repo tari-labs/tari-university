@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /cryptography/amortization-bp-ipp/mainreport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
+time: 35
 tags:   [cryptography]
 featured:
 description: One of the main attractions of blockchains is the idea of trustlessness.

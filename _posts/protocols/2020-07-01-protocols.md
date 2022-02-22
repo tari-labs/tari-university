@@ -8,6 +8,7 @@ level: meta
 redirect_from: /protocols/protocols.html
 image:  '/images/banner-07.jpg'
 category: protocols
+time: 2
 permalink: /protocols/
 tags:   [protocols]
 icon: '/images/index/jewel-07.svg'

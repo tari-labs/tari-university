@@ -8,6 +8,7 @@ level: intermediate
 redirect_from: /protocols/grin-design-choice-criticisms/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
+time: 15
 tags:   [protocols, mimblewimble, grin]
 featured:
 description: Grin is a cryptocurrency, implemented in Rust, that makes use of Mimblewimble transactions and the Cuckatoo algorithm to perform Proof-of-Work (PoW) calculations.

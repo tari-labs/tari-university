@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /cryptography/bulletproofs-protocols/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
+time: 40
 tags:   [cryptography]
 featured:
 description: The overview of Bulletproofs given in Bulletproofs and Mimblewimble was largely based on the original work done by Bünz et al.

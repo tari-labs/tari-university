@@ -8,6 +8,7 @@ level: beginner
 redirect_from: /mining/pool-mining/pool-mining.html
 image:  '/images/banner-05.jpg'
 category: mining
+time: 8
 tags:   [mining]
 usemathjax: true
 featured:

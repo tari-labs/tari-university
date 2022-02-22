@@ -8,6 +8,7 @@ level: meta
 redirect_from: /digital-assets/digital-assets.html
 image:  '/images/banner-06.jpg'
 category: digital-assets
+time: 1
 permalink: /digital-assets/
 tags:   [digital-assets]
 icon: '/images/index/jewel-06.svg'

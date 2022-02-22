@@ -8,6 +8,7 @@ level: meta
 redirect_from: /preface/learning/introduction-to-learning.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
+time: 2
 permalink: /learning-paths/
 tags:   [learning-paths]
 icon: '/images/index/jewel-01.svg'

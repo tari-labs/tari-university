@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /cryptography/building-on-bulletproofs/link.html
 image:  '/images/banner-01.jpg'
 category: cryptography
+time: 11
 tags:   [cryptography]
 featured:
 description: In this post Cathie explains the basics of the Bulletproofs zero knowledge proof protocol.

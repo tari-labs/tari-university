@@ -8,6 +8,7 @@ level: meta
 redirect_from: /preface/learning/blockchain-basics.html
 image:  '/images/banner-02.jpg'
 category: learning-paths
+time: 1
 tags:   [learning-paths, blockchain]
 featured:
 description: Blockchain Basics provides a broad and easily understood explanation of blockchain technology, as well as the history of value itself.

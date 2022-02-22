@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /network-analysis/probabilistic-attack/byzantine_takeover_of_the_DAN.html
 image:  '/images/banner-08.jpg'
 category: network-analysis
+time: 15
 tags:   [network-analysis]
 usemathjax: true
 featured:

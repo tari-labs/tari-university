@@ -8,6 +8,7 @@ level: beginner
 redirect_from: /protocols/rgb-introduction/sources/PITCHME.link.html
 image:  '/images/banner-07.jpg'
 category: protocols
+time: 10
 tags:   [protocols]
 featured:
 description: This is very brief overview. There are better, and more complete introductions out there

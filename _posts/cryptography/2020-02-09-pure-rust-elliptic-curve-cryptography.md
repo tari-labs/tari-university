@@ -8,6 +8,7 @@ level: intermediate
 redirect_from: /cryptography/pure-rust-ecc/pure-rust-ecc.html
 image:  '/images/banner-01.jpg'
 category: cryptography
+time: 35
 tags:   [cryptography]
 featured:
 description: Fast, Safe, Pure-Rust Elliptic Curve Cryptography by Isis Lovecruft & Henry De Valence.

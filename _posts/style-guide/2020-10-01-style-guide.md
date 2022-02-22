@@ -8,6 +8,7 @@ level: meta
 redirect_from: /preface/style-guide.html
 image:  '/images/banner-10.jpg'
 category: style-guide
+time: 10
 permalink: /style-guide/
 tags:   [style-guide]
 icon: '/images/index/jewel-10.svg'

@@ -10,6 +10,7 @@ redirect_from:
   - /merged-mining/merged-mining-scene/MergedMiningIntroduction.html
 image:  '/images/banner-05.jpg'
 category: mining
+time: 1
 tags:   [mining]
 featured:
 description: The purpose of merged mining is to allow the mining of more than one cryptocurrency without necessitating additional Proof-of-Work effort.

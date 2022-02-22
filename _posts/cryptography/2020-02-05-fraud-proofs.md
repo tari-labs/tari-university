@@ -8,6 +8,7 @@ level: intermediate
 redirect_from: /cryptography/fraud-proofs-1/MainReport.html
 image:  '/images/banner-01.jpg'
 category: cryptography
+time: 60
 tags:   [cryptography]
 featured:
 description: The bitcoin blockchain was, as of June 2018, approximately 173 GB in size.

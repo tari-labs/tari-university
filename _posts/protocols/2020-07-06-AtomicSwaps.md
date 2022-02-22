@@ -8,6 +8,7 @@ level: intermediate
 redirect_from: /protocols/atomic-swaps/AtomicSwaps.html
 image:  '/images/banner-07.jpg'
 category: protocols
+time: 5
 tags:   [protocols]
 usemathjax: true
 featured:

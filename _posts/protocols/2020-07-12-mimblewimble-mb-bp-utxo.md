@@ -8,6 +8,7 @@ level: advanced
 redirect_from: /protocols/mimblewimble-mp-bp-utxo/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
+time: 25
 tags:   [protocols, mimblewimble]
 featured:
 description: Mimblewimble is a privacy-oriented, cryptocurrency technology. It differs from Bitcoin in some key areas...

@@ -7,6 +7,7 @@ format: article
 level: intermediate
 image:  '/images/banner-11.jpg'
 category: tari
+time: 20
 tags:   [tariscript, smart-contracts, blockchain]
 featured: false
 level: intermediate

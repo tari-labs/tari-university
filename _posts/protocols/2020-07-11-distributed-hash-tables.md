@@ -8,6 +8,7 @@ level: intermediate
 redirect_from: /protocols/dht/MainReport.html
 image:  '/images/banner-07.jpg'
 category: protocols
+time: 15
 tags:   [protocols]
 featured:
 description: A hash table is a data structure that maps keys to values.
