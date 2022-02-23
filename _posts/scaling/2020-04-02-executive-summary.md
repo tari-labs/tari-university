@@ -14,8 +14,4 @@ featured:
 description: Scaling Executive Summary
 ---
 
-<iframe class="tlu-iframe" src="/images/scaling/executive-summary/PITCHME.html"></iframe>
-
-### Having trouble viewing this presentation?
-
-View it in a [separate window](/images/scaling/executive-summary/PITCHME.html).
+{% include content/scaling/02-executive-summary.md %}

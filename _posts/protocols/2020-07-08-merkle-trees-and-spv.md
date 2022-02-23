@@ -14,8 +14,4 @@ featured:
 description: This is very brief overview. There are better, and more complete introductions out there
 ---
 
-<iframe class="tlu-iframe" src="/images/protocols/merkle-trees/PITCHME.html"></iframe>
-
-### Having trouble viewing this presentation?
-
-View it in a [separate window](/images/protocols/merkle-trees/PITCHME.html).
+{% include content/protocols/08-merkle-trees-and-spv.md %}

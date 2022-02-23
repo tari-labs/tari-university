@@ -79,7 +79,7 @@ layout: default
   </div>
 
   <!-- Begin test module section -->
-  <div class="container">
+  <!-- <div class="container">
     <div class="modules">
       {% assign modno = 0 %}
       {% for module in page.modules %}
@@ -116,13 +116,15 @@ layout: default
         {% endfor %}
       {% endfor %}
     </div>
-  </div>
+  </div> -->
   <!-- End test module section -->
 
 <div class="container">
   <div class="modules">
+    {% assign modno = 0 %}
     {% for post in site.posts reversed %}
     {% if post.course == page.category %}
+    {% capture modno %}{{ modno | plus:1 }}{% endcapture %}
       <a href="{{ post.url }}">
       <div class="module">
         <img src="/images/icons/{{ post.level }}-{{ post.format }}.svg" class="modulesvgs"/>
@@ -141,7 +143,7 @@ layout: default
               {% endif %}
               <span class="moduleTime"><img src="/images/clock-white.svg"> {{ postTime }} {{ timeUnit }}</span>
             {% endif %}
-          <h5 class="moduleHeading">Module {{ post.modno }}:<br />
+          <h5 class="moduleHeading">Module {{ modno }}:<br />
             {{ post.title }}</h5>
           <img class="moduleLine" src="/images/icons/line-{{ post.level }}.svg" />
           <p>{{ post.description }}</p>
