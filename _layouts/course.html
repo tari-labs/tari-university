@@ -2,6 +2,19 @@
 layout: default
 ---
 
+<!-- Calculate total time to complete course -->
+
+{% assign minutes = 0 %}
+{% for post in site.posts reversed %}
+{% if post.course == page.category %}
+{% capture minutes %}{{ minutes | plus:post.time }}{% endcapture %}
+{% endif %}
+{% endfor %}
+
+{% assign timeUnit = "min" %}
+{% assign minutes = minutes | plus: 0 %}
+{% include timeUnitCalc.html %}
+
 <!-- begin hero -->
 <div class="container" style=" margin-bottom: 120px;">
   <div class="row">
@@ -36,7 +49,8 @@ layout: default
               </div>
               <div class="col col-6 col-d-12">
                 <p style="font-weight: 500; font-size: 20px; line-height: 28px; margin-top: 30px;">{{ page.description }}</p>
-                <p style="font-weight: 600;">Audience: {{ page.audience }}</p>
+                <p style="font-weight: 600;">Audience: {{ page.audience }}<br />
+                  Time to complete: {{ minutes }} {{ timeUnit }}</p>
               </div>
               </div>
             </div>
@@ -78,47 +92,6 @@ layout: default
     </div>
   </div>
 
-  <!-- Begin test module section -->
-  <!-- <div class="container">
-    <div class="modules">
-      {% assign modno = 0 %}
-      {% for module in page.modules %}
-        {% for post in site.posts %}
-          {% if module == post.postid %}
-          {% capture modno %}{{ modno | plus:1 }}{% endcapture %}
-            <a href="{{ post.url }}">
-            <div class="module">
-              <img src="/images/icons/{{ post.level }}-{{ post.format }}.svg" class="modulesvgs"/>
-              <div class="moduleInner">
-                {% if post.time %}
-                  {% assign timeUnit = "min" %}
-                  {% assign postTime = post.time %}
-                  {% if post.time > 1 and post.time <= 59 %}
-                    {% assign timeUnit = "mins" %}
-                  {% elsif post.time >= 60 and post.time <= 119 %}
-                    {% assign timeUnit = "hour" %}
-                    {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
-                  {% elsif post.time >= 120 %}
-                    {% assign timeUnit = "hours" %}
-                    {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
-                  {% endif %}
-                  <span class="moduleTime"><img src="/images/clock-white.svg"> {{ postTime }} {{ timeUnit }}</span>
-                {% endif %}
-                <h5 class="moduleHeading">Module {{ modno }}:<br />
-                  {{ post.title }}</h5>
-                <img class="moduleLine" src="/images/icons/line-{{ post.level }}.svg" />
-                <p>{{ post.description }}</p>
-                <span class="moduleTick" id="tickmark-{{ post.postid }}"><img src="/images/tickmark.svg"></span>
-              </div>
-            </div>
-            </a>
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div> -->
-  <!-- End test module section -->
-
 <div class="container">
   <div class="modules">
     {% assign modno = 0 %}
@@ -131,17 +104,9 @@ layout: default
         <div class="moduleInner">
             {% if post.time %}
               {% assign timeUnit = "min" %}
-              {% assign postTime = post.time %}
-              {% if post.time > 1 and post.time <= 59 %}
-                {% assign timeUnit = "mins" %}
-              {% elsif post.time >= 60 and post.time <= 119 %}
-                {% assign timeUnit = "hour" %}
-                {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
-              {% elsif post.time >= 120 %}
-                {% assign timeUnit = "hours" %}
-                {% capture postTime %}{{ postTime | divided_by:60 }}{% endcapture %}
-              {% endif %}
-              <span class="moduleTime"><img src="/images/clock-white.svg"> {{ postTime }} {{ timeUnit }}</span>
+              {% assign minutes = post.time %}
+              {% include timeUnitCalc.html %}
+              <span class="moduleTime"><img src="/images/clock-white.svg"> {{ minutes }} {{ timeUnit }}</span>
             {% endif %}
           <h5 class="moduleHeading">Module {{ modno }}:<br />
             {{ post.title }}</h5>
