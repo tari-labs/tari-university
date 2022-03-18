@@ -8,7 +8,7 @@
     <div class="acc-container-2" id="acc-menu">
       {% for cat in site.data.menu-categories %}
         <div id="accordion-2">
-          <div class="acc-heading">
+          <div class="acc-heading" id="{{ cat.category | slugify }}">
               <h5>{{ cat.category | capitalize | replace: "-", " " }}</h5>
               <i class="fas fa-angle-down arrow fas-2"></i>
             </div>
@@ -25,25 +25,6 @@
           </div>
         </div>
       {% endfor %}
-      <!-- {% for cat in categories reversed %}
-        <div id="accordion-2">
-          <div class="acc-heading">
-              <h5>{{ cat | capitalize | replace: "-", " " }}</h5>
-              <i class="fas fa-angle-down arrow fas-2"></i>
-            </div>
-            <div class="content">
-            <ul>
-            {% for post in site.posts reversed %}
-              {% if post.category == cat and post.featured == true %}
-               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-              {% elsif post.category == cat %}
-               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-              {% endif %}
-            {% endfor %}
-            </ul>
-          </div>
-        </div>
-      {% endfor %} -->
     </div>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="/images/index/accordion.js"></script>
   </div>
@@ -51,17 +32,15 @@
 
 <script type="text/javascript">
 function highlightMenu() {
-  let currentLocation = window.location.href;
-  const container = document.querySelector("#acc-menu");
-  const items = container.querySelectorAll("a");
-
+  const menuItem = document.getElementById('{{ page.category }}').parentElement;
+  menuItem.querySelector('i').classList.add('arrow-animate');
+  menuItem.querySelector('.content').style.display = "block";
+  const items = menuItem.querySelectorAll('a')
   for (let i = 0; i < items.length; i++ ) {
-     if (items[i].href === currentLocation) {
-       items[i].className = "menu-active";
-       items[i].closest("div.content").style.display = "block";
-       break;
-     }
-   }
+       if (items[i].href === window.location.href) {
+         items[i].classList.add('menu-active');
+       }
+  }
  }
 window.onload = highlightMenu;
 </script>
