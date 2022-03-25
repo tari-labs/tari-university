@@ -1,0 +1,9 @@
+{% if minutes > 1 and minutes <= 59 %}
+  {% assign timeUnit = "mins" %}
+{% elsif minutes >= 60 and minutes <= 119 %}
+  {% assign timeUnit = "hour" %}
+  {% capture minutes %}{{ minutes | divided_by:60 }}{% endcapture %}
+{% elsif minutes >= 120 %}
+  {% assign timeUnit = "hours" %}
+  {% capture minutes %}{{ minutes | divided_by:60 }}{% endcapture %}
+{% endif %}

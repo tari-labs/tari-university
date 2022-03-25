@@ -1,9 +1,14 @@
 .results-grid {
   display: grid;
-  grid-template-columns: repeat( auto-fill, minmax(350px, 1fr) );
+  grid-template-columns: 1fr;
   width: 100%;
   box-sizing: border-box;
   grid-gap: 10px;
+}
+@media (min-width: 481px) {
+  .results-grid {
+    grid-template-columns: repeat( auto-fill, minmax(350px, 1fr) );
+  }
 }
 .filter-grid {
   display: grid;

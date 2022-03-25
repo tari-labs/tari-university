@@ -9,10 +9,12 @@
 
     <li class="nav__item"><a href="{{ site.baseurl }}/categories/" class="nav__link">Categories</a>
       <ul class="nav__item">
-        {% for post in site.posts reversed %}
-          {% if post.featured %}
-            <li><a href="{{ post.url | prepend: site.baseurl }}" class="nav__link secondary">{{ post.category | replace:'-',' ' }}</a></li>
-          {% endif %}
+        {% for cat in site.data.menu-categories %}
+          {% for post in site.posts reversed %}
+            {% if post.category == cat.category and post.featured %}
+              <li><a href="{{ post.url | prepend: site.baseurl }}" class="nav__link secondary">{{ post.category | replace:'-',' ' }}</a></li>
+            {% endif %}
+          {% endfor %}
         {% endfor %}
       </ul>
     </li>

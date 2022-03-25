@@ -7,6 +7,7 @@ format: article
 redirect_from: /network-analysis/probabilistic-attack/building_blocks.html
 image:  '/images/banner-08.jpg'
 category: network-analysis
+time: 15
 tags:   [network-analysis]
 featured:
 description: This report discusses building blocks to aid in answering questions regarding the Tari Network.
