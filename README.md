@@ -1,11 +1,12 @@
 # Tari Labs University
 
+To build and serve the site locally (assuming an Ubuntu operating system):
+- Install at least [Ruby 2.7](https://www.ruby-lang.org/en/downloads/) using your preferred method.
+- Install build tools: `sudo apt install build-essential`
+- Install the bundler: `gem install bundler`
+- Navigate to the repository directory
+- Install dependencies: `bundle install`
+- Serve the site: `bundle exec jekyll serve`
+- View the site in a browser using the link provided in your terminal: `http://localhost:4000`
 
-
-* * *
-
-### Deployment
-
-To run the theme locally, navigate to the theme directory and run `bundle install` to install the dependencies, then run `bundle exec jekyll serve` to start the Jekyll server.
-
-I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on the Jekyll website.
+Production builds use [GitHub Pages](https://pages.github.com/) via [GitHub Actions](.github/workflows/github-pages.yml).
