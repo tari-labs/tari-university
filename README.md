@@ -7,6 +7,6 @@ To build and serve the site locally (assuming an Ubuntu operating system):
 - Navigate to the repository directory
 - Install dependencies: `bundle install`
 - Serve the site: `bundle exec jekyll serve`
-- View the site in a browser using the link provided in your terminal: `http://localhost:4000`
+- View the site in a browser using the link provided in your terminal: http://localhost:4000
 
 Production builds use [GitHub Pages](https://pages.github.com/) via [GitHub Actions](.github/workflows/github-pages.yml).
