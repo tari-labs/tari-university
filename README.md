@@ -9,4 +9,9 @@ To build and serve the site locally (assuming an Ubuntu operating system):
 - Serve the site: `bundle exec jekyll serve`
 - View the site in a browser using the link provided in your terminal: http://localhost:4000
 
+For more convenient development, consider enabling live reloading and incremental builds. To do so, use this command instead
+to serve the site: `bundle exec jekyll serve -l --incremental`
+
+This will speed up the build process, and will also reload your browser automatically when changes are saved.
+
 Production builds use [GitHub Pages](https://pages.github.com/) via [GitHub Actions](.github/workflows/github-pages.yml).
