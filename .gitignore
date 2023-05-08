@@ -7,8 +7,7 @@
 .vscode/
 *.code-workspace
 
-.env
-
 _site
 vendor
 .jekyll-cache
+.env
