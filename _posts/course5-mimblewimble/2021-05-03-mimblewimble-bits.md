@@ -34,6 +34,7 @@ Mimblewimble protocol that are not covered here, including TariScript, output bu
     2. [Pruning of spent outputs](#pruning-of-spent-outputs)
     3. [Malleability](#malleability)
     4. [Proof of payment](#proof-of-payment)
+3. [Tari's changes to Mimblewimble](#taris-changes-to-mimblewimble)
 
 
 # Blocks
@@ -54,7 +55,7 @@ The block headers' main function is to provide the proof of work. The do this by
 
 The block header also serves some secondary functions:
 
-* Keeping track of the accumulated [offset](#offset).
+* Keeping track of the accumulated [offset](#transaction-offsets).
 * Committing to the state of the output set, input set, kernel set and range-proof data.
 * Recording useful block metadata, such as the block height and timestamp.  
 
@@ -166,7 +167,12 @@ manipulations.
 | UTXO features      | Yes        | If an output is cut-through, there is no record of the features.                           |
 | Header data        | Yes        | See comment below                                                                          |
 
-Note: Tari resolves the UTXO feature set malleability by disabling cut-through. In general though, UTXO features are 
+<div class="note">
+Tari resolves the UTXO feature set malleability by disabling cut-through and by requiring signers to commit to 
+the output features in a signature stored with the UTXO.
+</div>
+
+In general though, UTXO features are 
 malleable in Mimblewimble and thus their application is highly limited. For example, in Grin, output features are 
 limited to indicating whether an output is a coinbase or not. Since Coinbase outputs cannot be cut-through, this is 
 fine. Any other information though, such as spending maturity on regular outputs could easily be ignored by miners.
@@ -393,4 +399,27 @@ How can Alice prove that she has paid Bob?
 This is achieved by Bob signing a message that includes the kernel hash, the received amount and Alice and Bob's 
 public keys. The Grin RFCs describe one method of 
 [achieving this](https://github.com/mimblewimble/grin-rfcs/blob/master/text/0006-payment-proofs.md).
+
+# Tari's changes to Mimblewimble
+
+This module has focussed on vanilla Mimblewimble -- the original version published by Tom Elvis Jedusor and 
+implemented in [Grin](https://grin.mw/). 
+
+Tari has made several changes -- some might say, upgrades -- to the Mimblewimble protocol, which are described in 
+other modules and the RFCs. Here is a short list of the changes and where to read up more on them:
+
+* [TariScript](https://rfc.tari.com/RFC-0201_TariScript.html) - Adding scripting capabilities to Mimblewimble.
+* [Covenants](https://rfc.tari.com/RFC-0250_Covenants.html) - Allows you to place constraints on how outputs may be 
+  spent.
+* [Stealth Addresses](https://rfc.tari.com/RFC-0203_StealthAddresses.html) - Not only does Tari allow you to pay to 
+  an "address", but you can pay to unlinkable one-time-use addresses too!
+* [Burnt outputs](https://rfc.tari.com/RFC-0122_Burning.html) - Provably burnt outputs. Primarily used to convert 
+  Minotari into Tari.
+* Provable minimum values - You can reveal that an output is _at least_ some value, without revealing the actual 
+  value contained in a commitment. This is useful in registration transactions, where validator nodes need to lock 
+  up a minimum amount of Minotari to participate in the Tari network.
+* Revealed values - You can reveal the value of an output, without revealing the blinding factor or providing a 
+  range proof.
+* Output scanning - Tari provides ways to  efficiently scan the blockchain (e.g. in wallet recovery) for outputs 
+  spendable by a keys derived from your seed phrase.
 
