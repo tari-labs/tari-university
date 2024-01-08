@@ -95,7 +95,7 @@ is associated, or that they have solved the Discrete Log Problem.
 The approach to creating signatures always follows this recipe:
 
 1. Generate a secret once-off number (called a _nonce_), $r$.
-2. Create a public key, $R$ from $r$ (where $R = r.G$).
+2. Calculate the public version of the nonce, $R$ from $r$ (where $R = r.G$).
 3. Send the following to Bob, your recipient - your message ($m$), $R$, and your public key ($P = k.G$).
 
 The actual signature is created by hashing the combination of all the public information above to create a _challenge_, $e$:
@@ -190,7 +190,8 @@ Various additional authentication steps can be employed to resolve this problem,
 
 ## Schnorr Signatures
 
-If you follow the crypto news, you'll know that that the new hotness in Bitcoin is Schnorr Signatures.
+If you follow the crypto news, you'll know that that the new hotness (at the time of writing, in 2018) in Bitcoin is 
+Schnorr Signatures.
 
 <p align="center"><img src="/images/cryptography/digital_signatures/schnorr-meme.jpg" width="600" /></p>
 
