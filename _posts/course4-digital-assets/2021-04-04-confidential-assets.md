@@ -8,7 +8,7 @@ level: advanced
 redirect_from: /digital-assets/confidential-assets/MainReport.html
 image:  '/images/banner-06.jpg'
 category: digital-assets-course
-time: 25
+time: 120
 course: digital-assets-course
 tags:   [digital-assets]
 featured:

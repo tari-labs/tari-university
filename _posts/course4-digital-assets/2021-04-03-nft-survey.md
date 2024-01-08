@@ -8,7 +8,7 @@ level: beginner
 redirect_from: /digital-assets/nft-landscape-1/sources/PITCHME.link.html
 image:  '/images/banner-06.jpg'
 category: digital-assets-course
-time: 20
+time: 30
 course: digital-assets-course
 tags:   [digital-assets]
 featured:

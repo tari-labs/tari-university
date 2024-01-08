@@ -8,7 +8,7 @@ level: meta
 redirect_from: /digital-assets/digital-assets.html
 image:  '/images/banner-06.jpg'
 category: digital-assets-course
-time: 1
+time: 5
 course: digital-assets-course
 tags:   [digital-assets]
 icon: '/images/index/jewel-06.svg'
