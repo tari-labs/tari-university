@@ -16,6 +16,9 @@ description: Mimblewimble is a privacy-oriented, cryptocurrency technology. The 
   
 ---
 
+The following is the original white paper for Mimblewimble as it appeared in the cryptography mailing list by an 
+anonymous author, Tom Elvis Jedusor, on July 19, 2016. 
+
 ```text
 MIMBLEWIMBLE Tom Elvis Jedusor 19 July, 2016
 
