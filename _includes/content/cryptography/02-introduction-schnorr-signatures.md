@@ -48,17 +48,13 @@ We're going to assume you know the basics of elliptic curve cryptography (ECC). 
 
 This is an interactive introduction to digital signatures. It uses Rust code to demonstrate some of
 the ideas presented here, so you can see them at work. The code for this introduction uses the
-[libsecp256k-rs](https://github.com/tari-labs/libsecp256k1) library.
+[tari_crypto](https://docs.rs/tari_crypto/latest/tari_crypto/) library.
 
-That's a mouthful, but secp256k1 is the name of the elliptic curve that secures a _lot_ of things in many
-cryptocurrencies' transactions, including Bitcoin.
+Tari makes use of the Ristretto elliptic curve in its cryptography ([[Why Risretto?](https://ristretto.group/why_ristretto.html)]).
 
-This particular library has some nice features. We've overridden the `+` (addition) and `*` (multiplication)
+This particular implementation has some nice features. We've overridden the `+` (addition) and `*` (multiplication)
 operators so that the Rust code looks a lot more like mathematical formulae. This makes it much easier
 to play with the ideas we'll be exploring.
-
-**WARNING!** _Don't use this library in production code_. It hasn't been battle-hardened, so [use this one in
-production instead](https://github.com/rust-bitcoin/rust-secp256k1).
 
 ## Basics of Schnorr Signatures
 
@@ -66,10 +62,10 @@ production instead](https://github.com/rust-bitcoin/rust-secp256k1).
 
 The first thing we'll do is create a public and private key from an elliptic curve.
 
-On secp256k1, a private key is simply a scalar integer value between 0 and ~2<sup>256</sup>. That's roughly how many
+On Ristretto, a private key is simply a scalar integer value between 0 and ~2<sup>256</sup>. That's roughly how many
 atoms there are in the universe, so we have a big sandbox to play in.
 
-We have a special point on the secp256k1 curve called _G_, which acts as the "origin". A public key is calculated by
+We have a special point on the Ristretto curve called _G_, which acts as the "origin". A public key is calculated by
 adding _G_ on the curve to itself, \\( k_a \\) times. This is the definition of multiplication by a scalar, and is
 written as:
 
@@ -78,10 +74,10 @@ $$
 $$
 
 Let's take an example from [this post](https://chuckbatson.wordpress.com/2014/11/26/secp256k1-test-vectors/), where
-it is known that the public key for `1`, when written in uncompressed format, is `0479BE667...C47D08FFB10D4B8`.
+it is known that the public key for `1`, when written in uncompressed format, is `6a493210f74...73a3b919`.
 The following code snippet demonstrates this:
 
-{% include rustpen.html code="pubkey.rs" %}
+{% include rustpen.html code="content/cryptography/course3_examples/examples/pubkey.rs" %}
 
 ### Creating a Signature
 
@@ -160,7 +156,7 @@ as $r$ has been chosen randomly.
 
 We can show that leaving off the nonce is indeed highly insecure:
 
-{% include rustpen.html code="no-nonce.rs" %}
+{% include rustpen.html code="content/cryptography/course3_examples/examples/no-nonce.rs" %}
 
 #### ECDH
 
@@ -180,7 +176,7 @@ $$
 \end{align}
 $$
 
-{% include rustpen.html code="ecdh.rs" %}
+{% include rustpen.html code="content/cryptography/course3_examples/examples/ecdh.rs" %}
 
 For security reasons, the private keys are usually chosen at random for each session (you'll see the term
 _ephemeral_ keys being used), but then we have the problem of not being sure the other party is who they say they
@@ -245,7 +241,7 @@ $$
 So it looks like Alice and Bob can supply their own $R$, and anyone can construct the two-of-two signature
 from the sum of the $Rs$ and public keys. This does work:
 
-{% include rustpen.html code="aggregation_1.rs" %}
+{% include rustpen.html code="content/cryptography/course3_examples/examples/aggregation.rs" %}
 
 But this scheme is not secure!
 
@@ -272,7 +268,7 @@ $$
 \end{align}
 $$
 
-{% include rustpen.html code="cancellation.rs" %}
+{% include rustpen.html code="content/cryptography/course3_examples/examples/cancellation.rs" %}
 
 ### Better Approaches to Aggregation
 
@@ -350,7 +346,7 @@ $$
 
 Let's demonstrate this using a three-of-three multisig:
 
-{% include rustpen.html code="musig.rs" %}
+{% include rustpen.html code="content/cryptography/course3_examples/examples/musig.rs" %}
 
 ### Security Demonstration
 
