@@ -94,6 +94,7 @@ DEPENDENCIES
   jekyll-sitemap
   jekyll-spaceship
   jekyll-tagging
+  webrick
 
 BUNDLED WITH
    2.4.17
