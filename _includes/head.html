@@ -41,4 +41,9 @@
   {{ include_to_scssify | scssify }}
   </style>
 
+  <!-- Kapa.ai -->
+  {% if site.kapa.data-website-id %}
+      {% include kapa.html %}
+  {% endif %}
+
 </head>
