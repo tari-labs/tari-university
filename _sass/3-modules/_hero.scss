@@ -225,7 +225,7 @@
 }
 
 .hero__image {
-  padding-top: 50%;
+  // padding-top: 50%;
   min-height: 160px;
   margin-top: 20px;
   border-radius: 5px;
@@ -241,33 +241,9 @@
     transition: opacity .6s ease-in-out;
   }
   @media only screen and (max-width: $desktop) {
-    padding-top: 55%;
+    // padding-top: 55%;
   }
   @media only screen and (max-width: $tablet) {
-    padding-top: 75%;
+    // padding-top: 75%;
   }
-}
-
-/* TLU Hero Section */
-.tlu-hero {
-  margin-top: 20px;
-  text-align: center;
-}
-.tlu-hero-img {
-  padding: 80px 10px 80px 10px;
-  border-radius: 5px;
-  background-size: cover;
-  background-position: top center;
-}
-.tlu-hero-title {
-  font-family: $base-font-family;
-  color: #FFF;
-  font-size: 36px;
-  line-height: 1em;
-  margin-bottom: 15px;
-}
-.tlu-hero-tags a {
-  font-size: 13px;
-  letter-spacing: 1px;
-  margin-top: -10px;
 }

@@ -11,12 +11,15 @@ layout: default
           {% if page.image %}
           <div class="tlu-hero">
             <div class="tlu-hero-img" style="background-image: url('{{site.baseurl}}{{page.image}}');">
+              {% if page.format %}
+                <img src="/images/icons/light-{{ page.format }}.svg" class="topicon" />
+              {% endif %}
               <h1 class="tlu-hero-title">{{ page.title | escape }}</h1>
                   <div class="post__meta">
                     {% if page.tags.size >= 1 %}
                     <div class="post-tags">
                       {% for tag in page.tags %}
-                      <a href="{{ site.baseurl }}/tag/{{ tag }}" class="post-tags__tag tlu-hero-tags">{{ tag }}</a>
+                      <a href="{{ site.baseurl }}/tag/{{ tag }}.html" class="post-tags__tag tlu-hero-tags">{{ tag | capitalize | replace:'-',' ' }}</a>
                       {% endfor %}
                     </div>
                     {% endif %}
@@ -32,7 +35,7 @@ layout: default
 <!-- end hero -->
 
 <div class="container">
-  <div class="row">
+  <div class="row flex-reverse">
     <div class="col col-3 col-d-12">
       {% include sidebar-widgets/toc2.html %}
       <!-- {% include sidebar-widgets/widget-tags.html %} -->
@@ -40,7 +43,9 @@ layout: default
     <div class="col col-9 col-d-12">
       <!-- begin post -->
       <article class="post section">
-        {% include breadcrumbs.html %}
+        <div>
+          {% include breadcrumbs.html %}
+        </div>
         <hr />
         <div class="post__content">
           {{ content }}
@@ -54,4 +59,7 @@ layout: default
   </div>
 </div>
 
+
+{% include selftest.html %}
 {% include related-posts.html %}
+{% include modulesViewed.html %}

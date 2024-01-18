@@ -53,8 +53,8 @@
             <div class="tlu-excerpt" style="border-bottom: 0;">
               <a href="{{ post.url | prepend: site.baseurl }}">
                 <h5 style="margin: 0;">{{post.title}}</h5>
-                  {% if post.excerpttext %}
-                    {{post.excerpttext | strip_newlines}}
+                  {% if post.description %}
+                    {{post.description | strip_newlines}}
                   {% endif %}
                 </a>
             </div>

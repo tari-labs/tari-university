@@ -1,19 +1,24 @@
 <!-- begin footer -->
+<div class="container" style="height: 93px;">
+  <img src="/images/dots-3lines.png" style="float: right; margin-right: 100px;"/>
+</div>
 <footer class="footer">
   <div class="container">
     <div class="tlu-footerbio-container">
-    <div>
-      {% include footer-widgets/nav-widget.html %}
+      <img class="tlu-footer-img" src="/images/tari-labs.png" />
+      <div class="tlu-footerbio">
+        <h5>Tari Labs University</h5>
+        <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
       </div>
-      <div>
-        <div class="tlu-footerbio-container">
-        <img class="tlu-footer-img" src="/images/tari-labs.png" />
-        <div class="tlu-footerbio">
-          <h5>Tari Labs University</h5>
-          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
-          </div>
-        </div>
-        </div>
+      <hr class="bottom-nav-separator"/>
+      <div class="bottom-nav">
+        <a href="{{ site.baseurl }}/">Home</a>
+        <a href="{{ site.baseurl }}/about/">About</a>
+        <a href="{{ site.baseurl }}/categories/">Categories</a>
+        <a href="{{ site.baseurl }}/courses/">Courses</a>
+        <a href="{{ site.baseurl }}/filter/">Filter</a>
+        <a href="{{ site.baseurl }}/glossary/">Glossary</a>
+      </div>
     </div>
     <div class="col col-12">
       <div class="footer__inner">
@@ -24,28 +29,3 @@
   </div>
 </footer>
 <!-- end footer -->
-
-<!-- <footer class="footer">
-  <div class="container">
-    <div class="row">
-    <div class="col col-4">
-      {% include footer-widgets/nav-widget.html %}
-      </div>
-      <div class="col col-8">
-        <div class="tlu-footerbio-container">
-        <img class="tlu-footer-img" src="/images/tari-labs.png" />
-        <div class="tlu-footerbio">
-          <h5>Tari Labs University</h5>
-          <p>Our mission is to be the premier destination for balanced and accessible learning material for blockchain, digital currency and digital assets learning material.</p>
-          </div>
-        </div>
-        </div>
-      <div class="col col-12">
-        <div class="footer__inner">
-          <div class="copyright">{{site.time | date: '%Y'}} &copy; <a href="/"><strong>{{site.title}}</strong></a>.</div>
-          {% include social-links.html %}
-        </div>
-      </div>
-    </div>
-  </div>
-</footer> -->

@@ -10,3 +10,6 @@
 _site
 vendor
 .jekyll-cache
+.env
+
+.jekyll-metadata

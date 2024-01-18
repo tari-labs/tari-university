@@ -54,7 +54,7 @@ disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example
 
 #-------------------------------
 # Google Analytics
-google-analytics: UA-115476091-2
+#google-analytics: UA-115476091-2
 
 
 #-------------------------------
@@ -67,13 +67,14 @@ mailchimp-identifier: # Add your MailChimp form identifier. For example - blogen
 #-------------------------------
 # Build settings
 markdown: kramdown
-permalink: /:categories/:title
+permalink: /:categories/:title:output_ext
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll/tagging
   - jekyll-spaceship
   - jekyll-redirect-from
+  - jekyll-seo-tag
 
 paginate: 6
 paginate_path: "/page/:num"
@@ -87,6 +88,11 @@ defaults:
 
 include:
   - _pages
+
+exclude:
+  - .env
+  - deploy.sh
+  - .idea
 
 # Tags
 tag_page_dir:         tag
