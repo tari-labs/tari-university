@@ -17,7 +17,6 @@
 - [References](#references)
 - [Contributors](#contributors)
 
-
 ## Introduction
 
 Proof-of-Work (PoW) blockchains are notoriously slow, as transactions need to be a number of blocks in the past to be
@@ -66,7 +65,6 @@ transaction, which has to be confirmed on the blockchain.
 <p align="center"><img src="/images/scaling/laser-beam/refund_procedure_01.png" width="700" /></p>
 <div align="center"><b>Figure&nbsp;1: Laser Beam Funding for Round (N)</b></div>
 
-
 The initial funding transaction between Alice and Bob is depicted in (1). The lock height in the signature challenge
 corresponds to the current blockchain height. Input commitment values and blinding factors are identified by superscript
 $^{\prime\prime}$.
@@ -99,7 +97,6 @@ nonce and public blinding factor respectively. The $N\_{\text{th}}$ refund proce
 <p align="center"><img src="/images/scaling/laser-beam/refund_procedure_02.png" width="700" /></p>
 <div align="center"><b>Figure&nbsp;2: Laser Beam Refund Part 1 for Round (N)</b></div>
 
-
 Alice and Bob set up Alice's intermediate MultiSig funding transaction (Figure&nbsp;2), spending the original funding
 MultiSig UTXO. The lock height $h_{N}$ corresponds to the current blockchain height.
 
@@ -125,7 +122,6 @@ $$
 \tag{3}
 $$
 
-
 $$
 \begin{aligned}
   \text{Challenge:}\quad\mathcal{H}(R_{N_{AA1}}+R_{N_{AB1}}\parallel P_{N_{AA1}}+P_{N_{AB1}}\parallel
@@ -133,7 +129,6 @@ $$
 \end{aligned}
 \tag{4}
 $$
-
 
 $$
 \begin{aligned}
@@ -184,7 +179,6 @@ $$
 \tag{9}
 $$
 
-
 $$
 \begin{aligned}
   \text{Final signature tuple, kept secret:}\quad(s_{N_{BA1}}+s_{N_{BB1}},R_{N_{BA1}}+R_{N_{BB1}})
@@ -203,7 +197,6 @@ $$
 
 <p align="center"><img src="/images/scaling/laser-beam/refund_procedure_03.png" width="700" /></p>
 <div align="center"><b>Figure&nbsp;3: Laser Beam Refund Part 2 for Round (N)</b></div>
-
 
 Alice and Bob set up a refund transaction (Figure&nbsp;3), which Alice controls, with the same relative time lock
 $h_{rel}$ to the intermediate funding transaction's kernel, $\mathcal{K}\_{N\_{AA1}}$. Output commitment values and
@@ -285,10 +278,9 @@ agreements (Figure&nbsp;4).
 <p align="center"><img src="/images/scaling/laser-beam/refund_procedure_04.png" width="700" /></p>
 <div align="center"><b>Figure&nbsp;4: Laser Beam Revoke for Round (N)</b></div>
 
-
 Revoking refund transactions involves revealing blinding factor shares for the intermediate multiparty UTXOs, thereby
 nullifying their further use. After the four parts of the refund procedure have been concluded successfully, the
-previous round's blinding factor shares $\hat{k}_{(N-1)}$  are revealed to each other, in order to revoke the previous
+previous round's blinding factor shares $\hat{k}_{(N-1)}$ are revealed to each other, in order to revoke the previous
 agreement.
 
 Alice:
@@ -316,20 +308,19 @@ $$
 $$
 
 Note that although the kernels for transactions (2) and (10) were kept secret, when the Bulletproof range proofs for
-$\text{MultiSig}(N-1)\_{A}$ and  $\text{MultiSig}(N-1)\_{B}$ were constructed, resultant values of those MultiSig
+$\text{MultiSig}(N-1)\_{A}$ and $\text{MultiSig}(N-1)\_{B}$ were constructed, resultant values of those MultiSig
 Pedersen commitments were revealed to the counterparty. Each of them is thus able to verify the counterparty's blinding
 factor share by constructing the counterparty's MultiSig Pedersen commitment.
 
 Alice verifies:
 
 $$
-\begin{aligned}  
+\begin{aligned}
   \Big((v_{0}-f)H+(k_{(N-1)_{a}}+\hat{k}_{(N-1)_{b}})G\Big) \overset{?}{=} C(v_{0}-f,\ k_{(N-1)_{a}}+
     \hat{k}_{(N-1)_{b}})
 \end{aligned}
 \tag{20}
 $$
-
 
 Bob verifies:
 
@@ -340,7 +331,6 @@ $$
 \end{aligned}
 \tag{21}
 $$
-
 
 Although each party will now have its counterparty's blinding factor share in the counterparty's intermediate multiparty
 UTXO, they will still not be able to spend it, because the corresponding transaction kernel is still kept secret by the
@@ -383,7 +373,7 @@ at most, three on‑chain transactions.
    Part 2 of the refund procedure requires a kernel with a relative time lock to the kernel of its corresponding
    part&nbsp;1 refund procedure, when those kernels are not yet available in the base layer, as well as a different,
    non-similar, signature challenge. Metadata about the linked transaction kernel and non-similar signature challenge
-   creation must therefore be embedded within part&nbsp;2 refund transaction kernels.  
+   creation must therefore be embedded within part&nbsp;2 refund transaction kernels.
 
 1. Refund Procedure
 
@@ -399,11 +389,10 @@ at most, three on‑chain transactions.
 
 1. Revoke Attack Vector
 
-   When revoking the previous refund  $(N-1)$, Alice can get hold of Bob's blinding factor share $\hat{k}\_{(N-1)\_{b}}$
+   When revoking the previous refund $(N-1)$, Alice can get hold of Bob's blinding factor share $\hat{k}\_{(N-1)\_{b}}$
    (19), and after verifying that it is correct (20), refuse to give up her blinding factor share. This will leave
    Alice with the ability to broadcast any of refund transactions $(N-1)$ and $N$, without fear of Bob broadcasting a
    punishment transaction. Bob, on the other hand, will only be able to broadcast refund transaction $N$.
-
 
 ## Appendices
 
@@ -427,72 +416,61 @@ at most, three on‑chain transactions.
 [[1]] J. A. Odendaal, "Layer 2 Scaling Survey - Tari Labs University" \[online\]. Available:
 <https://tlu.tarilabs.com/scaling/layer2scaling-landscape/layer2scaling-survey.html>. Date accessed: 2019&#8209;10&#8209;06.
 
-[1]: https://tlu.tarilabs.com/scaling/layer2scaling-landscape/layer2scaling-survey.html
-"Layer 2 Scaling Survey -
-Tari Labs University"
+[1]: https://tlu.tarilabs.com/scaling/layer2scaling-landscape/layer2scaling-survey.html 'Layer 2 Scaling Survey -
+Tari Labs University'
 
 [[2]] J. Poon, T. Dryja (2016). "The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments" \[online\]." Available:
 <http://lightning.network/lightning-network-paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
 
-[2]: http://lightning.network/lightning-network-paper.pdf
-"The Bitcoin Lightning Network:
-Scalable Off-Chain Instant Payments"
+[2]: http://lightning.network/lightning-network-paper.pdf 'The Bitcoin Lightning Network:
+Scalable Off-Chain Instant Payments'
 
 [[3]] "GitHub: lightningnetwork/lightning-rfc: Lightning Network Specifications" \[online\]. Available:
 <https://github.com/lightningnetwork/lightning-rfc>. Date accessed: 2019&#8209;07&#8209;04.
 
-[3]: https://github.com/lightningnetwork/lightning-rfc
-"GitHub: lightningnetwork/lightning-rfc:
-Lightning Network Specifications"
+[3]: https://github.com/lightningnetwork/lightning-rfc 'GitHub: lightningnetwork/lightning-rfc:
+Lightning Network Specifications'
 
 [[4]] X. Wang, "What is the situation of Litecoin's Lightning Network now?" \[online\]. Available:
 <https://coinut.com/blog/whats-the-situation-of-litecoins-lightning-network-now>. Date accessed: 2019&#8209;09&#8209;11.
 
-[4]: https://coinut.com/blog/whats-the-situation-of-litecoins-lightning-network-now
-"What is the situation of Litecoin's
+[4]: https://coinut.com/blog/whats-the-situation-of-litecoins-lightning-network-now "What is the situation of Litecoin's
 Lightning Network now?"
 
 [[5]] The Beam Team, "GitHub: Lightning Network - BeamMW/beam Wiki" \[online\]. Available:
 <https://github.com/BeamMW/beam/wiki/Lightning-Network>. Date accessed: 2019&#8209;07&#8209;05.
 
-[5]: https://github.com/BeamMW/beam/wiki/Lightning-Network
-"GitHub: Lightning Network -
-BeamMW/beam Wiki"
+[5]: https://github.com/BeamMW/beam/wiki/Lightning-Network 'GitHub: Lightning Network -
+BeamMW/beam Wiki'
 
 [[6]] F. Jahr, "Beam - Lightning Network Position Paper. (v 1.0)" \[online\]. Available:
 <https://docs.beam.mw/Beam_lightning_network_position_paper.pdf>. Date accessed: 2019&#8209;07&#8209;04.
 
-[6]: https://docs.beam.mw/Beam_lightning_network_position_paper.pdf
-"Beam - Lightning network
-position paper. (v 1.0)"
+[6]: https://docs.beam.mw/Beam_lightning_network_position_paper.pdf 'Beam - Lightning network
+position paper. (v 1.0)'
 
 [[7]] F. Jahr, "GitHub: fjahr/lightning-mw, Lightning Network Specifications" \[online\]. Available:
 <https://github.com/fjahr/lightning-mw>. Date accessed: 2019&#8209;07&#8209;04.
 
-[7]: https://github.com/fjahr/lightning-mw
-"GitHub: fjahr/lightning-mw,
-Lightning Network Specifications"
+[7]: https://github.com/fjahr/lightning-mw 'GitHub: fjahr/lightning-mw,
+Lightning Network Specifications'
 
 [[8]] The Beam Team, "GitHub: beam/node/laser_beam_demo at master - BeamMW/beam" \[online\]. Available:
 <https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo>. Date accessed: 2019&#8209;07&#8209;05.
 
-[8]: https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo
-"GitHub: beam/node/laser_beam_demo
-at master - BeamMW/beam"
+[8]: https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo 'GitHub: beam/node/laser_beam_demo
+at master - BeamMW/beam'
 
 [[9]] The Beam Team, "GitHub: beam/ecc_bulletproof.cpp at mainnet - BeamMW/beam" \[online\]. Available:
 <https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp>. Date accessed: 2019&#8209;07&#8209;05.
 
-[9]: https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp
-"GitHub: beam/ecc_bulletproof.cpp
-at mainnet - BeamMW/beam"
+[9]: https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp 'GitHub: beam/ecc_bulletproof.cpp
+at mainnet - BeamMW/beam'
 
 [[10]] D. Smith, N. Kohen, and C. Stewart, “Lightning 101 for Exchanges” \[online\]. Available:
 <https://suredbits.com/lightning-101-for-exchanges-overview>. Date accessed: 2019&#8209;11&#8209;06.
 
-[10]: https://suredbits.com/lightning-101-for-exchanges-overview/
-"Lightning 101 for Exchanges"
-
+[10]: https://suredbits.com/lightning-101-for-exchanges-overview/ 'Lightning 101 for Exchanges'
 
 ## Contributors
 
@@ -500,4 +478,4 @@ at mainnet - BeamMW/beam"
 - <https://github.com/anselld>
 - <https://github.com/SWvheerden>
 - <https://github.com/Empiech007>
-- <https://github.com/mikethetike>
+- <https://github.com/stringhandler>
