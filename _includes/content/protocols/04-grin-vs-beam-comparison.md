@@ -12,7 +12,6 @@
   - [Appendix A: Cuckoo/Cuckatoo Cycle Proof of Work Algorithm](#appendix-a-cuckoocuckatoo-cycle-proof-of-work-algorithm)
 - [Contributors](#contributors)
 
-
 ## Introduction
 
 Grin and BEAM are two open-source cryptocurrency projects based on the Mimblewimble protocol. The Mimblewimble protocol
@@ -78,9 +77,9 @@ Spreading (or "fluff") phase, as illustrated in Figure&nbsp;1.
   propagated to only a single randomly selected peer from the current node's peer list. After a random number of hops
   along the network, each hop propagating to only a single random peer, the propagation process enters the second phase.
 
--  During the **fluff** (spreading) phase, the transaction is propagated using a full flood/diffusion method, as found
-in most networks. This approach means that the transaction has first propagated to a random point in the network
-before flooding the network, thereby making it much more difficult to track its origin.
+- During the **fluff** (spreading) phase, the transaction is propagated using a full flood/diffusion method, as found
+  in most networks. This approach means that the transaction has first propagated to a random point in the network
+  before flooding the network, thereby making it much more difficult to track its origin.
 
 <p align="center">
   <img src="/images/digital-assets/grin-beam/dandelion-stem-fluff.png" width="450" />
@@ -162,7 +161,7 @@ one-sided transactions where the payee in a transaction who expects to be paid a
 half of the transaction and send this half-constructed transaction to the payer. The payer can then finish constructing
 the transaction and publish it to the blockchain. Under the normal Mimblewimble system this is not possible, because it
 would involve revealing your blinding factor to the counterparty. BEAM solves this problem by using a process it calls
-*kernel fusion*, whereby a kernel can include a reference to another kernel so that it is only valid if both kernels are
+_kernel fusion_, whereby a kernel can include a reference to another kernel so that it is only valid if both kernels are
 present in the transaction. In this way, the payee can build their half of the transaction with a secret blinding factor
 and a kernel that compensates for their blinding factor, which **must** be included when the payer completes the
 transaction [[13]].
@@ -231,14 +230,14 @@ funding models. BEAM set up a Limited Liability Company (LLC) and has attracted 
 non-profit BEAM Foundation that will take over the management of the protocol during the first year after launch [[24]].
 The goal of the Foundation will be to support maintenance and further development of BEAM; promote relevant
 cryptographic research; support awareness and education in the areas of financial privacy; and support academic work in
-adjacent areas. In the industry, this treasury mechanism is called a *dev tax*. Grin will not levy a *dev tax* on the
+adjacent areas. In the industry, this treasury mechanism is called a _dev tax_. Grin will not levy a _dev tax_ on the
 mining rewards, and will rely on community participation and community funding. The Grin project does accept financial
 support, but these funding campaigns are conducted according to their "Community Funding Principles" [[25]], which will
 be conducted on a "need-by-need" basis. A campaign will specify a specific need it aims to fulfill (e.g. "Hosting
 fees for X for the next year") and the funding will be received by the community member who ran the campaign. This will
 provide 100% visibility regarding who is responsible for the received funds. An example of a funding campaign is the
 Developer Funding Campaign run by Yeastplume to fund his full-time involvement in the project from October&nbsp;2018 to
-February&nbsp;2019. Refer to [[26]].
+February&nbsp;2019.
 
 In terms of the monetary policy of the two projects, BEAM has stated that it will be using a deflationary model with
 periodic halving of its mining reward and a maximum supply of BEAM of 262,800,000 coins. BEAM will start with
@@ -267,7 +266,7 @@ BEAM project. The following list summarizes the functional similarities and diff
   - DAG representation of Mempool to prevent duplicate UTXOs and cyclic transaction references.
 - BEAM unique features:
   - Secure BBS hosted on the nodes for establishing communication between wallets. Removes the need for sender and
-  receiver to be online at the same time.
+    receiver to be online at the same time.
   - Use of decoy outputs in Dandelion stem phase. Decoy outputs are later spent to avoid clutter on blockchain.
   - Explicit UTXO incubation period.
   - Timelocks with a minimum and maximum threshold.
@@ -286,219 +285,178 @@ to see how their various decisions play out, both technically and in terms of th
 [[1]] T. E. Jedusor, "MIMBLEWIMBLE" [online]. Available:
 <https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt>. Date accessed: 2018&#8209;09&#8209;30.
 
-[1]: https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt
-"MIMBLEWIMBLE"
+[1]: https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt 'MIMBLEWIMBLE'
 
 [[2]] A. Poelstra, "Mimblewimble" [online]. Available:
 <https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf>. Date accessed: 2018&#8209;09&#8209;30.
 
-[2]: https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf
-"Mimblewimble"
+[2]: https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf 'Mimblewimble'
 
 [[3]] "Introduction to Mimblewimble and Grin" [online]. Available:
 <https://github.com/mimblewimble/grin/blob/master/doc/intro.md>. Date accessed: 2018&#8209;09&#8209;30.
 
-[3]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md
-"Introduction to
-Mimblewimble and Grin"
+[3]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md 'Introduction to
+Mimblewimble and Grin'
 
 [[4]] "BEAM: The Scalable Confidential Cryptocurrency" [online]. Available:
 <https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf>. Date accessed: 2018&#8209;09&#8209;28.
 
-[4]: https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf
-"BEAM: The Scalable
-Confidential Cryptocurrency"
+[4]: https://docs.wixstatic.com/ugd/87affd_3b032677d12b43ceb53fa38d5948cb08.pdf 'BEAM: The Scalable
+Confidential Cryptocurrency'
 
 [[5]] A. Gibson, "Flipping the Scriptless Script on Schnorr" [online].
 Available: <https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: 2018&#8209;09&#8209;30.
 
-[5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/
-"Flipping the Scriptless
-Script on Schnorr"
+[5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/ 'Flipping the Scriptless
+Script on Schnorr'
 
 [[6]] "Grin Github Repository" [online]. Available: <https://github.com/mimblewimble/grin>.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[6]: https://github.com/mimblewimble/grin
-"Grin Github Repository"
+[6]: https://github.com/mimblewimble/grin 'Grin Github Repository'
 
 [[7]] "BEAM Github Repository" [online]. Available: <https://github.com/beam-mw/beam>. Date accessed: 2018&#8209;09&#8209;30.
 
-[7]: https://github.com/beam-mw/beam
-"BEAM Github Repository"
+[7]: https://github.com/beam-mw/beam 'BEAM Github Repository'
 
 [[8]] "Grin - Transaction Pool" [online]. Available:
 <https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md>. Date accessed: 2018&#8209;10&#8209;22.
 
-[8]: https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md
-"Grin - Transaction Pool"
+[8]: https://github.com/mimblewimble/grin/blob/master/doc/internal/pool.md 'Grin - Transaction Pool'
 
 [[9]] S. B. Venkatakrishnan, G. Fanti and P. Viswanath, "Dandelion: Redesigning the Bitcoin Network for Anonymity"
 [online]. Available: <https://arxiv.org/abs/1701.04439>. Proc. ACM Meas. Anal. Comput. Syst. 1, 1, 2017.
 Date accessed: 2018&#8209;10&#8209;22.
 
-[9]: https://arxiv.org/abs/1701.04439
-"Dandelion: Redesigning the Bitcoin
-Network for Anonymity"
+[9]: https://arxiv.org/abs/1701.04439 'Dandelion: Redesigning the Bitcoin
+Network for Anonymity'
 
 [[10]] "Dandelion in Grin: Privacy-Preserving Transaction Aggregation and Propagation" [online]. Available:
 <https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md>. Date accessed: 2018&#8209;09&#8209;30.
 
-[10]: https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md
-"Dandelion in Grin:
+[10]: https://github.com/mimblewimble/grin/blob/master/doc/dandelion/dandelion.md 'Dandelion in Grin:
 Privacy-Preserving Transaction
-Aggregation and Propagation"
+Aggregation and Propagation'
 
 [[11]] "Grin - Blockchain Syncing" [online]. Available:
 <https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md>. Date accessed: 2018&#8209;10&#8209;22.
 
-[11]: https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md
-"Grin - Blockchain Syncing"
+[11]: https://github.com/mimblewimble/grin/blob/master/doc/chain/chain_sync.md 'Grin - Blockchain Syncing'
 
 [[12]] "BEAM - Node Initialization Synchronization" [online]. Available:
 <https://github.com/beam-mw/beam/wiki/Node-initial-synchronization>. Date accessed: 2018&#8209;12&#8209;24.
 
-[12]: https://github.com/beam-mw/beam/wiki/Node-initial-synchronization
-"BEAM - Node Initialization
-Synchronization"
+[12]: https://github.com/beam-mw/beam/wiki/Node-initial-synchronization 'BEAM - Node Initialization
+Synchronization'
 
 [[13]] "BEAM Description. Comparison with Classical MW" [online]. Available:
 <https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW>. Date accessed: 2018&#8209;10&#8209;18.
 
-[13]: https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW
-"BEAM Description. Comparison
-with Classical MW"
+[13]: https://www.scribd.com/document/385080303/BEAM-Description-Comparison-With-Classical-MW 'BEAM Description. Comparison
+with Classical MW'
 
 [[14]] "BEAM - Wallet Audit" [online]. Available: <https://github.com/beam-mw/beam/wiki/Wallet-audit>.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[14]: https://github.com/beam-mw/beam/wiki/Wallet-audit
-"BEAM - Wallet Audit"
+[14]: https://github.com/beam-mw/beam/wiki/Wallet-audit 'BEAM - Wallet Audit'
 
 [[15]] "Beam's Offline Transaction using Secure BBS System" [online]. Available:
 <https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system>.
 Date accessed: 2018&#8209;10&#8209;22.
 
-[15]: https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system/
-"Beam's Offline Transaction
+[15]: https://www.reddit.com/r/beamprivacy/comments/9fqbfg/beams_offline_transactions_using_secure_bbs_system/ "Beam's Offline Transaction
 using Secure BBS System"
 
 [[16]] "GRIN - Merkle Structures" [online]. Available: <https://github.com/mimblewimble/grin/blob/master/doc/merkle.md>.
 Date accessed: 2018&#8209;10&#8209;22.
 
-[16]: https://github.com/mimblewimble/grin/blob/master/doc/merkle.md
-"GRIN - Merkle Structures"
+[16]: https://github.com/mimblewimble/grin/blob/master/doc/merkle.md 'GRIN - Merkle Structures'
 
 [[17]] "BEAM - Merkle Trees" [online]. Available: <https://github.com/beam-mw/beam/wiki/Merkle-trees>.
 Date accessed: 2018&#8209;10&#8209;22.
 
-[17]: https://github.com/beam-mw/beam/wiki/Merkle-trees
-"BEAM - Merkle Trees"
+[17]: https://github.com/beam-mw/beam/wiki/Merkle-trees 'BEAM - Merkle Trees'
 
 [[18]] "BEAM - Confidential Assets" [online]. Available: <https://github.com/beam-mw/beam/wiki/Confidential-assets>.
 Date accessed: 2018&#8209;10&#8209;22.
 
-[18]: https://github.com/beam-mw/beam/wiki/Confidential-assets
-"BEAM - Confidential Assets"
+[18]: https://github.com/beam-mw/beam/wiki/Confidential-assets 'BEAM - Confidential Assets'
 
 [[19]] A. Biryukov and D. Khovratovich, "Equihash: Asymmetric Proof-of-work based on the Generalized Birthday Problem"
 [online] Available: <https://www.cryptolux.org/images/b/b9/Equihash.pdf>. Proceedings of NDSS, 2016.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[19]: https://www.cryptolux.org/images/b/b9/Equihash.pdf
-"Equihash: Asymmetric Proof-of-work
+[19]: https://www.cryptolux.org/images/b/b9/Equihash.pdf 'Equihash: Asymmetric Proof-of-work
 based on the Generalized
-Birthday Problem"
+Birthday Problem'
 
 [[20]] "Cuckoo Cycle" [online]. Available: <https://github.com/tromp/cuckoo>. Date accessed: 2018&#8209;09&#8209;30.
 
-[20]: https://github.com/tromp/cuckoo
-"Cuckoo Cycle"
+[20]: https://github.com/tromp/cuckoo 'Cuckoo Cycle'
 
 [[21]] I. Peverell, "Proof of Work Update" [online]. Available: <https://www.grin-forum.org/t/proof-of-work-update/713>.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[21]: https://www.grin-forum.org/t/proof-of-work-update/713
-"Proof of Work Update"
+[21]: https://www.grin-forum.org/t/proof-of-work-update/713 'Proof of Work Update'
 
 [[22]] "Regarding Foundations" [online]. Available: <https://github.com/mimblewimble/docs/wiki/Regarding-Foundations>.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[22]: https://github.com/mimblewimble/docs/wiki/Regarding-Foundations
-"Regarding Foundations"
+[22]: https://github.com/mimblewimble/docs/wiki/Regarding-Foundations 'Regarding Foundations'
 
 [[23]] "Meeting Notes: Governance, Sep 25 2018" [online]. Available:
 <https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874>. Date accessed: 2018&#8209;09&#8209;30.
 
-[23]: https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874
-"Meeting Notes:
-Governance, Sep 25 2018"
+[23]: https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874 'Meeting Notes:
+Governance, Sep 25 2018'
 
 [[24]] "BEAM Features" [online]. Available: <https://www.beam-mw.com/features>. Date accessed: 2018&#8209;09&#8209;30.
 
-[24]: https://www.beam-mw.com/features
-"BEAM Features"
+[24]: https://www.beam-mw.com/features 'BEAM Features'
 
 [[25]] "Grin's Community Funding Principles" [online]. Available: <https://grin-tech.org/funding.html>.
 Date accessed: 2018&#8209;09&#8209;28.
 
-[25]: https://grin-tech.org/funding.html
-"Grin's Community Funding Principles"
-
-[[26]] "Oct 2018 - Feb 2019 Developer Funding - Yeastplume" [online]. Available: <https://grin-tech.org/yeastplume.html>.
-Date accessed: 2018&#8209;09&#8209;30.
-
-[26]: https://grin-tech.org/yeastplume.html
-"Oct 2018 - Feb 2019
-Developer Funding - Yeastplume"
+[25]: https://grin-tech.org/funding.html "Grin's Community Funding Principles"
 
 [[27]] "Monetary Policy" [online]. Available: <https://github.com/mimblewimble/docs/wiki/Monetary-Policy>.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[27]: https://github.com/mimblewimble/docs/wiki/Monetary-Policy
-"Monetary Policy"
+[27]: https://github.com/mimblewimble/docs/wiki/Monetary-Policy 'Monetary Policy'
 
 [[28]] "Economic Policy: Fees and Mining Reward" [online]. Available: <https://github.com/mimblewimble/grin/wiki/fees-mining>.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[28]: https://github.com/mimblewimble/grin/wiki/fees-mining
-"Economic Policy: Fees
-and Mining Reward"
+[28]: https://github.com/mimblewimble/grin/wiki/fees-mining 'Economic Policy: Fees
+and Mining Reward'
 
 [[29]] "Grin's Proof-of-Work" [online]. Available: <https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md>.
 Date accessed: 2018&#8209;09&#8209;30.
 
-[29]: https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md
-"Grin's Proof-of-Work"
+[29]: https://github.com/mimblewimble/grin/blob/master/doc/pow/pow.md "Grin's Proof-of-Work"
 
 [[30]]: R Lahat, "The Secure Bulletin Board System (SBBS) Implementation in Beam" [online]. Available:
 <https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919>.
 Date accessed: 2018&#8209;12&#8209;24.
 
-[30]: https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919
-"The Secure Bulletin Board
-System (SBBS) Implementation in Beam"
+[30]: https://medium.com/beam-mw/the-secure-bulletin-board-system-sbbs-implementation-in-beam-a01b91c0e919 'The Secure Bulletin Board
+System (SBBS) Implementation in Beam'
 
 [[31]]: "Secure Bulletin Board System (SBBS)" [online]. Available:
 <https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)>. Date accessed: 2018&#8209;12&#8209;24.
 
-[31]: https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS)
-"Beam's SBBS Specification"
+[31]: https://github.com/BeamMW/beam/wiki/Secure-bulletin-board-system-(SBBS) "Beam's SBBS Specification"
 
 [[32]]: "Beam’s Mining Specification" [online]. Available: <https://github.com/BeamMW/beam/wiki/BEAM-Mining>.
 Date accessed: 2018&#8209;12&#8209;24.
 
-[32]: https://github.com/BeamMW/beam/wiki/BEAM-Mining
-"Beam's Mining Specification"
+[32]: https://github.com/BeamMW/beam/wiki/BEAM-Mining "Beam's Mining Specification"
 
 [[33]]: "Beam’s Transaction Graph Obfuscation" [online]. Available:
 <https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation>. Date accessed: 2018&#8209;12&#8209;24.
 
-[33]: https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation
-"Beam's Transaction Graph
+[33]: https://github.com/BeamMW/beam/wiki/Transaction-graph-obfuscation "Beam's Transaction Graph
 Obfuscation"
-
-
 
 ## Appendices
 
@@ -528,7 +486,6 @@ would mean that the four edges would need to be randomly chosen in an exact cycl
      </strong></center>
    </p>
 </p>
-
 
 If we increase the number of edges in the graph relative to the number of nodes, we adjust the probability of a cycle
 occurring in the randomly chosen set of edges. Figure&nbsp;3 shows an example of M&nbsp;=&nbsp;7 and N&nbsp;=&nbsp;8,

@@ -17,12 +17,12 @@ returns are due. It also means that "standard" things like tip jars are _n√£o f√
 Some of the other things we want to be able to do in Tari that are hard (though not impossible in some cases, thanks to
 [scriptless scripts](/cryptography/introduction-to-scriptless-scripts) include:
 
-* m-of-n multisig
-* Payment channels
-* Atomic swaps
-* Cross-chain atomic swaps
-* Side chain peg-in and peg-out transactions
-* Digital asset "cold storage"
+- m-of-n multisig
+- Payment channels
+- Atomic swaps
+- Cross-chain atomic swaps
+- Side chain peg-in and peg-out transactions
+- Digital asset "cold storage"
 
 ... and many other things we haven't thought of yet.
 
@@ -35,13 +35,13 @@ the flexibility of Bitcoin script to Mimblewimble while having a minor effect on
 
 In standard Mimblewimble, to spend a UTXO, one needs knowledge of
 
-* The spend key of the UTXO commitment,
-* The value of the UTXO commitment.
+- The spend key of the UTXO commitment,
+- The value of the UTXO commitment.
 
 You use this knowledge to construct a valid transaction, which contains
 
-* Range proofs for new UTXOs, proving the values are non-negative AND knowledge of the spend key and value,
-* A signature on the kernel, proving knowledge of the transaction excess.
+- Range proofs for new UTXOs, proving the values are non-negative AND knowledge of the spend key and value,
+- A signature on the kernel, proving knowledge of the transaction excess.
 
 Mimblewimble transactions are _interactive_ because the transaction contains information (the spend keys)
 that must remain secret to each party.
@@ -77,7 +77,6 @@ keeps the second locked until a specific key comes along to open it up. This is 
 
 And of course, we could also lock both locks to develop some fascinating spend conditions and smart contracts.
 
-
 ## What is all this scripting stuff about?
 
 When you "send" bitcoin to an address, say `1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy`. You're not actually sending it anywhere.
@@ -92,20 +91,18 @@ dives into Bitcoin transactions and script in great detail, and I strongly recom
 It is this ability to assign funds to small pieces of code, rather than just an account number, that opens up
 so many potential uses for the world of programmable money.
 
-
 # The devil in the details
 
-While the idea of TariScript seems pretty straightforward, getting it to  a place where we could implement it securely took the Tari
+While the idea of TariScript seems pretty straightforward, getting it to a place where we could implement it securely took the Tari
 community over a year of iterating, refining, breaking, fixing and reviewing before we got to a place where we felt
 comfortable implementing the first version in code.
 
 In this section, we'll examine the TariScript scheme in detail. By the end of it, you should have a decent understanding
-of how TariScript actually works.  And why it was such a long journey to get to this point.
+of how TariScript actually works. And why it was such a long journey to get to this point.
 
 {: .note .warning }
 Math ahead! This section also builds on the concepts we discussed in [Mimblewimble - all the bits](/protocols/mimblewimble) and
 [Mimblewimble transactions](/protocols/mimblewimble-transactions-explained).
-
 
 ## The TariScript language
 
@@ -174,31 +171,31 @@ Before the first instruction is executed, the stack[^2] and script look like thi
 
 [^2]: In these illustrations, the top of the stack is the left-most item.
 
-| Step   | 0                                           |
-|:-------|:--------------------------------------------|
-| Script | Dup HashBlake256  PushHash(H_b) EqualVerify |
-| Stack  | `P_b`                                       |
+| Step   | 0                                          |
+| :----- | :----------------------------------------- |
+| Script | Dup HashBlake256 PushHash(H_b) EqualVerify |
+| Stack  | `P_b`                                      |
 
 The script then runs, executing the instructions in order. If any instruction fails, the entire script fails. When the script completes, there must be a single item left on the stack, and that item must be a valid public key.
 
 The first instruction is `Dup`, which takes the top item on the stack and duplicates it:
 
-| Step   | 1 (`Dup`)                               |
-|:-------|:----------------------------------------|
-| Script | HashBlake256  PushHash(H_b) EqualVerify |
-| Stack  | `P_b P_b`                               |
+| Step   | 1 (`Dup`)                              |
+| :----- | :------------------------------------- |
+| Script | HashBlake256 PushHash(H_b) EqualVerify |
+| Stack  | `P_b P_b`                              |
 
 The next instruction, `HashBlake256` hashes the top stack item and pushes the result onto the stack. We'll keep the same nomenclature that Alice used and note that the hash of `P_b` is `H_b`:
 
 | Step   | 2 (`HashBlake256`)        |
-|:-------|:--------------------------|
+| :----- | :------------------------ |
 | Script | PushHash(H_b) EqualVerify |
 | Stack  | `H_b P_b`                 |
 
 Next, we have `PushHash(H_b)`. As you might guess, this pushes the value `H_b` onto the stack:
 
 | Step   | 3(`PushHash(H_b)`) |
-|:-------|:-------------------|
+| :----- | :----------------- |
 | Script | EqualVerify        |
 | Stack  | `H_b H_b P_b`      |
 
@@ -208,7 +205,7 @@ Assuming the hashes match, i.e. Bob provided a public key that matched the hash 
 successfully leaving Bob's public key on the stack.
 
 | Step   | 4 - Complete |
-|:-------|:-------------|
+| :----- | :----------- |
 | Script |              |
 | Stack  | `P_b`        |
 
@@ -236,12 +233,12 @@ Here are just some of the vulnerabilities present in the scheme at present:
 
 Depending on the specifics of how Alice sends Tari to Bob and what the script is,
 
-* Anyone can spend Bob's funds by editing the script.
-* Alice can lock Bob out of his funds by changing the script.
-* Miners can edit parts of the transaction metadata without detection.
-* Miners can take Bob's funds by making the script disappear altogether.
-* If Bob later sends funds to Charlie, Alice can collude with Charlie to steal funds from Bob.
-* If there's a really, really deep chain reorganisation, some nodes will have no way of knowing whether scripts were executed correctly and will have to trust whatever archival nodes tell them.
+- Anyone can spend Bob's funds by editing the script.
+- Alice can lock Bob out of his funds by changing the script.
+- Miners can edit parts of the transaction metadata without detection.
+- Miners can take Bob's funds by making the script disappear altogether.
+- If Bob later sends funds to Charlie, Alice can collude with Charlie to steal funds from Bob.
+- If there's a really, really deep chain reorganisation, some nodes will have no way of knowing whether scripts were executed correctly and will have to trust whatever archival nodes tell them.
 
 It took the Tari community almost a year to identify and resolve these vulnerabilities, so let's take some time to have
 a look at them in more detail.
@@ -304,6 +301,7 @@ would look something like
 |                         |
 +------------+------------+
 ```
+
 Since `B` is identical from a mathematical perspective, they cancel each other out. Miners can take advantage of this
 fact and remove `B` from the block altogether, in a process called _cut-through_:
 
@@ -331,7 +329,7 @@ Ultimately, the only way around this issue is to modify Mimblewimble to disallow
 This is easier said than done.
 
 Preventing cut-through requires us to chain input and outputs together to tell if a link has been removed. But the property of being able to jumble inputs and outputs together in an auto-coin-join is one of the
- core features of Mimblewimble itself!
+core features of Mimblewimble itself!
 
 What we need is a way to link inputs and outputs without explicitly linking them. See? Easier said than done.
 
@@ -363,14 +361,14 @@ $$
 
 The second set of equations uses only public data that aggregates over the transactions in a block, the same way the accounting balance does. Therefore it's impossible to tell which inputs are linked with which outputs. All you know is that no inputs or outputs are missing (i.e. cut-through).
 
- Secondly, unlike commitments in the accounting balance, the offset equation uses _different_ values from the outputs when they are created vs when they are spent. You can see this visually in Figure 1 in that the linkages are disjoint.
- This property means that the values _do not cancel out_ when trying to perform cut-through. And so cut-through is
- disallowed by the script offset equation.
+Secondly, unlike commitments in the accounting balance, the offset equation uses _different_ values from the outputs when they are created vs when they are spent. You can see this visually in Figure 1 in that the linkages are disjoint.
+This property means that the values _do not cancel out_ when trying to perform cut-through. And so cut-through is
+disallowed by the script offset equation.
 
 There's one last bit of housekeeping to wrap this up. Tari now requires transactions to bundle the script offset along
 with the transaction, and block aggregators will sum all the offsets when building a new block and report a single
 aggregate script offset for the entire block. It's a simple exercise to convince yourself that the aggregate equation,
-$ \gamma_T \cdot G \stackrel?= \sum{K_{sj}} - \sum{K_{Oi}} $  is all that's required to prevent cut-through in blocks.
+$ \gamma*T \cdot G \stackrel?= \sum{K*{sj}} - \sum{K\_{Oi}} $ is all that's required to prevent cut-through in blocks.
 
 ### Replay attacks
 
@@ -392,7 +390,6 @@ Ultimately, there is no simple way to block this attack. For Tari, we decided to
 This requires us to track an index of all transactions in Tari history, but look-ups are reasonably efficient and it
 stops the replay attacks.
 
-
 ### Horizon attacks
 
 Like other Mimblewimble protocols, Tari prunes its spent TXO set after some _pruning horizon_, typically a few hundred
@@ -405,15 +402,12 @@ chain reorganisation beyond the pruning horizon, termed a _horizon attack_, then
 fully validate some transactions.
 They would have to find an archival node to replay the complete transcript between the chain split and the pruning horizon.
 
-It is too much of a handicap to disable pruning in Tari,  so the strategy is to mitigate rather than eliminate horizon
+It is too much of a handicap to disable pruning in Tari, so the strategy is to mitigate rather than eliminate horizon
 attacks:
 
-* Tari has a very long pruning horizon, several thousand blocks, to make the attack more expensive and less likely.
-* Ensure that there is always a critical mass of archival nodes running.
-* Users can protect their funds from horizon attacks by simply sending funds to themselves using a standard Mimblewimble transaction.
-
-
-
+- Tari has a very long pruning horizon, several thousand blocks, to make the attack more expensive and less likely.
+- Ensure that there is always a critical mass of archival nodes running.
+- Users can protect their funds from horizon attacks by simply sending funds to themselves using a standard Mimblewimble transaction.
 
 ## End credits
 
@@ -421,5 +415,5 @@ As you can see, the road from the initial idea of "Hey, let's incorporate script
 product was an adventurous one.
 This feature is particularly gratifying because it was a complete team effort, with at least half a dozen contributors making vital additions. Special thanks go to @[BlackwolfSA](https://github.com/swvheerden) for
 breaking my first three or four iterations of this concept and first proposing the script key concept, @[DavidBurkett](https://github.com/DavidBurkett) for reviewing and coming up with the basic
-script offset idea and @[MikeTheTike](https://github.com/mikethetike), @[SimianZa](https://github.com/philipr-za), @[Bizzle](https://github.com/delta1) and @[HansieOdendaal](https://github.com/hansieodendaal) for helping refine and polish TariScript into its
+script offset idea and @[Stringhandler](https://github.com/stringhandler), @[SimianZa](https://github.com/philipr-za), @[Bizzle](https://github.com/delta1) and @[HansieOdendaal](https://github.com/hansieodendaal) for helping refine and polish TariScript into its
 final form.
