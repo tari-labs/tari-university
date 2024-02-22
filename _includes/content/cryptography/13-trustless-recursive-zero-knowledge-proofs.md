@@ -570,10 +570,10 @@ Date accessed: 2020&#8209;07&#8209;01.
 [6]: https://www.scribd.com/document/516186827/Finite-Fields-Stanford 'NOTES ON FINITE FIELDS'
 
 [[7]] E. Ben-Sasson, "The ZKP Cambrian Explosion and STARKs" November 2019
-[online]. Available: <https://starkware.co/decks/cambrian_explosion_nov19.pdf>.
+[online]. Available: <https://medium.com/starkware/the-cambrian-explosion-of-crypto-proofs-7ac080ac9aed>.
 Date accessed: 2020&#8209;07&#8209;05.
 
-[7]: https://starkware.co/decks/cambrian_explosion_nov19.pdf 'The ZKP Cambrian Explosion and STARKs'
+[7]: https://medium.com/starkware/the-cambrian-explosion-of-crypto-proofs-7ac080ac9aed 'The ZKP Cambrian Explosion and STARKs'
 
 [[8]] S. Bowe, J. Grigg and D. Hopwood, "Halo: Recursive Proof Composition without a
 Trusted Setup" [online]. Available: <https://pdfs.semanticscholar.org/83ac/e8f26e6c57c6c2b4e66e5e81aafaadd7ca38.pdf>. Date accessed: 2020&#8209;07&#8209;05.
