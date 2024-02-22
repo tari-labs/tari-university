@@ -59,13 +59,13 @@ located [[25]].
 ### Namecoin (#307) with Bitcoin (#1)
 
 - Namecoin, the first fork of Bitcoin, introduced merged mining with Bitcoin [[1]] from block 19,200 onwards [[3]]. At
-  the time of writing (May&nbsp;2018), the block height of Namecoin was greater than 400,500 [[4]].
+  the time of writing (May&nbsp;2018), the block height of Namecoin was greater than 400,500.
 - Over the five-day period from 23&nbsp;May&nbsp;2018 to 27&nbsp;May&nbsp;2018, only 226 out of 752 blocks posted
   transaction values over
-  and above the block reward of 25 NMC, with an average transaction value of 159.231 NMC including the block reward. [[4]]
+  and above the block reward of 25 NMC, with an average transaction value of 159.231 NMC including the block reward.
 - Slush Pool merged mining Namecoin with Bitcoin rewards all miners with BTC equivalent to NMC via an external exchange
   service [[5]].
-- P2pool, Multipool, Slush Pool, Eligius and F2pool are cited as top Namecoin merged mining pools [[6]].
+- P2pool, Multipool, Slush Pool, Eligius and F2pool are cited as top Namecoin merged mining pools.
 
 | @ 2018-05-30          | Bitcoin [[16]] | Namecoin [[16]] | Ratio   |
 | --------------------- | -------------- | --------------- | ------- |
@@ -254,21 +254,10 @@ Available: <https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki
 
 [3]: https://github.com/namecoin/wiki/blob/master/Merged-Mining.mediawiki 'Merged-Mining.mediawiki'
 
-[[4]] "Bchain.info - Blockchain Explorer (NMC)" [online].
-Available: <https://bchain.info/NMC>. Date accessed: 2018&#8209;05&#8209;28.
-
-[4]: https://bchain.info/NMC 'Bchain.info - Blockchain Explorer (NMC)'
-
 [[5]] "SlushPool Merged Mining" [online].
 Available: <https://slushpool.com/help/first-aid/faq-merged-mining>. Date accessed: 2018&#8209;05&#8209;28.
 
 [5]: https://slushpool.com/help/first-aid/faq-merged-mining 'SlushPool Merged Mining'
-
-[[6]] "5 Best Namecoin Mining Pools of 2018 (Comparison)" [online].
-Available: <https://www.prooworld.com/namecoin/best-namecoin-mining-pools>. Date accessed: 2018&#8209;05&#8209;28.
-
-[6]: https://www.prooworld.com/namecoin/best-namecoin-mining-pools '5 Best Namecoin Mining Pools
-of 2018 (Comparison)'
 
 [[7]] "Alternative Chain" [online].
 Available: <https://en.bitcoin.it/wiki/Alternative_chain#Protecting_against_double_proof>. Date accessed: 2018&#8209;05&#8209;28.

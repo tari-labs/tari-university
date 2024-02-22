@@ -13,15 +13,14 @@
 - [References](#references)
 - [Contributors](#contributors)
 
-
 ## High-level Overview
 
 Mimblewimble is a privacy-oriented, cryptocurrency technology. It differs from Bitcoin in some key areas:
 
-* No addresses. The concept of Mimblewimble addresses does not exist.
-* Completely private. Every transaction is confidential.
-* Compact blockchain. Mimblewimble uses a different set of security guarantees to Bitcoin, which leads to a far more
-compact blockchain.
+- No addresses. The concept of Mimblewimble addresses does not exist.
+- Completely private. Every transaction is confidential.
+- Compact blockchain. Mimblewimble uses a different set of security guarantees to Bitcoin, which leads to a far more
+  compact blockchain.
 
 ## Transactions Explained
 
@@ -35,7 +34,6 @@ This doesn't necessarily mean that recipients have to be online. However, they d
 whether it
 be by email, Instant Messaging (IM) or carrier pigeon.
 
-
 ### Basic Transaction
 
 We'll explain how Alice can send Tari to Bob using a two-party protocol for Mimblewimble. Multiparty transactions are
@@ -45,10 +43,10 @@ Let's say Alice has 300 µT and she wants to send 200 µT to Bob.
 
 Here’s the basic transaction:
 
-| Inputs       | Outputs |        |      |
-|:-------------|:------- |:-------|:-----|
-| 300          | 200     | 90     | 10   |
-| Alice's UTXO | To Bob  | Change | fee  |
+| Inputs       | Outputs |        |     |
+| :----------- | :------ | :----- | :-- |
+| 300          | 200     | 90     | 10  |
+| Alice's UTXO | To Bob  | Change | fee |
 
 If we write this as a mathematical equation, where outputs are positive and inputs are negative, we should be able to
 balance things out so that there's no creation of coins out of thin air:
@@ -79,7 +77,6 @@ reasonable values of _n_ and scan the blockchain for those public keys?<sup>[^a]
 
 In short, _yes_. So we’re not done yet.
 
-
 [^a]: "This is called a pre-image attack."
 
 ### Blinding Factors
@@ -99,17 +96,16 @@ The two generators, _H_ and _G_ must be selected in a way that it's impossible t
 the other [[2]]. Specifically, if _G_ is the base generator, then there exists some _k_ where $ H = kG $. <br />If anyone is able to figure out this _k_, the whole security of Confidential Transactions falls apart. It's left as an exercise for the reader to figure out why. <br />For a semi-gentle introduction to these concepts, Adam Gibson's paper on the subject is excellent [[5]].
 </span>
 
-
 ### Alice Prepares a Transaction
 
 Alice can now start to build a transaction.
 
 | Type          | Formula                 | Name |
-|:--------------|:------------------------|:-----|
+| :------------ | :---------------------- | :--- |
 | Input         | $$ -300.H - k_1.G $$    | C1   |
 | Change output | $$ 90.H + k_2.G $$      | C2   |
 | Fee           | $$ 10.H + 0.G $$        | f    |
-| Total spent   | $$ 200.H + 0.G $$       | C*   |
+| Total spent   | $$ 200.H + 0.G $$       | C\*  |
 | _Sum_         | $$ 0.H + (k_2-k_1).G $$ | X    |
 
 The \\( k_i \\)-values, \\(k_1, k_2\\) are the spending keys for those outputs.
@@ -165,7 +161,7 @@ $$ R_a = r_a.G $$
 Alice then sends the following information to Bob:
 
 | Field              | Value     |
-|:-------------------|:----------|
+| :----------------- | :-------- |
 | Inputs             | C1        |
 | Outputs            | C2        |
 | Fee                | 10        |
@@ -206,7 +202,7 @@ $$ s_b = r_b + ek_b $$
 Bob sends back
 
 | Field                               | Value   |
-|:------------------------------------|:--------|
+| :---------------------------------- | :------ |
 | Output (commitment and range proof) | $$C_b$$ |
 | Public nonce                        | $$R_b$$ |
 | Signature                           | $$s_b$$ |
@@ -228,15 +224,15 @@ and the combined aggregate signature, $$ s = s_a + s_b, R = R_a + R_b $$.
 
 Alice can now broadcast this transaction to the network. The final transaction looks as follows:
 
-| Transaction Kernel        |                |
-|:--------------------------|:---------------|
-| Public excess             | $$ X + P_b $$  |
-| Signature                 | $$ (s, R) $$   |
-| Fee                       | 10             |
-| Transaction metadata      | m              |
+| Transaction Kernel   |               |
+| :------------------- | :------------ |
+| Public excess        | $$ X + P_b $$ |
+| Signature            | $$ (s, R) $$  |
+| Fee                  | 10            |
+| Transaction metadata | m             |
 
 | Transaction Body          |                |
-|:--------------------------|:---------------|
+| :------------------------ | :------------- |
 | Inputs with range proofs  | $$[C_1]$$      |
 | Outputs with range proofs | $$[C_2, C_B]$$ |
 
@@ -265,7 +261,7 @@ peers. The node wants to check the following:
    The summed public nonces, _R_ are also stored in the kernel, so this allows the node to verify the signature by
    checking the following, where the challenge _e_ is calculated as before:
 
-$$ s.G \stackrel{?}{=} R + e(X + P_b) $$  
+$$ s.G \stackrel{?}{=} R + e(X + P_b) $$
 
 4. The signature in the kernel is valid
 
@@ -280,7 +276,7 @@ be added to the blockchain.
 
 ## Stopping Fraud
 
-Now let's say Alice tried to be sneaky and used \\( X^* \\) as her excess; the one where she gave herself 100 µT change
+Now let's say Alice tried to be sneaky and used \\( X^\* \\) as her excess; the one where she gave herself 100 µT change
 instead of 90 µT. Now the values won't balance. The sum of outputs, inputs and fees will look something like this:
 
 $$ 10.H + (x_s + k_b).G ​$$
@@ -303,37 +299,42 @@ up, and so it will just drop the transaction silently and get on with its life.
 
 To sum up: a Tari/MimbleWimble transaction includes the following:
 
-* From Alice, a set of inputs that reference and spend a set of previous outputs.
-* From Alice and Bob, a set of new outputs, including:
-  * A value and a blinding factor (which is just a new private key).
-  * A range proof that shows that the value is non-negative.
-* The transaction fee, in cleartext,
-* The public excess, which is the sum of all blinding factors used in the transaction.
-* Transaction metadata.
-* The excess blinding value used as the private key to sign a message attesting to the transaction metadata, and the
+- From Alice, a set of inputs that reference and spend a set of previous outputs.
+- From Alice and Bob, a set of new outputs, including:
+  - A value and a blinding factor (which is just a new private key).
+  - A range proof that shows that the value is non-negative.
+- The transaction fee, in cleartext,
+- The public excess, which is the sum of all blinding factors used in the transaction.
+- Transaction metadata.
+- The excess blinding value used as the private key to sign a message attesting to the transaction metadata, and the
   public excess.
 
 ## References
 
-[1]: https://www.mycryptopedia.com/what-are-confidential-transactions/ "What are Bitcoin Confidential Transactions?"
+[1]: https://www.mycryptopedia.com/what-are-confidential-transactions/ 'What are Bitcoin Confidential Transactions?'
+
 [[1]] "What are Bitcoin Confidential Transactions?" [Online.] Available: <https://www.mycryptopedia.com/what-are-confidential-transactions/>
 Date accessed: 2019&#8209;04&#8209;09.
 
-[2]: https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749 "Nothing-Up-My_Sleeve Number"
+[2]: https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749 'Nothing-Up-My_Sleeve Number'
+
 [[2]] "Nothing-Up-My_Sleeve Number" [online].<br>Available:
 <https://en.wikipedia.org/w/index.php?title=Nothing-up-my-sleeve_number&oldid=889582749>. Date accessed: 2019&#8209;04&#8209;09.
 
-[3]: https://en.wikipedia.org/wiki/Commitment_scheme "Commitment Scheme"
+[3]: https://en.wikipedia.org/wiki/Commitment_scheme 'Commitment Scheme'
+
 [[3]] Wikipedia: "Commitment Scheme" [online]. Available: <https://en.wikipedia.org/wiki/Commitment_scheme>.
 Date accessed: 2019&#8209;04&#8209;09.
 
-[4]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets "Kernel Offsets"
+[4]: https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets 'Kernel Offsets'
+
 [[4]] "Kernel Offsets, in Introduction to MimbleWimble and Grin" [online]. Available:
 <https://github.com/mimblewimble/grin/blob/master/doc/intro.md#kernel-offsets>. Date accessed: 2019&#8209;04&#8209;09.
 
-[5]: https://joinmarket.me/static/FromZK2BPs_v1.pdf "From Zero (Knowledge) to BulletProofs"
+[5]: https://moodle.unige.ch/pluginfile.php/309148/mod_folder/content/0/From%20zero%20knowledge%20to%20bulletproofs%20-%20Gibson.pdf 'From Zero (Knowledge) to BulletProofs'
+
 [[5]] A. Gibson, "From Zero (Knowledge) to BulletProofs" [online].
-Available: <https://joinmarket.me/static/FromZK2BPs_v1.pdf>.
+Available: <https://moodle.unige.ch/pluginfile.php/309148/mod_folder/content/0/From%20zero%20knowledge%20to%20bulletproofs%20-%20Gibson.pdf>.
 Date accessed: 2019&#8209;04&#8209;10.
 
 ## Contributors

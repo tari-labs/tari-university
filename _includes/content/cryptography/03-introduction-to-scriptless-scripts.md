@@ -94,7 +94,7 @@ A multi-signature (multisig) has multiple participants that produce a signature.
 separate signature and concatenate them, forming a multisig.
 
 With Schnorr Signatures, one can have a single public key, which is the sum of many different people's public keys. The
-resulting key is one against which signatures will be verifiable [[5]].
+resulting key is one against which signatures will be verifiable.
 
 The formulation of a multisig involves taking the sum of all components; thus all nonces and $s$ values result in the
 formulation of a multisig [[4]]:
@@ -275,11 +275,6 @@ Available: <https://www.youtube.com/watch?v=ovCBT1gyk9c&t=0s>. Date accessed: 20
 Available: <https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20>. Date accessed: 2017&#8209;03&#8209;04.
 
 [4]: https://www.youtube.com/watch?v=0mVOq1jaR1U&feature=youtu.be&t=39m20 'Mimblewimble and Scriptless Scripts'
-
-[[5]] "Flipping the Scriptless Script on Schnorr" [online].
-Available: <https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/>. Date accessed: November&nbsp;2017.
-
-[5]: https://joinmarket.me/blog/blog/flipping-the-scriptless-script-on-schnorr/ 'Flipping the Scriptless Script on Schnorr'
 
 [[6]] "The First Successful Zero-knowledge Contingent Payment" [online].
 Available: <https://bitcoincore.org/en/2016/02/26/zero-knowledge-contingent-payments-announcement/>. Date accessed:
