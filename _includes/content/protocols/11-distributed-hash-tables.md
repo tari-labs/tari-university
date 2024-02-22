@@ -113,13 +113,13 @@ of all transactions and blocks for verification.
 The following graph is replicated and simplified from [[8]]. Degree is the number of neighbors with which a node must
 maintain contact.
 
-| Parameter                              | CAN                                     | CHORD                   | Kademlia                                                  | Koord                                    | Pastry                             | Tapestry                  | Viceroy                         |
-| -------------------------------------- | --------------------------------------- | ----------------------- | --------------------------------------------------------- | ---------------------------------------- | ---------------------------------- | ------------------------- | ------------------------------- |
-| Foundation                             | d-dimensional torus                     | Circular space          | XOR metric                                                | de Bruijn graph                          | Plaxton-style mesh                 | Plaxton-style mesh        | Butterfly network               |
-| Routing function                       | Map key-value pairs to coordinate space | Matching key to node ID | Matching key to node ID                                   | Matching key to node ID                  | Matching key and prefix in node ID | Suffix matching           | Levels of tree, vicinity search |
-| Routing performance (network size $n$) | $O(dn^{(2/d)})$                         | $O(log(n))$             | $O(log(n)) + c$ $c$ is small                              | Between $O(log(log(n)))$ and $O(log(n))$ | $O(log(n))$                        | $O(log(n))$               | $O(log(n))$                     |
-| Degree                                 | $2d$                                    | $O(log(n))$             | $O(log(n))$                                               | Between constant to $log(n)$             | $O(2log(n))$                       | $O(log(n))$               | Constant                        |
-| Join/Leaves                            | $2d$                                    | $log(n)^2$              | $O(log(n)) + c$ $c$ is small                              | $O(log(n))$                              | $O(log(n))$                        | $O(log(n))$               | $O(log(n))$                     |
+| Parameter                              | CAN                                     | CHORD                   | Kademlia                                                    | Koord                                    | Pastry                             | Tapestry                    | Viceroy                         |
+| -------------------------------------- | --------------------------------------- | ----------------------- | ----------------------------------------------------------- | ---------------------------------------- | ---------------------------------- | --------------------------- | ------------------------------- |
+| Foundation                             | d-dimensional torus                     | Circular space          | XOR metric                                                  | de Bruijn graph                          | Plaxton-style mesh                 | Plaxton-style mesh          | Butterfly network               |
+| Routing function                       | Map key-value pairs to coordinate space | Matching key to node ID | Matching key to node ID                                     | Matching key to node ID                  | Matching key and prefix in node ID | Suffix matching             | Levels of tree, vicinity search |
+| Routing performance (network size $n$) | $O(dn^{(2/d)})$                         | $O(log(n))$             | $O(log(n)) + c$ $c$ is small                                | Between $O(log(log(n)))$ and $O(log(n))$ | $O(log(n))$                        | $O(log(n))$                 | $O(log(n))$                     |
+| Degree                                 | $2d$                                    | $O(log(n))$             | $O(log(n))$                                                 | Between constant to $log(n)$             | $O(2log(n))$                       | $O(log(n))$                 | Constant                        |
+| Join/Leaves                            | $2d$                                    | $log(n)^2$              | $O(log(n)) + c$ $c$ is small                                | $O(log(n))$                              | $O(log(n))$                        | $O(log(n))$                 | $O(log(n))$                     |
 | Implementations                        | \-\-                                    | OpenChord, OverSIM      | Ethereum [[3]], Mainline DHT (BitTorrent), I2P, Kad Network | \-\-                                     | FreePastry                         | OceanStore, Mnemosyne [[4]] | \-\-                            |
 
 The popularity of Kademlia over other DHTs is likely due to its relative simplicity and performance. The rest of this
@@ -177,9 +177,9 @@ There are a number of ways that bootstrap nodes can be obtained, including addin
 2. It contacts a few nodes it knows about.
 3. It sends a `FIND_NODE` lookup request of its newly generated node ID.
 4. The contacted nodes return the closest nodes they know about. The newly discovered nodes are added to the joining
-node's routing table.
+   node's routing table.
 5. The joining node then contacts some of the new nodes it knows about. The process then continues iteratively until
-the joining node is unable to locate any closer nodes.
+   the joining node is unable to locate any closer nodes.
 
 This _self-lookup_ has two effects: it allows the node to learn about nodes closer to itself; and it populates other
 nodes' routing tables with the node's ID [[1]].
@@ -215,7 +215,7 @@ The following RPC messages are part of the Kademlia protocol:
 - Data storage and retrieval
   - `STORE` - request to store a $\langle key, value \rangle$ pair.
   - `FIND_VALUE` - behaves the same as `FIND_NODE` by returning closer nodes. If a node has the requested
-  $\langle key, value \rangle​$ pair, it will instead return the stored value.
+    $\langle key, value \rangle​$ pair, it will instead return the stored value.
 
 Notably, there is no `JOIN` message. This is because there is no explicit join in Kademlia. Each peer has a chance of
 being added to a routing table of another node whenever an RPC message is sent/received between them [[2]]. In this
@@ -240,7 +240,6 @@ retrieved by participants in the network:
   24&nbsp;hours). Therefore, the original publisher may be required to republish the data before that period expires.
 
 - The retrieval procedure follows the same logic as storage, except a `FIND_VALUE` RPC is issued and the data received.
-
 
 ##### Routing Table
 
@@ -325,7 +324,7 @@ Mitigations include [[12]]:
 
 - Associating a cost with adding new identifiers to the network.
 - Reliably joining real-world identifiers (IP address, MAC address, etc.) to the node identifier, and rejecting a
-threshold of duplicates.
+  threshold of duplicates.
 - Having a trusted central authority or secure decentralized scheme that issues identities.
 - Using social information and trust relationships.
 
@@ -406,61 +405,61 @@ becomes especially important when control of a network may mean monetary losses,
 [[1]] Wikipedia: "Distributed Hash Table" [online]. Available: <https://en.wikipedia.org/wiki/Distributed_hash_table>.
 Date accessed: 2019&#8209;03&#8209;08.
 
-[1]: https://en.wikipedia.org/wiki/Distributed_hash_table. "Wikipedia: Distributed Hash Table"
+[1]: https://en.wikipedia.org/wiki/Distributed_hash_table. 'Wikipedia: Distributed Hash Table'
 
 [[2]] "Kademlia: A Peer-to-Peer Information System" [online]. Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>.
 Date accessed: 2019&#8209;03&#8209;08.
 
-[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf "Original Kademlia paper"
+[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf 'Original Kademlia paper'
 
 [[3]] Ethereum/Wiki: "Kademlia Peer Selection' [online]. Available: <https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection#lookup>.
 Date accessed: 2019&#8209;03&#8209;12.
 
-[3]: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection "Kademlia Peer Selection"
+[3]: https://github.com/ethereum/wiki/wiki/Kademlia-Peer-Selection 'Kademlia Peer Selection'
 
 [[4]] Wikipedia: "Tapestry (DHT)" [online]. Available: <https://www.wikiwand.com/en/Tapestry_(DHT)>. Date accessed:
 2019&#8209;03&#8209;12.
 
-[4]: https://www.wikiwand.com/en/Tapestry_(DHT) "Tapestry (DHT)"
+[4]: https://www.wikiwand.com/en/Tapestry_(DHT) 'Tapestry (DHT)'
 
 [[5]] "Towards a Scalable and Robust DHT" [online]. Available: <http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf>.
 Date accessed: 2019&#8209;03&#8209;12.
 
-[5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf "Towards a Scalable and Robust DHT"
+[5]: http://www.cs.jhu.edu/~baruch/RESEARCH/Research_areas/Peer-to-Peer/2006_SPAA/virtual5.pdf 'Towards a Scalable and Robust DHT'
 
 [[6]] "Low-resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network" [online]. Available: <https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf>.
 Date accessed: 2019&#8209;03&#8209;15.
 
-[6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf "Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network"
+[6]: https://www.cs.bu.edu/~goldbe/projects/eclipseEth.pdf 'Low-Resource Eclipse Attacks on Ethereum’s Peer-to-Peer Network'
 
 [[7]]: "Commensal Cuckoo: Secure Group Partitioning for Large-scale Services" [online]. Available: <https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf>. Date accessed:
 2019&#8209;03&#8209;15.
 
-[7]: https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf "Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services"
+[7]: https://web.archive.org/web/20180729064433/http://sns.cs.princeton.edu/docs/ccuckoo-ladis11.pdf 'Commensal Cuckoo: Secure Group Partitioning for Large-Scale Services'
 
 [[8]]: "Overlay and P2P Networks" [online]. Available: <https://www.cs.helsinki.fi/webfm_send/1339>.
 Date accessed: 2019&#8209;04&#8209;04.
 
-[8]: https://www.cs.helsinki.fi/webfm_send/1339 "Overlay and P2P networks"
+[8]: https://www.cs.helsinki.fi/webfm_send/1339 'Overlay and P2P networks'
 
-[[9]]: "Poisoning the Kad Network" [online]. Available: <https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf>.
+[[9]]: "Poisoning the Kad Network" [online]. Available: <https://link.springer.com/chapter/10.1007/978-3-642-11322-2_22>.
 Date accessed: 2019&#8209;04&#8209;04.
 
-[9]: https://www.net.t-labs.tu-berlin.de/~stefan/icdcn10.pdf "Poisoning the Kad Network"
+[9]: https://link.springer.com/chapter/10.1007/978-3-642-11322-2_22 'Poisoning the Kad Network'
 
 [[10]]: "BitTorrent" [online]. <https://en.wikipedia.org/wiki/BitTorrent>. Date accessed: 2019&#8209;04&#8209;04.
 
-[10]: https://en.wikipedia.org/wiki/BitTorrent "BitTorrent"
+[10]: https://en.wikipedia.org/wiki/BitTorrent 'BitTorrent'
 
 [[11]]: "Servers - Tor Metrics" [online]. <https://metrics.torproject.org/networksize.html>. Date accessed:
 2019&#8209;04&#8209;29.
 
-[11]: https://en.wikipedia.org/wiki/BitTorrent "Servers - Tor Metrics"
+[11]: https://en.wikipedia.org/wiki/BitTorrent 'Servers - Tor Metrics'
 
 [[12]]: "A Survey of DHT Security Techniques" [online]. <https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques>.
 Date accessed: 2019&#8209;04&#8209;29.
 
-[12]: https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques "A Survey of DHT Security Techniques"
+[12]: https://www.researchgate.net/publication/220566526_A_survey_of_DHT_security_techniques 'A Survey of DHT Security Techniques'
 
 ## Contributors
 
