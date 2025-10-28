@@ -11,7 +11,6 @@
 - [References](#references)
 - [Contributors](#contributors)
 
-
 ## What are Atomic Swaps?
 
 Atomic swaps or cross-chain atomic swaps [[1]], in a nutshell, are decentralized
@@ -36,7 +35,7 @@ open channel to Bart, who does have an open channel to Carla.
 
 1. Carla generates a random number and gives the hash of the number to Alex.
 2. Alex pays Bart, but adds the condition that if Bart wants to claim the payment, he has to provide the random number
-that generated the hash Carla gave to Alex.
+   that generated the hash Carla gave to Alex.
 3. Bart pays Carla, but he adds the same condition to the payment.
 4. Carla claims the payment by providing the random number, thus exposing the random number to Bart.
 5. Bart uses the random number to claim the payment from Alex.
@@ -50,7 +49,9 @@ for HTLC to function. Etomic swaps were created in an attempt to make atomic swa
 Ethereum-based tokens.
 
 ## Examples of Current Atomic Swaps and Implementations
+
 ### #1 Manual Method
+
 An article was posted on Hackernoon [[4]]
 giving the exact steps that are required for doing an atomic swap using cli. The requirements for this method are:
 
@@ -80,10 +81,11 @@ exchange. It also uses a security deposit in the form of Zcredits to do swaps wi
 
 BarterDEX also supports Etomic swaps. These work by keeping the payments locked in an etomic blockchain that will act
 as a third party. Although swaps have been done, it is stated as not yet being production ready [[8]]. Currently
-(July&nbsp;2018), it is only possible to use Barterdex out of the Command Line Interface (CLI) [[9]]. Barterdex charges
+(July&nbsp;2018), it is only possible to use Barterdex out of the Command Line Interface (CLI). Barterdex charges
 a 0.1287% fee for a swap [[10]].
 
 ### #4 COMIT
+
 Cryptographically-secure Off-chain Multi-asset Instant Transaction (COMIT) is an open-source protocol for
 cross-blockchain applications, like peer-to-peer atomic swaps, and does not feature another blockchain nor token. It
 is powered by simple cryptographic principles such as HTLCs and enables users to trustlessly exchange one digital asset
@@ -92,91 +94,67 @@ Graphical User Interface (GUI) are available on GitHub. At the time of writing, 
 assets from the Bitcoin blockchain (e.g. BTC) and from the Ethereum blockchain (e.g. ETH and ERC20 tokens)
 ([[11], [[12]], [[13]]).
 
-
 ## References
 
-[[1]] S. Khatwani (2018), "What is Atomic Swap and Why it Matters?" *Coinsutra*. [Online.]
+[[1]] S. Khatwani (2018), "What is Atomic Swap and Why it Matters?" _Coinsutra_. [Online.]
 Available: <https://coinsutra.com/atomic-swap/>. Date accessed: 2018&#8209;07&#8209;12.
 
-[1]: https://coinsutra.com/atomic-swap/
-"What is Atomic Swap and Why it Matters?"
+[1]: https://coinsutra.com/atomic-swap/ 'What is Atomic Swap and Why it Matters?'
 
 [[2]] A. Vohra (2016), "What are Hashed Timelock Contracts (HTLCs)? Application in Lightning Network & Payment Channels",
-*Hackernoon* [online] Available: <https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345>.
+_Hackernoon_ [online] Available: <https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345>.
 Date accessed: 2018&#8209;07&#8209;12.
 
-[2]: https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345
-"What are Hashed Timelock Contracts (HTLCs)? Application in Lightning Network & Payment Channels"
+[2]: https://hackernoon.com/what-are-hashed-timelock-contracts-htlcs-application-in-lightning-network-payment-channels-14437eeb9345 'What are Hashed Timelock Contracts (HTLCs)? Application in Lightning Network & Payment Channels'
 
 [[3]] J. Poon and T. Dryja (2016), "The Bitcoin Lightning Network: Scalable Off-chain Instant Payments v0.5.9.2" [online].
 Available: <https://lightning.network/lightning-network-paper.pdf>. Date accessed: 2018&#8209;07&#8209;13.
 
-[3]: https://lightning.network/lightning-network-paper.pdf
-"The Bitcoin Lightning Network: Scalable Off-chain Instant Payments v0.5.9.2"
+[3]: https://lightning.network/lightning-network-paper.pdf 'The Bitcoin Lightning Network: Scalable Off-chain Instant Payments v0.5.9.2'
 
-[[4]] Hotshot (2018), "So how do I really do an Atomic Swap", *Hackernoon* [online]
+[[4]] Hotshot (2018), "So how do I really do an Atomic Swap", _Hackernoon_ [online]
 Available: <https://hackernoon.com/so-how-do-i-really-do-an-atomic-swap-f797852c7639>. Date accessed: 2018&#8209;07&#8209;13.
 
-[4]: https://hackernoon.com/so-how-do-i-really-do-an-atomic-swap-f797852c7639
-"So how do I really do an Atomic Swap"
+[4]: https://hackernoon.com/so-how-do-i-really-do-an-atomic-swap-f797852c7639 'So how do I really do an Atomic Swap'
 
 [[5]] Open Source (ISC) (2018), "viacoin/atomicswap", GitHub [online]. Available: <https://github.com/viacoin/atomicswap>.
 Date accessed: 2018&#8209;07&#8209;13.
 
-[5]: https://github.com/viacoin/atomicswap
-"viacoin/atomicswap"
+[5]: https://github.com/viacoin/atomicswap 'viacoin/atomicswap'
 
 [[6]] Atomic (2018), "Atomic Wallet" [online]. Available: <https://atomicwallet.io/>. Date accessed: 2018&#8209;07&#8209;13.
 
-[6]: https://atomicwallet.io/
-"Atomic Wallet"
+[6]: https://atomicwallet.io/ 'Atomic Wallet'
 
 [[7]] Komodo (2018), "BarterDEX" [online]. Available: <https://komodoplatform.com/decentralized-exchange/>.
 Date accessed: 2018&#8209;07&#8209;13.
 
-[7]: https://komodoplatform.com/decentralized-exchange/
-"BarterDEX"
+[7]: https://komodoplatform.com/decentralized-exchange/ 'BarterDEX'
 
 [[8]] Artemii235 (2018), "etomic-swap", GitHub [online]. Available: <https://github.com/artemii235/etomic-swap>.
 Date accessed: 2018&#8209;07&#8209;13.
 
-[8]: https://github.com/artemii235/etomic-swap
-"etomic-swap"
-
-[[9]] Komodo (2018), "Barterdex", GitHub [online]. Available:
-<https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX>.
-Date accessed: 2018&#8209;07&#8209;13.
-
-[9]: https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX
-"Barterdex"
+[8]: https://github.com/artemii235/etomic-swap 'etomic-swap'
 
 [[10]] Komodo and S. Hossain (2017), "barterDEX Whitepaper v2" [online].
-Available: <https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2>. Date accessed: 2018&#8209;07&#8209;13.
+Available: <https://github.com/SuperNETorg/komodo/wiki/barterDEX-Whitepaper-v2>. Date accessed: 2018&#8209;07&#8209;13.
 
-[10]: https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2
-"barterDEX Whitepaper v2"
+[10]: https://github.com/SuperNETorg/komodo/wiki/barterDEX-Whitepaper-v2 'barterDEX Whitepaper v2'
 
 [[11]] GitHub: "comit-network, COMIT is an open protocol facilitating trustless cross-blockchain applications."
 [online]. Available: <https://github.com/comit-network>. Date accessed: 2019&#8209;10&#8209;16.
 
-[11]: https://github.com/comit-network
-"GitHub: comit-network"
+[11]: https://github.com/comit-network 'GitHub: comit-network'
 
 [[12]] CoBloX (2018), "Connect all the Blockchains!!!" [online] Available:
-<https://blog.coblox.tech/2018/06/23/connect-all-the-blockchains.html/>. Date accessed: 2019&#8209;10&#8209;16.
+<https://medium.com/coblox/connect-all-the-blockchains-atomic-swap-78b38fff42e>. Date accessed: 2019&#8209;10&#8209;16.
 
-[12]: https://blog.coblox.tech/2018/06/23/connect-all-the-blockchains.html
-"CoBloX Connect all the Blockchains!!!"
+[12]: https://medium.com/coblox/connect-all-the-blockchains-atomic-swap-78b38fff42e 'CoBloX Connect all the Blockchains!!!'
 
 [[13]] "COMIT is an open protocol facilitating trustless cross-blockchain applications" [online]
 Available: <https://comit.network/>. Date accessed: 2019&#8209;10&#8209;16.
 
-[13]: https://comit.network/
-"COMIT Website"
-
-
-
-
+[13]: https://comit.network/ 'COMIT Website'
 
 ## Contributors
 

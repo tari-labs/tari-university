@@ -85,7 +85,7 @@ This is just a convenient metaphor for us greybeards who grew up in a time when 
 In fact, what you are doing is locking up a UTXO with a _script_ that effectively says, "Anyone who can prove that
 they know the private key of the public key that when hashed gives you `1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy`, can have this bitcoin".
 
-[Chapter 6 of _Mastering Bitcoin_](https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch06.asciidoc#tx_script)
+[Chapter 6 of _Mastering Bitcoin_](https://www.google.co.za/books/edition/Mastering_Bitcoin/MpwnDwAAQBAJ?hl=en&gbpv=0)
 dives into Bitcoin transactions and script in great detail, and I strongly recommend you read it.
 
 It is this ability to assign funds to small pieces of code, rather than just an account number, that opens up

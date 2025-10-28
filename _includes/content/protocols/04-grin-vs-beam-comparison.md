@@ -410,9 +410,9 @@ Date accessed: 2018&#8209;09&#8209;30.
 [23]: https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874 'Meeting Notes:
 Governance, Sep 25 2018'
 
-[[24]] "BEAM Features" [online]. Available: <https://www.beam-mw.com/features>. Date accessed: 2018&#8209;09&#8209;30.
+[[24]] "BEAM Features" [online]. Available: <https://www.beam.mw>. Date accessed: 2018&#8209;09&#8209;30.
 
-[24]: https://www.beam-mw.com/features 'BEAM Features'
+[24]: https://www.beam.mw 'BEAM Features'
 
 [[25]] "Grin's Community Funding Principles" [online]. Available: <https://grin-tech.org/funding.html>.
 Date accessed: 2018&#8209;09&#8209;28.

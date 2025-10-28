@@ -26,15 +26,15 @@
       - [Normal Distribution](#normal-distribution)
     - [Histogram and Visualization of Distribution](#histogram-and-visualization-of-distribution)
   - [Statistical Calculation](#statistical-calculation)
-     - [Variation of Total Nodes](#variation-of-total-nodes)
-     - [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
-     - [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
-     - [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100)
-     - [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
+    - [Variation of Total Nodes](#variation-of-total-nodes)
+    - [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold)
+    - [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
+    - [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100)
+    - [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
 - [Conclusions and Remarks](#conclusions-and-remarks)
 - [References](#references)
 - [Appendices](#appendices)
-  -  [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
+  - [Appendix A: Definitions of Terms](#appendix-a-definitions-of-terms)
 - [Contributors](#contributors)
 
 ## Introduction
@@ -44,8 +44,8 @@ environment. It covers probabilistic attack vector with regard to the total node
 Byzantine Fault-tolerance (BFT) threshold.
 
 The investigation attempts to answer the following question:
-*What is the percentage chance of controlling the majority of nodes in a random sample with varying quantities of the total
-number of nodes, committee size, bad nodes and BFT threshold?*
+_What is the percentage chance of controlling the majority of nodes in a random sample with varying quantities of the total
+number of nodes, committee size, bad nodes and BFT threshold?_
 
 ## Tari Digital Assets Network
 
@@ -91,7 +91,7 @@ node bootstrapping process is as follows:
 - The process continues until the joining node is unable to locate any closer nodes.
 
 This
-*self-lookup* has two effects:
+_self-lookup_ has two effects:
 
 - it allows the node to learn about nodes closer to itself; and
 - it populates other nodes'
@@ -153,7 +153,7 @@ In each graph, the cumulative probabilities calculated for normal, uniform, Pois
 plotted against the number of experiments. The bold blue line represents the mean calculated from theoretical data.
 
 In the first graph, where the experiments and draws are equal to $10$, there is weak convergence. In the second graph, where the
-experiments and draws are equal to $1,000$, the  Law of Large Numbers (LLN) is proved; as the sample size grows, convergence
+experiments and draws are equal to $1,000$, the Law of Large Numbers (LLN) is proved; as the sample size grows, convergence
 with the statistical mean is achieved.
 
 #### Individual Probabilities
@@ -172,10 +172,10 @@ not returned to the pool of total nodes.
 
 ##### Uniform Distribution
 
-| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference  Calculated |
-| ----------------------- | -------------------- | -------------------------------------- | ---------------------------------- |
-| Intercept               | 0.6497887492507493   | 0.649474335188621                      | 3.14414E-4                         |
-| Standard Deviation      | 0.015438728229013219 |                                        |                                    |
+| Statistical Information |                      | Comparison with <br />Theoretical Mean | &nbsp;&nbsp;Difference Calculated |
+| ----------------------- | -------------------- | -------------------------------------- | --------------------------------- |
+| Intercept               | 0.6497887492507493   | 0.649474335188621                      | 3.14414E-4                        |
+| Standard Deviation      | 0.015438728229013219 |                                        |                                   |
 
 ##### Hypergeometric Distribution
 
@@ -248,7 +248,6 @@ The above graph was calculated using Python ([variations of N](https://github.co
 |                 100                 |                60                 |                   14                   |                  10                   | 0.2623321970180976                             |
 |                 100                 |                60                 |                   15                   |                  10                   | 0.39288184738975973                            |
 
-
 <p align="center"><img src="/images/network-analysis/variation_of_total_nodes .png" width="700" /></p>
 From a plot of committee size versus probability with a change in $N$, the total number of nodes, it can be seen that
 the probability is lower with respect to the committee size when $N$ is smaller.
@@ -257,10 +256,10 @@ the probability is lower with respect to the committee size when $N$ is smaller.
 
 The variables and results are below:
 
-  - N (total number of nodes in the network) = $100$
-  - m (number of bad actors) = $60$% of N
-  - T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
-  - n (committee size) = ranging from $1$ to $100$
+- N (total number of nodes in the network) = $100$
+- m (number of bad actors) = $60$% of N
+- T (BFT threshold) = $50$%, $55$%, $60$%, $67$% of N
+- n (committee size) = ranging from $1$ to $100$
 
 <p align="center"><img src="/images/network-analysis/variation_of_bft_threshold.png" width="700" /></p>
 
@@ -339,7 +338,7 @@ probability plateaus is used to construct the following graph for both committee
 
 The above graph was calculated using Excel
 ([bad node percentage at 10 and 100](https://github.com/tari-labs/modelling/blob/master/other/bad_node_percentage_10_100.xlsx)). The
-graph shows changes in the probability due to changes in percentage of bad nodes when the committee size is $10$ and $100$.  When
+graph shows changes in the probability due to changes in percentage of bad nodes when the committee size is $10$ and $100$. When
 the committee size is $10$, there is a change in probability when the bad node percentage is between $30$ and $80$.  
 When the committee size is $100$, there is a steep increase in the probability when the bad node percentage is between
 $50$ and $80$. When the committee size is $100$, the probability remains lower as the bad node percentage increases and
@@ -354,39 +353,35 @@ distributions of nodes within the network illustrated.
 With regard to the statistical calculation, comments can be made for each of the varied parameters.
 
 - Total nodes in the network: The smaller the pool of total nodes in the network, the lower the probability of bad
-actors controlling the network. However, the probability difference is near negligible if the committee size is large.
-This parameter will also be difficult to control, and the network will be ever-increasing. This can be seen in the
-graph in [Variation of Total Nodes](#variation-of-total-nodes).
-- BFT threshold: This threshold should be at least  $\frac{2}{3} \cdot n+1$ as per literature. This can be seen in the
-graph in [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold).
+  actors controlling the network. However, the probability difference is near negligible if the committee size is large.
+  This parameter will also be difficult to control, and the network will be ever-increasing. This can be seen in the
+  graph in [Variation of Total Nodes](#variation-of-total-nodes).
+- BFT threshold: This threshold should be at least $\frac{2}{3} \cdot n+1$ as per literature. This can be seen in the
+  graph in [Variation of Byzantine Fault-tolerance Threshold](#variation-of-byzantine-fault-tolerance-threshold).
 - Committee size: The larger the committee size, the lower the probability of bad actors controlling the network. This can
-be seen in the graph in
-[Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
-and [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100).
+  be seen in the graph in
+  [Variation of Total Number of Nodes with Committee Size 10](#variation-of-total-number-of-nodes-with-committee-size-10)
+  and [Variation of Total Number of Nodes with Committee Size 100](#variation-of-total-number-of-nodes-with-committee-size-100).
 - Bad nodes: While this variable cannot be controlled, the probability of bad actors controlling the network can remain
-low, as the percentage of bad nodes increases if the committee size is approximately $100$ or larger. This can be seen in the
-graphs in [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
-
-
+  low, as the percentage of bad nodes increases if the committee size is approximately $100$ or larger. This can be seen in the
+  graphs in [Variation of Bad Nodes with Committee Size 10 and 100](#variation-of-bad-nodes-with-committee-size-10-and-100)
 
 ## References
 
-[[1]] C. Sharrock [online]. Available: <https://rfc.tari.com/RFC-0300_DAN.html>.
+[[1]] C. Sharrock [online]. Available: <https://rfc.tari.com/RFCD-0300_DAN.html>.
 Date accessed: 2019&#8209;07&#8209;18.
 
-[1]: https://rfc.tari.com/RFC-0300_DAN.html
-"Tari RFC"
+[1]: https://rfc.tari.com/RFCD-0300_DAN.html 'Tari RFC'
 
 [[2]] P. Maymounkov and D. Mazières, "Kademlia: A Peer-to-peer Information System Based on the XOR Metric" [online].
 Available: <https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf>. Date accessed: 2019‑07‑18.
 
-[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf "Kademlia"
+[2]: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf 'Kademlia'
 
 [[3]] S. Bondi, "Distributed Hash Tables" [online]. Available: <https://tlu.tarilabs.com/protocols/dht/MainReport.html>.
 Date accessed: 2019&#8209;07&#8209;18.
 
-[3]: https://tlu.tarilabs.com/protocols/dht/MainReport.html
-"Distributed Hash Tables"
+[3]: https://tlu.tarilabs.com/protocols/dht/MainReport.html 'Distributed Hash Tables'
 
 ## Appendices
 
@@ -395,19 +390,17 @@ Date accessed: 2019&#8209;07&#8209;18.
 Definitions of terms presented here are high level and general in nature.
 
 - **Asset Issuer (AI):**<a name="ai"> </a> An entity that creates digital assets on the Tari Digital Asset Network (DAN). The Asset Issuer will
-specify the parameters of the contract template that defines the rules that govern the asset and the number and nature
-of its constituent tokens on issuance. The AI will, generally, be the initial owner of the tokens [[1]].
+  specify the parameters of the contract template that defines the rules that govern the asset and the number and nature
+  of its constituent tokens on issuance. The AI will, generally, be the initial owner of the tokens [[1]].
 
-[ai~]: #ai
-" An entity that creates
-digital assets..."
+[ai~]: #ai ' An entity that creates
+digital assets...'
 
 - **Validator Node (VN):**<a name="vn"> </a>Validator nodes make up the Tari second layer, or Digital Asset Network (DAN). VNs
-are responsible for creating and updating digital asset living on the Tari network [[1]].
+  are responsible for creating and updating digital asset living on the Tari network [[1]].
 
-[vn~]: #vn
-" Validator nodes make up
-the Tari second layer..."
+[vn~]: #vn ' Validator nodes make up
+the Tari second layer...'
 
 ## Contributors
 

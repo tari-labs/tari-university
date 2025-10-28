@@ -2,31 +2,31 @@
 
 - [Introduction](#introduction)
 - [I2P Network](#i2p-network)
-   - [What is I2P?](#what-is-i2p)
-   - [How does I2P Work?](#how-does-i2p-work)
-   - [I2P Infrastructure](#i2p-infrastructure)
-     - [Routing Infrastructure and Anonymity](#routing-infrastructure-and-anonymity)
-     - [Distributed Network Database](#distributed-network-database)
-     - [Floodfill Routers](#floodfill-routers)
-     - [Garlic Routing](#garlic-routing)
-   - [I2P Threats, Security and Vulnerability](#i2p-threats-security-and-vulnerability)
-      - [Sybil Attacks](#sybil-attacks)
-      - [Eclipse Attacks](#eclipse-attacks)
-      - [Brute Force Attacks](#brute-force-attacks)
-      - [Intersection Attacks](#intersection-attacks)
-      - [Denial of Service Attacks](#denial-of-service-attacks)
-         - [Greedy User Attack](#greedy-user-attack)
-         - [Starvation Attack](#starvation-attack)
-         - [Flooding Attack](#flooding-attack)
+  - [What is I2P?](#what-is-i2p)
+  - [How does I2P Work?](#how-does-i2p-work)
+  - [I2P Infrastructure](#i2p-infrastructure)
+    - [Routing Infrastructure and Anonymity](#routing-infrastructure-and-anonymity)
+    - [Distributed Network Database](#distributed-network-database)
+    - [Floodfill Routers](#floodfill-routers)
+    - [Garlic Routing](#garlic-routing)
+  - [I2P Threats, Security and Vulnerability](#i2p-threats-security-and-vulnerability)
+    - [Sybil Attacks](#sybil-attacks)
+    - [Eclipse Attacks](#eclipse-attacks)
+    - [Brute Force Attacks](#brute-force-attacks)
+    - [Intersection Attacks](#intersection-attacks)
+    - [Denial of Service Attacks](#denial-of-service-attacks)
+      - [Greedy User Attack](#greedy-user-attack)
+      - [Starvation Attack](#starvation-attack)
+      - [Flooding Attack](#flooding-attack)
 - [Tor Network](#tor-network)
   - [What is Tor?](#what-is-tor)
   - [How does Tor Work](#how-does-tor-work)
   - [How does Onion Routing Work?](#how-does-onion-routing-work)
   - [Types of Tor Relays/Nodes Routing](#types-of-tor-relaysnodes-routing)
-     - [Guard or Entry Relay (Non-exit Relay) Nodes](#guard-or-entry-relay-non-exit-relay-nodes)
-     - [Middle Relay Nodes](#middle-relay-nodes)
-     - [Exit Relay Nodes](#exit-relay-nodes)
-     - [Bridge Relay Nodes](#bridge-relay-nodes)
+    - [Guard or Entry Relay (Non-exit Relay) Nodes](#guard-or-entry-relay-non-exit-relay-nodes)
+    - [Middle Relay Nodes](#middle-relay-nodes)
+    - [Exit Relay Nodes](#exit-relay-nodes)
+    - [Bridge Relay Nodes](#bridge-relay-nodes)
   - [Pitfalls of Using Tor Anonymously - is it Broken?](#pitfalls-of-using-tor-anonymously---is-it-broken)
   - [Advantages and Disadvantages](#advantages-and-disadvantages)
 - [Differences between I2P and Tor](#differences-between-i2p-and-tor)
@@ -80,7 +80,7 @@ which use a standard web server, can be used to create such sites.
 
 I2P works by installing an I2P routing service within a client's device. This router creates temporary, encrypted,
 one-way connections with I2P routers on other devices. Connections are referred to as one way because they are made up
-of an *Outbound Tunnel* and an *Inbound Tunnel*. During any communication, data leaves the client's devices via the
+of an _Outbound Tunnel_ and an _Inbound Tunnel_. During any communication, data leaves the client's devices via the
 outbound tunnels and is received on other devices through their inbound tunnels. This means that messages do not
 travel in two directions within the same tunnel. Therefore, a single round-trip request message and its response between
 two parties needs four tunnels [[4]], as shown in Figure&nbsp;1. Messages sent from one device do not travel directly to
@@ -96,8 +96,6 @@ long-lived tunnels from becoming a threat to anonymity [[3]].
 <p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/network-topology.png" width="950" /></p>
 <p align="center"><b>Figure&nbsp;1: Network Topology [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">6</a>]</b></p>
 
-
-
 #### Distributed Network Database
 
 The Network Database (NetDB) is implemented as a DHT and is propagated via nodes known as
@@ -110,13 +108,15 @@ the router can reach at least one other participant in the network, the router w
 it does not have itself [[12]].
 
 The NetDB stores two types of data:
+
 1. **RouterInfo.**
-    When a message is leaving one router, it needs to know some key pieces of data (known as *RouterInfo*) about the
-    other router. The destination RouterInfo is stored in the NetDB with the router's identity as the key. To request a
-    resource (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If
-    the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge
-    of participating nodes and returns the node it considers to be nearest to the key [[3]]. The RouterInfo in the NetDB
-    is made up of ([[4]], [[6]]):
+   When a message is leaving one router, it needs to know some key pieces of data (known as _RouterInfo_) about the
+   other router. The destination RouterInfo is stored in the NetDB with the router's identity as the key. To request a
+   resource (or RouterInfo), a client requests the desired key from the node considered to be closest to the key. If
+   the piece of data is located at the node, it is returned to the client. Otherwise, the node uses its local knowledge
+   of participating nodes and returns the node it considers to be nearest to the key [[3]]. The RouterInfo in the NetDB
+   is made up of ([[4]], [[6]]):
+
    - The router's identity - an encryption key, a signing key and a certificate.
    - The contact addresses at which it can be reached - protocol, IP and port.
    - When this was created or published.
@@ -124,8 +124,8 @@ The NetDB stores two types of data:
    - The signature of the above, generated by the identity's signing key.
 
 2. **LeaseSets.**
-    The LeaseSet specifies a tunnel entry point to reach an endpoint. This specifies the routers that can directly
-    contact the desired destination. It contains the following data:
+   The LeaseSet specifies a tunnel entry point to reach an endpoint. This specifies the routers that can directly
+   contact the desired destination. It contains the following data:
    - Tunnel gateway router - given by specifying its identity.
    - Tunnel ID - tunnel used to send messages.
    - Tunnel expiration - when the tunnel will expire.
@@ -134,7 +134,7 @@ The NetDB stores two types of data:
 
 #### Floodfill Routers
 
-Special routers, referred to as *floodfill routers*, are responsible for storing the NetDB. Participation in the floodfill
+Special routers, referred to as _floodfill routers_, are responsible for storing the NetDB. Participation in the floodfill
 pool can be automatic or manual. Automatic participation occurs whenever the number of floodfill routers drops below a
 certain threshold, which is currently 6% of all nodes in the network ([[6]], [[7]]). When this happens, a node is
 selected to participate as a floodfill router based on criteria such as uptime and bandwidth. It should be noted that
@@ -156,9 +156,9 @@ things:
 - bundles multiple messages together.
 
 Figure&nbsp;2 illustrates the end-to-end message bundling:
+
 <p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/garliccloves.png" width="1050" /></p>
 <p align="center"><b>Figure&nbsp;2: Garlic Routing <a href="https://github.com/ElementsProject/confidential-assets-demo" title="ElementsProject/confidential-assets-demo"></a></b></p>
-
 
 ### I2P Threats, Security and Vulnerability
 
@@ -181,7 +181,6 @@ the malicious user will need substantial resources to create multiple identities
 
 <p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/Sybil Attack.png" width="750" /></p>
 <p align="center"><b>Figure&nbsp;3: Sybil Attack [<a href="https://www.delaat.net/rp/2017-2018/p97/presentation.pdf" title="Network Topology">5</a>]</b></p>
-
 
 #### Eclipse Attacks
 
@@ -253,16 +252,16 @@ Tor uses a unique system that was originally developed by the US Navy to protect
 Naval Research Laboratory released the Tor code under a free license and the Tor Project was founded in 2006. With the
 help of the Electronic Frontier Foundation (EFF), further research and development of Tor have continued as a Free and
 Open Source Project. The Tor network service is run by a worldwide community of volunteers and are not controlled by any
-corporate or government agencies.  
+corporate or government agencies.
 
 The Tor network service is the heart of the Tor project. The Tor Browser and other tools, such as OnionShare, run on top
-of or via the Tor network. These tools are meant to make using the Tor network as simple and secure as possible.  
+of or via the Tor network. These tools are meant to make using the Tor network as simple and secure as possible.
 
 Some tools, such as the Tor Browser Bundle, come as a single downloadable and installable package containing everything
-needed to use the Tor network and be anonymous.  
+needed to use the Tor network and be anonymous.
 
 Almost any network tool or application that can be configured to use a Socket Secure (SOCKS) proxy can be set up to use
-the Tor network service.  
+the Tor network service.
 
 ### How does Tor Work?
 
@@ -281,10 +280,6 @@ earlier actions to new actions. This process is also known as Onion Routing [[14
 
 <p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/htw3.png" width="625" /></p>
 <p align="center"><b>Figure&nbsp;4: How Tor Works [<a href="https://2019.www.torproject.org/about/overview.html.en" title="How Tor Works">13</a>]</b></p>
-
-
-
-
 
 ### How does Onion Routing Work?
 
@@ -307,14 +302,14 @@ non-mnemonic, 16- or 56-character alpha-semi-numerical strings that are generate
 key. The Top Level Domain (TLD) `.onion` is not a true domain and cannot be found or queried on the Internet, but only
 inside the Tor network ([[19]]], [[23]], [[24]]).
 
-
 The designated use of relay nodes in the Tor network gives the network the following important characteristics [[13]]:
+
 - The stability of the network is proportional to the number of relay nodes in the network. The fewer the number of
   relay nodes, the less stable the network becomes.
 - The security of the network is also proportional to the number of relay nodes. A network with more active relay
   nodes is less vulnerable to attacks.
 - Finally, the speed of the network is proportional to the number of relay nodes. The more nodes there are, the faster
-the network becomes.
+  the network becomes.
 
 ### Types of Tor Relays/Nodes Routing
 
@@ -323,8 +318,6 @@ entry or guard relay node, a middle relay node, an exit relay node and a bridge 
 
 <p align="center"><a name="fig_eca"> </a><img src="/images/protocols/tor-i2p/torCircuit.png" width="650" /></p>
 <p align="center"><b>Figure&nbsp;5: Tor Circuit [<a href="https://medium.com/coinmonks/tor-nodes-explained-580808c29e2d" title="The Tor Circuit">14</a>]</b></p>
-
-
 
 #### Guard or Entry Relay (Non-exit Relay) Nodes
 
@@ -374,7 +367,7 @@ in order to use Tor services. This was very easy to get wrong or incomplete, and
 could be leaked.
 
 For example, Domain Name System (DNS) requests intended for the Tor network, i.e. `.onion` address, might be sent
-directly to the public DNS server, if the ```network.proxy.socks_remote_dns``` was not set to true in FireFox. These DNS
+directly to the public DNS server, if the `network.proxy.socks_remote_dns` was not set to true in FireFox. These DNS
 requests could be used to track where a user might be surfing and thus deanonymize the user.
 
 Tor is not broken if Tor services are correctly set up or if the Tor Browser is used correctly. It is very easy to do
@@ -417,21 +410,18 @@ Advantages of Tor:
 Disadvantages of Tor:
 
 - It can be slow.
-- It does not necessarily encrypt data leaving ```Exit Node```. This data can be intercepted.
+- It does not necessarily encrypt data leaving `Exit Node`. This data can be intercepted.
 - It does not stop somebody from deanonymizing themselves.
 - It does not stop interceptors from knowing you are using Tor.
 - Its network is not user-friendly, due to its secure and hidden nature.
 - Its nodes (relay/bridge) are run by volunteers, who can sometimes be unreliable.
 
-
-
 ## Differences between I2P and Tor
 
 <!-- <div align="center"><b>Table 1: Differences between I2P and Tor</b></div> -->
 
-
 | I2P                                                        | Tor                                                                        |
-|------------------------------------------------------------|----------------------------------------------------------------------------|
+| ---------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Fully peer to peer: self-organizing nodes                  | Fully peer to peer: volunteer relay nodes                                  |
 | Queries NetDB to find destination’s inbound tunnel gateway | Relays data to the closest relay                                           |
 | Limited to no exit nodes; internal communication only      | Designed and optimized for exit traffic, with a large number of exit nodes |
@@ -463,199 +453,169 @@ of privacy or denial of service.
 [[1]] B. Mann, "What Is I2P & How Does It Compare vs. Tor Browser?" [Online.]
 Available: <https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work>. Date accessed: 2019&#8209;06&#8209;18.
 
-[1]: https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work
-"What Is I2P &
+[1]: https://blokt.com/guides/what-is-i2p-vs-tor-browser#How_does_I2P_work 'What Is I2P &
 How Does It Compare vs.
-Tor Browser?"
+Tor Browser?'
 
 [[2]]: I2P: "I2PTunnel" [online]. Available: <https://geti2p.net/en/docs/api/i2ptunnel>. Date accessed: 2019&#8209;06&#8209;18.
 
-[2]: https://geti2p.net/en/docs/api/i2ptunnel
-"I2PTunnel"
+[2]: https://geti2p.net/en/docs/api/i2ptunnel 'I2PTunnel'
 
 [[3]]: C. Egger, J. Schlumberger, C. Kruegel and G. Vigna, "Practical Attacks Against the I2P Network" - Paper [online].
 Available: <https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf>. Date accessed: 2019&#8209;06&#8209;18.
 
-[3]: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf
-"Practical Attacks Against
-the I2P Network"
+[3]: https://sites.cs.ucsb.edu/~chris/research/doc/raid13_i2p.pdf 'Practical Attacks Against
+the I2P Network'
 
 [[4]] N. P. Hoang, P. Kintis, M. Antonakakis and M. Polychronakis, "An Empirical Study of the I2P Anonymity Network and
 its Censorship Resistance" [online]. Available: <https://censorbib.nymity.ch/pdf/Hoang2018a.pdf>. Date accessed:
 2019&#8209;06&#8209;18.
 
-[4]: https://censorbib.nymity.ch/pdf/Hoang2018a.pdf
-"An Empirical Study
+[4]: https://censorbib.nymity.ch/pdf/Hoang2018a.pdf 'An Empirical Study
 of the I2P Anonymity
 Network and its
-Censorship Resistance"
+Censorship Resistance'
 
 [[5]] K. Alachkar and D. Gaastra, "Mitigating Sybil Attacks on the I2P Network Using Blockchain" - Presentation [online].
 Available: <https://www.delaat.net/rp/2017-2018/p97/presentation.pdf>. Date accessed: 2019&#8209;06&#8209;20.
 
-[5]: https://www.delaat.net/rp/2017-2018/p97/presentation.pdf
-"Mitigating Sybil Attacks
+[5]: https://www.delaat.net/rp/2017-2018/p97/presentation.pdf 'Mitigating Sybil Attacks
 on the I2P Network
-Using Blockchain"
+Using Blockchain'
 
 [[6]] K. Alachkar and D. Gaastra, "Blockchain-based Sybil Attack Mitigation: A Case Study of the I2P Network" - Report
-[online]. Available: <https://delaat.net/rp/2017-2018/p97/report.pdf>. Date accessed: 2019&#8209;06&#8209;20.
+[online]. Available: <https://www.os3.nl/_media/2017-2018/courses/rp2/p97_report.pdf>. Date accessed: 2019&#8209;06&#8209;20.
 
-[6]: https://delaat.net/rp/2017-2018/p97/report.pdf
-"Blockchain-based Sybil
+[6]: https://www.os3.nl/_media/2017-2018/courses/rp2/p97_report.pdf 'Blockchain-based Sybil
 Attack Mitigation:
 A Case Study of the
-I2P Network"
+I2P Network'
 
 [[7]] I2P: "The Network Database" [online]. Available: <https://geti2p.net/en/docs/how/network-database>. Date accessed:
 2019&#8209;06&#8209;20.
 
-[7]: https://geti2p.net/en/docs/how/network-database
-"The Network Database"
+[7]: https://geti2p.net/en/docs/how/network-database 'The Network Database'
 
 [[8]] H. Vhora and G. Khilari, "Defending Eclipse Attack in I2P using Structured
 Overlay Network" [online]. Available: <http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf>.
 Date accessed: 2019&#8209;06&#8209;20.
 
-[8]: http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf
-"Defending Eclipse Attack
+[8]: http://ijsetr.org/wp-content/uploads/2015/05/IJSETR-VOL-4-ISSUE-5-1515-1518.pdf 'Defending Eclipse Attack
 in I2P using Structured
-Overlay Network"
+Overlay Network'
 
 [[9]] M. Ehlert, "I2P Usability vs. Tor Usability - A Bandwidth and Latency Comparison" [online].
 Available: <https://pdfs.semanticscholar.org/aa81/79d3da24b643a4d004c44ebe543000295d51.pdf>. Date accessed: 2019&#8209;06&#8209;20.
 
-[9]: https://pdfs.semanticscholar.org/aa81/79d3da24b643a4d004c44ebe543000295d51.pdf
-"I2P Usability vs.
+[9]: https://pdfs.semanticscholar.org/aa81/79d3da24b643a4d004c44ebe543000295d51.pdf 'I2P Usability vs.
 Tor Usability -
 A Bandwidth and Latency
-Comparison"
+Comparison'
 
 [[10]] I2P: "I2P Compared to Tor" [online]. Available: <https://geti2p.net/en/comparison/tor>. Date accessed: 2019&#8209;06&#8209;20.
 
-[10]: https://geti2p.net/en/comparison/tor
-"I2P Compared to Tor"
+[10]: https://geti2p.net/en/comparison/tor 'I2P Compared to Tor'
 
 [[11]] I2P: "I2P Compared to Tor and Freenet" [online]. Available: <http://www.geti2p.org/how_networkcomparisons.html>.
 Date accessed: 2019&#8209;06&#8209;20.
 
-[11]: http://www.geti2p.org/how_networkcomparisons.html
-"I2P Compared to Tor
-and Freenet"
+[11]: http://www.geti2p.org/how_networkcomparisons.html 'I2P Compared to Tor
+and Freenet'
 
 [[12]] T. de Boer and V. Breider: "Invisible Internet Project - MSc Security and Network Engineering Research Project." [online].
-Available: <https://www.delaat.net/rp/2018-2019/p63/report.pdf> Date accessed: 2019&#8209;07&#8209;10.
+Available: <https://www.os3.nl/_media/2018-2019/courses/rp1/p63_report.pdf> Date accessed: 2019&#8209;07&#8209;10.
 
-[12]: https://www.delaat.net/rp/2018-2019/p63/report.pdf
-"Invisible Internet Project - MSc Security and Network Engineering Research Project"
+[12]: https://www.os3.nl/_media/2018-2019/courses/rp1/p63_report.pdf 'Invisible Internet Project - MSc Security and Network Engineering Research Project'
 
 [[13]] Tor, "Tor Project: How it works" [online].
 Available: <https://2019.www.torproject.org/about/overview.html.en> Date accessed: 2019&#8209;08&#8209;05.
 
-[13]:https://2019.www.torproject.org/about/overview.html.en
-"Tor Project: How it works"
+[13]: https://2019.www.torproject.org/about/overview.html.en 'Tor Project: How it works'
 
 [[14]] R. Dingledine, N Mathewson and P. Syverson, "Tor: The Second-Generation Onion Router" [online]
 Available: <https://svn.torproject.org/svn/projects/design-paper/tor-design.html> Date accessed: 2019&#8209;08&#8209;05.
 
-[14]:https://svn.torproject.org/svn/projects/design-paper/tor-design.html
-"Tor: The Second-Generation Onion Router"
+[14]: https://svn.torproject.org/svn/projects/design-paper/tor-design.html 'Tor: The Second-Generation Onion Router'
 
 [[15]] Tor, "Tor Network Status" [online]  
 Available: <https://torstatus.blutmagie.de/> Date accessed: 2019&#8209;08&#8209;05.
 
-[15]: https://torstatus.blutmagie.de/
-"Tor Network Status"
+[15]: https://torstatus.blutmagie.de/ 'Tor Network Status'
 
 [[16]] A. Kwon, M. AlSabah, D. Lazar, M. Dacier and S. Devadas, "Circuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service" [online]
 Available: <https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf> Date accessed: 2019&#8209;08&#8209;05.
 
-[16]: https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf
-"Circuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service"
+[16]: https://people.csail.mit.edu/devadas/pubs/circuit_finger.pdf 'Circuit Fingerprinting Attacks: Passive Deanonymization of Tor Hidden Service'
 
 [[17]] Tor Project: "Download for Tor Browser" [online]. Available: <https://www.torproject.org/>. Date accessed: 2019&#8209;05&#8209;16.
 
-[17]: https://www.torproject.org/
-"Tor Project: Download for Tor Browser"
+[17]: https://www.torproject.org/ 'Tor Project: Download for Tor Browser'
 
 [[18]] Wikipedia: "Tor (Anonymity Network)" [online]. Available: <https://en.wikipedia.org/wiki/Tor_(anonymity_network)>.
 Date accessed: 2019&#8209;05&#8209;16.
 
-[18]: https://en.wikipedia.org/wiki/Tor_(anonymity_network)
-"Wikipedia: Tor (Anonymity Network)"
+[18]: https://en.wikipedia.org/wiki/Tor_(anonymity_network) 'Wikipedia: Tor (Anonymity Network)'
 
 [[19]] DuckDuckGo Search Engine inside Tor [online]. Available: <https://3g2upl4pq6kufc4m.onion/>. **Note:** This link
 will not work unless Tor or the Tor Browser is used. Date accessed: 2019&#8209;05&#8209;16.
 
-[19]: https://3g2upl4pq6kufc4m.onion/
-"DuckDuckGo Search Engine -
+[19]: https://3g2upl4pq6kufc4m.onion/ 'DuckDuckGo Search Engine -
 link will not work unless
-Tor or Tor Browser is used"
+Tor or Tor Browser is used'
 
 [[20]] Tor Project: "Check" [online]. Available: <https://check.torproject.org/>. **Note:** This link will help the user
 identify if Tor or the Tor Browser is been used. Date accessed: 2019&#8209;05&#8209;16
 
-[20]: https://check.torproject.org/
-"Tor Project: Check -
+[20]: https://check.torproject.org/ 'Tor Project: Check -
 link will help user identify
-Tor or Tor Browser is been used"
+Tor or Tor Browser is been used'
 
 [[21]] Tor Project: "Overview" [online]. Available: <https://2019.www.torproject.org/about/overview.html.en>.
 Date accessed: 2019&#8209;05&#8209;16.
 
-[21]: https://2019.www.torproject.org/about/overview.html.en
-"Tor Project: Overview"
+[21]: https://2019.www.torproject.org/about/overview.html.en 'Tor Project: Overview'
 
 [[22]] Tor Project: "The Tor Relay Guide" [online]. Available:
 <https://trac.torproject.org/projects/tor/wiki/TorRelayGuide>. Date accessed: 2019&#8209;08&#8209;14.
 
-[22]: https://trac.torproject.org/projects/tor/wiki/TorRelayGuide
-"Tor Project: The Tor Relay Guide"
+[22]: https://trac.torproject.org/projects/tor/wiki/TorRelayGuide 'Tor Project: The Tor Relay Guide'
 
 [[23]] Wikipedia: ".onion" [online]. Available:
 <https://en.wikipedia.org/wiki/.onion>. Date accessed: 2019&#8209;08&#8209;22.
 
-[23]: https://en.wikipedia.org/wiki/.onion
-"Wikipedia: .onion"
+[23]: https://en.wikipedia.org/wiki/.onion 'Wikipedia: .onion'
 
 [[24]] Tor Project: "How do I access onion services?" [online]. Available:
 <https://2019.www.torproject.org/docs/faq#AccessOnionServices>. Date accessed: 2019&#8209;08&#8209;22.
 
-[24]: https://2019.www.torproject.org/docs/faq#AccessOnionServices
-"Tor Project: How do I access onion services?"
+[24]: https://2019.www.torproject.org/docs/faq#AccessOnionServices 'Tor Project: How do I access onion services?'
 
 [[25]] R. Heaton: "How Does Online Tracking Actually Work?" [online]. Available:
 <https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/>. Date accessed: 2019&#8209;07&#8209;25.
 
-[25]: https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/
-"Robert Heaton: How does online
-tracking actually work?"
+[25]: https://robertheaton.com/2017/11/20/how-does-online-tracking-actually-work/ 'Robert Heaton: How does online
+tracking actually work?'
 
 [[26]] YouTube: "DEF CON 22 - Adrian Crenshaw - Dropping Docs on Darknets: How People Got Caught" [online]. Available:
 <https://www.youtube.com/watch?v=eQ2OZKitRwc>. Date accessed: 2019&#8209;06&#8209;18.
 
-[26]: https://www.youtube.com/watch?v=eQ2OZKitRwc
-"YouTube: DEF CON 22 - Adrian Crenshaw -
+[26]: https://www.youtube.com/watch?v=eQ2OZKitRwc 'YouTube: DEF CON 22 - Adrian Crenshaw -
 Dropping Docs on Darknets:
-How People Got Caught"
+How People Got Caught'
 
 [[27]] Ars Technica: "Use of Tor helped FBI ID suspect in bomb hoax case" [online]. Available:
 <https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/>.
 Date accessed: 2019&#8209;07&#8209;11.
 
-[27]: https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/
-"Ars Technica: Use of Tor helped
-FBI ID suspect in bomb hoax case"
+[27]: https://arstechnica.com/security/2013/12/use-of-tor-helped-fbi-finger-bomb-hoax-suspect/ 'Ars Technica: Use of Tor helped
+FBI ID suspect in bomb hoax case'
 
 [[28]] Ars Technica: "Stakeout: How the FBI tracked and busted a Chicago Anon" [online]. Available:
 <https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/>.
 Date accessed: 2019&#8209;07&#8209;11.
 
-[28]: https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/
-"Ars Technica: Stakeout: How the
-FBI tracked and busted a Chicago Anon"
-
-
+[28]: https://arstechnica.com/tech-policy/2012/03/stakeout-how-the-fbi-tracked-and-busted-a-chicago-anon/ 'Ars Technica: Stakeout: How the
+FBI tracked and busted a Chicago Anon'
 
 ## Appendices
 
@@ -672,9 +632,6 @@ Onion Services - Tor services that don’t leave the Tor network: <https://2019.
 - [Blog Post about OnionShare2 and its release](https://blog.torproject.org/new-release-onionshare-2)
 - [List of Tor Projects](https://2019.www.torproject.org/projects/projects.html.en)
 - [Isis Lovecruft's PDF covering Privacy and Anonymity](https://github.com/isislovecruft/talks/blob/master/2016-03-21-raboud/slides/2016-03-21-raboud-netsec-anonymity-handout.pdf)
-
-
-
 
 ## Contributors
 

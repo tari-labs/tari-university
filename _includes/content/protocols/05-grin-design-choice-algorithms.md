@@ -9,8 +9,6 @@
 - [References](#references)
 - [Contributors](#contributors)
 
-
-
 ## Introduction
 
 Grin is a cryptocurrency, implemented in Rust, that makes use of Mimblewimble transactions and the Cuckatoo algorithm to
@@ -23,7 +21,7 @@ and determine if there is any truth to these concerns, or if they are unwarrante
 will be made as to how these problems could be mitigated or addressed.
 
 This report will also investigate Grin's selected emission scheme, PoW algorithm, choice of cryptographic curve used for
- signatures, and selection of key-store library. Each of these topics will be discussed in detail.
+signatures, and selection of key-store library. Each of these topics will be discussed in detail.
 
 <p align="center"><img src="/images/digital-assets/grin-design/intro.png" width="700" /></p>
 
@@ -71,7 +69,7 @@ that a high inflation rate will produce natural pricing and limit price manipula
 Most economists for traditional fiat systems agree that deflation is bad, as it increases debt; and some inflation is
 good, as it stimulates the economy of a country [[9]]. With inflation, the purchasing power of savings decreases over
 time. This encourages the purchasing of goods and services, resulting in the currency being used as an MoE rather than
-as an SoV.  People with debt such as study loans, vehicle loans and home loans also benefit from inflation, as it
+as an SoV. People with debt such as study loans, vehicle loans and home loans also benefit from inflation, as it
 produces an eroding effect on the total debt for long periods of repayment. Currently, this benefit does not apply to
 cryptocurrencies, as not much debt exists. This is because it is difficult to maintain successful borrower-lender
 relationships due to the anonymous nature of cryptocurrencies [[10]].
@@ -96,7 +94,6 @@ balance between deflation and inflation needs to be achieved to motivate saving 
 currency. A low inflationary model where inflation is algorithmically maintained and not controlled by a single
 authority seems to be the safest choice. However, only time will tell if the high inflation model proposed by Grin will
 have the desired effect.
-
 
 ## Proof-of-Work Algorithm - from ASIC Resistant to ASIC Friendly
 
@@ -139,7 +136,6 @@ Selecting to be ASIC resistant or ASIC friendly is an important decision that ca
 The Grin team's choice to support the ASIC community and try to balance an ASIC-friendly and an ASIC-resistant PoW
 algorithm will be interesting, with many potential pitfalls.
 
-
 ## Choice of Cryptographic Elliptic-curve - secp256k1
 
 Elliptic curve cryptography is used for generating Private and Public key pairs that can be used for digital signatures
@@ -165,7 +161,6 @@ Many additional alternatives exist, and platforms such as SafeCurves, maintained
 can help with the investigation and selection of an alternative security curve. The SafeCurves platform will make it
 easier to evaluate the security properties and potential vulnerabilities of many cryptographic curves [[25]].
 
-
 ## Selection of Key-store Library
 
 Grin originally made use of RocksDB [[26]] as an internal key-value store, but received some criticism for this
@@ -185,252 +180,216 @@ benchmarks performed by Symas Corp support this claim, where LMDB outperformed a
 Grin later replaced RocksDB with LMDB to maintain the state of Grin Wallets [[34]]. This switch appears to be a
 good idea, as LMDB seem to be the best key-value store library for blockchain-related applications.
 
-
 ## Conclusions, Observations and Recommendations
 
 - Selecting the correct emission rate to create a sustainable monetary policy is an important decision. Care should
-be taken to ensure that the right balance is found between being an SoV and/or an MoE.
+  be taken to ensure that the right balance is found between being an SoV and/or an MoE.
 - Weighing the benefits and potential issues of being ASIC friendly compared to ASIC resistant needs to be carefully
-evaluated.
+  evaluated.
 - Tools such as SafeCurves can be used to select a secure elliptic curve for an application. Cryptographic curves with
-even potential security vulnerabilities should rather be ignored.
+  even potential security vulnerabilities should rather be ignored.
 - Care should be taken when using online benchmarks to help select libraries for a project, as the results might be
-misleading.
-
+  misleading.
 
 ## References
 
-[[1]]  M. Franzoni, "Grin: a Lightweight Implementation of the MimbleWimble Protocol" [online].
+[[1]] M. Franzoni, "Grin: a Lightweight Implementation of the MimbleWimble Protocol" [online].
 Available: <https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d>. Date accessed: 2018&#8209;10&#8209;05.
 
-[1]: https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d
-"Grin: A Lightweight Implementation of
-the MimbleWimble Protocol, Mattia Franzoni"
+[1]: https://medium.com/novamining/grin-testnet-is-live-98b0f8cd135d 'Grin: A Lightweight Implementation of
+the MimbleWimble Protocol, Mattia Franzoni'
 
 [[2]] S. Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System" [online].
 Available: <<https://bitcoin.org/bitcoin.pdf>. Date accessed: 2018&#8209;10&#8209;05.
 
-[2]: https://bitcoin.org/bitcoin.pdf
-"Bitcoin: A Peer-to-Peer Electronic
-Cash System, Satoshi Nakamoto"
+[2]: https://bitcoin.org/bitcoin.pdf 'Bitcoin: A Peer-to-Peer Electronic
+Cash System, Satoshi Nakamoto'
 
 [[3]] A. Barone, "What Happens to Bitcoin after all 21 Million are Mined?" [Online.]
 Available: <https://www.investopedia.com/tech/what-happens-bitcoin-after-21-million-mined/>. Date accessed: 2018&#8209;10&#8209;07.
 
-[3]: https://www.investopedia.com/tech/what-happens-bitcoin-after-21-million-mined/
-"What Happens to Bitcoin after
-all 21 Million are Mined? Adam Barone"
+[3]: https://www.investopedia.com/tech/what-happens-bitcoin-after-21-million-mined/ 'What Happens to Bitcoin after
+all 21 Million are Mined? Adam Barone'
 
 [[4]] "Emission Rate of Grin" [online]. Available: <https://www.grin-forum.org/t/emmission-rate-of-grin/171>.
 Date accessed: 2018&#8209;10&#8209;15.
 
-[4]: https://www.grin-forum.org/t/emmission-rate-of-grin/171
-"Emission Rate of Grin"
+[4]: https://www.grin-forum.org/t/emmission-rate-of-grin/171 'Emission Rate of Grin'
 
 [[5]] "Coin Emission and Block Reward Schedules: Bitcoin vs. Monero" [online]. Available: <https://www.reddit.com/r/Monero/comments/512kwh/useful_for_learning_about_monero_coin_emission/d78tpgi>.
 Date accessed: 2018&#8209;10&#8209;15.
 
-[5]: https://www.reddit.com/r/Monero/comments/512kwh/useful_for_learning_about_monero_coin_emission/d78tpgi
-"Coin Emission and Block Reward
-Schedules: Bitcoin vs. Monero"
+[5]: https://www.reddit.com/r/Monero/comments/512kwh/useful_for_learning_about_monero_coin_emission/d78tpgi 'Coin Emission and Block Reward
+Schedules: Bitcoin vs. Monero'
 
 [[6]] "On Grin, MimbleWimble, and Monetary Policy" [online].
 Available: <https://www.reddit.com/r/grincoin/comments/91g1nx/on_grin_mimblewimble_and_monetary_policy/>.
 Date accessed: 2018&#8209;10&#8209;07.
 
-[6]:  https://www.reddit.com/r/grincoin/comments/91g1nx/on_grin_mimblewimble_and_monetary_policy/
-"On Grin, MimbleWimble, and Monetary Policy"
+[6]: https://www.reddit.com/r/grincoin/comments/91g1nx/on_grin_mimblewimble_and_monetary_policy/ 'On Grin, MimbleWimble, and Monetary Policy'
 
 [[7]] "Grin - Monetary Policy" [online]. Available: <https://github.com/mimblewimble/docs/wiki/Monetary-Policy>.
 Date accessed: 2018&#8209;10&#8209;08.
 
-[7]: https://github.com/mimblewimble/docs/wiki/Monetary-Policy
-"Grin - Monetary Policy"
+[7]: https://github.com/mimblewimble/docs/wiki/Monetary-Policy 'Grin - Monetary Policy'
 
 [[8]] J. J. Roberts and N. Rapp, "Exclusive: Nearly 4 Million Bitcoin Lost Forever, New Study Says" [online].
-Available: <http://fortune.com/2017/11/25/lost-bitcoins/>. Date accessed: 2018&#8209;10&#8209;08.
+Available: <https://fortune.com/crypto/2017/11/25/lost-bitcoins/>. Date accessed: 2018&#8209;10&#8209;08.
 
-[8]: http://fortune.com/2017/11/25/lost-bitcoins/
-"Exclusive: Nearly 4 Million Bitcoin
+[8]: https://fortune.com/crypto/2017/11/25/lost-bitcoins/ 'Exclusive: Nearly 4 Million Bitcoin
 Lost Forever, New Study Says,
-Jeff J. Roberts and Nicolas Rapp"
+Jeff J. Roberts and Nicolas Rapp'
 
 [[9]] Andrew Ancheta, "How Inflationary should Cryptocurrency really be?" [Online.].
 Available: <https://cryptobriefing.com/how-inflationary-should-cryptocurrency-be/>. Date accessed: 2018&#8209;11&#8209;06.
 
-[9]: https://cryptobriefing.com/how-inflationary-should-cryptocurrency-be/
-"How Inflationary should
-Cryptocurrency really be? Andrew Ancheta"
+[9]: https://cryptobriefing.com/how-inflationary-should-cryptocurrency-be/ 'How Inflationary should
+Cryptocurrency really be? Andrew Ancheta'
 
 [[10]] L. Mutch, "Debtcoin: Credit, Debt, and Cryptocurrencies" [online].
 Available: <https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/>.
 Date accessed: 2018&#8209;11&#8209;06.
 
-[10]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/
-"Debtcoin: Credit, Debt,
-and Cryptocurrencies, Landon Mutch"
+[10]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/ 'Debtcoin: Credit, Debt,
+and Cryptocurrencies, Landon Mutch'
 
 [[11]] Brian Curran, "Inflation vs Deflation: A Guide to Bitcoin & Cryptocurrencies Deflationary Nature" [online].
 Available: <https://blockonomi.com/bitcoin-deflation/>. Date accessed: 2018&#8209;11&#8209;06.
 
-[11]: https://blockonomi.com/bitcoin-deflation/
-"Inflation vs Deflation:
+[11]: https://blockonomi.com/bitcoin-deflation/ 'Inflation vs Deflation:
 A Guide to Bitcoin & Cryptocurrencies
-Deflationary Nature, Brian Curran"
+Deflationary Nature, Brian Curran'
 
 [[12]] A. Hayes, "Why is Deflation Bad for the Economy?" [Online.]
 Available: <https://www.investopedia.com/articles/personal-finance/030915/why-deflation-bad-economy.asp>.
 Date accessed: 2018&#8209;11&#8209;06.
 
-[12]: https://www.investopedia.com/articles/personal-finance/030915/why-deflation-bad-economy.asp
-"Why is Deflation Bad
-for the Economy? Adam Hayes"
+[12]: https://www.investopedia.com/articles/personal-finance/030915/why-deflation-bad-economy.asp 'Why is Deflation Bad
+for the Economy? Adam Hayes'
 
 [[13]] J. H. Cochrane, "Inflation and Debt" [online].
 Available: <https://www.nationalaffairs.com/publications/detail/inflation-and-debt>. Date accessed: 2018&#8209;11&#8209;07.
 
-[13]: https://www.nationalaffairs.com/publications/detail/inflation-and-debt
-"Inflation and Debt,
-John H. Cochrane"
+[13]: https://www.nationalaffairs.com/publications/detail/inflation-and-debt 'Inflation and Debt,
+John H. Cochrane'
 
 [[14]] L. Ziyuan, "Think Piece: Fighting Hyperinflation with Cryptocurrencies" [online].
 Available: <https://medium.com/@Digix/think-piece-fighting-hyperinflation-with-cryptocurrencies-a08fe86bb66a>.
 Date accessed: 2018&#8209;11&#8209;07.
 
-[14]: https://medium.com/@Digix/think-piece-fighting-hyperinflation-with-cryptocurrencies-a08fe86bb66a
-"Think Piece: Fighting Hyperinflation
-with Cryptocurrencies, Lucia Ziyuan"
+[14]: https://medium.com/@Digix/think-piece-fighting-hyperinflation-with-cryptocurrencies-a08fe86bb66a 'Think Piece: Fighting Hyperinflation
+with Cryptocurrencies, Lucia Ziyuan'
 
 [[15]] "Grin - Proof of Work Update" [online]. Available: <https://www.grin-forum.org/t/proof-of-work-update/713>.
 Date accessed: 2018&#8209;10&#8209;15.
 
-[15]: https://www.grin-forum.org/t/proof-of-work-update/713
-"Grin - Proof of Work Update"
+[15]: https://www.grin-forum.org/t/proof-of-work-update/713 'Grin - Proof of Work Update'
 
 [[16]] "Grin - Meeting Notes: Governance, Sep 25 2018" [online].
 Available: <https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874>. Date accessed: 2018&#8209;10&#8209;15.
 
-[16]: https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874
-"Grin - Meeting Notes:
-Governance, Sep 25 2018"
+[16]: https://www.grin-forum.org/t/meeting-notes-governance-sep-25-2018/874 'Grin - Meeting Notes:
+Governance, Sep 25 2018'
 
 [[17]] "Cuck(at)oo Cycle" [online]. Available: <https://github.com/tromp/cuckoo>. Date accessed: 2018&#8209;10&#8209;15.
 
-[17]: https://github.com/tromp/cuckoo
-"Cuck(at)oo Cycle"
+[17]: https://github.com/tromp/cuckoo 'Cuck(at)oo Cycle'
 
 [[18]] "51% Attack" [online]. Available: <https://www.investopedia.com/terms/1/51-attack.asp>. Date accessed:
 2018&#8209;10&#8209;11.
 
-[18]: https://www.investopedia.com/terms/1/51-attack.asp
-"51% Attack"
+[18]: https://www.investopedia.com/terms/1/51-attack.asp '51% Attack'
 
 [[19]] H. Knutson, "What is the Math behind Elliptic Curve Cryptography?" [Online.]
 Available: <https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3>.
 Date accessed: 2018&#8209;10&#8209;14.
 
-[19]: https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3
-"What is the Math behind
-Elliptic Curve Cryptography? Hans Knutson"
+[19]: https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3 'What is the Math behind
+Elliptic Curve Cryptography? Hans Knutson'
 
 [[20]] "Standards for Efficient Cryptography Group" [online]. Available: <http://www.secg.org/>. Date accessed:
 2018&#8209;10&#8209;11.
 
-[20]: http://www.secg.org/
-"Standards for Efficient
-Cryptography Group"
+[20]: http://www.secg.org/ 'Standards for Efficient
+Cryptography Group'
 
 [[21]] "Secp256k1" [online]. Available: <https://en.bitcoin.it/wiki/Secp256k1>. Date accessed: 2018&#8209;10&#8209;15.
 
-[21]: https://en.bitcoin.it/wiki/Secp256k1
-"Secp256k1"
+[21]: https://en.bitcoin.it/wiki/Secp256k1 'Secp256k1'
 
 [[22]] "Grin - Schnorr Signatures in Grin & Information" [online].
 Available: <https://www.grin-forum.org/t/schnorr-signatures-in-grin-information/730>. Date accessed:
 2018&#8209;10&#8209;08.
 
-[22]: https://www.grin-forum.org/t/schnorr-signatures-in-grin-information/730
-"Grin - Schnorr Signatures
-in Grin & Information"
+[22]: https://www.grin-forum.org/t/schnorr-signatures-in-grin-information/730 'Grin - Schnorr Signatures
+in Grin & Information'
 
 [[23]] "SafeCurves - CM Field Discriminants" [online]. Available: <http://safecurves.cr.yp.to/disc.html>.
 Date accessed: 2018&#8209;10&#8209;15.
 
-[23]: http://safecurves.cr.yp.to/disc.html
-"SafeCurves - CM Field Discriminants"
+[23]: http://safecurves.cr.yp.to/disc.html 'SafeCurves - CM Field Discriminants'
 
 [[24]] D. J. Bernstein, "Curve25519: New Diffie-Hellman Speed Records" [online].
 Available: <https://cr.yp.to/ecdh/curve25519-20060209.pdf>. Date accessed: 2018&#8209;10&#8209;15.
 
-[24]: https://cr.yp.to/ecdh/curve25519-20060209.pdf
-"Curve25519: New Diffie-Hellman
-Speed Records, Daniel J. Bernstein"
+[24]: https://cr.yp.to/ecdh/curve25519-20060209.pdf 'Curve25519: New Diffie-Hellman
+Speed Records, Daniel J. Bernstein'
 
 [[25]] "SafeCurves - Choosing Safe Curves for Elliptic-curve Cryptography" [online].
 Available: <http://safecurves.cr.yp.to/>. Date accessed: 2018&#8209;10&#8209;10.
 
-[25]: http://safecurves.cr.yp.to/
-"SafeCurves - Choosing Safe Curves
-for Elliptic-curve Cryptography"
+[25]: http://safecurves.cr.yp.to/ 'SafeCurves - Choosing Safe Curves
+for Elliptic-curve Cryptography'
 
 [[26]] "RocksDB" [online]. Available: <https://rocksdb.org/>. Date accessed: 2018&#8209;10&#8209;10.
 
-[26]: https://rocksdb.org/
-"RocksDB"
+[26]: https://rocksdb.org/ 'RocksDB'
 
 [[27]] "LevelDB" [online]. Available:
 <https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/>.
 Date accessed: 2018&#8209;10&#8209;15.
 
-[27]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/
-"LevelDB"
+[27]: https://web.archive.org/web/20180917125549/https://cryptoinsider.21mil.com/debtcoin-credit-debt-and-cryptocurrencies/ 'LevelDB'
 
 [[28]] "HyperLevelDB" [online]. Available: <http://hyperdex.org/>. Date accessed: 2018&#8209;10&#8209;15.
 
-[28]: http://hyperdex.org/
-"HyperLevelDB"
+[28]: http://hyperdex.org/ 'HyperLevelDB'
 
 [[29]] "LMDB" [online]. Available: <https://github.com/LMDB>. Date accessed: 2018&#8209;10&#8209;29.
 
-[29]: https://github.com/LMDB
-"LMDB"
+[29]: https://github.com/LMDB 'LMDB'
 
 [[30]] P. Dix, "Benchmarking LevelDB vs. RocksDB vs. HyperLevelDB vs. LMDB Performance for InfluxDB" [online]. Available:
 <https://www.influxdata.com/blog/benchmarking-leveldb-vs-rocksdb-vs-hyperleveldb-vs-lmdb-performance-for-influxdb/>
 Date accessed: 2018&#8209;10&#8209;15.
 
-[30]: https://www.influxdata.com/blog/benchmarking-leveldb-vs-rocksdb-vs-hyperleveldb-vs-lmdb-performance-for-influxdb/
-"Benchmarking LevelDB vs. RocksDB
+[30]: https://www.influxdata.com/blog/benchmarking-leveldb-vs-rocksdb-vs-hyperleveldb-vs-lmdb-performance-for-influxdb/ 'Benchmarking LevelDB vs. RocksDB
 vs. HyperLevelDB vs. LMDB
-Performance for InfluxDB, Paul Dix"
+Performance for InfluxDB, Paul Dix'
 
 [[31]] B. Alex, "Lmdbjava - Benchmarks" [online].
 Available: <https://github.com/lmdbjava/benchmarks/blob/master/results/20160630/README.md>. Date accessed:
 2018&#8209;10&#8209;14.
 
-[31]: https://github.com/lmdbjava/benchmarks/blob/master/results/20160630/README.md
-"Lmdbjava - Benchmarks, Ben Alex"
+[31]: https://github.com/lmdbjava/benchmarks/blob/master/results/20160630/README.md 'Lmdbjava - Benchmarks, Ben Alex'
 
 [[32]] H. Chu, "Lies, Damn Lies, Statistics, and Benchmarks" [online].
 Available: <https://www.linkedin.com/pulse/lies-damn-statistics-benchmarks-howard-chu>. Date accessed:
 2018&#8209;10&#8209;29.
 
-[32]: https://www.linkedin.com/pulse/lies-damn-statistics-benchmarks-howard-chu
-"Lies, Damn Lies, Statistics,
-and Benchmarks, Howard Chu"
+[32]: https://www.linkedin.com/pulse/lies-damn-statistics-benchmarks-howard-chu 'Lies, Damn Lies, Statistics,
+and Benchmarks, Howard Chu'
 
 [[33]] "HyperDex Benchmark, Symas Corp" [online]. Available: <http://www.lmdb.tech/bench/hyperdex/>.
 Date accessed: 2018&#8209;10&#8209;29.
 
-[33]: http://www.lmdb.tech/bench/hyperdex/
-"HyperDex Benchmark, Symas Corp"
+[33]: http://www.lmdb.tech/bench/hyperdex/ 'HyperDex Benchmark, Symas Corp'
 
-[[34]] Yeastplume, "Progress Update May - Sep 2018"  [online].
+[[34]] Yeastplume, "Progress Update May - Sep 2018" [online].
 Available: <https://www.grin-forum.org/t/yeastplume-progress-update-thread-may-sept-2018/361/12>.
 Date accessed: 2018&#8209;10&#8209;28.
 
-[34]: https://www.grin-forum.org/t/yeastplume-progress-update-thread-may-sept-2018/361/12
-"Progress Update May - Sep 2018, Yeastplume"
+[34]: https://www.grin-forum.org/t/yeastplume-progress-update-thread-may-sept-2018/361/12 'Progress Update May - Sep 2018, Yeastplume'
 
 ## Contributors
 
