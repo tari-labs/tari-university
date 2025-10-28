@@ -96,20 +96,20 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  base64
-  bigdecimal (~> 3.3)
-  bundler
-  csv
-  jekyll
-  jekyll-paginate
-  jekyll-redirect-from
-  jekyll-seo-tag
-  jekyll-sitemap
-  jekyll-spaceship
-  jekyll-tagging
-  logger
+  base64 (~> 0.3.0)
+  bigdecimal (~> 3.3.1)
+  bundler (~> 2.7.2)
+  csv (~> 3.3.5)
+  jekyll (~> 4.4.1)
+  jekyll-paginate (~> 1.1.0)
+  jekyll-redirect-from (~> 0.16.0)
+  jekyll-seo-tag (~> 2.8.0)
+  jekyll-sitemap (~> 1.4.0)
+  jekyll-spaceship (~> 0.10.2)
+  jekyll-tagging (~> 1.1.0)
+  logger (~> 1.7.0)
   ostruct (~> 0.6.3)
-  webrick
+  webrick (~> 1.9.1)
 
 BUNDLED WITH
    2.7.2
