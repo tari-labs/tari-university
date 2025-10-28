@@ -1,3 +1,7 @@
+@use "sass:color";
+@use '../0-settings/variables' as *;
+@use '../0-settings/light' as *;
+
 /* Buttons */
 .button {
   display: inline-block;
@@ -28,7 +32,7 @@
     box-shadow: 0 4px 5px -1px rgba(0,0,0,.1), 0 2px 5px -1px rgba(0,0,0,.06);
     background-color: $brand-color;
     &:hover {
-      background-color: darken($brand-color, 5%);
+      background-color: color.adjust($brand-color, $lightness: -5%);
     }
   }
 

@@ -1,3 +1,7 @@
+@use "sass:color";
+@use '../0-settings/variables' as *;
+@use '../0-settings/light' as *;
+
 /* Search */
 .search {
   position: fixed;
@@ -40,7 +44,7 @@
     cursor: pointer;
     &:hover {
       transform: rotate(90deg);
-      color: darken($link-color, 15%);
+      color: color.adjust($link-color, $lightness: -15%);
     }
     @media only screen and (max-width: $tablet) {
       top: 75px;
@@ -107,7 +111,7 @@
     align-items: center;
     padding-bottom: 12px;
     margin-bottom: 12px;
-    border-bottom: 1px solid darken($base-border-color, 5);
+    border-bottom: 1px solid color.adjust($base-border-color, $lightness: -5%);
     .search-results__link {
       color: $link-color;
     }

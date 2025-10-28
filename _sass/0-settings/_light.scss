@@ -1,3 +1,4 @@
+@use "sass:color";
 // *****************
 // LIGHT THEME
 // *****************
@@ -16,8 +17,8 @@ $gray-darker: #272a2d;
 $white: #fff;
 $gray-medium: #CCC;
 $gray-light: #eee;
-$gray-lighter: lighten($white, 60);
-$gray-lightest: lighten($white, 80);
+$gray-lighter: color.adjust($white, $lightness: 60%);
+$gray-lightest: color.adjust($white, $lightness: 80%);
 
 
 // ********************

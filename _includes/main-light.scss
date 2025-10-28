@@ -43,79 +43,79 @@
 <<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
 
-@import '0-settings/light';
-@import '0-settings/variables';
-@import '0-settings/mixins';
-@import '0-settings/helpers';
+@use '0-settings/light';
+@use '0-settings/variables';
+@use '0-settings/mixins';
+@use '0-settings/helpers';
 
 
 /* =======================
 :: 1-Tools and Libs
 ======================= */
 /* >>>>>>>>>>>>>> :: 1.1-Normalize <<<<<<<<<<<<<<< */
-@import '1-tools/normalize';
+@use '1-tools/normalize';
 /* >>>>>>>>>>>>>> :: 1.2-Reset <<<<<<<<<<<<<<< */
-@import '1-tools/reset';
+@use '1-tools/reset';
 /* >>>>>>>>>>>>>> :: 1.3-Shared <<<<<<<<<<<<<<< */
-@import '1-tools/shared';
+@use '1-tools/shared';
 /* >>>>>>>>>>>>>> :: 1.4-Syntax Highlighting <<<<<<<<<<<<<<< */
-@import '1-tools/syntax-highlighting';
+@use '1-tools/syntax-highlighting';
 /* >>>>>>>>>>>>>> :: 1.5-Grid <<<<<<<<<<<<<<< */
-@import '1-tools/grid';
+@use '1-tools/grid';
 /* >>>>>>>>>>>>>> :: 1.6-Zoom <<<<<<<<<<<<<<< */
-@import '1-tools/zoom';
+@use '1-tools/zoom';
 /* >>>>>>>>>>>>>> :: 1.7-Animate <<<<<<<<<<<<<<< */
-@import '1-tools/animate';
+@use '1-tools/animate';
 /* >>>>>>>>>>>>>> :: 1.8-Slick Slider <<<<<<<<<<<<<<< */
-@import '1-tools/slick';
+@use '1-tools/slick';
 
 
 /* =======================
 :: 2-Base Styles
 ======================= */
 /* >>>>>>>>>>>>>> :: 2.1-Base <<<<<<<<<<<<<<< */
-@import '2-base/base';
+@use '2-base/base';
 
 
 /* =======================
 :: 3-Modules
 ======================= */
 /* >>>>>>>>>>>>>> :: 3.1-Hero <<<<<<<<<<<<<<< */
-@import '3-modules/hero';
+@use '3-modules/hero';
 /* >>>>>>>>>>>>>> :: 3.2-Scroll Button Top <<<<<<<<<<<<<<< */
-@import '3-modules/scroll-button-top';
+@use '3-modules/scroll-button-top';
 /* >>>>>>>>>>>>>> :: 3.3-Header <<<<<<<<<<<<<<< */
-@import '3-modules/header';
+@use '3-modules/header';
 /* >>>>>>>>>>>>>> :: 3.4-Search <<<<<<<<<<<<<<< */
-@import '3-modules/search';
+@use '3-modules/search';
 /* >>>>>>>>>>>>>> :: 3.5-Pagination <<<<<<<<<<<<<<< */
-@import '3-modules/pagination';
+@use '3-modules/pagination';
 /* >>>>>>>>>>>>>> :: 3.6-Footer <<<<<<<<<<<<<<< */
-@import '3-modules/footer';
+@use '3-modules/footer';
 /* >>>>>>>>>>>>>> :: 3.7-Social Links <<<<<<<<<<<<<<< */
-@import '3-modules/social-links';
+@use '3-modules/social-links';
 /* >>>>>>>>>>>>>> :: 3.8-Buttons <<<<<<<<<<<<<<< */
-@import '3-modules/buttons';
+@use '3-modules/buttons';
 /* >>>>>>>>>>>>>> :: 3.9-Slider <<<<<<<<<<<<<<< */
-@import '3-modules/slider';
+@use '3-modules/slider';
 /* >>>>>>>>>>>>>> :: 3.10-Widgets <<<<<<<<<<<<<<< */
-@import '3-modules/widgets';
+@use '3-modules/widgets';
 
 
 /* =======================
 :: 4-Layouts
 ======================= */
 /* >>>>>>>>>>>>>> :: 4.1-Home Page <<<<<<<<<<<<<<< */
-@import '4-layouts/home-page';
+@use '4-layouts/home-page';
 /* >>>>>>>>>>>>>> :: 4.2-Post <<<<<<<<<<<<<<< */
-@import '4-layouts/post';
+@use '4-layouts/post';
 /* >>>>>>>>>>>>>> :: 4.3-Page <<<<<<<<<<<<<<< */
-@import '4-layouts/page';
+@use '4-layouts/page';
 /* >>>>>>>>>>>>>> :: 4.4-Tags Page <<<<<<<<<<<<<<< */
-@import '4-layouts/tags-page';
+@use '4-layouts/tags-page';
 /* >>>>>>>>>>>>>> :: 4.5-Author Page <<<<<<<<<<<<<<< */
-@import '4-layouts/author-page';
+@use '4-layouts/author-page';
 /* >>>>>>>>>>>>>> :: 4.6-Contact Page <<<<<<<<<<<<<<< */
-@import '4-layouts/contact-page';
+@use '4-layouts/contact-page';
 /* >>>>>>>>>>>>>> :: 4.7-Error Page <<<<<<<<<<<<<<< */
-@import '4-layouts/error-page';
+@use '4-layouts/error-page';

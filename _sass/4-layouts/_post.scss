@@ -1,3 +1,7 @@
+@use "sass:color";
+@use '../0-settings/variables' as *;
+@use '../0-settings/light' as *;
+
 /* Post */
 .post {
   position: relative;
@@ -186,19 +190,19 @@
     &.share__facebook {
       background-color: #3b5998;
       &:hover {
-        background-color: darken(#3b5998,10%);
+        background-color: color.adjust(#3b5998, $lightness: -10%);
       }
     }
     &.share__twitter {
       background-color: #55acee;
       &:hover {
-        background-color: darken(#55acee,10%);
+        background-color: color.adjust(#55acee, $lightness: -10%);
       }
     }
     &.share__pinterest {
       background-color: #bd081c;
       &:hover {
-        background-color: darken(#bd081c,10%);
+        background-color: color.adjust(#bd081c, $lightness: -10%);
       }
     }
   }
