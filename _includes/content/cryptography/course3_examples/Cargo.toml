@@ -9,5 +9,5 @@ edition = "2021"
 blake2 = "0.10.6"
 critical-section = { version = "1.1", features = ["std"]}
 generic-array = "1.0.0"
-tari_crypto = "0.20.0"
+tari_crypto = "0.22.0"
 rand = "0.8.5"
