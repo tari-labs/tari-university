@@ -541,7 +541,8 @@ a {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.fas {
+.fas,
+.fa-solid {
   font-size: 26px;
 }
 

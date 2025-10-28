@@ -98,13 +98,13 @@ function codeSnippets() {
         }
 
         const runCodeButton = document.createElement('button');
-        runCodeButton.className = 'fa fa-play play-button';
+        runCodeButton.className = 'fa-solid fa-play play-button';
         runCodeButton.hidden = false;
         runCodeButton.title = 'Run this code';
         runCodeButton.setAttribute('aria-label', runCodeButton.title);
 
         const copyCodeClipboardButton = document.createElement('button');
-        copyCodeClipboardButton.className = 'fa fa-copy clip-button';
+        copyCodeClipboardButton.className = 'fa-solid fa-copy clip-button';
         copyCodeClipboardButton.innerHTML = '<i class="tooltiptext"></i>';
         copyCodeClipboardButton.title = 'Copy to clipboard';
         copyCodeClipboardButton.setAttribute('aria-label', copyCodeClipboardButton.title);
@@ -119,7 +119,7 @@ function codeSnippets() {
         let code_block = block.querySelector("div.playpen > div.editable");
         if (window.ace && code_block.classList.contains("editable")) {
             const undoChangesButton = document.createElement('button');
-            undoChangesButton.className = 'fa fa-history reset-button';
+            undoChangesButton.className = 'fa-solid fa-history reset-button';
             undoChangesButton.title = 'Undo changes';
             undoChangesButton.setAttribute('aria-label', undoChangesButton.title);
 
@@ -142,12 +142,12 @@ function clipboard() {
 
     function hideTooltip(elem) {
         elem.firstChild.innerText = "";
-        elem.className = 'fa fa-copy clip-button';
+        elem.className = 'fa-solid fa-copy clip-button';
     }
 
     function showTooltip(elem, msg) {
         elem.firstChild.innerText = msg;
-        elem.className = 'fa fa-copy tooltipped';
+        elem.className = 'fa-solid fa-copy tooltipped';
     }
 
     const clipboardSnippets = new Clipboard('.clip-button', {
