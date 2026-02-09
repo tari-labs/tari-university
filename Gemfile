@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "bundler", "~> 2.7.2"
+gem "bundler", "~> 4.0.6"
 gem "base64", "~> 0.3.0"
 gem "csv", "~> 3.3.5"
 gem "logger", "~> 1.7.0"
