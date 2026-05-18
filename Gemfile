@@ -16,5 +16,5 @@ group :jekyll_plugins do
 end
 
 gem "webrick", "~> 1.9.1"
-gem "bigdecimal", "~> 3.3.1"
+gem "bigdecimal", "~> 4.1.0"
 gem "ostruct", "~> 0.6.3"
