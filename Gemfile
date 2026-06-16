@@ -9,12 +9,12 @@ gem "jekyll-paginate", "~> 1.1.0"
 gem "jekyll-tagging", "~> 1.1.0"
 gem "jekyll-sitemap", "~> 1.4.0"
 gem "jekyll-redirect-from", "~> 0.16.0"
-gem "jekyll-seo-tag", "~> 2.8.0"
+gem "jekyll-seo-tag", "~> 2.9.0"
 
 group :jekyll_plugins do
   gem "jekyll-spaceship", "~> 0.10.2"
 end
 
 gem "webrick", "~> 1.9.1"
-gem "bigdecimal", "~> 3.3.1"
+gem "bigdecimal", "~> 4.1.2"
 gem "ostruct", "~> 0.6.3"

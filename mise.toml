@@ -1,2 +1,5 @@
 [tools]
 ruby = '4.0.5'
+
+[tasks.build]
+run = 'bundle install && bundle exec jekyll build'
