@@ -181,7 +181,7 @@ from the validator node and its backup(s). They do not report the validator node
 (PEX) and may be more strict about the quality of peers they keep.
 
 Sentry nodes belonging to validators that trust each other may wish to maintain persistent connections via Virtual
-Private Network (VPN) with one another, but only report each other sparingly in the PEX [[7]].
+Private Network (VPN) with one another, but only report each other sparingly in the PEX.
 
 ## Permissionless Byzantine Fault-tolerant Protocols
 
@@ -783,11 +783,6 @@ Date accessed: 2018&#8209;09&#8209;30.
 [6]: https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb 'Tendermint Explained - Bringing BFT-based
 PoS to the Public Blockchain Domain'
 
-[[7]] "Tendermint Peer Discovery" [online]. Available: <https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md>.
-Date accessed: 2018&#8209;10&#8209;22.
-
-[7]: https://github.com/tendermint/tendermint/blob/master/docs/spec/p2p/node.md 'Tendermint Peer Discovery'
-
 [[8]] Wikipedia: "Paxos" [online]. Available: <https://en.wikipedia.org/wiki/Paxos_(computer_science)>. Date accessed:
 2018&#8209;10&#8209;01.
 
@@ -874,10 +869,10 @@ Available: <http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf>. Date accesse
 [22]: http://www.cs.yale.edu/homes/aspnes/papers/jalg90.pdf 'Fast Randomized Consensus using Shared Memory'
 
 [[23]] "Prototol for Asynchronous, Reliable, Secure and Efficient Consensus" [online]. Available:
-<https://github.com/maidsafe/parsec>.
+<https://arxiv.org/abs/1907.11445>.
 Date accessed 2018&#8209;10&#8209;22.
 
-[23]: https://github.com/maidsafe/parsec 'GitHub repository: Protocol for Asynchronous,
+[23]: https://arxiv.org/abs/1907.11445 'GitHub repository: Protocol for Asynchronous,
 Reliable, Secure and Efficient Consensus'
 
 [[25]] "Red Belly Blockchain" [online]. Available: <https://www.ccn.com/tag/red-belly-blockchain/>. Date accessed:
@@ -910,10 +905,10 @@ Available: <https://ripple.com/files/ripple_consensus_whitepaper.pdf>. Date acce
 Algorithm'
 
 [[30]] J. Kwon, "TenderMint: Consensus without Mining" [online].
-Available: <http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf>.
+Available: <https://tendermint.com/static/docs/tendermint.pdf>.
 Date accessed: 2018&#8209;09&#8209;20.
 
-[30]: http://the-eye.eu/public/Books/campdivision.com/PDF/Computers%20General/Privacy/bitcoin/tendermint_v05.pdf 'Tendermint: Consensus without Mining'
+[30]: https://tendermint.com/static/docs/tendermint.pdf 'Tendermint: Consensus without Mining'
 
 [[31]] Y. Yang, "LinBFT: Linear-Communication Byzantine Fault Tolerance for Public Blockchains" [online].
 Available: <https://arxiv.org/pdf/1807.01829.pdf>. Date accessed: 2018&#8209;09&#8209;20.
@@ -921,10 +916,10 @@ Available: <https://arxiv.org/pdf/1807.01829.pdf>. Date accessed: 2018&#8209;09&
 [31]: https://arxiv.org/pdf/1807.01829.pdf 'LinBFT: Linear-Communication Byzantine
 Fault Tolerance for Public Blockchains'
 
-[[32]] "Protocol Spotlight: Avalanche Part 1" [online]. Available: <https://flatoutcrypto.com/home/avalancheprotocol>.
+[[32]] "Protocol Spotlight: Avalanche Part 1" [online]. Available: <https://hackernoon.com/protocol-spotlight-avalanche-3f5dfd366a26>.
 Date Accessed: 2018&#8209;09&#8209;09.
 
-[32]: https://flatoutcrypto.com/home/avalancheprotocol 'Protocol Spotlight: Avalanche Part 1'
+[32]: https://hackernoon.com/protocol-spotlight-avalanche-3f5dfd366a26 'Protocol Spotlight: Avalanche Part 1'
 
 [[33]] P. Chevalier, B. Kaminski, F. Hutchison, Q. Ma and S. Sharma, "Protocol for Asynchronous, Reliable, Secure and
 Efficient Consensus (PARSEC)". White Paper [online]. Available: <http://docs.maidsafe.net/Whitepapers/pdf/PARSEC.pdf>.
@@ -1067,7 +1062,7 @@ require three instances of reliable broadcast for a single round of communicatio
 
 As briefly mentioned in the [Introduction](#introduction), the scalability of BFT protocols considering the number of
 participants is highly limited and the performance of most protocols deteriorates as the number of involved replicas
-increases. This effect is especially problematic for BFT deployment in permissionless blockchains [[7]].
+increases. This effect is especially problematic for BFT deployment in permissionless blockchains.
 
 The problem of BFT scalability is twofold: a high throughput, as well as a large consensus group with good
 reconfigurability that can tolerate a high number of failures are both desirable properties in BFT protocols. However,

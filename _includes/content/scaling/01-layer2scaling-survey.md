@@ -199,7 +199,7 @@ _Who uses them?_
 
 **On NEO:**
 
-Trinity ([[3]], [[17]], [[18]])
+Trinity ([[3]], [[18]])
 
 - Trinity is an open-source network protocol based on NEP-5 smart contracts.
 - Trinity for NEO is the same as the Raiden Network for Ethereum.
@@ -596,19 +596,16 @@ state or division keeps some internal autonomy" ([[97]], [[98]], [[71]]).
 _Who uses it?_
 
 The most notable projects built on top of Counterparty are [Age of Chains](https://www.ageofchains.com),
-[Age of Rust](http://spacepirate.io), [Augmentors](https://www.augmentorsgame.com/), [Authparty](http://authparty.io/),
-[Bitcorns](https://bitcorns.com/), [Blockfreight™](http://blockfreight.com/),
-[Blocksafe](http://www.blocksafefoundation.com), [BTCpaymarket.com](http://btcpaymarket.com), [CoinDaddy](http://coindaddy.io),
-[COVAL](https://coval.readme.io), [FoldingCoin](http://foldingcoin.net/), [FootballCoin](https://www.footballcoin.io/),
-[GetGems](http://getgems.org/#/),
-[IndieBoard](https://indiesquare.me/), [LTBCoin - Letstalkbitcoin.com](https://letstalkbitcoin.com/),
+[Age of Rust](http://spacepirate.io), [Augmentors](https://www.augmentorsgame.com/),
+[Bitcorns](https://bitcorns.com/),
+[Blocksafe](http://www.blocksafefoundation.com), [CoinDaddy](http://coindaddy.io),
+[FoldingCoin](http://foldingcoin.net/), [FootballCoin](https://www.footballcoin.io/),
+[LTBCoin - Letstalkbitcoin.com](https://letstalkbitcoin.com/),
 [Mafia Wars](https://mafiawars.io/), [Proof of Visit](https://proofofvisit.com/),
-[Rarepepe.party](http://rarepepe.party), [SaruTobi Island](http://mandelduck.com/sarutobiisland/),
+[SaruTobi Island](http://mandelduck.com/sarutobiisland/),
 [Spells of Genesis](http://www.spellsofgenesis.com), [Takara](https://mandelduck.com/#portfolio),
-[The Scarab Experiment](https://www.thescarabexperiment.org/),
-[Tokenly](http://tokenly.com/), [TopCoin](https://topcoin.com/) and [XCP DEX](https://XCPDEX.COM) [[75]]. In the past,
-projects such as [Storj](https://storj.io/) and [SWARM](https://counterparty.io/news/swarm-crowdfunding/)
-also built on Counterparty.
+[The Scarab Experiment](https://www.thescarabexperiment.org/) and [XCP DEX](https://XCPDEX.COM) [[75]].
+In the past, projects such as [Storj](https://storj.io/) and [SWARM](https://counterparty.io/news/swarm-crowdfunding/) also built on Counterparty.
 
 COVAL is being developed with the primary purpose of moving value using “off-chain” methods. It uses its own set of node
 runners to manage various "off-chain" distributed ledgers and ledger assigned wallets to implement an extended
@@ -751,7 +748,7 @@ _What is it?_
 
 _Scriptless Scripts_ was coined and invented by mathematician Andrew Poelstra. It entails offering scripting
 functionality without actual scripts on the blockchain to implement smart contracts. At the time of writing (July&nbsp;2018)
-it can only work on the Mimblewimble blockchain and makes use of a specific Schnorr signature scheme [[81]] that allows
+it can only work on the Mimblewimble blockchain and makes use of a specific Schnorr signature scheme that allows
 for signature aggregation, mathematically combining several signatures into a single signature, without having to prove
 Knowledge of Secret Keys (KOSK). This is known as the _plain public-key model_, where the only requirement is that each
 potential signer has a public key. The KOSK scheme requires that users prove knowledge (or possession) of the secret key
@@ -950,10 +947,10 @@ Date accessed: 2018&#8209;06&#8209;14.
 [4]: http://plasma.io/plasma.pdf 'Plasma: Scalable Autonomous Smart Contracts'
 
 [[5]] "NEX: A High Performance Decentralized Trade and Payment Platform" [online]. Available:
-<https://nash.io/pdfs/whitepaper_v2.pdf>.
+<https://pdf4pro.com/cdn/nex-a-high-performance-decentralized-trade-and-payment-4cca97.pdf>.
 Date accessed: 2018&#8209;06&#8209;11.
 
-[5]: https://nash.io/pdfs/whitepaper_v2.pdf 'NEX: A High Performance Decentralized Trade and Payment Platform'
+[5]: https://pdf4pro.com/cdn/nex-a-high-performance-decentralized-trade-and-payment-4cca97.pdf 'NEX: A High Performance Decentralized Trade and Payment Platform'
 
 [[6]] J. Poon and OmiseGO Team, "OmiseGO: Decentralized Exchange and Payments Platform" [online].
 Available: <https://cdn.omise.co/omg/whitepaper.pdf>. Date accessed: 2018&#8209;06&#8209;14.
@@ -1021,11 +1018,6 @@ Date accessed: 2018&#8209;06&#8209;14.
 Layer 2 Scaling Solutions:
 State Channels, Plasma, and Truebit"
 
-[[17]] "Trinity: Universal Off-chain Scaling Solution" [online]. Available: <https://trinity.tech>. Date accessed:
-2018&#8209;06&#8209;14.
-
-[17]: https://trinity.tech 'Trinity: Universal Off-chain Scaling Solution'
-
 [[18]] "Trinity White Paper: Universal Off-chain Scaling Solution" [online]. Available: <https://trinity.tech/#/writepaper>.
 Date accessed: 2018&#8209;06&#8209;14.
 
@@ -1033,10 +1025,10 @@ Date accessed: 2018&#8209;06&#8209;14.
 Off-chain Scaling Solution'
 
 [[19]] J. Coleman, L. Horne, and L. Xuanji, "Counterfactual: Generalized State Channels" [online].
-Available at: <https://counterfactual.com/statechannels> and <https://l4.ventures/papers/statechannels.pdf>. Date accessed:
+Available at: <https://www.bgp4.com/wp-content/uploads/2019/05/statechannels.pdf> and <https://l4.ventures/papers/statechannels.pdf>. Date accessed:
 2018&#8209;06&#8209;15.
 
-[19]: https://counterfactual.com/statechannels 'Counterfactual: Generalized State Channels'
+[19]: https://www.bgp4.com/wp-content/uploads/2019/05/statechannels.pdf 'Counterfactual: Generalized State Channels'
 
 [[20]] "The Raiden Network" [online]. Available: <https://raiden.network/>. Date accessed: 2018&#8209;06&#8209;15.
 
@@ -1128,10 +1120,10 @@ accessed: 2018&#8209;07&#8209;02.
 [38]: https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf 'MapReduce: Simplified Data
 Processing on Large Clusters'
 
-[[39]] "The Golem WhitePaper (Future Integrations)" [online]. Available: <https://golem.network/crowdfunding/Golemwhitepaper.pdf>.
+[[39]] "The Golem WhitePaper (Future Integrations)" [online]. Available: <https://whitepaper.io/coin/golem>.
 Date accessed: 2018&#8209;06&#8209;22.
 
-[39]: https://golem.network/crowdfunding/Golemwhitepaper.pdf 'The Golem WhitePaper (Future Integrations)'
+[39]: https://whitepaper.io/coin/golem 'The Golem WhitePaper (Future Integrations)'
 
 [[40]] J. Teutsch, and C. Reitwiessner, "A Scalable Verification Solution for Block Chains" [online].
 Available: <http://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf>. Date accessed: 2018&#8209;06&#8209;22.
@@ -1153,9 +1145,9 @@ Date accessed: 2018&#8209;06&#8209;22.
 [43]: https://truebit.io 'TruBit Website'
 
 [[44]] "TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub" [online]. Available:
-<http://cs-people.bu.edu/heilman/tumblebit>. Date accessed: 2018&#8209;07&#8209;12.
+<https://eprint.iacr.org/2016/575.pdf>. Date accessed: 2018&#8209;07&#8209;12.
 
-[44]: http://cs-people.bu.edu/heilman/tumblebit 'TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub'
+[44]: https://eprint.iacr.org/2016/575.pdf 'TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub'
 
 [[45]] E. Heilman, L. AlShenibr, F. Baldimtsi, A. Scafuro and S. Goldberg, "TumbleBit: An Untrusted Bitcoin-compatible
 Anonymous Payment Hub" [online].Available: <https://eprint.iacr.org/2016/575.pdf>. Date accessed: 2018&#8209;07&#8209;08.
@@ -1163,10 +1155,10 @@ Anonymous Payment Hub" [online].Available: <https://eprint.iacr.org/2016/575.pdf
 [45]: https://eprint.iacr.org/2016/575.pdf 'TumbleBit: An Untrusted Bitcoin-compatible Anonymous Payment Hub'
 
 [[46]] "Anonymous Transactions Coming to Stratis" [online]. Available:
-<https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e>.
+<https://www.stratisplatform.com/2016/12/07/anonymous-transactions-coming-to-stratis/>.
 Date accessed: 2018&#8209;07&#8209;08.
 
-[46]: https://medium.com/@Stratisplatform/anonymous-transactions-coming-to-stratis-fced3f5abc2e 'Anonymous Transactions Coming to Stratis'
+[46]: https://www.stratisplatform.com/2016/12/07/anonymous-transactions-coming-to-stratis/ 'Anonymous Transactions Coming to Stratis'
 
 [[47]] "TumbleBit Proof of Concept GitHub Repository" [online]. Available: <https://github.com/BUSEC/TumbleBit>.
 Date accessed: 2018&#8209;07&#8209;08.
@@ -1341,11 +1333,6 @@ Date accessed: 2018&#8209;07-24.
 Date accessed: 2018&#8209;07&#8209;24.
 
 [80]: https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf 'Scriptless Scripts'
-
-[[81]] "bip-schnorr.mediawiki" [online]. Available: <https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki>.
-Date accessed: 2018&#8209;07&#8209;26.
-
-[81]: https://github.com/sipa/bips/blob/bip-schnorr/bip-schnorr.mediawiki 'bip-schnorr.mediawiki'
 
 [[82]] "If There is an Answer to Selfish Mining, Braiding could be It" [online]. Available:
 <https://bitcoinmagazine.com/articles/if-there-is-an-answer-to-selfish-mining-braiding-could-be-it-1482876153>.

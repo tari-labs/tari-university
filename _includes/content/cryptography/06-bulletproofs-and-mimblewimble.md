@@ -29,7 +29,7 @@ Succinct Non-Interactive ARguments of Knowledge (zk-SNARK); Succinct Transparent
 Knowledge Prover and Verifier for Boolean Circuits (ZKBoo). Zero-knowledge proofs are designed so that a _prover_ is
 able to indirectly verify that a statement is true without having to provide any information beyond the verification of
 the statement, e.g. to prove that a number is found that solves a cryptographic puzzle and fits the hash value
-without having to reveal the _Nonce_<sup>[def][nonce~]</sup> ([[2]], [[4]]).
+without having to reveal the _Nonce_<sup>[def][nonce~]</sup> ([[4]]).
 
 The Bulletproofs technology is a Non-interactive Zero-knowledge (NIZK) proof protocol for general _Arithmetic
 Circuits_<sup>[def][ac~]</sup> with very short proofs (_Arguments of Knowledge Systems_<sup>[def][afs~]</sup>) and without
@@ -40,7 +40,7 @@ bulletproof security assumptions</i>" ([[1]], [[29]]).
 
 Bulletproofs also implement a Multi-party Computation (MPC) protocol, whereby distributed proofs of multiple _provers_
 with secret committed values are aggregated into a single proof before the Fiat-Shamir challenge is calculated and sent
-to the _verifier_, thereby minimizing rounds of communication. Secret committed values will stay secret ([[1]], [[6]]).
+to the _verifier_, thereby minimizing rounds of communication. Secret committed values will stay secret ([[1]]).
 
 The essence of Bulletproofs is its inner-product algorithm originally presented by Groth [[13]] and then further refined
 by Bootle et al. [[12]]. The latter development provided a proof (argument of knowledge) for two independent (not
@@ -76,7 +76,7 @@ The _prover_ must convince the _verifier_ that commitment $ C(x,r) = xH + rG $ c
 $ is the vector containing the bits of $ x $, the basic idea is to hide all the bits of the amount in a single
 vector Pedersen Commitment. It must then be proven that each bit satisfies $ \omega(\omega-1) = 0 $, i.e. each
 $ \omega $ is either $ 0 $ or $ 1 $, and that they sum to $ x $. As part of the ensuing protocol, the _verifier_ sends
-random linear combinations of constraints and challenges $ \in \mathbb{Z_p} $ to the _prover_. The
+random linear combinations of constraints and challenges $ \in \mathbb{Z*p} $ to the \_prover*. The
 _prover_ is then able to construct a vectorized inner product relation containing the elements of $ \mathbf {a} $, the
 constraints and challenges $ \in \mathbb{Z_p} $, and appropriate blinding vectors $ \in \mathbb Z_p^n $.
 
@@ -188,7 +188,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
 
   <p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/RefereedDelegation.png" width="600" /></p>
   <div align="center"><b>Figure&nbsp;4: Bulletproofs for Refereed Delegation Model
-  [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx"
+  [<a href="https://ieeexplore.ieee.org/document/8418611"
   title="Bulletproofs: Short Proofs for Confidential Transactions
   and More (Slides), Blockchain Protocol Analysis and
   Security Engineering 2018,
@@ -213,7 +213,7 @@ continue to evolve ([[1]], [[2]], [[3]], [[5]], [[6]], [[59]]).
 
   <p align="center"><img src="/images/cryptography/bulletproofs-and-mimblewimble/VerifiableShuffles.png" width="600" /></p>
   <div align="center"><b>Figure&nbsp;5: Bulletproofs for Verifiable Shuffles
-  [<a href="https://cyber.stanford.edu/sites/default/files/bpase18.pptx"
+  [<a href="https://ieeexplore.ieee.org/document/8418611"
   title="Bulletproofs: Short Proofs for Confidential Transactions
   and More (Slides), Blockchain Protocol Analysis and
   Security Engineering 2018,
@@ -281,7 +281,7 @@ and [Grin vs. BEAM, a Comparison](/protocols/grin-vs-beam-comparison) for more i
 Mimblewimble implementation of Grin and Beam.
 
 An independent implementation for Bulletproof range proofs was done for the Monero project (an open source CryptoNote
-implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) [[49]] in Java as the precursor and
+implementation in C++) by [Sarang Noether](https://github.com/SarangNoether) in Java as the precursor and
 [moneromooo-monero](https://github.com/moneromooo-monero) [[46]] in C++ as the final implementation. Its implementation
 supports single and aggregate range proofs.
 
@@ -356,8 +356,8 @@ to the latest Secure Hash Algorithm 3 (SHA-3) standard [[44]].
 In the event of quantum adversaries, the owner of an output can choose to stay anonymous and not claim ownership or
 reveal $ bJ $ and $ r $, whereupon the amount can be moved to the then hopefully forked quantum resistant blockchain.
 
-In the Bulletproof range proof protocol, two 32-byte scalar nonces $ \tau_1 , \alpha $ (_not important to know what they
-are_) are generated with a secure random number generator. If the seed for the random number generator is known, the
+In the Bulletproof range proof protocol, two 32-byte scalar nonces $ \tau*1 , \alpha $ (\_not important to know what they
+are*) are generated with a secure random number generator. If the seed for the random number generator is known, the
 scalar values $ \tau_1 , \alpha $ can be recalculated when needed. Sixty-four (64) bytes worth of message space (out of
 674 bytes worth of range proof) are made available by embedding a message into those variables using a logic
 $ \mathrm{XOR} $ gate. This message space is used for the transaction amount for wallet reconstruction.
@@ -523,11 +523,6 @@ Available: <http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf>. Date accessed
 [1]: http://web.stanford.edu/~buenz/pubs/bulletproofs.pdf 'Bulletproofs: Short Proofs for Confidential Transactions and
 More'
 
-[[2]] A. Poelstra, "Bulletproofs" (Transcript), Bitcoin Milan Meetup 2018&#8209;02&#8209;02 [online]. Available:
-<https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-Bulletproofs>. Date accessed: 2018&#8209;09&#8209;10.
-
-[2]: https://diyhpl.us/wiki/transcripts/2018-02-02-andrew-poelstra-bulletproofs 'Bulletproofs (Transcript)'
-
 [[3]] A. Poelstra, "Bulletproofs" (Slides), Bitcoin Milan Meetup 2018&#8209;02&#8209;02 [online]. Available:
 <https://drive.google.com/file/d/18OTVGX7COgvnZ7T0ke-ajhMWwOHOWfKV/view>. Date accessed: 2018&#8209;09&#8209;10.
 
@@ -540,16 +535,9 @@ More'
 
 [[5]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for
 Confidential Transactions and More" (Slides) [online]. Available:
-<https://cyber.stanford.edu/sites/default/files/bpase18.pptx>. Date accessed: 2018&#8209;09&#8209;18.
+<https://ieeexplore.ieee.org/document/8418611>. Date accessed: 2018&#8209;09&#8209;18.
 
-[5]: https://cyber.stanford.edu/sites/default/files/bpase18.pptx 'Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)'
-
-[[6]] B. Bünz, J. Bootle, D. Boneh, A. Poelstra, P. Wuille and G. Maxwell, "Bulletproofs: Short Proofs for
-Confidential Transactions and More (Transcripts)" [online]. Available:
-<http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/Bulletproofs>. Date accessed:
-2018&#8209;09&#8209;18.
-
-[6]: http://diyhpl.us/wiki/transcripts/blockchain-protocol-analysis-security-engineering/2018/bulletproofs 'Bulletproofs: Short Proofs for Confidential Transactions and More (Transcripts)'
+[5]: https://ieeexplore.ieee.org/document/8418611 'Bulletproofs: Short Proofs for Confidential Transactions and More (Slides)'
 
 [[7]] "Merkle Root and Merkle Proofs" [online]. Available:
 <https://bitcoin.stackexchange.com/questions/69018/Merkle-root-and-Merkle-proofs>. Date accessed: 2018&#8209;10&#8209;10.
@@ -741,13 +729,6 @@ Institute, Queensland University of Technology [online]. Available:
 
 [39]: https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf 'Twisted Edwards Curves Revisited'
 
-[[40]] A. Sadeghi and M. Steiner, "Assumptions Related to Discrete Logarithms: Why Subtleties Make a Real
-Difference" [online]. Available: <http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf>. Date accessed:
-2018-09-24.
-
-[40]: http://www.semper.org/sirene/publ/SaSt_01.dh-et-al.long.pdf 'Assumptions Related to Discrete Logarithms: Why
-Subtleties Make a Real Difference'
-
 [[41]] Crypto Wiki: "Cryptographic Nonce" [online]. Available: <http://cryptography.wikia.com/wiki/Cryptographic_nonce>.
 Date accessed: 2018&#8209;10&#8209;08.
 
@@ -789,22 +770,10 @@ Bitcoin", 20&nbsp;May&nbsp;2018 [online]. Available: <https://eprint.iacr.org/20
 
 [48]: https://eprint.iacr.org/2018/068.pdf 'Simple Schnorr Multi-signatures with Applications to Bitcoin'
 
-[[49]] GitHub: "b-g-goodell/research-lab" [online]. Available:
-<https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java>. Date accessed: 2018&#8209;11&#8209;16.
-
-[49]: https://github.com/b-g-goodell/research-lab/tree/master/source-code/StringCT-java 'GitHub:
-b-g-goodell/research-lab'
-
 [[50]] Wikipedia: "One-way Function" [online]. Available: <https://en.wikipedia.org/wiki/One-way_function>. Date
 accessed: 2018&#8209;11&#8209;27.
 
 [50]: https://en.wikipedia.org/wiki/One-way_function 'Wikipedia: One-way Function'
-
-[[51]] P. Sharma, A. K. Gupta and S. Sharma, "Intensified ElGamal Cryptosystem (IEC)", _International Journal of
-Advances in Engineering & Technology_, January&nbsp;2012 [online]. Available:
-<http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf>. Date accessed: 2018&#8209;10&#8209;09.
-
-[51]: http://www.e-ijaet.org/media/58I6-IJAET0612695.pdf 'Intensified ElGamal Cryptosystem (IEC)'
 
 [[52]] Y. Tsiounis and M Yung, "On the Security of ElGamal Based Encryption" [online]. Available:
 <https://drive.google.com/file/d/16XGAByoXse5NQl57v_GldJwzmvaQlS94/view>. Date accessed: 2018&#8209;10&#8209;09.
@@ -856,13 +825,6 @@ Rangeproofs and Much More'
 
 [60]: http://cryptonite.info/files/HMBC.pdf 'Homomorphic Mini-blockchain Scheme'
 
-[[61]] C. Franck and J. Großschädl, "Efficient Implementation of Pedersen Commitments Using Twisted Edwards Curves",
-University of Luxembourg [online]. Available: <http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf>. Date
-accessed: 2018&#8209;11&#8209;22.
-
-[61]: http://orbilu.uni.lu/bitstream/10993/33705/1/MSPN2017.pdf 'Efficient Implementation of Pedersen Commitments Using
-Twisted Edwards Curves'
-
 [[62]] A. Gibson, "An Investigation into Confidential Transactions", July 2018 [online]. Available:
 <https://github.com/AdamISZ/ConfidentialTransactionsDoc/blob/master/essayonCT.pdf>. Date accessed: 2018&#8209;11&#8209;22.
 
@@ -884,10 +846,10 @@ Definitions of terms presented here are high level and general in nature. Full m
 in the cited references.
 
 - **Arithmetic Circuits:**<a name="ac"> </a>An arithmetic circuit $ C $ over a field $ F $ and variables
-  $ (x_1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be
+  $ (x*1, ..., x_n) $ is a directed acyclic graph whose vertices are called gates. Arithmetic circuits can alternatively be
   described as a list of addition and multiplication gates with a collection of linear consistency equations relating the
   inputs and outputs of the gates. The size of an arithmetic circuit is the number of gates in it, with the depth being
-  the length of the longest directed path. _Upper bounding_ the complexity of a polynomial $ f $ is to find any arithmetic
+  the length of the longest directed path. \_Upper bounding* the complexity of a polynomial $ f $ is to find any arithmetic
   circuit that can calculate $ f $, whereas *lower bounding* is to find the smallest arithmetic circuit that can calculate
 $ f $. An example of a simple arithmetic circuit with size six and depth two that calculates a polynomial is shown
   below ([[29]], [[47]]).
@@ -922,7 +884,7 @@ cryptographic primitive ...'
 Analogously, in any group  $ G $, powers $ b^k $ can be defined for all integers $ k $, and the discrete logarithm
 $ \log_ba $ is an integer $ k $ such that $ b^k=a $. Algorithms in public-key cryptography base their security on the
   assumption that the discrete logarithm problem over carefully chosen cyclic finite groups and cyclic subgroups of
-  elliptic curves over finite fields has no efficient solution ([[17]], [[40]]).
+  elliptic curves over finite fields has no efficient solution ([[17]]).
 
 [dlp~]: #dlp 'In the mathematics of the real
 numbers, the logarithm log_b(a)
@@ -932,7 +894,7 @@ is a number x such that ...'
   Commitment ([[15]], [[22]]) will use secure Elliptic Curve Cryptography (ECC), which is based on the algebraic structure
   of elliptic curves over finite (prime) fields. Elliptic curve points are used as basic mathematical objects, instead
   of numbers. Note that traditionally in elliptic curve arithmetic lower case letters are used for ordinary numbers
-  (integers) and upper case letters for curve points ([[60]], [[61]], [[62]]).
+  (integers) and upper case letters for curve points ([[60]], [[62]]).
 
   - The generalized Elliptic Curve Pedersen Commitment definition follows
     (refer to [Appendix B: Notation Used](#appendix-b-notation-used)):
@@ -974,7 +936,7 @@ Elliptic Curve Cryptography, which is ...'
   [[22]]) with an additional commitment $ g^r $ to the randomness used. The ElGamal encryption scheme is based on the
   Decisional Diffe-Hellman (DDH) assumption and the difficulty of the DLP for finite fields. The DDH assumption states
   that it is infeasible for a Probabilistic Polynomial-time (PPT) adversary to solve the DDH problem. **Note:**&nbsp;The
-  ElGamal encryption scheme should not be confused with the ElGamal signature scheme ([[1]], [[51]], [[52]], [[53]]).
+  ElGamal encryption scheme should not be confused with the ElGamal signature scheme ([[1]], [[52]], [[53]]).
 
 [egc~]: #egc 'An ElGamal Commitment is a
 Pedersen Commitment with
@@ -1040,7 +1002,7 @@ $ g \in \mathbb G $ such that $ \mathbb G = \lbrace 1 \mspace{3mu} , \mspace{3mu
   g^2 \mspace{3mu} , \mspace{3mu} g^3 \mspace{3mu} , \mspace{3mu} ... \mspace{3mu} , \mspace{3mu} g^{p-1} \rbrace
   \equiv \mathbb Z_p $.
   Note that not every element of $ \mathbb Z_p $ is a generator of $ \mathbb G $.
-- Let $ \mathbb Z_p^_ $ denote $ \mathbb Z_p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^_ $ denote
+- Let $ \mathbb Z*p^* $ denote $ \mathbb Z*p \setminus \lbrace 0 \rbrace $ and $ \mathbb Z_q^* $ denote
   $ \mathbb Z_q \setminus \lbrace 0 \rbrace $, that is all invertible elements of $ \mathbb Z_p $ and $ \mathbb Z_q $
   respectively. This excludes the element $ 0 $ which is not invertible.
 
