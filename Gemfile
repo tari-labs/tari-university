@@ -8,7 +8,7 @@ gem "jekyll", "~> 4.4.1"
 gem "jekyll-paginate", "~> 1.1.0"
 gem "jekyll-tagging", "~> 1.1.0"
 gem "jekyll-sitemap", "~> 1.4.0"
-gem "jekyll-redirect-from", "~> 0.16.0"
+gem "jekyll-redirect-from", "~> 0.17.0"
 gem "jekyll-seo-tag", "~> 2.9.0"
 
 group :jekyll_plugins do
