@@ -99,7 +99,7 @@ PLATFORMS
 DEPENDENCIES
   base64 (~> 0.3.0)
   bigdecimal (~> 4.1.2)
-  bundler (~> 4.0.6)
+  bundler (~> 4.1.0)
   csv (~> 3.3.5)
   jekyll (~> 4.4.1)
   jekyll-paginate (~> 1.1.0)
@@ -113,4 +113,4 @@ DEPENDENCIES
   webrick (~> 1.9.1)
 
 BUNDLED WITH
-  4.0.6
+  4.1.0
