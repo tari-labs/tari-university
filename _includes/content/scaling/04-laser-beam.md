@@ -36,7 +36,7 @@ implementations that support Bitcoin exist and, with small tweaks, some of them 
 Laser Beam is an adaptation of the Lightning Network for the [Mimblewimble](/protocols/mimblewimble)
 protocol, to be implemented for Beam ([[5]], [[6]], [[7]]). At the time of writing of this report (November&nbsp;2019),
 the specifications were far advanced, but still work in progress. Beam has a working demonstration in its mainnet
-repository, which at this stage demonstrates off-chain transactions in a single channel between two parties [[8]].
+repository, which at this stage demonstrates off-chain transactions in a single channel between two parties.
 According to the Request for Comment (RFC) documents, Beam plans to
 implement routing across different payment channels in the Lightning Network style.
 
@@ -454,12 +454,6 @@ position paper. (v 1.0)'
 
 [7]: https://github.com/fjahr/lightning-mw 'GitHub: fjahr/lightning-mw,
 Lightning Network Specifications'
-
-[[8]] The Beam Team, "GitHub: beam/node/laser_beam_demo at master - BeamMW/beam" \[online\]. Available:
-<https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo>. Date accessed: 2019&#8209;07&#8209;05.
-
-[8]: https://github.com/BeamMW/beam/tree/master/node/laser_beam_demo 'GitHub: beam/node/laser_beam_demo
-at master - BeamMW/beam'
 
 [[9]] The Beam Team, "GitHub: beam/ecc_bulletproof.cpp at mainnet - BeamMW/beam" \[online\]. Available:
 <https://github.com/BeamMW/beam/blob/mainnet/core/ecc_bulletproof.cpp>. Date accessed: 2019&#8209;07&#8209;05.

@@ -42,7 +42,7 @@ Maybe I made a couple of copies of that digital apple on my computer. Maybe I pu
 
 As you see, this digital exchange is a bit of a problem. **Sending _digital_ apples doesn’t look like sending _physical_ apples.**
 
-Some brainy computer scientists actually have a name for this problem: it’s called the [**double-spending problem**](http://blogs.cornell.edu/info4220/2013/03/29/bitcoin-and-the-double-spending-problem/){:target="_blank"}. But don’t worry about it. All you need to know is that, it’s confused them for quite some time and they’ve never solved it.
+Some brainy computer scientists actually have a name for this problem: it’s called the [**double-spending problem**](https://www.sofi.com/learn/content/double-spending/){:target="\_blank"}. But don’t worry about it. All you need to know is that, it’s confused them for quite some time and they’ve never solved it.
 
 Until now.
 
@@ -62,11 +62,11 @@ Say, just like World of Warcraft. _Blizzard_, the guys who created the online ga
 
 There’s a bit of a problem though:
 
-1) What if some guy over at _Blizzard_ created more? He could just add a couple of digital apples to his balance whenever he wants!
+1. What if some guy over at _Blizzard_ created more? He could just add a couple of digital apples to his balance whenever he wants!
 
-2) It’s not exactly like when we were on the bench that one day. It was just you and me then. Going through _Blizzard_ is like pulling in Uncle Tommy(_a third-party_) out of court(did I mention he’s a famous judge?) for all our park bench transactions. How can I just hand over my digital apple to you, like, you know— the usual way?
+2. It’s not exactly like when we were on the bench that one day. It was just you and me then. Going through _Blizzard_ is like pulling in Uncle Tommy(_a third-party_) out of court(did I mention he’s a famous judge?) for all our park bench transactions. How can I just hand over my digital apple to you, like, you know— the usual way?
 
->Is there any way to closely replicate our park bench, just you-and-me, transaction **digitally**? Seems kinda tough…
+> Is there any way to closely replicate our park bench, just you-and-me, transaction **digitally**? Seems kinda tough…
 
 # The Solution
 
@@ -76,9 +76,9 @@ What if we gave this ledger — to **everybody**? Instead of the ledger living o
 
 You can’t cheat it. I can’t send you digital apples I don’t have, because then it wouldn’t _sync up_ with everybody in the system. It’d be a tough system to beat. Especially if it got really big.
 
-Plus it’s not controlled by _one person_, so I know there’s no one that can just decide to give himself more digital apples. The rules of the system were already _defined at the beginning_. And the code and rules are [open-source](http://en.wikipedia.org/wiki/Open_source){:target="_blank"}. It’s there for the smart people to contribute to, maintain, secure, improve on, and check on.
+Plus it’s not controlled by _one person_, so I know there’s no one that can just decide to give himself more digital apples. The rules of the system were already _defined at the beginning_. And the code and rules are [open-source](http://en.wikipedia.org/wiki/Open_source){:target="\_blank"}. It’s there for the smart people to contribute to, maintain, secure, improve on, and check on.
 
-You could participate in this network too and update the ledger and make sure it all checks out. For the trouble, you could get like [25 digital apples](https://www.weusecoins.com/en/mining-guide){:target="_blank"} as a reward. In fact, that’s the only way to create more digital apples in the system.
+You could participate in this network too and update the ledger and make sure it all checks out. For the trouble, you could get like [25 digital apples](https://www.weusecoins.com/en/mining-guide){:target="\_blank"} as a reward. In fact, that’s the only way to create more digital apples in the system.
 
 # I simplified quite a bit
 
@@ -86,9 +86,9 @@ You could participate in this network too and update the ledger and make sure it
 
 So, did you see what happened? **What does the public ledger enable?**
 
-1) It’s open source remember? The total number of apples was defined in the public ledger at the beginning. I know the exact amount that exists. **_Within the system,_ I know they are limited(_scarce)_**.
+1. It’s open source remember? The total number of apples was defined in the public ledger at the beginning. I know the exact amount that exists. **_Within the system,_ I know they are limited(_scarce)_**.
 
-2) When I make an exchange I now know that _digital_ apple certifiably **left my possession and is now completely yours**. **I used to not be able to say that about digital things.** It will be updated and verified by the public ledger.
+2. When I make an exchange I now know that _digital_ apple certifiably **left my possession and is now completely yours**. **I used to not be able to say that about digital things.** It will be updated and verified by the public ledger.
 
 3)Because it’s a public ledger, **I didn’t need Uncle Tommy(third-party**) to make sure I didn’t cheat, or make extra copies for myself, or send apples twice, or thrice…
 
@@ -102,18 +102,18 @@ I can even make _other digital things_ ride _on top_ of these digital apples! It
 
 So this is great! How should we treat or value these “digital apples”? They’re quite useful aren’t they?
 
-Well, a lot of people are arguing over it now. There’s debate between this and that economic school. Between politicians. Between programmers. Don’t listen to all of them though. Some people are smart. Some are misinformed. Some say the system is worth a lot, some say it’s actually worth zero. Some guy actually put a hard number: [$1,300 per apple](http://www.forbes.com/sites/kashmirhill/2013/12/05/bank-of-america-analysts-say-bitcoins-value-is-1300/){:target="_blank"}. Some say it’s _digital gold_, some a _currency_. Other say they’re just like tulips. Some people say it’ll change the world, some say it’s just a fad.
+Well, a lot of people are arguing over it now. There’s debate between this and that economic school. Between politicians. Between programmers. Don’t listen to all of them though. Some people are smart. Some are misinformed. Some say the system is worth a lot, some say it’s actually worth zero. Some guy actually put a hard number: [$1,300 per apple](http://www.forbes.com/sites/kashmirhill/2013/12/05/bank-of-america-analysts-say-bitcoins-value-is-1300/){:target="_blank"}. Some say it’s \_digital gold_, some a _currency_. Other say they’re just like tulips. Some people say it’ll change the world, some say it’s just a fad.
 
-I have [my own opinion](http://nikcustodio.tumblr.com/post/150500263430/why-blockchains-an-eli21){:target="_blank"} about it.
+I have [my own opinion](http://nikcustodio.tumblr.com/post/150500263430/why-blockchains-an-eli21){:target="\_blank"} about it.
 
 That’s a story for another time though. But kid, you now know more about Bitcoin than most.
 
 **_Recommend Reading (Updated 2017)_**
 
-[_“You Don’t Understand Bitcoin Because You Think Money is Real”_](https://medium.com/@mariabustillos/you-dont-understand-bitcoin-because-you-think-money-is-real-5aef45b8e952?source=linkShare-2d6f142ff3cc-1512362100){:target="_blank"} _by_
+[_“You Don’t Understand Bitcoin Because You Think Money is Real”_](https://medium.com/@mariabustillos/you-dont-understand-bitcoin-because-you-think-money-is-real-5aef45b8e952?source=linkShare-2d6f142ff3cc-1512362100){:target="_blank"} \_by_
 
-[_Maria Bustillos_](https://medium.com/u/539043fdc07d?source=post_page-----73b4257ac833-----------------------------------){:target="_blank"}
+[_Maria Bustillos_](https://medium.com/u/539043fdc07d?source=post_page-----73b4257ac833-----------------------------------){:target="\_blank"}
 
 _is a good follow-up read._
 
-_You can also read more about_ [_Ethereum and Smart Contracts here_](https://medium.com/free-code-camp/smart-contracts-for-dummies-a1ba1e0b9575){:target="_blank"}. _Enjoy!_
+_You can also read more about_ [_Ethereum and Smart Contracts here_](https://medium.com/free-code-camp/smart-contracts-for-dummies-a1ba1e0b9575){:target="_blank"}. \_Enjoy!_

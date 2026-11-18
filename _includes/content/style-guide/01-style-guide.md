@@ -32,8 +32,6 @@
   - [Appendix B: Tari Labs University Terminology Conventions](#appendix-b-tari-labs-university-terminology-conventions)
 - [Contributors](#contributors)
 
-
-
 ## Purpose
 
 The purpose of this Style Guide is to provide contributors to the Tari Labs University (TLU) reports with standards for
@@ -41,13 +39,9 @@ content and layout. The intention is to improve communication and provide a high
 Use of this Style Guide can assist in ensuring consistency in the content and layout of TLU reports.
 
 TLU content is created in [Markdown](https://www.markdownguide.org/) format and is rendered using
-[mdBook](https://github.com/rust-lang-nursery/mdBook).
-
-
+[Jekyll](https://jekyllrb.com/).
 
 ## Standards for Content
-
-
 
 ### Spelling
 
@@ -67,7 +61,7 @@ advised in [[4]].
 
 Use the internationally agreed ISO standards [[3]] for expressing units of measure.
 
-*Example*
+_Example_
 
 min = minute, s = second, h = hour, g = gram.
 
@@ -80,15 +74,15 @@ min = minute, s = second, h = hour, g = gram.
 ### Abbreviations
 
 - If it is necessary to use abbreviations in a report, write the abbreviation out in full at its first occurrence in
-the text, followed by the abbreviation in parentheses. Thereafter, use the abbreviation only.
+  the text, followed by the abbreviation in parentheses. Thereafter, use the abbreviation only.
 
-  *Example*
+  _Example_
 
   Tari Labs University (TLU), graphical user interface (GUI).
 
 - Abbreviations of units should be consistent and not changed in the plural.
 
-  *Example*
+  _Example_
 
   10h and not 10hrs; 5min and not 5mins.
 
@@ -97,30 +91,30 @@ the text, followed by the abbreviation in parentheses. Thereafter, use the abbre
 **Note:** Due to limitations in Markdown, we deviate from the ISO convention, which requires a space between numbers
 and units of measure, and also as a thousands separator.
 
-- Use of a non-breaking space (`&nbsp;`) can improve readability in the rendered mdbook where required.
+- Use of a non-breaking space (`&nbsp;`) can improve readability where required.
 
 - Indicate clearly to which unit a number belongs:
 
-  *Incorrect*
+  _Incorrect_
 
   11 x 11 x 11mm
 
-  *Correct*
+  _Correct_
 
   11mm x 11mm x 11mm
 
 - Use 'to' rather than a dash to indicate a range of values:
 
-  *Incorrect*
+  _Incorrect_
   1 - 10cm
 
-  *Correct*
+  _Correct_
 
   1cm to 10cm
 
 - Use a comma to indicate thousands.
 
-  *Example*
+  _Example_
 
   1,000; 20,000,000; 250,000.
 
@@ -142,7 +136,7 @@ TLU uses unordered lists (refer to the first example under [List Punctuation](#l
 Where a list is a continuation of the preceding text, which is followed by a colon, use a semicolon between each
 bullet point and end the list with a full stop.
 
-*Example*
+_Example_
 
 Their primary motivations for selecting a static emission rate are:
 
@@ -153,7 +147,7 @@ Their primary motivations for selecting a static emission rate are:
 
 Where a list contains complete sentences, each item in the list is followed by a full stop.
 
-*Example*
+_Example_
 
 According to the proposed solution, one of three conditions will be true to the SPV client when using erasure codes:
 
@@ -163,7 +157,7 @@ According to the proposed solution, one of three conditions will be true to the 
 
 Where a list is not a sentence and does not complete a preceding part of a sentence, use no punctuation.
 
-*Example*
+_Example_
 
 Refer to the list of contents at the start of this Style Guide.
 
@@ -173,9 +167,9 @@ Refer to the list of contents at the start of this Style Guide.
 - Text references appear in square brackets in the text and are listed under "References" at the end of each chapter.
 - If a text reference appears at the end of a paragraph, it appears after the full stop at the end of the paragraph.
 - Please be specific when referring to figures, tables and sections of text. For clarity, if using figure and table
-numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text
-references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this
-Style Guide.
+  numbering, avoid referring to "below" or "above". Rather give a specific figure or table number. In the case of text
+  references, include a link. For more information, please refer to the [Markdown Links](#markdown-links) section in this
+  Style Guide.
 
 ### Case Formatting
 
@@ -191,51 +185,53 @@ With new concepts being formed daily and words changing over time, it is useful 
 ### Proposed Layout
 
 This section gives the proposed layout for TLU reports. The following headings are provided as a guide to heading
-levels and content:  
+levels and content:
 
 - **Title (as heading level 1)**
-   Contents List (as embedded links).
-   - **Introduction/Purpose/Background/Overview (as heading level 2)**
+  Contents List (as embedded links).
 
-      This section explains the aim of the report and prepares the reader for the content.
+  - **Introduction/Purpose/Background/Overview (as heading level 2)**
 
-   - **Other headings as appropriate (as heading level 2 and lower)**
+    This section explains the aim of the report and prepares the reader for the content.
 
-      Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you
-to present your information effectively. Headings make it easier for
-readers to find specific information.
+  - **Other headings as appropriate (as heading level 2 and lower)**
 
-      - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
+          Structure the body of your report by using headings and subheadings. Ordering these headings logically helps you
 
-      - **Bulleted Lists:** Use bulleted lists when the order of the items in the list is not important.
+    to present your information effectively. Headings make it easier for
+    readers to find specific information.
 
-   - **Conclusions, Observations, Recommendations (as heading level 2)**
+          - **Numbered Lists:** Use numbered lists when the order of the items in the list is important, such as in procedures.
 
-      The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and
-      gives a future strategy, if required.
+          - **Bulleted Lists:** Use bulleted lists when the order of the items in the list is not important.
 
-   - **References (as heading level 2)**
+  - **Conclusions, Observations, Recommendations (as heading level 2)**
 
-      References acknowledge the work of others and help readers to find sources. Refer to
-      [Referencing of Source Material](#referencing-of-source-material).
+    The conclusion complements the purpose of the report. It concisely summarizes the findings of the report and
+    gives a future strategy, if required.
 
-   - **Appendices (as heading level 2)**
+  - **References (as heading level 2)**
 
-      Appendices contain supplementary information that supports the main report.
+    References acknowledge the work of others and help readers to find sources. Refer to
+    [Referencing of Source Material](#referencing-of-source-material).
 
-      - **Appendix A: Name (as heading level 3)**
+  - **Appendices (as heading level 2)**
 
-        Rather than inserting an entire supporting document into an appendix, provide a text reference and list the
-        reference in the references section.
+    Appendices contain supplementary information that supports the main report.
 
-      - **Appendix B: Name  (as heading level 3)**
+    - **Appendix A: Name (as heading level 3)**
 
-        If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on
-        from the figure and table numbers used in the report.
+      Rather than inserting an entire supporting document into an appendix, provide a text reference and list the
+      reference in the references section.
 
-   - **Contributors (as heading level 2)**
+    - **Appendix B: Name (as heading level 3)**
 
-      Refer to [List of Contributors](#list-of-contributors).
+      If figure and table numbers are used in the report, the figure and table numbering in the appendices follows on
+      from the figure and table numbers used in the report.
+
+  - **Contributors (as heading level 2)**
+
+    Refer to [List of Contributors](#list-of-contributors).
 
 ### Line Widths
 
@@ -246,10 +242,10 @@ _Example_
 
 This text, which is split over four lines:
 
-  `Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo`  
-  `Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius rei testimonium sigillum nostrum`  
-  `presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate`  
-  `Marie virginis.`
+`Probatum fuit hujusmodi Testamentum apud London decimo Octavo die mensis Septembris Anno Domini Millesimo`  
+ `Septingentesimo vicesimo tertio Coram venerabili viro Gulielmo Strahan. In cuius rei testimonium sigillum nostrum`  
+ `presentibus apposuimus ad duos anni terminos videlicet ad festa Sancti Michaelis Archangeli et Annunciationis beate`  
+ `Marie virginis.`
 
 will look like a single paragraph, as follows:
 
@@ -263,7 +259,7 @@ Marie virginis.
 Every chapter in a TLU report should start with a bulleted list of all the headings in that chapter (with embedded
 links), for quick reference and consistency. This is optional for chapters that have five or fewer lower-level headings.
 
-*Example*
+_Example_
 
 Refer to the contents listed at the start of this [Style Guide](#style-guide). The heading "Contents" is not inserted
 before this list.
@@ -273,15 +269,15 @@ before this list.
 - Do not include paragraph numbers in headings.
 - For consistency, upper and lower-case (title case) letters are used for headings at all levels.
 
-*Incorrect*
+_Incorrect_
 
-  \## 2. OVERVIEW  
+\## 2. OVERVIEW
 
-  *Correct*
+_Correct_
 
-  \## Overview
+\## Overview
 
-  Also refer to [Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting).
+Also refer to [Appendix A](#appendix-a-lower-case-words-used-in-title-case-formatting).
 
 ### Figures and Tables
 
@@ -289,34 +285,31 @@ The use of captions, as well as figure and table numbering, is optional. If you 
 these guidelines will help to promote consistency in TLU layout:
 
 - Number figures and tables in each section sequentially, with the table caption above the table and the figure caption
-below the figure.
+  below the figure.
 - Type figure and table captions in upper and lower-case (title case).
 - Type Figure x: or Table X: before the caption, as applicable.
 - Center figures and tables on the page.
 - Place figures and tables as soon as possible after they are first referred to in the text. The text reference, if
-figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps
-to avoid confusion.
+  figure and table numbering is not used, would then be "the following figure..." or "the following table...". This helps
+  to avoid confusion.
 
 ### Equations
 
-mdBook has optional support for math
-[equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md)
+TLU has optional support for math
+[equations](https://www.mathjax.org/)
 through MathJax. In addition to the delimiters `\[` and `\[`, TLU also supports delimiters `$` and `$$`.
 
-
-
-*Examples*
+_Examples_
 
 - Example of an inline equation: $ h \in \mathbb G $
 
 - Example of a display equation:
 
-
 $$
 \mathbb s = \prod _{i=0}^n s(i)
 $$
 
-**Note:** MathJax rendering in mdBook has some caveats to take note of:
+**Note:** MathJax rendering has some caveats to take note of:
 
 - Subscripts
 
@@ -325,27 +318,29 @@ $$
     text in italics. The way around this is to escape each underscore used in the equation as follows: (`\_`). An
     example of this is:
 
-    - *Rendering correctly*
+        - _Rendering correctly_
 
-      $ \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and}
-      \mspace{12mu} \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $
+          $ \mathbf a \_{[:l]} = ( a*1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and}
+          \mspace{12mu} \mathbf a \_{[l:]} = ( a*{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $
 
-      as
+          as
 
-      `$  \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}
-      \mathbf a \_{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l}  $`
+          `$  \mathbf a \_{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}
 
-    - *Rendering incorrectly*
+    \mathbf a \_{[l:]} = ( a\_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $`
 
-      $  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}  
-      \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $
+        - _Rendering incorrectly_
 
-      as
+          $ \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}
+          \mathbf a _{[l:]} = ( a\_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $
 
-      `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}
-      \mathbf a _{[l:]} = ( a_{1+1}  , ... , a_n ) \in \mathbb F ^ {n-l} $`
+          as
 
-      Notice that this part of the (failed) formula, `_{[l:]} = ( a_`, is rendered in italics.
+          `$  \mathbf a _{[:l]} = ( a_1 , ... , a_n ) \in \mathbb F ^ n \mspace{12mu} \text{and} \mspace{12mu}
+
+    \mathbf a _{[l:]} = ( a_{1+1} , ... , a_n ) \in \mathbb F ^ {n-l} $`
+
+          Notice that this part of the (failed) formula, `_{[l:]} = ( a_`, is rendered in italics.
 
 - Superscripts and subscripts order
 
@@ -354,10 +349,9 @@ $$
 
     - `$ s_i = \prod ^{\log _2 (n)} _{j=1} x ^{b(i,j)} _j $`
 
-       vs.
+      vs.
 
       `$ s_i = \prod _{j=1} ^{\log _2 (n)} x _j ^{b(i,j)} $`
-
 
 ### Referencing of Source Material
 
@@ -369,14 +363,14 @@ List references in the following order, as applicable:
 
 1. Author(s) initials or first name and surname (note punctuation in the following example).
 2. Title of the report, between double quotation marks. If it is an online report, state this in square brackets, as
-shown in the following example.
+   shown in the following example.
 3. Title of journal, in italics (if applicable).
 4. Publication information (volume, number, etc.).
 5. Page range (if applicable).
 6. URL address if an online publication. Provide this information as shown in the following example: "Available: ..".
 7. Date you accessed the article if it is an online publication (yyyy-mm-dd), as shown in the following example.
 
-*Example*
+_Example_
 
 \[1\] M. Abe, M. Ohkubo and K. Suzuki, "1-out-of-n Signatures from a Variety of Keys" [online].
 Available: https://www.iacr.org/cryptodb/archive/2002/ASIACRYPT/50/50.pdf. Date accessed: 2018-12-18.
@@ -391,18 +385,18 @@ The **inline link** under the [Equations](#Equations) heading was created as fol
 
 1. Insert identifying link text within a set of square brackets (refer to the following example).
 1. Create an inline link by placing a set of parentheses (round brackets) immediately after the closing square bracket
-of the link text (refer to the following example).
+   of the link text (refer to the following example).
 1. Insert the relevant URL link inside the parentheses (round brackets) (refer to the following example).
 
-mdBook has optional support for math
-[equations](https://github.com/rust-lang-nursery/mdBook/blob/master/book-example/src/format/mathjax.md) through MathJax.
+TLU has optional support for math
+[equations](https://www.mathjax.org/) through MathJax.
 
-*Example*
+_Example_
 
 A **reference link** has two parts. The first part of a reference link has two sets of square brackets. Inside the inner
 (second) set of square brackets, insert a label to identify the link.
 
-*Example*
+_Example_
 
 Under the heading [Spelling](#spelling), the text reference is "The applicable dictionary is Merriam-Webster Online [[1]]".
 In the markdown text, note the double square brackets and the label 1. The rendered text shows [1].
@@ -412,8 +406,7 @@ The second part of a reference link is inserted under the heading [References](#
 [[1]] Merriam-Webster Online Dictionary [online].
 Available: https://www.merriam-webster.com/. Date accessed: 2019-02-01.
 
-[1]: https://www.merriam-webster.com
-"Merriam-Webster Online Dictionary"
+[1]: https://www.merriam-webster.com 'Merriam-Webster Online Dictionary'
 
 The full online reference is inserted after `[[1]]`; and the pop-up text link (which can be seen by hovering your cursor
 over the text reference in [Spelling](#spelling)) is inserted after `[1]:`.
@@ -431,35 +424,26 @@ Refer to [Contributors](#contributors) for an example.
 [[1]] Merriam-Webster Online Dictionary [online].
 Available: https://www.merriam-webster.com/. Date accessed: 2019-02-01.
 
-[1]: https://www.merriam-webster.com
-"Merriam-Webster Online Dictionary"
+[1]: https://www.merriam-webster.com 'Merriam-Webster Online Dictionary'
 
 [[2]] Citing and Referencing: IEEE [online].
 Available: https://guides.lib.monash.edu/citing-referencing/ieee. Date accessed: 2019-02-01.
 
-[2]: https://guides.lib.monash.edu/citing-referencing/ieee
-"Citing and Referencing: IEEE"
+[2]: https://guides.lib.monash.edu/citing-referencing/ieee 'Citing and Referencing: IEEE'
 
 [[3]] A. Thompson and B. N. Taylor, " Guide for the Use of the International System of Units (SI)", (1995) – NIST Special
 Publication 811 - 2008 Edition [online]. Available: https://physics.nist.gov/cuu/pdf/sp811.pdf. Date accessed: 2019-02-04.
 
-[3]: https://physics.nist.gov/cuu/pdf/sp811.pdf
-"Guide for the Use of the International System of Units (SI)"
+[3]: https://physics.nist.gov/cuu/pdf/sp811.pdf 'Guide for the Use of the International System of Units (SI)'
 
 [[4]] The Oxford Guide to Style [online].
 Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 
-[4]: http://www.eng-lang.co.uk/ogs.htm
-"The Oxford Guide to Style"
-
-
+[4]: http://www.eng-lang.co.uk/ogs.htm 'The Oxford Guide to Style'
 
 ## Appendices
 
 ### Appendix A: Lower-case Words used in Title Case Formatting
-
-
-
 
 | Case Word    | Case Word | Case Word | Case Word  |
 | ------------ | --------- | --------- | ---------- |
@@ -498,10 +482,6 @@ Available: http://www.eng-lang.co.uk/ogs.htm. Date accessed: 2019-02-04.
 | down         | its       | then      | worst      |
 | e.g.         | least     | there     |            |
 
-
-
-
-
 ### Appendix B: Tari Labs University Terminology Conventions
 
 With new concepts being formed daily and words changing over time, it is useful to establish terminology conventions.
@@ -510,7 +490,6 @@ contains suggested terminology for use in TLU reports.
 
 - blockchain
 - Mimblewimble
-
 
 ## Contributors
 
